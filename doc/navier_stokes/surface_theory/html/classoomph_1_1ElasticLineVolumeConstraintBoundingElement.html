@@ -71,11 +71,9 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Get it <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/subversion/html/index.html">Get code from subversion repository</a></li>
-            <li><a href="../../../../doc/download/html/index.html">Get code as tar file</a></li>
             <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
           </ul>
         </li>
@@ -139,8 +137,7 @@ Inheritance diagram for oomph::ElasticLineVolumeConstraintBoundingElement&lt; EL
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4759433aaab9f854126480581e4f08d5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1ElasticLineVolumeConstraintBoundingElement.html#a4759433aaab9f854126480581e4f08d5">ElasticLineVolumeConstraintBoundingElement</a> (FiniteElement *const &amp;element_pt, const int &amp;face_index)</td></tr>
-<tr class="memdesc:a4759433aaab9f854126480581e4f08d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contructor: Specify bulk element and index of face to which this face element is to be attached <br  />
-  <a href="classoomph_1_1ElasticLineVolumeConstraintBoundingElement.html#a4759433aaab9f854126480581e4f08d5">More...</a><br /></td></tr>
+<tr class="memdesc:a4759433aaab9f854126480581e4f08d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contructor: Specify bulk element and index of face to which this face element is to be attached.  <a href="classoomph_1_1ElasticLineVolumeConstraintBoundingElement.html#a4759433aaab9f854126480581e4f08d5">More...</a><br /></td></tr>
 <tr class="separator:a4759433aaab9f854126480581e4f08d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b9670b4a995765e0b2793a3cab05966"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1ElasticLineVolumeConstraintBoundingElement.html#a6b9670b4a995765e0b2793a3cab05966">fill_in_contribution_to_jacobian</a> (Vector&lt; double &gt; &amp;residuals, DenseMatrix&lt; double &gt; &amp;jacobian)</td></tr>
 <tr class="separator:a6b9670b4a995765e0b2793a3cab05966"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -197,7 +194,7 @@ class oomph::ElasticLineVolumeConstraintBoundingElement&lt; ELEMENT &gt;</h3>
 
 <p>The one-dimensional interface elements that allow imposition of a volume constraint specialised for the case when the nodal positions of the bulk elements are treated as solid degrees of freedom. To enforce that a fluid volume has a certain volume, attach these elements to all faces of the (2D cartesian) bulk fluid elements (of type ELEMENT) that bound that region and then specify the "pressure" value that is traded for the constraint. </p>
 
-<p class="definition">Definition at line <a class="el" href="constrained__volume__elements_8h_source.html#l00377">377</a> of file <a class="el" href="constrained__volume__elements_8h_source.html">constrained_volume_elements.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="constrained__volume__elements_8h_source.html#l00369">369</a> of file <a class="el" href="constrained__volume__elements_8h_source.html">constrained_volume_elements.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4759433aaab9f854126480581e4f08d5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4759433aaab9f854126480581e4f08d5">&#9670;&nbsp;</a></span>ElasticLineVolumeConstraintBoundingElement()</h2>
@@ -235,10 +232,9 @@ template&lt;class ELEMENT &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Contructor: Specify bulk element and index of face to which this face element is to be attached <br  />
- </p>
+<p>Contructor: Specify bulk element and index of face to which this face element is to be attached. </p>
 
-<p class="definition">Definition at line <a class="el" href="constrained__volume__elements_8h_source.html#l00386">386</a> of file <a class="el" href="constrained__volume__elements_8h_source.html">constrained_volume_elements.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="constrained__volume__elements_8h_source.html#l00376">376</a> of file <a class="el" href="constrained__volume__elements_8h_source.html">constrained_volume_elements.h</a>.</p>
 
 </div>
 </div>
@@ -280,9 +276,9 @@ template&lt;class ELEMENT &gt; </div>
 </div><div class="memdoc">
 <p>Fill in contribution to residuals and Jacobian. This is specific to solid-based elements in which derivatives w.r.t. to nodal positions are evaluated by finite differencing </p>
 
-<p class="definition">Definition at line <a class="el" href="constrained__volume__elements_8h_source.html#l00399">399</a> of file <a class="el" href="constrained__volume__elements_8h_source.html">constrained_volume_elements.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="constrained__volume__elements_8h_source.html#l00388">388</a> of file <a class="el" href="constrained__volume__elements_8h_source.html">constrained_volume_elements.h</a>.</p>
 
-<p class="reference">References <a class="el" href="constrained__volume__elements_8cc_source.html#l00116">oomph::LineVolumeConstraintBoundingElement::fill_in_generic_residual_contribution_volume_constraint()</a>.</p>
+<p class="reference">References <a class="el" href="constrained__volume__elements_8cc_source.html#l00115">oomph::LineVolumeConstraintBoundingElement::fill_in_generic_residual_contribution_volume_constraint()</a>.</p>
 
 </div>
 </div>
@@ -330,7 +326,7 @@ template&lt;class ELEMENT &gt; </div>
 
 <p>The "global" intrinsic coordinate of the element when viewed as part of a geometric object should be given by the FaceElement representation, by default. </p>
 
-<p class="definition">Definition at line <a class="el" href="constrained__volume__elements_8h_source.html#l00413">413</a> of file <a class="el" href="constrained__volume__elements_8h_source.html">constrained_volume_elements.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="constrained__volume__elements_8h_source.html#l00402">402</a> of file <a class="el" href="constrained__volume__elements_8h_source.html">constrained_volume_elements.h</a>.</p>
 
 </div>
 </div>
@@ -365,7 +361,7 @@ template&lt;class ELEMENT &gt; </div>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Aug 16 2021 10:36:28
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Tue Aug 24 2021 11:13:03
         </div>
       </div>
     </footer>
