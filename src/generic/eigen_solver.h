@@ -82,6 +82,12 @@ namespace oomph
                                     Vector<std::complex<double>>& eigenvalue,
                                     Vector<DoubleVector>& eigenvector) = 0;
 
+    virtual void solve_adjoint_eigenproblem(
+      Problem* const& problem_pt,
+      const int& n_eval,
+      Vector<std::complex<double>>& eigenvalue,
+      Vector<DoubleVector>& eigenvector) = 0;
+
 
     /// Set the value of the shift
     void set_shift(const double& shift_value)
@@ -167,6 +173,14 @@ namespace oomph
                             Vector<std::complex<double>>& eigenvalue,
                             Vector<DoubleVector>& eigenvector);
 
+    void solve_adjoint_eigenproblem(Problem* const& problem_pt,
+                                    const int& n_eval,
+                                    Vector<std::complex<double>>& eigenvalue,
+                                    Vector<DoubleVector>& eigenvector)
+    {
+      BrokenCopy::broken_assign("ARPACK");
+    }
+
     /// Use the eigensolver to find the eigenvalues of a given matrix
     // void find_eigenvalues(const DoubleMatrixBase &A, const int &n_eval,
     //                      Vector<std::complex<double> > &eigenvalue,
@@ -237,6 +251,14 @@ namespace oomph
                             const int& n_eval,
                             Vector<std::complex<double>>& eigenvalue,
                             Vector<DoubleVector>& eigenvector);
+
+    void solve_adjoint_eigenproblem(Problem* const& problem_pt,
+                                    const int& n_eval,
+                                    Vector<std::complex<double>>& eigenvalue,
+                                    Vector<DoubleVector>& eigenvector)
+    {
+      BrokenCopy::broken_assign("LAPACK_QZ");
+    };
 
     /// Find the eigenvalues of a generalised eigenvalue problem
     /// specified by \f$ Ax = \lambda  Mx \f$
