@@ -1927,7 +1927,7 @@ namespace oomph
     void solve_eigenproblem(const unsigned& n_eval,
                             Vector<std::complex<double>>& eigenvalue,
                             Vector<DoubleVector>& eigenvector,
-                            const bool& steady = true);
+                            const bool& make_timesteppers_steady = true);
 
     /// \short Solve an eigenproblem as assembled by EigenElements,
     /// but only return the eigenvalues, not the eigenvectors.
@@ -1936,20 +1936,22 @@ namespace oomph
     /// be included in the jacobian.
     void solve_eigenproblem(const unsigned& n_eval,
                             Vector<std::complex<double>>& eigenvalue,
-                            const bool& steady = true)
+                            const bool& make_timesteppers_steady = true)
     {
       // Create temporary storage for the eigenvectors (potentially wasteful)
       Vector<DoubleVector> eigenvector;
-      solve_eigenproblem(n_eval, eigenvalue, eigenvector, steady);
+      solve_eigenproblem(
+        n_eval, eigenvalue, eigenvector, make_timesteppers_steady);
     }
 
     /// \Short Solve an adjoint eigenvalue problem using the same procedure as
     /// solve_eigenproblem. See the documentation on that function for more
     /// details.
-    void solve_adjoint_eigenproblem(const unsigned& n_eval,
-                                    Vector<std::complex<double>>& eigenvalue,
-                                    Vector<DoubleVector>& eigenvector,
-                                    const bool& steady = true);
+    void solve_adjoint_eigenproblem(
+      const unsigned& n_eval,
+      Vector<std::complex<double>>& eigenvalue,
+      Vector<DoubleVector>& eigenvector,
+      const bool& make_timesteppers_steady = true);
 
     /// \short Get the matrices required by a eigensolver. If the
     /// shift parameter is non-zero the second matrix will be shifted

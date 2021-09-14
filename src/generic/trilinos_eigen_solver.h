@@ -538,10 +538,7 @@ namespace oomph
       // This is odd and not expected, examine carefully
       DoubleVector Y(x.distribution_pt());
       Linear_solver_pt->solve(AsigmaM_pt, X, Y);
-      // Need to synchronise
-      //#ifdef OOMPH_HAS_MPI
-      //   Problem_pt->synchronise_all_dofs();
-      //#endif
+
       for (unsigned i = 0; i < n_row_local; i++)
       {
         y(0, i) = Y[i];
@@ -552,9 +549,7 @@ namespace oomph
       {
         M_pt->multiply(x.doublevector(v), X);
         Linear_solver_pt->resolve(X, Y);
-        //#ifdef OOMPH_HAS_MPI
-        //     Problem_pt->synchronise_all_dofs();
-        //#endif
+
         for (unsigned i = 0; i < n_row_local; i++)
         {
           y(v, i) = Y[i];
@@ -627,10 +622,7 @@ namespace oomph
       // This is odd and not expected, examine carefully
       DoubleVector Y(x.distribution_pt());
       Linear_solver_pt->solve(AsigmaM_pt, X, Y);
-      // Need to synchronise
-      //#ifdef OOMPH_HAS_MPI
-      //   Problem_pt->synchronise_all_dofs();
-      //#endif
+
       for (unsigned i = 0; i < n_row_local; i++)
       {
         y(0, i) = Y[i];
@@ -641,9 +633,7 @@ namespace oomph
       {
         M_pt->multiply(x.doublevector(v), X);
         Linear_solver_pt->resolve(X, Y);
-        //#ifdef OOMPH_HAS_MPI
-        //     Problem_pt->synchronise_all_dofs();
-        //#endif
+
         for (unsigned i = 0; i < n_row_local; i++)
         {
           y(v, i) = Y[i];
@@ -759,9 +749,11 @@ namespace oomph
       // Initially be dumb here
       Linear_solver_pt = problem_pt->linear_solver_pt();
 
-      // Let's make the initial vector
-      Teuchos::RCP<DoubleMultiVector> initial = Teuchos::rcp(
-        new DoubleMultiVector(1, problem_pt->dof_distribution_pt()));
+      // Let's make the initial one-dimensional vector
+      unsigned multivector_dimension = 1;
+      Teuchos::RCP<DoubleMultiVector> initial =
+        Teuchos::rcp(new DoubleMultiVector(multivector_dimension,
+                                           problem_pt->dof_distribution_pt()));
       Anasazi::MultiVecTraits<double, DoubleMultiVector>::MvRandom(*initial);
 
       // Make the operator
@@ -779,7 +771,7 @@ namespace oomph
                                          DoubleMultiVectorOperator>(Op_pt,
                                                                     initial));
 
-      // Think I have it?
+      // The problem is not Hermitian in general
       anasazi_pt->setHermitian(false);
 
       // set the number of eigenvalues requested
@@ -794,7 +786,7 @@ namespace oomph
       }
 
       // Create the solver manager
-      // No need to have ncv specificed, Triliinos has a sensible default
+      // No need to have ncv specified, Trilinos has a sensible default
       //  int ncv = 10;
       MT tol = 1.0e-10;
       int verbosity =
@@ -815,13 +807,8 @@ namespace oomph
 
       // Solve the problem to the specified tolerances or length
       Anasazi::ReturnType ret = BKS.solve();
-      bool testFailed = false;
-      if (ret != Anasazi::Converged)
-      {
-        testFailed = true;
-      }
 
-      if (testFailed)
+      if (ret != Anasazi::Converged)
       {
         oomph_info << "Eigensolver not converged\n";
       }
@@ -843,10 +830,9 @@ namespace oomph
         double det = a * a + b * b;
         eigenvalue[i] = std::complex<double>(a / det + Sigma, -b / det);
 
-        // Now set the eigenvectors, I hope
+        // Now set the eigenvectors
         eigenvector[i].build(evecs->distribution_pt());
         unsigned nrow_local = evecs->nrow_local();
-        // Would be faster with pointers, but I'll sort that out later!
         for (unsigned n = 0; n < nrow_local; n++)
         {
           eigenvector[i][n] = (*evecs)(i, n);
@@ -866,14 +852,14 @@ namespace oomph
       // Initially be dumb here
       Linear_solver_pt = problem_pt->linear_solver_pt();
 
-      // Let's make the initial vector
+      // Let's make the initial one-dimensional vector
       Teuchos::RCP<DoubleMultiVector> initial = Teuchos::rcp(
         new DoubleMultiVector(1, problem_pt->dof_distribution_pt()));
       Anasazi::MultiVecTraits<double, DoubleMultiVector>::MvRandom(*initial);
 
       // Make the operator
-      // NB Using AdjointProblemBasedShiftInvertOperator, the only difference
-      // to solve_eigenproblem
+      // NB Using AdjointProblemBasedShiftInvertOperator
+      // This is the only difference to solve_eigenproblem
       Teuchos::RCP<DoubleMultiVectorOperator> Op_pt =
         Teuchos::rcp(new AdjointProblemBasedShiftInvertOperator(
           problem_pt, this->linear_solver_pt(), Sigma));
@@ -888,7 +874,7 @@ namespace oomph
                                          DoubleMultiVectorOperator>(Op_pt,
                                                                     initial));
 
-      // Think I have it?
+      // The problem is not Hermitian in general
       anasazi_pt->setHermitian(false);
 
       // set the number of eigenvalues requested
@@ -903,7 +889,7 @@ namespace oomph
       }
 
       // Create the solver manager
-      // No need to have ncv specificed, Triliinos has a sensible default
+      // No need to have ncv specified, Trilinos has a sensible default
       //  int ncv = 10;
       MT tol = 1.0e-10;
       int verbosity =
@@ -924,13 +910,8 @@ namespace oomph
 
       // Solve the problem to the specified tolerances or length
       Anasazi::ReturnType ret = BKS.solve();
-      bool testFailed = false;
-      if (ret != Anasazi::Converged)
-      {
-        testFailed = true;
-      }
 
-      if (testFailed)
+      if (ret != Anasazi::Converged)
       {
         oomph_info << "Eigensolver not converged\n";
       }
@@ -952,10 +933,9 @@ namespace oomph
         double det = a * a + b * b;
         eigenvalue[i] = std::complex<double>(a / det + Sigma, -b / det);
 
-        // Now set the eigenvectors, I hope
+        // Now set the eigenvectors
         eigenvector[i].build(evecs->distribution_pt());
         unsigned nrow_local = evecs->nrow_local();
-        // Would be faster with pointers, but I'll sort that out later!
         for (unsigned n = 0; n < nrow_local; n++)
         {
           eigenvector[i][n] = (*evecs)(i, n);

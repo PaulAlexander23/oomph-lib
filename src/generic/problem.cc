@@ -8313,12 +8313,12 @@ namespace oomph
   void Problem::solve_eigenproblem(const unsigned& n_eval,
                                    Vector<std::complex<double>>& eigenvalue,
                                    Vector<DoubleVector>& eigenvector,
-                                   const bool& steady)
+                                   const bool& make_timesteppers_steady)
   {
     // If the boolean flag is steady, then make all the timesteppers steady
     // before solving the eigenproblem. This will "switch off" the
     // time-derivative terms in the jacobian matrix
-    if (steady)
+    if (make_timesteppers_steady)
     {
       // Find out how many timesteppers there are
       const unsigned n_time_steppers = ntime_stepper();
@@ -8366,12 +8366,12 @@ namespace oomph
     const unsigned& n_eval,
     Vector<std::complex<double>>& eigenvalue,
     Vector<DoubleVector>& eigenvector,
-    const bool& steady)
+    const bool& make_timesteppers_steady)
   {
     // If the boolean flag is steady, then make all the timesteppers steady
     // before solving the eigenproblem. This will "switch off" the
     // time-derivative terms in the jacobian matrix
-    if (steady)
+    if (make_timesteppers_steady)
     {
       // Find out how many timesteppers there are
       const unsigned n_time_steppers = ntime_stepper();
