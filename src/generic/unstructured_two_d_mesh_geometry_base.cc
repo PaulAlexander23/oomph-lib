@@ -4058,12 +4058,117 @@ namespace oomph
       }
     }
   }
+  //======================================================================
+  /// Helper function that can find a point inside a given polygon, if it is
+  /// simply connected
+  //======================================================================
+  void UnstructuredTwoDMeshGeometryBase::find_point_inside_polygon_helper(
+    Vector<Vector<double>> polygon_vertices, Vector<double>& point_inside_coord)
+  {
+    const unsigned n_vertex = polygon_vertices.size();
+    double max_x = polygon_vertices[0][0];
+    double min_x = polygon_vertices[0][0];
+    double max_y = polygon_vertices[0][1];
+    double min_y = polygon_vertices[0][1];
+
+    for (unsigned i = 1; i < n_vertex; i++)
+    {
+      if (polygon_vertices[i][0] > max_x)
+      {
+        max_x = polygon_vertices[i][0];
+      }
+      if (polygon_vertices[i][0] < min_x)
+      {
+        min_x = polygon_vertices[i][0];
+      }
+      if (polygon_vertices[i][1] > max_y)
+      {
+        max_y = polygon_vertices[i][1];
+      }
+      if (polygon_vertices[i][1] < min_y)
+      {
+        min_y = polygon_vertices[i][1];
+      }
+    }
+
+    Vector<double> test_coord(2, 0.0);
+    test_coord[1] = 0.5 * (max_y + min_y);
+
+    double t_left = 0;
+    double t_right = 1;
+    double t = 0.5;
+
+    unsigned max_bisections_to_search = 12;
+
+    for (unsigned i_bisect = 0; i_bisect < max_bisections_to_search; i_bisect++)
+    {
+      test_coord[0] = (1.0 - t) * min_x + t * max_x;
+      unsigned intersections =
+        UnstructuredTwoDMeshGeometryBase::is_point_inside_polygon_intersections(
+          polygon_vertices, test_coord);
+      if (intersections % 2 == 1)
+      {
+        point_inside_coord = test_coord;
+        break;
+      }
+      else if (intersections > 1)
+      {
+        /// Then there must be a point with 1 intersection further right
+        t_left = t;
+        t = (t + t_right) / 2;
+      }
+      else if (intersections == 0)
+      {
+        /// We need to move further left
+        t_right = t;
+        t = (t + t_left) / 2.0;
+      }
+    }
+    bool is_point_inside =
+      is_point_inside_polygon_helper(polygon_vertices, point_inside_coord);
+    if (is_point_inside == false)
+    {
+      std::cout << "Failed to find a point inside the polygon in a "
+                << max_bisections_to_search << " step bisection search"
+                << std::endl;
+      throw OomphLibError("Are you sure your polygon is simply connected?\n",
+                          OOMPH_CURRENT_FUNCTION,
+                          OOMPH_EXCEPTION_LOCATION);
+    }
+  }
+
 
   //======================================================================
   /// Helper function that checks if a given point is inside a polygon
   //======================================================================
   bool UnstructuredTwoDMeshGeometryBase::is_point_inside_polygon_helper(
     Vector<Vector<double>> polygon_vertices, Vector<double> point)
+  {
+    unsigned intersect_counter =
+      is_point_inside_polygon_intersections(polygon_vertices, point);
+
+    // Even number of intersections: outside
+    if (intersect_counter % 2 == 0)
+    {
+      return false;
+    }
+    else
+    {
+      return true;
+    }
+  }
+
+  //======================================================================
+  /// Helper function that checks how many intersections there are between a
+  /// given point, a point to its far right, and a polygon. If there are an odd
+  /// number of intersections, the point is inside this polygon. Knowing the
+  /// number of intersections (rather than just true or false) allows us to use
+  /// a bisection search to identify a point inside the polygon, even if it is
+  /// convex.
+  //======================================================================
+  unsigned UnstructuredTwoDMeshGeometryBase::
+    is_point_inside_polygon_intersections(
+      Vector<Vector<double>> polygon_vertices, Vector<double> point)
   {
     // Total number of vertices (the first and last vertex should be the same)
     const unsigned n_vertex = polygon_vertices.size();
@@ -4102,15 +4207,7 @@ namespace oomph
       p1 = p2;
     }
 
-    // Even number of intersections: outside
-    if (intersect_counter % 2 == 0)
-    {
-      return false;
-    }
-    else
-    {
-      return true;
-    }
+    return intersect_counter;
   }
 
   //======================================================================
