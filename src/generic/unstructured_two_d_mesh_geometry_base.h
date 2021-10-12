@@ -1978,9 +1978,9 @@ namespace oomph
 
     /// Helper function that checks if a given point is inside a polygon
     /// (a set of sorted vertices that connected create a polygon)
-    static bool is_point_inside_polygon_helper(Vector<Vector<double>> polygon_vertices,
-                                      Vector<double> point);
-    
+    static bool is_point_inside_polygon_helper(
+      Vector<Vector<double>> polygon_vertices, Vector<double> point);
+
     static unsigned is_point_inside_polygon_intersections(
       Vector<Vector<double>> polygon_vertices, Vector<double> point);
 
