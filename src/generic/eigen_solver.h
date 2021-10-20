@@ -82,6 +82,9 @@ namespace oomph
                                     Vector<std::complex<double>>& eigenvalue,
                                     Vector<DoubleVector>& eigenvector) = 0;
 
+    /// \short Actual adjoint eigensolver. This takes a pointer to a problem and
+    /// returns a vector of complex numbers representing the eigenvalues and a
+    /// corresponding vector of eigenvectors for the adjoint eigen problem
     virtual void solve_adjoint_eigenproblem(
       Problem* const& problem_pt,
       const int& n_eval,
@@ -173,12 +176,16 @@ namespace oomph
                             Vector<std::complex<double>>& eigenvalue,
                             Vector<DoubleVector>& eigenvector);
 
+    /// Solve the adjoint eigen problem
     void solve_adjoint_eigenproblem(Problem* const& problem_pt,
                                     const int& n_eval,
                                     Vector<std::complex<double>>& eigenvalue,
                                     Vector<DoubleVector>& eigenvector)
     {
-      BrokenCopy::broken_assign("ARPACK");
+      throw OomphLibError("solve_adjoint_eigenproblem is not currently "
+                          "implemented for ARPACK.",
+                          OOMPH_CURRENT_FUNCTION,
+                          OOMPH_EXCEPTION_LOCATION);
     }
 
     /// Use the eigensolver to find the eigenvalues of a given matrix
@@ -252,12 +259,16 @@ namespace oomph
                             Vector<std::complex<double>>& eigenvalue,
                             Vector<DoubleVector>& eigenvector);
 
+    /// Solve the adjoint eigen problem
     void solve_adjoint_eigenproblem(Problem* const& problem_pt,
                                     const int& n_eval,
                                     Vector<std::complex<double>>& eigenvalue,
                                     Vector<DoubleVector>& eigenvector)
     {
-      BrokenCopy::broken_assign("LAPACK_QZ");
+      throw OomphLibError("solve_adjoint_eigenproblem is not currently "
+                          "implemented for LAPACK_QZ.",
+                          OOMPH_CURRENT_FUNCTION,
+                          OOMPH_EXCEPTION_LOCATION);
     };
 
     /// Find the eigenvalues of a generalised eigenvalue problem
