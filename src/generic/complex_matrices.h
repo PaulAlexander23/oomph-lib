@@ -280,11 +280,11 @@ namespace oomph
   public:
     /// Serial matrix multiply method enumeration
     enum class SerialMatrixMultiplyMethod
-      {
-        Memory_efficient = 0,
-        Fastest = 1,
-        Vector_of_vectors = 2,
-      };
+    {
+      Memory_efficient = 0,
+      Fastest = 1,
+      Vector_of_vectors = 2,
+    };
 
 
     /// Default constructor
@@ -294,7 +294,8 @@ namespace oomph
       Doc_stats_during_solve = false;
 
       // Set the serial the default matrix-matrix multiply method
-      Serial_matrix_matrix_multiply_method = SerialMatrixMultiplyMethod::Fastest;
+      Serial_matrix_matrix_multiply_method =
+        SerialMatrixMultiplyMethod::Fastest;
     }
 
     /// \short Constructor: Pass vector of values, vector of column indices,
@@ -313,7 +314,8 @@ namespace oomph
       Doc_stats_during_solve = false;
 
       // Set the default serial matrix-matrix multiply method
-      Serial_matrix_matrix_multiply_method = SerialMatrixMultiplyMethod::Fastest;
+      Serial_matrix_matrix_multiply_method =
+        SerialMatrixMultiplyMethod::Fastest;
     }
 
 
@@ -433,7 +435,6 @@ namespace oomph
     /// serial (non-parallel) runs. Note that the parallel case hasn't been
     /// implemented, so this is used in both cases.
     SerialMatrixMultiplyMethod Serial_matrix_matrix_multiply_method;
-
   };
 
 
