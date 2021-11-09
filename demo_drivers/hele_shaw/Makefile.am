@@ -1,3 +1,4 @@
 SUBDIRS = \
 steady \
-unsteady
+unsteady \
+unsteady_with_ode
