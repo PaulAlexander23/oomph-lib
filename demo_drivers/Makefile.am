@@ -56,7 +56,8 @@ generalised_newtonian_navier_stokes \
 generalised_newtonian_axisym_navier_stokes \
 multigrid \
 all_foeppl_von_karman \
-extrude_quad_mesh_to_cube_mesh
+extrude_quad_mesh_to_cube_mesh \
+hele_shaw
 
 if WANT_MPI
 SUBDIRS += mpi
