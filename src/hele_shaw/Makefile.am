@@ -14,6 +14,7 @@ headers =  \
 hele_shaw_elements.h \
 hele_shaw_equations.h \
 hele_shaw_flux_elements.h \
+hele_shaw_flux_elements_with_inflow_integral.h \
 Thele_shaw_elements.h \
 hele_shaw_elements.template.cc \
 projectable_hele_shaw_element.h \
