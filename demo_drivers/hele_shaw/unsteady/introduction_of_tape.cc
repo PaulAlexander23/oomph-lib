@@ -4,6 +4,7 @@
 #include "generic.h"
 #include "meshes.h"
 #include "hele_shaw.h"
+#include "info_element.h"
 
 using namespace oomph;
 using namespace std;
@@ -11,6 +12,7 @@ using namespace std;
 namespace problem_parameter
 {
   double* global_time_pt = 0;
+  double* inlet_area_pt = 0;
   const double speed = 1.0;
 
   void upper_wall_fct(const Vector<double>& x, double& b, double& dbdt)
@@ -48,13 +50,10 @@ namespace problem_parameter
   {
     /// At the inlet we set the pressure gradient which is dependent on the
     /// upper wall function, inlet_area and total flux
-    double b;
-    double dbdt;
-    upper_wall_fct(x, b, dbdt);
+
+    /// This is non-dimensionalised to 1
     double total_flux = 1.0;
-    /// This needs to be calculated
-    double inlet_area = 1.0;
-    dpdx = total_flux / inlet_area * (b * b * b);
+    dpdx = total_flux / *inlet_area_pt;
   }
 
 } // namespace problem_parameter
@@ -121,6 +120,9 @@ private:
 
   /// Pointer to the "surface" mesh
   Mesh* Surface_mesh_pt;
+
+  /// Pointer to the info mesh
+  Mesh* Info_mesh_pt;
 };
 
 template<class ELEMENT>
@@ -176,6 +178,19 @@ void HeleShawChannelProblem<ELEMENT>::generate_mesh()
 
   this->Surface_mesh_pt = new Mesh;
 
+  cout << "create inlet data" << endl;
+  /// Pointer to inlet integral data
+  unsigned number_of_values = 1;
+  Data* Inlet_integral_data_pt = new Data(number_of_values);
+  unsigned index = 0;
+  Inlet_integral_data_pt->set_value(index, 1.0);
+  Inlet_integral_data_pt->unpin(index);
+  problem_parameter::inlet_area_pt = Inlet_integral_data_pt->value_pt(index);
+
+  cout << "Add to info mesh" << endl;
+  this->Info_mesh_pt = new Mesh;
+  this->Info_mesh_pt->add_element_pt(new InfoElement(Inlet_integral_data_pt));
+
   cout << "Create flux elements" << endl;
   const unsigned flux_boundary = 3;
   this->create_flux_elements(flux_boundary);
@@ -193,8 +208,11 @@ void HeleShawChannelProblem<ELEMENT>::create_flux_elements(
 
     int face_index = this->Bulk_mesh_pt->face_index_at_boundary(boundary, n);
 
-    HeleShawFluxElement<ELEMENT>* flux_element_pt =
-      new HeleShawFluxElement<ELEMENT>(bulk_element_pt, face_index);
+    HeleShawFluxElementWithInflowIntegral<ELEMENT>* flux_element_pt =
+      new HeleShawFluxElementWithInflowIntegral<ELEMENT>(
+        bulk_element_pt,
+        face_index,
+        this->Info_mesh_pt->element_pt(0)->internal_data_pt(0));
 
     this->Surface_mesh_pt->add_element_pt(flux_element_pt);
   }
@@ -206,6 +224,7 @@ void HeleShawChannelProblem<ELEMENT>::assign_mesh()
   cout << "Assign mesh" << endl;
   this->add_sub_mesh(this->Bulk_mesh_pt);
   this->add_sub_mesh(this->Surface_mesh_pt);
+  this->add_sub_mesh(this->Info_mesh_pt);
 
   this->build_global_mesh();
 }
@@ -257,8 +276,8 @@ void HeleShawChannelProblem<ELEMENT>::setup_elements()
   for (unsigned i = 0; i < n_element; i++)
   {
     // Upcast from GeneralElement to the present element
-    HeleShawFluxElement<ELEMENT>* el_pt =
-      dynamic_cast<HeleShawFluxElement<ELEMENT>*>(
+    HeleShawFluxElementWithInflowIntegral<ELEMENT>* el_pt =
+      dynamic_cast<HeleShawFluxElementWithInflowIntegral<ELEMENT>*>(
         this->Surface_mesh_pt->element_pt(i));
 
     // Set the Neumann function pointer
@@ -344,6 +363,10 @@ void HeleShawChannelProblem<ELEMENT>::save_solution_to_file(
 {
   output_stream.open(filename);
   this->Bulk_mesh_pt->output(output_stream, n_points);
+  unsigned index = 0;
+  double my_integral =
+    this->Info_mesh_pt->element_pt(0)->internal_data_pt(0)->value(index);
+  //output_stream << "Inflow Integral = " << my_integral << endl;
   output_stream.close();
 }
 
@@ -374,8 +397,8 @@ int main(int argc, char* argv[])
   /// Solve for initial conditions
   problem.solve_for_initial_conditions(doc_info);
 
-  double dt = 0.1;
-  double tF = 1;
+  double dt = 0.3;
+  double tF = 3;
   /// Iterate the timestepper using the fixed time step until the final time
   problem.iterate_timestepper(dt, tF, doc_info);
 
