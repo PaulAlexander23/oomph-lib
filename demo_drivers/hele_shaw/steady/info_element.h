@@ -8,7 +8,7 @@ namespace oomph
   class InfoElement : public virtual GeneralisedElement
   {
   public:
-    InfoElement();
+    InfoElement() {}
 
     InfoElement(Data* const& data_pt);
 
@@ -19,29 +19,9 @@ namespace oomph
     {
       // Call the generic residuals function with flag set to 0
       // using a dummy matrix argument
+      bool compute_jacobian = false;
       fill_in_generic_residual_contribution(
-        residuals, GeneralisedElement::Dummy_matrix, 0);
-    }
-
-    /// \short Add the element's contribution to its residual vector and its
-    /// Jacobian matrix
-    inline void fill_in_contribution_to_jacobian(Vector<double>& residuals,
-                                                 DenseMatrix<double>& jacobian)
-    {
-      // Call the generic routine with the flag set to 1
-      fill_in_generic_residual_contribution(residuals, jacobian, 1);
-      GeneralisedElement::fill_in_jacobian_from_internal_by_fd(
-        residuals, jacobian, false); /// Alice
-    }
-
-    void fill_in_contribution_to_jacobian_and_mass_matrix(
-      Vector<double>& residuals,
-      DenseMatrix<double>& jacobian,
-      DenseMatrix<double>& mass_matrix)
-    {
-      //            std::cout << "Calling jacobian and mass matrix in flux " <<
-      //            std::endl;
-      fill_in_contribution_to_jacobian(residuals, jacobian);
+        residuals, GeneralisedElement::Dummy_matrix, compute_jacobian);
     }
 
   private:
@@ -49,8 +29,6 @@ namespace oomph
                                                DenseMatrix<double>& jacobian,
                                                const unsigned& flag);
   };
-
-  InfoElement::InfoElement() : GeneralisedElement() {}
 
   InfoElement::InfoElement(Data* const& data_pt) : GeneralisedElement()
   {
