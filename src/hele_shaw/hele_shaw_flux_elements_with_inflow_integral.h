@@ -49,17 +49,19 @@ namespace oomph
   /// policy class.
   //======================================================================
   template<class ELEMENT>
-  class HeleShawFluxElementWithInflowIntegral : public virtual HeleShawFluxElement<ELEMENT>
+  class HeleShawFluxElementWithInflowIntegral
+    : public virtual HeleShawFluxElement<ELEMENT>
   {
   public:
     /// \short Constructor, takes the pointer to the "bulk" element and the
     /// index of the face to which the element is attached.
     HeleShawFluxElementWithInflowIntegral(FiniteElement* const& bulk_el_pt,
-                          const int& face_index,
-                          Data* const& Inlet_integral_data_pt);
+                                          const int& face_index,
+                                          Data* const& Inlet_integral_data_pt);
 
     /// Broken copy constructor
-    HeleShawFluxElementWithInflowIntegral(const HeleShawFluxElementWithInflowIntegral& dummy)
+    HeleShawFluxElementWithInflowIntegral(
+      const HeleShawFluxElementWithInflowIntegral& dummy)
     {
       BrokenCopy::broken_copy("HeleShawFluxElementWithInflowIntegral");
     }
@@ -125,10 +127,10 @@ namespace oomph
   /// in the bulk element.
   //===========================================================================
   template<class ELEMENT>
-  HeleShawFluxElementWithInflowIntegral<ELEMENT>::HeleShawFluxElementWithInflowIntegral(
-    FiniteElement* const& bulk_el_pt,
-    const int& face_index,
-    Data* const& Inlet_integral_data_pt)
+  HeleShawFluxElementWithInflowIntegral<ELEMENT>::
+    HeleShawFluxElementWithInflowIntegral(FiniteElement* const& bulk_el_pt,
+                                          const int& face_index,
+                                          Data* const& Inlet_integral_data_pt)
     : HeleShawFluxElement<ELEMENT>(bulk_el_pt, face_index)
   {
     /// We need to add the integral data as an external data to access the
@@ -143,13 +145,15 @@ namespace oomph
   /// Compute the element's residual vector and the (zero) Jacobian matrix.
   //===========================================================================
   template<class ELEMENT>
-  void HeleShawFluxElementWithInflowIntegral<ELEMENT>::fill_in_generic_residual_contribution(
-    Vector<double>& residuals,
-    DenseMatrix<double>& jacobian,
-    const unsigned& flag)
+  void HeleShawFluxElementWithInflowIntegral<ELEMENT>::
+    fill_in_generic_residual_contribution(Vector<double>& residuals,
+                                          DenseMatrix<double>& jacobian,
+                                          const unsigned& flag)
   {
-    HeleShawFluxElement<ELEMENT>::fill_in_generic_residual_contribution_poisson_flux(
-      residuals, jacobian, flag);
+    HeleShawFluxElement<
+      ELEMENT>::fill_in_generic_residual_contribution_poisson_flux(residuals,
+                                                                   jacobian,
+                                                                   flag);
 
     // Find out how many nodes there are
     const unsigned n_node = FiniteElement::nnode();
