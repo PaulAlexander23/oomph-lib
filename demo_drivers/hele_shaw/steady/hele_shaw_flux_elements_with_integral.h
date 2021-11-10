@@ -232,17 +232,6 @@ namespace oomph
       }
     }
 
-
-  private:
-    /// \short Add the element's contribution to its residual vector.
-    /// flag=1(or 0): do (or don't) compute the contribution to the
-    /// Jacobian as well.
-    void fill_in_generic_residual_contribution_poisson_flux(
-      Vector<double>& residuals,
-      DenseMatrix<double>& jacobian,
-      const unsigned& flag);
-
-
     /// Function pointer to the (global) prescribed-flux function
     PoissonPrescribedFluxFctPt Flux_fct_pt;
 
@@ -255,8 +244,19 @@ namespace oomph
     /// The index at which the unknown is stored at the nodes
     unsigned U_index_poisson;
 
+<<<<<<< HEAD:demo_drivers/hele_shaw/steady/hele_shaw_flux_elements_with_integral.h
     /// Integral data
     unsigned Integral_index;
+=======
+    /// \short Add the element's contribution to its residual vector.
+    /// flag=1(or 0): do (or don't) compute the contribution to the
+    /// Jacobian as well.
+    void fill_in_generic_residual_contribution_poisson_flux(
+      Vector<double>& residuals,
+      DenseMatrix<double>& jacobian,
+      const unsigned& flag);
+
+>>>>>>> Inherit from HS flux elements and use integral bc:src/hele_shaw/hele_shaw_flux_elements.h
   };
 
   //////////////////////////////////////////////////////////////////////
