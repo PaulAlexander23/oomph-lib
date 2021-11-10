@@ -255,8 +255,11 @@ namespace oomph
       Vector<double>& residuals,
       DenseMatrix<double>& jacobian,
       const unsigned& flag);
+<<<<<<< HEAD:demo_drivers/hele_shaw/steady/hele_shaw_flux_elements_with_integral.h
 
 >>>>>>> Inherit from HS flux elements and use integral bc:src/hele_shaw/hele_shaw_flux_elements.h
+=======
+>>>>>>> Automated commit of clang-format CI changes.:src/hele_shaw/hele_shaw_flux_elements.h
   };
 
   //////////////////////////////////////////////////////////////////////
