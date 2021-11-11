@@ -2,4 +2,5 @@ SUBDIRS = \
 steady \
 unsteady \
 unsteady_with_ode \
-bubble
+bubble \
+lab_frame_bubble_with_channel_perturbation
