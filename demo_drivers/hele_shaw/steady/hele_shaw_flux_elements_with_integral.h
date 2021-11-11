@@ -502,8 +502,6 @@ namespace oomph
       // Get gap width and wall velocity
       double h = 1.0;
       double dhdt = 0.0;
-      std::cout << "Upper_wall_fct_pt: ";
-      std::cout << *Upper_wall_fct_pt << std::endl;
       (**Upper_wall_fct_pt)(interpolated_x, h, dhdt);
 
       // Now add to the appropriate equations
