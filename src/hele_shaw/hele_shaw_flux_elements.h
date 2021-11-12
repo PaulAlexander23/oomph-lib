@@ -250,7 +250,6 @@ namespace oomph
       Vector<double>& residuals,
       DenseMatrix<double>& jacobian,
       const unsigned& flag);
-
   };
 
   //////////////////////////////////////////////////////////////////////
