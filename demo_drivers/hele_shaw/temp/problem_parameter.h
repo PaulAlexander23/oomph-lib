@@ -27,6 +27,7 @@ namespace Problem_Parameter
   double* global_G_upper_outflow_pt = 0;
   double* global_Q_inv_pt = 0;
   double* global_Frame_speed_pt = 0;
+  double* global_Frame_distance_pt = 0;
   double* global_Obstacle_height_pt = 0;
   double* global_Obstacle_width_pt = 0;
   double* global_alpha_pt = 0;
@@ -77,57 +78,22 @@ namespace Problem_Parameter
 
   void channel_height_function(const Vector<double>& x, double& b)
   {
-    /// This function should have obstacle width and height, asymmetry and
-    /// possibly sharpness.
+    double perturbation_height = 0.5;
+    double rms_width = 0.1;
+    double centre_x = 1.5 - *global_Frame_distance_pt;
+    double centre_y = 0.5;
 
-    double height = 0.1;
-    double width = 0.33;
-    double asymmetry = 0;
-    double sharpness = 40; /// Quite smooth for now.
-    sharpness = 40; /// ALICE!
-    if (global_Obstacle_height_pt != 0)
-    {
-      height = *global_Obstacle_height_pt;
-    }
-    if (global_Obstacle_width_pt != 0)
-    {
-      width = *global_Obstacle_width_pt;
-    }
-    if (global_Asymmetry_pt != 0)
-    {
-      asymmetry = *global_Asymmetry_pt;
-    }
-    double y = x[1];
-    double tanh_plus = std::tanh(sharpness * (y + width));
-    double tanh_minus = std::tanh(sharpness * (y - width));
-    ///--- Introduce oscillatory roughness to the occlusion 17/09/2015 ---
-    //      double w1 = 50.0;   double w2 = 100.0;   double w3 = 200.0;
-    //      double A1 = 0.05;   double A2 = 0.1;     double A3 = 0.2;
-    //      double rough = A1*sin(w1*y)+A2*sin(w2*y)+A3*sin(w3*y);
-    ///
-    //      double A = 0.01; double B = 0.01;
-    //      double w = 50;
-    //      double a1 = 50;   double a2 = 1000;
-    //      double roughCell = ( A*(sin(w*y)+1) + B*exp(-a1*y*y) )*exp(-a2*y*y);
-    ///------ wave cross section ------
-    //      double n = 50;
-    //      double C = 0.0005;  /// worked with 0.005
-    //      double waveCell = C*sin(n*M_PI*y);
-    ///--- Introduce random roughness to the occlusion 18/09/2015 ---
-    //int sdr = abs((int)(y * 100000));
-    //srand(sdr);
-    //double rd = 0.01 * ((double)rand() / (double)(RAND_MAX));
-    ///-------------------------------------------------------
+    // Transform y such that the domain is between 0 and 1 rather than -1 and 1
+    double local_x = x[0];
+    double local_y = x[1];
 
-    //b = 1 - height * 0.5 * (tanh_plus - tanh_minus); /// current profile
-    //     b = 1 - ( height * 0.5 *(tanh_plus - tanh_minus) * (1+rough) +
-    //     waveCell ); b = 1 - ( height * 0.5 *(tanh_plus - tanh_minus) +
-    //     waveCell );
-    //double c = 1 - height * 0.5 * (tanh_plus - tanh_minus) * (1 + rd);
-    //b += -y * asymmetry;
+    double f = 0.0;
+    f = -(local_x - centre_x) * (local_x - centre_x) /
+          (2.0 * rms_width * rms_width) -
+        (local_y - centre_y) * (local_y - centre_y) /
+          (2.0 * rms_width * rms_width);
 
-    b = 1.0;
-
+    b = 1.0 - perturbation_height * exp(f);
   }
 
   ofstream UpperWall_file;

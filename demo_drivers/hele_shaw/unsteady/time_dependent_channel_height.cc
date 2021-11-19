@@ -399,7 +399,8 @@ int main(int argc, char* argv[])
   problem.solve_for_initial_conditions(doc_info);
 
   double dt = 0.1;
-  double tF = 1;
+  double tF = 0.5;
+
   /// Iterate the timestepper using the fixed time step until the final time
   problem.iterate_timestepper(dt, tF, doc_info);
 

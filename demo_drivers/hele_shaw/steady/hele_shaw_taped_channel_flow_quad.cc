@@ -30,16 +30,19 @@ namespace problem_parameter
     p = 0.0;
   }
 
-  void get_neumann_bc(const Vector<double>& x, double& dpdx)
+  void get_neumann_bc(const Vector<double>& x, double& flux)
   {
     /// At the inlet we set the pressure gradient which is dependent on the
     /// upper wall function, inlet_area and total flux
+    double total_flux = 1.0;
+    double inlet_area = 0.96;
+    double dpdx = total_flux / inlet_area;
+
     double b;
     double dbdt;
     upper_wall_fct(x, b, dbdt);
-    double total_flux = 1.0;
-    double inlet_area = 1.0;
-    dpdx = total_flux / inlet_area * (b * b * b);
+
+    flux = dpdx * (b * b * b);
   }
 
 } // namespace problem_parameter
@@ -61,26 +64,23 @@ private:
   /// Generate mesh
   void generate_mesh();
 
-  /// Create flux elements
-  void create_flux_elements(const unsigned& boundary);
+  /// Generate bulk mesh
+  void generate_bulk_mesh();
 
-  /// Generate mesh
-  void assign_mesh();
+  /// Generate info mesh
+  void generate_info_mesh();
+
+  /// Generate surface elements
+  void generate_surface_mesh();
 
   /// Pin dirichlet outlet boundary
-  void pin_dirichlet_boundaries();
+  void pin_data();
 
   /// Upcast elements and finalise setup
-  void setup_elements();
+  void upcast_and_finalise_elements();
 
   /// Set boundary condition values
   void set_boundary_conditions();
-
-  /// Update the problem specs before solve (empty)
-  void actions_before_newton_solve();
-
-  /// Update the problem specs before solve (empty)
-  void actions_after_newton_solve() {}
 
   /// Save the boundary data to file
   void save_boundaries_to_file(ofstream& output_stream, string filename);
@@ -100,26 +100,21 @@ private:
 template<class ELEMENT>
 HeleShawChannelProblem<ELEMENT>::HeleShawChannelProblem()
 {
-  cout << "Problem constructor" << endl;
-
   this->generate_mesh();
 
-  this->assign_mesh();
+  this->upcast_and_finalise_elements();
 
-  this->pin_dirichlet_boundaries();
+  this->pin_data();
 
-  this->setup_elements();
+  this->set_boundary_conditions();
 
   // Setup equation numbering scheme
-  cout << "Assign equation numbers." << endl;
   cout << "Number of equations: " << this->assign_eqn_numbers() << endl;
 }
 
 template<class ELEMENT>
 void HeleShawChannelProblem<ELEMENT>::doc_solution(DocInfo& doc_info)
 {
-  cout << "Doc solution" << endl;
-
   string data_directory = doc_info.directory();
   ofstream output_stream;
 
@@ -134,7 +129,19 @@ void HeleShawChannelProblem<ELEMENT>::doc_solution(DocInfo& doc_info)
 template<class ELEMENT>
 void HeleShawChannelProblem<ELEMENT>::generate_mesh()
 {
-  cout << "Generate mesh" << endl;
+  this->generate_bulk_mesh();
+
+  this->generate_surface_mesh();
+
+  this->add_sub_mesh(this->Bulk_mesh_pt);
+  this->add_sub_mesh(this->Surface_mesh_pt);
+
+  this->build_global_mesh();
+}
+
+template<class ELEMENT>
+void HeleShawChannelProblem<ELEMENT>::generate_bulk_mesh()
+{
   unsigned n_x = 4;
   unsigned n_y = 4;
   double l_x = 2.0;
@@ -142,18 +149,14 @@ void HeleShawChannelProblem<ELEMENT>::generate_mesh()
 
   this->Bulk_mesh_pt =
     new SimpleRectangularQuadMesh<ELEMENT>(n_x, n_y, l_x, l_y);
-
-  this->Surface_mesh_pt = new Mesh;
-
-  cout << "Create flux elements" << endl;
-  const unsigned flux_boundary = 3;
-  this->create_flux_elements(flux_boundary);
 }
 
 template<class ELEMENT>
-void HeleShawChannelProblem<ELEMENT>::create_flux_elements(
-  const unsigned& boundary)
+void HeleShawChannelProblem<ELEMENT>::generate_surface_mesh()
 {
+  const unsigned boundary = 3;
+
+  this->Surface_mesh_pt = new Mesh;
   unsigned n_element = this->Bulk_mesh_pt->nboundary_element(boundary);
   for (unsigned n = 0; n < n_element; n++)
   {
@@ -170,41 +173,8 @@ void HeleShawChannelProblem<ELEMENT>::create_flux_elements(
 }
 
 template<class ELEMENT>
-void HeleShawChannelProblem<ELEMENT>::assign_mesh()
+void HeleShawChannelProblem<ELEMENT>::upcast_and_finalise_elements()
 {
-  cout << "Assign mesh" << endl;
-  this->add_sub_mesh(this->Bulk_mesh_pt);
-  this->add_sub_mesh(this->Surface_mesh_pt);
-
-  this->build_global_mesh();
-}
-
-template<class ELEMENT>
-void HeleShawChannelProblem<ELEMENT>::pin_dirichlet_boundaries()
-{
-  cout << "Pin Dirichlet boundaries" << endl;
-  unsigned n_boundary = this->Bulk_mesh_pt->nboundary();
-  bool pin_boundary[n_boundary] = {false};
-  pin_boundary[1] = true;
-  for (unsigned b = 0; b < n_boundary; b++)
-  {
-    if (pin_boundary[b])
-    {
-      cout << "Pinning boundary: " << b << endl;
-      unsigned n_node = this->Bulk_mesh_pt->nboundary_node(b);
-      for (unsigned n = 0; n < n_node; n++)
-      {
-        this->Bulk_mesh_pt->boundary_node_pt(b, n)->pin(0);
-      }
-    }
-  }
-}
-
-template<class ELEMENT>
-void HeleShawChannelProblem<ELEMENT>::setup_elements()
-{
-  cout << "Setup elements" << endl;
-
   // Find number of elements in mesh
   unsigned n_element = this->Bulk_mesh_pt->nelement();
 
@@ -236,6 +206,25 @@ void HeleShawChannelProblem<ELEMENT>::setup_elements()
 }
 
 template<class ELEMENT>
+void HeleShawChannelProblem<ELEMENT>::pin_data()
+{
+  unsigned n_boundary = this->Bulk_mesh_pt->nboundary();
+  bool pin_boundary[n_boundary] = {false};
+  pin_boundary[1] = true;
+  for (unsigned b = 0; b < n_boundary; b++)
+  {
+    if (pin_boundary[b])
+    {
+      unsigned n_node = this->Bulk_mesh_pt->nboundary_node(b);
+      for (unsigned n = 0; n < n_node; n++)
+      {
+        this->Bulk_mesh_pt->boundary_node_pt(b, n)->pin(0);
+      }
+    }
+  }
+}
+
+template<class ELEMENT>
 void HeleShawChannelProblem<ELEMENT>::set_boundary_conditions()
 {
   unsigned n_boundary = this->Bulk_mesh_pt->nboundary();
@@ -245,7 +234,6 @@ void HeleShawChannelProblem<ELEMENT>::set_boundary_conditions()
   {
     if (set_boundary[b])
     {
-      cout << "Setting boundary: " << b << endl;
       unsigned n_node = this->Bulk_mesh_pt->nboundary_node(b);
       for (unsigned n = 0; n < n_node; n++)
       {
@@ -259,12 +247,6 @@ void HeleShawChannelProblem<ELEMENT>::set_boundary_conditions()
       }
     }
   }
-}
-
-template<class ELEMENT>
-void HeleShawChannelProblem<ELEMENT>::actions_before_newton_solve()
-{
-  this->set_boundary_conditions();
 }
 
 template<class ELEMENT>
@@ -287,35 +269,31 @@ void HeleShawChannelProblem<ELEMENT>::save_solution_to_file(
 
 int main(int argc, char* argv[])
 {
-  cout << "Hele-Shaw channel flow" << endl;
-
   /// Store command line arguments
   CommandLineArgs::setup(argc, argv);
 
-  /// Label for output
+  /// Create a DocInfo object for output processing
   DocInfo doc_info;
 
   /// Output directory
   doc_info.set_directory("RESLT");
 
+  /// Create problem object
   HeleShawChannelProblem<QHeleShawElement<3>> problem;
 
-  cout << "\n\n\nProblem self-test ";
-  if (problem.self_test() == 0)
-  {
-    cout << "passed: Problem can be solved." << std::endl;
-  }
-  else
+  /// Run problem self test
+  if (problem.self_test())
   {
     throw OomphLibError(
       "Self test failed", OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
   }
 
+  /// Call problem solve
   problem.newton_solve();
 
+  /// Document solution
   problem.doc_solution(doc_info);
 
-  cout << "End of Hele-Shaw channel flow" << endl;
 
   return 0;
 }

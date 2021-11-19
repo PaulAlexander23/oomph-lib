@@ -151,9 +151,9 @@ namespace oomph
                                           const unsigned& flag)
   {
     HeleShawFluxElement<
-      ELEMENT>::fill_in_generic_residual_contribution_poisson_flux(residuals,
-                                                                   jacobian,
-                                                                   flag);
+      ELEMENT>::fill_in_generic_residual_contribution_hele_shaw_flux(residuals,
+                                                                     jacobian,
+                                                                     flag);
 
     // Find out how many nodes there are
     const unsigned n_node = FiniteElement::nnode();

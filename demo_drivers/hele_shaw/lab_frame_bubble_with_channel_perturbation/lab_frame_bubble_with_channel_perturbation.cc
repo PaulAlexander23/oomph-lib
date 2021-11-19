@@ -57,8 +57,8 @@ int main(int argc, char** argv)
   unsigned n_steps = 150;
   double maj_rad = 0.5;
   double CoM_unsteady = 0.01;
-  double Q_unsteady = 1;
-  string output_directory = "";
+  double Q_unsteady = 0.01;
+  string output_directory = "RESLT/";
   bool has_unrecognised_arg = false;
 
   // REQUIRED
@@ -80,15 +80,7 @@ int main(int argc, char** argv)
   CommandLineArgs::setup(argc, argv);
   CommandLineArgs::parse_and_assign(argc, argv, &has_unrecognised_arg);
 
-  if (output_directory != "")
-  {
-    Problem_Parameter::Doc_info.set_directory(output_directory);
-  }
-  else
-  {
-    Problem_Parameter::Doc_info.set_directory("data/bubble_unsteady/");
-  }
-
+  Problem_Parameter::Doc_info.set_directory(output_directory);
 
   // Create generalised Hookean constitutive equations
   Problem_Parameter::Constitutive_law_pt =
@@ -117,7 +109,7 @@ int main(int argc, char** argv)
     maj_rad; //*0.46//Ellipse1 = 0.5,Ellipse2=0.6,Ellipse3=0.9
   Problem_Parameter::Minor_Radius = vol / (MathematicalConstants::Pi * maj_rad);
   double bubble_start_x = 1.0;
-  Problem_Parameter::xcenter = - Problem_Parameter::Length + bubble_start_x;
+  Problem_Parameter::xcenter = -Problem_Parameter::Length + bubble_start_x;
 
   std::cout << " " << std::endl;
   std::cout << "You have chosen ..." << std::endl;
@@ -207,7 +199,8 @@ int main(int argc, char** argv)
     std::cout << "Bubble volume: " << problem.get_V() << std::endl;
     std::cout << "Q is " << problem.get_Q() << std::endl;
     std::cout << "h is " << problem.get_h() << std::endl;
-    std::cout << "COM_X is " << *Problem_Parameter::global_CoM_X_pt << std::endl;
+    std::cout << "COM_X is " << *Problem_Parameter::global_CoM_X_pt
+              << std::endl;
     std::cout << "COM_Y is " << problem.get_CoM_Y() << std::endl;
     problem.reset_lagrangian_coordinates();
   }

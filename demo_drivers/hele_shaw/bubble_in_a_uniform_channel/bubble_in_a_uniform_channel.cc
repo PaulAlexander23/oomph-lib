@@ -55,10 +55,10 @@ int main(int argc, char** argv)
 #endif
 
   unsigned n_steps = 150;
-  double maj_rad;
-  double CoM_unsteady;
-  double Q_unsteady;
-  string output_directory = "";
+  double maj_rad = 0.5;
+  double CoM_unsteady = 0.01;
+  double Q_unsteady = 1;
+  string output_directory = "RESLT/";
   bool has_unrecognised_arg = false;
 
   // REQUIRED
@@ -79,14 +79,7 @@ int main(int argc, char** argv)
 
   CommandLineArgs::parse_and_assign(argc, argv, &has_unrecognised_arg);
 
-  if (output_directory != "")
-  {
     Problem_Parameter::Doc_info.set_directory(output_directory);
-  }
-  else
-  {
-    Problem_Parameter::Doc_info.set_directory("data/bubble_unsteady/");
-  }
 
 
   // Create generalised Hookean constitutive equations

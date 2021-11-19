@@ -3,7 +3,6 @@
 
 #include "generic.h"
 #include "hele_shaw.h"
-#include "info_element.h"
 
 //==start_of_problem_class============================================
 /// Problem class to simulate inviscid bubble propagating along 2D channel
@@ -11,6 +10,7 @@
 template<class ELEMENT>
 class BubbleInChannelProblem : public Problem
 {
+
 public:
   /// Constructor
   BubbleInChannelProblem();
@@ -62,7 +62,6 @@ public:
     delete CoM_X_constraint_mesh_pt;
     delete CoM_Y_constraint_mesh_pt;
     delete Inflow_mesh_pt;
-    delete Integral_info_mesh_pt;
 
     // Delete error estimator
     delete Fluid_mesh_pt->spatial_error_estimator_pt();
@@ -97,10 +96,8 @@ public:
   /// Actions after adapt: Rebuild the mesh of free surface elements
   void actions_after_adapt()
   {
-    cout << "Actions after adapt" << endl;
     // Create the elements that impose the displacement constraint
     create_free_surface_elements();
-    create_integral_info_elements();
     create_inflow_elements();
     create_volume_constraint_elements();
     create_CoM_X_constraint_elements();
@@ -195,14 +192,6 @@ public:
     return Bubble_pressure_data_pt->value(0);
   }
 
-  void create_integral_info_elements()
-  {
-    cout << "create integral info elements" << endl;
-    this->Integral_info_mesh_pt->add_element_pt(
-      new InfoElement(Inlet_integral_data_pt));
-    cout << "finished creating integral info elements" << endl;
-  }
-
   void create_inflow_elements()
   {
     unsigned boundary_for_flux_elements = Inflow_boundary_id;
@@ -215,16 +204,13 @@ public:
       // Find the index of the face of element e along boundary b
       int face_index =
         Fluid_mesh_pt->face_index_at_boundary(boundary_for_flux_elements, e);
-      HeleShawFluxElementWithInflowIntegral<ELEMENT>* el_pt =
-        new HeleShawFluxElementWithInflowIntegral<ELEMENT>(
-          bulk_elem_pt,
-          face_index,
-          Inlet_integral_data_pt);
-      el_pt->flux_fct_pt() = &Problem_Parameter::normal_flux_behind_bubble;
+      HeleShawFluxElement<ELEMENT>* el_pt =
+        new HeleShawFluxElement<ELEMENT>(bulk_elem_pt, face_index);
       Inflow_mesh_pt->add_element_pt(el_pt);
+      el_pt->flux_fct_pt() = &Problem_Parameter::normal_flux_behind_bubble;
 
       /// This one is important!
-      // el_pt->add_external_data(G_data_pt, true);
+      el_pt->add_external_data(G_data_pt, true);
     }
 
     cout << "Poisson Flux Elements created on main inflow boundary" << endl;
@@ -423,16 +409,6 @@ public:
     set_V(get_V() + dV);
   }
 
-  /// Inlet area
-  void set_inlet_area(double new_area)
-  {
-    *Problem_Parameter::global_Inlet_area_pt = new_area;
-  }
-  double get_inlet_area()
-  {
-    return *Problem_Parameter::global_Inlet_area_pt;
-  }
-
   /// Frame speed (if pinned, frame does not move with bubble)
   void set_U(double new_U)
   {
@@ -557,7 +533,6 @@ public:
     set_h(get_h() + dh);
   }
 
-  void output_inflow_integral() {}
 
   void output_jacobian()
   {
@@ -673,10 +648,6 @@ private:
   Mesh* CoM_Y_constraint_mesh_pt;
   Mesh* Integral_measures_mesh_pt;
 
-  /// Pointer to the mesh containing elements that contain the results of the
-  /// integrals over the flux boundaries.
-  Mesh* Integral_info_mesh_pt;
-
   /// Pointer to Fluid_mesh
   RefineableSolidTriangleMesh<ELEMENT>* Fluid_mesh_pt;
 
@@ -706,7 +677,6 @@ public:
   Data* CoM_Y_data_pt;
 
   Data* Integral_measures_data_pt;
-  Data* Inlet_integral_data_pt;
 
   Mesh* Inflow_mesh_pt;
   Mesh* Outflow_mesh_pt;
@@ -802,7 +772,6 @@ public:
 template<class ELEMENT>
 BubbleInChannelProblem<ELEMENT>::BubbleInChannelProblem()
 {
-  cout << "Problem constructor" << endl;
   ///=============================
   Bifurcation_detection = true;
   Bisect_to_find_bifurcation = false;
@@ -816,16 +785,15 @@ BubbleInChannelProblem<ELEMENT>::BubbleInChannelProblem()
   add_time_stepper_pt(new BDF<2>(adaptive_timestepping));
   double initial_height = 0.00;
   double initial_width = 0.25;
-  double initial_alpha = 10.0;
-  double initial_St = 1.0;
-  double initial_G = 1.0;
-  double initial_Q_inv = 20.0;
-  double initial_Frame_speed = 0.0;
-  double initial_Frame_distance = 0.0;
+  double initial_alpha = 10;
+  double initial_St = 1;
+  double initial_G = 1;
+  double initial_Q_inv = 20;
+  double initial_Frame_speed = 0;
+  double initial_Frame_distance = 0;
   double initial_asymmetry = 0.00;
   double initial_CoM_Y = 0.0; /// initially 0
-  double initial_bubble_pressure = 0.0;
-  double initial_Area = 1.0;
+  double initial_bubble_pressure = 0;
 
   /// Or might vary Q.
   Q_inv_data_pt = new Data(1);
@@ -871,11 +839,11 @@ BubbleInChannelProblem<ELEMENT>::BubbleInChannelProblem()
   CoM_Y_data_pt->unpin(0);
 
   /// Position can be constrained by varying G: a pressure gradient
-  //G_data_pt = new Data(1);
-  //this->add_global_data(G_data_pt);
-  //G_data_pt->set_value(0, initial_G);
-  //Problem_Parameter::global_G_pt = G_data_pt->value_pt(0);
-  //G_data_pt->pin(0);
+  G_data_pt = new Data(1);
+  this->add_global_data(G_data_pt);
+  G_data_pt->set_value(0, initial_G);
+  Problem_Parameter::global_G_pt = G_data_pt->value_pt(0);
+  G_data_pt->pin(0);
 
   /// Asymmetry parameter
   Asymmetry_data_pt = new Data(1);
@@ -914,20 +882,14 @@ BubbleInChannelProblem<ELEMENT>::BubbleInChannelProblem()
     Integral_measures_data_pt->unpin(i);
   }
 
-  Data* Inlet_integral_data_pt = new Data(1);
-  Inlet_integral_data_pt->set_value(0, initial_Area);
-  Problem_Parameter::global_Inlet_area_pt = Inlet_integral_data_pt->value_pt(0);
-  Inlet_integral_data_pt->unpin(0);
 
   unsigned index_of_traded_pressure = 0;
   Vol_constraint_el_pt = new VolumeConstraintElement(&Problem_Parameter::Volume,
                                                      Bubble_pressure_data_pt,
                                                      index_of_traded_pressure);
 
-  CoM_X_constraint_el_pt =
-    new VolumeConstraintElement(&Problem_Parameter::Centre_of_mass,
-                                Frame_speed_pt,
-                                index_of_traded_pressure);
+  CoM_X_constraint_el_pt = new VolumeConstraintElement(
+    &Problem_Parameter::Centre_of_mass, Frame_speed_pt, index_of_traded_pressure);
 
   CoM_Y_constraint_el_pt = new SelfReferentialVolumeConstraintElement(
     Problem_Parameter::global_CoM_Y_pt,
@@ -1149,9 +1111,6 @@ BubbleInChannelProblem<ELEMENT>::BubbleInChannelProblem()
   CoM_Y_constraint_mesh_pt = new Mesh;
   create_CoM_Y_constraint_elements();
 
-  this->Integral_info_mesh_pt = new Mesh;
-  create_integral_info_elements();
-
   Inflow_mesh_pt = new Mesh;
   create_inflow_elements();
 
@@ -1170,7 +1129,7 @@ BubbleInChannelProblem<ELEMENT>::BubbleInChannelProblem()
   this->add_sub_mesh(this->CoM_X_constraint_mesh_pt);
   this->add_sub_mesh(this->CoM_Y_constraint_mesh_pt);
   this->add_sub_mesh(this->Integral_measures_mesh_pt);
-  this->add_sub_mesh(this->Integral_info_mesh_pt);
+
   this->add_sub_mesh(this->Inflow_mesh_pt);
   //    this->add_sub_mesh(this->Outflow_mesh_pt);
 
@@ -1188,8 +1147,7 @@ BubbleInChannelProblem<ELEMENT>::BubbleInChannelProblem()
   Desired_newton_iterations_ds = 300;
 
   // Setup equation numbering scheme
-  cout << "Number of equations: " << endl;
-  cout << this->assign_eqn_numbers() << std::endl;
+  cout << "Number of equations: " << this->assign_eqn_numbers() << std::endl;
   //  linear_solver_pt()=new FD_LU;
 } // end_of_constructor
 
@@ -1478,7 +1436,6 @@ void BubbleInChannelProblem<ELEMENT>::complete_problem_setup()
     el_pt->upper_wall_fct_pt() = Problem_Parameter::upper_wall_fct;
   }
 
-
   //    cout <<"Number of equations: " << this->assign_eqn_numbers() <<
   //    std::endl;
 } // end of complete_problem_setup
@@ -1491,7 +1448,6 @@ void BubbleInChannelProblem<ELEMENT>::compute_error_estimate(double& max_err,
                                                              double& min_err)
 {
   std::cout << "Compute error estimate" << std::endl;
-
   // Get error estimator
   ErrorEstimator* err_est_pt = Fluid_mesh_pt->spatial_error_estimator_pt();
 
