@@ -40,17 +40,15 @@ public:
   ~RelaxingBubbleProblem() {}
 
   /// Use a newton solve to set the initial conditions
-  void solve_for_initial_conditions(DocInfo& doc_info) {}
+  void solve_for_initial_conditions(DocInfo& doc_info);
 
   /// Iterate forward in time
   void iterate_timestepper(const double& t_step,
                            const double& t_final,
-                           DocInfo& doc_info)
-  {
-  }
+                           DocInfo& doc_info);
 
   /// Doc the solution
-  void doc_solution(DocInfo& doc_info) {}
+  void doc_solution(DocInfo& doc_info);
 
 private:
   void generate_mesh();
@@ -58,18 +56,81 @@ private:
   void generate_surface_polygon();
   void generate_fluid_mesh();
   void generate_surface_mesh();
+
+  void set_variable_and_function_pointers();
+
+  void set_boundary_conditions();
+  void fill_in_bubble_boundary_map(map<unsigned, bool>& is_on_bubble_bound);
+
+
+  void doc_fluid_mesh(string filename);
+  void doc_surface_mesh(string filename);
 };
 
 template<class ELEMENT>
 RelaxingBubbleProblem<ELEMENT>::RelaxingBubbleProblem()
 {
   bool adaptive_timestepping = false;
-  add_time_stepper_pt(new BDF<2>(adaptive_timestepping));
+  add_time_stepper_pt(new BDF<1>(adaptive_timestepping));
 
   generate_outer_boundary_polygon();
   generate_surface_polygon();
 
   generate_mesh();
+
+  set_variable_and_function_pointers();
+
+  set_boundary_conditions();
+
+  // Setup equation numbering scheme
+  cout << "Number of equations: " << endl;
+  cout << assign_eqn_numbers() << endl;
+  cout << "Number of unknowns: " << endl;
+  cout << ndof() << endl;
+}
+
+/// Use a newton solve to set the initial conditions
+template<class ELEMENT>
+void RelaxingBubbleProblem<ELEMENT>::solve_for_initial_conditions(
+  DocInfo& doc_info)
+{
+  // cout<<"Steady Newton solve"<<endl;
+  // const unsigned max_adapt = 0;
+  // steady_newton_solve(max_adapt);
+  // newton_solve();
+  double dt = 1e-3;
+  initialise_dt(dt);
+  assign_initial_values_impulsive(dt);
+  Fluid_mesh_pt->set_lagrangian_nodal_coordinates();
+
+  doc_solution(doc_info);
+};
+
+/// Iterate forward in time
+template<class ELEMENT>
+void RelaxingBubbleProblem<ELEMENT>::iterate_timestepper(const double& t_step,
+                                                         const double& t_final,
+                                                         DocInfo& doc_info)
+{
+  unsigned n_timestep = ceil(t_final / t_step);
+
+  const unsigned max_adapt = 0;
+  bool is_first_step = true;
+  for (unsigned i_timestep = 0; i_timestep < n_timestep; i_timestep++)
+  {
+    cout << "t: " << time() << endl;
+
+    // max_newton_iterations() = 1;
+    // newton_solver_tolerance() = 1e10;
+    unsteady_newton_solve(t_step, max_adapt, is_first_step);
+    if (is_first_step)
+    {
+      is_first_step = false;
+    }
+    Fluid_mesh_pt->set_lagrangian_nodal_coordinates();
+
+    doc_solution(doc_info);
+  }
 }
 
 template<class ELEMENT>
@@ -212,11 +273,15 @@ void RelaxingBubbleProblem<ELEMENT>::generate_surface_polygon()
 template<class ELEMENT>
 void RelaxingBubbleProblem<ELEMENT>::generate_mesh()
 {
+  cout << "Generate fluid mesh" << endl;
   generate_fluid_mesh();
+  cout << "Generate surface mesh" << endl;
   generate_surface_mesh();
 
-  // add_sub_mesh(Fluid_mesh_pt);
-  // add_sub_mesh(Surface_mesh_pt);
+  add_sub_mesh(Fluid_mesh_pt);
+  add_sub_mesh(Surface_mesh_pt);
+
+  build_global_mesh();
 }
 
 template<class ELEMENT>
@@ -257,6 +322,7 @@ void RelaxingBubbleProblem<ELEMENT>::generate_fluid_mesh()
 template<class ELEMENT>
 void RelaxingBubbleProblem<ELEMENT>::generate_surface_mesh()
 {
+  Surface_mesh_pt = new Mesh;
   for (unsigned i_boundary = First_bubble_boundary_id;
        i_boundary < Second_bubble_boundary_id;
        i_boundary++)
@@ -271,26 +337,161 @@ void RelaxingBubbleProblem<ELEMENT>::generate_surface_mesh()
       int face_index =
         Fluid_mesh_pt->face_index_at_boundary(i_boundary, i_element);
 
-      HeleShawInterfaceElement<ELEMENT>* interface_element_pt =
-        new HeleShawInterfaceElement<ELEMENT>(fluid_element_pt, face_index);
-
-      // Add it to the mesh
-      Surface_mesh_pt->add_element_pt(interface_element_pt);
+      HeleShawInterfaceElementWithIntegrals<ELEMENT>* interface_element_pt =
+        new HeleShawInterfaceElementWithIntegrals<ELEMENT>(fluid_element_pt,
+                                                           face_index);
 
       // Add the appropriate boundary number
       interface_element_pt->set_boundary_number_in_bulk_mesh(i_boundary);
 
-      interface_element_pt->q_inv_pt() = relaxing_bubble::q_inv_pt;
-      interface_element_pt->st_pt() = relaxing_bubble::st_pt;
-      interface_element_pt->alpha_pt() = relaxing_bubble::alpha_pt;
-      interface_element_pt->upper_wall_fct_pt() =
-        relaxing_bubble::upper_wall_fct;
-      interface_element_pt->wall_speed_fct_pt() =
-        relaxing_bubble::wall_speed_fct;
-      interface_element_pt->bubble_pressure_fct_pt() =
-        relaxing_bubble::bubble_pressure_fct;
+      // Add it to the mesh
+      Surface_mesh_pt->add_element_pt(interface_element_pt);
     }
   }
 }
+
+template<class ELEMENT>
+void RelaxingBubbleProblem<ELEMENT>::set_variable_and_function_pointers()
+{
+  /// Set fluid mesh function pointers
+  unsigned n_element = Fluid_mesh_pt->nelement();
+  for (unsigned e = 0; e < n_element; e++)
+  {
+    // Upcast from GeneralisedElement to the present element
+    ELEMENT* el_pt = dynamic_cast<ELEMENT*>(Fluid_mesh_pt->element_pt(e));
+
+    // Set the constitutive law for pseudo-elastic mesh deformation
+    el_pt->constitutive_law_pt() = relaxing_bubble::constitutive_law_pt;
+    el_pt->upper_wall_fct_pt() = relaxing_bubble::upper_wall_fct;
+  }
+
+  n_element = Surface_mesh_pt->nelement();
+  for (unsigned e = 0; e < n_element; e++)
+  {
+    HeleShawInterfaceElementWithIntegrals<ELEMENT>* interface_element_pt =
+      dynamic_cast<HeleShawInterfaceElementWithIntegrals<ELEMENT>*>(
+        Surface_mesh_pt->element_pt(e));
+    interface_element_pt->q_inv_pt() = relaxing_bubble::q_inv_pt;
+    interface_element_pt->st_pt() = relaxing_bubble::st_pt;
+    interface_element_pt->alpha_pt() = relaxing_bubble::alpha_pt;
+    interface_element_pt->upper_wall_fct_pt() = relaxing_bubble::upper_wall_fct;
+    interface_element_pt->wall_speed_fct_pt() = relaxing_bubble::wall_speed_fct;
+    interface_element_pt->bubble_pressure_fct_pt() =
+      relaxing_bubble::bubble_pressure_fct;
+  }
+}
+
+template<class ELEMENT>
+void RelaxingBubbleProblem<ELEMENT>::set_boundary_conditions()
+{
+  cout << "Set boundary conditions" << endl;
+  // Map to record if a given boundary is on a bubble or not
+  map<unsigned, bool> is_on_bubble_bound;
+  fill_in_bubble_boundary_map(is_on_bubble_bound);
+
+
+  // Re-set the boundary conditions for fluid problem: All nodes are
+  // free by default -- just pin the ones that have Dirichlet conditions
+  // here.
+  unsigned nbound = Fluid_mesh_pt->nboundary();
+  for (unsigned ibound = 0; ibound < nbound; ibound++)
+  {
+    unsigned num_nod = Fluid_mesh_pt->nboundary_node(ibound);
+    for (unsigned inod = 0; inod < num_nod; inod++)
+    {
+      // Get node
+      Node* node_pt = Fluid_mesh_pt->boundary_node_pt(ibound, inod);
+
+      // Pin pseudo-solid positions apart from bubble boundary which
+      // we allow to move
+      SolidNode* solid_node_pt = dynamic_cast<SolidNode*>(node_pt);
+      if (is_on_bubble_bound[ibound])
+      {
+        solid_node_pt->unpin_position(0);
+        solid_node_pt->unpin_position(1);
+      }
+      else
+      {
+        solid_node_pt->pin_position(0);
+        solid_node_pt->pin_position(1);
+      }
+    }
+  } // end loop over boundaries
+
+
+  /// Single point Dirichlet boundary condition
+  Node* node_pt = Fluid_mesh_pt->boundary_node_pt(0, 0);
+  node_pt->pin(0);
+  const double fixed_pressure = 0.0;
+  node_pt->set_value(0, fixed_pressure);
+
+
+  /// Pin tangential lagrange multiplier
+  for (unsigned ibound = First_bubble_boundary_id;
+       ibound < Second_bubble_boundary_id;
+       ibound++)
+  {
+    unsigned num_nod = Fluid_mesh_pt->nboundary_node(ibound);
+    for (unsigned inod = 0; inod < num_nod; inod++)
+    {
+      // Get node
+      Node* node_pt = Fluid_mesh_pt->boundary_node_pt(ibound, inod);
+      ////                node_pt->pin(1); /// Normal lagrange multiplier
+      ////                node_pt->pin(2); /// Curvature
+      ////                node_pt->pin(3); /// Curvature
+      node_pt->pin(4); /// Tangential lagrange multiplier
+    }
+  }
+}
+
+template<class ELEMENT>
+void RelaxingBubbleProblem<ELEMENT>::fill_in_bubble_boundary_map(
+  map<unsigned, bool>& is_on_bubble_bound)
+{
+  Vector<unsigned> bubble_bound_id =
+    this->Surface_polygon_pt->polygon_boundary_id();
+  // Get the number of boundary
+  unsigned nbound = bubble_bound_id.size();
+  // Fill in the map
+  for (unsigned ibound = 0; ibound < nbound; ibound++)
+  {
+    // This boundary...
+    unsigned bound_id = bubble_bound_id[ibound];
+    // ...is on the bubble
+    is_on_bubble_bound[bound_id] = true;
+  }
+}
+
+template<class ELEMENT>
+void RelaxingBubbleProblem<ELEMENT>::doc_solution(DocInfo& doc_info)
+{
+  string doc_directory = doc_info.directory();
+
+  doc_fluid_mesh(doc_directory + "soln" + to_string(doc_info.number()) +
+                 ".dat");
+  // doc_surface_mesh(doc_directory + "surface" + doc_info.number() + ".dat");
+
+  doc_info.number()++;
+}
+
+template<class ELEMENT>
+void RelaxingBubbleProblem<ELEMENT>::doc_fluid_mesh(string filename)
+{
+  ofstream output_stream;
+  output_stream.open(filename);
+  unsigned npoints = 3;
+  Fluid_mesh_pt->output(output_stream, npoints);
+  output_stream.close();
+}
+
+template<class ELEMENT>
+void RelaxingBubbleProblem<ELEMENT>::doc_surface_mesh(string filename)
+{
+  ofstream output_stream;
+  output_stream.open(filename);
+
+  output_stream.close();
+}
+
 
 #endif

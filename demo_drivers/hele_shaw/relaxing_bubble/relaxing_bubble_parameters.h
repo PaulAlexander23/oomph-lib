@@ -8,10 +8,14 @@ namespace relaxing_bubble
   double* q_inv_pt = 0;
   double* st_pt = 0;
   double* alpha_pt = 0;
+  /// Pseudo-solid Poisson ratio
+  double* nu_pt = 0;
+
+  ConstitutiveLaw* constitutive_law_pt = 0;
 
   void upper_wall_fct(const Vector<double>& x, double& b, double& dbdt)
   {
-    b = 1;
+    b = 1 + (x[0] - 0.5) * (x[0] - 0.5);
     dbdt = 0;
   }
 
@@ -23,7 +27,8 @@ namespace relaxing_bubble
 
   void bubble_pressure_fct(const Vector<double>& x, double& pressure)
   {
-    pressure = -(*q_inv_pt) / (3.0 * (*alpha_pt));
+    pressure = (*q_inv_pt) / (3.0 * (*alpha_pt));
+    cout << "Pressure: " << pressure << endl;
   }
 } // namespace relaxing_bubble
 
