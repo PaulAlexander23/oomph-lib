@@ -68,6 +68,8 @@ private:
   void doc_fluid_mesh(string filename);
   void doc_surface_mesh(string filename);
 
+  void compute_error_estimate(double& max_err, double& min_err);
+
   void delete_surface_mesh();
 };
 
@@ -127,11 +129,11 @@ void RelaxingBubbleProblem<ELEMENT>::iterate_timestepper(const double& t_step,
 
     // max_newton_iterations() = 1;
     // newton_solver_tolerance() = 1e10;
-     if (i_timestep % adapt_interval == adapt_interval - 1)
+    if (i_timestep % adapt_interval == adapt_interval - 1)
     {
       max_adapt = 1;
     }
-     else
+    else
     {
       max_adapt = 0;
     }
@@ -516,12 +518,15 @@ void RelaxingBubbleProblem<ELEMENT>::actions_after_adapt()
 template<class ELEMENT>
 void RelaxingBubbleProblem<ELEMENT>::doc_fluid_mesh(string filename)
 {
+  double max_err;
+  double min_err;
+  compute_error_estimate(max_err, min_err);
+
   ofstream output_stream;
   output_stream.open(filename);
   unsigned npoints = 3;
   Fluid_mesh_pt->output(output_stream, npoints);
   output_stream.close();
-
 }
 
 template<class ELEMENT>
@@ -532,6 +537,40 @@ void RelaxingBubbleProblem<ELEMENT>::doc_surface_mesh(string filename)
 
   output_stream.close();
 }
+
+template<class ELEMENT>
+void RelaxingBubbleProblem<ELEMENT>::compute_error_estimate(double& max_err,
+                                                            double& min_err)
+{
+  // Get error estimator
+  ErrorEstimator* err_est_pt = Fluid_mesh_pt->spatial_error_estimator_pt();
+
+  // Get/output error estimates
+  unsigned n_elements = Fluid_mesh_pt->nelement();
+  Vector<double> elemental_error(n_elements);
+
+  // We need a dynamic cast, get_element_errors from the Fluid_mesh_pt
+  // Dynamic cast is used because get_element_errors require a Mesh* ans
+  // not a SolidMesh*
+  Mesh* fluid_mesh_pt = dynamic_cast<Mesh*>(Fluid_mesh_pt);
+  err_est_pt->get_element_errors(fluid_mesh_pt, elemental_error);
+
+  // Set errors for post-processing and find extrema
+  max_err = 0.0;
+  min_err = 1e6;
+  for (unsigned e = 0; e < n_elements; e++)
+  {
+    dynamic_cast<ELEMENT*>(Fluid_mesh_pt->element_pt(e))
+      ->set_error(elemental_error[e]);
+
+    max_err = std::max(max_err, elemental_error[e]);
+    min_err = std::min(min_err, elemental_error[e]);
+  }
+
+  std::cout << "Max error is " << max_err << std::endl;
+  std::cout << "Min error is " << min_err << std::endl;
+}
+
 
 template<class ELEMENT>
 void RelaxingBubbleProblem<ELEMENT>::delete_surface_mesh()
