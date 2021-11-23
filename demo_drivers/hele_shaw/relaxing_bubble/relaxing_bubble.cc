@@ -40,10 +40,10 @@ int main(int argc, char* argv[])
     new GeneralisedHookean(relaxing_bubble::nu_pt);
 
   /// Create problem
-  RelaxingBubbleProblem<ProjectableHeleShawElement<
-    PseudoSolidNodeUpdateElement<THeleShawElement<3>, TPVDElement<2, 3>>>>
-    problem;
-  //RelaxingBubbleProblem<MyNewElement> problem;
+  //RelaxingBubbleProblem<ProjectableHeleShawElement<
+  //  PseudoSolidNodeUpdateElement<THeleShawElement<3>, TPVDElement<2, 3>>>>
+  //  problem;
+  RelaxingBubbleProblem<MyNewElement> problem;
 
   bool run_self_test = true;
   if (run_self_test)
@@ -58,8 +58,8 @@ int main(int argc, char* argv[])
   /// Solve for initial conditions
   problem.solve_for_initial_conditions(doc_info);
 
-  double dt = 1e-3;
-  double tF = 1e-3;
+  double dt = 5e-3;
+  double tF = 1e-1;
 
   /// Iterate the timestepper using the fixed time step until the final time
   problem.iterate_timestepper(dt, tF, doc_info);
