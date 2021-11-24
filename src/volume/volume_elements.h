@@ -65,7 +65,7 @@ namespace oomph
     /// Function pointer to gradient of source function  fct(x,g(x)) --
     /// x is a Vector!
     typedef void (*VolumeSourceFctGradientPt)(const Vector<double>& x,
-                                               Vector<double>& gradient);
+                                              Vector<double>& gradient);
 
 
     /// Constructor (must initialise the Source_fct_pt to null)
@@ -309,8 +309,8 @@ namespace oomph
     /// the strength of the source function might be determined by
     /// another system of equations.
     inline virtual void get_source_volume(const unsigned& ipt,
-                                           const Vector<double>& x,
-                                           double& source) const
+                                          const Vector<double>& x,
+                                          double& source) const
     {
       // If no source function has been set, return zero
       if (Source_fct_pt == 0)
@@ -486,10 +486,10 @@ namespace oomph
     /// Shape/test functions and derivs w.r.t. to global coords at
     /// local coord. s; return  Jacobian of mapping
     virtual double dshape_and_dtest_eulerian_volume(const Vector<double>& s,
-                                                     Shape& psi,
-                                                     DShape& dpsidx,
-                                                     Shape& test,
-                                                     DShape& dtestdx) const = 0;
+                                                    Shape& psi,
+                                                    DShape& dpsidx,
+                                                    Shape& test,
+                                                    DShape& dtestdx) const = 0;
 
 
     /// Shape/test functions and derivs w.r.t. to global coords at
@@ -540,7 +540,7 @@ namespace oomph
   //======================================================================
   template<unsigned DIM, unsigned NNODE_1D>
   class QVolumeElement : public virtual QElement<DIM, NNODE_1D>,
-                          public virtual VolumeEquations<DIM>
+                         public virtual VolumeEquations<DIM>
   {
   private:
     /// Static int that holds the number of variables at
@@ -623,10 +623,10 @@ namespace oomph
     /// Shape, test functions & derivs. w.r.t. to global coords. Return
     /// Jacobian.
     inline double dshape_and_dtest_eulerian_volume(const Vector<double>& s,
-                                                    Shape& psi,
-                                                    DShape& dpsidx,
-                                                    Shape& test,
-                                                    DShape& dtestdx) const;
+                                                   Shape& psi,
+                                                   DShape& dpsidx,
+                                                   Shape& test,
+                                                   DShape& dtestdx) const;
 
 
     /// Shape, test functions & derivs. w.r.t. to global coords. at
@@ -691,10 +691,10 @@ namespace oomph
   template<unsigned DIM, unsigned NNODE_1D>
   double QVolumeElement<DIM, NNODE_1D>::
     dshape_and_dtest_eulerian_at_knot_volume(const unsigned& ipt,
-                                              Shape& psi,
-                                              DShape& dpsidx,
-                                              Shape& test,
-                                              DShape& dtestdx) const
+                                             Shape& psi,
+                                             DShape& dpsidx,
+                                             Shape& test,
+                                             DShape& dtestdx) const
   {
     // Call the geometrical shape functions and derivatives
     const double J = this->dshape_eulerian_at_knot(ipt, psi, dpsidx);

@@ -121,7 +121,6 @@ namespace oomph
         {
           // Add body force/source term here
           residuals[local_eqn] += source * test(l) * W;
-
         }
       }
 
@@ -300,7 +299,7 @@ namespace oomph
   //======================================================================
   template<unsigned DIM>
   void VolumeEquations<DIM>::output(std::ostream& outfile,
-                                     const unsigned& nplot)
+                                    const unsigned& nplot)
   {
     // Vector of local coordinates
     Vector<double> s(DIM);
