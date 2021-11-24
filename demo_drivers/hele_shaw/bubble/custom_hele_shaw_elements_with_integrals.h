@@ -7,6 +7,44 @@
 
 namespace oomph
 {
+<<<<<<< HEAD:demo_drivers/hele_shaw/bubble/custom_hele_shaw_elements_with_integrals.h
+=======
+  template<unsigned NNODE_1D>
+  class ProjectableHeleShawElementWithSolidFaces
+    : public virtual ProjectableHeleShawElement<
+        PseudoSolidNodeUpdateElement<THeleShawElement<NNODE_1D>,
+                                     TPVDElement<2, NNODE_1D>>>
+  {
+    void fill_in_contribution_to_jacobian_and_mass_matrix(
+      Vector<double>& residuals,
+      DenseMatrix<double>& jacobian,
+      DenseMatrix<double>& mass_matrix)
+    {
+      /// The bulk element has no time derivative terms.
+      this->fill_in_contribution_to_jacobian(residuals, jacobian);
+    }
+  };
+
+
+  template<unsigned NNODE_1D>
+  class FaceGeometry<ProjectableHeleShawElementWithSolidFaces<NNODE_1D>>
+    : public virtual SolidTElement<1, NNODE_1D>
+  {
+  public:
+    FaceGeometry() : SolidTElement<1, NNODE_1D>() {}
+  };
+
+  template<unsigned NNODE_1D>
+  class FaceGeometry<
+    FaceGeometry<ProjectableHeleShawElementWithSolidFaces<NNODE_1D>>>
+    : public virtual SolidPointElement
+  {
+  public:
+    FaceGeometry() : SolidPointElement() {}
+  };
+
+
+>>>>>>> Use a template with projectableHS solid edges:src/hele_shaw/my_new_element.h
   class MyNewElement
     : public virtual ProjectableHeleShawElement<
         PseudoSolidNodeUpdateElement<THeleShawElement<3>, TPVDElement<2, 3>>>
