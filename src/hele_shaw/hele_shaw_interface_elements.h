@@ -1,5 +1,5 @@
-#ifndef OOMPH_HELE_SHAW_ELEMENTS_HEADER
-#define OOMPH_HELE_SHAW_ELEMENTS_HEADER
+#ifndef OOMPH_HELE_SHAW_INTERFACE_ELEMENTS_HEADER
+#define OOMPH_HELE_SHAW_INTERFACE_ELEMENTS_HEADER
 
 
 namespace oomph
@@ -20,6 +20,11 @@ namespace oomph
     typedef void (*BubblePressureFctPt)(const Vector<double>& x,
                                         double& p_bubble);
 
+    /// \short Function pointer to function which provides h(x,t) and dh/dt, for
+    /// vector x.
+    typedef void (*UpperWallFctPt)(const Vector<double>& x,
+                                   double& h,
+                                   double& dhdt);
     /// \short Function pointer to function which provides wall speed as a
     /// function of x. This allows us to solve for bubble motion in a moving
     /// frame. A constant wall speed does not affect the mass conservation
@@ -199,6 +204,18 @@ namespace oomph
       add_additional_values(additional_data_values, id);
     }
 
+    /// Access function: Pointer to source function
+    UpperWallFctPt& upper_wall_fct_pt()
+    {
+      return Upper_wall_fct_pt;
+    }
+
+    /// Access function: Pointer to source function. Const version
+    UpperWallFctPt upper_wall_fct_pt() const
+    {
+      return Upper_wall_fct_pt;
+    }
+
 
     /// Calculate the residuals by calling the generic residual contribution.
     void fill_in_contribution_to_residuals(Vector<double>& residuals)
@@ -264,6 +281,17 @@ namespace oomph
       return St_pt;
     }
 
+    /// The value of the inverse Capillary number
+    const double& aspect_ratio() const
+    {
+      return *Aspect_ratio_pt;
+    }
+
+    /// Pointer to the inverse Capillary number
+    double*& aspect_ratio_pt()
+    {
+      return Aspect_ratio_pt;
+    }
 
     /// Return the value of the external pressure
     double get_p_bubble(Vector<double>& x) const
@@ -380,6 +408,9 @@ namespace oomph
     {
       // hierher fill this in when we've finalised what lives in output
     }
+
+    /// Pointer to function that specifies the gap width and wall velocity
+    UpperWallFctPt Upper_wall_fct_pt;
   };
 
 
@@ -500,15 +531,12 @@ namespace oomph
       // Horizontal speed of the plates
       double normal_speed_wall = 0.0;
 
-      double normal_pressure_gradient = 0.0;
-
       for (unsigned k = 0; k < 2; k++)
       {
         // sigma_kappa += sigma_local*Ca_inv*tau[k]*interpolated_n[k];
         kappa += tau[k] * interpolated_n[k];
         normal_speed_interface += interpolated_dx_dt[k] * interpolated_n[k];
         normal_speed_wall += U_wall[k] * interpolated_n[k];
-        normal_pressure_gradient += pressure_gradient[k] * interpolated_n[k];
       }
 
       // double interface_velocity =
@@ -578,13 +606,10 @@ namespace oomph
         local_eqn = lagrange_local_eqn(l);
         if (local_eqn >= 0)
         {
-          residuals[local_eqn] +=
-            (interpolated_p - p_bubble +
-             local_aspect_ratio * Ca_inv *
-               (2.0 * thin_film_effect_dynamic_bc(Ca_local) / h +
-                local_aspect_ratio * kappa) /
-               12.0) *
-            psif(l) * W * J;
+          residuals[local_eqn] += (interpolated_p - p_bubble +
+                                   2.0 * Ca_inv / local_aspect_ratio *
+                                     (1.0 / h + kappa / local_aspect_ratio)) *
+                                  psif(l) * W * J;
 
 
           if (flag == 1)
@@ -611,8 +636,8 @@ namespace oomph
                 {
                   // This bit relates to d_kappa /d tau.
                   jacobian(local_eqn, local_unknown) +=
-                    local_aspect_ratio * Ca_inv * local_aspect_ratio / 12.0 *
-                    psif(l) * W * J * psif(l2) * interpolated_n[i2];
+                    2.0 * Ca_inv / pow(local_aspect_ratio, 2.0) * psif(l) * W *
+                    J * psif(l2) * interpolated_n[i2];
                 }
               }
             }
