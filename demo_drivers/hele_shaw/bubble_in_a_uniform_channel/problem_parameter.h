@@ -114,24 +114,20 @@ namespace Problem_Parameter
     //      double C = 0.0005;  /// worked with 0.005
     //      double waveCell = C*sin(n*M_PI*y);
     ///--- Introduce random roughness to the occlusion 18/09/2015 ---
-    int sdr = abs((int)(y * 100000));
-    srand(sdr);
-    double rd = 0.01 * ((double)rand() / (double)(RAND_MAX));
+    //int sdr = abs((int)(y * 100000));
+    //srand(sdr);
+    //double rd = 0.01 * ((double)rand() / (double)(RAND_MAX));
     ///-------------------------------------------------------
 
-    b = 1 - height * 0.5 * (tanh_plus - tanh_minus); /// current profile
+    //b = 1 - height * 0.5 * (tanh_plus - tanh_minus); /// current profile
     //     b = 1 - ( height * 0.5 *(tanh_plus - tanh_minus) * (1+rough) +
     //     waveCell ); b = 1 - ( height * 0.5 *(tanh_plus - tanh_minus) +
     //     waveCell );
-    double c = 1 - height * 0.5 * (tanh_plus - tanh_minus) * (1 + rd);
-    b += -y * asymmetry;
+    //double c = 1 - height * 0.5 * (tanh_plus - tanh_minus) * (1 + rd);
+    //b += -y * asymmetry;
 
-    double Q = 1 / (*global_Q_inv_pt);
-    if (Q > 0.0100409 && Q < 0.0101489)
-    {
-      OccluHeight_file << y << "   " << b << "   " << sdr << "   " << rd
-                       << "   " << c << std::endl;
-    }
+    b = 1.0;
+
   }
 
   ofstream UpperWall_file;
