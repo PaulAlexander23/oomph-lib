@@ -4,7 +4,7 @@
 # OOMPH_ROOT_DIR=$(make -s --no-print-directory print-top_builddir)
 
 #Set the number of tests to be checked
-EXPECTED_NUM_TESTS=2
+EXPECTED_NUM_TESTS=1
 
 # Setup validation directory
 #---------------------------
@@ -16,28 +16,28 @@ cd Validation
 
 # Validation for bubble steady
 #-----------------------------------------
-mkdir bubble_steady
-echo "Running bubble steady validation "
-../bubble_steady -n 4 -f ../restart_AS1.dat -o bubble_steady/ > OUTPUT_bubble_steady
-echo "done"
-echo " " >> validation.log
-echo "Bubble steady validation" >> validation.log
-echo "--------------------------" >> validation.log
-echo " " >> validation.log
-echo "Validation directory: " >> validation.log
-echo " " >> validation.log
-echo "  " `pwd` >> validation.log
-echo " " >> validation.log
-cat bubble_steady/* > bubble_steady.dat
-
-diff=$(zcmp ../validata/bubble_steady.dat.gz bubble_steady.dat )
-if [ $? != 0 ]; then
-    echo "[ERROR] Compare failed to run." >> validation.log
-elif [ $diff ]; then
-    echo "[FAILED]" >> validation.log
-else
-    echo "[OK]" >> validation.log
-fi
+#mkdir bubble_steady
+#echo "Running bubble steady validation "
+#../bubble_steady -n 4 -f ../restart_AS1.dat -o bubble_steady/ > OUTPUT_bubble_steady
+#echo "done"
+#echo " " >> validation.log
+#echo "Bubble steady validation" >> validation.log
+#echo "--------------------------" >> validation.log
+#echo " " >> validation.log
+#echo "Validation directory: " >> validation.log
+#echo " " >> validation.log
+#echo "  " `pwd` >> validation.log
+#echo " " >> validation.log
+#cat bubble_steady/* > bubble_steady.dat
+#
+#diff=$(zcmp ../validata/bubble_steady.dat.gz bubble_steady.dat )
+#if [ $? != 0 ]; then
+#    echo "[ERROR] Compare failed to run." >> validation.log
+#elif [ $diff ]; then
+#    echo "[FAILED]" >> validation.log
+#else
+#    echo "[OK]" >> validation.log
+#fi
 #-----------------------------------------
 
 # Validation for bubble steady weakly nonlinear
