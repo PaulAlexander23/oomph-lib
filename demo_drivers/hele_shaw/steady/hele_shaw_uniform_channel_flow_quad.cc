@@ -21,16 +21,19 @@ namespace problem_parameter
     p = 0.0;
   }
 
-  void get_neumann_bc(const Vector<double>& x, double& dpdx)
+  void get_flux_bc(const Vector<double>& x, double& flux)
   {
-    /// At the inlet we set the pressure gradient which is dependent on the
+    /// At the inlet we set the local flux which is dependent on the
     /// upper wall function, inlet_area and total flux
+    double total_flux = 1.0;
+    double inlet_area = 1.0;
+    double dpdx = total_flux / inlet_area;
+
     double b;
     double dbdt;
     upper_wall_fct(x, b, dbdt);
-    double total_flux = 1.0;
-    double inlet_area = 1.0;
-    dpdx = total_flux / inlet_area * (b * b * b);
+
+    flux = dpdx * (b * b * b);
   }
 
 } // namespace problem_parameter
@@ -50,13 +53,14 @@ public:
 
 private:
   /// Generate mesh
-  void generate_mesh();
+  void create_mesh();
+
+  void create_bulk_mesh();
+
+  void create_surface_mesh();
 
   /// Create flux elements
   void create_flux_elements(const unsigned& boundary);
-
-  /// Generate mesh
-  void assign_mesh();
 
   /// Pin dirichlet outlet boundary
   void pin_dirichlet_boundaries();
@@ -93,13 +97,11 @@ HeleShawChannelProblem<ELEMENT>::HeleShawChannelProblem()
 {
   cout << "Problem constructor" << endl;
 
-  this->generate_mesh();
-
-  this->assign_mesh();
-
-  this->pin_dirichlet_boundaries();
+  this->create_mesh();
 
   this->setup_elements();
+
+  this->pin_dirichlet_boundaries();
 
   // Setup equation numbering scheme
   cout << "Assign equation numbers." << endl;
@@ -123,9 +125,21 @@ void HeleShawChannelProblem<ELEMENT>::doc_solution(DocInfo& doc_info)
 }
 
 template<class ELEMENT>
-void HeleShawChannelProblem<ELEMENT>::generate_mesh()
+void HeleShawChannelProblem<ELEMENT>::create_mesh()
 {
-  cout << "Generate mesh" << endl;
+  this->create_bulk_mesh();
+
+  this->create_surface_mesh();
+
+  this->add_sub_mesh(this->Bulk_mesh_pt);
+  this->add_sub_mesh(this->Surface_mesh_pt);
+
+  this->build_global_mesh();
+}
+
+template<class ELEMENT>
+void HeleShawChannelProblem<ELEMENT>::create_bulk_mesh()
+{
   unsigned n_x = 4;
   unsigned n_y = 4;
   double l_x = 2.0;
@@ -133,7 +147,11 @@ void HeleShawChannelProblem<ELEMENT>::generate_mesh()
 
   this->Bulk_mesh_pt =
     new SimpleRectangularQuadMesh<ELEMENT>(n_x, n_y, l_x, l_y);
+}
 
+template<class ELEMENT>
+void HeleShawChannelProblem<ELEMENT>::create_surface_mesh()
+{
   this->Surface_mesh_pt = new Mesh;
 
   cout << "Create flux elements" << endl;
@@ -158,16 +176,6 @@ void HeleShawChannelProblem<ELEMENT>::create_flux_elements(
 
     this->Surface_mesh_pt->add_element_pt(flux_element_pt);
   }
-}
-
-template<class ELEMENT>
-void HeleShawChannelProblem<ELEMENT>::assign_mesh()
-{
-  cout << "Assign mesh" << endl;
-  this->add_sub_mesh(this->Bulk_mesh_pt);
-  this->add_sub_mesh(this->Surface_mesh_pt);
-
-  this->build_global_mesh();
 }
 
 template<class ELEMENT>
@@ -221,8 +229,8 @@ void HeleShawChannelProblem<ELEMENT>::setup_elements()
       dynamic_cast<HeleShawFluxElement<ELEMENT>*>(
         this->Surface_mesh_pt->element_pt(i));
 
-    // Set the Neumann function pointer
-    el_pt->flux_fct_pt() = &problem_parameter::get_neumann_bc;
+    // Set the flux function pointer
+    el_pt->flux_fct_pt() = problem_parameter::get_flux_bc;
   }
 }
 
