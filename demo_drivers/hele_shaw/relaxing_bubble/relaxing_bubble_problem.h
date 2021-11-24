@@ -352,9 +352,8 @@ void RelaxingBubbleProblem<ELEMENT>::generate_surface_mesh()
       int face_index =
         Fluid_mesh_pt->face_index_at_boundary(i_boundary, i_element);
 
-      HeleShawInterfaceElementWithIntegrals<ELEMENT>* interface_element_pt =
-        new HeleShawInterfaceElementWithIntegrals<ELEMENT>(fluid_element_pt,
-                                                           face_index);
+      HeleShawInterfaceElement<ELEMENT>* interface_element_pt =
+        new HeleShawInterfaceElement<ELEMENT>(fluid_element_pt, face_index);
 
       // Add the appropriate boundary number
       interface_element_pt->set_boundary_number_in_bulk_mesh(i_boundary);
@@ -383,12 +382,12 @@ void RelaxingBubbleProblem<ELEMENT>::set_variable_and_function_pointers()
   n_element = Surface_mesh_pt->nelement();
   for (unsigned e = 0; e < n_element; e++)
   {
-    HeleShawInterfaceElementWithIntegrals<ELEMENT>* interface_element_pt =
-      dynamic_cast<HeleShawInterfaceElementWithIntegrals<ELEMENT>*>(
+    HeleShawInterfaceElement<ELEMENT>* interface_element_pt =
+      dynamic_cast<HeleShawInterfaceElement<ELEMENT>*>(
         Surface_mesh_pt->element_pt(e));
-    interface_element_pt->q_inv_pt() = relaxing_bubble::q_inv_pt;
+    interface_element_pt->ca_inv_pt() = relaxing_bubble::q_inv_pt;
     interface_element_pt->st_pt() = relaxing_bubble::st_pt;
-    interface_element_pt->alpha_pt() = relaxing_bubble::alpha_pt;
+    interface_element_pt->aspect_ratio_pt() = relaxing_bubble::alpha_pt;
     interface_element_pt->upper_wall_fct_pt() = relaxing_bubble::upper_wall_fct;
     interface_element_pt->wall_speed_fct_pt() = relaxing_bubble::wall_speed_fct;
     interface_element_pt->bubble_pressure_fct_pt() =
@@ -435,10 +434,10 @@ void RelaxingBubbleProblem<ELEMENT>::set_boundary_conditions()
 
 
   /// Single point Dirichlet boundary condition
-  Node* node_pt = Fluid_mesh_pt->boundary_node_pt(1, 0);
-  node_pt->pin(0);
+  Node* node_pt = Fluid_mesh_pt->boundary_node_pt(0, 0);
   const double fixed_pressure = 0.0;
   node_pt->set_value(0, fixed_pressure);
+  node_pt->pin(0);
 
 
   /// Pin tangential lagrange multiplier
@@ -560,8 +559,8 @@ void RelaxingBubbleProblem<ELEMENT>::compute_error_estimate(double& max_err,
   min_err = 1e6;
   for (unsigned e = 0; e < n_elements; e++)
   {
-    dynamic_cast<ELEMENT*>(Fluid_mesh_pt->element_pt(e))
-      ->set_error(elemental_error[e]);
+    //dynamic_cast<ELEMENT*>(Fluid_mesh_pt->element_pt(e))
+    //  ->set_error(elemental_error[e]);
 
     max_err = std::max(max_err, elemental_error[e]);
     min_err = std::min(min_err, elemental_error[e]);
