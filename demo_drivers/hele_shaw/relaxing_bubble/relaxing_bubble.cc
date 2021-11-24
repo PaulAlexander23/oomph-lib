@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
   problem.solve_for_initial_conditions(doc_info);
 
   double dt = 5e-3;
-  double tF = 1e-1;
+  double tF = 5e-2;
 
   /// Iterate the timestepper using the fixed time step until the final time
   problem.iterate_timestepper(dt, tF, doc_info);
