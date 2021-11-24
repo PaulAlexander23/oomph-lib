@@ -1,19 +1,20 @@
 #ifndef HELE_SHAW_BUBBLE_PROBLEM_WITH_INTEGRALS_HEADER
 #define HELE_SHAW_BUBBLE_PROBLEM_WITH_INTEGRALS_HEADER
-
-#include "generic.h"
-#include "hele_shaw.h"
-
 //==start_of_problem_class============================================
 /// Problem class to simulate inviscid bubble propagating along 2D channel
 //====================================================================
 template<class ELEMENT>
 class BubbleInChannelProblem : public Problem
 {
+  /// Make a copy for using in bifurcation tracking
+
 
 public:
+  double Q_jack;
+
   /// Constructor
   BubbleInChannelProblem();
+
 
   Problem* make_copy()
   {
@@ -686,6 +687,12 @@ public:
   SelfReferentialVolumeConstraintElement* CoM_Y_constraint_el_pt;
   SelfReferentialVolumeConstraintElement* Integral_measures_el_pt;
 
+  /// Pointer to the ode mesh
+  Mesh* ODE_mesh_pt;
+
+  /// Pointer to the info mesh
+  Mesh* Info_mesh_pt;
+
   /// Enumeration of mesh boundaries
   enum
   {
@@ -764,6 +771,7 @@ public:
   }
   ///-------------------------------------------------------------------------------
 }; // end_of_problem_class
+
 
 //==start_constructor=====================================================
 /// Constructor
@@ -1143,6 +1151,7 @@ BubbleInChannelProblem<ELEMENT>::BubbleInChannelProblem()
   //  linear_solver_pt()=new FD_LU;
 } // end_of_constructor
 
+
 //============start_of_create_free_surface_elements======================
 /// Create elements that impose the kinematic and dynamic bcs
 /// for the pseudo-solid fluid mesh
@@ -1262,6 +1271,7 @@ void BubbleInChannelProblem<ELEMENT>::create_volume_constraint_elements()
 }
 // end of create_volume_constraint_elements
 
+
 //============start_of_create_volume_constraint_elements=================
 /// Create elements that impose volume constraint on the bubble
 //=======================================================================
@@ -1345,6 +1355,7 @@ void BubbleInChannelProblem<ELEMENT>::create_CoM_Y_constraint_elements()
 //==start_of_complete_problem_setup=======================================
 /// Set boundary conditions and complete the build of all elements
 //========================================================================
+
 template<class ELEMENT>
 void BubbleInChannelProblem<ELEMENT>::complete_problem_setup()
 {
@@ -1468,6 +1479,7 @@ void BubbleInChannelProblem<ELEMENT>::compute_error_estimate(double& max_err,
   std::cout << "Max error is " << max_err << std::endl;
   std::cout << "Min error is " << min_err << std::endl;
 }
+
 
 template<class ELEMENT>
 void BubbleInChannelProblem<ELEMENT>::jack_solve(double Q,

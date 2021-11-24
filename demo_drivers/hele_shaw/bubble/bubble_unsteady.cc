@@ -147,10 +147,10 @@ int main(int argc, char** argv)
 #endif
 
   unsigned n_steps = 150;
-  double maj_rad;
-  double CoM_unsteady;
-  double Q_unsteady;
-  string output_directory = "";
+  double maj_rad = 0.5;
+  double CoM_unsteady = 0.01;
+  double Q_unsteady = 0.01;
+  string output_directory = "RESLT";
   bool has_unrecognised_arg = false;
 
   // REQUIRED
@@ -160,6 +160,7 @@ int main(int argc, char** argv)
     "-r", &maj_rad, "Bubble major radius");
   CommandLineArgs::specify_command_line_flag(
     "-c", &CoM_unsteady, "Bubble centre of mass offset");
+  // Or inverse Capillary number?
   CommandLineArgs::specify_command_line_flag(
     "-q", &Q_unsteady, "Channel flux, Q");
 
@@ -171,14 +172,7 @@ int main(int argc, char** argv)
 
   CommandLineArgs::parse_and_assign(argc, argv, &has_unrecognised_arg);
 
-  if (output_directory != "")
-  {
-    Problem_Parameter::Doc_info.set_directory(output_directory);
-  }
-  else
-  {
-    Problem_Parameter::Doc_info.set_directory("data/bubble_unsteady/");
-  }
+  Problem_Parameter::Doc_info.set_directory(output_directory);
 
 
   // Create generalised Hookean constitutive equations
@@ -190,14 +184,6 @@ int main(int argc, char** argv)
                                      "trace_bubble_test.dat");
   // Increase precision of output
   Problem_Parameter::Trace_file.precision(20);
-
-  // Open norm file
-  Problem_Parameter::Norm_file.open(Problem_Parameter::Doc_info.directory() +
-                                    "norm.dat");
-  Problem_Parameter::OccluHeight_file.open(
-    Problem_Parameter::Doc_info.directory() + "Occlusion_Height.dat");
-  Problem_Parameter::UpperWall_file.open(
-    Problem_Parameter::Doc_info.directory() + "UpperWall_trace.dat");
 
   Problem_Parameter::Length = 4;
   /// Sets Volume of Initial Condition
