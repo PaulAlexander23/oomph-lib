@@ -10,7 +10,7 @@ namespace oomph
   //======================================================================
   template<class ELEMENT>
   class HeleShawInterfaceElementFinger : public virtual FaceGeometry<ELEMENT>,
-                                   public virtual FaceElement
+                                         public virtual FaceElement
   {
   public:
     /// \short Function pointer to function which provides bubble pressure as a
@@ -231,8 +231,8 @@ namespace oomph
     /// 2: y-component of smoothed derivative of tangent vector)
     /// from those created by other FaceElements.
     HeleShawInterfaceElementFinger(FiniteElement* const& element_pt,
-                             const int& face_index,
-                             const unsigned& id = 0)
+                                   const int& face_index,
+                                   const unsigned& id = 0)
       :
 
         FaceGeometry<ELEMENT>(),
@@ -1091,7 +1091,8 @@ namespace oomph
         throw OomphLibError(
           "Vector_of_ipt_index_of_opposite_points_pt has not been set yet for "
           "HeleShaw elements",
-          "HeleShawInterfaceElementFinger::vector_of_ipt_index_of_opposite_points()",
+          "HeleShawInterfaceElementFinger::vector_of_ipt_index_of_opposite_"
+          "points()",
           OOMPH_EXCEPTION_LOCATION);
       }
 #endif
@@ -1121,7 +1122,8 @@ namespace oomph
         throw OomphLibError(
           "Vector_of_pointers_to_opposite_elements_pt has not been set yet for "
           "HeleShaw elements",
-          "HeleShawInterfaceElementFinger::vector_of_pointers_to_opposite_elements()",
+          "HeleShawInterfaceElementFinger::vector_of_pointers_to_opposite_"
+          "elements()",
           OOMPH_EXCEPTION_LOCATION);
       }
 #endif
@@ -1172,7 +1174,8 @@ namespace oomph
         throw OomphLibError(
           "Vector_of_distance_to_opposite_point_pt has not been set yet for "
           "HeleShaw elements",
-          "HeleShawInterfaceElementFinger::vector_of_distance_to_opposite_point()",
+          "HeleShawInterfaceElementFinger::vector_of_distance_to_opposite_"
+          "point()",
           OOMPH_EXCEPTION_LOCATION);
       }
 #endif
@@ -1396,8 +1399,9 @@ namespace oomph
   /// Default value for physical constant (static)
   //============================================================
   template<class ELEMENT>
-  double HeleShawInterfaceElementFinger<ELEMENT>::Default_Physical_Constant_Value =
-    1.0;
+  double
+    HeleShawInterfaceElementFinger<ELEMENT>::Default_Physical_Constant_Value =
+      1.0;
 
 
   //=======================================================================
