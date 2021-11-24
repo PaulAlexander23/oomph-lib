@@ -26,7 +26,7 @@
 // LIC//
 // LIC//====================================================================
 // Header file for elements that are used to apply prescribed flux
-// boundary conditions to the Poisson equations
+// boundary conditions to the Hele-Shaw equations
 #ifndef OOMPH_HELE_SHAW_FLUX_ELEMENTS_HEADER
 #define OOMPH_HELE_SHAW_FLUX_ELEMENTS_HEADER
 
@@ -45,7 +45,7 @@ namespace oomph
 {
   //======================================================================
   /// \short A class for elements that allow the imposition of an
-  /// applied flux on the boundaries of Poisson elements.
+  /// applied flux on the boundaries of HeleShaw elements.
   /// The element geometry is obtained from the  FaceGeometry<ELEMENT>
   /// policy class.
   //======================================================================
@@ -56,13 +56,14 @@ namespace oomph
   public:
     /// \short Function pointer to the prescribed-flux function fct(x,f(x)) --
     /// x is a Vector!
-    typedef void (*PoissonPrescribedFluxFctPt)(const Vector<double>& x,
-                                               double& flux);
+    typedef void (*HeleShawPrescribedFluxFctPt)(const Vector<double>& x,
+                                                double& flux);
 
     /// \short Constructor, takes the pointer to the "bulk" element and the
     /// index of the face to which the element is attached.
     HeleShawFluxElement(FiniteElement* const& bulk_el_pt,
-                        const int& face_index);
+                        const int& face_index,
+                        const bool& set_wall_function = false);
 
     ///\short  Broken empty constructor
     HeleShawFluxElement()
@@ -98,18 +99,23 @@ namespace oomph
     }
 
     /// Access function for the prescribed-flux function pointer
-    PoissonPrescribedFluxFctPt& flux_fct_pt()
+    HeleShawPrescribedFluxFctPt& flux_fct_pt()
     {
       return Flux_fct_pt;
     }
 
+    /// Access function for the prescribed-flux function pointer
+    HeleShawPrescribedFluxFctPt flux_fct_pt() const
+    {
+      return Flux_fct_pt;
+    }
 
     /// Add the element's contribution to its residual vector
     inline void fill_in_contribution_to_residuals(Vector<double>& residuals)
     {
       // Call the generic residuals function with flag set to 0
       // using a dummy matrix argument
-      fill_in_generic_residual_contribution_poisson_flux(
+      fill_in_generic_residual_contribution_hele_shaw_flux(
         residuals, GeneralisedElement::Dummy_matrix, 0);
     }
 
@@ -120,7 +126,7 @@ namespace oomph
                                                  DenseMatrix<double>& jacobian)
     {
       // Call the generic routine with the flag set to 1
-      fill_in_generic_residual_contribution_poisson_flux(
+      fill_in_generic_residual_contribution_hele_shaw_flux(
         residuals, jacobian, 1);
       GeneralisedElement::fill_in_jacobian_from_external_by_fd(
         residuals, jacobian, false); /// Alice
@@ -233,20 +239,21 @@ namespace oomph
     }
 
     /// Function pointer to the (global) prescribed-flux function
-    PoissonPrescribedFluxFctPt Flux_fct_pt;
+    HeleShawPrescribedFluxFctPt Flux_fct_pt;
 
+    /// Store upper wall function pointer for generality
     HeleShawEquations::UpperWallFctPt* Upper_wall_fct_pt;
 
     /// The spatial dimension of the problem
     unsigned Dim;
 
     /// The index at which the unknown is stored at the nodes
-    unsigned U_index_poisson;
+    unsigned P_index_hele_shaw;
 
     /// \short Add the element's contribution to its residual vector.
     /// flag=1(or 0): do (or don't) compute the contribution to the
     /// Jacobian as well.
-    void fill_in_generic_residual_contribution_poisson_flux(
+    void fill_in_generic_residual_contribution_hele_shaw_flux(
       Vector<double>& residuals,
       DenseMatrix<double>& jacobian,
       const unsigned& flag);
@@ -266,7 +273,9 @@ namespace oomph
   //===========================================================================
   template<class ELEMENT>
   HeleShawFluxElement<ELEMENT>::HeleShawFluxElement(
-    FiniteElement* const& bulk_el_pt, const int& face_index)
+    FiniteElement* const& bulk_el_pt,
+    const int& face_index,
+    const bool& set_wall_function)
     : FaceGeometry<ELEMENT>(), FaceElement()
   {
 #ifdef PARANOID
@@ -301,49 +310,23 @@ namespace oomph
     // the first node
     Dim = this->node_pt(0)->ndim();
 
-    // Set up U_index_poisson. Initialise to zero, which probably won't change
+    // Set up P_index_hele_shaw. Initialise to zero, which probably won't change
     // in most cases, oh well, the price we pay for generality
-    U_index_poisson = 0;
+    P_index_hele_shaw = 0;
 
-    // Cast to the appropriate PoissonEquation so that we can
+    // Cast to the appropriate HeleShawEquation so that we can
     // find the index at which the variable is stored
     // We assume that the dimension of the full problem is the same
     // as the dimension of the node, if this is not the case you will have
     // to write custom elements, sorry
     switch (Dim)
     {
-        //     //One dimensional problem
-        //    case 1:
-        //    {
-        //     PoissonEquations<1>* eqn_pt =
-        //      dynamic_cast<PoissonEquations<1>*>(bulk_el_pt);
-        //     //If the cast has failed die
-        //     if(eqn_pt==0)
-        //      {
-        //       std::string error_string =
-        //        "Bulk element must inherit from PoissonEquations.";
-        //       error_string +=
-        //        "Nodes are one dimensional, but cannot cast the bulk element
-        //        to\n";
-        //       error_string += "PoissonEquations<1>\n.";
-        //       error_string +=
-        //        "If you desire this functionality, you must implement it
-        //        yourself\n";
-        //
-        //       throw OomphLibError(error_string,
-        //                           "HeleShawFluxElement::HeleShawFluxElement()",
-        //                           OOMPH_EXCEPTION_LOCATION);
-        //      }
-        //     //Otherwise read out the value
-        //     else
-        //      {
-        //       //Read the index from the (cast) bulk element
-        //       U_index_poisson = eqn_pt->u_index_poisson();
-        //      }
-        //    }
-        //    break;
-
-      // Two dimensional problem
+      case 1:
+      {
+        throw OomphLibError("HeleShawFluxElement not implemented for 1D",
+                            "HeleShawFluxElement::HeleShawFluxElement()",
+                            OOMPH_EXCEPTION_LOCATION);
+      }
       case 2:
       {
         HeleShawEquations* eqn_pt =
@@ -352,10 +335,10 @@ namespace oomph
         if (eqn_pt == 0)
         {
           std::string error_string =
-            "Bulk element must inherit from PoissonEquations.";
+            "Bulk element must inherit from HeleShawEquations.";
           error_string +=
             "Nodes are two dimensional, but cannot cast the bulk element to\n";
-          error_string += "PoissonEquations<2>\n.";
+          error_string += "HeleShawEquations<2>\n.";
           error_string += "If you desire this functionality, you must "
                           "implement it yourself\n";
 
@@ -366,44 +349,11 @@ namespace oomph
         else
         {
           // Read the index from the (cast) bulk element.
-          U_index_poisson = eqn_pt->p_index_hele_shaw();
-          //       U_index_poisson = eqn_pt->u_index_poisson();
+          P_index_hele_shaw = eqn_pt->p_index_hele_shaw();
           this->Upper_wall_fct_pt = &eqn_pt->upper_wall_fct_pt();
         }
       }
       break;
-
-        //    //Three dimensional problem
-        //    case 3:
-        //    {
-        //     PoissonEquations<3>* eqn_pt =
-        //      dynamic_cast<PoissonEquations<3>*>(bulk_el_pt);
-        //     //If the cast has failed die
-        //     if(eqn_pt==0)
-        //      {
-        //       std::string error_string =
-        //        "Bulk element must inherit from PoissonEquations.";
-        //       error_string +=
-        //        "Nodes are three dimensional, but cannot cast the bulk element
-        //        to\n";
-        //       error_string += "PoissonEquations<3>\n.";
-        //       error_string +=
-        //        "If you desire this functionality, you must implement it
-        //        yourself\n";
-        //
-        //       throw OomphLibError(error_string,
-        //                        "HeleShawFluxElement::HeleShawFluxElement()",
-        //                        OOMPH_EXCEPTION_LOCATION);
-        //
-        //      }
-        //     else
-        //      {
-        //       //Read the index from the (cast) bulk element.
-        //       U_index_poisson = eqn_pt->u_index_poisson();
-        //      }
-        //    }
-        //    break;
-
       // Any other case is an error
       default:
         std::ostringstream error_stream;
@@ -423,7 +373,7 @@ namespace oomph
   //===========================================================================
   template<class ELEMENT>
   void HeleShawFluxElement<ELEMENT>::
-    fill_in_generic_residual_contribution_poisson_flux(
+    fill_in_generic_residual_contribution_hele_shaw_flux(
       Vector<double>& residuals,
       DenseMatrix<double>& jacobian,
       const unsigned& flag)
@@ -444,7 +394,7 @@ namespace oomph
     int local_eqn = 0;
 
     // Locally cache the index at which the variable is stored
-    const unsigned u_index_poisson = U_index_poisson;
+    const unsigned p_index_hele_shaw = P_index_hele_shaw;
 
     // Loop over the integration points
     //--------------------------------
@@ -483,22 +433,17 @@ namespace oomph
       double flux;
       get_flux(interpolated_x, flux);
 
-      // Get gap width and wall velocity
-      double h = 1.0;
-      double dhdt = 0.0;
-      (**Upper_wall_fct_pt)(interpolated_x, h, dhdt);
-
       // Now add to the appropriate equations
 
       // Loop over the test functions
       for (unsigned l = 0; l < n_node; l++)
       {
-        local_eqn = nodal_local_eqn(l, u_index_poisson);
+        local_eqn = nodal_local_eqn(l, p_index_hele_shaw);
         /*IF it's not a boundary condition*/
         if (local_eqn >= 0)
         {
           // Add the prescribed flux terms
-          residuals[local_eqn] -= flux * pow(h, 3.0) * testf[l] * W;
+          residuals[local_eqn] -= flux * testf[l] * W;
 
           // Imposed traction doesn't depend upon the solution,
           // --> the Jacobian is always zero, so no Jacobian

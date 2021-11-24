@@ -658,7 +658,7 @@ void HeleShawEquations::output(std::ostream& outfile, const unsigned& nplot)
 
   // Tecplot header info
   outfile << tecplot_zone_string(nplot);
-  std::cout << "Output" << std::endl;
+  // std::cout << "Output" << std::endl;
   // Loop over plot points
   unsigned num_plot_points = nplot_points(nplot);
   for (unsigned iplot = 0; iplot < num_plot_points; iplot++)
@@ -674,10 +674,13 @@ void HeleShawEquations::output(std::ostream& outfile, const unsigned& nplot)
     {
       outfile << interpolated_x(s, i) << " ";
     }
-    outfile << velocity[0] << " " << velocity[1] << " "
-            << interpolated_p_hele_shaw(s) << " " << h << " " << dhdx[0] << " "
-            << dhdx[1] << " "
-            << "\n";
+    outfile << velocity[0] << " ";
+    outfile << velocity[1] << " ";
+    outfile << interpolated_p_hele_shaw(s) << " ";
+    outfile << h << " ";
+    outfile << dhdx[0] << " ";
+    outfile << dhdx[1] << " ";
+    outfile << std::endl;
   }
 
   // Write tecplot footer (e.g. FE connectivity lists)
