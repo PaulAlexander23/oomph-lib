@@ -40,11 +40,9 @@ int main(int argc, char* argv[])
     new GeneralisedHookean(relaxing_bubble::nu_pt);
 
   /// Create problem
-  //RelaxingBubbleProblem<ProjectableHeleShawElement<
-  //  PseudoSolidNodeUpdateElement<THeleShawElement<3>, TPVDElement<2, 3>>>>
-  //  problem;
-  //RelaxingBubbleProblem<MyNewElement> problem;
-  RelaxingBubbleProblem<ProjectableHeleShawElementWithSolidFaces<3>> problem;
+  //RelaxingBubbleProblem<ProjectableHeleShawElementWithSolidFaces<3>> problem;
+  //RelaxingBubbleProblem<HeleShawWithErrorElement> problem;
+  RelaxingBubbleProblem<MyNewElement> problem;
 
   bool run_self_test = true;
   if (run_self_test)

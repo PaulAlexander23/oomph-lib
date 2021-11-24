@@ -559,8 +559,8 @@ void RelaxingBubbleProblem<ELEMENT>::compute_error_estimate(double& max_err,
   min_err = 1e6;
   for (unsigned e = 0; e < n_elements; e++)
   {
-    //dynamic_cast<ELEMENT*>(Fluid_mesh_pt->element_pt(e))
-    //  ->set_error(elemental_error[e]);
+    dynamic_cast<ELEMENT*>(Fluid_mesh_pt->element_pt(e))
+      ->set_error(elemental_error[e]);
 
     max_err = std::max(max_err, elemental_error[e]);
     min_err = std::min(min_err, elemental_error[e]);
