@@ -11,7 +11,8 @@ namespace oomph
   template<unsigned NNODE_1D>
   class ProjectableHeleShawElementWithSolidFaces
     : public virtual ProjectableHeleShawElement<
-        PseudoSolidNodeUpdateElement<THeleShawElement<NNODE_1D>, TPVDElement<2, NNODE_1D>>>
+        PseudoSolidNodeUpdateElement<THeleShawElement<NNODE_1D>,
+                                     TPVDElement<2, NNODE_1D>>>
   {
     void fill_in_contribution_to_jacobian_and_mass_matrix(
       Vector<double>& residuals,
