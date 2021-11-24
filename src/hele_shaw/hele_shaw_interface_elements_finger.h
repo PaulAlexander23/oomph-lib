@@ -1,5 +1,5 @@
-#ifndef OOMPH_HELE_SHAW_ELEMENTS_HEADER
-#define OOMPH_HELE_SHAW_ELEMENTS_HEADER
+#ifndef OOMPH_HELE_SHAW_INTERFACE_ELEMENTS_FINGER_HEADER
+#define OOMPH_HELE_SHAW_INTERFACE_ELEMENTS_FINGER_HEADER
 
 
 namespace oomph
@@ -9,7 +9,7 @@ namespace oomph
   /// mesh motion
   //======================================================================
   template<class ELEMENT>
-  class HeleShawInterfaceElement : public virtual FaceGeometry<ELEMENT>,
+  class HeleShawInterfaceElementFinger : public virtual FaceGeometry<ELEMENT>,
                                    public virtual FaceElement
   {
   public:
@@ -124,7 +124,7 @@ namespace oomph
 
     Vector<double>* Vector_of_ipt_index_of_opposite_points_pt;
 
-    Vector<HeleShawInterfaceElement<ELEMENT>*>*
+    Vector<HeleShawInterfaceElementFinger<ELEMENT>*>*
       Vector_of_pointers_to_opposite_elements_pt;
 
     /// \short Pointer to the fjord index
@@ -230,7 +230,7 @@ namespace oomph
     /// 1: x-component of smoothed derivative of tangent vector;
     /// 2: y-component of smoothed derivative of tangent vector)
     /// from those created by other FaceElements.
-    HeleShawInterfaceElement(FiniteElement* const& element_pt,
+    HeleShawInterfaceElementFinger(FiniteElement* const& element_pt,
                              const int& face_index,
                              const unsigned& id = 0)
       :
@@ -718,11 +718,11 @@ namespace oomph
     {
       // Add the residual contributions
       oomph_info << "Filli in contribution to mass matrix in "
-                    "HeleShawInterfaceElement ...\n";
+                    "HeleShawInterfaceElementFinger ...\n";
       fill_in_generic_residual_contribution_hele_shaw_interface(
         residuals, GeneralisedElement::Dummy_matrix, mass_matrix, 2);
       oomph_info << "Filling in contribution to mass matrix in "
-                    "HeleShawInterfaceElement done!\n";
+                    "HeleShawInterfaceElementFinger done!\n";
     }
 
     void fill_in_contribution_to_jacobian_and_mass_matrix(
@@ -732,7 +732,7 @@ namespace oomph
     {
       // Add the residual contributions
       oomph_info << "Filli in contribution to jacobian and mass matrix in "
-                    "HeleShawInterfaceElement ...\n";
+                    "HeleShawInterfaceElementFinger ...\n";
       fill_in_generic_residual_contribution_hele_shaw_interface(
         residuals, GeneralisedElement::Dummy_matrix, mass_matrix, 2);
 
@@ -763,7 +763,7 @@ namespace oomph
       // There could also be nodal data
       this->fill_in_jacobian_from_nodal_by_fd(full_residuals, jacobian);
       oomph_info << "Filling in contribution tojacobian and mass matrix in "
-                    "HeleShawInterfaceElement done!\n";
+                    "HeleShawInterfaceElementFinger done!\n";
     }
 
     void get_curvature(Vector<Vector<double>>& vector_of_curvature)
@@ -872,7 +872,7 @@ namespace oomph
       {
         throw OomphLibError(
           "Aspect_ratio_pt has not been set yet for HeleShaw elements",
-          "HeleShawInterfaceElement::aspect_ratio()",
+          "HeleShawInterfaceElementFinger::aspect_ratio()",
           OOMPH_EXCEPTION_LOCATION);
       }
 #endif
@@ -900,7 +900,7 @@ namespace oomph
       {
         throw OomphLibError(
           "Finger_tip_node_pt has not been set yet for HeleShaw elements",
-          "HeleShawInterfaceElement::finger_tip_node()",
+          "HeleShawInterfaceElementFinger::finger_tip_node()",
           OOMPH_EXCEPTION_LOCATION);
       }
 #endif
@@ -929,7 +929,7 @@ namespace oomph
         throw OomphLibError(
           "Local_coordinate_finger_tip_pt has not been set yet for HeleShaw "
           "elements",
-          "HeleShawInterfaceElement::local_coordinate_finger_tip()",
+          "HeleShawInterfaceElementFinger::local_coordinate_finger_tip()",
           OOMPH_EXCEPTION_LOCATION);
       }
 #endif
@@ -959,7 +959,7 @@ namespace oomph
         throw OomphLibError(
           "Element_containing_tip_node_pt_pt has not been set yet for HeleShaw "
           "elements",
-          "HeleShawInterfaceElement::element_containing_tip_node()",
+          "HeleShawInterfaceElementFinger::element_containing_tip_node()",
           OOMPH_EXCEPTION_LOCATION);
       }
 #endif
@@ -1036,7 +1036,7 @@ namespace oomph
     //         {
     //          throw OomphLibError(
     //          "el_pt was not set",
-    //          "HeleShawInterfaceElement::get_height_at_tip()",
+    //          "HeleShawInterfaceElementFinger::get_height_at_tip()",
     //          OOMPH_EXCEPTION_LOCATION);
     //          abort();
     //         }
@@ -1045,7 +1045,7 @@ namespace oomph
     //       {
     //        throw OomphLibError(
     //        "sub_geom_object_pt was not set",
-    //        "HeleShawInterfaceElement::get_height_at_tip()",
+    //        "HeleShawInterfaceElementFinger::get_height_at_tip()",
     //        OOMPH_EXCEPTION_LOCATION);
     //        abort();
     //       }
@@ -1062,7 +1062,7 @@ namespace oomph
         throw OomphLibError(
           "Membrane_height_at_tip_pt has not been set yet for HeleShaw "
           "elements",
-          "HeleShawInterfaceElement::membrane_height_at_tip()",
+          "HeleShawInterfaceElementFinger::membrane_height_at_tip()",
           OOMPH_EXCEPTION_LOCATION);
       }
 #endif
@@ -1091,7 +1091,7 @@ namespace oomph
         throw OomphLibError(
           "Vector_of_ipt_index_of_opposite_points_pt has not been set yet for "
           "HeleShaw elements",
-          "HeleShawInterfaceElement::vector_of_ipt_index_of_opposite_points()",
+          "HeleShawInterfaceElementFinger::vector_of_ipt_index_of_opposite_points()",
           OOMPH_EXCEPTION_LOCATION);
       }
 #endif
@@ -1110,9 +1110,9 @@ namespace oomph
 
     // vector_of_pointers_to_opposite_elements_pt()
     // Vector_of_pointers_to_opposite_elements_pt
-    // Vector< HeleShawInterfaceElement<ELEMENT>* >*
+    // Vector< HeleShawInterfaceElementFinger<ELEMENT>* >*
 
-    Vector<HeleShawInterfaceElement<ELEMENT>*> vector_of_pointers_to_opposite_elements()
+    Vector<HeleShawInterfaceElementFinger<ELEMENT>*> vector_of_pointers_to_opposite_elements()
       const
     {
 #ifdef PARANOID
@@ -1121,19 +1121,19 @@ namespace oomph
         throw OomphLibError(
           "Vector_of_pointers_to_opposite_elements_pt has not been set yet for "
           "HeleShaw elements",
-          "HeleShawInterfaceElement::vector_of_pointers_to_opposite_elements()",
+          "HeleShawInterfaceElementFinger::vector_of_pointers_to_opposite_elements()",
           OOMPH_EXCEPTION_LOCATION);
       }
 #endif
       return *Vector_of_pointers_to_opposite_elements_pt;
     }
 
-    Vector<HeleShawInterfaceElement<ELEMENT>*>*& vector_of_pointers_to_opposite_elements_pt()
+    Vector<HeleShawInterfaceElementFinger<ELEMENT>*>*& vector_of_pointers_to_opposite_elements_pt()
     {
       return Vector_of_pointers_to_opposite_elements_pt;
     }
 
-    Vector<HeleShawInterfaceElement<ELEMENT>*>* vector_of_pointers_to_opposite_elements_pt()
+    Vector<HeleShawInterfaceElementFinger<ELEMENT>*>* vector_of_pointers_to_opposite_elements_pt()
       const
     {
       return Vector_of_pointers_to_opposite_elements_pt;
@@ -1146,7 +1146,7 @@ namespace oomph
       if (Ha_pt == 0)
       {
         throw OomphLibError("Ha_pt has not been set yet for HeleShaw elements",
-                            "HeleShawInterfaceElement::ha()",
+                            "HeleShawInterfaceElementFinger::ha()",
                             OOMPH_EXCEPTION_LOCATION);
       }
 #endif
@@ -1172,7 +1172,7 @@ namespace oomph
         throw OomphLibError(
           "Vector_of_distance_to_opposite_point_pt has not been set yet for "
           "HeleShaw elements",
-          "HeleShawInterfaceElement::vector_of_distance_to_opposite_point()",
+          "HeleShawInterfaceElementFinger::vector_of_distance_to_opposite_point()",
           OOMPH_EXCEPTION_LOCATION);
       }
 #endif
@@ -1198,7 +1198,7 @@ namespace oomph
       {
         throw OomphLibError(
           "Fjord_index_pt has not been set yet for HeleShaw elements",
-          "HeleShawInterfaceElement::fjord_index()",
+          "HeleShawInterfaceElementFinger::fjord_index()",
           OOMPH_EXCEPTION_LOCATION);
       }
 #endif
@@ -1396,7 +1396,7 @@ namespace oomph
   /// Default value for physical constant (static)
   //============================================================
   template<class ELEMENT>
-  double HeleShawInterfaceElement<ELEMENT>::Default_Physical_Constant_Value =
+  double HeleShawInterfaceElementFinger<ELEMENT>::Default_Physical_Constant_Value =
     1.0;
 
 
@@ -1408,7 +1408,7 @@ namespace oomph
   /// residuals + mass matrix will be calculated for flag value of 2
   //=======================================================================
   template<class ELEMENT>
-  void HeleShawInterfaceElement<ELEMENT>::
+  void HeleShawInterfaceElementFinger<ELEMENT>::
     fill_in_generic_residual_contribution_hele_shaw_interface(
       Vector<double>& residuals,
       DenseMatrix<double>& jacobian,
@@ -1440,7 +1440,7 @@ namespace oomph
     Vector<double> vector_ipt_index_of_opposite_points =
       vector_of_ipt_index_of_opposite_points();
 
-    Vector<HeleShawInterfaceElement<ELEMENT>*>
+    Vector<HeleShawInterfaceElementFinger<ELEMENT>*>
       vector_of_pointers_to_opposite_elements_in_the_fjord =
         vector_of_pointers_to_opposite_elements();
 
@@ -1835,7 +1835,7 @@ namespace oomph
   }
 
   template<class ELEMENT>
-  void HeleShawInterfaceElement<ELEMENT>::get_curvature_at_the_interface(
+  void HeleShawInterfaceElementFinger<ELEMENT>::get_curvature_at_the_interface(
     Vector<Vector<double>>& vector_of_curvature)
   {
     // Find out how many nodes there are
