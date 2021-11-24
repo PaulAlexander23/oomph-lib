@@ -34,7 +34,6 @@ namespace oomph
     /// Set error value for post-processing
     void set_error(const double& error)
     {
-      cout<<"set error"<<endl;
       Error = error;
     }
 

@@ -75,7 +75,6 @@ void BubbleInChannelProblem<ELEMENT>::doc_solution(const std::string& comment)
   double max_err;
   double min_err;
   compute_error_estimate(max_err, min_err);
-  //
 
 
   some_file.open(filename);
