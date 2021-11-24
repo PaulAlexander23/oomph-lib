@@ -8,7 +8,7 @@
 #include "fluid_interface.h"
 
 #include "relaxing_bubble_problem.h"
-#include "custom_hele_shaw_elements_with_integrals.h"
+//#include "custom_hele_shaw_elements_with_integrals.h"
 
 using namespace oomph;
 using namespace std;
@@ -43,7 +43,8 @@ int main(int argc, char* argv[])
   //RelaxingBubbleProblem<ProjectableHeleShawElement<
   //  PseudoSolidNodeUpdateElement<THeleShawElement<3>, TPVDElement<2, 3>>>>
   //  problem;
-  RelaxingBubbleProblem<MyNewElement> problem;
+  //RelaxingBubbleProblem<MyNewElement> problem;
+  RelaxingBubbleProblem<ProjectableHeleShawElementWithSolidFaces<3>> problem;
 
   bool run_self_test = true;
   if (run_self_test)
@@ -59,7 +60,7 @@ int main(int argc, char* argv[])
   problem.solve_for_initial_conditions(doc_info);
 
   double dt = 5e-3;
-  double tF = 5e-2;
+  double tF = 2e-1;
 
   /// Iterate the timestepper using the fixed time step until the final time
   problem.iterate_timestepper(dt, tF, doc_info);
