@@ -8,8 +8,9 @@ namespace oomph
   /// mesh motion
   //======================================================================
   template<class ELEMENT>
-  class HeleShawInterfaceElement : public virtual FaceGeometry<ELEMENT>,
-                                   public virtual FaceElement
+  class HeleShawInterfaceElementWithIntegrals
+    : public virtual FaceGeometry<ELEMENT>,
+      public virtual FaceElement
   {
   public:
     /// \short Function pointer to function which provides bubble pressure as a
@@ -205,9 +206,9 @@ namespace oomph
     /// x-component of smoothed derivative of tangent vector; 2: y-component of
     /// smoothed derivative of tangent vector)
     /// from those created by other FaceElements.
-    HeleShawInterfaceElement(FiniteElement* const& element_pt,
-                             const int& face_index,
-                             const unsigned& id = 0)
+    HeleShawInterfaceElementWithIntegrals(FiniteElement* const& element_pt,
+                                          const int& face_index,
+                                          const unsigned& id = 0)
       :
 
         FaceGeometry<ELEMENT>(),
@@ -497,14 +498,19 @@ namespace oomph
   /// Lagrange multiplier contribution from pseudo-elastic node updates
   //=======================================================================
   template<class ELEMENT>
-  void HeleShawInterfaceElement<ELEMENT>::
+  void HeleShawInterfaceElementWithIntegrals<ELEMENT>::
     fill_in_generic_residual_contribution_hele_shaw_interface(
       Vector<double>& residuals,
       DenseMatrix<double>& jacobian,
       DenseMatrix<double>& mass_matrix,
       unsigned flag)
   {
-    int measure_eqn = external_local_eqn(0, 0);
+    int measure_eqn = 0;
+    bool has_external_data = (nexternal_data() > 0);
+    if (has_external_data)
+    {
+      measure_eqn = external_local_eqn(0, 0);
+    }
 
     // Find out how many nodes there are
     unsigned n_node = this->nnode();
@@ -575,7 +581,6 @@ namespace oomph
           interpolated_tangent[i] += this->nodal_position(l, i) * dpsifds(l, 0);
         }
       }
-
 
       // Get the value of the bubble pressure. This need not be constant, and in
       // fact currently
@@ -735,121 +740,124 @@ namespace oomph
           }
         }
 
-        // Contribution to arbitrary solution measure
-        //---------------------------------------------
-        if (measure_eqn >= 0)
+        if (has_external_data)
         {
-          //                residuals[measure_eqn] += W * J * kappa*kappa;
-          residuals[measure_eqn] += 0;
-          if (flag == 1)
+          // Contribution to arbitrary solution measure
+          //---------------------------------------------
+          if (measure_eqn >= 0)
           {
-            /// Currently a null measure.
-          }
-        }
-
-        /// JACK, add extra integral measures here
-        // Contribution to integral measures
-        unsigned integral_values =
-          external_data_pt(integral_measure_data_number)->nvalue();
-        for (unsigned i_measure = 0; i_measure < integral_values; i_measure++)
-        {
-          double Q = 1 / Q_inv;
-          double alpha = local_alpha;
-          double ds = W * J * psif(l);
-          double b = h;
-          double pressure_inside_fluid = interpolated_p;
-          double pressure_inside_bubble =
-            p_bubble + 1.0 / (3.0 * alpha * Q * b);
-          //                std::cout << pressure_inside_bubble << std::endl;
-          double x = interpolated_x[0];
-          double y = interpolated_x[1];
-          /// Components of a normal vector which points out of the bubble
-          double n_x = -interpolated_n[0];
-          double n_y = -interpolated_n[1];
-
-
-          local_eqn =
-            external_local_eqn(integral_measure_data_number, i_measure);
-          if (local_eqn >= 0)
-          {
-            if (i_measure == 0)
+            //                residuals[measure_eqn] += W * J * kappa*kappa;
+            residuals[measure_eqn] += 0;
+            if (flag == 1)
             {
-              /// The perimeter of the bubble
-              residuals[local_eqn] += 1 * ds;
-            }
-            else if (i_measure == 1)
-            {
-              /// The contribution to surface area from the vertical sides
-              residuals[local_eqn] += b * ds;
-            }
-            else if (i_measure == 2)
-            {
-              /// The projected area of the bubble can be written as an integral
-              /// over the interface by using the divergence theorem (or
-              /// equivalently Green's theorem)
-              residuals[local_eqn] += x * n_x * ds;
-              /// residuals[local_eqn] += y*n_y*ds;
-            }
-            else if (i_measure == 3)
-            {
-              /// The volume of the bubble is also a line integral
-              residuals[local_eqn] += b * x * n_x * ds;
-            }
-            else if (i_measure == 4)
-            {
-              /// We can construct the total surface area: 2 projected areas,
-              /// and 1 vertical sides
-              residuals[local_eqn] += (2 * x * n_x + b / alpha) * ds;
-            }
-            else if (i_measure == 5)
-            {
-              residuals[local_eqn] += y * b * ds;
-            }
-            else if (i_measure == 6)
-            {
-              /// Fluid pressure
-              residuals[local_eqn] += pressure_inside_fluid * ds;
-            }
-            else if (i_measure == 7)
-            {
-              /// Bubble pressure
-              residuals[local_eqn] += pressure_inside_bubble * ds;
-            }
-            else if (i_measure == 8)
-            {
-              /// Should integrate to zero
-              residuals[local_eqn] += n_x * ds;
-            }
-            else if (i_measure == 9)
-            {
-              /// Should integrate to zero
-              residuals[local_eqn] += n_y * ds;
-            }
-            else if (i_measure == 10)
-            {
-              /// This should integrate to 2*pi
-              residuals[local_eqn] += kappa * ds;
-            }
-            else if (i_measure == 11)
-            {
-              /// This should integrate to zero!
-              residuals[local_eqn] +=
-                (pressure_inside_fluid - pressure_inside_bubble +
-                 1.0 / (3.0 * alpha * Q) * (1.0 / b + kappa / alpha)) *
-                ds;
-            }
-            else if (i_measure == 12)
-            {
-              /// JACK - THIS SHOULD INTEGRATE TO THE AREA OF THE BUBBLE ALSO -
-              /// Actually using Green's Theorem Area = (1/2)*integral_{bounding
-              /// curve} xdx + ydy. Therefore Area = integral_{bounding curve}
-              /// xdx = integral_{bounding_curve}ydy. Not int_{curve} y dy =
-              /// int_{curve} y*dy/ds ds = int_{curve} y*n_y ds as required.
-              residuals[local_eqn] += y * n_y * ds;
+              /// Currently a null measure.
             }
           }
-        }
 
+          /// JACK, add extra integral measures here
+          // Contribution to integral measures
+          unsigned integral_values =
+            external_data_pt(integral_measure_data_number)->nvalue();
+          for (unsigned i_measure = 0; i_measure < integral_values; i_measure++)
+          {
+            double Q = 1 / Q_inv;
+            double alpha = local_alpha;
+            double ds = W * J * psif(l);
+            double b = h;
+            double pressure_inside_fluid = interpolated_p;
+            double pressure_inside_bubble =
+              p_bubble + 1.0 / (3.0 * alpha * Q * b);
+            //                std::cout << pressure_inside_bubble << std::endl;
+            double x = interpolated_x[0];
+            double y = interpolated_x[1];
+            /// Components of a normal vector which points out of the bubble
+            double n_x = -interpolated_n[0];
+            double n_y = -interpolated_n[1];
+
+
+            local_eqn =
+              external_local_eqn(integral_measure_data_number, i_measure);
+            if (local_eqn >= 0)
+            {
+              if (i_measure == 0)
+              {
+                /// The perimeter of the bubble
+                residuals[local_eqn] += 1 * ds;
+              }
+              else if (i_measure == 1)
+              {
+                /// The contribution to surface area from the vertical sides
+                residuals[local_eqn] += b * ds;
+              }
+              else if (i_measure == 2)
+              {
+                /// The projected area of the bubble can be written as an
+                /// integral over the interface by using the divergence theorem
+                /// (or equivalently Green's theorem)
+                residuals[local_eqn] += x * n_x * ds;
+                /// residuals[local_eqn] += y*n_y*ds;
+              }
+              else if (i_measure == 3)
+              {
+                /// The volume of the bubble is also a line integral
+                residuals[local_eqn] += b * x * n_x * ds;
+              }
+              else if (i_measure == 4)
+              {
+                /// We can construct the total surface area: 2 projected areas,
+                /// and 1 vertical sides
+                residuals[local_eqn] += (2 * x * n_x + b / alpha) * ds;
+              }
+              else if (i_measure == 5)
+              {
+                residuals[local_eqn] += y * b * ds;
+              }
+              else if (i_measure == 6)
+              {
+                /// Fluid pressure
+                residuals[local_eqn] += pressure_inside_fluid * ds;
+              }
+              else if (i_measure == 7)
+              {
+                /// Bubble pressure
+                residuals[local_eqn] += pressure_inside_bubble * ds;
+              }
+              else if (i_measure == 8)
+              {
+                /// Should integrate to zero
+                residuals[local_eqn] += n_x * ds;
+              }
+              else if (i_measure == 9)
+              {
+                /// Should integrate to zero
+                residuals[local_eqn] += n_y * ds;
+              }
+              else if (i_measure == 10)
+              {
+                /// This should integrate to 2*pi
+                residuals[local_eqn] += kappa * ds;
+              }
+              else if (i_measure == 11)
+              {
+                /// This should integrate to zero!
+                residuals[local_eqn] +=
+                  (pressure_inside_fluid - pressure_inside_bubble +
+                   1.0 / (3.0 * alpha * Q) * (1.0 / b + kappa / alpha)) *
+                  ds;
+              }
+              else if (i_measure == 12)
+              {
+                /// JACK - THIS SHOULD INTEGRATE TO THE AREA OF THE BUBBLE ALSO
+                /// - Actually using Green's Theorem Area =
+                /// (1/2)*integral_{bounding curve} xdx + ydy. Therefore Area =
+                /// integral_{bounding curve} xdx =
+                /// integral_{bounding_curve}ydy. Not int_{curve} y dy =
+                /// int_{curve} y*dy/ds ds = int_{curve} y*n_y ds as required.
+                residuals[local_eqn] += y * n_y * ds;
+              }
+            }
+          }
+        }
 
         // Contribution to bulk equation (kinematic bc)
         //---------------------------------------------
