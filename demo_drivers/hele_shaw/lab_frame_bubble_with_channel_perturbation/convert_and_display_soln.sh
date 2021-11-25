@@ -1,6 +1,6 @@
 #!/usr/bin/sh
 
-cd RESLT
+cd $1
 ls soln_*.dat | while read file
 do
     ../../../../bin/oomph-convert.py $file
