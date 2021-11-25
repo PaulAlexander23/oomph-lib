@@ -432,11 +432,19 @@ void RelaxingBubbleProblem<ELEMENT>::set_boundary_conditions()
     }
   } // end loop over boundaries
 
-
   /// Single point Dirichlet boundary condition
-  Node* node_pt = Fluid_mesh_pt->boundary_node_pt(0, 0);
+  unsigned i_element = 0;
+  unsigned i_node = 0;
+  bool is_node_on_boundary = true;
+    Node* node_pt;
+  while (is_node_on_boundary)
+  {
+    node_pt = dynamic_cast<ELEMENT*>(Fluid_mesh_pt->element_pt(i_element))->node_pt(i_node);
+    is_node_on_boundary = node_pt->is_on_boundary();
+    i_element++;
+  }
   const double fixed_pressure = 0.0;
-  node_pt->set_value(0, fixed_pressure);
+  node_pt->set_value(i_node, fixed_pressure);
   node_pt->pin(0);
 
 
