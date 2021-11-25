@@ -7,7 +7,7 @@
 
 namespace oomph
 {
-  class MyNewElement
+  class MyLocalNewElement
     : public virtual ProjectableHeleShawElement<
         PseudoSolidNodeUpdateElement<THeleShawElement<3>, TPVDElement<2, 3>>>
   {
@@ -17,7 +17,7 @@ namespace oomph
 
   public:
     /// Constructor initialise error
-    MyNewElement()
+    MyLocalNewElement()
     {
       Error = 0.0;
     }
@@ -95,14 +95,14 @@ namespace oomph
 
 
   template<>
-  class FaceGeometry<MyNewElement> : public virtual SolidTElement<1, 3>
+  class FaceGeometry<MyLocalNewElement> : public virtual SolidTElement<1, 3>
   {
   public:
     FaceGeometry() : SolidTElement<1, 3>() {}
   };
 
   template<>
-  class FaceGeometry<FaceGeometry<MyNewElement>>
+  class FaceGeometry<FaceGeometry<MyLocalNewElement>>
     : public virtual SolidPointElement
   {
   public:

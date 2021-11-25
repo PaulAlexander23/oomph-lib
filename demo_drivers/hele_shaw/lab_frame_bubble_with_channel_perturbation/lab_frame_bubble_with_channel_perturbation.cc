@@ -25,6 +25,7 @@
 // LIC// The authors may be contacted at oomph-lib@maths.man.ac.uk.
 // LIC//
 // LIC//====================================================================
+#include <chrono>
 
 // Generic routines
 #include "generic.h"
@@ -37,9 +38,13 @@
 #include "fluid_interface.h"
 
 using namespace std;
+using namespace std::chrono;
 using namespace oomph;
 
-#include "problem_parameter.h"
+//#include "problem_parameter.h"
+//#include "flat_problem_parameters.h"
+//#include "start_tape_problem_parameters.h"
+#include "local_pert_problem_parameters.h"
 #include "custom_hele_shaw_elements_with_integrals.h"
 #include "modified_volume_constraint_elements_with_integrals.h"
 #include "hele_shaw_bubble_problem_with_integrals.h"
@@ -50,11 +55,12 @@ using namespace oomph;
 //============================================================
 int main(int argc, char** argv)
 {
+  auto start_time = high_resolution_clock::now();
 #ifdef OOMPH_HAS_MPI
   MPI_Helpers::init(argc, argv);
 #endif
 
-  unsigned n_steps = 150;
+  unsigned n_steps = 300;
   double maj_rad = 0.5;
   double CoM_unsteady = 0.01;
   double Q_unsteady = 0.01;
@@ -100,7 +106,6 @@ int main(int argc, char** argv)
   Problem_Parameter::UpperWall_file.open(
     Problem_Parameter::Doc_info.directory() + "UpperWall_trace.dat");
 
-  Problem_Parameter::Length = 4;
   /// Sets Volume of Initial Condition
   double rad = 0.46;
   double vol = MathematicalConstants::Pi * rad * rad;
@@ -129,13 +134,13 @@ int main(int argc, char** argv)
   /// number can be changed here
   Problem_Parameter::n_integral_measures = 13;
 
-  BubbleInChannelProblem<MyNewElement> problem;
+  BubbleInChannelProblem<MyLocalNewElement> problem;
 
   maj_rad = problem.get_maj_rad();
   double min_rad = problem.get_min_rad();
   problem.set_w(0.25);
   problem.set_V(MathematicalConstants::Pi * maj_rad * min_rad);
-  problem.set_alpha(40);
+  problem.set_alpha(40.0);
   problem.set_h(0.024);
 
   ofstream some_file;
@@ -178,9 +183,17 @@ int main(int argc, char** argv)
 
   unsigned max_adapt = 0;
   bool first_step = true;
-  for (unsigned i = 0; i < n_steps; i++)
+
+  unsigned doc_every_n_steps = 3;
+  unsigned adapt_every_n_steps = 5;
+
+  // for (unsigned i = 0; i < n_steps; i++)
+  unsigned i = 0;
+  while (-(*Problem_Parameter::global_CoM_X_pt) < Problem_Parameter::Length - 1)
+
   {
-    if (i % 5 == 4)
+    i++;
+    if (i % adapt_every_n_steps == adapt_every_n_steps - 1)
     {
       max_adapt = 1;
     }
@@ -193,7 +206,10 @@ int main(int argc, char** argv)
     std::cout << " UNSTEADY STEP " << std::endl;
     std::cout << "===========================================" << std::endl;
     first_step = false;
-    problem.doc_solution();
+    if (i % doc_every_n_steps == doc_every_n_steps - 1)
+    {
+      problem.doc_solution();
+    }
     std::cout << "Bubble pressure : " << problem.get_P() << std::endl;
     std::cout << "Frame speed: " << problem.get_U() << std::endl;
     std::cout << "Bubble volume: " << problem.get_V() << std::endl;
@@ -209,6 +225,10 @@ int main(int argc, char** argv)
 #ifdef OOMPH_HAS_MPI
   MPI_Helpers::finalize();
 #endif
+
+  auto end_time = high_resolution_clock::now();
+  duration<double> diff = duration_cast<minutes>(end_time - start_time);
+  cout << "Total real-time duration: " << diff.count() << endl;
 
   return 0;
 } // End of main
