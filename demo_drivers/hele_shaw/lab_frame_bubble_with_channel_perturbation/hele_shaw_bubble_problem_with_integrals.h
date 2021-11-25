@@ -795,7 +795,7 @@ BubbleInChannelProblem<ELEMENT>::BubbleInChannelProblem()
   bool adaptive_timestepping = true;
   add_time_stepper_pt(new BDF<2>(adaptive_timestepping));
   double initial_height = 0.00;
-  double initial_width = 0.25;
+  double initial_width = 0.5;
   double initial_alpha = 10;
   double initial_St = 1;
   double initial_G = 1;
@@ -1195,8 +1195,8 @@ void BubbleInChannelProblem<ELEMENT>::create_free_surface_elements()
       // Find the index of the face of element e along boundary b
       int face_index = Fluid_mesh_pt->face_index_at_boundary(b, e);
 
-      HeleShawInterfaceElement<ELEMENT>* el_pt =
-        new HeleShawInterfaceElement<ELEMENT>(bulk_elem_pt, face_index);
+      HeleShawInterfaceElementWithIntegrals<ELEMENT>* el_pt =
+        new HeleShawInterfaceElementWithIntegrals<ELEMENT>(bulk_elem_pt, face_index);
 
 
       // Add it to the mesh
