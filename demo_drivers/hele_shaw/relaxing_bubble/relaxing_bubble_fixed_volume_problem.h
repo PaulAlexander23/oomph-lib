@@ -5,7 +5,9 @@
 #include "meshes.h"
 #include "hele_shaw.h"
 #include "solid.h"
-#include "relaxing_bubble_parameters.h"
+
+#include "relaxing_bubble_fixed_volume_parameters.h"
+#include "info_element.h"
 
 template<class ELEMENT>
 class RelaxingBubbleProblem : public Problem
@@ -29,7 +31,10 @@ private:
 
   RefineableSolidTriangleMesh<ELEMENT>* Fluid_mesh_pt;
   Mesh* Surface_mesh_pt;
+  Mesh* Volume_mesh_pt;
 
+  Data* Volume_data_pt;
+  Data* Bubble_pressure_data_pt;
 
   /// Functions
 public:
@@ -56,8 +61,10 @@ private:
   void generate_surface_polygon();
   void generate_fluid_mesh();
   void generate_surface_mesh();
+  void generate_volume_mesh();
 
-  void set_variable_and_function_pointers();
+  void set_adaptable_variable_and_function_pointers();
+  void set_fixed_variable_and_function_pointers();
 
   void set_boundary_conditions();
   void fill_in_bubble_boundary_map(map<unsigned, bool>& is_on_bubble_bound);
@@ -67,24 +74,29 @@ private:
 
   void doc_fluid_mesh(string filename);
   void doc_surface_mesh(string filename);
+  void doc_volume(string filename);
 
   void compute_error_estimate(double& max_err, double& min_err);
 
   void delete_surface_mesh();
+  void delete_volume_mesh();
 };
 
 template<class ELEMENT>
 RelaxingBubbleProblem<ELEMENT>::RelaxingBubbleProblem()
 {
+  cout << "Constructor" << endl;
   bool adaptive_timestepping = false;
   add_time_stepper_pt(new BDF<2>(adaptive_timestepping));
 
   generate_outer_boundary_polygon();
   generate_surface_polygon();
 
+
   generate_mesh();
 
-  set_variable_and_function_pointers();
+  set_fixed_variable_and_function_pointers();
+  set_adaptable_variable_and_function_pointers();
 
   set_boundary_conditions();
 
@@ -100,6 +112,7 @@ template<class ELEMENT>
 void RelaxingBubbleProblem<ELEMENT>::solve_for_initial_conditions(
   DocInfo& doc_info)
 {
+  cout << "Solve for initial conditions" << endl;
   // cout<<"Steady Newton solve"<<endl;
   // const unsigned max_adapt = 0;
   // steady_newton_solve(max_adapt);
@@ -118,6 +131,9 @@ void RelaxingBubbleProblem<ELEMENT>::iterate_timestepper(const double& t_step,
                                                          const double& t_final,
                                                          DocInfo& doc_info)
 {
+  cout << "Iterate timestepper" << endl;
+
+
   unsigned n_timestep = ceil(t_final / t_step);
 
   unsigned max_adapt = 0;
@@ -137,6 +153,7 @@ void RelaxingBubbleProblem<ELEMENT>::iterate_timestepper(const double& t_step,
     {
       max_adapt = 0;
     }
+    cout << "Unsteady Newton solve" << endl;
     unsteady_newton_solve(t_step, max_adapt, is_first_step);
     if (is_first_step)
     {
@@ -151,7 +168,6 @@ void RelaxingBubbleProblem<ELEMENT>::iterate_timestepper(const double& t_step,
 template<class ELEMENT>
 void RelaxingBubbleProblem<ELEMENT>::generate_outer_boundary_polygon()
 {
-  cout << "Generate outer boundary polygon" << endl;
   double domain_length = 1.0;
   double domain_width = 1.0;
 
@@ -213,7 +229,6 @@ void RelaxingBubbleProblem<ELEMENT>::generate_outer_boundary_polygon()
 template<class ELEMENT>
 void RelaxingBubbleProblem<ELEMENT>::generate_surface_polygon()
 {
-  cout << "Generate surface polygon" << endl;
   double x_center = 0.5;
   double y_center = 0.5;
   double major_radius = 0.4;
@@ -288,14 +303,15 @@ void RelaxingBubbleProblem<ELEMENT>::generate_surface_polygon()
 template<class ELEMENT>
 void RelaxingBubbleProblem<ELEMENT>::generate_mesh()
 {
-  cout << "Generate fluid mesh" << endl;
   generate_fluid_mesh();
-  cout << "Generate surface mesh" << endl;
   Surface_mesh_pt = new Mesh;
   generate_surface_mesh();
+  Volume_mesh_pt = new Mesh;
+  generate_volume_mesh();
 
   add_sub_mesh(Fluid_mesh_pt);
   add_sub_mesh(Surface_mesh_pt);
+  add_sub_mesh(Volume_mesh_pt);
 
   build_global_mesh();
 }
@@ -365,8 +381,28 @@ void RelaxingBubbleProblem<ELEMENT>::generate_surface_mesh()
 }
 
 template<class ELEMENT>
-void RelaxingBubbleProblem<ELEMENT>::set_variable_and_function_pointers()
+void RelaxingBubbleProblem<ELEMENT>::generate_volume_mesh()
 {
+  Volume_mesh_pt->add_element_pt(new InfoElement);
+}
+
+template<class ELEMENT>
+void RelaxingBubbleProblem<ELEMENT>::set_fixed_variable_and_function_pointers()
+{
+}
+
+template<class ELEMENT>
+void RelaxingBubbleProblem<
+  ELEMENT>::set_adaptable_variable_and_function_pointers()
+{
+  unsigned n_value = 1;
+  Volume_data_pt = new Data(n_value);
+  Bubble_pressure_data_pt = new Data(1);
+  relaxing_bubble::bubble_pressure_pt = Bubble_pressure_data_pt->value_pt(0);
+  (*relaxing_bubble::bubble_pressure_pt) = 16.0 / 3.0;
+  Bubble_pressure_data_pt->pin(0);
+  add_global_data(Bubble_pressure_data_pt);
+
   /// Set fluid mesh function pointers
   unsigned n_element = Fluid_mesh_pt->nelement();
   for (unsigned e = 0; e < n_element; e++)
@@ -377,6 +413,8 @@ void RelaxingBubbleProblem<ELEMENT>::set_variable_and_function_pointers()
     // Set the constitutive law for pseudo-elastic mesh deformation
     el_pt->constitutive_law_pt() = relaxing_bubble::constitutive_law_pt;
     el_pt->upper_wall_fct_pt() = relaxing_bubble::upper_wall_fct;
+    bool fd_jacobian = true;
+    el_pt->add_external_data(Volume_data_pt, fd_jacobian);
   }
 
   n_element = Surface_mesh_pt->nelement();
@@ -393,12 +431,16 @@ void RelaxingBubbleProblem<ELEMENT>::set_variable_and_function_pointers()
     interface_element_pt->bubble_pressure_fct_pt() =
       relaxing_bubble::bubble_pressure_fct;
   }
+
+  unsigned i_element = 0;
+  InfoElement* volume_element_pt =
+    dynamic_cast<InfoElement*>(Volume_mesh_pt->element_pt(i_element));
+  volume_element_pt->add_data_pt(Volume_data_pt);
 }
 
 template<class ELEMENT>
 void RelaxingBubbleProblem<ELEMENT>::set_boundary_conditions()
 {
-  cout << "Set boundary conditions" << endl;
   // Map to record if a given boundary is on a bubble or not
   map<unsigned, bool> is_on_bubble_bound;
   fill_in_bubble_boundary_map(is_on_bubble_bound);
@@ -436,10 +478,11 @@ void RelaxingBubbleProblem<ELEMENT>::set_boundary_conditions()
   unsigned i_element = 0;
   unsigned i_node = 0;
   bool is_node_on_boundary = true;
-    Node* node_pt;
+  Node* node_pt;
   while (is_node_on_boundary)
   {
-    node_pt = dynamic_cast<ELEMENT*>(Fluid_mesh_pt->element_pt(i_element))->node_pt(i_node);
+    node_pt = dynamic_cast<ELEMENT*>(Fluid_mesh_pt->element_pt(i_element))
+                ->node_pt(i_node);
     is_node_on_boundary = node_pt->is_on_boundary();
     i_element++;
   }
@@ -464,6 +507,9 @@ void RelaxingBubbleProblem<ELEMENT>::set_boundary_conditions()
       node_pt->pin(4); /// Tangential lagrange multiplier
     }
   }
+
+  // Volume_data_pt->set_value(0, (*relaxing_bubble::target_fluid_volume_pt));
+  Volume_data_pt->unpin(0);
 }
 
 template<class ELEMENT>
@@ -492,6 +538,7 @@ void RelaxingBubbleProblem<ELEMENT>::doc_solution(DocInfo& doc_info)
   doc_fluid_mesh(doc_directory + "soln" + to_string(doc_info.number()) +
                  ".dat");
   // doc_surface_mesh(doc_directory + "surface" + doc_info.number() + ".dat");
+  doc_volume(doc_directory + "volume.dat");
 
   doc_info.number()++;
 }
@@ -499,7 +546,10 @@ void RelaxingBubbleProblem<ELEMENT>::doc_solution(DocInfo& doc_info)
 template<class ELEMENT>
 void RelaxingBubbleProblem<ELEMENT>::actions_before_adapt()
 {
+  cout << "Actions before adapt" << endl;
+
   delete_surface_mesh();
+  delete_volume_mesh();
 
   rebuild_global_mesh();
 }
@@ -507,12 +557,17 @@ void RelaxingBubbleProblem<ELEMENT>::actions_before_adapt()
 template<class ELEMENT>
 void RelaxingBubbleProblem<ELEMENT>::actions_after_adapt()
 {
+  cout << "Actions after adapt" << endl;
+
   generate_surface_mesh();
+  generate_volume_mesh();
 
   rebuild_global_mesh();
 
-  set_variable_and_function_pointers();
+  cout << "set_adaptable_variable_and_function_pointers" << endl;
+  set_adaptable_variable_and_function_pointers();
 
+  cout << "set_boundary_conditions" << endl;
   set_boundary_conditions();
 
   // Setup equation numbering scheme
@@ -541,6 +596,18 @@ void RelaxingBubbleProblem<ELEMENT>::doc_surface_mesh(string filename)
 {
   ofstream output_stream;
   output_stream.open(filename);
+
+  output_stream.close();
+}
+
+template<class ELEMENT>
+void RelaxingBubbleProblem<ELEMENT>::doc_volume(string filename)
+{
+  ofstream output_stream;
+  output_stream.open(filename, ofstream::app);
+
+  output_stream << time() << ", ";
+  output_stream << Volume_data_pt->value(0) << endl;
 
   output_stream.close();
 }
@@ -594,6 +661,23 @@ void RelaxingBubbleProblem<ELEMENT>::delete_surface_mesh()
 
   // Wipe the mesh
   Surface_mesh_pt->flush_element_and_node_storage();
+}
+
+template<class ELEMENT>
+void RelaxingBubbleProblem<ELEMENT>::delete_volume_mesh()
+{
+  // How many elements are in the volume mesh
+  unsigned n_element = Volume_mesh_pt->nelement();
+
+  // Loop over the elements
+  for (unsigned e = 0; e < n_element; e++)
+  {
+    // Delete element
+    delete Volume_mesh_pt->element_pt(e);
+  }
+
+  // Wipe the mesh
+  Volume_mesh_pt->flush_element_and_node_storage();
 }
 
 #endif
