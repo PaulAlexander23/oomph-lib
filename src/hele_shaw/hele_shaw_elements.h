@@ -47,105 +47,109 @@
 #include "../generic/projection.h"
 #include "hele_shaw_equations.h"
 
-//======================================================================
-/// QHeleShawElement elements are linear/quadrilateral/brick-shaped
-/// HeleShaw elements with isoparametric interpolation for the function.
-//======================================================================
-// JACK - SPECIFIC ELEMENT
-template<unsigned NNODE_1D>
-class QHeleShawElement : public virtual QElement<2, NNODE_1D>,
-                         public virtual HeleShawEquations
+namespace oomph
 {
-private:
-  /// \short Static int that holds the number of variables at
-  /// nodes: always the same
-  static const unsigned Initial_Nvalue;
-
-public:
-  ///\short  Constructor: Call constructors for QElement and
-  /// HeleShaw equations
-  QHeleShawElement() : QElement<2, NNODE_1D>(), HeleShawEquations() {}
-
-  /// Broken copy constructor
-  QHeleShawElement(const QHeleShawElement<NNODE_1D>& dummy)
+  //======================================================================
+  /// QHeleShawElement elements are linear/quadrilateral/brick-shaped
+  /// HeleShaw elements with isoparametric interpolation for the function.
+  //======================================================================
+  // JACK - SPECIFIC ELEMENT
+  template<unsigned NNODE_1D>
+  class QHeleShawElement : public virtual QElement<2, NNODE_1D>,
+                           public virtual HeleShawEquations
   {
-    BrokenCopy::broken_copy("QHeleShawElement");
-  }
+  private:
+    /// \short Static int that holds the number of variables at
+    /// nodes: always the same
+    static const unsigned Initial_Nvalue;
 
-  /// Broken assignment operator
-  void operator=(const QHeleShawElement<NNODE_1D>&)
-  {
-    BrokenCopy::broken_assign("QHeleShawElement");
-  }
+  public:
+    ///\short  Constructor: Call constructors for QElement and
+    /// HeleShaw equations
+    QHeleShawElement() : QElement<2, NNODE_1D>(), HeleShawEquations() {}
 
-  /// \short  Required  # of `values' (pinned or dofs)
-  /// at node n
-  inline unsigned required_nvalue(const unsigned& n) const
-  {
-    return Initial_Nvalue;
-  }
+    /// Broken copy constructor
+    QHeleShawElement(const QHeleShawElement<NNODE_1D>& dummy)
+    {
+      BrokenCopy::broken_copy("QHeleShawElement");
+    }
 
-  /// \short Output function:
-  ///  x,y,u   or    x,y,z,u
-  void output(std::ostream& outfile);
+    /// Broken assignment operator
+    void operator=(const QHeleShawElement<NNODE_1D>&)
+    {
+      BrokenCopy::broken_assign("QHeleShawElement");
+    }
 
-  ///  \short Output function:
-  ///   x,y,u   or    x,y,z,u at n_plot^2 plot points
-  void output(std::ostream& outfile, const unsigned& n_plot);
+    /// \short  Required  # of `values' (pinned or dofs)
+    /// at node n
+    inline unsigned required_nvalue(const unsigned& n) const
+    {
+      return Initial_Nvalue;
+    }
 
-  /// \short C-style output function:
-  ///  x,y,u   or    x,y,z,u
-  void output(FILE* file_pt);
+    /// \short Output function:
+    ///  x,y,u   or    x,y,z,u
+    void output(std::ostream& outfile);
 
-  ///  \short C-style output function:
-  ///   x,y,u   or    x,y,z,u at n_plot^2 plot points
-  void output(FILE* file_pt, const unsigned& n_plot);
+    ///  \short Output function:
+    ///   x,y,u   or    x,y,z,u at n_plot^2 plot points
+    void output(std::ostream& outfile, const unsigned& n_plot);
 
-  /// \short Output function for an exact solution:
-  ///  x,y,u_exact   or    x,y,z,u_exact at n_plot^2 plot points
-  void output_fct(std::ostream& outfile,
-                  const unsigned& n_plot,
-                  FiniteElement::SteadyExactSolutionFctPt exact_soln_pt);
+    /// \short C-style output function:
+    ///  x,y,u   or    x,y,z,u
+    void output(FILE* file_pt);
 
-  /// \short Output function for a time-dependent exact solution.
-  ///  x,y,u_exact   or    x,y,z,u_exact at n_plot^2 plot points
-  /// (Calls the steady version)
-  void output_fct(std::ostream& outfile,
-                  const unsigned& n_plot,
-                  const double& time,
-                  FiniteElement::UnsteadyExactSolutionFctPt exact_soln_pt);
+    ///  \short C-style output function:
+    ///   x,y,u   or    x,y,z,u at n_plot^2 plot points
+    void output(FILE* file_pt, const unsigned& n_plot);
 
-protected:
-  /// Shape, test functions & derivs. w.r.t. to global coords. Return
-  /// Jacobian.
-  inline double dshape_and_dtest_eulerian_hele_shaw(const Vector<double>& s,
-                                                    Shape& psi,
-                                                    DShape& dpsidx,
-                                                    Shape& test,
-                                                    DShape& dtestdx) const;
+    /// \short Output function for an exact solution:
+    ///  x,y,u_exact   or    x,y,z,u_exact at n_plot^2 plot points
+    void output_fct(std::ostream& outfile,
+                    const unsigned& n_plot,
+                    FiniteElement::SteadyExactSolutionFctPt exact_soln_pt);
 
-  /// \short Shape, test functions & derivs. w.r.t. to global coords. at
-  /// integration point ipt. Return Jacobian.
-  inline double dshape_and_dtest_eulerian_at_knot_hele_shaw(
-    const unsigned& ipt,
-    Shape& psi,
-    DShape& dpsidx,
-    Shape& test,
-    DShape& dtestdx) const;
+    /// \short Output function for a time-dependent exact solution.
+    ///  x,y,u_exact   or    x,y,z,u_exact at n_plot^2 plot points
+    /// (Calls the steady version)
+    void output_fct(std::ostream& outfile,
+                    const unsigned& n_plot,
+                    const double& time,
+                    FiniteElement::UnsteadyExactSolutionFctPt exact_soln_pt);
 
-  /// \short Shape/test functions and derivs w.r.t. to global coords at
-  /// integration point ipt; return Jacobian of mapping (J). Also compute
-  /// derivatives of dpsidx, dtestdx and J w.r.t. nodal coordinates.
-  inline double dshape_and_dtest_eulerian_at_knot_hele_shaw(
-    const unsigned& ipt,
-    Shape& psi,
-    DShape& dpsidx,
-    RankFourTensor<double>& d_dpsidx_dX,
-    Shape& test,
-    DShape& dtestdx,
-    RankFourTensor<double>& d_dtestdx_dX,
-    DenseMatrix<double>& djacobian_dX) const;
-};
+  protected:
+    /// Shape, test functions & derivs. w.r.t. to global coords. Return
+    /// Jacobian.
+    inline double dshape_and_dtest_eulerian_hele_shaw(const Vector<double>& s,
+                                                      Shape& psi,
+                                                      DShape& dpsidx,
+                                                      Shape& test,
+                                                      DShape& dtestdx) const;
+
+    /// \short Shape, test functions & derivs. w.r.t. to global coords. at
+    /// integration point ipt. Return Jacobian.
+    inline double dshape_and_dtest_eulerian_at_knot_hele_shaw(
+      const unsigned& ipt,
+      Shape& psi,
+      DShape& dpsidx,
+      Shape& test,
+      DShape& dtestdx) const;
+
+    /// \short Shape/test functions and derivs w.r.t. to global coords at
+    /// integration point ipt; return Jacobian of mapping (J). Also compute
+    /// derivatives of dpsidx, dtestdx and J w.r.t. nodal coordinates.
+    inline double dshape_and_dtest_eulerian_at_knot_hele_shaw(
+      const unsigned& ipt,
+      Shape& psi,
+      DShape& dpsidx,
+      RankFourTensor<double>& d_dpsidx_dX,
+      Shape& test,
+      DShape& dtestdx,
+      RankFourTensor<double>& d_dtestdx_dX,
+      DenseMatrix<double>& djacobian_dX) const;
+  };
+
+} // namespace oomph
 
 #include "hele_shaw_elements.template.cc"
 
