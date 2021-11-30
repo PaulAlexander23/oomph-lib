@@ -53,23 +53,29 @@ namespace oomph
 
 
   //======================================================================
-  /// THeleShawElementWithIntegral<DIM,NNODE_1D> elements are isoparametric triangular
-  /// DIM-dimensional HeleShaw elements with  NNODE_1D nodal points along each
-  /// element edge. Inherits from TElement and HeleShawEquationsWithIntegral
+  /// THeleShawElementWithIntegral<DIM,NNODE_1D> elements are isoparametric
+  /// triangular DIM-dimensional HeleShaw elements with  NNODE_1D nodal points
+  /// along each element edge. Inherits from TElement and
+  /// HeleShawEquationsWithIntegral
   //======================================================================
   template<unsigned NNODE_1D>
-  class THeleShawElementWithIntegral : public virtual TElement<2, NNODE_1D>,
-                           public virtual HeleShawEquationsWithIntegral,
-                           public virtual ElementWithZ2ErrorEstimator
+  class THeleShawElementWithIntegral
+    : public virtual TElement<2, NNODE_1D>,
+      public virtual HeleShawEquationsWithIntegral,
+      public virtual ElementWithZ2ErrorEstimator
   {
   public:
     ///\short  Constructor: Call constructors for TElement and
     /// HeleShaw equations
-    THeleShawElementWithIntegral() : TElement<2, NNODE_1D>(), HeleShawEquationsWithIntegral() {}
+    THeleShawElementWithIntegral()
+      : TElement<2, NNODE_1D>(), HeleShawEquationsWithIntegral()
+    {
+    }
 
 
     /// Broken copy constructor
-    THeleShawElementWithIntegral(const THeleShawElementWithIntegral<NNODE_1D>& dummy)
+    THeleShawElementWithIntegral(
+      const THeleShawElementWithIntegral<NNODE_1D>& dummy)
     {
       BrokenCopy::broken_copy("THeleShawElementWithIntegral");
     }
@@ -250,12 +256,12 @@ namespace oomph
   /// Galerkin: Test functions = shape functions
   //======================================================================
   template<unsigned NNODE_1D>
-  double THeleShawElementWithIntegral<NNODE_1D>::dshape_and_dtest_eulerian_hele_shaw(
-    const Vector<double>& s,
-    Shape& psi,
-    DShape& dpsidx,
-    Shape& test,
-    DShape& dtestdx) const
+  double THeleShawElementWithIntegral<
+    NNODE_1D>::dshape_and_dtest_eulerian_hele_shaw(const Vector<double>& s,
+                                                   Shape& psi,
+                                                   DShape& dpsidx,
+                                                   Shape& test,
+                                                   DShape& dtestdx) const
   {
     unsigned n_node = this->nnode();
 

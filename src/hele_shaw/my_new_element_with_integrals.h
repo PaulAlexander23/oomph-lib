@@ -10,7 +10,8 @@ namespace oomph
 {
   class MyNewElementWithIntegral
     : public virtual ProjectableHeleShawElement<
-        PseudoSolidNodeUpdateElement<THeleShawElementWithIntegral<3>, TPVDElement<2, 3>>>
+        PseudoSolidNodeUpdateElement<THeleShawElementWithIntegral<3>,
+                                     TPVDElement<2, 3>>>
   {
   private:
     /// Storage for elemental error estimate -- used for post-processing
@@ -100,7 +101,8 @@ namespace oomph
 
 
   template<>
-  class FaceGeometry<MyNewElementWithIntegral> : public virtual SolidTElement<1, 3>
+  class FaceGeometry<MyNewElementWithIntegral>
+    : public virtual SolidTElement<1, 3>
   {
   public:
     FaceGeometry() : SolidTElement<1, 3>() {}
