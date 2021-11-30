@@ -31,7 +31,6 @@ int main(int argc, char* argv[])
   relaxing_bubble::st_pt = new double;
   relaxing_bubble::alpha_pt = new double;
   relaxing_bubble::nu_pt = new double;
-  relaxing_bubble::bubble_pressure_pt = new double;
   relaxing_bubble::target_bubble_volume_pt = new double;
   relaxing_bubble::target_fluid_volume_pt = new double;
   relaxing_bubble::total_volume_pt = new double;
@@ -39,7 +38,6 @@ int main(int argc, char* argv[])
   *relaxing_bubble::st_pt = 1.0;
   *relaxing_bubble::alpha_pt = 10.0;
   *relaxing_bubble::nu_pt = 0.3;
-  *relaxing_bubble::bubble_pressure_pt = 16.0 / 3.0;
   *relaxing_bubble::target_bubble_volume_pt = 4.0 * atan(1.0) * pow(0.3, 2.0);
   *relaxing_bubble::total_volume_pt = 1.0;
   *relaxing_bubble::target_fluid_volume_pt =
@@ -54,7 +52,7 @@ int main(int argc, char* argv[])
   // RelaxingBubbleProblem<HeleShawWithErrorElement> problem;
   RelaxingBubbleProblem<MyNewElementWithIntegral> problem;
 
-  bool run_self_test = true;
+  bool run_self_test = false;
   if (run_self_test)
   {
     if (problem.self_test())
@@ -77,7 +75,6 @@ int main(int argc, char* argv[])
   delete relaxing_bubble::st_pt;
   delete relaxing_bubble::alpha_pt;
   delete relaxing_bubble::nu_pt;
-  delete relaxing_bubble::bubble_pressure_pt;
   delete relaxing_bubble::target_bubble_volume_pt;
   delete relaxing_bubble::target_fluid_volume_pt;
   delete relaxing_bubble::total_volume_pt;

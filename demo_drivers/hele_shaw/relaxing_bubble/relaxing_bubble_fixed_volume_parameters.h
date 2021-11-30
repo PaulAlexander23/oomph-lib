@@ -31,16 +31,7 @@ namespace relaxing_bubble
 
   void bubble_pressure_fct(const Vector<double>& x, double& pressure)
   {
-    if (bubble_pressure_pt == 0)
-    {
-      double bubble_radius = 0.3;
-      pressure = (*q_inv_pt) * 2.0 / (*alpha_pt) *
-                 (1.0 + 1.0 / (*alpha_pt) / bubble_radius);
-    }
-    else
-    {
-      pressure = (*bubble_pressure_pt);
-    }
+    pressure = (*bubble_pressure_pt);
   }
 } // namespace relaxing_bubble
 
