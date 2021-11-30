@@ -404,6 +404,7 @@ void RelaxingBubbleProblem<ELEMENT>::set_boundary_conditions()
   fill_in_bubble_boundary_map(is_on_bubble_bound);
 
 
+  const double fixed_pressure = 0.0;
   // Re-set the boundary conditions for fluid problem: All nodes are
   // free by default -- just pin the ones that have Dirichlet conditions
   // here.
@@ -429,23 +430,14 @@ void RelaxingBubbleProblem<ELEMENT>::set_boundary_conditions()
         solid_node_pt->pin_position(0);
         solid_node_pt->pin_position(1);
       }
+
+      if (ibound == Right_boundary_id)
+      {
+        node_pt->set_value(0, fixed_pressure);
+        node_pt->pin(0);
+      }
     }
   } // end loop over boundaries
-
-  /// Single point Dirichlet boundary condition
-  unsigned i_element = 0;
-  unsigned i_node = 0;
-  bool is_node_on_boundary = true;
-    Node* node_pt;
-  while (is_node_on_boundary)
-  {
-    node_pt = dynamic_cast<ELEMENT*>(Fluid_mesh_pt->element_pt(i_element))->node_pt(i_node);
-    is_node_on_boundary = node_pt->is_on_boundary();
-    i_element++;
-  }
-  const double fixed_pressure = 0.0;
-  node_pt->set_value(0, fixed_pressure);
-  node_pt->pin(0);
 
 
   /// Pin tangential lagrange multiplier
