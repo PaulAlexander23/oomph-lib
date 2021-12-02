@@ -4,17 +4,17 @@
 namespace oomph
 {
   void convert_to_capillary_nondimensionalisation(const double& r,
-                            const double& width,
-                            const double& volume,
-                            const double& Q,
-                            double& length_ratio,
-                            double& pressure_ratio,
-                            double& velocity_ratio,
-                            double& time_ratio,
-                            double& new_r,
-                            double& new_width,
-                            double& new_volume,
-                            double& new_Ca)
+                                                  const double& width,
+                                                  const double& volume,
+                                                  const double& Q,
+                                                  double& length_ratio,
+                                                  double& pressure_ratio,
+                                                  double& velocity_ratio,
+                                                  double& time_ratio,
+                                                  double& new_r,
+                                                  double& new_width,
+                                                  double& new_volume,
+                                                  double& new_Ca)
   {
     /// Ratios of old to new
     length_ratio = 0.5;

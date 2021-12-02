@@ -8,10 +8,10 @@ namespace oomph
 {
   template<unsigned NNODE_1D>
   class TIntegralElement : public virtual TElement<2, NNODE_1D>,
-                          public virtual IntegralEquations,
-                          public virtual ElementWithZ2ErrorEstimator
+                           public virtual IntegralEquations,
+                           public virtual ElementWithZ2ErrorEstimator
   {
-public:
+  public:
     // Constructor: Call constructors for TElement and
     /// Integral equations
     TIntegralElement() : TElement<2, NNODE_1D>(), IntegralEquations() {}
@@ -81,5 +81,5 @@ public:
   template<unsigned NNODE_1D>
   const unsigned TIntegralElement<NNODE_1D>::Initial_Nvalue = 1;
 
-}
+} // namespace oomph
 #endif
