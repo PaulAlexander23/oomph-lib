@@ -8,13 +8,11 @@ namespace oomph
   class InfoElement : public virtual GeneralisedElement
   {
   public:
-    InfoElement();
+    InfoElement() {}
 
     InfoElement(Data* const& data_pt);
 
     ~InfoElement() {}
-
-    void add_data_pt(Data* const& data_pt);
 
     /// Add the element's contribution to its residual vector
     inline void fill_in_contribution_to_residuals(Vector<double>& residuals)
@@ -32,18 +30,12 @@ namespace oomph
                                                const unsigned& flag);
   };
 
-  InfoElement::InfoElement() : GeneralisedElement() {}
-
   InfoElement::InfoElement(Data* const& data_pt) : GeneralisedElement()
-  {
-    this->add_data_pt(data_pt);
-  }
-
-  void InfoElement::add_data_pt(Data* const& data_pt)
   {
     bool use_fd_for_jacobian = true;
     this->add_internal_data(data_pt, use_fd_for_jacobian);
   }
+
 
   void InfoElement::fill_in_generic_residual_contribution(
     Vector<double>& residuals,
@@ -57,13 +49,10 @@ namespace oomph
       for (unsigned i_value = 0; i_value < n_value; i_value++)
       {
         int local_eqn = this->internal_local_eqn(i_data, i_value);
-        if (local_eqn >= 0)
-        {
-          /// The contribution to the data is minus the value as it is moved
-          /// from the right hand side of the equation
-          residuals[local_eqn] +=
-            -this->internal_data_pt(i_data)->value(i_value);
-        }
+
+        /// The contribution to the data is minus the value as it is moved from
+        /// the right hand side of the equation
+        residuals[local_eqn] += -this->internal_data_pt(i_data)->value(i_value);
       }
     }
   }

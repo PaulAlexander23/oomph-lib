@@ -1,35 +1,26 @@
-
-#include <iostream>
+#ifndef OOMPH_INTEGRAL_PROBLEM_HEADER
+#define OOMPH_INTEGRAL_PROBLEM_HEADER
 
 #include "generic.h"
-#include "meshes.h"
+//#include "meshes.h"
 #include "integral.h"
-
 #include "info_element.h"
-
-using namespace std;
-using namespace oomph;
-
-namespace problem_parameter
-{
-  void integrand_fct(const Vector<double>& x, double& f)
-  {
-    f = (-x[0] * (x[0] - 2.0)) + (x[1] - 0.5) * (x[1] - 0.5);
-  }
-}; // namespace problem_parameter
 
 template<class ELEMENT>
 class IntegralProblem : public Problem
 {
 public:
   /// Constructor
-  IntegralProblem();
+  IntegralProblem(IntegralEquations::IntegrandFctPt integrand_fct_pt);
 
   /// Destructor
   ~IntegralProblem(){};
 
   /// Document the solution
   void doc_solution(DocInfo& doc_info);
+
+  /// Return resulting integral as a double
+  double result();
 
 private:
   /// Generate mesh
@@ -43,11 +34,16 @@ private:
 
   /// Pointer to the info mesh
   Mesh* Info_mesh_pt;
+
+  IntegralEquations::IntegrandFctPt Integrand_fct_pt;
 };
 
 template<class ELEMENT>
-IntegralProblem<ELEMENT>::IntegralProblem()
+IntegralProblem<ELEMENT>::IntegralProblem(
+  IntegralEquations::IntegrandFctPt integrand_fct_pt)
 {
+  Integrand_fct_pt = integrand_fct_pt;
+
   cout << "Generate mesh" << endl;
   this->generate_mesh();
 
@@ -55,10 +51,10 @@ IntegralProblem<ELEMENT>::IntegralProblem()
   this->upcast_and_finalise_elements();
 
   // Setup equation numbering scheme
-  cout << "Number of equations: " << endl;
-  cout << this->assign_eqn_numbers() << endl;
   cout << "Number of unknowns: " << endl;
   cout << this->ndof() << endl;
+  cout << "Number of equations: " << endl;
+  cout << this->assign_eqn_numbers() << endl;
 }
 
 template<class ELEMENT>
@@ -66,7 +62,7 @@ void IntegralProblem<ELEMENT>::generate_mesh()
 {
   unsigned n_x = 10;
   unsigned n_y = 10;
-  double l_x = 2.0;
+  double l_x = 4.0;
   double l_y = 1.0;
   this->Integral_mesh_pt =
     new SimpleRectangularQuadMesh<ELEMENT>(n_x, n_y, l_x, l_y);
@@ -97,7 +93,7 @@ void IntegralProblem<ELEMENT>::upcast_and_finalise_elements()
     ELEMENT* el_pt =
       dynamic_cast<ELEMENT*>(this->Integral_mesh_pt->element_pt(i));
 
-    el_pt->integrand_fct_pt() = problem_parameter::integrand_fct;
+    el_pt->integrand_fct_pt() = Integrand_fct_pt;
     el_pt->set_external_data_pt(
       this->Info_mesh_pt->element_pt(0)->internal_data_pt(0));
   }
@@ -116,29 +112,11 @@ void IntegralProblem<ELEMENT>::doc_solution(DocInfo& doc_info)
   output_stream.close();
 }
 
-int main(int argc, char* argv[])
+/// Return resulting integral as a double
+template<class ELEMENT>
+double IntegralProblem<ELEMENT>::result()
 {
-  /// Store command line arguments
-  CommandLineArgs::setup(argc, argv);
-
-  /// Create a DocInfo object for output processing
-  DocInfo doc_info;
-  doc_info.set_directory("RESLT/");
-
-  IntegralProblem<QIntegralElement<3>> problem;
-
-  /// Run problem self test
-  if (problem.self_test())
-  {
-    throw OomphLibError(
-      "Self test failed", OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
-  }
-
-  /// Call problem solve
-  problem.newton_solve();
-
-  /// Document solution
-  problem.doc_solution(doc_info);
-
-  return 0;
+  return this->Info_mesh_pt->element_pt(0)->internal_data_pt(0)->value(0);
 }
+
+#endif

@@ -7,7 +7,9 @@
 #include "constitutive.h"
 #include "fluid_interface.h"
 
+
 #include "relaxing_bubble_fixed_volume_problem.h"
+#include "integral_problem.h"
 //#include "custom_hele_shaw_elements_with_integrals.h"
 
 using namespace oomph;
@@ -39,13 +41,20 @@ int main(int argc, char* argv[])
   *relaxing_bubble::alpha_pt = 10.0;
   *relaxing_bubble::nu_pt = 0.3;
   *relaxing_bubble::target_bubble_volume_pt = 4.0 * atan(1.0) * pow(0.3, 2.0);
-  *relaxing_bubble::total_volume_pt = 1.0;
-  *relaxing_bubble::target_fluid_volume_pt =
-    (*relaxing_bubble::total_volume_pt) -
-    (*relaxing_bubble::target_bubble_volume_pt);
   // Create generalised Hookean constitutive equations
   relaxing_bubble::constitutive_law_pt =
     new GeneralisedHookean(relaxing_bubble::nu_pt);
+
+  IntegralProblem<QIntegralElement<3>> integral_problem(
+    relaxing_bubble::channel_depth);
+  integral_problem.newton_solve();
+  *relaxing_bubble::total_volume_pt = integral_problem.result();
+  integral_problem.doc_solution(doc_info);
+  
+
+  *relaxing_bubble::target_fluid_volume_pt =
+    (*relaxing_bubble::total_volume_pt) -
+    (*relaxing_bubble::target_bubble_volume_pt);
 
   /// Create problem
   // RelaxingBubbleProblem<ProjectableHeleShawElementWithSolidFaces<3>> problem;
@@ -68,12 +77,12 @@ int main(int argc, char* argv[])
   double dt = 5e-3;
   double tF = 1e-1;
 
-  //Problem* problem_pt = new RelaxingBubbleProblem<MyNewElementWithIntegral>;
-  //DoubleVector result;
-  //FD_LU fd_lu;
-  //fd_lu.solve(problem_pt, result);
-  //cout << "solved" << endl;
-  //result.output(cout);
+  // Problem* problem_pt = new RelaxingBubbleProblem<MyNewElementWithIntegral>;
+  // DoubleVector result;
+  // FD_LU fd_lu;
+  // fd_lu.solve(problem_pt, result);
+  // cout << "solved" << endl;
+  // result.output(cout);
 
   /// Iterate the timestepper using the fixed time step until the final time
   problem.iterate_timestepper(dt, tF, doc_info);

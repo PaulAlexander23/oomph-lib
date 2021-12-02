@@ -3,6 +3,7 @@
 
 #include "generic.h"
 #include "meshes.h"
+//#include "integral.h"
 
 #include "integral_elements.h"
 #include "Tintegral_elements.h"
@@ -67,10 +68,10 @@ IntegralProblem<ELEMENT>::IntegralProblem()
   this->upcast_and_finalise_elements();
 
   // Setup equation numbering scheme
-  cout << "Number of unknowns: " << endl;
-  cout << this->ndof() << endl;
   cout << "Number of equations: " << endl;
   cout << this->assign_eqn_numbers() << endl;
+  cout << "Number of unknowns: " << endl;
+  cout << this->ndof() << endl;
 }
 
 template<class ELEMENT>
@@ -212,6 +213,27 @@ int main(int argc, char* argv[])
     throw OomphLibError(
       "Self test failed", OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
   }
+
+  DoubleVector residuals;
+  DenseDoubleMatrix jacobian;
+  DoubleVector residualsFD;
+  DenseDoubleMatrix jacobianFD;
+
+  problem.get_jacobian(residuals, jacobian);
+  problem.get_fd_jacobian(residualsFD, jacobianFD);
+
+  for (unsigned j = 0; j < 675; j++)
+  {
+    printf("j: %3u, ", j);
+    for (unsigned i = 674 - 3; i <= 674; i++)
+    {
+      printf("act: %8.5f, exp: %8.5f,",
+             jacobian(i, j),
+             jacobianFD(i, j));
+    }
+    printf("\n");
+  }
+
 
   /// Call problem solve
   problem.newton_solve();

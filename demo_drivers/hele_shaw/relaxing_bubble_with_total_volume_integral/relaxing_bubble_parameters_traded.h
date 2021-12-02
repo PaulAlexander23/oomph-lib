@@ -19,25 +19,7 @@ namespace relaxing_bubble
 
   void upper_wall_fct(const Vector<double>& x, double& b, double& dbdt)
   {
-    double amplitude = 0.2;
-    double sharpness = 40;
-    double width = 0.25;
-    double x_centre = 0.5;
-    double y_centre = 0.125;
-
-    // b = 1.0 - amplitude / 2 *
-    //            ((tanh(sharpness * (x[0] - x_centre + width / 2)) -
-    //              tanh(sharpness * (x[0] - x_centre - width / 2))) /
-    //               2 +
-    //             (tanh(sharpness * (x[1] - y_centre + width / 2)) -
-    //              tanh(sharpness * (x[1] - y_centre - width / 2))) /
-    //               2);
-
-    b =
-      1.0 - amplitude / 2 *
-              (cos(2 * MathematicalConstants::Pi * (x[0] - x_centre) / width) +
-               cos(2 * MathematicalConstants::Pi * (x[1] - y_centre) / width));
-
+    b = 1.0;
     dbdt = 0.0;
   }
 
@@ -49,7 +31,16 @@ namespace relaxing_bubble
 
   void bubble_pressure_fct(const Vector<double>& x, double& pressure)
   {
-    pressure = (*bubble_pressure_pt);
+    if (bubble_pressure_pt == 0)
+    {
+      double bubble_radius = 0.3;
+      pressure = (*q_inv_pt) * 2.0 / (*alpha_pt) *
+                 (1.0 + 1.0 / (*alpha_pt) / bubble_radius);
+    }
+    else
+    {
+      pressure = (*bubble_pressure_pt);
+    }
   }
 } // namespace relaxing_bubble
 
