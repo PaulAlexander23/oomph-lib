@@ -59,7 +59,6 @@ namespace oomph
         int local_eqn = this->internal_local_eqn(i_data, i_value);
         if (local_eqn >= 0)
         {
-          cout<<"info_element"<<endl;
           /// The contribution to the data is minus the value as it is moved
           /// from the right hand side of the equation
           residuals[local_eqn] +=
