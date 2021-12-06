@@ -68,6 +68,13 @@ int main(int argc, char* argv[])
   double dt = 5e-3;
   double tF = 1e-1;
 
+  //Problem* problem_pt = new RelaxingBubbleProblem<MyNewElementWithIntegral>;
+  //DoubleVector result;
+  //FD_LU fd_lu;
+  //fd_lu.solve(problem_pt, result);
+  //cout << "solved" << endl;
+  //result.output(cout);
+
   /// Iterate the timestepper using the fixed time step until the final time
   problem.iterate_timestepper(dt, tF, doc_info);
 

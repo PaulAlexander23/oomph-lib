@@ -41,8 +41,10 @@ namespace oomph
 
       bool fd_jacobian = true;
       // Add as external data and record the index
+      // External_or_internal_data_index_of_traded_pressure =
+      //  add_external_data(p_traded_data_pt, fd_jacobian);
       External_or_internal_data_index_of_traded_pressure =
-        add_external_data(p_traded_data_pt, fd_jacobian);
+        add_internal_data(p_traded_data_pt, fd_jacobian);
 
       // Record index
       Index_of_traded_pressure_value = index_of_traded_pressure;
@@ -50,7 +52,9 @@ namespace oomph
 
     /// Fill in the residuals for the volume constraint
     void fill_in_generic_contribution_to_residuals_my_constraint(
-      Vector<double>& residuals)
+      Vector<double>& residuals,
+      DenseMatrix<double>& jacobian,
+      bool compute_jacobian)
     {
       // Note: This element can only be used with the associated
       // VolumeConstraintBoundingElement elements which compute the actual
@@ -59,33 +63,45 @@ namespace oomph
       // residual w.r.t. the nodal positions of the
       // VolumeConstraintBoundingElements
       // is handled by them
-      const int local_eqn = this->external_local_eqn(
+
+      // const int local_eqn = this->external_local_eqn(
+      //  External_or_internal_data_index_of_traded_pressure,
+      //  Index_of_traded_pressure_value);
+
+      const int local_eqn = this->internal_local_eqn(
         External_or_internal_data_index_of_traded_pressure,
         Index_of_traded_pressure_value);
 
       if (local_eqn >= 0)
       {
-        cout << "my constraint element" << endl;
-        cout << local_eqn << endl;
-        cout << eqn_number(local_eqn) << endl;
-        cout << "Volume diff: " << -*Prescribed_volume_pt + *Actual_volume_pt
-             << endl;
         residuals[local_eqn] += -*Prescribed_volume_pt + *Actual_volume_pt;
+      }
+
+      if (compute_jacobian)
+      {
+        const int external_unknown = this->external_local_eqn(0, 0);
+        if (external_unknown >= 0)
+        {
+          jacobian(local_eqn, external_unknown) += 1;
+        }
       }
     }
 
     /// Fill in the residuals for the volume constraint
     void fill_in_contribution_to_residuals(Vector<double>& residuals)
     {
-      this->fill_in_generic_contribution_to_residuals_my_constraint(residuals);
+      bool compute_jacobian = false;
+      this->fill_in_generic_contribution_to_residuals_my_constraint(
+        residuals, GeneralisedElement::Dummy_matrix, compute_jacobian);
     }
 
     /// Fill in the residuals and jacobian for the volume constraint
     void fill_in_contribution_to_jacobian(Vector<double>& residuals,
                                           DenseMatrix<double>& jacobian)
     {
-      // No contribution to jacobian; see comment in that function
-      this->fill_in_generic_contribution_to_residuals_my_constraint(residuals);
+      bool compute_jacobian = true;
+      this->fill_in_generic_contribution_to_residuals_my_constraint(
+        residuals, jacobian, compute_jacobian);
     }
 
     /// Fill in the residuals, jacobian and mass matrix for the volume
@@ -95,9 +111,9 @@ namespace oomph
       DenseMatrix<double>& jacobian,
       DenseMatrix<double>& mass_matrix)
     {
-      // No contribution to jacobian or mass matrix; see comment in that
-      // function
-      this->fill_in_generic_contribution_to_residuals_my_constraint(residuals);
+      bool compute_jacobian = true;
+      this->fill_in_generic_contribution_to_residuals_my_constraint(
+        residuals, jacobian, compute_jacobian);
     }
   };
 

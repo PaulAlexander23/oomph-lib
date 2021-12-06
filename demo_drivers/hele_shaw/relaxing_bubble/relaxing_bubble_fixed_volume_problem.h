@@ -65,6 +65,7 @@ private:
   void create_fluid_mesh();
   void create_surface_mesh();
   void create_volume_mesh();
+  void create_volume_constraint_mesh();
 
   void set_variable_and_function_pointers();
 
@@ -82,6 +83,7 @@ private:
 
   void delete_surface_mesh();
   void delete_volume_mesh();
+  void delete_volume_constraint_mesh();
 };
 
 template<class ELEMENT>
@@ -119,6 +121,7 @@ void RelaxingBubbleProblem<ELEMENT>::solve_for_initial_conditions(
   // const unsigned max_adapt = 0;
   // steady_newton_solve(max_adapt);
   // newton_solve();
+
   double dt = 5e-3;
   initialise_dt(dt);
   assign_initial_values_impulsive(dt);
@@ -158,37 +161,31 @@ void RelaxingBubbleProblem<ELEMENT>::iterate_timestepper(const double& t_step,
 
     DoubleVector residuals;
     DenseDoubleMatrix jacobian;
-    double j = 0;
+    DoubleVector residualsFD;
+    DenseDoubleMatrix jacobianFD(ndof());
 
-    cout << "Get Jacobian" << endl;
-    get_jacobian(residuals, jacobian);
-    cout<<"Top"<<endl;
-    for (unsigned i = 0; i < 1280; i++)
-    {
-      printf("i: %3u", i);
-      for (unsigned j = 0; j < 3; j++)
-      {
-        printf(", %8.5f", jacobian(j, i));
-      }
-      cout << endl;
-    }
-    cout<<"Bottom"<<endl;
-    for (unsigned i = 0; i < 1280; i++)
-    {
-      printf("i: %3u", i);
-      for (unsigned j = 1280 - 5; j < 1280; j++)
-      {
-        printf(", %8.5f", jacobian(j, i));
-      }
-      cout << endl;
-    }
+    // cout << "Get Jacobian" << endl;
+    // get_jacobian(residuals, jacobian);
+    ////get_fd_jacobian(residualsFD, jacobianFD);
 
-    cout << "Residuals" << endl;
-    for (unsigned i = 0; i < 1280; i++)
-    {
-      j = residuals[i];
-      cout << "i: " << i << ", j: " << j << endl;
-    }
+    // for (unsigned i = 0; i < 1280; i++)
+    //{
+    //  printf("i: %4u", i);
+    //  for (unsigned j = 1280 - 2; j < 1280; j++)
+    //  {
+    //    printf(", act: %8.5f, exp: %8.5f", jacobian(j, i), jacobianFD(j, i));
+    //  }
+    //  cout << endl;
+    //}
+
+    // double j = 0;
+    // cout << "Residuals" << endl;
+    // for (unsigned i = 0; i < 1280; i++)
+    //{
+    //  j = residuals[i];
+    //  cout << "i: " << i << ", j: " << j << endl;
+    //}
+
 
     cout << "Unsteady Newton solve" << endl;
     unsteady_newton_solve(t_step, max_adapt, is_first_step);
@@ -269,7 +266,8 @@ void RelaxingBubbleProblem<ELEMENT>::create_surface_polygon()
   double x_center = 0.5;
   double y_center = 0.5;
   double major_radius = 0.4;
-  double minor_radius = 0.2;
+  double minor_radius = (*relaxing_bubble::target_bubble_volume_pt) /
+                        MathematicalConstants::Pi / major_radius;
   unsigned npoints = 16;
   double zeta_step = MathematicalConstants::Pi / double(npoints - 1);
 
@@ -353,20 +351,13 @@ void RelaxingBubbleProblem<ELEMENT>::create_mesh()
   create_surface_mesh();
   Volume_mesh_pt = new Mesh;
   create_volume_mesh();
-
   Volume_constraint_mesh_pt = new Mesh;
-  MyConstraintElement* vol_constraint_element =
-    new MyConstraintElement(relaxing_bubble::target_fluid_volume_pt,
-                            Volume_data_pt->value_pt(0),
-                            Bubble_pressure_data_pt,
-                            0);
-  Volume_constraint_mesh_pt->add_element_pt(vol_constraint_element);
+  create_volume_constraint_mesh();
 
   add_sub_mesh(Fluid_mesh_pt);
   add_sub_mesh(Surface_mesh_pt);
   add_sub_mesh(Volume_mesh_pt);
   add_sub_mesh(Volume_constraint_mesh_pt);
-  add_global_data(Bubble_pressure_data_pt);
 
   build_global_mesh();
 }
@@ -443,6 +434,17 @@ void RelaxingBubbleProblem<ELEMENT>::create_volume_mesh()
 }
 
 template<class ELEMENT>
+void RelaxingBubbleProblem<ELEMENT>::create_volume_constraint_mesh()
+{
+  MyConstraintElement* vol_constraint_element =
+    new MyConstraintElement(relaxing_bubble::target_fluid_volume_pt,
+                            Volume_data_pt->value_pt(0),
+                            Bubble_pressure_data_pt,
+                            0);
+  Volume_constraint_mesh_pt->add_element_pt(vol_constraint_element);
+}
+
+template<class ELEMENT>
 void RelaxingBubbleProblem<ELEMENT>::set_variable_and_function_pointers()
 {
   bool fd_jacobian = true;
@@ -492,8 +494,6 @@ void RelaxingBubbleProblem<ELEMENT>::set_variable_and_function_pointers()
       Volume_constraint_mesh_pt->element_pt(i_element));
 
   vol_constraint_element->add_external_data(Volume_data_pt, fd_jacobian);
-  vol_constraint_element->add_external_data(Bubble_pressure_data_pt,
-                                            fd_jacobian);
 }
 
 template<class ELEMENT>
@@ -566,15 +566,15 @@ void RelaxingBubbleProblem<ELEMENT>::set_boundary_conditions()
     }
   }
 
-  // Volume_data_pt->set_value(0, 1.0);
-  // Volume_data_pt->unpin(0);
-  unsigned i_data = 0;
-  i_element = 0;
-  cout << "Get volume element" << endl;
-  InfoElement* volume_element_pt =
-    dynamic_cast<InfoElement*>(Volume_mesh_pt->element_pt(i_element));
-  volume_element_pt->internal_data_pt(i_data)->set_value(0, 2.5);
-  volume_element_pt->internal_data_pt(i_data)->unpin(0);
+  Volume_data_pt->set_value(0, (*relaxing_bubble::target_fluid_volume_pt));
+  Volume_data_pt->unpin(0);
+  // unsigned i_data = 0;
+  // i_element = 0;
+  // cout << "Get volume element" << endl;
+  // InfoElement* volume_element_pt =
+  //  dynamic_cast<InfoElement*>(Volume_mesh_pt->element_pt(i_element));
+  // volume_element_pt->internal_data_pt(i_data)->set_value(0, 2.5);
+  // volume_element_pt->internal_data_pt(i_data)->unpin(0);
 
   Bubble_pressure_data_pt->set_value(0, 16.0 / 3.0);
   Bubble_pressure_data_pt->unpin(0);
@@ -618,6 +618,7 @@ void RelaxingBubbleProblem<ELEMENT>::actions_before_adapt()
 
   delete_surface_mesh();
   delete_volume_mesh();
+  delete_volume_constraint_mesh();
 
   rebuild_global_mesh();
 }
@@ -628,8 +629,10 @@ void RelaxingBubbleProblem<ELEMENT>::actions_after_adapt()
   cout << "Actions after adapt" << endl;
 
   Volume_data_pt = new Data(1);
+  Bubble_pressure_data_pt = new Data(1);
   create_surface_mesh();
   create_volume_mesh();
+  create_volume_constraint_mesh();
 
   rebuild_global_mesh();
 
@@ -747,6 +750,23 @@ void RelaxingBubbleProblem<ELEMENT>::delete_volume_mesh()
 
   // Wipe the mesh
   Volume_mesh_pt->flush_element_and_node_storage();
+}
+
+template<class ELEMENT>
+void RelaxingBubbleProblem<ELEMENT>::delete_volume_constraint_mesh()
+{
+  // How many elements are in the volume mesh
+  unsigned n_element = Volume_constraint_mesh_pt->nelement();
+
+  // Loop over the elements
+  for (unsigned e = 0; e < n_element; e++)
+  {
+    // Delete element
+    delete Volume_constraint_mesh_pt->element_pt(e);
+  }
+
+  // Wipe the mesh
+  Volume_constraint_mesh_pt->flush_element_and_node_storage();
 }
 
 #endif
