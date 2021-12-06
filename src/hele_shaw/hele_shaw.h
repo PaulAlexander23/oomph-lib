@@ -15,3 +15,4 @@
 #include <hele_shaw/hele_shaw_equations_with_integral.h>
 #include <hele_shaw/Thele_shaw_elements_with_integral.h>
 #include <hele_shaw/my_new_element_with_integrals.h>
+#include <hele_shaw/hele_shaw_parameter_converter.h>
