@@ -773,6 +773,24 @@ public:
   {
     return First_jacobian_sign_change;
   }
+
+  void print_parameters()
+  {
+    cout << "q:" << *Problem_Parameter::global_Q_inv_pt << endl;
+    cout << "st:" << *Problem_Parameter::global_St_pt << endl;
+    cout << "alpha:" << *Problem_Parameter::global_alpha_pt << endl;
+
+    cout << "CoM_X:" << *Problem_Parameter::global_CoM_X_pt << endl;
+    cout << "CoM_Y:" << *Problem_Parameter::global_CoM_Y_pt << endl;
+
+    cout << "Major_Radius" << Problem_Parameter::Major_Radius << endl;
+    cout << "Obstacle_height:" << *Problem_Parameter::global_Obstacle_height_pt
+         << endl;
+    cout << "Obstacle_width:" << *Problem_Parameter::global_Obstacle_width_pt
+         << endl;
+    cout << "Target bubble volume:" << Problem_Parameter::Volume;
+  }
+
   ///-------------------------------------------------------------------------------
 }; // end_of_problem_class
 
@@ -1196,7 +1214,8 @@ void BubbleInChannelProblem<ELEMENT>::create_free_surface_elements()
       int face_index = Fluid_mesh_pt->face_index_at_boundary(b, e);
 
       HeleShawInterfaceElementWithIntegrals<ELEMENT>* el_pt =
-        new HeleShawInterfaceElementWithIntegrals<ELEMENT>(bulk_elem_pt, face_index);
+        new HeleShawInterfaceElementWithIntegrals<ELEMENT>(bulk_elem_pt,
+                                                           face_index);
 
 
       // Add it to the mesh
