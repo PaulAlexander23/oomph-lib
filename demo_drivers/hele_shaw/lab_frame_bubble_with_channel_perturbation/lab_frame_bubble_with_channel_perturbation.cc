@@ -181,6 +181,9 @@ int main(int argc, char** argv)
 
   problem.set_Q(Q_unsteady);
 
+  /// Print parameters
+  problem.print_parameters();
+
   unsigned max_adapt = 0;
   bool first_step = true;
 
