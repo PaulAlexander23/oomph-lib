@@ -18,31 +18,29 @@ namespace problem_parameter
 
   void upper_wall_fct(const Vector<double>& x, double& b, double& dbdt)
   {
-    double tape_height = 0.024;
-    double tape_width = 0.5;
-    double tape_sharpness = 40;
-    double tape_centre_y = 1.0;
+    // double tape_height = 0.1;
+    // double tape_width = 0.4;
+    // double tape_sharpness = 40;
+    // double tape_centre_y = 0.5;
 
-    double y = x[1];
+    // double y = x[1];
 
-    b = 1 - tape_height * 0.5 *
-              (tanh(tape_sharpness * (y - tape_centre_y + 0.5 * tape_width)) -
-               tanh(tape_sharpness * (y - tape_centre_y - 0.5 * tape_width)));
+    // b = 1 - tape_height * 0.5 *
+    //          (tanh(tape_sharpness * (y - tape_centre_y + 0.5 * tape_width)) -
+    //           tanh(tape_sharpness * (y - tape_centre_y - 0.5 * tape_width)));
 
-    // double height = 0.1;
-    // double rms_width = 0.1;
-    // double centre_x = 0;
-    // double centre_y = 0.5;
+    double height = 0.1;
+    double rms_width = 0.1;
+    double centre_x = 0;
+    double centre_y = 0.5;
 
-    //// Transform y such that the domain is between 0 and 1 rather than -1 and
-    /// 1
-    // double local_x = x[0];
-    // double local_y = x[1];
-    // b = 1.0 - height * std::exp(-(local_x - centre_x) * (local_x - centre_x)
-    // /
-    //                              (2 * rms_width * rms_width) -
-    //                            (local_y - centre_y) * (local_y - centre_y) /
-    //                              (2 * rms_width * rms_width));
+    // Transform y such that the domain is between 0 and 1 rather than -1 and 1
+    double local_x = x[0];
+    double local_y = x[1];
+    b = 1.0 - height * std::exp(-(local_x - centre_x) * (local_x - centre_x) /
+                                  (2 * rms_width * rms_width) -
+                                (local_y - centre_y) * (local_y - centre_y) /
+                                  (2 * rms_width * rms_width));
     dbdt = 0.0;
   }
 
@@ -198,8 +196,8 @@ void HeleShawChannelProblem<ELEMENT>::generate_bulk_mesh()
 {
   unsigned n_x = 10;
   unsigned n_y = 10;
-  double l_x = 4.0;
-  double l_y = 2.0;
+  double l_x = 2.0;
+  double l_y = 1.0;
 
   this->Bulk_mesh_pt =
     new SimpleRectangularQuadMesh<ELEMENT>(n_x, n_y, l_x, l_y);
@@ -270,20 +268,20 @@ void HeleShawChannelProblem<ELEMENT>::generate_outlet_surface_mesh()
 template<class ELEMENT>
 void HeleShawChannelProblem<ELEMENT>::pin_data()
 {
-  unsigned n_boundary = this->Bulk_mesh_pt->nboundary();
-  bool pin_boundary[n_boundary] = {false};
-  pin_boundary[1] = true;
-  for (unsigned b = 0; b < n_boundary; b++)
+  unsigned i_element = 0;
+  unsigned i_node = 0;
+  bool is_node_on_boundary = true;
+  Node* node_pt;
+  while (is_node_on_boundary)
   {
-    if (pin_boundary[b])
-    {
-      unsigned n_node = this->Bulk_mesh_pt->nboundary_node(b);
-      for (unsigned n = 0; n < n_node; n++)
-      {
-        this->Bulk_mesh_pt->boundary_node_pt(b, n)->pin(0);
-      }
-    }
+    node_pt = dynamic_cast<ELEMENT*>(Bulk_mesh_pt->element_pt(i_element))
+                ->node_pt(i_node);
+    is_node_on_boundary = node_pt->is_on_boundary();
+    i_element++;
   }
+  const double fixed_pressure = 0.0;
+  node_pt->set_value(0, fixed_pressure);
+  node_pt->pin(0);
 
   unsigned index = 0;
   this->Info_mesh_pt->element_pt(0)->internal_data_pt(0)->unpin(index);
@@ -425,8 +423,7 @@ void HeleShawChannelProblem<ELEMENT>::save_integral_to_file(
   {
     my_integral =
       this->Info_mesh_pt->element_pt(index)->internal_data_pt(0)->value(0);
-    output_stream << "Integral " << index << "= " << setprecision(17)
-                  << my_integral << endl;
+    output_stream << "Integral " << index << "= " << my_integral << endl;
   }
   output_stream.close();
 }
