@@ -16,9 +16,9 @@ namespace oomph
                                                   double& new_volume,
                                                   double& new_Ca)
   {
-    //const double G = 1.9648098177825899; //20
-    //const double G = 1.9648144969660464; //40
-    //const double G = 1.9648144083521897; //80
+    // const double G = 1.9648098177825899; //20
+    // const double G = 1.9648144969660464; //40
+    // const double G = 1.9648144083521897; //80
 
 
     /// Ratios of old to new
