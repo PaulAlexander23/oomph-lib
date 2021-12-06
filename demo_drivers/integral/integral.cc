@@ -3,8 +3,8 @@
 
 #include "generic.h"
 #include "meshes.h"
+#include "integral.h"
 
-#include "integral_elements.h"
 #include "info_element.h"
 
 using namespace std;
@@ -55,10 +55,10 @@ IntegralProblem<ELEMENT>::IntegralProblem()
   this->upcast_and_finalise_elements();
 
   // Setup equation numbering scheme
-  cout << "Number of unknowns: " << endl;
-  cout << this->ndof() << endl;
   cout << "Number of equations: " << endl;
   cout << this->assign_eqn_numbers() << endl;
+  cout << "Number of unknowns: " << endl;
+  cout << this->ndof() << endl;
 }
 
 template<class ELEMENT>
