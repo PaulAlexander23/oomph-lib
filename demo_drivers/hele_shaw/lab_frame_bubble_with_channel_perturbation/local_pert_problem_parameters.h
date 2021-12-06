@@ -7,6 +7,8 @@
 //==================================================
 namespace Problem_Parameter
 {
+  /// -------------------- Variables
+
   /// Doc info object
   DocInfo Doc_info;
 
@@ -17,7 +19,6 @@ namespace Problem_Parameter
   double Nu = 0.3;
 
   // double Radius=0.7;
-
 
   bool Minisolve_state = false;
   bool ignore_height_effects_in_dynamic_bc = false;
@@ -75,8 +76,14 @@ namespace Problem_Parameter
   /// mesh generation/adaptation may generate slightly different numbers
   /// of elements on different machines!)
   ofstream Norm_file;
-
+  ofstream M_file;
+  ofstream UpperWall_file;
   ofstream OccluHeight_file;
+
+  Vector<double> vector_of_eigenvalues_rp(10, 2.0);
+  Vector<double> vector_of_eigenvalues_ip(10, 2.0);
+
+  /// -------------------- Functions
 
   void channel_height_function(const Vector<double>& x, double& b)
   {
@@ -106,8 +113,6 @@ namespace Problem_Parameter
                                 (local_y - centre_y) * (local_y - centre_y) /
                                   (2 * rms_width * rms_width));
   }
-
-  ofstream UpperWall_file;
 
   void upper_wall_fct(const Vector<double>& x, double& b, double& dbdt)
   {
@@ -190,10 +195,5 @@ namespace Problem_Parameter
     double p_x = G;
     flux = p_x;
   }
-
-  Vector<double> vector_of_eigenvalues_rp(10, 2.0);
-  Vector<double> vector_of_eigenvalues_ip(10, 2.0);
-
-  ofstream M_file;
 } // namespace Problem_Parameter
 #endif
