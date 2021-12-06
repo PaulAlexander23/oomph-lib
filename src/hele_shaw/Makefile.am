@@ -25,7 +25,8 @@ hele_shaw_interface_elements.h \
 my_new_element.h \
 hele_shaw_equations_with_integral.h \
 Thele_shaw_elements_with_integral.h \
-my_new_element_with_integrals.h
+my_new_element_with_integrals.h \
+hele_shaw_parameter_converter.h
 
 # Define name of library
 libname = hele_shaw
