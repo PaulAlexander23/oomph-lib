@@ -13,9 +13,28 @@ incl_cc_files =
 
 # Define the headers
 headers =  \
+<<<<<<< HEAD:src/linear_wave/Makefile.am
 linear_wave_elements.h \
 linear_wave_flux_elements.h \
 refineable_linear_wave_elements.h 
+=======
+hele_shaw_elements.h \
+hele_shaw_equations.h \
+hele_shaw_flux_elements.h \
+hele_shaw_flux_elements_with_inflow_integral.h \
+Thele_shaw_elements.h \
+hele_shaw_elements.template.cc \
+projectable_hele_shaw_element.h \
+projectable_hele_shaw_element.template.cc \
+hele_shaw_interface_elements_finger.h \
+hele_shaw_interface_elements_with_integrals.h \
+hele_shaw_interface_elements.h \
+my_new_element.h \
+hele_shaw_equations_with_integral.h \
+Thele_shaw_elements_with_integral.h \
+my_new_element_with_integrals.h \
+hele_shaw_parameter_converter.h
+>>>>>>> Add a parameter converter:src/hele_shaw/Makefile.am
 
 # Define name of library
 libname = linear_wave
