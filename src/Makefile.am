@@ -25,5 +25,6 @@ linearised_navier_stokes \
 generalised_newtonian_navier_stokes \
 generalised_newtonian_axisym_navier_stokes \
 space_time \
-hele_shaw
+hele_shaw \
+integral
 
