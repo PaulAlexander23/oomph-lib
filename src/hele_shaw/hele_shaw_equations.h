@@ -68,8 +68,24 @@ namespace oomph
                                        Vector<double>& dhdx,
                                        Vector<double>& d_dhdt_dx);
 
+  protected:
+    /// Pointer to function that specifies the gap width and wall velocity
+    UpperWallFctPt Upper_wall_fct_pt;
+
+    UpperWallFluxFctPt Upper_wall_flux_fct_pt;
+
+  private:
+    /// External data index for the volume. Set to negative if not being used.
+    int Volume_external_data_index;
+
+  public:
     /// Constructor
-    HeleShawEquations() : Upper_wall_fct_pt(0), Upper_wall_flux_fct_pt(0) {}
+    HeleShawEquations()
+      : Upper_wall_fct_pt(0),
+        Upper_wall_flux_fct_pt(0),
+        Volume_external_data_index(-1)
+    {
+    }
 
     /// Broken copy constructor
     HeleShawEquations(const HeleShawEquations& dummy)
@@ -93,6 +109,21 @@ namespace oomph
     virtual inline unsigned p_index_hele_shaw() const
     {
       return 0;
+    }
+
+    unsigned add_volume_data_pt(Data* data_pt)
+    {
+      Volume_external_data_index = add_external_data(data_pt);
+
+      return Volume_external_data_index;
+    }
+
+    void remove_volume_data_pt()
+    {
+      /// We should remove the data element here.
+      /// Not sure how to do this without messing up the other data indices.
+
+      Volume_external_data_index = -1;
     }
 
     /// Output with default number of plot points
@@ -318,11 +349,6 @@ namespace oomph
       Vector<double>& residuals,
       DenseMatrix<double>& jacobian,
       const unsigned& flag);
-
-    /// Pointer to function that specifies the gap width and wall velocity
-    UpperWallFctPt Upper_wall_fct_pt;
-
-    UpperWallFluxFctPt Upper_wall_flux_fct_pt;
   };
 
   //=============================================================
@@ -608,6 +634,18 @@ namespace oomph
                 }
               }
             }
+          }
+        }
+
+        if (Volume_external_data_index >= 0)
+        {
+          // Add the element's volume to external volume data
+          unsigned i_value = 0;
+          local_eqn = external_local_eqn(Volume_external_data_index, i_value);
+          if (local_eqn >= 0)
+          {
+            // Calculate the fluid volume contained within the element
+            residuals[local_eqn] += h * test(l) * W;
           }
         }
       }
