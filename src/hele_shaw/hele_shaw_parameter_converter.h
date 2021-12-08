@@ -18,20 +18,20 @@ namespace oomph
   {
     // const double G = 1.9648098177825899; //20
     // const double G = 1.9648144969660464; //40
-    // const double G = 1.9648144083521897; //80
+    const double G = 1.9648144083521897; // 80
 
 
     /// Ratios of old to new
     length_ratio = 0.5;
     pressure_ratio = 12;
-    velocity_ratio = length_ratio;
+    velocity_ratio = pow(2.0, 4.0) / (pow(40.0, 2.0) * (G * 0.5));
     time_ratio = 1;
 
     /// New parameters
     new_r = r * length_ratio;
     new_width = width * length_ratio;
     new_volume = volume * length_ratio * length_ratio;
-    new_Ca = Q * velocity_ratio;
+    new_Ca = Q / velocity_ratio;
   }
 
 } // namespace oomph
