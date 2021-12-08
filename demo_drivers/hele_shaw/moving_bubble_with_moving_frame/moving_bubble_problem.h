@@ -46,11 +46,14 @@ namespace oomph
 
     /// Pointer to the ode mesh
     Mesh* ODE_mesh_pt;
+    Mesh* Info_mesh_pt;
+    Mesh* X_mom_constraint_mesh_pt;
 
     Data* Volume_data_pt;
     Data* Bubble_pressure_data_pt;
     Data* Frame_speed_data_pt;
     Data* Frame_travel_data_pt;
+    Data* X_mom_data_pt;
     Data* Leading_x_data_pt;
 
     double* Leading_x_pt;
@@ -87,6 +90,8 @@ namespace oomph
     void create_outlet_surface_mesh();
     void create_ode_mesh();
     void create_flux_mesh();
+    void create_info_mesh();
+    void create_x_mom_constraint_mesh();
 
     void set_variable_and_function_pointers();
 
@@ -96,12 +101,14 @@ namespace oomph
     void actions_before_adapt();
     void actions_after_adapt();
 
+    void actions_before_implicit_timestep();
+
     void doc_fluid_mesh(string filename);
     void doc_surface_mesh(string filename);
     void doc_volume(string filename);
     void doc_bubble_pressure(string filename);
-    void doc_frame_travel(string filename);
     void doc_leading_x(string filename);
+    void doc_reference_frame(string filename);
 
     void compute_error_estimate(double& max_err, double& min_err);
 
@@ -112,6 +119,8 @@ namespace oomph
     void delete_outlet_surface_mesh();
     void delete_flux_mesh();
     void delete_ode_mesh();
+    void delete_info_mesh();
+    void delete_x_mom_constraint_mesh();
     void delete_mesh_pt(Mesh* mesh_pt);
   };
 
@@ -120,15 +129,17 @@ namespace oomph
   {
     cout << "Constructor" << endl;
     bool adaptive_timestepping = false;
-    add_time_stepper_pt(new BDF<2>(adaptive_timestepping));
+    add_time_stepper_pt(new BDF<1>(adaptive_timestepping));
 
     create_data();
 
     create_outer_boundary_polygon();
     create_surface_polygon();
 
+    cout << "create mesh" << endl;
     create_mesh();
 
+    cout << "set variables..." << endl;
     set_variable_and_function_pointers();
 
     set_boundary_conditions();
@@ -187,19 +198,19 @@ namespace oomph
         max_adapt = 0;
       }
 
-      // DoubleVector residuals;
-      // DenseDoubleMatrix jacobian;
-      // DoubleVector residualsFD;
-      // DenseDoubleMatrix jacobianFD(ndof());
+      DoubleVector residuals;
+      DenseDoubleMatrix jacobian;
+      DoubleVector residualsFD;
+      DenseDoubleMatrix jacobianFD(ndof());
 
       // cout << "Get Jacobian" << endl;
       // get_jacobian(residuals, jacobian);
-      ////get_fd_jacobian(residualsFD, jacobianFD);
+      // get_fd_jacobian(residualsFD, jacobianFD);
 
-      // for (unsigned i = 0; i < 1280; i++)
+      // for (unsigned i = 0; i < ndof()-1; i++)
       //{
       //  printf("i: %4u", i);
-      //  for (unsigned j = 1280 - 2; j < 1280; j++)
+      //  for (unsigned j = ndof()-1 - 4; j < ndof()-1; j++)
       //  {
       //    printf(", act: %8.5f, exp: %8.5f", jacobian(j, i), jacobianFD(j,
       //    i));
@@ -377,8 +388,13 @@ namespace oomph
     Bubble_pressure_data_pt = new Data(1);
 
     Frame_speed_data_pt = new Data(1);
+    moving_bubble::global_frame_speed_pt = Frame_speed_data_pt->value_pt(0);
 
     Frame_travel_data_pt = new Data(1);
+    moving_bubble::global_frame_travel_pt = Frame_travel_data_pt->value_pt(0);
+    add_global_data(Frame_travel_data_pt);
+
+    X_mom_data_pt = new Data(1);
 
     Leading_x_data_pt = new Data(1);
   }
@@ -399,9 +415,15 @@ namespace oomph
     create_inlet_surface_mesh();
     Outlet_surface_mesh_pt = new Mesh;
     create_outlet_surface_mesh();
+    cout << "ODE" << endl;
     ODE_mesh_pt = new Mesh;
     create_ode_mesh();
+    Info_mesh_pt = new Mesh;
+    create_info_mesh();
+    X_mom_constraint_mesh_pt = new Mesh;
+    create_x_mom_constraint_mesh();
 
+    cout << "add_sub_mesh" << endl;
     add_sub_mesh(Fluid_mesh_pt);
     add_sub_mesh(Surface_mesh_pt);
     add_sub_mesh(Volume_mesh_pt);
@@ -410,7 +432,9 @@ namespace oomph
     add_sub_mesh(Outlet_surface_mesh_pt);
     add_sub_mesh(Flux_mesh_pt);
     add_sub_mesh(ODE_mesh_pt);
+    add_sub_mesh(Info_mesh_pt);
 
+    cout << "build global mesh" << endl;
     build_global_mesh();
   }
 
@@ -546,8 +570,29 @@ namespace oomph
   template<class ELEMENT>
   void RelaxingBubbleProblem<ELEMENT>::create_ode_mesh()
   {
-    this->ODE_mesh_pt->add_element_pt(
-      new ODEElement(this->time_stepper_pt(), new moving_bubble::ODEFunctor));
+    ODEElement* element_pt = new ODEElement;
+    element_pt->build(this->time_stepper_pt(),
+                      new moving_bubble::ODEFunctor,
+                      Frame_travel_data_pt);
+    this->ODE_mesh_pt->add_element_pt(element_pt);
+  }
+
+  template<class ELEMENT>
+  void RelaxingBubbleProblem<ELEMENT>::create_info_mesh()
+  {
+    this->Info_mesh_pt->add_element_pt(new InfoElement(X_mom_data_pt));
+  }
+
+  template<class ELEMENT>
+  void RelaxingBubbleProblem<ELEMENT>::create_x_mom_constraint_mesh()
+  {
+    MyConstraintElement* x_mom_constraint_element =
+      new MyConstraintElement(&moving_bubble::target_fluid_volume,
+                              X_mom_data_pt->value_pt(0),
+                              Frame_speed_data_pt,
+                              0);
+
+    this->X_mom_constraint_mesh_pt->add_element_pt(x_mom_constraint_element);
   }
 
   template<class ELEMENT>
@@ -567,14 +612,6 @@ namespace oomph
     bool fd_jacobian = true;
 
     moving_bubble::bubble_pressure_pt = Bubble_pressure_data_pt->value_pt(0);
-    moving_bubble::global_frame_speed_pt = Frame_speed_data_pt->value_pt(0);
-
-    unsigned el_index = 0;
-    unsigned index = 0;
-    moving_bubble::global_frame_travel_pt =
-      this->ODE_mesh_pt->element_pt(el_index)
-        ->internal_data_pt(index)
-        ->value_pt(index);
 
     /// Set fluid mesh function pointers
     unsigned n_element = Fluid_mesh_pt->nelement();
@@ -586,8 +623,10 @@ namespace oomph
       // Set the constitutive law for pseudo-elastic mesh deformation
       el_pt->constitutive_law_pt() = moving_bubble::constitutive_law_pt;
       el_pt->upper_wall_fct_pt() = moving_bubble::upper_wall_fct;
-      el_pt->add_external_data(Volume_data_pt, fd_jacobian);
+      el_pt->add_volume_data_pt(Volume_data_pt);
+      el_pt->add_x_mom_data_pt(X_mom_data_pt);
       el_pt->add_external_data(Bubble_pressure_data_pt, fd_jacobian);
+      el_pt->add_external_data(X_mom_data_pt, fd_jacobian);
     }
 
     n_element = Surface_mesh_pt->nelement();
@@ -607,10 +646,12 @@ namespace oomph
       interface_element_pt->add_external_data(Volume_data_pt, fd_jacobian);
       interface_element_pt->add_external_data(Bubble_pressure_data_pt,
                                               fd_jacobian);
+      interface_element_pt->add_external_data(X_mom_data_pt, fd_jacobian);
     }
 
     // Get node
-    Node* node_pt = Fluid_mesh_pt->boundary_node_pt(First_bubble_boundary_id, 0);
+    Node* node_pt =
+      Fluid_mesh_pt->boundary_node_pt(First_bubble_boundary_id, 0);
     unsigned x_dim = 0;
     Leading_x_pt = node_pt->x_pt(0, x_dim);
 
@@ -625,8 +666,14 @@ namespace oomph
 
     vol_constraint_element->add_external_data(Volume_data_pt, fd_jacobian);
 
+    MyConstraintElement* x_mom_constraint_element =
+      dynamic_cast<MyConstraintElement*>(
+        X_mom_constraint_mesh_pt->element_pt(i_element));
+
+    x_mom_constraint_element->add_external_data(X_mom_data_pt, fd_jacobian);
+
     /// Info mesh
-    index = 0;
+    unsigned index = 0;
     moving_bubble::inlet_area_pt =
       this->Flux_mesh_pt->element_pt(0)->internal_data_pt(0)->value_pt(index);
     moving_bubble::outlet_area_pt =
@@ -757,7 +804,7 @@ namespace oomph
     Bubble_pressure_data_pt->unpin(0);
 
     Frame_speed_data_pt->set_value(0, 0.0);
-    Frame_speed_data_pt->unpin(0);
+    Frame_speed_data_pt->pin(0);
 
     Frame_travel_data_pt->set_value(0, 0.0);
     Frame_travel_data_pt->unpin(0);
@@ -807,9 +854,9 @@ namespace oomph
 
     doc_bubble_pressure(doc_directory + "bubble_pressure.dat");
 
-    doc_frame_travel(doc_directory + "travel.dat");
-
     doc_leading_x(doc_directory + "leading_x.dat");
+
+    doc_reference_frame(doc_directory + "reference.dat");
 
     doc_info.number()++;
   }
@@ -826,6 +873,8 @@ namespace oomph
     delete_outlet_surface_mesh();
     delete_flux_mesh();
     delete_ode_mesh();
+    delete_info_mesh();
+    delete_x_mom_constraint_mesh();
 
     rebuild_global_mesh();
   }
@@ -844,6 +893,8 @@ namespace oomph
     create_inlet_surface_mesh();
     create_outlet_surface_mesh();
     create_ode_mesh();
+    create_info_mesh();
+    create_x_mom_constraint_mesh();
 
     rebuild_global_mesh();
 
@@ -858,6 +909,13 @@ namespace oomph
     cout << assign_eqn_numbers() << endl;
     cout << "Number of unknowns: " << endl;
     cout << ndof() << endl;
+  }
+
+  template<class ELEMENT>
+  void RelaxingBubbleProblem<ELEMENT>::actions_before_implicit_timestep()
+  {
+    double t = time();
+    Frame_speed_data_pt->set_value(0, 1.0);
   }
 
   template<class ELEMENT>
@@ -890,7 +948,10 @@ namespace oomph
     output_stream.open(filename, ofstream::app);
 
     output_stream << time() << ", ";
-    output_stream << Volume_data_pt->value(0) << endl;
+    output_stream << Volume_data_pt->value(0) << ", ";
+    output_stream << X_mom_data_pt->value(0) << ", ";
+    output_stream << X_mom_data_pt->value(0) / Volume_data_pt->value(0) << ", ";
+    output_stream << endl;
 
     output_stream.close();
   }
@@ -908,19 +969,6 @@ namespace oomph
   }
 
   template<class ELEMENT>
-  void RelaxingBubbleProblem<ELEMENT>::doc_frame_travel(string filename)
-  {
-    ofstream output_stream;
-    output_stream.open(filename, ofstream::app);
-
-    output_stream << time() << ", ";
-    output_stream << Frame_travel_data_pt->value(0) << ", ";
-    output_stream << *moving_bubble::global_frame_travel_pt << endl;
-
-    output_stream.close();
-  }
-
-  template<class ELEMENT>
   void RelaxingBubbleProblem<ELEMENT>::doc_leading_x(string filename)
   {
     ofstream output_stream;
@@ -929,6 +977,20 @@ namespace oomph
     output_stream << time() << ", ";
     output_stream << Leading_x_data_pt->value(0) << ", ";
     output_stream << *Leading_x_pt << endl;
+
+    output_stream.close();
+  }
+
+  template<class ELEMENT>
+  void RelaxingBubbleProblem<ELEMENT>::doc_reference_frame(string filename)
+  {
+    ofstream output_stream;
+    output_stream.open(filename, ofstream::app);
+
+    unsigned i_value = 0;
+    output_stream << time() << ", ";
+    output_stream << Frame_travel_data_pt->value(i_value) << ", ";
+    output_stream << Frame_speed_data_pt->value(i_value) << endl;
 
     output_stream.close();
   }
@@ -1070,6 +1132,23 @@ namespace oomph
   }
 
   template<class ELEMENT>
+  void RelaxingBubbleProblem<ELEMENT>::delete_info_mesh()
+  {
+    // How many elements are in the volume mesh
+    unsigned n_element = Info_mesh_pt->nelement();
+
+    // Loop over the elements
+    for (unsigned e = 0; e < n_element; e++)
+    {
+      // Delete element
+      delete Info_mesh_pt->element_pt(e);
+    }
+
+    // Wipe the mesh
+    Info_mesh_pt->flush_element_and_node_storage();
+  }
+
+  template<class ELEMENT>
   void RelaxingBubbleProblem<ELEMENT>::delete_flux_mesh()
   {
     // How many elements are in the volume mesh
@@ -1084,6 +1163,23 @@ namespace oomph
 
     // Wipe the mesh
     Flux_mesh_pt->flush_element_and_node_storage();
+  }
+
+  template<class ELEMENT>
+  void RelaxingBubbleProblem<ELEMENT>::delete_x_mom_constraint_mesh()
+  {
+    // How many elements are in the volume mesh
+    unsigned n_element = X_mom_constraint_mesh_pt->nelement();
+
+    // Loop over the elements
+    for (unsigned e = 0; e < n_element; e++)
+    {
+      // Delete element
+      delete X_mom_constraint_mesh_pt->element_pt(e);
+    }
+
+    // Wipe the mesh
+    X_mom_constraint_mesh_pt->flush_element_and_node_storage();
   }
 
   template<class ELEMENT>

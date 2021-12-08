@@ -32,6 +32,9 @@ namespace moving_bubble
   double target_fluid_volume = 0;
   double total_volume = 0;
 
+  /// X moment to constrain CoM
+  double target_x_mom = 0;
+
   /// Pseudo-solid Poisson ratio pointer
   double nu;
 
@@ -84,7 +87,7 @@ namespace moving_bubble
   // Wall speed function or moving reference frame speed function
   void wall_speed_fct(const Vector<double>& x, Vector<double>& U_frame)
   {
-    U_frame[0] = 0.0;
+    U_frame[0] = -(*global_frame_speed_pt);
     U_frame[1] = 0.0;
   }
 
@@ -100,7 +103,7 @@ namespace moving_bubble
     /// At the inlet we set the pressure gradient which is dependent on the
     /// upper wall function, inlet_area and total flux
 
-    double dpdx = total_flux / *inlet_area_pt;
+    double dpdx = total_flux / *inlet_area_pt - *global_frame_speed_pt;
 
     double b;
     double dbdt;
@@ -114,7 +117,7 @@ namespace moving_bubble
   {
     /// At the inlet we set the pressure gradient which is dependent on the
     /// upper wall function, inlet_area and total flux
-    double dpdx = -total_flux / *outlet_area_pt;
+    double dpdx = -total_flux / *outlet_area_pt + *global_frame_speed_pt;
 
     double b;
     double dbdt;
@@ -169,7 +172,7 @@ namespace moving_bubble
     {
       Vector<double> output(1);
 
-      output[0] = t;
+      output[0] = (*global_frame_speed_pt) * t;
 
       return output;
     }
@@ -181,7 +184,7 @@ namespace moving_bubble
     {
       Vector<double> output(1);
 
-      output[0] = 1;
+      output[0] = *global_frame_speed_pt;
 
       return output;
     }
