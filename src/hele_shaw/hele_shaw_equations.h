@@ -78,12 +78,18 @@ namespace oomph
     /// External data index for the volume. Set to negative if not being used.
     int Volume_external_data_index;
 
+    /// External data index for the centre of mass. Set to negative if not being used.
+    int X_mom_external_data_index;
+    int Y_mom_external_data_index;
+
   public:
     /// Constructor
     HeleShawEquations()
       : Upper_wall_fct_pt(0),
         Upper_wall_flux_fct_pt(0),
-        Volume_external_data_index(-1)
+        Volume_external_data_index(-1),
+        X_mom_external_data_index(-1),
+        Y_mom_external_data_index(-1)
     {
     }
 
@@ -124,6 +130,36 @@ namespace oomph
       /// Not sure how to do this without messing up the other data indices.
 
       Volume_external_data_index = -1;
+    }
+
+    unsigned add_x_mom_data_pt(Data* data_pt)
+    {
+      X_mom_external_data_index = add_external_data(data_pt);
+
+      return X_mom_external_data_index;
+    }
+
+    void remove_x_mom_data_pt()
+    {
+      /// We should remove the data element here.
+      /// Not sure how to do this without messing up the other data indices.
+
+      X_mom_external_data_index = -1;
+    }
+
+    unsigned add_y_mom_data_pt(Data* data_pt)
+    {
+      Y_mom_external_data_index = add_external_data(data_pt);
+
+      return Y_mom_external_data_index;
+    }
+
+    void remove_y_mom_data_pt()
+    {
+      /// We should remove the data element here.
+      /// Not sure how to do this without messing up the other data indices.
+
+      Y_mom_external_data_index = -1;
     }
 
     /// Output with default number of plot points
@@ -646,6 +682,30 @@ namespace oomph
           {
             // Calculate the fluid volume contained within the element
             residuals[local_eqn] += h * test(l) * W;
+          }
+        }
+
+        if (X_mom_external_data_index >= 0)
+        {
+          // Add the element's volume to external volume data
+          unsigned i_value = 0;
+          local_eqn = external_local_eqn(X_mom_external_data_index, i_value);
+          if (local_eqn >= 0)
+          {
+            // Calculate the fluid volume contained within the element
+            residuals[local_eqn] += interpolated_x[0] * h * test(l) * W;
+          }
+        }
+
+        if (Y_mom_external_data_index >= 0)
+        {
+          // Add the element's volume to external volume data
+          unsigned i_value = 0;
+          local_eqn = external_local_eqn(Y_mom_external_data_index, i_value);
+          if (local_eqn >= 0)
+          {
+            // Calculate the fluid volume contained within the element
+            residuals[local_eqn] += interpolated_x[1] * h * test(l) * W;
           }
         }
       }
