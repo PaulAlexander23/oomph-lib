@@ -35,7 +35,7 @@ int main(int argc, char* argv[])
   const double circular_radius = 0.46;
   const double volume =
     MathematicalConstants::Pi * circular_radius * circular_radius;
-  double Q = 0.05;
+  double Q = 0.025;
 
   CommandLineArgs::specify_command_line_flag("-q", &Q, "Channel flux, Q");
 
@@ -99,7 +99,7 @@ int main(int argc, char* argv[])
   /// Create problem
   // RelaxingBubbleProblem<ProjectableHeleShawElementWithSolidFaces<3>> problem;
   // RelaxingBubbleProblem<HeleShawWithErrorElement> problem;
-  RelaxingBubbleProblem<MyNewElementWithIntegral> problem;
+  RelaxingBubbleProblem<MyNewElement> problem;
 
   bool run_self_test = false;
   if (run_self_test)
