@@ -39,12 +39,26 @@ namespace oomph
   /// Element for integrating an initial value ODE
   class ODEElement : public GeneralisedElement
   {
+  private:
+    /// Internal or external data?
+    bool data_is_internal;
+
+    /// Functor to provide both the ode and its solution/approximation
+    SolutionFunctorBase* Exact_solution_pt;
+
+    /// Use finite differences to calculate the Jacobian?
+    bool Use_fd_jacobian;
+
+    /// Number of stored values in the single data object
+    unsigned Nvalue;
+
   public:
     /// Default constructor: null any pointers
     ODEElement()
     {
       Exact_solution_pt = 0;
-
+      data_is_internal = true;
+      Nvalue = 0;
       Use_fd_jacobian = false;
     }
 
@@ -56,16 +70,34 @@ namespace oomph
       build(time_stepper_pt, exact_solution_pt);
     }
 
-    /// Store pointers, create internal data.
+    /// Store pointers, create external data.
     void build(TimeStepper* time_stepper_pt,
                SolutionFunctorBase* exact_solution_pt)
     {
       Exact_solution_pt = exact_solution_pt;
 
       Vector<double> exact = this->exact_solution(0);
-      unsigned nvalue = exact.size();
+      Nvalue = exact.size();
 
-      add_internal_data(new Data(time_stepper_pt, nvalue));
+      add_internal_data(new Data(time_stepper_pt, Nvalue));
+      data_is_internal = true;
+
+      Use_fd_jacobian = false;
+    }
+
+    /// Store pointers, add external data.
+    void build(TimeStepper* time_stepper_pt,
+               SolutionFunctorBase* exact_solution_pt,
+               Data* data_pt)
+    {
+      Exact_solution_pt = exact_solution_pt;
+
+      bool preserve_existing_data = true;
+      data_pt->set_time_stepper(time_stepper_pt, preserve_existing_data);
+
+      add_external_data(data_pt);
+      Nvalue = external_data_pt(0)->nvalue();
+      data_is_internal = false;
 
       Use_fd_jacobian = false;
     }
@@ -75,17 +107,25 @@ namespace oomph
 
     unsigned nvalue() const
     {
-      return internal_data_pt(0)->nvalue();
+      return Nvalue;
     }
 
     /// Get residuals
     virtual void fill_in_contribution_to_residuals(Vector<double>& residuals)
     {
       // Get pointer to one-and-only internal data object
-      Data* dat_pt = internal_data_pt(0);
+      Data* dat_pt;
+      if (data_is_internal)
+      {
+        dat_pt = internal_data_pt(0);
+      }
+      else
+      {
+        dat_pt = external_data_pt(0);
+      }
 
       // Get it's values
-      Vector<double> u(nvalue(), 0.0);
+      Vector<double> u(Nvalue, 0.0);
       dat_pt->value(u);
 
       // Get time stepper
@@ -94,15 +134,27 @@ namespace oomph
       // Get continuous time
       double t = time_stepper_pt->time();
 
+      int local_eqn;
       Vector<double> deriv = derivative_function(t, u);
       for (unsigned j = 0, nj = deriv.size(); j < nj; j++)
       {
-        // Get dudt approximation from time stepper
-        double dudt = time_stepper_pt->time_derivative(1, dat_pt, j);
+        if (data_is_internal)
+        {
+          local_eqn = this->internal_local_eqn(0, j);
+        }
+        else
+        {
+          local_eqn = this->external_local_eqn(0, j);
+        }
+        if (local_eqn >= 0)
+        {
+          // Get dudt approximation from time stepper
+          double dudt = time_stepper_pt->time_derivative(1, dat_pt, j);
 
-        // Residual is difference between the exact derivative and our
-        // time stepper's derivative estimate.
-        residuals[j] = deriv[j] - dudt;
+          // Residual is difference between the exact derivative and our
+          // time stepper's derivative estimate.
+          residuals[local_eqn] = deriv[j] - dudt;
+        }
       }
     }
 
@@ -112,21 +164,39 @@ namespace oomph
       // Get residuals
       fill_in_contribution_to_residuals(residuals);
 
-      if (Exact_solution_pt->have_jacobian() && !Use_fd_jacobian)
+      if (!Use_fd_jacobian)
       {
-        // get df/du jacobian
-        double t = internal_data_pt(0)->time_stepper_pt()->time();
-        Vector<double> dummy, u(nvalue(), 0.0);
-        internal_data_pt(0)->value(u);
-        Exact_solution_pt->jacobian(t, dummy, u, jacobian);
+        // Get pointer to one-and-only internal data object
+        Data* dat_pt;
+        if (data_is_internal)
+        {
+          dat_pt = internal_data_pt(0);
+        }
+        else
+        {
+          dat_pt = external_data_pt(0);
+        }
 
         // We need jacobian of residual = f - dudt so subtract diagonal
         // (dudt)/du term.
-        const double a = internal_data_pt(0)->time_stepper_pt()->weight(1, 0);
-        const unsigned n = nvalue();
-        for (unsigned i = 0; i < n; i++)
+        int local_eqn;
+        int local_unknown;
+        const double a = dat_pt->time_stepper_pt()->weight(1, 0);
+        for (unsigned i = 0; i < Nvalue; i++)
         {
-          jacobian(i, i) -= a;
+          if (data_is_internal)
+          {
+            local_eqn = this->internal_local_eqn(0, i);
+          }
+          else
+          {
+            local_eqn = this->external_local_eqn(0, i);
+          }
+          if (local_eqn >= 0)
+          {
+            local_unknown = local_eqn;
+            jacobian(local_eqn, local_unknown) -= a;
+          }
         }
       }
       else
@@ -141,7 +211,7 @@ namespace oomph
                                                      DenseMatrix<double>& mm)
     {
       fill_in_contribution_to_residuals(residuals);
-      for (unsigned j = 0, nj = nvalue(); j < nj; j++)
+      for (unsigned j = 0, nj = Nvalue; j < nj; j++)
       {
         mm(j, j) = 1;
       }
@@ -176,10 +246,6 @@ namespace oomph
       Vector<double> dummy_x;
       return Exact_solution_pt->derivative(t, dummy_x, u);
     }
-
-    SolutionFunctorBase* Exact_solution_pt;
-
-    bool Use_fd_jacobian;
   };
 
 } // namespace oomph
