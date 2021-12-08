@@ -38,8 +38,8 @@ namespace oomph
     Mesh* Volume_constraint_mesh_pt;
 
     /// Pointer to the "surface" mesh
-    //Mesh* Top_inlet_surface_mesh_pt;
-    //Mesh* Bottom_inlet_surface_mesh_pt;
+    // Mesh* Top_inlet_surface_mesh_pt;
+    // Mesh* Bottom_inlet_surface_mesh_pt;
     Mesh* Outlet_surface_mesh_pt;
     Mesh* Flux_mesh_pt;
 
@@ -181,10 +181,10 @@ namespace oomph
       cout << "Get FD Jacobian" << endl;
       get_fd_jacobian(residualsFD, jacobianFD);
 
-      for (unsigned i = 0; i < ndof()+1; i++)
+      for (unsigned i = 0; i < ndof() + 1; i++)
       {
         printf("i: %4u", i);
-        for (unsigned j = ndof() - 3; j < ndof()+1; j++)
+        for (unsigned j = ndof() - 3; j < ndof() + 1; j++)
         {
           printf(", act: %8.5f, exp: %8.5f", jacobian(j, i), jacobianFD(j, i));
         }
@@ -270,24 +270,37 @@ namespace oomph
     boundary_polyline_pt[3] =
       new TriangleMeshPolyLine(vertex_coord, Upper_inlet_boundary_id);
 
-    // Fourth boundary polyline: Finger
-    vertex_coord[0][0] = vertex_coord[1][0];
-    vertex_coord[0][1] = vertex_coord[1][1];
-    vertex_coord[1][0] = 0.0;
-    vertex_coord[1][1] = domain_width * 0.5 - finger::finger_width * 0.5;
-    cout << "y2: " << domain_width * 0.5 - finger::finger_width * 0.5 << endl;
 
-    // Build the 4th boundary polyline
+    // The finger polyline only has many vertices -- provide storage for their
+    // coordinates
+    unsigned n_point = 64;
+    Vector<Vector<double>> finger_vertex_coord(n_point);
+    for (unsigned i = 0; i < n_point; i++)
+    {
+      finger_vertex_coord[i].resize(2);
+    }
+    double y_step = finger::finger_width / double(n_point - 1);
+    for (unsigned i_point = 0; i_point < n_point; i_point++)
+    {
+      // Fourth boundary polyline: Finger
+      finger_vertex_coord[i_point][0] = vertex_coord[1][0];
+      finger_vertex_coord[i_point][1] = vertex_coord[1][1] - y_step * double(i_point);
+      cout << "y2: " << vertex_coord[1][1] - y_step * double(i_point) << endl;
+    }
+
+    // Build the 5th boundary polyline
     boundary_polyline_pt[4] =
-      new TriangleMeshPolyLine(vertex_coord, Finger_boundary_id);
+      new TriangleMeshPolyLine(finger_vertex_coord, Finger_boundary_id);
+
+    boundary_polyline_pt[4]->set_maximum_length(0.02);
 
     // Fourth boundary polyline: Lower inlet
-    vertex_coord[0][0] = vertex_coord[1][0];
-    vertex_coord[0][1] = vertex_coord[1][1];
+    vertex_coord[0][0] = finger_vertex_coord[n_point-1][0];
+    vertex_coord[0][1] = finger_vertex_coord[n_point-1][1];
     vertex_coord[1][0] = 0.0;
     vertex_coord[1][1] = 0.0;
 
-    // Build the 4th boundary polyline
+    // Build the 6th boundary polyline
     boundary_polyline_pt[5] =
       new TriangleMeshPolyLine(vertex_coord, Lower_inlet_boundary_id);
 
@@ -472,7 +485,8 @@ namespace oomph
       interface_element_pt->add_external_data(Volume_data_pt, fd_jacobian);
       interface_element_pt->add_external_data(Bubble_pressure_data_pt,
                                               fd_jacobian);
-      interface_element_pt->add_external_data(Outlet_integral_data_pt, fd_jacobian);
+      interface_element_pt->add_external_data(Outlet_integral_data_pt,
+                                              fd_jacobian);
     }
 
     unsigned i_element = 0;

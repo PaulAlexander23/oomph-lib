@@ -61,9 +61,8 @@ namespace oomph
         {
           /// The contribution to the data is minus the value as it is moved
           /// from the right hand side of the equation
-          cout << "Here!" << endl;
           residuals[local_eqn] +=
-            -this->internal_data_pt(i_data)->value(i_value) + 1234567;
+            -this->internal_data_pt(i_data)->value(i_value);
         }
       }
     }
