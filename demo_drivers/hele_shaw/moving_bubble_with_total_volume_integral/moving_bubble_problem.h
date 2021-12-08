@@ -286,9 +286,9 @@ namespace oomph
     double x_center = moving_bubble::bubble_initial_centre_x;
     double y_center = moving_bubble::bubble_initial_centre_y;
     double minor_radius = (moving_bubble::target_bubble_volume) /
-                          MathematicalConstants::Pi /
-                          moving_bubble::major_radius;
-    unsigned npoints = 16;
+                          (MathematicalConstants::Pi *
+                          moving_bubble::major_radius);
+    unsigned npoints = 64;
     double zeta_step = MathematicalConstants::Pi / double(npoints - 1);
 
     // Intrinsic coordinate along GeomObject defining the bubble

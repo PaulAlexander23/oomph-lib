@@ -14,7 +14,7 @@ namespace moving_bubble
 
   /// Total flux has be nondimensionalised to 1
   double total_flux;
-  //const double total_flux = 1.0;
+  // const double total_flux = 1.0;
 
   /// Bubble's initial condition
   double major_radius;
@@ -55,17 +55,19 @@ namespace moving_bubble
     double local_x = x[0];
     double local_y = x[1];
 
-  //  b = 1.0 - perturbation_amplitude *
-  //              exp(-(local_x - perturbation_centre_x) *
-  //                    (local_x - perturbation_centre_x) /
-  //                    (2 * perturbation_rms_width * perturbation_rms_width) -
-  //                  (local_y - perturbation_centre_y) *
-  //                    (local_y - perturbation_centre_y) /
-  //                    (2 * perturbation_rms_width * perturbation_rms_width));
-    b =
-      1.0 - perturbation_amplitude / 2 *
-              (cos(2 * MathematicalConstants::Pi * (local_x - perturbation_centre_x) / perturbation_rms_width) +
-               cos(2 * MathematicalConstants::Pi * (local_y - perturbation_centre_y) / perturbation_rms_width));
+    b = 1.0 - perturbation_amplitude *
+                exp(-(local_x - perturbation_centre_x) *
+                      (local_x - perturbation_centre_x) /
+                      (2 * perturbation_rms_width * perturbation_rms_width) -
+                    (local_y - perturbation_centre_y) *
+                      (local_y - perturbation_centre_y) /
+                      (2 * perturbation_rms_width * perturbation_rms_width));
+    //    b =
+    //      1.0 - perturbation_amplitude / 2 *
+    //              (cos(2 * MathematicalConstants::Pi * (local_x -
+    //              perturbation_centre_x) / perturbation_rms_width) +
+    //               cos(2 * MathematicalConstants::Pi * (local_y -
+    //               perturbation_centre_y) / perturbation_rms_width));
   }
 
   /// Channel depth with rate of change

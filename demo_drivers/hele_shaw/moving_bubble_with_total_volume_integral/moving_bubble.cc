@@ -1,4 +1,5 @@
 #include <iostream>
+#include <chrono>
 
 #include "generic.h"
 //#include "meshes.h"
@@ -12,9 +13,11 @@
 
 using namespace oomph;
 using namespace std;
+using namespace std::chrono;
 
 int main(int argc, char* argv[])
 {
+  auto start_time = high_resolution_clock::now();
   cout << "Moving bubble demo" << endl;
 
   /// Store command line arguments
@@ -28,11 +31,14 @@ int main(int argc, char* argv[])
 
   /// Set parameters
   const double major_radius = 0.5;
-  const double width = 2;
+  const double width = 0.25; // 2;
   const double circular_radius = 0.46;
   const double volume =
     MathematicalConstants::Pi * circular_radius * circular_radius;
-  const double Q = 0.05;
+  double Q = 0.05;
+
+  CommandLineArgs::specify_command_line_flag(
+    "-q", &Q, "Channel flux, Q");
 
   double length_ratio;
   double pressure_ratio;
@@ -57,14 +63,13 @@ int main(int argc, char* argv[])
                                              new_Ca);
   moving_bubble::major_radius = new_r;
   moving_bubble::ca_inv = 1.0 / new_Ca;
-  moving_bubble::ca_inv = 20.0;
   moving_bubble::st = 1.0;
   moving_bubble::alpha = 40.0;
   moving_bubble::nu = 0.3;
 
-  moving_bubble::bubble_initial_centre_y = 0.5 + 0.005;
+  moving_bubble::bubble_initial_centre_y = 0.5 * (1 + 0.01);
 
-  moving_bubble::perturbation_amplitude = 0.1;//0.024;
+  moving_bubble::perturbation_amplitude = 0.024;
   moving_bubble::perturbation_rms_width = new_width;
 
   moving_bubble::target_bubble_volume = new_volume;
@@ -73,7 +78,7 @@ int main(int argc, char* argv[])
     new GeneralisedHookean(&moving_bubble::nu);
 
   /// Test with no flux
-  total_flux = 0.0;
+  moving_bubble::total_flux = 1.0;
 
   IntegralProblem<QIntegralElement<3>> integral_problem(
     moving_bubble::channel_depth);
@@ -107,7 +112,7 @@ int main(int argc, char* argv[])
   problem.solve_for_initial_conditions(doc_info);
 
   double dt = 1e-2;
-  double tF = 1e0;
+  double tF = 2e0 - dt;
 
   // Problem* problem_pt = new RelaxingBubbleProblem<MyNewElementWithIntegral>;
   // DoubleVector result;
@@ -120,6 +125,10 @@ int main(int argc, char* argv[])
   problem.iterate_timestepper(dt, tF, doc_info);
 
   delete moving_bubble::constitutive_law_pt;
+
+  auto end_time = high_resolution_clock::now();
+  duration<double> diff = duration_cast<minutes>(end_time - start_time);
+  cout << "Total real-time duration: " << diff.count() << endl;
 
   return 0;
 }
