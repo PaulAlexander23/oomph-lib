@@ -222,6 +222,11 @@ int main(int argc, char** argv)
               << std::endl;
     std::cout << "COM_Y is " << problem.get_CoM_Y() << std::endl;
     problem.reset_lagrangian_coordinates();
+
+    if (i >= n_steps)
+    {
+      break;
+    }
   }
 
 
