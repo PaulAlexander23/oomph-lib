@@ -75,7 +75,7 @@ namespace oomph
         Index_of_traded_pressure_value);
 
       double prescribed_volume;
-      cout << "my t: " << time(0) << endl;
+      //cout << "my t: " << time(0) << endl;
       (*Prescribed_volume_fct_pt)(time(0), prescribed_volume);
 
       if (local_eqn >= 0)
