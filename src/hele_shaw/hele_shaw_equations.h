@@ -78,7 +78,8 @@ namespace oomph
     /// External data index for the volume. Set to negative if not being used.
     int Volume_external_data_index;
 
-    /// External data index for the centre of mass. Set to negative if not being used.
+    /// External data index for the centre of mass. Set to negative if not being
+    /// used.
     int X_mom_external_data_index;
     int Y_mom_external_data_index;
 
