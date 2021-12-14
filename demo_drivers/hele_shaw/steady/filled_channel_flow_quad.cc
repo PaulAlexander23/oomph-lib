@@ -10,39 +10,39 @@ using namespace std;
 
 namespace problem_parameter
 {
-  double* inlet_area_pt = 0;
-  double* outlet_area_pt = 0;
+  double* inlet_b3_pt = 0;
+  double* outlet_b3_pt = 0;
 
   /// This is non-dimensionalised to 1
   const double total_flux = 1.0;
 
   void upper_wall_fct(const Vector<double>& x, double& b, double& dbdt)
   {
-    double tape_height = 0.024;
-    double tape_width = 0.5;
-    double tape_sharpness = 40;
-    double tape_centre_y = 1.0;
+    //double tape_height = 0.99;
+    //double tape_width = 0.5;
+    //double tape_sharpness = 10000;
+    //double tape_centre_y = 0.5;
 
-    double y = x[1];
+    //double y = x[1];
 
-    b = 1 - tape_height * 0.5 *
-              (tanh(tape_sharpness * (y - tape_centre_y + 0.5 * tape_width)) -
-               tanh(tape_sharpness * (y - tape_centre_y - 0.5 * tape_width)));
+    // b = 1 - tape_height * 0.5 *
+    //          (tanh(tape_sharpness * (y - tape_centre_y + 0.5 * tape_width)) -
+    //           tanh(tape_sharpness * (y - tape_centre_y - 0.5 * tape_width)));
 
-    // double height = 0.1;
-    // double rms_width = 0.1;
-    // double centre_x = 0;
-    // double centre_y = 0.5;
+    double height = 1.0;
+    double rms_width = 0.1;
+    double centre_x = 0;
+    double centre_y = 0.5;
 
-    //// Transform y such that the domain is between 0 and 1 rather than -1 and
-    /// 1
-    // double local_x = x[0];
-    // double local_y = x[1];
-    // b = 1.0 - height * std::exp(-(local_x - centre_x) * (local_x - centre_x)
-    // /
-    //                              (2 * rms_width * rms_width) -
-    //                            (local_y - centre_y) * (local_y - centre_y) /
-    //                              (2 * rms_width * rms_width));
+    // Transform y such that the domain is between 0 and 1 rather than -1
+    // and
+    // 1
+    double local_x = x[0];
+    double local_y = x[1];
+    b = 1.0 - height * std::exp(-(local_x - centre_x) * (local_x - centre_x) /
+                                  (2 * rms_width * rms_width) -
+                                (local_y - centre_y) * (local_y - centre_y) /
+                                  (2 * rms_width * rms_width));
     dbdt = 0.0;
   }
 
@@ -55,29 +55,29 @@ namespace problem_parameter
   void get_inlet_flux_bc(const Vector<double>& x, double& flux)
   {
     /// At the inlet we set the pressure gradient which is dependent on the
-    /// upper wall function, inlet_area and total flux
+    /// upper wall function, inlet_b3 and total flux
 
-    double dpdx = -total_flux / *inlet_area_pt;
+    double G = total_flux / *inlet_b3_pt;
 
     double b;
     double dbdt;
     upper_wall_fct(x, b, dbdt);
 
-    flux = dpdx * (b * b * b);
+    flux = -G * pow(b, 3.0) / 12;
   }
 
   void get_outlet_flux_bc(const Vector<double>& x, double& flux)
   {
     /// At the inlet we set the pressure gradient which is dependent on the
-    /// upper wall function, inlet_area and total flux
+    /// upper wall function, inlet_b3 and total flux
 
-    double dpdx = -total_flux / *outlet_area_pt;
+    double G = total_flux / *outlet_b3_pt;
 
     double b;
     double dbdt;
     upper_wall_fct(x, b, dbdt);
 
-    flux = dpdx * (b * b * b);
+    flux = G * pow(b, 3.0) / 12;
   }
 
 } // namespace problem_parameter
@@ -139,6 +139,10 @@ private:
 
   /// Pointer to the info mesh
   Mesh* Info_mesh_pt;
+
+  /// Pointers to the inlet and outlet integral data
+  Data* Inlet_integral_data_pt;
+  Data* Outlet_integral_data_pt;
 };
 
 template<class ELEMENT>
@@ -196,10 +200,10 @@ void HeleShawChannelProblem<ELEMENT>::generate_mesh()
 template<class ELEMENT>
 void HeleShawChannelProblem<ELEMENT>::generate_bulk_mesh()
 {
-  unsigned n_x = 10;
-  unsigned n_y = 10;
-  double l_x = 4.0;
-  double l_y = 2.0;
+  unsigned n_x = 20;
+  unsigned n_y = 20;
+  double l_x = 1.0;
+  double l_y = 1.0;
 
   this->Bulk_mesh_pt =
     new SimpleRectangularQuadMesh<ELEMENT>(n_x, n_y, l_x, l_y);
@@ -211,9 +215,10 @@ void HeleShawChannelProblem<ELEMENT>::generate_info_mesh()
   this->Info_mesh_pt = new Mesh;
 
   unsigned number_of_values = 1;
-  Data* Inlet_integral_data_pt = new Data(number_of_values);
+  Inlet_integral_data_pt = new Data(number_of_values);
+  Outlet_integral_data_pt = new Data(number_of_values);
+
   this->Info_mesh_pt->add_element_pt(new InfoElement(Inlet_integral_data_pt));
-  Data* Outlet_integral_data_pt = new Data(number_of_values);
   this->Info_mesh_pt->add_element_pt(new InfoElement(Outlet_integral_data_pt));
 }
 
@@ -234,9 +239,7 @@ void HeleShawChannelProblem<ELEMENT>::generate_inlet_surface_mesh()
 
     HeleShawFluxElementWithInflowIntegral<ELEMENT>* flux_element_pt =
       new HeleShawFluxElementWithInflowIntegral<ELEMENT>(
-        bulk_element_pt,
-        face_index,
-        this->Info_mesh_pt->element_pt(0)->internal_data_pt(0));
+        bulk_element_pt, face_index, Inlet_integral_data_pt);
 
     this->Inlet_surface_mesh_pt->add_element_pt(flux_element_pt);
   }
@@ -259,9 +262,7 @@ void HeleShawChannelProblem<ELEMENT>::generate_outlet_surface_mesh()
 
     HeleShawFluxElementWithInflowIntegral<ELEMENT>* flux_element_pt =
       new HeleShawFluxElementWithInflowIntegral<ELEMENT>(
-        bulk_element_pt,
-        face_index,
-        this->Info_mesh_pt->element_pt(1)->internal_data_pt(0));
+        bulk_element_pt, face_index, Outlet_integral_data_pt);
 
     this->Outlet_surface_mesh_pt->add_element_pt(flux_element_pt);
   }
@@ -270,24 +271,24 @@ void HeleShawChannelProblem<ELEMENT>::generate_outlet_surface_mesh()
 template<class ELEMENT>
 void HeleShawChannelProblem<ELEMENT>::pin_data()
 {
-  unsigned n_boundary = this->Bulk_mesh_pt->nboundary();
-  bool pin_boundary[n_boundary] = {false};
-  pin_boundary[1] = true;
-  for (unsigned b = 0; b < n_boundary; b++)
-  {
-    if (pin_boundary[b])
-    {
-      unsigned n_node = this->Bulk_mesh_pt->nboundary_node(b);
-      for (unsigned n = 0; n < n_node; n++)
-      {
-        this->Bulk_mesh_pt->boundary_node_pt(b, n)->pin(0);
-      }
-    }
-  }
+  // unsigned n_boundary = this->Bulk_mesh_pt->nboundary();
+  // bool pin_boundary[n_boundary] = {false};
+  // pin_boundary[1] = true;
+  // for (unsigned b = 0; b < n_boundary; b++)
+  //{
+  //  if (pin_boundary[b])
+  //  {
+  //    unsigned n_node = this->Bulk_mesh_pt->nboundary_node(b);
+  //    for (unsigned n = 0; n < n_node; n++)
+  //    {
+  //      this->Bulk_mesh_pt->boundary_node_pt(b, n)->pin(0);
+  //    }
+  //  }
+  //}
 
   unsigned index = 0;
-  this->Info_mesh_pt->element_pt(0)->internal_data_pt(0)->unpin(index);
-  this->Info_mesh_pt->element_pt(1)->internal_data_pt(0)->unpin(index);
+  Inlet_integral_data_pt->unpin(index);
+  Outlet_integral_data_pt->unpin(index);
 }
 
 template<class ELEMENT>
@@ -309,10 +310,8 @@ void HeleShawChannelProblem<ELEMENT>::upcast_and_finalise_elements()
 
   /// Info mesh
   unsigned index = 0;
-  problem_parameter::inlet_area_pt =
-    this->Info_mesh_pt->element_pt(0)->internal_data_pt(0)->value_pt(index);
-  problem_parameter::outlet_area_pt =
-    this->Info_mesh_pt->element_pt(1)->internal_data_pt(0)->value_pt(index);
+  problem_parameter::inlet_b3_pt = Inlet_integral_data_pt->value_pt(index);
+  problem_parameter::outlet_b3_pt = Outlet_integral_data_pt->value_pt(index);
 
   /// Inlet mesh
   // Find number of elements in mesh
@@ -328,7 +327,7 @@ void HeleShawChannelProblem<ELEMENT>::upcast_and_finalise_elements()
         this->Inlet_surface_mesh_pt->element_pt(i));
 
     // Set the Neumann function pointer
-    el_pt->flux_fct_pt() = &problem_parameter::get_inlet_flux_bc;
+    el_pt->flux_fct_pt() = problem_parameter::get_inlet_flux_bc;
   }
 
   /// Outlet mesh
@@ -345,7 +344,7 @@ void HeleShawChannelProblem<ELEMENT>::upcast_and_finalise_elements()
         this->Outlet_surface_mesh_pt->element_pt(i));
 
     // Set the Neumann function pointer
-    el_pt->flux_fct_pt() = &problem_parameter::get_outlet_flux_bc;
+    el_pt->flux_fct_pt() = problem_parameter::get_outlet_flux_bc;
   }
 }
 
@@ -356,45 +355,40 @@ void HeleShawChannelProblem<ELEMENT>::set_boundary_conditions()
   // bool set_boundary[n_boundary] = {false};
   // set_boundary[1] = true;
   // for (unsigned b = 0; b < n_boundary; b++)
-  //{
-  //  if (set_boundary[b])
-  //  {
-  //    unsigned n_node = this->Bulk_mesh_pt->nboundary_node(b);
-  //    for (unsigned n = 0; n < n_node; n++)
-  //    {
-  //      Node* node_pt = this->Bulk_mesh_pt->boundary_node_pt(b, n);
-  //      double value = 0.0;
-  //      Vector<double> x(2);
-  //      x[0] = node_pt->x(0);
-  //      x[1] = node_pt->x(1);
-  //      problem_parameter::get_dirichlet_bc(x, value);
-  //      node_pt->set_value(0, value);
-  //    }
-  //  }
-  //}
+  // {
+  //   if (set_boundary[b])
+  //   {
+  //     unsigned n_node = this->Bulk_mesh_pt->nboundary_node(b);
+  //     for (unsigned n = 0; n < n_node; n++)
+  //     {
+  //       Node* node_pt = this->Bulk_mesh_pt->boundary_node_pt(b, n);
+  //       double value = 0.0;
+  //       Vector<double> x(2);
+  //       x[0] = node_pt->x(0);
+  //       x[1] = node_pt->x(1);
+  //       problem_parameter::get_dirichlet_bc(x, value);
+  //       node_pt->set_value(0, value);
+  //     }
+  //   }
+  // }
 
-  /// Pin a single node in the bulk mesh
-  /// Pinning the zeroth node on the zeroth boundary
-  const unsigned b = 0;
-  const unsigned n = 0;
-  Node* node_pt = this->Bulk_mesh_pt->boundary_node_pt(b, n);
-  double value = 0.0;
-  Vector<double> x(2);
-  x[0] = node_pt->x(0);
-  x[1] = node_pt->x(1);
-  problem_parameter::get_dirichlet_bc(x, value);
-  node_pt->set_value(0, value);
-
-  cout << "Integral info mesh" << endl;
-  /// Integral info mesh
-  const unsigned value_index = 0;
-  for (unsigned index = 0; index < 2; index++)
+  /// Single point Dirichlet boundary condition though not on boundary
+  unsigned i_element = 0;
+  unsigned i_node = 0;
+  bool is_node_on_boundary = true;
+  Node* node_pt;
+  while (is_node_on_boundary)
   {
-    cout << "index: " << index << endl;
-    /// Integral value must be initialised to something non-zero
-    this->Info_mesh_pt->element_pt(index)->internal_data_pt(0)->set_value(
-      value_index, 1.0);
+    node_pt = dynamic_cast<ELEMENT*>(Bulk_mesh_pt->element_pt(i_element))
+                ->node_pt(i_node);
+    is_node_on_boundary = node_pt->is_on_boundary();
+    i_element++;
   }
+  node_pt->set_value(0, 0.0);
+  node_pt->pin(0);
+
+  Inlet_integral_data_pt->set_value(0, 1.0);
+  Outlet_integral_data_pt->set_value(0, 1.0);
 }
 
 template<class ELEMENT>
@@ -420,14 +414,10 @@ void HeleShawChannelProblem<ELEMENT>::save_integral_to_file(
   ofstream& output_stream, string filename)
 {
   output_stream.open(filename.c_str());
-  double my_integral = 0.0;
-  for (unsigned index = 0; index < 2; index++)
-  {
-    my_integral =
-      this->Info_mesh_pt->element_pt(index)->internal_data_pt(0)->value(0);
-    output_stream << "Integral " << index << "= " << setprecision(17)
-                  << my_integral << endl;
-  }
+  output_stream << "Integral " << 0 << "= " << setprecision(17)
+                << Inlet_integral_data_pt->value(0) << endl;
+  output_stream << "Integral " << 1 << "= " << setprecision(17)
+                << Outlet_integral_data_pt->value(0) << endl;
   output_stream.close();
 }
 
