@@ -7,6 +7,7 @@ namespace oomph
                                                   const double& width,
                                                   const double& volume,
                                                   const double& Q,
+                                                  const double& aspect_ratio,
                                                   double& length_ratio,
                                                   double& pressure_ratio,
                                                   double& velocity_ratio,
@@ -24,14 +25,13 @@ namespace oomph
     /// Ratios of old to new
     length_ratio = 0.5;
     pressure_ratio = 12;
-    velocity_ratio = pow(2.0, 4.0) / (pow(40.0, 2.0) * (G * 0.5));
     time_ratio = 1;
 
     /// New parameters
     new_r = r * length_ratio;
     new_width = width * length_ratio;
     new_volume = volume * length_ratio * length_ratio;
-    new_Ca = Q / velocity_ratio;
+    new_Ca = Q * aspect_ratio / 2;
   }
 
 } // namespace oomph
