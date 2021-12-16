@@ -51,10 +51,10 @@ IntegralProblem<ELEMENT>::IntegralProblem(
   this->upcast_and_finalise_elements();
 
   // Setup equation numbering scheme
-  cout << "Number of unknowns: " << endl;
-  cout << this->ndof() << endl;
   cout << "Number of equations: " << endl;
   cout << this->assign_eqn_numbers() << endl;
+  cout << "Number of unknowns: " << endl;
+  cout << this->ndof() << endl;
 }
 
 template<class ELEMENT>
@@ -62,7 +62,7 @@ void IntegralProblem<ELEMENT>::generate_mesh()
 {
   unsigned n_x = 80;
   unsigned n_y = 20;
-  double l_x = 4.0;
+  double l_x = 2.0;
   double l_y = 1.0;
   this->Integral_mesh_pt =
     new SimpleRectangularQuadMesh<ELEMENT>(n_x, n_y, l_x, l_y);
