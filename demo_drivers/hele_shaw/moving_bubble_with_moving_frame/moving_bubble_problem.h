@@ -11,6 +11,8 @@
 
 #include "moving_bubble_parameters.h"
 #include "my_constraint_elements.h"
+#include "my_constraint_elements_com.h"
+#include "integral_problem.h"
 
 namespace oomph
 {
@@ -31,6 +33,8 @@ namespace oomph
     };
 
   private:
+    DocInfo Doc_info;
+
     TriangleMeshPolygon* Outer_boundary_polygon_pt;
     TriangleMeshPolygon* Surface_polygon_pt;
 
@@ -61,7 +65,7 @@ namespace oomph
     /// Functions
   public:
     /// Constructor
-    RelaxingBubbleProblem();
+    RelaxingBubbleProblem(DocInfo& doc_info);
 
     /// Destructor
     ~RelaxingBubbleProblem() {}
@@ -103,6 +107,8 @@ namespace oomph
 
     void actions_before_implicit_timestep();
 
+    void actions_after_newton_step();
+
     void doc_fluid_mesh(string filename);
     void doc_surface_mesh(string filename);
     void doc_volume(string filename);
@@ -125,7 +131,8 @@ namespace oomph
   };
 
   template<class ELEMENT>
-  RelaxingBubbleProblem<ELEMENT>::RelaxingBubbleProblem()
+  RelaxingBubbleProblem<ELEMENT>::RelaxingBubbleProblem(DocInfo& doc_info)
+    : Doc_info(doc_info)
   {
     cout << "Constructor" << endl;
     bool adaptive_timestepping = false;
@@ -198,19 +205,37 @@ namespace oomph
         max_adapt = 0;
       }
 
-      DoubleVector residuals;
-      DenseDoubleMatrix jacobian;
-      DoubleVector residualsFD;
-      DenseDoubleMatrix jacobianFD(ndof());
+      // DoubleVector residuals;
+      // DenseDoubleMatrix jacobian;
+      // DoubleVector residualsFD;
+      // DenseDoubleMatrix jacobianFD(ndof());
+      // DenseDoubleMatrix jacobian_error(ndof());
 
       // cout << "Get Jacobian" << endl;
       // get_jacobian(residuals, jacobian);
       // get_fd_jacobian(residualsFD, jacobianFD);
 
-      // for (unsigned i = 0; i < ndof()-1; i++)
+      // for (unsigned i = 0; i < ndof(); i++)
+      // {
+      //   for (unsigned j = 0; j < ndof(); j++)
+      //   {
+      //     jacobian_error(i, j) = jacobian(i, j) - jacobianFD(i, j);
+
+      //     if (abs(jacobian_error(i, j)) > 1e-3)
+      //     {
+      //       printf("i: %4u, j: %4u, act: %8.5f, exp: %8.5f \n",
+      //              i,
+      //              j,
+      //              jacobian(i, j),
+      //              jacobianFD(i, j));
+      //     }
+      //   }
+      // }
+
+      // for (unsigned i = 0; i < ndof(); i++)
       //{
       //  printf("i: %4u", i);
-      //  for (unsigned j = ndof()-1 - 4; j < ndof()-1; j++)
+      //  for (unsigned j = ndof() - 1 - 4; j < ndof(); j++)
       //  {
       //    printf(", act: %8.5f, exp: %8.5f", jacobian(j, i), jacobianFD(j,
       //    i));
@@ -231,7 +256,8 @@ namespace oomph
       if (is_first_step)
       {
         is_first_step = false;
-        unsteady_newton_solve(t_step, 4, is_first_step);
+        // unsteady_newton_solve(t_step, 4, is_first_step);
+        unsteady_newton_solve(t_step, 0, is_first_step);
       }
       else
       {
@@ -246,7 +272,7 @@ namespace oomph
   template<class ELEMENT>
   void RelaxingBubbleProblem<ELEMENT>::create_outer_boundary_polygon()
   {
-    double domain_length = 4.0;
+    double domain_length = 2.0;
     double domain_width = 1.0;
 
     /// Create a mesh curve section for each boundary
@@ -415,7 +441,6 @@ namespace oomph
     create_inlet_surface_mesh();
     Outlet_surface_mesh_pt = new Mesh;
     create_outlet_surface_mesh();
-    cout << "ODE" << endl;
     ODE_mesh_pt = new Mesh;
     create_ode_mesh();
     Info_mesh_pt = new Mesh;
@@ -423,7 +448,6 @@ namespace oomph
     X_mom_constraint_mesh_pt = new Mesh;
     create_x_mom_constraint_mesh();
 
-    cout << "add_sub_mesh" << endl;
     add_sub_mesh(Fluid_mesh_pt);
     add_sub_mesh(Surface_mesh_pt);
     add_sub_mesh(Volume_mesh_pt);
@@ -433,6 +457,7 @@ namespace oomph
     add_sub_mesh(Flux_mesh_pt);
     add_sub_mesh(ODE_mesh_pt);
     add_sub_mesh(Info_mesh_pt);
+    add_sub_mesh(X_mom_constraint_mesh_pt);
 
     cout << "build global mesh" << endl;
     build_global_mesh();
@@ -586,11 +611,12 @@ namespace oomph
   template<class ELEMENT>
   void RelaxingBubbleProblem<ELEMENT>::create_x_mom_constraint_mesh()
   {
-    MyConstraintElement* x_mom_constraint_element =
-      new MyConstraintElement(&moving_bubble::target_fluid_volume,
-                              X_mom_data_pt->value_pt(0),
-                              Frame_speed_data_pt,
-                              0);
+    MyConstraintElementCoM* x_mom_constraint_element =
+      new MyConstraintElementCoM(&moving_bubble::bubble_initial_centre_x,
+                                 X_mom_data_pt->value_pt(0),
+                                 Volume_data_pt->value_pt(0),
+                                 Frame_speed_data_pt,
+                                 0);
 
     this->X_mom_constraint_mesh_pt->add_element_pt(x_mom_constraint_element);
   }
@@ -611,7 +637,10 @@ namespace oomph
   {
     bool fd_jacobian = true;
 
+    cout << "global" << endl;
     moving_bubble::bubble_pressure_pt = Bubble_pressure_data_pt->value_pt(0);
+    moving_bubble::global_frame_speed_pt = Frame_speed_data_pt->value_pt(0);
+    moving_bubble::global_frame_travel_pt = Frame_travel_data_pt->value_pt(0);
 
     /// Set fluid mesh function pointers
     unsigned n_element = Fluid_mesh_pt->nelement();
@@ -623,10 +652,11 @@ namespace oomph
       // Set the constitutive law for pseudo-elastic mesh deformation
       el_pt->constitutive_law_pt() = moving_bubble::constitutive_law_pt;
       el_pt->upper_wall_fct_pt() = moving_bubble::upper_wall_fct;
-      el_pt->add_volume_data_pt(Volume_data_pt);
-      el_pt->add_x_mom_data_pt(X_mom_data_pt);
-      el_pt->add_external_data(Bubble_pressure_data_pt, fd_jacobian);
+      el_pt->add_external_data(Volume_data_pt, fd_jacobian);
       el_pt->add_external_data(X_mom_data_pt, fd_jacobian);
+      el_pt->add_external_data(Bubble_pressure_data_pt, fd_jacobian);
+      el_pt->add_external_data(Frame_speed_data_pt, fd_jacobian);
+      el_pt->add_external_data(Frame_travel_data_pt, fd_jacobian);
     }
 
     n_element = Surface_mesh_pt->nelement();
@@ -639,7 +669,8 @@ namespace oomph
       interface_element_pt->st_pt() = &moving_bubble::st;
       interface_element_pt->aspect_ratio_pt() = &moving_bubble::alpha;
       interface_element_pt->upper_wall_fct_pt() = moving_bubble::upper_wall_fct;
-      interface_element_pt->wall_speed_fct_pt() = moving_bubble::wall_speed_fct;
+      interface_element_pt->wall_speed_fct_pt() =
+        moving_bubble::frame_speed_fct;
       interface_element_pt->bubble_pressure_fct_pt() =
         moving_bubble::bubble_pressure_fct;
 
@@ -647,6 +678,9 @@ namespace oomph
       interface_element_pt->add_external_data(Bubble_pressure_data_pt,
                                               fd_jacobian);
       interface_element_pt->add_external_data(X_mom_data_pt, fd_jacobian);
+      interface_element_pt->add_external_data(Frame_speed_data_pt, fd_jacobian);
+      interface_element_pt->add_external_data(Frame_travel_data_pt,
+                                              fd_jacobian);
     }
 
     // Get node
@@ -666,17 +700,20 @@ namespace oomph
 
     vol_constraint_element->add_external_data(Volume_data_pt, fd_jacobian);
 
-    MyConstraintElement* x_mom_constraint_element =
-      dynamic_cast<MyConstraintElement*>(
+    cout << "x mom" << endl;
+    MyConstraintElementCoM* x_mom_constraint_element =
+      dynamic_cast<MyConstraintElementCoM*>(
         X_mom_constraint_mesh_pt->element_pt(i_element));
 
     x_mom_constraint_element->add_external_data(X_mom_data_pt, fd_jacobian);
-
+    x_mom_constraint_element->add_external_data(Volume_data_pt, fd_jacobian);
+    x_mom_constraint_element->add_external_data(Frame_travel_data_pt,
+                                                fd_jacobian);
     /// Info mesh
     unsigned index = 0;
-    moving_bubble::inlet_area_pt =
+    moving_bubble::inlet_b3_pt =
       this->Flux_mesh_pt->element_pt(0)->internal_data_pt(0)->value_pt(index);
-    moving_bubble::outlet_area_pt =
+    moving_bubble::outlet_b3_pt =
       this->Flux_mesh_pt->element_pt(1)->internal_data_pt(0)->value_pt(index);
 
     /// Inlet mesh
@@ -694,6 +731,7 @@ namespace oomph
 
       // Set the Neumann function pointer
       el_pt->flux_fct_pt() = &moving_bubble::get_inlet_flux_bc;
+      el_pt->add_external_data(Frame_speed_data_pt, fd_jacobian);
     }
 
     /// Outlet mesh
@@ -711,6 +749,7 @@ namespace oomph
 
       // Set the Neumann function pointer
       el_pt->flux_fct_pt() = &moving_bubble::get_outlet_flux_bc;
+      el_pt->add_external_data(Frame_speed_data_pt, fd_jacobian);
     }
   }
 
@@ -758,17 +797,20 @@ namespace oomph
     } // end loop over boundaries
 
     /// Single point Dirichlet boundary condition though not on boundary
-    unsigned i_element = 0;
-    unsigned i_node = 0;
-    bool is_node_on_boundary = true;
-    Node* node_pt;
-    while (is_node_on_boundary)
-    {
-      node_pt = dynamic_cast<ELEMENT*>(Fluid_mesh_pt->element_pt(i_element))
-                  ->node_pt(i_node);
-      is_node_on_boundary = node_pt->is_on_boundary();
-      i_element++;
-    }
+    // unsigned i_element = 0;
+    // unsigned i_node = 0;
+    // bool is_node_on_boundary = true;
+    // Node* node_pt;
+    // while (is_node_on_boundary)
+    //{
+    //  node_pt = dynamic_cast<ELEMENT*>(Fluid_mesh_pt->element_pt(i_element))
+    //              ->node_pt(i_node);
+    //  is_node_on_boundary = node_pt->is_on_boundary();
+    //  i_element++;
+    //}
+    // node_pt->set_value(0, fixed_pressure);
+    // node_pt->pin(0);
+    Node* node_pt = Fluid_mesh_pt->boundary_node_pt(Right_boundary_id, 0);
     node_pt->set_value(0, fixed_pressure);
     node_pt->pin(0);
 
@@ -803,12 +845,15 @@ namespace oomph
     Bubble_pressure_data_pt->set_value(0, 16.0 / 3.0);
     Bubble_pressure_data_pt->unpin(0);
 
+    cout << "Frame_speed_data_pt" << endl;
     Frame_speed_data_pt->set_value(0, 0.0);
-    Frame_speed_data_pt->pin(0);
+    Frame_speed_data_pt->unpin(0);
 
+    cout << "Frame_travel_data_pt" << endl;
     Frame_travel_data_pt->set_value(0, 0.0);
     Frame_travel_data_pt->unpin(0);
 
+    cout << "Leading_x_data_pt" << endl;
     Leading_x_data_pt->set_value(0, 0.0);
     Leading_x_data_pt->unpin(0);
 
@@ -886,6 +931,8 @@ namespace oomph
 
     Volume_data_pt = new Data(1);
     Bubble_pressure_data_pt = new Data(1);
+    Frame_speed_data_pt = new Data(1);
+    X_mom_data_pt = new Data(1);
     create_surface_mesh();
     create_volume_mesh();
     create_volume_constraint_mesh();
@@ -914,8 +961,20 @@ namespace oomph
   template<class ELEMENT>
   void RelaxingBubbleProblem<ELEMENT>::actions_before_implicit_timestep()
   {
-    double t = time();
-    Frame_speed_data_pt->set_value(0, 1.0);
+    // double t = time();
+    // Frame_speed_data_pt->set_value(0, -0.1);
+    IntegralProblem<QIntegralElement<3>> integral_problem(
+      moving_bubble::channel_depth);
+    integral_problem.newton_solve();
+    moving_bubble::total_volume = integral_problem.result();
+    cout << "Total volume: " << moving_bubble::total_volume << endl;
+  }
+
+  template<class ELEMENT>
+  void RelaxingBubbleProblem<ELEMENT>::actions_after_newton_step()
+  {
+    // doc_solution(Doc_info);
+    // Doc_info.number()++;
   }
 
   template<class ELEMENT>

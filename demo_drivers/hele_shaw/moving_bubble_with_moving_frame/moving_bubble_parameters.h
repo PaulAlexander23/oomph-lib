@@ -13,18 +13,17 @@ namespace moving_bubble
   double alpha;
 
   /// Total flux has be nondimensionalised to 1
-  double total_flux;
-  // const double total_flux = 1.0;
+  const double total_flux = 1.0;
 
   /// Bubble's initial condition
   double major_radius;
-  const double bubble_initial_centre_x = 0.5;
+  double bubble_initial_centre_x = 1.0;
   double bubble_initial_centre_y;
 
   /// Channel perturbation parameters
   double perturbation_amplitude;
   double perturbation_rms_width;
-  const double perturbation_centre_x = 2.0;
+  const double perturbation_centre_x = 1.5;
   const double perturbation_centre_y = 0.5;
 
   /// Volume pointers
@@ -48,9 +47,9 @@ namespace moving_bubble
   /// Bubble pressure pointer
   double* bubble_pressure_pt = 0;
 
-  /// Flux area pointers
-  double* inlet_area_pt = 0;
-  double* outlet_area_pt = 0;
+  /// Flux b3 pointers
+  double* inlet_b3_pt = 0;
+  double* outlet_b3_pt = 0;
 
   /// Moving Bubble Problem Parameter --- Functions
 
@@ -63,8 +62,8 @@ namespace moving_bubble
 
     b = 1.0 -
         perturbation_amplitude *
-          exp(-(local_x - perturbation_centre_x - (*global_frame_travel_pt)) *
-                (local_x - perturbation_centre_x - (*global_frame_travel_pt)) /
+          exp(-(local_x - (perturbation_centre_x - *global_frame_travel_pt)) *
+                (local_x - (perturbation_centre_x - *global_frame_travel_pt)) /
                 (2 * perturbation_rms_width * perturbation_rms_width) -
               (local_y - perturbation_centre_y) *
                 (local_y - perturbation_centre_y) /
@@ -84,10 +83,10 @@ namespace moving_bubble
     dbdt = 0.0;
   }
 
-  // Wall speed function or moving reference frame speed function
-  void wall_speed_fct(const Vector<double>& x, Vector<double>& U_frame)
+  // Moving reference frame speed function
+  void frame_speed_fct(const Vector<double>& x, Vector<double>& U_frame)
   {
-    U_frame[0] = -(*global_frame_speed_pt);
+    U_frame[0] = (*global_frame_speed_pt);
     U_frame[1] = 0.0;
   }
 
@@ -101,29 +100,34 @@ namespace moving_bubble
   void get_inlet_flux_bc(const Vector<double>& x, double& flux)
   {
     /// At the inlet we set the pressure gradient which is dependent on the
-    /// upper wall function, inlet_area and total flux
-
-    double dpdx = total_flux / *inlet_area_pt - *global_frame_speed_pt;
+    /// upper wall function, inlet_b3 and total flux
+    const double inlet_area = 1.0;
+    double total_inlet_flux =
+      total_flux - inlet_area * (*global_frame_speed_pt);
+    double dpdx = total_inlet_flux / *inlet_b3_pt;
 
     double b;
     double dbdt;
     upper_wall_fct(x, b, dbdt);
 
-    flux = dpdx * (b * b * b);
+    flux = dpdx * (b * b * b) / 12;
   }
 
   /// Outlet boundary condition
   void get_outlet_flux_bc(const Vector<double>& x, double& flux)
   {
     /// At the inlet we set the pressure gradient which is dependent on the
-    /// upper wall function, inlet_area and total flux
-    double dpdx = -total_flux / *outlet_area_pt + *global_frame_speed_pt;
+    /// upper wall function, inlet_b3 and total flux
+    const double outlet_area = 1.0;
+    double total_outlet_flux =
+      - total_flux + outlet_area * (*global_frame_speed_pt);
+    double dpdx = total_outlet_flux / *outlet_b3_pt;
 
     double b;
     double dbdt;
     upper_wall_fct(x, b, dbdt);
 
-    flux = dpdx * (b * b * b);
+    flux = dpdx * (b * b * b) / 12;
   }
 
   void print_parameters()
