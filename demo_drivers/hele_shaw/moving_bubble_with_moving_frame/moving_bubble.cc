@@ -35,7 +35,7 @@ int main(int argc, char* argv[])
   const double circular_radius = 0.46;
   const double volume =
     MathematicalConstants::Pi * circular_radius * circular_radius;
-  double Q = 0.025;
+  double Q = 0.05;
 
   CommandLineArgs::specify_command_line_flag("-q", &Q, "Channel flux, Q");
 
@@ -47,11 +47,13 @@ int main(int argc, char* argv[])
   double new_width;
   double new_volume;
   double new_Ca;
+  moving_bubble::alpha = 40.0;
 
   convert_to_capillary_nondimensionalisation(major_radius,
                                              width,
                                              volume,
                                              Q,
+                                             moving_bubble::alpha,
                                              length_ratio,
                                              pressure_ratio,
                                              velocity_ratio,
@@ -61,9 +63,8 @@ int main(int argc, char* argv[])
                                              new_volume,
                                              new_Ca);
   moving_bubble::major_radius = new_r;
-  moving_bubble::ca_inv = 1.0 / new_Ca;
+  moving_bubble::ca_inv = 0.5;//1.0 / new_Ca;
   moving_bubble::st = 1.0;
-  moving_bubble::alpha = 40.0;
   moving_bubble::nu = 0.3;
 
   moving_bubble::bubble_initial_centre_y = 0.5 * (1 + 0.01);
@@ -78,9 +79,6 @@ int main(int argc, char* argv[])
 
   moving_bubble::global_frame_travel_pt = new double;
   *moving_bubble::global_frame_travel_pt = 0.0;
-
-  /// Test with no flux
-  moving_bubble::total_flux = 1.0;
 
   IntegralProblem<QIntegralElement<3>> integral_problem(
     moving_bubble::channel_depth);
@@ -99,7 +97,7 @@ int main(int argc, char* argv[])
   /// Create problem
   // RelaxingBubbleProblem<ProjectableHeleShawElementWithSolidFaces<3>> problem;
   // RelaxingBubbleProblem<HeleShawWithErrorElement> problem;
-  RelaxingBubbleProblem<MyNewElement> problem;
+  RelaxingBubbleProblem<MyNewElementWithIntegral> problem(doc_info);
 
   bool run_self_test = false;
   if (run_self_test)
@@ -114,8 +112,8 @@ int main(int argc, char* argv[])
   /// Solve for initial conditions
   problem.solve_for_initial_conditions(doc_info);
 
-  double dt = 1e-2;
-  double tF = 2e0 - dt;
+  double dt = 3e-2;
+  double tF = 3e0;
 
   // Problem* problem_pt = new RelaxingBubbleProblem<MyNewElementWithIntegral>;
   // DoubleVector result;
