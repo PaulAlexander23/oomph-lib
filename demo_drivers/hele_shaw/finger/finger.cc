@@ -43,10 +43,13 @@ int main(int argc, char* argv[])
   double new_volume;
   double new_Ca;
 
+  finger::alpha = 40.0;
+
   convert_to_capillary_nondimensionalisation(major_radius,
                                              width,
                                              volume,
                                              Q,
+                                             finger::alpha,
                                              length_ratio,
                                              pressure_ratio,
                                              velocity_ratio,
@@ -58,7 +61,6 @@ int main(int argc, char* argv[])
   finger::major_radius = new_r;
   finger::ca_inv = 1.0 / new_Ca;
   finger::st = 1.0;
-  finger::alpha = 40.0;
   finger::nu = 0.3;
 
   finger::bubble_initial_centre_y = 0.5 + 0.005;
@@ -66,21 +68,22 @@ int main(int argc, char* argv[])
   finger::perturbation_amplitude = 0.0;
   finger::perturbation_rms_width = new_width;
 
-  finger::target_bubble_volume = new_volume;
+  // finger::target_bubble_volume = 0.01; // new_volume;
   // Create generalised Hookean constitutive equations
   finger::constitutive_law_pt = new GeneralisedHookean(&finger::nu);
 
-  //IntegralProblem<QIntegralElement<3>> integral_problem(finger::channel_depth);
-  //integral_problem.newton_solve();
-  //integral_problem.doc_solution(doc_info);
-  //finger::total_volume = integral_problem.result();
+  // IntegralProblem<QIntegralElement<3>>
+  // integral_problem(finger::channel_depth); integral_problem.newton_solve();
+  // integral_problem.doc_solution(doc_info);
+  // finger::total_volume = integral_problem.result();
 
+  finger::target_bubble_volume = MathematicalConstants::Pi * pow(finger::finger_width, 2.0) / 2;
   finger::total_volume = 1.0;
 
   finger::target_fluid_volume =
     (finger::total_volume) - (finger::target_bubble_volume);
 
-  finger::total_flux = 0.0;
+  finger::total_flux = 1.0;
 
   /// Print the parameters
   finger::print_parameters();
@@ -101,8 +104,8 @@ int main(int argc, char* argv[])
   /// Solve for initial conditions
   problem.solve_for_initial_conditions(doc_info);
 
-  double dt = 1e-2;
-  double tF = 1e0;
+  double dt = 1e-4;
+  double tF = 1e-2;
 
   /// Iterate the timestepper using the fixed time step until the final time
   problem.iterate_timestepper(dt, tF, doc_info);
