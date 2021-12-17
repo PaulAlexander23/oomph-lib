@@ -14,9 +14,10 @@ namespace finger
 
   /// Total flux has be nondimensionalised to 1
   double total_flux;
+  const double injection_rate = 0.5;
 
   /// Finger inlet width
-  const double finger_width = 0.8;
+  const double finger_width = 0.5;
 
   /// Bubble's initial condition
   double major_radius;
@@ -44,9 +45,10 @@ namespace finger
   /// Bubble pressure pointer
   double* bubble_pressure_pt = 0;
 
-  /// Flux area pointers
-  double* inlet_area_pt = 0;
-  double* outlet_area_pt = 0;
+  /// Flux b3 pointers
+  double* top_inlet_b3_pt = 0;
+  double* bottom_inlet_b3_pt = 0;
+  double* outlet_b3_pt = 0;
 
   /// Moving Bubble Problem Parameter --- Functions
 
@@ -57,13 +59,14 @@ namespace finger
     double local_x = x[0];
     double local_y = x[1];
 
-    b = 1.0 - perturbation_amplitude *
-                exp(-(local_x - perturbation_centre_x) *
-                      (local_x - perturbation_centre_x) /
-                      (2 * perturbation_rms_width * perturbation_rms_width) -
-                    (local_y - perturbation_centre_y) *
-                      (local_y - perturbation_centre_y) /
-                      (2 * perturbation_rms_width * perturbation_rms_width));
+    b = 1.0;
+    //- perturbation_amplitude *
+    //   exp(-(local_x - perturbation_centre_x) *
+    //         (local_x - perturbation_centre_x) /
+    //         (2 * perturbation_rms_width * perturbation_rms_width) -
+    //       (local_y - perturbation_centre_y) *
+    //         (local_y - perturbation_centre_y) /
+    //         (2 * perturbation_rms_width * perturbation_rms_width));
   }
 
   /// Channel depth with rate of change
@@ -87,38 +90,53 @@ namespace finger
   }
 
   /// Inlet flux boundary condition
-  void get_inlet_flux_bc(const Vector<double>& x, double& flux)
+  void get_top_inlet_flux_bc(const Vector<double>& x, double& flux)
   {
     /// At the inlet we set the pressure gradient which is dependent on the
-    /// upper wall function, inlet_area and total flux
+    /// upper wall function, inlet_b3 and total flux
 
-    double dpdx = total_flux / *inlet_area_pt;
+    double G = -total_flux / (*top_inlet_b3_pt * 2);
 
     double b;
     double dbdt;
     upper_wall_fct(x, b, dbdt);
 
-    flux = dpdx * (b * b * b);
+    flux = G * (b * b * b) / 12;
+  }
+
+  /// Inlet flux boundary condition
+  void get_bottom_inlet_flux_bc(const Vector<double>& x, double& flux)
+  {
+    /// At the inlet we set the pressure gradient which is dependent on the
+    /// upper wall function, inlet_b3 and total flux
+
+    double G = -total_flux / (*bottom_inlet_b3_pt * 2);
+
+    double b;
+    double dbdt;
+    upper_wall_fct(x, b, dbdt);
+
+    flux = G * (b * b * b) / 12;
   }
 
   /// Outlet boundary condition
   void get_outlet_flux_bc(const Vector<double>& x, double& flux)
   {
     /// At the inlet we set the pressure gradient which is dependent on the
-    /// upper wall function, inlet_area and total flux
-    double dpdx = -total_flux / *outlet_area_pt;
+    /// upper wall function, outlet_b3 and total flux
+    double G = total_flux / *outlet_b3_pt;
 
     double b;
     double dbdt;
     upper_wall_fct(x, b, dbdt);
 
-    flux = dpdx * (b * b * b);
+    flux = G * (b * b * b) / 12;
   }
 
   /// Time dependent fluid volume
   void target_fluid_volume_fct(const double& t, double& volume)
   {
-    volume = target_fluid_volume - total_flux * t;
+    volume = target_fluid_volume - injection_rate * 0;
   }
 
   /// Print parameters to the console
