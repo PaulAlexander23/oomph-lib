@@ -41,7 +41,7 @@ namespace oomph
 
   void InfoElement::add_data_pt(Data* const& data_pt)
   {
-    bool use_fd_for_jacobian = true;
+    bool use_fd_for_jacobian = false;
     this->add_internal_data(data_pt, use_fd_for_jacobian);
   }
 
@@ -63,6 +63,16 @@ namespace oomph
           /// from the right hand side of the equation
           residuals[local_eqn] +=
             -this->internal_data_pt(i_data)->value(i_value);
+        }
+
+        if (flag)
+        {
+          int external_unknown = this->external_local_eqn(i_data, i_value);
+          if (external_unknown >= 0)
+          {
+            jacobian(local_eqn, external_unknown) += 1.0;
+            cout << "hello!" << endl;
+          }
         }
       }
     }
