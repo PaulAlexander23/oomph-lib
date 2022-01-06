@@ -189,13 +189,14 @@ namespace oomph
       //  cout << "i: " << i << ", j: " << j << endl;
       //}
 
-
-      cout << "Unsteady Newton solve" << endl;
-      unsteady_newton_solve(t_step, max_adapt, is_first_step);
       if (is_first_step)
       {
         is_first_step = false;
+        max_adapt = 5;
       }
+
+      cout << "Unsteady Newton solve" << endl;
+      unsteady_newton_solve(t_step, max_adapt, is_first_step);
       Fluid_mesh_pt->set_lagrangian_nodal_coordinates();
 
       doc_solution(doc_info);
