@@ -12,16 +12,17 @@ using namespace std;
 namespace problem_parameter
 {
   double* global_time_pt = 0;
-  double* inlet_area_pt = 0;
+  double* inlet_b3_pt = 0;
+  double* outlet_b3_pt = 0;
+  const double total_flux = 1.0;
 
   void upper_wall_fct(const Vector<double>& x, double& b, double& dbdt)
   {
     double perturbation_height = 0.5;
     double rms_width = 0.1;
-    double acceleration = 1;
     double centre_x =
-      0.3 + (*global_time_pt) * (*global_time_pt) * acceleration;
-    double dcentre_xdt = (*global_time_pt) * acceleration;
+      0.5 - 3.0 * (pow(*global_time_pt, 2.0) / 2.0 - pow(*global_time_pt, 3.0) / 3.0);
+    double dcentre_xdt = -3.0 * *global_time_pt * (1.0 - *global_time_pt);
     double centre_y = 0.5;
 
     // Transform y such that the domain is between 0 and 1 rather than -1 and 1
@@ -47,15 +48,34 @@ namespace problem_parameter
     p = 0.0;
   }
 
-  void get_neumann_bc(const Vector<double>& x, double& dpdx)
+  void get_inlet_flux_bc(const Vector<double>& x, double& flux)
   {
     /// At the inlet we set the pressure gradient which is dependent on the
-    /// upper wall function, inlet_area and total flux
+    /// upper wall function, inlet_b3 and total flux
 
-    /// This is non-dimensionalised to 1
-    double total_flux = 1.0;
-    dpdx = total_flux / *inlet_area_pt;
+    double G = total_flux / *inlet_b3_pt;
+
+    double b;
+    double dbdt;
+    upper_wall_fct(x, b, dbdt);
+
+    flux = -G * pow(b, 3.0) / 12;
   }
+
+  void get_outlet_flux_bc(const Vector<double>& x, double& flux)
+  {
+    /// At the inlet we set the pressure gradient which is dependent on the
+    /// upper wall function, inlet_b3 and total flux
+
+    double G = total_flux / *outlet_b3_pt;
+
+    double b;
+    double dbdt;
+    upper_wall_fct(x, b, dbdt);
+
+    flux = G * pow(b, 3.0) / 12;
+  }
+
 
 } // namespace problem_parameter
 
@@ -83,9 +103,6 @@ public:
 private:
   /// Generate mesh
   void generate_mesh();
-
-  /// Create flux elements
-  void create_flux_elements(const unsigned& boundary);
 
   /// Generate mesh
   void assign_mesh();
@@ -116,14 +133,27 @@ private:
                              string filename,
                              unsigned n_points);
 
-  /// Pointer to the "bulk" mesh
+  /// Pointer to the bulk mesh
   SimpleRectangularQuadMesh<ELEMENT>* Bulk_mesh_pt;
 
-  /// Pointer to the "surface" mesh
-  Mesh* Surface_mesh_pt;
+  /// Pointer to the inlet meshes
+  Mesh* Inlet_surface_mesh_pt;
+  Mesh* Outlet_surface_mesh_pt;
 
   /// Pointer to the info mesh
   Mesh* Info_mesh_pt;
+
+  /// Pointers to the inlet and outlet integral data
+  Data* Inlet_integral_data_pt;
+  Data* Outlet_integral_data_pt;
+
+  enum
+  {
+    Lower_boundary,
+    Outlet_boundary,
+    Upper_boundary,
+    Inlet_boundary
+  };
 };
 
 template<class ELEMENT>
@@ -177,46 +207,62 @@ void HeleShawChannelProblem<ELEMENT>::generate_mesh()
   this->Bulk_mesh_pt = new SimpleRectangularQuadMesh<ELEMENT>(
     n_x, n_y, l_x, l_y, this->time_stepper_pt());
 
-  this->Surface_mesh_pt = new Mesh;
-
   cout << "create inlet data" << endl;
   /// Pointer to inlet integral data
   unsigned number_of_values = 1;
-  Data* Inlet_integral_data_pt = new Data(number_of_values);
   unsigned index = 0;
+  Inlet_integral_data_pt = new Data(number_of_values);
+  Outlet_integral_data_pt = new Data(number_of_values);
+
   Inlet_integral_data_pt->set_value(index, 1.0);
   Inlet_integral_data_pt->unpin(index);
-  problem_parameter::inlet_area_pt = Inlet_integral_data_pt->value_pt(index);
+  problem_parameter::inlet_b3_pt = Inlet_integral_data_pt->value_pt(index);
+
+  Outlet_integral_data_pt->set_value(index, 1.0);
+  Outlet_integral_data_pt->unpin(index);
+  problem_parameter::outlet_b3_pt = Outlet_integral_data_pt->value_pt(index);
 
   cout << "Add to info mesh" << endl;
   this->Info_mesh_pt = new Mesh;
   this->Info_mesh_pt->add_element_pt(new InfoElement(Inlet_integral_data_pt));
+  this->Info_mesh_pt->add_element_pt(new InfoElement(Outlet_integral_data_pt));
 
   cout << "Create flux elements" << endl;
-  const unsigned flux_boundary = 3;
-  this->create_flux_elements(flux_boundary);
-}
-
-template<class ELEMENT>
-void HeleShawChannelProblem<ELEMENT>::create_flux_elements(
-  const unsigned& boundary)
-{
-  unsigned n_element = this->Bulk_mesh_pt->nboundary_element(boundary);
+  this->Inlet_surface_mesh_pt = new Mesh;
+  unsigned n_element = this->Bulk_mesh_pt->nboundary_element(Inlet_boundary);
   for (unsigned n = 0; n < n_element; n++)
   {
     ELEMENT* bulk_element_pt = dynamic_cast<ELEMENT*>(
-      this->Bulk_mesh_pt->boundary_element_pt(boundary, n));
+      this->Bulk_mesh_pt->boundary_element_pt(Inlet_boundary, n));
 
-    int face_index = this->Bulk_mesh_pt->face_index_at_boundary(boundary, n);
+    int face_index =
+      this->Bulk_mesh_pt->face_index_at_boundary(Inlet_boundary, n);
 
     HeleShawFluxElementWithInflowIntegral<ELEMENT>* flux_element_pt =
       new HeleShawFluxElementWithInflowIntegral<ELEMENT>(
-        bulk_element_pt,
-        face_index,
-        this->Info_mesh_pt->element_pt(0)->internal_data_pt(0));
+        bulk_element_pt, face_index, Inlet_integral_data_pt);
 
-    this->Surface_mesh_pt->add_element_pt(flux_element_pt);
+    this->Inlet_surface_mesh_pt->add_element_pt(flux_element_pt);
   }
+
+  this->Outlet_surface_mesh_pt = new Mesh;
+  n_element = this->Bulk_mesh_pt->nboundary_element(Outlet_boundary);
+  cout << n_element << endl;
+  for (unsigned n = 0; n < n_element; n++)
+  {
+    ELEMENT* bulk_element_pt = dynamic_cast<ELEMENT*>(
+      this->Bulk_mesh_pt->boundary_element_pt(Outlet_boundary, n));
+
+    int face_index =
+      this->Bulk_mesh_pt->face_index_at_boundary(Outlet_boundary, n);
+
+    HeleShawFluxElementWithInflowIntegral<ELEMENT>* flux_element_pt =
+      new HeleShawFluxElementWithInflowIntegral<ELEMENT>(
+        bulk_element_pt, face_index, Outlet_integral_data_pt);
+
+    this->Outlet_surface_mesh_pt->add_element_pt(flux_element_pt);
+  }
+  cout << "Done" << endl;
 }
 
 template<class ELEMENT>
@@ -224,7 +270,8 @@ void HeleShawChannelProblem<ELEMENT>::assign_mesh()
 {
   cout << "Assign mesh" << endl;
   this->add_sub_mesh(this->Bulk_mesh_pt);
-  this->add_sub_mesh(this->Surface_mesh_pt);
+  this->add_sub_mesh(this->Inlet_surface_mesh_pt);
+  this->add_sub_mesh(this->Outlet_surface_mesh_pt);
   this->add_sub_mesh(this->Info_mesh_pt);
 
   this->build_global_mesh();
@@ -270,7 +317,7 @@ void HeleShawChannelProblem<ELEMENT>::setup_elements()
   }
 
   // Find number of elements in mesh
-  n_element = this->Surface_mesh_pt->nelement();
+  n_element = this->Inlet_surface_mesh_pt->nelement();
 
   // Loop over the elements to set up element-specific
   // things that cannot be handled by constructor
@@ -279,10 +326,26 @@ void HeleShawChannelProblem<ELEMENT>::setup_elements()
     // Upcast from GeneralElement to the present element
     HeleShawFluxElementWithInflowIntegral<ELEMENT>* el_pt =
       dynamic_cast<HeleShawFluxElementWithInflowIntegral<ELEMENT>*>(
-        this->Surface_mesh_pt->element_pt(i));
+        this->Inlet_surface_mesh_pt->element_pt(i));
 
     // Set the Neumann function pointer
-    el_pt->flux_fct_pt() = &problem_parameter::get_neumann_bc;
+    el_pt->flux_fct_pt() = problem_parameter::get_inlet_flux_bc;
+  }
+
+  // Find number of elements in mesh
+  n_element = this->Outlet_surface_mesh_pt->nelement();
+
+  // Loop over the elements to set up element-specific
+  // things that cannot be handled by constructor
+  for (unsigned i = 0; i < n_element; i++)
+  {
+    // Upcast from GeneralElement to the present element
+    HeleShawFluxElementWithInflowIntegral<ELEMENT>* el_pt =
+      dynamic_cast<HeleShawFluxElementWithInflowIntegral<ELEMENT>*>(
+        this->Outlet_surface_mesh_pt->element_pt(i));
+
+    // Set the Neumann function pointer
+    el_pt->flux_fct_pt() = problem_parameter::get_inlet_flux_bc;
   }
 }
 
@@ -399,7 +462,7 @@ int main(int argc, char* argv[])
   problem.solve_for_initial_conditions(doc_info);
 
   double dt = 0.1;
-  double tF = 0.5;
+  double tF = 1.0;
 
   /// Iterate the timestepper using the fixed time step until the final time
   problem.iterate_timestepper(dt, tF, doc_info);
