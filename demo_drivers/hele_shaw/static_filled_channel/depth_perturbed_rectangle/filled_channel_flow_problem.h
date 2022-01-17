@@ -1,105 +1,31 @@
-#include <iostream>
+#ifndef OOMPH_FILLED_CHANNEL_FLOW_PROBLEM_HEADER
+#define OOMPH_FILLED_CHANNEL_FLOW_PROBLEM_HEADER
 
 #include "generic.h"
-#include "meshes.h"
+//#include "meshes.h"
 #include "hele_shaw.h"
 #include "info_element.h"
-
-using namespace oomph;
-using namespace std;
-
-namespace problem_parameter
-{
-  double* inlet_area_pt = 0;
-  double* outlet_area_pt = 0;
-
-  /// This is non-dimensionalised to 1
-  const double total_flux = 1.0;
-
-  void upper_wall_fct(const Vector<double>& x, double& b, double& dbdt)
-  {
-    // double tape_height = 0.1;
-    // double tape_width = 0.4;
-    // double tape_sharpness = 40;
-    // double tape_centre_y = 0.5;
-
-    // double y = x[1];
-
-    // b = 1 - tape_height * 0.5 *
-    //          (tanh(tape_sharpness * (y - tape_centre_y + 0.5 * tape_width)) -
-    //           tanh(tape_sharpness * (y - tape_centre_y - 0.5 * tape_width)));
-
-    double height = 0.1;
-    double rms_width = 0.1;
-    double centre_x = 0.2;
-    double centre_y = 0.5;
-
-    // Transform y such that the domain is between 0 and 1 rather than -1 and 1
-    double local_x = x[0];
-    double local_y = x[1];
-    b = 1.0 - height * std::exp(-(local_x - centre_x) * (local_x - centre_x) /
-                                  (2 * rms_width * rms_width) -
-                                (local_y - centre_y) * (local_y - centre_y) /
-                                  (2 * rms_width * rms_width));
-    dbdt = 0.0;
-  }
-
-  void get_dirichlet_bc(const Vector<double>& x, double& p)
-  {
-    /// At the outlet we set the pressure to be zero
-    p = 0.0;
-  }
-
-  void get_inlet_flux_bc(const Vector<double>& x, double& flux)
-  {
-    /// At the inlet we set the pressure gradient which is dependent on the
-    /// upper wall function, inlet_area and total flux
-
-    double dpdx = total_flux / *inlet_area_pt;
-
-    double b;
-    double dbdt;
-    upper_wall_fct(x, b, dbdt);
-
-    flux = dpdx * (b * b * b);
-  }
-
-  void get_outlet_flux_bc(const Vector<double>& x, double& flux)
-  {
-    /// At the inlet we set the pressure gradient which is dependent on the
-    /// upper wall function, inlet_area and total flux
-
-    double dpdx = total_flux / *outlet_area_pt;
-
-    double b;
-    double dbdt;
-    upper_wall_fct(x, b, dbdt);
-
-    flux = dpdx * (b * b * b);
-  }
-
-  enum
-  {
-    LOWER_BOUNDARY,
-    OUTLET_BOUNDARY,
-    UPPER_BOUNDARY,
-    INLET_BOUNDARY
-  };
-
-} // namespace problem_parameter
+#include "local_pert_parameter.h"
 
 template<class ELEMENT>
 class HeleShawChannelProblem : public Problem
 {
 public:
   /// Constructor
-  HeleShawChannelProblem();
+  HeleShawChannelProblem() {}
 
   /// Destructor (empty)
   ~HeleShawChannelProblem() {}
 
+
+  void setup();
+
   /// Doc the solution
   void doc_solution(DocInfo& doc_info);
+
+protected:
+  /// Pointer to the "bulk" mesh
+  Mesh* Bulk_mesh_pt;
 
 private:
   /// Generate mesh
@@ -107,9 +33,6 @@ private:
 
   /// Generate bulk mesh
   void generate_bulk_mesh();
-
-  /// Generate bulk mesh boundaries
-  void generate_bulk_mesh_boundaries();
 
   /// Generate info mesh
   void generate_info_mesh();
@@ -138,13 +61,6 @@ private:
   /// Save the integral to file
   void save_integral_to_file(ofstream& output_stream, string filename);
 
-  /// Pointer to the outer boundary polyline
-  TriangleMeshPolygon* Rect_boundary_polyline_pt;
-
-  /// Pointer to the "bulk" mesh
-  // TriangleMesh<ELEMENT>* Bulk_mesh_pt;
-  Mesh* Bulk_mesh_pt;
-
   /// Pointer to the "surface" mesh
   Mesh* Inlet_surface_mesh_pt;
   Mesh* Outlet_surface_mesh_pt;
@@ -154,7 +70,7 @@ private:
 };
 
 template<class ELEMENT>
-HeleShawChannelProblem<ELEMENT>::HeleShawChannelProblem()
+void HeleShawChannelProblem<ELEMENT>::setup()
 {
   cout << "generate_mesh" << endl;
   this->generate_mesh();
@@ -192,7 +108,8 @@ void HeleShawChannelProblem<ELEMENT>::doc_solution(DocInfo& doc_info)
 template<class ELEMENT>
 void HeleShawChannelProblem<ELEMENT>::generate_mesh()
 {
-  this->generate_bulk_mesh();
+  generate_bulk_mesh();
+  cout << "finished generate_bulk_mesh" << endl;
   this->generate_info_mesh();
   this->generate_inlet_surface_mesh();
   this->generate_outlet_surface_mesh();
@@ -208,11 +125,66 @@ void HeleShawChannelProblem<ELEMENT>::generate_mesh()
 template<class ELEMENT>
 void HeleShawChannelProblem<ELEMENT>::generate_bulk_mesh()
 {
-  this->generate_bulk_mesh_boundaries();
+  double domain_length = problem_parameter::domain_length;
+  double domain_width = problem_parameter::domain_width;
+
+  unsigned id = 0;
+  /// Create a mesh curve section for each boundary
+  Vector<TriangleMeshCurveSection*> boundary_polyline_pt(4);
+
+  // Each polyline only has two vertices -- provide storage for their
+  // coordinates
+  Vector<Vector<double>> vertex_coord(2);
+  for (unsigned i = 0; i < 2; i++)
+  {
+    vertex_coord[i].resize(2);
+  }
+
+  // First polyline: bottom
+  vertex_coord[0][0] = 0.0;
+  vertex_coord[0][1] = 0.0;
+  vertex_coord[1][0] = domain_length;
+  vertex_coord[1][1] = 0.0;
+
+  // Build the 1st boundary polyline
+  boundary_polyline_pt[0] = new TriangleMeshPolyLine(vertex_coord, id);
+  id++;
+
+  // Second boundary polyline: right
+  vertex_coord[0][0] = vertex_coord[1][0];
+  vertex_coord[0][1] = vertex_coord[1][1];
+  vertex_coord[1][0] = domain_length;
+  vertex_coord[1][1] = domain_width;
+
+  // Build the 2nd boundary polyline
+  boundary_polyline_pt[1] = new TriangleMeshPolyLine(vertex_coord, id);
+  id++;
+
+  // Third boundary polyline: top
+  vertex_coord[0][0] = vertex_coord[1][0];
+  vertex_coord[0][1] = vertex_coord[1][1];
+  vertex_coord[1][0] = 0.0;
+  vertex_coord[1][1] = domain_width;
+
+  // Build the 3rd boundary polyline
+  boundary_polyline_pt[2] = new TriangleMeshPolyLine(vertex_coord, id);
+  id++;
+
+  // Fourth boundary polyline: left
+  vertex_coord[0][0] = vertex_coord[1][0];
+  vertex_coord[0][1] = vertex_coord[1][1];
+  vertex_coord[1][0] = 0.0;
+  vertex_coord[1][1] = 0.0;
+
+  // Build the 4th boundary polyline
+  boundary_polyline_pt[3] = new TriangleMeshPolyLine(vertex_coord, id);
+  id++;
+
+  // Create the triangle mesh polygon for outer boundary
+  TriangleMeshPolygon* Outer_boundary_polygon_pt = new TriangleMeshPolygon(boundary_polyline_pt);
 
   // Convert to "closed curve" objects
-  TriangleMeshClosedCurve* rect_closed_curve_pt =
-    this->Rect_boundary_polyline_pt;
+  TriangleMeshClosedCurve* rect_closed_curve_pt = Outer_boundary_polygon_pt;
 
   // Generate mesh parameters for external mesh generator "Triangle"
   TriangleMeshParameters triangle_mesh_parameters(rect_closed_curve_pt);
@@ -222,71 +194,6 @@ void HeleShawChannelProblem<ELEMENT>::generate_bulk_mesh()
 
   // Call external mesh generator
   this->Bulk_mesh_pt = new TriangleMesh<ELEMENT>(triangle_mesh_parameters);
-}
-
-template<class ELEMENT>
-void HeleShawChannelProblem<ELEMENT>::generate_bulk_mesh_boundaries()
-{
-  double l_x = 2.0;
-  double l_y = 1.0;
-
-  cout << "Generate boundary" << endl;
-  Vector<TriangleMeshCurveSection*> boundary_polyline_pt(4);
-
-  cout << "Create 2 vertex vector" << endl;
-  Vector<Vector<double>> vertex_coord(2);
-  for (unsigned i = 0; i < 2; i++)
-  {
-    vertex_coord[i].resize(2);
-  }
-
-  /// First vertex
-  vertex_coord[0][0] = 0;
-  vertex_coord[0][1] = 0;
-  /// Second vertex
-  vertex_coord[1][0] = l_x;
-  vertex_coord[1][1] = 0;
-
-  cout << "Lower boundary, ";
-  boundary_polyline_pt[0] =
-    new TriangleMeshPolyLine(vertex_coord, problem_parameter::LOWER_BOUNDARY);
-
-  /// First vertex
-  vertex_coord[0][0] = l_x;
-  vertex_coord[0][1] = 0;
-  /// Second vertex
-  vertex_coord[1][0] = l_x;
-  vertex_coord[1][1] = l_y;
-
-  cout << "outer boundary, ";
-  boundary_polyline_pt[1] =
-    new TriangleMeshPolyLine(vertex_coord, problem_parameter::OUTLET_BOUNDARY);
-
-  /// First vertex
-  vertex_coord[0][0] = l_x;
-  vertex_coord[0][1] = l_y;
-  /// Second vertex
-  vertex_coord[1][0] = 0;
-  vertex_coord[1][1] = l_y;
-
-  cout << "upper boundary, ";
-  boundary_polyline_pt[2] =
-    new TriangleMeshPolyLine(vertex_coord, problem_parameter::UPPER_BOUNDARY);
-
-  /// First vertex
-  vertex_coord[0][0] = 0;
-  vertex_coord[0][1] = l_y;
-  /// Second vertex
-  vertex_coord[1][0] = 0;
-  vertex_coord[1][1] = 0;
-
-  cout << "inlet boundary, " << endl;
-  boundary_polyline_pt[3] =
-    new TriangleMeshPolyLine(vertex_coord, problem_parameter::INLET_BOUNDARY);
-
-  cout << "Create triangle mesh polygon" << endl;
-  // Create the triangle mesh polygon for rectangle boundary
-  Rect_boundary_polyline_pt = new TriangleMeshPolygon(boundary_polyline_pt);
 }
 
 template<class ELEMENT>
@@ -436,7 +343,6 @@ void HeleShawChannelProblem<ELEMENT>::upcast_and_finalise_elements()
 template<class ELEMENT>
 void HeleShawChannelProblem<ELEMENT>::set_boundary_conditions()
 {
-
   /// Pin a single node in the bulk mesh
   /// Pinning the zeroth node on the zeroth boundary
   const unsigned b = 0;
@@ -452,7 +358,7 @@ void HeleShawChannelProblem<ELEMENT>::set_boundary_conditions()
   cout << "Integral info mesh" << endl;
   /// Integral info mesh
   const unsigned value_index = 0;
-  for (unsigned index = 0; index < 2; index++)
+  for (unsigned index = 0; index < 1; index++)
   {
     cout << "index: " << index << endl;
     /// Integral value must be initialised to something non-zero
@@ -494,32 +400,4 @@ void HeleShawChannelProblem<ELEMENT>::save_integral_to_file(
   output_stream.close();
 }
 
-int main(int argc, char* argv[])
-{
-  /// Store command line arguments
-  CommandLineArgs::setup(argc, argv);
-
-  /// Create a DocInfo object for output processing
-  DocInfo doc_info;
-
-  /// Output directory
-  doc_info.set_directory("RESLT");
-
-  /// Create problem object
-  HeleShawChannelProblem<THeleShawElement<3>> problem;
-
-  /// Run problem self test
-  if (problem.self_test())
-  {
-    throw OomphLibError(
-      "Self test failed", OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
-  }
-
-  /// Call problem solve
-  problem.newton_solve();
-
-  /// Document solution
-  problem.doc_solution(doc_info);
-
-  return 0;
-}
+#endif
