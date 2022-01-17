@@ -1,106 +1,38 @@
-#include <iostream>
+#ifndef OOMPH_FILLED_CHANNEL_FLOW_PROBLEM_HEADER
+#define OOMPH_FILLED_CHANNEL_FLOW_PROBLEM_HEADER
 
 #include "generic.h"
-#include "meshes.h"
+//#include "meshes.h"
 #include "hele_shaw.h"
 #include "info_element.h"
-
-using namespace oomph;
-using namespace std;
-
-namespace problem_parameter
-{
-  double* inlet_area_pt = 0;
-  double* outlet_area_pt = 0;
-
-  /// This is non-dimensionalised to 1
-  const double total_flux = 1.0;
-
-  void upper_wall_fct(const Vector<double>& x, double& b, double& dbdt)
-  {
-    double tape_height = 0.024;
-    double tape_width = 0.5;
-    double tape_sharpness = 40;
-    double tape_centre_y = 1.0;
-
-    double y = x[1];
-
-    b = 1 - tape_height * 0.5 *
-              (tanh(tape_sharpness * (y - tape_centre_y + 0.5 * tape_width)) -
-               tanh(tape_sharpness * (y - tape_centre_y - 0.5 * tape_width)));
-
-    // double height = 0.1;
-    // double rms_width = 0.1;
-    // double centre_x = 0;
-    // double centre_y = 0.5;
-
-    //// Transform y such that the domain is between 0 and 1 rather than -1 and
-    /// 1
-    // double local_x = x[0];
-    // double local_y = x[1];
-    // b = 1.0 - height * std::exp(-(local_x - centre_x) * (local_x - centre_x)
-    // /
-    //                              (2 * rms_width * rms_width) -
-    //                            (local_y - centre_y) * (local_y - centre_y) /
-    //                              (2 * rms_width * rms_width));
-    dbdt = 0.0;
-  }
-
-  void get_dirichlet_bc(const Vector<double>& x, double& p)
-  {
-    /// At the outlet we set the pressure to be zero
-    p = 0.0;
-  }
-
-  void get_inlet_flux_bc(const Vector<double>& x, double& flux)
-  {
-    /// At the inlet we set the pressure gradient which is dependent on the
-    /// upper wall function, inlet_area and total flux
-
-    double dpdx = -total_flux / *inlet_area_pt;
-
-    double b;
-    double dbdt;
-    upper_wall_fct(x, b, dbdt);
-
-    flux = dpdx * (b * b * b);
-  }
-
-  void get_outlet_flux_bc(const Vector<double>& x, double& flux)
-  {
-    /// At the inlet we set the pressure gradient which is dependent on the
-    /// upper wall function, inlet_area and total flux
-
-    double dpdx = -total_flux / *outlet_area_pt;
-
-    double b;
-    double dbdt;
-    upper_wall_fct(x, b, dbdt);
-
-    flux = dpdx * (b * b * b);
-  }
-
-} // namespace problem_parameter
+#include "problem_parameter.h"
 
 template<class ELEMENT>
 class HeleShawChannelProblem : public Problem
 {
 public:
   /// Constructor
-  HeleShawChannelProblem();
+  HeleShawChannelProblem() {}
 
   /// Destructor (empty)
   ~HeleShawChannelProblem() {}
 
+
+  void setup();
+
   /// Doc the solution
   void doc_solution(DocInfo& doc_info);
+
+  /// Generate bulk mesh
+  virtual void generate_bulk_mesh() = 0;
+
+protected:
+  /// Pointer to the "bulk" mesh
+  Mesh* Bulk_mesh_pt;
 
 private:
   /// Generate mesh
   void generate_mesh();
-
-  /// Generate bulk mesh
-  void generate_bulk_mesh();
 
   /// Generate info mesh
   void generate_info_mesh();
@@ -129,10 +61,6 @@ private:
   /// Save the integral to file
   void save_integral_to_file(ofstream& output_stream, string filename);
 
-  /// Pointer to the "bulk" mesh
-  // SimpleRectangularQuadMesh<ELEMENT>* Bulk_mesh_pt;
-  Mesh* Bulk_mesh_pt;
-
   /// Pointer to the "surface" mesh
   Mesh* Inlet_surface_mesh_pt;
   Mesh* Outlet_surface_mesh_pt;
@@ -142,7 +70,7 @@ private:
 };
 
 template<class ELEMENT>
-HeleShawChannelProblem<ELEMENT>::HeleShawChannelProblem()
+void HeleShawChannelProblem<ELEMENT>::setup()
 {
   cout << "generate_mesh" << endl;
   this->generate_mesh();
@@ -180,7 +108,8 @@ void HeleShawChannelProblem<ELEMENT>::doc_solution(DocInfo& doc_info)
 template<class ELEMENT>
 void HeleShawChannelProblem<ELEMENT>::generate_mesh()
 {
-  this->generate_bulk_mesh();
+  generate_bulk_mesh();
+  cout << "finished generate_bulk_mesh" << endl;
   this->generate_info_mesh();
   this->generate_inlet_surface_mesh();
   this->generate_outlet_surface_mesh();
@@ -194,29 +123,15 @@ void HeleShawChannelProblem<ELEMENT>::generate_mesh()
 }
 
 template<class ELEMENT>
-void HeleShawChannelProblem<ELEMENT>::generate_bulk_mesh()
-{
-  unsigned n_x = 10;
-  unsigned n_y = 10;
-  double l_x = 4.0;
-  double l_y = 2.0;
-
-  this->Bulk_mesh_pt =
-    new SimpleRectangularQuadMesh<ELEMENT>(n_x, n_y, l_x, l_y);
-}
-
-template<class ELEMENT>
 void HeleShawChannelProblem<ELEMENT>::generate_info_mesh()
 {
   this->Info_mesh_pt = new Mesh;
 
   unsigned number_of_values = 1;
-  Data* inlet_integral_data_pt = new Data(number_of_values);
-  this->Info_mesh_pt->add_element_pt(new InfoElement(inlet_integral_data_pt));
-  Data* outlet_integral_data_pt = new Data(number_of_values);
-  this->Info_mesh_pt->add_element_pt(new InfoElement(outlet_integral_data_pt));
-  Data* volume_integral_data_pt = new Data(number_of_values);
-  this->Info_mesh_pt->add_element_pt(new InfoElement(volume_integral_data_pt));
+  Data* Inlet_integral_data_pt = new Data(number_of_values);
+  this->Info_mesh_pt->add_element_pt(new InfoElement(Inlet_integral_data_pt));
+  Data* Outlet_integral_data_pt = new Data(number_of_values);
+  this->Info_mesh_pt->add_element_pt(new InfoElement(Outlet_integral_data_pt));
 }
 
 template<class ELEMENT>
@@ -307,7 +222,6 @@ void HeleShawChannelProblem<ELEMENT>::upcast_and_finalise_elements()
     ELEMENT* el_pt = dynamic_cast<ELEMENT*>(this->Bulk_mesh_pt->element_pt(i));
 
     el_pt->upper_wall_fct_pt() = problem_parameter::upper_wall_fct;
-    el_pt->add_volume_data_pt(Info_mesh_pt->element_pt(2)->internal_data_pt(0));
   }
 
   /// Info mesh
@@ -355,27 +269,6 @@ void HeleShawChannelProblem<ELEMENT>::upcast_and_finalise_elements()
 template<class ELEMENT>
 void HeleShawChannelProblem<ELEMENT>::set_boundary_conditions()
 {
-  // unsigned n_boundary = this->Bulk_mesh_pt->nboundary();
-  // bool set_boundary[n_boundary] = {false};
-  // set_boundary[1] = true;
-  // for (unsigned b = 0; b < n_boundary; b++)
-  //{
-  //  if (set_boundary[b])
-  //  {
-  //    unsigned n_node = this->Bulk_mesh_pt->nboundary_node(b);
-  //    for (unsigned n = 0; n < n_node; n++)
-  //    {
-  //      Node* node_pt = this->Bulk_mesh_pt->boundary_node_pt(b, n);
-  //      double value = 0.0;
-  //      Vector<double> x(2);
-  //      x[0] = node_pt->x(0);
-  //      x[1] = node_pt->x(1);
-  //      problem_parameter::get_dirichlet_bc(x, value);
-  //      node_pt->set_value(0, value);
-  //    }
-  //  }
-  //}
-
   /// Pin a single node in the bulk mesh
   /// Pinning the zeroth node on the zeroth boundary
   const unsigned b = 0;
@@ -391,7 +284,7 @@ void HeleShawChannelProblem<ELEMENT>::set_boundary_conditions()
   cout << "Integral info mesh" << endl;
   /// Integral info mesh
   const unsigned value_index = 0;
-  for (unsigned index = 0; index < 2; index++)
+  for (unsigned index = 0; index < 1; index++)
   {
     cout << "index: " << index << endl;
     /// Integral value must be initialised to something non-zero
@@ -424,42 +317,13 @@ void HeleShawChannelProblem<ELEMENT>::save_integral_to_file(
 {
   output_stream.open(filename.c_str());
   double my_integral = 0.0;
-  for (unsigned index = 0; index < 3; index++)
+  for (unsigned index = 0; index < 2; index++)
   {
     my_integral =
       this->Info_mesh_pt->element_pt(index)->internal_data_pt(0)->value(0);
-    output_stream << "Integral " << index << "= " << setprecision(17)
-                  << my_integral << endl;
+    output_stream << "Integral " << index << "= " << my_integral << endl;
   }
   output_stream.close();
 }
 
-int main(int argc, char* argv[])
-{
-  /// Store command line arguments
-  CommandLineArgs::setup(argc, argv);
-
-  /// Create a DocInfo object for output processing
-  DocInfo doc_info;
-
-  /// Output directory
-  doc_info.set_directory("RESLT");
-
-  /// Create problem object
-  HeleShawChannelProblem<QHeleShawElement<3>> problem;
-
-  /// Run problem self test
-  if (problem.self_test())
-  {
-    throw OomphLibError(
-      "Self test failed", OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
-  }
-
-  /// Call problem solve
-  problem.newton_solve();
-
-  /// Document solution
-  problem.doc_solution(doc_info);
-
-  return 0;
-}
+#endif
