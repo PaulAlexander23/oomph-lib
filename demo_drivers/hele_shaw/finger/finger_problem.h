@@ -44,9 +44,11 @@ namespace oomph
     /// Flux boundary
     Data* Top_inlet_integral_data_pt;
     Mesh* Top_inlet_surface_mesh_pt;
+    Node* Y0_node_pt;
 
     Data* Bottom_inlet_integral_data_pt;
     Mesh* Bottom_inlet_surface_mesh_pt;
+    Node* Y1_node_pt;
 
     Data* Outlet_integral_data_pt;
     Mesh* Outlet_surface_mesh_pt;
@@ -55,16 +57,18 @@ namespace oomph
     Mesh* Flux_mesh_pt;
 
     /// Finger
-    // Mesh* Surface_mesh_pt;
+    Mesh* Surface_mesh_pt;
 
     /// Fixed volume -> finger pressure
-    // Data* Bubble_pressure_data_pt;
-    // Mesh* Volume_constraint_mesh_pt;
+    Data* Bubble_pressure_data_pt;
+    Mesh* Volume_constraint_mesh_pt;
+
+    DocInfo Doc_info;
 
     /// Functions
   public:
     /// Constructor
-    FingerProblem();
+    FingerProblem(DocInfo& doc_info);
 
     /// Destructor
     ~FingerProblem() {}
@@ -85,33 +89,34 @@ namespace oomph
     void create_data();
     void create_outer_boundary_polygon();
     void create_fluid_mesh();
-    // void create_surface_mesh();
+    void create_surface_mesh();
     void create_volume_mesh();
     void create_x_moment_mesh();
-    // void create_volume_constraint_mesh();
+    void create_volume_constraint_mesh();
     void create_flux_surface_meshes();
     void create_flux_mesh();
 
     void setup_variable_and_function_pointers();
-    // void setup_surface_mesh_functions_pointers();
+    void setup_surface_mesh_functions_pointers();
 
     void set_boundary_conditions();
 
     void actions_before_adapt();
     void actions_after_adapt();
 
+    void actions_after_newton_step();
+
     void doc_fluid_mesh(string filename);
-    // void doc_surface_mesh(string filename);
     void doc_volume(string filename);
-    // void doc_bubble_pressure(string filename);
+    void doc_bubble_pressure(string filename);
     void doc_integrals(string filename);
 
     void compute_error_estimate(double& max_err, double& min_err);
 
-    // void delete_surface_mesh();
+    void delete_surface_mesh();
     void delete_volume_mesh();
     void delete_x_moment_mesh();
-    // void delete_volume_constraint_mesh();
+    void delete_volume_constraint_mesh();
     void delete_inlet_surface_mesh();
     void delete_flux_surface_meshes();
     void delete_flux_mesh();
@@ -119,7 +124,7 @@ namespace oomph
   };
 
   template<class ELEMENT>
-  FingerProblem<ELEMENT>::FingerProblem()
+  FingerProblem<ELEMENT>::FingerProblem(DocInfo& doc_info) : Doc_info(doc_info)
   {
     cout << "Constructor" << endl;
     bool adaptive_timestepping = false;
@@ -128,6 +133,26 @@ namespace oomph
     create_data();
 
     create_outer_boundary_polygon();
+
+    create_fluid_mesh();
+    Surface_mesh_pt = new Mesh;
+    Volume_mesh_pt = new Mesh;
+    X_moment_mesh_pt = new Mesh;
+    Volume_constraint_mesh_pt = new Mesh;
+    Flux_mesh_pt = new Mesh;
+    Outlet_surface_mesh_pt = new Mesh;
+    Top_inlet_surface_mesh_pt = new Mesh;
+    Bottom_inlet_surface_mesh_pt = new Mesh;
+
+    add_sub_mesh(Fluid_mesh_pt);
+    add_sub_mesh(Surface_mesh_pt);
+    add_sub_mesh(Volume_mesh_pt);
+    add_sub_mesh(X_moment_mesh_pt);
+    add_sub_mesh(Volume_constraint_mesh_pt);
+    add_sub_mesh(Outlet_surface_mesh_pt);
+    add_sub_mesh(Top_inlet_surface_mesh_pt);
+    add_sub_mesh(Bottom_inlet_surface_mesh_pt);
+    add_sub_mesh(Flux_mesh_pt);
 
     create_mesh();
 
@@ -157,7 +182,8 @@ namespace oomph
     assign_initial_values_impulsive(dt);
     Fluid_mesh_pt->set_lagrangian_nodal_coordinates();
 
-    doc_solution(doc_info);
+    doc_solution(Doc_info);
+    Doc_info.number()++;
   };
 
   /// Iterate forward in time
@@ -365,7 +391,7 @@ namespace oomph
     Volume_data_pt = new Data(1);
     X_moment_data_pt = new Data(1);
 
-    // Bubble_pressure_data_pt = new Data(1);
+    Bubble_pressure_data_pt = new Data(1);
 
     Outlet_integral_data_pt = new Data(1);
     Top_inlet_integral_data_pt = new Data(1);
@@ -375,31 +401,12 @@ namespace oomph
   template<class ELEMENT>
   void FingerProblem<ELEMENT>::create_mesh()
   {
-    create_fluid_mesh();
-    // Surface_mesh_pt = new Mesh;
-    // create_surface_mesh();
-    Volume_mesh_pt = new Mesh;
+    create_surface_mesh();
     create_volume_mesh();
-    X_moment_mesh_pt = new Mesh;
     create_x_moment_mesh();
-    // Volume_constraint_mesh_pt = new Mesh;
-    // create_volume_constraint_mesh();
-    Flux_mesh_pt = new Mesh;
+    create_volume_constraint_mesh();
     create_flux_mesh();
-    Outlet_surface_mesh_pt = new Mesh;
-    Top_inlet_surface_mesh_pt = new Mesh;
-    Bottom_inlet_surface_mesh_pt = new Mesh;
     create_flux_surface_meshes();
-
-    add_sub_mesh(Fluid_mesh_pt);
-    // add_sub_mesh(Surface_mesh_pt);
-    add_sub_mesh(Volume_mesh_pt);
-    add_sub_mesh(X_moment_mesh_pt);
-    // add_sub_mesh(Volume_constraint_mesh_pt);
-    add_sub_mesh(Outlet_surface_mesh_pt);
-    add_sub_mesh(Top_inlet_surface_mesh_pt);
-    add_sub_mesh(Bottom_inlet_surface_mesh_pt);
-    add_sub_mesh(Flux_mesh_pt);
 
     build_global_mesh();
   }
@@ -434,31 +441,31 @@ namespace oomph
     Fluid_mesh_pt->min_element_size() = 1e-4;
   }
 
-  // template<class ELEMENT>
-  // void FingerProblem<ELEMENT>::create_surface_mesh()
-  //{
-  //  unsigned n_element = Fluid_mesh_pt->nboundary_element(Finger_boundary_id);
-  //  cout << "Finger boundary elements: " << n_element << endl;
-  //  for (unsigned i_element = 0; i_element < n_element; i_element++)
-  //  {
-  //    ELEMENT* fluid_element_pt = dynamic_cast<ELEMENT*>(
-  //      Fluid_mesh_pt->boundary_element_pt(Finger_boundary_id, i_element));
+  template<class ELEMENT>
+  void FingerProblem<ELEMENT>::create_surface_mesh()
+  {
+    unsigned n_element = Fluid_mesh_pt->nboundary_element(Finger_boundary_id);
+    cout << "Finger boundary elements: " << n_element << endl;
+    for (unsigned i_element = 0; i_element < n_element; i_element++)
+    {
+      ELEMENT* fluid_element_pt = dynamic_cast<ELEMENT*>(
+        Fluid_mesh_pt->boundary_element_pt(Finger_boundary_id, i_element));
 
-  //    // Find the index of the face of element e along boundary b
-  //    int face_index =
-  //      Fluid_mesh_pt->face_index_at_boundary(Finger_boundary_id, i_element);
+      // Find the index of the face of element e along boundary b
+      int face_index =
+        Fluid_mesh_pt->face_index_at_boundary(Finger_boundary_id, i_element);
 
-  //    HeleShawInterfaceElement<ELEMENT>* interface_element_pt =
-  //      new HeleShawInterfaceElement<ELEMENT>(fluid_element_pt, face_index);
+      HeleShawInterfaceElement<ELEMENT>* interface_element_pt =
+        new HeleShawInterfaceElement<ELEMENT>(fluid_element_pt, face_index);
 
-  //    // Add the appropriate boundary number
-  //    interface_element_pt->set_boundary_number_in_bulk_mesh(
-  //      Finger_boundary_id);
+      // Add the appropriate boundary number
+      interface_element_pt->set_boundary_number_in_bulk_mesh(
+        Finger_boundary_id);
 
-  //    // Add it to the mesh
-  //    Surface_mesh_pt->add_element_pt(interface_element_pt);
-  //  }
-  //}
+      // Add it to the mesh
+      Surface_mesh_pt->add_element_pt(interface_element_pt);
+    }
+  }
 
   template<class ELEMENT>
   void FingerProblem<ELEMENT>::create_volume_mesh()
@@ -474,16 +481,16 @@ namespace oomph
     X_moment_mesh_pt->add_element_pt(x_moment_element_pt);
   }
 
-  // template<class ELEMENT>
-  // void FingerProblem<ELEMENT>::create_volume_constraint_mesh()
-  //{
-  //  MyConstraintElement* vol_constraint_element =
-  //    new MyConstraintElement(finger::target_fluid_volume_fct,
-  //                            Volume_data_pt->value_pt(0),
-  //                            Bubble_pressure_data_pt,
-  //                            0);
-  //  Volume_constraint_mesh_pt->add_element_pt(vol_constraint_element);
-  //}
+  template<class ELEMENT>
+  void FingerProblem<ELEMENT>::create_volume_constraint_mesh()
+  {
+    MyConstraintElement* vol_constraint_element =
+      new MyConstraintElement(finger::target_fluid_volume_fct,
+                              Volume_data_pt->value_pt(0),
+                              Bubble_pressure_data_pt,
+                              0);
+    Volume_constraint_mesh_pt->add_element_pt(vol_constraint_element);
+  }
 
   template<class ELEMENT>
   void FingerProblem<ELEMENT>::create_flux_surface_meshes()
@@ -557,7 +564,14 @@ namespace oomph
   {
     bool fd_jacobian = true;
 
-    // finger::bubble_pressure_pt = Bubble_pressure_data_pt->value_pt(0);
+    finger::bubble_pressure_pt = Bubble_pressure_data_pt->value_pt(0);
+
+    unsigned num_nod = Fluid_mesh_pt->nboundary_node(Finger_boundary_id);
+    finger::y0_pt =
+      Fluid_mesh_pt->boundary_node_pt(Finger_boundary_id, 0)->x_pt(0, 1);
+    finger::y1_pt =
+      Fluid_mesh_pt->boundary_node_pt(Finger_boundary_id, num_nod - 1)
+        ->x_pt(0, 1);
 
     /// Set fluid mesh function pointers
     unsigned n_element = Fluid_mesh_pt->nelement();
@@ -571,10 +585,10 @@ namespace oomph
       el_pt->upper_wall_fct_pt() = finger::upper_wall_fct;
       el_pt->add_external_data(Volume_data_pt);
       el_pt->add_external_data(X_moment_data_pt);
-      // el_pt->add_external_data(Bubble_pressure_data_pt, fd_jacobian);
+      el_pt->add_external_data(Bubble_pressure_data_pt, fd_jacobian);
     }
 
-    // setup_surface_mesh_functions_pointers();
+    setup_surface_mesh_functions_pointers();
 
     unsigned i_element = 0;
     InfoElement* volume_element_pt =
@@ -585,11 +599,11 @@ namespace oomph
       dynamic_cast<InfoElement*>(X_moment_mesh_pt->element_pt(i_element));
     x_moment_element_pt->add_data_pt(X_moment_data_pt);
 
-    //  MyConstraintElement* vol_constraint_element =
-    //    dynamic_cast<MyConstraintElement*>(
-    //      Volume_constraint_mesh_pt->element_pt(i_element));
+    MyConstraintElement* vol_constraint_element =
+      dynamic_cast<MyConstraintElement*>(
+        Volume_constraint_mesh_pt->element_pt(i_element));
 
-    //  vol_constraint_element->add_external_data(Volume_data_pt, fd_jacobian);
+    vol_constraint_element->add_external_data(Volume_data_pt, fd_jacobian);
 
     /// Info mesh
     unsigned index = 0;
@@ -651,30 +665,30 @@ namespace oomph
     }
   }
 
-  // template<class ELEMENT>
-  // void FingerProblem<ELEMENT>::setup_surface_mesh_functions_pointers()
-  //{
-  //  bool fd_jacobian = true;
+  template<class ELEMENT>
+  void FingerProblem<ELEMENT>::setup_surface_mesh_functions_pointers()
+  {
+    bool fd_jacobian = true;
 
-  //  unsigned n_element = Surface_mesh_pt->nelement();
-  //  for (unsigned e = 0; e < n_element; e++)
-  //  {
-  //    HeleShawInterfaceElement<ELEMENT>* interface_element_pt =
-  //      dynamic_cast<HeleShawInterfaceElement<ELEMENT>*>(
-  //        Surface_mesh_pt->element_pt(e));
-  //    interface_element_pt->ca_inv_pt() = &finger::ca_inv;
-  //    interface_element_pt->st_pt() = &finger::st;
-  //    interface_element_pt->aspect_ratio_pt() = &finger::alpha;
-  //    interface_element_pt->upper_wall_fct_pt() = finger::upper_wall_fct;
-  //    interface_element_pt->wall_speed_fct_pt() = finger::wall_speed_fct;
-  //    interface_element_pt->bubble_pressure_fct_pt() =
-  //      finger::bubble_pressure_fct;
+    unsigned n_element = Surface_mesh_pt->nelement();
+    for (unsigned e = 0; e < n_element; e++)
+    {
+      HeleShawInterfaceElement<ELEMENT>* interface_element_pt =
+        dynamic_cast<HeleShawInterfaceElement<ELEMENT>*>(
+          Surface_mesh_pt->element_pt(e));
+      interface_element_pt->ca_inv_pt() = &finger::ca_inv;
+      interface_element_pt->st_pt() = &finger::st;
+      interface_element_pt->aspect_ratio_pt() = &finger::alpha;
+      interface_element_pt->upper_wall_fct_pt() = finger::upper_wall_fct;
+      interface_element_pt->wall_speed_fct_pt() = finger::wall_speed_fct;
+      interface_element_pt->bubble_pressure_fct_pt() =
+        finger::bubble_pressure_fct;
 
-  //    interface_element_pt->add_external_data(Volume_data_pt, fd_jacobian);
-  //    interface_element_pt->add_external_data(Bubble_pressure_data_pt,
-  //                                            fd_jacobian);
-  //  }
-  //}
+      interface_element_pt->add_external_data(Volume_data_pt, fd_jacobian);
+      interface_element_pt->add_external_data(Bubble_pressure_data_pt,
+                                              fd_jacobian);
+    }
+  }
 
   template<class ELEMENT>
   void FingerProblem<ELEMENT>::set_boundary_conditions()
@@ -697,10 +711,16 @@ namespace oomph
         SolidNode* solid_node_pt = dynamic_cast<SolidNode*>(node_pt);
         if (ibound == Finger_boundary_id)
         {
-          // solid_node_pt->unpin_position(0);
-          // solid_node_pt->unpin_position(1);
-          solid_node_pt->pin_position(0);
-          solid_node_pt->pin_position(1);
+          if (inod > 0 && inod < num_nod - 1)
+          {
+            solid_node_pt->unpin_position(0);
+            solid_node_pt->unpin_position(1);
+          }
+          else
+          {
+            solid_node_pt->pin_position(0);
+            solid_node_pt->unpin_position(1);
+          }
         }
         else
         {
@@ -708,13 +728,19 @@ namespace oomph
           solid_node_pt->pin_position(1);
         }
 
-        // if (ibound == Upper_inlet_boundary_id ||
-        //     ibound == Lower_inlet_boundary_id)
-        // {
-        //   node_pt->set_value(0, fixed_pressure);
-        //   node_pt->pin(0);
-        //   cout<<"pinning"<<endl;
-        // }
+        if (node_pt->is_on_boundary(Finger_boundary_id) &&
+            node_pt->is_on_boundary(Upper_inlet_boundary_id))
+        {
+          cout << "y0: " << inod << endl;
+          Y0_node_pt = node_pt;
+        }
+
+        if (node_pt->is_on_boundary(Finger_boundary_id) &&
+            node_pt->is_on_boundary(Lower_inlet_boundary_id))
+        {
+          cout << "y1: " << inod << endl;
+          Y1_node_pt = node_pt;
+        }
       }
     } // end loop over boundaries
 
@@ -723,17 +749,27 @@ namespace oomph
     node_pt->pin(0);
 
     /// Pin tangential lagrange multiplier
-    // unsigned ibound = Finger_boundary_id;
-    // unsigned num_nod = Fluid_mesh_pt->nboundary_node(ibound);
-    // for (unsigned inod = 0; inod < num_nod; inod++)
-    //{
-    //  // Get node
-    //  Node* node_pt = Fluid_mesh_pt->boundary_node_pt(ibound, inod);
-    //  ////                node_pt->pin(1); /// Normal lagrange multiplier
-    //  ////                node_pt->pin(2); /// Curvature
-    //  ////                node_pt->pin(3); /// Curvature
-    //  node_pt->pin(4); /// Tangential lagrange multiplier
-    //}
+    unsigned ibound = Finger_boundary_id;
+    unsigned num_nod = Fluid_mesh_pt->nboundary_node(ibound);
+    for (unsigned inod = 0; inod < num_nod; inod++)
+    {
+      // Get node
+      Node* node_pt = Fluid_mesh_pt->boundary_node_pt(ibound, inod);
+      SolidNode* solid_node_pt = dynamic_cast<SolidNode*>(node_pt);
+      ////                node_pt->pin(1); /// Normal lagrange multiplier
+      ////                node_pt->pin(2); /// Curvature
+      ////                node_pt->pin(3); /// Curvature
+      solid_node_pt->pin(4); /// Tangential lagrange multiplier
+      cout << "Number of nodal values:" << solid_node_pt->nvalue() << endl;
+    }
+
+    Y0_node_pt->set_value(3, 0.0);
+    Y0_node_pt->pin(3);
+    Y1_node_pt->set_value(3, 0.0);
+    Y1_node_pt->pin(3);
+
+    Y0_node_pt->set_value(0, 1.0);
+    Y1_node_pt->set_value(0, 1.0);
 
     Volume_data_pt->set_value(0, finger::target_fluid_volume);
     Volume_data_pt->unpin(0);
@@ -741,8 +777,8 @@ namespace oomph
     X_moment_data_pt->set_value(0, 0.0);
     X_moment_data_pt->unpin(0);
 
-    // Bubble_pressure_data_pt->set_value(0, 0.0);
-    // Bubble_pressure_data_pt->pin(0);
+    Bubble_pressure_data_pt->set_value(0, 400);
+    Bubble_pressure_data_pt->unpin(0);
 
     Outlet_integral_data_pt->set_value(0, 1.0);
     Outlet_integral_data_pt->unpin(0);
@@ -761,11 +797,10 @@ namespace oomph
 
     doc_fluid_mesh(doc_directory + "soln" + to_string(doc_info.number()) +
                    ".dat");
-    // doc_surface_mesh(doc_directory + "surface" + doc_info.number() + ".dat");
 
     doc_volume(doc_directory + "volume.dat");
 
-    // doc_bubble_pressure(doc_directory + "bubble_pressure.dat");
+    doc_bubble_pressure(doc_directory + "bubble_pressure.dat");
 
     doc_integrals(doc_directory + "integral.dat");
 
@@ -777,10 +812,10 @@ namespace oomph
   {
     cout << "Actions before adapt" << endl;
 
-    // delete_surface_mesh();
+    delete_surface_mesh();
     delete_volume_mesh();
     delete_x_moment_mesh();
-    // delete_volume_constraint_mesh();
+    delete_volume_constraint_mesh();
     delete_flux_surface_meshes();
     delete_flux_mesh();
 
@@ -795,16 +830,16 @@ namespace oomph
     Volume_data_pt = new Data(1);
     X_moment_data_pt = new Data(1);
 
-    // Bubble_pressure_data_pt = new Data(1);
+    Bubble_pressure_data_pt = new Data(1);
 
     Outlet_integral_data_pt = new Data(1);
     Top_inlet_integral_data_pt = new Data(1);
     Bottom_inlet_integral_data_pt = new Data(1);
 
-    // create_surface_mesh();
+    create_surface_mesh();
     create_volume_mesh();
     create_x_moment_mesh();
-    // create_volume_constraint_mesh();
+    create_volume_constraint_mesh();
     create_flux_surface_meshes();
     create_flux_mesh();
 
@@ -872,6 +907,12 @@ namespace oomph
   }
 
   template<class ELEMENT>
+  void FingerProblem<ELEMENT>::actions_after_newton_step()
+  {
+    doc_solution(Doc_info);
+  }
+
+  template<class ELEMENT>
   void FingerProblem<ELEMENT>::doc_fluid_mesh(string filename)
   {
     double max_err;
@@ -885,15 +926,6 @@ namespace oomph
     output_stream.close();
   }
 
-  // template<class ELEMENT>
-  // void FingerProblem<ELEMENT>::doc_surface_mesh(string filename)
-  //{
-  //  ofstream output_stream;
-  //  output_stream.open(filename);
-
-  //  output_stream.close();
-  //}
-
   template<class ELEMENT>
   void FingerProblem<ELEMENT>::doc_volume(string filename)
   {
@@ -906,17 +938,17 @@ namespace oomph
     output_stream.close();
   }
 
-  // template<class ELEMENT>
-  // void FingerProblem<ELEMENT>::doc_bubble_pressure(string filename)
-  //{
-  //  ofstream output_stream;
-  //  output_stream.open(filename, ofstream::app);
+  template<class ELEMENT>
+  void FingerProblem<ELEMENT>::doc_bubble_pressure(string filename)
+  {
+    ofstream output_stream;
+    output_stream.open(filename, ofstream::app);
 
-  //  output_stream << time() << ", ";
-  //  output_stream << Bubble_pressure_data_pt->value(0) << endl;
+    output_stream << time() << ", ";
+    output_stream << Bubble_pressure_data_pt->value(0) << endl;
 
-  //  output_stream.close();
-  //}
+    output_stream.close();
+  }
 
   template<class ELEMENT>
   void FingerProblem<ELEMENT>::doc_integrals(string filename)
@@ -966,22 +998,22 @@ namespace oomph
   }
 
 
-  // template<class ELEMENT>
-  // void FingerProblem<ELEMENT>::delete_surface_mesh()
-  //{
-  //  // How many surface elements are in the surface mesh
-  //  unsigned n_element = Surface_mesh_pt->nelement();
+  template<class ELEMENT>
+  void FingerProblem<ELEMENT>::delete_surface_mesh()
+  {
+    // How many surface elements are in the surface mesh
+    unsigned n_element = Surface_mesh_pt->nelement();
 
-  //  // Loop over the surface elements
-  //  for (unsigned e = 0; e < n_element; e++)
-  //  {
-  //    // Delete surface element
-  //    delete Surface_mesh_pt->element_pt(e);
-  //  }
+    // Loop over the surface elements
+    for (unsigned e = 0; e < n_element; e++)
+    {
+      // Delete surface element
+      delete Surface_mesh_pt->element_pt(e);
+    }
 
-  //  // Wipe the mesh
-  //  Surface_mesh_pt->flush_element_and_node_storage();
-  //}
+    // Wipe the mesh
+    Surface_mesh_pt->flush_element_and_node_storage();
+  }
 
   template<class ELEMENT>
   void FingerProblem<ELEMENT>::delete_volume_mesh()
@@ -1017,22 +1049,22 @@ namespace oomph
     X_moment_mesh_pt->flush_element_and_node_storage();
   }
 
-  // template<class ELEMENT>
-  // void FingerProblem<ELEMENT>::delete_volume_constraint_mesh()
-  //{
-  //  // How many elements are in the volume mesh
-  //  unsigned n_element = Volume_constraint_mesh_pt->nelement();
+  template<class ELEMENT>
+  void FingerProblem<ELEMENT>::delete_volume_constraint_mesh()
+  {
+    // How many elements are in the volume mesh
+    unsigned n_element = Volume_constraint_mesh_pt->nelement();
 
-  //  // Loop over the elements
-  //  for (unsigned e = 0; e < n_element; e++)
-  //  {
-  //    // Delete element
-  //    delete Volume_constraint_mesh_pt->element_pt(e);
-  //  }
+    // Loop over the elements
+    for (unsigned e = 0; e < n_element; e++)
+    {
+      // Delete element
+      delete Volume_constraint_mesh_pt->element_pt(e);
+    }
 
-  //  // Wipe the mesh
-  //  Volume_constraint_mesh_pt->flush_element_and_node_storage();
-  //}
+    // Wipe the mesh
+    Volume_constraint_mesh_pt->flush_element_and_node_storage();
+  }
 
   template<class ELEMENT>
   void FingerProblem<ELEMENT>::delete_flux_surface_meshes()
