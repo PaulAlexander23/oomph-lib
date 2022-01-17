@@ -1,6 +1,6 @@
 SUBDIRS = \
 finger\
-finger_2\
+finger_static\
 inject_bubble\
 relaxing_bubble\
 relaxing_bubble_with_bubble_mesh\
