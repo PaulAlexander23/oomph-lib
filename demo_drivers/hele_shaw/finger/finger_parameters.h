@@ -30,6 +30,9 @@ namespace finger
   const double perturbation_centre_x = 2.0;
   const double perturbation_centre_y = 0.5;
 
+  /// inlet y
+  double* y0_pt;
+  double* y1_pt;
 
   /// Volume pointers
   double target_bubble_volume = 0;

@@ -27,48 +27,29 @@ int main(int argc, char* argv[])
   doc_info.set_directory("RESLT/");
 
   /// Set parameters
-  const double major_radius = 0.5;
-  const double width = 0.25;
-  const double circular_radius = 0.0;
-  const double volume =
-    MathematicalConstants::Pi * circular_radius * circular_radius;
   const double Q = 0.05;
+  const double circular_radius = 0.0;
+  const double V =
+    MathematicalConstants::Pi * circular_radius * circular_radius;
+  const double h = 0.024;
 
-  double length_ratio;
-  double pressure_ratio;
-  double velocity_ratio;
-  double time_ratio;
-  double new_r;
-  double new_width;
-  double new_volume;
-  double new_Ca;
+  double Ca;
+  double new_V;
+  double new_h;
+  convert_parameters_from_q_nd_to_capillary_nd(Q, V, h, Ca, new_V, new_h);
 
   finger::alpha = 40.0;
-
-  convert_to_capillary_nondimensionalisation(major_radius,
-                                             width,
-                                             volume,
-                                             Q,
-                                             finger::alpha,
-                                             length_ratio,
-                                             pressure_ratio,
-                                             velocity_ratio,
-                                             time_ratio,
-                                             new_r,
-                                             new_width,
-                                             new_volume,
-                                             new_Ca);
-  finger::major_radius = new_r;
-  finger::ca_inv = 1.0 / new_Ca;
+  finger::ca_inv = 1.0 / Ca;
   finger::st = 1.0;
   finger::nu = 0.3;
 
+  finger::major_radius = 0.25;
   finger::bubble_initial_centre_y = 0.5 + 0.005;
-
-  finger::perturbation_amplitude = 0.0;
-  finger::perturbation_rms_width = new_width;
-
   // finger::target_bubble_volume = 0.01; // new_volume;
+
+  finger::perturbation_amplitude = new_h;
+  finger::perturbation_rms_width = 0.25;
+
   // Create generalised Hookean constitutive equations
   finger::constitutive_law_pt = new GeneralisedHookean(&finger::nu);
 
@@ -77,7 +58,8 @@ int main(int argc, char* argv[])
   // integral_problem.doc_solution(doc_info);
   // finger::total_volume = integral_problem.result();
 
-  finger::target_bubble_volume = MathematicalConstants::Pi * pow(finger::finger_width, 2.0) / 2;
+  finger::target_bubble_volume =
+    MathematicalConstants::Pi * pow(finger::finger_width, 2.0) / 2;
   finger::total_volume = 1.0;
 
   finger::target_fluid_volume =
@@ -89,7 +71,7 @@ int main(int argc, char* argv[])
   finger::print_parameters();
 
   /// Create problem
-  FingerProblem<MyNewElementWithIntegral> problem;
+  FingerProblem<MyNewElementWithIntegral> problem(doc_info);
 
   bool run_self_test = false;
   if (run_self_test)
