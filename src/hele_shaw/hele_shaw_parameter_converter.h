@@ -25,7 +25,8 @@ namespace oomph
     length_ratio = 0.5;
     depth_ratio = 1.0;
     time_ratio = I / 4.0;
-    pressure_ratio = 12.0 / I;
+    //pressure_ratio = 12.0 / I;
+    pressure_ratio = 12.0 * I; // ??
   }
 
   /// Convert the parameters used from a nondimensionalation which
@@ -44,7 +45,7 @@ namespace oomph
     double pressure_ratio;
     get_ratios_of_q_nd_to_capillary_nd(
       length_ratio, depth_ratio, time_ratio, pressure_ratio);
-    Ca = 6.0 / pressure_ratio * Q;
+    Ca = 6.0 * pressure_ratio * Q;
     new_V = length_ratio * length_ratio * depth_ratio * V;
     new_h = depth_ratio * h;
   }
