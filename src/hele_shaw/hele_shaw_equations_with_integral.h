@@ -17,7 +17,9 @@ namespace oomph
   {
   public:
     HeleShawEquationsWithIntegral()
-      : HeleShawEquations(), Volume_external_data_index(0)
+      : HeleShawEquations(),
+        Volume_external_data_index(0),
+        X_moment_external_data_index(1)
     {
     }
 
@@ -36,6 +38,7 @@ namespace oomph
 
   private:
     unsigned Volume_external_data_index;
+    unsigned X_moment_external_data_index;
   };
 
   //======================================================================
@@ -151,13 +154,27 @@ namespace oomph
           }
         }
 
-        // Add the element's volume to external volume data
         unsigned i_value = 0;
-        local_eqn = external_local_eqn(Volume_external_data_index, i_value);
-        if (local_eqn >= 0)
+        unsigned n_external_data = this->nexternal_data();
+        if (n_external_data > 0)
         {
-          // Calculate the fluid volume contained within the element
-          residuals[local_eqn] += h * test(l) * W;
+          // Add the element's volume to external volume data
+          local_eqn = external_local_eqn(Volume_external_data_index, i_value);
+          if (local_eqn >= 0)
+          {
+            // Calculate the fluid volume contained within the element
+            residuals[local_eqn] += h * test(l) * W;
+          }
+        }
+        if (n_external_data > 1)
+        {
+          // Add the element's volume to external volume data
+          local_eqn = external_local_eqn(X_moment_external_data_index, i_value);
+          if (local_eqn >= 0)
+          {
+            // Calculate the fluid volume contained within the element
+            residuals[local_eqn] += interpolated_x[0] * h * test(l) * W;
+          }
         }
       }
 
