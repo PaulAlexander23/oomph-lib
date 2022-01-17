@@ -5,7 +5,7 @@
 #include "hele_shaw.h"
 #include "info_element.h"
 
-#include "filled_channel_flow_problem.cc"
+#include "filled_channel_flow_problem.h"
 
 using namespace oomph;
 using namespace std;
@@ -14,7 +14,7 @@ template<class ELEMENT>
 class QHeleShawChannelProblem : public HeleShawChannelProblem<ELEMENT>
 {
 public:
-  QHeleShawChannelProblem() : HeleShawChannelProblem<ELEMENT>(){};
+  QHeleShawChannelProblem() : HeleShawChannelProblem<ELEMENT>() {}
 
   ~QHeleShawChannelProblem(){};
 
@@ -26,13 +26,14 @@ void QHeleShawChannelProblem<ELEMENT>::generate_bulk_mesh()
 {
   unsigned n_x = 10;
   unsigned n_y = 10;
-  double l_x = 2.0;
-  double l_y = 1.0;
+  double l_x = problem_parameter::domain_length;
+  double l_y = problem_parameter::domain_width;
 
   cout << "SimpleRectangularQuadMesh" << endl;
   this->Bulk_mesh_pt =
     new SimpleRectangularQuadMesh<ELEMENT>(n_x, n_y, l_x, l_y);
 }
+
 
 int main(int argc, char* argv[])
 {
@@ -47,6 +48,8 @@ int main(int argc, char* argv[])
 
   /// Create problem object
   QHeleShawChannelProblem<QHeleShawElement<3>> problem;
+
+  problem.setup();
 
   /// Run problem self test
   if (problem.self_test())
