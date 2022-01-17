@@ -607,8 +607,8 @@ namespace oomph
         if (local_eqn >= 0)
         {
           residuals[local_eqn] += (interpolated_p - p_bubble +
-                                   2.0 * Ca_inv / local_aspect_ratio *
-                                     (1.0 / h + kappa / local_aspect_ratio)) *
+                                   Ca_inv / local_aspect_ratio *
+                                     (2.0 / h + kappa / local_aspect_ratio)) *
                                   psif(l) * W * J;
 
 
@@ -636,7 +636,7 @@ namespace oomph
                 {
                   // This bit relates to d_kappa /d tau.
                   jacobian(local_eqn, local_unknown) +=
-                    2.0 * Ca_inv / pow(local_aspect_ratio, 2.0) * psif(l) * W *
+                    Ca_inv / pow(local_aspect_ratio, 2.0) * psif(l) * W *
                     J * psif(l2) * interpolated_n[i2];
                 }
               }

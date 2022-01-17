@@ -40,19 +40,17 @@
 // #include "generic/nodes.h"
 // #include "generic/projection.h"
 
-//=============================================================
-/// A class for all isoparametric elements that solve the
-/// HeleShaw equations.
-/// \f[
-/// dh_dt + div ( b^3 grad p)=0
-/// \f]
-/// This contains the generic maths. Shape functions, geometric
-/// mapping etc. must get implemented in derived class.
-//=============================================================
-
 namespace oomph
 {
-  // JACK - FINITE ELEMENT
+  //=============================================================
+  /// A class for all isoparametric elements that solve the
+  /// Hele-Shaw equations.
+  /// \f[
+  /// dh_dt + u|_h grad h  - div ( b^3/12 grad p) = 0
+  /// \f]
+  /// This contains the generic maths. Shape functions, geometric
+  /// mapping etc. must get implemented in derived class.
+  //=============================================================
   class HeleShawEquations : public virtual FiniteElement
   {
   public:
@@ -62,49 +60,30 @@ namespace oomph
                                    double& h,
                                    double& dhdt);
 
+    /// \short Function pointer to function which provides h(x,t) and dh/dt, as
+    /// well as spatial gradients, for vector x.
     typedef void (*UpperWallFluxFctPt)(const Vector<double>& x,
                                        double& h,
                                        double& dhdt,
                                        Vector<double>& dhdx,
                                        Vector<double>& d_dhdt_dx);
 
-  protected:
-    /// Pointer to function that specifies the gap width and wall velocity
-    UpperWallFctPt Upper_wall_fct_pt;
+    /// \short Function pointer to function which provides wall speed as a
+    /// function of x. This allows us to solve for bubble motion in a moving
+    /// frame. A constant wall speed does not affect the mass conservation
+    /// equations, but does feature in the kinematic equation for interface
+    /// motion.
+    typedef void (*WallSpeedFctPt)(const Vector<double>& x,
+                                   Vector<double>& U_wall);
 
-    UpperWallFluxFctPt Upper_wall_flux_fct_pt;
-
-  private:
-    /// External data index for the volume. Set to negative if not being used.
-    int Volume_external_data_index;
-
-    /// External data index for the centre of mass. Set to negative if not being
-    /// used.
-    int X_mom_external_data_index;
-    int Y_mom_external_data_index;
-
-  public:
     /// Constructor
-    HeleShawEquations()
-      : Upper_wall_fct_pt(0),
-        Upper_wall_flux_fct_pt(0),
-        Volume_external_data_index(-1),
-        X_mom_external_data_index(-1),
-        Y_mom_external_data_index(-1)
-    {
-    }
+    HeleShawEquations();
 
     /// Broken copy constructor
-    HeleShawEquations(const HeleShawEquations& dummy)
-    {
-      BrokenCopy::broken_copy("HeleShawEquations");
-    }
+    HeleShawEquations(const HeleShawEquations& dummy) = delete;
 
     /// Broken assignment operator
-    void operator=(const HeleShawEquations&)
-    {
-      BrokenCopy::broken_assign("HeleShawEquations");
-    }
+    void operator=(const HeleShawEquations&) = delete;
 
     /// \short Return the index at which the unknown value
     /// is stored. The default value, 0, is appropriate for single-physics
@@ -118,50 +97,23 @@ namespace oomph
       return 0;
     }
 
-    unsigned add_volume_data_pt(Data* data_pt)
-    {
-      Volume_external_data_index = add_external_data(data_pt);
+    /// Add a external data to store the volume integral
+    unsigned add_volume_data_pt(Data* data_pt);
 
-      return Volume_external_data_index;
-    }
+    /// Remove volume integral data
+    void remove_volume_data_pt();
 
-    void remove_volume_data_pt()
-    {
-      /// We should remove the data element here.
-      /// Not sure how to do this without messing up the other data indices.
+    /// Add a external data to store the x moment integral
+    unsigned add_x_mom_data_pt(Data* data_pt);
 
-      Volume_external_data_index = -1;
-    }
+    /// Remove x moment data pointer
+    void remove_x_mom_data_pt();
 
-    unsigned add_x_mom_data_pt(Data* data_pt)
-    {
-      X_mom_external_data_index = add_external_data(data_pt);
+    /// Add a external data to store the y moment integral
+    unsigned add_y_mom_data_pt(Data* data_pt);
 
-      return X_mom_external_data_index;
-    }
-
-    void remove_x_mom_data_pt()
-    {
-      /// We should remove the data element here.
-      /// Not sure how to do this without messing up the other data indices.
-
-      X_mom_external_data_index = -1;
-    }
-
-    unsigned add_y_mom_data_pt(Data* data_pt)
-    {
-      Y_mom_external_data_index = add_external_data(data_pt);
-
-      return Y_mom_external_data_index;
-    }
-
-    void remove_y_mom_data_pt()
-    {
-      /// We should remove the data element here.
-      /// Not sure how to do this without messing up the other data indices.
-
-      Y_mom_external_data_index = -1;
-    }
+    /// Remove y moment data pointer
+    void remove_y_mom_data_pt();
 
     /// Output with default number of plot points
     void output(std::ostream& outfile);
@@ -189,13 +141,7 @@ namespace oomph
       std::ostream& outfile,
       const unsigned& n_plot,
       const double& time,
-      FiniteElement::UnsteadyExactSolutionFctPt exact_soln_pt)
-    {
-      throw OomphLibError(
-        "There is no time-dependent output_fct() for HeleShaw elements ",
-        "HeleShawEquations::output_fct()",
-        OOMPH_EXCEPTION_LOCATION);
-    }
+      FiniteElement::UnsteadyExactSolutionFctPt exact_soln_pt);
 
     /// Get error against and norm of exact solution
     void compute_error(std::ostream& outfile,
@@ -219,6 +165,12 @@ namespace oomph
     UpperWallFluxFctPt& upper_wall_flux_fct_pt();
 
     UpperWallFluxFctPt upper_wall_flux_fct_pt() const;
+
+    /// Access function: Pointer to moving frame speed function
+    WallSpeedFctPt& wall_speed_fct_pt();
+
+    /// Access function: Pointer to moving frame speed function. Const version
+    WallSpeedFctPt wall_speed_fct_pt() const;
 
     /// To implement the Hele-Shaw mass conservation, we need to know
     /// h and dh/dt at (Eulerian) position x.
@@ -298,6 +250,8 @@ namespace oomph
                                Vector<double>& gradient) const;
 
     /// The current nondimensionalisation has velocity[i] = -h^2 *dp/dx_i
+    /// Should be get flux as we are using depth averaged equations and
+    /// equation to flux[i] = - h^3 / 12 * dp/dx_i
     void get_velocity(const Vector<double>& s, Vector<double>& velocity) const;
 
     /// Add the element's contribution to its residual vector (wrapper)
@@ -386,19 +340,96 @@ namespace oomph
       Vector<double>& residuals,
       DenseMatrix<double>& jacobian,
       const unsigned& flag);
+
+    /// Pointer to function that specifies the gap width and wall velocity
+    UpperWallFctPt Upper_wall_fct_pt;
+
+    UpperWallFluxFctPt Upper_wall_flux_fct_pt;
+
+    /// Pointer to function that specifies the moving frame speed function
+    WallSpeedFctPt Wall_speed_fct_pt;
+
+  private:
+    /// External data index for the volume. Set to negative if not being used.
+    int Volume_external_data_index;
+
+    /// External data index for the centre of mass. Set to negative if not being
+    /// used.
+    int X_mom_external_data_index;
+    int Y_mom_external_data_index;
   };
 
   //=============================================================
   /// A class for all isoparametric elements that solve the
-  /// HeleShaw equations.
+  /// Hele Shaw equations.
   /// \f[
-  /// dh_dt + div ( b^3 grad p)=0
+  /// dh_dt + u|_h grad h  - div ( b^3/12 grad p) = 0
   /// \f]
   /// This contains the generic maths. Shape functions, geometric
   /// mapping etc. must get implemented in derived class.
   //=============================================================
 
-  // JACK - FINITE ELEMENT
+  /// Constructor
+  HeleShawEquations::HeleShawEquations()
+    : Upper_wall_fct_pt(0),
+      Upper_wall_flux_fct_pt(0),
+      Volume_external_data_index(-1),
+      X_mom_external_data_index(-1),
+      Y_mom_external_data_index(-1)
+  {
+  }
+
+  /// Add a external data to store the volume integral
+  unsigned HeleShawEquations::add_volume_data_pt(Data* data_pt)
+  {
+    Volume_external_data_index = add_external_data(data_pt);
+
+    return Volume_external_data_index;
+  }
+
+  /// Remove volume integral data
+  void HeleShawEquations::remove_volume_data_pt()
+  {
+    /// We should remove the data element here.
+    /// Not sure how to do this without messing up the other data indices.
+
+    Volume_external_data_index = -1;
+  }
+
+  /// Add a external data to store the x moment integral
+  unsigned HeleShawEquations::add_x_mom_data_pt(Data* data_pt)
+  {
+    X_mom_external_data_index = add_external_data(data_pt);
+
+    return X_mom_external_data_index;
+  }
+
+  /// Remove x moment data pointer
+  void HeleShawEquations::remove_x_mom_data_pt()
+  {
+    /// We should remove the data element here.
+    /// Not sure how to do this without messing up the other data indices.
+
+    X_mom_external_data_index = -1;
+  }
+
+
+  /// Add a external data to store the y moment integral
+  unsigned HeleShawEquations::add_y_mom_data_pt(Data* data_pt)
+  {
+    Y_mom_external_data_index = add_external_data(data_pt);
+
+    return Y_mom_external_data_index;
+  }
+
+  /// Remove y moment data pointer
+  void HeleShawEquations::remove_y_mom_data_pt()
+  {
+    /// We should remove the data element here.
+    /// Not sure how to do this without messing up the other data indices.
+
+    Y_mom_external_data_index = -1;
+  }
 
   /// Output with default number of plot points
   void HeleShawEquations::output(std::ostream& outfile)
@@ -452,6 +483,18 @@ namespace oomph
     return Upper_wall_flux_fct_pt;
   }
 
+  /// Access function: Pointer to moving frame speed function
+  HeleShawEquations::WallSpeedFctPt& HeleShawEquations::wall_speed_fct_pt()
+  {
+    return Wall_speed_fct_pt;
+  }
+
+  /// Access function: Pointer to moving frame speed function. Const version
+  HeleShawEquations::WallSpeedFctPt HeleShawEquations::wall_speed_fct_pt() const
+  {
+    return Wall_speed_fct_pt;
+  }
+
   /// Get pressure flux: gradient[i] = dp/dx_i
   /// This is useful to compute the velocity components, and can also be used
   /// as a flux vector for the Z2 error estimator (see eg
@@ -492,6 +535,8 @@ namespace oomph
   }
 
   /// The current nondimensionalisation has velocity[i] = -h^2 *dp/dx_i
+  /// Should be get flux as we are using depth averaged equations and
+  /// equation to flux[i] = - h^2 / 12 * dp/dx_i
   void HeleShawEquations::get_velocity(const Vector<double>& s,
                                        Vector<double>& velocity) const
   {
@@ -539,7 +584,7 @@ namespace oomph
     /// Now assemble the velocity components.
     for (unsigned j = 0; j < 2; j++)
     {
-      velocity[j] = -h * h * pressure_gradient[j];
+      velocity[j] = -pow(h, 2.0) / 12.0 * pressure_gradient[j];
     }
   }
 
@@ -649,7 +694,7 @@ namespace oomph
           for (unsigned k = 0; k < 2; k++)
           {
             residuals[local_eqn] +=
-              pow(h, 3) * interpolated_dpdx[k] * dtestdx(l, k) * W;
+              pow(h, 3) / 12 * interpolated_dpdx[k] * dtestdx(l, k) * W;
           }
 
           // Calculate the jacobian
@@ -667,7 +712,7 @@ namespace oomph
                 for (unsigned i = 0; i < 2; i++)
                 {
                   jacobian(local_eqn, local_unknown) +=
-                    pow(h, 3) * dpsidx(l2, i) * dtestdx(l, i) * W;
+                    pow(h, 3) / 12 * dpsidx(l2, i) * dtestdx(l, i) * W;
                 }
               }
             }
@@ -882,6 +927,21 @@ namespace oomph
 
     // Write tecplot footer (e.g. FE connectivity lists)
     write_tecplot_zone_footer(outfile, nplot);
+  }
+
+  /// \short Output exact soln: x,y,u_exact or x,y,z,u_exact at
+  /// n_plot^2 plot points (dummy time-dependent version to
+  /// keep intel compiler happy)
+  void HeleShawEquations::output_fct(
+    std::ostream& outfile,
+    const unsigned& n_plot,
+    const double& time,
+    FiniteElement::UnsteadyExactSolutionFctPt exact_soln_pt)
+  {
+    throw OomphLibError(
+      "There is no time-dependent output_fct() for HeleShaw elements ",
+      "HeleShawEquations::output_fct()",
+      OOMPH_EXCEPTION_LOCATION);
   }
 
   //======================================================================
