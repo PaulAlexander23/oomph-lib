@@ -36,7 +36,7 @@ namespace problem_parameter
 
     b = 1.0 - exp_term;
 
-    dbdt = global_frame_speed_pt * 2.0 * (local_x - centre_x) * exp_term;
+    dbdt = *global_frame_speed_pt * 2.0 * (local_x - centre_x) * exp_term;
   }
 
   void get_dirichlet_bc(const Vector<double>& x, double& p)
