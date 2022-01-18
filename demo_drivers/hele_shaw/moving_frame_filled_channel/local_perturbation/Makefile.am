@@ -3,11 +3,11 @@ include $(top_srcdir)/config/makefile_templates/demo_drivers
 
 # Name of executable
 check_PROGRAMS= \
-time_dependent_channel_height
+moving_frame_filled_channel
 
 # Sources for executable
-time_dependent_channel_height_SOURCES = time_dependent_channel_height.cc validate.sh
+moving_frame_filled_channel_SOURCES = moving_frame_filled_channel.cc validate.sh
 
 # Required libraries:
 # $(FLIBS) is included in case the solver involves fortran sources.
-time_dependent_channel_height_LDADD = -L@libdir@ -lhele_shaw -lmeshes -lgeneric $(EXTERNAL_LIBS) $(FLIBS)
+moving_frame_filled_channel_LDADD = -L@libdir@ -lode -lhele_shaw -lmeshes -lgeneric $(EXTERNAL_LIBS) $(FLIBS)
