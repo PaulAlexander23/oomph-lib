@@ -141,13 +141,14 @@ namespace oomph
   {
     cout << "Iterate timestepper" << endl;
 
-
-    unsigned n_timestep = ceil(t_final / t_step);
+    double dt = t_step;
+    //double tolerance = 1e-3;
 
     unsigned max_adapt = 0;
     bool is_first_step = true;
     unsigned adapt_interval = 5;
-    for (unsigned i_timestep = 0; i_timestep < n_timestep; i_timestep++)
+    unsigned i_timestep = 0;
+    while (time() < t_final)
     {
       cout << "t: " << time() << endl;
 
@@ -190,17 +191,21 @@ namespace oomph
       //  cout << "i: " << i << ", j: " << j << endl;
       //}
 
-      if (is_first_step)
-      {
-        is_first_step = false;
-        max_adapt = 5;
-      }
+      // if (is_first_step)
+      //{
+      //  is_first_step = false;
+      //  max_adapt = 5;
+      //}
 
       cout << "Unsteady Newton solve" << endl;
-      unsteady_newton_solve(t_step, max_adapt, is_first_step);
+      unsteady_newton_solve(dt, max_adapt, is_first_step);
+      // dt = doubly_adaptive_unsteady_newton_solve(
+      //  dt, tolerance, max_adapt, is_first_step);
       Fluid_mesh_pt->set_lagrangian_nodal_coordinates();
 
       doc_solution(doc_info);
+
+      i_timestep++;
     }
   }
 
@@ -272,7 +277,7 @@ namespace oomph
   {
     double x_center = 0;
     double y_center = 0;
-    double major_radius = 0.3;
+    double major_radius = 0.33;
     double minor_radius = (*parameters::target_bubble_volume_pt) /
                           MathematicalConstants::Pi / major_radius;
     unsigned npoints = 32;
@@ -479,7 +484,7 @@ namespace oomph
       HeleShawInterfaceElement<ELEMENT>* interface_element_pt =
         dynamic_cast<HeleShawInterfaceElement<ELEMENT>*>(
           Surface_mesh_pt->element_pt(e));
-      interface_element_pt->ca_inv_pt() = parameters::q_inv_pt;
+      interface_element_pt->ca_inv_pt() = parameters::ca_inv_pt;
       interface_element_pt->st_pt() = parameters::st_pt;
       interface_element_pt->aspect_ratio_pt() = parameters::alpha_pt;
       interface_element_pt->upper_wall_fct_pt() = parameters::upper_wall_fct;
