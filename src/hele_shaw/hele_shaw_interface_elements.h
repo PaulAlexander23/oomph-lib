@@ -636,8 +636,8 @@ namespace oomph
                 {
                   // This bit relates to d_kappa /d tau.
                   jacobian(local_eqn, local_unknown) +=
-                    Ca_inv / pow(local_aspect_ratio, 2.0) * psif(l) * W *
-                    J * psif(l2) * interpolated_n[i2];
+                    Ca_inv / pow(local_aspect_ratio, 2.0) * psif(l) * W * J *
+                    psif(l2) * interpolated_n[i2];
                 }
               }
             }
