@@ -5,7 +5,7 @@
 
 namespace parameters
 {
-  double* q_inv_pt = 0;
+  double* ca_inv_pt = 0;
   double* st_pt = 0;
   double* alpha_pt = 0;
   /// Pseudo-solid Poisson ratio
@@ -16,7 +16,7 @@ namespace parameters
   double* total_volume_pt = 0;
 
   const double initial_volume = MathematicalConstants::Pi * pow(0.3, 2.0);
-  const double injection_rate = 1.0;
+  double injection_rate = 1.0;
 
   ConstitutiveLaw* constitutive_law_pt = 0;
 
