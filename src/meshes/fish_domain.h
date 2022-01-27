@@ -3,7 +3,7 @@
 // LIC// multi-physics finite-element library, available
 // LIC// at http://www.oomph-lib.org.
 // LIC//
-// LIC// Copyright (C) 2006-2021 Matthias Heil and Andrew Hazel
+// LIC// Copyright (C) 2006-2022 Matthias Heil and Andrew Hazel
 // LIC//
 // LIC// This library is free software; you can redistribute it and/or
 // LIC// modify it under the terms of the GNU Lesser General Public
@@ -209,8 +209,7 @@ namespace oomph
       f[1] = -f[1];
     }
 
-    /// Southern boundary of lower body macro element zeta \f$\in [-1,1]
-    /// \f$
+    /// Southern boundary of lower body macro element zeta \f$\in [-1,1] \f$
     void r_lower_body_S(const unsigned& t,
                         const Vector<double>& zeta,
                         Vector<double>& f)

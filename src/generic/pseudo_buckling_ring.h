@@ -3,7 +3,7 @@
 // LIC// multi-physics finite-element library, available
 // LIC// at http://www.oomph-lib.org.
 // LIC//
-// LIC// Copyright (C) 2006-2021 Matthias Heil and Andrew Hazel
+// LIC// Copyright (C) 2006-2022 Matthias Heil and Andrew Hazel
 // LIC//
 // LIC// This library is free software; you can redistribute it and/or
 // LIC// modify it under the terms of the GNU Lesser General Public
@@ -45,18 +45,8 @@ namespace oomph
   //=========================================================================
   /// Pseudo buckling ring: Circular ring deformed by the
   /// N-th buckling mode of a thin-wall elastic ring.
-  /// \f[
-  /// x = R_0 \cos(\zeta) +
-  ///     \epsilon \left( \cos(N \zeta) \cos(\zeta) - A \sin(N \zeta)
-  ///     \sin(\zeta)
-  ///              \right) sin(2 \pi t/T)
-  /// \f]
-  /// \f[
-  /// y = R_0 \sin(\zeta) +
-  ///     \epsilon \left( \cos(N \zeta) \sin(\zeta) + A \sin(N \zeta)
-  ///     \cos(\zeta)
-  ///              \right) sin(2 \pi t/T)
-  /// \f]
+  /// \f[ x = R_0 \cos(\zeta) + \epsilon \left( \cos(N \zeta) \cos(\zeta) - A \sin(N \zeta) \sin(\zeta) \right) sin(2 \pi t/T) \f]
+  /// \f[ y = R_0 \sin(\zeta) + \epsilon \left( \cos(N \zeta) \sin(\zeta) + A \sin(N \zeta) \cos(\zeta) \right) sin(2 \pi t/T) \f]
   /// where A is the ratio of the aziumuthal to the radial buckling
   /// amplitude (A=-1/N for statically buckling rings) and epsilon
   /// is the buckling amplitude.
@@ -577,27 +567,15 @@ namespace oomph
   //=========================================================================
   /// Pseudo buckling ring: Circular ring deformed by the
   /// N-th buckling mode of a thin-wall elastic ring.
-  /// \f[
-  /// x = R_0 \cos(\zeta) +
-  ///     \epsilon \left( \cos(N \zeta) \cos(\zeta) - A \sin(N \zeta)
-  ///     \sin(\zeta)
-  ///              \right) sin(2 \pi t/T)
-  /// \f]
-  /// \f[
-  /// y = R_0 \sin(\zeta) +
-  ///     \epsilon \left( \cos(N \zeta) \sin(\zeta) + A \sin(N \zeta)
-  ///     \cos(\zeta)
-  ///              \right) sin(2 \pi t/T)
-  /// \f]
+  /// \f[ x = R_0 \cos(\zeta) + \epsilon \left( \cos(N \zeta) \cos(\zeta) - A \sin(N \zeta) \sin(\zeta) \right) sin(2 \pi t/T) \f]
+  /// \f[ y = R_0 \sin(\zeta) + \epsilon \left( \cos(N \zeta) \sin(\zeta) + A \sin(N \zeta) \cos(\zeta) \right) sin(2 \pi t/T) \f]
   /// where A is the ratio of the aziumuthal to the radial buckling
   /// amplitude (A=-1/N for statically buckling rings) and epsilon
   /// is the buckling amplitude.
   /// Scale R_0 is adjusted to ensure conservation of (computational)
   /// volume/area. This is implemented by a
   /// pseudo-elasticity approach: The governing equation for \f$ R_0 \f$ is:
-  /// \f[
-  /// p_{ref} = R_0 - 1.0
-  /// \f]
+  /// \f[ p_{ref} = R_0 - 1.0 \f]
   /// The pointer to the reference pressure needs to be set with
   /// reference_pressure_pt().
   //=========================================================================

@@ -3,7 +3,7 @@
 // LIC// multi-physics finite-element library, available
 // LIC// at http://www.oomph-lib.org.
 // LIC//
-// LIC// Copyright (C) 2006-2021 Matthias Heil and Andrew Hazel
+// LIC// Copyright (C) 2006-2022 Matthias Heil and Andrew Hazel
 // LIC//
 // LIC// This library is free software; you can redistribute it and/or
 // LIC// modify it under the terms of the GNU Lesser General Public
@@ -916,7 +916,7 @@ namespace oomph
 
       int local_eqn = 0, local_unknown = 0;
 
-      // Loop over the shape functions
+      // Loop over the shape functions to assemble contributions
       for (unsigned l = 0; l < n_node; l++)
       {
         // Loop over the directions
@@ -949,7 +949,7 @@ namespace oomph
             } // End of Jacobian calculation
           }
         }
-      }
+      } // End of loop over shape functions
     }
 
 

@@ -3,7 +3,7 @@
 //LIC// multi-physics finite-element library, available 
 //LIC// at http://www.oomph-lib.org.
 //LIC// 
-//LIC// Copyright (C) 2006-2021 Matthias Heil and Andrew Hazel
+//LIC// Copyright (C) 2006-2022 Matthias Heil and Andrew Hazel
 //LIC// 
 //LIC// This library is free software; you can redistribute it and/or
 //LIC// modify it under the terms of the GNU Lesser General Public
@@ -1728,7 +1728,6 @@ void SurfactantProblem<ELEMENT,INTERFACE_ELEMENT>::set_boundary_conditions(
   {
     const double Gamma_init = 0.75;
     const double C_init = Gamma_init/(Global_Physical_Variables::K_b*(1.0-Gamma_init));
-    const double M_init = pow(C_init,Global_Physical_Variables::N);
     unsigned n_lower = Bulk_mesh_pt->nlower();//nnode();
     for(unsigned e=0;e<n_lower;e++)
       {
@@ -1742,7 +1741,6 @@ void SurfactantProblem<ELEMENT,INTERFACE_ELEMENT>::set_boundary_conditions(
 	    //Be careful about upper and lower layers
 	    //If these are not set 
 	    nod_pt->set_value(2,C_init); 
-	    //nod_pt->set_value(3,M_init);
 	    nod_pt->set_value(3,0.0);
 	    
 	    //Set the velocityq

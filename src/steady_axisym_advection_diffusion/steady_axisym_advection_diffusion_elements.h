@@ -3,7 +3,7 @@
 // LIC// multi-physics finite-element library, available
 // LIC// at http://www.oomph-lib.org.
 // LIC//
-// LIC// Copyright (C) 2006-2021 Matthias Heil and Andrew Hazel
+// LIC// Copyright (C) 2006-2022 Matthias Heil and Andrew Hazel
 // LIC//
 // LIC// This library is free software; you can redistribute it and/or
 // LIC// modify it under the terms of the GNU Lesser General Public
@@ -44,10 +44,7 @@ namespace oomph
   //=============================================================
   /// A class for all elements that solve the Steady Axisymmetric
   /// Advection Diffusion equations using isoparametric elements.
-  /// \f[
-  /// Pe \mathbf{w}\cdot(\mathbf{x}) \nabla u =
-  /// \nabla \cdot \left( \nabla u \right) + f(\mathbf{x})
-  /// \f]
+  /// \f[ Pe \mathbf{w}\cdot(\mathbf{x}) \nabla u = \nabla \cdot \left( \nabla u \right) + f(\mathbf{x}) \f]
   /// This contains the generic maths. Shape functions, geometric
   /// mapping etc. must get implemented in derived class.
   //=============================================================
@@ -601,9 +598,7 @@ namespace oomph
   /// A class for elements that allow the imposition of an
   /// applied Robin boundary condition on the boundaries of Steady
   /// Axisymmnetric Advection Diffusion Flux elements.
-  /// \f[
-  /// -\Delta u \cdot \mathbf{n} + \alpha(r,z) u = \beta(r,z)
-  /// \f]
+  /// \f[ -\Delta u \cdot \mathbf{n} + \alpha(r,z) u = \beta(r,z) \f]
   /// The element geometry is obtained from the FaceGeometry<ELEMENT>
   /// policy class.
   //======================================================================
@@ -895,9 +890,7 @@ namespace oomph
   //===========================================================================
   /// Compute the element's residual vector and the (zero) Jacobian
   /// matrix for the Robin boundary condition:
-  /// \f[
-  /// \Delta u \cdot \mathbf{n} + \alpha (\mathbf{x}) = \beta (\mathbf{x})
-  /// \f]
+  /// \f[ \Delta u \cdot \mathbf{n} + \alpha (\mathbf{x}) = \beta (\mathbf{x}) \f]
   //===========================================================================
   template<class ELEMENT>
   void SteadyAxisymAdvectionDiffusionFluxElement<ELEMENT>::

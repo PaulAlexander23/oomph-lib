@@ -3,7 +3,7 @@
 // LIC// multi-physics finite-element library, available
 // LIC// at http://www.oomph-lib.org.
 // LIC//
-// LIC// Copyright (C) 2006-2021 Matthias Heil and Andrew Hazel
+// LIC// Copyright (C) 2006-2022 Matthias Heil and Andrew Hazel
 // LIC//
 // LIC// This library is free software; you can redistribute it and/or
 // LIC// modify it under the terms of the GNU Lesser General Public
@@ -296,8 +296,8 @@ namespace Anasazi
 
 
     /*! \brief Compute a vector \c b where the components are the individual
-     * dot-products of the \c i-th columns of \c A and \c mv, i.e.\f$b[i] =
-     * A[i]^Hmv[i]\f$.
+     * dot-products of the \c i-th columns of \c A and \c mv, i.e.
+     * \f$ b[i] = * A[i]^Hmv[i] \f$.
      */
     static void MvDot(const oomph::DoubleMultiVector& mv,
                       const oomph::DoubleMultiVector& A,

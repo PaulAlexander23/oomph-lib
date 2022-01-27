@@ -3,7 +3,7 @@
 // LIC// multi-physics finite-element library, available
 // LIC// at http://www.oomph-lib.org.
 // LIC//
-// LIC// Copyright (C) 2006-2021 Matthias Heil and Andrew Hazel
+// LIC// Copyright (C) 2006-2022 Matthias Heil and Andrew Hazel
 // LIC//
 // LIC// This library is free software; you can redistribute it and/or
 // LIC// modify it under the terms of the GNU Lesser General Public
@@ -72,13 +72,9 @@ namespace oomph
   //=============================================================
   /// A class for all isoparametric elements that solve the
   /// Helmholtz equations.
-  /// \f[
-  /// \nabla^2 U + k^2 U = f
-  /// \f]
+  /// \f[ \nabla^2 U + k^2 U = f \f]
   /// in Fourier decomposed form (cylindrical polars):
-  /// \f[
-  /// U(r,\varphi,z) = \Re( u^{(n)}(r,z) \exp(-i n \varphi))
-  /// \f]
+  /// \f[ U(r,\varphi,z) = \Re( u^{(n)}(r,z) \exp(-i n \varphi)) \f]
   /// We are solving for \f$ u^{(n)}(r,z)\f$ for given parameters
   /// \f$ k^2 \f$ and \f$ n \f$ .
   /// This contains the generic maths. Shape functions, geometric

@@ -3,7 +3,7 @@
 // LIC// multi-physics finite-element library, available
 // LIC// at http://www.oomph-lib.org.
 // LIC//
-// LIC// Copyright (C) 2006-2021 Matthias Heil and Andrew Hazel
+// LIC// Copyright (C) 2006-2022 Matthias Heil and Andrew Hazel
 // LIC//
 // LIC// This library is free software; you can redistribute it and/or
 // LIC// modify it under the terms of the GNU Lesser General Public
@@ -493,8 +493,6 @@ namespace oomph
 
     // Check if boundaries need to be updated (regardless of
     // requirements of bulk error estimator) but don't do anything!
-    bool check_only = true;
-    bool outer_boundary_update_necessary = false;
     bool inner_boundary_update_necessary = false; // true;
 
     // Should we bother to adapt?

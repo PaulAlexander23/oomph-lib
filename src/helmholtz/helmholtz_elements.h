@@ -3,7 +3,7 @@
 // LIC// multi-physics finite-element library, available
 // LIC// at http://www.oomph-lib.org.
 // LIC//
-// LIC// Copyright (C) 2006-2021 Matthias Heil and Andrew Hazel
+// LIC// Copyright (C) 2006-2022 Matthias Heil and Andrew Hazel
 // LIC//
 // LIC// This library is free software; you can redistribute it and/or
 // LIC// modify it under the terms of the GNU Lesser General Public
@@ -47,9 +47,7 @@ namespace oomph
   //=============================================================
   /// A class for all isoparametric elements that solve the
   /// Helmholtz equations.
-  /// \f[
-  /// \frac{\partial^2 u}{\partial x_i^2} + k^2 u = f(x_j)
-  /// \f]
+  /// \f[ \frac{\partial^2 u}{\partial x_i^2} + k^2 u = f(x_j) \f]
   /// This contains the generic maths. Shape functions, geometric
   /// mapping etc. must get implemented in derived class.
   //=============================================================

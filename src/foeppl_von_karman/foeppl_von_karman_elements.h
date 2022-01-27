@@ -3,7 +3,7 @@
 // LIC// multi-physics finite-element library, available
 // LIC// at http://www.oomph-lib.org.
 // LIC//
-// LIC// Copyright (C) 2006-2021 Matthias Heil and Andrew Hazel
+// LIC// Copyright (C) 2006-2022 Matthias Heil and Andrew Hazel
 // LIC//
 // LIC// This library is free software; you can redistribute it and/or
 // LIC// modify it under the terms of the GNU Lesser General Public
@@ -47,13 +47,9 @@ namespace oomph
   //=============================================================
   /// A class for all isoparametric elements that solve the
   /// Foeppl von Karman equations.
-  /// \f[
-  /// \nabla^4 w - \eta Diamond^4(w,\phi) = p(x,y)
-  /// \f]
+  /// \f[ \nabla^4 w - \eta Diamond^4(w,\phi) = p(x,y) \f]
   /// and
-  /// \f[
-  /// \nabla^4 \phi + \frac{1}{2} Diamond^4(w,w) = 0
-  /// \f]
+  /// \f[ \nabla^4 \phi + \frac{1}{2} Diamond^4(w,w) = 0 \f]
   /// This contains the generic maths. Shape functions, geometric
   /// mapping etc. must get implemented in derived class.
   //=============================================================
