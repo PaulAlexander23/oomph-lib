@@ -10,8 +10,8 @@ using namespace std;
 
 namespace problem_parameter
 {
-  double* inlet_area_pt = 0;
-  double* outlet_area_pt = 0;
+  double* inlet_integral_pt = 0;
+  double* outlet_integral_pt = 0;
 
   double xcenter = 1;
   double ycenter = 0.5;
@@ -59,29 +59,29 @@ namespace problem_parameter
   void get_inlet_flux_bc(const Vector<double>& x, double& flux)
   {
     /// At the inlet we set the pressure gradient which is dependent on the
-    /// upper wall function, inlet_area and total flux
+    /// upper wall function, inlet_integral and total flux
 
-    double dpdx = total_flux / *inlet_area_pt;
+    double dpdx = total_flux / *inlet_integral_pt;
 
     double b;
     double dbdt;
     upper_wall_fct(x, b, dbdt);
 
-    flux = dpdx * (b * b * b);
+    flux = dpdx * (b * b * b) / 12.0;
   }
 
   void get_outlet_flux_bc(const Vector<double>& x, double& flux)
   {
     /// At the inlet we set the pressure gradient which is dependent on the
-    /// upper wall function, inlet_area and total flux
+    /// upper wall function, inlet_integral and total flux
 
-    double dpdx = total_flux / *outlet_area_pt;
+    double dpdx = total_flux / *outlet_integral_pt;
 
     double b;
     double dbdt;
     upper_wall_fct(x, b, dbdt);
 
-    flux = dpdx * (b * b * b);
+    flux = dpdx * (b * b * b) / 12.0;
   }
 
   enum
@@ -492,9 +492,9 @@ void HeleShawChannelProblem<ELEMENT>::upcast_and_finalise_elements()
 
   /// Info mesh
   unsigned index = 0;
-  problem_parameter::inlet_area_pt =
+  problem_parameter::inlet_integral_pt =
     this->Info_mesh_pt->element_pt(0)->internal_data_pt(0)->value_pt(index);
-  problem_parameter::outlet_area_pt =
+  problem_parameter::outlet_integral_pt =
     this->Info_mesh_pt->element_pt(1)->internal_data_pt(0)->value_pt(index);
 
   /// Inlet mesh
