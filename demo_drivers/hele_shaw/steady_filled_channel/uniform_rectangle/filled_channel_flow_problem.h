@@ -37,9 +37,9 @@ private:
   /// Generate info mesh
   void generate_info_mesh();
 
-  /// Generate surface elements
-  void generate_inlet_surface_mesh();
-  void generate_outlet_surface_mesh();
+  /// Generate flux elements
+  void generate_inlet_flux_mesh();
+  void generate_outlet_flux_mesh();
 
   /// Pin dirichlet outlet boundary
   void pin_data();
@@ -61,12 +61,16 @@ private:
   /// Save the integral to file
   void save_integral_to_file(ofstream& output_stream, string filename);
 
-  /// Pointer to the "surface" mesh
-  Mesh* Inlet_surface_mesh_pt;
-  Mesh* Outlet_surface_mesh_pt;
+  /// Pointer to the "flux" mesh
+  Mesh* Inlet_flux_mesh_pt;
+  Mesh* Outlet_flux_mesh_pt;
 
   /// Pointer to the info mesh
   Mesh* Info_mesh_pt;
+
+  /// Pointer to the integral data
+  Data* Inlet_integral_data_pt;
+  Data* Outlet_integral_data_pt;
 };
 
 template<class ELEMENT>
@@ -108,15 +112,18 @@ void HeleShawChannelProblem<ELEMENT>::doc_solution(DocInfo& doc_info)
 template<class ELEMENT>
 void HeleShawChannelProblem<ELEMENT>::generate_mesh()
 {
+  Inlet_integral_data_pt = new Data(1);
+  Outlet_integral_data_pt = new Data(1);
+
   generate_bulk_mesh();
   cout << "finished generate_bulk_mesh" << endl;
   this->generate_info_mesh();
-  this->generate_inlet_surface_mesh();
-  this->generate_outlet_surface_mesh();
+  this->generate_inlet_flux_mesh();
+  this->generate_outlet_flux_mesh();
 
   this->add_sub_mesh(this->Bulk_mesh_pt);
-  this->add_sub_mesh(this->Inlet_surface_mesh_pt);
-  this->add_sub_mesh(this->Outlet_surface_mesh_pt);
+  this->add_sub_mesh(this->Inlet_flux_mesh_pt);
+  this->add_sub_mesh(this->Outlet_flux_mesh_pt);
   this->add_sub_mesh(this->Info_mesh_pt);
 
   this->build_global_mesh();
@@ -127,19 +134,16 @@ void HeleShawChannelProblem<ELEMENT>::generate_info_mesh()
 {
   this->Info_mesh_pt = new Mesh;
 
-  unsigned number_of_values = 1;
-  Data* Inlet_integral_data_pt = new Data(number_of_values);
   this->Info_mesh_pt->add_element_pt(new InfoElement(Inlet_integral_data_pt));
-  Data* Outlet_integral_data_pt = new Data(number_of_values);
   this->Info_mesh_pt->add_element_pt(new InfoElement(Outlet_integral_data_pt));
 }
 
 template<class ELEMENT>
-void HeleShawChannelProblem<ELEMENT>::generate_inlet_surface_mesh()
+void HeleShawChannelProblem<ELEMENT>::generate_inlet_flux_mesh()
 {
   const unsigned boundary = 3;
 
-  this->Inlet_surface_mesh_pt = new Mesh;
+  this->Inlet_flux_mesh_pt = new Mesh;
 
   unsigned n_element = this->Bulk_mesh_pt->nboundary_element(boundary);
   for (unsigned n = 0; n < n_element; n++)
@@ -155,16 +159,16 @@ void HeleShawChannelProblem<ELEMENT>::generate_inlet_surface_mesh()
         face_index,
         this->Info_mesh_pt->element_pt(0)->internal_data_pt(0));
 
-    this->Inlet_surface_mesh_pt->add_element_pt(flux_element_pt);
+    this->Inlet_flux_mesh_pt->add_element_pt(flux_element_pt);
   }
 }
 
 template<class ELEMENT>
-void HeleShawChannelProblem<ELEMENT>::generate_outlet_surface_mesh()
+void HeleShawChannelProblem<ELEMENT>::generate_outlet_flux_mesh()
 {
   const unsigned boundary = 1;
 
-  this->Outlet_surface_mesh_pt = new Mesh;
+  this->Outlet_flux_mesh_pt = new Mesh;
 
   unsigned n_element = this->Bulk_mesh_pt->nboundary_element(boundary);
   for (unsigned n = 0; n < n_element; n++)
@@ -180,7 +184,7 @@ void HeleShawChannelProblem<ELEMENT>::generate_outlet_surface_mesh()
         face_index,
         this->Info_mesh_pt->element_pt(1)->internal_data_pt(0));
 
-    this->Outlet_surface_mesh_pt->add_element_pt(flux_element_pt);
+    this->Outlet_flux_mesh_pt->add_element_pt(flux_element_pt);
   }
 }
 
@@ -233,7 +237,7 @@ void HeleShawChannelProblem<ELEMENT>::upcast_and_finalise_elements()
 
   /// Inlet mesh
   // Find number of elements in mesh
-  n_element = this->Inlet_surface_mesh_pt->nelement();
+  n_element = this->Inlet_flux_mesh_pt->nelement();
 
   // Loop over the elements to set up element-specific
   // things that cannot be handled by constructor
@@ -242,7 +246,7 @@ void HeleShawChannelProblem<ELEMENT>::upcast_and_finalise_elements()
     // Upcast from GeneralElement to the present element
     HeleShawFluxElementWithInflowIntegral<ELEMENT>* el_pt =
       dynamic_cast<HeleShawFluxElementWithInflowIntegral<ELEMENT>*>(
-        this->Inlet_surface_mesh_pt->element_pt(i));
+        this->Inlet_flux_mesh_pt->element_pt(i));
 
     // Set the Neumann function pointer
     el_pt->flux_fct_pt() = &problem_parameter::get_inlet_flux_bc;
@@ -250,7 +254,7 @@ void HeleShawChannelProblem<ELEMENT>::upcast_and_finalise_elements()
 
   /// Outlet mesh
   // Find number of elements in mesh
-  n_element = this->Outlet_surface_mesh_pt->nelement();
+  n_element = this->Outlet_flux_mesh_pt->nelement();
 
   // Loop over the elements to set up element-specific
   // things that cannot be handled by constructor
@@ -259,7 +263,7 @@ void HeleShawChannelProblem<ELEMENT>::upcast_and_finalise_elements()
     // Upcast from GeneralElement to the present element
     HeleShawFluxElementWithInflowIntegral<ELEMENT>* el_pt =
       dynamic_cast<HeleShawFluxElementWithInflowIntegral<ELEMENT>*>(
-        this->Outlet_surface_mesh_pt->element_pt(i));
+        this->Outlet_flux_mesh_pt->element_pt(i));
 
     // Set the Neumann function pointer
     el_pt->flux_fct_pt() = &problem_parameter::get_outlet_flux_bc;
@@ -283,14 +287,8 @@ void HeleShawChannelProblem<ELEMENT>::set_boundary_conditions()
 
   cout << "Integral info mesh" << endl;
   /// Integral info mesh
-  const unsigned value_index = 0;
-  for (unsigned index = 0; index < 1; index++)
-  {
-    cout << "index: " << index << endl;
-    /// Integral value must be initialised to something non-zero
-    this->Info_mesh_pt->element_pt(index)->internal_data_pt(0)->set_value(
-      value_index, 1.0);
-  }
+  Inlet_integral_data_pt->set_value(0, 1.0);
+  Outlet_integral_data_pt->set_value(0, 1.0);
 }
 
 template<class ELEMENT>
@@ -317,12 +315,12 @@ void HeleShawChannelProblem<ELEMENT>::save_integral_to_file(
 {
   output_stream.open(filename.c_str());
   double my_integral = 0.0;
-  for (unsigned index = 0; index < 2; index++)
-  {
-    my_integral =
-      this->Info_mesh_pt->element_pt(index)->internal_data_pt(0)->value(0);
-    output_stream << "Integral " << index << "= " << my_integral << endl;
-  }
+  my_integral = Inlet_integral_data_pt->value(0);
+  output_stream << "Inlet integral "
+                << "= " << my_integral << endl;
+  my_integral = Outlet_integral_data_pt->value(0);
+  output_stream << "Outlet integral "
+                << "= " << my_integral << endl;
   output_stream.close();
 }
 

@@ -6,6 +6,8 @@
 #include "hele_shaw.h"
 #include "info_element.h"
 #include "local_pert_parameter.h"
+//#include "tape_parameter.h"
+//#include "problem_parameter.h"
 
 template<class ELEMENT>
 class HeleShawChannelProblem : public Problem
@@ -300,9 +302,9 @@ void HeleShawChannelProblem<ELEMENT>::upcast_and_finalise_elements()
 
   /// Info mesh
   unsigned index = 0;
-  problem_parameter::inlet_area_pt =
+  problem_parameter::inlet_integral_pt =
     this->Info_mesh_pt->element_pt(0)->internal_data_pt(0)->value_pt(index);
-  problem_parameter::outlet_area_pt =
+  problem_parameter::outlet_integral_pt =
     this->Info_mesh_pt->element_pt(1)->internal_data_pt(0)->value_pt(index);
 
   /// Inlet mesh

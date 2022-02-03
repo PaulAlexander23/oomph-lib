@@ -212,7 +212,7 @@ namespace oomph
       unsigned value_index = 0;
       local_eqn = this->external_local_eqn(this->Integral_index, value_index);
       /// The integral doesn't depend on the shape functions
-      residuals[local_eqn] += pow(h, 3.0) / 12 * W;
+      residuals[local_eqn] += pow(h, 3.0) / 12.0 * W;
     }
   }
 

@@ -6,11 +6,12 @@
 #include "hele_shaw.h"
 #include "solid.h"
 #include "relaxing_bubble_parameters.h"
+#include "compare_nodes.h"
 
-template<class ELEMENT>
+template<class ELEMENT, class BUBBLE_ELEMENT>
 class RelaxingBubbleProblem : public Problem
 {
-  /// Variables
+  /// Variables and enums
 public:
   /// Enumeration of mesh boundaries
   enum
@@ -24,13 +25,20 @@ public:
   };
 
 private:
+  /// Polygons
   TriangleMeshPolygon* Outer_boundary_polygon_pt;
   TriangleMeshPolygon* Surface_polygon_pt;
 
+  /// Meshes
   RefineableSolidTriangleMesh<ELEMENT>* Fluid_mesh_pt;
-  RefineableSolidTriangleMesh<VolumeElement>* Bubble_mesh_pt;
+  RefineableSolidTriangleMesh<BUBBLE_ELEMENT>* Bubble_mesh_pt;
   Mesh* Surface_mesh_pt;
+  Mesh* Info_mesh_pt;
+  Mesh* Volume_constraint_mesh_pt;
 
+  /// Data
+  Data* Integral_data_pt;
+  Data* Bubble_pressure_data_pt;
 
   /// Functions
 public:
@@ -51,13 +59,61 @@ public:
   /// Doc the solution
   void doc_solution(DocInfo& doc_info);
 
+  /// Compare given Jacobian to a numerical one
+  void debug_jacobian()
+  {
+    DoubleVector residuals;
+    DenseDoubleMatrix jacobian;
+    DoubleVector residualsFD;
+    DenseDoubleMatrix jacobianFD(ndof());
+
+    cout << "Get Jacobian" << endl;
+    get_jacobian(residuals, jacobian);
+    get_fd_jacobian(residualsFD, jacobianFD);
+
+    double err;
+    for (unsigned i = 0; i < ndof(); i++)
+    {
+      for (unsigned j = 0; j < ndof(); j++)
+      {
+        err = jacobian(j, i) - jacobianFD(j, i);
+        if (abs(err) > 1e-4)
+        {
+          printf("i: %4u, j: %4u", i, j);
+          printf(
+            ", act: %10.5g, exp: %10.5g", jacobian(j, i), jacobianFD(j, i));
+          printf(", dif: %10.5g", err);
+          cout << endl;
+        }
+      }
+    }
+
+
+    for (unsigned i = 0; i < ndof(); i++)
+    {
+      for (unsigned j = ndof() - 5; j < ndof(); j++)
+      {
+        printf("%10.5g, ", jacobian(j, i));
+      }
+      printf("\n");
+    }
+  }
+
+
 private:
+  void create_data_pointers();
+
   void generate_mesh();
   void generate_outer_boundary_polygon();
   void generate_surface_polygon();
   void generate_fluid_mesh();
   void generate_surface_mesh();
+
   void generate_bubble_mesh();
+  void get_bubble_bounding_nodes(Vector<Vector<Node*>>& boundary_nodes_pt);
+  void sort_bubble_bounding_nodes(Vector<Vector<Node*>>& boundary_nodes_pt);
+  void point_bubble_boundary_nodes_at_fluid_ones(
+    Vector<Vector<Node*>>& fluid_boundary_nodes_pt);
 
   void set_variable_and_function_pointers();
 
@@ -68,21 +124,22 @@ private:
   void actions_after_adapt();
 
   void doc_fluid_mesh(string filename);
+  void doc_bubble_mesh(string filename);
   void doc_surface_mesh(string filename);
+  void doc_integral(string filename);
 
   void compute_error_estimate(double& max_err, double& min_err);
 
   void delete_surface_mesh();
 };
 
-template<class ELEMENT>
-RelaxingBubbleProblem<ELEMENT>::RelaxingBubbleProblem()
+template<class ELEMENT, class BUBBLE_ELEMENT>
+RelaxingBubbleProblem<ELEMENT, BUBBLE_ELEMENT>::RelaxingBubbleProblem()
 {
   bool adaptive_timestepping = false;
   add_time_stepper_pt(new BDF<2>(adaptive_timestepping));
 
-  generate_outer_boundary_polygon();
-  generate_surface_polygon();
+  create_data_pointers();
 
   generate_mesh();
 
@@ -98,9 +155,9 @@ RelaxingBubbleProblem<ELEMENT>::RelaxingBubbleProblem()
 }
 
 /// Use a newton solve to set the initial conditions
-template<class ELEMENT>
-void RelaxingBubbleProblem<ELEMENT>::solve_for_initial_conditions(
-  DocInfo& doc_info)
+template<class ELEMENT, class BUBBLE_ELEMENT>
+void RelaxingBubbleProblem<ELEMENT, BUBBLE_ELEMENT>::
+  solve_for_initial_conditions(DocInfo& doc_info)
 {
   // cout<<"Steady Newton solve"<<endl;
   // const unsigned max_adapt = 0;
@@ -115,10 +172,9 @@ void RelaxingBubbleProblem<ELEMENT>::solve_for_initial_conditions(
 };
 
 /// Iterate forward in time
-template<class ELEMENT>
-void RelaxingBubbleProblem<ELEMENT>::iterate_timestepper(const double& t_step,
-                                                         const double& t_final,
-                                                         DocInfo& doc_info)
+template<class ELEMENT, class BUBBLE_ELEMENT>
+void RelaxingBubbleProblem<ELEMENT, BUBBLE_ELEMENT>::iterate_timestepper(
+  const double& t_step, const double& t_final, DocInfo& doc_info)
 {
   unsigned n_timestep = ceil(t_final / t_step);
 
@@ -150,8 +206,17 @@ void RelaxingBubbleProblem<ELEMENT>::iterate_timestepper(const double& t_step,
   }
 }
 
-template<class ELEMENT>
-void RelaxingBubbleProblem<ELEMENT>::generate_outer_boundary_polygon()
+template<class ELEMENT, class BUBBLE_ELEMENT>
+void RelaxingBubbleProblem<ELEMENT, BUBBLE_ELEMENT>::create_data_pointers()
+{
+  cout << "Create data" << endl;
+  Integral_data_pt = new Data(1);
+  Bubble_pressure_data_pt = new Data(1);
+}
+
+template<class ELEMENT, class BUBBLE_ELEMENT>
+void RelaxingBubbleProblem<ELEMENT,
+                           BUBBLE_ELEMENT>::generate_outer_boundary_polygon()
 {
   cout << "Generate outer boundary polygon" << endl;
   double domain_length = 1.0;
@@ -212,14 +277,14 @@ void RelaxingBubbleProblem<ELEMENT>::generate_outer_boundary_polygon()
   Outer_boundary_polygon_pt = new TriangleMeshPolygon(boundary_polyline_pt);
 }
 
-template<class ELEMENT>
-void RelaxingBubbleProblem<ELEMENT>::generate_surface_polygon()
+template<class ELEMENT, class BUBBLE_ELEMENT>
+void RelaxingBubbleProblem<ELEMENT, BUBBLE_ELEMENT>::generate_surface_polygon()
 {
   cout << "Generate surface polygon" << endl;
   double x_center = 0.5;
   double y_center = 0.5;
   double major_radius = 0.4;
-  double minor_radius = 0.2;
+  double minor_radius = pow(0.3, 2.0) / major_radius;
   unsigned npoints = 16;
   double zeta_step = MathematicalConstants::Pi / double(npoints - 1);
 
@@ -287,26 +352,57 @@ void RelaxingBubbleProblem<ELEMENT>::generate_surface_polygon()
   Surface_polygon_pt->set_polyline_unrefinement_tolerance(0.01);
 }
 
-template<class ELEMENT>
-void RelaxingBubbleProblem<ELEMENT>::generate_mesh()
+template<class ELEMENT, class BUBBLE_ELEMENT>
+void RelaxingBubbleProblem<ELEMENT, BUBBLE_ELEMENT>::generate_mesh()
 {
+  generate_outer_boundary_polygon();
+  generate_surface_polygon();
+
   cout << "Generate fluid mesh" << endl;
   generate_fluid_mesh();
-  cout << "Generate surface mesh" << endl;
-  Surface_mesh_pt = new Mesh;
-  generate_surface_mesh();
   cout << "Generate bubble mesh" << endl;
   generate_bubble_mesh();
 
+  //  DocInfo doc_info;
+  //  doc_info.set_directory("TEST/");
+  //  doc_solution(doc_info);
+  //
+  cout << "Generate surface mesh" << endl;
+
+  this->Info_mesh_pt = new Mesh;
+  this->Info_mesh_pt->add_element_pt(new InfoElement(Integral_data_pt));
+
+  Volume_constraint_mesh_pt = new Mesh;
+  MyConstraintElement* vol_constraint_element =
+    new MyConstraintElement(relaxing_bubble::target_bubble_volume_pt,
+                            Integral_data_pt->value_pt(0),
+                            Bubble_pressure_data_pt,
+                            0);
+  Volume_constraint_mesh_pt->add_element_pt(vol_constraint_element);
+
+  Surface_mesh_pt = new Mesh;
+  generate_surface_mesh();
+
   add_sub_mesh(Fluid_mesh_pt);
-  add_sub_mesh(Surface_mesh_pt);
   add_sub_mesh(Bubble_mesh_pt);
+  add_sub_mesh(Surface_mesh_pt);
+  add_sub_mesh(Info_mesh_pt);
+  add_sub_mesh(Volume_constraint_mesh_pt);
 
   build_global_mesh();
+
+  Fluid_mesh_pt->output("fluid.dat");
+  Fluid_mesh_pt->output_boundaries("fluid-boundaries.dat");
+  cout << "Number of fluid mesh elements: " << Fluid_mesh_pt->nelement()
+       << endl;
+  Bubble_mesh_pt->output("bubble.dat");
+  Bubble_mesh_pt->output_boundaries("bubble-boundaries.dat");
+  cout << "Number of bubble mesh elements: " << Bubble_mesh_pt->nelement()
+       << endl;
 }
 
-template<class ELEMENT>
-void RelaxingBubbleProblem<ELEMENT>::generate_fluid_mesh()
+template<class ELEMENT, class BUBBLE_ELEMENT>
+void RelaxingBubbleProblem<ELEMENT, BUBBLE_ELEMENT>::generate_fluid_mesh()
 {
   // Target area for initial mesh
   double uniform_element_area = 5e-2;
@@ -340,8 +436,8 @@ void RelaxingBubbleProblem<ELEMENT>::generate_fluid_mesh()
   Fluid_mesh_pt->min_element_size() = 1e-4;
 }
 
-template<class ELEMENT>
-void RelaxingBubbleProblem<ELEMENT>::generate_surface_mesh()
+template<class ELEMENT, class BUBBLE_ELEMENT>
+void RelaxingBubbleProblem<ELEMENT, BUBBLE_ELEMENT>::generate_surface_mesh()
 {
   for (unsigned i_boundary = First_bubble_boundary_id;
        i_boundary < Second_bubble_boundary_id + 1;
@@ -367,26 +463,89 @@ void RelaxingBubbleProblem<ELEMENT>::generate_surface_mesh()
       Surface_mesh_pt->add_element_pt(interface_element_pt);
     }
   }
+
+  unsigned i_element = 0;
+  MyConstraintElement* vol_constraint_element =
+    dynamic_cast<MyConstraintElement*>(
+      Volume_constraint_mesh_pt->element_pt(i_element));
+
+  bool fd_jacobian = true;
+  vol_constraint_element->add_external_data(Integral_data_pt, fd_jacobian);
 }
 
-template<class ELEMENT>
-void RelaxingBubbleProblem<ELEMENT>::generate_bubble_mesh()
+template<class ELEMENT, class BUBBLE_ELEMENT>
+void RelaxingBubbleProblem<ELEMENT, BUBBLE_ELEMENT>::generate_bubble_mesh()
 {
-  // Target area for initial mesh
-  double uniform_element_area = 5e-2;
+  Vector<Vector<Node*>> boundary_nodes_pt(2);
 
-  TriangleMeshClosedCurve* bubble_closed_curve_pt = Surface_polygon_pt;
+  cout << "Get bubble bounding nodes" << endl;
+  get_bubble_bounding_nodes(boundary_nodes_pt);
+
+  cout << "Sort bubble bounding nodes" << endl;
+  sort_bubble_bounding_nodes(boundary_nodes_pt);
+
+  cout << "Create mesh" << endl;
+  /// Triangle requires at least two polylines for a single polygon
+  Vector<TriangleMeshCurveSection*> bubble_polyline_pt(2);
+
+  // Vertex coordinates
+  Vector<Vector<double>> bubble_vertex;
+
+  const unsigned boundary_id[2] = {First_bubble_boundary_id,
+                                   Second_bubble_boundary_id};
+
+  for (unsigned i = 0; i < 2; i++)
+  {
+    unsigned npoints = boundary_nodes_pt[i].size();
+
+    bubble_vertex.resize(npoints);
+
+    for (unsigned j = 0; j < npoints; j++)
+    {
+      bubble_vertex[j].resize(2);
+      boundary_nodes_pt[i][j]->position(bubble_vertex[j]);
+      cout << "(x,y) = (" << bubble_vertex[j][0] << ", " << bubble_vertex[j][1]
+           << ") " << endl;
+    }
+
+    // Build the 1st bubble polyline
+    bubble_polyline_pt[i] =
+      new TriangleMeshPolyLine(bubble_vertex, boundary_id[i]);
+  }
+
+  // Define coordinates of a point inside the bubble
+  // TODO Double check
+  double x_center = 0.5;
+  double y_center = 0.5;
+  Vector<double> bubble_center(2);
+  bubble_center[0] = x_center;
+  bubble_center[1] = y_center;
+
+  // Create closed polygon from two polylines
+  TriangleMeshPolygon* bubble_polygon_pt =
+    new TriangleMeshPolygon(bubble_polyline_pt, bubble_center);
+
+  TriangleMeshClosedCurve* bubble_closed_curve_pt = bubble_polygon_pt;
 
   // Use the TriangleMeshParameters object for gathering all
   // the necessary arguments for the TriangleMesh object
   TriangleMeshParameters triangle_mesh_parameters(bubble_closed_curve_pt);
 
+  // Disable creation of vertices between the given boundary nodes
+  triangle_mesh_parameters
+    .disable_automatic_creation_of_vertices_on_boundaries();
+
+  // Target area for initial mesh
+  double uniform_element_area = 5e-2;
+
   // Define the maximum element areas
   triangle_mesh_parameters.element_area() = uniform_element_area;
 
+  cout << "Call RefineableSolidTriangleMesh" << endl;
   // Create the mesh
-  Bubble_mesh_pt = new RefineableSolidTriangleMesh<VolumeElement>(
+  Bubble_mesh_pt = new RefineableSolidTriangleMesh<BUBBLE_ELEMENT>(
     triangle_mesh_parameters, this->time_stepper_pt());
+  Bubble_mesh_pt->disable_projection();
 
   // Set error estimator for fluid mesh
   Z2ErrorEstimator* error_estimator_pt = new Z2ErrorEstimator;
@@ -397,11 +556,89 @@ void RelaxingBubbleProblem<ELEMENT>::generate_bubble_mesh()
   Bubble_mesh_pt->min_permitted_error() = 5e-6;
   Bubble_mesh_pt->max_element_size() = 5e-2;
   Bubble_mesh_pt->min_element_size() = 1e-4;
+
+  cout << "Point bubble boundary nodes at fluid ones" << endl;
+  // point_bubble_boundary_nodes_at_fluid_ones(boundary_nodes_pt);
 }
 
-template<class ELEMENT>
-void RelaxingBubbleProblem<ELEMENT>::set_variable_and_function_pointers()
+template<class ELEMENT, class BUBBLE_ELEMENT>
+void RelaxingBubbleProblem<ELEMENT, BUBBLE_ELEMENT>::get_bubble_bounding_nodes(
+  Vector<Vector<Node*>>& boundary_nodes_pt)
 {
+  const unsigned boundary_id[2] = {First_bubble_boundary_id,
+                                   Second_bubble_boundary_id};
+
+  // Collect vectors of the nodes on the mesh boundaries
+  for (unsigned i = 0; i < 2; i++)
+  {
+    unsigned b = boundary_id[i];
+
+    unsigned n_node = Fluid_mesh_pt->nboundary_node(b);
+
+    boundary_nodes_pt[i].resize(n_node);
+    for (unsigned n = 0; n < n_node; n++)
+    {
+      boundary_nodes_pt[i][n] = Fluid_mesh_pt->boundary_node_pt(b, n);
+    }
+  }
+}
+
+template<class ELEMENT, class BUBBLE_ELEMENT>
+void RelaxingBubbleProblem<ELEMENT, BUBBLE_ELEMENT>::sort_bubble_bounding_nodes(
+  Vector<Vector<Node*>>& boundary_nodes_pt)
+{
+  std::sort(boundary_nodes_pt[0].begin(),
+            boundary_nodes_pt[0].end(),
+            CompareNodeCoordinatesX());
+
+  std::sort(boundary_nodes_pt[1].rbegin(),
+            boundary_nodes_pt[1].rend(),
+            CompareNodeCoordinatesX());
+
+  // Get rid of extra nodes!
+  for (unsigned i = 0; i < 2; i++)
+  {
+    unsigned npoints = boundary_nodes_pt[i].size();
+    for (unsigned j = 0; j < floor(0.5 * (npoints - 1)); j++)
+    {
+      boundary_nodes_pt[i].erase(boundary_nodes_pt[i].begin() + 1 + j);
+    }
+  }
+}
+
+template<class ELEMENT, class BUBBLE_ELEMENT>
+void RelaxingBubbleProblem<ELEMENT, BUBBLE_ELEMENT>::
+  point_bubble_boundary_nodes_at_fluid_ones(
+    Vector<Vector<Node*>>& fluid_boundary_nodes_pt)
+{
+  const unsigned boundary_id[2] = {First_bubble_boundary_id,
+                                   Second_bubble_boundary_id};
+
+  // Collect vectors of the nodes on the mesh boundaries
+  for (unsigned i = 0; i < 2; i++)
+  {
+    unsigned b = boundary_id[i];
+
+    unsigned n_node = Bubble_mesh_pt->nboundary_node(b);
+    for (unsigned n = 0; n < n_node; n++)
+    {
+      dynamic_cast<Mesh*>(Bubble_mesh_pt)->boundary_node_pt(b, n) =
+        fluid_boundary_nodes_pt[i][n];
+    }
+  }
+}
+
+template<class ELEMENT, class BUBBLE_ELEMENT>
+void RelaxingBubbleProblem<ELEMENT,
+                           BUBBLE_ELEMENT>::set_variable_and_function_pointers()
+{
+  Integral_data_pt->set_value(0, (*relaxing_bubble::target_bubble_volume_pt));
+
+  Bubble_pressure_data_pt->set_value(0, 16.0 / 3.0);
+  relaxing_bubble::bubble_pressure_pt = Bubble_pressure_data_pt->value_pt(0);
+
+
+  bool fd_jacobian = true;
   /// Set fluid mesh function pointers
   unsigned n_element = Fluid_mesh_pt->nelement();
   for (unsigned e = 0; e < n_element; e++)
@@ -412,6 +649,22 @@ void RelaxingBubbleProblem<ELEMENT>::set_variable_and_function_pointers()
     // Set the constitutive law for pseudo-elastic mesh deformation
     el_pt->constitutive_law_pt() = relaxing_bubble::constitutive_law_pt;
     el_pt->upper_wall_fct_pt() = relaxing_bubble::upper_wall_fct;
+    el_pt->add_external_data(Integral_data_pt, fd_jacobian);
+    el_pt->add_external_data(Bubble_pressure_data_pt, fd_jacobian);
+  }
+
+  /// Set fluid mesh function pointers
+  n_element = Bubble_mesh_pt->nelement();
+  for (unsigned e = 0; e < n_element; e++)
+  {
+    // Upcast from GeneralisedElement to the present element
+    BUBBLE_ELEMENT* el_pt =
+      dynamic_cast<BUBBLE_ELEMENT*>(Bubble_mesh_pt->element_pt(e));
+
+    // Set the constitutive law for pseudo-elastic mesh deformation
+    el_pt->constitutive_law_pt() = relaxing_bubble::constitutive_law_pt;
+    el_pt->integrand_fct_pt() = relaxing_bubble::depth_fct;
+    el_pt->set_external_data_pt(Integral_data_pt);
   }
 
   n_element = Surface_mesh_pt->nelement();
@@ -420,20 +673,34 @@ void RelaxingBubbleProblem<ELEMENT>::set_variable_and_function_pointers()
     HeleShawInterfaceElement<ELEMENT>* interface_element_pt =
       dynamic_cast<HeleShawInterfaceElement<ELEMENT>*>(
         Surface_mesh_pt->element_pt(e));
-    interface_element_pt->ca_inv_pt() = relaxing_bubble::q_inv_pt;
-    interface_element_pt->st_pt() = relaxing_bubble::st_pt;
-    interface_element_pt->aspect_ratio_pt() = relaxing_bubble::alpha_pt;
+    interface_element_pt->ca_inv_pt() = &relaxing_bubble::ca_inv;
+    interface_element_pt->st_pt() = &relaxing_bubble::st;
+    interface_element_pt->aspect_ratio_pt() = &relaxing_bubble::alpha;
     interface_element_pt->upper_wall_fct_pt() = relaxing_bubble::upper_wall_fct;
     interface_element_pt->wall_speed_fct_pt() = relaxing_bubble::wall_speed_fct;
     interface_element_pt->bubble_pressure_fct_pt() =
       relaxing_bubble::bubble_pressure_fct;
+
+    interface_element_pt->add_external_data(Integral_data_pt, fd_jacobian);
+    interface_element_pt->add_external_data(Bubble_pressure_data_pt,
+                                            fd_jacobian);
   }
+
+  MyConstraintElement* vol_constraint_element =
+    dynamic_cast<MyConstraintElement*>(
+      Volume_constraint_mesh_pt->element_pt(0));
+  vol_constraint_element->add_external_data(Integral_data_pt, fd_jacobian);
 }
 
-template<class ELEMENT>
-void RelaxingBubbleProblem<ELEMENT>::set_boundary_conditions()
+template<class ELEMENT, class BUBBLE_ELEMENT>
+void RelaxingBubbleProblem<ELEMENT, BUBBLE_ELEMENT>::set_boundary_conditions()
 {
   cout << "Set boundary conditions" << endl;
+
+  Integral_data_pt->unpin(0);
+  Bubble_pressure_data_pt->unpin(0);
+
+  Fluid_mesh_pt->set_lagrangian_nodal_coordinates();
   // Map to record if a given boundary is on a bubble or not
   map<unsigned, bool> is_on_bubble_bound;
   fill_in_bubble_boundary_map(is_on_bubble_bound);
@@ -442,6 +709,7 @@ void RelaxingBubbleProblem<ELEMENT>::set_boundary_conditions()
   // Re-set the boundary conditions for fluid problem: All nodes are
   // free by default -- just pin the ones that have Dirichlet conditions
   // here.
+
   unsigned nbound = Fluid_mesh_pt->nboundary();
   for (unsigned ibound = 0; ibound < nbound; ibound++)
   {
@@ -467,6 +735,26 @@ void RelaxingBubbleProblem<ELEMENT>::set_boundary_conditions()
     }
   } // end loop over boundaries
 
+  // const unsigned boundary_id[2] = {First_bubble_boundary_id,
+  //                                 Second_bubble_boundary_id};
+  // nbound = Bubble_mesh_pt->nboundary();
+  // for (unsigned ibound = 0; ibound < nbound; ibound++)
+  //{
+  //  unsigned num_nod = Bubble_mesh_pt->nboundary_node(boundary_id[ibound]);
+  //  for (unsigned inod = 0; inod < num_nod; inod++)
+  //  {
+  //    // Get node
+  //    Node* node_pt = Bubble_mesh_pt->boundary_node_pt(boundary_id[ibound],
+  //    inod);
+
+  //    // Pin pseudo-solid positions apart from bubble boundary which
+  //    // we allow to move
+  //    SolidNode* solid_node_pt = dynamic_cast<SolidNode*>(node_pt);
+
+  //    solid_node_pt->unpin_position(0);
+  //    solid_node_pt->unpin_position(1);
+  //  }
+  //}
 
   /// Single point Dirichlet boundary condition
   Node* node_pt = Fluid_mesh_pt->boundary_node_pt(0, 0);
@@ -493,9 +781,9 @@ void RelaxingBubbleProblem<ELEMENT>::set_boundary_conditions()
   }
 }
 
-template<class ELEMENT>
-void RelaxingBubbleProblem<ELEMENT>::fill_in_bubble_boundary_map(
-  map<unsigned, bool>& is_on_bubble_bound)
+template<class ELEMENT, class BUBBLE_ELEMENT>
+void RelaxingBubbleProblem<ELEMENT, BUBBLE_ELEMENT>::
+  fill_in_bubble_boundary_map(map<unsigned, bool>& is_on_bubble_bound)
 {
   Vector<unsigned> bubble_bound_id =
     this->Surface_polygon_pt->polygon_boundary_id();
@@ -511,8 +799,9 @@ void RelaxingBubbleProblem<ELEMENT>::fill_in_bubble_boundary_map(
   }
 }
 
-template<class ELEMENT>
-void RelaxingBubbleProblem<ELEMENT>::doc_solution(DocInfo& doc_info)
+template<class ELEMENT, class BUBBLE_ELEMENT>
+void RelaxingBubbleProblem<ELEMENT, BUBBLE_ELEMENT>::doc_solution(
+  DocInfo& doc_info)
 {
   string doc_directory = doc_info.directory();
 
@@ -520,20 +809,36 @@ void RelaxingBubbleProblem<ELEMENT>::doc_solution(DocInfo& doc_info)
                  ".dat");
   // doc_surface_mesh(doc_directory + "surface" + doc_info.number() + ".dat");
 
+  doc_bubble_mesh(doc_directory + "bubble" + to_string(doc_info.number()) +
+                  ".dat");
+
+  doc_integral(doc_directory + "integral.dat");
+
   doc_info.number()++;
 }
 
-template<class ELEMENT>
-void RelaxingBubbleProblem<ELEMENT>::actions_before_adapt()
+template<class ELEMENT, class BUBBLE_ELEMENT>
+void RelaxingBubbleProblem<ELEMENT, BUBBLE_ELEMENT>::actions_before_adapt()
 {
   delete_surface_mesh();
+
+  delete this->Info_mesh_pt->element_pt(0);
+  Info_mesh_pt->flush_element_and_node_storage();
+
+  Integral_data_pt = new Data(1);
+  Integral_data_pt->set_value(0, (*relaxing_bubble::target_bubble_volume_pt));
+  Integral_data_pt->unpin(0);
 
   rebuild_global_mesh();
 }
 
-template<class ELEMENT>
-void RelaxingBubbleProblem<ELEMENT>::actions_after_adapt()
+template<class ELEMENT, class BUBBLE_ELEMENT>
+void RelaxingBubbleProblem<ELEMENT, BUBBLE_ELEMENT>::actions_after_adapt()
 {
+  Integral_data_pt = new Data(1);
+
+  this->Info_mesh_pt->add_element_pt(new InfoElement(Integral_data_pt));
+
   generate_surface_mesh();
 
   rebuild_global_mesh();
@@ -549,8 +854,9 @@ void RelaxingBubbleProblem<ELEMENT>::actions_after_adapt()
   cout << ndof() << endl;
 }
 
-template<class ELEMENT>
-void RelaxingBubbleProblem<ELEMENT>::doc_fluid_mesh(string filename)
+template<class ELEMENT, class BUBBLE_ELEMENT>
+void RelaxingBubbleProblem<ELEMENT, BUBBLE_ELEMENT>::doc_fluid_mesh(
+  string filename)
 {
   double max_err;
   double min_err;
@@ -558,13 +864,40 @@ void RelaxingBubbleProblem<ELEMENT>::doc_fluid_mesh(string filename)
 
   ofstream output_stream;
   output_stream.open(filename);
-  unsigned npoints = 3;
+  unsigned npoints = 1;
   Fluid_mesh_pt->output(output_stream, npoints);
   output_stream.close();
 }
 
-template<class ELEMENT>
-void RelaxingBubbleProblem<ELEMENT>::doc_surface_mesh(string filename)
+template<class ELEMENT, class BUBBLE_ELEMENT>
+void RelaxingBubbleProblem<ELEMENT, BUBBLE_ELEMENT>::doc_bubble_mesh(
+  string filename)
+{
+  // double max_err;
+  // double min_err;
+  // compute_error_estimate(max_err, min_err);
+
+  ofstream output_stream;
+  output_stream.open(filename);
+  unsigned npoints = 1;
+  Bubble_mesh_pt->output(output_stream, npoints);
+  output_stream.close();
+}
+
+template<class ELEMENT, class BUBBLE_ELEMENT>
+void RelaxingBubbleProblem<ELEMENT, BUBBLE_ELEMENT>::doc_integral(
+  string filename)
+{
+  ofstream output_stream;
+  output_stream.open(filename, ios_base::app);
+  output_stream << "t: " << time() << ", I: " << Integral_data_pt->value(0)
+                << endl;
+  output_stream.close();
+}
+
+template<class ELEMENT, class BUBBLE_ELEMENT>
+void RelaxingBubbleProblem<ELEMENT, BUBBLE_ELEMENT>::doc_surface_mesh(
+  string filename)
 {
   ofstream output_stream;
   output_stream.open(filename);
@@ -572,9 +905,9 @@ void RelaxingBubbleProblem<ELEMENT>::doc_surface_mesh(string filename)
   output_stream.close();
 }
 
-template<class ELEMENT>
-void RelaxingBubbleProblem<ELEMENT>::compute_error_estimate(double& max_err,
-                                                            double& min_err)
+template<class ELEMENT, class BUBBLE_ELEMENT>
+void RelaxingBubbleProblem<ELEMENT, BUBBLE_ELEMENT>::compute_error_estimate(
+  double& max_err, double& min_err)
 {
   // Get error estimator
   ErrorEstimator* err_est_pt = Fluid_mesh_pt->spatial_error_estimator_pt();
@@ -606,8 +939,8 @@ void RelaxingBubbleProblem<ELEMENT>::compute_error_estimate(double& max_err,
 }
 
 
-template<class ELEMENT>
-void RelaxingBubbleProblem<ELEMENT>::delete_surface_mesh()
+template<class ELEMENT, class BUBBLE_ELEMENT>
+void RelaxingBubbleProblem<ELEMENT, BUBBLE_ELEMENT>::delete_surface_mesh()
 {
   // How many surface elements are in the surface mesh
   unsigned n_element = Surface_mesh_pt->nelement();
