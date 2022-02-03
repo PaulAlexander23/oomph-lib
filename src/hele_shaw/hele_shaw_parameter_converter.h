@@ -25,7 +25,7 @@ namespace oomph
     length_ratio = 0.5;
     depth_ratio = 1.0;
     time_ratio = I / 4.0;
-    pressure_ratio = 1.0 / I; //or 12.0 / I;??
+    pressure_ratio = 1.0 / I; // or 12.0 / I;??
   }
 
   /// Convert the parameters used from a nondimensionalation which
