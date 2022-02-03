@@ -1,9 +1,9 @@
 #!/usr/bin/sh
 
-cd RESLT
-ls soln*.dat | while read file
+cd $@
+ls * | while read file
 do
-    ../../../../bin/oomph-convert.py $file
+    ../../../../../bin/oomph-convert.py -p2 $file
 done
 
 ../../../../bin/makePvd soln soln.pvd

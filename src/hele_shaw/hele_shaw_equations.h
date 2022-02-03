@@ -241,6 +241,24 @@ namespace oomph
       }
     }
 
+    /// To implement the Hele-Shaw mass conservation, we need to know
+    /// h and dh/dt at (Eulerian) position x.
+    inline virtual void get_moving_reference_frame_velocity_data(
+      const Vector<double>& x, Vector<double>& U_wall)
+    {
+      // If no function has been set, assume zero frame velocity
+      if (Wall_speed_fct_pt == 0)
+      {
+        U_wall[0] = 0.0;
+        U_wall[1] = 0.0;
+      }
+      else
+      {
+        // Get data from function
+        (*Wall_speed_fct_pt)(x, U_wall);
+      }
+    }
+
     /// Get pressure flux: gradient[i] = dp/dx_i
     /// This is useful to compute the velocity components, and can also be used
     /// as a flux vector for the Z2 error estimator (see eg
@@ -373,6 +391,7 @@ namespace oomph
   HeleShawEquations::HeleShawEquations()
     : Upper_wall_fct_pt(0),
       Upper_wall_flux_fct_pt(0),
+      Wall_speed_fct_pt(0),
       Volume_external_data_index(-1),
       X_mom_external_data_index(-1),
       Y_mom_external_data_index(-1)
@@ -672,9 +691,24 @@ namespace oomph
       }
 
       // Get gap width and wall velocity
-      double h = 1.0;
-      double dhdt = 0.0;
-      get_upper_wall_data(ipt, interpolated_x, h, dhdt);
+      double h;
+      double dhdt;
+      Vector<double> dhdx(2);
+      Vector<double> frame_velocity(2);
+      if (Wall_speed_fct_pt == 0)
+      {
+        get_upper_wall_data(ipt, interpolated_x, h, dhdt);
+      }
+      else
+      {
+        Vector<double> d_dhdt_dx(2);
+
+        get_upper_wall_flux_data(ipt, interpolated_x, h, dhdt, dhdx, d_dhdt_dx);
+
+        get_moving_reference_frame_velocity_data(interpolated_x,
+                                                 frame_velocity);
+      }
+
 
       // Assemble residuals and Jacobian
       //--------------------------------
@@ -690,11 +724,17 @@ namespace oomph
           // Wall velocity (RHS)
           residuals[local_eqn] += dhdt * test(l) * W;
 
-          // The HeleShaw bit itself
           for (unsigned k = 0; k < 2; k++)
           {
+            // Moving frame terms
+            if (Wall_speed_fct_pt != 0)
+            {
+            //  residuals[local_eqn] += frame_velocity[k] * dhdx[k] * test(l) * W;
+            }
+
+            // The HeleShaw bit itself
             residuals[local_eqn] +=
-              pow(h, 3) / 12 * interpolated_dpdx[k] * dtestdx(l, k) * W;
+              pow(h, 3.0) / 12.0 * interpolated_dpdx[k] * dtestdx(l, k) * W;
           }
 
           // Calculate the jacobian
@@ -797,6 +837,7 @@ namespace oomph
     // Vector of local coordinates and velocity
     Vector<double> s(2);
     Vector<double> velocity(2);
+    Vector<double> frame_velocity(2);
     Vector<double> x(2);
     unsigned ipt = 0;
     double h, dhdt;
@@ -815,6 +856,7 @@ namespace oomph
       x[0] = interpolated_x(s, 0);
       x[1] = interpolated_x(s, 1);
       get_upper_wall_flux_data(ipt, x, h, dhdt, dhdx, d_dhdt_dx);
+      get_moving_reference_frame_velocity_data(x, frame_velocity);
 
       for (unsigned i = 0; i < 2; i++)
       {
@@ -822,6 +864,8 @@ namespace oomph
       }
       outfile << velocity[0] << " ";
       outfile << velocity[1] << " ";
+      //outfile << velocity[0] + frame_velocity[0] << " ";
+      //outfile << velocity[1] + frame_velocity[1] << " ";
       outfile << interpolated_p_hele_shaw(s) << " ";
       outfile << h << " ";
       outfile << dhdx[0] << " ";

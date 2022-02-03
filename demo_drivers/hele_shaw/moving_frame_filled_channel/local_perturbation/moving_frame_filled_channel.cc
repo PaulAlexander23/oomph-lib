@@ -24,7 +24,7 @@ namespace problem_parameter
     /// This function should have obstacle width and height, asymmetry and
     /// possibly sharpness.
 
-    double height = 0.0;
+    double height = 0.1;
     double rms_width = 0.1;
     double centre_x = 1 + *global_frame_travel_pt;
     double centre_y = 0.5;
@@ -54,7 +54,7 @@ namespace problem_parameter
   {
     /// At the inlet we set the pressure gradient which is dependent on the
     /// upper wall function, inlet_area and total flux
-    const double inlet_area = 1.0;
+    const double inlet_area = 0.0;
     double dpdx =
       (*global_flux_pt - *global_frame_speed_pt * inlet_area) / *inlet_b3_pt;
 
@@ -69,7 +69,7 @@ namespace problem_parameter
   {
     /// At the outlet we set the pressure gradient which is dependent on the
     /// upper wall function, outlet_area and total flux
-    const double outlet_area = 1.0;
+    const double outlet_area = 0.0;
     double dpdx =
       -(*global_flux_pt - *global_frame_speed_pt * outlet_area) / *outlet_b3_pt;
 
