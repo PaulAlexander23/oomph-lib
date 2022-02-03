@@ -729,7 +729,8 @@ namespace oomph
             // Moving frame terms
             if (Wall_speed_fct_pt != 0)
             {
-            //  residuals[local_eqn] += frame_velocity[k] * dhdx[k] * test(l) * W;
+              //  residuals[local_eqn] += frame_velocity[k] * dhdx[k] * test(l)
+              //  * W;
             }
 
             // The HeleShaw bit itself
@@ -864,8 +865,8 @@ namespace oomph
       }
       outfile << velocity[0] << " ";
       outfile << velocity[1] << " ";
-      //outfile << velocity[0] + frame_velocity[0] << " ";
-      //outfile << velocity[1] + frame_velocity[1] << " ";
+      // outfile << velocity[0] + frame_velocity[0] << " ";
+      // outfile << velocity[1] + frame_velocity[1] << " ";
       outfile << interpolated_p_hele_shaw(s) << " ";
       outfile << h << " ";
       outfile << dhdx[0] << " ";
