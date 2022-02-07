@@ -110,6 +110,18 @@ namespace oomph
       return Flux_fct_pt;
     }
 
+    /// Add a external data to store the area integral
+    unsigned add_area_data_pt(Data* data_pt);
+
+    /// Remove volume integral data
+    void remove_area_data_pt();
+
+    /// Add a external data to store the b3 integral
+    unsigned add_b3_data_pt(Data* data_pt);
+
+    /// Remove volume integral data
+    void remove_b3_data_pt();
+
     /// Add the element's contribution to its residual vector
     inline void fill_in_contribution_to_residuals(Vector<double>& residuals)
     {
@@ -257,6 +269,15 @@ namespace oomph
       Vector<double>& residuals,
       DenseMatrix<double>& jacobian,
       const unsigned& flag);
+
+  private:
+    /// External data index for the integral of b. Set to negative if not being
+    /// used.
+    int Area_data_index;
+
+    /// External data index for the integral of b3. Set to negative if not being
+    /// used.
+    int B3_data_index;
   };
 
   //////////////////////////////////////////////////////////////////////
@@ -276,7 +297,11 @@ namespace oomph
     FiniteElement* const& bulk_el_pt,
     const int& face_index,
     const bool& set_wall_function)
-    : FaceGeometry<ELEMENT>(), FaceElement()
+    : FaceGeometry<ELEMENT>(),
+      FaceElement(),
+      Area_data_index(-1),
+      B3_data_index(-1)
+
   {
 #ifdef PARANOID
     {
@@ -367,6 +392,37 @@ namespace oomph
     }
   }
 
+  /// Add a external data to store the area integral
+  template<class ELEMENT>
+  unsigned HeleShawFluxElement<ELEMENT>::add_area_data_pt(Data* data_pt)
+  {
+    Area_data_index = add_external_data(data_pt, true);
+
+    return Area_data_index;
+  }
+
+  /// Remove volume integral data
+  template<class ELEMENT>
+  void HeleShawFluxElement<ELEMENT>::remove_area_data_pt()
+  {
+    Area_data_index = -1;
+  }
+
+  /// Add a external data to store the b3 integral
+  template<class ELEMENT>
+  unsigned HeleShawFluxElement<ELEMENT>::add_b3_data_pt(Data* data_pt)
+  {
+    B3_data_index = add_external_data(data_pt, true);
+
+    return B3_data_index;
+  }
+
+  /// Remove volume integral data
+  template<class ELEMENT>
+  void HeleShawFluxElement<ELEMENT>::remove_b3_data_pt()
+  {
+    B3_data_index = -1;
+  }
 
   //===========================================================================
   /// Compute the element's residual vector and the (zero) Jacobian matrix.
@@ -448,6 +504,39 @@ namespace oomph
           // Imposed traction doesn't depend upon the solution,
           // --> the Jacobian is always zero, so no Jacobian
           // terms are required
+        }
+      }
+
+      double h = 1.0;
+      double dhdt = 0.0;
+      if (Area_data_index >= 0 || B3_data_index >= 0)
+      {
+        // Get gap width and wall velocity
+        (**this->Upper_wall_fct_pt)(interpolated_x, h, dhdt);
+      }
+
+      if (Area_data_index >= 0)
+      {
+        /// Add the contribution to the inlet integral
+        unsigned value_index = 0;
+        local_eqn =
+          this->external_local_eqn(this->Area_data_index, value_index);
+        /// The integral doesn't depend on the shape functions
+        if (local_eqn >= 0)
+        {
+          residuals[local_eqn] += h * W;
+        }
+      }
+
+      if (B3_data_index >= 0)
+      {
+        /// Add the contribution to the b3 integral
+        unsigned value_index = 0;
+        local_eqn = this->external_local_eqn(this->B3_data_index, value_index);
+        /// The integral doesn't depend on the shape functions
+        if (local_eqn >= 0)
+        {
+          residuals[local_eqn] += pow(h, 3.0) / 12.0 * W;
         }
       }
     }

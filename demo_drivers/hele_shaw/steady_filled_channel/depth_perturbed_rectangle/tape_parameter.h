@@ -5,19 +5,19 @@
 
 namespace problem_parameter
 {
-  const double domain_length = 1.0;
+  const double domain_length = 4.0;
   const double domain_width = 1.0;
 
-  double* inlet_area_pt = 0;
-  double* outlet_area_pt = 0;
+  double* inlet_integral_pt = 0;
+  double* outlet_integral_pt = 0;
 
   /// This is non-dimensionalised to 1
   const double total_flux = 1.0;
 
   void upper_wall_fct(const Vector<double>& x, double& b, double& dbdt)
   {
-    double tape_height = 0.1;
-    double tape_width = 0.4;
+    double tape_height = 0.024;
+    double tape_width = 0.25;
     double tape_sharpness = 40;
     double tape_centre_y = 0.5;
 
@@ -36,9 +36,9 @@ namespace problem_parameter
   void get_inlet_flux_bc(const Vector<double>& x, double& flux)
   {
     /// At the inlet we set the pressure gradient which is dependent on the
-    /// upper wall function, inlet_area and total flux
+    /// upper wall function, inlet_integral and total flux
 
-    double dpdx = total_flux / *inlet_area_pt;
+    double dpdx = total_flux / *inlet_integral_pt;
 
     double b;
     double dbdt;
@@ -50,9 +50,9 @@ namespace problem_parameter
   void get_outlet_flux_bc(const Vector<double>& x, double& flux)
   {
     /// At the inlet we set the pressure gradient which is dependent on the
-    /// upper wall function, inlet_area and total flux
+    /// upper wall function, inlet_integral and total flux
 
-    double dpdx = total_flux / *outlet_area_pt;
+    double dpdx = total_flux / *outlet_integral_pt;
 
     double b;
     double dbdt;
