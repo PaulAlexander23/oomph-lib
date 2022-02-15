@@ -436,10 +436,20 @@ namespace oomph
     Fluid_mesh_pt->spatial_error_estimator_pt() = error_estimator_pt;
 
     // Set targets for spatial adaptivity
-    Fluid_mesh_pt->max_permitted_error() = 1e-2;
-    // Fluid_mesh_pt->min_permitted_error() = 1e-6;
-    // Fluid_mesh_pt->max_element_size() = 5e-1;
-    Fluid_mesh_pt->min_element_size() = 1e-3;
+    if (CommandLineArgs::command_line_flag_has_been_set("--validate"))
+    {
+      Fluid_mesh_pt->max_permitted_error() = 1e-2;
+      // Fluid_mesh_pt->min_permitted_error() = 1e-6;
+      // Fluid_mesh_pt->max_element_size() = 5e-1;
+      Fluid_mesh_pt->min_element_size() = 1e-2;
+    }
+    else
+    {
+      Fluid_mesh_pt->max_permitted_error() = 1e-2;
+      // Fluid_mesh_pt->min_permitted_error() = 1e-6;
+      // Fluid_mesh_pt->max_element_size() = 5e-1;
+      Fluid_mesh_pt->min_element_size() = 1e-3;
+    }
   }
 
   template<class ELEMENT>
