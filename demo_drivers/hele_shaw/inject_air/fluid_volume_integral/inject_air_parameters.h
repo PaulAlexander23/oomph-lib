@@ -15,8 +15,8 @@ namespace parameters
   double* target_fluid_volume_pt = 0;
   double* total_volume_pt = 0;
 
-  const double initial_volume = MathematicalConstants::Pi * pow(0.3, 2.0);
-  double injection_rate = 1.0;
+  const double initial_volume = MathematicalConstants::Pi * pow(0.05, 2.0);
+  double injection_rate = 0.1;
 
   ConstitutiveLaw* constitutive_law_pt = 0;
 
