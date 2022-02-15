@@ -142,7 +142,7 @@ namespace oomph
     cout << "Iterate timestepper" << endl;
 
     double dt = t_step;
-    //double tolerance = 1e-3;
+    // double tolerance = 1e-3;
 
     unsigned max_adapt = 0;
     bool is_first_step = true;
@@ -193,7 +193,6 @@ namespace oomph
 
       // if (is_first_step)
       //{
-      //  is_first_step = false;
       //  max_adapt = 5;
       //}
 
@@ -202,6 +201,11 @@ namespace oomph
       // dt = doubly_adaptive_unsteady_newton_solve(
       //  dt, tolerance, max_adapt, is_first_step);
       Fluid_mesh_pt->set_lagrangian_nodal_coordinates();
+
+      if (is_first_step)
+      {
+        is_first_step = false;
+      }
 
       doc_solution(doc_info);
 
@@ -277,7 +281,7 @@ namespace oomph
   {
     double x_center = 0;
     double y_center = 0;
-    double major_radius = 0.33;
+    double major_radius = 0.05;
     double minor_radius = (*parameters::target_bubble_volume_pt) /
                           MathematicalConstants::Pi / major_radius;
     unsigned npoints = 32;
