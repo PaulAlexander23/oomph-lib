@@ -36,7 +36,7 @@ int main(int argc, char* argv[])
   parameters::target_bubble_volume_pt = new double;
   parameters::target_fluid_volume_pt = new double;
   parameters::total_volume_pt = new double;
-  *parameters::ca_inv_pt = 0.141376;
+  *parameters::ca_inv_pt = 0.01;
   *parameters::st_pt = 1.0;
   *parameters::alpha_pt = 40.0;
   *parameters::nu_pt = 0.3;
@@ -55,7 +55,7 @@ int main(int argc, char* argv[])
   *parameters::target_fluid_volume_pt =
     (*parameters::total_volume_pt) - (*parameters::target_bubble_volume_pt);
 
-  parameters::injection_rate = 1.0;
+  parameters::injection_rate = 0.1;
 
   /// Create problem
   // RelaxingBubbleProblem<ProjectableHeleShawElementWithSolidFaces<3>> problem;
@@ -75,7 +75,7 @@ int main(int argc, char* argv[])
   /// Solve for initial conditions
   problem.solve_for_initial_conditions(doc_info);
 
-  double dt = 1e-2;
+  double dt = 5e-3;
   double tF = 1e0;
 
   // Problem* problem_pt = new RelaxingBubbleProblem<MyNewElementWithIntegral>;
