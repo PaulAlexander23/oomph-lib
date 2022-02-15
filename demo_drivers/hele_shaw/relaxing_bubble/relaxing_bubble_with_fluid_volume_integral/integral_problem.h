@@ -60,8 +60,8 @@ IntegralProblem<ELEMENT>::IntegralProblem(
 template<class ELEMENT>
 void IntegralProblem<ELEMENT>::generate_mesh()
 {
-  unsigned n_x = 10;
-  unsigned n_y = 10;
+  unsigned n_x = 80;
+  unsigned n_y = 20;
   double l_x = 1.0;
   double l_y = 1.0;
   this->Integral_mesh_pt =
