@@ -5,11 +5,11 @@
 
 namespace parameters
 {
-  double* ca_inv_pt = 0;
-  double* st_pt = 0;
-  double* alpha_pt = 0;
+  double ca_inv;
+  double st;
+  double alpha;
   /// Pseudo-solid Poisson ratio
-  double* nu_pt = 0;
+  double nu = 0;
   double* bubble_pressure_pt = 0;
   double* target_bubble_volume_pt = 0;
   double* target_fluid_volume_pt = 0;

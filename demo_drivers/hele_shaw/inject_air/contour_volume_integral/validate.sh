@@ -17,22 +17,22 @@ cd Validation
 # Validation for bubble unsteady
 #-----------------------------------------
 mkdir RESLT
-echo "Running relaxing bubble validation "
-../relaxing_bubble > \
-    OUTPUT_relaxing_bubble
+echo "Running inject air contour volume integration validation "
+../inject_air --validate > \
+    OUTPUT_inject_air
 echo "done"
 echo " " >> validation.log
-echo "Relaxing bubble validation" >> validation.log
+echo "Inject air contour volume integration validation" >> validation.log
 echo "--------------------------" >> validation.log
 echo " " >> validation.log
 echo "Validation directory: " >> validation.log
 echo " " >> validation.log
 echo "  " `pwd` >> validation.log
 echo " " >> validation.log
-cat RESLT/* > relaxing_bubble.dat
+cat RESLT/* > inject_air.dat
 rm -rf RESLT 
 
-diff=$(zcmp ../validata/relaxing_bubble.dat.gz relaxing_bubble.dat )
+diff=$(zcmp ../validata/inject_air.dat.gz inject_air.dat )
 if [ $? != 0 ]; then
     echo "[ERROR] Compare failed to run." >> validation.log
 elif [ $diff ]; then

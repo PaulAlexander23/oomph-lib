@@ -8,7 +8,7 @@
 #include "integral.h"
 #include "info_element.h"
 
-#include "relaxing_bubble_parameters.h"
+#include "inject_air_parameters.h"
 #include "my_constraint_elements.h"
 #include "modified_volume_constraint_elements_with_integrals.h"
 
@@ -63,7 +63,7 @@ namespace oomph
 
     void actions_before_implicit_timestep()
     {
-      relaxing_bubble::volume_fct(time(), *relaxing_bubble::target_bubble_volume_pt);
+      inject_air::volume_fct(time(), *inject_air::target_bubble_volume_pt);
     }
 
     void actions_before_newton_solve()
@@ -195,7 +195,15 @@ namespace oomph
 
     unsigned max_adapt = 0;
     bool is_first_step = true;
-    unsigned adapt_interval = 1;
+    unsigned adapt_interval;
+    if (CommandLineArgs::command_line_flag_has_been_set("--validate"))
+    {
+      adapt_interval = 4;
+    }
+    else
+    {
+      adapt_interval = 1;
+    }
     bool remesh_initial_condition = false;
     for (unsigned i_timestep = 0; i_timestep < n_timestep; i_timestep++)
     {
@@ -303,8 +311,8 @@ namespace oomph
     const double x_center = 0.5;
     const double y_center = 0.5;
     double minor_radius =
-      (-*relaxing_bubble::target_bubble_volume_pt) /
-      (MathematicalConstants::Pi * relaxing_bubble::major_radius);
+      (-*inject_air::target_bubble_volume_pt) /
+      (MathematicalConstants::Pi * inject_air::major_radius);
     unsigned npoints = 32;
     double zeta_step = MathematicalConstants::Pi / double(npoints - 1);
 
@@ -314,8 +322,7 @@ namespace oomph
     // Position vector to GeomObject defining the bubble
     Vector<double> coord(2);
 
-    Ellipse* ellipse_pt =
-      new Ellipse(relaxing_bubble::major_radius, minor_radius);
+    Ellipse* ellipse_pt = new Ellipse(inject_air::major_radius, minor_radius);
 
     /// Triangle requires at least two polylines for a single polygon
     Vector<TriangleMeshCurveSection*> surface_polyline_pt(2);
@@ -394,7 +401,7 @@ namespace oomph
 
     unsigned index_of_traded_pressure = 0;
     Vol_constraint_el_pt =
-      new VolumeConstraintElement(relaxing_bubble::target_bubble_volume_pt,
+      new VolumeConstraintElement(inject_air::target_bubble_volume_pt,
                                   Bubble_pressure_data_pt,
                                   index_of_traded_pressure);
 
@@ -441,10 +448,18 @@ namespace oomph
     Fluid_mesh_pt->spatial_error_estimator_pt() = error_estimator_pt;
 
     // Set targets for spatial adaptivity
-    Fluid_mesh_pt->max_permitted_error() = 1e-2;
-    // Fluid_mesh_pt->min_permitted_error() = 1e-6;
-    // Fluid_mesh_pt->max_element_size() = 5e-1;
-    Fluid_mesh_pt->min_element_size() = 1e-3;
+    if (CommandLineArgs::command_line_flag_has_been_set("--validate"))
+    {
+      Fluid_mesh_pt->max_permitted_error() = 1e-2;
+      Fluid_mesh_pt->min_element_size() = 1e-2;
+    }
+    else
+    {
+      Fluid_mesh_pt->max_permitted_error() = 1e-2;
+      // Fluid_mesh_pt->min_permitted_error() = 1e-6;
+      // Fluid_mesh_pt->max_element_size() = 5e-1;
+      Fluid_mesh_pt->min_element_size() = 1e-3;
+    }
   }
 
   template<class ELEMENT>
@@ -519,7 +534,7 @@ namespace oomph
   {
     bool fd_jacobian = true;
 
-    relaxing_bubble::bubble_pressure_pt = Bubble_pressure_data_pt->value_pt(0);
+    inject_air::bubble_pressure_pt = Bubble_pressure_data_pt->value_pt(0);
 
     /// Set fluid mesh function pointers
     unsigned n_element = Fluid_mesh_pt->nelement();
@@ -529,8 +544,8 @@ namespace oomph
       ELEMENT* el_pt = dynamic_cast<ELEMENT*>(Fluid_mesh_pt->element_pt(e));
 
       // Set the constitutive law for pseudo-elastic mesh deformation
-      el_pt->constitutive_law_pt() = relaxing_bubble::constitutive_law_pt;
-      el_pt->upper_wall_fct_pt() = relaxing_bubble::upper_wall_fct;
+      el_pt->constitutive_law_pt() = inject_air::constitutive_law_pt;
+      el_pt->upper_wall_fct_pt() = inject_air::upper_wall_fct;
       el_pt->add_external_data(Bubble_pressure_data_pt, fd_jacobian);
     }
 
@@ -540,15 +555,13 @@ namespace oomph
       HeleShawInterfaceElement<ELEMENT>* interface_element_pt =
         dynamic_cast<HeleShawInterfaceElement<ELEMENT>*>(
           Surface_mesh_pt->element_pt(e));
-      interface_element_pt->ca_inv_pt() = &relaxing_bubble::ca_inv;
-      interface_element_pt->st_pt() = &relaxing_bubble::st;
-      interface_element_pt->aspect_ratio_pt() = &relaxing_bubble::alpha;
-      interface_element_pt->upper_wall_fct_pt() =
-        relaxing_bubble::upper_wall_fct;
-      interface_element_pt->wall_speed_fct_pt() =
-        relaxing_bubble::wall_speed_fct;
+      interface_element_pt->ca_inv_pt() = &inject_air::ca_inv;
+      interface_element_pt->st_pt() = &inject_air::st;
+      interface_element_pt->aspect_ratio_pt() = &inject_air::alpha;
+      interface_element_pt->upper_wall_fct_pt() = inject_air::upper_wall_fct;
+      interface_element_pt->wall_speed_fct_pt() = inject_air::wall_speed_fct;
       interface_element_pt->bubble_pressure_fct_pt() =
-        relaxing_bubble::bubble_pressure_fct;
+        inject_air::bubble_pressure_fct;
 
       interface_element_pt->add_external_data(Bubble_pressure_data_pt,
                                               fd_jacobian);

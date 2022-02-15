@@ -78,7 +78,7 @@ public:
         double dot = 0.0;
         //                double y = interpolated_x[1];
         double b = 0;
-        relaxing_bubble::channel_height_function(interpolated_x, b);
+        inject_air::channel_height_function(interpolated_x, b);
         for (unsigned k = 0; k < 1; k++)
         {
           dot += interpolated_x[k] * interpolated_n[k] * b;
@@ -200,7 +200,7 @@ public:
         Vector<double> interpolated_n(2);
         this->outer_unit_normal(ipt, interpolated_n);
         double b = 0;
-        relaxing_bubble::channel_height_function(interpolated_x, b);
+        inject_air::channel_height_function(interpolated_x, b);
 
         // Assemble dot product
         double dot = 0.0;
@@ -323,7 +323,7 @@ public:
         this->outer_unit_normal(ipt, interpolated_n);
 
         double b = 0;
-        relaxing_bubble::channel_height_function(interpolated_x, b);
+        inject_air::channel_height_function(interpolated_x, b);
 
         // Assemble dot product
         double dot =
