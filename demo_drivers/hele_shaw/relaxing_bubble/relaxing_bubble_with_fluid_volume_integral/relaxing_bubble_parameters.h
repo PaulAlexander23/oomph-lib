@@ -13,12 +13,12 @@ namespace relaxing_bubble
   double alpha;
 
   /// Total flux has be nondimensionalised to 1
-  double total_flux;
+  const double total_flux = 1.0;
   // const double total_flux = 1.0;
 
   /// Bubble's initial condition
-  double major_radius;
   const double bubble_initial_centre_x = 0.5;
+  double major_radius;
   double bubble_initial_centre_y;
 
   /// Channel perturbation parameters
@@ -29,9 +29,9 @@ namespace relaxing_bubble
 
 
   /// Volume pointers
-  double target_bubble_volume = 0;
-  double target_fluid_volume = 0;
-  double total_volume = 0;
+  double target_bubble_volume;
+  double target_fluid_volume;
+  double total_volume;
 
   /// Pseudo-solid Poisson ratio pointer
   double nu;
@@ -167,12 +167,16 @@ namespace relaxing_bubble
 
     /// Bubble's initial condition
     output_stream << "major_radius:" << major_radius << endl;
-    output_stream << "bubble_initial_centre_x:" << bubble_initial_centre_x << endl;
-    output_stream << "bubble_initial_centre_y:" << bubble_initial_centre_y << endl;
+    output_stream << "bubble_initial_centre_x:" << bubble_initial_centre_x
+                  << endl;
+    output_stream << "bubble_initial_centre_y:" << bubble_initial_centre_y
+                  << endl;
 
     /// Channel perturbation parameters
-    output_stream << "perturbation_amplitude:" << perturbation_amplitude << endl;
-    output_stream << "perturbation_rms_width:" << perturbation_rms_width << endl;
+    output_stream << "perturbation_amplitude:" << perturbation_amplitude
+                  << endl;
+    output_stream << "perturbation_rms_width:" << perturbation_rms_width
+                  << endl;
     output_stream << "perturbation_centre_x:" << perturbation_centre_x << endl;
     output_stream << "perturbation_centre_y:" << perturbation_centre_y << endl;
 

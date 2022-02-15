@@ -40,8 +40,16 @@ int main(int argc, char* argv[])
 {
   cout << "Relaxing bubble demo" << endl;
 
-  /// Store command line arguments
+  /// Setup and store command line arguments
+  string validate_flag_string = "--validate";
+  string self_test_flag_string = "--self_test";
+  bool has_unrecognised_arg = false;
   CommandLineArgs::setup(argc, argv);
+  CommandLineArgs::specify_command_line_flag(validate_flag_string,
+                                             "Optional: Run with self tests.");
+  CommandLineArgs::specify_command_line_flag(
+    self_test_flag_string, "Optional: Run with validation parameters.");
+  CommandLineArgs::parse_and_assign(argc, argv, has_unrecognised_arg);
 
   /// Create a DocInfo object for output processing
   DocInfo doc_info;
@@ -59,7 +67,7 @@ int main(int argc, char* argv[])
 
   /// Run self tests and Jacobian test
   bool run_self_test = false;
-  if (run_self_test)
+  if (CommandLineArgs::command_line_flag_has_been_set(self_test_flag_string))
   {
     bool self_test_failed = problem.self_test();
     if (self_test_failed)
@@ -73,7 +81,15 @@ int main(int argc, char* argv[])
 
   /// Iterate the timestepper using the fixed time step until the final time
   double dt = 4e-2;
-  double tF = 1e0;
+  double tF;
+  if (CommandLineArgs::command_line_flag_has_been_set(validate_flag_string))
+  {
+    tF = 5 * dt;
+  }
+  else
+  {
+    tF = 1e0;
+  }
   problem.iterate_timestepper(dt, tF, doc_info);
 
   delete relaxing_bubble::constitutive_law_pt;
