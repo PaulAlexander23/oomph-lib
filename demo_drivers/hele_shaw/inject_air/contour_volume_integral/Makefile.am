@@ -3,11 +3,11 @@ include $(top_srcdir)/config/makefile_templates/demo_drivers
 
 # Name of executable
 check_PROGRAMS = \
-relaxing_bubble
+inject_air
 
 # Sources for executable
-relaxing_bubble_SOURCES = relaxing_bubble.cc
+inject_air_SOURCES = inject_air.cc
 
 # Required libraries:
 # $(FLIBS) is included in case the solver involves fortran sources.
-relaxing_bubble_LDADD = -L@libdir@ -lhele_shaw -lfluid_interface -lconstitutive -lsolid -lmeshes -lgeneric $(EXTERNAL_LIBS) $(FLIBS)
+inject_air_LDADD = -L@libdir@ -lhele_shaw -lfluid_interface -lconstitutive -lsolid -lmeshes -lgeneric $(EXTERNAL_LIBS) $(FLIBS)
