@@ -18,7 +18,7 @@ cd Validation
 #-----------------------------------------
 mkdir RESLT
 echo "Running relaxing bubble validation "
-../relaxing_bubble > \
+../relaxing_bubble --validate > \
     OUTPUT_relaxing_bubble
 echo "done"
 echo " " >> validation.log
