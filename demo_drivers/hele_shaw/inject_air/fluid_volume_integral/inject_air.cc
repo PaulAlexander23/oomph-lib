@@ -19,8 +19,13 @@ int main(int argc, char* argv[])
 {
   cout << "Relaxing bubble demo" << endl;
 
-  /// Store command line arguments
+  /// Setup and store command line arguments
+  string validate_flag_string = "--validate";
+  bool has_unrecognised_arg = false;
   CommandLineArgs::setup(argc, argv);
+  CommandLineArgs::specify_command_line_flag(validate_flag_string,
+                                             "Optional: Run with self tests.");
+  CommandLineArgs::parse_and_assign(argc, argv, has_unrecognised_arg);
 
   /// Create a DocInfo object for output processing
   DocInfo doc_info;
@@ -29,20 +34,16 @@ int main(int argc, char* argv[])
   doc_info.set_directory("RESLT/");
 
   /// Set parameters
-  parameters::ca_inv_pt = new double;
-  parameters::st_pt = new double;
-  parameters::alpha_pt = new double;
-  parameters::nu_pt = new double;
   parameters::target_bubble_volume_pt = new double;
   parameters::target_fluid_volume_pt = new double;
   parameters::total_volume_pt = new double;
-  *parameters::ca_inv_pt = 0.01;
-  *parameters::st_pt = 1.0;
-  *parameters::alpha_pt = 40.0;
-  *parameters::nu_pt = 0.3;
+  parameters::ca_inv = 0.01;
+  parameters::st = 1.0;
+  parameters::alpha = 40.0;
+  parameters::nu = 0.3;
   *parameters::target_bubble_volume_pt = parameters::initial_volume;
   // Create generalised Hookean constitutive equations
-  parameters::constitutive_law_pt = new GeneralisedHookean(parameters::nu_pt);
+  parameters::constitutive_law_pt = new GeneralisedHookean(&parameters::nu);
 
   IntegralProblem<QIntegralElement<3>> integral_problem(
     parameters::channel_depth);
@@ -76,7 +77,15 @@ int main(int argc, char* argv[])
   problem.solve_for_initial_conditions(doc_info);
 
   double dt = 5e-3;
-  double tF = 1e0;
+  double tF;
+  if (CommandLineArgs::command_line_flag_has_been_set(validate_flag_string))
+  {
+    tF = 5 * dt;
+  }
+  else
+  {
+    tF = 1e0;
+  }
 
   // Problem* problem_pt = new RelaxingBubbleProblem<MyNewElementWithIntegral>;
   // DoubleVector result;
@@ -88,10 +97,6 @@ int main(int argc, char* argv[])
   /// Iterate the timestepper using the fixed time step until the final time
   problem.iterate_timestepper(dt, tF, doc_info);
 
-  delete parameters::ca_inv_pt;
-  delete parameters::st_pt;
-  delete parameters::alpha_pt;
-  delete parameters::nu_pt;
   delete parameters::target_bubble_volume_pt;
   delete parameters::target_fluid_volume_pt;
   delete parameters::total_volume_pt;

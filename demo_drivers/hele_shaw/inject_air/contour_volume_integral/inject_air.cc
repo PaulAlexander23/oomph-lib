@@ -9,8 +9,8 @@
 #include "info_element.h"
 #include "my_constraint_elements.h"
 
-#include "relaxing_bubble_problem.h"
-#include "relaxing_bubble_parameters.h"
+#include "inject_air_problem.h"
+#include "inject_air_parameters.h"
 //#include "custom_hele_shaw_elements_with_integrals.h"
 
 using namespace oomph;
@@ -20,28 +20,33 @@ using namespace std;
 void set_parameters()
 {
   /// Set dimensionless parameters
-  relaxing_bubble::ca_inv = 0.01;
-  relaxing_bubble::st = 1.0;
-  relaxing_bubble::alpha = 40;
+  inject_air::ca_inv = 0.01;
+  inject_air::st = 1.0;
+  inject_air::alpha = 40;
 
   // Set bubble target volume
-  relaxing_bubble::target_bubble_volume_pt = new double;
-  *relaxing_bubble::target_bubble_volume_pt = -relaxing_bubble::initial_volume;
+  inject_air::target_bubble_volume_pt = new double;
+  *inject_air::target_bubble_volume_pt = -inject_air::initial_volume;
 
-  relaxing_bubble::major_radius = 0.05;
+  inject_air::major_radius = 0.05;
 
   // Create generalised Hookean constitutive equations
-  relaxing_bubble::nu = 0.3;
-  relaxing_bubble::constitutive_law_pt =
-    new GeneralisedHookean(&relaxing_bubble::nu);
+  inject_air::nu = 0.3;
+  inject_air::constitutive_law_pt =
+    new GeneralisedHookean(&inject_air::nu);
 }
 
 int main(int argc, char* argv[])
 {
   cout << "Relaxing bubble demo" << endl;
 
-  /// Store command line arguments
+  /// Setup and store command line arguments
+  string validate_flag_string = "--validate";
+  bool has_unrecognised_arg = false;
   CommandLineArgs::setup(argc, argv);
+  CommandLineArgs::specify_command_line_flag(validate_flag_string,
+                                             "Optional: Run with self tests.");
+  CommandLineArgs::parse_and_assign(argc, argv, has_unrecognised_arg);
 
   /// Create a DocInfo object for output processing
   DocInfo doc_info;
@@ -73,11 +78,19 @@ int main(int argc, char* argv[])
 
   /// Iterate the timestepper using the fixed time step until the final time
   double dt = 5e-3;
-  double tF = 1e0;
+  double tF;
+  if (CommandLineArgs::command_line_flag_has_been_set(validate_flag_string))
+  {
+    tF = 5 * dt;
+  }
+  else
+  {
+    tF = 1e0;
+  }
   problem.iterate_timestepper(dt, tF, doc_info);
 
-  delete relaxing_bubble::constitutive_law_pt;
-  delete relaxing_bubble::target_bubble_volume_pt;
+  delete inject_air::constitutive_law_pt;
+  delete inject_air::target_bubble_volume_pt;
 
   return 0;
 }
