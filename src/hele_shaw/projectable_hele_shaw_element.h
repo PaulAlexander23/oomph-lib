@@ -83,8 +83,212 @@ namespace oomph
     int local_equation(const unsigned& fld, const unsigned& j);
   };
 
+  //==========================================================
+  /// HeleShaw upgraded to become projectable
+  //==========================================================
+  template<class HELE_SHAW_ELEMENT>
+  Vector<std::pair<Data*, unsigned>> ProjectableHeleShawElement<
+    HELE_SHAW_ELEMENT>::data_values_of_field(const unsigned& fld)
+  {
+#ifdef PARANOID
+    if (fld != 0)
+    {
+      std::stringstream error_stream;
+      error_stream << "HeleShaw elements only store a single field so fld "
+                      "must be 0 rather"
+                   << " than " << fld << std::endl;
+      throw OomphLibError(error_stream.str(),
+                          "ProjectableHeleShawElement::data_values_of_field()",
+                          OOMPH_EXCEPTION_LOCATION);
+    }
+#endif
+
+    // Create the vector
+    Vector<std::pair<Data*, unsigned>> data_values;
+
+    // Loop over all nodes
+    unsigned nnod = this->nnode();
+    for (unsigned j = 0; j < nnod; j++)
+    {
+      // Add the data value associated field: The node itself
+      data_values.push_back(std::make_pair(this->node_pt(j), fld));
+    }
+
+    // Return the vector
+    return data_values;
+  }
+
+  /// \short Number of fields to be projected: Just one
+  template<class HELE_SHAW_ELEMENT>
+  unsigned ProjectableHeleShawElement<
+    HELE_SHAW_ELEMENT>::nfields_for_projection()
+  {
+    return 1;
+  }
+
+  /// \short Number of history values to be stored for fld-th field.
+  template<class HELE_SHAW_ELEMENT>
+  unsigned ProjectableHeleShawElement<
+    HELE_SHAW_ELEMENT>::nhistory_values_for_projection(const unsigned& fld)
+  {
+#ifdef PARANOID
+    if (fld != 0)
+    {
+      std::stringstream error_stream;
+      error_stream << "HeleShaw elements only store a single field so fld "
+                      "must be 0 rather"
+                   << " than " << fld << std::endl;
+      throw OomphLibError(
+        error_stream.str(),
+        "ProjectableHeleShawElement::nhistory_values_for_projection()",
+        OOMPH_EXCEPTION_LOCATION);
+    }
+#endif
+    return this->node_pt(0)->ntstorage();
+  }
+
+  ///\short Number of positional history values
+  template<class HELE_SHAW_ELEMENT>
+  unsigned ProjectableHeleShawElement<
+    HELE_SHAW_ELEMENT>::nhistory_values_for_coordinate_projection()
+  {
+    return this->node_pt(0)->position_time_stepper_pt()->ntstorage();
+  }
+
+  /// \short Return Jacobian of mapping and shape functions of field fld
+  /// at local coordinate s
+  template<class HELE_SHAW_ELEMENT>
+  double ProjectableHeleShawElement<
+    HELE_SHAW_ELEMENT>::jacobian_and_shape_of_field(const unsigned& fld,
+                                                    const Vector<double>& s,
+                                                    Shape& psi)
+  {
+#ifdef PARANOID
+    if (fld != 0)
+    {
+      std::stringstream error_stream;
+      error_stream << "HeleShaw elements only store a single field so fld "
+                      "must be 0 rather"
+                   << " than " << fld << std::endl;
+      throw OomphLibError(
+        error_stream.str(),
+        "ProjectableHeleShawElement::jacobian_and_shape_of_field()",
+        OOMPH_EXCEPTION_LOCATION);
+    }
+#endif
+    unsigned n_dim = this->dim();
+    unsigned n_node = this->nnode();
+    Shape test(n_node);
+    DShape dpsidx(n_node, n_dim), dtestdx(n_node, n_dim);
+    double J =
+      this->dshape_and_dtest_eulerian_hele_shaw(s, psi, dpsidx, test, dtestdx);
+    return J;
+  }
+
+  /// \short Return interpolated field fld at local coordinate s, at time
+  /// level t (t=0: present; t>0: history values)
+  template<class HELE_SHAW_ELEMENT>
+  double ProjectableHeleShawElement<HELE_SHAW_ELEMENT>::get_field(
+    const unsigned& t, const unsigned& fld, const Vector<double>& s)
+  {
+#ifdef PARANOID
+    if (fld != 0)
+    {
+      std::stringstream error_stream;
+      error_stream << "HeleShaw elements only store a single field so fld "
+                      "must be 0 rather"
+                   << " than " << fld << std::endl;
+      throw OomphLibError(error_stream.str(),
+                          "ProjectableHeleShawElement::jget_field()",
+                          OOMPH_EXCEPTION_LOCATION);
+    }
+#endif
+    // Find the index at which the variable is stored
+    unsigned p_nodal_index = this->p_index_hele_shaw();
+
+    // Local shape function
+    unsigned n_node = this->nnode();
+    Shape psi(n_node);
+
+    // Find values of shape function
+    this->shape(s, psi);
+
+    // Initialise value of u
+    double interpolated_p = 0.0;
+
+    // Sum over the local nodes
+    for (unsigned l = 0; l < n_node; l++)
+    {
+      interpolated_p += this->nodal_value(l, p_nodal_index) * psi[l];
+    }
+    return interpolated_p;
+  }
+
+  /// Return number of values in field fld: One per node
+  template<class HELE_SHAW_ELEMENT>
+  unsigned ProjectableHeleShawElement<HELE_SHAW_ELEMENT>::nvalue_of_field(
+    const unsigned& fld)
+  {
+#ifdef PARANOID
+    if (fld != 0)
+    {
+      std::stringstream error_stream;
+      error_stream << "HeleShaw elements only store a single field so fld "
+                      "must be 0 rather"
+                   << " than " << fld << std::endl;
+      throw OomphLibError(error_stream.str(),
+                          "ProjectableHeleShawElement::nvalue_of_field()",
+                          OOMPH_EXCEPTION_LOCATION);
+    }
+#endif
+    return this->nnode();
+  }
+
+  /// Return local equation number of value j in field fld.
+  template<class HELE_SHAW_ELEMENT>
+  int ProjectableHeleShawElement<HELE_SHAW_ELEMENT>::local_equation(
+    const unsigned& fld, const unsigned& j)
+  {
+#ifdef PARANOID
+    if (fld != 0)
+    {
+      std::stringstream error_stream;
+      error_stream << "HeleShaw elements only store a single field so fld "
+                      "must be 0 rather"
+                   << " than " << fld << std::endl;
+      throw OomphLibError(error_stream.str(),
+                          "ProjectableHeleShawElement::local_equation()",
+                          OOMPH_EXCEPTION_LOCATION);
+    }
+#endif
+    const unsigned p_nodal_index = this->p_index_hele_shaw();
+    return this->nodal_local_eqn(j, p_nodal_index);
+  }
+
+  //=======================================================================
+  /// Face geometry for element is the same as that for the underlying
+  /// wrapped element
+  //=======================================================================
+  template<class ELEMENT>
+  class FaceGeometry<ProjectableHeleShawElement<ELEMENT>>
+    : public virtual FaceGeometry<ELEMENT>
+  {
+  public:
+    FaceGeometry() : FaceGeometry<ELEMENT>() {}
+  };
+
+  //=======================================================================
+  /// Face geometry of the Face Geometry for element is the same as
+  /// that for the underlying wrapped element
+  //=======================================================================
+  template<class ELEMENT>
+  class FaceGeometry<FaceGeometry<ProjectableHeleShawElement<ELEMENT>>>
+    : public virtual FaceGeometry<FaceGeometry<ELEMENT>>
+  {
+  public:
+    FaceGeometry() : FaceGeometry<FaceGeometry<ELEMENT>>() {}
+  };
+
+
 } // namespace oomph
-
-#include "projectable_hele_shaw_element.template.cc"
-
 #endif
