@@ -3,7 +3,7 @@
 
 #include "generic.h"
 
-namespace relaxing_bubble
+namespace inject_air
 {
   /// Dimensionless parameters
   double ca_inv;
@@ -55,6 +55,6 @@ namespace relaxing_bubble
     volume = - initial_volume - injection_rate * t;
   }
 
-} // namespace relaxing_bubble
+} // namespace inject_air
 
 #endif

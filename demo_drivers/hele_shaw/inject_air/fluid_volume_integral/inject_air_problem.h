@@ -408,10 +408,18 @@ namespace oomph
     Fluid_mesh_pt->spatial_error_estimator_pt() = error_estimator_pt;
 
     // Set targets for spatial adaptivity
-    Fluid_mesh_pt->max_permitted_error() = 1e-3;
-    Fluid_mesh_pt->min_permitted_error() = 5e-6;
-    Fluid_mesh_pt->max_element_size() = 5e-2;
-    Fluid_mesh_pt->min_element_size() = 1e-4;
+    if (CommandLineArgs::command_line_flag_has_been_set("--validate"))
+    {
+      Fluid_mesh_pt->max_permitted_error() = 1e-2;
+      Fluid_mesh_pt->min_element_size() = 1e-2;
+    }
+    else
+    {
+      Fluid_mesh_pt->max_permitted_error() = 1e-3;
+      Fluid_mesh_pt->min_permitted_error() = 5e-6;
+      Fluid_mesh_pt->max_element_size() = 5e-2;
+      Fluid_mesh_pt->min_element_size() = 1e-4;
+    }
   }
 
   template<class ELEMENT>
@@ -488,9 +496,9 @@ namespace oomph
       HeleShawInterfaceElement<ELEMENT>* interface_element_pt =
         dynamic_cast<HeleShawInterfaceElement<ELEMENT>*>(
           Surface_mesh_pt->element_pt(e));
-      interface_element_pt->ca_inv_pt() = parameters::ca_inv_pt;
-      interface_element_pt->st_pt() = parameters::st_pt;
-      interface_element_pt->aspect_ratio_pt() = parameters::alpha_pt;
+      interface_element_pt->ca_inv_pt() = &parameters::ca_inv;
+      interface_element_pt->st_pt() = &parameters::st;
+      interface_element_pt->aspect_ratio_pt() = &parameters::alpha;
       interface_element_pt->upper_wall_fct_pt() = parameters::upper_wall_fct;
       interface_element_pt->wall_speed_fct_pt() = parameters::wall_speed_fct;
       interface_element_pt->bubble_pressure_fct_pt() =
