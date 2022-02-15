@@ -8,8 +8,9 @@
 #include "integral.h"
 #include "info_element.h"
 
-#include "relaxing_bubble_fixed_volume_parameters.h"
+#include "relaxing_bubble_parameters.h"
 #include "my_constraint_elements.h"
+#include "spatiotemporal_tolerences.h"
 
 namespace oomph
 {
@@ -36,15 +37,28 @@ namespace oomph
     RefineableSolidTriangleMesh<ELEMENT>* Fluid_mesh_pt;
     Mesh* Surface_mesh_pt;
     Mesh* Volume_mesh_pt;
+    Mesh* X_mom_mesh_pt;
+    // Mesh* Y_mom_mesh_pt;
     Mesh* Volume_constraint_mesh_pt;
 
+    /// Pointer to the "surface" mesh
+    Mesh* Inlet_surface_mesh_pt;
+    Mesh* Outlet_surface_mesh_pt;
+    Mesh* Flux_mesh_pt;
+
     Data* Volume_data_pt;
+    Data* X_mom_data_pt;
+    // Data* Y_mom_data_pt;
     Data* Bubble_pressure_data_pt;
+
+    SpatiotemporalTolerances* Tolerances_pt;
 
     /// Functions
   public:
     /// Constructor
     RelaxingBubbleProblem();
+
+    RelaxingBubbleProblem(SpatiotemporalTolerances* tolerances_pt);
 
     /// Destructor
     ~RelaxingBubbleProblem() {}
@@ -68,7 +82,12 @@ namespace oomph
     void create_fluid_mesh();
     void create_surface_mesh();
     void create_volume_mesh();
+    void create_x_com_mesh();
+    // void create_y_com_mesh();
     void create_volume_constraint_mesh();
+    void create_inlet_surface_mesh();
+    void create_outlet_surface_mesh();
+    void create_flux_mesh();
 
     void set_variable_and_function_pointers();
 
@@ -81,19 +100,58 @@ namespace oomph
     void doc_fluid_mesh(string filename);
     void doc_surface_mesh(string filename);
     void doc_volume(string filename);
+    void doc_x_com(string filename);
+    void doc_bubble_pressure(string filename);
+    void doc_boundary(string filename);
 
     void compute_error_estimate(double& max_err, double& min_err);
 
     void delete_surface_mesh();
     void delete_volume_mesh();
+    void delete_x_com_mesh();
+    // void delete_y_com_mesh();
     void delete_volume_constraint_mesh();
+    void delete_inlet_surface_mesh();
+    void delete_outlet_surface_mesh();
+    void delete_flux_mesh();
+    void delete_mesh_pt(Mesh* mesh_pt);
   };
 
   template<class ELEMENT>
   RelaxingBubbleProblem<ELEMENT>::RelaxingBubbleProblem()
   {
     cout << "Constructor" << endl;
-    bool adaptive_timestepping = false;
+    Tolerances_pt = new SpatiotemporalTolerances;
+
+    bool adaptive_timestepping = Tolerances_pt->get_adaptive_timestepping();
+    add_time_stepper_pt(new BDF<2>(adaptive_timestepping));
+
+    create_data();
+
+    create_outer_boundary_polygon();
+    create_surface_polygon();
+
+    create_mesh();
+
+    set_variable_and_function_pointers();
+
+    set_boundary_conditions();
+
+    // Setup equation numbering scheme
+    cout << "Number of equations: " << endl;
+    cout << assign_eqn_numbers() << endl;
+    cout << "Number of unknowns: " << endl;
+    cout << ndof() << endl;
+  }
+
+  template<class ELEMENT>
+  RelaxingBubbleProblem<ELEMENT>::RelaxingBubbleProblem(
+    SpatiotemporalTolerances* tolerances_pt)
+  {
+    cout << "Constructor" << endl;
+    Tolerances_pt = tolerances_pt;
+
+    bool adaptive_timestepping = Tolerances_pt->get_adaptive_timestepping();
     add_time_stepper_pt(new BDF<2>(adaptive_timestepping));
 
     create_data();
@@ -125,7 +183,7 @@ namespace oomph
     // const unsigned max_adapt = 1;
     // steady_newton_solve(max_adapt);
 
-    double dt = 5e-3;
+    double dt = Tolerances_pt->get_initial_timestep();
     initialise_dt(dt);
     assign_initial_values_impulsive(dt);
     Fluid_mesh_pt->set_lagrangian_nodal_coordinates();
@@ -145,14 +203,14 @@ namespace oomph
 
     unsigned max_adapt = 0;
     bool is_first_step = true;
-    unsigned adapt_interval = 5;
+    unsigned adapt_interval = Tolerances_pt->get_remesh_interval();
     for (unsigned i_timestep = 0; i_timestep < n_timestep; i_timestep++)
     {
       cout << "t: " << time() << endl;
 
       // max_newton_iterations() = 1;
       // newton_solver_tolerance() = 1e10;
-      if (i_timestep % adapt_interval == adapt_interval - 1)
+      if (i_timestep % adapt_interval == 3 && !is_first_step)
       {
         max_adapt = 1;
       }
@@ -183,21 +241,27 @@ namespace oomph
 
       // double j = 0;
       // cout << "Residuals" << endl;
-      // for (unsigned i = 0; i < 1280; i++)
-      //{
-      //  j = residuals[i];
-      //  cout << "i: " << i << ", j: " << j << endl;
-      //}
+      // for (unsigned i = 0; i < ndof(); i++)
+      // {
+      //   j = residuals[i];
+      //   cout << "i: " << i << ", j: " << j << endl;
+      // }
 
-      if (is_first_step)
+      /// Allow (significant??) adapting on the first step
+      if (is_first_step && Tolerances_pt->get_remesh_initial_condition())
       {
-        is_first_step = false;
-        max_adapt = 5;
+        max_adapt = 1;
       }
 
       cout << "Unsteady Newton solve" << endl;
       unsteady_newton_solve(t_step, max_adapt, is_first_step);
       Fluid_mesh_pt->set_lagrangian_nodal_coordinates();
+
+      /// Set the first step flag to false
+      if (is_first_step)
+      {
+        is_first_step = false;
+      }
 
       doc_solution(doc_info);
     }
@@ -267,12 +331,13 @@ namespace oomph
   template<class ELEMENT>
   void RelaxingBubbleProblem<ELEMENT>::create_surface_polygon()
   {
-    double x_center = 0.5;
-    double y_center = 0.5;
-    double major_radius = 0.3;
-    double minor_radius = (*relaxing_bubble::target_bubble_volume_pt) /
-                          MathematicalConstants::Pi / major_radius;
-    unsigned npoints = 16;
+    double x_center = relaxing_bubble::bubble_initial_centre_x;
+    double y_center = relaxing_bubble::bubble_initial_centre_y;
+    double minor_radius =
+      (relaxing_bubble::target_bubble_volume) /
+      (MathematicalConstants::Pi * relaxing_bubble::major_radius);
+    unsigned npoints =
+      Tolerances_pt->get_initial_number_of_polynomial_vertices();
     double zeta_step = MathematicalConstants::Pi / double(npoints - 1);
 
     // Intrinsic coordinate along GeomObject defining the bubble
@@ -281,7 +346,8 @@ namespace oomph
     // Position vector to GeomObject defining the bubble
     Vector<double> coord(2);
 
-    Ellipse* ellipse_pt = new Ellipse(major_radius, minor_radius);
+    Ellipse* ellipse_pt =
+      new Ellipse(relaxing_bubble::major_radius, minor_radius);
 
     /// Triangle requires at least two polylines for a single polygon
     Vector<TriangleMeshCurveSection*> surface_polyline_pt(2);
@@ -328,21 +394,26 @@ namespace oomph
     bubble_center[0] = x_center;
     bubble_center[1] = y_center;
 
-    surface_polyline_pt[0]->set_maximum_length(0.02);
-    surface_polyline_pt[1]->set_maximum_length(0.02);
+    double max_length = Tolerances_pt->get_maximum_polyline_segment_length();
+    surface_polyline_pt[0]->set_maximum_length(max_length);
+    surface_polyline_pt[1]->set_maximum_length(max_length);
 
     // Create closed polygon from two polylines
     Surface_polygon_pt =
       new TriangleMeshPolygon(surface_polyline_pt, bubble_center);
 
-    Surface_polygon_pt->set_polyline_refinement_tolerance(0.05);
-    Surface_polygon_pt->set_polyline_unrefinement_tolerance(0.01);
+    Surface_polygon_pt->set_polyline_refinement_tolerance(
+      Tolerances_pt->get_polyline_refinement_tolerance());
+    Surface_polygon_pt->set_polyline_unrefinement_tolerance(
+      Tolerances_pt->get_polyline_unrefinement_tolerance());
   }
 
   template<class ELEMENT>
   void RelaxingBubbleProblem<ELEMENT>::create_data()
   {
     Volume_data_pt = new Data(1);
+    X_mom_data_pt = new Data(1);
+    // Y_mom_data_pt = new Data(1);
 
     Bubble_pressure_data_pt = new Data(1);
   }
@@ -355,13 +426,28 @@ namespace oomph
     create_surface_mesh();
     Volume_mesh_pt = new Mesh;
     create_volume_mesh();
+    X_mom_mesh_pt = new Mesh;
+    create_x_com_mesh();
+    // Y_mom_mesh_pt = new Mesh;
+    // create_y_com_mesh();
     Volume_constraint_mesh_pt = new Mesh;
     create_volume_constraint_mesh();
+    Flux_mesh_pt = new Mesh;
+    create_flux_mesh();
+    Inlet_surface_mesh_pt = new Mesh;
+    create_inlet_surface_mesh();
+    Outlet_surface_mesh_pt = new Mesh;
+    create_outlet_surface_mesh();
 
     add_sub_mesh(Fluid_mesh_pt);
     add_sub_mesh(Surface_mesh_pt);
     add_sub_mesh(Volume_mesh_pt);
+    add_sub_mesh(X_mom_mesh_pt);
+    // add_sub_mesh(Y_mom_mesh_pt);
     add_sub_mesh(Volume_constraint_mesh_pt);
+    add_sub_mesh(Inlet_surface_mesh_pt);
+    add_sub_mesh(Outlet_surface_mesh_pt);
+    add_sub_mesh(Flux_mesh_pt);
 
     build_global_mesh();
   }
@@ -370,7 +456,8 @@ namespace oomph
   void RelaxingBubbleProblem<ELEMENT>::create_fluid_mesh()
   {
     // Target area for initial mesh
-    double uniform_element_area = 5e-2;
+    double uniform_element_area =
+      Tolerances_pt->get_initial_target_element_area();
 
     TriangleMeshClosedCurve* outer_closed_curve_pt = Outer_boundary_polygon_pt;
     Vector<TriangleMeshClosedCurve*> surface_closed_curve_pt(1);
@@ -396,10 +483,14 @@ namespace oomph
     Fluid_mesh_pt->spatial_error_estimator_pt() = error_estimator_pt;
 
     // Set targets for spatial adaptivity
-    Fluid_mesh_pt->max_permitted_error() = 1e-3;
-    Fluid_mesh_pt->min_permitted_error() = 5e-6;
-    Fluid_mesh_pt->max_element_size() = 5e-2;
-    Fluid_mesh_pt->min_element_size() = 1e-4;
+    Fluid_mesh_pt->max_permitted_error() =
+      Tolerances_pt->get_maximum_permitted_error();
+    Fluid_mesh_pt->min_permitted_error() =
+      Tolerances_pt->get_minimum_permitted_error();
+    Fluid_mesh_pt->max_element_size() =
+      Tolerances_pt->get_maximum_element_size();
+    Fluid_mesh_pt->min_element_size() =
+      Tolerances_pt->get_minimum_element_size();
   }
 
   template<class ELEMENT>
@@ -439,14 +530,85 @@ namespace oomph
   }
 
   template<class ELEMENT>
+  void RelaxingBubbleProblem<ELEMENT>::create_x_com_mesh()
+  {
+    InfoElement* x_mom_element_pt = new InfoElement;
+    X_mom_mesh_pt->add_element_pt(x_mom_element_pt);
+  }
+
+  // template<class ELEMENT>
+  // void RelaxingBubbleProblem<ELEMENT>::create_y_com_mesh()
+  //{
+  //  InfoElement* y_mom_element_pt = new InfoElement;
+  //  Y_mom_mesh_pt->add_element_pt(y_mom_element_pt);
+  //}
+
+  template<class ELEMENT>
   void RelaxingBubbleProblem<ELEMENT>::create_volume_constraint_mesh()
   {
     MyConstraintElement* vol_constraint_element =
-      new MyConstraintElement(relaxing_bubble::target_fluid_volume_pt,
+      new MyConstraintElement(&relaxing_bubble::target_fluid_volume,
                               Volume_data_pt->value_pt(0),
                               Bubble_pressure_data_pt,
                               0);
     Volume_constraint_mesh_pt->add_element_pt(vol_constraint_element);
+  }
+
+  template<class ELEMENT>
+  void RelaxingBubbleProblem<ELEMENT>::create_inlet_surface_mesh()
+  {
+    const unsigned boundary = Left_boundary_id;
+
+    unsigned n_element = this->Fluid_mesh_pt->nboundary_element(boundary);
+    for (unsigned n = 0; n < n_element; n++)
+    {
+      ELEMENT* fluid_element_pt = dynamic_cast<ELEMENT*>(
+        this->Fluid_mesh_pt->boundary_element_pt(boundary, n));
+
+      int face_index = this->Fluid_mesh_pt->face_index_at_boundary(boundary, n);
+
+      HeleShawFluxElementWithInflowIntegral<ELEMENT>* flux_element_pt =
+        new HeleShawFluxElementWithInflowIntegral<ELEMENT>(
+          fluid_element_pt,
+          face_index,
+          this->Flux_mesh_pt->element_pt(0)->internal_data_pt(0));
+
+      this->Inlet_surface_mesh_pt->add_element_pt(flux_element_pt);
+    }
+  }
+
+  template<class ELEMENT>
+  void RelaxingBubbleProblem<ELEMENT>::create_outlet_surface_mesh()
+  {
+    const unsigned boundary = Right_boundary_id;
+
+    unsigned n_element = this->Fluid_mesh_pt->nboundary_element(boundary);
+    for (unsigned n = 0; n < n_element; n++)
+    {
+      ELEMENT* fluid_element_pt = dynamic_cast<ELEMENT*>(
+        this->Fluid_mesh_pt->boundary_element_pt(boundary, n));
+
+      int face_index = this->Fluid_mesh_pt->face_index_at_boundary(boundary, n);
+
+      HeleShawFluxElementWithInflowIntegral<ELEMENT>* flux_element_pt =
+        new HeleShawFluxElementWithInflowIntegral<ELEMENT>(
+          fluid_element_pt,
+          face_index,
+          this->Flux_mesh_pt->element_pt(1)->internal_data_pt(0));
+
+      this->Outlet_surface_mesh_pt->add_element_pt(flux_element_pt);
+    }
+  }
+
+  template<class ELEMENT>
+  void RelaxingBubbleProblem<ELEMENT>::create_flux_mesh()
+  {
+    unsigned number_of_values = 1;
+    Data* inlet_integral_data_pt = new Data(number_of_values);
+    this->Flux_mesh_pt->add_element_pt(new InfoElement(inlet_integral_data_pt));
+    Data* outlet_integral_data_pt = new Data(number_of_values);
+    this->Flux_mesh_pt->add_element_pt(
+      new InfoElement(outlet_integral_data_pt));
   }
 
   template<class ELEMENT>
@@ -467,6 +629,9 @@ namespace oomph
       el_pt->constitutive_law_pt() = relaxing_bubble::constitutive_law_pt;
       el_pt->upper_wall_fct_pt() = relaxing_bubble::upper_wall_fct;
       el_pt->add_external_data(Volume_data_pt, fd_jacobian);
+      // el_pt->add_volume_data_pt(Volume_data_pt);
+      el_pt->add_external_data(X_mom_data_pt, fd_jacobian);
+      // el_pt->add_external_data(Y_mom_data_pt, fd_jacobian);
       el_pt->add_external_data(Bubble_pressure_data_pt, fd_jacobian);
     }
 
@@ -476,13 +641,11 @@ namespace oomph
       HeleShawInterfaceElement<ELEMENT>* interface_element_pt =
         dynamic_cast<HeleShawInterfaceElement<ELEMENT>*>(
           Surface_mesh_pt->element_pt(e));
-      interface_element_pt->ca_inv_pt() = relaxing_bubble::q_inv_pt;
-      interface_element_pt->st_pt() = relaxing_bubble::st_pt;
-      interface_element_pt->aspect_ratio_pt() = relaxing_bubble::alpha_pt;
-      interface_element_pt->upper_wall_fct_pt() =
-        relaxing_bubble::upper_wall_fct;
-      interface_element_pt->wall_speed_fct_pt() =
-        relaxing_bubble::wall_speed_fct;
+      interface_element_pt->ca_inv_pt() = &relaxing_bubble::ca_inv;
+      interface_element_pt->st_pt() = &relaxing_bubble::st;
+      interface_element_pt->aspect_ratio_pt() = &relaxing_bubble::alpha;
+      interface_element_pt->upper_wall_fct_pt() = relaxing_bubble::upper_wall_fct;
+      interface_element_pt->wall_speed_fct_pt() = relaxing_bubble::wall_speed_fct;
       interface_element_pt->bubble_pressure_fct_pt() =
         relaxing_bubble::bubble_pressure_fct;
 
@@ -496,11 +659,60 @@ namespace oomph
       dynamic_cast<InfoElement*>(Volume_mesh_pt->element_pt(i_element));
     volume_element_pt->add_data_pt(Volume_data_pt);
 
+    InfoElement* x_mom_element_pt =
+      dynamic_cast<InfoElement*>(X_mom_mesh_pt->element_pt(i_element));
+    x_mom_element_pt->add_data_pt(X_mom_data_pt);
+
+    // InfoElement* y_mom_element_pt =
+    //  dynamic_cast<InfoElement*>(Y_mom_mesh_pt->element_pt(i_element));
+    // y_mom_element_pt->add_data_pt(Y_mom_data_pt);
+
     MyConstraintElement* vol_constraint_element =
       dynamic_cast<MyConstraintElement*>(
         Volume_constraint_mesh_pt->element_pt(i_element));
 
     vol_constraint_element->add_external_data(Volume_data_pt, fd_jacobian);
+
+    /// Info mesh
+    unsigned index = 0;
+    relaxing_bubble::inlet_b3_pt =
+      this->Flux_mesh_pt->element_pt(0)->internal_data_pt(0)->value_pt(index);
+    relaxing_bubble::outlet_b3_pt =
+      this->Flux_mesh_pt->element_pt(1)->internal_data_pt(0)->value_pt(index);
+
+    /// Inlet mesh
+    // Find number of elements in mesh
+    n_element = this->Inlet_surface_mesh_pt->nelement();
+
+    // Loop over the elements to set up element-specific
+    // things that cannot be handled by constructor
+    for (unsigned i = 0; i < n_element; i++)
+    {
+      // Upcast from GeneralElement to the present element
+      HeleShawFluxElementWithInflowIntegral<ELEMENT>* el_pt =
+        dynamic_cast<HeleShawFluxElementWithInflowIntegral<ELEMENT>*>(
+          this->Inlet_surface_mesh_pt->element_pt(i));
+
+      // Set the Neumann function pointer
+      el_pt->flux_fct_pt() = &relaxing_bubble::get_inlet_flux_bc;
+    }
+
+    /// Outlet mesh
+    // Find number of elements in mesh
+    n_element = this->Outlet_surface_mesh_pt->nelement();
+
+    // Loop over the elements to set up element-specific
+    // things that cannot be handled by constructor
+    for (unsigned i = 0; i < n_element; i++)
+    {
+      // Upcast from GeneralElement to the present element
+      HeleShawFluxElementWithInflowIntegral<ELEMENT>* el_pt =
+        dynamic_cast<HeleShawFluxElementWithInflowIntegral<ELEMENT>*>(
+          this->Outlet_surface_mesh_pt->element_pt(i));
+
+      // Set the Neumann function pointer
+      el_pt->flux_fct_pt() = &relaxing_bubble::get_outlet_flux_bc;
+    }
   }
 
   template<class ELEMENT>
@@ -511,6 +723,7 @@ namespace oomph
     fill_in_bubble_boundary_map(is_on_bubble_bound);
 
 
+    const double fixed_pressure = 0.0;
     // Re-set the boundary conditions for fluid problem: All nodes are
     // free by default -- just pin the ones that have Dirichlet conditions
     // here.
@@ -535,26 +748,18 @@ namespace oomph
         {
           solid_node_pt->pin_position(0);
           solid_node_pt->pin_position(1);
+
+          node_pt->set_value(0, 0.0);
+          node_pt->pin(0);
         }
+
+        // if (ibound == Right_boundary_id)
+        //{
+        //  node_pt->set_value(0, fixed_pressure);
+        //  node_pt->pin(0);
+        //}
       }
     } // end loop over boundaries
-
-    /// Single point Dirichlet boundary condition
-    unsigned i_element = 0;
-    unsigned i_node = 0;
-    bool is_node_on_boundary = true;
-    Node* node_pt;
-    while (is_node_on_boundary)
-    {
-      node_pt = dynamic_cast<ELEMENT*>(Fluid_mesh_pt->element_pt(i_element))
-                  ->node_pt(i_node);
-      is_node_on_boundary = node_pt->is_on_boundary();
-      i_element++;
-    }
-    const double fixed_pressure = 0.0;
-    node_pt->set_value(0, fixed_pressure);
-    node_pt->pin(0);
-
 
     /// Pin tangential lagrange multiplier
     for (unsigned ibound = First_bubble_boundary_id;
@@ -573,8 +778,15 @@ namespace oomph
       }
     }
 
-    Volume_data_pt->set_value(0, (*relaxing_bubble::target_fluid_volume_pt));
+    Volume_data_pt->set_value(0, relaxing_bubble::target_fluid_volume);
     Volume_data_pt->unpin(0);
+
+    X_mom_data_pt->set_value(0, 0.0);
+    X_mom_data_pt->unpin(0);
+
+    // Y_mom_data_pt->set_value(0, 0.0);
+    // Y_mom_data_pt->unpin(0);
+
     // unsigned i_data = 0;
     // i_element = 0;
     // cout << "Get volume element" << endl;
@@ -585,6 +797,17 @@ namespace oomph
 
     Bubble_pressure_data_pt->set_value(0, 16.0 / 3.0);
     Bubble_pressure_data_pt->unpin(0);
+
+    /// Integral info mesh
+    const unsigned value_index = 0;
+    for (unsigned index = 0; index < 2; index++)
+    {
+      /// Integral value must be initialised to something non-zero?
+      this->Flux_mesh_pt->element_pt(index)->internal_data_pt(0)->set_value(
+        value_index, 1.0);
+      this->Flux_mesh_pt->element_pt(index)->internal_data_pt(0)->unpin(
+        value_index);
+    }
   }
 
   template<class ELEMENT>
@@ -612,8 +835,17 @@ namespace oomph
 
     doc_fluid_mesh(doc_directory + "soln" + to_string(doc_info.number()) +
                    ".dat");
-    // doc_surface_mesh(doc_directory + "surface" + doc_info.number() + ".dat");
+
+    doc_surface_mesh(doc_directory + "surface" + to_string(doc_info.number()) +
+                     ".dat");
+
     doc_volume(doc_directory + "volume.dat");
+
+    doc_x_com(doc_directory + "com.dat");
+
+    doc_bubble_pressure(doc_directory + "bubble_pressure.dat");
+
+    // doc_boundary(doc_directory + "boundary.dat");
 
     doc_info.number()++;
   }
@@ -625,7 +857,12 @@ namespace oomph
 
     delete_surface_mesh();
     delete_volume_mesh();
+    delete_x_com_mesh();
+    // delete_y_com_mesh();
     delete_volume_constraint_mesh();
+    delete_flux_mesh();
+    delete_inlet_surface_mesh();
+    delete_outlet_surface_mesh();
 
     rebuild_global_mesh();
   }
@@ -637,9 +874,17 @@ namespace oomph
 
     Volume_data_pt = new Data(1);
     Bubble_pressure_data_pt = new Data(1);
+    X_mom_data_pt = new Data(1);
+    // Y_mom_data_pt = new Data(1);
+
     create_surface_mesh();
     create_volume_mesh();
+    create_x_com_mesh();
+    // create_y_com_mesh();
     create_volume_constraint_mesh();
+    create_flux_mesh();
+    create_inlet_surface_mesh();
+    create_outlet_surface_mesh();
 
     rebuild_global_mesh();
 
@@ -676,6 +921,16 @@ namespace oomph
     ofstream output_stream;
     output_stream.open(filename);
 
+    unsigned n_element = Surface_mesh_pt->nelement();
+
+    // Loop over the surface elements
+    for (unsigned e = 0; e < n_element; e++)
+    {
+      dynamic_cast<HeleShawInterfaceElement<ELEMENT>*>(
+        Surface_mesh_pt->element_pt(e))
+        ->output(output_stream, 3);
+    }
+
     output_stream.close();
   }
 
@@ -689,6 +944,36 @@ namespace oomph
     output_stream << Volume_data_pt->value(0) << endl;
 
     output_stream.close();
+  }
+
+  template<class ELEMENT>
+  void RelaxingBubbleProblem<ELEMENT>::doc_x_com(string filename)
+  {
+    ofstream output_stream;
+    output_stream.open(filename, ofstream::app);
+
+    output_stream << time() << ", ";
+    output_stream << X_mom_data_pt->value(0) / Volume_data_pt->value(0) << endl;
+
+    output_stream.close();
+  }
+
+  template<class ELEMENT>
+  void RelaxingBubbleProblem<ELEMENT>::doc_bubble_pressure(string filename)
+  {
+    ofstream output_stream;
+    output_stream.open(filename, ofstream::app);
+
+    output_stream << time() << ", ";
+    output_stream << Bubble_pressure_data_pt->value(0) << endl;
+
+    output_stream.close();
+  }
+
+  template<class ELEMENT>
+  void RelaxingBubbleProblem<ELEMENT>::doc_boundary(string filename)
+  {
+    // ofstream output_stream;
   }
 
   template<class ELEMENT>
@@ -760,6 +1045,40 @@ namespace oomph
   }
 
   template<class ELEMENT>
+  void RelaxingBubbleProblem<ELEMENT>::delete_x_com_mesh()
+  {
+    // How many elements are in the volume mesh
+    unsigned n_element = X_mom_mesh_pt->nelement();
+
+    // Loop over the elements
+    for (unsigned e = 0; e < n_element; e++)
+    {
+      // Delete element
+      delete X_mom_mesh_pt->element_pt(e);
+    }
+
+    // Wipe the mesh
+    X_mom_mesh_pt->flush_element_and_node_storage();
+  }
+
+  // template<class ELEMENT>
+  // void RelaxingBubbleProblem<ELEMENT>::delete_y_com_mesh()
+  //{
+  //  // How many elements are in the volume mesh
+  //  unsigned n_element = Y_mom_mesh_pt->nelement();
+
+  //  // Loop over the elements
+  //  for (unsigned e = 0; e < n_element; e++)
+  //  {
+  //    // Delete element
+  //    delete Y_mom_mesh_pt->element_pt(e);
+  //  }
+
+  //  // Wipe the mesh
+  //  Y_mom_mesh_pt->flush_element_and_node_storage();
+  //}
+
+  template<class ELEMENT>
   void RelaxingBubbleProblem<ELEMENT>::delete_volume_constraint_mesh()
   {
     // How many elements are in the volume mesh
@@ -774,6 +1093,74 @@ namespace oomph
 
     // Wipe the mesh
     Volume_constraint_mesh_pt->flush_element_and_node_storage();
+  }
+
+  template<class ELEMENT>
+  void RelaxingBubbleProblem<ELEMENT>::delete_inlet_surface_mesh()
+  {
+    // How many elements are in the volume mesh
+    unsigned n_element = Inlet_surface_mesh_pt->nelement();
+
+    // Loop over the elements
+    for (unsigned e = 0; e < n_element; e++)
+    {
+      // Delete element
+      delete Inlet_surface_mesh_pt->element_pt(e);
+    }
+
+    // Wipe the mesh
+    Inlet_surface_mesh_pt->flush_element_and_node_storage();
+  }
+
+  template<class ELEMENT>
+  void RelaxingBubbleProblem<ELEMENT>::delete_outlet_surface_mesh()
+  {
+    // How many elements are in the volume mesh
+    unsigned n_element = Outlet_surface_mesh_pt->nelement();
+
+    // Loop over the elements
+    for (unsigned e = 0; e < n_element; e++)
+    {
+      // Delete element
+      delete Outlet_surface_mesh_pt->element_pt(e);
+    }
+
+    // Wipe the mesh
+    Outlet_surface_mesh_pt->flush_element_and_node_storage();
+  }
+
+  template<class ELEMENT>
+  void RelaxingBubbleProblem<ELEMENT>::delete_flux_mesh()
+  {
+    // How many elements are in the volume mesh
+    unsigned n_element = Flux_mesh_pt->nelement();
+
+    // Loop over the elements
+    for (unsigned e = 0; e < n_element; e++)
+    {
+      // Delete element
+      delete Flux_mesh_pt->element_pt(e);
+    }
+
+    // Wipe the mesh
+    Flux_mesh_pt->flush_element_and_node_storage();
+  }
+
+  template<class ELEMENT>
+  void RelaxingBubbleProblem<ELEMENT>::delete_mesh_pt(Mesh* mesh_pt)
+  {
+    // How many elements are in the volume mesh
+    unsigned n_element = mesh_pt->nelement();
+
+    // Loop over the elements
+    for (unsigned e = 0; e < n_element; e++)
+    {
+      // Delete element
+      delete mesh_pt->element_pt(e);
+    }
+
+    // Wipe the mesh
+    mesh_pt->flush_element_and_node_storage();
   }
 
 } // namespace oomph
