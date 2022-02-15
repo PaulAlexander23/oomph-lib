@@ -26,6 +26,7 @@ int main(int argc, char* argv[])
   /// Default values for the command line arguments
   double Q = 0.05;
   string output_directory = "RESLT/";
+  string validate_flag_string = "--validate";
   bool has_unrecognised_arg = false;
 
   /// Setup and parse command line arguments
@@ -35,24 +36,21 @@ int main(int argc, char* argv[])
     "-q", &Q, "Optional: Capillary/Channel flux parameter. Default = 0.05");
   CommandLineArgs::specify_command_line_flag(
     "-o", &output_directory, "Optional: Output directory. Default = RESLT/");
+  CommandLineArgs::specify_command_line_flag(
+    validate_flag_string, "Optional: Run with validation parameters.");
   CommandLineArgs::parse_and_assign(argc, argv, has_unrecognised_arg);
 
-  /// Typically varied parameters
+  /// Geometry parameters
   const double circular_radius = 0.3;
   const double volume =
     MathematicalConstants::Pi * circular_radius * circular_radius;
-  const double h = 0.0;
-
-  /// Set other fixed parameters
-  const double major_radius = 0.3;
-  const double width = 0.25;
 
   /// Convert into the Capillary scaling
   double Ca;
   double new_volume;
   double new_h;
   convert_parameters_from_q_nd_to_capillary_nd(
-    Q, volume, h, Ca, new_volume, new_h);
+    Q, volume, 0.0, Ca, new_volume, new_h);
 
   double length_ratio;
   double depth_ratio;
@@ -61,17 +59,22 @@ int main(int argc, char* argv[])
   get_ratios_of_q_nd_to_capillary_nd(
     length_ratio, depth_ratio, time_ratio, pressure_ratio);
 
-  relaxing_bubble::total_flux = 0.0;
+  // Dimensionless parameters
   relaxing_bubble::alpha = 40.0;
-  relaxing_bubble::major_radius = major_radius * length_ratio;
-  relaxing_bubble::ca_inv = 1 / Ca;
+  relaxing_bubble::ca_inv = 1.0 / Ca;
   relaxing_bubble::st = 1.0;
-  relaxing_bubble::bubble_initial_centre_y = length_ratio * (1 + 0.01);
-  relaxing_bubble::perturbation_amplitude = new_h;
-  relaxing_bubble::perturbation_rms_width = length_ratio * width;
+
+  // Geometry parameters
+  relaxing_bubble::major_radius = length_ratio * 0.3;
+  relaxing_bubble::bubble_initial_centre_y = length_ratio * (1.0 + 0.01);
   relaxing_bubble::target_bubble_volume = new_volume;
-  relaxing_bubble::nu = 0.3;
+
+  // Depth perturbation parameters
+  relaxing_bubble::perturbation_amplitude = 0.0;
+  relaxing_bubble::perturbation_rms_width = length_ratio * 0.25;
+
   // Create generalised Hookean constitutive equations
+  relaxing_bubble::nu = 0.3;
   relaxing_bubble::constitutive_law_pt =
     new GeneralisedHookean(&relaxing_bubble::nu);
 
@@ -85,6 +88,7 @@ int main(int argc, char* argv[])
   integral_problem.newton_solve();
   integral_problem.doc_solution(doc_info);
 
+  // Set the total volume
   relaxing_bubble::total_volume = integral_problem.result();
   cout << "Total volume: " << relaxing_bubble::total_volume << endl;
 
@@ -92,24 +96,30 @@ int main(int argc, char* argv[])
   relaxing_bubble::target_fluid_volume =
     (relaxing_bubble::total_volume) - (relaxing_bubble::target_bubble_volume);
 
-  /// Print the parameters
+  /// Print and document the parameters
   relaxing_bubble::print_parameters();
   relaxing_bubble::doc_parameters(doc_info, "parameters.dat");
 
+  // Create a spatiotemporal tolerances object and adjust the defaults to
+  // account for the scaling
   SpatiotemporalTolerances* tolerances_pt = new SpatiotemporalTolerances;
-
-  /// I think the polyline segment length is in terms of the local coordinate
-  /// which doesn't require the scaling transform.
-  // tolerances_pt->set_maximum_polyline_segment_length(
-  //  tolerances_pt->get_maximum_polyline_segment_length() * length_ratio);
-
-  tolerances_pt->set_maximum_element_size(
-    tolerances_pt->get_maximum_element_size() * length_ratio * length_ratio);
-  tolerances_pt->set_minimum_element_size(
-    tolerances_pt->get_minimum_element_size() * length_ratio * length_ratio);
-  tolerances_pt->set_initial_target_element_area(
-    tolerances_pt->get_initial_target_element_area() * length_ratio *
-    length_ratio);
+  if (CommandLineArgs::command_line_flag_has_been_set(validate_flag_string))
+  {
+    tolerances_pt->set_maximum_permitted_error(1e-3);
+    tolerances_pt->set_minimum_element_size(0.01);
+    tolerances_pt->set_initial_target_element_area(0.02);
+    tolerances_pt->set_initial_number_of_polynomial_vertices(16);
+  }
+  else
+  {
+    tolerances_pt->set_maximum_element_size(
+      tolerances_pt->get_maximum_element_size() * length_ratio * length_ratio);
+    tolerances_pt->set_minimum_element_size(
+      tolerances_pt->get_minimum_element_size() * length_ratio * length_ratio);
+    tolerances_pt->set_initial_target_element_area(
+      tolerances_pt->get_initial_target_element_area() * length_ratio *
+      length_ratio);
+  }
 
   tolerances_pt->doc(doc_info, "tolerances.dat");
 
@@ -132,7 +142,15 @@ int main(int argc, char* argv[])
 
   /// Set initial timestep and simulation duration
   double dt = 1e-2 * time_ratio;
-  double tF = 4e0 * time_ratio;
+  double tF;
+  if (CommandLineArgs::command_line_flag_has_been_set(validate_flag_string))
+  {
+    tF = 5 * dt;
+  }
+  else
+  {
+    tF = 4e0 * time_ratio;
+  }
 
   /// Iterate the adaptive step timestepper until the final time, documenting
   /// the solution
