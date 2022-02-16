@@ -20,11 +20,11 @@ headers_and_sources = $(headers) $(sources)
 
 # Define the library that gets placed in lib directory
 #-----------------------------------------------------
-lib_LTLIBRARIES = libintegral.la
+#lib_LTLIBRARIES = libintegral.la
 
 # Sources that the library depends on: 
 #-------------------------------------
-libintegral_la_SOURCES = $(headers_and_sources)
+#libintegral_la_SOURCES = $(headers_and_sources)
 
 # The library's include headers:
 #-------------------------------
