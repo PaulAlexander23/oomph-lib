@@ -79,7 +79,7 @@ namespace oomph
   // Set the data for the number of Variables at each node, always 1
   //======================================================================
   template<unsigned NNODE_1D>
-  const unsigned TIntegralElement<NNODE_1D>::Initial_Nvalue = 1;
+  const unsigned TIntegralElement<NNODE_1D>::Initial_Nvalue = 0;
 
 } // namespace oomph
 #endif
