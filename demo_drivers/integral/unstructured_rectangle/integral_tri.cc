@@ -3,10 +3,8 @@
 
 #include "generic.h"
 #include "meshes.h"
-//#include "integral.h"
+#include "integral.h"
 
-#include "integral_elements.h"
-#include "Tintegral_elements.h"
 #include "info_element.h"
 
 using namespace std;
@@ -56,22 +54,28 @@ private:
 
   /// Pointer to the info mesh
   Mesh* Info_mesh_pt;
+
+  /// Pointer to the integral data
+  Data* Integral_data_pt;
 };
 
 template<class ELEMENT>
 IntegralProblem<ELEMENT>::IntegralProblem()
 {
   cout << "Generate mesh" << endl;
-  this->generate_mesh();
+  Integral_data_pt = new Data(1);
+  Integral_data_pt->set_value(0,1.0);
+  Integral_data_pt->unpin(0);
+  generate_mesh();
 
   cout << "Upcast and finalise elements" << endl;
-  this->upcast_and_finalise_elements();
+  upcast_and_finalise_elements();
 
   // Setup equation numbering scheme
   cout << "Number of equations: " << endl;
-  cout << this->assign_eqn_numbers() << endl;
+  cout << assign_eqn_numbers() << endl;
   cout << "Number of unknowns: " << endl;
-  cout << this->ndof() << endl;
+  cout << ndof() << endl;
 }
 
 template<class ELEMENT>
@@ -140,7 +144,7 @@ void IntegralProblem<ELEMENT>::generate_mesh()
 
   // Convert to "closed curve" objects
   TriangleMeshClosedCurve* rect_closed_curve_pt =
-    this->Rect_boundary_polyline_pt;
+    Rect_boundary_polyline_pt;
 
   // Generate mesh parameters for external mesh generator "Triangle"
   TriangleMeshParameters triangle_mesh_parameters(rect_closed_curve_pt);
@@ -149,17 +153,16 @@ void IntegralProblem<ELEMENT>::generate_mesh()
   triangle_mesh_parameters.element_area() = maximum_default_element_area;
 
   // Call external mesh generator
-  this->Integral_mesh_pt = new TriangleMesh<ELEMENT>(triangle_mesh_parameters);
+  Integral_mesh_pt = new TriangleMesh<ELEMENT>(triangle_mesh_parameters);
 
-  this->Info_mesh_pt = new Mesh;
-  unsigned n_values = 1;
-  Data* integral_data_pt = new Data(n_values);
-  this->Info_mesh_pt->add_element_pt(new InfoElement(integral_data_pt));
+  Info_mesh_pt = new Mesh;
+  InfoElement* el_pt = new InfoElement(Integral_data_pt);
+  Info_mesh_pt->add_element_pt(el_pt);
 
-  this->add_sub_mesh(this->Integral_mesh_pt);
-  this->add_sub_mesh(this->Info_mesh_pt);
+  add_sub_mesh(Integral_mesh_pt);
+  add_sub_mesh(Info_mesh_pt);
 
-  this->build_global_mesh();
+  build_global_mesh();
 }
 
 template<class ELEMENT>
@@ -167,7 +170,7 @@ void IntegralProblem<ELEMENT>::upcast_and_finalise_elements()
 {
   /// Bulk mesh
   // Find number of elements in mesh
-  unsigned n_element = this->Integral_mesh_pt->nelement();
+  unsigned n_element = Integral_mesh_pt->nelement();
 
   // Loop over the elements to set up element-specific
   // things that cannot be handled by constructor
@@ -175,11 +178,10 @@ void IntegralProblem<ELEMENT>::upcast_and_finalise_elements()
   {
     // Upcast from GeneralElement to the present element
     ELEMENT* el_pt =
-      dynamic_cast<ELEMENT*>(this->Integral_mesh_pt->element_pt(i));
+      dynamic_cast<ELEMENT*>(Integral_mesh_pt->element_pt(i));
 
     el_pt->integrand_fct_pt() = problem_parameter::integrand_fct;
-    el_pt->set_external_data_pt(
-      this->Info_mesh_pt->element_pt(0)->internal_data_pt(0));
+    el_pt->set_external_data_pt(Integral_data_pt);
   }
 }
 
@@ -190,8 +192,7 @@ void IntegralProblem<ELEMENT>::doc_solution(DocInfo& doc_info)
   string filename = data_directory + "integral.dat";
   ofstream output_stream;
   output_stream.open(filename.c_str());
-  double my_integral =
-    this->Info_mesh_pt->element_pt(0)->internal_data_pt(0)->value(0);
+  double my_integral = Integral_data_pt->value(0);
   output_stream << "Integral: " << my_integral << endl;
   output_stream.close();
 }
@@ -222,14 +223,12 @@ int main(int argc, char* argv[])
   problem.get_jacobian(residuals, jacobian);
   problem.get_fd_jacobian(residualsFD, jacobianFD);
 
-  for (unsigned j = 0; j < 675; j++)
+  for (unsigned j = 0; j < 674; j++)
   {
     printf("j: %3u, ", j);
-    for (unsigned i = 674 - 3; i <= 674; i++)
+    for (unsigned i = 674 - 3; i < 674; i++)
     {
-      printf("act: %8.5f, exp: %8.5f,",
-             jacobian(i, j),
-             jacobianFD(i, j));
+      printf("act: %8.5f, exp: %8.5f,", jacobian(i, j), jacobianFD(i, j));
     }
     printf("\n");
   }
