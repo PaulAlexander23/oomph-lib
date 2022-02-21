@@ -3,10 +3,16 @@
 #-----------------------
 
 # Define the sources
+<<<<<<< HEAD:src/linear_wave/Makefile.am
 sources =  \
 linear_wave_elements.cc refineable_linear_wave_elements.cc 
 
 # linear_wave_flux_elements.cc 
+=======
+sources = 
+#hele_shaw_elements.cc
+# hele_shaw_flux_elements.cc 
+>>>>>>> Remove implementation scripts and use headers only:src/hele_shaw/Makefile.am
 
 # Include files which shouldn't be compiled
 incl_cc_files =
@@ -41,11 +47,19 @@ headers_and_sources = $(headers) $(sources)
 
 # Define the library that gets placed in lib directory
 #-----------------------------------------------------
+<<<<<<< HEAD:src/linear_wave/Makefile.am
 lib_LTLIBRARIES = liblinear_wave.la
 
 # Sources that the library depends on: 
 #-------------------------------------
 liblinear_wave_la_SOURCES = $(headers_and_sources)
+=======
+#lib_LTLIBRARIES = libhele_shaw.la
+
+# Sources that the library depends on: 
+#-------------------------------------
+#libhele_shaw_la_SOURCES = $(headers_and_sources)
+>>>>>>> Remove implementation scripts and use headers only:src/hele_shaw/Makefile.am
 
 # The library's include headers:
 #-------------------------------
