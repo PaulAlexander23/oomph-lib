@@ -585,24 +585,24 @@ namespace oomph
             residuals[local_eqn] +=
               (tau[i] * psif(l) * J + interpolated_tangent[i] * dpsifds(l, 0)) *
               W;
-          }
 
-          // Do the Jacobian calculation
-          if (flag == 1)
-          {
-            // Loop over the nodes
-            for (unsigned l2 = 0; l2 < n_node; l2++)
+            // Do the Jacobian calculation
+            if (flag == 1)
             {
-              // Derivatives w.r.t. solid positions will be handled by FDing.
-              // Only 'tau' above is not solid position.
-              local_unknown = projected_tangent_deriv_local_eqn(l2, i);
-              if (local_unknown >= 0)
+              // Loop over the nodes
+              for (unsigned l2 = 0; l2 < n_node; l2++)
               {
-                jacobian(local_eqn, local_unknown) +=
-                  psif[l2] * psif(l) * W * J;
+                // Derivatives w.r.t. solid positions will be handled by FDing.
+                // Only 'tau' above is not solid position.
+                local_unknown = projected_tangent_deriv_local_eqn(l2, i);
+                if (local_unknown >= 0)
+                {
+                  jacobian(local_eqn, local_unknown) +=
+                    psif[l2] * psif(l) * W * J;
+                }
               }
-            }
-          } // End of Jacobian calculation
+            } // End of Jacobian calculation
+          }
         }
 
         // Eqn for Lagrange multiplier (dynamic free surface condition)
@@ -659,6 +659,8 @@ namespace oomph
           // Moving frame terms
           residuals[local_eqn] += h * normal_speed_wall * psif(l) * W * J;
 
+          /// These residuals depend only on solid position, and
+          /// possibly external data. (but not nodal data)
 
           if (flag == 2)
           {

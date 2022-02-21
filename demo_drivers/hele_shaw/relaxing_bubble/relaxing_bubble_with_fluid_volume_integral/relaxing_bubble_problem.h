@@ -628,10 +628,8 @@ namespace oomph
       // Set the constitutive law for pseudo-elastic mesh deformation
       el_pt->constitutive_law_pt() = relaxing_bubble::constitutive_law_pt;
       el_pt->upper_wall_fct_pt() = relaxing_bubble::upper_wall_fct;
-      el_pt->add_external_data(Volume_data_pt, fd_jacobian);
-      // el_pt->add_volume_data_pt(Volume_data_pt);
-      el_pt->add_external_data(X_mom_data_pt, fd_jacobian);
-      // el_pt->add_external_data(Y_mom_data_pt, fd_jacobian);
+      el_pt->add_volume_data_pt(Volume_data_pt);
+      el_pt->add_x_mom_data_pt(X_mom_data_pt);
       el_pt->add_external_data(Bubble_pressure_data_pt, fd_jacobian);
     }
 

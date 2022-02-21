@@ -61,11 +61,18 @@ int main(int argc, char* argv[])
 
   // Dimensionless parameters
   relaxing_bubble::alpha = 40.0;
-  relaxing_bubble::ca_inv = 1.0 / Ca;
+  relaxing_bubble::ca_inv = 1.0 / Ca * 12.0;
   relaxing_bubble::st = 1.0;
 
   // Geometry parameters
-  relaxing_bubble::major_radius = length_ratio * 0.3;
+  if (CommandLineArgs::command_line_flag_has_been_set(validate_flag_string))
+  {
+    relaxing_bubble::major_radius = length_ratio * 0.3;
+  }
+  else
+  {
+    relaxing_bubble::major_radius = length_ratio * 0.33;
+  }
   relaxing_bubble::bubble_initial_centre_y = length_ratio * (1.0 + 0.01);
   relaxing_bubble::target_bubble_volume = new_volume;
 
@@ -112,6 +119,8 @@ int main(int argc, char* argv[])
   }
   else
   {
+    tolerances_pt->set_maximum_permitted_error(
+      tolerances_pt->get_maximum_permitted_error() * 12.0);
     tolerances_pt->set_maximum_element_size(
       tolerances_pt->get_maximum_element_size() * length_ratio * length_ratio);
     tolerances_pt->set_minimum_element_size(
@@ -124,7 +133,7 @@ int main(int argc, char* argv[])
   tolerances_pt->doc(doc_info, "tolerances.dat");
 
   /// Create problem
-  RelaxingBubbleProblem<MyNewElementWithIntegral> problem(tolerances_pt);
+  RelaxingBubbleProblem<MyNewElement> problem(tolerances_pt);
 
   /// Run self tests
   bool run_self_test = false;
