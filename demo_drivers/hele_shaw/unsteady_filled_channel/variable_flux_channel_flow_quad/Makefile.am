@@ -10,4 +10,4 @@ variable_flux_channel_flow_quad_SOURCES = variable_flux_channel_flow_quad.cc val
 
 # Required libraries:
 # $(FLIBS) is included in case the solver involves fortran sources.
-variable_flux_channel_flow_quad_LDADD = -L@libdir@ -lhele_shaw -lmeshes -lgeneric $(EXTERNAL_LIBS) $(FLIBS)
+variable_flux_channel_flow_quad_LDADD = -L@libdir@ -lmeshes -lgeneric $(EXTERNAL_LIBS) $(FLIBS)

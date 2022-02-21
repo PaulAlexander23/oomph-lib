@@ -9,4 +9,4 @@ inject_air_SOURCES = inject_air.cc
 
 # Required libraries:
 # $(FLIBS) is included in case the solver involves fortran sources.
-inject_air_LDADD = -L@libdir@ -lhele_shaw -lfluid_interface -lconstitutive -lsolid -lmeshes -lgeneric $(EXTERNAL_LIBS) $(FLIBS)
+inject_air_LDADD = -L@libdir@ -lfluid_interface -lconstitutive -lsolid -lmeshes -lgeneric $(EXTERNAL_LIBS) $(FLIBS)

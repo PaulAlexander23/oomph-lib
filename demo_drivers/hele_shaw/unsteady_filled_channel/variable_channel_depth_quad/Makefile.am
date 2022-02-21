@@ -10,4 +10,4 @@ variable_channel_depth_quad_SOURCES = variable_channel_depth_quad.cc validate.sh
 
 # Required libraries:
 # $(FLIBS) is included in case the solver involves fortran sources.
-variable_channel_depth_quad_LDADD = -L@libdir@ -lhele_shaw -lmeshes -lgeneric $(EXTERNAL_LIBS) $(FLIBS)
+variable_channel_depth_quad_LDADD = -L@libdir@ -lmeshes -lgeneric $(EXTERNAL_LIBS) $(FLIBS)

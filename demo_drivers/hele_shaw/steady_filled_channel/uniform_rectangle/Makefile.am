@@ -12,5 +12,5 @@ uniform_rectangle_tri_SOURCES =  uniform_rectangle_tri.cc validate.sh
 
 # Required libraries:
 # $(FLIBS) is included in case the solver involves fortran sources.
-uniform_rectangle_quad_LDADD = -L@libdir@ -lhele_shaw -lmeshes -lgeneric $(EXTERNAL_LIBS) $(FLIBS)
-uniform_rectangle_tri_LDADD = -L@libdir@ -lhele_shaw -lmeshes -lgeneric $(EXTERNAL_LIBS) $(FLIBS)
+uniform_rectangle_quad_LDADD = -L@libdir@ -lmeshes -lgeneric $(EXTERNAL_LIBS) $(FLIBS)
+uniform_rectangle_tri_LDADD = -L@libdir@ -lmeshes -lgeneric $(EXTERNAL_LIBS) $(FLIBS)
