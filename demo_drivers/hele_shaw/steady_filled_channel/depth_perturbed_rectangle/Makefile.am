@@ -10,4 +10,4 @@ depth_perturbed_rectangle_tri_SOURCES = depth_perturbed_rectangle_tri.cc validat
 
 # Required libraries:
 # $(FLIBS) is included in case the solver involves fortran sources.
-depth_perturbed_rectangle_tri_LDADD = -L@libdir@ -lhele_shaw -lmeshes -lgeneric $(EXTERNAL_LIBS) $(FLIBS)
+depth_perturbed_rectangle_tri_LDADD = -L@libdir@ -lmeshes -lgeneric $(EXTERNAL_LIBS) $(FLIBS)

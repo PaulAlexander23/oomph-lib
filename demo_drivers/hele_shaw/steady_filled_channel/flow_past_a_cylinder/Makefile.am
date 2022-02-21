@@ -10,4 +10,4 @@ flow_past_a_cylinder_tri_SOURCES = flow_past_a_cylinder_tri.cc validate.sh
 
 # Required libraries:
 # $(FLIBS) is included in case the solver involves fortran sources.
-flow_past_a_cylinder_tri_LDADD = -L@libdir@ -lhele_shaw -lmeshes -lgeneric $(EXTERNAL_LIBS) $(FLIBS)
+flow_past_a_cylinder_tri_LDADD = -L@libdir@ -lmeshes -lgeneric $(EXTERNAL_LIBS) $(FLIBS)

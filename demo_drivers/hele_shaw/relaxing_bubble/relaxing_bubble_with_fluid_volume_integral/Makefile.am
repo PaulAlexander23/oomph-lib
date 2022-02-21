@@ -9,6 +9,6 @@ relaxing_bubble_SOURCES=relaxing_bubble.cc
 
 # Required libraries:
 # $(FLIBS) is included in case the solver involves fortran sources.
-relaxing_bubble_LDADD = -L@libdir@ -lhele_shaw -lfluid_interface -lconstitutive -lsolid -lmeshes -lgeneric $(EXTERNAL_LIBS) $(FLIBS)
+relaxing_bubble_LDADD = -L@libdir@ -lfluid_interface -lconstitutive -lsolid -lmeshes -lgeneric $(EXTERNAL_LIBS) $(FLIBS)
 
 AM_CPPFLAGS += -DPARANOID
