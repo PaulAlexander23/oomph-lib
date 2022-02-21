@@ -5,7 +5,7 @@
 // LIC//
 // LIC//           Version 0.90. August 3, 2009.
 // LIC//
-// LIC// Copyright (C) 2006-2009 Matthias Heil and Andrew Hazel
+// LIC// Copyright (C) 2006-2022 Matthias Heil and Andrew Hazel
 // LIC//
 // LIC// This library is free software; you can redistribute it and/or
 // LIC// modify it under the terms of the GNU Lesser General Public
@@ -34,11 +34,8 @@
 #endif
 
 // OOMPH-LIB headers
-//#include "../generic.h"
 #include "../generic/elements.h"
 #include "../generic/oomph_utilities.h"
-// #include "generic/nodes.h"
-// #include "generic/projection.h"
 
 namespace oomph
 {
@@ -46,7 +43,7 @@ namespace oomph
   /// A class for all isoparametric elements that solve the
   /// Hele-Shaw equations.
   /// \f[
-  /// dh_dt + u|_h grad h  - div ( b^3/12 grad p) = 0
+  /// dh_dt + div ( b^3/12 grad p) = 0
   /// \f]
   /// This contains the generic maths. Shape functions, geometric
   /// mapping etc. must get implemented in derived class.
@@ -156,14 +153,16 @@ namespace oomph
                        double& error,
                        double& norm);
 
-    /// Access function: Pointer to source function
+    /// Access function: Pointer to upper wall function
     UpperWallFctPt& upper_wall_fct_pt();
 
-    /// Access function: Pointer to source function. Const version
+    /// Access function: Pointer to upper wall function. Const version
     UpperWallFctPt upper_wall_fct_pt() const;
 
+    /// Access function: Pointer to upper wall function with flux
     UpperWallFluxFctPt& upper_wall_flux_fct_pt();
 
+    /// Access function: Pointer to upper wall function with flux. Const version
     UpperWallFluxFctPt upper_wall_flux_fct_pt() const;
 
     /// Access function: Pointer to moving frame speed function
@@ -267,9 +266,7 @@ namespace oomph
     void get_pressure_gradient(const Vector<double>& s,
                                Vector<double>& gradient) const;
 
-    /// The current nondimensionalisation has velocity[i] = -h^2 *dp/dx_i
-    /// Should be get flux as we are using depth averaged equations and
-    /// equation to flux[i] = - h^3 / 12 * dp/dx_i
+    /// Get the velocity components: velocity[i] = -1/12 * h^2 * / dp/dx_i
     void get_velocity(const Vector<double>& s, Vector<double>& velocity) const;
 
     /// Add the element's contribution to its residual vector (wrapper)
@@ -359,9 +356,11 @@ namespace oomph
       DenseMatrix<double>& jacobian,
       const unsigned& flag);
 
-    /// Pointer to function that specifies the gap width and wall velocity
+    /// Pointer to function that specifies the gap width and its rate of change
     UpperWallFctPt Upper_wall_fct_pt;
 
+    /// Pointer to function that specifies the gap width and its gradients in
+    /// time and space
     UpperWallFluxFctPt Upper_wall_flux_fct_pt;
 
     /// Pointer to function that specifies the moving frame speed function
@@ -381,7 +380,7 @@ namespace oomph
   /// A class for all isoparametric elements that solve the
   /// Hele Shaw equations.
   /// \f[
-  /// dh_dt + u|_h grad h  - div ( b^3/12 grad p) = 0
+  /// dh_dt + div ( b^3/12 grad p) = 0
   /// \f]
   /// This contains the generic maths. Shape functions, geometric
   /// mapping etc. must get implemented in derived class.
@@ -478,24 +477,26 @@ namespace oomph
       OOMPH_EXCEPTION_LOCATION);
   }
 
-  /// Access function: Pointer to source function
+  /// Access function: Pointer to upper wall function
   HeleShawEquations::UpperWallFctPt& HeleShawEquations::upper_wall_fct_pt()
   {
     return Upper_wall_fct_pt;
   }
 
-  /// Access function: Pointer to source function. Const version
+  /// Access function: Pointer to upper wall function. Const version
   HeleShawEquations::UpperWallFctPt HeleShawEquations::upper_wall_fct_pt() const
   {
     return Upper_wall_fct_pt;
   }
 
+  /// Access function: Pointer to upper wall function with flux
   HeleShawEquations::UpperWallFluxFctPt& HeleShawEquations::
     upper_wall_flux_fct_pt()
   {
     return Upper_wall_flux_fct_pt;
   }
 
+  /// Access function: Pointer to upper wall function with flux. Const version
   HeleShawEquations::UpperWallFluxFctPt HeleShawEquations::
     upper_wall_flux_fct_pt() const
   {
@@ -553,9 +554,7 @@ namespace oomph
     }
   }
 
-  /// The current nondimensionalisation has velocity[i] = -h^2 *dp/dx_i
-  /// Should be get flux as we are using depth averaged equations and
-  /// equation to flux[i] = - h^2 / 12 * dp/dx_i
+  /// Get the velocity components: velocity[i] = -1/12 * h^2 * / dp/dx_i
   void HeleShawEquations::get_velocity(const Vector<double>& s,
                                        Vector<double>& velocity) const
   {
@@ -753,7 +752,7 @@ namespace oomph
                 for (unsigned i = 0; i < 2; i++)
                 {
                   jacobian(local_eqn, local_unknown) +=
-                    pow(h, 3) / 12 * dpsidx(l2, i) * dtestdx(l, i) * W;
+                    pow(h, 3) / 12.0 * dpsidx(l2, i) * dtestdx(l, i) * W;
                 }
               }
             }
@@ -812,8 +811,6 @@ namespace oomph
     {
       passed = false;
     }
-
-    // hierher: fill in missing self-tests
 
     // Return verdict
     if (passed)
