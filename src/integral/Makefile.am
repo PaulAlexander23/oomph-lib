@@ -9,8 +9,21 @@ incl_cc_files =
 
 # Define the headers
 headers =  \
+<<<<<<< HEAD:src/integral/Makefile.am
 integral_elements.h \
 Tintegral_elements.h
+=======
+hele_shaw_elements.h \
+hele_shaw_equations.h \
+hele_shaw_flux_elements.h \
+Thele_shaw_elements.h \
+projectable_hele_shaw_element.h \
+hele_shaw_interface_elements_finger.h \
+hele_shaw_interface_elements_with_integrals.h \
+hele_shaw_interface_elements.h \
+my_new_element.h \
+hele_shaw_parameter_converter.h
+>>>>>>> Remove main hele shaw elements integral extension:src/hele_shaw/Makefile.am
 
 # Define name of library
 libname = integral

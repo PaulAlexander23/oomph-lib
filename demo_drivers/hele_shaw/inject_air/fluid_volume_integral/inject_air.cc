@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
   parameters::target_bubble_volume_pt = new double;
   parameters::target_fluid_volume_pt = new double;
   parameters::total_volume_pt = new double;
-  parameters::ca_inv = 0.01;
+  parameters::ca_inv = 0.01 * 12.0;
   parameters::st = 1.0;
   parameters::alpha = 40.0;
   parameters::nu = 0.3;
@@ -61,7 +61,7 @@ int main(int argc, char* argv[])
   /// Create problem
   // RelaxingBubbleProblem<ProjectableHeleShawElementWithSolidFaces<3>> problem;
   // RelaxingBubbleProblem<HeleShawWithErrorElement> problem;
-  RelaxingBubbleProblem<MyNewElementWithIntegral> problem;
+  RelaxingBubbleProblem<MyNewElement> problem;
 
   bool run_self_test = false;
   if (run_self_test)
