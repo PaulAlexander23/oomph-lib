@@ -6,26 +6,30 @@ namespace oomph
 {
   //=======================================================================
   /// 1D Free surface elements for Hele Shaw problems with pseudo-elastic
-  /// mesh motion
+  /// mesh motion. Incorporates the kinematic condition into the bulk element
+  /// residuals and implements the dynamic stress boundary condition in the
+  /// residuals of these elements. Also provide access to a number of integral
+  /// measures around the interface.
   //======================================================================
   template<class ELEMENT>
   class HeleShawInterfaceElement : public virtual FaceGeometry<ELEMENT>,
                                    public virtual FaceElement
   {
   public:
-    /// \short Function pointer to function which provides bubble pressure as a
-    /// function of vector x. This should usually be a constant - should default
-    /// to zero. Any perturbations to the system can be supplied through a
-    /// spatially varying bubble pressure function.
+    /// Function pointer to function which provides bubble pressure as a
+    /// function of vector x. This should usually be a constant and should
+    /// default to zero. Any perturbations to the system can be supplied through
+    /// a spatially varying bubble pressure function.
     typedef void (*BubblePressureFctPt)(const Vector<double>& x,
                                         double& p_bubble);
 
-    /// \short Function pointer to function which provides h(x,t) and dh/dt, for
+    /// Function pointer to function which provides h(x,t) and dh/dt, for
     /// vector x.
     typedef void (*UpperWallFctPt)(const Vector<double>& x,
                                    double& h,
                                    double& dhdt);
-    /// \short Function pointer to function which provides wall speed as a
+
+    /// Function pointer to function which provides wall speed as a
     /// function of x. This allows us to solve for bubble motion in a moving
     /// frame. A constant wall speed does not affect the mass conservation
     /// equations, but does feature in the kinematic equation for interface
@@ -64,7 +68,7 @@ namespace oomph
     /// Pointer to function that specifies the moving frame speed function
     WallSpeedFctPt Wall_speed_fct_pt;
 
-    /// \short Pointer to the aspect_ratio ratio: reference gap width /
+    /// Pointer to the aspect_ratio ratio: reference gap width /
     /// in-plane lengthscale
     double* Aspect_ratio_pt;
 
@@ -79,7 +83,7 @@ namespace oomph
     /// Default value for physical constants
     static double Default_Physical_Constant_Value;
 
-    /// \short ID of additional unknowns introduced by this face element
+    /// ID of additional unknowns introduced by this face element
     /// (smoothed components of derivative of tangent vector, and
     /// Lagrange multiplier)
     unsigned Id;
@@ -115,7 +119,7 @@ namespace oomph
       return *node_pt(j)->value_pt(lagr_index);
     }
 
-    /// \short Equation number of equation that does the projection
+    /// Equation number of equation that does the projection
     /// for the derivative of the i-th component of the tangent vector at node j
     int projected_tangent_deriv_local_eqn(const unsigned& j, const unsigned& i)
     {
@@ -129,7 +133,7 @@ namespace oomph
       return this->nodal_local_eqn(j, tang_index);
     }
 
-    /// \short Return i-th component of projected deriv of tangent vector
+    /// Return i-th component of projected deriv of tangent vector
     /// at local node j
     double& projected_tangent_deriv(const unsigned& j, const unsigned& i)
     {
@@ -143,7 +147,7 @@ namespace oomph
       return *node_pt(j)->value_pt(veloc_index);
     }
 
-    /// \short Helper function to calculate the residuals and
+    /// Helper function to calculate the residuals and
     /// (if flag==1) the Jacobian of the equations.
     void fill_in_generic_residual_contribution_hele_shaw_interface(
       Vector<double>& residuals,
@@ -153,7 +157,7 @@ namespace oomph
 
 
   public:
-    /// \short Constructor, pass a pointer to the bulk element and the face
+    /// Constructor, pass a pointer to the bulk element and the face
     /// index of the bulk element to which the element is to be attached to.
     /// The optional identifier can be used to distinguish the additional nodal
     /// values created by this element (in order:
@@ -237,7 +241,7 @@ namespace oomph
         residuals, jacobian, mass_matrix, 2);
     }
 
-    /// \short The "global" intrinsic coordinate of the element when
+    /// The "global" intrinsic coordinate of the element when
     /// viewed as part of a geometric object should be given by
     /// the FaceElement representation, by default
     double zeta_nodal(const unsigned& n,
@@ -247,7 +251,7 @@ namespace oomph
       return FaceElement::zeta_nodal(n, k, i);
     }
 
-    /// \short Virtual function that specifies the non-dimensional
+    /// Virtual function that specifies the non-dimensional
     /// surface tension as a function of local position within the element.
     /// The default behaviour is a constant surface tension of value 1.0
     /// This function can be overloaded in more
