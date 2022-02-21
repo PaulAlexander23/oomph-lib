@@ -567,11 +567,11 @@ namespace oomph
 
       int face_index = this->Fluid_mesh_pt->face_index_at_boundary(boundary, n);
 
-      HeleShawFluxElementWithInflowIntegral<ELEMENT>* flux_element_pt =
-        new HeleShawFluxElementWithInflowIntegral<ELEMENT>(
-          fluid_element_pt,
-          face_index,
-          this->Flux_mesh_pt->element_pt(0)->internal_data_pt(0));
+      HeleShawFluxElement<ELEMENT>* flux_element_pt =
+        new HeleShawFluxElement<ELEMENT>(fluid_element_pt, face_index);
+
+      flux_element_pt->add_b3_data_pt(
+        this->Flux_mesh_pt->element_pt(0)->internal_data_pt(0));
 
       this->Inlet_surface_mesh_pt->add_element_pt(flux_element_pt);
     }
@@ -590,11 +590,11 @@ namespace oomph
 
       int face_index = this->Fluid_mesh_pt->face_index_at_boundary(boundary, n);
 
-      HeleShawFluxElementWithInflowIntegral<ELEMENT>* flux_element_pt =
-        new HeleShawFluxElementWithInflowIntegral<ELEMENT>(
-          fluid_element_pt,
-          face_index,
-          this->Flux_mesh_pt->element_pt(1)->internal_data_pt(0));
+      HeleShawFluxElement<ELEMENT>* flux_element_pt =
+        new HeleShawFluxElement<ELEMENT>(fluid_element_pt, face_index);
+
+      flux_element_pt->add_b3_data_pt(
+        this->Flux_mesh_pt->element_pt(1)->internal_data_pt(0));
 
       this->Outlet_surface_mesh_pt->add_element_pt(flux_element_pt);
     }
@@ -644,8 +644,10 @@ namespace oomph
       interface_element_pt->ca_inv_pt() = &relaxing_bubble::ca_inv;
       interface_element_pt->st_pt() = &relaxing_bubble::st;
       interface_element_pt->aspect_ratio_pt() = &relaxing_bubble::alpha;
-      interface_element_pt->upper_wall_fct_pt() = relaxing_bubble::upper_wall_fct;
-      interface_element_pt->wall_speed_fct_pt() = relaxing_bubble::wall_speed_fct;
+      interface_element_pt->upper_wall_fct_pt() =
+        relaxing_bubble::upper_wall_fct;
+      interface_element_pt->wall_speed_fct_pt() =
+        relaxing_bubble::wall_speed_fct;
       interface_element_pt->bubble_pressure_fct_pt() =
         relaxing_bubble::bubble_pressure_fct;
 
@@ -689,8 +691,8 @@ namespace oomph
     for (unsigned i = 0; i < n_element; i++)
     {
       // Upcast from GeneralElement to the present element
-      HeleShawFluxElementWithInflowIntegral<ELEMENT>* el_pt =
-        dynamic_cast<HeleShawFluxElementWithInflowIntegral<ELEMENT>*>(
+      HeleShawFluxElement<ELEMENT>* el_pt =
+        dynamic_cast<HeleShawFluxElement<ELEMENT>*>(
           this->Inlet_surface_mesh_pt->element_pt(i));
 
       // Set the Neumann function pointer
@@ -706,8 +708,8 @@ namespace oomph
     for (unsigned i = 0; i < n_element; i++)
     {
       // Upcast from GeneralElement to the present element
-      HeleShawFluxElementWithInflowIntegral<ELEMENT>* el_pt =
-        dynamic_cast<HeleShawFluxElementWithInflowIntegral<ELEMENT>*>(
+      HeleShawFluxElement<ELEMENT>* el_pt =
+        dynamic_cast<HeleShawFluxElement<ELEMENT>*>(
           this->Outlet_surface_mesh_pt->element_pt(i));
 
       // Set the Neumann function pointer

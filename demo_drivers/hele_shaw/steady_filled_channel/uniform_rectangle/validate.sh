@@ -37,7 +37,7 @@ if test "$1" = "no_fpdiff"; then
   echo "dummy [OK] -- Can't run fpdiff.py because we don't have python or validata" >> validation.log
 else
 ../../../../../bin/fpdiff.py ../validata/uniform_rectangle_quad.dat.gz   \
-    uniform_rectangle_quad.dat 0.1 1e-13  >> validation.log
+    uniform_rectangle_quad.dat 0.1 1e-11  >> validation.log
 fi
 
 echo "Running Hele-Shaw steady uniform rectangle tri validation "
@@ -59,7 +59,7 @@ if test "$1" = "no_fpdiff"; then
   echo "dummy [OK] -- Can't run fpdiff.py because we don't have python or validata" >> validation.log
 else
 ../../../../../bin/fpdiff.py ../validata/uniform_rectangle_tri.dat.gz   \
-    uniform_rectangle_tri.dat 0.1 1e-13  >> validation.log
+    uniform_rectangle_tri.dat 0.1 1e-11  >> validation.log
 fi
 
 # Append output to global validation log file
