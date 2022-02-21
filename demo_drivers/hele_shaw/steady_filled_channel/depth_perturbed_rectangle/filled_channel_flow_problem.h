@@ -183,7 +183,8 @@ void HeleShawChannelProblem<ELEMENT>::generate_bulk_mesh()
   id++;
 
   // Create the triangle mesh polygon for outer boundary
-  TriangleMeshPolygon* Outer_boundary_polygon_pt = new TriangleMeshPolygon(boundary_polyline_pt);
+  TriangleMeshPolygon* Outer_boundary_polygon_pt =
+    new TriangleMeshPolygon(boundary_polyline_pt);
 
   // Convert to "closed curve" objects
   TriangleMeshClosedCurve* rect_closed_curve_pt = Outer_boundary_polygon_pt;
@@ -225,11 +226,11 @@ void HeleShawChannelProblem<ELEMENT>::generate_inlet_surface_mesh()
 
     int face_index = this->Bulk_mesh_pt->face_index_at_boundary(boundary, n);
 
-    HeleShawFluxElementWithInflowIntegral<ELEMENT>* flux_element_pt =
-      new HeleShawFluxElementWithInflowIntegral<ELEMENT>(
-        bulk_element_pt,
-        face_index,
-        this->Info_mesh_pt->element_pt(0)->internal_data_pt(0));
+    HeleShawFluxElement<ELEMENT>* flux_element_pt =
+      new HeleShawFluxElement<ELEMENT>(bulk_element_pt, face_index);
+
+    flux_element_pt->add_b3_data_pt(
+      this->Info_mesh_pt->element_pt(0)->internal_data_pt(0));
 
     this->Inlet_surface_mesh_pt->add_element_pt(flux_element_pt);
   }
@@ -250,11 +251,11 @@ void HeleShawChannelProblem<ELEMENT>::generate_outlet_surface_mesh()
 
     int face_index = this->Bulk_mesh_pt->face_index_at_boundary(boundary, n);
 
-    HeleShawFluxElementWithInflowIntegral<ELEMENT>* flux_element_pt =
-      new HeleShawFluxElementWithInflowIntegral<ELEMENT>(
-        bulk_element_pt,
-        face_index,
-        this->Info_mesh_pt->element_pt(1)->internal_data_pt(0));
+    HeleShawFluxElement<ELEMENT>* flux_element_pt =
+      new HeleShawFluxElement<ELEMENT>(bulk_element_pt, face_index);
+
+    flux_element_pt->add_b3_data_pt(
+      this->Info_mesh_pt->element_pt(1)->internal_data_pt(0));
 
     this->Outlet_surface_mesh_pt->add_element_pt(flux_element_pt);
   }
@@ -316,8 +317,8 @@ void HeleShawChannelProblem<ELEMENT>::upcast_and_finalise_elements()
   for (unsigned i = 0; i < n_element; i++)
   {
     // Upcast from GeneralElement to the present element
-    HeleShawFluxElementWithInflowIntegral<ELEMENT>* el_pt =
-      dynamic_cast<HeleShawFluxElementWithInflowIntegral<ELEMENT>*>(
+    HeleShawFluxElement<ELEMENT>* el_pt =
+      dynamic_cast<HeleShawFluxElement<ELEMENT>*>(
         this->Inlet_surface_mesh_pt->element_pt(i));
 
     // Set the Neumann function pointer
@@ -333,8 +334,8 @@ void HeleShawChannelProblem<ELEMENT>::upcast_and_finalise_elements()
   for (unsigned i = 0; i < n_element; i++)
   {
     // Upcast from GeneralElement to the present element
-    HeleShawFluxElementWithInflowIntegral<ELEMENT>* el_pt =
-      dynamic_cast<HeleShawFluxElementWithInflowIntegral<ELEMENT>*>(
+    HeleShawFluxElement<ELEMENT>* el_pt =
+      dynamic_cast<HeleShawFluxElement<ELEMENT>*>(
         this->Outlet_surface_mesh_pt->element_pt(i));
 
     // Set the Neumann function pointer
