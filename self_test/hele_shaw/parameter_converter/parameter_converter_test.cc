@@ -28,6 +28,7 @@
 #include "generic.h"
 #include "hele_shaw.h"
 
+using namespace std;
 using namespace oomph;
 
 //===start_of_main======================================================
