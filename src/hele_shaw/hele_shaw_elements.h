@@ -324,9 +324,9 @@ namespace oomph
   //====================================================================
   /// Force build of templates
   //====================================================================
-  //template class QHeleShawElement<2>;
-  //template class QHeleShawElement<3>;
-  //template class QHeleShawElement<4>;
+  // template class QHeleShawElement<2>;
+  // template class QHeleShawElement<3>;
+  // template class QHeleShawElement<4>;
 
 } // namespace oomph
 #endif
