@@ -16,7 +16,7 @@ parameter_converter_test_SOURCES = parameter_converter_test.cc
 # Required libraries:
 # $(FLIBS) is included in case the solver involves fortran sources.
 parameter_converter_test_LDADD = \
-                -L@libdir@ -lhele_shaw -lgeneric $(EXTERNAL_LIBS) $(FLIBS)
+                -L@libdir@ -lgeneric $(EXTERNAL_LIBS) $(FLIBS)
 
 #----------------------------------------------------------------------
 
