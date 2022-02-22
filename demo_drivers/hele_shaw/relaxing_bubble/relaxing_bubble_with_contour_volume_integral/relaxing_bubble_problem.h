@@ -5,7 +5,6 @@
 #include "meshes.h"
 #include "hele_shaw.h"
 #include "solid.h"
-#include "integral.h"
 #include "info_element.h"
 
 #include "relaxing_bubble_parameters.h"
