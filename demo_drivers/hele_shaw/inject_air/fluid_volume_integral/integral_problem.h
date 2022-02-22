@@ -3,7 +3,8 @@
 
 #include "generic.h"
 //#include "meshes.h"
-#include "integral.h"
+#include "integral_elements.h"
+#include "Tintegral_elements.h"
 #include "info_element.h"
 
 template<class ELEMENT>
