@@ -61,8 +61,42 @@ namespace oomph
       return Wall_speed_fct_pt;
     }
 
-  private:
+    /// Add a external data to store the perimeter
+    int add_perimeter_data_pt(Data* data_pt)
+    {
+      Perimeter_external_data_index = add_external_data(data_pt);
 
+      return Perimeter_external_data_index;
+    }
+
+    /// Remove volume integral data
+    void remove_perimeter_data_pt()
+    {
+      /// We should remove the data element here.
+      /// Not sure how to do this without messing up the other data indices.
+
+      Perimeter_external_data_index = -1;
+    }
+
+    /// Add a external data to store the surface_area
+    int add_surface_area_data_pt(Data* data_pt)
+    {
+      Surface_area_external_data_index = add_external_data(data_pt);
+
+      return Surface_area_external_data_index;
+    }
+
+    /// Remove volume integral data
+    void remove_surface_area_data_pt()
+    {
+      /// We should remove the data element here.
+      /// Not sure how to do this without messing up the other data indices.
+
+      Surface_area_external_data_index = -1;
+    }
+
+
+  private:
     /// Pointer to function that specifies the bubble pressure function
     BubblePressureFctPt Bubble_pressure_fct_pt;
 
@@ -91,6 +125,14 @@ namespace oomph
 
     /// Index of the nodal value at which the pressure is stored
     unsigned P_index_interface;
+
+    /// External data index for the perimeter. Set to negative if not being
+    /// used.
+    int Perimeter_external_data_index;
+
+    /// External data index for the vertical surface area. Set to negative if
+    /// not being used.
+    int Surface_area_external_data_index;
 
     /// Equation number of the equation for the Lagrange multiplier
     int lagrange_local_eqn(const unsigned& j)
@@ -169,10 +211,10 @@ namespace oomph
     HeleShawInterfaceElement(FiniteElement* const& element_pt,
                              const int& face_index,
                              const unsigned& id = 0)
-      :
-
-        FaceGeometry<ELEMENT>(),
-        Id(id)
+      : FaceGeometry<ELEMENT>(),
+        Id(id),
+        Perimeter_external_data_index(-1),
+        Surface_area_external_data_index(-1)
     {
       // Attach the geometrical information to the element
       // This function also assigned nbulk_value from required_nvalue of the
@@ -716,6 +758,28 @@ namespace oomph
             } // End of Jacobian calculation
           }
         }
+
+        // Contributions to optional external integral measures
+        //------------------------------------------------------------
+        double ds = W * J * psif(l);
+        /// The perimeter of the bubble
+        if (Perimeter_external_data_index >= 0)
+        {
+          unsigned i_value = 0;
+          local_eqn =
+            external_local_eqn(Perimeter_external_data_index, i_value);
+          residuals[local_eqn] += 1 * ds;
+        }
+
+        /// The contribution to surface area from the vertical sides
+        if (Surface_area_external_data_index >= 0)
+        {
+          unsigned i_value = 0;
+          local_eqn =
+            external_local_eqn(Surface_area_external_data_index, i_value);
+          residuals[local_eqn] += h * ds;
+        }
+
       } // End of loop over shape functions
     } // End of loop over integration points
   }
