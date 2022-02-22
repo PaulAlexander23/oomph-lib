@@ -24,11 +24,5 @@ linearised_axisym_navier_stokes \
 linearised_navier_stokes \
 generalised_newtonian_navier_stokes \
 generalised_newtonian_axisym_navier_stokes \
-<<<<<<< HEAD
-space_time
-=======
 space_time \
-hele_shaw \
-integral
->>>>>>> Add integral elements
-
+hele_shaw
