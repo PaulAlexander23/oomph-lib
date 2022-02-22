@@ -1,35 +1,40 @@
-
 # A few file definitions
 #-----------------------
 
 # Define the sources
-sources =  \
-linear_wave_elements.cc refineable_linear_wave_elements.cc 
-
-# linear_wave_flux_elements.cc 
+sources = 
+#hele_shaw_elements.cc
+# hele_shaw_flux_elements.cc 
 
 # Include files which shouldn't be compiled
 incl_cc_files =
 
 # Define the headers
 headers =  \
-linear_wave_elements.h \
-linear_wave_flux_elements.h \
-refineable_linear_wave_elements.h 
+hele_shaw_elements.h \
+hele_shaw_equations.h \
+hele_shaw_flux_elements.h \
+Thele_shaw_elements.h \
+projectable_hele_shaw_element.h \
+hele_shaw_interface_elements_finger.h \
+hele_shaw_interface_elements_with_integrals.h \
+hele_shaw_interface_elements.h \
+my_new_element.h \
+hele_shaw_parameter_converter.h
 
 # Define name of library
-libname = linear_wave
+libname = hele_shaw
 
 # Combine headers and sources
 headers_and_sources = $(headers) $(sources)
 
 # Define the library that gets placed in lib directory
 #-----------------------------------------------------
-lib_LTLIBRARIES = liblinear_wave.la
+#lib_LTLIBRARIES = libhele_shaw.la
 
 # Sources that the library depends on: 
 #-------------------------------------
-liblinear_wave_la_SOURCES = $(headers_and_sources)
+#libhele_shaw_la_SOURCES = $(headers_and_sources)
 
 # The library's include headers:
 #-------------------------------
@@ -39,7 +44,7 @@ liblinear_wave_la_SOURCES = $(headers_and_sources)
 include_HEADERS = $(libname).h 
 
 #Here's the subdirectory where the actual header files are placed
-library_includedir=$(includedir)/linear_wave
+library_includedir=$(includedir)/hele_shaw
 
 #These are the header files that are to be placed in subdirectory
 library_include_HEADERS=$(headers) $(incl_cc_files)
@@ -75,5 +80,4 @@ clean-local:
 	rm -f $(libname).h *~
 distclean-local:
 	rm -f $(libname).h *~
-
 
