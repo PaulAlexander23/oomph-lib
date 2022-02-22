@@ -17,8 +17,6 @@ Thele_shaw_elements.h \
 projectable_hele_shaw_elements.h \
 Tprojectable_hele_shaw_elements.h \
 hele_shaw_flux_elements.h \
-hele_shaw_interface_elements_finger.h \
-hele_shaw_interface_elements_with_integrals.h \
 hele_shaw_interface_elements.h \
 hele_shaw_parameter_converter.h
 
