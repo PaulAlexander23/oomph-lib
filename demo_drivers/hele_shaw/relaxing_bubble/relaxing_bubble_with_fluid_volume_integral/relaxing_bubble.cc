@@ -133,7 +133,7 @@ int main(int argc, char* argv[])
   tolerances_pt->doc(doc_info, "tolerances.dat");
 
   /// Create problem
-  RelaxingBubbleProblem<MyNewElement> problem(tolerances_pt);
+  RelaxingBubbleProblem<ProjectableTHeleShawPVDElement> problem(tolerances_pt);
 
   /// Run self tests
   bool run_self_test = false;

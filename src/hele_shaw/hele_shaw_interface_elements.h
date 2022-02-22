@@ -61,6 +61,7 @@ namespace oomph
       return Wall_speed_fct_pt;
     }
 
+  private:
 
     /// Pointer to function that specifies the bubble pressure function
     BubblePressureFctPt Bubble_pressure_fct_pt;

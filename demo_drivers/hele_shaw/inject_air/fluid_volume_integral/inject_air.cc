@@ -61,7 +61,7 @@ int main(int argc, char* argv[])
   /// Create problem
   // RelaxingBubbleProblem<ProjectableHeleShawElementWithSolidFaces<3>> problem;
   // RelaxingBubbleProblem<HeleShawWithErrorElement> problem;
-  RelaxingBubbleProblem<MyNewElement> problem;
+  RelaxingBubbleProblem<ProjectableTHeleShawPVDElement> problem;
 
   bool run_self_test = false;
   if (run_self_test)
@@ -87,7 +87,7 @@ int main(int argc, char* argv[])
     tF = 1e0;
   }
 
-  // Problem* problem_pt = new RelaxingBubbleProblem<MyNewElementWithIntegral>;
+  // Problem* problem_pt = new RelaxingBubbleProblem<ProjectableTHeleShawPVDElementWithIntegral>;
   // DoubleVector result;
   // FD_LU fd_lu;
   // fd_lu.solve(problem_pt, result);

@@ -57,7 +57,7 @@ int main(int argc, char* argv[])
   set_parameters();
 
   /// Create problem
-  RelaxingBubbleProblem<MyNewElement> problem;
+  RelaxingBubbleProblem<ProjectableTHeleShawPVDElement> problem;
 
   /// Solve for initial conditions
   problem.solve_for_initial_conditions(doc_info);
