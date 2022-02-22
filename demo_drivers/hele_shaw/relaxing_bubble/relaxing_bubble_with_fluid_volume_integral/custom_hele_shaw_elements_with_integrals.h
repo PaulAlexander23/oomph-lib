@@ -3,11 +3,11 @@
 
 #include <string>
 #include "hele_shaw.h"
-//#include "projectable_hele_shaw_element.h"
+//#include "projectable_hele_shaw_elements.h"
 
 namespace oomph
 {
-  class MyNewElement
+  class ProjectableTHeleShawPVDElement
     : public virtual ProjectableHeleShawElement<
         PseudoSolidNodeUpdateElement<THeleShawElement<3>, TPVDElement<2, 3>>>
   {
@@ -17,7 +17,7 @@ namespace oomph
 
   public:
     /// Constructor initialise error
-    MyNewElement()
+    ProjectableTHeleShawPVDElement()
     {
       Error = 0.0;
     }
@@ -95,14 +95,14 @@ namespace oomph
 
 
   template<>
-  class FaceGeometry<MyNewElement> : public virtual SolidTElement<1, 3>
+  class FaceGeometry<ProjectableTHeleShawPVDElement> : public virtual SolidTElement<1, 3>
   {
   public:
     FaceGeometry() : SolidTElement<1, 3>() {}
   };
 
   template<>
-  class FaceGeometry<FaceGeometry<MyNewElement>>
+  class FaceGeometry<FaceGeometry<ProjectableTHeleShawPVDElement>>
     : public virtual SolidPointElement
   {
   public:

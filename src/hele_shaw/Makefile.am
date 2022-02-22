@@ -11,15 +11,15 @@ incl_cc_files =
 
 # Define the headers
 headers =  \
-hele_shaw_elements.h \
 hele_shaw_equations.h \
-hele_shaw_flux_elements.h \
+hele_shaw_elements.h \
 Thele_shaw_elements.h \
-projectable_hele_shaw_element.h \
+projectable_hele_shaw_elements.h \
+Tprojectable_hele_shaw_elements.h \
+hele_shaw_flux_elements.h \
 hele_shaw_interface_elements_finger.h \
 hele_shaw_interface_elements_with_integrals.h \
 hele_shaw_interface_elements.h \
-my_new_element.h \
 hele_shaw_parameter_converter.h
 
 # Define name of library
