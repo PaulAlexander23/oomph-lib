@@ -2,10 +2,8 @@
 #define CUSTOM_HELE_SHAW_ELEMENTS_WITH_INTERGRALS_HEADER
 
 #include <string>
-#include <iostream>
-#include "../solid/solid_elements.h"
-#include "Thele_shaw_elements.h"
-#include "projectable_hele_shaw_element.h"
+#include "hele_shaw.h"
+//#include "projectable_hele_shaw_element.h"
 
 namespace oomph
 {
@@ -75,15 +73,11 @@ namespace oomph
 
         get_upper_wall_flux_data(0, x, h, dhdt, dhdx, d_dhdt_dx);
 
-        outfile << velocity[0] << " ";
-        outfile << velocity[1] << " ";
-        outfile << interpolated_p_hele_shaw(s) << " ";
-        outfile << pressure_gradient[0] << " ";
-        outfile << pressure_gradient[1] << " ";
-        outfile << Error << " ";
-        outfile << size() << " ";
-        outfile << h << " ";
-        outfile << std::endl;
+        outfile << velocity[0] << " " << velocity[1] << " "
+                << interpolated_p_hele_shaw(s) << " " << pressure_gradient[0]
+                << " " << pressure_gradient[1] << " " << Error << " " << size()
+                << " " << h << " "
+                << "\n";
       }
 
       // Write tecplot footer (e.g. FE connectivity lists)
