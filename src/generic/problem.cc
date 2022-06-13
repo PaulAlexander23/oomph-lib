@@ -45,6 +45,7 @@
 #include "dg_elements.h"
 #include "partitioning.h"
 #include "spines.h"
+#include "perturbed_spines.h"
 
 // Include to fill in additional_setup_shared_node_scheme() function
 #include "refineable_mesh.template.cc"
@@ -2235,6 +2236,33 @@ namespace oomph
                 dynamic_cast<SpineMesh*>(Sub_mesh_pt[i]))
           {
             n_dof = spine_mesh_pt->assign_global_spine_eqn_numbers(Dof_pt);
+          }
+        }
+      }
+
+      // Deal with the perturbed spine meshes additional numbering
+      // If there is only one mesh
+      if (n_sub_mesh == 0)
+      {
+        if (PerturbedSpineMesh* const perturbed_spine_mesh_pt =
+              dynamic_cast<PerturbedSpineMesh*>(Mesh_pt))
+        {
+          n_dof =
+            perturbed_spine_mesh_pt->assign_global_perturbed_spine_eqn_numbers(
+              Dof_pt);
+        }
+      }
+      // Otherwise loop over the sub meshes
+      else
+      {
+        // Assign global equation numbers first
+        for (unsigned i = 0; i < n_sub_mesh; i++)
+        {
+          if (PerturbedSpineMesh* const perturbed_spine_mesh_pt =
+                dynamic_cast<PerturbedSpineMesh*>(Sub_mesh_pt[i]))
+          {
+            n_dof = perturbed_spine_mesh_pt
+                      ->assign_global_perturbed_spine_eqn_numbers(Dof_pt);
           }
         }
       }
@@ -7837,7 +7865,7 @@ namespace oomph
       // been solved
       actions_before_newton_solve();
       actions_before_newton_convergence_check();
-      actions_after_newton_solve();
+      // actions_after_newton_solve();
 
       // Get advanced residuals
       get_residuals(residuals_pls);
