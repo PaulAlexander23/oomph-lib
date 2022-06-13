@@ -58,10 +58,20 @@ namespace oomph
     typedef void (*WallUnitNormalFctPt)(const Vector<double>& x,
                                         Vector<double>& unit_normal);
 
+    /// Function pointer to a contact angle function. Returns the
+    /// contact angle between the fluid and the wall, for a given contact line
+    /// velocity
+    typedef void (*ContactAngleFctPt)(const Vector<double>& local_u,
+                                      double& local_angle);
+
     /// Pointer to a wall normal function that returns
     /// the wall unit normal as a function of position in global
     /// Eulerian coordinates.
     WallUnitNormalFctPt Wall_unit_normal_fct_pt;
+
+    /// Pointer to a contact angle function that returns
+    /// the contact angle as a function of the contact line velocity.
+    ContactAngleFctPt Contact_angle_fct_pt;
 
     /// Pointer to the desired value of the contact angle (if any)
     double* Contact_angle_pt;
@@ -75,6 +85,10 @@ namespace oomph
     /// in the momentum equations (1) or by hijacking the kinematic
     /// condition (2).
     unsigned Contact_angle_flag;
+
+    /// Flag used to determine whether the contact angle is to be
+    /// set by the fixed value (0) or by the function (1) (Default).
+    unsigned Contact_angle_fct_flag;
 
     /// Index at which the i-th velocity component is stored in the
     /// element's nodes
@@ -131,9 +145,11 @@ namespace oomph
     /// Constructor
     FluidInterfaceBoundingElement()
       : Wall_unit_normal_fct_pt(0),
+        Contact_angle_fct_pt(0),
         Contact_angle_pt(0),
         Ca_pt(0),
-        Contact_angle_flag(0)
+        Contact_angle_flag(0),
+        Contact_angle_fct_flag(1)
     {
     }
 
@@ -149,6 +165,18 @@ namespace oomph
       return Wall_unit_normal_fct_pt;
     }
 
+    /// Access function: Pointer to contact angle function
+    ContactAngleFctPt& contact_angle_fct_pt()
+    {
+      return Contact_angle_fct_pt;
+    }
+
+    /// Access function: Pointer to contact angle function. Const version
+    ContactAngleFctPt contact_angle_fct_pt() const
+    {
+      return Contact_angle_fct_pt;
+    }
+
     /// Access for nodal index at which the velocity components are stored
     Vector<unsigned>& u_index_interface_boundary()
     {
@@ -161,6 +189,13 @@ namespace oomph
     /// via addition to momentum equation (false). The default strong imposition
     /// is appropriate for static contact angle problems.
     void set_contact_angle(double* const& angle_pt, const bool& strong = true);
+
+    /// Set a pointer to the desired contact angle. Optional boolean
+    /// (defaults to true)
+    /// chooses strong imposition via hijacking (true) or weak imposition
+    /// via addition to momentum equation (false). The default strong imposition
+    /// is appropriate for static contact angle problems.
+    void set_contact_angle_fct(ContactAngleFctPt const& angle_fct_pt, const bool& strong = true);
 
     /// Access function to the pointer specifying the prescribed contact angle
     double*& contact_angle_pt()
@@ -195,7 +230,7 @@ namespace oomph
 
 
     /// Return value of the contact angle
-    double& contact_angle()
+    void contact_angle(double& angle)
     {
 #ifdef PARANOID
       if (Contact_angle_pt == 0)
@@ -207,7 +242,23 @@ namespace oomph
           error_message, OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
       }
 #endif
-      return *Contact_angle_pt;
+      angle = *Contact_angle_pt;
+    }
+
+    /// Return value of the contact angle
+    void contact_angle(const Vector<double>& dx_dt, double& angle)
+    {
+#ifdef PARANOID
+      if (Contact_angle_fct_pt == 0)
+      {
+        std::string error_message = "Contact angle function not set\n";
+        error_message +=
+          "Please use FluidInterfaceBoundingElement::contact_angle_fct()\n";
+        throw OomphLibError(
+          error_message, OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+      }
+#endif
+      (*Contact_angle_fct_pt)(dx_dt, angle);
     }
 
     /// Calculate the residuals
