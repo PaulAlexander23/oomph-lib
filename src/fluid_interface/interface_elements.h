@@ -195,7 +195,8 @@ namespace oomph
     /// chooses strong imposition via hijacking (true) or weak imposition
     /// via addition to momentum equation (false). The default strong imposition
     /// is appropriate for static contact angle problems.
-    void set_contact_angle_fct(ContactAngleFctPt const& angle_fct_pt, const bool& strong = true);
+    void set_contact_angle_fct(ContactAngleFctPt const& angle_fct_pt,
+                               const bool& strong = true);
 
     /// Access function to the pointer specifying the prescribed contact angle
     double*& contact_angle_pt()
