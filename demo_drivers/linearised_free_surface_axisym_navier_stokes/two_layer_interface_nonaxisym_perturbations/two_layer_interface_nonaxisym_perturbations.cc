@@ -39,10 +39,6 @@
 #include "linearised_axisymmetric_fluid_interface_elements.h"
 #include "linearised_axisymmetric_fluid_interface_elements.cc"
 
-// Perturbed spine headers
-#include "perturbed_spines.h"
-#include "perturbed_spines.cc"
-
 // Bessel function headers
 #include "oomph_crbond_bessel.h"
 

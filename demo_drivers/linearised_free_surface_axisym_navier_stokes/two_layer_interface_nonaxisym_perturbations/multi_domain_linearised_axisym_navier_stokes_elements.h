@@ -27,11 +27,13 @@
 // Navier-Stokes element to a non-linear axisymmetric Navier-Stokes
 // element via a multi domain approach
 
+#ifndef OOMPH_MULTI_DOMAIN_LINEARISED_AXISYM_NAVIER_STOKES_ELEMENTS_HEADER
+#define OOMPH_MULTI_DOMAIN_LINEARISED_AXISYM_NAVIER_STOKES_ELEMENTS_HEADER
+
 // oomph-lib headers
 #include "generic.h"
 #include "axisym_navier_stokes.h"
 #include "linearised_axisym_navier_stokes_elements.h"
-#include "perturbed_spines.h"
 
 // Use the oomph namespace
 using namespace oomph;
@@ -281,3 +283,4 @@ namespace oomph
   };
 
 }
+#endif

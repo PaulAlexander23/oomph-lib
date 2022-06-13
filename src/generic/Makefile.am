@@ -27,7 +27,7 @@ refineable_quad_element.cc  refineable_mesh.cc \
 hp_refineable_elements.cc \
 fsi.cc octree.cc tree.cc orthpoly.cc             \
 superlu.c superlu_complex.c refineable_brick_element.cc \
-brick_mesh.cc spines.cc element_with_moving_nodes.cc \
+brick_mesh.cc spines.cc perturbed_spines.cc element_with_moving_nodes.cc \
 macro_element_node_update_element.cc \
 mesh_as_geometric_object.cc \
 multi_domain.cc \
@@ -68,7 +68,7 @@ oomph_definitions.h Qelements.h    Qspectral_elements.h        elements.h    \
 Qelement_face_coordinate_translation_schemes.h \
 integral.h       assembly_handler.h periodic_orbit_handler.h problem.h \
 linear_solver.h       shape.h \
-Vector.h            frontal_solver.h      matrices.h       spines.h \
+Vector.h            frontal_solver.h      matrices.h       spines.h perturbed_spines.h \
 element_with_moving_nodes.h \
 complex_matrices.h \
 displacement_control_element.h \

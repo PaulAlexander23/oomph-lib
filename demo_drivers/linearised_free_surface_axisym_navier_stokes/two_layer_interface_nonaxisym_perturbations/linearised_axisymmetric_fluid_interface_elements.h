@@ -35,7 +35,6 @@
 
 // oomph-lib includes
 #include "generic.h"
-#include "perturbed_spines.h"
 
 namespace oomph
 {

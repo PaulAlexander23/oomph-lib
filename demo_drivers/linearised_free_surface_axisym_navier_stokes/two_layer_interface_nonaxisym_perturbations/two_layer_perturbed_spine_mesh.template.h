@@ -27,9 +27,8 @@
 #define OOMPH_TWO_LAYER_PERTURBED_SPINE_MESH_HEADER
 
 // The mesh
-#include "perturbed_spines.h"
-#include "meshes.h"
 #include "generic.h"
+#include "meshes.h"
 
 namespace oomph
 {
