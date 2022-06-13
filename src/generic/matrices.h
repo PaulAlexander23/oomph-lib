@@ -1232,6 +1232,26 @@ namespace oomph
     void add(const CRDoubleMatrix& matrix_in,
              CRDoubleMatrix& result_matrix) const;
 
+    void output(std::ostream& outfile) const
+    {
+      unsigned n = this->nrow();
+      const int* row_start = CR_matrix.row_start();
+      const int* column_index = CR_matrix.column_index();
+      const double* value = CR_matrix.value();
+      outfile << "i"
+              << ",j"
+              << ",a" << std::endl;
+      for (unsigned long i = 0; i < n; i++)
+      {
+        for (long k = row_start[i]; k < row_start[i + 1]; k++)
+        {
+          unsigned long j = column_index[k];
+          double a_ij = value[k];
+          outfile << i << "," << j << "," << a_ij << std::endl;
+        }
+      }
+    }
+
   private:
     /// Vector whose i'th entry contains the index of the last entry
     /// below or on the diagonal of the i'th row of the matrix
