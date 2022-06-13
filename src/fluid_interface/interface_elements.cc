@@ -50,6 +50,48 @@ namespace oomph
     // Set the pointer to the contact angle
     Contact_angle_pt = angle_pt;
 
+    // Set the contact angle fct flag to use the fixed value
+    Contact_angle_fct_flag = 0;
+
+    // If we are hijacking the kinematic condition (the default)
+    // to do the strong (pointwise form of the contact-angle condition)
+    if (strong)
+    {
+      // Remember what we're doing
+      Contact_angle_flag = 1;
+
+      // Hijack the bulk element residuals
+      dynamic_cast<FluidInterfaceElement*>(bulk_element_pt())
+        ->hijack_kinematic_conditions(Bulk_node_number);
+    }
+    // Otherwise, we'll impose it weakly via the momentum equations.
+    // This will require that the appropriate velocity node is unpinned,
+    // which is why this is a bad choice for static contact problems in which
+    // there is a no-slip condition on the wall. In that case, the momentum
+    // equation is never assembled and so the contact angle condition is not
+    // applied unless we use the strong version above.
+    else
+    {
+      Contact_angle_flag = 2;
+    }
+  }
+
+  //=========================================================================
+  /// Set a pointer to the desired contact angle function. Optional boolean
+  /// (defaults to true)
+  /// chooses strong imposition via hijacking (true) or weak imposition
+  /// via addition to momentum equation (false). The default strong imposition
+  /// is appropriate for static contact problems.
+  //=========================================================================
+  void FluidInterfaceBoundingElement::set_contact_angle_fct(
+    ContactAngleFctPt const& angle_fct_pt, const bool& strong)
+  {
+    // Set the pointer to the contact angle
+    Contact_angle_fct_pt = angle_fct_pt;
+
+    // Set the contact angle fct flag to use the fixed value
+    Contact_angle_fct_flag = 1;
+
     // If we are hijacking the kinematic condition (the default)
     // to do the strong (pointwise form of the contact-angle condition)
     if (strong)
@@ -101,6 +143,9 @@ namespace oomph
     // Storage for the coordinate
     Vector<double> x(spatial_dim);
 
+    // Storage for the coordinate time derivative
+    Vector<double> dx_dt(spatial_dim);
+
     // Find the dimension of the parent
     unsigned n_dim = parent_pt->dim();
 
@@ -109,6 +154,10 @@ namespace oomph
 
     // Get the x coordinate
     this->interpolated_x(s_local, x);
+
+    // Get the dx/dt of the coordinate
+    const unsigned t_deriv = 1;
+    this->interpolated_dxdt(s_local, t_deriv, dx_dt);
 
     // Get the unit normal to the wall
     wall_unit_normal(x, wall_normal);
@@ -132,6 +181,19 @@ namespace oomph
     double sigma_local =
       dynamic_cast<FluidInterfaceElement*>(parent_pt)->sigma(s_parent);
 
+    // Get the capillary number
+    double ca_local = ca();
+
+    double contact_angle_local = 0.0;
+    if (Contact_angle_fct_flag)
+    {
+      contact_angle(dx_dt, contact_angle_local);
+    }
+    else
+    {
+      contact_angle(contact_angle_local);
+    }
+
     // Are we doing the weak form replacement
     if (Contact_angle_flag == 2)
     {
@@ -140,18 +202,15 @@ namespace oomph
       wall_tangent[0] = -wall_normal[1];
       wall_tangent[1] = wall_normal[0];
 
-      // Get the capillary number
-      double ca_local = ca();
-
       // Just add the appropriate contribution to the momentum equations
       for (unsigned i = 0; i < 2; i++)
       {
         int local_eqn = nodal_local_eqn(0, this->U_index_interface_boundary[i]);
         if (local_eqn >= 0)
         {
-          residuals[local_eqn] +=
-            (sigma_local / ca_local) * (sin(contact_angle()) * wall_normal[i] +
-                                        cos(contact_angle()) * wall_tangent[i]);
+          residuals[local_eqn] += (sigma_local / ca_local) *
+                                  (sin(contact_angle_local) * wall_normal[i] +
+                                   cos(contact_angle_local) * wall_tangent[i]);
         }
       }
     }
@@ -165,9 +224,6 @@ namespace oomph
       // It is whatever it is...
       Vector<double> m(spatial_dim);
       this->outer_unit_normal(s_local, m);
-
-      // Get the capillary number
-      double ca_local = ca();
 
       // Just add the appropriate contribution to the momentum equations
       // This will, of course, not be added if the equation is pinned
@@ -194,7 +250,7 @@ namespace oomph
       // MINUS the dot product computed above
       if (local_eqn >= 0)
       {
-        residuals[local_eqn] = cos(contact_angle()) + dot;
+        residuals[local_eqn] = cos(contact_angle_local) + dot;
       }
       // NOTE: The jacobian entries will be computed automatically
       // by finite differences.
@@ -284,6 +340,24 @@ namespace oomph
       }
       double W = std::sqrt(t_length) * this->integral_pt()->weight(ipt);
 
+      // Storage for the coordinate time derivative
+      Vector<double> dx_dt(spatial_dim);
+
+      // Get the dx/dt of the coordinate
+      const unsigned t_deriv = 1;
+      this->interpolated_dxdt(s_local, t_deriv, dx_dt);
+
+      // Get the contact angle
+      double contact_angle_local = 0.0;
+      if (Contact_angle_fct_flag)
+      {
+        contact_angle(dx_dt, contact_angle_local);
+      }
+      else
+      {
+        contact_angle(contact_angle_local);
+      }
+
       // Imposition of contact angle in weak form
       if (Contact_angle_flag == 2)
       {
@@ -315,8 +389,6 @@ namespace oomph
         // Get the capillary number
         const double ca_local = ca();
 
-        // Get the contact angle
-        const double theta = contact_angle();
 
         // Add the contributions to the momentum equation
 
@@ -336,7 +408,8 @@ namespace oomph
               // Add the surface-tension contribution to the momentum equation
               residuals[local_eqn] +=
                 (sigma_local / ca_local) *
-                (sin(theta) * wall_normal[i] + cos(theta) * binorm[i]) *
+                (sin(contact_angle_local) * wall_normal[i] +
+                 cos(contact_angle_local) * binorm[i]) *
                 psi(l) * W;
             }
           }
@@ -411,7 +484,8 @@ namespace oomph
           // MINUS the dot product
           if (local_eqn >= 0)
           {
-            residuals[local_eqn] += (cos(contact_angle()) + dot) * psi(l) * W;
+            residuals[local_eqn] +=
+              (cos(contact_angle_local) + dot) * psi(l) * W;
           }
           // NOTE: The jacobian entries will be computed automatically
           // by finite differences.
@@ -532,7 +606,7 @@ namespace oomph
       Vector<double> interpolated_x(n_dim, 0.0);
       Vector<double> interpolated_u(n_dim, 0.0);
       Vector<double> interpolated_dx_dt(n_dim, 0.0);
-      ;
+
       DenseMatrix<double> interpolated_t(el_dim, n_dim, 0.0);
 
       // Loop over the shape functions
