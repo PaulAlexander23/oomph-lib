@@ -17,7 +17,9 @@ headers =  \
 axisym_navier_stokes_elements.h  \
 refineable_axisym_navier_stokes_elements.h \
 Taxisym_navier_stokes_elements.h \
-axisym_fluid_traction_elements.h 
+axisym_fluid_traction_elements.h \
+axisym_navier_stokes_surface_power_elements.h \
+axisym_navier_stokes_flux_control_elements.h
 
 # Template only files. These should be included in include directory
 # but should not be listed in combined header file
