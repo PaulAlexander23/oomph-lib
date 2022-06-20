@@ -195,7 +195,8 @@ namespace oomph
     /// chooses strong imposition via hijacking (true) or weak imposition
     /// via addition to momentum equation (false). The default strong imposition
     /// is appropriate for static contact angle problems.
-    void set_contact_angle_fct(ContactAngleFctPt const& angle_fct_pt, const bool& strong = true);
+    void set_contact_angle_fct(ContactAngleFctPt const& angle_fct_pt,
+                               const bool& strong = true);
 
     /// Access function to the pointer specifying the prescribed contact angle
     double*& contact_angle_pt()
@@ -338,6 +339,77 @@ namespace oomph
   public:
     /// Constructor
     PointFluidInterfaceBoundingElement() : FluidInterfaceBoundingElement() {}
+
+    /// Overload the output function
+    void output(std::ostream& outfile)
+    {
+      // Let's get the info from the parent
+      FiniteElement* parent_pt = bulk_element_pt();
+
+      // Find the dimension of the problem
+      unsigned spatial_dim = this->nodal_dimension();
+
+      // Outer unit normal to the wall
+      Vector<double> wall_normal(spatial_dim);
+
+      // Outer unit normal to the free surface
+      Vector<double> unit_normal(spatial_dim);
+
+      // Storage for the coordinate
+      Vector<double> x(spatial_dim);
+
+      // Storage for the coordinate time derivative
+      Vector<double> dx_dt(spatial_dim);
+
+      // Get the unit normal to the wall
+      wall_unit_normal(x, wall_normal);
+
+      // Find the dimension of the parent
+      unsigned n_dim = parent_pt->dim();
+
+      // Dummy local coordinate, of size zero
+      Vector<double> s_local(0);
+
+      // Get the x coordinate
+      this->interpolated_x(s_local, x);
+
+      // Get the dx/dt of the coordinate
+      const unsigned t_deriv = 1;
+      this->interpolated_dxdt(s_local, t_deriv, dx_dt);
+
+      // Find the local coordinates in the parent
+      Vector<double> s_parent(n_dim);
+      this->get_local_coordinate_in_bulk(s_local, s_parent);
+
+      // Just get the outer unit normal
+      dynamic_cast<FaceElement*>(parent_pt)->outer_unit_normal(s_parent,
+                                                               unit_normal);
+
+      double contact_angle_local = 0.0;
+      if (Contact_angle_fct_flag)
+      {
+        contact_angle(dx_dt, contact_angle_local);
+      }
+      else
+      {
+        contact_angle(contact_angle_local);
+      }
+
+      // Find the dot product of the two vectors
+      double dot = 0.0;
+      for (unsigned i = 0; i < spatial_dim; i++)
+      {
+        dot += unit_normal[i] * wall_normal[i];
+      }
+
+      // Output fields, x, y, alpha_input, alpha_output, alpha_diff
+      for (unsigned i = 0; i < spatial_dim; i++)
+      {
+        outfile << x[i] << ",";
+      }
+      outfile << contact_angle_local << ",";
+      outfile << acos(dot) << std::endl;
+    }
   };
 
 
