@@ -1075,7 +1075,7 @@ namespace oomph
     /// Overload the output function
     void output(std::ostream& outfile)
     {
-      FiniteElement::output(outfile);
+      PointFluidInterfaceBoundingElement::output(outfile);
     }
 
     /// Output the element
