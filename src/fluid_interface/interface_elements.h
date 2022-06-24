@@ -340,8 +340,8 @@ namespace oomph
     /// Constructor
     PointFluidInterfaceBoundingElement() : FluidInterfaceBoundingElement() {}
 
-    /// Overload the output function
-    void output(std::ostream& outfile)
+    void calculate_contact_angle(double& imposed_contact_angle,
+                                 double& computed_contact_angle)
     {
       // Let's get the info from the parent
       FiniteElement* parent_pt = bulk_element_pt();
@@ -385,14 +385,15 @@ namespace oomph
       dynamic_cast<FaceElement*>(parent_pt)->outer_unit_normal(s_parent,
                                                                unit_normal);
 
-      double contact_angle_local = 0.0;
+
+      // Get imposed contact angle
       if (Contact_angle_fct_flag)
       {
-        contact_angle(dx_dt, contact_angle_local);
+        contact_angle(dx_dt, imposed_contact_angle);
       }
       else
       {
-        contact_angle(contact_angle_local);
+        contact_angle(imposed_contact_angle);
       }
 
       // Find the dot product of the two vectors
@@ -402,13 +403,41 @@ namespace oomph
         dot += unit_normal[i] * wall_normal[i];
       }
 
+      // Compute contact angle
+      computed_contact_angle = acos(dot);
+    }
+
+    /// Overload the output function
+    void output(std::ostream& outfile)
+    {
+      // Find the dimension of the problem
+      unsigned spatial_dim = this->nodal_dimension();
+
+      // Storage for the coordinate
+      Vector<double> x(spatial_dim);
+
+      // Dummy local coordinate, of size zero
+      Vector<double> s_local(0);
+
+      // Get the x coordinate
+      this->interpolated_x(s_local, x);
+
+      // Compute the contact angles
+      double imposed_contact_angle = 0.0;
+      double computed_contact_angle = 0.0;
+      calculate_contact_angle(imposed_contact_angle, computed_contact_angle);
+
+
       // Output fields, x, y, alpha_input, alpha_output, alpha_diff
       for (unsigned i = 0; i < spatial_dim; i++)
       {
         outfile << x[i] << ",";
       }
-      outfile << contact_angle_local << ",";
-      outfile << acos(dot) << std::endl;
+      outfile << std::fixed << std::setprecision(3)
+              << imposed_contact_angle * 180 / MathematicalConstants::Pi << ",";
+      outfile << std::fixed << std::setprecision(3)
+              << computed_contact_angle * 180 / MathematicalConstants::Pi
+              << std::endl;
     }
   };
 
