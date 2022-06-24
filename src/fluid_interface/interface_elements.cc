@@ -194,66 +194,95 @@ namespace oomph
       contact_angle(contact_angle_local);
     }
 
-    // Are we doing the weak form replacement
-    if (Contact_angle_flag == 2)
+    switch (Contact_angle_flag)
     {
-      // Get the wall tangent vector
-      Vector<double> wall_tangent(spatial_dim);
-      wall_tangent[0] = -wall_normal[1];
-      wall_tangent[1] = wall_normal[0];
-
-      // Just add the appropriate contribution to the momentum equations
-      for (unsigned i = 0; i < 2; i++)
+        /// Strong form [strong imposition (by hijacking) of contact angle or
+        // "no constraint at all"], add the appropriate contribution to
+        // the momentum equation
+      case 1:
       {
-        int local_eqn = nodal_local_eqn(0, this->U_index_interface_boundary[i]);
+        // Need to find the current outer normal from the surface
+        // which does not necessarily correspond to an imposed angle.
+        // It is whatever it is...
+        Vector<double> m(spatial_dim);
+        this->outer_unit_normal(s_local, m);
+
+        // Just add the appropriate contribution to the momentum equations
+        // This will, of course, not be added if the equation is pinned
+        //(no slip)
+        for (unsigned i = 0; i < 2; i++)
+        {
+          int local_eqn =
+            nodal_local_eqn(0, this->U_index_interface_boundary[i]);
+          if (local_eqn >= 0)
+          {
+            residuals[local_eqn] += (sigma_local / ca_local) * m[i];
+          }
+        }
+
+
+        // If we are imposing the contact angle strongly (by hijacking)
+        // overwrite the kinematic equation
+
+        // Read out the kinematic equation number
+        int local_eqn = kinematic_local_eqn(0);
+
+        // Note that because we have outer unit normals for the free surface
+        // and the wall, the cosine of the contact angle is equal to
+        // MINUS the dot product computed above
         if (local_eqn >= 0)
         {
-          residuals[local_eqn] += (sigma_local / ca_local) *
-                                  (sin(contact_angle_local) * wall_normal[i] +
-                                   cos(contact_angle_local) * wall_tangent[i]);
+          residuals[local_eqn] = cos(contact_angle_local) + dot;
         }
-      }
-    }
-    // Otherwise [strong imposition (by hijacking) of contact angle or
-    // "no constraint at all"], add the appropriate contribution to
-    // the momentum equation
-    else
-    {
-      // Need to find the current outer normal from the surface
-      // which does not necessarily correspond to an imposed angle.
-      // It is whatever it is...
-      Vector<double> m(spatial_dim);
-      this->outer_unit_normal(s_local, m);
+        // NOTE: The jacobian entries will be computed automatically
+        // by finite differences.
 
-      // Just add the appropriate contribution to the momentum equations
-      // This will, of course, not be added if the equation is pinned
-      //(no slip)
-      for (unsigned i = 0; i < 2; i++)
+        break;
+      }
+        /// Weak form
+      case 2:
       {
-        int local_eqn = nodal_local_eqn(0, this->U_index_interface_boundary[i]);
-        if (local_eqn >= 0)
+        // Get the wall tangent vector
+        Vector<double> wall_tangent(spatial_dim);
+        // Rotate the normal vector clockwise 90 degrees
+        wall_tangent[0] = wall_normal[1];
+        wall_tangent[1] = -wall_normal[0];
+
+        // Just add the appropriate contribution to the momentum equations
+        for (unsigned i = 0; i < 2; i++)
         {
-          residuals[local_eqn] += (sigma_local / ca_local) * m[i];
+          int local_eqn =
+            nodal_local_eqn(0, this->U_index_interface_boundary[i]);
+          if (local_eqn >= 0)
+          {
+            // residuals[local_eqn] -=
+            //  (sigma_local / ca_local) *
+            //  (sin(contact_angle_local) * wall_normal[i] +
+            //   cos(contact_angle_local) * wall_tangent[i]);
+            if (i == 0)
+            {
+              residuals[local_eqn] +=
+                (sigma_local / ca_local) * sin(contact_angle_local);
+            }
+            else if (i == 1)
+            {
+              residuals[local_eqn] -=
+                (sigma_local / ca_local) * cos(contact_angle_local);
+            }
+
+            std::cout << "Contact line tension[" << i << "]: "
+                      << -(sigma_local / ca_local) *
+                           (sin(contact_angle_local) * wall_normal[i] +
+                            cos(contact_angle_local) * wall_tangent[i])
+                      << std::endl;
+          }
         }
-      }
-    }
 
-    // If we are imposing the contact angle strongly (by hijacking)
-    // overwrite the kinematic equation
-    if (Contact_angle_flag == 1)
-    {
-      // Read out the kinematic equation number
-      int local_eqn = kinematic_local_eqn(0);
-
-      // Note that because we have outer unit normals for the free surface
-      // and the wall, the cosine of the contact angle is equal to
-      // MINUS the dot product computed above
-      if (local_eqn >= 0)
-      {
-        residuals[local_eqn] = cos(contact_angle_local) + dot;
+        break;
       }
-      // NOTE: The jacobian entries will be computed automatically
-      // by finite differences.
+        /// Default - Shouldn't get here
+      default:
+        break;
     }
 
     // Dummy arguments
