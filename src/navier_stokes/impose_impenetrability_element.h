@@ -41,7 +41,8 @@ namespace oomph
   //========================================================================
   template<class ELEMENT>
   class ImposeImpenetrabilityElement : public virtual FaceGeometry<ELEMENT>,
-                                       public virtual FaceElement
+                                       public virtual FaceElement,
+                                       public virtual SolidFiniteElement
   {
   private:
     /// Lagrange Id
@@ -88,6 +89,9 @@ namespace oomph
       // Call the generic routine with the flag set to 1
       fill_in_generic_contribution_to_residuals_parall_lagr_multiplier(
         residuals, jacobian, 1);
+
+      // Call the fd Jacobian for the solid position contribution
+      fill_in_jacobian_from_solid_position_by_fd(jacobian);
     }
 
     /// Overload the output function
