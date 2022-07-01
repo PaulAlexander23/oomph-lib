@@ -176,6 +176,20 @@ namespace oomph
       this->fill_in_generic_contribution_to_residuals_volume_constraint(
         residuals);
     }
+
+    void output(std::ostream& output_stream)
+    {
+      if (Prescribed_volume_pt != 0)
+      {
+        output_stream << *Prescribed_volume_pt << ",";
+      }
+      else
+      {
+        output_stream << "-1,";
+      }
+      output_stream << p_traded() << ",";
+      output_stream << std::endl;
+    }
   };
 
   /// //////////////////////////////////////////////////////////////////////
