@@ -213,12 +213,6 @@ namespace oomph
         residuals[local_eqn] -= (sigma_local / ca_local) *
                                 (sin(contact_angle_local) * wall_normal[i] +
                                  cos(contact_angle_local) * wall_tangent[i]);
-
-        std::cout << "Contact line tension[" << i << "]: "
-                  << -(sigma_local / ca_local) *
-                       (sin(contact_angle_local) * wall_normal[i] +
-                        cos(contact_angle_local) * wall_tangent[i])
-                  << std::endl;
       }
     }
 
