@@ -9522,10 +9522,10 @@ namespace oomph
       }
 
       // Die horribly!!
-      std::ostringstream error_stream;
-      error_stream << "Error occured in Newton solver. " << std::endl;
-      throw OomphLibError(
-        error_stream.str(), OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+      std::string my_error_stream = "Error occured in Newton solver.";
+      throw std::runtime_error(my_error_stream);
+      // throw OomphLibError(
+      //  error_stream.str(), OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
     }
 
 
@@ -11206,10 +11206,10 @@ namespace oomph
                    << std::endl;
       }
       // Die horribly!!
-      std::ostringstream error_stream;
-      error_stream << "Error occured in unsteady Newton solver. " << std::endl;
-      throw OomphLibError(
-        error_stream.str(), OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+      std::string error_stream = "Error occured in Newton solver.";
+      throw std::runtime_error(error_stream);
+      // throw OomphLibError(
+      //  error_stream.str(), OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
     }
 
     // Run the individual timesteppers actions, these need to be before the
@@ -16493,12 +16493,11 @@ namespace oomph
           }
 
           // Die horribly!!
-          std::ostringstream error_stream;
-          error_stream << "Error occured in adaptive Newton solver. "
-                       << std::endl;
-          throw OomphLibError(error_stream.str(),
-                              OOMPH_CURRENT_FUNCTION,
-                              OOMPH_EXCEPTION_LOCATION);
+          std::string error_stream = "Error occured in Newton solver.";
+          throw std::runtime_error(error_stream);
+          // throw OomphLibError(error_stream.str(),
+          //                    OOMPH_CURRENT_FUNCTION,
+          //                    OOMPH_EXCEPTION_LOCATION);
         }
 
         // Now update anything that needs updating
