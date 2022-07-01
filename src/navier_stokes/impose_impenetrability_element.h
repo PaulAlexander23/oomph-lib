@@ -97,13 +97,44 @@ namespace oomph
     /// Overload the output function
     void output(std::ostream& outfile)
     {
-      FiniteElement::output(outfile);
+      const unsigned default_nplot = 5;
+      output(outfile, default_nplot);
     }
 
     /// Output function: x,y,[z],u,v,[w],p in tecplot format
     void output(std::ostream& outfile, const unsigned& nplot)
     {
-      FiniteElement::output(outfile, nplot);
+      // Vector of local coordinates
+      Vector<double> s(dim());
+
+      // Loop over plot points
+      unsigned num_plot_points = nplot_points(nplot);
+      for (unsigned iplot = 0; iplot < num_plot_points; iplot++)
+      {
+        // Get local coordinates of plot point
+        get_s_plot(iplot, nplot, s);
+
+        // Coordinates
+        for (unsigned i = 0; i < dim() + 1; i++)
+        {
+          outfile << interpolated_x(s, i) << ",";
+        }
+
+        // Velocities
+        for (unsigned i = 0; i < dim() + 1; i++)
+        {
+          outfile << interpolated_u(s, i) << ",";
+        }
+
+        // Pressure
+        outfile << interpolated_p(s) << ",";
+
+        // Lagrange multipliers
+        outfile << interpolated_lambda(s) << ",";
+
+        outfile << std::endl;
+      }
+      outfile << std::endl;
     }
 
     /// The "global" intrinsic coordinate of the element when
@@ -401,6 +432,101 @@ namespace oomph
       } //  for loop over bulk nodes only
 
     } // get unknowns...
+
+    double interpolated_u(const Vector<double>& s, const unsigned& i) const
+    {
+      // Find the number of nodes
+      const unsigned n_node = nnode();
+      // Find the number of positional types
+      const unsigned n_position_type = nnodal_position_type();
+      // Assign storage for the local shape function
+      Shape psi(n_node, n_position_type);
+      // Find the values of shape function
+      shape(s, psi);
+
+      // get the value at which the velocities are stored
+      Vector<unsigned> u_index(dim() + 1);
+      ELEMENT* el_pt = dynamic_cast<ELEMENT*>(this->bulk_element_pt());
+      for (unsigned i = 0; i < dim() + 1; i++)
+      {
+        u_index[i] = el_pt->u_index_nst(i);
+      }
+
+      // Initialise value of u
+      double interpolated_u = 0.0;
+      // Loop over the local nodes
+      for (unsigned l = 0; l < n_node; l++)
+      {
+        interpolated_u += nodal_value(l, u_index[i]) * psi(l);
+      }
+
+      return (interpolated_u);
+    }
+
+    double interpolated_p(const Vector<double>& s) const
+    {
+      // Find the number of nodes
+      const unsigned n_node = nnode();
+      // Find the number of positional types
+      const unsigned n_position_type = nnodal_position_type();
+      // Assign storage for the local shape function
+      Shape psi(n_node, n_position_type);
+      // Find the values of shape function
+      shape(s, psi);
+
+      // get the value at which the velocities are stored
+      ELEMENT* el_pt = dynamic_cast<ELEMENT*>(this->bulk_element_pt());
+      const int p_index = el_pt->p_nodal_index_axi_nst();
+
+      // Initialise value of p
+      double interpolated_p = 0.0;
+
+      // If the element has a pressure ...
+      if (p_index > 0)
+      {
+        // Loop over the local nodes
+        for (unsigned l = 0; l < n_node; l++)
+        {
+          // Add contribution to pressure
+          interpolated_p += nodal_value(l, p_index) * psi(l);
+        }
+      }
+
+      return (interpolated_p);
+    }
+
+    double interpolated_lambda(const Vector<double>& s) const
+    {
+      // Find the number of nodes
+      const unsigned n_node = nnode();
+      // Find the number of positional types
+      const unsigned n_position_type = nnodal_position_type();
+      // Assign storage for the local shape function
+      Shape psi(n_node, n_position_type);
+      // Find the values of shape function
+      shape(s, psi);
+
+      // Initialise value of lambda
+      double interpolated_lambda = 0.0;
+
+      // Assemble the Lagrange multiplier
+      // Loop over the local nodes
+      for (unsigned l = 0; l < n_node; l++)
+      {
+        // Cast to a boundary node
+        BoundaryNodeBase* bnod_pt = dynamic_cast<BoundaryNodeBase*>(node_pt(l));
+
+        // Get the index of the first nodal value associated with
+        // this FaceElement
+        unsigned first_index =
+          bnod_pt->index_of_first_value_assigned_by_face_element(Id);
+
+        // Add contribution to pressure
+        interpolated_lambda += node_pt(l)->value(first_index) * psi(l);
+      }
+
+      return (interpolated_lambda);
+    }
   };
 } // namespace oomph
 #endif
