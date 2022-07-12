@@ -1102,7 +1102,11 @@ namespace oomph
     {
       // Call the generic routine with the flag set to 1
       fill_in_generic_residual_contribution_interface_boundary(
-        residuals, jacobian, 1);
+        residuals, jacobian, 0);
+
+      // Call the generic FD routine to get internal data
+      this->fill_in_jacobian_from_internal_by_fd(jacobian);
+
       // Call the generic FD routine to get external data
       this->fill_in_jacobian_from_external_by_fd(jacobian);
 
@@ -1114,7 +1118,8 @@ namespace oomph
     /// Set the kinematic local equation
     inline int kinematic_local_eqn(const unsigned& n)
     {
-      return this->nodal_local_eqn(n, this->Lagrange_index[n]);
+      return this->position_local_eqn(n, 0, 1);
+      // return this->nodal_local_eqn(n, this->Lagrange_index[n]);
     }
   };
 

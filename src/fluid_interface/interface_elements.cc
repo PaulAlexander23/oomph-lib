@@ -142,6 +142,7 @@ namespace oomph
 
     // Storage for the coordinate
     Vector<double> x(spatial_dim);
+    double v = 0.0;
 
     // Storage for the coordinate time derivative
     Vector<double> dx_dt(spatial_dim);
@@ -169,6 +170,10 @@ namespace oomph
     // Just get the outer unit normal
     dynamic_cast<FaceElement*>(parent_pt)->outer_unit_normal(s_parent,
                                                              unit_normal);
+
+    v = dynamic_cast<FluidInterfaceElement*>(this->bulk_element_pt())
+          ->interpolated_u(s_parent, 1);
+
 
     // Find the dot product of the two vectors
     double dot = 0.0;
@@ -270,6 +275,27 @@ namespace oomph
     }
     // NOTE: The jacobian entries will be computed automatically
     // by finite differences.
+
+
+    if (Kinematic_lagrange_index >= 0)
+    {
+      int local_eqn = internal_local_eqn(Kinematic_lagrange_index, 0);
+      if (local_eqn >= 0)
+      {
+        double st_local = dynamic_cast<FluidInterfaceElement*>(parent_pt)->st();
+        // Constraint
+        residuals[local_eqn] = v - st_local * dx_dt[1];
+
+        // Lagrange multiplier contribution
+        local_eqn = this->kinematic_local_eqn(0);
+        if (local_eqn >= 0)
+        {
+          double lambda = internal_data_pt(Kinematic_lagrange_index)->value(0);
+          residuals[local_eqn] -= st_local * lambda;
+        }
+      }
+    }
+
 
     // Dummy arguments
     Shape psif(1);
