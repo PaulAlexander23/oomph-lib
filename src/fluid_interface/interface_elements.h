@@ -336,9 +336,16 @@ namespace oomph
     void fill_in_generic_residual_contribution_interface_boundary(
       Vector<double>& residuals, DenseMatrix<double>& jacobian, unsigned flag);
 
+    // Index to the Kinematic lagrange multiplier internal data pointer
+    int Kinematic_lagrange_index;
+
   public:
     /// Constructor
-    PointFluidInterfaceBoundingElement() : FluidInterfaceBoundingElement() {}
+    PointFluidInterfaceBoundingElement()
+      : FluidInterfaceBoundingElement(), Kinematic_lagrange_index(-1)
+    {
+      Kinematic_lagrange_index = add_internal_data(new Data(1));
+    }
 
     void calculate_contact_angle(double& imposed_contact_angle,
                                  double& computed_contact_angle)
