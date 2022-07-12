@@ -204,6 +204,23 @@ namespace oomph
     wall_tangent[0] = wall_normal[1];
     wall_tangent[1] = -wall_normal[0];
 
+    //// Get the wall tangent vector
+    // Vector<double> unit_tangent(spatial_dim);
+    //// Rotate the normal vector clockwise 90 degrees
+    // unit_tangent[0] = unit_normal[1];
+    // unit_tangent[1] = -unit_normal[0];
+
+    //// Add the dynamic boundary condition contribution to the momentum
+    /// equations
+    // for (unsigned i = 0; i < 2; i++)
+    //{
+    //  int local_eqn = nodal_local_eqn(0, this->U_index_interface_boundary[i]);
+    //  if (local_eqn >= 0)
+    //  {
+    //    residuals[local_eqn] += (sigma_local / ca_local) * unit_tangent[i];
+    //  }
+    //}
+
     // Just add the appropriate contribution to the momentum equations
     for (unsigned i = 0; i < 2; i++)
     {
