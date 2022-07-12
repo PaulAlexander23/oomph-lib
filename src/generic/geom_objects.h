@@ -627,6 +627,205 @@ namespace oomph
     bool Must_clean_up;
   };
 
+  /// ////////////////////////////////////////////////////////////////////
+  /// ////////////////////////////////////////////////////////////////////
+  // Straight line as geometric object
+  /// ////////////////////////////////////////////////////////////////////
+  /// ////////////////////////////////////////////////////////////////////
+
+
+  //=========================================================================
+  /// Steady, straight 1D line in 2D space
+  ///  \f[ x = a \zeta + c \f]
+  ///  \f[ y = b \zeta + d \f]
+  //=========================================================================
+  class ParametricStraightLine : public GeomObject
+  {
+  public:
+    /// Constructor:  One item of geometric data:
+    /// \code
+    ///  Geom_data_pt[0]->value(0) = height
+    /// \endcode
+    ParametricStraightLine(const Vector<Data*>& geom_data_pt) : GeomObject(1, 2)
+    {
+#ifdef PARANOID
+      if (geom_data_pt.size() != 1)
+      {
+        std::ostringstream error_message;
+        error_message << "geom_data_pt should have size 1, not "
+                      << geom_data_pt.size() << std::endl;
+
+        if (geom_data_pt[0]->nvalue() != 1)
+        {
+          error_message << "geom_data_pt[0] should have 1 value, not "
+                        << geom_data_pt[0]->nvalue() << std::endl;
+        }
+
+        throw OomphLibError(error_message.str(),
+                            OOMPH_CURRENT_FUNCTION,
+                            OOMPH_EXCEPTION_LOCATION);
+      }
+#endif
+      Geom_data_pt.resize(1);
+      Geom_data_pt[0] = geom_data_pt[0];
+
+      // Data has been created externally: Must not clean up
+      Must_clean_up = false;
+    }
+
+    /// Constructor:  Pass a and b (pinned by default)
+    ParametricStraightLine(const double& a,
+                           const double& b,
+                           const double& c,
+                           const double& d)
+      : GeomObject(1, 2)
+    {
+      // Create Data for straight-line object: The only geometric data is the
+      // height which is pinned
+      Geom_data_pt.resize(1);
+
+      // Create data: One value, no timedependence, free by default
+      Geom_data_pt[0] = new Data(4);
+
+      // I've created the data, I need to clean up
+      Must_clean_up = true;
+
+      // Pin the data
+      Geom_data_pt[0]->pin(0);
+      Geom_data_pt[0]->pin(1);
+      Geom_data_pt[0]->pin(2);
+      Geom_data_pt[0]->pin(3);
+
+      // Give it a value: Initial height
+      Geom_data_pt[0]->set_value(0, a);
+      Geom_data_pt[0]->set_value(1, b);
+      Geom_data_pt[0]->set_value(2, c);
+      Geom_data_pt[0]->set_value(3, d);
+    }
+
+
+    /// Broken copy constructor
+    ParametricStraightLine(const StraightLine& dummy) = delete;
+
+    /// Broken assignment operator
+    void operator=(const StraightLine&) = delete;
+
+    /// Destructor:  Clean up if necessary
+    ~ParametricStraightLine()
+    {
+      // Do I need to clean up?
+      if (Must_clean_up)
+      {
+        delete Geom_data_pt[0];
+        Geom_data_pt[0] = 0;
+      }
+    }
+
+
+    /// Position Vector at Lagrangian coordinate zeta
+    void position(const Vector<double>& zeta, Vector<double>& r) const
+    {
+      // Position Vector
+      r[0] = Geom_data_pt[0]->value(0) * zeta[0] + Geom_data_pt[0]->value(2);
+      r[1] = Geom_data_pt[0]->value(1) * zeta[0] + Geom_data_pt[0]->value(3);
+    }
+
+
+    /// Parametrised position on object: r(zeta). Evaluated at
+    /// previous timestep. t=0: current time; t>0: previous
+    /// timestep.
+    void position(const unsigned& t,
+                  const Vector<double>& zeta,
+                  Vector<double>& r) const
+    {
+#ifdef PARANOID
+      if (t > Geom_data_pt[0]->time_stepper_pt()->nprev_values())
+      {
+        std::ostringstream error_message;
+        error_message << "t > nprev_values() " << t << " "
+                      << Geom_data_pt[0]->time_stepper_pt()->nprev_values()
+                      << std::endl;
+
+        throw OomphLibError(error_message.str(),
+                            OOMPH_CURRENT_FUNCTION,
+                            OOMPH_EXCEPTION_LOCATION);
+      }
+#endif
+
+      // Position Vector at time level t
+      r[0] = Geom_data_pt[0]->value(t, 0) * zeta[0] + Geom_data_pt[0]->value(2);
+      r[1] = Geom_data_pt[0]->value(t, 1) * zeta[0] + Geom_data_pt[0]->value(3);
+    }
+
+
+    /// Derivative of position Vector w.r.t. to coordinates:
+    /// \f$ \frac{dR_i}{d \zeta_\alpha}\f$ = drdzeta(alpha,i).
+    /// Evaluated at current time.
+    virtual void dposition(const Vector<double>& zeta,
+                           DenseMatrix<double>& drdzeta) const
+    {
+      // Tangent vector
+      drdzeta(0, 0) = Geom_data_pt[0]->value(0);
+      drdzeta(0, 1) = Geom_data_pt[0]->value(1);
+    }
+
+
+    /// 2nd derivative of position Vector w.r.t. to coordinates:
+    /// \f$ \frac{d^2R_i}{d \zeta_\alpha d \zeta_\beta}\f$ =
+    /// ddrdzeta(alpha,beta,i). Evaluated at current time.
+    virtual void d2position(const Vector<double>& zeta,
+                            RankThreeTensor<double>& ddrdzeta) const
+    {
+      // Derivative of tangent vector
+      ddrdzeta(0, 0, 0) = 0.0;
+      ddrdzeta(0, 0, 1) = 0.0;
+    }
+
+
+    /// Posn Vector and its  1st & 2nd derivatives
+    /// w.r.t. to coordinates:
+    /// \f$ \frac{dR_i}{d \zeta_\alpha}\f$ = drdzeta(alpha,i).
+    /// \f$ \frac{d^2R_i}{d \zeta_\alpha d \zeta_\beta}\f$ =
+    /// ddrdzeta(alpha,beta,i).
+    /// Evaluated at current time.
+    virtual void d2position(const Vector<double>& zeta,
+                            Vector<double>& r,
+                            DenseMatrix<double>& drdzeta,
+                            RankThreeTensor<double>& ddrdzeta) const
+    {
+      // Position Vector
+      r[0] = zeta[0];
+      r[1] = Geom_data_pt[0]->value(0);
+
+      // Tangent vector
+      dposition(zeta, drdzeta);
+
+      // Derivative of tangent vector
+      d2position(zeta, ddrdzeta);
+    }
+
+
+    /// How many items of Data does the shape of the object depend on?
+    unsigned ngeom_data() const
+    {
+      return Geom_data_pt.size();
+    }
+
+    /// Return pointer to the j-th Data item that the object's
+    /// shape depends on
+    Data* geom_data_pt(const unsigned& j)
+    {
+      return Geom_data_pt[j];
+    }
+
+  private:
+    /// Vector of pointers to Data items that affects the object's shape
+    Vector<Data*> Geom_data_pt;
+
+    /// Do I need to clean up?
+    bool Must_clean_up;
+  };
+
 
   /// ////////////////////////////////////////////////////////////////////
   /// ////////////////////////////////////////////////////////////////////
