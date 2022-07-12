@@ -832,6 +832,32 @@ namespace oomph
       return *this->node_pt(n)->value_pt(this->lagrange_index(n));
     }
 
+    /// Return the lagrange multiplier at local node n
+    double interpolated_lagrange(const Vector<double>& s)
+    {
+      // Find number of nodes
+      unsigned n_node = FiniteElement::nnode();
+
+      // Storage for the local shape function
+      Shape psi(n_node);
+
+      // Get values of shape function at local coordinate s
+      this->shape(s, psi);
+
+      // Initialise value of lambda
+      double interpolated_lambda = 0.0;
+
+      // Loop over the local nodes and sum
+      for (unsigned l = 0; l < n_node; l++)
+      {
+        interpolated_lambda +=
+          *this->node_pt(l)->value_pt(this->lagrange_index(l)) * psi(l);
+      }
+
+      return (interpolated_lambda);
+    }
+
+
     void fix_lagrange_multiplier(const unsigned& n, const double& value)
     {
       this->node_pt(n)->pin(this->lagrange_index(n));
@@ -865,7 +891,32 @@ namespace oomph
     /// Output the element
     void output(std::ostream& outfile, const unsigned& n_plot)
     {
-      EQUATION_CLASS::output(outfile, n_plot);
+      const unsigned el_dim = this->dim();
+      const unsigned n_dim = this->nodal_dimension();
+      const unsigned n_velocity = this->U_index_interface.size();
+      // Set output Vector
+      Vector<double> s(el_dim);
+
+      // Loop over plot points
+      unsigned num_plot_points = this->nplot_points(n_plot);
+      for (unsigned iplot = 0; iplot < num_plot_points; iplot++)
+      {
+        // Get local coordinates of pliot point
+        this->get_s_plot(iplot, n_plot, s);
+
+        // Output the x,y,u,v
+        for (unsigned i = 0; i < n_dim; i++)
+          outfile << this->interpolated_x(s, i) << ",";
+        for (unsigned i = 0; i < n_velocity; i++)
+          outfile << this->interpolated_u(s, i) << ",";
+
+        // Output a dummy pressure
+        outfile << 0.0 << ",";
+
+        // Output the lagrange multiplier
+        outfile << interpolated_lagrange(s) << "\n";
+      }
+      outfile << "\n";
     }
 
     /// Overload the C-style output function
@@ -877,7 +928,41 @@ namespace oomph
     /// C-style Output function
     void output(FILE* file_pt, const unsigned& n_plot)
     {
-      EQUATION_CLASS::output(file_pt, n_plot);
+      const unsigned el_dim = this->dim();
+      const unsigned n_dim = this->nodal_dimension();
+      const unsigned n_velocity = this->U_index_interface.size();
+      // Set output Vector
+      Vector<double> s(el_dim);
+
+      // Tecplot header info
+      fprintf(file_pt, "%s", this->tecplot_zone_string(n_plot).c_str());
+
+      // Loop over plot points
+      unsigned num_plot_points = this->nplot_points(n_plot);
+      for (unsigned iplot = 0; iplot < num_plot_points; iplot++)
+      {
+        // Get local coordinates of plot point
+        this->get_s_plot(iplot, n_plot, s);
+
+        // Coordinates
+        for (unsigned i = 0; i < n_dim; i++)
+        {
+          fprintf(file_pt, "%g ", this->interpolated_x(s, i));
+        }
+
+        // Velocities
+        for (unsigned i = 0; i < n_velocity; i++)
+        {
+          fprintf(file_pt, "%g ", this->interpolated_u(s, i));
+        }
+
+        // Dummy Pressure
+        fprintf(file_pt, "%g \n", 0.0);
+      }
+      fprintf(file_pt, "\n");
+
+      // Write tecplot footer (e.g. FE connectivity lists)
+      this->write_tecplot_zone_footer(file_pt, n_plot);
     }
 
 
