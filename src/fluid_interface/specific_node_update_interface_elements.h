@@ -832,6 +832,17 @@ namespace oomph
       return *this->node_pt(n)->value_pt(this->lagrange_index(n));
     }
 
+    void fix_lagrange_multiplier(const unsigned& n, const double& value)
+    {
+      this->node_pt(n)->pin(this->lagrange_index(n));
+      this->node_pt(n)->set_value(this->lagrange_index(n), value);
+    }
+
+    void free_lagrange_multiplier(const unsigned& n)
+    {
+      this->node_pt(n)->unpin(this->lagrange_index(n));
+    }
+
 
     /// Fill in contribution to residuals and Jacobian
     void fill_in_contribution_to_jacobian(Vector<double>& residuals,
