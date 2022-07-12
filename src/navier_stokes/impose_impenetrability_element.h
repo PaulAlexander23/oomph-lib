@@ -73,6 +73,23 @@ namespace oomph
       add_additional_values(n_additional_values, id);
     }
 
+    void fix_lagrange_multiplier(const unsigned& n, const double& value)
+    {
+      BoundaryNodeBase* bnod_pt = dynamic_cast<BoundaryNodeBase*>(node_pt(n));
+      unsigned first_index =
+        bnod_pt->index_of_first_value_assigned_by_face_element(Id);
+      this->node_pt(n)->pin(first_index);
+      this->node_pt(n)->set_value(first_index, value);
+    }
+
+    void free_lagrange_multiplier(const unsigned& n)
+    {
+      BoundaryNodeBase* bnod_pt = dynamic_cast<BoundaryNodeBase*>(node_pt(n));
+      unsigned first_index =
+        bnod_pt->index_of_first_value_assigned_by_face_element(Id);
+      this->node_pt(n)->unpin(first_index);
+    }
+
 
     /// Fill in the residuals
     void fill_in_contribution_to_residuals(Vector<double>& residuals)
@@ -318,7 +335,6 @@ namespace oomph
       }
     }
 
-
     /// The number of "DOF types" that degrees of freedom in this element
     /// are sub-divided into: Just the solid degrees of freedom themselves.
     unsigned ndof_types() const
@@ -329,7 +345,6 @@ namespace oomph
 
       return (1 + additional_ndof_types());
     }
-
 
     unsigned additional_ndof_types() const
     {
