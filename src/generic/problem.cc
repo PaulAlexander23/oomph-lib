@@ -7835,9 +7835,9 @@ namespace oomph
       // We're checking if the new values for Dof_pt[] actually
       // solve the entire problem --> update as if problem had
       // been solved
-      actions_before_newton_solve();
-      actions_before_newton_convergence_check();
-      actions_after_newton_solve();
+      //actions_before_newton_solve();
+      //actions_before_newton_convergence_check();
+      //actions_after_newton_solve();
 
       // Get advanced residuals
       get_residuals(residuals_pls);
