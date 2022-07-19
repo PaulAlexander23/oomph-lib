@@ -871,16 +871,16 @@ namespace oomph
 
 
     /// Fill in contribution to residuals and Jacobian
-    void fill_in_contribution_to_jacobian(Vector<double>& residuals,
-                                          DenseMatrix<double>& jacobian)
-    {
-      // Call the generic routine with the flag set to 1
-      EQUATION_CLASS::fill_in_generic_residual_contribution_interface(
-        residuals, jacobian, 1);
+    // void fill_in_contribution_to_jacobian(Vector<double>& residuals,
+    //                                      DenseMatrix<double>& jacobian)
+    //{
+    //  // Call the generic routine with the flag set to 1
+    //  EQUATION_CLASS::fill_in_generic_residual_contribution_interface(
+    //    residuals, jacobian, 1);
 
-      // Call the generic finite difference routine for the solid variables
-      this->fill_in_jacobian_from_solid_position_by_fd(jacobian);
-    }
+    //  // Call the generic finite difference routine for the solid variables
+    //  this->fill_in_jacobian_from_solid_position_by_fd(jacobian);
+    //}
 
     /// Overload the output function
     void output(std::ostream& outfile)
@@ -1224,23 +1224,23 @@ namespace oomph
     }
 
     /// Calculate the element's residual vector and Jacobian
-    void fill_in_contribution_to_jacobian(Vector<double>& residuals,
-                                          DenseMatrix<double>& jacobian)
-    {
-      // Call the generic routine with the flag set to 1
-      fill_in_generic_residual_contribution_interface_boundary(
-        residuals, jacobian, 0);
+    // void fill_in_contribution_to_jacobian(Vector<double>& residuals,
+    //                                      DenseMatrix<double>& jacobian)
+    //{
+    //  // Call the generic routine with the flag set to 1
+    //  fill_in_generic_residual_contribution_interface_boundary(
+    //    residuals, jacobian, 0);
 
-      // Call the generic FD routine to get internal data
-      this->fill_in_jacobian_from_internal_by_fd(jacobian);
+    //  // Call the generic FD routine to get internal data
+    //  this->fill_in_jacobian_from_internal_by_fd(jacobian);
 
-      // Call the generic FD routine to get external data
-      this->fill_in_jacobian_from_external_by_fd(jacobian);
+    //  // Call the generic FD routine to get external data
+    //  this->fill_in_jacobian_from_external_by_fd(jacobian);
 
-      // Call the generic finite difference routine to handle the solid
-      // variables
-      this->fill_in_jacobian_from_solid_position_by_fd(jacobian);
-    }
+    //  // Call the generic finite difference routine to handle the solid
+    //  // variables
+    //  this->fill_in_jacobian_from_solid_position_by_fd(jacobian);
+    //}
 
     /// Set the kinematic local equation
     inline int kinematic_local_eqn(const unsigned& n)
