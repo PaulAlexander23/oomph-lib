@@ -345,6 +345,18 @@ namespace oomph
       : FluidInterfaceBoundingElement(), Kinematic_lagrange_index(-1)
     {
       Kinematic_lagrange_index = add_internal_data(new Data(1));
+      internal_data_pt(Kinematic_lagrange_index)->set_value(0, 1.0);
+    }
+
+    void fix_lagrange_multiplier(const double& value)
+    {
+      internal_data_pt(Kinematic_lagrange_index)->pin(0);
+      internal_data_pt(Kinematic_lagrange_index)->set_value(0, value);
+    }
+
+    void free_lagrange_multiplier()
+    {
+      internal_data_pt(Kinematic_lagrange_index)->unpin(0);
     }
 
     void calculate_contact_angle(double& imposed_contact_angle,
