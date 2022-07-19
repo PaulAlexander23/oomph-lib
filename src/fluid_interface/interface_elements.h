@@ -447,16 +447,19 @@ namespace oomph
       calculate_contact_angle(imposed_contact_angle, computed_contact_angle);
 
 
-      // Output fields, x, y, alpha_input, alpha_output, alpha_diff
+      // Output fields, x, y, alpha_input, alpha_output, lagrange_multiplier
       for (unsigned i = 0; i < spatial_dim; i++)
       {
         outfile << x[i] << ",";
       }
-      outfile << std::fixed << std::setprecision(3)
-              << imposed_contact_angle * 180 / MathematicalConstants::Pi << ",";
-      outfile << std::fixed << std::setprecision(3)
-              << computed_contact_angle * 180 / MathematicalConstants::Pi
-              << std::endl;
+      std::streamsize ss = outfile.precision();
+      outfile << std::fixed << std::setprecision(3);
+      outfile << imposed_contact_angle * 180 / MathematicalConstants::Pi << ",";
+      outfile << computed_contact_angle * 180 / MathematicalConstants::Pi
+              << ",";
+      outfile << std::setprecision(ss);
+      outfile << internal_data_pt(Kinematic_lagrange_index)->value(0);
+      outfile << std::endl;
     }
   };
 
