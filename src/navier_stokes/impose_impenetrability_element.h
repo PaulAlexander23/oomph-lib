@@ -147,7 +147,7 @@ namespace oomph
         outfile << interpolated_p(s) << ",";
 
         // Lagrange multipliers
-        outfile << interpolated_lambda(s) << ",";
+        outfile << interpolated_lambda(s);
 
         outfile << std::endl;
       }
