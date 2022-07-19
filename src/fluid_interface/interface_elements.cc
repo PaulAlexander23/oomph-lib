@@ -277,8 +277,10 @@ namespace oomph
     // by finite differences.
 
 
+    // Point kinematic equation
     if (Kinematic_lagrange_index >= 0)
     {
+      double lambda = internal_data_pt(Kinematic_lagrange_index)->value(0);
       int local_eqn = internal_local_eqn(Kinematic_lagrange_index, 0);
       if (local_eqn >= 0)
       {
@@ -286,12 +288,28 @@ namespace oomph
         // Constraint
         residuals[local_eqn] = v - st_local * dx_dt[1];
 
-        // Lagrange multiplier contribution
+        // Lagrange multiplier contribution to momentum equations
+        local_eqn =
+          this->nodal_local_eqn(0, this->U_index_interface_boundary[1]);
+        if (local_eqn >= 0)
+        {
+          residuals[local_eqn] += lambda;
+        }
+
+        // Lagrange multiplier contribution to solid displacement equations
         local_eqn = this->kinematic_local_eqn(0);
         if (local_eqn >= 0)
         {
-          double lambda = internal_data_pt(Kinematic_lagrange_index)->value(0);
-          residuals[local_eqn] -= st_local * lambda;
+          if (this->node_pt(0)->time_stepper_pt()->weight(1, 0) > 0)
+          {
+            residuals[local_eqn] -=
+              lambda * st_local *
+              this->node_pt(0)->time_stepper_pt()->weight(1, 0);
+          }
+          else
+          {
+            residuals[local_eqn] -= lambda;
+          }
         }
       }
     }

@@ -1018,30 +1018,61 @@ namespace oomph
         // Loop over the directions
         for (unsigned i = 0; i < nodal_dimension; i++)
         {
+          // Kinematic Lagrange multiplier Momentum contribution
+          local_eqn = this->nodal_local_eqn(l, this->U_index_interface[i]);
+          if (local_eqn >= 0)
+          {
+            residuals[local_eqn] +=
+              interpolated_lagrange * interpolated_n[i] * psif(l) * J * W;
+
+            // Do the Jacobian calculation
+            if (flag)
+            {
+              throw OomphLibError("Not yet implemented\n",
+                                  OOMPH_CURRENT_FUNCTION,
+                                  OOMPH_EXCEPTION_LOCATION);
+            }
+          }
+
+
+          // Kinematic Lagrange multiplier Solid displacement contribution
+
           // Now using the same shape functions for the elastic equations,
           // so we can stay in the loop
           local_eqn = this->position_local_eqn(l, 0, i);
           if (local_eqn >= 0)
           {
             // Add in the Lagrange multiplier contribution
-            residuals[local_eqn] -=
-              interpolated_lagrange * interpolated_n[i] * psif(l) * J * W;
-
+            if (this->node_pt(l)->time_stepper_pt()->weight(1, 0) > 0)
+            {
+              residuals[local_eqn] -=
+                interpolated_lagrange * this->st() *
+                this->node_pt(l)->time_stepper_pt()->weight(1, 0) *
+                interpolated_n[i] * psif(l) * J * W;
+            }
+            else
+            {
+              residuals[local_eqn] -=
+                interpolated_lagrange * interpolated_n[i] * psif(l) * J * W;
+            }
             // Do the Jacobian calculation
             if (flag)
             {
-              // Loop over the nodes
-              for (unsigned l2 = 0; l2 < n_node; l2++)
-              {
-                // Dependence on solid positions will be handled by FDs
-                // That leaves the Lagrange multiplier contribution
-                local_unknown = this->kinematic_local_eqn(l2);
-                if (local_unknown >= 0)
-                {
-                  jacobian(local_eqn, local_unknown) -=
-                    psif(l2) * interpolated_n[i] * psif(l) * J * W;
-                }
-              }
+              throw OomphLibError("Not yet implemented\n",
+                                  OOMPH_CURRENT_FUNCTION,
+                                  OOMPH_EXCEPTION_LOCATION);
+              //// Loop over the nodes
+              // for (unsigned l2 = 0; l2 < n_node; l2++)
+              //{
+              //  // Dependence on solid positions will be handled by FDs
+              //  // That leaves the Lagrange multiplier contribution
+              //  local_unknown = this->kinematic_local_eqn(l2);
+              //  if (local_unknown >= 0)
+              //  {
+              //    jacobian(local_eqn, local_unknown) -=
+              //      psif(l2) * interpolated_n[i] * psif(l) * J * W;
+              //  }
+              //}
             } // End of Jacobian calculation
           }
         }
