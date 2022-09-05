@@ -787,8 +787,8 @@ namespace oomph
       std::stringstream input_string_stream;
 
       // MH: Like everything else, this hasn't been tested!
-      // used to be input_string_stream<<"-pA -a" << element_area << "q30";
-      input_string_stream << "-pA -a -a" << element_area << "q30";
+      // used to be input_string_stream<<"-pA -a" << element_area << "q20";
+      input_string_stream << "-pA -a -a" << element_area << "q20";
 
       // Verify if creation of new points on boundaries is allowed
       if (!this->is_creation_of_vertices_on_boundaries_allowed())
@@ -1282,10 +1282,10 @@ namespace oomph
       input_string_stream.setf(std::ios_base::fixed, std::ios_base::floatfield);
 
       // MH: Used to be:
-      // input_string_stream<<"-pA -a" << element_area << " -q30" << std::fixed;
+      // input_string_stream<<"-pA -a" << element_area << " -q20" << std::fixed;
       // The repeated -a allows the specification of areas for different
       // regions (if any)
-      input_string_stream << "-pA -a -a" << element_area << " -q30"
+      input_string_stream << "-pA -a -a" << element_area << " -q20"
                           << std::fixed;
 
       // Verify if creation of new points on boundaries is allowed
@@ -2344,7 +2344,7 @@ namespace oomph
 
       // Input string for triangle
       std::stringstream input_string_stream;
-      input_string_stream << "-pq30-ra";
+      input_string_stream << "-pq20-ra";
 
       // Verify if creation of new points on boundaries is allowed
       if (!allow_automatic_creation_of_vertices_on_boundaries)
