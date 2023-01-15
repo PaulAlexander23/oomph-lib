@@ -90,13 +90,6 @@ namespace oomph
     // Local coordinates
     Vector<double> s(n_dim);
 
-    // find the indices at which the local velocities are stored
-    Vector<unsigned> u_nodal_index(n_dim);
-    for (unsigned i = 0; i < n_dim; i++)
-    {
-      u_nodal_index[i] = this->u_index_nst(i);
-    }
-
     // Set up memory for veloc shape functions
     Shape psi(n_node);
 
@@ -140,6 +133,14 @@ namespace oomph
         // Loop over the veclocity shape functions
         for (unsigned l = 0; l < n_node; l++)
         {
+          // find the indices at which the local velocities are stored
+          Vector<unsigned> u_nodal_index(n_dim);
+          for (unsigned i = 0; i < n_dim; i++)
+          {
+            u_nodal_index[i] = this->u_index_nst(i);
+          }
+
+
           // Loop over the velocity components
           for (unsigned i = 0; i < n_dim; i++)
           {
@@ -2799,7 +2800,7 @@ namespace oomph
     std::set<std::pair<Data*, unsigned>>& paired_pressure_data)
   {
     // Find the index at which the pressure is stored
-    unsigned p_index = static_cast<unsigned>(this->p_nodal_index_nst());
+    unsigned p_index = static_cast<unsigned>(this->p_index_nst());
 
     // Loop over the pressure data
     unsigned n_pres = npres_nst();
@@ -2829,7 +2830,7 @@ namespace oomph
     unsigned n_node = this->nnode();
 
     // local eqn no for pressure unknown
-    // unsigned p_index = this->p_nodal_index_nst();
+    // unsigned p_index = this->p_index_nst();
 
     // temporary pair (used to store dof lookup prior to being added to list)
     std::pair<unsigned, unsigned> dof_lookup;
