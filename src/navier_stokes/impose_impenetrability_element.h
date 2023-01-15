@@ -491,7 +491,7 @@ namespace oomph
 
       // get the value at which the velocities are stored
       ELEMENT* el_pt = dynamic_cast<ELEMENT*>(this->bulk_element_pt());
-      const int p_index = el_pt->p_nodal_index_axi_nst();
+      const int p_index = el_pt->p_index_nst();
 
       // Initialise value of p
       double interpolated_p = 0.0;
