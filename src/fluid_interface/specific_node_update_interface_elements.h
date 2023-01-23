@@ -227,19 +227,27 @@ namespace oomph
       }
 #endif
 
+      // Read out the number of nodes on the face
+      const unsigned n_node_face = this->nnode();
+      this->U_index_interface.resize(n_node_face);
+
       // Find the index at which the velocity unknowns are stored
       // from the bulk element and allocate the local storage
       ELEMENT* cast_element_pt = dynamic_cast<ELEMENT*>(element_pt);
+
       // Find number of momentum equation required
       const unsigned n_u_index = cast_element_pt->n_u_nst();
-      this->U_index_interface.resize(n_u_index);
-      for (unsigned i = 0; i < n_u_index; i++)
+      for (unsigned n = 0; n < n_node_face; n++)
       {
-        this->U_index_interface[i] = cast_element_pt->u_index_nst(i);
+        this->U_index_interface[n].resize(n_u_index);
+        for (unsigned i = 0; i < n_u_index; i++)
+        {
+          this->U_index_interface[n][i] =
+            cast_element_pt->u_index_nst(this->bulk_node_number(n), i);
+        }
       }
 
       // Add any additional values required by the equations class
-      unsigned n_node_face = this->nnode();
       // Create an instance of the policy class that determines
       // how many additional values are required
       FluidInterfaceAdditionalValues<EQUATION_CLASS>*
@@ -762,18 +770,25 @@ namespace oomph
       }
 #endif
 
+      // Read out the number of nodes on the face
+      const unsigned n_node_face = this->nnode();
+      this->U_index_interface.resize(n_node_face);
+
       // Find the index at which the velocity unknowns are stored
       // from the bulk element and resize the local storage scheme
       ELEMENT* cast_element_pt = dynamic_cast<ELEMENT*>(element_pt);
-      const unsigned n_u_index = cast_element_pt->n_u_nst();
-      this->U_index_interface.resize(n_u_index);
-      for (unsigned i = 0; i < n_u_index; i++)
-      {
-        this->U_index_interface[i] = cast_element_pt->u_index_nst(i);
-      }
 
-      // Read out the number of nodes on the face
-      unsigned n_node_face = this->nnode();
+      // Find number of momentum equation required
+      const unsigned n_u_index = cast_element_pt->n_u_nst();
+      for (unsigned n = 0; n < n_node_face; n++)
+      {
+        this->U_index_interface[n].resize(n_u_index);
+        for (unsigned i = 0; i < n_u_index; i++)
+        {
+          this->U_index_interface[n][i] =
+            cast_element_pt->u_index_nst(this->bulk_node_number(n), i);
+        }
+      }
 
       // Create an instance of the policy class that determines
       // how many additional values are required
@@ -893,7 +908,7 @@ namespace oomph
     {
       const unsigned el_dim = this->dim();
       const unsigned n_dim = this->nodal_dimension();
-      const unsigned n_velocity = this->U_index_interface.size();
+      const unsigned n_velocity = n_dim;
       // Set output Vector
       Vector<double> s(el_dim);
 
@@ -930,7 +945,7 @@ namespace oomph
     {
       const unsigned el_dim = this->dim();
       const unsigned n_dim = this->nodal_dimension();
-      const unsigned n_velocity = this->U_index_interface.size();
+      const unsigned n_velocity = n_dim;
       // Set output Vector
       Vector<double> s(el_dim);
 
@@ -1010,7 +1025,7 @@ namespace oomph
         interpolated_lagrange += lagrange(l) * psif(l);
       }
 
-      int local_eqn = 0, local_unknown = 0;
+      int local_eqn = 0;
 
       // Loop over the shape functions to assemble contributions
       for (unsigned l = 0; l < n_node; l++)
@@ -1019,7 +1034,7 @@ namespace oomph
         for (unsigned i = 0; i < nodal_dimension; i++)
         {
           // Kinematic Lagrange multiplier Momentum contribution
-          local_eqn = this->nodal_local_eqn(l, this->U_index_interface[i]);
+          local_eqn = this->nodal_local_eqn(l, this->U_index_interface[l][i]);
           if (local_eqn >= 0)
           {
             residuals[local_eqn] +=

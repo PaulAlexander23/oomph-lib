@@ -60,6 +60,9 @@ namespace oomph
                             const Vector<double>& n,
                             Vector<double>& result);
 
+    // Index at which the velocities are stored
+    Vector<Vector<unsigned>> U_index;
+
   protected:
     /// The "global" intrinsic coordinate of the element when
     /// viewed as part of a geometric object should be given by
@@ -78,7 +81,7 @@ namespace oomph
     /// and the i-th velocity component is the i-th unknown stored at the node.
     virtual inline int u_local_eqn(const unsigned& n, const unsigned& i)
     {
-      return nodal_local_eqn(n, i);
+      return nodal_local_eqn(n, U_index[n][i]);
     }
 
     /// Function to compute the shape and test functions and to return
@@ -177,6 +180,19 @@ namespace oomph
 
       // Set the dimension from the dimension of the first node
       Dim = this->node_pt(0)->ndim();
+
+      // Setup U_index
+      ELEMENT* el_pt = dynamic_cast<ELEMENT*>(element_pt);
+      const unsigned n_node_face = this->nnode();
+      U_index.resize(n_node_face);
+      for (unsigned n = 0; n < n_node_face; n++)
+      {
+        U_index[n].resize(Dim);
+        for (unsigned d = 0; d < Dim; d++)
+        {
+          U_index[n][d] = el_pt->u_index_nst(this->bulk_node_number(n), d);
+        }
+      }
     }
 
     /// Destructor should not delete anything
@@ -398,14 +414,6 @@ namespace oomph
     refineable_fill_in_generic_residual_contribution_fluid_traction(
       Vector<double>& residuals, DenseMatrix<double>& jacobian, unsigned flag)
   {
-    // Get the indices at which the velocity components are stored
-    unsigned u_nodal_index[this->Dim];
-    for (unsigned i = 0; i < this->Dim; i++)
-    {
-      u_nodal_index[i] =
-        dynamic_cast<ELEMENT*>(this->bulk_element_pt())->u_index_nst(i);
-    }
-
     // Find out how many nodes there are
     unsigned n_node = nnode();
 
@@ -489,6 +497,14 @@ namespace oomph
         else
         {
           n_master = 1;
+        }
+
+        // Get the indices at which the velocity components are stored
+        unsigned u_nodal_index[this->Dim];
+        for (unsigned i = 0; i < this->Dim; i++)
+        {
+          u_nodal_index[i] =
+            dynamic_cast<ELEMENT*>(this->bulk_element_pt())->u_index_nst(l, i);
         }
 
         // Loop over the master nodes

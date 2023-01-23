@@ -847,23 +847,35 @@ namespace oomph
     /// i-th location of the node
     double u_nst(const unsigned& n, const unsigned& i) const
     {
-      return nodal_value(n, u_index_nst(i));
+      return nodal_value(n, u_index_nst(n, i));
     }
 
     /// Velocity i at local node n at timestep t (t=0: present;
     /// t>0: previous). Uses suitably interpolated value for hanging nodes.
     double u_nst(const unsigned& t, const unsigned& n, const unsigned& i) const
     {
-      return nodal_value(t, n, u_index_nst(i));
+      return nodal_value(t, n, u_index_nst(n, i));
     }
 
+    /// DEPRECATED
     /// Return the index at which the i-th unknown velocity component
     /// is stored. The default value, i, is appropriate for single-physics
     /// problems.
     /// In derived multi-physics elements, this function should be overloaded
     /// to reflect the chosen storage scheme. Note that these equations require
     /// that the unknowns are always stored at the same indices at each node.
-    virtual inline unsigned u_index_nst(const unsigned& i) const
+    // virtual inline unsigned u_index_nst(const unsigned& i) const
+    // {
+    //   return i;
+    // }
+
+    /// REPLACEMENT
+    /// Return the index at which the i-th unknown velocity component
+    /// is stored at the n-th node. The default value, i, is appropriate for
+    /// single-physics problems. In derived multi-physics elements, this
+    /// function should be overloaded to reflect the chosen storage scheme.
+    virtual inline unsigned u_index_nst(const unsigned& n,
+                                        const unsigned& i) const
     {
       return i;
     }
@@ -889,7 +901,7 @@ namespace oomph
       if (!time_stepper_pt->is_steady())
       {
         // Find the index at which the dof is stored
-        const unsigned u_nodal_index = this->u_index_nst(i);
+        const unsigned u_nodal_index = this->u_index_nst(n, i);
 
         // Number of timsteps (past & present)
         const unsigned n_time = time_stepper_pt->ntstorage();
@@ -1514,13 +1526,13 @@ namespace oomph
 
       for (unsigned i = 0; i < DIM; i++)
       {
-        // Index at which the nodal value is stored
-        unsigned u_nodal_index = u_index_nst(i);
         // Initialise value of u
         veloc[i] = 0.0;
         // Loop over the local nodes and sum
         for (unsigned l = 0; l < n_node; l++)
         {
+          // Index at which the nodal value is stored
+          unsigned u_nodal_index = u_index_nst(l, i);
           veloc[i] += nodal_value(l, u_nodal_index) * psi[l];
         }
       }
@@ -1536,14 +1548,13 @@ namespace oomph
       // Find values of shape function
       shape(s, psi);
 
-      // Get nodal index at which i-th velocity is stored
-      unsigned u_nodal_index = u_index_nst(i);
-
       // Initialise value of u
       double interpolated_u = 0.0;
       // Loop over the local nodes and sum
       for (unsigned l = 0; l < n_node; l++)
       {
+        // Get nodal index at which i-th velocity is stored
+        unsigned u_nodal_index = u_index_nst(l, i);
         interpolated_u += nodal_value(l, u_nodal_index) * psi[l];
       }
 
@@ -1565,14 +1576,14 @@ namespace oomph
       // Find values of shape function
       shape(s, psi);
 
-      // Get nodal index at which i-th velocity is stored
-      unsigned u_nodal_index = u_index_nst(i);
-
       // Initialise value of u
       double interpolated_u = 0.0;
       // Loop over the local nodes and sum
       for (unsigned l = 0; l < n_node; l++)
       {
+        // Get nodal index at which i-th velocity is stored
+        unsigned u_nodal_index = u_index_nst(l, i);
+
         interpolated_u += nodal_value(t, l, u_nodal_index) * psi[l];
       }
 
@@ -1596,13 +1607,13 @@ namespace oomph
       // Find values of shape function
       shape(s, psi);
 
-      // Find the index at which the velocity component is stored
-      const unsigned u_nodal_index = u_index_nst(i);
-
       // Find the number of dofs associated with interpolated u
       unsigned n_u_dof = 0;
       for (unsigned l = 0; l < n_node; l++)
       {
+        // Find the index at which the velocity component is stored
+        const unsigned u_nodal_index = u_index_nst(l, i);
+
         int global_eqn = this->node_pt(l)->eqn_number(u_nodal_index);
         // If it's positive add to the count
         if (global_eqn >= 0)
@@ -1620,6 +1631,9 @@ namespace oomph
       // Loop over the local nodes and sum
       for (unsigned l = 0; l < n_node; l++)
       {
+        // Find the index at which the velocity component is stored
+        const unsigned u_nodal_index = u_index_nst(l, i);
+
         // Get the global equation number
         int global_eqn = this->node_pt(l)->eqn_number(u_nodal_index);
         if (global_eqn >= 0)
@@ -1696,15 +1710,15 @@ namespace oomph
       // Find values of shape function (ignore jacobian)
       (void)this->dshape_eulerian(s, psif, dpsifdx);
 
-      // Get the index at which the velocity is stored
-      const unsigned u_nodal_index = u_index_nst(i);
-
       // Initialise value of dudx
       double interpolated_dudx = 0.0;
 
       // Loop over the local nodes and sum
       for (unsigned l = 0; l < n_node; l++)
       {
+        // Get the index at which the velocity is stored
+        const unsigned u_nodal_index = u_index_nst(l, i);
+
         interpolated_dudx += nodal_value(l, u_nodal_index) * dpsifdx(l, j);
       }
 
@@ -3040,9 +3054,6 @@ namespace oomph
       // Velocity
       else
       {
-        // Find the index at which the variable is stored
-        unsigned u_nodal_index = this->u_index_nst(fld);
-
         // Local shape function
         Shape psi(n_node);
 
@@ -3055,6 +3066,9 @@ namespace oomph
         // Sum over the local nodes at that time
         for (unsigned l = 0; l < n_node; l++)
         {
+          // Find the index at which the variable is stored
+          unsigned u_nodal_index = this->u_index_nst(l, fld);
+
           interpolated_u += this->nodal_value(t, l, u_nodal_index) * psi[l];
         }
         return interpolated_u;
@@ -3077,6 +3091,7 @@ namespace oomph
 
 
     /// Return local equation number of value j in field fld.
+    // TODO Check/update comment
     int local_equation(const unsigned& fld, const unsigned& j)
     {
       if (fld == this->dim())
@@ -3085,7 +3100,7 @@ namespace oomph
       }
       else
       {
-        const unsigned u_nodal_index = this->u_index_nst(fld);
+        const unsigned u_nodal_index = this->u_index_nst(j, fld);
         return this->nodal_local_eqn(j, u_nodal_index);
       }
     }
@@ -3279,7 +3294,7 @@ namespace oomph
       }
       else
       {
-        const unsigned u_nodal_index = this->u_index_nst(fld);
+        const unsigned u_nodal_index = this->u_index_nst(j, fld);
         return this->nodal_local_eqn(j, u_nodal_index);
       }
     }

@@ -869,6 +869,16 @@ namespace oomph
     /// Return number of pressure values
     unsigned npres_nst() const;
 
+    /// Deduce whether or not the provided node is a pressure node
+    bool is_pressure_node(const unsigned& n) const
+    {
+      // The number of pressure nodes
+      unsigned n_p = npres_nst();
+
+      // See if the value n is in the array Pconv
+      return std::find(this->Pconv, this->Pconv + n_p, n) != this->Pconv + n_p;
+    } // End of is_pressure_node
+
     /// Pin p_dof-th pressure dof and set it to value specified by p_value.
     void fix_pressure(const unsigned& p_dof, const double& p_value)
     {

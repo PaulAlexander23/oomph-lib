@@ -219,7 +219,7 @@ namespace oomph
     /// equations
     // for (unsigned i = 0; i < 2; i++)
     //{
-    //  int local_eqn = nodal_local_eqn(0, this->U_index_interface_boundary[i]);
+    //  int local_eqn = nodal_local_eqn(0, this->U_index_interface_boundary[0][i]);
     //  if (local_eqn >= 0)
     //  {
     //    residuals[local_eqn] += (sigma_local / ca_local) * unit_tangent[i];
@@ -229,7 +229,7 @@ namespace oomph
     // Just add the appropriate contribution to the momentum equations
     for (unsigned i = 0; i < 2; i++)
     {
-      int local_eqn = nodal_local_eqn(0, this->U_index_interface_boundary[i]);
+      int local_eqn = nodal_local_eqn(0, this->U_index_interface_boundary[0][i]);
       if (local_eqn >= 0)
       {
         residuals[local_eqn] -= (sigma_local / ca_local) *
@@ -290,7 +290,7 @@ namespace oomph
 
         // Lagrange multiplier contribution to momentum equations
         local_eqn =
-          this->nodal_local_eqn(0, this->U_index_interface_boundary[1]);
+          this->nodal_local_eqn(0, this->U_index_interface_boundary[0][1]);
         if (local_eqn >= 0)
         {
           residuals[local_eqn] += lambda;
@@ -459,7 +459,7 @@ namespace oomph
           {
             // Get the equation number for the momentum equation
             int local_eqn =
-              this->nodal_local_eqn(l, this->U_index_interface_boundary[i]);
+              this->nodal_local_eqn(l, this->U_index_interface_boundary[l][i]);
 
             // If it's not a boundary condition
             if (local_eqn >= 0)
@@ -500,7 +500,7 @@ namespace oomph
           {
             // Get the equation number for the momentum equation
             int local_eqn =
-              this->nodal_local_eqn(l, this->U_index_interface_boundary[i]);
+              this->nodal_local_eqn(l, this->U_index_interface_boundary[l][i]);
 
             // If it's not a boundary condition
             if (local_eqn >= 0)
@@ -712,7 +712,7 @@ namespace oomph
         for (unsigned i = 0; i < n_dim; i++)
         {
           // Get the equation number for the momentum equation
-          local_eqn = this->nodal_local_eqn(l, this->U_index_interface[i]);
+          local_eqn = this->nodal_local_eqn(l, this->U_index_interface[l][i]);
 
           // If it's not a boundary condition
           if (local_eqn >= 0)
@@ -767,7 +767,7 @@ namespace oomph
               for (unsigned i2 = 0; i2 < n_dim; i2++)
               {
                 local_unknown =
-                  this->nodal_local_eqn(l2, this->U_index_interface[i2]);
+                  this->nodal_local_eqn(l2, this->U_index_interface[l2][i2]);
                 // If it's a non-zero dof add
                 if (local_unknown >= 0)
                 {
@@ -807,7 +807,7 @@ namespace oomph
   {
     const unsigned el_dim = this->dim();
     const unsigned n_dim = this->nodal_dimension();
-    const unsigned n_velocity = this->U_index_interface.size();
+    const unsigned n_velocity = n_dim;
     // Set output Vector
     Vector<double> s(el_dim);
 
@@ -844,7 +844,7 @@ namespace oomph
   {
     const unsigned el_dim = this->dim();
     const unsigned n_dim = this->nodal_dimension();
-    const unsigned n_velocity = this->U_index_interface.size();
+    const unsigned n_velocity = n_dim;
     // Set output Vector
     Vector<double> s(el_dim);
 

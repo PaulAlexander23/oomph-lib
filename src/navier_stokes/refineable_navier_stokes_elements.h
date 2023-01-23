@@ -117,7 +117,7 @@ namespace oomph
 
     // Which nodal value represents the pressure? (Negative if pressure
     // is not based on nodal interpolation).
-    int p_index = bulk_el_pt->p_nodal_index_nst();
+    int p_index = bulk_el_pt->p_index_nst();
 
     // Local array of booleans that are true if the l-th pressure value is
     // hanging (avoid repeated virtual function calls)
@@ -491,9 +491,6 @@ namespace oomph
       // Find values of shape function at the given local coordinate
       this->shape(s, psi);
 
-      // Find the index at which the velocity component is stored
-      const unsigned u_nodal_index = this->u_index_nst(i);
-
       // Storage for hang info pointer
       HangInfo* hang_info_pt = 0;
       // Storage for global equation
@@ -519,6 +516,10 @@ namespace oomph
         {
           n_master = 1;
         }
+
+
+        // Find the index at which the velocity component is stored
+        const unsigned u_nodal_index = this->u_index_nst(l, i);
 
         // Loop over the master nodes
         for (unsigned m = 0; m < n_master; m++)
@@ -553,6 +554,9 @@ namespace oomph
       // Loop over the local nodes and sum
       for (unsigned l = 0; l < n_node; l++)
       {
+        // Find the index at which the velocity component is stored
+        const unsigned u_nodal_index = this->u_index_nst(l, i);
+
         unsigned n_master = 1;
         double hang_weight = 1.0;
 
@@ -655,7 +659,7 @@ namespace oomph
     void unpin_elemental_pressure_dofs()
     {
       // find the index at which the pressure is stored
-      int p_index = this->p_nodal_index_nst();
+      int p_index = this->p_index_nst();
       unsigned n_node = this->nnode();
       // loop over nodes
       for (unsigned n = 0; n < n_node; n++)
@@ -668,7 +672,7 @@ namespace oomph
     void pin_elemental_redundant_nodal_pressure_dofs()
     {
       // Find the pressure index
-      int p_index = this->p_nodal_index_nst();
+      int p_index = this->p_index_nst();
       // Loop over all nodes
       unsigned n_node = this->nnode();
       // loop over all nodes and pin all  the nodal pressures
@@ -783,10 +787,10 @@ namespace oomph
       // Calculate velocities: values[0],...
       for (unsigned i = 0; i < DIM; i++)
       {
-        // Get the index at which the i-th velocity is stored
-        unsigned u_nodal_index = this->u_index_nst(i);
         for (unsigned l = 0; l < n_node; l++)
         {
+          // Get the index at which the i-th velocity is stored
+          unsigned u_nodal_index = this->u_index_nst(l, i);
           values[i] += this->nodal_value(t, l, u_nodal_index) * psif[l];
         }
       }
@@ -799,10 +803,10 @@ namespace oomph
 
     ///  Perform additional hanging node procedures for variables
     /// that are not interpolated by all nodes. The pressures are stored
-    /// at the p_nodal_index_nst-th location in each node
+    /// at the p_index_nst-th location in each node
     void further_setup_hanging_nodes()
     {
-      this->setup_hang_for_value(this->p_nodal_index_nst());
+      this->setup_hang_for_value(this->p_index_nst());
     }
 
     /// Pointer to n_p-th pressure node
@@ -979,17 +983,16 @@ namespace oomph
     void identify_load_data(
       std::set<std::pair<Data*, unsigned>>& paired_load_data)
     {
-      // Get the nodal indices at which the velocities are stored
-      unsigned u_index[DIM];
-      for (unsigned i = 0; i < DIM; i++)
-      {
-        u_index[i] = this->u_index_nst(i);
-      }
-
       // Loop over the nodes
       unsigned n_node = this->nnode();
       for (unsigned n = 0; n < n_node; n++)
       {
+        // Get the nodal indices at which the velocities are stored
+        unsigned u_index[DIM];
+        for (unsigned i = 0; i < DIM; i++)
+        {
+          u_index[i] = this->u_index_nst(n, i);
+        }
         // Pointer to current node
         Node* nod_pt = this->node_pt(n);
 
@@ -1027,7 +1030,7 @@ namespace oomph
       }
 
       // Get the nodal index at which the pressure is stored
-      int p_index = this->p_nodal_index_nst();
+      int p_index = this->p_index_nst();
 
       // Loop over the pressure data
       unsigned n_pres = this->npres_nst();
@@ -1220,10 +1223,10 @@ namespace oomph
       // Calculate velocities: values[0],...
       for (unsigned i = 0; i < DIM; i++)
       {
-        // Get the nodal index at which the i-th velocity component is stored
-        unsigned u_nodal_index = this->u_index_nst(i);
         for (unsigned l = 0; l < n_node; l++)
         {
+          // Get the nodal index at which the i-th velocity component is stored
+          unsigned u_nodal_index = this->u_index_nst(l, i);
           values[i] += this->nodal_value(t, l, u_nodal_index) * psif[l];
         }
       }
@@ -1263,17 +1266,17 @@ namespace oomph
     void identify_load_data(
       std::set<std::pair<Data*, unsigned>>& paired_load_data)
     {
-      // Get the nodal indices at which the velocities are stored
-      unsigned u_index[DIM];
-      for (unsigned i = 0; i < DIM; i++)
-      {
-        u_index[i] = this->u_index_nst(i);
-      }
-
       // Loop over the nodes
       unsigned n_node = this->nnode();
       for (unsigned n = 0; n < n_node; n++)
       {
+        // Get the nodal indices at which the velocities are stored
+        unsigned u_index[DIM];
+        for (unsigned i = 0; i < DIM; i++)
+        {
+          u_index[i] = this->u_index_nst(n, i);
+        }
+
         // Pointer to current node
         Node* nod_pt = this->node_pt(n);
 
@@ -1548,10 +1551,10 @@ namespace oomph
       // Calculate velocities: values[0],...
       for (unsigned i = 0; i < DIM; i++)
       {
-        // Get the nodal index at which the i-th velocity component is stored
-        unsigned u_nodal_index = this->u_index_nst(i);
         for (unsigned l = 0; l < n_node; l++)
         {
+          // Get the nodal index at which the i-th velocity component is stored
+          unsigned u_nodal_index = this->u_index_nst(l, i);
           values[i] += this->nodal_value(t, l, u_nodal_index) * psif[l];
         }
       }

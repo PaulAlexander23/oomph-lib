@@ -154,13 +154,7 @@ namespace oomph
       Vector<double> s(n_dim - 1);
 
       // get the value at which the velocities are stored
-      Vector<unsigned> u_index(n_dim);
       ELEMENT* el_pt = dynamic_cast<ELEMENT*>(this->bulk_element_pt());
-      for (unsigned i = 0; i < n_dim; i++)
-      {
-        u_index[i] = el_pt->u_index_nst(i);
-      }
-
       // Loop over plot points
       unsigned num_plot_points = this->nplot_points(n_plot);
       for (unsigned iplot = 0; iplot < num_plot_points; iplot++)
@@ -185,6 +179,12 @@ namespace oomph
         // Calculate stuff
         for (unsigned l = 0; l < n_node; l++)
         {
+          Vector<unsigned> u_index(n_dim);
+          for (unsigned i = 0; i < n_dim; i++)
+          {
+            u_index[i] = el_pt->u_index_nst(l, i);
+          }
+
           BoundaryNodeBase* bnod_pt =
             dynamic_cast<BoundaryNodeBase*>(node_pt(l));
           unsigned first_index =
@@ -261,12 +261,7 @@ namespace oomph
       Vector<Vector<double>> tang_vec(dim_el, Vector<double>(dim_el + 1));
 
       // get the value at which the velocities are stored
-      Vector<unsigned> u_index(dim_el + 1);
       ELEMENT* el_pt = dynamic_cast<ELEMENT*>(this->bulk_element_pt());
-      for (unsigned i = 0; i < dim_el + 1; i++)
-      {
-        u_index[i] = el_pt->u_index_nst(i);
-      }
 
       // Loop over the integration points
       for (unsigned ipt = 0; ipt < n_intpt; ipt++)
@@ -289,6 +284,11 @@ namespace oomph
         // Loop over nodes
         for (unsigned j = 0; j < n_node; j++)
         {
+          Vector<unsigned> u_index(dim_el + 1);
+          for (unsigned i = 0; i < dim_el + 1; i++)
+          {
+            u_index[i] = el_pt->u_index_nst(j, i);
+          }
           // Assemble the velocity component
           for (unsigned i = 0; i < dim_el + 1; i++)
           {
@@ -351,6 +351,11 @@ namespace oomph
                   // Loop over the nodes again for unknowns
                   for (unsigned jj = 0; jj < n_node; jj++)
                   {
+                    Vector<unsigned> u_index(dim_el + 1);
+                    for (unsigned i = 0; i < dim_el + 1; i++)
+                    {
+                      u_index[i] = el_pt->u_index_nst(jj, i);
+                    }
                     // Local eqn number for the i-th component
                     // of the velocity in the jj-th element
                     local_unknown = nodal_local_eqn(jj, u_index[i]);
@@ -370,7 +375,7 @@ namespace oomph
           {
             // Local eqn number for the i-th component of the
             // velocity in the j-th element
-            local_eqn = nodal_local_eqn(j, u_index[i]);
+            local_eqn = nodal_local_eqn(j, this->u_index_nst(j, i));
 
             if (local_eqn >= 0)
             {

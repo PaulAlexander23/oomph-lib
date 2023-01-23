@@ -64,17 +64,16 @@ namespace oomph
   void TCrouzeixRaviartElement<DIM>::identify_load_data(
     std::set<std::pair<Data*, unsigned>>& paired_load_data)
   {
-    // Find the index at which the velocity is stored
-    unsigned u_index[DIM];
-    for (unsigned i = 0; i < DIM; i++)
-    {
-      u_index[i] = this->u_index_nst(i);
-    }
-
     // Loop over the nodes
     unsigned n_node = this->nnode();
     for (unsigned n = 0; n < n_node; n++)
     {
+      // Find the index at which the velocity is stored
+      unsigned u_index[DIM];
+      for (unsigned i = 0; i < DIM; i++)
+      {
+        u_index[i] = this->u_index_nst(n, i);
+      }
       // Loop over the velocity components and add pointer to their data
       // and indices to the vectors
       for (unsigned i = 0; i < DIM; i++)

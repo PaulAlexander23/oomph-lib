@@ -92,7 +92,7 @@ namespace oomph
 
     /// Index at which the i-th velocity component is stored in the
     /// element's nodes
-    Vector<unsigned> U_index_interface_boundary;
+    Vector<Vector<unsigned>> U_index_interface_boundary;
 
     /// Function that is used to determine the local equation number of
     /// the kinematic equation associated with the nodes of the element
@@ -178,7 +178,7 @@ namespace oomph
     }
 
     /// Access for nodal index at which the velocity components are stored
-    Vector<unsigned>& u_index_interface_boundary()
+    Vector<Vector<unsigned>>& u_index_interface_boundary()
     {
       return U_index_interface_boundary;
     }
@@ -509,7 +509,7 @@ namespace oomph
 
   protected:
     /// Nodal index at which the i-th velocity component is stored.
-    Vector<unsigned> U_index_interface;
+    Vector<Vector<unsigned>> U_index_interface;
 
     /// The Data that contains the external  pressure is stored
     /// as external Data for the element. Which external Data item is it?
@@ -683,7 +683,7 @@ namespace oomph
     /// Return the i-th velocity component at local node j.
     double u(const unsigned& j, const unsigned& i)
     {
-      return node_pt(j)->value(U_index_interface[i]);
+      return node_pt(j)->value(U_index_interface[j][i]);
     }
 
     /// Calculate the i-th velocity component at the local coordinate s.

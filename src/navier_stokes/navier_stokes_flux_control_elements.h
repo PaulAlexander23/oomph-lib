@@ -614,14 +614,6 @@ namespace oomph
     void refineable_fill_in_generic_residual_contribution_fluid_traction(
       Vector<double>& residuals, DenseMatrix<double>& jacobian, unsigned flag)
     {
-      // Get the indices at which the velocity components are stored
-      unsigned u_nodal_index[this->Dim];
-      for (unsigned i = 0; i < this->Dim; i++)
-      {
-        u_nodal_index[i] =
-          dynamic_cast<ELEMENT*>(this->bulk_element_pt())->u_index_nst(i);
-      }
-
       // Pointer to hang info object
       HangInfo* hang_info_pt = 0;
 
@@ -675,6 +667,14 @@ namespace oomph
         //----------------------------------------------------
         for (unsigned l = 0; l < n_node; l++)
         {
+          // Get the indices at which the velocity components are stored
+          unsigned u_nodal_index[this->Dim];
+          for (unsigned i = 0; i < this->Dim; i++)
+          {
+            u_nodal_index[i] = dynamic_cast<ELEMENT*>(this->bulk_element_pt())
+                                 ->u_index_nst(l, i);
+          }
+
           // Local boolean to indicate whether the node is hanging
           bool is_node_hanging = this->node_pt(l)->is_hanging();
 
