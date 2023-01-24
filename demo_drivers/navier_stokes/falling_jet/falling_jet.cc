@@ -376,7 +376,7 @@ EntryFlowProblem<ELEMENT>::EntryFlowProblem(DocInfo& doc_info,
  unsigned lagrange_index=3;
  //If the pressure is stored at a node, the lagrangian index is 4
  if(dynamic_cast<ELEMENT*>(mesh_pt()->element_pt(0))
-    ->p_nodal_index_nst() >= 0) {lagrange_index=4;}
+    ->p_index_nst() >= 0) {lagrange_index=4;}
  
  //Boundary 4 is the inflow, pin x, y and z
  {
