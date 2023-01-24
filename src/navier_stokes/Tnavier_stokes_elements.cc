@@ -134,7 +134,7 @@ namespace oomph
   // Set the data for the number of Variables at each node
   template<>
   const unsigned TTaylorHoodElement<3>::Initial_Nvalue[10] = {
-    3, 3, 3, 3, 2, 2, 2, 2, 2, 2};
+    4, 4, 4, 4, 3, 3, 3, 3, 3, 3};
 
   // Set the data for the pressure conversion array
   template<>
