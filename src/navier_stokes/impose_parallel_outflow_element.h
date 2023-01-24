@@ -375,7 +375,7 @@ namespace oomph
           {
             // Local eqn number for the i-th component of the
             // velocity in the j-th element
-            local_eqn = nodal_local_eqn(j, this->u_index_nst(j, i));
+            local_eqn = nodal_local_eqn(j, el_pt->u_index_nst(j, i));
 
             if (local_eqn >= 0)
             {
