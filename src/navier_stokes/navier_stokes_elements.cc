@@ -144,7 +144,7 @@ namespace oomph
           // Loop over the velocity components
           for (unsigned i = 0; i < n_dim; i++)
           {
-            local_eqn = nodal_local_eqn(l, u_nodal_index[i]);
+            local_eqn = momentum_local_eqn(l, i);
 
             // If not a boundary condition
             if (local_eqn >= 0)
@@ -1916,7 +1916,7 @@ namespace oomph
         for (unsigned i = 0; i < DIM; i++)
         {
           /*IF it's not a boundary condition*/
-          local_eqn = nodal_local_eqn(l, u_nodal_index[i]);
+          local_eqn = momentum_local_eqn(l, i);
           if (local_eqn >= 0)
           {
             // Add the user-defined body force terms
@@ -1964,7 +1964,7 @@ namespace oomph
                 for (unsigned i2 = 0; i2 < DIM; i2++)
                 {
                   // If at a non-zero degree of freedom add in the entry
-                  local_unknown = nodal_local_eqn(l2, u_index_nst(l2, i2));
+                  local_unknown = u_local_unknown(l2, i2);
                   if (local_unknown >= 0)
                   {
                     // Add contribution to Elemental Matrix
@@ -2080,7 +2080,7 @@ namespace oomph
               for (unsigned i2 = 0; i2 < DIM; i2++)
               {
                 /*If we're at a non-zero degree of freedom add it in*/
-                local_unknown = nodal_local_eqn(l2, u_nodal_index[i2]);
+                local_unknown = u_local_unknown(l2, i2);
                 if (local_unknown >= 0)
                 {
                   jacobian(local_eqn, local_unknown) +=
@@ -2406,8 +2406,7 @@ namespace oomph
         for (unsigned i = 0; i < DIM; i++)
         {
           // Get the local equation
-          local_eqn = nodal_local_eqn(l, u_nodal_index[i]);
-          ;
+          local_eqn = momentum_local_eqn(l, i);
 
           // IF it's not a boundary condition
           if (local_eqn >= 0)

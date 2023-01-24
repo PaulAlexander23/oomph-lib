@@ -459,6 +459,9 @@ namespace oomph
       // Find out how many nodes there are
       unsigned n_node = this->nnode();
 
+      // Get the bulk element
+      ELEMENT* el_pt = dynamic_cast<ELEMENT*>(this->bulk_element_pt());
+
       // Set up memory for the shape and test functions
       Shape psif(n_node), testf(n_node);
 
@@ -617,6 +620,9 @@ namespace oomph
       // Pointer to hang info object
       HangInfo* hang_info_pt = 0;
 
+      // Get the bulk element
+      ELEMENT* el_pt = dynamic_cast<ELEMENT*>(this->bulk_element_pt());
+
       // Find out how many nodes there are
       unsigned n_node = this->nnode();
 
@@ -671,8 +677,7 @@ namespace oomph
           unsigned u_nodal_index[this->Dim];
           for (unsigned i = 0; i < this->Dim; i++)
           {
-            u_nodal_index[i] = dynamic_cast<ELEMENT*>(this->bulk_element_pt())
-                                 ->u_index_nst(l, i);
+            u_nodal_index[i] = el_pt->u_index_nst(this->bulk_node_number(l), i);
           }
 
           // Local boolean to indicate whether the node is hanging
@@ -712,7 +717,7 @@ namespace oomph
               else
               {
                 // Local equation number
-                local_eqn = this->nodal_local_eqn(l, u_nodal_index[i]);
+                local_eqn = el_pt->momentum_local_eqn(this->bulk_node_number(l), i);
 
                 // Node contributes with full weight
                 hang_weight = 1.0;

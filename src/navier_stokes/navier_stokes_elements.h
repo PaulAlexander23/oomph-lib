@@ -880,6 +880,18 @@ namespace oomph
       return i;
     }
 
+    virtual inline unsigned momentum_local_eqn(const unsigned& n,
+                                               const unsigned& i) const
+    {
+      return nodal_local_eqn(n, u_index_nst(n, i));
+    }
+
+    virtual inline unsigned u_local_unknown(const unsigned& n,
+                                            const unsigned& i) const
+    {
+      return nodal_local_eqn(n, u_index_nst(n, i));
+    }
+
     /// Return the number of velocity components
     /// Used in FluidInterfaceElements
     inline unsigned n_u_nst() const

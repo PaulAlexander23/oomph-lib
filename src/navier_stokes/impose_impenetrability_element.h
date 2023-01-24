@@ -280,16 +280,10 @@ namespace oomph
                 // Loop over the nodes again for unknowns
                 for (unsigned jj = 0; jj < n_node; jj++)
                 {
-                  // get the value at which the velocities are stored
-                  Vector<unsigned> u_index(dim_el + 1);
-                  for (unsigned i = 0; i < dim_el + 1; i++)
-                  {
-                    u_index[i] =
-                      el_pt->u_index_nst(this->bulk_node_number(jj), i);
-                  }
                   // Local eqn number for the i-th component
                   // of the velocity in the jj-th element
-                  local_unknown = nodal_local_eqn(jj, u_index[i]);
+                  local_unknown =
+                    el_pt->u_local_unknown(this->bulk_node_number(jj), i);
                   if (local_unknown >= 0)
                   {
                     jacobian(local_eqn, local_unknown) +=
@@ -310,7 +304,7 @@ namespace oomph
             }
             // Local eqn number for the i-th component of the
             // velocity in the j-th element
-            local_eqn = nodal_local_eqn(j, u_index[i]);
+            local_eqn = el_pt->momentum_local_eqn(this->bulk_node_number(j), i);
 
             if (local_eqn >= 0)
             {
@@ -439,8 +433,9 @@ namespace oomph
           // The local equation number is required to check if the value is
           // pinned, if it is not pinned, the local equation number is required
           // to get the global equation number.
-          int local_eqn = Bulk_element_pt->nodal_local_eqn(
-            Bulk_node_number[node_i], velocity_i);
+          int local_eqn =
+            dynamic_cast<ELEMENT*>(Bulk_element_pt)
+              ->momentum_local_eqn(Bulk_node_number[node_i], velocity_i);
 
           // ignore pinned values
           if (local_eqn >= 0)
@@ -479,11 +474,7 @@ namespace oomph
       for (unsigned l = 0; l < n_node; l++)
       {
         // get the value at which the velocities are stored
-        Vector<unsigned> u_index(dim() + 1);
-        for (unsigned i = 0; i < dim() + 1; i++)
-        {
-          u_index[i] = el_pt->u_index_nst(this->bulk_node_number(l), i);
-        }
+        unsigned u_index = el_pt->u_index_nst(this->bulk_node_number(l), i);
         interpolated_u += nodal_value(l, u_index[i]) * psi(l);
       }
 

@@ -179,12 +179,6 @@ namespace oomph
         // Calculate stuff
         for (unsigned l = 0; l < n_node; l++)
         {
-          Vector<unsigned> u_index(n_dim);
-          for (unsigned i = 0; i < n_dim; i++)
-          {
-            u_index[i] = el_pt->u_index_nst(l, i);
-          }
-
           BoundaryNodeBase* bnod_pt =
             dynamic_cast<BoundaryNodeBase*>(node_pt(l));
           unsigned first_index =
@@ -193,7 +187,8 @@ namespace oomph
           for (unsigned i = 0; i < n_dim; i++)
           {
             interpolated_x[i] += this->nodal_position(l, i) * psi[l];
-            interpolated_u[i] += nodal_value(l, u_index[i]) * psi[l];
+            interpolated_u[i] +=
+              el_pt->u_nst(this->bulk_node_number(l), i) * psi[l];
           }
           for (unsigned i = 0; i < n_dim - 1; i++)
           {
@@ -284,15 +279,11 @@ namespace oomph
         // Loop over nodes
         for (unsigned j = 0; j < n_node; j++)
         {
-          Vector<unsigned> u_index(dim_el + 1);
-          for (unsigned i = 0; i < dim_el + 1; i++)
-          {
-            u_index[i] = el_pt->u_index_nst(j, i);
-          }
           // Assemble the velocity component
           for (unsigned i = 0; i < dim_el + 1; i++)
           {
-            interpolated_u[i] += nodal_value(j, u_index[i]) * psi(j);
+            interpolated_u[i] +=
+              el_pt->u_nst(this->bulk_node_number(j), i) * psi[j];
           }
 
           // Cast to a boundary node
@@ -351,14 +342,10 @@ namespace oomph
                   // Loop over the nodes again for unknowns
                   for (unsigned jj = 0; jj < n_node; jj++)
                   {
-                    Vector<unsigned> u_index(dim_el + 1);
-                    for (unsigned i = 0; i < dim_el + 1; i++)
-                    {
-                      u_index[i] = el_pt->u_index_nst(jj, i);
-                    }
                     // Local eqn number for the i-th component
                     // of the velocity in the jj-th element
-                    local_unknown = nodal_local_eqn(jj, u_index[i]);
+                    local_unknown =
+                      el_pt->u_local_unknown(this->bulk_node_number(jj), i);
                     if (local_unknown >= 0)
                     {
                       jacobian(local_eqn, local_unknown) +=
@@ -375,7 +362,7 @@ namespace oomph
           {
             // Local eqn number for the i-th component of the
             // velocity in the j-th element
-            local_eqn = nodal_local_eqn(j, el_pt->u_index_nst(j, i));
+            local_eqn = el_pt->momentum_local_eqn(this->bulk_node_number(j), i);
 
             if (local_eqn >= 0)
             {
@@ -494,8 +481,9 @@ namespace oomph
           // element's node. The local equation number is required to check if
           // the value is pinned, if it is not pinned, the local equation number
           // is required to get the global equation number.
-          int local_eqn = Bulk_element_pt->nodal_local_eqn(
-            Bulk_node_number[node_i], velocity_i);
+          int local_eqn =
+            dynamic_cast<ELEMENT*>(Bulk_element_pt)
+              ->momentum_local_eqn(this->bulk_node_number(node_i), velocity_i);
 
           // Ignore pinned values.
           if (local_eqn >= 0)
