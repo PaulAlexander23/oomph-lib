@@ -37,6 +37,7 @@
 #include "../generic/spines.h"
 #include "../generic/shape.h"
 #include "../generic/hijacked_elements.h"
+#include "../navier_stokes/navier_stokes_elements.h"
 
 namespace oomph
 {
@@ -49,8 +50,11 @@ namespace oomph
   /// but in three-dimensional problems, they are lines.
   /// These boundaries may be in contact with a solid surface, in which case
   /// the normal to that surface must be provided.
+  // Note: The class template ELEMENT is the "bulk" FluidInterfaceElement
   //=========================================================================
-  class FluidInterfaceBoundingElement : public virtual FaceElement
+  template<class ELEMENT>
+  class FluidInterfaceBoundingElement : public virtual FaceGeometry<ELEMENT>,
+                                        public virtual FaceElement
   {
   private:
     /// Function pointer to a wall unit normal function. Returns the
@@ -61,8 +65,8 @@ namespace oomph
     /// Function pointer to a contact angle function. Returns the
     /// contact angle between the fluid and the wall, for a given contact line
     /// velocity
-    typedef void (*ContactAngleFctPt)(const Vector<double>& local_u,
-                                      double& local_angle);
+    typedef double (*ContactAngleFctPt)(const Vector<double>& x,
+                                        const Vector<double>& local_u);
 
     /// Pointer to a wall normal function that returns
     /// the wall unit normal as a function of position in global
@@ -73,32 +77,208 @@ namespace oomph
     /// the contact angle as a function of the contact line velocity.
     ContactAngleFctPt Contact_angle_fct_pt;
 
-    /// Pointer to the desired value of the contact angle (if any)
-    double* Contact_angle_pt;
-
     /// Pointer to the desired value of the capillary number
     double* Ca_pt;
+
+    // Lagrange multipler id
+    unsigned Id;
 
   protected:
     /// Flag used to determine whether the contact angle is to be
     /// used (0 if not), and whether it will be applied weakly as a force term
     /// in the momentum equations (1) or by hijacking the kinematic
     /// condition (2).
-    unsigned Contact_angle_flag;
+    Vector<unsigned> Contact_angle_flag;
 
     /// Flag used to determine whether the contact angle is to be
     /// set by the fixed value (0) or by the function (1) (Default).
     unsigned Contact_angle_fct_flag;
 
-    /// Index at which the i-th velocity component is stored in the
-    /// element's nodes
-    Vector<Vector<unsigned>> U_index_interface_boundary;
+  public:
+    /// Constructor
+    FluidInterfaceBoundingElement(FiniteElement* const& element_pt,
+                                  const int& face_index,
+                                  const unsigned& id = 0)
+      : Wall_unit_normal_fct_pt(0),
+        Contact_angle_fct_pt(0),
+        Ca_pt(0),
+        Contact_angle_fct_flag(1),
+        Id(id)
+    {
+      // Attach the geometrical information to the element. N.B. This function
+      // also assigns nbulk_value from the required_nvalue of the bulk element
+      element_pt->build_face_element(face_index, this);
+
+      // we need 1 additional values for each FaceElement node, the kinematic
+      // lagrange multiplier constraining the boundary motion to the wall
+      Vector<unsigned> n_additional_values(nnode(), 1);
+
+      // add storage for lagrange multipliers and set the map containing
+      // the position of the first entry of this face element's
+      // additional values.
+      add_additional_values(n_additional_values, id);
+
+      Contact_angle_flag = Vector<unsigned>(nnode(), 0);
+    }
+
+    virtual double nst_u(const unsigned& n, const unsigned& i) const
+    {
+      ELEMENT* el_pt = dynamic_cast<ELEMENT*>(this->bulk_element_pt());
+      return el_pt->nst_u(this->bulk_node_number(n), i);
+    }
+
+    virtual inline unsigned nst_u_local_unknown(const unsigned& n,
+                                                const unsigned& i) const
+    {
+      ELEMENT* el_pt = dynamic_cast<ELEMENT*>(this->bulk_element_pt());
+      return el_pt->nst_u_local_unknown(this->bulk_node_number(n), i);
+    }
+
+    virtual inline unsigned nst_momentum_local_eqn(const unsigned& n,
+                                                   const unsigned& i) const
+    {
+      ELEMENT* el_pt = dynamic_cast<ELEMENT*>(this->bulk_element_pt());
+      return el_pt->nst_momentum_local_eqn(this->bulk_node_number(n), i);
+    }
 
     /// Function that is used to determine the local equation number of
     /// the kinematic equation associated with the nodes of the element
     /// This must be overloaded depending on the node update scheme
-    virtual int kinematic_local_eqn(const unsigned& n) = 0;
+    virtual int wall_bounded_kinematic_local_eqn(const unsigned& n)
+    {
+      BoundaryNodeBase* bnod_pt = dynamic_cast<BoundaryNodeBase*>(node_pt(n));
+      unsigned first_index =
+        bnod_pt->index_of_first_value_assigned_by_face_element(Id);
+      return this->nodal_local_eqn(n, first_index);
+    }
 
+    virtual double lagrange_multiplier(const unsigned& n)
+    {
+      BoundaryNodeBase* bnod_pt = dynamic_cast<BoundaryNodeBase*>(node_pt(n));
+      unsigned first_index =
+        bnod_pt->index_of_first_value_assigned_by_face_element(Id);
+      return this->nodal_value(n, first_index);
+    }
+
+    virtual int fsi_kinematic_local_eqn(const unsigned& n)
+    {
+      ELEMENT* el_pt = dynamic_cast<ELEMENT*>(this->bulk_element_pt());
+      return el_pt->kinematic_local_eqn(this->bulk_node_number(n));
+    }
+
+    virtual int fsi_lagrange_multipler(const unsigned& n)
+    {
+      ELEMENT* el_pt = dynamic_cast<ELEMENT*>(this->bulk_element_pt());
+      return el_pt->lagrange_multiplier(this->bulk_node_number(n));
+    }
+
+    /// Access function: Pointer to wall unit normal function
+    WallUnitNormalFctPt& wall_unit_normal_fct_pt()
+    {
+      return Wall_unit_normal_fct_pt;
+    }
+
+    /// Access function: Pointer to wall unit normal function. Const version
+    WallUnitNormalFctPt wall_unit_normal_fct_pt() const
+    {
+      return Wall_unit_normal_fct_pt;
+    }
+
+    // Get the contact angle from the double pointer or function pointer
+    double get_contact_angle(const Vector<double>& x,
+                             const Vector<double>& local_u)
+    {
+#ifdef PARANOID
+      if (Contact_angle_fct_pt == 0)
+      {
+        std::ostringstream error_message;
+        error_message << "The contact angle function has not been set."
+                      << std::endl;
+        throw OomphLibError(error_message.str(),
+                            OOMPH_CURRENT_FUNCTION,
+                            OOMPH_EXCEPTION_LOCATION);
+      }
+#endif
+
+      return (*Contact_angle_fct_pt)(x, local_u);
+    }
+
+    void set_contact_angle_fct(const ContactAngleFctPt& contact_angle_fct_pt)
+    {
+      Contact_angle_fct_pt = contact_angle_fct_pt;
+    }
+
+    void set_strong_imposition(const unsigned& n)
+    {
+      // Hijack the bulk element residuals
+      dynamic_cast<ELEMENT*>(bulk_element_pt())
+        ->hijack_kinematic_conditions(this->bulk_node_number(n));
+
+      this->fix_lagrange_multiplier(n);
+
+      Contact_angle_flag[n] = 2;
+    }
+
+    void set_weak_imposition(const unsigned& n)
+    {
+      std::string error_message =
+        "unhijack_kinematic_conditions not implemented.";
+      throw OomphLibError(
+        error_message, OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+      // Un-hijack the bulk element residuals
+
+      // dynamic_cast<ELEMENT*>(bulk_element_pt())
+      //   ->unhijack_kinematic_conditions(this->bulk_node_number(n));
+
+      this->free_lagrange_multiplier(n);
+
+      Contact_angle_flag[n] = 1;
+    }
+
+    void fix_lagrange_multiplier(const unsigned& n)
+    {
+      BoundaryNodeBase* bnod_pt = dynamic_cast<BoundaryNodeBase*>(node_pt(n));
+      unsigned first_index =
+        bnod_pt->index_of_first_value_assigned_by_face_element(Id);
+      const double value = 0.0;
+      return this->node_pt(n)->pin(first_index);
+      return this->node_pt(n)->set_value(first_index, value);
+    }
+
+    void free_lagrange_multiplier(const unsigned& n)
+    {
+      BoundaryNodeBase* bnod_pt = dynamic_cast<BoundaryNodeBase*>(node_pt(n));
+      unsigned first_index =
+        bnod_pt->index_of_first_value_assigned_by_face_element(Id);
+      return this->node_pt(n)->unpin(first_index);
+    }
+
+    /// Access function to the pointer specifying the capillary number
+    double*& ca_pt()
+    {
+      return Ca_pt;
+    }
+
+    /// Return the value of the capillary number
+    double ca()
+    {
+#ifdef PARANOID
+      if (Ca_pt != 0)
+      {
+#endif
+        return *Ca_pt;
+#ifdef PARANOID
+      }
+      else
+      {
+        throw OomphLibError("Capillary number has not been set",
+                            "FluidInterfaceBoundingElement::ca()",
+                            OOMPH_EXCEPTION_LOCATION);
+      }
+#endif
+    }
+
+  protected:
     /// Function that returns the unit normal of the bounding wall
     /// directed out of the fluid
     void wall_unit_normal(const Vector<double>& x, Vector<double>& normal)
@@ -142,126 +322,6 @@ namespace oomph
     }
 
   public:
-    /// Constructor
-    FluidInterfaceBoundingElement()
-      : Wall_unit_normal_fct_pt(0),
-        Contact_angle_fct_pt(0),
-        Contact_angle_pt(0),
-        Ca_pt(0),
-        Contact_angle_flag(0),
-        Contact_angle_fct_flag(1)
-    {
-    }
-
-    /// Access function: Pointer to wall unit normal function
-    WallUnitNormalFctPt& wall_unit_normal_fct_pt()
-    {
-      return Wall_unit_normal_fct_pt;
-    }
-
-    /// Access function: Pointer to wall unit normal function. Const version
-    WallUnitNormalFctPt wall_unit_normal_fct_pt() const
-    {
-      return Wall_unit_normal_fct_pt;
-    }
-
-    /// Access function: Pointer to contact angle function
-    ContactAngleFctPt& contact_angle_fct_pt()
-    {
-      return Contact_angle_fct_pt;
-    }
-
-    /// Access function: Pointer to contact angle function. Const version
-    ContactAngleFctPt contact_angle_fct_pt() const
-    {
-      return Contact_angle_fct_pt;
-    }
-
-    /// Access for nodal index at which the velocity components are stored
-    Vector<Vector<unsigned>>& u_index_interface_boundary()
-    {
-      return U_index_interface_boundary;
-    }
-
-    /// Set a pointer to the desired contact angle. Optional boolean
-    /// (defaults to true)
-    /// chooses strong imposition via hijacking (true) or weak imposition
-    /// via addition to momentum equation (false). The default strong imposition
-    /// is appropriate for static contact angle problems.
-    void set_contact_angle(double* const& angle_pt, const bool& strong = true);
-
-    /// Set a pointer to the desired contact angle. Optional boolean
-    /// (defaults to true)
-    /// chooses strong imposition via hijacking (true) or weak imposition
-    /// via addition to momentum equation (false). The default strong imposition
-    /// is appropriate for static contact angle problems.
-    void set_contact_angle_fct(ContactAngleFctPt const& angle_fct_pt,
-                               const bool& strong = true);
-
-    /// Access function to the pointer specifying the prescribed contact angle
-    double*& contact_angle_pt()
-    {
-      return Contact_angle_pt;
-    }
-
-    /// Access function to the pointer specifying the capillary number
-    double*& ca_pt()
-    {
-      return Ca_pt;
-    }
-
-    /// Return the value of the capillary number
-    double ca()
-    {
-#ifdef PARANOID
-      if (Ca_pt != 0)
-      {
-#endif
-        return *Ca_pt;
-#ifdef PARANOID
-      }
-      else
-      {
-        throw OomphLibError("Capillary number has not been set",
-                            "FluidInterfaceBoundingElement::ca()",
-                            OOMPH_EXCEPTION_LOCATION);
-      }
-#endif
-    }
-
-
-    /// Return value of the contact angle
-    void contact_angle(double& angle)
-    {
-#ifdef PARANOID
-      if (Contact_angle_pt == 0)
-      {
-        std::string error_message = "Contact angle not set\n";
-        error_message +=
-          "Please use FluidInterfaceBoundingElement::set_contact_angle()\n";
-        throw OomphLibError(
-          error_message, OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
-      }
-#endif
-      angle = *Contact_angle_pt;
-    }
-
-    /// Return value of the contact angle
-    void contact_angle(const Vector<double>& dx_dt, double& angle)
-    {
-#ifdef PARANOID
-      if (Contact_angle_fct_pt == 0)
-      {
-        std::string error_message = "Contact angle function not set\n";
-        error_message +=
-          "Please use FluidInterfaceBoundingElement::contact_angle_fct()\n";
-        throw OomphLibError(
-          error_message, OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
-      }
-#endif
-      (*Contact_angle_fct_pt)(dx_dt, angle);
-    }
-
     /// Calculate the residuals
     void fill_in_contribution_to_residuals(Vector<double>& residuals)
     {
@@ -272,9 +332,7 @@ namespace oomph
 
     /// Calculate the generic residuals contribution
     virtual void fill_in_generic_residual_contribution_interface_boundary(
-      Vector<double>& residuals,
-      DenseMatrix<double>& jacobian,
-      unsigned flag) = 0;
+      Vector<double>& residuals, DenseMatrix<double>& jacobian, unsigned flag);
 
 
     /// Empty helper function to calculate the additional contributions
@@ -282,8 +340,8 @@ namespace oomph
     /// integration loop. This will be overloaded by elements that require
     /// contributions to their underlying equations from boundary integrals.
     /// The shape functions, their derivatives w.r.t. to the local coordinates,
-    /// the unit normal and integral weight are passed in so that they do not
-    /// have to be recalculated.
+    /// the unit normal (OF THE ATTACHED SURFACE) and integral weight are passed
+    /// in so that they do not have to be recalculated.
     virtual void add_additional_residual_contributions_interface_boundary(
       Vector<double>& residuals,
       DenseMatrix<double>& jacobian,
@@ -318,171 +376,7 @@ namespace oomph
     {
       FiniteElement::output(file_pt, n_plot);
     }
-  };
-
-
-  //==========================================================================
-  /// Specialisation of the interface boundary constraint to a point
-  //==========================================================================
-  class PointFluidInterfaceBoundingElement
-    : public FluidInterfaceBoundingElement
-  {
-  protected:
-    /// Overload the helper function to calculate the residuals and
-    /// (if flag==1) the Jacobian -- this function only deals with
-    /// the part of the Jacobian that can be handled generically.
-    /// Specific additional contributions may be provided in
-    /// add_additional_residual_contributions_interface_boundary(...)
-    void fill_in_generic_residual_contribution_interface_boundary(
-      Vector<double>& residuals, DenseMatrix<double>& jacobian, unsigned flag);
-
-    // Index to the Kinematic lagrange multiplier internal data pointer
-    int Kinematic_lagrange_index;
-
-  public:
-    /// Constructor
-    PointFluidInterfaceBoundingElement()
-      : FluidInterfaceBoundingElement(), Kinematic_lagrange_index(-1)
-    {
-      Kinematic_lagrange_index = add_internal_data(new Data(1));
-      internal_data_pt(Kinematic_lagrange_index)->set_value(0, 1.0);
-    }
-
-    void fix_lagrange_multiplier(const double& value)
-    {
-      internal_data_pt(Kinematic_lagrange_index)->pin(0);
-      internal_data_pt(Kinematic_lagrange_index)->set_value(0, value);
-    }
-
-    void free_lagrange_multiplier()
-    {
-      internal_data_pt(Kinematic_lagrange_index)->unpin(0);
-    }
-
-    void calculate_contact_angle(double& imposed_contact_angle,
-                                 double& computed_contact_angle)
-    {
-      // Let's get the info from the parent
-      FiniteElement* parent_pt = bulk_element_pt();
-
-      // Find the dimension of the problem
-      unsigned spatial_dim = this->nodal_dimension();
-
-      // Outer unit normal to the wall
-      Vector<double> wall_normal(spatial_dim);
-
-      // Outer unit normal to the free surface
-      Vector<double> unit_normal(spatial_dim);
-
-      // Storage for the coordinate
-      Vector<double> x(spatial_dim);
-
-      // Storage for the coordinate time derivative
-      Vector<double> dx_dt(spatial_dim);
-
-      // Get the unit normal to the wall
-      wall_unit_normal(x, wall_normal);
-
-      // Find the dimension of the parent
-      unsigned n_dim = parent_pt->dim();
-
-      // Dummy local coordinate, of size zero
-      Vector<double> s_local(0);
-
-      // Get the x coordinate
-      this->interpolated_x(s_local, x);
-
-      // Get the dx/dt of the coordinate
-      const unsigned t_deriv = 1;
-      this->interpolated_dxdt(s_local, t_deriv, dx_dt);
-
-      // Find the local coordinates in the parent
-      Vector<double> s_parent(n_dim);
-      this->get_local_coordinate_in_bulk(s_local, s_parent);
-
-      // Just get the outer unit normal
-      dynamic_cast<FaceElement*>(parent_pt)->outer_unit_normal(s_parent,
-                                                               unit_normal);
-
-
-      // Get imposed contact angle
-      if (Contact_angle_fct_flag)
-      {
-        contact_angle(dx_dt, imposed_contact_angle);
-      }
-      else
-      {
-        contact_angle(imposed_contact_angle);
-      }
-
-      // Find the dot product of the two vectors
-      double dot = 0.0;
-      for (unsigned i = 0; i < spatial_dim; i++)
-      {
-        dot += unit_normal[i] * wall_normal[i];
-      }
-
-      // Compute contact angle
-      computed_contact_angle = acos(dot);
-    }
-
-    /// Overload the output function
-    void output(std::ostream& outfile)
-    {
-      // Find the dimension of the problem
-      unsigned spatial_dim = this->nodal_dimension();
-
-      // Storage for the coordinate
-      Vector<double> x(spatial_dim);
-
-      // Dummy local coordinate, of size zero
-      Vector<double> s_local(0);
-
-      // Get the x coordinate
-      this->interpolated_x(s_local, x);
-
-      // Compute the contact angles
-      double imposed_contact_angle = 0.0;
-      double computed_contact_angle = 0.0;
-      calculate_contact_angle(imposed_contact_angle, computed_contact_angle);
-
-
-      // Output fields, x, y, alpha_input, alpha_output, lagrange_multiplier
-      for (unsigned i = 0; i < spatial_dim; i++)
-      {
-        outfile << x[i] << ",";
-      }
-      std::streamsize ss = outfile.precision();
-      outfile << std::fixed << std::setprecision(3);
-      outfile << imposed_contact_angle * 180 / MathematicalConstants::Pi << ",";
-      outfile << computed_contact_angle * 180 / MathematicalConstants::Pi
-              << ",";
-      outfile << std::setprecision(ss);
-      outfile << internal_data_pt(Kinematic_lagrange_index)->value(0);
-      outfile << std::endl;
-    }
-  };
-
-
-  //==========================================================================
-  /// Specialisation of the interface boundary constraint to a line
-  //==========================================================================
-  class LineFluidInterfaceBoundingElement : public FluidInterfaceBoundingElement
-  {
-  protected:
-    /// Overload the helper function to calculate the residuals and
-    /// (if flag==true) the Jacobian -- this function only deals with
-    /// the part of the Jacobian that can be handled generically.
-    /// Specific additional contributions may be provided in
-    /// add_additional_residual_contributions_interface_boundary()
-    void fill_in_generic_residual_contribution_interface_boundary(
-      Vector<double>& residuals, DenseMatrix<double>& jacobian, unsigned flag);
-
-  public:
-    /// Constructor
-    LineFluidInterfaceBoundingElement() : FluidInterfaceBoundingElement() {}
-  };
-
+  }; // namespace oomph
 
   //=======================================================================
   /// Base class establishing common interfaces and functions for all
@@ -491,11 +385,8 @@ namespace oomph
   /// surface or an interface between two fluids that have distinct
   /// momentum-like equation for each velocity component.
   //======================================================================
-  class FluidInterfaceElement : public virtual FaceElement
+  class FluidInterfaceElement : public TemplateFreeNavierStokesEquationsBase
   {
-    // Make the bounding element class a friend
-    friend class FluidInterfaceBoundingElement;
-
   private:
     /// Pointer to the Capillary number
     double* Ca_pt;
@@ -503,14 +394,7 @@ namespace oomph
     /// Pointer to the Strouhal number
     double* St_pt;
 
-    /// Default value for physical constants
-    static double Default_Physical_Constant_Value;
-
-
   protected:
-    /// Nodal index at which the i-th velocity component is stored.
-    Vector<Vector<unsigned>> U_index_interface;
-
     /// The Data that contains the external  pressure is stored
     /// as external Data for the element. Which external Data item is it?
     /// (int so it can be initialised to -1, indicating that external
@@ -527,7 +411,17 @@ namespace oomph
     /// for the (scalar) kinematic equation associated with the j-th local
     /// node. This must be overloaded by specific interface elements
     /// and depends on the method for handing the free-surface deformation.
-    virtual int kinematic_local_eqn(const unsigned& n) = 0;
+    virtual int kinematic_local_eqn(const unsigned& n)
+    {
+      std::ostringstream error_message;
+      error_message
+        << "kinematic_local_eqn not implemented in base "
+           "FluidInterfaceElement, use one of the inherited classes depending "
+           "on how the solid displacement is implemented."
+        << std::endl;
+      throw OomphLibError(
+        error_message.str(), OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+    }
 
     /// Access function for the local equation number that
     /// corresponds to the external pressure.
@@ -541,8 +435,8 @@ namespace oomph
                             OOMPH_EXCEPTION_LOCATION);
       }
 #endif
-      return external_local_eqn(External_data_number_of_external_pressure,
-                                Index_of_external_pressure_value);
+      return this->external_local_eqn(External_data_number_of_external_pressure,
+                                      Index_of_external_pressure_value);
     }
 
     /// Helper function to calculate the residuals and
@@ -551,7 +445,202 @@ namespace oomph
     /// divergence information that is overloaded in each element
     /// i.e. axisymmetric, two- or three-dimensional.
     virtual void fill_in_generic_residual_contribution_interface(
-      Vector<double>& residuals, DenseMatrix<double>& jacobian, unsigned flag);
+      Vector<double>& residuals, DenseMatrix<double>& jacobian, unsigned flag)
+    {
+      // Find out how many nodes there are
+      unsigned n_node = this->nnode();
+
+      // Set up memeory for the shape functions
+      Shape psif(n_node);
+
+      // Find out the number of surface coordinates
+      const unsigned el_dim = this->dim();
+      // We have el_dim local surface coordinates
+      DShape dpsifds(n_node, el_dim);
+
+      // Find the dimension of the problem
+      // Note that this will return 2 for the axisymmetric case
+      // which is correct in the sense that no
+      // terms will be added in the azimuthal direction
+      const unsigned n_dim = this->nodal_dimension();
+
+      // Storage for the surface gradient
+      // and divergence terms
+      // These will actually be identical
+      // apart from in the axisymmetric case
+      DShape dpsifdS(n_node, n_dim);
+      DShape dpsifdS_div(n_node, n_dim);
+
+      // Set the value of n_intpt
+      unsigned n_intpt = this->integral_pt()->nweight();
+
+      // Get the value of the Capillary number
+      double Ca = ca();
+
+      // Get the value of the Strouhal numer
+      double St = st();
+
+      // Get the value of the external pressure
+      double p_ext = pext();
+
+      // Integers used to hold the local equation numbers and local unknowns
+      int local_eqn = 0, local_unknown = 0;
+
+      // Storage for the local coordinate
+      Vector<double> s(el_dim);
+
+      // Loop over the integration points
+      for (unsigned ipt = 0; ipt < n_intpt; ipt++)
+      {
+        // Get the value of the local coordiantes at the integration point
+        for (unsigned i = 0; i < el_dim; i++)
+        {
+          s[i] = this->integral_pt()->knot(ipt, i);
+        }
+
+        // Get the integral weight
+        double W = this->integral_pt()->weight(ipt);
+
+        // Call the derivatives of the shape function
+        this->dshape_local_at_knot(ipt, psif, dpsifds);
+
+        // Define and zero the tangent Vectors and local velocities
+        Vector<double> interpolated_x(n_dim, 0.0);
+        Vector<double> interpolated_u(n_dim, 0.0);
+        Vector<double> interpolated_dx_dt(n_dim, 0.0);
+
+        DenseMatrix<double> interpolated_t(el_dim, n_dim, 0.0);
+
+        // Loop over the shape functions
+        for (unsigned l = 0; l < n_node; l++)
+        {
+          const double psi_ = psif(l);
+          // Loop over directional components
+          for (unsigned i = 0; i < n_dim; i++)
+          {
+            // Coordinate
+            interpolated_x[i] += this->nodal_position(l, i) * psi_;
+
+            // Calculate velocity of mesh
+            interpolated_dx_dt[i] += this->dnodal_position_dt(l, i) * psi_;
+
+            // Calculate the tangent vectors
+            for (unsigned j = 0; j < el_dim; j++)
+            {
+              interpolated_t(j, i) +=
+                this->nodal_position(l, i) * dpsifds(l, j);
+            }
+
+            // Calculate velocity and tangent vector
+            interpolated_u[i] += this->nst_u(l, i) * psi_;
+          }
+        }
+
+
+        // Calculate the surface gradient and divergence
+        double J = this->compute_surface_derivatives(
+          psif, dpsifds, interpolated_t, interpolated_x, dpsifdS, dpsifdS_div);
+        // Get the normal vector
+        //(ALH: This could be more efficient because
+        // there is some recomputation of shape functions here)
+        Vector<double> interpolated_n(n_dim);
+        this->outer_unit_normal(s, interpolated_n);
+
+        // Now also get the (possible variable) surface tension
+        double Sigma = this->sigma(s);
+
+        // Loop over the shape functions
+        for (unsigned l = 0; l < n_node; l++)
+        {
+          // Loop over the velocity components
+          for (unsigned i = 0; i < n_dim; i++)
+          {
+            // Get the equation number for the momentum equation
+            local_eqn = this->nst_momentum_local_eqn(l, i);
+
+            // If it's not a boundary condition
+            if (local_eqn >= 0)
+            {
+              // Add the surface-tension contribution to the momentum equation
+              residuals[local_eqn] -= (Sigma / Ca) * dpsifdS_div(l, i) * J * W;
+
+              // If the element is a free surface, add in the external pressure
+              if (Pext_data_pt != 0)
+              {
+                // External pressure term
+                residuals[local_eqn] -=
+                  p_ext * interpolated_n[i] * psif(l) * J * W;
+
+                // Add in the Jacobian term for the external pressure
+                // The correct area is included in the length of the normal
+                // vector
+                if (flag)
+                {
+                  local_unknown = pext_local_eqn();
+                  if (local_unknown >= 0)
+                  {
+                    jacobian(local_eqn, local_unknown) -=
+                      interpolated_n[i] * psif(l) * J * W;
+                  }
+                }
+              } // End of pressure contribution
+            }
+          } // End of contribution to momentum equation
+
+
+          // Kinematic BC
+          local_eqn = kinematic_local_eqn(l);
+          if (local_eqn >= 0)
+          {
+            // Assemble the kinematic condition
+            // The correct area is included in the normal vector
+            for (unsigned k = 0; k < n_dim; k++)
+            {
+              residuals[local_eqn] +=
+                (interpolated_u[k] - St * interpolated_dx_dt[k]) *
+                interpolated_n[k] * psif(l) * J * W;
+            }
+
+            // Add in the jacobian
+            if (flag)
+            {
+              // Loop over shape functions
+              for (unsigned l2 = 0; l2 < n_node; l2++)
+              {
+                // Loop over the components
+                for (unsigned i2 = 0; i2 < n_dim; i2++)
+                {
+                  local_unknown = this->nst_u_local_unknown(l2, i2);
+                  // If it's a non-zero dof add
+                  if (local_unknown >= 0)
+                  {
+                    jacobian(local_eqn, local_unknown) +=
+                      psif(l2) * interpolated_n[i2] * psif(l) * J * W;
+                  }
+                }
+              }
+            } // End of Jacobian contribution
+          }
+        } // End of loop over shape functions
+
+
+        // Add additional contribution required from the implementation
+        // of the node update (e.g. Lagrange multpliers etc)
+        add_additional_residual_contributions_interface(residuals,
+                                                        jacobian,
+                                                        flag,
+                                                        psif,
+                                                        dpsifds,
+                                                        dpsifdS,
+                                                        dpsifdS_div,
+                                                        s,
+                                                        interpolated_x,
+                                                        interpolated_n,
+                                                        W,
+                                                        J);
+
+      } // End of loop over integration points
+    }
 
     /// Compute the surface gradient and surface divergence
     /// operators given the shape functions, derivatives,
@@ -580,7 +669,10 @@ namespace oomph
       const DenseMatrix<double>& interpolated_t,
       const Vector<double>& interpolated_x,
       DShape& dpsidS,
-      DShape& dpsidS_div) = 0;
+      DShape& dpsidS_div)
+    {
+      return 0.0;
+    }
 
     /// Helper function to calculate the additional contributions
     /// to the resisuals and Jacobian that arise from specific node update
@@ -621,7 +713,7 @@ namespace oomph
       Ca_pt = 0;
 
       // Set the Strouhal number to the default value
-      St_pt = &Default_Physical_Constant_Value;
+      St_pt = 0;
     }
 
     /// Virtual function that specifies the non-dimensional
@@ -641,7 +733,6 @@ namespace oomph
       fill_in_generic_residual_contribution_interface(
         residuals, GeneralisedElement::Dummy_matrix, 0);
     }
-
 
     /// The value of the Capillary number
     const double& ca() const
@@ -671,7 +762,20 @@ namespace oomph
     /// The value of the Strouhal number
     const double& st() const
     {
-      return *St_pt;
+#ifdef PARANOID
+      if (St_pt != 0)
+      {
+#endif
+        return *St_pt;
+#ifdef PARANOID
+      }
+      else
+      {
+        throw OomphLibError("Strouhal number has not been set",
+                            "FluidInterfaceElement::st()",
+                            OOMPH_EXCEPTION_LOCATION);
+      }
+#endif
     }
 
     /// The pointer to the Strouhal number
@@ -679,15 +783,6 @@ namespace oomph
     {
       return St_pt;
     }
-
-    /// Return the i-th velocity component at local node j.
-    double u(const unsigned& j, const unsigned& i)
-    {
-      return node_pt(j)->value(U_index_interface[j][i]);
-    }
-
-    /// Calculate the i-th velocity component at the local coordinate s.
-    double interpolated_u(const Vector<double>& s, const unsigned& i);
 
     /// Return the value of the external pressure
     double pext() const
@@ -786,25 +881,23 @@ namespace oomph
     }
 
 
-    /// Create a bounding element e.g. to apply a contact angle boundary
-    /// condition
-    virtual FluidInterfaceBoundingElement* make_bounding_element(
-      const int& face_index)
-    {
-      throw OomphLibError("Virtual function not yet implemented",
-                          OOMPH_CURRENT_FUNCTION,
-                          OOMPH_EXCEPTION_LOCATION);
-      return 0;
-    }
-
-
     /// Hijack the kinematic condition at the node numbers passed in
     /// the vector. The node numbers correspond to the local numbers of
     /// nodes in the associated bulk element.
     /// This is required so that contact-angle conditions can be applied
     /// by the FluidInterfaceBoundingElements.
     virtual void hijack_kinematic_conditions(
-      const Vector<unsigned>& bulk_node_number) = 0;
+      const Vector<unsigned>& bulk_node_number)
+    {
+      std::ostringstream error_message;
+      error_message
+        << "hijack_kinematic_conditions not implemented in base "
+           "FluidInterfaceElement, use one of the inherited classes depending "
+           "on how the solid displacement is implemented."
+        << std::endl;
+      throw OomphLibError(
+        error_message.str(), OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+    }
 
     /// Overload the output function
     void output(std::ostream& outfile)
@@ -813,7 +906,38 @@ namespace oomph
     }
 
     /// Output function
-    void output(std::ostream& outfile, const unsigned& n_plot);
+    void output(std::ostream& outfile, const unsigned& n_plot)
+    {
+      const unsigned el_dim = this->dim();
+      const unsigned n_dim = this->nodal_dimension();
+      const unsigned n_velocity = n_dim;
+      // Set output Vector
+      Vector<double> s(el_dim);
+
+      // Tecplot header info
+      outfile << this->tecplot_zone_string(n_plot);
+
+      // Loop over plot points
+      unsigned num_plot_points = this->nplot_points(n_plot);
+      for (unsigned iplot = 0; iplot < num_plot_points; iplot++)
+      {
+        // Get local coordinates of pliot point
+        this->get_s_plot(iplot, n_plot, s);
+
+        // Output the x,y,u,v
+        for (unsigned i = 0; i < n_dim; i++)
+          outfile << this->interpolated_x(s, i) << " ";
+        for (unsigned i = 0; i < n_velocity; i++)
+          outfile << this->interpolated_u(s, i) << " ";
+
+        // Output a dummy pressure
+        outfile << 0.0 << "\n";
+      }
+
+      this->write_tecplot_zone_footer(outfile, n_plot);
+
+      outfile << "\n";
+    }
 
     /// Overload the C-style output function
     void output(FILE* file_pt)
@@ -822,7 +946,44 @@ namespace oomph
     }
 
     /// C-style Output function
-    void output(FILE* file_pt, const unsigned& n_plot);
+    void output(FILE* file_pt, const unsigned& n_plot)
+    {
+      const unsigned el_dim = this->dim();
+      const unsigned n_dim = this->nodal_dimension();
+      const unsigned n_velocity = n_dim;
+      // Set output Vector
+      Vector<double> s(el_dim);
+
+      // Tecplot header info
+      fprintf(file_pt, "%s", this->tecplot_zone_string(n_plot).c_str());
+
+      // Loop over plot points
+      unsigned num_plot_points = this->nplot_points(n_plot);
+      for (unsigned iplot = 0; iplot < num_plot_points; iplot++)
+      {
+        // Get local coordinates of plot point
+        this->get_s_plot(iplot, n_plot, s);
+
+        // Coordinates
+        for (unsigned i = 0; i < n_dim; i++)
+        {
+          fprintf(file_pt, "%g ", this->interpolated_x(s, i));
+        }
+
+        // Velocities
+        for (unsigned i = 0; i < n_velocity; i++)
+        {
+          fprintf(file_pt, "%g ", this->interpolated_u(s, i));
+        }
+
+        // Dummy Pressure
+        fprintf(file_pt, "%g \n", 0.0);
+      }
+      fprintf(file_pt, "\n");
+
+      // Write tecplot footer (e.g. FE connectivity lists)
+      this->write_tecplot_zone_footer(file_pt, n_plot);
+    }
   };
 
 
