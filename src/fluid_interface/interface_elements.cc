@@ -219,8 +219,8 @@ namespace oomph
     /// equations
     // for (unsigned i = 0; i < 2; i++)
     //{
-    //  int local_eqn = nodal_local_eqn(0, this->U_index_interface_boundary[0][i]);
-    //  if (local_eqn >= 0)
+    //  int local_eqn = nodal_local_eqn(0,
+    //  this->U_index_interface_boundary[0][i]); if (local_eqn >= 0)
     //  {
     //    residuals[local_eqn] += (sigma_local / ca_local) * unit_tangent[i];
     //  }
@@ -229,7 +229,8 @@ namespace oomph
     // Just add the appropriate contribution to the momentum equations
     for (unsigned i = 0; i < 2; i++)
     {
-      int local_eqn = nodal_local_eqn(0, this->U_index_interface_boundary[0][i]);
+      int local_eqn =
+        nodal_local_eqn(0, this->U_index_interface_boundary[0][i]);
       if (local_eqn >= 0)
       {
         residuals[local_eqn] -= (sigma_local / ca_local) *
@@ -569,33 +570,6 @@ namespace oomph
   double FluidInterfaceElement::Default_Physical_Constant_Value = 1.0;
 
 
-  //================================================================
-  /// Calculate the i-th velocity component at local coordinate s
-  //================================================================
-  double FluidInterfaceElement::interpolated_u(const Vector<double>& s,
-                                               const unsigned& i)
-  {
-    // Find number of nodes
-    unsigned n_node = FiniteElement::nnode();
-
-    // Storage for the local shape function
-    Shape psi(n_node);
-
-    // Get values of shape function at local coordinate s
-    this->shape(s, psi);
-
-    // Initialise value of u
-    double interpolated_u = 0.0;
-
-    // Loop over the local nodes and sum
-    for (unsigned l = 0; l < n_node; l++)
-    {
-      interpolated_u += u(l, i) * psi(l);
-    }
-
-    return (interpolated_u);
-  }
-
   //===========================================================================
   /// Calculate the contribution to the residuals from the interface
   /// implemented generically with geometric information to be
@@ -688,7 +662,7 @@ namespace oomph
           }
 
           // Calculate velocity and tangent vector
-          interpolated_u[i] += u(l, i) * psi_;
+          interpolated_u[i] += this->nst_u(l, i) * psi_;
         }
       }
 
@@ -712,7 +686,7 @@ namespace oomph
         for (unsigned i = 0; i < n_dim; i++)
         {
           // Get the equation number for the momentum equation
-          local_eqn = this->nodal_local_eqn(l, this->U_index_interface[l][i]);
+          local_eqn = this->nst_momentum_local_eqn(l, i);
 
           // If it's not a boundary condition
           if (local_eqn >= 0)
@@ -766,8 +740,7 @@ namespace oomph
               // Loop over the components
               for (unsigned i2 = 0; i2 < n_dim; i2++)
               {
-                local_unknown =
-                  this->nodal_local_eqn(l2, this->U_index_interface[l2][i2]);
+                local_unknown = this->nst_u_local_unknown(l2, i2);
                 // If it's a non-zero dof add
                 if (local_unknown >= 0)
                 {
