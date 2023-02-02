@@ -170,7 +170,7 @@ namespace oomph
       this->outer_unit_normal(ipt, unit_normal);
 
       // Get velocity in bulk element
-      bulk_el_pt->interpolated_u_nst(s_bulk, veloc);
+      bulk_el_pt->interpolated_u_nst_vector(s_bulk, veloc);
 
       // Get normal component of veloc
       double flux = 0.0;
