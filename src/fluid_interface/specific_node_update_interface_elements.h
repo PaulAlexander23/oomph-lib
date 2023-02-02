@@ -35,6 +35,7 @@
 #endif
 
 // OOMPH-LIB headers
+#include "../generic/elements.h"
 #include "../generic/Qelements.h"
 #include "../generic/spines.h"
 #include "../generic/hijacked_elements.h"
@@ -679,20 +680,30 @@ namespace oomph
   template<class EQUATION_CLASS, class DERIVATIVE_CLASS, class ELEMENT>
   class ElasticUpdateFluidInterfaceElement
     : public virtual Hijacked<FaceGeometry<ELEMENT>>,
-      public EQUATION_CLASS,
+      public virtual EQUATION_CLASS,
+      public virtual SolidFaceElement,
       public DERIVATIVE_CLASS
   {
-  private:
-    /// Storage for the location of the Lagrange multiplier
-    /// (If other additional values have been added we need
-    /// to add the Lagrange multiplier at the end)
-    Vector<unsigned> Lagrange_index;
+  protected:
+    virtual void set_n_additional_values()
+    {
+      // Setup the addition required number of values for the underlying
+      // equation element
+      EQUATION_CLASS::set_n_additional_values();
 
+      // Add storage for the Lagrange multipler
+      for (unsigned n = 0; n < this->nnode(); n++)
+      {
+        this->N_additional_values[n] += 1;
+      }
+    }
+
+  public:
     /// Return the index at which the lagrange multiplier is
     /// stored at the n-th node
     inline unsigned lagrange_index(const unsigned& n)
     {
-      return this->Lagrange_index[n];
+      return this->additional_value_index(n, this->N_additional_values[n] - 1);
     }
 
     /// Equation number of the kinematic BC associated with node j.
@@ -718,6 +729,7 @@ namespace oomph
       }
     }
 
+
   protected:
     /// Fill in the specific surface derivative calculations
     /// by calling the appropriate function from the derivative class
@@ -739,98 +751,6 @@ namespace oomph
 
 
   public:
-    /// Constructor, pass a pointer to the bulk element and the face
-    /// index of the bulk element to which the element is to be attached to.
-    /// The optional identifier can be used
-    /// to distinguish the additional nodal value (Lagr mult) created by
-    /// this element from those created by other FaceElements.
-    ElasticUpdateFluidInterfaceElement(FiniteElement* const& element_pt,
-                                       const int& face_index,
-                                       const unsigned& id = 0)
-      : FaceGeometry<ELEMENT>(), EQUATION_CLASS(), DERIVATIVE_CLASS()
-    {
-      // Attach the geometrical information to the element
-      // This function also assigned nbulk_value from required_nvalue of the
-      // bulk element
-      element_pt->build_face_element(face_index, this);
-
-#ifdef PARANOID
-      // Is it refineable
-      RefineableElement* ref_el_pt =
-        dynamic_cast<RefineableElement*>(element_pt);
-      if (ref_el_pt != 0)
-      {
-        if (this->has_hanging_nodes())
-        {
-          throw OomphLibError(
-            "This flux element will not work correctly if nodes are hanging\n",
-            OOMPH_CURRENT_FUNCTION,
-            OOMPH_EXCEPTION_LOCATION);
-        }
-      }
-#endif
-
-      // Read out the number of nodes on the face
-      const unsigned n_node_face = this->nnode();
-      this->U_index_interface.resize(n_node_face);
-
-      // Find the index at which the velocity unknowns are stored
-      // from the bulk element and resize the local storage scheme
-      ELEMENT* cast_element_pt = dynamic_cast<ELEMENT*>(element_pt);
-
-      // Find number of momentum equation required
-      const unsigned n_u_index = cast_element_pt->n_u_nst();
-      for (unsigned n = 0; n < n_node_face; n++)
-      {
-        this->U_index_interface[n].resize(n_u_index);
-        for (unsigned i = 0; i < n_u_index; i++)
-        {
-          this->U_index_interface[n][i] =
-            cast_element_pt->u_index_nst(this->bulk_node_number(n), i);
-        }
-      }
-
-      // Create an instance of the policy class that determines
-      // how many additional values are required
-      FluidInterfaceAdditionalValues<EQUATION_CLASS>*
-        interface_additional_values_pt =
-          new FluidInterfaceAdditionalValues<EQUATION_CLASS>();
-
-      // Set the additional data values in the face
-      // There is always also one additional values at each node --- the
-      // Lagrange multiplier
-      Vector<unsigned> additional_data_values(n_node_face);
-      for (unsigned n = 0; n < n_node_face; n++)
-      {
-        // Now add one to the addtional values at every single node
-        additional_data_values[n] =
-          interface_additional_values_pt->nadditional_values(n) + 1;
-      }
-
-      // Now add storage for Lagrange multipliers and set the map containing
-      // the position of the first entry of this face element's
-      // additional values.
-      this->add_additional_values(additional_data_values, id);
-
-      // Now I can just store the lagrange index offset to give the storage
-      // location of the nodes
-      Lagrange_index.resize(n_node_face);
-      for (unsigned n = 0; n < n_node_face; ++n)
-      {
-        Lagrange_index[n] =
-          additional_data_values[n] - 1 +
-          dynamic_cast<BoundaryNodeBase*>(this->node_pt(n))
-            ->index_of_first_value_assigned_by_face_element(id);
-      }
-
-      // Call any local setup from the interface policy class
-      interface_additional_values_pt->setup_equation_indices(this, id);
-
-      // Can now delete the policy class
-      delete interface_additional_values_pt;
-      interface_additional_values_pt = 0;
-    }
-
     /// The "global" intrinsic coordinate of the element when
     /// viewed as part of a geometric object should be given by
     /// the FaceElement representation, by default
@@ -1034,7 +954,7 @@ namespace oomph
         for (unsigned i = 0; i < nodal_dimension; i++)
         {
           // Kinematic Lagrange multiplier Momentum contribution
-          local_eqn = this->nodal_local_eqn(l, this->U_index_interface[l][i]);
+          local_eqn = this->nst_momentum_local_eqn(l, i);
           if (local_eqn >= 0)
           {
             residuals[local_eqn] +=
@@ -1092,82 +1012,6 @@ namespace oomph
           }
         }
       } // End of loop over shape functions
-    }
-
-
-    /// Create an "bounding" element (here actually a 2D line element
-    /// of type ElasticLineFluidInterfaceBoundingElement<ELEMENT> that allows
-    /// the application of a contact angle boundary condition on the
-    /// the specified face.
-    virtual FluidInterfaceBoundingElement* make_bounding_element(
-      const int& face_index)
-    {
-      // Create a temporary pointer to the appropriate FaceElement
-      BoundingElementType<ElasticUpdateFluidInterfaceElement<EQUATION_CLASS,
-                                                             DERIVATIVE_CLASS,
-                                                             ELEMENT>>*
-        face_el_pt = new BoundingElementType<
-          ElasticUpdateFluidInterfaceElement<EQUATION_CLASS,
-                                             DERIVATIVE_CLASS,
-                                             ELEMENT>>;
-
-      // Attach the geometrical information to the new element
-      this->build_face_element(face_index, face_el_pt);
-
-      // Set the index at which the velocity nodes are stored
-      face_el_pt->u_index_interface_boundary() = this->U_index_interface;
-
-      // Set the value of the nbulk_value, the node is not resized
-      // in this bounding element,
-      // so it will just be the actual nvalue here
-      // There is some ambiguity about what this means (however)
-      const unsigned n_node_bounding = face_el_pt->nnode();
-      // Storage for lagrange multiplier index at the face nodes
-      Vector<unsigned> local_lagrange_index(n_node_bounding);
-      for (unsigned n = 0; n < n_node_bounding; n++)
-      {
-        face_el_pt->nbulk_value(n) = face_el_pt->node_pt(n)->nvalue();
-        // At the moment the assumption is that it is stored at all nodes, but
-        // that is consistent with the assumption in this element
-        local_lagrange_index[n] =
-          this->Lagrange_index[face_el_pt->bulk_node_number(n)];
-      }
-
-      // Pass the ID and offset down
-      face_el_pt->set_lagrange_index(local_lagrange_index);
-
-      // Find the nodes
-      std::set<SolidNode*> set_of_solid_nodes;
-      const unsigned n_node = this->nnode();
-      for (unsigned n = 0; n < n_node; n++)
-      {
-        set_of_solid_nodes.insert(static_cast<SolidNode*>(this->node_pt(n)));
-      }
-
-      // Delete the nodes from the face
-      // n_node = face_el_pt->nnode();
-      for (unsigned n = 0; n < n_node_bounding; n++)
-      {
-        // Set the value of the nbulk_value, from the present element
-        face_el_pt->nbulk_value(n) =
-          this->nbulk_value(face_el_pt->bulk_node_number(n));
-
-        // Now delete the nodes from the set
-        set_of_solid_nodes.erase(
-          static_cast<SolidNode*>(face_el_pt->node_pt(n)));
-      }
-
-      // Now add these as external data
-      for (std::set<SolidNode*>::iterator it = set_of_solid_nodes.begin();
-           it != set_of_solid_nodes.end();
-           ++it)
-      {
-        face_el_pt->add_external_data((*it)->variable_position_pt());
-      }
-
-
-      // Return the value of the pointer
-      return face_el_pt;
     }
   };
 
@@ -1365,15 +1209,6 @@ namespace oomph
                                                 LineDerivatives,
                                                 ELEMENT>
   {
-  public:
-    ElasticLineFluidInterfaceElement(FiniteElement* const& element_pt,
-                                     const int& face_index,
-                                     const unsigned& id = 0)
-      : ElasticUpdateFluidInterfaceElement<FluidInterfaceElement,
-                                           LineDerivatives,
-                                           ELEMENT>(element_pt, face_index, id)
-    {
-    }
   };
 
   /// Define the BoundingElement type associated with the 1D surface element
