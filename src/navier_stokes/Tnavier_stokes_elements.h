@@ -183,6 +183,12 @@ namespace oomph
       this->internal_data_pt(P_nst_internal_index)->set_value(p_dof, p_value);
     }
 
+    /// Free p_dof-th pressure dof.
+    void free_pressure(const unsigned& p_dof)
+    {
+      this->internal_data_pt(P_nst_internal_index)->unpin(p_dof);
+    }
+
     /// Build FaceElements that apply the Robin boundary condition
     /// to the pressure advection diffusion problem required by
     /// Fp preconditioner
@@ -886,6 +892,11 @@ namespace oomph
       this->node_pt(Pconv[p_dof])->set_value(this->p_index_nst(), p_value);
     }
 
+    /// Free p_dof-th pressure dof.
+    void free_pressure(const unsigned& p_dof)
+    {
+      this->node_pt(Pconv[p_dof])->unpin(this->p_index_nst());
+    }
 
     /// Build FaceElements that apply the Robin boundary condition
     /// to the pressure advection diffusion problem required by
