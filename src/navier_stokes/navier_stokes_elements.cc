@@ -133,18 +133,11 @@ namespace oomph
         // Loop over the veclocity shape functions
         for (unsigned l = 0; l < n_node; l++)
         {
-          // find the indices at which the local velocities are stored
-          Vector<unsigned> u_nodal_index(n_dim);
-          for (unsigned i = 0; i < n_dim; i++)
-          {
-            u_nodal_index[i] = this->u_index_nst(l, i);
-          }
-
-
           // Loop over the velocity components
           for (unsigned i = 0; i < n_dim; i++)
           {
             local_eqn = momentum_local_eqn(l, i);
+
 
             // If not a boundary condition
             if (local_eqn >= 0)
@@ -167,6 +160,7 @@ namespace oomph
         {
           // Get equation number
           local_eqn = p_local_eqn(l);
+
 
           // If not a boundary condition
           if (local_eqn >= 0)
@@ -779,7 +773,7 @@ namespace oomph
       // Velocities
       for (unsigned i = 0; i < DIM; i++)
       {
-        outfile << interpolated_u_nst(s, i) << " ";
+        outfile << this->interpolated_u_nst(s, i) << " ";
       }
 
       // Pressure
@@ -825,7 +819,7 @@ namespace oomph
       // Velocities
       for (unsigned i = 0; i < DIM; i++)
       {
-        fprintf(file_pt, "%g ", interpolated_u_nst(s, i));
+        fprintf(file_pt, "%g ", this->interpolated_u_nst(s, i));
       }
 
       // Pressure
@@ -907,7 +901,7 @@ namespace oomph
           // Get the index at which velocity i is stored
           unsigned u_nodal_index = u_index_nst(l, i);
 
-          dudt[i] += du_dt_nst(l, u_nodal_index) * psif[l];
+          dudt[i] += du_dt_nst(l, i) * psif[l];
           mesh_veloc[i] += dnodal_position_dt(l, i) * psif[l];
 
           // Loop over derivative directions for velocity gradients
@@ -1711,6 +1705,7 @@ namespace oomph
       {
         local_eqn = p_local_eqn(l);
 
+
         // If not a boundary conditions
         if (local_eqn >= 0)
         {
@@ -1906,17 +1901,12 @@ namespace oomph
       // Loop over the test functions
       for (unsigned l = 0; l < n_node; l++)
       {
-        // Find the indices at which the local velocities are stored
-        unsigned u_nodal_index[DIM];
-        for (unsigned i = 0; i < DIM; i++)
-        {
-          u_nodal_index[i] = u_index_nst(l, i);
-        }
         // Loop over the velocity components
         for (unsigned i = 0; i < DIM; i++)
         {
           /*IF it's not a boundary condition*/
           local_eqn = momentum_local_eqn(l, i);
+
           if (local_eqn >= 0)
           {
             // Add the user-defined body force terms
@@ -2048,6 +2038,7 @@ namespace oomph
       for (unsigned l = 0; l < n_pres; l++)
       {
         local_eqn = p_local_eqn(l);
+
         // If not a boundary conditions
         if (local_eqn >= 0)
         {
@@ -2070,12 +2061,6 @@ namespace oomph
             /*Loop over the velocity shape functions*/
             for (unsigned l2 = 0; l2 < n_node; l2++)
             {
-              // Find the indices at which the local velocities are stored
-              unsigned u_nodal_index[DIM];
-              for (unsigned i = 0; i < DIM; i++)
-              {
-                u_nodal_index[i] = u_index_nst(l2, i);
-              }
               /*Loop over velocity components*/
               for (unsigned i2 = 0; i2 < DIM; i2++)
               {
@@ -2396,17 +2381,12 @@ namespace oomph
       // Loop over the test functions
       for (unsigned l = 0; l < n_node; l++)
       {
-        // Find the indices at which the local velocities are stored
-        unsigned u_nodal_index[DIM];
-        for (unsigned i = 0; i < DIM; i++)
-        {
-          u_nodal_index[i] = u_index_nst(l, i);
-        }
         // Loop over coordinate directions
         for (unsigned i = 0; i < DIM; i++)
         {
           // Get the local equation
           local_eqn = momentum_local_eqn(l, i);
+
 
           // IF it's not a boundary condition
           if (local_eqn >= 0)
@@ -2536,6 +2516,7 @@ namespace oomph
       for (unsigned l = 0; l < n_pres; l++)
       {
         local_eqn = p_local_eqn(l);
+
 
         // If not a boundary conditions
         if (local_eqn >= 0)
