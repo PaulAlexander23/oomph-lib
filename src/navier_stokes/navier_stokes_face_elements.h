@@ -28,42 +28,65 @@ namespace oomph
   public:
     NavierStokesFaceElement() {}
 
-    virtual double nst_u(const unsigned& n, const unsigned& i) const
+    virtual inline unsigned nst_u_index(const unsigned& n,
+                                        const unsigned& i) const
     {
       NavierStokesEquationNumberingElement* el_pt =
         dynamic_cast<NavierStokesEquationNumberingElement*>(
           this->bulk_element_pt());
-      return el_pt->u_nst(this->bulk_node_number(n), i);
+      return el_pt->u_index_nst(this->bulk_node_number(n), i);
+    }
+
+    // virtual int nst_p_index() const
+    virtual int nst_p_index(const unsigned& n) const
+    {
+      NavierStokesEquationNumberingElement* el_pt =
+        dynamic_cast<NavierStokesEquationNumberingElement*>(
+          this->bulk_element_pt());
+      // return el_pt->p_index_nst(this->bulk_node_number(n));
+      return el_pt->p_index_nst();
+    }
+
+    virtual inline unsigned nst_momentum_index(const unsigned& n,
+                                               const unsigned& i) const
+    {
+      NavierStokesEquationNumberingElement* el_pt =
+        dynamic_cast<NavierStokesEquationNumberingElement*>(
+          this->bulk_element_pt());
+      return el_pt->momentum_index_nst(this->bulk_node_number(n), i);
+    }
+
+    virtual inline unsigned nst_continuity_index(const unsigned& n) const
+    {
+      const int nodal_index = nst_p_index(n);
+      return this->nodal_local_eqn(n, nodal_index);
+    }
+
+
+    virtual double nst_u(const unsigned& n, const unsigned& i) const
+    {
+      const unsigned nodal_index = nst_u_index(n, i);
+      return this->nodal_value(n, nodal_index);
     }
 
     virtual inline unsigned nst_u_local_unknown(const unsigned& n,
                                                 const unsigned& i) const
     {
-      NavierStokesEquationNumberingElement* el_pt =
-        dynamic_cast<NavierStokesEquationNumberingElement*>(
-          this->bulk_element_pt());
-      const unsigned nodal_index =
-        el_pt->u_index_nst(this->bulk_node_number(n), i);
+      const unsigned nodal_index = nst_u_index(n, i);
       return this->nodal_local_eqn(n, nodal_index);
     }
 
     virtual inline unsigned nst_momentum_local_eqn(const unsigned& n,
                                                    const unsigned& i) const
     {
-      NavierStokesEquationNumberingElement* el_pt =
-        dynamic_cast<NavierStokesEquationNumberingElement*>(
-          this->bulk_element_pt());
-      const unsigned nodal_index =
-        el_pt->momentum_index_nst(this->bulk_node_number(n), i);
+      const unsigned nodal_index = nst_momentum_index(n, i);
       return this->nodal_local_eqn(n, nodal_index);
     }
 
     virtual inline unsigned nst_continuity_local_eqn(const unsigned& n) const
     {
-      NavierStokesEquationNumberingElement* el_pt =
-        dynamic_cast<NavierStokesEquationNumberingElement*>(
-          this->bulk_element_pt());
-      return el_pt->p_local_eqn(this->bulk_node_number(n));
+      const unsigned nodal_index = nst_continuity_index(n);
+      return this->nodal_local_eqn(n, nodal_index);
     }
 
     double interpolated_u(const Vector<double>& s, const unsigned& i) const
@@ -82,18 +105,6 @@ namespace oomph
     {
       return 0;
     }
-
-    // /// The "global" intrinsic coordinate of the element when
-    // /// viewed as part of a geometric object should be given by
-    // /// the FaceElement representation, by default
-    // /// This final over-ride is required because both SolidFiniteElements
-    // /// and FaceElements overload zeta_nodal
-    // double zeta_nodal(const unsigned& n,
-    //                   const unsigned& k,
-    //                   const unsigned& i) const
-    // {
-    //   return FaceElement::zeta_nodal(n, k, i);
-    // }
   };
 
 } // namespace oomph
