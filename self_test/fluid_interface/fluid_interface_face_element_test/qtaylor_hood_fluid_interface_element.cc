@@ -7,6 +7,52 @@
 using namespace std;
 using namespace oomph;
 
+
+template<class ELEMENT>
+class ConcreteFluidInterfaceElement : public virtual FluidInterfaceElement,
+                                      public virtual FaceGeometry<ELEMENT>
+{
+public:
+  double compute_surface_derivatives(const Shape& psi,
+                                     const DShape& dpsids,
+                                     const DenseMatrix<double>& interpolated_t,
+                                     const Vector<double>& interpolated_x,
+                                     DShape& dpsidS,
+                                     DShape& dpsidS_div)
+  {
+    return 1.0;
+  }
+
+  void output(FILE*) {}
+  void output(FILE*, const unsigned& n_plot) {}
+  void output(std::ostream& outfile) {}
+  void output(std::ostream& outfile, const unsigned int& n_plot) {}
+};
+
+template<class ELEMENT>
+class FaceGeometry<ConcreteFluidInterfaceElement<ELEMENT>>
+  : public virtual FaceGeometry<FaceGeometry<ELEMENT>>
+{
+public:
+  FaceGeometry()
+  {
+    cout << "here" << endl;
+  }
+};
+
+template<class ELEMENT>
+class ConcreteFluidInterfaceFaceElement
+  : public virtual FluidInterfaceFaceElement,
+    public virtual FaceGeometry<ELEMENT>
+{
+public:
+  ConcreteFluidInterfaceFaceElement()
+    : FluidInterfaceFaceElement(), FaceGeometry<ELEMENT>()
+  {
+  }
+};
+
+
 int main()
 {
   cout << "Q Taylor Hood Face Element Test" << endl;
@@ -36,7 +82,7 @@ int main()
 
   cout << "here" << endl;
   int face_index = -1;
-  FluidInterfaceElement<ELEMENT> face_element;
+  ConcreteFluidInterfaceElement<ELEMENT> face_element;
   element_pt->build_face_element(face_index, &face_element);
 
   unsigned long global_number = 0;
@@ -59,6 +105,9 @@ int main()
   cout << element_pt->momentum_local_eqn(3, 0) << endl;
   cout << element_pt->u_local_unknown(3, 0) << endl;
 
+  cout << "Bulk element type: " << endl;
+  cout << element_pt->element_geometry() << endl;
+
   ofstream outfile;
   outfile.open("test.dat");
   element_pt->output(outfile);
@@ -79,9 +128,46 @@ int main()
   cout << face_element.interpolated_p(s) << endl;
   cout << face_element.sigma(s) << endl;
 
+  cout << "Face element type: " << endl;
+  cout << face_element.element_geometry() << endl;
 
 
+  cout << "Face geometry q2 element." << endl;
+  FaceGeometry<QElement<2, 2>> fg2;
+  cout << fg2.element_geometry() << endl;
+  cout << fg2.nnode_1d() << endl;
 
+  cout << "Face geometry q1 element." << endl;
+  FaceGeometry<QElement<1, 2>> fg4;
+  cout << fg4.nnode_1d() << endl;
+
+  // FaceGeometry<FaceGeometry<QElement<2, 2>>> fg3;
+  // cout << fg3.element_geometry() << endl;
+  // cout << fg3.nnode_1d() << endl;
+
+  cout << "Face geometry face face element." << endl;
+  FaceGeometry<ConcreteFluidInterfaceElement<ELEMENT>> fg;
+  cout << fg.nnode_1d() << endl;
+
+  cout << "concrete face face element." << endl;
+  ConcreteFluidInterfaceFaceElement<ConcreteFluidInterfaceElement<ELEMENT>>
+    line_element;
+  cout << line_element.nnode_1d() << endl;
+  const unsigned line_index = 1;
+  line_element.build(&face_element, line_index);
+
+  line_element.assign_internal_eqn_numbers(global_number, Dof_pt);
+  line_element.assign_local_eqn_numbers(true);
+
+  cout << line_element.nnode() << endl;
+  cout << line_element.nst_u_index(0, 0) << endl;
+  cout << line_element.nst_u_index(0, 1) << endl;
+  cout << line_element.nst_p_index(0) << endl;
+  cout << line_element.nst_momentum_index(0, 0) << endl;
+  cout << line_element.nst_momentum_index(0, 1) << endl;
+  cout << line_element.nst_continuity_index(0) << endl;
+  cout << line_element.nst_u_local_unknown(0, 0) << endl;
+  cout << line_element.nst_u(0, 0) << endl;
 
   return (EXIT_SUCCESS);
 }
