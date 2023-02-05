@@ -1237,15 +1237,6 @@ namespace oomph
                                                 AxisymmetricDerivatives,
                                                 ELEMENT>
   {
-  public:
-    ElasticAxisymmetricFluidInterfaceElement(FiniteElement* const& element_pt,
-                                             const int& face_index,
-                                             const unsigned& id = 0)
-      : ElasticUpdateFluidInterfaceElement<FluidInterfaceElement,
-                                           AxisymmetricDerivatives,
-                                           ELEMENT>(element_pt, face_index, id)
-    {
-    }
   };
 
   // Define the bounding element associated with the axsymmetric elastic fluid
