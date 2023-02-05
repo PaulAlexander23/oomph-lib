@@ -1731,6 +1731,18 @@ namespace oomph
     }
   };
 
+  template<unsigned DIM, unsigned NNODE_1D>
+  class FaceGeometry<QElement<DIM, NNODE_1D>>
+    : public QElement<DIM - 1, NNODE_1D>
+  {
+  };
+
+  template<unsigned NNODE_1D>
+  class FaceGeometry<QElement<1, NNODE_1D>> : public PointElement
+  {
+  };
+
+
   //=======================================================================
   /// SolidQElement elements are quadrilateral elements whose
   /// derivatives also include those based upon the lagrangian
