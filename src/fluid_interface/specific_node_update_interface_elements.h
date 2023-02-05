@@ -40,6 +40,7 @@
 #include "../generic/spines.h"
 #include "../generic/hijacked_elements.h"
 #include "interface_elements.h"
+#include "interface_contact_elements.h"
 
 namespace oomph
 {

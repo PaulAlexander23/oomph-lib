@@ -3,7 +3,9 @@
 #-----------------------
 
 # Define the sources
-sources = interface_elements.cc constrained_volume_elements.cc
+sources = interface_elements.cc \
+		  constrained_volume_elements.cc \
+		  interface_contact_elements.cc
 # surfactant_transport_elements.cc
 
 # Include files which shouldn't be compiled
@@ -14,8 +16,10 @@ incl_cc_files =
 
 # Define the headers
 headers = interface_elements.h \
-constrained_volume_elements.h specific_node_update_interface_elements.h \
-fluid_interface_face_element.h
+		  constrained_volume_elements.h \
+		  specific_node_update_interface_elements.h \
+		  fluid_interface_face_element.h \
+		  interface_contact_elements.h
 # surfactant_transport_elements.h
 
 # Template only files. These should be included in include directory
