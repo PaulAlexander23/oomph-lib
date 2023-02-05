@@ -59,7 +59,7 @@ namespace oomph
     virtual inline unsigned nst_continuity_index(const unsigned& n) const
     {
       const int nodal_index = nst_p_index(n);
-      return this->nodal_local_eqn(n, nodal_index);
+      return nodal_index;
     }
 
 
