@@ -39,6 +39,7 @@
 #include "../generic/hijacked_elements.h"
 #include "../navier_stokes/navier_stokes_face_elements.h"
 #include "interface_elements.h"
+#include "fluid_interface_face_element.h"
 
 namespace oomph
 {
@@ -52,7 +53,8 @@ namespace oomph
   /// These boundaries may be in contact with a solid surface, in which case
   /// the normal to that surface must be provided.
   //=========================================================================
-  class FluidInterfaceBoundingElement : public virtual FaceElement
+  // template<class DERIVATIVE_CLASS>
+  class ContactLineElement : public virtual FluidInterfaceFaceElement
   {
   private:
     /// Function pointer to a wall unit normal function. Returns the
@@ -63,8 +65,14 @@ namespace oomph
     /// Function pointer to a contact angle function. Returns the
     /// contact angle between the fluid and the wall, for a given contact line
     /// velocity
-    typedef void (*ContactAngleFctPt)(const Vector<double>& local_u,
-                                      double& local_angle);
+    typedef double (*ContactAngleFctPt)(const Vector<double>& x,
+                                        const Vector<double>& local_u);
+
+    enum
+    {
+      STRONG,
+      WEAK
+    };
 
     /// Pointer to a wall normal function that returns
     /// the wall unit normal as a function of position in global
@@ -75,31 +83,75 @@ namespace oomph
     /// the contact angle as a function of the contact line velocity.
     ContactAngleFctPt Contact_angle_fct_pt;
 
-    /// Pointer to the desired value of the contact angle (if any)
-    double* Contact_angle_pt;
-
     /// Pointer to the desired value of the capillary number
     double* Ca_pt;
+
+    /// Pointer to the desired value of the "sigma" number
+    double* Sigma_pt;
+
+    /// Pointer to the desired value of the Strouhal number
+    double* St_pt;
 
   protected:
     /// Flag used to determine whether the contact angle is to be
     /// used (0 if not), and whether it will be applied weakly as a force term
     /// in the momentum equations (1) or by hijacking the kinematic
     /// condition (2).
-    unsigned Contact_angle_flag;
+    Vector<unsigned> Contact_angle_flag;
 
     /// Flag used to determine whether the contact angle is to be
     /// set by the fixed value (0) or by the function (1) (Default).
     unsigned Contact_angle_fct_flag;
 
-    /// Index at which the i-th velocity component is stored in the
-    /// element's nodes
-    Vector<Vector<unsigned>> U_index_interface_boundary;
 
-    /// Function that is used to determine the local equation number of
-    /// the kinematic equation associated with the nodes of the element
-    /// This must be overloaded depending on the node update scheme
-    virtual int kinematic_local_eqn(const unsigned& n) = 0;
+  public:
+    ContactLineElement()
+      : Wall_unit_normal_fct_pt(0),
+        Contact_angle_fct_pt(0),
+        Ca_pt(0),
+        Sigma_pt(0),
+        St_pt(0)
+    {
+    }
+
+    void build(FiniteElement* const& element_pt,
+               const int& face_index,
+               const unsigned& id = 0)
+    {
+      FluidInterfaceFaceElement::build(element_pt, face_index, id);
+
+      Contact_angle_flag = Vector<unsigned>(nnode(), WEAK);
+    }
+
+    /// "Constructor" takes a "bulk" element, the
+    /// index that identifies which face the
+    /// ImposeImpenetrabilityElement is supposed
+    /// to be attached to, and the face element ID
+    virtual void set_n_additional_values()
+    {
+      for (unsigned n = 0; n < this->nnode(); n++)
+      {
+        this->N_additional_values[n] += 1;
+      }
+    }
+
+    // /// Fill in the specific surface derivative calculations
+    // /// by calling the appropriate function from the derivative class
+    // double compute_surface_derivatives(
+    //   const Shape& psi,
+    //   const DShape& dpsids,
+    //   const DenseMatrix<double>& interpolated_t,
+    //   const Vector<double>& interpolated_x,
+    //   DShape& surface_gradient,
+    //   DShape& surface_divergence)
+    // {
+    //   return DERIVATIVE_CLASS::compute_surface_derivatives(psi,
+    //                                                        dpsids,
+    //                                                        interpolated_t,
+    //                                                        interpolated_x,
+    //                                                        surface_gradient,
+    //                                                        surface_divergence);
+    // }
 
     /// Function that returns the unit normal of the bounding wall
     /// directed out of the fluid
@@ -115,12 +167,13 @@ namespace oomph
       else
       {
         throw OomphLibError("Wall unit normal fct has not been set",
-                            "FluidInterfaceBoundingElement::wall_unit_normal()",
+                            "ContactLineElement::wall_unit_normal()",
                             OOMPH_EXCEPTION_LOCATION);
       }
 #endif
     }
 
+  protected:
     /// The geometric data of the parent element is included as
     /// external data and so a (bulk) node update must take place after
     /// the variation of any of this external data
@@ -144,17 +197,6 @@ namespace oomph
     }
 
   public:
-    /// Constructor
-    FluidInterfaceBoundingElement()
-      : Wall_unit_normal_fct_pt(0),
-        Contact_angle_fct_pt(0),
-        Contact_angle_pt(0),
-        Ca_pt(0),
-        Contact_angle_flag(0),
-        Contact_angle_fct_flag(1)
-    {
-    }
-
     /// Access function: Pointer to wall unit normal function
     WallUnitNormalFctPt& wall_unit_normal_fct_pt()
     {
@@ -167,43 +209,56 @@ namespace oomph
       return Wall_unit_normal_fct_pt;
     }
 
-    /// Access function: Pointer to contact angle function
-    ContactAngleFctPt& contact_angle_fct_pt()
+    // Get the contact angle from the double pointer or function pointer
+    double get_contact_angle(const Vector<double>& x,
+                             const Vector<double>& local_u)
     {
-      return Contact_angle_fct_pt;
+#ifdef PARANOID
+      if (Contact_angle_fct_pt == 0)
+      {
+        std::ostringstream error_message;
+        error_message << "The contact angle function has not been set."
+                      << std::endl;
+        throw OomphLibError(error_message.str(),
+                            OOMPH_CURRENT_FUNCTION,
+                            OOMPH_EXCEPTION_LOCATION);
+      }
+#endif
+
+      return (*Contact_angle_fct_pt)(x, local_u);
     }
 
-    /// Access function: Pointer to contact angle function. Const version
-    ContactAngleFctPt contact_angle_fct_pt() const
+    void set_contact_angle_fct(const ContactAngleFctPt& contact_angle_fct_pt)
     {
-      return Contact_angle_fct_pt;
+      Contact_angle_fct_pt = contact_angle_fct_pt;
     }
 
-    /// Access for nodal index at which the velocity components are stored
-    Vector<Vector<unsigned>>& u_index_interface_boundary()
+    void set_strong_imposition(const unsigned& n)
     {
-      return U_index_interface_boundary;
+      // Hijack the bulk element residuals
+      // dynamic_cast<ELEMENT*>(bulk_element_pt())
+      //   ->hijack_kinematic_conditions(this->bulk_node_number(n));
+
+      // this->fix_lagrange_multiplier(n);
+
+      Contact_angle_flag[n] = STRONG;
     }
 
-    /// Set a pointer to the desired contact angle. Optional boolean
-    /// (defaults to true)
-    /// chooses strong imposition via hijacking (true) or weak imposition
-    /// via addition to momentum equation (false). The default strong imposition
-    /// is appropriate for static contact angle problems.
-    void set_contact_angle(double* const& angle_pt, const bool& strong = true);
-
-    /// Set a pointer to the desired contact angle. Optional boolean
-    /// (defaults to true)
-    /// chooses strong imposition via hijacking (true) or weak imposition
-    /// via addition to momentum equation (false). The default strong imposition
-    /// is appropriate for static contact angle problems.
-    void set_contact_angle_fct(ContactAngleFctPt const& angle_fct_pt,
-                               const bool& strong = true);
-
-    /// Access function to the pointer specifying the prescribed contact angle
-    double*& contact_angle_pt()
+    void set_weak_imposition(const unsigned& n)
     {
-      return Contact_angle_pt;
+      std::cout << "here" << std::endl;
+      // std::string error_message =
+      //   "unhijack_kinematic_conditions not implemented.";
+      // throw OomphLibError(
+      //   error_message, OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+      // Un-hijack the bulk element residuals
+
+      // dynamic_cast<ELEMENT*>(bulk_element_pt())
+      //   ->unhijack_kinematic_conditions(this->bulk_node_number(n));
+
+      // this->free_lagrange_multiplier(n);
+
+      Contact_angle_flag[n] = WEAK;
     }
 
     /// Access function to the pointer specifying the capillary number
@@ -225,44 +280,110 @@ namespace oomph
       else
       {
         throw OomphLibError("Capillary number has not been set",
-                            "FluidInterfaceBoundingElement::ca()",
+                            "ContactLineElement::ca()",
                             OOMPH_EXCEPTION_LOCATION);
       }
 #endif
     }
 
-
-    /// Return value of the contact angle
-    void contact_angle(double& angle)
+    /// Access function to the pointer specifying the capillary number
+    double*& sigma_pt()
     {
-#ifdef PARANOID
-      if (Contact_angle_pt == 0)
-      {
-        std::string error_message = "Contact angle not set\n";
-        error_message +=
-          "Please use FluidInterfaceBoundingElement::set_contact_angle()\n";
-        throw OomphLibError(
-          error_message, OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
-      }
-#endif
-      angle = *Contact_angle_pt;
+      return Sigma_pt;
     }
 
-    /// Return value of the contact angle
-    void contact_angle(const Vector<double>& dx_dt, double& angle)
+    /// Return the value of the capillary number
+    double sigma()
     {
 #ifdef PARANOID
-      if (Contact_angle_fct_pt == 0)
+      if (Sigma_pt != 0)
       {
-        std::string error_message = "Contact angle function not set\n";
-        error_message +=
-          "Please use FluidInterfaceBoundingElement::contact_angle_fct()\n";
-        throw OomphLibError(
-          error_message, OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+#endif
+        return *Sigma_pt;
+#ifdef PARANOID
+      }
+      else
+      {
+        throw OomphLibError("Capillary number has not been set",
+                            "ContactLineElement::ca()",
+                            OOMPH_EXCEPTION_LOCATION);
       }
 #endif
-      (*Contact_angle_fct_pt)(dx_dt, angle);
     }
+
+    /// Access function to the pointer specifying the capillary number
+    double*& st_pt()
+    {
+      return St_pt;
+    }
+
+    /// Return the value of the capillary number
+    double st()
+    {
+#ifdef PARANOID
+      if (St_pt != 0)
+      {
+#endif
+        return *St_pt;
+#ifdef PARANOID
+      }
+      else
+      {
+        throw OomphLibError("Capillary number has not been set",
+                            "ContactLineElement::ca()",
+                            OOMPH_EXCEPTION_LOCATION);
+      }
+#endif
+    }
+
+    //--------------------------------------------------------------------------
+
+    virtual const unsigned fsi_lagrange_multiplier_nodal_index(
+      const unsigned& n) = 0;
+
+    virtual int fsi_kinematic_local_eqn(const unsigned& n)
+    {
+      const unsigned nodal_index = fsi_lagrange_multiplier_nodal_index(n);
+      return this->nodal_local_eqn(n, nodal_index);
+    }
+
+    virtual double fsi_lagrange_multiplier(const unsigned& n)
+    {
+      const unsigned nodal_index = fsi_lagrange_multiplier_nodal_index(n);
+      return this->nodal_value(n, nodal_index);
+    }
+
+    //--------------------------------------------------------------------------
+
+    const unsigned cl_lagrange_multiplier_nodal_index(const unsigned& n)
+    {
+      return this->additional_value_index(n, 0);
+    }
+
+    virtual int wall_bounded_kinematic_local_eqn(const unsigned& n)
+    {
+      const unsigned nodal_index = cl_lagrange_multiplier_nodal_index(n);
+      return this->nodal_local_eqn(n, nodal_index);
+    }
+
+    virtual double cl_lagrange_multiplier(const unsigned& n)
+    {
+      const unsigned nodal_index = cl_lagrange_multiplier_nodal_index(n);
+      return this->nodal_value(n, nodal_index);
+    }
+
+    void fix_lagrange_multiplier(const unsigned& n, const double& value)
+    {
+      this->node_pt(n)->pin(cl_lagrange_multiplier_nodal_index(n));
+      this->node_pt(n)->set_value(cl_lagrange_multiplier_nodal_index(n), value);
+    }
+
+    void free_lagrange_multiplier(const unsigned& n)
+    {
+      this->node_pt(n)->unpin(cl_lagrange_multiplier_nodal_index(n));
+    }
+
+    //--------------------------------------------------------------------------
 
     /// Calculate the residuals
     void fill_in_contribution_to_residuals(Vector<double>& residuals)
@@ -274,9 +395,7 @@ namespace oomph
 
     /// Calculate the generic residuals contribution
     virtual void fill_in_generic_residual_contribution_interface_boundary(
-      Vector<double>& residuals,
-      DenseMatrix<double>& jacobian,
-      unsigned flag) = 0;
+      Vector<double>& residuals, DenseMatrix<double>& jacobian, unsigned flag);
 
 
     /// Empty helper function to calculate the additional contributions
@@ -323,167 +442,169 @@ namespace oomph
   };
 
 
-  //==========================================================================
-  /// Specialisation of the interface boundary constraint to a point
-  //==========================================================================
-  class PointFluidInterfaceBoundingElement
-    : public FluidInterfaceBoundingElement
-  {
-  protected:
-    /// Overload the helper function to calculate the residuals and
-    /// (if flag==1) the Jacobian -- this function only deals with
-    /// the part of the Jacobian that can be handled generically.
-    /// Specific additional contributions may be provided in
-    /// add_additional_residual_contributions_interface_boundary(...)
-    void fill_in_generic_residual_contribution_interface_boundary(
-      Vector<double>& residuals, DenseMatrix<double>& jacobian, unsigned flag);
+  // //==========================================================================
+  // /// Specialisation of the interface boundary constraint to a point
+  // //==========================================================================
+  // class PointFluidInterfaceBoundingElement : public ContactLineElement
+  // {
+  // protected:
+  //   /// Overload the helper function to calculate the residuals and
+  //   /// (if flag==1) the Jacobian -- this function only deals with
+  //   /// the part of the Jacobian that can be handled generically.
+  //   /// Specific additional contributions may be provided in
+  //   /// add_additional_residual_contributions_interface_boundary(...)
+  //   void fill_in_generic_residual_contribution_interface_boundary(
+  //     Vector<double>& residuals, DenseMatrix<double>& jacobian, unsigned
+  //     flag);
 
-    // Index to the Kinematic lagrange multiplier internal data pointer
-    int Kinematic_lagrange_index;
+  //   // Index to the Kinematic lagrange multiplier internal data pointer
+  //   int Kinematic_lagrange_index;
 
-  public:
-    /// Constructor
-    PointFluidInterfaceBoundingElement()
-      : FluidInterfaceBoundingElement(), Kinematic_lagrange_index(-1)
-    {
-      Kinematic_lagrange_index = add_internal_data(new Data(1));
-      internal_data_pt(Kinematic_lagrange_index)->set_value(0, 1.0);
-    }
+  // public:
+  //   /// Constructor
+  //   PointFluidInterfaceBoundingElement()
+  //     : ContactLineElement(), Kinematic_lagrange_index(-1)
+  //   {
+  //     Kinematic_lagrange_index = add_internal_data(new Data(1));
+  //     internal_data_pt(Kinematic_lagrange_index)->set_value(0, 1.0);
+  //   }
 
-    void fix_lagrange_multiplier(const double& value)
-    {
-      internal_data_pt(Kinematic_lagrange_index)->pin(0);
-      internal_data_pt(Kinematic_lagrange_index)->set_value(0, value);
-    }
+  //   void fix_lagrange_multiplier(const double& value)
+  //   {
+  //     internal_data_pt(Kinematic_lagrange_index)->pin(0);
+  //     internal_data_pt(Kinematic_lagrange_index)->set_value(0, value);
+  //   }
 
-    void free_lagrange_multiplier()
-    {
-      internal_data_pt(Kinematic_lagrange_index)->unpin(0);
-    }
+  //   void free_lagrange_multiplier()
+  //   {
+  //     internal_data_pt(Kinematic_lagrange_index)->unpin(0);
+  //   }
 
-    void calculate_contact_angle(double& imposed_contact_angle,
-                                 double& computed_contact_angle)
-    {
-      // Let's get the info from the parent
-      FiniteElement* parent_pt = bulk_element_pt();
+  //   void calculate_contact_angle(double& imposed_contact_angle,
+  //                                double& computed_contact_angle)
+  //   {
+  //     // Let's get the info from the parent
+  //     FiniteElement* parent_pt = bulk_element_pt();
 
-      // Find the dimension of the problem
-      unsigned spatial_dim = this->nodal_dimension();
+  //     // Find the dimension of the problem
+  //     unsigned spatial_dim = this->nodal_dimension();
 
-      // Outer unit normal to the wall
-      Vector<double> wall_normal(spatial_dim);
+  //     // Outer unit normal to the wall
+  //     Vector<double> wall_normal(spatial_dim);
 
-      // Outer unit normal to the free surface
-      Vector<double> unit_normal(spatial_dim);
+  //     // Outer unit normal to the free surface
+  //     Vector<double> unit_normal(spatial_dim);
 
-      // Storage for the coordinate
-      Vector<double> x(spatial_dim);
+  //     // Storage for the coordinate
+  //     Vector<double> x(spatial_dim);
 
-      // Storage for the coordinate time derivative
-      Vector<double> dx_dt(spatial_dim);
+  //     // Storage for the coordinate time derivative
+  //     Vector<double> dx_dt(spatial_dim);
 
-      // Get the unit normal to the wall
-      wall_unit_normal(x, wall_normal);
+  //     // Get the unit normal to the wall
+  //     wall_unit_normal(x, wall_normal);
 
-      // Find the dimension of the parent
-      unsigned n_dim = parent_pt->dim();
+  //     // Find the dimension of the parent
+  //     unsigned n_dim = parent_pt->dim();
 
-      // Dummy local coordinate, of size zero
-      Vector<double> s_local(0);
+  //     // Dummy local coordinate, of size zero
+  //     Vector<double> s_local(0);
 
-      // Get the x coordinate
-      this->interpolated_x(s_local, x);
+  //     // Get the x coordinate
+  //     this->interpolated_x(s_local, x);
 
-      // Get the dx/dt of the coordinate
-      const unsigned t_deriv = 1;
-      this->interpolated_dxdt(s_local, t_deriv, dx_dt);
+  //     // Get the dx/dt of the coordinate
+  //     const unsigned t_deriv = 1;
+  //     this->interpolated_dxdt(s_local, t_deriv, dx_dt);
 
-      // Find the local coordinates in the parent
-      Vector<double> s_parent(n_dim);
-      this->get_local_coordinate_in_bulk(s_local, s_parent);
+  //     // Find the local coordinates in the parent
+  //     Vector<double> s_parent(n_dim);
+  //     this->get_local_coordinate_in_bulk(s_local, s_parent);
 
-      // Just get the outer unit normal
-      dynamic_cast<FaceElement*>(parent_pt)->outer_unit_normal(s_parent,
-                                                               unit_normal);
-
-
-      // Get imposed contact angle
-      if (Contact_angle_fct_flag)
-      {
-        contact_angle(dx_dt, imposed_contact_angle);
-      }
-      else
-      {
-        contact_angle(imposed_contact_angle);
-      }
-
-      // Find the dot product of the two vectors
-      double dot = 0.0;
-      for (unsigned i = 0; i < spatial_dim; i++)
-      {
-        dot += unit_normal[i] * wall_normal[i];
-      }
-
-      // Compute contact angle
-      computed_contact_angle = acos(dot);
-    }
-
-    /// Overload the output function
-    void output(std::ostream& outfile)
-    {
-      // Find the dimension of the problem
-      unsigned spatial_dim = this->nodal_dimension();
-
-      // Storage for the coordinate
-      Vector<double> x(spatial_dim);
-
-      // Dummy local coordinate, of size zero
-      Vector<double> s_local(0);
-
-      // Get the x coordinate
-      this->interpolated_x(s_local, x);
-
-      // Compute the contact angles
-      double imposed_contact_angle = 0.0;
-      double computed_contact_angle = 0.0;
-      calculate_contact_angle(imposed_contact_angle, computed_contact_angle);
+  //     // Just get the outer unit normal
+  //     dynamic_cast<FaceElement*>(parent_pt)->outer_unit_normal(s_parent,
+  //                                                              unit_normal);
 
 
-      // Output fields, x, y, alpha_input, alpha_output, lagrange_multiplier
-      for (unsigned i = 0; i < spatial_dim; i++)
-      {
-        outfile << x[i] << ",";
-      }
-      std::streamsize ss = outfile.precision();
-      outfile << std::fixed << std::setprecision(3);
-      outfile << imposed_contact_angle * 180 / MathematicalConstants::Pi << ",";
-      outfile << computed_contact_angle * 180 / MathematicalConstants::Pi
-              << ",";
-      outfile << std::setprecision(ss);
-      outfile << internal_data_pt(Kinematic_lagrange_index)->value(0);
-      outfile << std::endl;
-    }
-  };
+  //     // Get imposed contact angle
+  //     if (Contact_angle_fct_flag)
+  //     {
+  //       contact_angle(dx_dt, imposed_contact_angle);
+  //     }
+  //     else
+  //     {
+  //       contact_angle(imposed_contact_angle);
+  //     }
+
+  //     // Find the dot product of the two vectors
+  //     double dot = 0.0;
+  //     for (unsigned i = 0; i < spatial_dim; i++)
+  //     {
+  //       dot += unit_normal[i] * wall_normal[i];
+  //     }
+
+  //     // Compute contact angle
+  //     computed_contact_angle = acos(dot);
+  //   }
+
+  //   /// Overload the output function
+  //   void output(std::ostream& outfile)
+  //   {
+  //     // Find the dimension of the problem
+  //     unsigned spatial_dim = this->nodal_dimension();
+
+  //     // Storage for the coordinate
+  //     Vector<double> x(spatial_dim);
+
+  //     // Dummy local coordinate, of size zero
+  //     Vector<double> s_local(0);
+
+  //     // Get the x coordinate
+  //     this->interpolated_x(s_local, x);
+
+  //     // Compute the contact angles
+  //     double imposed_contact_angle = 0.0;
+  //     double computed_contact_angle = 0.0;
+  //     calculate_contact_angle(imposed_contact_angle, computed_contact_angle);
+
+
+  //     // Output fields, x, y, alpha_input, alpha_output, lagrange_multiplier
+  //     for (unsigned i = 0; i < spatial_dim; i++)
+  //     {
+  //       outfile << x[i] << ",";
+  //     }
+  //     std::streamsize ss = outfile.precision();
+  //     outfile << std::fixed << std::setprecision(3);
+  //     outfile << imposed_contact_angle * 180 / MathematicalConstants::Pi <<
+  //     ","; outfile << computed_contact_angle * 180 /
+  //     MathematicalConstants::Pi
+  //             << ",";
+  //     outfile << std::setprecision(ss);
+  //     outfile << internal_data_pt(Kinematic_lagrange_index)->value(0);
+  //     outfile << std::endl;
+  //   }
+  // };
 
 
   //==========================================================================
   /// Specialisation of the interface boundary constraint to a line
   //==========================================================================
-  class LineFluidInterfaceBoundingElement : public FluidInterfaceBoundingElement
-  {
-  protected:
-    /// Overload the helper function to calculate the residuals and
-    /// (if flag==true) the Jacobian -- this function only deals with
-    /// the part of the Jacobian that can be handled generically.
-    /// Specific additional contributions may be provided in
-    /// add_additional_residual_contributions_interface_boundary()
-    void fill_in_generic_residual_contribution_interface_boundary(
-      Vector<double>& residuals, DenseMatrix<double>& jacobian, unsigned flag);
+  // class LineFluidInterfaceBoundingElement : public ContactLineElement
+  // {
+  // protected:
+  //   /// Overload the helper function to calculate the residuals and
+  //   /// (if flag==true) the Jacobian -- this function only deals with
+  //   /// the part of the Jacobian that can be handled generically.
+  //   /// Specific additional contributions may be provided in
+  //   /// add_additional_residual_contributions_interface_boundary()
+  //   void fill_in_generic_residual_contribution_interface_boundary(
+  //     Vector<double>& residuals, DenseMatrix<double>& jacobian, unsigned
+  //     flag);
 
-  public:
-    /// Constructor
-    LineFluidInterfaceBoundingElement() : FluidInterfaceBoundingElement() {}
-  };
+  // public:
+  //   /// Constructor
+  //   LineFluidInterfaceBoundingElement() : ContactLineElement() {}
+  // };
 
 } // namespace oomph
 #endif

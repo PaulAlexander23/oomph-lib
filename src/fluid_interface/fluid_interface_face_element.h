@@ -38,7 +38,7 @@
 #include "../generic/shape.h"
 #include "../generic/hijacked_elements.h"
 #include "../navier_stokes/navier_stokes_face_elements.h"
-#include "fluid_interface.h"
+#include "interface_elements.h"
 
 namespace oomph
 {

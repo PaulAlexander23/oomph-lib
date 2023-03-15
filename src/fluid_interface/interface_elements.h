@@ -377,7 +377,8 @@ namespace oomph
     /// Overload the output function
     void output(std::ostream& outfile)
     {
-      FiniteElement::output(outfile);
+      const unsigned default_nplot = 5;
+      output(outfile, default_nplot);
     }
 
     /// Output function
@@ -386,7 +387,8 @@ namespace oomph
     /// Overload the C-style output function
     void output(FILE* file_pt)
     {
-      FiniteElement::output(file_pt);
+      const unsigned default_nplot = 5;
+      output(file_pt, default_nplot);
     }
 
     /// C-style Output function

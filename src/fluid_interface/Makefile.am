@@ -19,7 +19,8 @@ headers = interface_elements.h \
 		  constrained_volume_elements.h \
 		  specific_node_update_interface_elements.h \
 		  fluid_interface_face_element.h \
-		  interface_contact_elements.h
+		  interface_contact_elements.h \
+		  specific_node_update_interface_face_elements.h
 # surfactant_transport_elements.h
 
 # Template only files. These should be included in include directory
