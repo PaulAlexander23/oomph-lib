@@ -3668,14 +3668,21 @@ namespace oomph
       return;
     }
 
+    std::cout << "update_before_nodal_fd" << std::endl;
     // Call the update function to ensure that the element is in
     // a consistent state before finite differencing starts
     update_before_nodal_fd();
 
     // Find the number of dofs in the element
     const unsigned n_dof = ndof();
+    std::cout << "dofs: " << n_dof << std::endl;
     // Create newres vector
-    Vector<double> newres(n_dof);
+    Vector<double> newres(n_dof,0.0);
+    std::cout << &newres << std::endl;
+    for (unsigned n = 0; n < n_dof; n++)
+    {
+      std::cout << &newres[n] << std::endl;
+    }
 
     // Integer storage for local unknown
     int local_unknown = 0;
@@ -3683,6 +3690,7 @@ namespace oomph
     // Use the default finite difference step
     const double fd_step = Default_fd_jacobian_step;
 
+    std::cout << "loop" << std::endl;
     // Loop over the nodes
     for (unsigned n = 0; n < n_node; n++)
     {
@@ -3729,9 +3737,20 @@ namespace oomph
       }
     }
 
+    std::cout << "reset_after_nodal_fd" << std::endl;
     // End of finite difference loop
     // Final reset of any dependent data
     reset_after_nodal_fd();
+    std::cout << "cleanup" << std::endl;
+    std::cout << "size: " << newres.size() << std::endl;
+    std::cout << "dofs: " << n_dof << std::endl;
+    std::cout << &newres << std::endl;
+    for (unsigned n = 0; n < n_dof; n++)
+    {
+      std::cout << &newres[n] << std::endl;
+      std::cout << newres[n] << std::endl;
+    }
+    std::cout << "out" << std::endl;
   }
 
 

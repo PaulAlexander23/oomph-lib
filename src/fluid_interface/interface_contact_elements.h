@@ -121,19 +121,21 @@ namespace oomph
       FluidInterfaceFaceElement::build(element_pt, face_index, id);
 
       Contact_angle_flag = Vector<unsigned>(nnode(), WEAK);
+
+      add_internal_data(new Data(1));
     }
 
     /// "Constructor" takes a "bulk" element, the
     /// index that identifies which face the
     /// ImposeImpenetrabilityElement is supposed
     /// to be attached to, and the face element ID
-    virtual void set_n_additional_values()
-    {
-      for (unsigned n = 0; n < this->nnode(); n++)
-      {
-        this->N_additional_values[n] += 1;
-      }
-    }
+    // virtual void set_n_additional_values()
+    // {
+    //   for (unsigned n = 0; n < this->nnode(); n++)
+    //   {
+    //     this->N_additional_values[n] += 1;
+    //   }
+    // }
 
     // /// Fill in the specific surface derivative calculations
     // /// by calling the appropriate function from the derivative class
@@ -355,32 +357,38 @@ namespace oomph
 
     //--------------------------------------------------------------------------
 
-    const unsigned cl_lagrange_multiplier_nodal_index(const unsigned& n)
-    {
-      return this->additional_value_index(n, 0);
-    }
+    // const unsigned cl_lagrange_multiplier_nodal_index(const unsigned& n)
+    // {
+    // return this->additional_value_index(n, 0);
+    // }
 
     virtual int wall_bounded_kinematic_local_eqn(const unsigned& n)
     {
-      const unsigned nodal_index = cl_lagrange_multiplier_nodal_index(n);
-      return this->nodal_local_eqn(n, nodal_index);
+      // const unsigned nodal_index = cl_lagrange_multiplier_nodal_index(n);
+      // return this->nodal_local_eqn(n, nodal_index);
+      return internal_local_eqn(0, n);
     }
 
     virtual double cl_lagrange_multiplier(const unsigned& n)
     {
-      const unsigned nodal_index = cl_lagrange_multiplier_nodal_index(n);
-      return this->nodal_value(n, nodal_index);
+      // const unsigned nodal_index = cl_lagrange_multiplier_nodal_index(n);
+      // return this->nodal_value(n, nodal_index);
+      return internal_data_pt(0)->value(n);
     }
 
     void fix_lagrange_multiplier(const unsigned& n, const double& value)
     {
-      this->node_pt(n)->pin(cl_lagrange_multiplier_nodal_index(n));
-      this->node_pt(n)->set_value(cl_lagrange_multiplier_nodal_index(n), value);
+      // this->node_pt(n)->pin(cl_lagrange_multiplier_nodal_index(n));
+      // this->node_pt(n)->set_value(cl_lagrange_multiplier_nodal_index(n),
+      // value);
+      internal_data_pt(0)->pin(n);
+      internal_data_pt(0)->set_value(n, value);
     }
 
     void free_lagrange_multiplier(const unsigned& n)
     {
-      this->node_pt(n)->unpin(cl_lagrange_multiplier_nodal_index(n));
+      // this->node_pt(n)->unpin(cl_lagrange_multiplier_nodal_index(n));
+      internal_data_pt(0)->unpin(n);
     }
 
     //--------------------------------------------------------------------------

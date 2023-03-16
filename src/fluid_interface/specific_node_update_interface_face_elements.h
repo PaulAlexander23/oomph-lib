@@ -78,6 +78,7 @@ namespace oomph
 
       // Allocate storage for the full residuals (residuals of entire element)
       unsigned n_dof = ndof();
+      std::cout << "solid contact line ndof: " << n_dof << std::endl;
       Vector<double> full_residuals(n_dof);
       // Get the residuals for the entire element
       get_residuals(full_residuals);

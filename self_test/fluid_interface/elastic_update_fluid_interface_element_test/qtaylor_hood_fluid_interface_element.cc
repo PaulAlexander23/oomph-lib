@@ -99,6 +99,9 @@ int main()
   cout << face_element.interpolated_u(s, 0) << endl;
   cout << face_element.interpolated_p(s) << endl;
   cout << face_element.sigma(s) << endl;
+  cout << "lagrange_index: " << face_element.lagrange_index(0) << endl;
+  cout << "kinematic_local_eqn: " << face_element.kinematic_local_eqn(0)
+       << endl;
 
   const unsigned ndof = face_element.ndof();
 

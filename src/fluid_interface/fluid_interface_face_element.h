@@ -91,15 +91,15 @@ namespace oomph
       return this->nodal_value(n, nodal_index);
     }
 
-    virtual inline unsigned nst_u_local_unknown(const unsigned& n,
-                                                const unsigned& i) const
+    virtual inline int nst_u_local_unknown(const unsigned& n,
+                                           const unsigned& i) const
     {
       const unsigned nodal_index = nst_u_index(n, i);
       return this->nodal_local_eqn(n, nodal_index);
     }
 
-    virtual inline unsigned nst_momentum_local_eqn(const unsigned& n,
-                                                   const unsigned& i) const
+    virtual inline int nst_momentum_local_eqn(const unsigned& n,
+                                              const unsigned& i) const
     {
       const unsigned nodal_index = nst_momentum_index(n, i);
       return this->nodal_local_eqn(n, nodal_index);

@@ -4472,9 +4472,9 @@ namespace oomph
       Bulk_position_type.push_back(0);
     }
 
-    void build(FiniteElement* const& element_pt,
-               const int& face_index,
-               const unsigned& id = 0)
+    virtual void build(FiniteElement* const& element_pt,
+                       const int& face_index,
+                       const unsigned& id = 0)
     {
       element_pt->build_face_element(face_index, this);
 
@@ -4989,6 +4989,11 @@ namespace oomph
                       const unsigned& i) const
     {
       return FaceElement::zeta_nodal(n, k, i);
+    }
+
+    virtual void node_update()
+    {
+      bulk_element_pt()->node_update();
     }
 
     /// Set pointer to MacroElement -- overloads generic version

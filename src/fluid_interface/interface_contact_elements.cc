@@ -209,12 +209,23 @@ namespace oomph
         {
           int local_eqn = wall_bounded_kinematic_local_eqn(n);
           std::cout << "local_eqn: " << local_eqn << std::endl;
-          std::cout << "nodal index: " << cl_lagrange_multiplier_nodal_index(n)
+          std::cout << "mom 0 eqn: " << nst_momentum_local_eqn(0, 0)
                     << std::endl;
+          std::cout << "mom 1 eqn: " << nst_momentum_local_eqn(0, 1)
+                    << std::endl;
+          std::cout << "mom 2 eqn: " << nst_momentum_local_eqn(0, 2)
+                    << std::endl;
+          std::cout << "cont eqn: "
+                    << nodal_local_eqn(0, nst_continuity_index(0)) << std::endl;
+          std::cout << "kin eqn: " << fsi_kinematic_local_eqn(0) << std::endl;
+          std::cout << "nvalue: " << node_pt(n)->nvalue() << std::endl;
+          // std::cout << "nodal index: " <<
+          // cl_lagrange_multiplier_nodal_index(n)
+          //          << std::endl;
           if (local_eqn >= 0)
           {
-            std::cout << "Add to wall bounded kinematic equations, "
-                      << cl_lagrange_multiplier_nodal_index(n) << std::endl;
+            // std::cout << "Add to wall bounded kinematic equations, "
+            //          << cl_lagrange_multiplier_nodal_index(n) << std::endl;
             // Point kinematic equation
             double st_local = st();
 
