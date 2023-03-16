@@ -70,20 +70,19 @@ namespace oomph
     /// w.r.t. to global coords  at local coordinate s (taken from geometry)
     /// Return Jacobian of mapping between local and global coordinates.
     inline double dshape_and_dtest_eulerian_nst(const Vector<double>& s,
-                                                    Shape& psi,
-                                                    DShape& dpsidx,
-                                                    Shape& test,
-                                                    DShape& dtestdx) const;
+                                                Shape& psi,
+                                                DShape& dpsidx,
+                                                Shape& test,
+                                                DShape& dtestdx) const;
 
     /// Velocity shape and test functions and their derivs
     /// w.r.t. to global coords at ipt-th integation point (taken from geometry)
     /// Return Jacobian of mapping between local and global coordinates.
-    inline double dshape_and_dtest_eulerian_at_knot_nst(
-      const unsigned& ipt,
-      Shape& psi,
-      DShape& dpsidx,
-      Shape& test,
-      DShape& dtestdx) const;
+    inline double dshape_and_dtest_eulerian_at_knot_nst(const unsigned& ipt,
+                                                        Shape& psi,
+                                                        DShape& dpsidx,
+                                                        Shape& test,
+                                                        DShape& dtestdx) const;
 
     /// Shape/test functions and derivs w.r.t. to global coords at
     /// integration point ipt; return Jacobian of mapping (J). Also compute
@@ -102,10 +101,10 @@ namespace oomph
     /// w.r.t. to global coords  at local coordinate s (taken from geometry)
     /// Return Jacobian of mapping between local and global coordinates.
     inline double dpshape_and_dptest_eulerian_nst(const Vector<double>& s,
-                                                      Shape& ppsi,
-                                                      DShape& dppsidx,
-                                                      Shape& ptest,
-                                                      DShape& dptestdx) const;
+                                                  Shape& ppsi,
+                                                  DShape& dppsidx,
+                                                  Shape& ptest,
+                                                  DShape& dptestdx) const;
 
   public:
     /// Pressure shape functions at local coordinate s
@@ -113,8 +112,8 @@ namespace oomph
 
     /// Pressure shape and test functions at local coordinte s
     inline void pshape_nst(const Vector<double>& s,
-                               Shape& psi,
-                               Shape& test) const;
+                           Shape& psi,
+                           Shape& test) const;
 
     /// Unpin all internal pressure dofs
     void unpin_all_internal_pressure_dofs();
@@ -174,8 +173,7 @@ namespace oomph
     void fix_pressure(const unsigned& p_dof, const double& p_value)
     {
       this->internal_data_pt(P_nst_internal_index)->pin(p_dof);
-      this->internal_data_pt(P_nst_internal_index)
-        ->set_value(p_dof, p_value);
+      this->internal_data_pt(P_nst_internal_index)->set_value(p_dof, p_value);
     }
 
     /// Free p_dof-th pressure dof
@@ -396,10 +394,10 @@ namespace oomph
   //=======================================================================
   inline double AxisymmetricTCrouzeixRaviartElement::
     dshape_and_dtest_eulerian_nst(const Vector<double>& s,
-                                      Shape& psi,
-                                      DShape& dpsidx,
-                                      Shape& test,
-                                      DShape& dtestdx) const
+                                  Shape& psi,
+                                  DShape& dpsidx,
+                                  Shape& test,
+                                  DShape& dtestdx) const
   {
     // Call the geometrical shape functions and derivatives
     double J = this->dshape_eulerian(s, psi, dpsidx);
@@ -418,10 +416,10 @@ namespace oomph
   //=======================================================================
   inline double AxisymmetricTCrouzeixRaviartElement::
     dshape_and_dtest_eulerian_at_knot_nst(const unsigned& ipt,
-                                              Shape& psi,
-                                              DShape& dpsidx,
-                                              Shape& test,
-                                              DShape& dtestdx) const
+                                          Shape& psi,
+                                          DShape& dpsidx,
+                                          Shape& test,
+                                          DShape& dtestdx) const
   {
     // Call the geometrical shape functions and derivatives
     double J = this->dshape_eulerian_at_knot(ipt, psi, dpsidx);
@@ -496,10 +494,10 @@ namespace oomph
   //==========================================================================
   inline double AxisymmetricTCrouzeixRaviartElement::
     dpshape_and_dptest_eulerian_nst(const Vector<double>& s,
-                                        Shape& ppsi,
-                                        DShape& dppsidx,
-                                        Shape& ptest,
-                                        DShape& dptestdx) const
+                                    Shape& ppsi,
+                                    DShape& dppsidx,
+                                    Shape& ptest,
+                                    DShape& dptestdx) const
   {
     // Initalise with shape fcts and derivs. w.r.t. to local coordinates
     ppsi[0] = 1.0;
@@ -592,20 +590,19 @@ namespace oomph
     /// w.r.t. to global coords  at local coordinate s (taken from geometry)
     /// Return Jacobian of mapping between local and global coordinates.
     inline double dshape_and_dtest_eulerian_nst(const Vector<double>& s,
-                                                    Shape& psi,
-                                                    DShape& dpsidx,
-                                                    Shape& test,
-                                                    DShape& dtestdx) const;
+                                                Shape& psi,
+                                                DShape& dpsidx,
+                                                Shape& test,
+                                                DShape& dtestdx) const;
 
     /// Velocity shape and test functions and their derivs
     /// w.r.t. to global coords  at local coordinate s (taken from geometry)
     /// Return Jacobian of mapping between local and global coordinates.
-    inline double dshape_and_dtest_eulerian_at_knot_nst(
-      const unsigned& ipt,
-      Shape& psi,
-      DShape& dpsidx,
-      Shape& test,
-      DShape& dtestdx) const;
+    inline double dshape_and_dtest_eulerian_at_knot_nst(const unsigned& ipt,
+                                                        Shape& psi,
+                                                        DShape& dpsidx,
+                                                        Shape& test,
+                                                        DShape& dtestdx) const;
 
     /// Shape/test functions and derivs w.r.t. to global coords at
     /// integration point ipt; return Jacobian of mapping (J). Also compute
@@ -624,10 +621,10 @@ namespace oomph
     /// w.r.t. global coords at local coordinate s.
     /// Return Jacobian of mapping between local and global coordinates.
     virtual double dpshape_and_dptest_eulerian_nst(const Vector<double>& s,
-                                                       Shape& ppsi,
-                                                       DShape& dppsidx,
-                                                       Shape& ptest,
-                                                       DShape& dptestdx) const;
+                                                   Shape& ppsi,
+                                                   DShape& dppsidx,
+                                                   Shape& ptest,
+                                                   DShape& dptestdx) const;
 
     /// Unpin all pressure dofs
     void unpin_all_nodal_pressure_dofs();
@@ -672,8 +669,8 @@ namespace oomph
 
     /// Pressure shape and test functions at local coordinte s
     inline void pshape_nst(const Vector<double>& s,
-                               Shape& psi,
-                               Shape& test) const;
+                           Shape& psi,
+                           Shape& test) const;
 
     /// Which nodal value represents the pressure?
     unsigned p_index_nst()
@@ -918,12 +915,12 @@ namespace oomph
   /// global (Eulerian) coordinates. Return Jacobian of mapping between
   /// local and global coordinates.
   //==========================================================================
-  inline double AxisymmetricTTaylorHoodElement::
-    dshape_and_dtest_eulerian_nst(const Vector<double>& s,
-                                      Shape& psi,
-                                      DShape& dpsidx,
-                                      Shape& test,
-                                      DShape& dtestdx) const
+  inline double AxisymmetricTTaylorHoodElement::dshape_and_dtest_eulerian_nst(
+    const Vector<double>& s,
+    Shape& psi,
+    DShape& dpsidx,
+    Shape& test,
+    DShape& dtestdx) const
   {
     // Call the geometrical shape functions and derivatives
     double J = this->dshape_eulerian(s, psi, dpsidx);
@@ -942,10 +939,10 @@ namespace oomph
   //==========================================================================
   inline double AxisymmetricTTaylorHoodElement::
     dshape_and_dtest_eulerian_at_knot_nst(const unsigned& ipt,
-                                              Shape& psi,
-                                              DShape& dpsidx,
-                                              Shape& test,
-                                              DShape& dtestdx) const
+                                          Shape& psi,
+                                          DShape& dpsidx,
+                                          Shape& test,
+                                          DShape& dtestdx) const
   {
     // Call the geometrical shape functions and derivatives
     double J = this->dshape_eulerian_at_knot(ipt, psi, dpsidx);
@@ -992,12 +989,12 @@ namespace oomph
   /// Pressure shape and test functions and derivs w.r.t. to Eulerian coords.
   /// Return Jacobian of mapping between local and global coordinates.
   //==========================================================================
-  inline double AxisymmetricTTaylorHoodElement::
-    dpshape_and_dptest_eulerian_nst(const Vector<double>& s,
-                                        Shape& ppsi,
-                                        DShape& dppsidx,
-                                        Shape& ptest,
-                                        DShape& dptestdx) const
+  inline double AxisymmetricTTaylorHoodElement::dpshape_and_dptest_eulerian_nst(
+    const Vector<double>& s,
+    Shape& ppsi,
+    DShape& dppsidx,
+    Shape& ptest,
+    DShape& dptestdx) const
   {
     ppsi[0] = s[0];
     ppsi[1] = s[1];
