@@ -3677,7 +3677,7 @@ namespace oomph
     const unsigned n_dof = ndof();
     std::cout << "dofs: " << n_dof << std::endl;
     // Create newres vector
-    Vector<double> newres(n_dof,0.0);
+    Vector<double> newres(n_dof, 0.0);
     std::cout << &newres << std::endl;
     for (unsigned n = 0; n < n_dof; n++)
     {
