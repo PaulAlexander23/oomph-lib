@@ -353,8 +353,7 @@ namespace oomph
         for (unsigned i = 0; i < Dim + 1; i++)
         {
           lambda[i] += nod_pt->value(first_index + i) * psif(j);
-          fluid_veloc[i] +=
-            nod_pt->value(U_index_fsi_no_slip_sym[i]) * psif(j);
+          fluid_veloc[i] += nod_pt->value(U_index_fsi_no_slip_sym[i]) * psif(j);
         }
       }
 

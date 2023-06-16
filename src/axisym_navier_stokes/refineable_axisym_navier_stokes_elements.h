@@ -173,9 +173,9 @@ namespace oomph
     /// Overload the non-refineable version to take account of hanging node
     /// information
     void dinterpolated_u_nst_ddata(const Vector<double>& s,
-                                       const unsigned& i,
-                                       Vector<double>& du_ddata,
-                                       Vector<unsigned>& global_eqn_number)
+                                   const unsigned& i,
+                                   Vector<double>& du_ddata,
+                                   Vector<unsigned>& global_eqn_number)
     {
       // Find number of nodes
       unsigned n_node = this->nnode();
@@ -1031,16 +1031,16 @@ namespace oomph
 
       // The slopes get copied from father
       internal_data_pt(P_nst_internal_index)
-        ->set_value(
-          1,
-          0.5 * cast_father_el_pt->internal_data_pt(P_nst_internal_index)
-                  ->value(1));
+        ->set_value(1,
+                    0.5 *
+                      cast_father_el_pt->internal_data_pt(P_nst_internal_index)
+                        ->value(1));
 
       internal_data_pt(P_nst_internal_index)
-        ->set_value(
-          2,
-          0.5 * cast_father_el_pt->internal_data_pt(P_nst_internal_index)
-                  ->value(2));
+        ->set_value(2,
+                    0.5 *
+                      cast_father_el_pt->internal_data_pt(P_nst_internal_index)
+                        ->value(2));
     }
   };
 
