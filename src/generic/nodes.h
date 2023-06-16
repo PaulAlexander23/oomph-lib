@@ -2769,6 +2769,7 @@ namespace oomph
         } // Case when we are actually requesting additional values
       } // End case when ID has already been touched
 
+
       // Now finally resize the storage
       this->resize(n_value + n_additional_value);
     }

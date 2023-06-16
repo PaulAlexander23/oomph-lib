@@ -158,6 +158,12 @@ namespace oomph
       public DERIVATIVE_CLASS
   {
   private:
+    virtual double kinematic_lagrange_multiplier(const unsigned& n)
+    {
+      // return this->geometric_data_value(Spine_geometric_index[n], 0);
+      return 1.0;
+    }
+
     /// In spine elements, the kinematic condition is the equation
     /// used to determine the unknown spine heights. Overload the
     /// function accordingly
@@ -331,13 +337,13 @@ namespace oomph
     }
 
     /// Overload the output function
-    void output(std::ostream& outfile)
+    virtual void output(std::ostream& outfile)
     {
       EQUATION_CLASS::output(outfile);
     }
 
     /// Output the element
-    void output(std::ostream& outfile, const unsigned& n_plot)
+    virtual void output(std::ostream& outfile, const unsigned& n_plot)
     {
       EQUATION_CLASS::output(outfile, n_plot);
     }
@@ -710,6 +716,11 @@ namespace oomph
       return this->additional_value_index(n, this->N_additional_values[n] - 1);
     }
 
+    virtual double kinematic_lagrange_multiplier(const unsigned& n)
+    {
+      return this->nodal_value(n, this->lagrange_index(n));
+    }
+
     /// Equation number of the kinematic BC associated with node j.
     /// (This is the equation for the Lagrange multiplier)
     inline int kinematic_local_eqn(const unsigned& n)
@@ -799,7 +810,8 @@ namespace oomph
 
     void fix_lagrange_multiplier(const unsigned& n, const double& value)
     {
-      std::cout << "lagrange_index: " << this->lagrange_index(n) << std::endl;
+      // std::cout << "lagrange_index: " << this->lagrange_index(n) <<
+      // std::endl;
       this->node_pt(n)->pin(this->lagrange_index(n));
       this->node_pt(n)->set_value(this->lagrange_index(n), value);
     }
@@ -809,23 +821,31 @@ namespace oomph
       this->node_pt(n)->unpin(this->lagrange_index(n));
     }
 
+    /// Fill in contribution to residuals and Jacobian
+    void fill_in_contribution_to_residuals(Vector<double>& residuals)
+    {
+      // Call the generic routine with the flag set to 1
+      EQUATION_CLASS::fill_in_generic_residual_contribution_interface(
+        residuals, GeneralisedElement::Dummy_matrix, 0);
+    }
 
     /// Fill in contribution to residuals and Jacobian
-    // void fill_in_contribution_to_jacobian(Vector<double>& residuals,
-    //                                      DenseMatrix<double>& jacobian)
-    //{
-    //  // Call the generic routine with the flag set to 1
-    //  EQUATION_CLASS::fill_in_generic_residual_contribution_interface(
-    //    residuals, jacobian, 1);
+    void fill_in_contribution_to_jacobian(Vector<double>& residuals,
+                                          DenseMatrix<double>& jacobian)
+    {
+      // Call the generic routine with the flag set to 1
+      EQUATION_CLASS::fill_in_generic_residual_contribution_interface(
+        residuals, jacobian, 1);
 
-    //  // Call the generic finite difference routine for the solid variables
-    //  this->fill_in_jacobian_from_solid_position_by_fd(jacobian);
-    //}
+      // Call the generic finite difference routine for the solid variables
+      this->fill_in_jacobian_from_solid_position_by_fd(jacobian);
+    }
 
     /// Overload the output function
     void output(std::ostream& outfile)
     {
-      EQUATION_CLASS::output(outfile);
+      const unsigned default_n_plot = 5;
+      output(outfile, default_n_plot);
     }
 
     /// Output the element
@@ -951,6 +971,7 @@ namespace oomph
       }
 
       int local_eqn = 0;
+      int local_unknown = 0;
 
       // Loop over the shape functions to assemble contributions
       for (unsigned l = 0; l < n_node; l++)
@@ -959,20 +980,20 @@ namespace oomph
         for (unsigned i = 0; i < nodal_dimension; i++)
         {
           // Kinematic Lagrange multiplier Momentum contribution
-          local_eqn = this->nst_momentum_local_eqn(l, i);
-          if (local_eqn >= 0)
-          {
-            residuals[local_eqn] +=
-              interpolated_lagrange * interpolated_n[i] * psif(l) * J * W;
+          // local_eqn = this->nst_momentum_local_eqn(l, i);
+          // if (local_eqn >= 0)
+          // {
+          //   residuals[local_eqn] +=
+          //     interpolated_lagrange * interpolated_n[i] * psif(l) * J * W;
 
-            // Do the Jacobian calculation
-            if (flag)
-            {
-              throw OomphLibError("Not yet implemented\n",
-                                  OOMPH_CURRENT_FUNCTION,
-                                  OOMPH_EXCEPTION_LOCATION);
-            }
-          }
+          //   // Do the Jacobian calculation
+          //   if (flag)
+          //   {
+          //     throw OomphLibError("Not yet implemented\n",
+          //                         OOMPH_CURRENT_FUNCTION,
+          //                         OOMPH_EXCEPTION_LOCATION);
+          //   }
+          // }
 
 
           // Kinematic Lagrange multiplier Solid displacement contribution
@@ -983,36 +1004,36 @@ namespace oomph
           if (local_eqn >= 0)
           {
             // Add in the Lagrange multiplier contribution
-            if (this->node_pt(l)->time_stepper_pt()->weight(1, 0) > 0)
-            {
-              residuals[local_eqn] -=
-                interpolated_lagrange * this->st() *
-                this->node_pt(l)->time_stepper_pt()->weight(1, 0) *
-                interpolated_n[i] * psif(l) * J * W;
-            }
-            else
-            {
-              residuals[local_eqn] -=
-                interpolated_lagrange * interpolated_n[i] * psif(l) * J * W;
-            }
+            // if (this->node_pt(l)->time_stepper_pt()->weight(1, 0) > 0)
+            // {
+            //   residuals[local_eqn] -=
+            //     interpolated_lagrange * this->st() *
+            //     this->node_pt(l)->time_stepper_pt()->weight(1, 0) *
+            //     interpolated_n[i] * psif(l) * J * W;
+            // }
+            // else
+            // {
+            residuals[local_eqn] -=
+              interpolated_lagrange * interpolated_n[i] * psif(l) * J * W;
+            //}
             // Do the Jacobian calculation
             if (flag)
             {
-              throw OomphLibError("Not yet implemented\n",
-                                  OOMPH_CURRENT_FUNCTION,
-                                  OOMPH_EXCEPTION_LOCATION);
-              //// Loop over the nodes
-              // for (unsigned l2 = 0; l2 < n_node; l2++)
-              //{
-              //  // Dependence on solid positions will be handled by FDs
-              //  // That leaves the Lagrange multiplier contribution
-              //  local_unknown = this->kinematic_local_eqn(l2);
-              //  if (local_unknown >= 0)
-              //  {
-              //    jacobian(local_eqn, local_unknown) -=
-              //      psif(l2) * interpolated_n[i] * psif(l) * J * W;
-              //  }
-              //}
+              // throw OomphLibError("Not yet implemented\n",
+              //                    OOMPH_CURRENT_FUNCTION,
+              //                    OOMPH_EXCEPTION_LOCATION);
+              // Loop over the nodes
+              for (unsigned l2 = 0; l2 < n_node; l2++)
+              {
+                // Dependence on solid positions will be handled by FDs
+                // That leaves the Lagrange multiplier contribution
+                local_unknown = this->kinematic_local_eqn(l2);
+                if (local_unknown >= 0)
+                {
+                  jacobian(local_eqn, local_unknown) -=
+                    psif(l2) * interpolated_n[i] * psif(l) * J * W;
+                }
+              }
             } // End of Jacobian calculation
           }
         }

@@ -129,6 +129,7 @@ namespace oomph
       Vector<double> interpolated_dx_dt(n_dim, 0.0);
 
       DenseMatrix<double> interpolated_t(el_dim, n_dim, 0.0);
+      double interpolated_lagrange_multiplier = 0.0;
 
       // Loop over the shape functions
       for (unsigned l = 0; l < n_node; l++)
@@ -152,6 +153,8 @@ namespace oomph
           // Calculate velocity and tangent vector
           interpolated_u[i] += this->nst_u(l, i) * psi_;
         }
+        interpolated_lagrange_multiplier +=
+          kinematic_lagrange_multiplier(l) * psi_;
       }
 
 
@@ -202,6 +205,27 @@ namespace oomph
                 }
               }
             } // End of pressure contribution
+
+            // Add in the lagrange multplier contribution
+            if (kinematic_local_eqn(l) >= 0)
+            {
+              residuals[local_eqn] += interpolated_lagrange_multiplier *
+                                      interpolated_n[i] * psif(l) * J * W;
+
+              // Do the Jacobian calculation
+              if (flag)
+              {
+                for (unsigned l2 = 0; l2 < n_node; l2++)
+                {
+                  local_unknown = kinematic_local_eqn(l2);
+                  if (local_unknown >= 0)
+                  {
+                    jacobian(local_eqn, local_unknown) +=
+                      psif(l2) * interpolated_n[i] * psif(l) * J * W;
+                  }
+                }
+              }
+            }
           }
         } // End of contribution to momentum equation
 
@@ -210,6 +234,8 @@ namespace oomph
         local_eqn = kinematic_local_eqn(l);
         if (local_eqn >= 0)
         {
+          // std::cout << "normal residuals: " << residuals[local_eqn]
+          //           << std::endl;
           // Assemble the kinematic condition
           // The correct area is included in the normal vector
           for (unsigned k = 0; k < n_dim; k++)
@@ -258,7 +284,7 @@ namespace oomph
                                                       J);
 
     } // End of loop over integration points
-  }
+  } // namespace oomph
 
   //========================================================
   /// Overload the output functions generically

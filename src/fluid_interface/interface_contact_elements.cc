@@ -39,8 +39,7 @@ namespace oomph
       Vector<double>& residuals, DenseMatrix<double>& jacobian, unsigned flag)
   {
     // Let's get the info from the parent
-    NavierStokesFaceElement* parent_pt =
-      dynamic_cast<NavierStokesFaceElement*>(bulk_element_pt());
+    FaceElement* parent_pt = dynamic_cast<FaceElement*>(bulk_element_pt());
 
     // Find out how many nodes there are
     unsigned n_node = this->nnode();
@@ -114,7 +113,7 @@ namespace oomph
       {
         for (unsigned i = 0; i < spatial_dim; i++)
         {
-          u[i] += nst_u(n, i) * psi(n);
+          u[i] += this->nst_u(n, i) * psi(n);
         }
         lambda += fsi_lagrange_multiplier(n) * psi(n);
       }
@@ -207,58 +206,73 @@ namespace oomph
         // WEAK contact angle imposition
         else if (Contact_angle_flag[n] == WEAK)
         {
-          int local_eqn = wall_bounded_kinematic_local_eqn(n);
-          std::cout << "local_eqn: " << local_eqn << std::endl;
-          std::cout << "nodal index: " << cl_lagrange_multiplier_nodal_index(n)
-                    << std::endl;
-          if (local_eqn >= 0)
-          {
-            std::cout << "Add to wall bounded kinematic equations, "
-                      << cl_lagrange_multiplier_nodal_index(n) << std::endl;
-            // Point kinematic equation
-            double st_local = st();
+          //  int local_eqn = wall_bounded_kinematic_local_eqn(n);
+          //  std::cout << "local_eqn: " << local_eqn << std::endl;
+          //  std::cout << "mom 0 eqn: " << nst_momentum_local_eqn(0, 0)
+          //            << std::endl;
+          //  std::cout << "mom 1 eqn: " << nst_momentum_local_eqn(0, 1)
+          //            << std::endl;
+          //  std::cout << "mom 2 eqn: " << nst_momentum_local_eqn(0, 2)
+          //            << std::endl;
+          //  std::cout << "cont eqn: "
+          //            << nodal_local_eqn(0, nst_continuity_index(0)) <<
+          //            std::endl;
+          //  std::cout << "kin eqn: " << fsi_kinematic_local_eqn(0) <<
+          //  std::endl; std::cout << "nvalue: " << node_pt(n)->nvalue() <<
+          //  std::endl;
+          //  // std::cout << "nodal index: " <<
+          //  // cl_lagrange_multiplier_nodal_index(n)
+          //  //          << std::endl;
+          //  if (local_eqn >= 0)
+          //  {
+          //    // std::cout << "Add to wall bounded kinematic equations, "
+          //    //          << cl_lagrange_multiplier_nodal_index(n) <<
+          //    std::endl;
+          //    // Point kinematic equation
+          //    double st_local = st();
 
-            // Wall-bounded kinematic equation
-            for (unsigned k = 0; k < spatial_dim; k++)
-            {
-              residuals[local_eqn] += (u[k] - st_local * dx_dt[k]) *
-                                      project_to_interface_normal_on_wall[k] *
-                                      psi(n) * W;
+          //    // Wall-bounded kinematic equation
+          //    for (unsigned k = 0; k < spatial_dim; k++)
+          //    {
+          //      residuals[local_eqn] += (u[k] - st_local * dx_dt[k]) *
+          //                              project_to_interface_normal_on_wall[k]
+          //                              * psi(n) * W;
 
-              // Lagrange multiplier contribution to momentum equations
-              local_eqn = this->nst_momentum_local_eqn(n, k);
-              if (local_eqn >= 0)
-              {
-                residuals[local_eqn] +=
-                  lambda * project_to_interface_normal_on_wall[k] * psi(n) * W;
-              }
+          //      // Lagrange multiplier contribution to momentum equations
+          //      local_eqn = this->nst_momentum_local_eqn(n, k);
+          //      if (local_eqn >= 0)
+          //      {
+          //        residuals[local_eqn] +=
+          //          lambda * project_to_interface_normal_on_wall[k] * psi(n) *
+          //          W;
+          //      }
 
-              // Lagrange multiplier contribution to solid displacement
-              // equations
-              local_eqn = this->fsi_kinematic_local_eqn(n);
-              if (local_eqn >= 0)
-              {
-                double residual_contribution =
-                  -lambda * st_local * project_to_interface_normal_on_wall[k] *
-                  psi(n) * W;
-                // TODO Check if we need further contributions from
-                // project_to_interface_normal_on_wall
-                // If we are timestepping,...
-                const unsigned time_derivative = 1;
-                const unsigned weight_number = 0;
-                const double time_stepper_weight =
-                  this->node_pt(n)->time_stepper_pt()->weight(time_derivative,
-                                                              weight_number);
-                if (time_stepper_weight > 0)
-                {
-                  // ... scale the contribution by the weight.
-                  residual_contribution *= time_stepper_weight;
-                }
+          //      // Lagrange multiplier contribution to solid displacement
+          //      // equations
+          //      local_eqn = this->fsi_kinematic_local_eqn(n);
+          //      if (local_eqn >= 0)
+          //      {
+          //        double residual_contribution =
+          //          -lambda * st_local *
+          //          project_to_interface_normal_on_wall[k] * psi(n) * W;
+          //        // TODO Check if we need further contributions from
+          //        // project_to_interface_normal_on_wall
+          //        // If we are timestepping,...
+          //        const unsigned time_derivative = 1;
+          //        const unsigned weight_number = 0;
+          //        const double time_stepper_weight =
+          //          this->node_pt(n)->time_stepper_pt()->weight(time_derivative,
+          //                                                      weight_number);
+          //        if (time_stepper_weight > 0)
+          //        {
+          //          // ... scale the contribution by the weight.
+          //          residual_contribution *= time_stepper_weight;
+          //        }
 
-                residuals[local_eqn] += residual_contribution;
-              }
-            }
-          }
+          //        residuals[local_eqn] += residual_contribution;
+          //      }
+          //    }
+          //  }
         }
         // NOTE: The jacobian entries will be computed automatically
         // by finite differences.
@@ -269,6 +283,6 @@ namespace oomph
       add_additional_residual_contributions_interface_boundary(
         residuals, jacobian, flag, psi, dpsids, surface_normal, W);
     } // Integration points loop
-    std::cout << "Out" << std::endl;
+    // std::cout << "Out" << std::endl;
   }
 } // namespace oomph

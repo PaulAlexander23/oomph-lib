@@ -7,6 +7,7 @@ include $(top_srcdir)/config/makefile_templates/demo_drivers
 # Name of executable
 check_PROGRAMS= \
 				qtaylor_hood_face_elements \
+				multi_face_elements_test \
 				pseudo_solid_node_update_ttaylor_hood_face_elements
 
 
@@ -14,11 +15,14 @@ check_PROGRAMS= \
 
 # Sources for executable
 qtaylor_hood_face_elements_SOURCES = qtaylor_hood_face_elements.cc
+multi_face_elements_test_SOURCES = multi_face_elements_test.cc
 pseudo_solid_node_update_ttaylor_hood_face_elements_SOURCES = pseudo_solid_node_update_ttaylor_hood_face_elements.cc
 
 # Required libraries:
 # $(FLIBS) is included in case the solver involves fortran sources.
 qtaylor_hood_face_elements_LDADD = -L@libdir@ -lgeneric -lnavier_stokes $(EXTERNAL_LIBS) \
+								  $(FLIBS)
+multi_face_elements_test_LDADD = -L@libdir@ -lgeneric -lnavier_stokes $(EXTERNAL_LIBS) \
 								  $(FLIBS)
 pseudo_solid_node_update_ttaylor_hood_face_elements_LDADD = -L@libdir@ -lgeneric -lnavier_stokes -lsolid -lconstitutive $(EXTERNAL_LIBS) \
 								  $(FLIBS)

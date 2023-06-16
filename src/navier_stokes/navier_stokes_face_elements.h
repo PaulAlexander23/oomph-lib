@@ -28,7 +28,7 @@ namespace oomph
   public:
     NavierStokesFaceElement() {}
 
-    virtual inline unsigned nst_u_index(const unsigned& n,
+    virtual inline unsigned u_index_nst(const unsigned& n,
                                         const unsigned& i) const
     {
       NavierStokesEquationNumberingElement* el_pt =
@@ -37,8 +37,15 @@ namespace oomph
       return el_pt->u_index_nst(this->bulk_node_number(n), i);
     }
 
-    // virtual int nst_p_index() const
-    virtual int nst_p_index(const unsigned& n) const
+    virtual int p_index_nst() const
+    {
+      NavierStokesEquationNumberingElement* el_pt =
+        dynamic_cast<NavierStokesEquationNumberingElement*>(
+          this->bulk_element_pt());
+      return el_pt->p_index_nst();
+    }
+
+    virtual int p_index_nst(const unsigned& n) const
     {
       NavierStokesEquationNumberingElement* el_pt =
         dynamic_cast<NavierStokesEquationNumberingElement*>(
@@ -47,7 +54,7 @@ namespace oomph
       return el_pt->p_index_nst();
     }
 
-    virtual inline unsigned nst_momentum_index(const unsigned& n,
+    virtual inline unsigned momentum_index_nst(const unsigned& n,
                                                const unsigned& i) const
     {
       NavierStokesEquationNumberingElement* el_pt =
@@ -58,32 +65,32 @@ namespace oomph
 
     virtual inline unsigned nst_continuity_index(const unsigned& n) const
     {
-      const int nodal_index = nst_p_index(n);
+      const int nodal_index = p_index_nst(n);
       return nodal_index;
     }
 
 
     virtual double nst_u(const unsigned& n, const unsigned& i) const
     {
-      const unsigned nodal_index = nst_u_index(n, i);
+      const unsigned nodal_index = u_index_nst(n, i);
       return this->nodal_value(n, nodal_index);
     }
 
-    virtual inline unsigned nst_u_local_unknown(const unsigned& n,
-                                                const unsigned& i) const
+    virtual inline int nst_u_local_unknown(const unsigned& n,
+                                           const unsigned& i) const
     {
-      const unsigned nodal_index = nst_u_index(n, i);
+      const unsigned nodal_index = u_index_nst(n, i);
       return this->nodal_local_eqn(n, nodal_index);
     }
 
-    virtual inline unsigned nst_momentum_local_eqn(const unsigned& n,
-                                                   const unsigned& i) const
+    virtual inline int nst_momentum_local_eqn(const unsigned& n,
+                                              const unsigned& i) const
     {
-      const unsigned nodal_index = nst_momentum_index(n, i);
+      const unsigned nodal_index = momentum_index_nst(n, i);
       return this->nodal_local_eqn(n, nodal_index);
     }
 
-    virtual inline unsigned nst_continuity_local_eqn(const unsigned& n) const
+    virtual inline int nst_continuity_local_eqn(const unsigned& n) const
     {
       const unsigned nodal_index = nst_continuity_index(n);
       return this->nodal_local_eqn(n, nodal_index);

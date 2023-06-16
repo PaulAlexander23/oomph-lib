@@ -121,19 +121,25 @@ namespace oomph
       FluidInterfaceFaceElement::build(element_pt, face_index, id);
 
       Contact_angle_flag = Vector<unsigned>(nnode(), WEAK);
+
+      std::cout << "x: " << this->node_pt(0)->position(0) << ", ";
+      std::cout << "y: " << this->node_pt(0)->position(1) << ", ";
+      std::cout << std::endl;
+
+      add_internal_data(new Data(1));
     }
 
     /// "Constructor" takes a "bulk" element, the
     /// index that identifies which face the
     /// ImposeImpenetrabilityElement is supposed
     /// to be attached to, and the face element ID
-    virtual void set_n_additional_values()
-    {
-      for (unsigned n = 0; n < this->nnode(); n++)
-      {
-        this->N_additional_values[n] += 1;
-      }
-    }
+    // virtual void set_n_additional_values()
+    // {
+    //   for (unsigned n = 0; n < this->nnode(); n++)
+    //   {
+    //     this->N_additional_values[n] += 1;
+    //   }
+    // }
 
     // /// Fill in the specific surface derivative calculations
     // /// by calling the appropriate function from the derivative class
@@ -174,27 +180,27 @@ namespace oomph
     }
 
   protected:
-    /// The geometric data of the parent element is included as
-    /// external data and so a (bulk) node update must take place after
-    /// the variation of any of this external data
-    inline void update_in_external_fd(const unsigned& i)
-    {
-      // Update the bulk element
-      bulk_element_pt()->node_update();
-    }
+    // /// The geometric data of the parent element is included as
+    // /// external data and so a (bulk) node update must take place after
+    // /// the variation of any of this external data
+    // inline void update_in_external_fd(const unsigned& i)
+    // {
+    //   // Update the bulk element
+    //   bulk_element_pt()->node_update();
+    // }
 
-    /// The only external data are these geometric data so
-    /// We can omit the reset function (relying on the next update
-    // function to take care of the remesh)
-    inline void reset_in_external_fd(const unsigned& i) {}
+    // /// The only external data are these geometric data so
+    // /// We can omit the reset function (relying on the next update
+    // // function to take care of the remesh)
+    // inline void reset_in_external_fd(const unsigned& i) {}
 
-    /// We require a final node update in the bulk element
-    /// after all finite differencing
-    inline void reset_after_external_fd()
-    {
-      // Update the bulk element
-      bulk_element_pt()->node_update();
-    }
+    // /// We require a final node update in the bulk element
+    // /// after all finite differencing
+    // inline void reset_after_external_fd()
+    // {
+    //   // Update the bulk element
+    //   bulk_element_pt()->node_update();
+    // }
 
   public:
     /// Access function: Pointer to wall unit normal function
@@ -246,7 +252,7 @@ namespace oomph
 
     void set_weak_imposition(const unsigned& n)
     {
-      std::cout << "here" << std::endl;
+      // std::cout << "here" << std::endl;
       // std::string error_message =
       //   "unhijack_kinematic_conditions not implemented.";
       // throw OomphLibError(
@@ -355,32 +361,38 @@ namespace oomph
 
     //--------------------------------------------------------------------------
 
-    const unsigned cl_lagrange_multiplier_nodal_index(const unsigned& n)
-    {
-      return this->additional_value_index(n, 0);
-    }
+    // const unsigned cl_lagrange_multiplier_nodal_index(const unsigned& n)
+    // {
+    // return this->additional_value_index(n, 0);
+    // }
 
     virtual int wall_bounded_kinematic_local_eqn(const unsigned& n)
     {
-      const unsigned nodal_index = cl_lagrange_multiplier_nodal_index(n);
-      return this->nodal_local_eqn(n, nodal_index);
+      // const unsigned nodal_index = cl_lagrange_multiplier_nodal_index(n);
+      // return this->nodal_local_eqn(n, nodal_index);
+      return internal_local_eqn(0, n);
     }
 
     virtual double cl_lagrange_multiplier(const unsigned& n)
     {
-      const unsigned nodal_index = cl_lagrange_multiplier_nodal_index(n);
-      return this->nodal_value(n, nodal_index);
+      // const unsigned nodal_index = cl_lagrange_multiplier_nodal_index(n);
+      // return this->nodal_value(n, nodal_index);
+      return internal_data_pt(0)->value(n);
     }
 
     void fix_lagrange_multiplier(const unsigned& n, const double& value)
     {
-      this->node_pt(n)->pin(cl_lagrange_multiplier_nodal_index(n));
-      this->node_pt(n)->set_value(cl_lagrange_multiplier_nodal_index(n), value);
+      // this->node_pt(n)->pin(cl_lagrange_multiplier_nodal_index(n));
+      // this->node_pt(n)->set_value(cl_lagrange_multiplier_nodal_index(n),
+      // value);
+      internal_data_pt(0)->pin(n);
+      internal_data_pt(0)->set_value(n, value);
     }
 
     void free_lagrange_multiplier(const unsigned& n)
     {
-      this->node_pt(n)->unpin(cl_lagrange_multiplier_nodal_index(n));
+      // this->node_pt(n)->unpin(cl_lagrange_multiplier_nodal_index(n));
+      internal_data_pt(0)->unpin(n);
     }
 
     //--------------------------------------------------------------------------

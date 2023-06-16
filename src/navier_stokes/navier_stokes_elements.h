@@ -347,13 +347,13 @@ namespace oomph
       return i;
     }
 
-    virtual inline unsigned momentum_local_eqn(const unsigned& n,
-                                               const unsigned& i) const
+    virtual inline int momentum_local_eqn(const unsigned& n,
+                                          const unsigned& i) const
     {
       return nodal_local_eqn(n, momentum_index_nst(n, i));
     }
 
-    inline unsigned u_local_unknown(const unsigned& n, const unsigned& i) const
+    inline int u_local_unknown(const unsigned& n, const unsigned& i) const
     {
       return nodal_local_eqn(n, u_index_nst(n, i));
     }

@@ -84,6 +84,22 @@ namespace oomph
     /// for the (scalar) kinematic equation associated with the j-th local
     /// node. This must be overloaded by specific interface elements
     /// and depends on the method for handing the free-surface deformation.
+    virtual double kinematic_lagrange_multiplier(const unsigned& n)
+    {
+      std::ostringstream error_message;
+      error_message
+        << "kinematic_lagrange_multiplier not implemented in base "
+           "FluidInterfaceElement, use one of the inherited classes depending "
+           "on how the solid displacement is implemented."
+        << std::endl;
+      throw OomphLibError(
+        error_message.str(), OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+    }
+
+    /// Access function that returns the local equation number
+    /// for the (scalar) kinematic equation associated with the j-th local
+    /// node. This must be overloaded by specific interface elements
+    /// and depends on the method for handing the free-surface deformation.
     virtual int kinematic_local_eqn(const unsigned& n)
     {
       std::ostringstream error_message;

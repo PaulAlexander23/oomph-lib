@@ -61,6 +61,16 @@ namespace oomph
       public virtual SolidFaceElement
   {
   public:
+    void build(FiniteElement* const& element_pt,
+               const int& face_index,
+               const unsigned& id = 0)
+    {
+      ContactLineElement::build(element_pt, face_index, id);
+
+      this->add_other_bulk_node_positions_as_external_data();
+    }
+
+
     virtual const unsigned fsi_lagrange_multiplier_nodal_index(
       const unsigned& n)
     {
@@ -69,34 +79,34 @@ namespace oomph
     }
 
     /// Calculate the residuals
-    void fill_in_contribution_to_jacobian(Vector<double>& residuals,
-                                          DenseMatrix<double>& jacobian)
-    {
-      std::cout << "Jacobian" << std::endl;
-      // Add the contribution to the residuals
-      fill_in_contribution_to_residuals(residuals);
+    // void fill_in_contribution_to_jacobian(Vector<double>& residuals,
+    //                                       DenseMatrix<double>& jacobian)
+    // {
+    //   std::cout << "Jacobian" << std::endl;
+    //   // Add the contribution to the residuals
+    //   fill_in_contribution_to_residuals(residuals);
 
-      // Allocate storage for the full residuals (residuals of entire element)
-      unsigned n_dof = ndof();
-      Vector<double> full_residuals(n_dof);
-      // Get the residuals for the entire element
-      get_residuals(full_residuals);
-      std::cout << "solid" << std::endl;
-      // Get the solid entries in the jacobian using finite differences
-      fill_in_jacobian_from_solid_position_by_fd(full_residuals, jacobian);
-      // There could be internal data
-      //(finite-difference the lot by default)
-      std::cout << "internal" << std::endl;
-      fill_in_jacobian_from_internal_by_fd(full_residuals, jacobian, true);
-      // There could also be external data
-      //(finite-difference the lot by default)
-      std::cout << "external" << std::endl;
-      fill_in_jacobian_from_external_by_fd(full_residuals, jacobian, true);
-      // There could also be nodal data
-      std::cout << "nodal" << std::endl;
-      fill_in_jacobian_from_nodal_by_fd(full_residuals, jacobian);
-      std::cout << "End of Jacobian" << std::endl;
-    }
+    //   // Allocate storage for the full residuals (residuals of entire
+    //   element) unsigned n_dof = ndof(); std::cout << "solid contact line
+    //   ndof: " << n_dof << std::endl; Vector<double> full_residuals(n_dof);
+    //   // Get the residuals for the entire element
+    //   get_residuals(full_residuals);
+    //   std::cout << "solid" << std::endl;
+    //   // Get the solid entries in the jacobian using finite differences
+    //   fill_in_jacobian_from_solid_position_by_fd(full_residuals, jacobian);
+    //   // There could be internal data
+    //   //(finite-difference the lot by default)
+    //   std::cout << "internal" << std::endl;
+    //   fill_in_jacobian_from_internal_by_fd(full_residuals, jacobian, true);
+    //   // There could also be external data
+    //   //(finite-difference the lot by default)
+    //   std::cout << "external" << std::endl;
+    //   fill_in_jacobian_from_external_by_fd(full_residuals, jacobian, true);
+    //   // There could also be nodal data
+    //   std::cout << "nodal" << std::endl;
+    //   fill_in_jacobian_from_nodal_by_fd(full_residuals, jacobian);
+    //   std::cout << "End of Jacobian" << std::endl;
+    // }
   };
 
   template<class ELEMENT>
