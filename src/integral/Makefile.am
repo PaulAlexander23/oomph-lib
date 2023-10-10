@@ -2,15 +2,20 @@
 #-----------------------
 
 # Define the sources
-sources = 
+sources = \
+	integral_equations.cc
+	Qintegral_elements.cc
+	Tintegral_elements.cc
 
 # Include files which shouldn't be compiled
-incl_cc_files =
+incl_cc_files = 
 
 # Define the headers
 headers =  \
-integral_elements.h \
-Tintegral_elements.h
+	info_elements.h \
+	integral_equations.h \
+	Qintegral_elements.h \
+	Tintegral_elements.h
 
 # Define name of library
 libname = integral
@@ -20,11 +25,11 @@ headers_and_sources = $(headers) $(sources)
 
 # Define the library that gets placed in lib directory
 #-----------------------------------------------------
-#lib_LTLIBRARIES = libintegral.la
+lib_LTLIBRARIES = libintegral.la
 
 # Sources that the library depends on: 
 #-------------------------------------
-#libintegral_la_SOURCES = $(headers_and_sources)
+libintegral_la_SOURCES = $(headers_and_sources)
 
 # The library's include headers:
 #-------------------------------

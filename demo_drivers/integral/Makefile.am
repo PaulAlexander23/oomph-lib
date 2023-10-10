@@ -1,3 +1,3 @@
 SUBDIRS = \
-		  structured_rectangle \
-		  unstructured_rectangle
+		  gaussian \
+		  centre_of_mass
