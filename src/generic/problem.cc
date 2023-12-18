@@ -7858,6 +7858,100 @@ namespace oomph
   }
 
   //======================================================================
+  /// Check whether the Jacobian matches the finite difference Jacobian
+  //======================================================================
+  bool Problem::check_jacobian()
+  {
+    bool is_jacobian_ok = true;
+
+    DoubleVector residuals;
+    DenseDoubleMatrix jacobian;
+    get_jacobian(residuals, jacobian);
+
+    DoubleVector residualsFD;
+    DenseDoubleMatrix jacobianFD(ndof());
+    get_fd_jacobian(residualsFD, jacobianFD);
+
+    const double abs_err_tol = 1e-6;
+    const double rel_err_tol = 1e-4;
+    for (unsigned i = 0; i < ndof(); i++)
+    {
+      for (unsigned j = 0; j < ndof(); j++)
+      {
+        double abs_err = std::abs(jacobian(j, i) - jacobianFD(j, i));
+        double rel_err = abs_err / std::abs(jacobianFD(j, i));
+        if (rel_err > rel_err_tol && abs_err > abs_err_tol)
+        {
+          is_jacobian_ok = false;
+        }
+      }
+    }
+
+    return is_jacobian_ok;
+  }
+
+  //======================================================================
+  /// Check whether the Jacobian matches the finite difference Jacobian
+  //======================================================================
+  bool Problem::check_mass_matrix()
+  {
+    bool is_mass_matrix_ok = true;
+
+    DoubleVector backup;
+    get_dofs(backup);
+    const unsigned int history_index = 1;
+    DoubleVector history_backup;
+    get_dofs(history_index, history_backup);
+    DoubleVector history = history_backup;
+
+    int n_dof = this->ndof();
+    const double FD_step = 1e-8;
+    const double DT_step = 1e-8;
+
+    DoubleVector base_res;
+    this->get_residuals(base_res);
+
+    DoubleVector aux_res;
+
+    DenseDoubleMatrix mass_matrix_FD(n_dof, n_dof, 0.0);
+    for (int i = 0; i < n_dof; i++)
+    {
+      history[i] = history_backup[i] + FD_step;
+      this->set_dofs(history_index, history);
+
+      this->get_residuals(aux_res);
+
+      for (int j = 0; j < n_dof; j++)
+      {
+        mass_matrix_FD(j, i) = -DT_step * (aux_res[j] - base_res[j]) / FD_step;
+      }
+
+      history[i] = history_backup[i];
+    }
+
+    CRDoubleMatrix mass_matrix(this->dof_distribution_pt());
+    CRDoubleMatrix dummy_J(this->dof_distribution_pt());
+    get_eigenproblem_matrices(mass_matrix, dummy_J);
+
+    const double abs_err_tol = 1e-6;
+    const double rel_err_tol = 1e-4;
+    for (unsigned i = 0; i < ndof(); i++)
+    {
+      for (unsigned j = 0; j < ndof(); j++)
+      {
+        double abs_err = std::abs(mass_matrix(j, i) - mass_matrix_FD(j, i));
+        double rel_err = abs_err / std::abs(mass_matrix_FD(j, i));
+        if (rel_err > rel_err_tol && abs_err > abs_err_tol)
+        {
+          is_mass_matrix_ok = false;
+        }
+      }
+    }
+
+    return is_mass_matrix_ok;
+  }
+
+  //======================================================================
   /// Get derivative of the residuals vector wrt a global parameter
   /// This is required in continuation problems
   //=======================================================================

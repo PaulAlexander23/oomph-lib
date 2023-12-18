@@ -1895,6 +1895,13 @@ namespace oomph
     void get_fd_jacobian(DoubleVector& residuals,
                          DenseMatrix<double>& jacobian);
 
+    /// Return whether the Jacobian matches the finite difference Jacobian
+    bool check_jacobian();
+
+    /// Return whether the mass matrix matches the finite difference mass
+    /// matrix
+    bool check_mass_matrix();
+
     /// Get the derivative of the entire residuals vector wrt a
     /// global parameter, used in continuation problems
     void get_derivative_wrt_global_parameter(double* const& parameter_pt,
