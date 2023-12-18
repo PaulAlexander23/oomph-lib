@@ -1305,10 +1305,10 @@ namespace oomph
     error_message += "get_mass_matrix(), which must initialise the entries\n";
     error_message += "of the residuals vector and mass matrix to zero.\n";
 
-    throw OomphLibError(
-      error_message,
-      "GeneralisedElement::fill_in_contribution_to_mass_matrix()",
-      OOMPH_EXCEPTION_LOCATION);
+    // throw OomphLibWarning(
+    //  error_message,
+    //  "GeneralisedElement::fill_in_contribution_to_mass_matrix()",
+    //  OOMPH_EXCEPTION_LOCATION);
   }
 
   //=====================================================================
@@ -1341,10 +1341,10 @@ namespace oomph
     error_message +=
       "of the residuals vector, jacobian and mass matrix to zero.\n";
 
-    throw OomphLibError(
-      error_message,
-      "GeneralisedElement::fill_in_contribution_to_jacobian_and_mass_matrix()",
-      OOMPH_EXCEPTION_LOCATION);
+    // throw OomphLibWarning(
+    //  error_message,
+    //  "GeneralisedElement::fill_in_contribution_to_jacobian_and_mass_matrix()",
+    //  OOMPH_EXCEPTION_LOCATION);
   }
 
 
