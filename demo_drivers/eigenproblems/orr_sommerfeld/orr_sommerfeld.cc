@@ -1091,6 +1091,9 @@ int main(int argc, char* argv[])
 
   ContinuationProblem problem(50);
 
+  cout << "Is Jacobian ok: " << problem.check_jacobian() << endl;
+  cout << "Is mass matrix ok: " << problem.check_mass_matrix() << endl;
+
   problem.solve();
 
 #ifdef OOMPH_HAS_MPI
