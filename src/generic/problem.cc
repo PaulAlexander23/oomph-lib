@@ -10925,6 +10925,16 @@ namespace oomph
             Ds_current *= (2.0 / 3.0);
           }
         }
+        // Catch any other oomph-lib exceptions thrown, such as a negative
+        // Jacobian from inverted elements.
+        catch (OomphLibError& error)
+        {
+          oomph_info << "STEP REJECTED from an OomphLibError --- TRYING AGAIN"
+                     << std::endl;
+          STEP_REJECTED = true;
+          // Let's take a smaller step
+          Ds_current *= (2.0 / 3.0);
+        }
       } while (STEP_REJECTED); // continue until a step is accepted
 
       // Set the maximum count
