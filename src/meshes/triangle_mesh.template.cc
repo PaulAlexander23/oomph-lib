@@ -34563,7 +34563,7 @@ namespace oomph
         // Now update the polyline according to the new vertices but
         // first check if the object is allowed to delete the representation
         // or if it should be done by other object
-        bool delete_it_on_destructor = false;
+        // bool delete_it_on_destructor = false;
 
         std::set<TriangleMeshCurveSection*>::iterator it =
           this->Free_curve_section_pt.find(polygon_pt->curve_section_pt(p));
@@ -34572,7 +34572,7 @@ namespace oomph
         {
           this->Free_curve_section_pt.erase(it);
           delete polygon_pt->curve_section_pt(p);
-          delete_it_on_destructor = true;
+          // delete_it_on_destructor = true;
         }
 
         // ------------------------------------------------------------
