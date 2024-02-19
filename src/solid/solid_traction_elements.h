@@ -38,6 +38,9 @@
 // OOMPH-LIB headers
 #include "../generic/Qelements.h"
 #include "../generic/hermite_elements.h"
+#include "../generic/refineable_elements.h"
+#include "../generic/fsi.h"
+#include "../generic/element_with_external_element.h"
 
 namespace oomph
 {
@@ -53,14 +56,7 @@ namespace oomph
     void Zero_traction_fct(const Vector<double>& xi,
                            const Vector<double>& x,
                            const Vector<double>& N,
-                           Vector<double>& load)
-    {
-      unsigned n_dim = load.size();
-      for (unsigned i = 0; i < n_dim; i++)
-      {
-        load[i] = 0.0;
-      }
-    }
+                           Vector<double>& load);
 
   } // namespace SolidTractionElementHelper
 
