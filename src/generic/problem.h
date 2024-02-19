@@ -47,6 +47,7 @@
 #include "double_vector_with_halo.h"
 #include <complex>
 #include <map>
+#include "my_fold_handler.h"
 
 
 namespace oomph
@@ -151,6 +152,7 @@ namespace oomph
   {
     // The handler classes need to be friend
     friend class FoldHandler;
+    friend class MyFoldHandler;
     friend class PitchForkHandler;
     friend class HopfHandler;
     template<unsigned NNODE_1D>
@@ -2415,6 +2417,19 @@ namespace oomph
     void activate_fold_tracking(double* const& parameter_pt,
                                 const bool& block_solve = true);
 
+    /// Turn on fold tracking using the augmented system specified
+    /// in the FoldHandler class. After a call to this function subsequent calls
+    /// of the standard solution methods will converge to a fold (limit) point
+    /// at a particular value of the variable addressed by parameter_pt.
+    /// The system may not converge if the initial guess is sufficiently poor
+    /// or, alternatively, if finite differencing is used to calculate the
+    /// jacobian matrix in the elements.  If the boolean flag block_solver is
+    /// true (the default) then a block factorisation is used to solve the
+    /// augmented system which is both faster and uses less memory.
+    void activate_my_fold_tracking(double* const& parameter_pt,
+                                   double* const& eigenvalue_pt,
+                                   const bool& block_solve = true);
+
     /// Activate generic bifurcation tracking for a single (real)
     /// eigenvalue where the initial guess for the eigenvector can be specified.
     void activate_bifurcation_tracking(double* const& parameter_pt,
@@ -2459,7 +2474,8 @@ namespace oomph
     /// or, alternatively, if finite differencing is used to calculate the
     /// jacobian matrix in the elements.
     void activate_hopf_tracking(double* const& parameter_pt,
-                                const bool& block_solve = true);
+                                const bool& block_solve = true,
+                                double* const& growth_rate_pt = 0);
 
     /// Turn on Hopf bifurcation
     /// tracking using the augmented system specified
@@ -2475,7 +2491,8 @@ namespace oomph
                                 const double& omega,
                                 const DoubleVector& null_real,
                                 const DoubleVector& null_imag,
-                                const bool& block_solve = true);
+                                const bool& block_solve = true,
+                                double* const& growth_rate_pt = 0);
 
     /// Deactivate all bifuraction tracking, by reseting
     /// the assembly handler to the default

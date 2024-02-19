@@ -10323,6 +10323,36 @@ namespace oomph
     }
   }
 
+  //============================================================
+  /// Activate the fold tracking system by changing the assembly
+  /// handler and initialising it using the parameter addressed
+  /// by parameter_pt.
+  //============================================================
+  void Problem::activate_my_fold_tracking(double* const& parameter_pt,
+                                          double* const& eigenvalue_pt,
+                                          const bool& block_solve)
+  {
+    // Reset the assembly handler to default
+    reset_assembly_handler_to_default();
+    // Set the new assembly handler. Note that the constructor actually
+    // solves the original problem to get some initial conditions, but
+    // this is OK because the RHS is always evaluated before assignment.
+    Assembly_handler_pt = new MyFoldHandler(this, parameter_pt, eigenvalue_pt);
+
+    // If we are using a block solver, we must set the linear solver pointer
+    // to the block fold solver. The present linear solver is
+    // used by the block solver and so must be passed as an argument.
+    // The destructor of the Fold handler returns the linear
+    // solver to the original non-block version.
+    if (block_solve)
+    {
+      Linear_solver_pt = new AugmentedBlockFoldLinearSolver(Linear_solver_pt);
+      // throw OomphLibError("Called with block_solve! Not implemented yet.",
+      //                     OOMPH_CURRENT_FUNCTION,
+      //                     OOMPH_EXCEPTION_LOCATION);
+    }
+  }
+
   //===============================================================
   /// Activate the generic bifurcation ///tracking system by changing the
   /// assembly handler and initialising it using the parameter addressed by
@@ -10418,14 +10448,15 @@ namespace oomph
   /// by parameter_pt.
   //============================================================
   void Problem::activate_hopf_tracking(double* const& parameter_pt,
-                                       const bool& block_solve)
+                                       const bool& block_solve,
+                                       double* const& growth_rate_pt)
   {
     // Reset the assembly handler to default
     reset_assembly_handler_to_default();
     // Set the new assembly handler. Note that the constructor actually
     // solves the original problem to get some initial conditions, but
     // this is OK because the RHS is always evaluated before assignment.
-    Assembly_handler_pt = new HopfHandler(this, parameter_pt);
+    Assembly_handler_pt = new HopfHandler(this, parameter_pt, growth_rate_pt);
 
     // If we are using a block solver, we must set the linear solver pointer
     // to the block hopf solver. The present linear solver is
@@ -10449,15 +10480,16 @@ namespace oomph
                                        const double& omega,
                                        const DoubleVector& null_real,
                                        const DoubleVector& null_imag,
-                                       const bool& block_solve)
+                                       const bool& block_solve,
+                                       double* const& growth_rate_pt)
   {
     // Reset the assembly handler to default
     reset_assembly_handler_to_default();
     // Set the new assembly handler. Note that the constructor actually
     // solves the original problem to get some initial conditions, but
     // this is OK because the RHS is always evaluated before assignment.
-    Assembly_handler_pt =
-      new HopfHandler(this, parameter_pt, omega, null_real, null_imag);
+    Assembly_handler_pt = new HopfHandler(
+      this, parameter_pt, omega, null_real, null_imag, growth_rate_pt);
 
     // If we are using a block solver, we must set the linear solver pointer
     // to the block hopf solver. The present linear solver is

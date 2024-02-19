@@ -4433,13 +4433,25 @@ namespace oomph
   /// If the system changes, a new  handler must be constructed.
   //===================================================================
   HopfHandler::HopfHandler(Problem* const& problem_pt,
-                           double* const& parameter_pt)
+                           double* const& parameter_pt,
+                           double* const& growth_rate_pt)
     : Solve_which_system(0), Parameter_pt(parameter_pt), Omega(0.0)
   {
     // Set the problem pointer
     Problem_pt = problem_pt;
     // Set the number of non-augmented degrees of freedom
     Ndof = problem_pt->ndof();
+
+    // Set the desired growth rate pointer
+    if (growth_rate_pt)
+    {
+      Growth_rate_pt = growth_rate_pt;
+    }
+    else
+    {
+      Growth_rate_pt = new double(0.0);
+      // Memory leak possible!
+    }
 
     // create the linear algebra distribution for this solver
     // currently only global (non-distributed) distributions are allowed
@@ -4570,13 +4582,25 @@ namespace oomph
                            double* const& parameter_pt,
                            const double& omega,
                            const DoubleVector& phi,
-                           const DoubleVector& psi)
+                           const DoubleVector& psi,
+                           double* const& growth_rate_pt)
     : Solve_which_system(0), Parameter_pt(parameter_pt), Omega(omega)
   {
     // Set the problem pointer
     Problem_pt = problem_pt;
     // Set the number of non-augmented degrees of freedom
     Ndof = problem_pt->ndof();
+
+    // Set the desired growth rate pointer
+    if (growth_rate_pt)
+    {
+      Growth_rate_pt = growth_rate_pt;
+    }
+    else
+    {
+      Growth_rate_pt = new double(0.0);
+      // Memory leak possible!
+    }
 
     // Resize the vectors of additional dofs
     Phi.resize(Ndof);
@@ -4749,11 +4773,15 @@ namespace oomph
         {
           unsigned global_unknown = elem_pt->eqn_number(j);
           // Real part
-          residuals[raw_ndof + i] += jacobian(i, j) * Phi[global_unknown] +
-                                     Omega * M(i, j) * Psi[global_unknown];
+          residuals[raw_ndof + i] +=
+            jacobian(i, j) * Phi[global_unknown] +
+            Omega * M(i, j) * Psi[global_unknown] -
+            *Growth_rate_pt * M(i, j) * Phi[global_unknown];
           // Imaginary part
-          residuals[2 * raw_ndof + i] += jacobian(i, j) * Psi[global_unknown] -
-                                         Omega * M(i, j) * Phi[global_unknown];
+          residuals[2 * raw_ndof + i] +=
+            jacobian(i, j) * Psi[global_unknown] -
+            Omega * M(i, j) * Phi[global_unknown] -
+            *Growth_rate_pt * M(i, j) * Psi[global_unknown];
         }
         // Get the global equation number
         unsigned global_eqn = elem_pt->eqn_number(i);
