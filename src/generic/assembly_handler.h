@@ -1085,9 +1085,13 @@ namespace oomph
     /// that the global system is correctly formulated.
     Vector<int> Count;
 
+    double* Growth_rate_pt;
+
   public:
     /// Constructor
-    HopfHandler(Problem* const& problem_pt, double* const& parameter_pt);
+    HopfHandler(Problem* const& problem_pt,
+                double* const& parameter_pt,
+                double* const& growth_rate_pt = 0);
 
     /// Constructor with initial guesses for the frequency and null
     /// vectors, such as might be provided by an eigensolver
@@ -1095,7 +1099,8 @@ namespace oomph
                 double* const& paramter_pt,
                 const double& omega,
                 const DoubleVector& phi,
-                const DoubleVector& psi);
+                const DoubleVector& psi,
+                double* const& growth_rate_pt = 0);
 
     /// Destructor, return the problem to its original state,
     /// before the augmented system was added
