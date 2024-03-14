@@ -264,7 +264,8 @@ namespace oomph
                 {
                   // Local eqn number for the i-th component
                   // of the velocity in the jj-th element
-                  local_unknown = this->nst_u_local_unknown(jj, i);
+                  local_unknown =
+                    el_pt->u_local_unknown(this->bulk_node_number(jj), i);
                   if (local_unknown >= 0)
                   {
                     jacobian(local_eqn, local_unknown) +=
@@ -280,7 +281,7 @@ namespace oomph
           {
             // Local eqn number for the i-th component of the
             // velocity in the j-th element
-            local_eqn = this->nst_momentum_local_eqn(j, i);
+            local_eqn = el_pt->momentum_local_eqn(this->bulk_node_number(j), i);
 
             if (local_eqn >= 0)
             {
@@ -410,11 +411,10 @@ namespace oomph
           // unsigned offset = bulk_dim * Boundary_id + 1;
 
           // The local equation number is required to check if the value is
-          // pinned, if it is not pinned, the local equation number is
-          // required to get the global equation number.
-          int local_eqn =
-            dynamic_cast<ELEMENT*>(this->Bulk_element_pt)
-              ->momentum_local_eqn(this->Bulk_node_number[node_i], velocity_i);
+          // pinned, if it is not pinned, the local equation number is required
+          // to get the global equation number.
+          int local_eqn = Bulk_element_pt->momentum_local_eqn(
+            Bulk_node_number[node_i], velocity_i);
 
           // ignore pinned values
           if (local_eqn >= 0)

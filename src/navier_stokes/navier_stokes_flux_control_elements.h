@@ -677,7 +677,7 @@ namespace oomph
           unsigned u_nodal_index[this->Dim];
           for (unsigned i = 0; i < this->Dim; i++)
           {
-            u_nodal_index[i] = el_pt->u_index_nst(this->bulk_node_number(l), i);
+            u_nodal_index[i] = el_pt->u_index_nst(bulk_node_number(l), i);
           }
 
           // Local boolean to indicate whether the node is hanging
@@ -717,8 +717,7 @@ namespace oomph
               else
               {
                 // Local equation number
-                local_eqn =
-                  el_pt->momentum_local_eqn(this->bulk_node_number(l), i);
+                local_eqn = el_pt->momentum_local_eqn(bulk_node_number(l), i);
 
                 // Node contributes with full weight
                 hang_weight = 1.0;

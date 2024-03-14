@@ -178,7 +178,7 @@ namespace oomph
           for (unsigned i = 0; i < n_dim; i++)
           {
             interpolated_x[i] += this->nodal_position(l, i) * psi[l];
-            interpolated_u[i] += this->nst_u(l, i) * psi[l];
+            interpolated_u[i] += el_pt->u_nst(bulk_node_number(l), i) * psi[l];
           }
           for (unsigned i = 0; i < n_dim - 1; i++)
           {
@@ -272,7 +272,7 @@ namespace oomph
           // Assemble the velocity component
           for (unsigned i = 0; i < dim_el + 1; i++)
           {
-            interpolated_u[i] += this->nst_u(j, i) * psi[j];
+            interpolated_u[i] += el_pt->u_nst(bulk_node_number(j), i) * psi[j];
           }
 
           // Cast to a boundary node
@@ -333,7 +333,8 @@ namespace oomph
                   {
                     // Local eqn number for the i-th component
                     // of the velocity in the jj-th element
-                    local_unknown = this->nst_u_local_unknown(jj, i);
+                    local_unknown =
+                      el_pt->u_local_unknown(bulk_node_number(jj), i);
                     if (local_unknown >= 0)
                     {
                       jacobian(local_eqn, local_unknown) +=
@@ -350,7 +351,7 @@ namespace oomph
           {
             // Local eqn number for the i-th component of the
             // velocity in the j-th element
-            local_eqn = this->nst_momentum_local_eqn(j, i);
+            local_eqn = el_pt->momentum_local_eqn(bulk_node_number(j), i);
 
             if (local_eqn >= 0)
             {
@@ -469,9 +470,8 @@ namespace oomph
           // element's node. The local equation number is required to check if
           // the value is pinned, if it is not pinned, the local equation number
           // is required to get the global equation number.
-          int local_eqn =
-            dynamic_cast<ELEMENT*>(this->Bulk_element_pt)
-              ->momentum_local_eqn(this->bulk_node_number(node_i), velocity_i);
+          int local_eqn = Bulk_element_pt->momentum_local_eqn(
+            bulk_node_number(node_i), velocity_i);
 
           // Ignore pinned values.
           if (local_eqn >= 0)

@@ -138,7 +138,6 @@ namespace oomph
           {
             local_eqn = momentum_local_eqn(l, i);
 
-
             // If not a boundary condition
             if (local_eqn >= 0)
             {
@@ -1906,7 +1905,6 @@ namespace oomph
         {
           /*IF it's not a boundary condition*/
           local_eqn = momentum_local_eqn(l, i);
-
           if (local_eqn >= 0)
           {
             // Add the user-defined body force terms
@@ -2386,8 +2384,6 @@ namespace oomph
         {
           // Get the local equation
           local_eqn = momentum_local_eqn(l, i);
-
-
           // IF it's not a boundary condition
           if (local_eqn >= 0)
           {

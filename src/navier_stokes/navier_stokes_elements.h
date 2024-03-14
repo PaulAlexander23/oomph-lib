@@ -985,6 +985,58 @@ namespace oomph
                                                    Shape& ptest,
                                                    DShape& dptestdx) const = 0;
 
+    /// Velocity i at local node n. Uses suitably interpolated value
+    /// for hanging nodes. The use of u_index_nst() permits the use of this
+    /// element as the basis for multi-physics elements. The default
+    /// is to assume that the i-th velocity component is stored at the
+    /// i-th location of the node
+    double u_nst(const unsigned& n, const unsigned& i) const
+    {
+      return nodal_value(n, u_index_nst(n, i));
+    }
+
+    /// Velocity i at local node n at timestep t (t=0: present;
+    /// t>0: previous). Uses suitably interpolated value for hanging nodes.
+    double u_nst(const unsigned& t, const unsigned& n, const unsigned& i) const
+    {
+      return nodal_value(t, n, u_index_nst(n, i));
+    }
+
+    /// DEPRECATED
+    /// Return the index at which the i-th unknown velocity component
+    /// is stored. The default value, i, is appropriate for single-physics
+    /// problems.
+    /// In derived multi-physics elements, this function should be overloaded
+    /// to reflect the chosen storage scheme. Note that these equations require
+    /// that the unknowns are always stored at the same indices at each node.
+    // virtual inline unsigned u_index_nst(const unsigned& i) const
+    // {
+    //   return i;
+    // }
+
+    /// REPLACEMENT
+    /// Return the index at which the i-th unknown velocity component
+    /// is stored at the n-th node. The default value, i, is appropriate for
+    /// single-physics problems. In derived multi-physics elements, this
+    /// function should be overloaded to reflect the chosen storage scheme.
+    virtual inline unsigned u_index_nst(const unsigned& n,
+                                        const unsigned& i) const
+    {
+      return i;
+    }
+
+    virtual inline unsigned momentum_local_eqn(const unsigned& n,
+                                               const unsigned& i) const
+    {
+      return nodal_local_eqn(n, u_index_nst(n, i));
+    }
+
+    virtual inline unsigned u_local_unknown(const unsigned& n,
+                                            const unsigned& i) const
+    {
+      return nodal_local_eqn(n, u_index_nst(n, i));
+    }
+
     /// Return the number of velocity components
     /// Used in FluidInterfaceElements
     inline unsigned n_u_nst() const
