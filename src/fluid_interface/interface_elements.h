@@ -452,12 +452,9 @@ namespace oomph
       {
         outfile << x[i] << ",";
       }
-      std::streamsize ss = outfile.precision();
-      outfile << std::fixed << std::setprecision(3);
       outfile << imposed_contact_angle * 180 / MathematicalConstants::Pi << ",";
       outfile << computed_contact_angle * 180 / MathematicalConstants::Pi
               << ",";
-      outfile << std::setprecision(ss);
       outfile << internal_data_pt(Kinematic_lagrange_index)->value(0);
       outfile << std::endl;
     }
