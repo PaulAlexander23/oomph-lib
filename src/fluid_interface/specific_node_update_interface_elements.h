@@ -876,6 +876,13 @@ namespace oomph
       }
     }
 
+    void free()
+    {
+      for (unsigned n = 0; n < this->nnode(); n++)
+      {
+        this->node_pt(n)->unpin(this->lagrange_index(n));
+      }
+    }
 
     /// Fill in contribution to residuals and Jacobian
     void fill_in_contribution_to_jacobian(Vector<double>& residuals,
