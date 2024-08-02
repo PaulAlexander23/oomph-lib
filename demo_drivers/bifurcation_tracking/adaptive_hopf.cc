@@ -3,7 +3,7 @@
 //LIC// multi-physics finite-element library, available 
 //LIC// at http://www.oomph-lib.org.
 //LIC// 
-//LIC// Copyright (C) 2006-2022 Matthias Heil and Andrew Hazel
+//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel
 //LIC// 
 //LIC// This library is free software; you can redistribute it and/or
 //LIC// modify it under the terms of the GNU Lesser General Public
@@ -50,19 +50,21 @@ using namespace QuadTreeNames;
 namespace Global_Parameters
 {
 
- // Reynolds number
+ /// Reynolds number
  double Re=75.0;
 
- // Blockage ratio
+ /// Blockage ratio
  double B=0.7;
 
- // Rotation ratio
+ /// Rotation ratio
  double Alpha=0.0;
 
- // Control Flag that will read in the eigenfunction from disk
- // This is required because we are not allowed to redistribute
- // ARPACK, so cannot assume that it has been installed.
+ 
+ /// Control flag used to determine whether the eigenfunction
+ /// is read from disk. Reading from disk avoids lengthy
+ /// eigenvalue calculations in the self-tests
  bool Read_in_eigenfunction_from_disk = true;
+ 
 }
 
 
@@ -1187,13 +1189,6 @@ FlowAroundCylinderProblem<ELEMENT>::FlowAroundCylinderProblem(
  //Increase the maximum residuals so that we can get convergence on
  //the coarsest mesh
  Max_residuals = 100.0;
- 
- if(!Global_Parameters::Read_in_eigenfunction_from_disk)
-  {
-   this->eigen_solver_pt() = new ARPACK;
-   static_cast<ARPACK*>(eigen_solver_pt())->set_shift(50.0);
-   static_cast<ARPACK*>(eigen_solver_pt())->narnoldi() = 70;
-  }
 
  // Build mesh
  Problem::mesh_pt()=
@@ -1274,7 +1269,8 @@ int main()
   }
 
  //Assign memory for the eigenvalues and eigenvectors
- Vector<DoubleVector> eigenvectors;
+ Vector<DoubleVector> eigenvector_real;
+ Vector<DoubleVector> eigenvector_imag;
  double frequency = 0.0;
 
  //If we are reading in from the disk
@@ -1286,16 +1282,17 @@ int main()
    
    //Read in the eigenvector from the data file
    const unsigned n_dof = problem.ndof();
-   eigenvectors.resize(2);
+   eigenvector_real.resize(1);
+   eigenvector_imag.resize(1);
    LinearAlgebraDistribution dist(problem.communicator_pt(),n_dof,false);
    //Rebuild the vector
-   eigenvectors[0].build(&dist,0.0);
-   eigenvectors[1].build(&dist,0.0);
+   eigenvector_real[0].build(&dist,0.0);
+   eigenvector_imag[0].build(&dist,0.0);
 
    for(unsigned n=0;n<n_dof;n++)
     {
-     input >> eigenvectors[0][n];
-     input >> eigenvectors[1][n];
+     input >> eigenvector_real[0][n];
+     input >> eigenvector_imag[0][n];
     }
    input.close();
   }
@@ -1304,7 +1301,7 @@ int main()
   {
    Vector<std::complex<double> > eigenvalues;
    //Now solve the eigenproblem
-   problem.solve_eigenproblem_legacy(6,eigenvalues,eigenvectors);
+   problem.solve_eigenproblem(6,eigenvalues,eigenvector_real,eigenvector_imag);
    frequency = eigenvalues[0].imag();
   }
 
@@ -1313,8 +1310,8 @@ int main()
  //the data file
  problem.activate_hopf_tracking(&Global_Parameters::Re,
                                 frequency,
-                                eigenvectors[0],      
-                                eigenvectors[1]);      
+                                eigenvector_real[0],      
+                                eigenvector_imag[0]);      
  //Solve the problem 
  problem.newton_solve();
  //Report the value of the bifurcation
