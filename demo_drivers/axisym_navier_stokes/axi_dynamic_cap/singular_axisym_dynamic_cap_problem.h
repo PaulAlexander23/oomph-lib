@@ -839,16 +839,18 @@ namespace oomph
 
       // Set the pointer to the velocity singular function for this
       // element, defined in parameters namespace
-      el_pt->velocity_singular_fct_pt() = &parameters::velocity_singular_fct;
+      el_pt->velocity_singular_fct_pt() =
+        &parameters::axisym_velocity_singular_fct;
 
       // Set the pointer to the gradient of the velocity singular
       // function for this element, defined in parameters namespace
       el_pt->grad_velocity_singular_fct_pt() =
-        &parameters::grad_velocity_singular_fct;
+        &parameters::grad_axisym_velocity_singular_fct;
 
       // Set the pointer to the first pressure singular function for this
       // element, defined in parameters namespace
-      el_pt->pressure_singular_fct_pt() = &parameters::pressure_singular_fct;
+      el_pt->pressure_singular_fct_pt() =
+        &parameters::axisym_pressure_singular_fct;
 
       // The singular function satisfies the Stokes equation
       el_pt->singular_function_satisfies_stokes_equation() = false;

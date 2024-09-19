@@ -205,6 +205,116 @@ namespace oomph
       return grad_p;
     } // End of function
 
+    /// Function that computes the fitting velocity solution near the corner
+    /// (0,0)
+    Vector<double> axisym_velocity_singular_fct(const Vector<double>& x)
+    // const Vector<double>& x_centre)
+    {
+      // Initialise velocity vector to return
+      Vector<double> u(3, 0.0);
+
+      // Find radial distance of polar coordinates centered at the point
+      // x_centre
+      Vector<double> x_centre = x_centre_node_pt->position();
+      double r = get_radial_distance(x, x_centre);
+      // Find angle of polar coordinates centered at the point x_centre
+      double theta = get_azimuthal_angle(x, x_centre);
+
+      // Compute lambda, the ratio of
+      double lambda = MathematicalConstants::Pi / parameters::contact_angle;
+
+      // Singular function in the Cartesian coordinates
+      u[0] =
+        pow(r, lambda - 1) / (1 - r * sin(theta)) * sin((lambda - 1) * theta);
+      u[1] =
+        pow(r, lambda - 1) / (1 - r * sin(theta)) * cos((lambda - 1) * theta);
+      u[2] = 0;
+
+      // return the velocity vector
+      return u;
+    }
+
+    /// Function that computes the gradient of the fitting velocity solution
+    /// near the corner (0,0): grad[i][j] = du_i/dx_j
+    Vector<Vector<double>> grad_axisym_velocity_singular_fct(
+      const Vector<double>& x)
+    //, const Vector<double>& x_centre)
+    {
+      // Initialise the gradient matrix to return
+      Vector<Vector<double>> grad_u(2);
+      for (unsigned d = 0; d < 2; d++)
+      {
+        grad_u[d].resize(2);
+        for (unsigned k = 0; k < 2; k++)
+        {
+          grad_u[d][k] = 0.0;
+        }
+      }
+
+      // Find radial distance of polar coordinates centered at the point
+      // x_centre
+      Vector<double> x_centre = x_centre_node_pt->position();
+      double r = get_radial_distance(x, x_centre);
+      // Find angle of polar coordinates centered at the point x_centre
+      double theta = get_azimuthal_angle(x, x_centre);
+
+      double lambda = MathematicalConstants::Pi / parameters::contact_angle;
+
+      double intermediate = pow(r, lambda - 2) / (1 - r * sin(theta));
+
+      const double du0dr =
+        (lambda - 1) * intermediate * sin((lambda - 1) * theta) +
+        r * intermediate / (1 - r * sin(theta)) * sin((lambda - 1) * theta) *
+          sin(theta);
+      const double du0dtheta =
+        (lambda - 1) * r * intermediate * cos((lambda - 1) * theta) +
+        r * r * intermediate / (1 - r * sin(theta)) *
+          sin((lambda - 1) * theta) * cos(theta);
+      const double du1dr =
+        (lambda - 1) * intermediate * cos((lambda - 1) * theta) +
+        r * intermediate / (1 - r * sin(theta)) * cos((lambda - 1) * theta) *
+          sin(theta);
+      const double du1dtheta =
+        -(lambda - 1) * r * intermediate * sin((lambda - 1) * theta) +
+        r * r * intermediate / (1 - r * sin(theta)) *
+          cos((lambda - 1) * theta) * cos(theta);
+
+      // New cartesian coordinates centred at x_centre
+      Vector<double> x_bar(2, 0.0);
+      x_bar[0] = x[0] - x_centre[0];
+      x_bar[1] = x[1] - x_centre[1];
+
+      // const double drdx = r / x_bar[0];
+      // const double dthetadx = -1 / x_bar[1];
+      // const double drdy = r / x_bar[1];
+      // const double dthetady = 1 / x_bar[0];
+      const double drdx = x_bar[0] / r;
+      const double dthetadx = -x_bar[1];
+      const double drdy = x_bar[1] / r;
+      const double dthetady = x_bar[0];
+
+      // Value of \frac{\partial u}{\partial x}
+      grad_u[0][0] = du0dr * drdx + du0dtheta * dthetadx;
+      // Value of \frac{\partial u}{\partial y}
+      grad_u[0][1] = du0dr * drdy + du0dtheta * dthetady;
+      // Value of \frac{\partial v}{\partial x}
+      grad_u[1][0] = du1dr * drdx + du1dtheta * dthetadx;
+      // Value of \frac{\partial u}{\partial y}
+      grad_u[1][1] = du1dr * drdy + du1dtheta * dthetady;
+
+      return grad_u;
+    } // End of function
+
+    /// Function that computes the fitting pressure solution near the corner
+    /// (0,0)
+    double axisym_pressure_singular_fct(const Vector<double>& x)
+    // const Vector<double>& x_centre)
+    {
+      double p = 0.0;
+
+      return p;
+    }
+
     void eigensolution_traction_fct(const double& time,
                                     const Vector<double>& x,
                                     const Vector<double>& n,
