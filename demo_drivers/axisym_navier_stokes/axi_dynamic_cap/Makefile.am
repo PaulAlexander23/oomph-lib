@@ -35,7 +35,9 @@ check_PROGRAMS= \
 	obtuse_ca_height_continuation_run \
 	test_volume_constraint \
 	run_tests \
-	run_singular_tests
+	run_singular_tests \
+	test_grad_velocity
+
 
 # Sources for second executable
 linear_sources = linearised_axisymmetric_fluid_interface_elements.cc \
@@ -77,6 +79,7 @@ obtuse_ca_height_continuation_run_SOURCES = obtuse_ca_height_continuation_run.cc
 test_volume_constraint_SOURCES = test_volume_constraint.cc $(linear_sources)
 run_tests_SOURCES = run_tests.cc $(linear_sources)
 run_singular_tests_SOURCES = run_singular_tests.cc $(linear_sources)
+test_grad_velocity_SOURCES = test_grad_velocity.cc
 
 # Required libraries: 
 # $(FLIBS) is included in case the solver involves fortran sources.

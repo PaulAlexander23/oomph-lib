@@ -11,6 +11,7 @@ namespace oomph
   namespace parameters
   {
     SolidNode* x_centre_node_pt;
+    Vector<double>* x_centre_pt;
 
     double get_radial_distance(const Vector<double>& x,
                                const Vector<double>& x_centre)
@@ -54,6 +55,7 @@ namespace oomph
       // Find radial distance of polar coordinates centered at the point
       // x_centre
       Vector<double> x_centre = x_centre_node_pt->position();
+      // Vector<double> x_centre = *x_centre_pt;
       double r = get_radial_distance(x, x_centre);
       // Find angle of polar coordinates centered at the point x_centre
       double theta = get_azimuthal_angle(x, x_centre);
@@ -88,6 +90,7 @@ namespace oomph
       // Find radial distance of polar coordinates centered at the point
       // x_centre
       Vector<double> x_centre = x_centre_node_pt->position();
+      // Vector<double> x_centre = *x_centre_pt;
       double r = get_radial_distance(x, x_centre);
       // Find angle of polar coordinates centered at the point x_centre
       double theta = get_azimuthal_angle(x, x_centre);
@@ -134,6 +137,7 @@ namespace oomph
       // Find radial distance of polar coordinates centered at the point
       // x_centre
       Vector<double> x_centre = x_centre_node_pt->position();
+      // Vector<double> x_centre = *x_centre_pt;
       double r = get_radial_distance(x, x_centre);
       // Find angle of polar coordinates centered at the point x_centre
       double theta = get_azimuthal_angle(x, x_centre);
@@ -216,6 +220,7 @@ namespace oomph
       // Find radial distance of polar coordinates centered at the point
       // x_centre
       Vector<double> x_centre = x_centre_node_pt->position();
+      // Vector<double> x_centre = *x_centre_pt;
       double r = get_radial_distance(x, x_centre);
       // Find angle of polar coordinates centered at the point x_centre
       double theta = get_azimuthal_angle(x, x_centre);
@@ -254,6 +259,7 @@ namespace oomph
       // Find radial distance of polar coordinates centered at the point
       // x_centre
       Vector<double> x_centre = x_centre_node_pt->position();
+      // Vector<double> x_centre = *x_centre_pt;
       double r = get_radial_distance(x, x_centre);
       // Find angle of polar coordinates centered at the point x_centre
       double theta = get_azimuthal_angle(x, x_centre);
@@ -284,14 +290,10 @@ namespace oomph
       x_bar[0] = x[0] - x_centre[0];
       x_bar[1] = x[1] - x_centre[1];
 
-      // const double drdx = r / x_bar[0];
-      // const double dthetadx = -1 / x_bar[1];
-      // const double drdy = r / x_bar[1];
-      // const double dthetady = 1 / x_bar[0];
       const double drdx = x_bar[0] / r;
-      const double dthetadx = -x_bar[1];
+      const double dthetadx = -x_bar[1] / r / r;
       const double drdy = x_bar[1] / r;
-      const double dthetady = x_bar[0];
+      const double dthetady = x_bar[0] / r / r;
 
       // Value of \frac{\partial u}{\partial x}
       grad_u[0][0] = du0dr * drdx + du0dtheta * dthetadx;
@@ -354,6 +356,7 @@ namespace oomph
       // Find radial distance of polar coordinates centered at the point
       // x_centre
       Vector<double> x_centre = x_centre_node_pt->position();
+      // Vector<double> x_centre = *x_centre_pt;
       double r = get_radial_distance(x, x_centre);
       // Find angle of polar coordinates centered at the point x_centre
       double theta = get_azimuthal_angle(x, x_centre);

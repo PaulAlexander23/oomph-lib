@@ -525,7 +525,7 @@ namespace oomph
     // u_sing, v_sing, [w_sing], p_sing
     void output(std::ostream& outfile, const unsigned& nplot)
     {
-      const bool IsStressOutputIncluded = false;
+      const bool IsStressOutputIncluded = true;
       const bool IsSingularOutputInclude = true;
 
       // Find the dimension of the problem
