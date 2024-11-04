@@ -31,4 +31,4 @@ LDADD = -L@libdir@ \
 #-lboost_unit_test_framework -lgcov
 
 # Add the paranoid and range checking flags
-AM_CPPFLAGS += #-DPARANOID -DRANGE_CHECKING --coverage -O0 # -Wfatal-errors 
+AM_CPPFLAGS += -I../../../build/include/ #-DPARANOID -DRANGE_CHECKING --coverage -O0 # -Wfatal-errors 
