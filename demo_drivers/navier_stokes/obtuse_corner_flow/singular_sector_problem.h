@@ -78,6 +78,19 @@ namespace oomph
 
       create_singular_elements();
 
+      fix_c(1.0);
+      const unsigned n_element = this->bulk_mesh_pt()->nelement();
+      for (unsigned e = 0; e < n_element; e++)
+      {
+        for (unsigned n = 0; n < 6; n++)
+        {
+          dynamic_cast<ELEMENT*>(this->bulk_mesh_pt()->element_pt(e))
+            ->pin_total_velocity_eqn(n, 0);
+          dynamic_cast<ELEMENT*>(this->bulk_mesh_pt()->element_pt(e))
+            ->pin_total_velocity_eqn(n, 1);
+        }
+      }
+
       this->rebuild_global_mesh();
       oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
                  << std::endl;
@@ -90,10 +103,10 @@ namespace oomph
       {
         cout << "Make augmented elements" << endl;
         create_singularity_scaling_elements();
-        create_pressure_contribution_1_elements();
-        create_pressure_contribution_2_elements();
+        // create_pressure_contribution_1_elements();
+        // create_pressure_contribution_2_elements();
 
-        create_slip_eigen_elements();
+        // create_slip_eigen_elements();
 
         // Setup the mesh interaction between the bulk and singularity meshes
         setup_mesh_interaction();
@@ -103,13 +116,13 @@ namespace oomph
     void add_singular_sub_meshes()
     {
       Eigensolution_slip_mesh_pt = new Mesh;
-      this->add_sub_mesh(Eigensolution_slip_mesh_pt);
+      // this->add_sub_mesh(Eigensolution_slip_mesh_pt);
       Singularity_scaling_mesh_pt = new Mesh;
-      this->add_sub_mesh(Singularity_scaling_mesh_pt);
+      // this->add_sub_mesh(Singularity_scaling_mesh_pt);
       Pressure_contribution_mesh_1_pt = new Mesh;
-      this->add_sub_mesh(Pressure_contribution_mesh_1_pt);
+      // this->add_sub_mesh(Pressure_contribution_mesh_1_pt);
       Pressure_contribution_mesh_2_pt = new Mesh;
-      this->add_sub_mesh(Pressure_contribution_mesh_2_pt);
+      // this->add_sub_mesh(Pressure_contribution_mesh_2_pt);
     }
 
     void setup_and_augment_bulk_elements()

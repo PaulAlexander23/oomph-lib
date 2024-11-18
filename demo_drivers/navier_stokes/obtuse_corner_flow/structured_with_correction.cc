@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <fstream>
 
 // OOMPH-LIB include files
 #include "generic.h"
@@ -33,6 +34,17 @@ int main(int argc, char** argv)
   // Create problem
   SingularSectorProblem<SingularNavierStokesElement<MyElement>> problem;
   problem.setup();
+
+
+  std::ofstream out("jacobian.dat");
+  DoubleVector residuals;
+  CRDoubleMatrix jacobian;
+  problem.get_jacobian(residuals, jacobian);
+  jacobian.sparse_indexed_output(out);
+  out.close();
+  out.open("dofs.txt");
+  problem.describe_dofs(out);
+  out.close();
 
   // Steady problem
   problem.steady_newton_solve();

@@ -3,11 +3,18 @@ include $(top_srcdir)/config/makefile_templates/demo_drivers
 
 all: RESLT_no_fix/soln0.dat RESLT_fix/soln0.dat
 
-RESLT_no_fix/soln0.dat: structured_no_correction
+plot:
+	python oomph-convert.py RESLT_no_fix/soln0.dat
+	python plot_vtk.py RESLT_no_fix/soln0.vtu
+	xdg-open RESLT_no_fix/soln0_zoom.png
+	python oomph-convert.py RESLT_fix/soln0.dat
+	python plot_vtk.py RESLT_fix/soln0.vtu
+
+RESLT_no_fix/soln0.dat: structured_no_correction parameters.dat
 	mkdir -p RESLT_no_fix
 	./structured_no_correction
 
-RESLT_fix/soln0.dat: structured_with_correction
+RESLT_fix/soln0.dat: structured_with_correction parameters.dat
 	mkdir -p RESLT_fix
 	./structured_with_correction
 

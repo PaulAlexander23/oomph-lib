@@ -29,7 +29,9 @@ namespace oomph
 
   {
   private:
+    /// Bool to determine if this element is augmented or not.
     bool IsAugmented;
+
     /// Vector of pointers to SingularNavierStokesSolutionElement objects
     Vector<SingularNavierStokesSolutionElement<
       SingularNavierStokesElement<BASIC_NAVIER_STOKES_ELEMENT>>*>
@@ -134,31 +136,45 @@ namespace oomph
       const unsigned n_node = this->nnode();
       for (unsigned n = 0; n < n_node; n++)
       {
+        // Check how many values are currently stored at this node?
         unsigned n_value = this->node_pt(n)->nvalue();
+
+        // If this is a pressure node
         if (this->is_pressure_node(n))
         {
+          // Then the number of values should be twice the number of velocities
+          // with one degree of pressure.
+          // If it is correct then we have visited this node in one of the
+          // other elements, and we don't need to do anything
           if (n_value != this->n_u_nst() * 2 + 1)
           {
-            n_value += this->n_u_nst();
+            // Otherwise we need to resize
+            n_value = this->n_u_nst() * 2 + 1;
             this->node_pt(n)->resize(n_value);
           }
         }
         else
         {
+          // If it is not a pressure node, we should resize to twice the number
+          // of velocities, if we haven't already.
           if (n_value != this->n_u_nst() * 2)
           {
-            n_value += this->n_u_nst();
+            n_value = 2 * this->n_u_nst();
             this->node_pt(n)->resize(n_value);
           }
         }
       }
 
+      // This element is now augmented.
       IsAugmented = true;
     }
 
     // Make element un-augmented
     void unaugment()
     {
+      // We can't unresize the number of values at the nodes at the moment.
+
+      // This element is now augmented.
       IsAugmented = false;
     }
 
@@ -168,13 +184,134 @@ namespace oomph
       return IsAugmented;
     }
 
+    /// Overload the output function
+    /// x, y, [z,] u, v, [w], p, u_fe, v_fe, [w_fe], p_fe,
+    // u_sing, v_sing, [w_sing], p_sing
+    void output(std::ostream& outfile, const unsigned& nplot)
+    {
+      const bool IsStressOutputIncluded = true;
+      const bool IsSingularOutputInclude = true;
+
+      // Find the dimension of the problem
+      unsigned cached_dim = this->dim();
+
+      // Vector of local coordinates
+      Vector<double> s(cached_dim);
+
+      // Tecplot header info
+      outfile << this->tecplot_zone_string(nplot);
+
+      // Loop over plot points
+      unsigned num_plot_points = this->nplot_points(nplot);
+      for (unsigned iplot = 0; iplot < num_plot_points; iplot++)
+      {
+        // Get local coordinates of plot point
+        this->get_s_plot(iplot, nplot, s);
+
+        Vector<double> x(cached_dim);
+        for (unsigned i = 0; i < cached_dim; i++)
+        {
+          outfile << this->interpolated_x(s, i) << " ";
+          x[i] = this->interpolated_x(s, i);
+        }
+
+        // Total velocity
+        Vector<double> velocity(cached_dim, 0.0);
+
+        if (IsAugmented)
+        {
+          velocity = this->interpolated_total_u(s);
+        }
+        else
+        {
+          this->interpolated_u_nst(s, velocity);
+        }
+        for (unsigned i = 0; i < cached_dim; i++)
+        {
+          outfile << velocity[i] << " ";
+        }
+
+        // "Total" pressure
+        outfile << this->interpolated_p_nst(s) << " ";
+
+        if (IsStressOutputIncluded)
+        {
+          // Total stress
+          DenseMatrix<double> stress_tensor = interpolated_stress_tensor(s);
+          for (unsigned i = 0; i < cached_dim; i++)
+          {
+            for (unsigned j = 0; j < cached_dim; j++)
+            {
+              outfile << stress_tensor(i, j) << " ";
+            }
+          }
+        }
+
+        // Finite element Velocity
+        Vector<double> velocity_fe_only(cached_dim, 0.0);
+        if (this->IsAugmented)
+        {
+          this->interpolated_u_nst(s, velocity_fe_only);
+        }
+
+        for (unsigned i = 0; i < cached_dim; i++)
+        {
+          outfile << velocity_fe_only[i] << " ";
+        }
+
+        // Singular Velocity
+        if (IsSingularOutputInclude)
+        {
+          Vector<double> velocity_bar(cached_dim, 0.0);
+          if (this->IsAugmented)
+          {
+            velocity_bar = u_bar(x);
+          }
+          for (unsigned i = 0; i < cached_dim; i++)
+          {
+            outfile << velocity_bar[i] << " ";
+          }
+
+          // Singular stress
+          DenseMatrix<double> stress_tensor_bar(cached_dim, cached_dim, 0.0);
+          if (this->IsAugmented)
+          {
+            stress_tensor_bar = interpolated_stress_tensor_bar(s);
+          }
+          for (unsigned i = 0; i < cached_dim; i++)
+          {
+            for (unsigned j = 0; j < cached_dim; j++)
+            {
+              outfile << stress_tensor_bar(i, j) << " ";
+            }
+          }
+        } // End of augmented
+
+        // Output the stored error
+        outfile << this->get_error() << " ";
+
+        // Output the element size
+        outfile << this->size() << " ";
+
+        // Output the continuity residual
+        const double cont_res = this->interpolated_dudx_nst(s, 0, 0) +
+                                this->interpolated_dudx_nst(s, 1, 1);
+        outfile << cont_res << " ";
+
+        outfile << std::endl;
+      }
+
+      // Write tecplot footer (e.g. FE connectivity lists)
+      this->write_tecplot_zone_footer(outfile, nplot);
+    }
+
     /// Return the index at which the i-th unknown velocity component
     /// is stored. The default value, i, is appropriate for single-physics
     /// problems.
     /// In derived multi-physics elements, this function should be overloaded
     /// to reflect the chosen storage scheme.
     virtual inline unsigned u_index_nst(const unsigned& n,
-                                        const unsigned& i) const
+                                        const unsigned& i) const override
     {
       unsigned index = -1;
       if (IsAugmented)
@@ -192,101 +329,47 @@ namespace oomph
       }
       else
       {
-        index = BASIC_NAVIER_STOKES_ELEMENT::u_index_nst(n, i);
+        // i * [u]
+        index = i;
       }
       return index;
     }
 
-    virtual inline unsigned u_reconstructed_index(const unsigned& n,
-                                                  const unsigned& i) const
+    //
+    virtual inline unsigned total_u_index(const unsigned& n,
+                                          const unsigned& i) const
     {
       // i * [u]
       return i;
     }
 
-    double u_reconstructed(const unsigned& n, const unsigned& i) const
+    //
+    double total_u(const unsigned& n, const unsigned& i) const
     {
       // i * [u]
-      return nodal_value(n, this->u_reconstructed_index(n, i));
+      return nodal_value(n, this->total_u_index(n, i));
     }
 
-    virtual inline unsigned momentum_index_nst(const unsigned& n,
-                                               const unsigned& i) const
-    {
-      return i;
-    }
-
+    // The total velocity equation is "traded" with the finite element part of
+    // the velocities
     virtual inline int total_velocity_eqn_index(const unsigned& n,
                                                 const unsigned& i) const
     {
-      // return this->u_reconstructed_index(n, i);
-      // return this->u_index_nst(n, i);
-
-      unsigned index = -1;
-      if (this->is_pressure_node(n))
-      {
-        // dim * [u] + 1 * [p] + i * [u_tilde]
-        index = this->dim() + 1 + i;
-      }
-      else
-      {
-        // dim * [u] + i * [u_tilde]
-        index = this->dim() + i;
-      }
-      return index;
+      return this->u_index_nst(n, i);
     }
 
     virtual inline int total_velocity_local_eqn(const unsigned& n,
                                                 const unsigned& i) const
     {
-      // Note: u_index_nst references u_tilde_index
-
-      // return nodal_local_eqn(n, u_index_nst(n, i));
-      return nodal_local_eqn(n, total_velocity_eqn_index(n, i));
+      return nodal_local_eqn(n, this->total_velocity_eqn_index(n, i));
     }
 
-    virtual inline int u_reconstructed_local_unknown(const unsigned& n,
-                                                     const unsigned& i) const
+    virtual inline int total_u_local_unknown(const unsigned& n,
+                                             const unsigned& i) const
     {
-      // Note: u_index_nst references u_tilde_index
-
-      // return nodal_local_eqn(n, u_index_nst(n, i));
-      return nodal_local_eqn(n, this->u_reconstructed_index(n, i));
+      return nodal_local_eqn(n, this->total_u_index(n, i));
     }
 
-    // virtual inline int momentum_local_eqn(const unsigned& n,
-    //                                       const unsigned& i) const
-    // {
-    //   // Note: u_reconstructed_index references to total u
-
-    //   return nodal_local_eqn(n, u_index_nst(n, i));
-    //   // return nodal_local_eqn(n, this->u_reconstructed_index(n, i));
-    // }
-
-    /// Return the index at which the unknown pressure component
-    /// is stored.
-    // virtual inline int p_nodal_index_nst() const
-    // {
-    //   // dim * [u]
-    //   return this->dim();
-    // }
-
-
-  protected:
-    // Increase the required number of values by dim
-    //    virtual unsigned required_nvalue(const unsigned& n) const
-    //    {
-    //      // Basic element
-    //      // dim * [u] + 1 * [p]
-    //
-    //      // This element
-    //      // dim * [u] + 1 * [p_tilde] + dim * [u_tilde]
-    //
-    //      return TTaylorHoodElement<2>::required_nvalue(n) + this->dim();
-    //    }
-
-
-  public:
     void pin_total_velocity_eqn(const unsigned& i_node, const unsigned& i_dim)
     {
       if (this->IsAugmented)
@@ -302,8 +385,8 @@ namespace oomph
     {
       if (this->IsAugmented)
       {
-        this->node_pt(i_node)->set_value(
-          this->u_reconstructed_index(i_node, i_dim), value);
+        this->node_pt(i_node)->set_value(this->total_u_index(i_node, i_dim),
+                                         value);
       }
     }
 
@@ -390,42 +473,6 @@ namespace oomph
       this->add_external_data(c_pt->internal_data_pt(0));
     }
 
-
-    /// Derivative of pressure in direction indicated by pointer to unsigned
-    double dpdx_fe_only(Vector<double> s, const unsigned* direction_pt)
-    {
-      // Find the number of pressure dofs in the wrapped Navier-Stokes
-      // element pointed by
-      // the SingularNavierStokesSolutionElement class
-      unsigned n_pres = this->npres_nst();
-
-      // Find the dimension of the problem
-      unsigned cached_dim = this->dim();
-
-      // Set up memory for the pressure shape functions and their derivatives
-      Shape psip(n_pres), testp(n_pres);
-      DShape dpsipdx(n_pres, cached_dim), dtestpdx(n_pres, cached_dim);
-
-      // Compute the pressure shape functions and their derivatives
-      // at the local coordinate S_in_wrapped_navier_stokes_element
-      // (Test fcts not really needed but nobody's got around to writing
-      // a fct that only picks out the basis fcts.
-      this->dpshape_and_dptest_eulerian_nst(s, psip, dpsipdx, testp, dtestpdx);
-
-      // Initialise the derivative used for the residual
-      double interpolated_dpdx_fe_only = 0.0;
-
-      // Compute the derivative used for the residual. The direction of the
-      // derivative is given by *Direction_pt
-      for (unsigned j = 0; j < n_pres; j++)
-      {
-        interpolated_dpdx_fe_only += this->p_nst(j) * dpsipdx(j, *direction_pt);
-      }
-
-      return interpolated_dpdx_fe_only;
-    }
-
-
     /// Add the element's contribution to its residual vector (wrapper)
     void fill_in_contribution_to_residuals(Vector<double>& residuals)
     {
@@ -447,127 +494,6 @@ namespace oomph
 
       /* FD version if you want to mess around with anything...*/
       FiniteElement::fill_in_contribution_to_jacobian(residuals, jacobian);
-    }
-
-    /// Overload the output function
-    /// x, y, [z,] u, v, [w], p, u_fe, v_fe, [w_fe], p_fe,
-    // u_sing, v_sing, [w_sing], p_sing
-    void output(std::ostream& outfile, const unsigned& nplot)
-    {
-      const bool IsStressOutputIncluded = true;
-      const bool IsSingularOutputInclude = true;
-
-      // Find the dimension of the problem
-      unsigned cached_dim = this->dim();
-
-      // Vector of local coordinates
-      Vector<double> s(cached_dim);
-
-      // Tecplot header info
-      outfile << this->tecplot_zone_string(nplot);
-
-      // Loop over plot points
-      unsigned num_plot_points = this->nplot_points(nplot);
-      for (unsigned iplot = 0; iplot < num_plot_points; iplot++)
-      {
-        // Get local coordinates of plot point
-        this->get_s_plot(iplot, nplot, s);
-
-        Vector<double> x(cached_dim);
-        for (unsigned i = 0; i < cached_dim; i++)
-        {
-          outfile << this->interpolated_x(s, i) << " ";
-          x[i] = this->interpolated_x(s, i);
-        }
-
-        // Total velocity
-        Vector<double> velocity;
-
-        if (IsAugmented)
-        {
-          velocity = interpolated_u_nst_new(s);
-        }
-        else
-        {
-          velocity = this->interpolated_u_nst_fe_only(s);
-        }
-        for (unsigned i = 0; i < cached_dim; i++)
-        {
-          outfile << velocity[i] << " ";
-        }
-
-        // "Total" pressure
-        outfile << this->interpolated_p_nst_fe_only(s) << " ";
-
-        if (IsStressOutputIncluded)
-        {
-          // Total stress
-          DenseMatrix<double> stress_tensor = interpolated_stress_tensor(s);
-          for (unsigned i = 0; i < cached_dim; i++)
-          {
-            for (unsigned j = 0; j < cached_dim; j++)
-            {
-              outfile << stress_tensor(i, j) << " ";
-            }
-          }
-        }
-
-        // Finite element Velocity
-        Vector<double> velocity_fe_only(cached_dim, 0.0);
-        if (this->IsAugmented)
-        {
-          velocity_fe_only = interpolated_u_nst_fe_only(s);
-        }
-
-        for (unsigned i = 0; i < cached_dim; i++)
-        {
-          outfile << velocity_fe_only[i] << " ";
-        }
-
-        // Singular Velocity
-        if (IsSingularOutputInclude)
-        {
-          Vector<double> velocity_bar(cached_dim, 0.0);
-          if (this->IsAugmented)
-          {
-            velocity_bar = u_bar(x);
-          }
-          for (unsigned i = 0; i < cached_dim; i++)
-          {
-            outfile << velocity_bar[i] << " ";
-          }
-
-          // Singular stress
-          DenseMatrix<double> stress_tensor_bar(cached_dim, cached_dim, 0.0);
-          if (this->IsAugmented)
-          {
-            stress_tensor_bar = interpolated_stress_tensor_bar(s);
-          }
-          for (unsigned i = 0; i < cached_dim; i++)
-          {
-            for (unsigned j = 0; j < cached_dim; j++)
-            {
-              outfile << stress_tensor_bar(i, j) << " ";
-            }
-          }
-        } // End of augmented
-
-        // Output the stored error
-        outfile << this->get_error() << " ";
-
-        // Output the element size
-        outfile << this->size() << " ";
-
-        // Output the continuity residual
-        const double cont_res = this->interpolated_dudx_nst(s, 0, 0) +
-                                this->interpolated_dudx_nst(s, 1, 1);
-        outfile << cont_res << " ";
-
-        outfile << std::endl;
-      }
-
-      // Write tecplot footer (e.g. FE connectivity lists)
-      this->write_tecplot_zone_footer(outfile, nplot);
     }
 
 
@@ -622,7 +548,7 @@ namespace oomph
 
         // Get exact solution at this point
         (*exact_soln_pt)(x, exact_soln);
-        Vector<double> u_comp = interpolated_u_nst_sum(s);
+        Vector<double> u_comp = interpolated_total_u(s);
         for (unsigned i = 0; i < cached_dim; i++)
         {
           computed_soln[i] = u_comp[i];
@@ -630,7 +556,7 @@ namespace oomph
         unsigned hi_limit = cached_dim;
         if (include_pressure)
         {
-          computed_soln[cached_dim] = my_interpolated_p_nst(s);
+          computed_soln[cached_dim] = this->interpolated_p_nst(s);
           hi_limit = cached_dim + 1;
         }
 
@@ -661,7 +587,7 @@ namespace oomph
 
     /// Overloaded version of the interpolated velocity solution including
     /// the singular contributions
-    inline Vector<double> interpolated_u_nst_sum(const Vector<double>& s) const
+    inline Vector<double> interpolated_total_u(const Vector<double>& s) const
     {
       // Find the dimension of the problem
       unsigned cached_dim = this->dim();
@@ -687,83 +613,12 @@ namespace oomph
         // Loop over the local nodes and sum
         for (unsigned j = 0; j < n_node; j++)
         {
-          interpolated_u[d] += this->u_nst(j, d) * psif[j];
+          interpolated_u[d] += this->total_u(j, d) * psif[j];
           x[d] += this->nodal_position(j, d) * psif(j);
         }
       }
 
-      // Add the contribution of the singularities (all of them, summed)
-      Vector<double> u_bar_local = u_bar(x);
-      for (unsigned d = 0; d < cached_dim; d++)
-      {
-        interpolated_u[d] += u_bar_local[d];
-      }
-      return (interpolated_u);
-    }
-
-    /// Overloaded version of the interpolated velocity solution including
-    /// the singular contributions
-    Vector<double> interpolated_u_nst_new(const Vector<double>& s)
-    {
-      // Find the dimension of the problem
-      unsigned cached_dim = this->dim();
-
-      // Find number of nodes
-      const unsigned n_node = this->nnode();
-
-      // Initialise value of u
-      Vector<double> interpolated_u(cached_dim, 0.0);
-
-      // Local shape function
-      Shape psif(n_node);
-
-      // Find values of shape function
-      this->shape(s, psif);
-
-      // Loop over the spatial directions
-      for (unsigned d = 0; d < cached_dim; d++)
-      {
-        // Loop over the local nodes and sum
-        for (unsigned j = 0; j < n_node; j++)
-        {
-          interpolated_u[d] += u_reconstructed(j, d) * psif[j];
-        }
-      }
       return interpolated_u;
-    }
-
-    /// Version of interpolated pressure including the singular contributions
-    inline double my_interpolated_p_nst(const Vector<double>& s) const
-    {
-      // Initialise pressure value with fe part
-      double interpolated_p = interpolated_p_nst_fe_only(s);
-
-      // Calculate the global coordinate associated with s
-      unsigned cached_dim = this->dim();
-      Vector<double> x(cached_dim, 0.0);
-
-      // Find number of nodes
-      const unsigned n_node = this->nnode();
-
-      // Local shape function
-      Shape psif(n_node);
-
-      // Find values of shape function
-      this->shape(s, psif);
-
-      // Loop over the local nodes and sum
-      for (unsigned j = 0; j < n_node; j++)
-      {
-        for (unsigned d = 0; d < cached_dim; d++)
-        {
-          x[d] += this->raw_nodal_position(j, d) * psif(j);
-        }
-      }
-
-      // Add the singularities contribution (all of them, summed)
-      interpolated_p += p_bar(x);
-
-      return interpolated_p;
     }
 
     DenseMatrix<double> interpolated_stress_tensor(const Vector<double>& s)
@@ -782,7 +637,7 @@ namespace oomph
       this->dshape_eulerian(s, psif, dpsifdx);
 
       // Get the velocity gradient
-      double interpolated_p = interpolated_p_nst_fe_only(s);
+      double interpolated_p = this->interpolated_p_nst(s);
       DenseMatrix<double> interpolated_dudx(cached_dim, cached_dim, 0.0);
       // Loop over the local nodes and sum
       for (unsigned l = 0; l < n_node; l++)
@@ -792,7 +647,7 @@ namespace oomph
         {
           for (unsigned j = 0; j < cached_dim; j++)
           {
-            const double u_value = this->u_reconstructed(l, i);
+            const double u_value = this->total_u(l, i);
             interpolated_dudx(i, j) += u_value * dpsifdx(l, j);
           }
         }
@@ -963,68 +818,6 @@ namespace oomph
       return sum;
     }
 
-    /// Return FE representation of velocity solution WITHOUT singular
-    /// contributions at local coordinate s
-    Vector<double> interpolated_u_nst_fe_only(const Vector<double>& s) const
-    {
-      // Find number of nodes
-      const unsigned n_node = this->nnode();
-
-      // Find the dimension of the problem
-      unsigned cached_dim = this->dim();
-
-      // Initialise value of u
-      Vector<double> interpolated_u(cached_dim, 0.0);
-
-      // Local shape function
-      Shape psif(n_node);
-
-      // Find values of shape function
-      this->shape(s, psif);
-
-      // Loop over the velocity components
-      for (unsigned d = 0; d < cached_dim; d++)
-      {
-        // Add the contribution of u_FE
-        // Loop over the local nodes and sum
-        for (unsigned j = 0; j < n_node; j++)
-        {
-          interpolated_u[d] += this->u_nst(j, d) * psif[j];
-        }
-      }
-
-      return interpolated_u;
-    }
-
-
-  public:
-    /// Return FE representation of pressure solution WITHOUT singular
-    /// contributions at local coordinate s
-    double interpolated_p_nst_fe_only(const Vector<double>& s) const
-    {
-      // Find number of pressure degrees of freedom
-      unsigned n_pres = this->npres_nst();
-
-      // Set up memory for pressure shape and test functions
-      Shape psip(n_pres), testp(n_pres);
-
-      // Compute the values of the pressure shape and test functions at the
-      // local coordinate s
-      this->pshape_nst(s, psip, testp);
-
-      // Initialise pressure value
-      double interpolated_p = 0.0;
-
-      // Add the contribution of p_FE
-      // Loop over the pressure dof and sum
-      for (unsigned l = 0; l < n_pres; l++)
-      {
-        interpolated_p += this->p_nst(l) * psip[l];
-      }
-
-      return interpolated_p;
-    }
-
   private:
     void fill_in_generic_residual_contribution_additional_terms(
       Vector<double>& residuals,
@@ -1110,7 +903,7 @@ namespace oomph
           // Initialise the global coordinate and velocity
           Vector<double> interpolated_x(cached_dim, 0.0);
           Vector<double> interpolated_u_tilde(cached_dim, 0.0);
-          Vector<double> interpolated_u(cached_dim, 0.0);
+          Vector<double> interpolated_total_u(cached_dim, 0.0);
           DenseMatrix<double> interpolated_dudx(cached_dim, cached_dim, 0.0);
 
           // Calculate the global coordinate associated with s
@@ -1122,7 +915,7 @@ namespace oomph
             {
               double u_value = this->u_nst(l, i);
               interpolated_u_tilde[i] += u_value * psif[l];
-              interpolated_u[i] += u_reconstructed(l, i) * psif[l];
+              interpolated_total_u[i] += total_u(l, i) * psif[l];
               interpolated_x[i] += this->nodal_position(l, i) * psif(l);
               for (unsigned j = 0; j < cached_dim; j++)
               {
@@ -1297,7 +1090,7 @@ namespace oomph
               if (local_eqn >= 0)
               {
                 residuals[local_eqn] +=
-                  (interpolated_u[i] -
+                  (interpolated_total_u[i] -
                    (interpolated_u_tilde[i] + u_bar_local[i])) *
                   testf[l] * W;
 
@@ -1334,7 +1127,7 @@ namespace oomph
                   // entry
                   for (unsigned l2 = 0; l2 < n_node; l2++)
                   {
-                    local_unknown = u_reconstructed_local_unknown(l2, i);
+                    local_unknown = total_u_local_unknown(l2, i);
                     if (local_unknown >= 0)
                     {
                       jacobian(local_eqn, local_unknown) +=
@@ -1429,7 +1222,6 @@ namespace oomph
         {
           // Find its local equation number
           local_eqn = this->momentum_local_eqn(l, d);
-          // local_eqn = this->total_velocity_local_eqn(l, d);
 
           // If it is not pinned
           if (local_eqn >= 0)

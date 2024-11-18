@@ -11,10 +11,8 @@
 #include "far_field_element.h"
 #include "parameter_functions.h"
 #include "parameter_struct.h"
-#include "pressure_evaluation_elements.h"
 #include "refined_sector_tri_mesh.template.h"
 #include "refined_sector_tri_mesh.template.cc"
-#include "singular_fluid_traction_elements.h"
 
 namespace oomph
 {
@@ -83,10 +81,10 @@ namespace oomph
 
     void create_nonrefineable_elements()
     {
-      create_slip_elements();
-      create_no_penetration1_elements();
-      create_no_penetration2_elements();
-      create_far_field_elements();
+      // create_slip_elements();
+      // create_no_penetration1_elements();
+      // create_no_penetration2_elements();
+      // create_far_field_elements();
     }
 
     void delete_nonrefineable_elements()
