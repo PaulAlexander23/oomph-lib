@@ -46,11 +46,6 @@ namespace oomph
       // Attach the geometrical information to the element. N.B. This function
       // also assigns nbulk_value from the required_nvalue of the bulk element
       element_pt->build_face_element(face_index, this);
-
-      // Add the nodes (which are data) where the pressure is stored in the bulk
-      // element as external data.
-      // add_pressure_nodes_not_on_face_as_external_data();
-      // this->add_other_bulk_node_positions_as_external_data();
     }
 
     void compute_s(Node* const& node_pt)
@@ -133,17 +128,13 @@ namespace oomph
     }
 
     // Calculate the element's residual vector and Jacobian
-    // void fill_in_contribution_to_jacobian(Vector<double>& residuals,
-    //                                       DenseMatrix<double>& jacobian)
-    // {
-    //   // Call the generic routine with the flag set to 1
-    //   fill_in_generic_residual_contribution_pressure_contribution(
-    //     residuals, jacobian, 1);
-
-    //   // Call the generic finite difference routine to handle the solid
-    //   // variables
-    //   this->fill_in_jacobian_from_solid_position_by_fd(jacobian);
-    // }
+    void fill_in_contribution_to_jacobian(Vector<double>& residuals,
+                                          DenseMatrix<double>& jacobian)
+    {
+      // Call the generic routine with the flag set to 1
+      fill_in_generic_residual_contribution_pressure_contribution(
+        residuals, jacobian, 1);
+    }
 
     void fill_in_contribution_to_dresiduals_dparameter(
       double* const& parameter_pt, Vector<double>& dres_dparam)

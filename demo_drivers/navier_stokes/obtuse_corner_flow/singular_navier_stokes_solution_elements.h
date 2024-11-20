@@ -402,7 +402,8 @@ namespace oomph
     void fill_in_contribution_to_jacobian(Vector<double>& residuals,
                                           DenseMatrix<double>& jacobian)
     {
-      GeneralisedElement::fill_in_contribution_to_jacobian(residuals, jacobian);
+      // GeneralisedElement::fill_in_contribution_to_jacobian(residuals,
+      // jacobian);
 
       ////      // Add the contribution to the residuals
       //     fill_in_contribution_to_residuals(residuals);
