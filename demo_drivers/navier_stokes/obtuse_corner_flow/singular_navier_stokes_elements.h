@@ -566,9 +566,9 @@ namespace oomph
     {
       // Call the generic routine with the flag set to 1 and dummy mass
       // matrix
-      this->fill_in_generic_residual_contribution_wrapped_nst(
-        residuals, jacobian, 1);
-      // FiniteElement::fill_in_contribution_to_jacobian(residuals, jacobian);
+      // this->fill_in_generic_residual_contribution_wrapped_nst(
+      //  residuals, jacobian, 1);
+      FiniteElement::fill_in_contribution_to_jacobian(residuals, jacobian);
     }
 
     /// Overload the output function
@@ -1159,6 +1159,8 @@ namespace oomph
         Vector<double> interpolated_u_tilde(cached_dim, 0.0);
         Vector<double> interpolated_u_reconstructed(cached_dim, 0.0);
         DenseMatrix<double> interpolated_dudx(cached_dim, cached_dim, 0.0);
+        DenseMatrix<double> interpolated_dudx_reconstructed(
+          cached_dim, cached_dim, 0.0);
 
         // Calculate the global coordinate associated with s
         // Loop over nodes
@@ -1172,6 +1174,8 @@ namespace oomph
             for (unsigned j = 0; j < cached_dim; j++)
             {
               interpolated_dudx(i, j) += u_value * dpsifdx(l, j);
+              interpolated_dudx_reconstructed(i, j) +=
+                u_reconstructed(l, i) * dpsifdx(l, j);
             }
             interpolated_u_reconstructed[i] += u_reconstructed(l, i) * psif[l];
             interpolated_x[i] += this->nodal_position(l, i) * psif(l);
@@ -1354,7 +1358,8 @@ namespace oomph
               // Loop over velocity components
               for (unsigned k = 0; k < cached_dim; k++)
               {
-                aux += grad_u_bar_local[k][k];
+                aux += -grad_u_bar_local[k][k] +
+                       interpolated_dudx_reconstructed(k, k);
               }
 
               residuals[local_eqn] += aux * testp[l] * W;
@@ -1756,8 +1761,8 @@ namespace oomph
 
       if (this->IsAugmented)
       {
-        //fill_in_generic_residual_contribution_additional_terms(
-        //  residuals, jacobian, flag);
+        fill_in_generic_residual_contribution_additional_terms(
+          residuals, jacobian, flag);
         fill_in_generic_residual_contribution_total_velocity(
           residuals, jacobian, flag);
       }
