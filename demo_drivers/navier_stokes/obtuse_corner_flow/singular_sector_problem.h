@@ -13,6 +13,7 @@
 #include "eigensolution_functions.h"
 #include "pressure_evaluation_elements.h"
 #include "point_pressure_evaluation_elements.h"
+#include "velocity_gradient_constraint_element.h"
 #include "singular_fluid_traction_elements.h"
 
 namespace oomph
@@ -26,6 +27,7 @@ namespace oomph
 
     Vector<unsigned> Augmented_bulk_element_number;
     Mesh* Singularity_scaling_mesh_pt;
+    Mesh* Velocity_gradient_condition_mesh_pt;
     Mesh* Pressure_contribution_mesh_1_pt;
     Mesh* Pressure_contribution_mesh_2_pt;
     Mesh* Eigensolution_slip_mesh_pt;
@@ -91,7 +93,7 @@ namespace oomph
 
       create_singular_elements();
 
-      //fix_c(1.30988994216873555);
+      // fix_c(1.30988994216873555);
 
       this->rebuild_global_mesh();
       oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
@@ -105,8 +107,9 @@ namespace oomph
       {
         cout << "Make augmented elements" << endl;
         create_singularity_scaling_elements();
-        create_pressure_contribution_1_elements();
-        create_pressure_contribution_2_elements();
+        create_velocity_gradient_condition_elements();
+        // create_pressure_contribution_1_elements();
+        // create_pressure_contribution_2_elements();
 
         create_slip_eigen_elements();
         // create_traction_eigen_elements();
@@ -124,6 +127,8 @@ namespace oomph
       this->add_sub_mesh(Eigensolution_traction_mesh_pt);
       Singularity_scaling_mesh_pt = new Mesh;
       this->add_sub_mesh(Singularity_scaling_mesh_pt);
+      Velocity_gradient_condition_mesh_pt = new Mesh;
+      this->add_sub_mesh(Velocity_gradient_condition_mesh_pt);
       Pressure_contribution_mesh_1_pt = new Mesh;
       this->add_sub_mesh(Pressure_contribution_mesh_1_pt);
       Pressure_contribution_mesh_2_pt = new Mesh;
@@ -215,6 +220,17 @@ namespace oomph
         ->output(output_stream);
       output_stream.close();
 
+      sprintf(filename,
+              "%s/gradient%i.csv",
+              this->doc_info_pt()->directory().c_str(),
+              this->doc_info_pt()->number());
+      output_stream.open(filename);
+      output_stream << "x,y,gradient," << endl;
+      dynamic_cast<VelocityGradientConstraintElement<ELEMENT>*>(
+        Velocity_gradient_condition_mesh_pt->element_pt(0))
+        ->output(output_stream);
+      output_stream.close();
+
       SectorProblem<ELEMENT>::doc_solution();
     }
 
@@ -222,6 +238,7 @@ namespace oomph
     void create_slip_eigen_elements();
     void create_traction_eigen_elements();
     void create_singularity_scaling_elements();
+    void create_velocity_gradient_condition_elements();
     void create_pressure_contribution_1_elements();
     void create_pressure_contribution_2_elements();
     void find_corner_bulk_element_and_face_index(const unsigned& boundary_1_id,
@@ -426,6 +443,29 @@ namespace oomph
       // of the singular fct
       el_pt->add_c_equation_element_pt(singular_el_pt);
     }
+  }
+
+  template<class ELEMENT>
+  void SingularSectorProblem<
+    ELEMENT>::create_velocity_gradient_condition_elements()
+  {
+    oomph_info << "create_velocity_gradient_condition_elements" << std::endl;
+
+    ELEMENT* element_pt = 0;
+    int face_index = 0;
+    find_corner_bulk_element_and_face_index(
+      Slip_boundary_id, Free_surface_boundary_id, element_pt, face_index);
+
+    VelocityGradientConstraintElement<ELEMENT>* el_pt =
+      new VelocityGradientConstraintElement<ELEMENT>(
+        element_pt, face_index, dynamic_cast<Node*>(Contact_line_node_pt));
+
+    el_pt->set_boundary_number_in_bulk_mesh(Slip_boundary_id);
+
+    el_pt->set_traded_data_pt(
+      Singularity_scaling_mesh_pt->element_pt(0)->internal_data_pt(0));
+
+    Velocity_gradient_condition_mesh_pt->add_element_pt(el_pt);
   }
 
   template<class ELEMENT>
