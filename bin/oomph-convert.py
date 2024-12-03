@@ -361,7 +361,7 @@ def tecplot_to_vtkxml(inputFilename, outputFilename):
     output.write(VtkXml.pointsHeader)
     for zone in zones:
         for node in zone.nodes:
-            output.write("%e %e %e\n" %(node.coordinates[0], node.coordinates[1], node.coordinates[2]))
+            output.write("%.15e %.15e %e\n" %(node.coordinates[0], node.coordinates[1], node.coordinates[2]))
     output.write(VtkXml.pointsFooter)
     print("done")
 
@@ -527,7 +527,7 @@ def tecplot_to_vtkxml(inputFilename, outputFilename):
         output.write(VtkXml.fieldHeader % (fieldIndex + 1))
         for zone in zones:
             for node in zone.nodes:
-                output.write("%e\n" % node.fields[fieldIndex])
+                output.write("%.15e\n" % node.fields[fieldIndex])
 
         print("done")
         output.write(VtkXml.fieldFooter)
@@ -922,7 +922,7 @@ def tecplot_to_vtpxml(inputFilename, outputFilename, dim):
     sys.stdout.flush()
     output.write(VtpXml.pointsHeader)
     for point in points:
-        output.write("%e %e %e\n" %(point.coordinates[0], point.coordinates[1], point.coordinates[2]))
+        output.write("%.15e %.15e %e\n" %(point.coordinates[0], point.coordinates[1], point.coordinates[2]))
     output.write(VtpXml.pointsFooter)
     print("done")
  
@@ -935,7 +935,7 @@ def tecplot_to_vtpxml(inputFilename, outputFilename, dim):
         sys.stdout.flush()
         output.write(VtpXml.fieldHeader % (fieldIndex + 1))
         for point in points:
-            output.write("%e\n" % point.fields[fieldIndex])
+            output.write("%.15e\n" % point.fields[fieldIndex])
 
         print("done")
         output.write(VtpXml.fieldFooter)
