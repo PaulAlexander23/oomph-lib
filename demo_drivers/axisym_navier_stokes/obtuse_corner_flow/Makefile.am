@@ -1,37 +1,33 @@
 #Include commands common to every Makefile.am
 include $(top_srcdir)/config/makefile_templates/demo_drivers
 
-paraview_axi_region: structured_with_correction_region parameters.dat RESLT_axi_fix_region/soln0.vtu
-	paraview RESLT_axi_fix_region/soln0.vtu
-
-paraview_axi: structured_with_correction parameters.dat RESLT_axi_fix/soln0.vtu
-	paraview RESLT_axi_fix/soln0.vtu
-
-%.vtu: %.dat
-	../../../bin/oomph-convert.py $<
-
-RESLT_axi_no_fix/soln0.dat: structured_no_correction parameters.dat
-	mkdir -p RESLT_axi_no_fix
-	./structured_no_correction
-
-RESLT_axi_no_fix_region/soln0.dat: structured_no_correction_region parameters.dat
-	mkdir -p RESLT_axi_no_fix_region
-	./structured_no_correction_region
-
-RESLT_axi_fix/soln0.dat: structured_with_correction parameters.dat
-	mkdir -p RESLT_axi_fix
-	./structured_with_correction
-
-RESLT_axi_fix_region/soln0.dat: structured_with_correction_region parameters.dat
-	mkdir -p RESLT_axi_fix_region
-	./structured_with_correction_region
-
-# Name of executables
-check_PROGRAMS= \
+# Variables
+EXEC:= \
 	structured_no_correction \
 	structured_no_correction_region \
 	structured_with_correction \
 	structured_with_correction_region
+
+FOLDERS:= \
+	RESLT_axi_fix \
+	RESLT_axi_fix_region \
+	RESLT_axi_no_fix \
+	RESLT_axi_no_fix_region
+
+# Makefile rules
+all: ${EXEC} ${FOLDERS} parameters.dat
+	echo ${EXEC} | xargs -d " " -I {} bash -c "./{}"
+
+$(FOLDERS):
+	mkdir -p $@
+
+parameters.dat: 
+	cp default_parameters.dat parameters.dat
+
+# Automake
+
+# Name of executables
+check_PROGRAMS= ${EXEC}
 
 # Sources for second executable
 structured_no_correction_SOURCES = structured_no_correction.cc
