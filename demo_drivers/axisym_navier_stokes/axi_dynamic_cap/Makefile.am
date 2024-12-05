@@ -1,18 +1,20 @@
 #Include commands common to every Makefile.am
 include $(top_srcdir)/config/makefile_templates/demo_drivers
 
-all: \
+# Variables
+EXEC:= \
 	axi_dynamic_cap \
 	create_parameter_files \
 	continuation_run \
 	run_tests
 
+# Makefile rules
+all: ${EXEC}
+
+# Automake
+
 # Name of executables
-check_PROGRAMS= \
-	axi_dynamic_cap \
-	create_parameter_files \
-	continuation_run \
-	run_tests
+check_PROGRAMS= ${EXEC}
 
 axi_dynamic_cap_SOURCES = axi_dynamic_cap.cc 
 create_parameter_files_SOURCES = create_parameter_files.cc
@@ -31,4 +33,4 @@ LDADD = -L@libdir@ \
 #-lboost_unit_test_framework -lgcov
 
 # Add the paranoid and range checking flags
-AM_CPPFLAGS += -I../../../build/include/ #-DPARANOID -DRANGE_CHECKING --coverage -O0 # -Wfatal-errors 
+AM_CPPFLAGS += #-I../../../build/include/ #-DPARANOID -DRANGE_CHECKING --coverage -O0 # -Wfatal-errors 
