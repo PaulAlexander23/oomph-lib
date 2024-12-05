@@ -10,7 +10,7 @@ two_layer_interface_axisym \
 rayleigh_instability \
 fibre \
 counter_rotating_disks \
-temp
+obtuse_corner_flow
 
 if SUPPRESS_TRIANGLE_LIB
 else
