@@ -6,52 +6,88 @@
 
 # Define the sources
 sources =  \
-oomph_definitions.cc oomph_utilities.cc \
-complex_matrices.cc \
-matrices.cc       timesteppers.cc explicit_timesteppers.cc \
-integral.cc   nodes.cc  \
-elements.cc mesh.cc assembly_handler.cc periodic_orbit_handler.cc problem.cc \
-Qelements.cc Qspectral_elements.cc frontal_solver.cc      linear_solver.cc \
-Qelement_face_coordinate_translation_schemes.cc \
-Telements.cc hermite_elements.cc   \
-elastic_problems.cc  hijacked_elements.cc      \
-algebraic_elements.cc \
-macro_element.cc \
-stored_shape_function_elements.cc \
-quad_mesh.cc \
-domain.cc   quadtree.cc \
-dg_elements.cc \
-error_estimator.cc   \
-refineable_elements.cc pseudosolid_node_update_elements.cc \
-refineable_quad_element.cc  refineable_mesh.cc \
-hp_refineable_elements.cc \
-fsi.cc octree.cc tree.cc orthpoly.cc             \
-superlu.c superlu_complex.c refineable_brick_element.cc \
-brick_mesh.cc spines.cc element_with_moving_nodes.cc \
-macro_element_node_update_element.cc \
-mesh_as_geometric_object.cc \
-multi_domain.cc \
-missing_masters.cc \
-element_with_external_element.cc \
-eigen_solver.cc \
-triangle_scaffold_mesh.cc  geompack_scaffold_mesh.cc \
-tetgen_scaffold_mesh.cc simple_cubic_scaffold_tet_mesh.cc \
-line_mesh.cc binary_tree.cc refineable_line_element.cc \
-triangle_mesh.cc tet_mesh.cc \
-partitioning.cc communicator.cc linear_algebra_distribution.cc \
-double_vector.cc \
-double_multi_vector.cc \
-double_vector_with_halo.cc \
-iterative_linear_solver.cc \
-general_purpose_preconditioners.cc block_preconditioner.cc \
-matrix_vector_product.cc \
-sum_of_matrices.cc \
-implicit_midpoint_rule.cc \
-preconditioner_array.cc general_purpose_block_preconditioners.cc pml_meshes.cc \
-unstructured_two_d_mesh_geometry_base.cc sample_point_container.cc \
-sample_point_parameters.cc geometric_multigrid.cc \
-extruded_macro_element.cc extruded_domain.cc \
-black_box_newton_solver.cc
+	Qelement_face_coordinate_translation_schemes.cc \
+	Qelements.cc \
+	Qspectral_elements.cc \
+	Telements.cc \
+	algebraic_elements.cc \
+	assembly_handler.cc \
+	binary_tree.cc \
+	black_box_newton_solver.cc \
+	block_preconditioner.cc \
+	brick_mesh.cc \
+	communicator.cc \
+	complex_matrices.cc \
+	dg_elements.cc \
+	domain.cc \
+	double_multi_vector.cc \
+	double_vector.cc \
+	double_vector_with_halo.cc \
+	eigen_solver.cc \
+	elastic_problems.cc \
+	element_with_external_element.cc \
+	element_with_moving_nodes.cc \
+	elements.cc \
+	error_estimator.cc \
+	explicit_timesteppers.cc \
+	extruded_domain.cc \
+	extruded_macro_element.cc \
+	frontal_solver.cc \
+	fsi.cc \
+	general_purpose_block_preconditioners.cc \
+	general_purpose_preconditioners.cc \
+	geometric_multigrid.cc \
+	geompack_scaffold_mesh.cc \
+	hermite_elements.cc \
+	hijacked_elements.cc \
+	hp_refineable_elements.cc \
+	implicit_midpoint_rule.cc \
+	integral.cc \
+	iterative_linear_solver.cc \
+	line_mesh.cc \
+	linear_algebra_distribution.cc \
+	linear_solver.cc \
+	macro_element.cc \
+	macro_element_node_update_element.cc \
+	matrices.cc \
+	matrix_vector_product.cc \
+	mesh.cc \
+	mesh_as_geometric_object.cc \
+	missing_masters.cc \
+	multi_domain.cc \
+	nodes.cc \
+	octree.cc \
+	oomph_definitions.cc \
+	oomph_utilities.cc \
+	orthpoly.cc \
+	partitioning.cc \
+	periodic_orbit_handler.cc \
+	pml_meshes.cc \
+	preconditioner_array.cc \
+	problem.cc \
+	pseudosolid_node_update_elements.cc \
+	quad_mesh.cc \
+	quadtree.cc \
+	refineable_brick_element.cc \
+	refineable_elements.cc \
+	refineable_line_element.cc \
+	refineable_mesh.cc \
+	refineable_quad_element.cc \
+	sample_point_container.cc \
+	sample_point_parameters.cc \
+	simple_cubic_scaffold_tet_mesh.cc \
+	spines.cc \
+	stored_shape_function_elements.cc \
+	sum_of_matrices.cc \
+	superlu.c \
+	superlu_complex.c \
+	tet_mesh.cc \
+	tetgen_scaffold_mesh.cc \
+	timesteppers.cc \
+	tree.cc \
+	triangle_mesh.cc \
+	triangle_scaffold_mesh.cc \
+	unstructured_two_d_mesh_geometry_base.cc
 
 if OOMPH_HAS_MUMPS
 sources+=mumps_fortran_solver.F mumps_solver.cc
@@ -64,60 +100,112 @@ endif
 
 # Define the headers
 headers =  \
-oomph_definitions.h Qelements.h    Qspectral_elements.h        elements.h    \
-Qelement_face_coordinate_translation_schemes.h \
-integral.h       assembly_handler.h periodic_orbit_handler.h problem.h \
-linear_solver.h       shape.h \
-Vector.h            frontal_solver.h      matrices.h       spines.h \
-element_with_moving_nodes.h \
-complex_matrices.h \
-displacement_control_element.h \
-mesh.h           timesteppers.h  explicit_timesteppers.h \
-hermite_elements.h  nodes.h      oomph_utilities.h \
-elastic_problems.h  hijacked_elements.h      geom_objects.h \
-algebraic_elements.h            macro_element.h \
-stored_shape_function_elements.h \
-map_matrix.h \
-domain.h                        quad_mesh.h \
-quadtree.h \
-dg_elements.h \
-error_estimator.h \
-refineable_mesh.h \
-fsi.h octree.h  tree.h  \
-refineable_elements.h refineable_quad_element.h \
-hp_refineable_elements.h \
-refineable_line_spectral_element.h \
-refineable_quad_spectral_element.h \
-refineable_brick_spectral_element.h orthpoly.h \
-refineable_quad_mesh.h pseudosolid_node_update_elements.h \
-refineable_brick_element.h brick_mesh.h refineable_brick_mesh.h  \
-macro_element_node_update_element.h \
-mesh_as_geometric_object.h face_element_as_geometric_object.h \
-eigen_solver.h \
-Telements.h \
-triangle_scaffold_mesh.h geompack_scaffold_mesh.h tetgen_scaffold_mesh.h \
-pseudo_buckling_ring.h simple_cubic_scaffold_tet_mesh.h \
-line_mesh.h binary_tree.h refineable_line_element.h \
-refineable_line_mesh.h \
-triangle_mesh.h tet_mesh.h \
-partitioning.h communicator.h linear_algebra_distribution.h double_vector.h \
-double_multi_vector.h double_vector_with_halo.h \
-multi_domain.h element_with_external_element.h iterative_linear_solver.h \
-missing_masters.h \
-preconditioner.h \
-general_purpose_preconditioners.h block_preconditioner.h \
-general_purpose_block_preconditioners.h SuperLU_preconditioner.h \
-matrix_vector_product.h projection.h line_visualiser.h \
-sum_of_matrices.h implicit_midpoint_rule.h \
-trapezoid_rule.h \
-preconditioner_array.h pml_meshes.h pml_mapping_functions.h \
-generalised_timesteppers.h vector_matrix.h face_mesh_project.h \
-generalised_newtonian_constitutive_models.h \
-unstructured_two_d_mesh_geometry_base.h \
-geometric_multigrid.h sample_point_container.h \
-sample_point_parameters.h sparse_vector.h \
-geom_obj_with_boundary.h extruded_macro_element.h extruded_domain.h \
-black_box_newton_solver.h
+	Qelement_face_coordinate_translation_schemes.h \
+	Qelements.h \
+	Qspectral_elements.h \
+	SuperLU_preconditioner.h \
+	Telements.h \
+	Vector.h \
+	algebraic_elements.h \
+	assembly_handler.h \
+	binary_tree.h \
+	black_box_newton_solver.h \
+	block_preconditioner.h \
+	brick_mesh.h \
+	communicator.h \
+	complex_matrices.h \
+	dg_elements.h \
+	displacement_control_element.h \
+	domain.h \
+	double_multi_vector.h \
+	double_vector.h \
+	double_vector_with_halo.h \
+	eigen_solver.h \
+	elastic_problems.h \
+	element_with_error.h \
+	element_with_external_element.h \
+	element_with_moving_nodes.h \
+	elements.h \
+	error_estimator.h \
+	explicit_timesteppers.h \
+	extruded_domain.h \
+	extruded_macro_element.h \
+	face_element_as_geometric_object.h \
+	face_mesh_project.h \
+	frontal_solver.h \
+	fsi.h \
+	general_purpose_block_preconditioners.h \
+	general_purpose_preconditioners.h \
+	generalised_newtonian_constitutive_models.h \
+	generalised_timesteppers.h \
+	geom_obj_with_boundary.h \
+	geom_objects.h \
+	geometric_multigrid.h \
+	geompack_scaffold_mesh.h \
+	hermite_elements.h \
+	hijacked_elements.h \
+	hp_refineable_elements.h \
+	implicit_midpoint_rule.h \
+	integral.h \
+	iterative_linear_solver.h \
+	line_mesh.h \
+	line_visualiser.h \
+	linear_algebra_distribution.h \
+	linear_solver.h \
+	macro_element.h \
+	macro_element_node_update_element.h \
+	map_matrix.h \
+	matrices.h \
+	matrix_vector_product.h \
+	mesh.h \
+	mesh_as_geometric_object.h \
+	missing_masters.h \
+	multi_domain.h \
+	nodes.h \
+	octree.h \
+	oomph_definitions.h \
+	oomph_utilities.h \
+	orthpoly.h \
+	partitioning.h \
+	periodic_orbit_handler.h \
+	pml_mapping_functions.h \
+	pml_meshes.h \
+	preconditioner.h \
+	preconditioner_array.h \
+	problem.h \
+	projection.h \
+	pseudo_buckling_ring.h \
+	pseudosolid_node_update_elements.h \
+	quad_mesh.h \
+	quadtree.h \
+	refineable_brick_element.h \
+	refineable_brick_mesh.h \
+	refineable_brick_spectral_element.h \
+	refineable_elements.h \
+	refineable_line_element.h \
+	refineable_line_mesh.h \
+	refineable_line_spectral_element.h \
+	refineable_mesh.h \
+	refineable_quad_element.h \
+	refineable_quad_mesh.h \
+	refineable_quad_spectral_element.h \
+	sample_point_container.h \
+	sample_point_parameters.h \
+	shape.h \
+	simple_cubic_scaffold_tet_mesh.h \
+	sparse_vector.h \
+	spines.h \
+	stored_shape_function_elements.h \
+	sum_of_matrices.h \
+	tet_mesh.h \
+	tetgen_scaffold_mesh.h \
+	timesteppers.h \
+	trapezoid_rule.h \
+	tree.h \
+	triangle_mesh.h \
+	triangle_scaffold_mesh.h \
+	unstructured_two_d_mesh_geometry_base.h \
+	vector_matrix.h
 
 
 if OOMPH_HAS_MUMPS

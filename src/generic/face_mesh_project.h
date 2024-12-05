@@ -28,6 +28,8 @@
 #ifndef OOMPH_FACE_MESH_PROJECT_HEADER
 #define OOMPH_FACE_MESH_PROJECT_HEADER
 
+#include "projection.h"
+
 namespace oomph
 {
   /// ///////////////////////////////////////////////////////////////////////
