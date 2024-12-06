@@ -28,11 +28,7 @@
 #define SINGULAR_AXISYM_NAVIER_STOKES_ELEMENTS_HEADER
 
 // oomph-lib includes
-#include "navier_stokes.h"
-#include "axisym_navier_stokes.h"
-
-// local includes
-#include "singular_navier_stokes_solution_elements.h"
+#include "../navier_stokes/singular_navier_stokes_solution_elements.h"
 
 /// ////////////////////////////////////////////////////////////////////
 /// ////////////////////////////////////////////////////////////////////

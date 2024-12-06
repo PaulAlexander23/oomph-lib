@@ -51,7 +51,6 @@ sprittles_region_SOURCES = sprittles_region.cc
 # $(FLIBS) is included in case the solver involves fortran sources.
 LDADD = -L@libdir@ \
 		-lnavier_stokes \
-		-laxisym_navier_stokes \
 		-lfluid_interface \
 		-lsolid \
 		-lconstitutive \

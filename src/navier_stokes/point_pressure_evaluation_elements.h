@@ -28,9 +28,9 @@ namespace oomph
 
   public:
     // Constructor
-    PointPressureEvaluationElement(Node* const& node_pt)
+    PointPressureEvaluationElement(Node* const& node_pt, const unsigned& pressure_value_index)
       : GeneralisedElement(),
-        Pressure_index(2),
+        Pressure_index(pressure_value_index),
         Pressure_data_index(-1),
         Scaling_index(0),
         Scaling_data_index(-1),

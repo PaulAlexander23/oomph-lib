@@ -1,7 +1,6 @@
 #ifndef SINGULAR_FLUID_TRACTION_ELEMENTS_HEADER
 #define SINGULAR_FLUID_TRACTION_ELEMENTS_HEADER
 
-#include "navier_stokes.h"
 #include "singular_navier_stokes_solution_elements.h"
 
 namespace oomph

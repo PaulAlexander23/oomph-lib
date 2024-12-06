@@ -15,6 +15,7 @@ incl_cc_files =
 # Define the headers
 headers =  \
 	Taxisym_navier_stokes_elements.h \
+	axisym_fluid_slip_elements.h \
 	axisym_fluid_traction_elements.h \
 	axisym_navier_stokes_elements.h  \
 	axisym_navier_stokes_equation_numbering_element.h \
@@ -22,9 +23,7 @@ headers =  \
 	linearised_fsi_axisym_no_slip_bc_elements.h \
 	refineable_axisym_navier_stokes_elements.h \
 	singular_axisym_fluid_traction_elements.h \
-	singular_axisym_navier_stokes.h \
-	singular_axisym_navier_stokes_elements.h \
-	singular_axisym_sector_problem.h
+	singular_axisym_navier_stokes_elements.h
 
 # Template only files. These should be included in include directory
 # but should not be listed in combined header file

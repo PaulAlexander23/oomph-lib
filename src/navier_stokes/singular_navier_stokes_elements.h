@@ -2,7 +2,6 @@
 #define SINGULAR_NAVIER_STOKES_ELEMENTS_HEADER
 
 // oomph-lib includes
-#include "navier_stokes.h"
 
 // local includes
 #include "singular_navier_stokes_solution_elements.h"

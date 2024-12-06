@@ -1,8 +1,6 @@
 #ifndef SINGULAR_AXISYM_FLUID_TRACTION_ELEMENTS_HEADER
 #define SINGULAR_AXISYM_FLUID_TRACTION_ELEMENTS_HEADER
 
-#include "axisym_navier_stokes.h"
-#include "singular_navier_stokes_solution_elements.h"
 
 namespace oomph
 {

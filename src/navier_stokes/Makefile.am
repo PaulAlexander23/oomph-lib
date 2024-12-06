@@ -20,7 +20,9 @@ incl_cc_files =
 headers =  \
 	Tnavier_stokes_elements.h \
 	eigensolution_functions.h \
+	fluid_slip_elements.h \
 	fluid_traction_elements.h \
+	far_field_element.h \
 	impose_impenetrability_element.h \
 	impose_parallel_outflow_element.h \
 	lagrange_enforced_flow_preconditioner.h \
@@ -33,7 +35,8 @@ headers =  \
 	navier_stokes_surface_power_elements.h \
 	point_pressure_evaluation_elements.h \
 	pressure_evaluation_elements.h \
-	refineable_navier_stokes_elements.h  \
+	refineable_navier_stokes_elements.h \
+	singular_far_field_element.h \
 	singular_fluid_traction_elements.h \
 	singular_navier_stokes_elements.h \
 	singular_navier_stokes_solution_elements.h \

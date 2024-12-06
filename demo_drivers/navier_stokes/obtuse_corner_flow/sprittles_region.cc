@@ -5,7 +5,6 @@
 
 // OOMPH-LIB include files
 #include "generic.h"
-#include "axisym_navier_stokes.h"
 #include "fluid_interface.h"
 #include "constitutive.h"
 #include "solid.h"
@@ -14,7 +13,6 @@
 // Local include files
 #include "sprittles_region_sector_problem.h"
 #include "my_element.h"
-#include "singular_navier_stokes_elements.h"
 #include "utility_functions.h"
 
 using namespace oomph;

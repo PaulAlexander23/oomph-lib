@@ -1,7 +1,6 @@
 #ifndef SINGULAR_FAR_FIELD_ELEMENT_HEADER
 #define SINGULAR_FAR_FIELD_ELEMENT_HEADER
 
-#include "far_field_element.h"
 
 namespace oomph
 {

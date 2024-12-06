@@ -28,12 +28,14 @@ namespace oomph
     double evalution_point_r;
     Vector<double> evalution_point_s;
     Node* corner_node_pt;
+    unsigned Pressure_value_index;
 
   public:
     // Constructor
     PressureEvaluationElement(FiniteElement* const& element_pt,
                               const int& face_index,
-                              Node* const& node_pt)
+                              Node* const& node_pt,
+                              const unsigned& pressure_value_index)
       : FaceGeometry<ELEMENT>(),
         FaceElement(),
         Cast_bulk_element_pt(dynamic_cast<ELEMENT*>(element_pt)),
@@ -41,7 +43,8 @@ namespace oomph
         Is_adding_to_residuals(true),
         evalution_point_r(1e-3),
         evalution_point_s(1, 0.0),
-        corner_node_pt(node_pt)
+        corner_node_pt(node_pt),
+        Pressure_value_index(pressure_value_index)
     {
       // Attach the geometrical information to the element. N.B. This function
       // also assigns nbulk_value from the required_nvalue of the bulk element
@@ -189,9 +192,6 @@ namespace oomph
           error_stream.str(), OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
       }
 
-      // Initialise the index at which pressure value is stored
-      const unsigned pressure_value_index = 0;
-
       // Set the residual multiplier, dependent on whether we are adding or
       // subtracting to the residuals
       double multiplier = 1.0;
@@ -222,7 +222,7 @@ namespace oomph
 
       // Add to singular function scaling residual
       local_eqn =
-        this->external_local_eqn(Pressure_index, pressure_value_index);
+        this->external_local_eqn(Pressure_index, Pressure_value_index);
 
       // If the equation is not pinned
       if (local_eqn >= 0)
