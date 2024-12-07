@@ -38,7 +38,6 @@
 #include "meshes/triangle_mesh.h"
 
 // Local include files
-#include "singular_axisym_navier_stokes_elements.h"
 #include "projectable_axisymmetric_Ttaylor_hood_elements.h"
 #include "singular_axisym_dynamic_cap_problem.h"
 #include "parameters.h"
@@ -63,24 +62,17 @@ int main(int argc, char** argv)
     return 1;
   }
 
-  // Problem parameters
-  Parameters parameters;
-  read_parameters_from_file(argv[1], parameters);
+  std::string parameters_filename = argv[1];
 
-  // Check if we are restarting
-  bool has_restart = false;
-  if (parameters.restart_filename != "")
-  {
-    std::cout << "restarting" << std::endl;
-    has_restart = true;
-  }
+  // Problem parameters
+  Params parameters = create_parameters_from_file(parameters_filename);
 
   // Construct the problem
   SingularAxisymDynamicCapProblem<
     SingularAxisymNavierStokesElement<
       ProjectableAxisymmetricTTaylorHoodPVDElement>,
     BDF<2>>
-    problem(Global_Physical_Parameters::Equilibrium_contact_angle, has_restart);
+    problem(parameters);
 
   // Load in restart file
   if (parameters.restart_filename != "")

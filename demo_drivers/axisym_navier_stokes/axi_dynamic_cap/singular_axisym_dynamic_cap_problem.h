@@ -43,36 +43,17 @@
 #include "meshes/triangle_mesh.h"
 
 #include "my_error_estimator.h"
-
-#include "axisym_fluid_slip_elements.h"
-
-#include "axisym_navier_stokes_flux_elements.h"
-
 #include "net_flux_elements.h"
-
 #include "parameters.h"
-
-
+#include "parameter_functions.h"
 #include "complex_less.h"
-
 #include "volume_constraint_elements_with_output.h"
-
 #include "my_eigenproblem.h"
-
 #include "free_surface_elements.h"
-
 #include "utility_functions.h"
-
 #include "projectable_axisymmetric_Ttaylor_hood_elements.h"
 #include "debug_elastic_axisymmetric_volume_constraint_boundary_elements.h"
 #include "debug_impose_impenetratibility_elements.h"
-
-#include "eigensolution_functions.h"
-#include "pressure_evaluation_elements.h"
-#include "singular_fluid_traction_elements.h"
-#include "parameter_values.h"
-#include "parameter_functions.h"
-
 
 namespace oomph
 {
@@ -84,6 +65,135 @@ namespace oomph
   template<class ELEMENT, class TIMESTEPPER>
   class SingularAxisymDynamicCapProblem : public MyEigenproblem
   {
+  private:
+    //============================================================================
+    // Class Variables
+    //============================================================================
+
+    // Problem parameters
+    Params Parameters;
+    // Constitutive law used to determine the mesh deformation
+    ConstitutiveLaw* Constitutive_law_pt;
+
+    // Data object whose single value stores the external pressure
+    Data* External_pressure_data_pt;
+
+    // Contact line node pointer
+    SolidNode* Contact_line_solid_node_pt;
+    SolidNode* Inner_corner_solid_node_pt;
+
+    // Error Estimator pointers
+    Z2ErrorEstimator* Z2_error_estimator_pt;
+    ErrorEstimator* Corner_error_estimator_pt;
+
+    // Trace file
+    std::ofstream Trace_file;
+    std::ofstream Volume_trace_file;
+    std::ofstream Flux_trace_file;
+    std::ofstream Contact_angle_trace_file;
+    std::ofstream Inner_angle_trace_file;
+
+    std::chrono::high_resolution_clock::time_point Start_time;
+
+    // Storage for the bulk mesh
+    RefineableSolidTriangleMesh<ELEMENT>* Bulk_mesh_pt;
+
+    // Storage for the free surface mesh
+    Mesh* Free_surface_mesh_pt;
+
+    // Storage for the slip elements
+    Mesh* Slip_boundary_mesh_pt;
+
+    // Storage for the no penetration elements
+    Mesh* No_penetration_boundary_mesh_pt;
+
+    // Storage for the flux elements
+    Mesh* Flux_mesh_pt;
+
+    // Storage for the elements that compute the enclosed volume
+    Mesh* Volume_computation_mesh_pt;
+
+    // Storage for the element bounding the free surface
+    Mesh* Contact_angle_mesh_pt;
+
+    // Storage for the augmented element
+    Mesh* Eigensolution_slip_mesh_pt;
+    Mesh* Singularity_scaling_mesh_pt;
+    Mesh* Pressure_contribution_mesh_1_pt;
+    Mesh* Pressure_contribution_mesh_2_pt;
+    MeshAsGeomObject* Pressure_contribution_geom_mesh_1_pt;
+    MeshAsGeomObject* Pressure_contribution_geom_mesh_2_pt;
+
+    // Storage for the volume constraint
+    Mesh* Volume_constraint_mesh_pt;
+
+    // Storage for the net flux element
+    Mesh* Net_flux_mesh_pt;
+
+    // Backup mesh
+    Vector<BackupMeshForProjection<TElement<1, 3>>*> Backed_up_surface_mesh_pt;
+
+    // List of augmented element numbers
+    Vector<unsigned> Augmented_bulk_element_number;
+
+    // Backup mesh id
+    enum struct Backup_mesh_id
+    {
+      No_penetration,
+      Free_surface,
+    };
+
+    enum Lagrange_id
+    {
+      No_penetration,
+      Kinematic,
+    };
+
+    // Backup mesh indices
+    Vector<Backup_mesh_id> Backup_mesh_index_vector;
+
+    // Triangle mesh polygon for outer boundary
+    TriangleMeshPolygon* Outer_boundary_polyline_pt;
+
+    // Backup lagrange multipliers
+    double Backup_volume_constraint_lagrange_multiplier;
+    double Backup_net_flux_lagrange_multiplier;
+    double Backup_singularity_scaling_lagrange_multiplier;
+    double Backup_point_kinematic_lagrange_multiplier;
+
+    // Enumeration of domain boundaries
+    enum
+    {
+      Upper_boundary_id,
+      Outer_boundary_with_slip_id,
+      Free_surface_boundary_id,
+      Inner_boundary_id,
+    };
+
+    // Enumeration of velocity indices
+    enum
+    {
+      u_index,
+      v_index,
+      w_index
+    };
+
+    bool Is_steady;
+    bool Is_augmented;
+    bool Using_contact_angle_error_estimator;
+
+    std::function<void(const double&,
+                       const Vector<double>&,
+                       const Vector<double>&,
+                       Vector<double>&)>
+      Slip_function;
+
+    std::function<void(const double&,
+                       const Vector<double>&,
+                       const Vector<double>&,
+                       Vector<double>&)>
+      Wall_velocity_function;
+
   public:
     // Typedef all the different types of elements used for clarity.
     // I am using capitals, even though these are not templates.
@@ -93,29 +203,14 @@ namespace oomph
     typedef VolumeConstraintElementWithOutput VOLUME_CONSTRAINT_ELEMENT;
     typedef AxisymmetricNavierStokesSlipElement<ELEMENT> SLIP_ELEMENT;
     typedef DebugImposeImpenetrabilityElement<ELEMENT> NO_PENETRATION_ELEMENT;
-    typedef AxisymmetricNavierStokesFluxElement<ELEMENT> FLUX_ELEMENT;
+    typedef AxisymmetricFluidFluxElement<ELEMENT> FLUX_ELEMENT;
     typedef NetFluxElement NET_FLUX_ELEMENT;
     typedef ElasticPointFluidInterfaceBoundingElement<ELEMENT>
       CONTACT_LINE_ELEMENT;
 
     // Constructor
-    SingularAxisymDynamicCapProblem(const double& contact_angle,
-                                    const bool& has_restart)
-      : Ca(1.0),
-        Bo(1.0),
-        Re(0.0),
-        ReSt(0.0),
-        Viscosity_ratio(1.0),
-        St(1.0),
-        ReInvFr(1.0),
-        Volume((Global_Physical_Parameters::Initial_fluid_height) /
-               2.0), // Initialise the value of the volume
-                     // the physical volume divided by 2pi
-        Pext(1.0), // Initialise the external pressure to some random value
-        Contact_angle(contact_angle), // Initialise the contact angle
-        Right_angle(0.5 * MathematicalConstants ::Pi),
-        Zero_sigma(0),
-        Max_adapt(1), // Initialise the maximum number of adapt steps
+    SingularAxisymDynamicCapProblem(Params& parameters)
+      : Parameters(parameters),
         Contact_line_solid_node_pt(0),
         Inner_corner_solid_node_pt(0),
         Z2_error_estimator_pt(0),
@@ -138,7 +233,6 @@ namespace oomph
         Backup_net_flux_lagrange_multiplier(1.0),
         Backup_singularity_scaling_lagrange_multiplier(0.0),
         Backup_point_kinematic_lagrange_multiplier(1.0),
-        problem_type(Normal_problem),
         Is_steady(true),
         Is_augmented(false),
         Using_contact_angle_error_estimator(false)
@@ -150,20 +244,16 @@ namespace oomph
       this->Start_time = std::chrono::high_resolution_clock::now();
 
       // Create time stepper
-      const bool is_timestepper_adaptive = true;
-      this->add_time_stepper_pt(new TIMESTEPPER(is_timestepper_adaptive));
-      this->Maximum_dt = Mesh_Control_Parameters::Max_timestep;
+      this->add_time_stepper_pt(
+        new TIMESTEPPER(Parameters.is_adaptive_timestepping));
       // Set the constituive law
-      this->Constitutive_law_pt =
-        new GeneralisedHookean(&Mesh_Control_Parameters::Nu);
+      this->Constitutive_law_pt = new GeneralisedHookean(&Parameters.nu);
       // Set the maximum number of newton iterations
-      this->max_newton_iterations() =
-        Newton_Solver_Parameters::Max_newton_iterations;
+      this->max_newton_iterations() = Parameters.max_newton_iterations;
       // Set the maximum residual before assuming newton is not converging
-      this->max_residuals() = Newton_Solver_Parameters::Max_residual;
+      this->max_residuals() = Parameters.max_residual;
 
-      this->newton_solver_tolerance() =
-        Newton_Solver_Parameters::Newton_solver_tolerance;
+      this->newton_solver_tolerance() = Parameters.newton_solver_tolerance;
       // Suppress warning for restarting
       this->Suppress_warning_about_actions_before_read_unstructured_meshes =
         true;
@@ -174,11 +264,16 @@ namespace oomph
       // Create DocInfo object (allows checking if output directory exists)
       this->doc_info().number() = 0;
 
+      /// Create parameters from parameters file.
+      Slip_function = slip_function_factory(Parameters.slip_length);
+      Wall_velocity_function =
+        wall_velocity_function_factory(Parameters.wall_velocity);
+
       //======================================================================
       // Create the refineable bulk mesh
       //======================================================================
       // Create the bulk mesh and its elements
-      if (has_restart)
+      if (Parameters.is_restarting)
       {
         create_simple_bulk_mesh();
       }
@@ -186,11 +281,6 @@ namespace oomph
       {
         create_bulk_mesh();
       }
-
-      // Output boundary and mesh initial mesh for information
-      this->Bulk_mesh_pt->output_boundaries(this->doc_info().directory() +
-                                            "/boundaries.dat");
-      this->Bulk_mesh_pt->output(this->doc_info().directory() + "/mesh.dat");
 
       //======================================================================
       // Create the error estimators
@@ -205,9 +295,6 @@ namespace oomph
       // external pressure
       External_pressure_data_pt = new Data(1);
 
-      // Set external pressure
-      External_pressure_data_pt->set_value(0, Pext);
-
       // Regard the external pressure is an unknown and add
       // it to the problem's global data so it gets included
       // in the equation numbering. Note that, at the moment,
@@ -218,17 +305,14 @@ namespace oomph
       // Create the empty non-refineable meshes and add to problem
       //======================================================================
       // Allocate storage the sub-meshes
-      if (problem_type == Normal_problem)
-      {
-        Free_surface_mesh_pt = new Mesh;
-        Slip_boundary_mesh_pt = new Mesh;
-        Flux_mesh_pt = new Mesh;
-        Volume_computation_mesh_pt = new Mesh;
-        Contact_angle_mesh_pt = new Mesh;
-        Volume_constraint_mesh_pt = new Mesh;
-        Net_flux_mesh_pt = new Mesh;
-        No_penetration_boundary_mesh_pt = new Mesh;
-      }
+      Free_surface_mesh_pt = new Mesh;
+      Slip_boundary_mesh_pt = new Mesh;
+      Flux_mesh_pt = new Mesh;
+      Volume_computation_mesh_pt = new Mesh;
+      Contact_angle_mesh_pt = new Mesh;
+      Volume_constraint_mesh_pt = new Mesh;
+      Net_flux_mesh_pt = new Mesh;
+      No_penetration_boundary_mesh_pt = new Mesh;
 
       if (Net_flux_mesh_pt)
       {
@@ -268,8 +352,8 @@ namespace oomph
         this->add_sub_mesh(Volume_constraint_mesh_pt);
       }
 
-      if (Contact_angle > 90.0 * MathematicalConstants::Pi / 180.0 &&
-          Mesh_Control_Parameters::Augmented_radius > 0)
+      if (Parameters.contact_angle > 90.0 * MathematicalConstants::Pi / 180.0 &&
+          Parameters.augmented_radius > 0)
       {
         this->Is_augmented = true;
       }
@@ -299,605 +383,60 @@ namespace oomph
 
     } // end_of_constructor
 
-
-  private:
-    // Create the bulk mesh and its elements
-    void create_bulk_mesh()
+    //============================================================================
+    // Destruction functions
+    //============================================================================
+    // Destructor: clean up memory allocated by the object
+    ~SingularAxisymDynamicCapProblem()
     {
-      oomph_info << "Creating the initial mesh" << std::endl;
+      // Close the trace file
+      close_trace_files();
 
-      // Create the Outer_boundary_polyline_pt
-      // If we have a 90 degree contact angle
-      if (Contact_angle == 0.5 * MathematicalConstants::Pi)
+      // Delete all non-refineable elements
+      delete_non_refineable_elements();
+
+      // Delete all pointers created with "new" in reverse order
+      if (Net_flux_mesh_pt)
       {
-        // create a rectangular domain.
-        create_rectangle_domain();
+        delete Net_flux_mesh_pt;
       }
-      else
+      if (Flux_mesh_pt)
       {
-        // Use a circular meniscus as a first approximation.
-        create_circular_domain();
+        delete Flux_mesh_pt;
       }
-
-      // Set the Outer_boundary_polyline_pt tolerances
-
-      // Set a measure of the maximum local curvature before refining. Default
-      // = 0.08. If `d` is the argument, the radius of curvature is = 0.5/d *
-      // sqrt(d^2 + 0.5^2)
-      Outer_boundary_polyline_pt->set_polyline_refinement_tolerance(
-        Mesh_Control_Parameters::Polyline_refinement_tolerence);
-
-      // Set a measure of the minimum local curvature before unrefining.
-      // Default = 0.04. If `d` is the argument, the radius of curvature is =
-      // 0.5/d * sqrt(d^2 + 0.5^2)
-      Outer_boundary_polyline_pt->set_polyline_unrefinement_tolerance(
-        Mesh_Control_Parameters::Polyline_unrefinement_tolerence);
-
-      // Now build the mesh, based on the boundaries specified by
-      //---------------------------------------------------------
-      // polygons just created
-      //----------------------
-
-      // Convert to "closed curve" objects
-      TriangleMeshClosedCurve* outer_closed_curve_pt =
-        Outer_boundary_polyline_pt;
-
-      // Use the TriangleMeshParameter object for gathering all
-      // the necessary arguments for the TriangleMesh object
-      TriangleMeshParameters triangle_mesh_parameters(outer_closed_curve_pt);
-
-      // Define the maximum element area
-      triangle_mesh_parameters.element_area() =
-        Mesh_Control_Parameters::Max_element_size;
-
-      // Construct mesh
-      Bulk_mesh_pt = new RefineableSolidTriangleMesh<ELEMENT>(
-        triangle_mesh_parameters, this->time_stepper_pt());
-      // Bulk_mesh_pt->set_print_level_timings_adaptation(3);
-
-      Bulk_mesh_pt->max_element_size() =
-        Mesh_Control_Parameters::Max_element_size;
-      Bulk_mesh_pt->min_element_size() =
-        Mesh_Control_Parameters::Min_element_size;
-      Bulk_mesh_pt->min_permitted_angle() =
-        Mesh_Control_Parameters::Min_permitted_angle;
-      Bulk_mesh_pt->max_keep_unrefined() = 400;
-
-      refine_mesh_for_weak_contact_angle_constraint();
-    }
-
-    void create_simple_bulk_mesh()
-    {
-      oomph_info << "Creating the simple initial mesh" << std::endl;
-
-      create_rectangle_domain();
-
-      Outer_boundary_polyline_pt->set_polyline_refinement_tolerance(
-        Mesh_Control_Parameters::Polyline_refinement_tolerence);
-      Outer_boundary_polyline_pt->set_polyline_unrefinement_tolerance(
-        Mesh_Control_Parameters::Polyline_unrefinement_tolerence);
-
-      TriangleMeshClosedCurve* outer_closed_curve_pt =
-        Outer_boundary_polyline_pt;
-
-      TriangleMeshParameters triangle_mesh_parameters(outer_closed_curve_pt);
-
-      triangle_mesh_parameters.element_area() =
-        Mesh_Control_Parameters::Max_element_size;
-
-      Bulk_mesh_pt = new RefineableSolidTriangleMesh<ELEMENT>(
-        triangle_mesh_parameters, this->time_stepper_pt());
-
-      Bulk_mesh_pt->max_element_size() =
-        Mesh_Control_Parameters::Max_element_size;
-      Bulk_mesh_pt->min_element_size() =
-        Mesh_Control_Parameters::Min_element_size;
-      Bulk_mesh_pt->min_permitted_angle() =
-        Mesh_Control_Parameters::Min_permitted_angle;
-      Bulk_mesh_pt->max_keep_unrefined() = 400;
-    }
-
-    // Create the Outer_boundary_polyline_pt via one of the three methods
-    // below. Used in the creation of the bulk elements.
-    void create_rectangle_domain()
-    {
-      // Halfwidth of domain
-      double half_width = 1.0;
-
-      // Domain height
-      double domain_height = Volume / pow(half_width, 2.0) * 2.0;
-
-      // Build the boundary segments for outer boundary, consisting of
-      //--------------------------------------------------------------
-      // four separate polylines
-      //------------------------
-      Vector<TriangleMeshCurveSection*> boundary_polyline_pt(4);
-
-      // Each polyline only has two vertices -- provide storage for their
-      // coordinates
-      Vector<Vector<double>> vertex_coord(2);
-      for (unsigned i = 0; i < 2; i++)
+      if (No_penetration_boundary_mesh_pt)
       {
-        vertex_coord[i].resize(2);
+        delete No_penetration_boundary_mesh_pt;
       }
-
-      // First polyline: Free_surface_boundary_id
-      vertex_coord[0][0] = 0.0;
-      vertex_coord[0][1] = 0.0;
-      vertex_coord[1][0] = half_width;
-      vertex_coord[1][1] = 0.0;
-
-      // Build the 1st boundary polyline
-      boundary_polyline_pt[0] =
-        new TriangleMeshPolyLine(vertex_coord, Free_surface_boundary_id);
-
-      // Second boundary polyline: Outer wall with slip
-      vertex_coord[0][0] = vertex_coord[1][0];
-      vertex_coord[0][1] = vertex_coord[1][1];
-      vertex_coord[1][0] = half_width;
-      vertex_coord[1][1] = domain_height;
-
-      // Build the 2nd boundary polyline
-      boundary_polyline_pt[1] =
-        new TriangleMeshPolyLine(vertex_coord, Outer_boundary_with_slip_id);
-
-      // Third boundary polyline: Outflow
-      vertex_coord[0][0] = vertex_coord[1][0];
-      vertex_coord[0][1] = vertex_coord[1][1];
-      vertex_coord[1][0] = 0.0;
-      vertex_coord[1][1] = domain_height;
-
-      // Build the 3rd boundary polyline
-      boundary_polyline_pt[2] =
-        new TriangleMeshPolyLine(vertex_coord, Upper_boundary_id);
-
-      // Fourth boundary polyline: Bottom wall
-      vertex_coord[0][0] = vertex_coord[1][0];
-      vertex_coord[0][1] = vertex_coord[1][1];
-      vertex_coord[1][0] = 0.0;
-      vertex_coord[1][1] = 0.0;
-
-      // Build the 4th boundary polyline
-      boundary_polyline_pt[3] =
-        new TriangleMeshPolyLine(vertex_coord, Inner_boundary_id);
-
-      // Set max length for lower boundary
-      boundary_polyline_pt[0]->set_maximum_length(
-        Mesh_Control_Parameters::Max_free_surface_polyline_length);
-
-      boundary_polyline_pt[1]->set_maximum_length(
-        Mesh_Control_Parameters::Max_slip_polyline_length);
-
-      // Create the triangle mesh polygon for outer boundary
-      Outer_boundary_polyline_pt =
-        new TriangleMeshPolygon(boundary_polyline_pt);
-    }
-
-    void create_circular_domain()
-    {
-      // Halfwidth of domain
-      double half_width = 1.0;
-
-      // Domain height
-      double domain_height = Volume / pow(half_width, 2.0) * 2.0;
-
-      // Number of points to use for the free surface polyline
-      const unsigned npoints =
-        Mesh_Control_Parameters::initial_number_of_free_surface_points;
-
-      double radius = 1.0 / (cos(Contact_angle));
-      double zeta_step =
-        (0.5 * MathematicalConstants::Pi - Contact_angle) / double(npoints - 1);
-
-      // Shift surface to ensure the volume is conserved
-      double shift =
-        2.0 / 3.0 *
-        ((1 - 2 * ((radius) < 0)) * pow(pow(radius, 2.0) - 1, 3.0 / 2.0) -
-         pow(radius, 3.0));
-
-      double x_center = 0;
-      double y_center = shift;
-
-      Circle* circle_pt = new Circle(x_center, y_center, radius);
-
-      // Intrinsic coordinate along GeomObject defining the bubble
-      Vector<double> zeta(1);
-      // Position vector to GeomObject defining the bubble
-      Vector<double> coord(2);
-
-      // Build the boundary segments for outer boundary, consisting of
-      //--------------------------------------------------------------
-      // four separate polylines
-      //------------------------
-      Vector<TriangleMeshCurveSection*> boundary_polyline_pt(4);
-
-      Vector<Vector<double>> free_surface_vertex_coord;
-      Vector<double> current_vertex(2);
-      for (unsigned ipoint = 0; ipoint < npoints; ipoint++)
+      if (Slip_boundary_mesh_pt)
       {
-        zeta[0] = 0.5 * MathematicalConstants::Pi - zeta_step * double(ipoint);
-        circle_pt->position(zeta, current_vertex);
-        free_surface_vertex_coord.push_back(current_vertex);
+        delete Slip_boundary_mesh_pt;
       }
-
-      // Build the 1st boundary polyline
-      boundary_polyline_pt[0] = new TriangleMeshPolyLine(
-        free_surface_vertex_coord, Free_surface_boundary_id);
-
-      // The rest of the polylines only have two vertices -- provide storage
-      // for their coordinates
-      Vector<Vector<double>> vertex_coord(2);
-      for (unsigned ipoint = 0; ipoint < 2; ipoint++)
+      if (Contact_angle_mesh_pt)
       {
-        vertex_coord[ipoint].resize(2);
+        delete Contact_angle_mesh_pt;
       }
-
-      // Second boundary polyline: Outer wall with slip
-      vertex_coord[0] = free_surface_vertex_coord.back();
-      vertex_coord[1][0] = half_width;
-      vertex_coord[1][1] = domain_height;
-
-      // Build the 2nd boundary polyline
-      boundary_polyline_pt[1] =
-        new TriangleMeshPolyLine(vertex_coord, Outer_boundary_with_slip_id);
-
-      // Fourth boundary polyline: Upper boundary
-      vertex_coord[0][0] = vertex_coord[1][0];
-      vertex_coord[0][1] = vertex_coord[1][1];
-      vertex_coord[1][0] = 0.0;
-      vertex_coord[1][1] = domain_height;
-
-      // Build the 4rd boundary polyline
-      boundary_polyline_pt[2] =
-        new TriangleMeshPolyLine(vertex_coord, Upper_boundary_id);
-
-      // Fifth boundary polyline: Inner wall
-      vertex_coord[0][0] = vertex_coord[1][0];
-      vertex_coord[0][1] = vertex_coord[1][1];
-      vertex_coord[1] = free_surface_vertex_coord.front();
-
-      // Build the 5th boundary polyline
-      boundary_polyline_pt[3] =
-        new TriangleMeshPolyLine(vertex_coord, Inner_boundary_id);
-
-      // Set max length for lower boundary
-      boundary_polyline_pt[0]->set_maximum_length(
-        Mesh_Control_Parameters::Max_free_surface_polyline_length);
-
-      boundary_polyline_pt[1]->set_maximum_length(
-        Mesh_Control_Parameters::Max_slip_polyline_length);
-
-      // Create the triangle mesh polygon for outer boundary
-      Outer_boundary_polyline_pt =
-        new TriangleMeshPolygon(boundary_polyline_pt);
-    }
-
-    // Create the free surface elements
-    void create_free_surface_elements()
-    {
-      // Loop over the free surface boundary and create the "interface
-      // elements
-      unsigned b = Free_surface_boundary_id;
-
-      // How many bulk fluid elements are adjacent to boundary b?
-      unsigned n_element = Bulk_mesh_pt->nboundary_element(b);
-
-      // Loop over the bulk fluid elements adjacent to boundary b?
-      for (unsigned e = 0; e < n_element; e++)
+      if (Volume_computation_mesh_pt)
       {
-        // Get pointer to the bulk fluid element that is
-        // adjacent to boundary b
-        ELEMENT* bulk_elem_pt =
-          dynamic_cast<ELEMENT*>(Bulk_mesh_pt->boundary_element_pt(b, e));
-
-        // Find the index of the face of element e along boundary b
-        int face_index = Bulk_mesh_pt->face_index_at_boundary(b, e);
-
-        // Create new element
-        FREE_SURFACE_ELEMENT* el_pt =
-          new FREE_SURFACE_ELEMENT(bulk_elem_pt,
-                                   face_index,
-                                   this->time_stepper_pt(),
-                                   Lagrange_id::Kinematic);
-
-        // Add the appropriate boundary number
-        el_pt->set_boundary_number_in_bulk_mesh(b);
-
-        // Add the capillary number
-        el_pt->ca_pt() = &Ca;
-        el_pt->st_pt() = &St;
-
-        // Add the external pressure data
-        el_pt->set_external_pressure_data(External_pressure_data_pt);
-
-        // if (el_pt->get_node_number(Contact_line_solid_node_pt) == -1)
-        //{
-        //   el_pt->add_external_data(Contact_line_solid_node_pt);
-        // }
-
-        // Add it to the mesh
-        Free_surface_mesh_pt->add_element_pt(el_pt);
+        delete Volume_computation_mesh_pt;
       }
-    }
-    // Create the volume constraint elements
-    void create_volume_constraint_elements()
-    {
-      // Build the single volume constraint element
       if (Volume_constraint_mesh_pt)
       {
-        VOLUME_CONSTRAINT_ELEMENT* vol_constraint_element =
-          new VOLUME_CONSTRAINT_ELEMENT(&Volume, External_pressure_data_pt, 0);
-        Volume_constraint_mesh_pt->add_element_pt(vol_constraint_element);
-
-        if (Volume_computation_mesh_pt)
-        {
-          // Loop over all boundaries
-          for (unsigned b = 0; b < Bulk_mesh_pt->nboundary(); b++)
-          {
-            // How many bulk fluid elements are adjacent to boundary b?
-            unsigned n_element = Bulk_mesh_pt->nboundary_element(b);
-
-            // Loop over the bulk fluid elements adjacent to boundary b?
-            for (unsigned e = 0; e < n_element; e++)
-            {
-              // Get pointer to the bulk fluid element that is
-              // adjacent to boundary b
-              ELEMENT* bulk_elem_pt =
-                dynamic_cast<ELEMENT*>(Bulk_mesh_pt->boundary_element_pt(b, e));
-
-              // Find the index of the face of element e along boundary b
-              int face_index = Bulk_mesh_pt->face_index_at_boundary(b, e);
-
-              // Create new element
-              VOLUME_COMPUTATION_ELEMENT* el_pt =
-                new VOLUME_COMPUTATION_ELEMENT(bulk_elem_pt, face_index);
-
-              // Set the "master" volume control element
-              el_pt->set_volume_constraint_element(vol_constraint_element);
-
-              // Add it to the mesh
-              Volume_computation_mesh_pt->add_element_pt(el_pt);
-            }
-          }
-        }
+        delete Volume_constraint_mesh_pt;
       }
-    } // end_of_create_volume_constraint_elements
-
-
-    // Create the contact angle element
-    void create_contact_angle_element()
-    {
-      // Find the element and node at the end of the free surface which meets
-      // the wall
-
-      // Inialise storage for bounding element
-      FluidInterfaceBoundingElement* el_pt = 0;
-
-      // Here we have no guarantee of order so we need to loop over all
-      // surface elements to find the one that is next to the outer boundary
-      unsigned n_free_surface = Free_surface_mesh_pt->nelement();
-      for (unsigned e = 0; e < n_free_surface; e++)
+      if (Free_surface_mesh_pt)
       {
-        // Locally cache the element pointer
-        FREE_SURFACE_ELEMENT* bulk_el_pt = dynamic_cast<FREE_SURFACE_ELEMENT*>(
-          Free_surface_mesh_pt->element_pt(e));
-
-        // Read out number of nodes in the element
-        unsigned n_node = bulk_el_pt->nnode();
-
-        // Is the "left" hand node on the boundary
-        if (bulk_el_pt->node_pt(0)->is_on_boundary(Outer_boundary_with_slip_id))
-        {
-          // Create bounding element on "left" hand face, with the normal
-          // pointing into the fluid
-          el_pt = bulk_el_pt->make_bounding_element(-1);
-
-          // Exit loop
-          break;
-        }
-
-        // Is the "right" hand node on the boundary
-        if (bulk_el_pt->node_pt(n_node - 1)
-              ->is_on_boundary(Outer_boundary_with_slip_id))
-        {
-          // Create bounding element on "right" hand face, with the normal
-          // pointing out of the fluid
-          el_pt = bulk_el_pt->make_bounding_element(1);
-
-          // Exit loop
-          break;
-        }
+        delete Free_surface_mesh_pt;
       }
 
-      // Set the contact angle function
-      el_pt->set_contact_angle(
-        &Contact_angle, Global_Physical_Parameters::Use_strong_imposition);
+      // Next delete the external data
+      delete External_pressure_data_pt;
 
-      // Set the capillary number
-      el_pt->ca_pt() = &Ca;
+      delete Bulk_mesh_pt;
 
-      // Set the wall normal of the external boundary
-      el_pt->wall_unit_normal_fct_pt() =
-        &Global_Physical_Parameters::wall_unit_normal_fct;
-
-      // Add the element to the mesh
-      Contact_angle_mesh_pt->add_element_pt(el_pt);
-
-      // Here we have no guarantee of order so we need to loop over all
-      // surface elements to find the one that is next to the outer boundary
-      for (unsigned e = 0; e < n_free_surface; e++)
-      {
-        // Locally cache the element pointer
-        FREE_SURFACE_ELEMENT* bulk_el_pt = dynamic_cast<FREE_SURFACE_ELEMENT*>(
-          Free_surface_mesh_pt->element_pt(e));
-
-        // Read out number of nodes in the element
-        unsigned n_node = bulk_el_pt->nnode();
-
-        // Is the "left" hand node on the boundary
-        if (bulk_el_pt->node_pt(0)->is_on_boundary(Inner_boundary_id))
-        {
-          // Create bounding element on "left" hand face, with the normal
-          // pointing into the fluid
-          el_pt = bulk_el_pt->make_bounding_element(-1);
-
-          // Exit loop
-          break;
-        }
-
-        // Is the "right" hand node on the boundary
-        if (bulk_el_pt->node_pt(n_node - 1)->is_on_boundary(Inner_boundary_id))
-        {
-          // Create bounding element on "right" hand face, with the normal
-          // pointing out of the fluid
-          el_pt = bulk_el_pt->make_bounding_element(1);
-
-          // Exit loop
-          break;
-        }
-      }
-
-      // Set the contact angle function
-      el_pt->set_contact_angle(
-        &Right_angle, Global_Physical_Parameters::Use_strong_imposition);
-
-      // Set the capillary number
-      el_pt->ca_pt() = &Ca;
-
-      // Set sigma
-      el_pt->sigma_pt() = &Zero_sigma;
-
-      // Set the wall normal of the external boundary
-      el_pt->wall_unit_normal_fct_pt() =
-        &Global_Physical_Parameters::wall_unit_normal_fct;
-
-      // Add the element to the mesh
-      Contact_angle_mesh_pt->add_element_pt(el_pt);
-
-    } // end_of_create_contact_angle_element
-
-
-    // Create the slip boundary elements
-    void create_slip_elements(const unsigned& b,
-                              Mesh* const& bulk_mesh_pt,
-                              Mesh* const& surface_mesh_pt)
-    {
-      // How many bulk elements are adjacent to boundary b?
-      unsigned n_element = bulk_mesh_pt->nboundary_element(b);
-
-      // Loop over the bulk elements adjacent to boundary b?
-      for (unsigned e = 0; e < n_element; e++)
-      {
-        // Get pointer to the bulk element that is adjacent to boundary b
-        ELEMENT* bulk_elem_pt =
-          dynamic_cast<ELEMENT*>(bulk_mesh_pt->boundary_element_pt(b, e));
-
-        // What is the index of the face of element e along boundary b
-        int face_index = bulk_mesh_pt->face_index_at_boundary(b, e);
-        SLIP_ELEMENT* slip_element_pt = 0;
-
-        // Build the corresponding slip element
-        slip_element_pt = new SLIP_ELEMENT(bulk_elem_pt, face_index);
-
-        // Set the pointer to the prescribed slip function
-        slip_element_pt->slip_fct_pt() = &Slip_Parameters::prescribed_slip_fct;
-
-        slip_element_pt->wall_velocity_fct_pt() =
-          &Slip_Parameters::prescribed_wall_velocity_fct;
-
-        // Add the prescribed-flux element to the surface mesh
-        surface_mesh_pt->add_element_pt(slip_element_pt);
-
-      } // end of loop over bulk elements adjacent to boundary b
+      delete Constitutive_law_pt;
     }
 
-    void create_slip_eigen_elements(Mesh* const& bulk_mesh_pt)
-    {
-      oomph_info << "create_slip_eigen_elements" << std::endl;
-
-      // Loop over the free surface boundary and create the "interface elements
-      unsigned b = Outer_boundary_with_slip_id;
-
-      // How many bulk fluid elements are adjacent to boundary b?
-      unsigned n_element = bulk_mesh_pt->nboundary_element(b);
-
-      // Loop over the bulk fluid elements adjacent to boundary b?
-      for (unsigned e = 0; e < n_element; e++)
-      {
-        // Get pointer to the bulk fluid element that is
-        // adjacent to boundary b
-        ELEMENT* bulk_elem_pt =
-          dynamic_cast<ELEMENT*>(bulk_mesh_pt->boundary_element_pt(b, e));
-
-        if (bulk_elem_pt->is_augmented())
-        {
-          // Find the index of the face of element e along boundary b
-          int face_index = bulk_mesh_pt->face_index_at_boundary(b, e);
-
-          // Create new element
-          SingularNavierStokesTractionElement<ELEMENT>* el_pt =
-            new SingularNavierStokesTractionElement<ELEMENT>(
-              bulk_elem_pt,
-              face_index,
-              Singularity_scaling_mesh_pt->element_pt(0)->internal_data_pt(0));
-
-          el_pt->traction_fct_pt() = &parameters::eigensolution_slip_fct;
-
-          if (el_pt->get_node_number(Contact_line_solid_node_pt) == -1)
-          {
-            el_pt->add_external_data(
-              Contact_line_solid_node_pt->variable_position_pt());
-          }
-
-          // Add it to the mesh
-          Eigensolution_slip_mesh_pt->add_element_pt(el_pt);
-        }
-      }
-    }
-
-    void create_singularity_scaling_elements()
-    {
-      oomph_info << "create_singularity_scaling_elements" << std::endl;
-      SingularNavierStokesSolutionElement<ELEMENT>* el_pt =
-        new SingularNavierStokesSolutionElement<ELEMENT>;
-
-      // Set the pointer to the velocity singular function for this
-      // element, defined in parameters namespace
-      el_pt->velocity_singular_fct_pt() = &parameters::velocity_singular_fct;
-
-      // Set the pointer to the gradient of the velocity singular
-      // function for this element, defined in parameters namespace
-      el_pt->grad_velocity_singular_fct_pt() =
-        &parameters::grad_velocity_singular_fct;
-
-      // Set the pointer to the first pressure singular function for this
-      // element, defined in parameters namespace
-      el_pt->pressure_singular_fct_pt() = &parameters::pressure_singular_fct;
-
-      // The singular function satisfies the Stokes equation
-      el_pt->singular_function_satisfies_stokes_equation() = false;
-
-      // el_pt->pin_c();
-      el_pt->set_c(0.0);
-
-      // unsigned n_element = Bulk_mesh_pt->nelement();
-      // for (unsigned e = 0; e < n_element; e++)
-      //{
-      //   ELEMENT* bulk_elem_pt =
-      //     dynamic_cast<ELEMENT*>(Bulk_mesh_pt->element_pt(e));
-
-      //  unsigned n_node = bulk_elem_pt->nnode();
-      //  for (unsigned n = 0; n < n_node; n++)
-      //  {
-      //    el_pt->add_external_data(bulk_elem_pt->node_pt(n));
-      //  }
-      //}
-
-      // Add element to the mesh
-      Singularity_scaling_mesh_pt->add_element_pt(el_pt);
-    }
-
-  public:
     void fix_c(const double& value)
     {
       SingularNavierStokesSolutionElement<ELEMENT>* el_pt =
@@ -923,240 +462,6 @@ namespace oomph
       oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
     }
 
-  private:
-    // Create the no penetration boundary elements
-    void create_no_penetration_elements(const unsigned& b,
-                                        Mesh* const& bulk_mesh_pt,
-                                        Mesh* const& surface_mesh_pt)
-    {
-      // How many bulk elements are adjacent to boundary b?
-      unsigned n_element = bulk_mesh_pt->nboundary_element(b);
-
-      // Loop over the bulk elements adjacent to boundary b?
-      for (unsigned e = 0; e < n_element; e++)
-      {
-        // Get pointer to the bulk element that is adjacent to boundary b
-        ELEMENT* bulk_elem_pt =
-          dynamic_cast<ELEMENT*>(bulk_mesh_pt->boundary_element_pt(b, e));
-
-        // What is the index of the face of element e along boundary b
-        int face_index = bulk_mesh_pt->face_index_at_boundary(b, e);
-
-        // Build the corresponding slip element
-        NO_PENETRATION_ELEMENT* no_penetration_element_pt =
-          new NO_PENETRATION_ELEMENT(
-            bulk_elem_pt, face_index, Lagrange_id::No_penetration);
-
-        // if (no_penetration_element_pt->get_node_number(
-        //       Contact_line_solid_node_pt) == -1)
-        //{
-        //   no_penetration_element_pt->add_external_data(
-        //     Contact_line_solid_node_pt);
-        // }
-
-        // Add the prescribed-flux element to the surface mesh
-        surface_mesh_pt->add_element_pt(no_penetration_element_pt);
-
-      } // end of loop over bulk elements adjacent to boundary b
-    }
-
-    // Create the flux elements
-    void create_flux_elements()
-    {
-      if (Net_flux_mesh_pt)
-      {
-        // Build master element
-        NET_FLUX_ELEMENT* net_flux_el_pt =
-          new NET_FLUX_ELEMENT(&Flux_Parameters::flux_fct, time_pt());
-
-        // Add NetFluxControlElement to its mesh
-        Net_flux_mesh_pt->add_element_pt(net_flux_el_pt);
-
-        if (Flux_mesh_pt)
-        {
-          // Loop over the free surface boundary and create the interface
-          // elements
-          unsigned b = Upper_boundary_id;
-
-          // How many bulk fluid elements are adjacent to boundary b?
-          unsigned n_element = Bulk_mesh_pt->nboundary_element(b);
-
-          // Loop over the bulk fluid elements adjacent to boundary b?
-          for (unsigned e = 0; e < n_element; e++)
-          {
-            // Get pointer to the bulk fluid element that is
-            // adjacent to boundary b
-            ELEMENT* bulk_elem_pt =
-              dynamic_cast<ELEMENT*>(Bulk_mesh_pt->boundary_element_pt(b, e));
-
-            // Find the index of the face of element e along boundary b
-            int face_index = Bulk_mesh_pt->face_index_at_boundary(b, e);
-
-            // Create new element
-            FLUX_ELEMENT* el_pt = new FLUX_ELEMENT(
-              bulk_elem_pt,
-              face_index,
-              net_flux_el_pt->get_lagrange_multiplier_data_pt());
-
-            // Add it to the mesh
-            Flux_mesh_pt->add_element_pt(el_pt);
-          }
-        }
-      }
-    }
-
-    void setup_mesh_interaction()
-    {
-      oomph_info << "setup_mesh_interaction" << std::endl;
-      // Find corner bulk element
-      unsigned node_index;
-      ELEMENT* corner_bulk_element_pt = 0;
-      find_corner_bulk_element_and_node(Outer_boundary_with_slip_id,
-                                        Free_surface_boundary_id,
-                                        corner_bulk_element_pt,
-                                        node_index);
-
-      // Tell the CEquationElement object about its associated Navier-Stokes
-      // element, the component of the velocity whose derivative will be
-      // computed in the residual, the local coordinate in the Navier_Stokes
-      // element at which the residual will be computed, and the direction of
-      // the derivative
-      Vector<double> s1_pt(2);
-      s1_pt[0] = 0.0;
-      s1_pt[1] = 0.0;
-      unsigned* const direction_pt = new unsigned(0);
-      SingularNavierStokesSolutionElement<ELEMENT>* singular_el_pt =
-        dynamic_cast<SingularNavierStokesSolutionElement<ELEMENT>*>(
-          Singularity_scaling_mesh_pt->element_pt(0));
-      singular_el_pt->set_wrapped_navier_stokes_element_pt(
-        corner_bulk_element_pt, s1_pt, direction_pt);
-      Vector<double> x(2, 0.0);
-      corner_bulk_element_pt->get_x(s1_pt, x);
-      oomph_info << "First singular element point, ";
-      oomph_info << "x: " << x[0] << ", ";
-      oomph_info << "y: " << x[1] << ", ";
-      oomph_info << std::endl;
-
-      // Loop over the augmented bulk elements
-      unsigned n_aug_bulk = Augmented_bulk_element_number.size();
-      for (unsigned e = 0; e < n_aug_bulk; e++)
-      {
-        // Augment elements
-        // Upcast from GeneralisedElement to the present element
-        ELEMENT* el_pt = dynamic_cast<ELEMENT*>(
-          Bulk_mesh_pt->element_pt(Augmented_bulk_element_number[e]));
-
-        // Set the pointer to the element that determines the amplitude
-        // of the singular fct
-        el_pt->add_c_equation_element_pt(singular_el_pt);
-      }
-    }
-
-    void create_pressure_contribution_1_elements()
-    {
-      oomph_info << "create_pressure_contribution_1_elements" << std::endl;
-
-      ELEMENT* element_pt = 0;
-      int face_index = 0;
-      find_corner_bulk_element_and_face_index(Outer_boundary_with_slip_id,
-                                              Free_surface_boundary_id,
-                                              element_pt,
-                                              face_index);
-
-      PressureEvaluationElement<ELEMENT>* el_pt =
-        new PressureEvaluationElement<ELEMENT>(
-          element_pt,
-          face_index,
-          dynamic_cast<Node*>(Contact_line_solid_node_pt));
-
-      el_pt->set_pressure_data_pt(
-        Singularity_scaling_mesh_pt->element_pt(0)->internal_data_pt(0));
-      el_pt->set_boundary_number_in_bulk_mesh(Outer_boundary_with_slip_id);
-      // Set the product of the Reynolds number and the inverse of the
-      // Froude number
-      el_pt->re_invfr_pt() = &ReInvFr;
-      // Set the direction of gravity
-      el_pt->g_pt() = &Global_Physical_Parameters::G;
-
-      unsigned n_element = Bulk_mesh_pt->nelement();
-      for (unsigned e = 0; e < n_element; e++)
-      {
-        ELEMENT* bulk_elem_pt =
-          dynamic_cast<ELEMENT*>(Bulk_mesh_pt->element_pt(e));
-
-        unsigned n_node = bulk_elem_pt->nnode();
-        for (unsigned n = 0; n < n_node; n++)
-        {
-          if (el_pt->get_node_number(bulk_elem_pt->node_pt(n)) == -1)
-          {
-            el_pt->add_external_data(bulk_elem_pt->node_pt(n));
-          }
-        }
-      }
-
-      Pressure_contribution_mesh_1_pt->add_element_pt(el_pt);
-    }
-
-    void create_pressure_contribution_2_elements()
-    {
-      oomph_info << "create_pressure_contribution_2_elements" << std::endl;
-
-      ELEMENT* element_pt = 0;
-      int face_index = 0;
-      find_corner_bulk_element_and_face_index(Free_surface_boundary_id,
-                                              Outer_boundary_with_slip_id,
-                                              element_pt,
-                                              face_index);
-
-      PressureEvaluationElement<ELEMENT>* el_pt =
-        new PressureEvaluationElement<ELEMENT>(
-          element_pt,
-          face_index,
-          dynamic_cast<Node*>(Contact_line_solid_node_pt));
-
-      el_pt->set_pressure_data_pt(
-        Singularity_scaling_mesh_pt->element_pt(0)->internal_data_pt(0));
-      el_pt->set_boundary_number_in_bulk_mesh(Free_surface_boundary_id);
-      // Set the product of the Reynolds number and the inverse of the
-      // Froude number
-      el_pt->re_invfr_pt() = &ReInvFr;
-      // Set the direction of gravity
-      el_pt->g_pt() = &Global_Physical_Parameters::G;
-      el_pt->set_subtract_from_residuals();
-
-      unsigned n_element = Bulk_mesh_pt->nelement();
-      for (unsigned e = 0; e < n_element; e++)
-      {
-        ELEMENT* bulk_elem_pt =
-          dynamic_cast<ELEMENT*>(Bulk_mesh_pt->element_pt(e));
-
-        unsigned n_node = bulk_elem_pt->nnode();
-        for (unsigned n = 0; n < n_node; n++)
-        {
-          if (el_pt->get_node_number(bulk_elem_pt->node_pt(n)) == -1)
-          {
-            el_pt->add_external_data(bulk_elem_pt->node_pt(n));
-          }
-        }
-      }
-
-      Pressure_contribution_mesh_2_pt->add_element_pt(el_pt);
-    }
-
-    void create_mesh_as_geom_object()
-    {
-      Pressure_contribution_geom_mesh_1_pt =
-        new MeshAsGeomObject(Pressure_contribution_mesh_1_pt);
-
-      Pressure_contribution_geom_mesh_2_pt =
-        new MeshAsGeomObject(Pressure_contribution_mesh_2_pt);
-    }
-
-
-    //============================================================================
-    // Usage functions
-    //============================================================================
-  public:
     void update_triangulateio()
     {
       dynamic_cast<TriangleMesh<ELEMENT>*>(Bulk_mesh_pt)
@@ -1402,8 +707,7 @@ namespace oomph
       double max_error = 1e6;
       // double old_max_error = max_error + 1.0;
       double min_error = 0.0;
-      const unsigned n_adapt =
-        Mesh_Control_Parameters::Max_number_of_adapts_for_refinement;
+      const unsigned n_adapt = Parameters.max_number_of_adapts_for_refinement;
       // double tol = 1e-3;
       unsigned i_adapt = 0;
       // Call the adapt function until the maximum of the estimated error is
@@ -1441,7 +745,7 @@ namespace oomph
       }
 
       // Solve the steady problem
-      this->steady_newton_solve(Max_adapt);
+      this->steady_newton_solve(Parameters.max_adapt);
     }
 
     // A custom adaptive steady newton solve function.
@@ -1491,7 +795,7 @@ namespace oomph
       get_z2_error(local_max_z2_error, local_min_z2_error);
 
       // If the Z2 error is not within tolerance
-      if (local_max_z2_error > Mesh_Control_Parameters::Max_permitted_z2_error)
+      if (local_max_z2_error > Parameters.max_permitted_z2_error)
       {
         // Then adapt is needed
         oomph_info << "Adapt is needed due to Z2 error" << std::endl;
@@ -1499,7 +803,7 @@ namespace oomph
       }
 
       if (this->max_free_surface_error() >
-          Mesh_Control_Parameters::Polyline_refinement_tolerence)
+          Parameters.polyline_refinement_tolerence)
       {
         // Then adapt is needed
         oomph_info << "Adapt is needed due to polyline refinement error"
@@ -1512,7 +816,7 @@ namespace oomph
       // Check if the contact angle error is ok.
       if (Contact_angle_mesh_pt)
       {
-        if (Mesh_Control_Parameters::Error_estimator_flag > 0)
+        if (Parameters.error_estimator_flag > 0)
         {
           double expected_contact_angle = 0.0;
           double actual_contact_angle = 0.0;
@@ -1534,7 +838,7 @@ namespace oomph
             if (Using_contact_angle_error_estimator)
             {
               // We need to increase the resolution also
-              Mesh_Control_Parameters::min_element_length *= 0.5;
+              Parameters.min_element_length *= 0.5;
             }
 
             // Then adapt is needed
@@ -1549,7 +853,7 @@ namespace oomph
       // Check if the inner angle error is ok.
       if (Contact_angle_mesh_pt)
       {
-        if (Mesh_Control_Parameters::Error_estimator_flag > 0)
+        if (Parameters.error_estimator_flag > 0)
         {
           double expected_contact_angle = 0.0;
           double actual_contact_angle = 0.0;
@@ -1570,7 +874,7 @@ namespace oomph
             if (Using_contact_angle_error_estimator)
             {
               // We need to increase the resolution also
-              Mesh_Control_Parameters::inner_min_element_length *= 0.5;
+              Parameters.inner_min_element_length *= 0.5;
             }
 
             // Then adapt is needed
@@ -1584,7 +888,7 @@ namespace oomph
       // If the max Z2 error is much smaller than the permitted, then adapt to
       // unrefine
       // if (local_max_z2_error /
-      // Mesh_Control_Parameters::Max_permitted_z2_error <
+      // Parameters.max_permitted_z2_error <
       //     1e-1)
       // {
       //   // Then adapt is needed
@@ -1977,14 +1281,12 @@ namespace oomph
       }
 
       // Set up variables for the adaption procedure
-      unsigned steps_between_adapt =
-        Mesh_Control_Parameters::interval_between_adapts;
+      unsigned steps_between_adapt = Parameters.interval_between_adapts;
       unsigned local_max_adapt = 0;
 
       // Set up variables for unsteady_newton_solve
       double local_dt = dt;
-      const double temporal_tolerance =
-        Mesh_Control_Parameters::Temporal_tolerance;
+      const double temporal_tolerance = Parameters.temporal_tolerance;
       bool first_timestep = false;
       bool shift = true;
       unsigned it = 0;
@@ -1998,7 +1300,7 @@ namespace oomph
         if (it % steps_between_adapt == 0)
         {
           // ... Set the local_max_adapt to the global one ...
-          local_max_adapt = this->Max_adapt;
+          local_max_adapt = Parameters.max_adapt;
           // if (it == 0)
           //{
           //  local_max_adapt = 5;
@@ -2013,7 +1315,7 @@ namespace oomph
         // Call unsteady newton solver
         try
         {
-          if (Mesh_Control_Parameters::Use_adaptive_timestepping)
+          if (Parameters.is_adaptive_timestepping)
           {
             local_dt =
               this->doubly_adaptive_unsteady_newton_solve(local_dt,
@@ -2035,16 +1337,10 @@ namespace oomph
         }
 
         // Document the solution
-        if ((it + 1) % Doc_Parameters::interval_between_doc == 0)
-        {
-          this->doc_solution();
-        }
+        this->doc_solution();
 
         // Dump the solution
-        if ((it + 1) % Restart_Parameters::interval_between_dump == 0)
-        {
-          this->create_restart_file();
-        }
+        this->create_restart_file();
         it++;
       }
     }
@@ -2079,95 +1375,6 @@ namespace oomph
     bool is_augmented()
     {
       return Is_augmented;
-    }
-
-    // Set the bond number represented by ReInvFr
-    void set_bond_number(const double& bond_number)
-    {
-      this->Bo = bond_number;
-
-      this->ReInvFr = this->Bo / this->Ca;
-    }
-
-    // Set the bond number represented by ReInvFr
-    double* reynolds_number_inverse_froude_number_pt()
-    {
-      return &this->ReInvFr;
-    }
-
-    // Set the Capillary without changing the Bond number
-    void set_capillary_number(const double& capillary_number)
-    {
-      // Set the new capillary number
-      this->Ca = capillary_number;
-
-      this->ReInvFr = this->Bo / this->Ca;
-    }
-
-    // Set the Reynolds number without changing the Bond number or Strouhal
-    // number
-    void set_reynolds_number(const double& reynolds_number)
-    {
-      // Set new Reynolds number
-      this->Re = reynolds_number;
-
-      // this->ReInvFr = invFr * this->Re;
-
-      this->ReSt = this->St * this->Re;
-    }
-
-    // Set the Strouhal number
-    void set_strouhal_number(const double& strouhal_number)
-    {
-      this->St = strouhal_number;
-
-      this->ReSt = this->St * this->Re;
-    }
-
-    void set_viscosity_ratio(const double& viscosity_ratio)
-    {
-      this->Viscosity_ratio = viscosity_ratio;
-    }
-
-    // Set the contact angle, not this is overridden by the contact angle
-    // function.
-    void set_contact_angle(const double& contact_angle)
-    {
-      Contact_angle = contact_angle;
-    }
-
-    // Get the contact angle pointer. Note: accessing this pointer after the
-    // problem has been deleted with cause undefined behaviour.
-    double* get_contact_angle_pt()
-    {
-      return &Contact_angle;
-    }
-
-    // Set the maximum number of adapts when timestepping or solving the
-    // static problem
-    void set_max_adapt(const unsigned& max_adapt)
-    {
-      Max_adapt = max_adapt;
-    }
-
-    void set_directory(const std::string& dir_name)
-    {
-      this->doc_info().set_directory(dir_name);
-    }
-
-    std::string get_directory()
-    {
-      return this->doc_info().directory();
-    }
-
-    void set_doc_number(const unsigned& number)
-    {
-      this->doc_info().number() = number;
-    }
-
-    unsigned get_doc_number()
-    {
-      return this->doc_info().number();
     }
 
     Mesh* bulk_mesh_pt()
@@ -2506,112 +1713,87 @@ namespace oomph
         std::string filename;
 
         // Number of plot points
-        unsigned npts = Plot_Parameters::Bulk_element_number_of_plot_points;
+        unsigned npts = Parameters.bulk_element_number_of_plot_points;
         unsigned npts_surface =
-          Plot_Parameters::Surface_element_number_of_plot_points;
+          Parameters.surface_element_number_of_plot_points;
 
         // Output bulk domain
-        if (Doc_Parameters::Doc_bulk)
-        {
-          filename = this->doc_info().directory() + "/soln" +
-                     to_string(this->doc_info().number()) + ".dat";
-          output_stream.open(filename);
-          Bulk_mesh_pt->output(output_stream, npts);
-          output_stream.close();
-        }
+        filename = this->doc_info().directory() + "/soln" +
+                   to_string(this->doc_info().number()) + ".dat";
+        output_stream.open(filename);
+        Bulk_mesh_pt->output(output_stream, npts);
+        output_stream.close();
 
-        if (Doc_Parameters::Doc_free_surface && Free_surface_mesh_pt)
-        {
-          // Output free surface
-          filename = this->doc_info().directory() + "/free_surface" +
-                     to_string(this->doc_info().number()) + ".dat";
-          output_stream.open(filename);
-          output_stream << "x ";
-          output_stream << "y ";
-          output_stream << "u ";
-          output_stream << "v ";
-          output_stream << "w ";
-          output_stream << "p ";
-          output_stream << "lagrange_multiplier ";
-          output_stream << std::endl;
-          Free_surface_mesh_pt->output(output_stream, npts);
-          output_stream.close();
-        }
+        // Output free surface
+        filename = this->doc_info().directory() + "/free_surface" +
+                   to_string(this->doc_info().number()) + ".dat";
+        output_stream.open(filename);
+        output_stream << "x ";
+        output_stream << "y ";
+        output_stream << "u ";
+        output_stream << "v ";
+        output_stream << "w ";
+        output_stream << "p ";
+        output_stream << "lagrange_multiplier ";
+        output_stream << std::endl;
+        Free_surface_mesh_pt->output(output_stream, npts);
+        output_stream.close();
 
         // If the problem is static ...
         // ... output the volume ...
-        if (Doc_Parameters::Doc_volume && Volume_constraint_mesh_pt)
-        {
-          Volume_trace_file << this->doc_info().number() << " ";
-          dynamic_cast<VOLUME_CONSTRAINT_ELEMENT*>(
-            Volume_constraint_mesh_pt->element_pt(0))
-            ->output(Volume_trace_file);
-        }
-        // ... output the flux on the upper boundary
-        if (Doc_Parameters::Doc_flux)
-        {
-          if (Flux_mesh_pt)
-          {
-            filename = this->doc_info().directory() + "/flux_surface" +
-                       to_string(this->doc_info().number()) + ".dat";
-            output_stream.open(filename);
-            doc_flux(output_stream, npts_surface);
-            output_stream.close();
-          }
+        Volume_trace_file << this->doc_info().number() << " ";
+        dynamic_cast<VOLUME_CONSTRAINT_ELEMENT*>(
+          Volume_constraint_mesh_pt->element_pt(0))
+          ->output(Volume_trace_file);
 
-          if (Net_flux_mesh_pt)
-          {
-            Flux_trace_file << this->doc_info().number() << " ";
-            dynamic_cast<NET_FLUX_ELEMENT*>(Net_flux_mesh_pt->element_pt(0))
-              ->output(Flux_trace_file);
-          }
+        // ... output the flux on the upper boundary
+        if (Flux_mesh_pt)
+        {
+          filename = this->doc_info().directory() + "/flux_surface" +
+                     to_string(this->doc_info().number()) + ".dat";
+          output_stream.open(filename);
+          doc_flux(output_stream, npts_surface);
+          output_stream.close();
+        }
+
+        if (Net_flux_mesh_pt)
+        {
+          Flux_trace_file << this->doc_info().number() << " ";
+          dynamic_cast<NET_FLUX_ELEMENT*>(Net_flux_mesh_pt->element_pt(0))
+            ->output(Flux_trace_file);
         }
 
         // Output the slip on the slip boundary
 
-        if (Doc_Parameters::Doc_slip && Slip_boundary_mesh_pt)
-        {
-          filename = this->doc_info().directory() + "/slip_surface" +
-                     to_string(this->doc_info().number()) + ".dat";
-          output_stream.open(filename);
-          doc_slip(output_stream, npts_surface);
-          output_stream.close();
-        }
+        filename = this->doc_info().directory() + "/slip_surface" +
+                   to_string(this->doc_info().number()) + ".dat";
+        output_stream.open(filename);
+        doc_slip(output_stream, npts_surface);
+        output_stream.close();
 
         // Output the no-penetration
-        if (Doc_Parameters::Doc_no_penetration &&
-            No_penetration_boundary_mesh_pt)
-        {
-          filename = this->doc_info().directory() + "/no_penetration_surface" +
-                     to_string(this->doc_info().number()) + ".dat";
-          output_stream.open(filename);
-          output_stream << "x ";
-          output_stream << "y ";
-          output_stream << "u ";
-          output_stream << "v ";
-          output_stream << "w ";
-          output_stream << "lagrange_multiplier ";
-          output_stream << std::endl;
-          No_penetration_boundary_mesh_pt->output(output_stream);
-          output_stream.close();
-        }
+        filename = this->doc_info().directory() + "/no_penetration_surface" +
+                   to_string(this->doc_info().number()) + ".dat";
+        output_stream.open(filename);
+        output_stream << "x ";
+        output_stream << "y ";
+        output_stream << "u ";
+        output_stream << "v ";
+        output_stream << "w ";
+        output_stream << "lagrange_multiplier ";
+        output_stream << std::endl;
+        No_penetration_boundary_mesh_pt->output(output_stream);
+        output_stream.close();
 
-        if (Doc_Parameters::Doc_contact_angle && Contact_angle_mesh_pt)
-        {
-          // Output the contact angle
-          Contact_angle_trace_file << this->doc_info().number() << " ";
-          doc_contact_angle(Contact_angle_trace_file);
+        // Output the contact angle
+        Contact_angle_trace_file << this->doc_info().number() << " ";
+        doc_contact_angle(Contact_angle_trace_file);
 
-          Inner_angle_trace_file << this->doc_info().number() << " ";
-          doc_inner_angle(Inner_angle_trace_file);
-        }
+        Inner_angle_trace_file << this->doc_info().number() << " ";
+        doc_inner_angle(Inner_angle_trace_file);
 
-        if (Doc_Parameters::Doc_trace)
-        {
-          // Output trace which includes all parameters and global data
-          doc_trace(max_err, min_err);
-        }
-
+        // Output trace which includes all parameters and global data
+        doc_trace(max_err, min_err);
 
         if (this->is_augmented())
         {
@@ -2701,15 +1883,16 @@ namespace oomph
       // Document the contact angle (in degrees),
       Trace_file << this->doc_info().number() << " ";
       Trace_file << this->time_pt()->time() << " ";
-      Trace_file << Contact_angle * 180.0 / MathematicalConstants::Pi << " ";
+      Trace_file << Parameters.contact_angle * 180.0 / MathematicalConstants::Pi
+                 << " ";
       // the parameters,
-      Trace_file << Bo << " ";
-      Trace_file << Ca << " ";
-      Trace_file << Re << " ";
-      Trace_file << St << " ";
-      Trace_file << ReSt << " ";
-      Trace_file << ReInvFr << " ";
-      Trace_file << Slip_Parameters::wall_velocity << " ";
+      Trace_file << Parameters.reynolds_inverse_froude_number << " ";
+      Trace_file << Parameters.capillary_number << " ";
+      Trace_file << Parameters.reynolds_number << " ";
+      Trace_file << Parameters.strouhal_number << " ";
+      Trace_file << Parameters.reynolds_strouhal_number << " ";
+      Trace_file << Parameters.reynolds_inverse_froude_number << " ";
+      Trace_file << Parameters.wall_velocity << " ";
       // the external pressure,
       Trace_file << External_pressure_data_pt->value(0) << " ";
       // the height of the interface at the centre of the container,
@@ -2721,8 +1904,7 @@ namespace oomph
       // the number of degrees of freedom
       Trace_file << this->ndof() << " ";
       // the desired corner element length
-      Trace_file << 5e-2 * Slip_Parameters::slip_length /
-                      Slip_Parameters::wall_velocity
+      Trace_file << 5e-2 * Parameters.slip_length / Parameters.wall_velocity
                  << " ";
       ELEMENT* element_pt = 0;
       int face_index = 0;
@@ -2846,7 +2028,1087 @@ namespace oomph
       return pressure_value;
     }
 
+    void perturb_free_surface()
+    {
+      const unsigned n_node =
+        Bulk_mesh_pt->nboundary_node(Free_surface_boundary_id);
+      for (unsigned n = 0; n < n_node; n++)
+      {
+        double r =
+          Bulk_mesh_pt->boundary_node_pt(Free_surface_boundary_id, n)->x(0);
+        const double amplitude = 0.01;
+        Bulk_mesh_pt->boundary_node_pt(Free_surface_boundary_id, n)->x(1) +=
+          amplitude * (-7.0 / 60.0 + pow(r, 2.0) / 2.0 - pow(r, 3.0) / 3.0);
+      }
+    }
+
+    void perturb_free_surface2()
+    {
+      const unsigned n_node =
+        Bulk_mesh_pt->nboundary_node(Free_surface_boundary_id);
+      for (unsigned n = 0; n < n_node; n++)
+      {
+        double r =
+          Bulk_mesh_pt->boundary_node_pt(Free_surface_boundary_id, n)->x(0);
+        if (r > 0.5)
+        {
+          const double amplitude = 0.01;
+          Bulk_mesh_pt->boundary_node_pt(Free_surface_boundary_id, n)->x(1) +=
+            amplitude * (r - 0.5) * (r - 0.5) * (1.0 - r);
+        }
+      }
+    }
+
+    void perturb_displacement(const double& amplitude)
+    {
+      const unsigned n_node = Bulk_mesh_pt->nnode();
+      for (unsigned n = 0; n < n_node; n++)
+      {
+        double r = Bulk_mesh_pt->node_pt(n)->x(0);
+        double z = Bulk_mesh_pt->node_pt(n)->x(1);
+        // Constrains for the perturbation
+        // Volume is conserved
+        // y'(0) = 0
+        // y'(1) = 0
+        // Bulk_mesh_pt->node_pt(n)->x(1) +=
+        //  amplitude * (-7.0 / 60.0 + pow(r, 2.0) / 2.0 - pow(r, 3.0) / 3.0)
+        //  * (3.5 - z);
+        Bulk_mesh_pt->node_pt(n)->x(1) +=
+          amplitude * ((tanh(7.0 * (r - 0.4)) - 0.646608127717086) /
+                       1.992181886660662 * (3.5 - z));
+      }
+    }
+
+    void perturb_fluid()
+    {
+      const unsigned n_node = Bulk_mesh_pt->nnode();
+      for (unsigned n = 0; n < n_node; n++)
+      {
+        double r = Bulk_mesh_pt->node_pt(n)->x(0) - 0.5;
+        double z = Bulk_mesh_pt->node_pt(n)->x(1) - 3.5 / 2.0;
+        Bulk_mesh_pt->node_pt(n)->set_value(u_index, z);
+        Bulk_mesh_pt->node_pt(n)->set_value(v_index, -r);
+      }
+    }
+
+    void pin_volume_constraint()
+    {
+      External_pressure_data_pt->pin(0);
+    }
+
+    void pin_flux_constraint()
+    {
+      if (Net_flux_mesh_pt)
+      {
+        dynamic_cast<NET_FLUX_ELEMENT*>(Net_flux_mesh_pt->element_pt(0))
+          ->internal_data_pt(0)
+          ->pin(0);
+      }
+    }
+
+    void pin_velocity_on_boundary(const unsigned& j, const unsigned& b)
+    {
+      // Loop over the nodes on the boundary
+      unsigned n_boundary_node = Bulk_mesh_pt->nboundary_node(b);
+      for (unsigned n = 0; n < n_boundary_node; n++)
+      {
+        // No conditons on the free surface. The dynamic and kinematic
+        // conditions are handled by the interface elements
+        Bulk_mesh_pt->boundary_node_pt(b, n)->pin(j);
+      }
+    }
+
+    void set_velocity_on_boundary(const unsigned& j,
+                                  const unsigned& b,
+                                  const double& value)
+    {
+      // Loop over the nodes on the boundary
+      unsigned n_boundary_node = Bulk_mesh_pt->nboundary_node(b);
+      for (unsigned n = 0; n < n_boundary_node; n++)
+      {
+        // No conditons on the free surface. The dynamic and kinematic
+        // conditions are handled by the interface elements
+        Bulk_mesh_pt->boundary_node_pt(b, n)->set_value(j, value);
+      }
+    }
+
+    void pin_fluid()
+    {
+      oomph_info << "pin_fluid" << std::endl;
+      unsigned n_element = Bulk_mesh_pt->nelement();
+      for (unsigned n = 0; n < n_element; n++)
+      {
+        dynamic_cast<ELEMENT*>(Bulk_mesh_pt->element_pt(n))->pin();
+      }
+
+      pin_kinematic_lagrange_multiplier(0.0);
+
+      // Setup all the equation numbering and look-up schemes
+      oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
+    }
+
+    void pin_solid_boundaries()
+    {
+      for (unsigned j = 0; j < 2; j++)
+      {
+        for (unsigned b = 0; b < 4; b++)
+        {
+          pin_position_on_boundary(j, b);
+        }
+      }
+      pin_volume_constraint();
+
+      // Setup all the equation numbering and look-up schemes
+      oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
+    };
+
+    void pin_fs_solid_boundary()
+    {
+      for (unsigned j = 0; j < 2; j++)
+      {
+        for (unsigned b = 0; b < 4; b++)
+        {
+          if (b == Free_surface_boundary_id)
+          {
+            pin_position_on_boundary(j, b);
+          }
+        }
+      }
+      pin_volume_constraint();
+
+      // Setup all the equation numbering and look-up schemes
+      oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
+    };
+
+    void pin_solid_boundaries(const unsigned& b)
+    {
+      for (unsigned j = 0; j < 2; j++)
+      {
+        pin_position_on_boundary(j, b);
+      }
+      if (b == Free_surface_boundary_id)
+      {
+        pin_volume_constraint();
+      }
+
+      // Setup all the equation numbering and look-up schemes
+      oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
+    };
+
+    void pin_fluid_boundary(const unsigned& b)
+    {
+      for (unsigned j = 0; j < 3; j++)
+      {
+        pin_velocity_on_boundary(j, b);
+      }
+      if (b == Free_surface_boundary_id)
+      {
+        pin_kinematic_lagrange_multiplier(0.0);
+      }
+
+      // Setup all the equation numbering and look-up schemes
+      oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
+    };
+
+    void pin_solid_boundaries_except_upper()
+    {
+      for (unsigned j = 0; j < 2; j++)
+      {
+        for (unsigned b = 0; b < 4; b++)
+        {
+          if (b != Upper_boundary_id)
+          {
+            pin_position_on_boundary(j, b);
+          }
+        }
+      }
+      pin_volume_constraint();
+
+      // Setup all the equation numbering and look-up schemes
+      oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
+    };
+
+    void pin_horizontal_displacement()
+    {
+      unsigned n_node = Bulk_mesh_pt->nnode();
+      for (unsigned n = 0; n < n_node; n++)
+      {
+        dynamic_cast<SolidNode*>(Bulk_mesh_pt->node_pt(n))->pin_position(0);
+      }
+
+      // Setup all the equation numbering and look-up schemes
+      oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
+    }
+
+    void pin_vertical_displacement()
+    {
+      unsigned n_node = Bulk_mesh_pt->nnode();
+      for (unsigned n = 0; n < n_node; n++)
+      {
+        dynamic_cast<SolidNode*>(Bulk_mesh_pt->node_pt(n))->pin_position(1);
+      }
+    }
+
+    void pin_all_pressure()
+    {
+      unsigned n_element = Bulk_mesh_pt->nelement();
+      for (unsigned n = 0; n < n_element; n++)
+      {
+        ELEMENT* el_pt = dynamic_cast<ELEMENT*>(Bulk_mesh_pt->element_pt(n));
+        el_pt->pin_pressure();
+      }
+    }
+
+    void pin_interior_pressure()
+    {
+      SolidNode* node_pt = 0;
+      find_corner_node(Outer_boundary_with_slip_id, Upper_boundary_id, node_pt);
+      node_pt->pin(3);
+      node_pt->set_value(3, 0.0);
+      // Inner_corner_solid_node_pt->pin(3);
+      // Inner_corner_solid_node_pt->set_value(3, 0.0);
+    }
+
+    void pin_solid()
+    {
+      oomph_info << "pin_solid" << std::endl;
+      // Pin all solid node positions
+      unsigned n_node = Bulk_mesh_pt->nnode();
+      for (unsigned n = 0; n < n_node; n++)
+      {
+        dynamic_cast<SolidNode*>(Bulk_mesh_pt->node_pt(n))->pin_position(0);
+        dynamic_cast<SolidNode*>(Bulk_mesh_pt->node_pt(n))->pin_position(1);
+      }
+
+      pin_volume_constraint();
+      pin_kinematic_lagrange_multiplier(0.0);
+    }
+
+    void reset_lagrange()
+    {
+      Bulk_mesh_pt->set_lagrangian_nodal_coordinates();
+      if (Free_surface_mesh_pt)
+      {
+        set_kinematic_lagrange_multiplier(0.0);
+      }
+    }
+
   private:
+    // Create the bulk mesh and its elements
+    void create_bulk_mesh()
+    {
+      oomph_info << "Creating the initial mesh" << std::endl;
+
+      // Create the Outer_boundary_polyline_pt
+      // If we have a 90 degree contact angle
+      if (Parameters.contact_angle == 0.5 * MathematicalConstants::Pi)
+      {
+        // create a rectangular domain.
+        create_rectangle_domain();
+      }
+      else
+      {
+        // Use a circular meniscus as a first approximation.
+        create_circular_domain();
+      }
+
+      // Set the Outer_boundary_polyline_pt tolerances
+
+      // Set a measure of the maximum local curvature before refining. Default
+      // = 0.08. If `d` is the argument, the radius of curvature is = 0.5/d *
+      // sqrt(d^2 + 0.5^2)
+      Outer_boundary_polyline_pt->set_polyline_refinement_tolerance(
+        Parameters.polyline_refinement_tolerence);
+
+      // Set a measure of the minimum local curvature before unrefining.
+      // Default = 0.04. If `d` is the argument, the radius of curvature is =
+      // 0.5/d * sqrt(d^2 + 0.5^2)
+      Outer_boundary_polyline_pt->set_polyline_unrefinement_tolerance(
+        Parameters.polyline_unrefinement_tolerence);
+
+      // Now build the mesh, based on the boundaries specified by
+      //---------------------------------------------------------
+      // polygons just created
+      //----------------------
+
+      // Convert to "closed curve" objects
+      TriangleMeshClosedCurve* outer_closed_curve_pt =
+        Outer_boundary_polyline_pt;
+
+      // Use the TriangleMeshParameter object for gathering all
+      // the necessary arguments for the TriangleMesh object
+      TriangleMeshParameters triangle_mesh_parameters(outer_closed_curve_pt);
+
+      // Define the maximum element area
+      triangle_mesh_parameters.element_area() = Parameters.max_element_size;
+
+      // Construct mesh
+      Bulk_mesh_pt = new RefineableSolidTriangleMesh<ELEMENT>(
+        triangle_mesh_parameters, this->time_stepper_pt());
+      // Bulk_mesh_pt->set_print_level_timings_adaptation(3);
+
+      Bulk_mesh_pt->max_element_size() = Parameters.max_element_size;
+      Bulk_mesh_pt->min_element_size() = Parameters.min_element_size;
+      Bulk_mesh_pt->min_permitted_angle() = Parameters.min_permitted_angle;
+      Bulk_mesh_pt->max_keep_unrefined() = 400;
+
+      refine_mesh_for_weak_contact_angle_constraint();
+    }
+
+    void create_simple_bulk_mesh()
+    {
+      oomph_info << "Creating the simple initial mesh" << std::endl;
+
+      create_rectangle_domain();
+
+      Outer_boundary_polyline_pt->set_polyline_refinement_tolerance(
+        Parameters.polyline_refinement_tolerence);
+      Outer_boundary_polyline_pt->set_polyline_unrefinement_tolerance(
+        Parameters.polyline_unrefinement_tolerence);
+
+      TriangleMeshClosedCurve* outer_closed_curve_pt =
+        Outer_boundary_polyline_pt;
+
+      TriangleMeshParameters triangle_mesh_parameters(outer_closed_curve_pt);
+
+      triangle_mesh_parameters.element_area() = Parameters.max_element_size;
+
+      Bulk_mesh_pt = new RefineableSolidTriangleMesh<ELEMENT>(
+        triangle_mesh_parameters, this->time_stepper_pt());
+
+      Bulk_mesh_pt->max_element_size() = Parameters.max_element_size;
+      Bulk_mesh_pt->min_element_size() = Parameters.min_element_size;
+      Bulk_mesh_pt->min_permitted_angle() = Parameters.min_permitted_angle;
+      Bulk_mesh_pt->max_keep_unrefined() = 400;
+    }
+
+    // Create the Outer_boundary_polyline_pt via one of the three methods
+    // below. Used in the creation of the bulk elements.
+    void create_rectangle_domain()
+    {
+      // Halfwidth of domain
+      double half_width = 1.0;
+
+      // Domain height
+      double domain_height = Parameters.volume / pow(half_width, 2.0) * 2.0;
+
+      // Build the boundary segments for outer boundary, consisting of
+      //--------------------------------------------------------------
+      // four separate polylines
+      //------------------------
+      Vector<TriangleMeshCurveSection*> boundary_polyline_pt(4);
+
+      // Each polyline only has two vertices -- provide storage for their
+      // coordinates
+      Vector<Vector<double>> vertex_coord(2);
+      for (unsigned i = 0; i < 2; i++)
+      {
+        vertex_coord[i].resize(2);
+      }
+
+      // First polyline: Free_surface_boundary_id
+      vertex_coord[0][0] = 0.0;
+      vertex_coord[0][1] = 0.0;
+      vertex_coord[1][0] = half_width;
+      vertex_coord[1][1] = 0.0;
+
+      // Build the 1st boundary polyline
+      boundary_polyline_pt[0] =
+        new TriangleMeshPolyLine(vertex_coord, Free_surface_boundary_id);
+
+      // Second boundary polyline: Outer wall with slip
+      vertex_coord[0][0] = vertex_coord[1][0];
+      vertex_coord[0][1] = vertex_coord[1][1];
+      vertex_coord[1][0] = half_width;
+      vertex_coord[1][1] = domain_height;
+
+      // Build the 2nd boundary polyline
+      boundary_polyline_pt[1] =
+        new TriangleMeshPolyLine(vertex_coord, Outer_boundary_with_slip_id);
+
+      // Third boundary polyline: Outflow
+      vertex_coord[0][0] = vertex_coord[1][0];
+      vertex_coord[0][1] = vertex_coord[1][1];
+      vertex_coord[1][0] = 0.0;
+      vertex_coord[1][1] = domain_height;
+
+      // Build the 3rd boundary polyline
+      boundary_polyline_pt[2] =
+        new TriangleMeshPolyLine(vertex_coord, Upper_boundary_id);
+
+      // Fourth boundary polyline: Bottom wall
+      vertex_coord[0][0] = vertex_coord[1][0];
+      vertex_coord[0][1] = vertex_coord[1][1];
+      vertex_coord[1][0] = 0.0;
+      vertex_coord[1][1] = 0.0;
+
+      // Build the 4th boundary polyline
+      boundary_polyline_pt[3] =
+        new TriangleMeshPolyLine(vertex_coord, Inner_boundary_id);
+
+      // Set max length for lower boundary
+      boundary_polyline_pt[0]->set_maximum_length(
+        Parameters.max_free_surface_polyline_length);
+
+      boundary_polyline_pt[1]->set_maximum_length(
+        Parameters.max_slip_polyline_length);
+
+      // Create the triangle mesh polygon for outer boundary
+      Outer_boundary_polyline_pt =
+        new TriangleMeshPolygon(boundary_polyline_pt);
+    }
+
+    void create_circular_domain()
+    {
+      // Halfwidth of domain
+      double half_width = 1.0;
+
+      // Domain height
+      double domain_height = Parameters.volume / pow(half_width, 2.0) * 2.0;
+
+      // Number of points to use for the free surface polyline
+      const unsigned npoints = Parameters.initial_number_of_free_surface_points;
+
+      double radius = 1.0 / (cos(Parameters.contact_angle));
+      double zeta_step =
+        (0.5 * MathematicalConstants::Pi - Parameters.contact_angle) /
+        double(npoints - 1);
+
+      // Shift surface to ensure the volume is conserved
+      double shift =
+        2.0 / 3.0 *
+        ((1 - 2 * ((radius) < 0)) * pow(pow(radius, 2.0) - 1, 3.0 / 2.0) -
+         pow(radius, 3.0));
+
+      double x_center = 0;
+      double y_center = shift;
+
+      Circle* circle_pt = new Circle(x_center, y_center, radius);
+
+      // Intrinsic coordinate along GeomObject defining the bubble
+      Vector<double> zeta(1);
+      // Position vector to GeomObject defining the bubble
+      Vector<double> coord(2);
+
+      // Build the boundary segments for outer boundary, consisting of
+      //--------------------------------------------------------------
+      // four separate polylines
+      //------------------------
+      Vector<TriangleMeshCurveSection*> boundary_polyline_pt(4);
+
+      Vector<Vector<double>> free_surface_vertex_coord;
+      Vector<double> current_vertex(2);
+      for (unsigned ipoint = 0; ipoint < npoints; ipoint++)
+      {
+        zeta[0] = 0.5 * MathematicalConstants::Pi - zeta_step * double(ipoint);
+        circle_pt->position(zeta, current_vertex);
+        free_surface_vertex_coord.push_back(current_vertex);
+      }
+
+      // Build the 1st boundary polyline
+      boundary_polyline_pt[0] = new TriangleMeshPolyLine(
+        free_surface_vertex_coord, Free_surface_boundary_id);
+
+      // The rest of the polylines only have two vertices -- provide storage
+      // for their coordinates
+      Vector<Vector<double>> vertex_coord(2);
+      for (unsigned ipoint = 0; ipoint < 2; ipoint++)
+      {
+        vertex_coord[ipoint].resize(2);
+      }
+
+      // Second boundary polyline: Outer wall with slip
+      vertex_coord[0] = free_surface_vertex_coord.back();
+      vertex_coord[1][0] = half_width;
+      vertex_coord[1][1] = domain_height;
+
+      // Build the 2nd boundary polyline
+      boundary_polyline_pt[1] =
+        new TriangleMeshPolyLine(vertex_coord, Outer_boundary_with_slip_id);
+
+      // Fourth boundary polyline: Upper boundary
+      vertex_coord[0][0] = vertex_coord[1][0];
+      vertex_coord[0][1] = vertex_coord[1][1];
+      vertex_coord[1][0] = 0.0;
+      vertex_coord[1][1] = domain_height;
+
+      // Build the 4rd boundary polyline
+      boundary_polyline_pt[2] =
+        new TriangleMeshPolyLine(vertex_coord, Upper_boundary_id);
+
+      // Fifth boundary polyline: Inner wall
+      vertex_coord[0][0] = vertex_coord[1][0];
+      vertex_coord[0][1] = vertex_coord[1][1];
+      vertex_coord[1] = free_surface_vertex_coord.front();
+
+      // Build the 5th boundary polyline
+      boundary_polyline_pt[3] =
+        new TriangleMeshPolyLine(vertex_coord, Inner_boundary_id);
+
+      // Set max length for lower boundary
+      boundary_polyline_pt[0]->set_maximum_length(
+        Parameters.max_free_surface_polyline_length);
+
+      boundary_polyline_pt[1]->set_maximum_length(
+        Parameters.max_slip_polyline_length);
+
+      // Create the triangle mesh polygon for outer boundary
+      Outer_boundary_polyline_pt =
+        new TriangleMeshPolygon(boundary_polyline_pt);
+    }
+
+    // Create the free surface elements
+    void create_free_surface_elements()
+    {
+      // Loop over the free surface boundary and create the "interface
+      // elements
+      unsigned b = Free_surface_boundary_id;
+
+      // How many bulk fluid elements are adjacent to boundary b?
+      unsigned n_element = Bulk_mesh_pt->nboundary_element(b);
+
+      // Loop over the bulk fluid elements adjacent to boundary b?
+      for (unsigned e = 0; e < n_element; e++)
+      {
+        // Get pointer to the bulk fluid element that is
+        // adjacent to boundary b
+        ELEMENT* bulk_elem_pt =
+          dynamic_cast<ELEMENT*>(Bulk_mesh_pt->boundary_element_pt(b, e));
+
+        // Find the index of the face of element e along boundary b
+        int face_index = Bulk_mesh_pt->face_index_at_boundary(b, e);
+
+        // Create new element
+        FREE_SURFACE_ELEMENT* el_pt =
+          new FREE_SURFACE_ELEMENT(bulk_elem_pt,
+                                   face_index,
+                                   this->time_stepper_pt(),
+                                   Lagrange_id::Kinematic);
+
+        // Add the appropriate boundary number
+        el_pt->set_boundary_number_in_bulk_mesh(b);
+
+        // Add the capillary number
+        el_pt->ca_pt() = &Parameters.capillary_number;
+        el_pt->st_pt() = &Parameters.strouhal_number;
+
+        // Add the external pressure data
+        el_pt->set_external_pressure_data(External_pressure_data_pt);
+
+        // if (el_pt->get_node_number(Contact_line_solid_node_pt) == -1)
+        //{
+        //   el_pt->add_external_data(Contact_line_solid_node_pt);
+        // }
+
+        // Add it to the mesh
+        Free_surface_mesh_pt->add_element_pt(el_pt);
+      }
+    }
+    // Create the volume constraint elements
+    void create_volume_constraint_elements()
+    {
+      // Build the single volume constraint element
+      if (Volume_constraint_mesh_pt)
+      {
+        VOLUME_CONSTRAINT_ELEMENT* vol_constraint_element =
+          new VOLUME_CONSTRAINT_ELEMENT(
+            &Parameters.volume, External_pressure_data_pt, 0);
+        Volume_constraint_mesh_pt->add_element_pt(vol_constraint_element);
+
+        if (Volume_computation_mesh_pt)
+        {
+          // Loop over all boundaries
+          for (unsigned b = 0; b < Bulk_mesh_pt->nboundary(); b++)
+          {
+            // How many bulk fluid elements are adjacent to boundary b?
+            unsigned n_element = Bulk_mesh_pt->nboundary_element(b);
+
+            // Loop over the bulk fluid elements adjacent to boundary b?
+            for (unsigned e = 0; e < n_element; e++)
+            {
+              // Get pointer to the bulk fluid element that is
+              // adjacent to boundary b
+              ELEMENT* bulk_elem_pt =
+                dynamic_cast<ELEMENT*>(Bulk_mesh_pt->boundary_element_pt(b, e));
+
+              // Find the index of the face of element e along boundary b
+              int face_index = Bulk_mesh_pt->face_index_at_boundary(b, e);
+
+              // Create new element
+              VOLUME_COMPUTATION_ELEMENT* el_pt =
+                new VOLUME_COMPUTATION_ELEMENT(bulk_elem_pt, face_index);
+
+              // Set the "master" volume control element
+              el_pt->set_volume_constraint_element(vol_constraint_element);
+
+              // Add it to the mesh
+              Volume_computation_mesh_pt->add_element_pt(el_pt);
+            }
+          }
+        }
+      }
+    } // end_of_create_volume_constraint_elements
+
+
+    // Create the contact angle element
+    void create_contact_angle_element()
+    {
+      // Find the element and node at the end of the free surface which meets
+      // the wall
+
+      // Inialise storage for bounding element
+      FluidInterfaceBoundingElement* el_pt = 0;
+
+      // Here we have no guarantee of order so we need to loop over all
+      // surface elements to find the one that is next to the outer boundary
+      unsigned n_free_surface = Free_surface_mesh_pt->nelement();
+      for (unsigned e = 0; e < n_free_surface; e++)
+      {
+        // Locally cache the element pointer
+        FREE_SURFACE_ELEMENT* bulk_el_pt = dynamic_cast<FREE_SURFACE_ELEMENT*>(
+          Free_surface_mesh_pt->element_pt(e));
+
+        // Read out number of nodes in the element
+        unsigned n_node = bulk_el_pt->nnode();
+
+        // Is the "left" hand node on the boundary
+        if (bulk_el_pt->node_pt(0)->is_on_boundary(Outer_boundary_with_slip_id))
+        {
+          // Create bounding element on "left" hand face, with the normal
+          // pointing into the fluid
+          el_pt = bulk_el_pt->make_bounding_element(-1);
+
+          // Exit loop
+          break;
+        }
+
+        // Is the "right" hand node on the boundary
+        if (bulk_el_pt->node_pt(n_node - 1)
+              ->is_on_boundary(Outer_boundary_with_slip_id))
+        {
+          // Create bounding element on "right" hand face, with the normal
+          // pointing out of the fluid
+          el_pt = bulk_el_pt->make_bounding_element(1);
+
+          // Exit loop
+          break;
+        }
+      }
+
+      // Set the contact angle function
+      el_pt->set_contact_angle(&Parameters.contact_angle,
+                               Parameters.is_strong_contact_angle);
+
+      // Set the capillary number
+      el_pt->ca_pt() = &Parameters.capillary_number;
+
+      // Set the wall normal of the external boundary
+      el_pt->wall_unit_normal_fct_pt() = &Wall_unit_normal_function;
+
+      // Add the element to the mesh
+      Contact_angle_mesh_pt->add_element_pt(el_pt);
+
+      // Here we have no guarantee of order so we need to loop over all
+      // surface elements to find the one that is next to the outer boundary
+      for (unsigned e = 0; e < n_free_surface; e++)
+      {
+        // Locally cache the element pointer
+        FREE_SURFACE_ELEMENT* bulk_el_pt = dynamic_cast<FREE_SURFACE_ELEMENT*>(
+          Free_surface_mesh_pt->element_pt(e));
+
+        // Read out number of nodes in the element
+        unsigned n_node = bulk_el_pt->nnode();
+
+        // Is the "left" hand node on the boundary
+        if (bulk_el_pt->node_pt(0)->is_on_boundary(Inner_boundary_id))
+        {
+          // Create bounding element on "left" hand face, with the normal
+          // pointing into the fluid
+          el_pt = bulk_el_pt->make_bounding_element(-1);
+
+          // Exit loop
+          break;
+        }
+
+        // Is the "right" hand node on the boundary
+        if (bulk_el_pt->node_pt(n_node - 1)->is_on_boundary(Inner_boundary_id))
+        {
+          // Create bounding element on "right" hand face, with the normal
+          // pointing out of the fluid
+          el_pt = bulk_el_pt->make_bounding_element(1);
+
+          // Exit loop
+          break;
+        }
+      }
+
+      // Set the contact angle function
+      el_pt->set_contact_angle(&Parameters.right_angle,
+                               Parameters.is_strong_contact_angle);
+
+      // Set the capillary number
+      el_pt->ca_pt() = &Parameters.capillary_number;
+
+      // Set sigma
+      el_pt->sigma_pt() = &Parameters.sigma;
+
+      // Set the wall normal of the external boundary
+      el_pt->wall_unit_normal_fct_pt() = &Wall_unit_normal_function;
+
+      // Add the element to the mesh
+      Contact_angle_mesh_pt->add_element_pt(el_pt);
+
+    } // end_of_create_contact_angle_element
+
+
+    // Create the slip boundary elements
+    void create_slip_elements(const unsigned& b,
+                              Mesh* const& bulk_mesh_pt,
+                              Mesh* const& surface_mesh_pt)
+    {
+      // How many bulk elements are adjacent to boundary b?
+      unsigned n_element = bulk_mesh_pt->nboundary_element(b);
+
+      // Loop over the bulk elements adjacent to boundary b?
+      for (unsigned e = 0; e < n_element; e++)
+      {
+        // Get pointer to the bulk element that is adjacent to boundary b
+        ELEMENT* bulk_elem_pt =
+          dynamic_cast<ELEMENT*>(bulk_mesh_pt->boundary_element_pt(b, e));
+
+        // What is the index of the face of element e along boundary b
+        int face_index = bulk_mesh_pt->face_index_at_boundary(b, e);
+        SLIP_ELEMENT* slip_element_pt = 0;
+
+        // Build the corresponding slip element
+        slip_element_pt = new SLIP_ELEMENT(bulk_elem_pt, face_index);
+
+        // Set the pointer to the prescribed slip function
+        slip_element_pt->slip_fct_pt() = &Slip_function;
+
+        slip_element_pt->wall_velocity_fct_pt() = &Wall_velocity_function;
+
+        // Add the prescribed-flux element to the surface mesh
+        surface_mesh_pt->add_element_pt(slip_element_pt);
+
+      } // end of loop over bulk elements adjacent to boundary b
+    }
+
+    void create_slip_eigen_elements(Mesh* const& bulk_mesh_pt)
+    {
+      oomph_info << "create_slip_eigen_elements" << std::endl;
+
+      // Loop over the free surface boundary and create the "interface elements
+      unsigned b = Outer_boundary_with_slip_id;
+
+      // How many bulk fluid elements are adjacent to boundary b?
+      unsigned n_element = bulk_mesh_pt->nboundary_element(b);
+
+      // Loop over the bulk fluid elements adjacent to boundary b?
+      for (unsigned e = 0; e < n_element; e++)
+      {
+        // Get pointer to the bulk fluid element that is
+        // adjacent to boundary b
+        ELEMENT* bulk_elem_pt =
+          dynamic_cast<ELEMENT*>(bulk_mesh_pt->boundary_element_pt(b, e));
+
+        if (bulk_elem_pt->is_augmented())
+        {
+          // Find the index of the face of element e along boundary b
+          int face_index = bulk_mesh_pt->face_index_at_boundary(b, e);
+
+          // Create new element
+          SingularNavierStokesTractionElement<ELEMENT>* el_pt =
+            new SingularNavierStokesTractionElement<ELEMENT>(
+              bulk_elem_pt,
+              face_index,
+              Singularity_scaling_mesh_pt->element_pt(0)->internal_data_pt(0));
+
+          el_pt->traction_fct_pt() = &parameters::eigensolution_slip_fct;
+
+          if (el_pt->get_node_number(Contact_line_solid_node_pt) == -1)
+          {
+            el_pt->add_external_data(
+              Contact_line_solid_node_pt->variable_position_pt());
+          }
+
+          // Add it to the mesh
+          Eigensolution_slip_mesh_pt->add_element_pt(el_pt);
+        }
+      }
+    }
+
+    void create_singularity_scaling_elements()
+    {
+      oomph_info << "create_singularity_scaling_elements" << std::endl;
+      SingularNavierStokesSolutionElement<ELEMENT>* el_pt =
+        new SingularNavierStokesSolutionElement<ELEMENT>;
+
+      // Set the pointer to the velocity singular function for this
+      // element, defined in parameters namespace
+      el_pt->velocity_singular_fct_pt() = &parameters::velocity_singular_fct;
+
+      // Set the pointer to the gradient of the velocity singular
+      // function for this element, defined in parameters namespace
+      el_pt->grad_velocity_singular_fct_pt() =
+        &parameters::grad_velocity_singular_fct;
+
+      // Set the pointer to the first pressure singular function for this
+      // element, defined in parameters namespace
+      el_pt->pressure_singular_fct_pt() = &parameters::pressure_singular_fct;
+
+      // The singular function satisfies the Stokes equation
+      el_pt->singular_function_satisfies_stokes_equation() = false;
+
+      // el_pt->pin_c();
+      el_pt->set_c(0.0);
+
+      // unsigned n_element = Bulk_mesh_pt->nelement();
+      // for (unsigned e = 0; e < n_element; e++)
+      //{
+      //   ELEMENT* bulk_elem_pt =
+      //     dynamic_cast<ELEMENT*>(Bulk_mesh_pt->element_pt(e));
+
+      //  unsigned n_node = bulk_elem_pt->nnode();
+      //  for (unsigned n = 0; n < n_node; n++)
+      //  {
+      //    el_pt->add_external_data(bulk_elem_pt->node_pt(n));
+      //  }
+      //}
+
+      // Add element to the mesh
+      Singularity_scaling_mesh_pt->add_element_pt(el_pt);
+    }
+
+    // Create the no penetration boundary elements
+    void create_no_penetration_elements(const unsigned& b,
+                                        Mesh* const& bulk_mesh_pt,
+                                        Mesh* const& surface_mesh_pt)
+    {
+      // How many bulk elements are adjacent to boundary b?
+      unsigned n_element = bulk_mesh_pt->nboundary_element(b);
+
+      // Loop over the bulk elements adjacent to boundary b?
+      for (unsigned e = 0; e < n_element; e++)
+      {
+        // Get pointer to the bulk element that is adjacent to boundary b
+        ELEMENT* bulk_elem_pt =
+          dynamic_cast<ELEMENT*>(bulk_mesh_pt->boundary_element_pt(b, e));
+
+        // What is the index of the face of element e along boundary b
+        int face_index = bulk_mesh_pt->face_index_at_boundary(b, e);
+
+        // Build the corresponding slip element
+        NO_PENETRATION_ELEMENT* no_penetration_element_pt =
+          new NO_PENETRATION_ELEMENT(
+            bulk_elem_pt, face_index, Lagrange_id::No_penetration);
+
+        // if (no_penetration_element_pt->get_node_number(
+        //       Contact_line_solid_node_pt) == -1)
+        //{
+        //   no_penetration_element_pt->add_external_data(
+        //     Contact_line_solid_node_pt);
+        // }
+
+        // Add the prescribed-flux element to the surface mesh
+        surface_mesh_pt->add_element_pt(no_penetration_element_pt);
+
+      } // end of loop over bulk elements adjacent to boundary b
+    }
+
+    // Create the flux elements
+    void create_flux_elements()
+    {
+      if (Net_flux_mesh_pt)
+      {
+        // Build master element
+        NET_FLUX_ELEMENT* net_flux_el_pt =
+          new NET_FLUX_ELEMENT(&Flux_Parameters::flux_fct, time_pt());
+
+        // Add NetFluxControlElement to its mesh
+        Net_flux_mesh_pt->add_element_pt(net_flux_el_pt);
+
+        if (Flux_mesh_pt)
+        {
+          // Loop over the free surface boundary and create the interface
+          // elements
+          unsigned b = Upper_boundary_id;
+
+          // How many bulk fluid elements are adjacent to boundary b?
+          unsigned n_element = Bulk_mesh_pt->nboundary_element(b);
+
+          // Loop over the bulk fluid elements adjacent to boundary b?
+          for (unsigned e = 0; e < n_element; e++)
+          {
+            // Get pointer to the bulk fluid element that is
+            // adjacent to boundary b
+            ELEMENT* bulk_elem_pt =
+              dynamic_cast<ELEMENT*>(Bulk_mesh_pt->boundary_element_pt(b, e));
+
+            // Find the index of the face of element e along boundary b
+            int face_index = Bulk_mesh_pt->face_index_at_boundary(b, e);
+
+            // Create new element
+            FLUX_ELEMENT* el_pt = new FLUX_ELEMENT(
+              bulk_elem_pt,
+              face_index,
+              net_flux_el_pt->get_lagrange_multiplier_data_pt());
+
+            // Add it to the mesh
+            Flux_mesh_pt->add_element_pt(el_pt);
+          }
+        }
+      }
+    }
+
+    void setup_mesh_interaction()
+    {
+      oomph_info << "setup_mesh_interaction" << std::endl;
+      // Find corner bulk element
+      unsigned node_index;
+      ELEMENT* corner_bulk_element_pt = 0;
+      find_corner_bulk_element_and_node(Outer_boundary_with_slip_id,
+                                        Free_surface_boundary_id,
+                                        corner_bulk_element_pt,
+                                        node_index);
+
+      // Tell the CEquationElement object about its associated Navier-Stokes
+      // element, the component of the velocity whose derivative will be
+      // computed in the residual, the local coordinate in the Navier_Stokes
+      // element at which the residual will be computed, and the direction of
+      // the derivative
+      Vector<double> s1_pt(2);
+      s1_pt[0] = 0.0;
+      s1_pt[1] = 0.0;
+      unsigned* const direction_pt = new unsigned(0);
+      SingularNavierStokesSolutionElement<ELEMENT>* singular_el_pt =
+        dynamic_cast<SingularNavierStokesSolutionElement<ELEMENT>*>(
+          Singularity_scaling_mesh_pt->element_pt(0));
+      singular_el_pt->set_wrapped_navier_stokes_element_pt(
+        corner_bulk_element_pt, s1_pt, direction_pt);
+      Vector<double> x(2, 0.0);
+      corner_bulk_element_pt->get_x(s1_pt, x);
+      oomph_info << "First singular element point, ";
+      oomph_info << "x: " << x[0] << ", ";
+      oomph_info << "y: " << x[1] << ", ";
+      oomph_info << std::endl;
+
+      // Loop over the augmented bulk elements
+      unsigned n_aug_bulk = Augmented_bulk_element_number.size();
+      for (unsigned e = 0; e < n_aug_bulk; e++)
+      {
+        // Augment elements
+        // Upcast from GeneralisedElement to the present element
+        ELEMENT* el_pt = dynamic_cast<ELEMENT*>(
+          Bulk_mesh_pt->element_pt(Augmented_bulk_element_number[e]));
+
+        // Set the pointer to the element that determines the amplitude
+        // of the singular fct
+        el_pt->add_c_equation_element_pt(singular_el_pt);
+      }
+    }
+
+    void create_pressure_contribution_1_elements()
+    {
+      oomph_info << "create_pressure_contribution_1_elements" << std::endl;
+
+      ELEMENT* element_pt = 0;
+      int face_index = 0;
+      find_corner_bulk_element_and_face_index(Outer_boundary_with_slip_id,
+                                              Free_surface_boundary_id,
+                                              element_pt,
+                                              face_index);
+
+      PressureEvaluationElement<ELEMENT>* el_pt =
+        new PressureEvaluationElement<ELEMENT>(
+          element_pt,
+          face_index,
+          dynamic_cast<Node*>(Contact_line_solid_node_pt));
+
+      el_pt->set_pressure_data_pt(
+        Singularity_scaling_mesh_pt->element_pt(0)->internal_data_pt(0));
+      el_pt->set_boundary_number_in_bulk_mesh(Outer_boundary_with_slip_id);
+      // Set the product of the Reynolds number and the inverse of the
+      // Froude number
+      el_pt->re_invfr_pt() = &Parameters.reynolds_inverse_froude_number;
+      // Set the direction of gravity
+      el_pt->g_pt() = &Parameters.gravity_vector;
+
+      unsigned n_element = Bulk_mesh_pt->nelement();
+      for (unsigned e = 0; e < n_element; e++)
+      {
+        ELEMENT* bulk_elem_pt =
+          dynamic_cast<ELEMENT*>(Bulk_mesh_pt->element_pt(e));
+
+        unsigned n_node = bulk_elem_pt->nnode();
+        for (unsigned n = 0; n < n_node; n++)
+        {
+          if (el_pt->get_node_number(bulk_elem_pt->node_pt(n)) == -1)
+          {
+            el_pt->add_external_data(bulk_elem_pt->node_pt(n));
+          }
+        }
+      }
+
+      Pressure_contribution_mesh_1_pt->add_element_pt(el_pt);
+    }
+
+    void create_pressure_contribution_2_elements()
+    {
+      oomph_info << "create_pressure_contribution_2_elements" << std::endl;
+
+      ELEMENT* element_pt = 0;
+      int face_index = 0;
+      find_corner_bulk_element_and_face_index(Free_surface_boundary_id,
+                                              Outer_boundary_with_slip_id,
+                                              element_pt,
+                                              face_index);
+
+      PressureEvaluationElement<ELEMENT>* el_pt =
+        new PressureEvaluationElement<ELEMENT>(
+          element_pt,
+          face_index,
+          dynamic_cast<Node*>(Contact_line_solid_node_pt));
+
+      el_pt->set_pressure_data_pt(
+        Singularity_scaling_mesh_pt->element_pt(0)->internal_data_pt(0));
+      el_pt->set_boundary_number_in_bulk_mesh(Free_surface_boundary_id);
+      // Set the product of the Reynolds number and the inverse of the
+      // Froude number
+      el_pt->re_invfr_pt() = &Parameters.reynolds_inverse_froude_number;
+      // Set the direction of gravity
+      el_pt->g_pt() = &Parameters.gravity_vector;
+      el_pt->set_subtract_from_residuals();
+
+      unsigned n_element = Bulk_mesh_pt->nelement();
+      for (unsigned e = 0; e < n_element; e++)
+      {
+        ELEMENT* bulk_elem_pt =
+          dynamic_cast<ELEMENT*>(Bulk_mesh_pt->element_pt(e));
+
+        unsigned n_node = bulk_elem_pt->nnode();
+        for (unsigned n = 0; n < n_node; n++)
+        {
+          if (el_pt->get_node_number(bulk_elem_pt->node_pt(n)) == -1)
+          {
+            el_pt->add_external_data(bulk_elem_pt->node_pt(n));
+          }
+        }
+      }
+
+      Pressure_contribution_mesh_2_pt->add_element_pt(el_pt);
+    }
+
+    void create_mesh_as_geom_object()
+    {
+      Pressure_contribution_geom_mesh_1_pt =
+        new MeshAsGeomObject(Pressure_contribution_mesh_1_pt);
+
+      Pressure_contribution_geom_mesh_2_pt =
+        new MeshAsGeomObject(Pressure_contribution_mesh_2_pt);
+    }
+
+
     void find_two_nearest_corner_surface_element_and_face_index(
       Mesh* const& surface_mesh_pt,
       const unsigned& boundary_id,
@@ -2950,20 +3212,20 @@ namespace oomph
         ELEMENT* el_pt = dynamic_cast<ELEMENT*>(Bulk_mesh_pt->element_pt(e));
 
         // Set the Reynolds number
-        el_pt->re_pt() = &Re;
+        el_pt->re_pt() = &Parameters.reynolds_number;
 
         // Set the Womersley number
-        el_pt->re_st_pt() = &ReSt;
+        el_pt->re_st_pt() = &Parameters.reynolds_strouhal_number;
 
         // Set viscosity ratio
-        el_pt->viscosity_ratio_pt() = &Viscosity_ratio;
+        el_pt->viscosity_ratio_pt() = &Parameters.viscosity_ratio;
 
         // Set the product of the Reynolds number and the inverse of the
         // Froude number
-        el_pt->re_invfr_pt() = &ReInvFr;
+        el_pt->re_invfr_pt() = &Parameters.reynolds_inverse_froude_number;
 
         // Set the direction of gravity
-        el_pt->g_pt() = &Global_Physical_Parameters::G;
+        el_pt->g_pt() = &Parameters.gravity_vector;
 
         // Set the constitutive law
         el_pt->constitutive_law_pt() = Constitutive_law_pt;
@@ -2991,7 +3253,7 @@ namespace oomph
           dist = pow(dist, 0.5);
 
           // If the distance to the corner is within the "inner" region, ...
-          const double inner_radius = Mesh_Control_Parameters::Augmented_radius;
+          const double inner_radius = Parameters.augmented_radius;
           if (dist < inner_radius)
           {
             el_pt->augment();
@@ -3070,7 +3332,6 @@ namespace oomph
       return false;
     }
 
-  public:
     void get_z2_error(double& max_err, double& min_err)
     {
       ErrorEstimator* err_est_pt = Bulk_mesh_pt->spatial_error_estimator_pt();
@@ -3079,7 +3340,6 @@ namespace oomph
       Bulk_mesh_pt->spatial_error_estimator_pt() = err_est_pt;
     }
 
-  private:
     // Compute error estimates and save to elements
     void compute_error_estimate(double& max_err, double& min_err)
     {
@@ -3158,8 +3418,8 @@ namespace oomph
         pin_interior_pressure();
       }
 
-      if (Slip_Parameters::slip_length == 0 &&
-          std::abs(Slip_Parameters::wall_velocity) >= 1e-8)
+      if (Parameters.slip_length == 0 &&
+          std::abs(Parameters.wall_velocity) >= 1e-8)
       {
         pin_velocity_on_boundary(v_index, Outer_boundary_with_slip_id);
         pin_contact_line();
@@ -3229,71 +3489,6 @@ namespace oomph
       }
     }
 
-  public:
-    void perturb_free_surface()
-    {
-      const unsigned n_node =
-        Bulk_mesh_pt->nboundary_node(Free_surface_boundary_id);
-      for (unsigned n = 0; n < n_node; n++)
-      {
-        double r =
-          Bulk_mesh_pt->boundary_node_pt(Free_surface_boundary_id, n)->x(0);
-        const double amplitude = 0.01;
-        Bulk_mesh_pt->boundary_node_pt(Free_surface_boundary_id, n)->x(1) +=
-          amplitude * (-7.0 / 60.0 + pow(r, 2.0) / 2.0 - pow(r, 3.0) / 3.0);
-      }
-    }
-
-    void perturb_free_surface2()
-    {
-      const unsigned n_node =
-        Bulk_mesh_pt->nboundary_node(Free_surface_boundary_id);
-      for (unsigned n = 0; n < n_node; n++)
-      {
-        double r =
-          Bulk_mesh_pt->boundary_node_pt(Free_surface_boundary_id, n)->x(0);
-        if (r > 0.5)
-        {
-          const double amplitude = 0.01;
-          Bulk_mesh_pt->boundary_node_pt(Free_surface_boundary_id, n)->x(1) +=
-            amplitude * (r - 0.5) * (r - 0.5) * (1.0 - r);
-        }
-      }
-    }
-
-    void perturb_displacement(const double& amplitude)
-    {
-      const unsigned n_node = Bulk_mesh_pt->nnode();
-      for (unsigned n = 0; n < n_node; n++)
-      {
-        double r = Bulk_mesh_pt->node_pt(n)->x(0);
-        double z = Bulk_mesh_pt->node_pt(n)->x(1);
-        // Constrains for the perturbation
-        // Volume is conserved
-        // y'(0) = 0
-        // y'(1) = 0
-        // Bulk_mesh_pt->node_pt(n)->x(1) +=
-        //  amplitude * (-7.0 / 60.0 + pow(r, 2.0) / 2.0 - pow(r, 3.0) / 3.0)
-        //  * (3.5 - z);
-        Bulk_mesh_pt->node_pt(n)->x(1) +=
-          amplitude * ((tanh(7.0 * (r - 0.4)) - 0.646608127717086) /
-                       1.992181886660662 * (3.5 - z));
-      }
-    }
-
-    void perturb_fluid()
-    {
-      const unsigned n_node = Bulk_mesh_pt->nnode();
-      for (unsigned n = 0; n < n_node; n++)
-      {
-        double r = Bulk_mesh_pt->node_pt(n)->x(0) - 0.5;
-        double z = Bulk_mesh_pt->node_pt(n)->x(1) - 3.5 / 2.0;
-        Bulk_mesh_pt->node_pt(n)->set_value(u_index, z);
-        Bulk_mesh_pt->node_pt(n)->set_value(v_index, -r);
-      }
-    }
-
-  private:
     void unpin_all_boundaries()
     {
       unsigned n_bound = Bulk_mesh_pt->nboundary();
@@ -3314,51 +3509,6 @@ namespace oomph
       }
     }
 
-  public:
-    void pin_volume_constraint()
-    {
-      External_pressure_data_pt->pin(0);
-    }
-
-    void pin_flux_constraint()
-    {
-      if (Net_flux_mesh_pt)
-      {
-        dynamic_cast<NET_FLUX_ELEMENT*>(Net_flux_mesh_pt->element_pt(0))
-          ->internal_data_pt(0)
-          ->pin(0);
-      }
-    }
-
-  private:
-  public:
-    void pin_velocity_on_boundary(const unsigned& j, const unsigned& b)
-    {
-      // Loop over the nodes on the boundary
-      unsigned n_boundary_node = Bulk_mesh_pt->nboundary_node(b);
-      for (unsigned n = 0; n < n_boundary_node; n++)
-      {
-        // No conditons on the free surface. The dynamic and kinematic
-        // conditions are handled by the interface elements
-        Bulk_mesh_pt->boundary_node_pt(b, n)->pin(j);
-      }
-    }
-
-    void set_velocity_on_boundary(const unsigned& j,
-                                  const unsigned& b,
-                                  const double& value)
-    {
-      // Loop over the nodes on the boundary
-      unsigned n_boundary_node = Bulk_mesh_pt->nboundary_node(b);
-      for (unsigned n = 0; n < n_boundary_node; n++)
-      {
-        // No conditons on the free surface. The dynamic and kinematic
-        // conditions are handled by the interface elements
-        Bulk_mesh_pt->boundary_node_pt(b, n)->set_value(j, value);
-      }
-    }
-
-  private:
     void set_velocity_on_upper_boundary_to_parabola()
     {
       unsigned n_boundary_node =
@@ -3370,8 +3520,8 @@ namespace oomph
         double x = node_pt->x(0);
         double flux = 0;
         Flux_Parameters::flux_fct(this->time(), flux);
-        double U = 2 * (Slip_Parameters::wall_velocity + flux) * x * x -
-                   Slip_Parameters::wall_velocity - 2 * flux;
+        double U = 2 * (Parameters.wall_velocity + flux) * x * x -
+                   Parameters.wall_velocity - 2 * flux;
         node_pt->set_value(v_index, U);
       }
     }
@@ -3407,104 +3557,6 @@ namespace oomph
       }
     }
 
-  public:
-    void pin_fluid()
-    {
-      oomph_info << "pin_fluid" << std::endl;
-      unsigned n_element = Bulk_mesh_pt->nelement();
-      for (unsigned n = 0; n < n_element; n++)
-      {
-        dynamic_cast<ELEMENT*>(Bulk_mesh_pt->element_pt(n))->pin();
-      }
-
-      pin_kinematic_lagrange_multiplier(0.0);
-
-      // Setup all the equation numbering and look-up schemes
-      oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
-    }
-
-    void pin_solid_boundaries()
-    {
-      for (unsigned j = 0; j < 2; j++)
-      {
-        for (unsigned b = 0; b < 4; b++)
-        {
-          pin_position_on_boundary(j, b);
-        }
-      }
-      pin_volume_constraint();
-
-      // Setup all the equation numbering and look-up schemes
-      oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
-    };
-
-    void pin_fs_solid_boundary()
-    {
-      for (unsigned j = 0; j < 2; j++)
-      {
-        for (unsigned b = 0; b < 4; b++)
-        {
-          if (b == Free_surface_boundary_id)
-          {
-            pin_position_on_boundary(j, b);
-          }
-        }
-      }
-      pin_volume_constraint();
-
-      // Setup all the equation numbering and look-up schemes
-      oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
-    };
-
-    void pin_solid_boundaries(const unsigned& b)
-    {
-      for (unsigned j = 0; j < 2; j++)
-      {
-        pin_position_on_boundary(j, b);
-      }
-      if (b == Free_surface_boundary_id)
-      {
-        pin_volume_constraint();
-      }
-
-      // Setup all the equation numbering and look-up schemes
-      oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
-    };
-
-    void pin_fluid_boundary(const unsigned& b)
-    {
-      for (unsigned j = 0; j < 3; j++)
-      {
-        pin_velocity_on_boundary(j, b);
-      }
-      if (b == Free_surface_boundary_id)
-      {
-        pin_kinematic_lagrange_multiplier(0.0);
-      }
-
-      // Setup all the equation numbering and look-up schemes
-      oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
-    };
-
-    void pin_solid_boundaries_except_upper()
-    {
-      for (unsigned j = 0; j < 2; j++)
-      {
-        for (unsigned b = 0; b < 4; b++)
-        {
-          if (b != Upper_boundary_id)
-          {
-            pin_position_on_boundary(j, b);
-          }
-        }
-      }
-      pin_volume_constraint();
-
-      // Setup all the equation numbering and look-up schemes
-      oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
-    };
-
-  private:
     void pin_azimuthal_velocity()
     {
       unsigned n_node = Bulk_mesh_pt->nnode();
@@ -3533,49 +3585,6 @@ namespace oomph
       }
     }
 
-  public:
-    void pin_horizontal_displacement()
-    {
-      unsigned n_node = Bulk_mesh_pt->nnode();
-      for (unsigned n = 0; n < n_node; n++)
-      {
-        dynamic_cast<SolidNode*>(Bulk_mesh_pt->node_pt(n))->pin_position(0);
-      }
-
-      // Setup all the equation numbering and look-up schemes
-      oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
-    }
-
-    void pin_vertical_displacement()
-    {
-      unsigned n_node = Bulk_mesh_pt->nnode();
-      for (unsigned n = 0; n < n_node; n++)
-      {
-        dynamic_cast<SolidNode*>(Bulk_mesh_pt->node_pt(n))->pin_position(1);
-      }
-    }
-
-    void pin_all_pressure()
-    {
-      unsigned n_element = Bulk_mesh_pt->nelement();
-      for (unsigned n = 0; n < n_element; n++)
-      {
-        ELEMENT* el_pt = dynamic_cast<ELEMENT*>(Bulk_mesh_pt->element_pt(n));
-        el_pt->pin_pressure();
-      }
-    }
-
-    void pin_interior_pressure()
-    {
-      SolidNode* node_pt = 0;
-      find_corner_node(Outer_boundary_with_slip_id, Upper_boundary_id, node_pt);
-      node_pt->pin(3);
-      node_pt->set_value(3, 0.0);
-      // Inner_corner_solid_node_pt->pin(3);
-      // Inner_corner_solid_node_pt->set_value(3, 0.0);
-    }
-
-  private:
     void unpin_interior_pressure()
     {
       SolidNode* node_pt = 0;
@@ -3584,23 +3593,6 @@ namespace oomph
       // Inner_corner_solid_node_pt->unpin(3);
     }
 
-  public:
-    void pin_solid()
-    {
-      oomph_info << "pin_solid" << std::endl;
-      // Pin all solid node positions
-      unsigned n_node = Bulk_mesh_pt->nnode();
-      for (unsigned n = 0; n < n_node; n++)
-      {
-        dynamic_cast<SolidNode*>(Bulk_mesh_pt->node_pt(n))->pin_position(0);
-        dynamic_cast<SolidNode*>(Bulk_mesh_pt->node_pt(n))->pin_position(1);
-      }
-
-      pin_volume_constraint();
-      pin_kinematic_lagrange_multiplier(0.0);
-    }
-
-  private:
     // Set the contact line node pointer
     void set_contact_line_node_pt()
     {
@@ -3643,16 +3635,10 @@ namespace oomph
       // We need to know which is the corner node
       set_contact_line_node_pt();
       // Create error estimator with the mesh control parameters.
-      // Corner_error_estimator_pt = new CornerErrorEstimator(
-      //   Contact_line_solid_node_pt,
-      //   Inner_corner_solid_node_pt,
-      //   &Mesh_Control_Parameters::min_element_length,
-      //   &Mesh_Control_Parameters::inner_min_element_length,
-      //   Mesh_Control_Parameters::element_length_ratio);
-      Corner_error_estimator_pt = new ContactlineErrorEstimator(
-        Contact_line_solid_node_pt,
-        Mesh_Control_Parameters::min_element_length,
-        Mesh_Control_Parameters::element_length_ratio);
+      Corner_error_estimator_pt =
+        new ContactlineErrorEstimator(Contact_line_solid_node_pt,
+                                      Parameters.min_element_length,
+                                      Parameters.element_length_ratio);
     }
 
     bool is_almost_static()
@@ -3660,8 +3646,7 @@ namespace oomph
       double velocity_norm = 0;
       velocity_norm = global_velocity_norm();
 
-      if (std::abs(Slip_Parameters::wall_velocity) < 1e-8 ||
-          velocity_norm < 1e-8)
+      if (std::abs(Parameters.wall_velocity) < 1e-8 || velocity_norm < 1e-8)
       {
         return true;
       }
@@ -3679,8 +3664,7 @@ namespace oomph
       double velocity_norm = 0;
       velocity_norm = global_velocity_norm();
 
-      if (std::abs(Slip_Parameters::wall_velocity) < 1e-8 ||
-          velocity_norm < 1e-8)
+      if (std::abs(Parameters.wall_velocity) < 1e-8 || velocity_norm < 1e-8)
       {
         Using_contact_angle_error_estimator = true;
         create_corner_error_estimator();
@@ -3690,9 +3674,9 @@ namespace oomph
 
         // Set the refinement tolerances
         Bulk_mesh_pt->min_permitted_error() =
-          Mesh_Control_Parameters::Min_permitted_mesh_residual;
+          Parameters.min_permitted_mesh_residual;
         Bulk_mesh_pt->max_permitted_error() =
-          Mesh_Control_Parameters::Max_permitted_mesh_residual;
+          Parameters.max_permitted_mesh_residual;
       }
       else
       {
@@ -3701,10 +3685,8 @@ namespace oomph
         Bulk_mesh_pt->spatial_error_estimator_pt() = Z2_error_estimator_pt;
 
         // Set the refinement tolerances
-        Bulk_mesh_pt->min_permitted_error() =
-          Mesh_Control_Parameters::Min_permitted_z2_error;
-        Bulk_mesh_pt->max_permitted_error() =
-          Mesh_Control_Parameters::Max_permitted_z2_error;
+        Bulk_mesh_pt->min_permitted_error() = Parameters.min_permitted_z2_error;
+        Bulk_mesh_pt->max_permitted_error() = Parameters.max_permitted_z2_error;
       }
       if (Using_contact_angle_error_estimator)
       {
@@ -3732,9 +3714,10 @@ namespace oomph
         const double eulerian_z_pos_middle_node = el_pt->node_pt(4)->x(1);
 
         // Determine the value of the pressure at this node
-        const double p_val_at_middle_node = Global_Physical_Parameters::G[1] *
-                                            this->ReInvFr *
-                                            (eulerian_z_pos_middle_node - 3.5);
+        const double p_val_at_middle_node =
+          Parameters.gravity_vector[1] *
+          Parameters.reynolds_inverse_froude_number *
+          (eulerian_z_pos_middle_node - 3.5);
 
         // Specify the pressure analytically
         el_pt->fix_pressure(0, p_val_at_middle_node);
@@ -3914,17 +3897,6 @@ namespace oomph
       }
     }
 
-  public:
-    void reset_lagrange()
-    {
-      Bulk_mesh_pt->set_lagrangian_nodal_coordinates();
-      if (Free_surface_mesh_pt)
-      {
-        set_kinematic_lagrange_multiplier(0.0);
-      }
-    }
-
-  private:
     void create_non_refineable_elements()
     {
       // Create the elements of the other meshes
@@ -4229,62 +4201,6 @@ namespace oomph
     }
 
 
-    //============================================================================
-    // Destruction functions
-    //============================================================================
-  public:
-    // Destructor: clean up memory allocated by the object
-    ~SingularAxisymDynamicCapProblem()
-    {
-      // Close the trace file
-      close_trace_files();
-
-      // Delete all non-refineable elements
-      delete_non_refineable_elements();
-
-      // Delete all pointers created with "new" in reverse order
-      if (Net_flux_mesh_pt)
-      {
-        delete Net_flux_mesh_pt;
-      }
-      if (Flux_mesh_pt)
-      {
-        delete Flux_mesh_pt;
-      }
-      if (No_penetration_boundary_mesh_pt)
-      {
-        delete No_penetration_boundary_mesh_pt;
-      }
-      if (Slip_boundary_mesh_pt)
-      {
-        delete Slip_boundary_mesh_pt;
-      }
-      if (Contact_angle_mesh_pt)
-      {
-        delete Contact_angle_mesh_pt;
-      }
-      if (Volume_computation_mesh_pt)
-      {
-        delete Volume_computation_mesh_pt;
-      }
-      if (Volume_constraint_mesh_pt)
-      {
-        delete Volume_constraint_mesh_pt;
-      }
-      if (Free_surface_mesh_pt)
-      {
-        delete Free_surface_mesh_pt;
-      }
-
-      // Next delete the external data
-      delete External_pressure_data_pt;
-
-      delete Bulk_mesh_pt;
-
-      delete Constitutive_law_pt;
-    }
-
-  private:
     // Delete elements of the passed mesh
     void delete_elements(Mesh* mesh_pt)
     {
@@ -4300,156 +4216,6 @@ namespace oomph
         mesh_pt->flush_element_and_node_storage();
       }
     }
-
-  private:
-    //============================================================================
-    // Class Variables
-    //============================================================================
-    // Dimensionless parameters
-    double Ca;
-    double Bo;
-    double Re;
-    double ReSt;
-    double Viscosity_ratio;
-    double St;
-    double ReInvFr;
-
-    // The prescribed volume of the fluid if static
-    double Volume;
-
-    // The external pressure
-    double Pext;
-
-    // The contact angle
-    double Contact_angle;
-    double Right_angle;
-    double Zero_sigma;
-
-    // Maximum number of adapt steps
-    unsigned Max_adapt;
-
-    // Constitutive law used to determine the mesh deformation
-    ConstitutiveLaw* Constitutive_law_pt;
-
-    // Data object whose single value stores the external pressure
-    Data* External_pressure_data_pt;
-
-    // Contact line node pointer
-    SolidNode* Contact_line_solid_node_pt;
-    SolidNode* Inner_corner_solid_node_pt;
-
-    // Error Estimator pointers
-    Z2ErrorEstimator* Z2_error_estimator_pt;
-    ErrorEstimator* Corner_error_estimator_pt;
-
-    // Trace file
-    std::ofstream Trace_file;
-    std::ofstream Volume_trace_file;
-    std::ofstream Flux_trace_file;
-    std::ofstream Contact_angle_trace_file;
-    std::ofstream Inner_angle_trace_file;
-
-    std::chrono::high_resolution_clock::time_point Start_time;
-
-    // Storage for the bulk mesh
-    RefineableSolidTriangleMesh<ELEMENT>* Bulk_mesh_pt;
-
-
-  private:
-    // Storage for the free surface mesh
-    Mesh* Free_surface_mesh_pt;
-
-    // Storage for the slip elements
-    Mesh* Slip_boundary_mesh_pt;
-
-    // Storage for the no penetration elements
-    Mesh* No_penetration_boundary_mesh_pt;
-
-    // Storage for the flux elements
-    Mesh* Flux_mesh_pt;
-
-    // Storage for the elements that compute the enclosed volume
-    Mesh* Volume_computation_mesh_pt;
-
-    // Storage for the element bounding the free surface
-    Mesh* Contact_angle_mesh_pt;
-
-    // Storage for the augmented element
-    Mesh* Eigensolution_slip_mesh_pt;
-    Mesh* Singularity_scaling_mesh_pt;
-    Mesh* Pressure_contribution_mesh_1_pt;
-    Mesh* Pressure_contribution_mesh_2_pt;
-    MeshAsGeomObject* Pressure_contribution_geom_mesh_1_pt;
-    MeshAsGeomObject* Pressure_contribution_geom_mesh_2_pt;
-
-    // Storage for the volume constraint
-    Mesh* Volume_constraint_mesh_pt;
-
-    // Storage for the net flux element
-    Mesh* Net_flux_mesh_pt;
-
-    // Backup mesh
-    Vector<BackupMeshForProjection<TElement<1, 3>>*> Backed_up_surface_mesh_pt;
-
-    // List of augmented element numbers
-    Vector<unsigned> Augmented_bulk_element_number;
-
-    // Backup mesh id
-    enum struct Backup_mesh_id
-    {
-      No_penetration,
-      Free_surface,
-    };
-
-    enum Lagrange_id
-    {
-      No_penetration,
-      Kinematic,
-    };
-
-    // Backup mesh indices
-    Vector<Backup_mesh_id> Backup_mesh_index_vector;
-
-    // Triangle mesh polygon for outer boundary
-    TriangleMeshPolygon* Outer_boundary_polyline_pt;
-
-    // Backup lagrange multipliers
-    double Backup_volume_constraint_lagrange_multiplier;
-    double Backup_net_flux_lagrange_multiplier;
-    double Backup_singularity_scaling_lagrange_multiplier;
-    double Backup_point_kinematic_lagrange_multiplier;
-
-    // Enumeration of domain boundaries
-    enum
-    {
-      Upper_boundary_id,
-      Outer_boundary_with_slip_id,
-      Free_surface_boundary_id,
-      Inner_boundary_id,
-    };
-
-    // Enumeration of velocity indices
-    enum
-    {
-      u_index,
-      v_index,
-      w_index
-    };
-
-    // Enumeration of the different problems
-    enum Problem_type
-    {
-      Normal_problem,
-      Bulk_only_problem
-    };
-
-    Problem_type problem_type;
-
-
-    // Static problem state Boolean
-    bool Is_steady;
-    bool Is_augmented;
-    bool Using_contact_angle_error_estimator;
   };
 } // namespace oomph
 #endif

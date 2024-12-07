@@ -44,9 +44,7 @@
 
 #include "my_error_estimator.h"
 
-#include "axisym_fluid_slip_elements.h"
 
-#include "axisym_navier_stokes_flux_elements.h"
 
 #include "net_flux_elements.h"
 
@@ -88,7 +86,7 @@ namespace oomph
     typedef VolumeConstraintElementWithOutput VOLUME_CONSTRAINT_ELEMENT;
     typedef AxisymmetricNavierStokesSlipElement<ELEMENT> SLIP_ELEMENT;
     typedef DebugImposeImpenetrabilityElement<ELEMENT> NO_PENETRATION_ELEMENT;
-    typedef AxisymmetricNavierStokesFluxElement<ELEMENT> FLUX_ELEMENT;
+    typedef AxisymmetricFluidFluxElement<ELEMENT> FLUX_ELEMENT;
     typedef NetFluxElement NET_FLUX_ELEMENT;
     typedef ElasticPointFluidInterfaceBoundingElement<ELEMENT>
       CONTACT_LINE_ELEMENT;

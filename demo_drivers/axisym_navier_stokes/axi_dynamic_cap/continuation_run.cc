@@ -26,7 +26,6 @@
 
 // OOMPH-LIB include files
 #include "generic.h"
-#include "singular_axisym_navier_stokes_elements.h"
 #include "fluid_interface.h"
 #include "constitutive.h"
 #include "solid.h"

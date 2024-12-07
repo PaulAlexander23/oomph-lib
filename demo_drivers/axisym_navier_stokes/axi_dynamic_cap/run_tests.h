@@ -13,7 +13,6 @@
 // Local include files
 #include "singular_axisym_dynamic_cap_problem.h"
 
-#include "singular_axisym_navier_stokes_elements.h"
 #include "projectable_axisymmetric_Ttaylor_hood_elements.h"
 
 #include "parameters.h"
