@@ -5,7 +5,6 @@
 
 namespace oomph
 {
-
   template<class ELEMENT>
   class SingularNavierStokesTractionElement
     : public virtual NavierStokesTractionElement<ELEMENT>
