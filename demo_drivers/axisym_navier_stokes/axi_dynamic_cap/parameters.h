@@ -2,6 +2,7 @@
 #define PARAMETERS_HEADER
 
 #include <sys/stat.h>
+#include <limits>
 #include "generic.h"
 
 namespace oomph
@@ -32,6 +33,8 @@ namespace oomph
     double min_element_size = 0.5 * std::pow(min_element_length, 2.0);
     double min_permitted_angle = 15;
     double min_permitted_z2_error = 1e-7;
+    double min_permitted_mesh_residual = 0.01;
+    double max_permitted_mesh_residual = 1.0;
     double newton_solver_tolerance = 1e-8;
     double nu = 0.25;
     double polyline_refinement_tolerence = 4e-3; // 8e-3
@@ -59,7 +62,7 @@ namespace oomph
     unsigned error_estimator_flag = 1;
     unsigned initial_number_of_free_surface_points = 32;
     unsigned interval_between_adapts = 5;
-    unsigned max_newton_iterations = 20;
+    unsigned max_newton_iterations = 40;
     unsigned max_number_of_adapts_for_refinement = 20;
     unsigned surface_element_number_of_plot_points = 3;
   };
@@ -234,7 +237,103 @@ namespace oomph
     {
     }
 
+    parameter_filestream.close();
+
     return params;
+  }
+
+  void save_parameters_to_file(const Params& params,
+                               const std::string& filename)
+  {
+    std::ofstream parameter_filestream(filename);
+
+    parameter_filestream << std::setprecision(
+      std::numeric_limits<double>::max_digits10);
+
+    parameter_filestream << params.reynolds_inverse_froude_number
+                         << " # Reynolds Inverse Froude number"
+                         << "\n";
+    parameter_filestream << params.capillary_number << " # Capillary number"
+                         << "\n";
+    parameter_filestream << params.reynolds_number << " # Reynolds number"
+                         << "\n";
+    parameter_filestream << params.contact_angle << " # Contact angle"
+                         << "\n";
+    parameter_filestream << params.max_adapt << " # Max number of adapt steps"
+                         << "\n";
+    parameter_filestream << params.output_directory << " # Output directory"
+                         << "\n";
+    parameter_filestream << params.slip_length << " # Slip length"
+                         << "\n";
+    parameter_filestream << params.min_element_length
+                         << " # Mininum element length"
+                         << "\n";
+    parameter_filestream << params.element_length_ratio
+                         << " # Element length ratio"
+                         << "\n";
+    parameter_filestream << params.flux_withdraw_speed << " # Withdraw speed "
+                         << "\n";
+    parameter_filestream << params.flux_duration << " # Flux duration"
+                         << "\n";
+    parameter_filestream << params.ramp_up_time << " # Flux ramp up time"
+                         << "\n";
+    parameter_filestream << params.max_element_size << " # Max element area"
+                         << "\n";
+    parameter_filestream << params.min_element_size << " # Min element area"
+                         << "\n";
+    parameter_filestream << params.max_free_surface_polyline_length
+                         << " # Max_free_surface_polyline_length "
+                         << "\n";
+    parameter_filestream << params.max_slip_polyline_length
+                         << " # Max_slip_polyline_length"
+                         << "\n";
+    parameter_filestream << params.interval_between_adapts
+                         << " # interval_between_adapts"
+                         << "\n";
+    parameter_filestream
+      << params.error_estimator_flag
+      << " # Error estimator flag, 0 ContactLine, 1 Z2, 2 Corner"
+      << "\n";
+    parameter_filestream << params.nu << " # Pseudo-solid Poisson ratio (Nu)"
+                         << "\n";
+    parameter_filestream << params.temporal_tolerance << " # Temporal tolerance"
+                         << "\n";
+    parameter_filestream << params.max_timestep << " # Max timestep"
+                         << "\n";
+    parameter_filestream << params.is_adaptive_timestepping
+                         << " # Use adaptive timestepping"
+                         << "\n";
+    parameter_filestream << params.max_permitted_z2_error
+                         << " # Max permitted Z2 error"
+                         << "\n";
+    parameter_filestream << params.min_permitted_z2_error
+                         << " # Min permitted Z2 error"
+                         << "\n";
+    parameter_filestream << params.final_time << " # Target final time"
+                         << "\n";
+    parameter_filestream << params.time_step << " # Time step"
+                         << "\n";
+    parameter_filestream << params.restart_filename << " # Restart filename"
+                         << "\n";
+    parameter_filestream << params.wall_velocity << " # Wall velocity"
+                         << "\n";
+    parameter_filestream << params.azimuthal_mode_number
+                         << " # Azimuthal mode number"
+                         << "\n";
+    parameter_filestream
+      << params.max_number_of_adapts_for_refinement
+      << " # Max number of adapts for initial mesh refinement"
+      << "\n";
+    parameter_filestream << params.is_strong_contact_angle
+                         << " # Use strong contact angle"
+                         << "\n";
+    parameter_filestream << params.polyline_refinement_tolerence
+                         << " # Free surface error tolerence"
+                         << "\n";
+    parameter_filestream << params.augmented_radius
+                         << " # Augmented region's radius" << std::endl;
+
+    parameter_filestream.close();
   }
 } // namespace oomph
 #endif

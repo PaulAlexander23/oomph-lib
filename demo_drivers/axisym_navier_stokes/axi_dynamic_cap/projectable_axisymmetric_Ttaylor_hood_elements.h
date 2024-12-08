@@ -48,27 +48,11 @@ namespace oomph
 
 
   class ProjectableAxisymmetricTTaylorHoodPVDElement
-    : public virtual ProjectableAxisymmetricTaylorHoodElement<
-        AxisymmetricTTaylorHoodPVDElement>,
+    : public virtual ElementWithError<ProjectableAxisymmetricTaylorHoodElement<
+        AxisymmetricTTaylorHoodPVDElement>>,
       public virtual DebugJacobianSolidFiniteElement
   {
-  private:
-    double Error;
-
   public:
-    ProjectableAxisymmetricTTaylorHoodPVDElement() : Error(0.0) {}
-
-    // Set error value for post-processing
-    void set_error(const double& error)
-    {
-      Error = error;
-    }
-
-    void get_error(double& error)
-    {
-      error = Error;
-    }
-
     void pin()
     {
       for (unsigned i = 0; i < 6; i++)
@@ -96,68 +80,6 @@ namespace oomph
           this->node_pt(i)->pin(3 + j);
         }
       }
-    }
-
-    // Overload output function
-    void output(std::ostream& outfile, const unsigned& nplot)
-    {
-      // Vector of local coordinates
-      Vector<double> s(2);
-      Vector<double> xi(2);
-
-      // Tecplot header info
-      outfile << this->tecplot_zone_string(nplot);
-
-      // Loop over plot points
-      unsigned num_plot_points = this->nplot_points(nplot);
-      for (unsigned iplot = 0; iplot < num_plot_points; iplot++)
-      {
-        // Get local coordinates of plot point
-        this->get_s_plot(iplot, nplot, s);
-        this->interpolated_xi(s, xi);
-
-        std::streamsize old_precision = outfile.precision();
-        outfile.precision(16);
-        // Coordinates
-        for (unsigned i = 0; i < 2; i++)
-        {
-          outfile << this->interpolated_x(s, i) << " ";
-        }
-        outfile.precision(old_precision);
-
-        // Velocities
-        for (unsigned i = 0; i < 3; i++)
-        {
-          outfile << this->interpolated_u_axi_nst(s, i) << " ";
-        }
-
-        // Pressure
-        outfile << this->interpolated_p_axi_nst(s) << " ";
-
-        // Lagrange coordinates
-        for (unsigned i = 0; i < 2; i++)
-        {
-          outfile << this->interpolated_x(s, i) - xi[i] << " ";
-        }
-
-        // Error
-        outfile << Error << " ";
-
-        // Size
-        outfile << this->size() << " ";
-
-        outfile << std::endl;
-      }
-
-      // Write tecplot footer (e.g. FE connectivity lists)
-      this->write_tecplot_zone_footer(outfile, nplot);
-    }
-
-    // Overload output function
-    void output(std::ostream& outfile)
-    {
-      unsigned nplot = 3;
-      output(outfile, nplot);
     }
   }; // namespace >
 
