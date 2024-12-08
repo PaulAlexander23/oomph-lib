@@ -3645,7 +3645,6 @@ namespace oomph
       // Create the other meshes
       if (!Augmented_bulk_element_number.empty())
       {
-        parameters::x_centre_node_pt = Contact_line_solid_node_pt;
         std::cout << "Make augmented elements" << std::endl;
         create_singularity_scaling_elements();
         create_pressure_contribution_1_elements();

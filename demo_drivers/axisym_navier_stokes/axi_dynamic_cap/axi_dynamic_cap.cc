@@ -94,35 +94,19 @@ int main(int argc, char** argv)
     }
   }
 
-  // Set the problem parameters
-  problem.set_contact_angle(
-    Global_Physical_Parameters::Equilibrium_contact_angle);
-  problem.set_bond_number(Global_Physical_Parameters::Bo);
-  problem.set_capillary_number(Global_Physical_Parameters::Ca);
-  problem.set_reynolds_number(Global_Physical_Parameters::Re);
-
-  // Set maximum number of mesh adaptations per solve
-  problem.set_max_adapt(parameters.max_adapt);
-
-  // Set output directory
-  problem.set_directory(parameters.dir_name);
-
   // Setup trace file
   problem.open_trace_files(true);
 
   // Save a copy of the parameters
-  ofstream parameters_filestream(
-    (parameters.dir_name + "/parameters.dat").c_str());
-  parameters.doc(parameters_filestream);
-  parameters_filestream.close();
+  save_parameters_to_file(parameters,
+                          parameters.output_directory + "/parameters.dat");
 
   // Document initial condition
   problem.create_restart_file();
   problem.doc_solution();
-  problem.max_newton_iterations() = 40;
 
   // If the final time is zero (or less) then we are doing a steady solve,
-  if (parameters.ft <= 0)
+  if (parameters.final_time <= 0)
   {
     // Solve for the steady state adapting if needed by the Z2 error estimator
     problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
@@ -137,11 +121,10 @@ int main(int argc, char** argv)
   else
   {
     // If the contact angle is acute, then timestep
-    if (Global_Physical_Parameters::Equilibrium_contact_angle <=
-        90.0 * MathematicalConstants::Pi / 180.0)
+    if (parameters.contact_angle <= 90.0 * MathematicalConstants::Pi / 180.0)
     {
       // Timestep until the desired final time
-      problem.timestep(parameters.dt, parameters.ft);
+      problem.timestep(parameters.time_step, parameters.final_time);
     }
     // otherwise, throw a warning as we haven't implemented this yet
     else
