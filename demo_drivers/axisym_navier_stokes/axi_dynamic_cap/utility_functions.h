@@ -2,10 +2,15 @@
 #define UTILITY_FUNCTIONS_HEADER
 
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+
+#include "generic.h"
 
 namespace oomph
 {
-  template<typename TA, typename TB>
+  template<class TA, class TB>
   bool compare_matrices(TA const& A,
                         TB const& B,
                         const double& abs_err_tolerance = 1e-6)
@@ -42,7 +47,7 @@ namespace oomph
     return matrices_are_equal;
   }
 
-  template<typename TA>
+  template<class TA>
   void output_matrices(std::ofstream& output_stream, TA const& A)
   {
     output_stream.precision(16);
@@ -56,7 +61,7 @@ namespace oomph
     }
   }
 
-  template<typename TA>
+  template<class TA>
   void output_matrices(TA const& A, const std::string& filename)
   {
     std::ofstream output_stream(filename);
@@ -72,13 +77,71 @@ namespace oomph
     output_stream.close();
   }
 
-  template<typename PROBLEM_PT>
-  void save_dofs_types(PROBLEM_PT const& problem_pt,
+  template<class PROBLEM_PT>
+  void save_dofs_types(const PROBLEM_PT& problem_pt,
                        const std::string& filename)
   {
     std::ofstream output_stream(filename);
     problem_pt->describe_dofs(output_stream);
     output_stream.close();
+  }
+
+  template<class PROBLEM_PT>
+  void debug_jacobian(PROBLEM_PT const& problem_pt)
+  {
+    std::cout << "debug jacobian" << std::endl;
+    std::ofstream out_stream;
+
+    DoubleVector dummy_residuals;
+    CRDoubleMatrix actual_jacobian;
+    problem_pt->get_jacobian(dummy_residuals, actual_jacobian);
+
+    DoubleVector residuals;
+    DenseMatrix<double> expected_jacobian;
+    problem_pt->get_fd_jacobian(residuals, expected_jacobian);
+
+    compare_matrices(expected_jacobian, actual_jacobian);
+
+    out_stream.open("dofs.txt");
+    problem_pt->describe_dofs(out_stream);
+    out_stream.close();
+  }
+
+  CRDoubleMatrix* load_crdoublematrix(const std::string& filename,
+                                      const LinearAlgebraDistribution* dist_pt,
+                                      const unsigned& ncol)
+  {
+    Vector<double> value;
+    Vector<int> column_index;
+    Vector<int> row_start;
+
+    std::ifstream file_stream(filename, std::ios::in);
+    std::string line;
+    int row_counter = 0;
+    row_start.push_back(0);
+    while (std::getline(file_stream, line))
+    {
+      std::istringstream ss(line);
+      std::string token;
+
+      std::getline(ss, token, ' ');
+      while (row_counter < std::stoi(token))
+      {
+        row_start.push_back(value.size());
+        row_counter++;
+      }
+
+      std::getline(ss, token, ' ');
+      column_index.push_back(std::stoi(token));
+
+      std::getline(ss, token);
+      value.push_back(std::stod(token));
+    }
+    file_stream.close();
+
+    row_start.push_back(value.size());
+
+    return new CRDoubleMatrix(dist_pt, ncol, value, column_index, row_start);
   }
 } // namespace oomph
 

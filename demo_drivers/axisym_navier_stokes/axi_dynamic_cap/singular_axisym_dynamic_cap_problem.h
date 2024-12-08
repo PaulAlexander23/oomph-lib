@@ -40,20 +40,21 @@
 #include "solid.h"
 
 // The mesh
-#include "meshes/triangle_mesh.h"
-
-#include "my_error_estimator.h"
-#include "net_flux_elements.h"
-#include "parameters.h"
-#include "parameter_functions.h"
 #include "complex_less.h"
-#include "volume_constraint_elements_with_output.h"
-#include "my_eigenproblem.h"
-#include "free_surface_elements.h"
-#include "utility_functions.h"
-#include "projectable_axisymmetric_Ttaylor_hood_elements.h"
 #include "debug_elastic_axisymmetric_volume_constraint_boundary_elements.h"
 #include "debug_impose_impenetratibility_elements.h"
+#include "free_surface_elements.h"
+#include "meshes/triangle_mesh.h"
+#include "my_eigenproblem.h"
+#include "my_error_estimator.h"
+#include "net_flux_elements.h"
+#include "parameter_functions.h"
+#include "parameters.h"
+#include "projectable_axisymmetric_Ttaylor_hood_elements.h"
+#include "solid_pressure_evaluation_elements.h"
+#include "solid_singular_axisym_fluid_traction_elements.h"
+#include "utility_functions.h"
+#include "volume_constraint_elements_with_output.h"
 
 namespace oomph
 {
@@ -677,8 +678,8 @@ namespace oomph
       }
       if (this->is_augmented())
       {
-        PressureEvaluationElement<ELEMENT>* el_pt =
-          dynamic_cast<PressureEvaluationElement<ELEMENT>*>(
+        SolidPressureEvaluationElement<ELEMENT>* el_pt =
+          dynamic_cast<SolidPressureEvaluationElement<ELEMENT>*>(
             Pressure_contribution_mesh_1_pt->element_pt(0));
         unsigned n = el_pt->ndof();
         Vector<double> residuals(n, 0.0);
@@ -690,8 +691,9 @@ namespace oomph
       }
       if (this->is_augmented())
       {
-        SingularAxisymNavierStokesTractionElement<ELEMENT>* el_pt =
-          dynamic_cast<SingularAxisymNavierStokesTractionElement<ELEMENT>*>(
+        SolidSingularAxisymNavierStokesTractionElement<ELEMENT>* el_pt =
+          dynamic_cast<
+            SolidSingularAxisymNavierStokesTractionElement<ELEMENT>*>(
             Eigensolution_slip_mesh_pt->element_pt(0));
         unsigned n = el_pt->ndof();
         Vector<double> residuals(n, 0.0);
@@ -2171,7 +2173,7 @@ namespace oomph
         dynamic_cast<ELEMENT*>(Bulk_mesh_pt->element_pt(n))->pin();
       }
 
-      pin_kinematic_lagrange_multiplier(0.0);
+      pin_kinematic_lagrange_multiplier();
 
       // Setup all the equation numbering and look-up schemes
       oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
@@ -2233,7 +2235,7 @@ namespace oomph
       }
       if (b == Free_surface_boundary_id)
       {
-        pin_kinematic_lagrange_multiplier(0.0);
+        pin_kinematic_lagrange_multiplier();
       }
 
       // Setup all the equation numbering and look-up schemes
@@ -2311,7 +2313,7 @@ namespace oomph
       }
 
       pin_volume_constraint();
-      pin_kinematic_lagrange_multiplier(0.0);
+      pin_kinematic_lagrange_multiplier();
     }
 
     void reset_lagrange()
@@ -2848,8 +2850,8 @@ namespace oomph
           int face_index = bulk_mesh_pt->face_index_at_boundary(b, e);
 
           // Create new element
-          SingularAxisymNavierStokesTractionElement<ELEMENT>* el_pt =
-            new SingularAxisymNavierStokesTractionElement<ELEMENT>(
+          SolidSingularAxisymNavierStokesTractionElement<ELEMENT>* el_pt =
+            new SolidSingularAxisymNavierStokesTractionElement<ELEMENT>(
               bulk_elem_pt,
               face_index,
               Singularity_scaling_mesh_pt->element_pt(0)->internal_data_pt(0));
@@ -3026,8 +3028,8 @@ namespace oomph
                                               face_index);
 
       const unsigned pressure_value_index = 0;
-      PressureEvaluationElement<ELEMENT>* el_pt =
-        new PressureEvaluationElement<ELEMENT>(
+      SolidPressureEvaluationElement<ELEMENT>* el_pt =
+        new SolidPressureEvaluationElement<ELEMENT>(
           element_pt, face_index, Contact_line_node_pt, pressure_value_index);
 
       el_pt->set_pressure_data_pt(
@@ -3070,8 +3072,8 @@ namespace oomph
                                               face_index);
 
       const unsigned pressure_value_index = 0;
-      PressureEvaluationElement<ELEMENT>* el_pt =
-        new PressureEvaluationElement<ELEMENT>(
+      SolidPressureEvaluationElement<ELEMENT>* el_pt =
+        new SolidPressureEvaluationElement<ELEMENT>(
           element_pt, face_index, Contact_line_node_pt, pressure_value_index);
 
       el_pt->set_pressure_data_pt(

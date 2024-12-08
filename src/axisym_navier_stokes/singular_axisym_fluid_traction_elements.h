@@ -1,6 +1,7 @@
 #ifndef SINGULAR_AXISYM_FLUID_TRACTION_ELEMENTS_HEADER
 #define SINGULAR_AXISYM_FLUID_TRACTION_ELEMENTS_HEADER
 
+#include "generic.h"
 
 namespace oomph
 {
@@ -42,8 +43,8 @@ namespace oomph
 
   public:
     /// This function returns the residuals and the jacobian
-    inline void fill_in_contribution_to_jacobian(Vector<double>& residuals,
-                                                 DenseMatrix<double>& jacobian)
+    void fill_in_contribution_to_jacobian(Vector<double>& residuals,
+                                          DenseMatrix<double>& jacobian)
     {
       // Call the generic routine with the flag set to 1
       AxisymmetricNavierStokesTractionElement<ELEMENT>::

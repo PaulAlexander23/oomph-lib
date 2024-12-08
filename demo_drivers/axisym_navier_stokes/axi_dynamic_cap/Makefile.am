@@ -1,6 +1,10 @@
 #Include commands common to every Makefile.am
 include $(top_srcdir)/config/makefile_templates/demo_drivers
 
+
+all: axi_dynamic_cap
+	gdb --ex run --args ./axi_dynamic_cap parameters.dat 
+
 # Variables
 EXEC:= \
 	axi_dynamic_cap \
@@ -9,7 +13,7 @@ EXEC:= \
 	run_tests
 
 # Makefile rules
-all: ${EXEC}
+#all: ${EXEC}
 
 # Automake
 

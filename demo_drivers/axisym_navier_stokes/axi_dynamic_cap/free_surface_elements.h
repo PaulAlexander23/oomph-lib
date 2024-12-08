@@ -22,9 +22,9 @@ namespace oomph
                        const int& face_index,
                        TimeStepper* const& time_stepper_pt,
                        const unsigned& id = 0)
-      : ElasticAxisymmetricFluidInterfaceElement<ELEMENT>(
+      : SolidFaceElement(),
+        ElasticAxisymmetricFluidInterfaceElement<ELEMENT>(
           element_pt, face_index, id),
-        SolidFaceElement(),
         Time_stepper_pt(time_stepper_pt),
         Error(0.0)
     {
