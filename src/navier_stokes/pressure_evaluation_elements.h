@@ -29,6 +29,8 @@ namespace oomph
     Vector<double> evalution_point_s;
     Node* corner_node_pt;
     unsigned Pressure_value_index;
+    double* ReInvFr_pt;
+    Vector<double>* G_pt;
 
   public:
     // Constructor
@@ -53,8 +55,33 @@ namespace oomph
       // Add the nodes (which are data) where the pressure is stored in the bulk
       // element as external data.
       // add_pressure_nodes_not_on_face_as_external_data();
-      // this->add_other_bulk_node_positions_as_external_data();
+      this->add_other_bulk_nodes_as_external_data();
     }
+
+    /// Global inverse Froude number
+    const double& re_invfr() const
+    {
+      return *ReInvFr_pt;
+    }
+
+    /// Pointer to global inverse Froude number
+    double*& re_invfr_pt()
+    {
+      return ReInvFr_pt;
+    }
+
+    /// Vector of gravitational components
+    const Vector<double>& g() const
+    {
+      return *G_pt;
+    }
+
+    /// Pointer to Vector of gravitational components
+    Vector<double>*& g_pt()
+    {
+      return G_pt;
+    }
+
 
     void compute_s(Node* const& node_pt)
     {
@@ -204,7 +231,7 @@ namespace oomph
       unsigned n_pres = Cast_bulk_element_pt->npres_nst();
 
       // Set up memory for pressure shape and test functions
-      Shape psip(n_pres);
+      //Shape psip(n_pres);
 
       // Find the coordinate in the bulk element
       compute_s(corner_node_pt);
@@ -213,7 +240,7 @@ namespace oomph
 
       // Evaluate the pressure shape functions at the coordinate in the bulk
       // element
-      Cast_bulk_element_pt->pshape_nst(s_bulk, psip);
+      // Cast_bulk_element_pt->pshape_nst(s_bulk, psip);
       Vector<double> x(dim() + 2, 0.0);
       Cast_bulk_element_pt->interpolated_x(s_bulk, x);
 
@@ -229,31 +256,33 @@ namespace oomph
       {
         // Add (or subtract) the pressure at the evaluation point
         residuals[local_eqn] +=
-          Cast_bulk_element_pt->interpolated_p_nst(s_bulk) * multiplier;
+          (Cast_bulk_element_pt->interpolated_p_nst(s_bulk) +
+           (*this->ReInvFr_pt) * VectorHelpers::dot(*this->G_pt, x)) *
+          multiplier;
 
         // If the Jacobian flag is on, add to the Jacobian
-        if (flag)
-        {
-          // Initialise a variable for the local_unknown
-          int local_unknown = 0;
+        // if (flag)
+        //{
+        //  // Initialise a variable for the local_unknown
+        //  int local_unknown = 0;
 
-          // Loop over shape functions
-          const unsigned n_local_pres = Node_index.size();
-          for (unsigned j = 0; j < n_local_pres; j++)
-          {
-            // The residual depends on the pressure at each of the bulk
-            // elements nodes, which are stored here as external data.
-            local_unknown = this->external_local_eqn(
-              Node_index[j], Cast_bulk_element_pt->p_nodal_index_nst());
+        //  // Loop over shape functions
+        //  const unsigned n_local_pres = Node_index.size();
+        //  for (unsigned j = 0; j < n_local_pres; j++)
+        //  {
+        //    // The residual depends on the pressure at each of the bulk
+        //    // elements nodes, which are stored here as external data.
+        //    local_unknown = this->external_local_eqn(
+        //      Node_index[j], Cast_bulk_element_pt->p_nodal_index_nst());
 
-            // If not pinned
-            if (local_unknown > 0)
-            {
-              // Add the contribution of the node to the local jacobian
-              jacobian(local_eqn, local_unknown) += psip(j) * multiplier;
-            }
-          }
-        }
+        //    // If not pinned
+        //    if (local_unknown > 0)
+        //    {
+        //      // Add the contribution of the node to the local jacobian
+        //      jacobian(local_eqn, local_unknown) += psip(j) * multiplier;
+        //    }
+        //  }
+        //}
       }
     }
 
