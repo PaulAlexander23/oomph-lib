@@ -6,12 +6,16 @@ EXEC:= \
 	structured_no_correction \
 	structured_no_correction_region \
 	structured_with_correction \
-	structured_with_correction_region
+	structured_with_correction_region \
+	unstructured_no_correction \
+	unstructured_with_correction
 
 FOLDERS:= \
 	RESLT_axi_fix \
+	RESLT_axi_fix_unstr \
 	RESLT_axi_fix_region \
 	RESLT_axi_no_fix \
+	RESLT_axi_no_fix_unstr \
 	RESLT_axi_no_fix_region
 
 # Makefile rules
@@ -34,6 +38,8 @@ structured_no_correction_SOURCES = structured_no_correction.cc
 structured_no_correction_region_SOURCES = structured_no_correction_region.cc
 structured_with_correction_SOURCES = structured_with_correction.cc
 structured_with_correction_region_SOURCES = structured_with_correction_region.cc
+unstructured_no_correction_SOURCES = unstructured_no_correction.cc
+unstructured_with_correction_SOURCES = unstructured_with_correction.cc
 
 # Required libraries: 
 # $(FLIBS) is included in case the solver involves fortran sources.

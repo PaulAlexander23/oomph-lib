@@ -4,7 +4,7 @@
 OOMPH_ROOT_DIR=$(make -s --no-print-directory print-top_builddir)
 
 #Set the number of tests to be checked
-NUM_TESTS=4
+NUM_TESTS=6
 
 # Setup validation directory
 #---------------------------
@@ -44,6 +44,8 @@ test_script RESLT_axi_no_fix structured_no_correction
 test_script RESLT_axi_no_fix_region structured_no_correction_region
 test_script RESLT_axi_fix structured_with_correction 
 test_script RESLT_axi_fix_region structured_with_correction_region
+test_script RESLT_axi_no_fix_unstr unstructured_no_correction 
+test_script RESLT_axi_fix_unstr unstructured_with_correction 
 
 #######################################################################
 
