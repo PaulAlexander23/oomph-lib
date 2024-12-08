@@ -1069,12 +1069,12 @@ namespace oomph
 
       // Get the velocity gradient
       double interpolated_p = this->interpolated_p_axi_nst(s);
-      DenseMatrix<double> interpolated_dudx(cached_dim, cached_dim, 0.0);
+      DenseMatrix<double> interpolated_dudx(this->n_u_nst(), cached_dim, 0.0);
       // Loop over the local nodes and sum
       for (unsigned l = 0; l < n_node; l++)
       {
         // Loop over the spatial directions
-        for (unsigned i = 0; i < cached_dim; i++)
+        for (unsigned i = 0; i < this->n_u_nst(); i++)
         {
           const double u_value =
             this->nodal_value(l, this->u_reconstructed_index(l, i));
