@@ -46,7 +46,9 @@ namespace oomph
         evalution_point_r(1e-3),
         evalution_point_s(1, 0.0),
         corner_node_pt(node_pt),
-        Pressure_value_index(pressure_value_index)
+        Pressure_value_index(pressure_value_index),
+        ReInvFr_pt(0),
+        G_pt(0)
     {
       // Attach the geometrical information to the element. N.B. This function
       // also assigns nbulk_value from the required_nvalue of the bulk element
@@ -231,7 +233,7 @@ namespace oomph
       unsigned n_pres = Cast_bulk_element_pt->npres_nst();
 
       // Set up memory for pressure shape and test functions
-      //Shape psip(n_pres);
+      // Shape psip(n_pres);
 
       // Find the coordinate in the bulk element
       compute_s(corner_node_pt);
@@ -251,13 +253,21 @@ namespace oomph
       local_eqn =
         this->external_local_eqn(Pressure_index, Pressure_value_index);
 
+      // Gravity contribution
+      double gravity_contribution = 0.0;
+      if (this->ReInvFr_pt && this->G_pt)
+      {
+        gravity_contribution =
+          (*this->ReInvFr_pt) * VectorHelpers::dot(*this->G_pt, x);
+      }
+
       // If the equation is not pinned
       if (local_eqn >= 0)
       {
         // Add (or subtract) the pressure at the evaluation point
         residuals[local_eqn] +=
           (Cast_bulk_element_pt->interpolated_p_nst(s_bulk) +
-           (*this->ReInvFr_pt) * VectorHelpers::dot(*this->G_pt, x)) *
+           gravity_contribution) *
           multiplier;
 
         // If the Jacobian flag is on, add to the Jacobian
