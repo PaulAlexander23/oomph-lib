@@ -63,6 +63,13 @@ namespace oomph
     }
   };
 
+  // Ensure that the FaceGeometry of the new element has been set up
+  template<class ELEMENT>
+  class FaceGeometry<ElementWithError<ELEMENT>>
+    : public virtual FaceGeometry<ELEMENT>
+  {
+  };
+
 } // namespace oomph
 
 #endif
