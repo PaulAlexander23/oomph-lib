@@ -105,8 +105,6 @@ int main(int argc, char** argv)
   problem.create_restart_file();
   problem.doc_solution();
 
-  problem.pin_solid();
-
   debug_jacobian(&problem);
 
   // If the final time is zero (or less) then we are doing a steady solve,
