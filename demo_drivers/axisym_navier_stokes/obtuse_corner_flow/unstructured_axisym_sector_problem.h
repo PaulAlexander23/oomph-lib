@@ -297,7 +297,8 @@ namespace oomph
       My_params.sector_angle * MathematicalConstants::Pi / 180.0,
       My_params.sector_radius,
       My_params.n_azimuthal,
-      My_params.sector_radius / My_params.n_radial);
+      My_params.sector_radius /
+        (My_params.n_radial * My_params.n_azimuthal));
 
     // Add mesh to problem
     add_sub_mesh(Bulk_mesh_pt);
