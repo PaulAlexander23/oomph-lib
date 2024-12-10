@@ -19,7 +19,7 @@ FOLDERS:= \
 	RESLT_axi_no_fix_region
 
 # Makefile rules
-all: ${EXEC} ${FOLDERS} parameters.dat
+run: ${EXEC} ${FOLDERS} parameters.dat
 	echo ${EXEC} | xargs -d " " -I {} bash -c "./{}"
 
 $(FOLDERS):
