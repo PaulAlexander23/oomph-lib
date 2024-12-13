@@ -9,7 +9,6 @@
 /// Local headers
 #include "sector_problem.h"
 
-
 namespace oomph
 {
   // Problem class
@@ -163,6 +162,7 @@ namespace oomph
           el_pt->add_additional_terms();
 
           el_pt->swap_unknowns();
+          el_pt->pin_fluid();
 
           Augmented_bulk_element_number.push_back(e);
           // for (unsigned n = 0; n < 6; n++)
@@ -495,7 +495,7 @@ namespace oomph
         break;
       }
     }
-    const unsigned pressure_value_index = 2;
+    const unsigned pressure_value_index = element_pt->total_p_nodal_index_nst();
     PointPressureEvaluationElement* el_pt =
       new PointPressureEvaluationElement(node_pt, pressure_value_index);
     el_pt->set_pressure_data_pt(
@@ -529,7 +529,7 @@ namespace oomph
         break;
       }
     }
-    const unsigned pressure_value_index = 2;
+    const unsigned pressure_value_index = element_pt->total_p_nodal_index_nst();
     PointPressureEvaluationElement* el_pt =
       new PointPressureEvaluationElement(node_pt, pressure_value_index);
 

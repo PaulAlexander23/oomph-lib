@@ -224,9 +224,11 @@ namespace oomph
         if (!node_pt->is_on_boundary(Far_field_boundary_id))
         {
           // Pin the pressure at one point
-          const unsigned pressure_index = 2;
-          node_pt->pin(pressure_index);
-          node_pt->set_value(pressure_index, 0.0);
+          const unsigned pressure_value_index =
+            dynamic_cast<ELEMENT*>(bulk_mesh_pt()->element_pt(0))
+              ->total_p_nodal_index_nst();
+          node_pt->pin(pressure_value_index);
+          node_pt->set_value(pressure_value_index, 0.0);
           oomph_info << node_pt->x(0) << ", " << node_pt->x(1) << " "
                      << std::endl;
           has_node_been_found = true;
