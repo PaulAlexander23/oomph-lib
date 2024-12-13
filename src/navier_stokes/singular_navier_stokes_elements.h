@@ -240,9 +240,9 @@ namespace oomph
         unsigned n_value = this->node_pt(n)->nvalue();
         if (this->is_pressure_node(n))
         {
-          if (n_value != this->n_u_nst() * 2 + 1)
+          if (n_value != this->n_u_nst() * 2 + 2)
           {
-            n_value += this->n_u_nst();
+            n_value += this->n_u_nst() + 1;
             this->node_pt(n)->resize(n_value);
           }
         }
@@ -365,6 +365,81 @@ namespace oomph
       {
         return numbering_scheme(n, i);
       }
+    }
+
+    /// Set the value at which the pressure is stored in the nodes
+    virtual int p_nodal_index_nst() const
+    {
+      if (IsSwappingUnknowns)
+      {
+        return 2 * this->n_u_nst() + 1;
+      }
+      else
+      {
+        return this->n_u_nst();
+      }
+    }
+
+    /// Set the value at which the pressure is stored in the nodes
+    virtual int total_p_nodal_index_nst() const
+    {
+      if (IsSwappingUnknowns)
+      {
+        return this->n_u_nst();
+      }
+      else
+      {
+        return 2 * this->n_u_nst() + 1;
+      }
+    }
+
+    /// Set the value at which the pressure is stored in the nodes
+    virtual int continuity_nodal_index_nst() const
+    {
+      if (IsSwappingEquations)
+      {
+        return 2 * this->n_u_nst() + 1;
+      }
+      else
+      {
+        return this->n_u_nst();
+      }
+    }
+
+    /// Set the value at which the pressure is stored in the nodes
+    virtual int total_p_eqn_nodal_index_nst() const
+    {
+      if (IsSwappingEquations)
+      {
+        return this->n_u_nst();
+      }
+      else
+      {
+        return 2 * this->n_u_nst() + 1;
+      }
+    }
+
+    inline int p_local_unknown(const unsigned& n) const
+    {
+      return this->nodal_local_eqn(this->Pconv[n], this->p_nodal_index_nst());
+    }
+
+    inline int p_local_eqn(const unsigned& n) const
+    {
+      return this->nodal_local_eqn(this->Pconv[n],
+                                   this->continuity_nodal_index_nst());
+    }
+
+    virtual inline unsigned total_p_local_unknown(const unsigned& n) const
+    {
+      return this->nodal_local_eqn(this->Pconv[n],
+                                   this->total_p_nodal_index_nst());
+    }
+
+    virtual inline unsigned total_p_local_eqn(const unsigned& n) const
+    {
+      return this->nodal_local_eqn(this->Pconv[n],
+                                   this->total_p_eqn_nodal_index_nst());
     }
 
     virtual inline int total_velocity_local_eqn(const unsigned& n,
@@ -619,9 +694,9 @@ namespace oomph
     {
       // Call the generic routine with the flag set to 1 and dummy mass
       // matrix
-      this->fill_in_generic_residual_contribution_wrapped_nst(
-        residuals, jacobian, 1);
-      // FiniteElement::fill_in_contribution_to_jacobian(residuals, jacobian);
+      // this->fill_in_generic_residual_contribution_wrapped_nst(
+      //  residuals, jacobian, 1);
+      FiniteElement::fill_in_contribution_to_jacobian(residuals, jacobian);
     }
 
     /// Overload the output function
@@ -656,23 +731,14 @@ namespace oomph
         }
 
         // Total velocity
-        Vector<double> velocity(cached_dim, 0.0);
-
-        if (IsAugmented)
-        {
-          velocity = interpolated_u_reconstructed(s);
-        }
-        else
-        {
-          this->interpolated_u_nst(s, velocity);
-        }
+        Vector<double> velocity = interpolated_u_reconstructed(s);
         for (unsigned i = 0; i < cached_dim; i++)
         {
           outfile << velocity[i] << " ";
         }
 
         // "Total" pressure
-        outfile << this->interpolated_p_nst(s) << " ";
+        outfile << this->interpolated_total_p(s) << " ";
 
         if (IsStressOutputIncluded)
         {
@@ -698,6 +764,8 @@ namespace oomph
         {
           outfile << velocity_fe_only[i] << " ";
         }
+
+        outfile << this->interpolated_p_nst(s) << " ";
 
         // Singular Velocity
         if (IsSingularOutputInclude)
@@ -863,6 +931,32 @@ namespace oomph
       return interpolated_u;
     }
 
+    /// Overloaded version of the interpolated velocity solution including
+    /// the singular contributions
+    double interpolated_total_p(const Vector<double>& s)
+    {
+      // Initialise value of u
+      double interpolated_p = 0.0;
+
+      // Find out how many pressure dofs there are
+      unsigned n_pres = this->npres_nst();
+
+      // Set up memory for pressure shape and test functions
+      Shape psip(n_pres);
+
+      // Find values of shape function
+      this->pshape_nst(s, psip);
+
+      // Loop over the local nodes and sum
+      for (unsigned j = 0; j < n_pres; j++)
+      {
+        interpolated_p += total_p_local_unknown(j) * psip[j];
+      }
+
+      // Return the interpolated value of p
+      return interpolated_p;
+    }
+
     DenseMatrix<double> interpolated_stress_tensor(const Vector<double>& s)
     {
       // Find number of nodes
@@ -879,7 +973,7 @@ namespace oomph
       this->dshape_eulerian(s, psif, dpsifdx);
 
       // Get the velocity gradient
-      double interpolated_p = this->interpolated_p_nst(s);
+      double interpolated_p = this->interpolated_total_p(s);
       DenseMatrix<double> interpolated_dudx(cached_dim, cached_dim, 0.0);
       // Loop over the local nodes and sum
       for (unsigned l = 0; l < n_node; l++)
@@ -1138,9 +1232,6 @@ namespace oomph
       // Find the dimension of the problem
       unsigned cached_dim = this->dim();
 
-      // Do all the singular functions satisfy the Stokes eqn?
-      bool all_singular_functions_satisfy_stokes_equation = true;
-
       // Find the number of singularities
       unsigned n_sing = C_equation_elements_pt.size();
 
@@ -1149,11 +1240,6 @@ namespace oomph
       for (unsigned i = 0; i < n_sing; i++)
       {
         local_equation_number_C[i] = this->external_local_eqn(i, 0);
-        if (!(C_equation_elements_pt[i]
-                ->singular_function_satisfies_stokes_equation()))
-        {
-          all_singular_functions_satisfy_stokes_equation = false;
-        }
       }
 
       // Find out how many nodes there are
@@ -1275,40 +1361,38 @@ namespace oomph
               {
                 // Stress contribution
                 // -------------------
-                // if (!all_singular_functions_satisfy_stokes_equation)
+                residuals[local_eqn] += p_bar_local * dtestfdx(l, i) * W;
+                for (unsigned k = 0; k < cached_dim; k++)
                 {
-                  residuals[local_eqn] += p_bar_local * dtestfdx(l, i) * W;
-                  for (unsigned k = 0; k < cached_dim; k++)
-                  {
-                    residuals[local_eqn] -=
-                      visc_ratio *
-                      (grad_u_bar_local[i][k] +
-                       this->Gamma[i] * grad_u_bar_local[k][i]) *
-                      dtestfdx(l, k) * W;
-                  }
+                  residuals[local_eqn] -=
+                    visc_ratio *
+                    (grad_u_bar_local[i][k] +
+                     this->Gamma[i] * grad_u_bar_local[k][i]) *
+                    dtestfdx(l, k) * W;
+                }
 
-                  // Jacobian
-                  if (flag)
+                // Jacobian
+                if (flag)
+                {
+                  for (unsigned ss = 0; ss < n_sing; ss++)
                   {
-                    for (unsigned ss = 0; ss < n_sing; ss++)
+                    const int local_unknown = local_equation_number_C[ss];
+                    if (local_unknown >= 0)
                     {
-                      const int local_unknown = local_equation_number_C[ss];
-                      if (local_unknown >= 0)
+                      jacobian(local_eqn, local_unknown) +=
+                        p_hat_local[ss] * dtestfdx(l, i) * W;
+                      for (unsigned k = 0; k < cached_dim; k++)
                       {
-                        jacobian(local_eqn, local_unknown) +=
-                          p_hat_local[ss] * dtestfdx(l, i) * W;
-                        for (unsigned k = 0; k < cached_dim; k++)
-                        {
-                          jacobian(local_eqn, local_unknown) -=
-                            visc_ratio *
-                            (grad_u_hat_local[ss][i][k] +
-                             this->Gamma[i] * grad_u_hat_local[ss][k][i]) *
-                            dtestfdx(l, k) * W;
-                        }
+                        jacobian(local_eqn, local_unknown) -=
+                          visc_ratio *
+                          (grad_u_hat_local[ss][i][k] +
+                           this->Gamma[i] * grad_u_hat_local[ss][k][i]) *
+                          dtestfdx(l, k) * W;
                       }
                     }
                   }
                 }
+
 
                 // Nonlinear term. Always add (unless Re=0)
                 //-----------------------------------------
@@ -1470,7 +1554,6 @@ namespace oomph
         {
           // Find its local equation number
           local_eqn = this->momentum_local_eqn(l, d);
-          // local_eqn = this->total_velocity_local_eqn(l, d);
 
           // If it is not pinned
           if (local_eqn >= 0)
@@ -1603,9 +1686,6 @@ namespace oomph
       // Find the dimension of the problem
       unsigned cached_dim = this->dim();
 
-      // Do all the singular functions satisfy the Stokes eqn?
-      bool all_singular_functions_satisfy_stokes_equation = true;
-
       // Find the number of singularities
       unsigned n_sing = C_equation_elements_pt.size();
 
@@ -1614,11 +1694,6 @@ namespace oomph
       for (unsigned i = 0; i < n_sing; i++)
       {
         local_equation_number_C[i] = this->external_local_eqn(i, 0);
-        if (!(C_equation_elements_pt[i]
-                ->singular_function_satisfies_stokes_equation()))
-        {
-          all_singular_functions_satisfy_stokes_equation = false;
-        }
       }
 
       // Find out how many nodes there are
@@ -1629,10 +1704,6 @@ namespace oomph
 
       // integer to store the local equations
       int local_eqn = 0, local_unknown = 0;
-
-      // Get Physical Variables from Element
-      // Reynolds number must be multiplied by the density ratio
-      double scaled_re = this->re() * this->density_ratio();
 
       // Set up memory for the velocity shape and test functions
       Shape psif(n_node), testf(n_node);
@@ -1646,9 +1717,6 @@ namespace oomph
 
       // Set the vector to hold local coordinates
       Vector<double> s(cached_dim);
-
-      // Cachec viscosity ratio
-      double visc_ratio = this->viscosity_ratio();
 
       // Loop over the integration points
       for (unsigned ipt = 0; ipt < n_intpt; ipt++)
@@ -1700,7 +1768,6 @@ namespace oomph
         Vector<double> u_bar_local = this->u_bar(interpolated_x);
         Vector<Vector<double>> grad_u_bar_local =
           this->grad_u_bar(interpolated_x);
-        double p_bar_local = this->p_bar(interpolated_x);
 
         // Singular functions
         Vector<Vector<double>> u_hat_local(n_sing);
@@ -1720,7 +1787,7 @@ namespace oomph
           p_hat_local[s] = this->pressure_singular_function(s, interpolated_x);
         }
 
-        // MOMENTUM EQUATIONS
+        // TOTAL VELOCITY EQUATIONS
         //-------------------
 
         // Loop over the velocity test functions
@@ -1794,6 +1861,54 @@ namespace oomph
           } // End of loop over velocity components
         } // End of loop over test functions
 
+        // TOTAL PRESSURE EQUATION
+        //-------------------
+
+        // Loop over the shape functions
+        for (unsigned l = 0; l < n_pres; l++)
+        {
+          local_eqn = this->total_p_local_eqn(l);
+
+          // If not a boundary conditions
+          if (local_eqn >= 0)
+          {
+            // If not subject to Dirichlet BC
+            if (not(Pressure_dof_is_subject_to_dirichlet_bc[l]))
+            {
+              Vector<double> pos_n(2, 0.0);
+              for (unsigned k = 0; k < 2; k++)
+              {
+                pos_n[k] = this->nodal_position(l, k);
+              }
+
+              residuals[local_eqn] +=
+                (nodal_value(l, total_p_nodal_index_nst()) -
+                 (nodal_value(l, p_nodal_index_nst()) + p_bar(pos_n)));
+
+              /*CALCULATE THE JACOBIAN*/
+              if (flag)
+              {
+                // Loop over the singularities and add the
+                // contributions of the additional
+                // unknowns associated with them to the
+                // jacobian if they are not pinned
+                for (unsigned ss = 0; ss < n_sing; ss++)
+                {
+                  local_unknown = local_equation_number_C[ss];
+                  if (local_unknown >= 0)
+                  {
+                    double sum = 0.0;
+                    for (unsigned k = 0; k < cached_dim; k++)
+                    {
+                      sum += grad_u_hat_local[ss][k][k];
+                    }
+                    jacobian(local_eqn, local_unknown) += sum * testp[l] * W;
+                  }
+                }
+              } /*End of Jacobian calculation*/
+            }
+          } // End of if not boundary condition
+        } // End of loop over l
       } // End of loop over integration points
     }
 
