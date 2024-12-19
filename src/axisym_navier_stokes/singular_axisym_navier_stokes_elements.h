@@ -1498,6 +1498,7 @@ namespace oomph
 
       // Set up memory for pressure shape and test functions
       Shape psip(n_pres), testp(n_pres);
+      DShape dpsipdx(n_pres, cached_dim), dtestpdx(n_pres, cached_dim);
 
       // Number of integration points
       unsigned n_intpt = this->integral_pt()->nweight();
@@ -1525,7 +1526,8 @@ namespace oomph
           ipt, psif, dpsifdx, testf, dtestfdx);
 
         // Call the pressure shape and test functions
-        this->pshape_axi_nst(s, psip, testp);
+        this->dpshape_and_dptest_eulerian_axi_nst(
+          s, psip, dpsipdx, testp, dtestpdx);
 
         // Premultiply the weights and the Jacobian
         double W = w * J;
@@ -1914,10 +1916,10 @@ namespace oomph
               // If not subject to Dirichlet BC
               if (not(Pressure_dof_is_subject_to_dirichlet_bc[l]))
               {
-                residuals[local_eqn] +=
-                  (u_bar_local[0] + r * grad_u_bar_local[0][0] +
-                   r * grad_u_bar_local[1][1]) *
-                  testp[l] * W;
+                residuals[local_eqn] += (r * u_bar_local[0] * dtestpdx(l, 0) +
+                                         r * u_bar_local[1] * dtestpdx(l, 1) +
+                                         u_bar_local[2] * dtestpdx(l, 2)) *
+                                        W;
 
                 /*CALCULATE THE JACOBIAN*/
                 if (flag)
