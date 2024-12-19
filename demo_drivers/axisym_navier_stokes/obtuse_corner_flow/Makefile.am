@@ -8,7 +8,8 @@ EXEC:= \
 	structured_with_correction \
 	structured_with_correction_region \
 	unstructured_no_correction \
-	unstructured_with_correction
+	unstructured_with_correction \
+	hijack_boundary
 
 FOLDERS:= \
 	RESLT_axi_fix \
@@ -16,7 +17,8 @@ FOLDERS:= \
 	RESLT_axi_fix_region \
 	RESLT_axi_no_fix \
 	RESLT_axi_no_fix_unstr \
-	RESLT_axi_no_fix_region
+	RESLT_axi_no_fix_region \
+	RESLT_hijack
 
 # Makefile rules
 run: ${EXEC} ${FOLDERS} parameters.dat
@@ -40,6 +42,7 @@ structured_with_correction_SOURCES = structured_with_correction.cc
 structured_with_correction_region_SOURCES = structured_with_correction_region.cc
 unstructured_no_correction_SOURCES = unstructured_no_correction.cc
 unstructured_with_correction_SOURCES = unstructured_with_correction.cc
+hijack_boundary_SOURCES = hijack_boundary.cc
 
 # Required libraries: 
 # $(FLIBS) is included in case the solver involves fortran sources.
