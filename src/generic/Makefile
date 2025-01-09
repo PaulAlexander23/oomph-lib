@@ -194,12 +194,12 @@ am__libgeneric_la_SOURCES_DIST = oomph_definitions.h Qelements.h \
 	black_box_newton_solver.h mumps_solver.h stacktrace.h \
 	hypre_solver.h trilinos_helpers.h trilinos_preconditioners.h \
 	trilinos_solver.h trilinos_eigen_solver.h cfortran.h frontal.h \
-	arpack.h lapack_qz.h mumps.h oomph_definitions.cc \
-	oomph_utilities.cc complex_matrices.cc matrices.cc \
-	timesteppers.cc explicit_timesteppers.cc integral.cc nodes.cc \
-	elements.cc mesh.cc assembly_handler.cc \
-	periodic_orbit_handler.cc problem.cc Qelements.cc \
-	Qspectral_elements.cc frontal_solver.cc linear_solver.cc \
+	lapack_qz.h mumps.h oomph_definitions.cc oomph_utilities.cc \
+	complex_matrices.cc matrices.cc timesteppers.cc \
+	explicit_timesteppers.cc integral.cc nodes.cc elements.cc \
+	mesh.cc assembly_handler.cc periodic_orbit_handler.cc \
+	problem.cc Qelements.cc Qspectral_elements.cc \
+	frontal_solver.cc linear_solver.cc \
 	Qelement_face_coordinate_translation_schemes.cc Telements.cc \
 	hermite_elements.cc elastic_problems.cc hijacked_elements.cc \
 	algebraic_elements.cc macro_element.cc \
@@ -548,14 +548,15 @@ ECHO_T =
 EGREP = /usr/bin/grep -E
 ETAGS = etags
 EXEEXT = 
-EXTERNAL_LIBS = -lpthread -lboost_thread -lboost_system -lgmp -lmpfr -lCGAL_Core -lCGAL -loomph_hsl -loomph_arpack -loomph_crbond_bessel -loomph_triangle -loomph_tetgen -loomph_superlu_4.3 -loomph_metis_from_parmetis_3.1.1 -loomph_lapack -loomph_flapack -loomph_blas
+EXTERNAL_LIBS = -lpthread -lboost_thread -lboost_system -lgmp -lmpfr -lCGAL_Core -lCGAL -loomph_hsl -loomph_crbond_bessel -loomph_triangle -loomph_tetgen -loomph_superlu_4.3 -loomph_metis_from_parmetis_3.1.1 -loomph_lapack -loomph_flapack -loomph_blas
 F77 = f77
 FC = gfortran
 FCFLAGS = -g -O2
 FFLAGS = -fallow-argument-mismatch -g -Wall
 FFLAGS_NO_OPT = -O0
 FGREP = /usr/bin/grep -F
-FLIBS =  -L/usr/lib/gcc/x86_64-linux-gnu/11 -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/11/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/11/../../.. -lgfortran -lm -lquadmath
+FILECMD = file
+FLIBS =  -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. -lgfortran -lm -lquadmath
 GMP_DIR = /home/runner/work/oomph-lib/oomph-lib/external_distributions/gmp/gmp_default_installation
 GMP_INCLUDE = /home/runner/work/oomph-lib/oomph-lib/external_distributions/gmp/gmp_default_installation/include
 GMP_LIB = /home/runner/work/oomph-lib/oomph-lib/external_distributions/gmp/gmp_default_installation/lib
@@ -652,7 +653,7 @@ docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
 have_cmake = true
-have_doxygen = false
+have_doxygen = true
 have_libtool = true
 have_online_triangle = false
 have_pdf_latex = true
@@ -779,7 +780,7 @@ missing_masters.template.cc
 
 # Need to worry about these for dependency but they shouldn't
 # be included into the include directory
-extra_headers = cfortran.h frontal.h arpack.h lapack_qz.h mumps.h
+extra_headers = cfortran.h frontal.h lapack_qz.h mumps.h
 
 # Define name of library
 libname = generic

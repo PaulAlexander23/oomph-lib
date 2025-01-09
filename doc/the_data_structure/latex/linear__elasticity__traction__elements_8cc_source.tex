@@ -1,0 +1,29 @@
+\doxysection{linear\+\_\+elasticity\+\_\+traction\+\_\+elements.\+cc}
+\hypertarget{linear__elasticity__traction__elements_8cc_source}{}\label{linear__elasticity__traction__elements_8cc_source}\index{linear\_elasticity\_traction\_elements.cc@{linear\_elasticity\_traction\_elements.cc}}
+\mbox{\hyperlink{linear__elasticity__traction__elements_8cc}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{linear__elasticity__traction__elements_8cc_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{linear__elasticity__traction__elements_8h}{linear\_elasticity\_traction\_elements.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{linear__elasticity__traction__elements_8cc_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{linear__elasticity__traction__elements_8cc_source_l00003}00003\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceoomph}{oomph}}}
+\DoxyCodeLine{\Hypertarget{linear__elasticity__traction__elements_8cc_source_l00004}00004\ \{}
+\DoxyCodeLine{\Hypertarget{linear__elasticity__traction__elements_8cc_source_l00005}00005\ \ \ \textcolor{comment}{//=======================================================================}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{linear__elasticity__traction__elements_8cc_source_l00006}00006\ \textcolor{comment}{\ \ ///\ Namespace\ containing\ the\ zero\ traction\ function\ for\ linear\ elasticity}}
+\DoxyCodeLine{\Hypertarget{linear__elasticity__traction__elements_8cc_source_l00007}00007\ \textcolor{comment}{\ \ ///\ traction\ elements}}
+\DoxyCodeLine{\Hypertarget{linear__elasticity__traction__elements_8cc_source_l00008}00008\ \textcolor{comment}{}\ \ \textcolor{comment}{//=======================================================================}}
+\DoxyCodeLine{\Hypertarget{linear__elasticity__traction__elements_8cc_source_l00009}\mbox{\hyperlink{namespaceoomph_1_1LinearElasticityTractionElementHelper}{00009}}\ \ \ \textcolor{keyword}{namespace\ }LinearElasticityTractionElementHelper}
+\DoxyCodeLine{\Hypertarget{linear__elasticity__traction__elements_8cc_source_l00010}00010\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{linear__elasticity__traction__elements_8cc_source_l00011}\mbox{\hyperlink{namespaceoomph_1_1LinearElasticityTractionElementHelper_a74b833c7c02c1633b6bf0e49c6e4c38e}{00011}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespaceoomph_1_1LinearElasticityTractionElementHelper_a74b833c7c02c1633b6bf0e49c6e4c38e}{Zero\_traction\_fct}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\&\ time,}
+\DoxyCodeLine{\Hypertarget{linear__elasticity__traction__elements_8cc_source_l00012}00012\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{Vector<double>}}\&\ x,}
+\DoxyCodeLine{\Hypertarget{linear__elasticity__traction__elements_8cc_source_l00013}00013\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{Vector<double>}}\&\ N,}
+\DoxyCodeLine{\Hypertarget{linear__elasticity__traction__elements_8cc_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{Vector<double>}}\&\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{load}})}
+\DoxyCodeLine{\Hypertarget{linear__elasticity__traction__elements_8cc_source_l00015}00015\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{linear__elasticity__traction__elements_8cc_source_l00016}00016\ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{n\_dim}}\ =\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{load}}.\mbox{\hyperlink{classoomph_1_1FiniteElement_a4986a443968d3741fde4d6c6012cd586}{size}}();}
+\DoxyCodeLine{\Hypertarget{linear__elasticity__traction__elements_8cc_source_l00017}00017\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}\ =\ 0;\ \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}\ <\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{n\_dim}};\ \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
+\DoxyCodeLine{\Hypertarget{linear__elasticity__traction__elements_8cc_source_l00018}00018\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{linear__elasticity__traction__elements_8cc_source_l00019}00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{load}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}]\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{linear__elasticity__traction__elements_8cc_source_l00020}00020\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{linear__elasticity__traction__elements_8cc_source_l00021}00021\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{linear__elasticity__traction__elements_8cc_source_l00022}00022\ \ \ \}\ \textcolor{comment}{//\ namespace\ LinearElasticityTractionElementHelper}}
+\DoxyCodeLine{\Hypertarget{linear__elasticity__traction__elements_8cc_source_l00023}00023\ \}\ \textcolor{comment}{//\ namespace\ oomph}}
+
+\end{DoxyCode}
