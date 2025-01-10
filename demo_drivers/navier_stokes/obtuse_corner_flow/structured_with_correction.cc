@@ -5,6 +5,7 @@
 
 // OOMPH-LIB include files
 #include "generic.h"
+#include "axisym_navier_stokes.h"
 #include "fluid_interface.h"
 #include "constitutive.h"
 #include "solid.h"

@@ -450,7 +450,6 @@ namespace oomph
       {
         std::cout << node_pt->x(0) << ", " << node_pt->x(1) << std::endl;
 
-        const unsigned pressure_value_index = 2;
         PointPressureEvaluationElement* el_pt =
           new PointPressureEvaluationElement(node_pt, 2);
 
@@ -481,7 +480,6 @@ namespace oomph
           !node_pt->is_on_boundary(Slip_boundary_id))
       {
         std::cout << node_pt->x(0) << ", " << node_pt->x(1) << std::endl;
-        const unsigned pressure_value_index = 2;
         PointPressureEvaluationElement* el_pt =
           new PointPressureEvaluationElement(node_pt, 2);
 

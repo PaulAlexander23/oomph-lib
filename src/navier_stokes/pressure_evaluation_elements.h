@@ -2,7 +2,6 @@
 #define OOMPH_PRESSURE_EVALUATION_ELEMENTS_HEADER
 
 #include "generic.h"
-#include "debug_jacobian_elements.h"
 
 namespace oomph
 {
@@ -20,11 +19,8 @@ namespace oomph
   /// If the amplitude of the  singular solution is known, pin C.
   //=====================================================================
   template<class ELEMENT>
-  class PressureEvaluationElement
-    : public virtual FaceGeometry<ELEMENT>,
-      public virtual SolidFaceElement,
-      public virtual DebugJacobianSolidFiniteElement
-
+  class PressureEvaluationElement : public virtual FaceGeometry<ELEMENT>,
+                                    public virtual FaceElement
   {
   private:
     // Storage for the bulk element
@@ -46,7 +42,7 @@ namespace oomph
                               Node* const& node_pt,
                               const unsigned& pressure_value_index)
       : FaceGeometry<ELEMENT>(),
-        SolidFaceElement(),
+        FaceElement(),
         Cast_bulk_element_pt(dynamic_cast<ELEMENT*>(element_pt)),
         Pressure_index(-1),
         Is_adding_to_residuals(true),
@@ -311,7 +307,7 @@ namespace oomph
       Vector<double> s_bulk(dim() + 1);
       s_bulk = local_coordinate_in_bulk(s);
 
-      return Cast_bulk_element_pt->interpolated_p_nst_fe_only(s_bulk);
+      return Cast_bulk_element_pt->interpolated_p_nst(s_bulk);
     }
 
     // Overwrite the output function
@@ -323,11 +319,11 @@ namespace oomph
       // Spatial coordinates are one higher
       for (unsigned i = 0; i < n_dim + 1; i++)
       {
-        outfile << interpolated_x(evalution_point_s, i) << ",";
+        outfile << interpolated_x(evalution_point_s, i) << " ";
       }
 
       // Output the pressure
-      outfile << interpolated_p(evalution_point_s) << ",";
+      outfile << interpolated_p(evalution_point_s) << " ";
 
       // End of line
       outfile << std::endl;

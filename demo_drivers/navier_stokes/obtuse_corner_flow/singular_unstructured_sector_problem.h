@@ -486,12 +486,10 @@ namespace oomph
     find_corner_bulk_element_and_face_index(
       Slip_boundary_id, Free_surface_boundary_id, element_pt, face_index);
 
-    const unsigned pressure_value_index = 0;
-    PressureEvaluationElement<ELEMENT>* el_pt =
-      new PressureEvaluationElement<ELEMENT>(
-        element_pt, face_index, dynamic_cast<Node*>(Contact_line_node_pt),
-        pressure_value_index);
-    el_pt->set_boundary_number_in_bulk_mesh(Slip_boundary_id);
+    // PressureEvaluationElement<ELEMENT>* el_pt =
+    //   new PressureEvaluationElement<ELEMENT>(
+    //     element_pt, face_index, dynamic_cast<Node*>(Contact_line_node_pt));
+    // el_pt->set_boundary_number_in_bulk_mesh(Slip_boundary_id);
 
     Node* node_pt = 0;
     for (unsigned n = 0; n < 3; n++)

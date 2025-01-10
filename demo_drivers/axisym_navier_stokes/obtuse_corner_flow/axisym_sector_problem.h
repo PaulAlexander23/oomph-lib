@@ -5,7 +5,6 @@
 
 #include "generic.h"
 #include "navier_stokes.h"
-#include "axisym_navier_stokes.h"
 #include "fluid_interface.h"
 #include "meshes/triangle_mesh.h"
 

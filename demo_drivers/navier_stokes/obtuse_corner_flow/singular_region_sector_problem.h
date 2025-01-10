@@ -469,7 +469,6 @@ namespace oomph
         break;
       }
     }
-    const unsigned pressure_value_index = 2;
     PointPressureEvaluationElement* el_pt =
       new PointPressureEvaluationElement(node_pt,2);
     el_pt->set_pressure_data_pt(
@@ -506,7 +505,6 @@ namespace oomph
         break;
       }
     }
-    const unsigned pressure_value_index = 2;
     PointPressureEvaluationElement* el_pt =
       new PointPressureEvaluationElement(node_pt,2);
 

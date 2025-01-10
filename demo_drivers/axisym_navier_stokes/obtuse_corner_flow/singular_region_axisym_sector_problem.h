@@ -483,7 +483,6 @@ namespace oomph
 
     oomph_info << node_pt->x(0) << ", " << node_pt->x(1) << std::endl;
 
-    const unsigned pressure_value_index = 3;
     PointPressureEvaluationElement* el_pt =
       new PointPressureEvaluationElement(node_pt, 3);
 
@@ -524,7 +523,6 @@ namespace oomph
 
     oomph_info << node_pt->x(0) << ", " << node_pt->x(1) << std::endl;
 
-    const unsigned pressure_value_index = 3;
     PointPressureEvaluationElement* el_pt =
       new PointPressureEvaluationElement(node_pt, 3);
 

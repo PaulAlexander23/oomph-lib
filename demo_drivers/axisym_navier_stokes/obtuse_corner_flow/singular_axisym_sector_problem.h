@@ -89,6 +89,8 @@ namespace oomph
 
       create_singular_elements();
 
+      // fix_c(1.0);
+
       this->rebuild_global_mesh();
       oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
                  << std::endl;
@@ -460,7 +462,6 @@ namespace oomph
         break;
       }
     }
-    const unsigned pressure_value_index = 3;
     PointPressureEvaluationElement* el_pt =
       new PointPressureEvaluationElement(node_pt,3);
     el_pt->set_pressure_data_pt(
@@ -495,7 +496,6 @@ namespace oomph
         break;
       }
     }
-    const unsigned pressure_value_index = 3;
     PointPressureEvaluationElement* el_pt =
       new PointPressureEvaluationElement(node_pt,3);
 
