@@ -1714,7 +1714,7 @@ namespace oomph
             // Loop over the shape functions
             for (unsigned l2 = 0; l2 < n_pres; l2++)
             {
-              local_unknown = p_local_eqn(l2);
+              local_unknown = p_local_unknown(l2);
 
               // If not a boundary conditions
               if (local_unknown >= 0)
@@ -2006,7 +2006,7 @@ namespace oomph
               for (unsigned l2 = 0; l2 < n_pres; l2++)
               {
                 /*If we are at a non-zero degree of freedom in the entry*/
-                local_unknown = p_local_eqn(l2);
+                local_unknown = p_local_unknown(l2);
                 if (local_unknown >= 0)
                 {
                   jacobian(local_eqn, local_unknown) +=
@@ -2032,13 +2032,11 @@ namespace oomph
         if (local_eqn >= 0)
         {
           // Source term
-          // residuals[local_eqn] -=source*testp[l]*W;
           double aux = -source;
 
           // Loop over velocity components
           for (unsigned k = 0; k < DIM; k++)
           {
-            // residuals[local_eqn] += interpolated_dudx(k,k)*testp[l]*W;
             aux += interpolated_dudx(k, k);
           }
 

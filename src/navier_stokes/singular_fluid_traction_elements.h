@@ -2,20 +2,51 @@
 #define SINGULAR_FLUID_TRACTION_ELEMENTS_HEADER
 
 #include "singular_navier_stokes_solution_elements.h"
+#include "debug_jacobian_elements.h"
 
 namespace oomph
 {
+  //======================================================================
+  /// A class for elements that allow the imposition of an applied traction
+  /// to the Navier--Stokes equations
+  /// The geometrical information can be read from the FaceGeometry<ELEMENT>
+  /// class and and thus, we can be generic enough without the need to have
+  /// a separate equations class
+  ///
+  /// Weak form:
+  /// \f$ { R_j^M = \int_{S} T_i \psi^f dS } \f$
+  /// where \f$ T_i \f$ is the traction function and \f$ \psi^f \f$ is the
+  /// test function.
+  ///
+  //======================================================================
   template<class ELEMENT>
   class SingularNavierStokesTractionElement
-    : public virtual NavierStokesTractionElement<ELEMENT>
+    : public virtual NavierStokesTractionElement<ELEMENT>,
+      public virtual SolidFaceElement,
+      public virtual DebugJacobianSolidFiniteElement
   {
   public:
     SingularNavierStokesTractionElement(FiniteElement* const& element_pt,
                                         const int& face_index,
                                         Data* const& singular_scaling_data_pt)
-      : NavierStokesTractionElement<ELEMENT>(element_pt, face_index)
+      : NavierStokesTractionElement<ELEMENT>(element_pt, face_index),
+        SolidFaceElement()
     {
       this->add_external_data(singular_scaling_data_pt);
+
+      this->add_other_bulk_node_positions_as_external_data();
+    }
+
+    /// Specify the value of nodal zeta from the face geometry
+    /// The "global" intrinsic coordinate of the element when
+    /// viewed as part of a geometric object should be given by
+    /// the FaceElement representation, by default (needed to break
+    /// indeterminacy if bulk element is SolidElement)
+    double zeta_nodal(const unsigned& n,
+                      const unsigned& k,
+                      const unsigned& i) const
+    {
+      return FaceElement::zeta_nodal(n, k, i);
     }
 
     void fill_in_contribution_to_dresiduals_dparameter(
@@ -43,11 +74,12 @@ namespace oomph
                                                  DenseMatrix<double>& jacobian)
     {
       // Call the generic routine with the flag set to 1
-      NavierStokesTractionElement<ELEMENT>::
-        fill_in_generic_residual_contribution_fluid_traction(
-          residuals, jacobian, 1);
+      // NavierStokesTractionElement<ELEMENT>::
+      //  fill_in_generic_residual_contribution_fluid_traction(
+      //    residuals, jacobian, 1);
 
-      this->fill_in_jacobian_from_external_by_fd(residuals, jacobian, false);
+      // this->fill_in_jacobian_from_external_by_fd(residuals, jacobian, false);
+      SolidFiniteElement::fill_in_contribution_to_jacobian(residuals, jacobian);
     }
 
     void fill_in_contribution_to_jacobian_and_mass_matrix(
@@ -96,21 +128,21 @@ namespace oomph
         get_traction(local_time, x, n, traction);
 
         // Output the time
-        outfile << local_time << " ";
+        outfile << local_time << ",";
         // Output the position
         for (unsigned i = 0; i < n_dim; i++)
         {
-          outfile << x[i] << " ";
+          outfile << x[i] << ",";
         }
         // Output the normal
         for (unsigned i = 0; i < n_dim; i++)
         {
-          outfile << n[i] << " ";
+          outfile << n[i] << ",";
         }
         // Output traction, skipping the comma at the end of line
         for (unsigned i = 0; i < n_dim - 1; i++)
         {
-          outfile << traction[i] << " ";
+          outfile << traction[i] << ",";
         }
         outfile << traction[n_dim - 1];
         // End of line

@@ -1,23 +1,30 @@
-#ifndef PRESSURE_EVALUATION_ELEMENTS_HEADER
-#define PRESSURE_EVALUATION_ELEMENTS_HEADER
+#ifndef OOMPH_PRESSURE_EVALUATION_ELEMENTS_HEADER
+#define OOMPH_PRESSURE_EVALUATION_ELEMENTS_HEADER
 
 #include "generic.h"
+#include "debug_jacobian_elements.h"
 
 namespace oomph
 {
-  //==================CLASS FOR THE PRESSURE CONTRIBUTION================
+  //=====================================================================
   /// This class adds the finite element pressure at the evaluation point
   /// to the residual for the singular eigensolution function.
   ///
-  /// R_C += +- p_FE (Evaluation_point)
+  /// \f$ R_C += \pm \left( p|_x + Fr \ x \cdot G \right) \f$
   ///
-  /// and thus regularises the FE solution by matching the pressure at
-  /// two locations. If the amplitude of the  singular solution is known,
-  /// pin C.
+  /// where \f$ x \f$ is the evaluation point and is the pressure is interpolated.
+  /// \f$ Fr \f$ is the Froude number.
+  ///
+  /// This then is used to regularise the FE solution by matching the pressure
+  /// at two locations, taking the gravitational pressure gradient into account.
+  /// If the amplitude of the  singular solution is known, pin C.
   //=====================================================================
   template<class ELEMENT>
-  class PressureEvaluationElement : public virtual FaceGeometry<ELEMENT>,
-                                    public virtual FaceElement
+  class PressureEvaluationElement
+    : public virtual FaceGeometry<ELEMENT>,
+      public virtual SolidFaceElement,
+      public virtual DebugJacobianSolidFiniteElement
+
   {
   private:
     // Storage for the bulk element
@@ -39,7 +46,7 @@ namespace oomph
                               Node* const& node_pt,
                               const unsigned& pressure_value_index)
       : FaceGeometry<ELEMENT>(),
-        FaceElement(),
+        SolidFaceElement(),
         Cast_bulk_element_pt(dynamic_cast<ELEMENT*>(element_pt)),
         Pressure_index(-1),
         Is_adding_to_residuals(true),
@@ -304,7 +311,7 @@ namespace oomph
       Vector<double> s_bulk(dim() + 1);
       s_bulk = local_coordinate_in_bulk(s);
 
-      return Cast_bulk_element_pt->interpolated_p_nst(s_bulk);
+      return Cast_bulk_element_pt->interpolated_p_nst_fe_only(s_bulk);
     }
 
     // Overwrite the output function
@@ -316,11 +323,11 @@ namespace oomph
       // Spatial coordinates are one higher
       for (unsigned i = 0; i < n_dim + 1; i++)
       {
-        outfile << interpolated_x(evalution_point_s, i) << " ";
+        outfile << interpolated_x(evalution_point_s, i) << ",";
       }
 
       // Output the pressure
-      outfile << interpolated_p(evalution_point_s) << " ";
+      outfile << interpolated_p(evalution_point_s) << ",";
 
       // End of line
       outfile << std::endl;

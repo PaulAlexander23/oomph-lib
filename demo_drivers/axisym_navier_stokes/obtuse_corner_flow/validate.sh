@@ -4,7 +4,7 @@
 OOMPH_ROOT_DIR=$(make -s --no-print-directory print-top_builddir)
 
 #Set the number of tests to be checked
-NUM_TESTS=6
+NUM_TESTS=5
 
 # Setup validation directory
 #---------------------------
@@ -31,7 +31,8 @@ test_script()
     echo " " >> $LOG
     echo "  " `pwd` >> $LOG
     echo " " >> $LOG
-    cat Validation/$1/slip_surface0.csv > Validation/$2.dat
+    # Sorting here as the MPI runs have a different mesh ordering for some reason...
+    sort Validation/$1/slip_surface0.csv > Validation/$2.dat
     if test "$1" = "no_fpdiff"; then
         echo "dummy [OK] -- Can't run fpdiff.py because we don't have python or validata" >> $LOG
     else
@@ -40,12 +41,14 @@ test_script()
     fi
 }
 
+# This is needed to ensure that sort is locale independent
+export LC_ALL=C
+
 test_script RESLT_axi_no_fix structured_no_correction 
 test_script RESLT_axi_no_fix_region structured_no_correction_region
 test_script RESLT_axi_fix structured_with_correction 
 test_script RESLT_axi_fix_region structured_with_correction_region
-test_script RESLT_axi_no_fix_unstr unstructured_no_correction 
-test_script RESLT_axi_fix_unstr unstructured_with_correction 
+test_script RESLT_axi_sprittles_region sprittles_region
 
 #######################################################################
 

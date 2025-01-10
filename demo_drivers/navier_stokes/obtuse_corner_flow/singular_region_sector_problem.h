@@ -10,6 +10,7 @@
 #include "region_sector_problem.h"
 #include "two_region_refined_sector_tri_mesh.template.h"
 
+
 namespace oomph
 {
   // Problem class
@@ -470,7 +471,7 @@ namespace oomph
     }
     const unsigned pressure_value_index = 2;
     PointPressureEvaluationElement* el_pt =
-      new PointPressureEvaluationElement(node_pt, pressure_value_index);
+      new PointPressureEvaluationElement(node_pt,2);
     el_pt->set_pressure_data_pt(
       Singularity_scaling_mesh_pt->element_pt(0)->internal_data_pt(0));
 
@@ -507,7 +508,7 @@ namespace oomph
     }
     const unsigned pressure_value_index = 2;
     PointPressureEvaluationElement* el_pt =
-      new PointPressureEvaluationElement(node_pt, pressure_value_index);
+      new PointPressureEvaluationElement(node_pt,2);
 
     el_pt->set_pressure_data_pt(
       Singularity_scaling_mesh_pt->element_pt(0)->internal_data_pt(0));

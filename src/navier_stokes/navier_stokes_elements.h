@@ -279,7 +279,7 @@ namespace oomph
             // Loop over the shape functions in bulk
             for (unsigned l2 = 0; l2 < n_pres; l2++)
             {
-              local_unknown = bulk_el_pt->p_local_eqn(l2);
+              local_unknown = bulk_el_pt->p_local_unknown(l2);
 
               // If not a boundary conditions
               if (local_unknown >= 0)
@@ -354,12 +354,6 @@ namespace oomph
       const unsigned& which_one = 0) = 0;
   };
 
-
-  /// ////////////////////////////////////////////////////////////////////
-  /// ////////////////////////////////////////////////////////////////////
-  /// ////////////////////////////////////////////////////////////////////
-
-
   //======================================================================
   /// A class for elements that solve the cartesian Navier--Stokes equations,
   /// templated by the dimension DIM.
@@ -377,6 +371,11 @@ namespace oomph
   /// We also provide all functions required to use this element
   /// in FSI problems, by deriving it from the FSIFluidElement base
   /// class.
+  ///
+  /// Weak form:
+  ///
+  ///   \f$ { \int_V F_i \phi^f_l + \frac{Re}{Fr} G_i \phi^f_l + p \frac{\partial \phi^f_l}{\partial x_i} - \sum_{k=0}^N \frac{\mu_2}{\mu_1} \left( \frac{\partial u_i}{\partial x_k} + \Gamma_i \frac{\partial u_k}{\partial x_i} \right) \frac{\partial \phi^f_l}{\partial x_k} - Re\ St\ \frac{\partial u_i}{\partial t} \phi^f_l - \left( Re\ u_i - \gamma Re\ St\ u^{mesh}_i \right) \frac{\partial u_i}{\partial x_k} \phi^f_l \ dx dy = 0 } \f$
+  ///
   //======================================================================
   template<unsigned DIM>
   class NavierStokesEquations
@@ -1496,6 +1495,14 @@ namespace oomph
       }
     }
 
+    /// Compute vector of FE interpolated velocity u at local coordinate s
+    virtual Vector<double> interpolated_u_nst(const Vector<double>& s) const
+    {
+      Vector<double> velocity(DIM, 0.0);
+      interpolated_u_nst(s, velocity);
+      return velocity;
+    }
+
     /// Return FE interpolated velocity u[i] at local coordinate s
     virtual double interpolated_u_nst(const Vector<double>& s,
                                       const unsigned& i) const
@@ -1816,6 +1823,12 @@ namespace oomph
 
     /// Return the local equation numbers for the pressure values.
     virtual inline int p_local_eqn(const unsigned& n) const
+    {
+      return this->internal_local_eqn(P_nst_internal_index, n);
+    }
+
+    /// Return the local unknown numbers for the pressure values.
+    virtual inline int p_local_unknown(const unsigned& n) const
     {
       return this->internal_local_eqn(P_nst_internal_index, n);
     }
@@ -2354,6 +2367,12 @@ namespace oomph
     virtual inline int p_local_eqn(const unsigned& n) const
     {
       return this->nodal_local_eqn(Pconv[n], p_nodal_index_nst());
+    }
+
+    /// Return the local unknown numbers for the pressure values.
+    inline int p_local_unknown(const unsigned& n) const
+    {
+      return this->nodal_local_eqn(Pconv[n], this->p_nodal_index_nst());
     }
 
     /// Access function for the pressure values at local pressure

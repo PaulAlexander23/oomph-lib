@@ -9,6 +9,8 @@
 /// Local headers
 #include "region_axisym_sector_problem.h"
 #include "two_region_refined_sector_tri_mesh.template.h"
+#include "utility_functions.h"
+
 
 namespace oomph
 {
@@ -69,6 +71,11 @@ namespace oomph
       this->rebuild_global_mesh();
     }
 
+    // void actions_after_newton_step()
+    //{
+    //   debug_jacobian<SingularRegionAxisymSectorProblem<ELEMENT>*>(this);
+    // }
+
     void setup()
     {
       // Augment the bulk elements
@@ -94,6 +101,7 @@ namespace oomph
       create_singular_elements();
 
       // fix_c(1.0);
+      // fix_c(0.0);
 
       this->rebuild_global_mesh();
       oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
@@ -158,7 +166,7 @@ namespace oomph
         dist = pow(dist, 0.5);
 
         // If the distance to the corner is within the "inner" region, ...
-        if (el_pt->get_region_id() ==
+        if (el_pt->region_id() ==
             TwoRegionRefinedSectorTriMesh<ELEMENT>::Inner_region_id)
         {
           // ... augment element
@@ -477,7 +485,7 @@ namespace oomph
 
     const unsigned pressure_value_index = 3;
     PointPressureEvaluationElement* el_pt =
-      new PointPressureEvaluationElement(node_pt, pressure_value_index);
+      new PointPressureEvaluationElement(node_pt, 3);
 
     el_pt->set_pressure_data_pt(
       Singularity_scaling_mesh_pt->element_pt(0)->internal_data_pt(0));
@@ -518,7 +526,7 @@ namespace oomph
 
     const unsigned pressure_value_index = 3;
     PointPressureEvaluationElement* el_pt =
-      new PointPressureEvaluationElement(node_pt, pressure_value_index);
+      new PointPressureEvaluationElement(node_pt, 3);
 
     el_pt->set_pressure_data_pt(
       Singularity_scaling_mesh_pt->element_pt(0)->internal_data_pt(0));
