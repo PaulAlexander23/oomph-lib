@@ -49,6 +49,31 @@ check_PROGRAMS= \
 	sprittles \
 	sprittles_region
 
+FOLDERS:= \
+	RESLT_fix \
+	RESLT_fix_region \
+	RESLT_fix_unstr \
+	RESLT_no_fix \
+	RESLT_no_fix_region \
+	RESLT_no_fix_unstr \
+	RESLT_sprittles \
+	RESLT_sprittles_region
+
+# Makefile rules
+run: ${EXEC} ${FOLDERS} parameters.dat
+	echo ${EXEC} | xargs -d " " -I {} bash -c "./{}"
+
+$(FOLDERS):
+	mkdir -p $@
+
+parameters.dat: 
+	cp default_parameters.dat parameters.dat
+
+# Automake
+
+# Name of executables
+check_PROGRAMS= ${EXEC}
+
 # Sources for second executable
 structured_no_correction_SOURCES = structured_no_correction.cc
 structured_no_correction_region_SOURCES = structured_no_correction_region.cc

@@ -9,7 +9,7 @@ EXEC:= \
 	run_tests
 
 # Makefile rules
-all: ${EXEC}
+run: ${EXEC}
 
 # Automake
 
