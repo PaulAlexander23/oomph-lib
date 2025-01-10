@@ -3,7 +3,7 @@
 // LIC// multi-physics finite-element library, available
 // LIC// at http://www.oomph-lib.org.
 // LIC//
-// LIC// Copyright (C) 2006-2021 Matthias Heil and Andrew Hazel
+// LIC// Copyright (C) 2006-2022 Matthias Heil and Andrew Hazel
 // LIC//
 // LIC// This library is free software; you can redistribute it and/or
 // LIC// modify it under the terms of the GNU Lesser General Public
@@ -32,7 +32,7 @@
 namespace oomph
 {
   //====================================================================
-  /// \short Constructor for deformable quarter tube mesh class.
+  /// Constructor for deformable quarter tube mesh class.
   /// The domain is specified by the GeomObject that
   /// identifies the entire volume.
   //====================================================================

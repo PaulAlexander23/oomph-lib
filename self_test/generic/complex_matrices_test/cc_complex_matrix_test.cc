@@ -36,11 +36,19 @@ int main()
 {
   // test default constructor
   CCComplexMatrix matrix_default;
+<<<<<<< HEAD
   cout << matrix_default.nrow() << endl;
   cout << matrix_default.ncol() << endl;
 
   constexpr unsigned long n_col_rect = 2;
   constexpr unsigned long n_row_rect = 4;
+=======
+  oomph_info << matrix_default.nrow() << endl;
+  oomph_info << matrix_default.ncol() << endl;
+
+  constexpr unsigned long n_col_rect = 4;
+  constexpr unsigned long n_row_rect = 2;
+>>>>>>> 90e9d245128a6ebfaab03149f249eeafe51bd657
   // Number of non-zero entries
   constexpr unsigned n_nz_rect = 4;
 
@@ -65,8 +73,13 @@ int main()
   // test full matrix constructor with a rectangular matrix
   CCComplexMatrix matrix_rect(
     value_rect, row_index_rect, column_start_rect, n_col_rect, n_row_rect);
+<<<<<<< HEAD
   cout << matrix_rect.nrow() << endl;
   cout << matrix_rect.ncol() << endl;
+=======
+  oomph_info << matrix_rect.nrow() << endl;
+  oomph_info << matrix_rect.ncol() << endl;
+>>>>>>> 90e9d245128a6ebfaab03149f249eeafe51bd657
   print_complex_matrix(matrix_rect);
 
   constexpr unsigned long n_col_square = 4;
@@ -105,12 +118,21 @@ int main()
                                 column_start_square,
                                 n_col_square,
                                 n_row_square);
+<<<<<<< HEAD
   cout << matrix_square.nrow() << endl;
   cout << matrix_square.ncol() << endl;
   print_complex_matrix(matrix_square);
 
   // test LU decomposition
   cout << matrix_square.ludecompose() << endl;
+=======
+  oomph_info << matrix_square.nrow() << endl;
+  oomph_info << matrix_square.ncol() << endl;
+  print_complex_matrix(matrix_square);
+
+  // test LU decomposition
+  oomph_info << matrix_square.ludecompose() << endl;
+>>>>>>> 90e9d245128a6ebfaab03149f249eeafe51bd657
 
   constexpr unsigned long vector_length = n_row_square;
 

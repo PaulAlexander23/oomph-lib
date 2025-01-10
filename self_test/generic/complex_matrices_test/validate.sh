@@ -4,7 +4,15 @@
 OOMPH_ROOT_DIR=$(make -s --no-print-directory print-top_builddir)
 
 #Set the number of tests to be checked
+<<<<<<< HEAD
 NUM_TESTS=4
+=======
+if [$MPI_RUN_COMMAND != ""]; then
+    NUM_TESTS=3
+else
+    NUM_TESTS=2
+fi
+>>>>>>> 90e9d245128a6ebfaab03149f249eeafe51bd657
 
 # Setup validation directory
 #---------------------------
@@ -39,10 +47,18 @@ fi
 mv OUTPUT OUTPUT_dense_complex_matrix_test
 #-----------------------------------------
 
+<<<<<<< HEAD
 # Validation for compressed row complex matrix
 #-----------------------------------------
 echo "Running compressed row complex matrix validation "
 ../cr_complex_matrix_test > OUTPUT
+=======
+if [$MPI_RUN_COMMAND != ""]; then
+# Validation for compressed row complex matrix
+#-----------------------------------------
+echo "Running compressed row complex matrix validation "
+../cr_complex_matrix_test
+>>>>>>> 90e9d245128a6ebfaab03149f249eeafe51bd657
 echo "done"
 echo " " >> validation.log
 echo "Compressed row complex matrix validation" >> validation.log
@@ -63,6 +79,10 @@ fi
 
 mv OUTPUT OUTPUT_cr_complex_matrix_test
 #-----------------------------------------
+<<<<<<< HEAD
+=======
+fi
+>>>>>>> 90e9d245128a6ebfaab03149f249eeafe51bd657
 
 # Validation for compressed column complex matrix
 #-----------------------------------------
@@ -89,6 +109,7 @@ fi
 mv OUTPUT OUTPUT_cc_complex_matrix_test
 #-----------------------------------------
 
+<<<<<<< HEAD
 # Validation for complex eigensolver
 #-----------------------------------------
 echo "Running complex eigensolver validation "
@@ -114,6 +135,8 @@ fi
 mv OUTPUT OUTPUT_eigensolver_test
 #-----------------------------------------
 
+=======
+>>>>>>> 90e9d245128a6ebfaab03149f249eeafe51bd657
 # Append log to main validation log
 cat validation.log >> ../../../../validation.log
 

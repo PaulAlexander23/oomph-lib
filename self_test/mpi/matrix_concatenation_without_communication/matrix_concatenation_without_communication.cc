@@ -3,7 +3,7 @@
 //LIC// multi-physics finite-element library, available 
 //LIC// at http://www.oomph-lib.org.
 //LIC// 
-//LIC// Copyright (C) 2006-2021 Matthias Heil and Andrew Hazel
+//LIC// Copyright (C) 2006-2022 Matthias Heil and Andrew Hazel
 //LIC// 
 //LIC// This library is free software; you can redistribute it and/or
 //LIC// modify it under the terms of the GNU Lesser General Public
@@ -271,7 +271,7 @@ int main(int argc, char* argv[])
  // Create the matrice to concatenate.
  create_matrices_to_cat(dimarray,comm_pt,mat0_pt);
 
- /////////////////////////////////////////////////////////////////////////////
+ /// //////////////////////////////////////////////////////////////////////////
   
  // stuff for the output
  unsigned my_rank = comm_pt->my_rank();
@@ -307,7 +307,7 @@ int main(int argc, char* argv[])
  // Clear the result matrix.
  result_matrix0.clear();
   
- /////////////////////////////////////////////////////////////////////////////
+ /// //////////////////////////////////////////////////////////////////////////
  // Test #1, we concaenate
  // (7,7) (7,5)
  // (5,7) (5,5)
@@ -356,7 +356,7 @@ int main(int argc, char* argv[])
  // Clear the result matrix.
  result_matrix1.clear();
  
- /////////////////////////////////////////////////////////////////////////////
+ /// //////////////////////////////////////////////////////////////////////////
  // Test #2, we concaenate
  // (7,7) (7,5) (7,3)
  // (5,7) (5,5) (5,3)

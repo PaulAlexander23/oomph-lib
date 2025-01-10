@@ -31,6 +31,7 @@
 using namespace std;
 using namespace oomph;
 
+<<<<<<< HEAD
 /// Main test function for the compressed-row complex matrix class
 int main()
 {
@@ -38,6 +39,46 @@ int main()
   CRComplexMatrix matrix_default;
   cout << matrix_default.nrow() << endl;
   cout << matrix_default.ncol() << endl;
+=======
+/// Print complex vector to console out
+void print_complex_vector(const oomph::Vector<std::complex<double>>& x,
+                          ofstream& output_stream)
+{
+  unsigned vector_length = x.size();
+  for (unsigned i = 0; i < vector_length; i++)
+  {
+    output_stream << x[i] << std::endl;
+  }
+}
+
+/// Print a complex matrix in its dense form to console out
+void print_complex_matrix(const oomph::ComplexMatrixBase& matrix,
+                          ofstream& output_stream)
+{
+  unsigned n_row = matrix.nrow();
+  unsigned n_col = matrix.ncol();
+  for (unsigned i = 0; i < n_row; i++)
+  {
+    for (unsigned j = 0; j < n_col; j++)
+    {
+      output_stream << matrix(i, j) << ", ";
+    }
+    output_stream << std::endl;
+  }
+}
+
+/// Main test function for the compressed-row complex matrix class
+int main(int argc, char** argv)
+{
+  string filename = "OUTPUT";
+  ofstream output_stream;
+  output_stream.open(filename);
+
+  // test default constructor
+  CRComplexMatrix matrix_default;
+  output_stream << matrix_default.nrow() << endl;
+  output_stream << matrix_default.ncol() << endl;
+>>>>>>> 90e9d245128a6ebfaab03149f249eeafe51bd657
 
   constexpr unsigned long n_col_rect = 2;
   constexpr unsigned long n_row_rect = 4;
@@ -65,9 +106,15 @@ int main()
   // test full matrix constructor with a rectangular matrix
   CRComplexMatrix matrix_rect(
     value_rect, column_index_rect, row_start_rect, n_col_rect, n_row_rect);
+<<<<<<< HEAD
   cout << matrix_rect.nrow() << endl;
   cout << matrix_rect.ncol() << endl;
   print_complex_matrix(matrix_rect);
+=======
+  output_stream << matrix_rect.nrow() << endl;
+  output_stream << matrix_rect.ncol() << endl;
+  print_complex_matrix(matrix_rect, output_stream);
+>>>>>>> 90e9d245128a6ebfaab03149f249eeafe51bd657
 
   constexpr unsigned long n_col_square = 4;
   constexpr unsigned long n_row_square = 4;
@@ -105,12 +152,21 @@ int main()
                                 row_start_square,
                                 n_col_square,
                                 n_row_square);
+<<<<<<< HEAD
   cout << matrix_square.nrow() << endl;
   cout << matrix_square.ncol() << endl;
   print_complex_matrix(matrix_square);
 
   // test LU decomposition
   cout << matrix_square.ludecompose() << endl;
+=======
+  output_stream << matrix_square.nrow() << endl;
+  output_stream << matrix_square.ncol() << endl;
+  print_complex_matrix(matrix_square, output_stream);
+
+  // test LU decomposition
+  output_stream << matrix_square.ludecompose() << endl;
+>>>>>>> 90e9d245128a6ebfaab03149f249eeafe51bd657
 
   constexpr unsigned long vector_length = n_row_square;
 
@@ -122,7 +178,11 @@ int main()
 
   // test residual
   matrix_square.lubksub(rhs);
+<<<<<<< HEAD
   print_complex_vector(rhs);
+=======
+  print_complex_vector(rhs, output_stream);
+>>>>>>> 90e9d245128a6ebfaab03149f249eeafe51bd657
 
   Vector<complex<double>> x(vector_length);
   x[0] = complex<double>(2.0, 2.0);
@@ -134,6 +194,7 @@ int main()
 
   // test multiply
   matrix_square.multiply(x, soln);
+<<<<<<< HEAD
   print_complex_vector(soln);
 
   // test multiply transposed
@@ -141,6 +202,21 @@ int main()
   print_complex_vector(soln);
 
   LinearAlgebraDistribution* dist_pt = new LinearAlgebraDistribution();
+=======
+  print_complex_vector(soln, output_stream);
+
+  // test multiply transposed
+  matrix_square.multiply_transpose(x, soln);
+  print_complex_vector(soln, output_stream);
+
+  /// Create linear algebra distribution with the right number of rows.
+  /// Note that we are only testing the serial version here.
+  OomphCommunicator* comm_pt = 0;
+  comm_pt = new OomphCommunicator();
+  const bool distributed = false;
+  LinearAlgebraDistribution* dist_pt =
+    new LinearAlgebraDistribution(comm_pt, n_row_square, distributed);
+>>>>>>> 90e9d245128a6ebfaab03149f249eeafe51bd657
 
   constexpr unsigned n_nz_double = 5;
 
@@ -170,6 +246,7 @@ int main()
 
   // test add (CRDoubleMatrix)
   matrix_square.add(matrix_in_double, matrix_square);
+<<<<<<< HEAD
   print_complex_matrix(matrix_square);
 
   // test add (CRComplexMatrix)
@@ -179,6 +256,17 @@ int main()
   // Print input matrices
   cout << "A" << endl;
   print_complex_matrix(matrix_square);
+=======
+  print_complex_matrix(matrix_square, output_stream);
+
+  // test add (CRComplexMatrix)
+  matrix_square.add(matrix_square, matrix_square);
+  print_complex_matrix(matrix_square, output_stream);
+
+  // Print input matrices
+  output_stream << "A" << endl;
+  print_complex_matrix(matrix_square, output_stream);
+>>>>>>> 90e9d245128a6ebfaab03149f249eeafe51bd657
 
   CRComplexMatrix matrix_square_2(values_square,
                                   column_index_square,
@@ -186,8 +274,13 @@ int main()
                                   n_col_square,
                                   n_row_square);
 
+<<<<<<< HEAD
   cout << "B" << endl;
   print_complex_matrix(matrix_square_2);
+=======
+  output_stream << "B" << endl;
+  print_complex_matrix(matrix_square_2, output_stream);
+>>>>>>> 90e9d245128a6ebfaab03149f249eeafe51bd657
 
   CRComplexMatrix matrix_result(values_square,
                                 column_index_square,
@@ -197,6 +290,7 @@ int main()
 
   // test multiply method Fastest (default)
   matrix_square.multiply(matrix_square_2, matrix_result);
+<<<<<<< HEAD
   cout << "A B" << endl;
   print_complex_matrix(matrix_result);
 
@@ -220,6 +314,39 @@ int main()
   // Print cleanup messages for easier debugging
   delete dist_pt;
   dist_pt = nullptr;
+=======
+  output_stream << "A B" << endl;
+  print_complex_matrix(matrix_result, output_stream);
+
+  // test default method is set to 1 (equals Fastest in the enumeration)
+  output_stream << (matrix_square.serial_matrix_matrix_multiply_method() ==
+                    CRComplexMatrix::SerialMatrixMultiplyMethod::Fastest)
+                << endl;
+
+  // test multiply method 1
+  matrix_square.serial_matrix_matrix_multiply_method() =
+    CRComplexMatrix::SerialMatrixMultiplyMethod::Memory_efficient;
+  matrix_square.multiply(matrix_square_2, matrix_result);
+  output_stream
+    << (matrix_square.serial_matrix_matrix_multiply_method() ==
+        CRComplexMatrix::SerialMatrixMultiplyMethod::Memory_efficient)
+    << endl;
+  output_stream << "A B" << endl;
+  print_complex_matrix(matrix_result, output_stream);
+
+  // test multiply method 3
+  matrix_square.serial_matrix_matrix_multiply_method() =
+    CRComplexMatrix::SerialMatrixMultiplyMethod::Vector_of_vectors;
+  matrix_square.multiply(matrix_square_2, matrix_result);
+  output_stream
+    << (matrix_square.serial_matrix_matrix_multiply_method() ==
+        CRComplexMatrix::SerialMatrixMultiplyMethod::Vector_of_vectors)
+    << endl;
+  output_stream << "A B" << endl;
+  print_complex_matrix(matrix_result, output_stream);
+
+  delete dist_pt;
+>>>>>>> 90e9d245128a6ebfaab03149f249eeafe51bd657
 
   return (EXIT_SUCCESS);
 }

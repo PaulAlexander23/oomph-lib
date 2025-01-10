@@ -3,7 +3,7 @@
 //LIC// multi-physics finite-element library, available 
 //LIC// at http://www.oomph-lib.org.
 //LIC// 
-//LIC// Copyright (C) 2006-2021 Matthias Heil and Andrew Hazel
+//LIC// Copyright (C) 2006-2022 Matthias Heil and Andrew Hazel
 //LIC// 
 //LIC// This library is free software; you can redistribute it and/or
 //LIC// modify it under the terms of the GNU Lesser General Public
@@ -49,7 +49,7 @@ using namespace oomph;
 /// dist_r: nrow = 15
 ///         nrow_local rank0 = 15
 ///
-///////////////////////////////////////
+/// ////////////////////////////////////
 /// 
 /// On two cores:
 /// dist_0: nrow = 7
@@ -69,7 +69,7 @@ using namespace oomph;
 ///         nrow_local rank0 = 6
 ///         nrow_local rank1 = 9
 ///
-///////////////////////////////////////
+/// ////////////////////////////////////
 ///
 /// On three cores:
 /// dist_0: nrow = 7
@@ -93,7 +93,7 @@ using namespace oomph;
 ///         nrow_local rank1 = 5
 ///         nrow_local rank2 = 6
 ///
-///////////////////////////////////////
+/// ////////////////////////////////////
 ///
 /// On four cores:
 /// dist_0: nrow = 7

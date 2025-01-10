@@ -3,7 +3,7 @@
 // LIC// multi-physics finite-element library, available
 // LIC// at http://www.oomph-lib.org.
 // LIC//
-// LIC// Copyright (C) 2006-2021 Matthias Heil and Andrew Hazel
+// LIC// Copyright (C) 2006-2022 Matthias Heil and Andrew Hazel
 // LIC//
 // LIC// This library is free software; you can redistribute it and/or
 // LIC// modify it under the terms of the GNU Lesser General Public
@@ -46,7 +46,7 @@ namespace oomph
   class SimpleCubicMesh : public virtual BrickMeshBase
   {
   public:
-    /// \short Constructor: Pass number of elements in the x, y, and z
+    /// Constructor: Pass number of elements in the x, y, and z
     /// directions, and the corresponding dimensions. Assume that the back lower
     /// left corner is located at (0,0,0) Timestepper defaults to Steady.
     SimpleCubicMesh(const unsigned& nx,
@@ -73,7 +73,7 @@ namespace oomph
       build_mesh(time_stepper_pt);
     }
 
-    /// \short Constructor: Pass the number of elements in the x,y and z
+    /// Constructor: Pass the number of elements in the x,y and z
     /// directions and the correspoding minimum and maximum values of the
     /// coordinates in each direction
     SimpleCubicMesh(const unsigned& nx,
@@ -155,9 +155,9 @@ namespace oomph
   };
 
 
-  ////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////
+  /// /////////////////////////////////////////////////////////////////////////
+  /// /////////////////////////////////////////////////////////////////////////
+  /// /////////////////////////////////////////////////////////////////////////
 
 
   //=======================================================================
@@ -168,7 +168,7 @@ namespace oomph
                                     public virtual RefineableBrickMesh<ELEMENT>
   {
   public:
-    /// \short Constructor: Pass number of elements in the x, y, and z
+    /// Constructor: Pass number of elements in the x, y, and z
     /// directions, and the corresponding dimensions. Assume that the back lower
     /// left corner is located at (0,0,0) Timestepper defaults to Steady.
     RefineableSimpleCubicMesh(
@@ -187,7 +187,7 @@ namespace oomph
     }
 
 
-    /// \short Constructor: Pass the number of elements in the x,y and z
+    /// Constructor: Pass the number of elements in the x,y and z
     /// directions and the correspoding minimum and maximum values of the
     /// coordinates in each direction.
     RefineableSimpleCubicMesh(

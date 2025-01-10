@@ -3,7 +3,7 @@
 // LIC// multi-physics finite-element library, available
 // LIC// at http://www.oomph-lib.org.
 // LIC//
-// LIC// Copyright (C) 2006-2021 Matthias Heil and Andrew Hazel
+// LIC// Copyright (C) 2006-2022 Matthias Heil and Andrew Hazel
 // LIC//
 // LIC// This library is free software; you can redistribute it and/or
 // LIC// modify it under the terms of the GNU Lesser General Public
@@ -47,7 +47,7 @@ namespace oomph
   class RectangleWithHoleMesh : public virtual Mesh
   {
   public:
-    /// \short Constructor: Pass pointer to geometric object that
+    /// Constructor: Pass pointer to geometric object that
     /// represents the cylinder, the length and height of the domain.
     /// The GeomObject must be parametrised such that
     /// \f$\zeta \in [0,2\pi]\f$ sweeps around the circumference
@@ -242,9 +242,9 @@ namespace oomph
   };
 
 
-  //////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////
+  /// ///////////////////////////////////////////////////////////////////////
+  /// ///////////////////////////////////////////////////////////////////////
+  /// ///////////////////////////////////////////////////////////////////////
 
 
   //===================================================================
@@ -256,7 +256,7 @@ namespace oomph
                                           public RefineableQuadMesh<ELEMENT>
   {
   public:
-    /// \short Constructor. Pass pointer to geometric object that
+    /// Constructor. Pass pointer to geometric object that
     /// represents the cylinder, the length and height of the domain.
     /// The GeomObject must be parametrised such that
     /// \f$\zeta \in [0,2\pi]\f$ sweeps around the circumference
@@ -286,7 +286,7 @@ namespace oomph
       this->setup_quadtree_forest();
     }
 
-    /// \short Destructor: Empty
+    /// Destructor: Empty
     virtual ~RefineableRectangleWithHoleMesh() {}
   };
 

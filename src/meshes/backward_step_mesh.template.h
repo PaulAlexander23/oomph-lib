@@ -3,7 +3,7 @@
 // LIC// multi-physics finite-element library, available
 // LIC// at http://www.oomph-lib.org.
 // LIC//
-// LIC// Copyright (C) 2006-2021 Matthias Heil and Andrew Hazel
+// LIC// Copyright (C) 2006-2022 Matthias Heil and Andrew Hazel
 // LIC//
 // LIC// This library is free software; you can redistribute it and/or
 // LIC// modify it under the terms of the GNU Lesser General Public
@@ -45,7 +45,7 @@ namespace oomph
   class BackwardStepQuadMesh : public virtual RectangularQuadMesh<ELEMENT>
   {
   public:
-    /// \short Pass overall number of elements in the horizontal
+    /// Pass overall number of elements in the horizontal
     /// and vertical directions, nx and ny, and the corresponding
     /// dimensions, lx and ly. nx_cut_out and ny_cut_out elements
     /// are cut out from the lower right corner to create the
@@ -80,9 +80,9 @@ namespace oomph
   }; // end of mesh
 
 
-  ////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////
+  /// /////////////////////////////////////////////////////////////////
+  /// /////////////////////////////////////////////////////////////////
+  /// /////////////////////////////////////////////////////////////////
 
 
   //=================================================================
@@ -94,7 +94,7 @@ namespace oomph
       public RefineableQuadMesh<ELEMENT>
   {
   public:
-    /// \short Pass overall number of elements in the horizontal
+    /// Pass overall number of elements in the horizontal
     /// and vertical directions, nx and ny, and the corresponding
     /// dimensions, lx and ly. nx_cut_out and ny_cut_out elements
     /// are cut out from the lower right corner to create the

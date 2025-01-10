@@ -3,7 +3,7 @@
 // LIC// multi-physics finite-element library, available
 // LIC// at http://www.oomph-lib.org.
 // LIC//
-// LIC// Copyright (C) 2006-2021 Matthias Heil and Andrew Hazel
+// LIC// Copyright (C) 2006-2022 Matthias Heil and Andrew Hazel
 // LIC//
 // LIC// This library is free software; you can redistribute it and/or
 // LIC// modify it under the terms of the GNU Lesser General Public
@@ -41,7 +41,7 @@
 
 namespace oomph
 {
-  /// \short Helper function that updates the input faceted surface
+  /// Helper function that updates the input faceted surface
   /// by using the flattened elements from FaceMesh(es) that are
   /// constructed for the boundaries associated with the segments of the
   /// polygon.
@@ -221,7 +221,7 @@ namespace oomph
   }
 
 
-  /// \short Generate a new faceted representation of the inner hole
+  /// Generate a new faceted representation of the inner hole
   /// boundaries
   template<class ELEMENT>
   void RefineableTetgenMesh<ELEMENT>::surface_remesh_for_inner_hole_boundaries()
@@ -241,7 +241,7 @@ namespace oomph
     }
   }
 
-  /// \short Snap the boundary nodes onto any curvilinear boundaries
+  /// Snap the boundary nodes onto any curvilinear boundaries
   template<class ELEMENT>
   void RefineableTetgenMesh<ELEMENT>::snap_nodes_onto_boundary(
     RefineableTetgenMesh<ELEMENT>*& new_mesh_pt, const unsigned& b)
@@ -493,8 +493,6 @@ namespace oomph
 
     // Check if boundaries need to be updated (regardless of
     // requirements of bulk error estimator) but don't do anything!
-    bool check_only = true;
-    bool outer_boundary_update_necessary = false;
     bool inner_boundary_update_necessary = false; // true;
 
     // Should we bother to adapt?

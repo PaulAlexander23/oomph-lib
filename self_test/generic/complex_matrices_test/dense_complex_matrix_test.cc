@@ -36,8 +36,13 @@ int main()
 {
   // test default constructor
   DenseComplexMatrix matrix_default;
+<<<<<<< HEAD
   cout << matrix_default.nrow() << endl;
   cout << matrix_default.ncol() << endl;
+=======
+  oomph_info << matrix_default.nrow() << endl;
+  oomph_info << matrix_default.ncol() << endl;
+>>>>>>> 90e9d245128a6ebfaab03149f249eeafe51bd657
 
   constexpr unsigned long n_row = 2;
   constexpr unsigned long n_col = 3;
@@ -46,21 +51,36 @@ int main()
 
   // test square matrix constructor
   DenseComplexMatrix matrix_square(n_row);
+<<<<<<< HEAD
   cout << matrix_square.nrow() << endl;
   cout << matrix_square.ncol() << endl;
+=======
+  oomph_info << matrix_square.nrow() << endl;
+  oomph_info << matrix_square.ncol() << endl;
+>>>>>>> 90e9d245128a6ebfaab03149f249eeafe51bd657
 
 
   // test rectangular matrix constructor
   DenseComplexMatrix matrix_rect(n_row, n_col);
+<<<<<<< HEAD
   cout << matrix_rect.nrow() << endl;
   cout << matrix_rect.ncol() << endl;
+=======
+  oomph_info << matrix_rect.nrow() << endl;
+  oomph_info << matrix_rect.ncol() << endl;
+>>>>>>> 90e9d245128a6ebfaab03149f249eeafe51bd657
 
   complex<double> inital_value(0.0, 1.0);
 
   // test constructor with every entry equal to a single initial value
   DenseComplexMatrix matrix(n_row, n_col, inital_value);
+<<<<<<< HEAD
   cout << matrix.nrow() << endl;
   cout << matrix.ncol() << endl;
+=======
+  oomph_info << matrix.nrow() << endl;
+  oomph_info << matrix.ncol() << endl;
+>>>>>>> 90e9d245128a6ebfaab03149f249eeafe51bd657
   print_complex_matrix(matrix);
 
   Vector<complex<double>> values(n_nz);
@@ -77,7 +97,11 @@ int main()
   print_complex_matrix(matrix_square);
 
   // test LU decomposition
+<<<<<<< HEAD
   cout << matrix_square.ludecompose() << endl;
+=======
+  oomph_info << matrix_square.ludecompose() << endl;
+>>>>>>> 90e9d245128a6ebfaab03149f249eeafe51bd657
 
   constexpr unsigned long vector_length = n_row;
 

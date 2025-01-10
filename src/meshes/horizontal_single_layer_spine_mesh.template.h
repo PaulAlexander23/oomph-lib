@@ -3,7 +3,7 @@
 // LIC// multi-physics finite-element library, available
 // LIC// at http://www.oomph-lib.org.
 // LIC//
-// LIC// Copyright (C) 2006-2021 Matthias Heil and Andrew Hazel
+// LIC// Copyright (C) 2006-2022 Matthias Heil and Andrew Hazel
 // LIC//
 // LIC// This library is free software; you can redistribute it and/or
 // LIC// modify it under the terms of the GNU Lesser General Public
@@ -46,7 +46,7 @@ namespace oomph
                                          public SpineMesh
   {
   public:
-    /// \short Constructor: Pass number of elements in x-direction, number of
+    /// Constructor: Pass number of elements in x-direction, number of
     /// elements in y-direction, axial length, height of layer, and pointer
     /// to timestepper (defaults to Steady timestepper)
     HorizontalSingleLayerSpineMesh(
@@ -57,7 +57,7 @@ namespace oomph
       TimeStepper* time_stepper_pt = &Mesh::Default_TimeStepper);
 
 
-    /// \short General node update function implements pure virtual function
+    /// General node update function implements pure virtual function
     /// defined in SpineMesh base class and performs specific node update
     /// actions:  along vertical spines
     virtual void spine_node_update(SpineNode* spine_node_pt)
@@ -73,7 +73,7 @@ namespace oomph
 
 
   protected:
-    /// \short Helper function to actually build the single-layer spine mesh
+    /// Helper function to actually build the single-layer spine mesh
     /// (called from various constructors)
     virtual void build_horizontal_single_layer_mesh(
       TimeStepper* time_stepper_pt);

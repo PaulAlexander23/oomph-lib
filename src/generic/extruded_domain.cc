@@ -3,7 +3,7 @@
 // LIC// multi-physics finite-element library, available
 // LIC// at http://www.oomph-lib.org.
 // LIC//
-// LIC// Copyright (C) 2006-2021 Matthias Heil and Andrew Hazel
+// LIC// Copyright (C) 2006-2022 Matthias Heil and Andrew Hazel
 // LIC//
 // LIC// This library is free software; you can redistribute it and/or
 // LIC// modify it under the terms of the GNU Lesser General Public
@@ -127,7 +127,7 @@ namespace oomph
 
 
   //=================================================================
-  /// \short Access to i-th extruded macro element
+  /// Access to i-th extruded macro element
   //=================================================================
   ExtrudedMacroElement* ExtrudedDomain::macro_element_pt(const unsigned& i)
   {
@@ -137,7 +137,7 @@ namespace oomph
 
 
   //=================================================================
-  /// \short Vector representation of the i_macro-th macro element
+  /// Vector representation of the i_macro-th macro element
   /// boundary i_direct (e.g. N/S/W/E in 2D spatial = 3D space-time).
   /// NOTE: Some extra care has to be taken here to translate the
   /// OcTree enumeration to the QuadTree enumeration (in the

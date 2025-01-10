@@ -3,7 +3,7 @@
 // LIC// multi-physics finite-element library, available
 // LIC// at http://www.oomph-lib.org.
 // LIC//
-// LIC// Copyright (C) 2006-2021 Matthias Heil and Andrew Hazel
+// LIC// Copyright (C) 2006-2022 Matthias Heil and Andrew Hazel
 // LIC//
 // LIC// This library is free software; you can redistribute it and/or
 // LIC// modify it under the terms of the GNU Lesser General Public
@@ -58,12 +58,12 @@ namespace oomph
                            const double& a);
 
 
-    /// \short Destructor: Emtpy because clean up happens in base class
+    /// Destructor: Emtpy because clean up happens in base class
     /// as a service to the user!
     ~CylinderWithFlagDomain() {}
 
 
-    /// \short Parametrisation of macro element boundaries: f(s) is the position
+    /// Parametrisation of macro element boundaries: f(s) is the position
     /// vector to macro-element m's boundary in the specified direction
     /// [N/S/E/W] at the specfied discrete time level (time=0: present; time>0:
     /// previous)
@@ -73,14 +73,14 @@ namespace oomph
                                 const Vector<double>& s,
                                 Vector<double>& f);
 
-    /// \short Access fct to GeomObject (of type Circle)
+    /// Access fct to GeomObject (of type Circle)
     /// that represents the cylinder
     Circle* cylinder_pt()
     {
       return Cylinder_pt;
     }
 
-    /// \short Access fct to GeomObjects for top, bottom and tip
+    /// Access fct to GeomObjects for top, bottom and tip
     GeomObject*& bottom_flag_pt()
     {
       return Bottom_flag_pt;
@@ -95,7 +95,7 @@ namespace oomph
     }
 
   private:
-    /// \short Helper function to interpolate linearly between the
+    /// Helper function to interpolate linearly between the
     /// "right" and "left" points; \f$ s \in [-1,1] \f$
     void linear_interpolate(const Vector<double>& left,
                             const Vector<double>& right,

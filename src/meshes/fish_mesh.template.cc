@@ -3,7 +3,7 @@
 // LIC// multi-physics finite-element library, available
 // LIC// at http://www.oomph-lib.org.
 // LIC//
-// LIC// Copyright (C) 2006-2021 Matthias Heil and Andrew Hazel
+// LIC// Copyright (C) 2006-2022 Matthias Heil and Andrew Hazel
 // LIC//
 // LIC// This library is free software; you can redistribute it and/or
 // LIC// modify it under the terms of the GNU Lesser General Public
@@ -648,9 +648,9 @@ namespace oomph
   }
 
 
-  ////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////
+  /// /////////////////////////////////////////////////////////////////////
+  /// /////////////////////////////////////////////////////////////////////
+  /// /////////////////////////////////////////////////////////////////////
 
 
   //=========start_setup_adaptivity=========================================
@@ -666,15 +666,15 @@ namespace oomph
   } // end of setup_adaptivity
 
 
-  ///////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////
+  /// ////////////////////////////////////////////////////////////////////
+  /// ////////////////////////////////////////////////////////////////////
   // AlgebraicElement fish-shaped mesh
-  ///////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////
+  /// ////////////////////////////////////////////////////////////////////
+  /// ////////////////////////////////////////////////////////////////////
 
 
   //======================================================================
-  /// \short Setup algebraic update operation. Nodes are "suspended"
+  /// Setup algebraic update operation. Nodes are "suspended"
   /// from the fish's back and the upper edge of the fin. Nodes
   /// in the lower half are placed symmetrically.
   //======================================================================
@@ -886,7 +886,7 @@ namespace oomph
 
 
   //======================================================================
-  /// \short Algebraic update function: Update in (upper or lower) body
+  /// Algebraic update function: Update in (upper or lower) body
   /// according to wall shape at time level t (t=0: present; t>0: previous)
   //======================================================================
   template<class ELEMENT>
@@ -942,7 +942,7 @@ namespace oomph
 
 
   //======================================================================
-  /// \short Algebraic update function: Update in (upper or lower) fin
+  /// Algebraic update function: Update in (upper or lower) fin
   /// according to wall shape at time level t (t=0: present; t>0: previous)
   //======================================================================
   template<class ELEMENT>

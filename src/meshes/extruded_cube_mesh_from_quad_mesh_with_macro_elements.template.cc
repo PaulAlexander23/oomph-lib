@@ -3,7 +3,7 @@
 // LIC// multi-physics finite-element library, available
 // LIC// at http://www.oomph-lib.org.
 // LIC//
-// LIC// Copyright (C) 2006-2021 Matthias Heil and Andrew Hazel
+// LIC// Copyright (C) 2006-2022 Matthias Heil and Andrew Hazel
 // LIC//
 // LIC// This library is free software; you can redistribute it and/or
 // LIC// modify it under the terms of the GNU Lesser General Public
@@ -26,14 +26,14 @@
 // Oomph-lib headers
 #include "extruded_cube_mesh_from_quad_mesh_with_macro_elements.template.h"
 
-/////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////
+/// //////////////////////////////////////////////////////////////////////
+/// //////////////////////////////////////////////////////////////////////
+/// //////////////////////////////////////////////////////////////////////
 
 namespace oomph
 {
   //========================================================================
-  /// \short Get all the boundary information of an element using the
+  /// Get all the boundary information of an element using the
   /// input (quad_mesh_pt) mesh. If the element lies on a boundary then
   /// the user will be given the corresponding boundary index and the
   /// index of the face of quad_el_pt attached to the boundary. If the
@@ -648,7 +648,8 @@ namespace oomph
                 Node* cube_node_pt = 0;
 
                 //--------------------------------------------------------------
-                //// Check if the node that we're about to construct lies on the
+                /// / Check if the node that we're about to construct lies on
+                /// the
                 // Front or back face of the mesh. The node can only lie on the
                 // front face if we're on the first element slice and first node
                 // slice. In contrast, the node can only lie on the back face if
