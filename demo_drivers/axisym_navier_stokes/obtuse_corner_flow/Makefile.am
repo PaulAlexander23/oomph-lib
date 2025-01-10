@@ -50,8 +50,6 @@ FOLDERS:= \
 	RESLT_axi_no_fix_region
 
 # Makefile rules
-run: ${EXEC} ${FOLDERS} parameters.dat
-	echo ${EXEC} | xargs -d " " -I {} bash -c "./{}"
 
 $(FOLDERS):
 	mkdir -p $@
@@ -60,9 +58,6 @@ parameters.dat:
 	cp default_parameters.dat parameters.dat
 
 # Automake
-
-# Name of executables
-check_PROGRAMS= ${EXEC}
 
 # Sources for second executable
 structured_no_correction_SOURCES = structured_no_correction.cc
