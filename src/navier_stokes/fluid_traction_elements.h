@@ -102,10 +102,10 @@ namespace oomph
 
 
     /// Function to calculate the traction applied to the fluid
-    void get_traction(const double& time,
-                      const Vector<double>& x,
-                      const Vector<double>& n,
-                      Vector<double>& result)
+    virtual void get_traction(const double& time,
+                              const Vector<double>& x,
+                              const Vector<double>& n,
+                              Vector<double>& result)
     {
       // If the function pointer is zero return zero
       if (Traction_fct_pt == 0)
