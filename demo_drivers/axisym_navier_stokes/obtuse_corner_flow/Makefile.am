@@ -37,33 +37,17 @@ check_PROGRAMS= \
 	structured_no_correction_region \
 	structured_with_correction \
 	structured_with_correction_region \
-	sprittles_region \
 	unstructured_no_correction \
-	unstructured_with_correction
-
-FOLDERS:= \
-	RESLT_axi_fix \
-	RESLT_axi_fix_unstr \
-	RESLT_axi_fix_region \
-	RESLT_axi_no_fix \
-	RESLT_axi_no_fix_unstr \
-	RESLT_axi_no_fix_region
-
-# Makefile rules
-
-$(FOLDERS):
-	mkdir -p $@
-
-parameters.dat: 
-	cp default_parameters.dat parameters.dat
-
-# Automake
+	unstructured_with_correction \
+	sprittles_region
 
 # Sources for second executable
 structured_no_correction_SOURCES = structured_no_correction.cc
 structured_no_correction_region_SOURCES = structured_no_correction_region.cc
 structured_with_correction_SOURCES = structured_with_correction.cc
 structured_with_correction_region_SOURCES = structured_with_correction_region.cc
+unstructured_no_correction_SOURCES = unstructured_no_correction.cc
+unstructured_with_correction_SOURCES = unstructured_with_correction.cc
 sprittles_region_SOURCES = sprittles_region.cc
 
 # Required libraries: 
