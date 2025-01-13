@@ -708,6 +708,10 @@ namespace oomph
     {
       // Call the generic residuals function with flag set to 0
       // using a dummy matrix argument
+      // Get the contribution from the underlying wrapped element first
+      BASIC_AXISYM_NAVIER_STOKES_ELEMENT::fill_in_contribution_to_residuals(
+        residuals);
+
       this->fill_in_generic_residual_contribution_wrapped_axi_nst(
         residuals, GeneralisedElement::Dummy_matrix, 0);
     }
@@ -719,9 +723,12 @@ namespace oomph
     {
       // Call the generic routine with the flag set to 1 and dummy mass
       // matrix
+      // BASIC_AXISYM_NAVIER_STOKES_ELEMENT::
+      //  fill_in_contribution_to_jacobian(
+      //    residuals, jacobian, GeneralisedElement::Dummy_matrix, flag);
       // this->fill_in_generic_residual_contribution_wrapped_axi_nst(
       //  residuals, jacobian, 1);
-      FiniteElement::fill_in_contribution_to_jacobian(residuals, jacobian);
+      SolidFiniteElement::fill_in_contribution_to_jacobian(residuals, jacobian);
     }
 
     /// Add the element's contribution to its residual vector and
@@ -2404,11 +2411,6 @@ namespace oomph
       DenseMatrix<double>& jacobian,
       const unsigned& flag)
     {
-      // Get the contribution from the underlying wrapped element first
-      BASIC_AXISYM_NAVIER_STOKES_ELEMENT::
-        fill_in_generic_residual_contribution_axi_nst(
-          residuals, jacobian, GeneralisedElement::Dummy_matrix, flag);
-
       if (this->IsAugmented)
       {
         fill_in_generic_residual_contribution_additional_terms(

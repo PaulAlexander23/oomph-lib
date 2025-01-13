@@ -59,7 +59,7 @@ namespace oomph
     /// Function that computes the singular velocity solution near the corner at
     /// x_centre_node_pt for a given contact angle
     return [contact_angle,
-            x_centre_node_pt](const Vector<double>& x) -> Vector<double>
+            &x_centre_node_pt](const Vector<double>& x) -> Vector<double>
     {
       // Initialise velocity vector to return
       Vector<double> u(3, 0.0);
@@ -90,8 +90,8 @@ namespace oomph
   {
     /// Function that computes the gradient of the singular velocity
     /// near the corner x_centre_node_pt: \f$grad[i][j] = du_i/dx_j\f$
-    return [contact_angle,
-            x_centre_node_pt](const Vector<double>& x) -> Vector<Vector<double>>
+    return [contact_angle, &x_centre_node_pt](
+             const Vector<double>& x) -> Vector<Vector<double>>
     {
       // Initialise the gradient matrix to return
       Vector<Vector<double>> grad_u(2);
@@ -153,24 +153,20 @@ namespace oomph
                      Vector<double>&)>
   eigensolution_traction_function_factory(
     const double& contact_angle,
-    Node* x_centre_node_pt,
     const std::function<Vector<Vector<double>>(const Vector<double>&)>&
       grad_velocity_singular_fct)
   {
-    // Return a lambda function that captures the contact angle, the node
-    // x_centre_node_pt and the gradient of the singular velocity function
-    // grad_velocity_singular_fct
-    // and takes 't', 'x', 'n' and 'result' as arguments
-    // The lambda function computes the traction at a point x with normal n
-    // using the gradient of the singular velocity function
-    // grad_velocity_singular_fct
-    // The traction is computed as - (grad u + grad u ^ T) dot n
-    // where u is the singular velocity function
-    return [contact_angle, x_centre_node_pt, grad_velocity_singular_fct](
-             const double& t,
-             const Vector<double>& x,
-             const Vector<double>& n,
-             Vector<double>& result) -> void
+    // Return a lambda function that captures the contact angle and the gradient
+    // of the singular velocity function grad_velocity_singular_fct and takes
+    // 't', 'x', 'n' and 'result' as arguments The lambda function computes the
+    // traction at a point x with normal n using the gradient of the singular
+    // velocity function grad_velocity_singular_fct The traction is computed as
+    // - (grad u + grad u ^ T) dot n where u is the singular velocity function
+    return [contact_angle,
+            &grad_velocity_singular_fct](const double& t,
+                                         const Vector<double>& x,
+                                         const Vector<double>& n,
+                                         Vector<double>& result) -> void
     {
       Vector<Vector<double>> grad_u = grad_velocity_singular_fct(x);
       const unsigned dim = x.size();
