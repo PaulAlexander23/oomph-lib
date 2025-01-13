@@ -41,6 +41,7 @@
 #include "projectable_axisymmetric_Ttaylor_hood_elements.h"
 #include "singular_axisym_dynamic_cap_problem.h"
 #include "parameters.h"
+#include "utility_functions.h"
 
 using namespace std;
 using namespace oomph;
@@ -73,6 +74,20 @@ int main(int argc, char** argv)
       ProjectableAxisymmetricTTaylorHoodPVDElement>,
     BDF<2>>
     problem(parameters);
+  problem.setup();
+  save_dofs_types<SingularAxisymDynamicCapProblem<
+    SingularAxisymNavierStokesElement<
+      ProjectableAxisymmetricTTaylorHoodPVDElement>,
+    BDF<2>>*>(&problem, "dofs_types.dat");
+  DoubleVector residuals;
+  CRDoubleMatrix jacobian;
+  problem.get_jacobian(residuals, jacobian);
+  jacobian.sparse_indexed_output("jacobian.dat");
+
+  debug_jacobian<SingularAxisymDynamicCapProblem<
+    SingularAxisymNavierStokesElement<
+      ProjectableAxisymmetricTTaylorHoodPVDElement>,
+    BDF<2>>*>(&problem);
 
   // Load in restart file
   if (parameters.restart_filename != "")
