@@ -31,21 +31,14 @@ int main(int argc, char** argv)
   oomph_info << "unstructured_with_correction_regions" << std::endl;
 
   // Create problem
-  SingularUnstructuredAxisymSectorProblem<
-    SingularAxisymNavierStokesElement<MyElement>>* problem_pt =
-    new SingularUnstructuredAxisymSectorProblem<
-      SingularAxisymNavierStokesElement<MyElement>>;
-  problem_pt->setup();
-
-  // debug_jacobian<
-  //   SingularUnstructuredSectorProblem<SingularNavierStokesElement<MyElement>>*>(
-  //   problem_pt);
+  SingularUnstructuredAxisymSectorProblem<SingularAxisymNavierStokesElement<
+    ProjectableAxisymmetricTaylorHoodElement<MyElement>>>
+    problem;
+  problem.setup();
 
   // Steady problem
-  problem_pt->steady_newton_solve();
-  problem_pt->doc_solution();
-
-  delete problem_pt;
+  problem.steady_newton_solve(1);
+  problem.doc_solution();
 
   // Finalise MPI after all computations are complete
 #ifdef OOMPH_HAS_MPI
