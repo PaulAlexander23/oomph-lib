@@ -748,12 +748,10 @@ namespace oomph
     {
       // Call the generic routine with the flag set to 1 and dummy mass
       // matrix
-      // BASIC_AXISYM_NAVIER_STOKES_ELEMENT::
-      //  fill_in_contribution_to_jacobian(
-      //    residuals, jacobian, GeneralisedElement::Dummy_matrix, flag);
-      // this->fill_in_generic_residual_contribution_wrapped_axi_nst(
-      //  residuals, jacobian, 1);
-      SolidFiniteElement::fill_in_contribution_to_jacobian(residuals, jacobian);
+      BASIC_AXISYM_NAVIER_STOKES_ELEMENT::fill_in_contribution_to_jacobian(
+        residuals, jacobian);
+      this->fill_in_generic_residual_contribution_wrapped_axi_nst(
+        residuals, jacobian, 1);
     }
 
     /// Add the element's contribution to its residual vector and
@@ -2259,14 +2257,24 @@ namespace oomph
                 local_unknown = local_equation_number_C[ss];
                 if (local_unknown >= 0)
                 {
-                  double sum = 0.0;
-                  for (unsigned k = 0; k < cached_dim; k++)
-                  {
-                    sum += grad_u_hat_local[ss][k][k];
-                  }
-                  jacobian(local_eqn, local_unknown) += sum * testp[l] * W;
+                  jacobian(local_eqn, local_unknown) -= p_hat_local[ss];
                 }
               }
+
+              // Add the contribution of the pressure correction unknown
+              local_unknown = p_local_unknown(l);
+              if (local_unknown >= 0)
+              {
+                jacobian(local_eqn, local_unknown) -= 1;
+              }
+
+              // Add the contribution of the total pressure unknown
+              local_unknown = total_p_local_unknown(l);
+              if (local_unknown >= 0)
+              {
+                jacobian(local_eqn, local_unknown) += 1;
+              }
+
             } /*End of Jacobian calculation*/
           } // End of if not boundary condition
         } // End of loop over l
@@ -2377,16 +2385,11 @@ namespace oomph
             // but there's not much point assigning pressure dofs
             Node* p_nod_pt = this->node_pt(this->Pconv[l]);
 
-            oomph_info << "Constrained pressure node: " << this->Pconv[l]
-                       << " at: ";
-
             Vector<double> global_coordinate(cached_dim, 0.0);
             for (unsigned d = 0; d < cached_dim; d++)
             {
               global_coordinate[d] = p_nod_pt->x(d);
-              oomph_info << global_coordinate[d] << " ";
             }
-            oomph_info << std::endl;
 
             // Initialise its residual component
             residuals[local_eqn] = 0.0;
