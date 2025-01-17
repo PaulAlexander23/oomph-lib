@@ -82,12 +82,12 @@ int main(int argc, char** argv)
   DoubleVector residuals;
   CRDoubleMatrix jacobian;
   problem.get_jacobian(residuals, jacobian);
-  jacobian.sparse_indexed_output("jacobian.dat");
+  jacobian.sparse_indexed_output("j.dat");
 
-  debug_jacobian<SingularAxisymDynamicCapProblem<
-    SingularAxisymNavierStokesElement<
-      ProjectableAxisymmetricTTaylorHoodPVDElement>,
-    BDF<2>>*>(&problem);
+  //debug_jacobian<SingularAxisymDynamicCapProblem<
+  //  SingularAxisymNavierStokesElement<
+  //    ProjectableAxisymmetricTTaylorHoodPVDElement>,
+  //  BDF<2>>*>(&problem);
 
   // Load in restart file
   if (parameters.restart_filename != "")
