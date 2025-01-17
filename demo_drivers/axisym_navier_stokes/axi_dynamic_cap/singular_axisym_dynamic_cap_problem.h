@@ -2856,9 +2856,9 @@ namespace oomph
 
           if (el_pt->get_node_number(Contact_line_node_pt) == -1)
           {
-            el_pt->add_external_data(
-              dynamic_cast<SolidNode*>(Contact_line_node_pt)
-                ->variable_position_pt());
+            // el_pt->add_external_data(
+            //   dynamic_cast<SolidNode*>(Contact_line_node_pt)
+            //     ->variable_position_pt());
           }
 
           // Add it to the mesh
@@ -3033,12 +3033,11 @@ namespace oomph
       el_pt->set_boundary_number_in_bulk_mesh(Outer_boundary_with_slip_id);
       // Set the product of the Reynolds number and the inverse of the
       // Froude number
-      el_pt->re_invfr_pt() = &Parameters.reynolds_inverse_froude_number;
+      // el_pt->re_invfr_pt() = &Parameters.reynolds_inverse_froude_number;
       // Set the direction of gravity
-      el_pt->g_pt() = &Parameters.gravity_vector;
+      // el_pt->g_pt() = &Parameters.gravity_vector;
 
       unsigned n_element = Bulk_mesh_pt->nelement();
-      cout << "n_element: " << n_element << endl;
       for (unsigned e = 0; e < n_element; e++)
       {
         ELEMENT* bulk_elem_pt =
@@ -3049,7 +3048,7 @@ namespace oomph
         {
           if (el_pt->get_node_number(bulk_elem_pt->node_pt(n)) == -1)
           {
-            el_pt->add_external_data(bulk_elem_pt->node_pt(n));
+            // el_pt->add_external_data(bulk_elem_pt->node_pt(n));
           }
         }
       }
@@ -3078,9 +3077,9 @@ namespace oomph
       el_pt->set_boundary_number_in_bulk_mesh(Free_surface_boundary_id);
       // Set the product of the Reynolds number and the inverse of the
       // Froude number
-      el_pt->re_invfr_pt() = &Parameters.reynolds_inverse_froude_number;
+      // el_pt->re_invfr_pt() = &Parameters.reynolds_inverse_froude_number;
       // Set the direction of gravity
-      el_pt->g_pt() = &Parameters.gravity_vector;
+      // el_pt->g_pt() = &Parameters.gravity_vector;
       el_pt->set_subtract_from_residuals();
 
       unsigned n_element = Bulk_mesh_pt->nelement();
@@ -3094,7 +3093,7 @@ namespace oomph
         {
           if (el_pt->get_node_number(bulk_elem_pt->node_pt(n)) == -1)
           {
-            el_pt->add_external_data(bulk_elem_pt->node_pt(n));
+            // el_pt->add_external_data(bulk_elem_pt->node_pt(n));
           }
         }
       }
@@ -3271,9 +3270,9 @@ namespace oomph
 
           if (el_pt->get_node_number(Contact_line_node_pt) == -1)
           {
-            el_pt->add_external_data(
-              dynamic_cast<SolidNode*>(Contact_line_node_pt)
-                ->variable_position_pt());
+            // el_pt->add_external_data(
+            //   dynamic_cast<SolidNode*>(Contact_line_node_pt)
+            //     ->variable_position_pt());
           }
         }
       }
@@ -3790,6 +3789,7 @@ namespace oomph
         el_pt->unaugment();
       }
       Augmented_bulk_element_number.clear();
+      Augmented_bulk_element_number.resize(0);
     }
 
     void delete_non_refineable_elements()
@@ -3852,7 +3852,7 @@ namespace oomph
         time_stepper_pt()->undo_make_steady();
       }
 
-      //fix_c(1.0);
+      // fix_c(1.0);
       pin_solid();
 
       // Setup all the equation numbering and look-up schemes
@@ -3954,7 +3954,6 @@ namespace oomph
       // Create the flux elements
       create_flux_elements();
 
-
       // Create the other meshes
       if (this->is_augmented())
       {
@@ -3963,7 +3962,7 @@ namespace oomph
         create_pressure_contribution_1_elements();
         create_pressure_contribution_2_elements();
 
-        create_slip_eigen_elements(Bulk_mesh_pt);
+        // create_slip_eigen_elements(Bulk_mesh_pt);
 
         // Setup the mesh interaction between the bulk and singularity meshes
         setup_mesh_interaction();
