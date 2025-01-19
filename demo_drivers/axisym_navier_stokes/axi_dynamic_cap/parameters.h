@@ -251,7 +251,7 @@ namespace oomph
       std::numeric_limits<double>::max_digits10);
 
     parameter_filestream << params.reynolds_inverse_froude_number
-                         << " # Reynolds Inverse Froude number" << "\n";
+                         << " # Bond number" << "\n";
     parameter_filestream << params.capillary_number << " # Capillary number"
                          << "\n";
     parameter_filestream << params.reynolds_number << " # Reynolds number"
@@ -310,7 +310,8 @@ namespace oomph
     parameter_filestream << params.is_strong_contact_angle
                          << " # Use strong contact angle" << "\n";
     parameter_filestream << params.polyline_refinement_tolerence
-                         << " # Free surface error tolerence" << "\n";
+                         << " # Free surface polyline refinement tolerence"
+                         << "\n ";
     parameter_filestream << params.augmented_radius
                          << " # Augmented region's radius" << std::endl;
 
