@@ -59,7 +59,8 @@ int main(int argc, char** argv)
   CommandLineArgs::setup(argc, argv);
 
   // Debug the jacobian
-  CommandLineArgs::specify_command_line_flag("--debug_jacobian");
+  CommandLineArgs::specify_command_line_flag("--debug-jacobian");
+  CommandLineArgs::specify_command_line_flag("--pin-solid");
 
   // Parameter file
   std::string parameters_filename = "default_parameters.dat";
@@ -92,7 +93,7 @@ int main(int argc, char** argv)
   problem.get_jacobian(residuals, jacobian);
   jacobian.sparse_indexed_output("j.dat");
 
-  if (CommandLineArgs::command_line_flag_has_been_set("--debug_jacobian"))
+  if (CommandLineArgs::command_line_flag_has_been_set("--debug-jacobian"))
   {
     debug_jacobian<SingularAxisymDynamicCapProblem<
       SingularAxisymNavierStokesElement<

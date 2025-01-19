@@ -3853,7 +3853,10 @@ namespace oomph
       }
 
       // fix_c(1.0);
-      pin_solid();
+      if (CommandLineArgs::command_line_flag_has_been_set("--pin-solid"))
+      {
+        pin_solid();
+      }
 
       // Setup all the equation numbering and look-up schemes
       oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
