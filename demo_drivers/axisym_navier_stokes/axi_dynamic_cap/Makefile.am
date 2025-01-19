@@ -1,8 +1,6 @@
 #Include commands common to every Makefile.am
 include $(top_srcdir)/config/makefile_templates/demo_drivers
 
-PARAM_FILES := $(shell find TEST -type f -name "parameters.dat")
-
 # Variables
 EXEC:= \
 	axi_dynamic_cap \
@@ -13,23 +11,11 @@ EXEC:= \
 # Makefile rules
 run: ${EXEC}
 
-
-TEST:
-	./generate_tests.zsh
-
 # Run parallel axi_dynamic_cap with the parameters in the validata directory
-test: axi_dynamic_cap TEST
+test: axi_dynamic_cap
+	./generate_tests.zsh
 	./run_tests.zsh
 	$(find log -type f -not -empty -name "stderr")
-
-param_files: 
-	param1_values=(0.1 0.2 0.3)
-	param2_values=(10 20 30)
-	param3_values=("A" "B" "C")
-	parallel --results param_files \
-		  echo "param1 = {1}\nparam2 = {2}\nparam3 = {3}" \
-			::: "${param1_values[@]}" ::: "${param2_values[@]}" ::: "${param3_values[@]}"
-
 
 # Automake
 
