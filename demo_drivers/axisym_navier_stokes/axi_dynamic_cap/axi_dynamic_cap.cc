@@ -92,10 +92,13 @@ int main(int argc, char** argv)
   problem.get_jacobian(residuals, jacobian);
   jacobian.sparse_indexed_output("j.dat");
 
-  // debug_jacobian<SingularAxisymDynamicCapProblem<
-  //   SingularAxisymNavierStokesElement<
-  //     ProjectableAxisymmetricTTaylorHoodPVDElement>,
-  //   BDF<2>>*>(&problem);
+  if (CommandLineArgs::command_line_flag_has_been_set("--debug_jacobian"))
+  {
+    debug_jacobian<SingularAxisymDynamicCapProblem<
+      SingularAxisymNavierStokesElement<
+        ProjectableAxisymmetricTTaylorHoodPVDElement>,
+      BDF<2>>*>(&problem);
+  }
 
   // Load in restart file
   if (parameters.restart_filename != "")
