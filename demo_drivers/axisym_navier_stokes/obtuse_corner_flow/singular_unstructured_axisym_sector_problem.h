@@ -3,6 +3,7 @@
 
 #include "generic.h"
 #include "navier_stokes.h"
+#include "axisym_navier_stokes.h"
 #include "fluid_interface.h"
 #include "meshes/triangle_mesh.h"
 
@@ -17,6 +18,7 @@ namespace oomph
     : public UnstructuredAxisymSectorProblem<ELEMENT>
   {
   private:
+    double Contact_angle;
     Node* Contact_line_node_pt;
 
     Vector<unsigned> Augmented_bulk_element_number;
@@ -73,26 +75,59 @@ namespace oomph
       UnstructuredAxisymSectorProblem<ELEMENT>::setup();
 
       set_contact_line_node_pt();
-      Velocity_singular_function = velocity_singular_function_factory(
-        this->my_parameters().sector_angle * MathematicalConstants::Pi / 180.0,
-        Contact_line_node_pt);
+      Contact_angle =
+        this->my_parameters().sector_angle * MathematicalConstants::Pi / 180.0;
+      Velocity_singular_function =
+        velocity_singular_function_factory(Contact_angle, Contact_line_node_pt);
       Grad_velocity_singular_function = grad_velocity_singular_function_factory(
-        this->my_parameters().sector_angle * MathematicalConstants::Pi / 180.0,
-        Contact_line_node_pt);
+        Contact_angle, Contact_line_node_pt);
       Eigensolution_slip_function = eigensolution_slip_function_factory(
         this->my_parameters().slip_length, Velocity_singular_function);
-
       Eigensolution_traction_function = eigensolution_traction_function_factory(
-        this->my_parameters().sector_angle,
-        Contact_line_node_pt,
-        Grad_velocity_singular_function);
+        Contact_angle, Grad_velocity_singular_function);
 
       create_singular_elements();
+
+      // fix_c(1.0);
 
       this->rebuild_global_mesh();
       oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
                  << std::endl;
     }
+
+    void actions_before_adapt()
+    {
+      delete_singular_elements();
+      unaugment_bulk_elements();
+      UnstructuredAxisymSectorProblem<ELEMENT>::actions_before_adapt();
+    }
+
+    void actions_after_adapt()
+    {
+      // Augment the bulk elements
+      setup_and_augment_bulk_elements();
+
+      UnstructuredAxisymSectorProblem<ELEMENT>::actions_after_adapt();
+
+      set_contact_line_node_pt();
+      Velocity_singular_function =
+        velocity_singular_function_factory(Contact_angle, Contact_line_node_pt);
+      Grad_velocity_singular_function = grad_velocity_singular_function_factory(
+        Contact_angle, Contact_line_node_pt);
+      Eigensolution_slip_function = eigensolution_slip_function_factory(
+        this->my_parameters().slip_length, Velocity_singular_function);
+      Eigensolution_traction_function = eigensolution_traction_function_factory(
+        Contact_angle, Grad_velocity_singular_function);
+
+      create_singular_elements();
+
+      // fix_c(1.0);
+
+      this->rebuild_global_mesh();
+      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                 << std::endl;
+    }
+
 
     void create_singular_elements()
     {
@@ -104,12 +139,21 @@ namespace oomph
         create_pressure_contribution_1_elements();
         create_pressure_contribution_2_elements();
 
-        create_slip_eigen_elements();
-        // create_traction_eigen_elements();
+        // create_slip_eigen_elements();
+        //  create_traction_eigen_elements();
 
         // Setup the mesh interaction between the bulk and singularity meshes
         setup_mesh_interaction();
       }
+    }
+
+    void delete_singular_elements()
+    {
+      this->delete_elements(Singularity_scaling_mesh_pt);
+      this->delete_elements(Pressure_contribution_mesh_1_pt);
+      this->delete_elements(Pressure_contribution_mesh_2_pt);
+      this->delete_elements(Eigensolution_slip_mesh_pt);
+      this->delete_elements(Eigensolution_traction_mesh_pt);
     }
 
     void add_singular_sub_meshes()
@@ -175,6 +219,20 @@ namespace oomph
       }
       oomph_info << Augmented_bulk_element_number.size()
                  << " augmented elements" << std::endl;
+    }
+
+    void unaugment_bulk_elements()
+    {
+      // Loop over augmented elements and unaugment them
+      for (unsigned e = 0; e < Augmented_bulk_element_number.size(); e++)
+      {
+        ELEMENT* el_pt = dynamic_cast<ELEMENT*>(
+          this->bulk_mesh_pt()->element_pt(Augmented_bulk_element_number[e]));
+
+        el_pt->unaugment();
+      }
+      Augmented_bulk_element_number.clear();
+      Augmented_bulk_element_number.resize(0);
     }
 
     void set_contact_line_node_pt()
@@ -254,7 +312,8 @@ namespace oomph
   };
 
   template<class ELEMENT>
-  void SingularUnstructuredAxisymSectorProblem<ELEMENT>::create_slip_eigen_elements()
+  void SingularUnstructuredAxisymSectorProblem<
+    ELEMENT>::create_slip_eigen_elements()
   {
     oomph_info << "create_slip_eigen_elements" << std::endl;
 
@@ -293,7 +352,8 @@ namespace oomph
   }
 
   template<class ELEMENT>
-  void SingularUnstructuredAxisymSectorProblem<ELEMENT>::create_traction_eigen_elements()
+  void SingularUnstructuredAxisymSectorProblem<
+    ELEMENT>::create_traction_eigen_elements()
   {
     oomph_info << "create_traction_eigen_elements" << std::endl;
 
@@ -363,10 +423,10 @@ namespace oomph
   }
 
   template<class ELEMENT>
-  void SingularUnstructuredAxisymSectorProblem<ELEMENT>::find_corner_bulk_element(
-    const unsigned& boundary_1_id,
-    const unsigned& boundary_2_id,
-    unsigned& element_index)
+  void SingularUnstructuredAxisymSectorProblem<
+    ELEMENT>::find_corner_bulk_element(const unsigned& boundary_1_id,
+                                       const unsigned& boundary_2_id,
+                                       unsigned& element_index)
   {
     unsigned dummy_node_index;
     find_corner_bulk_node(
@@ -411,7 +471,8 @@ namespace oomph
   }
 
   template<class ELEMENT>
-  void SingularUnstructuredAxisymSectorProblem<ELEMENT>::setup_mesh_interaction()
+  void SingularUnstructuredAxisymSectorProblem<
+    ELEMENT>::setup_mesh_interaction()
   {
     oomph_info << "setup_mesh_interaction" << std::endl;
 
@@ -445,24 +506,24 @@ namespace oomph
     find_corner_bulk_element_and_face_index(
       Slip_boundary_id, Free_surface_boundary_id, element_pt, face_index);
 
-    // PressureEvaluationElement<ELEMENT>* el_pt =
-    //   new PressureEvaluationElement<ELEMENT>(
-    //     element_pt, face_index, dynamic_cast<Node*>(Contact_line_node_pt));
-    // el_pt->set_boundary_number_in_bulk_mesh(Slip_boundary_id);
+    PressureEvaluationElement<ELEMENT>* el_pt =
+      new PressureEvaluationElement<ELEMENT>(
+        element_pt, face_index, dynamic_cast<Node*>(Contact_line_node_pt), 0);
+    el_pt->set_boundary_number_in_bulk_mesh(Slip_boundary_id);
 
-    Node* node_pt = 0;
-    for (unsigned n = 0; n < 3; n++)
-    {
-      node_pt = element_pt->node_pt(n);
-      if (node_pt->is_on_boundary(Slip_boundary_id) &&
-          !node_pt->is_on_boundary(Free_surface_boundary_id))
-      {
-        break;
-      }
-    }
-    const unsigned pressure_value_index = 3;
-    PointPressureEvaluationElement* el_pt =
-      new PointPressureEvaluationElement(node_pt, pressure_value_index);
+    // Node* node_pt = 0;
+    // for (unsigned n = 0; n < 3; n++)
+    //{
+    //   node_pt = element_pt->node_pt(n);
+    //   if (node_pt->is_on_boundary(Slip_boundary_id) &&
+    //       !node_pt->is_on_boundary(Free_surface_boundary_id))
+    //   {
+    //     break;
+    //   }
+    // }
+    // PointPressureEvaluationElement* el_pt =
+    //   new PointPressureEvaluationElement(node_pt, 3);
+
     el_pt->set_pressure_data_pt(
       Singularity_scaling_mesh_pt->element_pt(0)->internal_data_pt(0));
 
@@ -480,24 +541,23 @@ namespace oomph
     find_corner_bulk_element_and_face_index(
       Free_surface_boundary_id, Slip_boundary_id, element_pt, face_index);
 
-    // PressureEvaluationElement<ELEMENT>* el_pt =
-    //   new PressureEvaluationElement<ELEMENT>(
-    //     element_pt, face_index, dynamic_cast<Node*>(Contact_line_node_pt));
-    // el_pt->set_boundary_number_in_bulk_mesh(Free_surface_boundary_id);
+    PressureEvaluationElement<ELEMENT>* el_pt =
+      new PressureEvaluationElement<ELEMENT>(
+        element_pt, face_index, dynamic_cast<Node*>(Contact_line_node_pt), 0);
+    el_pt->set_boundary_number_in_bulk_mesh(Free_surface_boundary_id);
 
-    Node* node_pt = 0;
-    for (unsigned n = 0; n < 3; n++)
-    {
-      node_pt = element_pt->node_pt(n);
-      if (!node_pt->is_on_boundary(Slip_boundary_id) &&
-          node_pt->is_on_boundary(Free_surface_boundary_id))
-      {
-        break;
-      }
-    }
-    const unsigned pressure_value_index = 3;
-    PointPressureEvaluationElement* el_pt =
-      new PointPressureEvaluationElement(node_pt, pressure_value_index);
+    // Node* node_pt = 0;
+    // for (unsigned n = 0; n < 3; n++)
+    //{
+    //   node_pt = element_pt->node_pt(n);
+    //   if (!node_pt->is_on_boundary(Slip_boundary_id) &&
+    //       node_pt->is_on_boundary(Free_surface_boundary_id))
+    //   {
+    //     break;
+    //   }
+    // }
+    // PointPressureEvaluationElement* el_pt =
+    //   new PointPressureEvaluationElement(node_pt, 3);
 
     el_pt->set_pressure_data_pt(
       Singularity_scaling_mesh_pt->element_pt(0)->internal_data_pt(0));

@@ -41,6 +41,7 @@
 #include "projectable_axisymmetric_Ttaylor_hood_elements.h"
 #include "singular_axisym_dynamic_cap_problem.h"
 #include "parameters.h"
+#include "utility_functions.h"
 
 using namespace std;
 using namespace oomph;
@@ -54,15 +55,23 @@ int main(int argc, char** argv)
   MPI_Helpers::init(argc, argv, make_copy_of_mpi_comm_world);
 #endif
 
-  // Check number of arguments
-  int number_of_arguments = argc - 1;
-  if (number_of_arguments == 0 || number_of_arguments > 1)
-  {
-    std::cout << "Wrong number of arguments." << std::endl;
-    return 1;
-  }
+  // Store command line arguments
+  CommandLineArgs::setup(argc, argv);
 
-  std::string parameters_filename = argv[1];
+  // Debug the jacobian
+  CommandLineArgs::specify_command_line_flag("--debug_jacobian");
+
+  // Parameter file
+  std::string parameters_filename = "default_parameters.dat";
+  CommandLineArgs::specify_command_line_flag("--parameters",
+                                             &parameters_filename);
+
+  // Parse command line
+  const bool throw_exception_if_unrecognised_flags = true;
+  CommandLineArgs::parse_and_assign(throw_exception_if_unrecognised_flags);
+
+  // Doc what has actually been specified on the command line
+  CommandLineArgs::doc_specified_flags();
 
   // Problem parameters
   Params parameters = create_parameters_from_file(parameters_filename);
@@ -73,6 +82,23 @@ int main(int argc, char** argv)
       ProjectableAxisymmetricTTaylorHoodPVDElement>,
     BDF<2>>
     problem(parameters);
+  problem.setup();
+  save_dofs_types<SingularAxisymDynamicCapProblem<
+    SingularAxisymNavierStokesElement<
+      ProjectableAxisymmetricTTaylorHoodPVDElement>,
+    BDF<2>>*>(&problem, "dofs_types.dat");
+  DoubleVector residuals;
+  CRDoubleMatrix jacobian;
+  problem.get_jacobian(residuals, jacobian);
+  jacobian.sparse_indexed_output("j.dat");
+
+  if (CommandLineArgs::command_line_flag_has_been_set("--debug_jacobian"))
+  {
+    debug_jacobian<SingularAxisymDynamicCapProblem<
+      SingularAxisymNavierStokesElement<
+        ProjectableAxisymmetricTTaylorHoodPVDElement>,
+      BDF<2>>*>(&problem);
+  }
 
   // Load in restart file
   if (parameters.restart_filename != "")

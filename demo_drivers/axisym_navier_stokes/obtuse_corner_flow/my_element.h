@@ -1,12 +1,12 @@
 #ifndef my_element_header
 #define my_element_header
 
-#include "generic.h"
 #include "axisym_navier_stokes.h"
+#include "store_error_element.h"
 
 namespace oomph
 {
-  class MyElement : public ElementWithError<AxisymmetricTTaylorHoodElement>
+  class MyElement : public StoreErrorElement<AxisymmetricTTaylorHoodElement>
   {
   private:
     unsigned Region_id;
@@ -17,7 +17,7 @@ namespace oomph
       Region_id = value;
     }
 
-    const unsigned get_region_id()
+    const unsigned region_id()
     {
       return Region_id;
     }

@@ -9,6 +9,8 @@
 /// Local headers
 #include "region_axisym_sector_problem.h"
 #include "two_region_refined_sector_tri_mesh.template.h"
+#include "utility_functions.h"
+
 
 namespace oomph
 {
@@ -18,6 +20,7 @@ namespace oomph
     : public RegionAxisymSectorProblem<ELEMENT>
   {
   private:
+    double Contact_angle;
     Node* Contact_line_node_pt;
 
     Vector<unsigned> Augmented_bulk_element_number;
@@ -69,6 +72,11 @@ namespace oomph
       this->rebuild_global_mesh();
     }
 
+    // void actions_after_newton_step()
+    //{
+    //   debug_jacobian<SingularRegionAxisymSectorProblem<ELEMENT>*>(this);
+    // }
+
     void setup()
     {
       // Augment the bulk elements
@@ -77,23 +85,21 @@ namespace oomph
       RegionAxisymSectorProblem<ELEMENT>::setup();
 
       set_contact_line_node_pt();
-      Velocity_singular_function = velocity_singular_function_factory(
-        this->my_parameters().sector_angle * MathematicalConstants::Pi / 180.0,
-        Contact_line_node_pt);
+      Contact_angle =
+        this->my_parameters().sector_angle * MathematicalConstants::Pi / 180.0;
+      Velocity_singular_function =
+        velocity_singular_function_factory(Contact_angle, Contact_line_node_pt);
       Grad_velocity_singular_function = grad_velocity_singular_function_factory(
-        this->my_parameters().sector_angle * MathematicalConstants::Pi / 180.0,
-        Contact_line_node_pt);
+        Contact_angle, Contact_line_node_pt);
       Eigensolution_slip_function = eigensolution_slip_function_factory(
         this->my_parameters().slip_length, Velocity_singular_function);
-
       Eigensolution_traction_function = eigensolution_traction_function_factory(
-        this->my_parameters().sector_angle,
-        Contact_line_node_pt,
-        Grad_velocity_singular_function);
+        Contact_angle, Grad_velocity_singular_function);
 
       create_singular_elements();
 
       // fix_c(1.0);
+      // fix_c(0.0);
 
       this->rebuild_global_mesh();
       oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
@@ -110,7 +116,7 @@ namespace oomph
         create_pressure_contribution_1_elements();
         create_pressure_contribution_2_elements();
 
-        create_slip_eigen_elements();
+        //create_slip_eigen_elements();
         // create_traction_eigen_elements();
 
         // Setup the mesh interaction between the bulk and singularity meshes
@@ -158,7 +164,7 @@ namespace oomph
         dist = pow(dist, 0.5);
 
         // If the distance to the corner is within the "inner" region, ...
-        if (el_pt->get_region_id() ==
+        if (el_pt->region_id() ==
             TwoRegionRefinedSectorTriMesh<ELEMENT>::Inner_region_id)
         {
           // ... augment element
@@ -475,9 +481,8 @@ namespace oomph
 
     oomph_info << node_pt->x(0) << ", " << node_pt->x(1) << std::endl;
 
-    const unsigned pressure_value_index = 3;
     PointPressureEvaluationElement* el_pt =
-      new PointPressureEvaluationElement(node_pt, pressure_value_index);
+      new PointPressureEvaluationElement(node_pt, 3);
 
     el_pt->set_pressure_data_pt(
       Singularity_scaling_mesh_pt->element_pt(0)->internal_data_pt(0));
@@ -516,9 +521,8 @@ namespace oomph
 
     oomph_info << node_pt->x(0) << ", " << node_pt->x(1) << std::endl;
 
-    const unsigned pressure_value_index = 3;
     PointPressureEvaluationElement* el_pt =
-      new PointPressureEvaluationElement(node_pt, pressure_value_index);
+      new PointPressureEvaluationElement(node_pt, 3);
 
     el_pt->set_pressure_data_pt(
       Singularity_scaling_mesh_pt->element_pt(0)->internal_data_pt(0));

@@ -86,15 +86,16 @@ namespace oomph
     output_stream.close();
   }
 
-  template<class PROBLEM>
-  void debug_jacobian(PROBLEM problem_pt)
+  template<class PROBLEM*>
+  void debug_jacobian(Problem* problem_pt)
   {
-    std::cout << "debug_jacobian" << std::endl;
     std::ofstream out_stream;
 
     DoubleVector dummy_residuals;
     CRDoubleMatrix actual_jacobian;
     problem_pt->get_jacobian(dummy_residuals, actual_jacobian);
+
+    problem_pt->linear_solver_pt() = new FD_LU;
 
     DoubleVector residuals;
     DenseMatrix<double> expected_jacobian;

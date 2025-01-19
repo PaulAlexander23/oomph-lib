@@ -1,37 +1,45 @@
 #Include commands common to every Makefile.am
 include $(top_srcdir)/config/makefile_templates/demo_drivers
 
-# Variables
-EXEC:= \
+FOLDER ?= ./RESLT_axi_sprittles_region
+
+.PHONY: run
+
+run: $(FOLDER)/soln0.vtu
+	paraview $(FOLDER)/soln0.vtu
+
+%.vtu: %.dat
+	../../../bin/oomph-convert.py $<
+
+RESLT_axi_no_fix/soln0.dat: structured_no_correction parameters.dat
+	mkdir -p RESLT_axi_no_fix
+	./structured_no_correction
+
+RESLT_axi_no_fix_region/soln0.dat: structured_no_correction_region parameters.dat
+	mkdir -p RESLT_axi_no_fix_region
+	./structured_no_correction_region
+
+RESLT_axi_fix/soln0.dat: structured_with_correction parameters.dat
+	mkdir -p RESLT_axi_fix
+	./structured_with_correction
+
+RESLT_axi_fix_region/soln0.dat: structured_with_correction_region parameters.dat
+	mkdir -p RESLT_axi_fix_region
+	./structured_with_correction_region
+
+RESLT_axi_sprittles_region/soln0.dat: sprittles_region parameters.dat
+	mkdir -p RESLT_axi_sprittles_region
+	./sprittles_region
+
+# Name of executables
+check_PROGRAMS= \
 	structured_no_correction \
 	structured_no_correction_region \
 	structured_with_correction \
 	structured_with_correction_region \
 	unstructured_no_correction \
-	unstructured_with_correction
-
-FOLDERS:= \
-	RESLT_axi_fix \
-	RESLT_axi_fix_unstr \
-	RESLT_axi_fix_region \
-	RESLT_axi_no_fix \
-	RESLT_axi_no_fix_unstr \
-	RESLT_axi_no_fix_region
-
-# Makefile rules
-all: ${EXEC} ${FOLDERS} parameters.dat
-	echo ${EXEC} | xargs -d " " -I {} bash -c "./{}"
-
-$(FOLDERS):
-	mkdir -p $@
-
-parameters.dat: 
-	cp default_parameters.dat parameters.dat
-
-# Automake
-
-# Name of executables
-check_PROGRAMS= ${EXEC}
+	unstructured_with_correction \
+	sprittles_region
 
 # Sources for second executable
 structured_no_correction_SOURCES = structured_no_correction.cc
@@ -40,6 +48,7 @@ structured_with_correction_SOURCES = structured_with_correction.cc
 structured_with_correction_region_SOURCES = structured_with_correction_region.cc
 unstructured_no_correction_SOURCES = unstructured_no_correction.cc
 unstructured_with_correction_SOURCES = unstructured_with_correction.cc
+sprittles_region_SOURCES = sprittles_region.cc
 
 # Required libraries: 
 # $(FLIBS) is included in case the solver involves fortran sources.
@@ -54,4 +63,4 @@ LDADD = -L@libdir@ \
 		-lgcov 
 
 # Add the paranoid and range checking flags
-AM_CPPFLAGS +=-Wno-misleading-indentation -ggdb -O0 --coverage #-DPARANOID  -DRANGE_CHECKING -ggdb -O0 -Wno-misleading-indentation 
+AM_CPPFLAGS += -O0 --coverage -Wno-misleading-indentation #-ggdb -DPARANOID  -DRANGE_CHECKING 

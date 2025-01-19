@@ -80,6 +80,26 @@ namespace oomph
     problem_pt->describe_dofs(output_stream);
     output_stream.close();
   }
+
+  template<class PROBLEM_PT>
+  void debug_jacobian(const PROBLEM_PT& problem_pt)
+  {
+    std::ofstream out_stream;
+
+    DoubleVector dummy_residuals;
+    CRDoubleMatrix actual_jacobian;
+    problem_pt->get_jacobian(dummy_residuals, actual_jacobian);
+
+    DoubleVector residuals;
+    DenseMatrix<double> expected_jacobian;
+    problem_pt->get_fd_jacobian(residuals, expected_jacobian);
+
+    compare_matrices(expected_jacobian, actual_jacobian);
+
+    out_stream.open("dofs.txt");
+    problem_pt->describe_dofs(out_stream);
+    out_stream.close();
+  }
 } // namespace oomph
 
 #endif

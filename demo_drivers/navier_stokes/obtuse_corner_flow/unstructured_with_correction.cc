@@ -5,7 +5,7 @@
 
 // OOMPH-LIB include files
 #include "generic.h"
-#include "navier_stokes.h"
+#include "axisym_navier_stokes.h"
 #include "fluid_interface.h"
 #include "constitutive.h"
 #include "solid.h"
@@ -31,18 +31,13 @@ int main(int argc, char** argv)
   oomph_info << "unstructured_with_correction_regions" << std::endl;
 
   // Create problem
-  SingularUnstructuredSectorProblem<SingularNavierStokesElement<MyElement>>*
-    problem_pt = new SingularUnstructuredSectorProblem<
-      SingularNavierStokesElement<MyElement>>;
-  problem_pt->setup();
-
-  // debug_jacobian<
-  //   SingularUnstructuredSectorProblem<SingularNavierStokesElement<MyElement>>*>(
-  //   problem_pt);
+  SingularUnstructuredSectorProblem<SingularNavierStokesElement<MyElement>>
+    problem;
+  problem.setup();
 
   // Steady problem
-  problem_pt->steady_newton_solve();
-  problem_pt->doc_solution();
+  problem.steady_newton_solve();
+  problem.doc_solution();
 
   // Finalise MPI after all computations are complete
 #ifdef OOMPH_HAS_MPI

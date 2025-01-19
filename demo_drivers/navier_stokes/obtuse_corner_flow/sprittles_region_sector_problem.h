@@ -8,6 +8,8 @@
 
 /// Local headers
 #include "region_sector_problem.h"
+#include "two_region_refined_sector_tri_mesh.template.h"
+
 
 namespace oomph
 {
@@ -16,6 +18,7 @@ namespace oomph
   class SprittlesRegionSectorProblem : public RegionSectorProblem<ELEMENT>
   {
   private:
+    double Contact_angle;
     Node* Contact_line_node_pt;
 
     Vector<unsigned> Augmented_bulk_element_number;
@@ -73,19 +76,16 @@ namespace oomph
       RegionSectorProblem<ELEMENT>::setup();
 
       set_contact_line_node_pt();
-      Velocity_singular_function = velocity_singular_function_factory(
-        this->my_parameters().sector_angle * MathematicalConstants::Pi / 180.0,
-        Contact_line_node_pt);
+      Contact_angle =
+        this->my_parameters().sector_angle * MathematicalConstants::Pi / 180.0;
+      Velocity_singular_function =
+        velocity_singular_function_factory(Contact_angle, Contact_line_node_pt);
       Grad_velocity_singular_function = grad_velocity_singular_function_factory(
-        this->my_parameters().sector_angle * MathematicalConstants::Pi / 180.0,
-        Contact_line_node_pt);
+        Contact_angle, Contact_line_node_pt);
       Eigensolution_slip_function = eigensolution_slip_function_factory(
         this->my_parameters().slip_length, Velocity_singular_function);
-
       Eigensolution_traction_function = eigensolution_traction_function_factory(
-        this->my_parameters().sector_angle * MathematicalConstants::Pi / 180.0,
-        Contact_line_node_pt,
-        Grad_velocity_singular_function);
+        Contact_angle, Grad_velocity_singular_function);
 
       create_singular_elements();
 
@@ -357,7 +357,7 @@ namespace oomph
     el_pt->pressure_singular_fct_pt() = &pressure_singular_fct;
 
     // The singular function satisfies the Stokes equation
-    el_pt->singular_function_satisfies_stokes_equation() = false;
+    el_pt->singular_function_satisfies_stokes_equation() = true;
 
     // el_pt->pin_c();
     el_pt->set_c(0.0);
@@ -436,9 +436,8 @@ namespace oomph
       {
         std::cout << node_pt->x(0) << ", " << node_pt->x(1) << std::endl;
 
-        const unsigned pressure_value_index = 2;
         PointPressureEvaluationElement* el_pt =
-          new PointPressureEvaluationElement(node_pt, pressure_value_index);
+          new PointPressureEvaluationElement(node_pt, 2);
 
         el_pt->set_pressure_data_pt(
           Singularity_scaling_mesh_pt->element_pt(0)->internal_data_pt(0));
@@ -469,9 +468,8 @@ namespace oomph
           !node_pt->is_on_boundary(Inner_slip_boundary_id))
       {
         std::cout << node_pt->x(0) << ", " << node_pt->x(1) << std::endl;
-        const unsigned pressure_value_index = 2;
         PointPressureEvaluationElement* el_pt =
-          new PointPressureEvaluationElement(node_pt, pressure_value_index);
+          new PointPressureEvaluationElement(node_pt, 2);
 
         el_pt->set_pressure_data_pt(
           Singularity_scaling_mesh_pt->element_pt(0)->internal_data_pt(0));

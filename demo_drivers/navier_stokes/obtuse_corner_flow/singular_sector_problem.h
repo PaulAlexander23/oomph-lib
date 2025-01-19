@@ -17,6 +17,7 @@ namespace oomph
   class SingularSectorProblem : public SectorProblem<ELEMENT>
   {
   private:
+    double Contact_angle;
     Node* Contact_line_node_pt;
 
     Vector<unsigned> Augmented_bulk_element_number;
@@ -54,7 +55,8 @@ namespace oomph
     };
 
     // Constructor
-    SingularSectorProblem() : SectorProblem<ELEMENT>(), Contact_line_node_pt(0)
+    SingularSectorProblem()
+      : SectorProblem<ELEMENT>(), Contact_line_node_pt(0), Contact_angle(0.0)
     {
       // Re-assign doc info pointer
       this->doc_info_pt()->set_directory("RESLT_fix");
@@ -71,19 +73,16 @@ namespace oomph
       SectorProblem<ELEMENT>::setup();
 
       set_contact_line_node_pt();
-      Velocity_singular_function = velocity_singular_function_factory(
-        this->my_parameters().sector_angle * MathematicalConstants::Pi / 180.0,
-        Contact_line_node_pt);
+      Contact_angle =
+        this->my_parameters().sector_angle * MathematicalConstants::Pi / 180.0;
+      Velocity_singular_function =
+        velocity_singular_function_factory(Contact_angle, Contact_line_node_pt);
       Grad_velocity_singular_function = grad_velocity_singular_function_factory(
-        this->my_parameters().sector_angle * MathematicalConstants::Pi / 180.0,
-        Contact_line_node_pt);
+        Contact_angle, Contact_line_node_pt);
       Eigensolution_slip_function = eigensolution_slip_function_factory(
         this->my_parameters().slip_length, Velocity_singular_function);
-
       Eigensolution_traction_function = eigensolution_traction_function_factory(
-        this->my_parameters().sector_angle * MathematicalConstants::Pi / 180.0,
-        Contact_line_node_pt,
-        Grad_velocity_singular_function);
+        Contact_angle, Grad_velocity_singular_function);
 
       create_singular_elements();
 
@@ -495,9 +494,8 @@ namespace oomph
         break;
       }
     }
-    const unsigned pressure_value_index = 2;
     PointPressureEvaluationElement* el_pt =
-      new PointPressureEvaluationElement(node_pt, pressure_value_index);
+      new PointPressureEvaluationElement(node_pt, 2);
     el_pt->set_pressure_data_pt(
       Singularity_scaling_mesh_pt->element_pt(0)->internal_data_pt(0));
 
@@ -529,9 +527,8 @@ namespace oomph
         break;
       }
     }
-    const unsigned pressure_value_index = 2;
     PointPressureEvaluationElement* el_pt =
-      new PointPressureEvaluationElement(node_pt, pressure_value_index);
+      new PointPressureEvaluationElement(node_pt, 2);
 
     el_pt->set_pressure_data_pt(
       Singularity_scaling_mesh_pt->element_pt(0)->internal_data_pt(0));

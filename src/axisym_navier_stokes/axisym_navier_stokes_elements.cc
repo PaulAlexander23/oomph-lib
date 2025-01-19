@@ -1176,7 +1176,7 @@ namespace oomph
             /*This is the contribution from pressure gradient*/
             for (unsigned l2 = 0; l2 < n_pres; l2++)
             {
-              local_unknown = p_local_eqn(l2);
+              local_unknown = p_local_unknown(l2);
               /*If we are at a non-zero degree of freedom in the entry*/
               if (local_unknown >= 0)
               {
@@ -1318,7 +1318,7 @@ namespace oomph
             /*This is the contribution from pressure gradient*/
             for (unsigned l2 = 0; l2 < n_pres; l2++)
             {
-              local_unknown = p_local_eqn(l2);
+              local_unknown = p_local_unknown(l2);
               /*If we are at a non-zero degree of freedom in the entry*/
               if (local_unknown >= 0)
               {
@@ -2830,7 +2830,7 @@ namespace oomph
             /*This is the contribution from pressure gradient*/
             // for(unsigned l2=0;l2<n_pres;l2++)
             // {
-            //  local_unknown = p_local_eqn(l2);
+            //  local_unknown = p_local_unknown(l2);
             //  /*If we are at a non-zero degree of freedom in the entry*/
             //  if(local_unknown >= 0)
             //   {

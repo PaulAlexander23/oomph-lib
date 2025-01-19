@@ -57,16 +57,16 @@ validate(){
 validate "create_parameter_files --folder Validation/RESLT --overwrite --parameters" validata/unsteady-parameters-with-restart.dat parameters.dat create_parameter_files_unsteady-parameters-with-restart_results.dat.gz
 
 # Base state scripts
-validate axi_dynamic_cap validata/parameters.dat trace.dat axi_dynamic_cap_parameters_results.dat.gz
-validate axi_dynamic_cap validata/parameters-with-restart.dat trace.dat axi_dynamic_cap_parameters-with-restart_results.dat.gz
-validate axi_dynamic_cap validata/unsteady-parameters.dat trace.dat axi_dynamic_cap_unsteady-parameters_results.dat.gz
-validate axi_dynamic_cap validata/unsteady-parameters-with-restart.dat trace.dat axi_dynamic_cap_unsteady-parameters-with-restart_results.dat.gz
+validate "axi_dynamic_cap --parameters " validata/parameters.dat trace.dat axi_dynamic_cap_parameters_results.dat.gz
+validate "axi_dynamic_cap --parameters " validata/parameters-with-restart.dat trace.dat axi_dynamic_cap_parameters-with-restart_results.dat.gz
+validate "axi_dynamic_cap --parameters " validata/unsteady-parameters.dat trace.dat axi_dynamic_cap_unsteady-parameters_results.dat.gz
+validate "axi_dynamic_cap --parameters " validata/unsteady-parameters-with-restart.dat trace.dat axi_dynamic_cap_unsteady-parameters-with-restart_results.dat.gz
 
 # Obtuse runs
-validate axi_dynamic_cap validata/obtuse-parameters.dat trace.dat axi_dynamic_cap_obtuse-parameters_results.dat.gz                   
-validate axi_dynamic_cap validata/obtuse-parameters-with-restart.dat trace.dat axi_dynamic_cap_obtuse-parameters-with-restart_results.dat.gz
-#validate axi_dynamic_cap validata/obtuse-unsteady-parameters.dat trace.dat unsteady_run_parameters_results.dat.gz
-#validate axi_dynamic_cap validata/obtuse-unsteady-parameters-with-restart.dat trace.dat unsteady_run_parameters-with-restart_results.dat.gz
+validate "axi_dynamic_cap --parameters " validata/obtuse-parameters.dat trace.dat axi_dynamic_cap_obtuse-parameters_results.dat.gz                   
+validate "axi_dynamic_cap --parameters " validata/obtuse-parameters-with-restart.dat trace.dat axi_dynamic_cap_obtuse-parameters-with-restart_results.dat.gz
+#validate "axi_dynamic_cap --parameters " validata/obtuse-unsteady-parameters.dat trace.dat unsteady_run_parameters_results.dat.gz
+#validate "axi_dynamic_cap --parameters " validata/obtuse-unsteady-parameters-with-restart.dat trace.dat unsteady_run_parameters-with-restart_results.dat.gz
 
 # Continuation runs
 validate "continuation_run --Bo 0.1 --parameters " validata/unsteady-parameters-with-restart.dat trace.dat cont-bo-results.dat.gz

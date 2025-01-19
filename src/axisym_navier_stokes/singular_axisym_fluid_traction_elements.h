@@ -1,6 +1,7 @@
 #ifndef SINGULAR_AXISYM_FLUID_TRACTION_ELEMENTS_HEADER
 #define SINGULAR_AXISYM_FLUID_TRACTION_ELEMENTS_HEADER
 
+#include "generic.h"
 
 namespace oomph
 {
@@ -25,14 +26,13 @@ namespace oomph
 
   protected:
     void get_traction(const double& time,
+                      const unsigned& intpt,
                       const Vector<double>& x,
                       const Vector<double>& n,
-                      Vector<double>& result)
+                      Vector<double>& result) const override
     {
-      // Dummy integration point
-      unsigned ipt = 0;
       AxisymmetricNavierStokesTractionElement<ELEMENT>::get_traction(
-        time, ipt, x, n, result);
+        time, intpt, x, n, result);
       const unsigned N = result.size();
       for (unsigned i = 0; i < N; i++)
       {
@@ -42,8 +42,8 @@ namespace oomph
 
   public:
     /// This function returns the residuals and the jacobian
-    inline void fill_in_contribution_to_jacobian(Vector<double>& residuals,
-                                                 DenseMatrix<double>& jacobian)
+    void fill_in_contribution_to_jacobian(Vector<double>& residuals,
+                                          DenseMatrix<double>& jacobian)
     {
       // Call the generic routine with the flag set to 1
       AxisymmetricNavierStokesTractionElement<ELEMENT>::
@@ -95,7 +95,9 @@ namespace oomph
         this->outer_unit_normal(s, n);
 
         Vector<double> traction(n_dim);
-        get_traction(local_time, x, n, traction);
+        // Dummy integration point
+        unsigned ipt = 0;
+        get_traction(local_time, ipt, x, n, traction);
 
         // Output the time
         outfile << local_time << " ";

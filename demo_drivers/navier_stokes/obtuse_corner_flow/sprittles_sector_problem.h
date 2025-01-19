@@ -17,6 +17,7 @@ namespace oomph
   class SprittlesSectorProblem : public SectorProblem<ELEMENT>
   {
   private:
+    double Contact_angle;
     Node* Contact_line_node_pt;
 
     Vector<unsigned> Augmented_bulk_element_number;
@@ -71,19 +72,16 @@ namespace oomph
       SectorProblem<ELEMENT>::setup();
 
       set_contact_line_node_pt();
-      Velocity_singular_function = velocity_singular_function_factory(
-        this->my_parameters().sector_angle * MathematicalConstants::Pi / 180.0,
-        Contact_line_node_pt);
+      Contact_angle =
+        this->my_parameters().sector_angle * MathematicalConstants::Pi / 180.0;
+      Velocity_singular_function =
+        velocity_singular_function_factory(Contact_angle, Contact_line_node_pt);
       Grad_velocity_singular_function = grad_velocity_singular_function_factory(
-        this->my_parameters().sector_angle * MathematicalConstants::Pi / 180.0,
-        Contact_line_node_pt);
+        Contact_angle, Contact_line_node_pt);
       Eigensolution_slip_function = eigensolution_slip_function_factory(
         this->my_parameters().slip_length, Velocity_singular_function);
-
       Eigensolution_traction_function = eigensolution_traction_function_factory(
-        this->my_parameters().sector_angle * MathematicalConstants::Pi / 180.0,
-        Contact_line_node_pt,
-        Grad_velocity_singular_function);
+        Contact_angle, Grad_velocity_singular_function);
 
       create_singular_elements();
 
@@ -104,26 +102,10 @@ namespace oomph
           dynamic_cast<ELEMENT*>(this->bulk_mesh_pt()->element_pt(e));
 
         // Make augmented elements
-        // Check distance from
-        // s centre is centre of mass of a uniform triangle, so (1/3,1/3) for
-        // Triangle[(1,0),(0,1),(0,0)]
-        Vector<double> s_centre(2, 1.0 / 3.0);
-        Vector<double> element_centre_x(2, 0.0);
-        el_pt->get_x(s_centre, element_centre_x);
-        double dist = 0;
-        for (unsigned i = 0; i < 2; i++)
-        {
-          dist += pow(element_centre_x[i] - Contact_line_node_pt->x(i), 2.0);
-        }
-        dist = pow(dist, 0.5);
+        // Augment all the elements
+        el_pt->augment();
 
-        // If the distance to the corner is within the "inner" region, ...
-        if (dist < this->my_parameters().inner_radius)
-        {
-          // ... augment element
-          el_pt->augment();
-          Augmented_bulk_element_number.push_back(e);
-        }
+        Augmented_bulk_element_number.push_back(e);
       }
       oomph_info << Augmented_bulk_element_number.size()
                  << " augmented elements" << std::endl;
@@ -139,7 +121,7 @@ namespace oomph
 
       create_slip_eigen_elements();
       create_far_field_eigen_elements();
-      // create_traction_eigen_elements();
+      create_traction_eigen_elements();
 
       // Setup the mesh interaction between the bulk and singularity meshes
       setup_mesh_interaction();
@@ -389,7 +371,7 @@ namespace oomph
     el_pt->pressure_singular_fct_pt() = &pressure_singular_fct;
 
     // The singular function satisfies the Stokes equation
-    el_pt->singular_function_satisfies_stokes_equation() = false;
+    el_pt->singular_function_satisfies_stokes_equation() = true;
 
     // el_pt->pin_c();
     el_pt->set_c(0.0);
@@ -466,9 +448,8 @@ namespace oomph
       {
         std::cout << node_pt->x(0) << ", " << node_pt->x(1) << std::endl;
 
-        const unsigned pressure_value_index = 2;
         PointPressureEvaluationElement* el_pt =
-          new PointPressureEvaluationElement(node_pt, pressure_value_index);
+          new PointPressureEvaluationElement(node_pt, 2);
 
         el_pt->set_pressure_data_pt(
           Singularity_scaling_mesh_pt->element_pt(0)->internal_data_pt(0));
@@ -497,9 +478,8 @@ namespace oomph
           !node_pt->is_on_boundary(Slip_boundary_id))
       {
         std::cout << node_pt->x(0) << ", " << node_pt->x(1) << std::endl;
-        const unsigned pressure_value_index = 2;
         PointPressureEvaluationElement* el_pt =
-          new PointPressureEvaluationElement(node_pt, pressure_value_index);
+          new PointPressureEvaluationElement(node_pt, 2);
 
         el_pt->set_pressure_data_pt(
           Singularity_scaling_mesh_pt->element_pt(0)->internal_data_pt(0));

@@ -1,0 +1,14 @@
+\section correction Natural boundary condition matching
+
+By include the \f$c \nabla \cdot \bar{\tau}\f$ within the bulk, the natural boundary condition at the interior becomes 
+\f[c {t} \cdot \bar{\tau} \cdot {n} + {t} \cdot \tilde{\tau} \cdot {n} = {t} \cdot {\tau} \cdot {n}.\f]
+The equations in the in the bulk \f$\Omega\f$, are then,
+\f[c \nabla\bar{u} + \nabla \cdot \tilde{u} = 0,\ c \nabla \cdot \bar{\tau} + \nabla \cdot \tilde{\tau} = 0.\f]
+This can be done by enabling the appropriate flag in the <A HREF="classoomph_1_1SingularAxisymNavierStokesElement.html">SingularAxisymNavierStokesElement</A>.
+
+The other consequence is that we do not need to add the additional stress contributions at the boundary too, otherwise the procedure is unchanged.
+
+This is implemented in the <A HREF="classoomph_1_1SingularAxisymSectorProblem.html"> SingularAxisymSectorProblem </A> class and in the <A HREF="classoomph_1_1SingularRegionAxisymSectorProblem.html"> SingularRegionAxisymSectorProblem </A> class.
+
+<HR>
+<HR>
