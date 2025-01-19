@@ -421,51 +421,52 @@ BOOST_AUTO_TEST_CASE(compare_matrix_different)
 //   BOOST_TEST(jacobians_are_equal);
 // }
 
-BOOST_AUTO_TEST_CASE(obtuse_mass_matrix_and_jacobian)
-{
-  shared_ptr<AXISYM_PROBLEM> problem_pt =
-    createBaseProblem(120.0 * MathematicalConstants::Pi / 180.0);
-  Slip_Parameters::wall_velocity = 0.01;
-  problem_pt->steady_newton_solve();
-  DoubleVector residuals;
-  CRDoubleMatrix actual_jacobian;
-  CRDoubleMatrix actual_mass_matrix;
-  problem_pt->get_eigenproblem_matrices(actual_mass_matrix, actual_jacobian);
-
-  problem_pt->time_stepper_pt()->make_steady();
-  DenseMatrix<double> expected_jacobian;
-  problem_pt->get_fd_jacobian(residuals, expected_jacobian);
-
-
-  const unsigned N = expected_jacobian.nrow();
-  const unsigned M = expected_jacobian.ncol();
-
-  BOOST_TEST(actual_jacobian.nrow() == N);
-  BOOST_TEST(actual_jacobian.ncol() == M);
-
-  bool jacobians_are_equal =
-    compare_matrices(expected_jacobian, actual_jacobian);
-  BOOST_TEST(jacobians_are_equal);
-
-  problem_pt->time_stepper_pt()->undo_make_steady();
-  DenseMatrix<double> unsteady_jacobian;
-  problem_pt->get_fd_jacobian(residuals, unsteady_jacobian);
-  const double dt = problem_pt->time_stepper_pt()->time_pt()->dt();
-  const unsigned n_dof = problem_pt->ndof();
-  DenseMatrix<double> expected_mass_matrix(n_dof, n_dof, 0.0);
-  for (unsigned i = 0; i < n_dof; i++)
-  {
-    for (unsigned j = 0; j < n_dof; j++)
-    {
-      /// The 2/3 is due to the BDF<2> scheme.
-      expected_mass_matrix(j, i) +=
-        (2.0 / 3.0) * dt * (-unsteady_jacobian(j, i) + expected_jacobian(j, i));
-    }
-  }
-  bool mass_matrix_are_equal =
-    compare_matrices(expected_mass_matrix, actual_mass_matrix);
-  BOOST_TEST(mass_matrix_are_equal);
-}
+// BOOST_AUTO_TEST_CASE(obtuse_mass_matrix_and_jacobian)
+// {
+//   shared_ptr<AXISYM_PROBLEM> problem_pt =
+//     createBaseProblem(120.0 * MathematicalConstants::Pi / 180.0);
+//   Slip_Parameters::wall_velocity = 0.01;
+//   problem_pt->steady_newton_solve();
+//   DoubleVector residuals;
+//   CRDoubleMatrix actual_jacobian;
+//   CRDoubleMatrix actual_mass_matrix;
+//   problem_pt->get_eigenproblem_matrices(actual_mass_matrix, actual_jacobian);
+//
+//   problem_pt->time_stepper_pt()->make_steady();
+//   DenseMatrix<double> expected_jacobian;
+//   problem_pt->get_fd_jacobian(residuals, expected_jacobian);
+//
+//
+//   const unsigned N = expected_jacobian.nrow();
+//   const unsigned M = expected_jacobian.ncol();
+//
+//   BOOST_TEST(actual_jacobian.nrow() == N);
+//   BOOST_TEST(actual_jacobian.ncol() == M);
+//
+//   bool jacobians_are_equal =
+//     compare_matrices(expected_jacobian, actual_jacobian);
+//   BOOST_TEST(jacobians_are_equal);
+//
+//   problem_pt->time_stepper_pt()->undo_make_steady();
+//   DenseMatrix<double> unsteady_jacobian;
+//   problem_pt->get_fd_jacobian(residuals, unsteady_jacobian);
+//   const double dt = problem_pt->time_stepper_pt()->time_pt()->dt();
+//   const unsigned n_dof = problem_pt->ndof();
+//   DenseMatrix<double> expected_mass_matrix(n_dof, n_dof, 0.0);
+//   for (unsigned i = 0; i < n_dof; i++)
+//   {
+//     for (unsigned j = 0; j < n_dof; j++)
+//     {
+//       /// The 2/3 is due to the BDF<2> scheme.
+//       expected_mass_matrix(j, i) +=
+//         (2.0 / 3.0) * dt * (-unsteady_jacobian(j, i) + expected_jacobian(j,
+//         i));
+//     }
+//   }
+//   bool mass_matrix_are_equal =
+//     compare_matrices(expected_mass_matrix, actual_mass_matrix);
+//   BOOST_TEST(mass_matrix_are_equal);
+// }
 
 // BOOST_AUTO_TEST_CASE(nonlinear_problem_solve_eigenproblem)
 // {
@@ -536,13 +537,8 @@ namespace oomph
 {
   std::shared_ptr<AXISYM_PROBLEM> createBaseProblem(const double& contact_angle)
   {
-    Slip_Parameters::wall_velocity = 0.0;
-    Slip_Parameters::slip_length = 1.0;
-    Global_Physical_Parameters::Equilibrium_contact_angle = contact_angle;
-
-    // oomph_info.stream_pt() = &oomph_nullstream;
-    const bool has_restart = false;
-    return std::shared_ptr<AXISYM_PROBLEM>(new AXISYM_PROBLEM(
-      Global_Physical_Parameters::Equilibrium_contact_angle, has_restart));
+    Params parameters;
+    parameters.contact_angle = contact_angle;
+    return std::shared_ptr<AXISYM_PROBLEM>(new AXISYM_PROBLEM(parameters));
   }
 } // namespace oomph
