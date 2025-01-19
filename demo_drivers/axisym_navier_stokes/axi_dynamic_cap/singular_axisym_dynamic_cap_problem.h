@@ -281,6 +281,7 @@ namespace oomph
 
       // Create DocInfo object (allows checking if output directory exists)
       this->doc_info().number() = 0;
+      this->doc_info().set_directory(parameters.output_directory);
 
       /// Create parameters from parameters file.
       Slip_function = slip_function_factory(Parameters.slip_length);
@@ -757,7 +758,6 @@ namespace oomph
         Bulk_mesh_pt->spatial_error_estimator_pt()->get_element_errors(
           fluid_mesh_pt, elemental_error);
         Bulk_mesh_pt->adapt(elemental_error);
-        Bulk_mesh_pt->output("RESLT/mesh" + to_string(i_adapt) + ".dat");
         i_adapt++;
       }
     }
