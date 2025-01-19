@@ -4243,7 +4243,7 @@ namespace oomph
     static void wall_unit_normal_function(const Vector<double>& x,
                                           Vector<double>& unit_normal)
     {
-      unit_normal[0] = 1.0;
+      unit_normal[0] = -1.0;
       unit_normal[1] = 0.0;
     }
 
