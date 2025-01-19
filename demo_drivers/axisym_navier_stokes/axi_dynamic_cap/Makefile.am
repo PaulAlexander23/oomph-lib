@@ -11,6 +11,12 @@ EXEC:= \
 # Makefile rules
 run: ${EXEC}
 
+# Run parallel axi_dynamic_cap with the parameters in the validata directory
+test: axi_dynamic_cap
+	./generate_tests.zsh
+	./run_tests.zsh
+	$(find log -type f -not -empty -name "stderr")
+
 # Automake
 
 # Name of executables
