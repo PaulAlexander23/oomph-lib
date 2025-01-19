@@ -322,6 +322,7 @@ namespace oomph
       // Create a Data object whose single value stores the
       // external pressure
       External_pressure_data_pt = new Data(1);
+      External_pressure_data_pt->set_value(0, 1.0);
 
       // Regard the external pressure is an unknown and add
       // it to the problem's global data so it gets included

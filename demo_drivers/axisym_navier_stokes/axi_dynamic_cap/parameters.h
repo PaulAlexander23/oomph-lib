@@ -191,9 +191,11 @@ namespace oomph
 
     getline(parameter_filestream, input_string, '#');
     parameter_filestream.ignore(80, '\n');
+    input_string.erase(
+      remove_if(input_string.begin(), input_string.end(), isspace),
+      input_string.end());
     if (input_string.size() > 0)
     {
-      input_string.resize(input_string.size() - 1);
       params.is_restarting = true;
       params.restart_filename = input_string;
     }
