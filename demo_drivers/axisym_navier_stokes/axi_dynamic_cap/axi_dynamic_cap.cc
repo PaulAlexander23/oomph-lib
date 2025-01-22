@@ -82,7 +82,7 @@ int main(int argc, char** argv)
     SingularAxisymNavierStokesElement<
       ProjectableAxisymmetricTTaylorHoodPVDElement>,
     BDF<2>>
-    problem(parameters);
+    problem(&parameters);
   problem.setup();
   save_dofs_types<SingularAxisymDynamicCapProblem<
     SingularAxisymNavierStokesElement<

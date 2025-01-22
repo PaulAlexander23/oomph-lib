@@ -71,7 +71,7 @@ namespace oomph
     //============================================================================
 
     // Problem parameters
-    Params Parameters;
+    Params* Parameters_pt;
     // Constitutive law used to determine the mesh deformation
     ConstitutiveLaw* Constitutive_law_pt;
 
@@ -227,8 +227,8 @@ namespace oomph
       CONTACT_LINE_ELEMENT;
 
     // Constructor
-    SingularAxisymDynamicCapProblem(Params& parameters)
-      : Parameters(parameters),
+    SingularAxisymDynamicCapProblem(Params* const& parameters_pt)
+      : Parameters_pt(parameters_pt),
         Contact_line_node_pt(0),
         Inner_corner_solid_node_pt(0),
         Z2_error_estimator_pt(0),
@@ -263,15 +263,15 @@ namespace oomph
 
       // Create time stepper
       this->add_time_stepper_pt(
-        new TIMESTEPPER(Parameters.is_adaptive_timestepping));
+        new TIMESTEPPER(Parameters_pt->is_adaptive_timestepping));
       // Set the constituive law
-      this->Constitutive_law_pt = new GeneralisedHookean(&Parameters.nu);
+      this->Constitutive_law_pt = new GeneralisedHookean(&Parameters_pt->nu);
       // Set the maximum number of newton iterations
-      this->max_newton_iterations() = Parameters.max_newton_iterations;
+      this->max_newton_iterations() = Parameters_pt->max_newton_iterations;
       // Set the maximum residual before assuming newton is not converging
-      this->max_residuals() = Parameters.max_residual;
+      this->max_residuals() = Parameters_pt->max_residual;
 
-      this->newton_solver_tolerance() = Parameters.newton_solver_tolerance;
+      this->newton_solver_tolerance() = Parameters_pt->newton_solver_tolerance;
       // Suppress warning for restarting
       this->Suppress_warning_about_actions_before_read_unstructured_meshes =
         true;
@@ -281,27 +281,27 @@ namespace oomph
 
       // Create DocInfo object (allows checking if output directory exists)
       this->doc_info().number() = 0;
-      this->doc_info().set_directory(parameters.output_directory);
+      this->doc_info().set_directory(Parameters_pt->output_directory);
 
       /// Create parameters from parameters file.
-      Slip_function = slip_function_factory(Parameters.slip_length);
+      Slip_function = slip_function_factory(Parameters_pt->slip_length);
       Wall_velocity_function =
-        wall_velocity_function_factory(Parameters.wall_velocity);
+        wall_velocity_function_factory(Parameters_pt->wall_velocity);
 
       Velocity_singular_function = velocity_singular_function_factory(
-        Parameters.contact_angle, Contact_line_node_pt);
+        Parameters_pt->contact_angle, Contact_line_node_pt);
       Grad_velocity_singular_function = grad_velocity_singular_function_factory(
-        Parameters.contact_angle, Contact_line_node_pt);
+        Parameters_pt->contact_angle, Contact_line_node_pt);
       Eigensolution_slip_function = eigensolution_slip_function_factory(
-        Parameters.slip_length, Velocity_singular_function);
+        Parameters_pt->slip_length, Velocity_singular_function);
       Eigensolution_traction_function = eigensolution_traction_function_factory(
-        Parameters.contact_angle, Grad_velocity_singular_function);
+        Parameters_pt->contact_angle, Grad_velocity_singular_function);
 
       //======================================================================
       // Create the refineable bulk mesh
       //======================================================================
       // Create the bulk mesh and its elements
-      if (Parameters.is_restarting)
+      if (Parameters_pt->is_restarting)
       {
         create_simple_bulk_mesh();
       }
@@ -381,8 +381,9 @@ namespace oomph
         this->add_sub_mesh(Volume_constraint_mesh_pt);
       }
 
-      if (Parameters.contact_angle > 90.0 * MathematicalConstants::Pi / 180.0 &&
-          Parameters.augmented_radius > 0)
+      if (Parameters_pt->contact_angle >
+            90.0 * MathematicalConstants::Pi / 180.0 &&
+          Parameters_pt->augmented_radius > 0)
       {
         this->Is_augmented = true;
       }
@@ -746,7 +747,8 @@ namespace oomph
       double max_error = 1e6;
       // double old_max_error = max_error + 1.0;
       double min_error = 0.0;
-      const unsigned n_adapt = Parameters.max_number_of_adapts_for_refinement;
+      const unsigned n_adapt =
+        Parameters_pt->max_number_of_adapts_for_refinement;
       // double tol = 1e-3;
       unsigned i_adapt = 0;
       // Call the adapt function until the maximum of the estimated error is
@@ -783,7 +785,7 @@ namespace oomph
       }
 
       // Solve the steady problem
-      this->steady_newton_solve(Parameters.max_adapt);
+      this->steady_newton_solve(Parameters_pt->max_adapt);
     }
 
     // A custom adaptive steady newton solve function.
@@ -833,7 +835,7 @@ namespace oomph
       get_z2_error(local_max_z2_error, local_min_z2_error);
 
       // If the Z2 error is not within tolerance
-      if (local_max_z2_error > Parameters.max_permitted_z2_error)
+      if (local_max_z2_error > Parameters_pt->max_permitted_z2_error)
       {
         // Then adapt is needed
         oomph_info << "Adapt is needed due to Z2 error" << std::endl;
@@ -841,7 +843,7 @@ namespace oomph
       }
 
       if (this->max_free_surface_error() >
-          Parameters.polyline_refinement_tolerence)
+          Parameters_pt->polyline_refinement_tolerence)
       {
         // Then adapt is needed
         oomph_info << "Adapt is needed due to polyline refinement error"
@@ -854,7 +856,7 @@ namespace oomph
       // Check if the contact angle error is ok.
       if (Contact_angle_mesh_pt)
       {
-        if (Parameters.error_estimator_flag > 0)
+        if (Parameters_pt->error_estimator_flag > 0)
         {
           double expected_contact_angle = 0.0;
           double actual_contact_angle = 0.0;
@@ -876,7 +878,7 @@ namespace oomph
             if (Using_contact_angle_error_estimator)
             {
               // We need to increase the resolution also
-              Parameters.min_element_length *= 0.5;
+              Parameters_pt->min_element_length *= 0.5;
             }
 
             // Then adapt is needed
@@ -891,7 +893,7 @@ namespace oomph
       // Check if the inner angle error is ok.
       if (Contact_angle_mesh_pt)
       {
-        if (Parameters.error_estimator_flag > 0)
+        if (Parameters_pt->error_estimator_flag > 0)
         {
           double expected_contact_angle = 0.0;
           double actual_contact_angle = 0.0;
@@ -912,7 +914,7 @@ namespace oomph
             if (Using_contact_angle_error_estimator)
             {
               // We need to increase the resolution also
-              Parameters.inner_min_element_length *= 0.5;
+              Parameters_pt->inner_min_element_length *= 0.5;
             }
 
             // Then adapt is needed
@@ -926,7 +928,7 @@ namespace oomph
       // If the max Z2 error is much smaller than the permitted, then adapt to
       // unrefine
       // if (local_max_z2_error /
-      // Parameters.max_permitted_z2_error <
+      // Parameters_pt->max_permitted_z2_error <
       //     1e-1)
       // {
       //   // Then adapt is needed
@@ -1319,12 +1321,12 @@ namespace oomph
       }
 
       // Set up variables for the adaption procedure
-      unsigned steps_between_adapt = Parameters.interval_between_adapts;
+      unsigned steps_between_adapt = Parameters_pt->interval_between_adapts;
       unsigned local_max_adapt = 0;
 
       // Set up variables for unsteady_newton_solve
       double local_dt = dt;
-      const double temporal_tolerance = Parameters.temporal_tolerance;
+      const double temporal_tolerance = Parameters_pt->temporal_tolerance;
       bool first_timestep = false;
       bool shift = true;
       unsigned it = 0;
@@ -1338,7 +1340,7 @@ namespace oomph
         if (it % steps_between_adapt == 0)
         {
           // ... Set the local_max_adapt to the global one ...
-          local_max_adapt = Parameters.max_adapt;
+          local_max_adapt = Parameters_pt->max_adapt;
           // if (it == 0)
           //{
           //  local_max_adapt = 5;
@@ -1353,7 +1355,7 @@ namespace oomph
         // Call unsteady newton solver
         try
         {
-          if (Parameters.is_adaptive_timestepping)
+          if (Parameters_pt->is_adaptive_timestepping)
           {
             local_dt =
               this->doubly_adaptive_unsteady_newton_solve(local_dt,
@@ -1753,9 +1755,9 @@ namespace oomph
         std::string filename;
 
         // Number of plot points
-        unsigned npts = Parameters.bulk_element_number_of_plot_points;
+        unsigned npts = Parameters_pt->bulk_element_number_of_plot_points;
         unsigned npts_surface =
-          Parameters.surface_element_number_of_plot_points;
+          Parameters_pt->surface_element_number_of_plot_points;
 
         // Output bulk domain
         filename = this->doc_info().directory() + "/soln" +
@@ -1923,16 +1925,17 @@ namespace oomph
       // Document the contact angle (in degrees),
       Trace_file << this->doc_info().number() << " ";
       Trace_file << this->time_pt()->time() << " ";
-      Trace_file << Parameters.contact_angle * 180.0 / MathematicalConstants::Pi
+      Trace_file << Parameters_pt->contact_angle * 180.0 /
+                      MathematicalConstants::Pi
                  << " ";
       // the parameters,
-      Trace_file << Parameters.reynolds_inverse_froude_number << " ";
-      Trace_file << Parameters.capillary_number << " ";
-      Trace_file << Parameters.reynolds_number << " ";
-      Trace_file << Parameters.strouhal_number << " ";
-      Trace_file << Parameters.reynolds_strouhal_number << " ";
-      Trace_file << Parameters.reynolds_inverse_froude_number << " ";
-      Trace_file << Parameters.wall_velocity << " ";
+      Trace_file << Parameters_pt->reynolds_inverse_froude_number << " ";
+      Trace_file << Parameters_pt->capillary_number << " ";
+      Trace_file << Parameters_pt->reynolds_number << " ";
+      Trace_file << Parameters_pt->strouhal_number << " ";
+      Trace_file << Parameters_pt->reynolds_strouhal_number << " ";
+      Trace_file << Parameters_pt->reynolds_inverse_froude_number << " ";
+      Trace_file << Parameters_pt->wall_velocity << " ";
       // the external pressure,
       Trace_file << External_pressure_data_pt->value(0) << " ";
       // the height of the interface at the centre of the container,
@@ -1944,7 +1947,8 @@ namespace oomph
       // the number of degrees of freedom
       Trace_file << this->ndof() << " ";
       // the desired corner element length
-      Trace_file << 5e-2 * Parameters.slip_length / Parameters.wall_velocity
+      Trace_file << 5e-2 * Parameters_pt->slip_length /
+                      Parameters_pt->wall_velocity
                  << " ";
       ELEMENT* element_pt = 0;
       int face_index = 0;
@@ -2340,7 +2344,7 @@ namespace oomph
 
       // Create the Outer_boundary_polyline_pt
       // If we have a 90 degree contact angle
-      if (Parameters.contact_angle == 0.5 * MathematicalConstants::Pi)
+      if (Parameters_pt->contact_angle == 0.5 * MathematicalConstants::Pi)
       {
         // create a rectangular domain.
         create_rectangle_domain();
@@ -2357,13 +2361,13 @@ namespace oomph
       // = 0.08. If `d` is the argument, the radius of curvature is = 0.5/d *
       // sqrt(d^2 + 0.5^2)
       Outer_boundary_polyline_pt->set_polyline_refinement_tolerance(
-        Parameters.polyline_refinement_tolerence);
+        Parameters_pt->polyline_refinement_tolerence);
 
       // Set a measure of the minimum local curvature before unrefining.
       // Default = 0.04. If `d` is the argument, the radius of curvature is =
       // 0.5/d * sqrt(d^2 + 0.5^2)
       Outer_boundary_polyline_pt->set_polyline_unrefinement_tolerance(
-        Parameters.polyline_unrefinement_tolerence);
+        Parameters_pt->polyline_unrefinement_tolerence);
 
       // Now build the mesh, based on the boundaries specified by
       //---------------------------------------------------------
@@ -2379,16 +2383,16 @@ namespace oomph
       TriangleMeshParameters triangle_mesh_parameters(outer_closed_curve_pt);
 
       // Define the maximum element area
-      triangle_mesh_parameters.element_area() = Parameters.max_element_size;
+      triangle_mesh_parameters.element_area() = Parameters_pt->max_element_size;
 
       // Construct mesh
       Bulk_mesh_pt = new RefineableSolidTriangleMesh<ELEMENT>(
         triangle_mesh_parameters, this->time_stepper_pt());
       // Bulk_mesh_pt->set_print_level_timings_adaptation(3);
 
-      Bulk_mesh_pt->max_element_size() = Parameters.max_element_size;
-      Bulk_mesh_pt->min_element_size() = Parameters.min_element_size;
-      Bulk_mesh_pt->min_permitted_angle() = Parameters.min_permitted_angle;
+      Bulk_mesh_pt->max_element_size() = Parameters_pt->max_element_size;
+      Bulk_mesh_pt->min_element_size() = Parameters_pt->min_element_size;
+      Bulk_mesh_pt->min_permitted_angle() = Parameters_pt->min_permitted_angle;
       Bulk_mesh_pt->max_keep_unrefined() = 400;
 
       refine_mesh_for_weak_contact_angle_constraint();
@@ -2401,23 +2405,23 @@ namespace oomph
       create_rectangle_domain();
 
       Outer_boundary_polyline_pt->set_polyline_refinement_tolerance(
-        Parameters.polyline_refinement_tolerence);
+        Parameters_pt->polyline_refinement_tolerence);
       Outer_boundary_polyline_pt->set_polyline_unrefinement_tolerance(
-        Parameters.polyline_unrefinement_tolerence);
+        Parameters_pt->polyline_unrefinement_tolerence);
 
       TriangleMeshClosedCurve* outer_closed_curve_pt =
         Outer_boundary_polyline_pt;
 
       TriangleMeshParameters triangle_mesh_parameters(outer_closed_curve_pt);
 
-      triangle_mesh_parameters.element_area() = Parameters.max_element_size;
+      triangle_mesh_parameters.element_area() = Parameters_pt->max_element_size;
 
       Bulk_mesh_pt = new RefineableSolidTriangleMesh<ELEMENT>(
         triangle_mesh_parameters, this->time_stepper_pt());
 
-      Bulk_mesh_pt->max_element_size() = Parameters.max_element_size;
-      Bulk_mesh_pt->min_element_size() = Parameters.min_element_size;
-      Bulk_mesh_pt->min_permitted_angle() = Parameters.min_permitted_angle;
+      Bulk_mesh_pt->max_element_size() = Parameters_pt->max_element_size;
+      Bulk_mesh_pt->min_element_size() = Parameters_pt->min_element_size;
+      Bulk_mesh_pt->min_permitted_angle() = Parameters_pt->min_permitted_angle;
       Bulk_mesh_pt->max_keep_unrefined() = 400;
     }
 
@@ -2429,7 +2433,7 @@ namespace oomph
       double half_width = 1.0;
 
       // Domain height
-      double domain_height = Parameters.volume / pow(half_width, 2.0) * 2.0;
+      double domain_height = Parameters_pt->volume / pow(half_width, 2.0) * 2.0;
 
       // Build the boundary segments for outer boundary, consisting of
       //--------------------------------------------------------------
@@ -2487,10 +2491,10 @@ namespace oomph
 
       // Set max length for lower boundary
       boundary_polyline_pt[0]->set_maximum_length(
-        Parameters.max_free_surface_polyline_length);
+        Parameters_pt->max_free_surface_polyline_length);
 
       boundary_polyline_pt[1]->set_maximum_length(
-        Parameters.max_slip_polyline_length);
+        Parameters_pt->max_slip_polyline_length);
 
       // Create the triangle mesh polygon for outer boundary
       Outer_boundary_polyline_pt =
@@ -2503,14 +2507,15 @@ namespace oomph
       double half_width = 1.0;
 
       // Domain height
-      double domain_height = Parameters.volume / pow(half_width, 2.0) * 2.0;
+      double domain_height = Parameters_pt->volume / pow(half_width, 2.0) * 2.0;
 
       // Number of points to use for the free surface polyline
-      const unsigned npoints = Parameters.initial_number_of_free_surface_points;
+      const unsigned npoints =
+        Parameters_pt->initial_number_of_free_surface_points;
 
-      double radius = 1.0 / (cos(Parameters.contact_angle));
+      double radius = 1.0 / (cos(Parameters_pt->contact_angle));
       double zeta_step =
-        (0.5 * MathematicalConstants::Pi - Parameters.contact_angle) /
+        (0.5 * MathematicalConstants::Pi - Parameters_pt->contact_angle) /
         double(npoints - 1);
 
       // Shift surface to ensure the volume is conserved
@@ -2586,10 +2591,10 @@ namespace oomph
 
       // Set max length for lower boundary
       boundary_polyline_pt[0]->set_maximum_length(
-        Parameters.max_free_surface_polyline_length);
+        Parameters_pt->max_free_surface_polyline_length);
 
       boundary_polyline_pt[1]->set_maximum_length(
-        Parameters.max_slip_polyline_length);
+        Parameters_pt->max_slip_polyline_length);
 
       // Create the triangle mesh polygon for outer boundary
       Outer_boundary_polyline_pt =
@@ -2628,8 +2633,8 @@ namespace oomph
         el_pt->set_boundary_number_in_bulk_mesh(b);
 
         // Add the capillary number
-        el_pt->ca_pt() = &Parameters.capillary_number;
-        el_pt->st_pt() = &Parameters.strouhal_number;
+        el_pt->ca_pt() = &Parameters_pt->capillary_number;
+        el_pt->st_pt() = &Parameters_pt->strouhal_number;
 
         // Add the external pressure data
         el_pt->set_external_pressure_data(External_pressure_data_pt);
@@ -2651,7 +2656,7 @@ namespace oomph
       {
         VOLUME_CONSTRAINT_ELEMENT* vol_constraint_element =
           new VOLUME_CONSTRAINT_ELEMENT(
-            &Parameters.volume, External_pressure_data_pt, 0);
+            &Parameters_pt->volume, External_pressure_data_pt, 0);
         Volume_constraint_mesh_pt->add_element_pt(vol_constraint_element);
 
         if (Volume_computation_mesh_pt)
@@ -2735,11 +2740,11 @@ namespace oomph
       }
 
       // Set the contact angle function
-      el_pt->set_contact_angle(&Parameters.contact_angle,
-                               Parameters.is_strong_contact_angle);
+      el_pt->set_contact_angle(&Parameters_pt->contact_angle,
+                               Parameters_pt->is_strong_contact_angle);
 
       // Set the capillary number
-      el_pt->ca_pt() = &Parameters.capillary_number;
+      el_pt->ca_pt() = &Parameters_pt->capillary_number;
 
       // Set the wall normal of the external boundary
       el_pt->wall_unit_normal_fct_pt() = &wall_unit_normal_function;
@@ -2782,14 +2787,14 @@ namespace oomph
       }
 
       // Set the contact angle function
-      el_pt->set_contact_angle(&Parameters.right_angle,
-                               Parameters.is_strong_contact_angle);
+      el_pt->set_contact_angle(&Parameters_pt->right_angle,
+                               Parameters_pt->is_strong_contact_angle);
 
       // Set the capillary number
-      el_pt->ca_pt() = &Parameters.capillary_number;
+      el_pt->ca_pt() = &Parameters_pt->capillary_number;
 
       // Set sigma
-      el_pt->sigma_pt() = &Parameters.sigma;
+      el_pt->sigma_pt() = &Parameters_pt->sigma;
 
       // Set the wall normal of the external boundary
       el_pt->wall_unit_normal_fct_pt() = &wall_unit_normal_function;
@@ -3044,9 +3049,9 @@ namespace oomph
       el_pt->set_boundary_number_in_bulk_mesh(Outer_boundary_with_slip_id);
       // Set the product of the Reynolds number and the inverse of the
       // Froude number
-      // el_pt->re_invfr_pt() = &Parameters.reynolds_inverse_froude_number;
+      // el_pt->re_invfr_pt() = &Parameters_pt->reynolds_inverse_froude_number;
       // Set the direction of gravity
-      // el_pt->g_pt() = &Parameters.gravity_vector;
+      // el_pt->g_pt() = &Parameters_pt->gravity_vector;
 
       unsigned n_element = Bulk_mesh_pt->nelement();
       for (unsigned e = 0; e < n_element; e++)
@@ -3088,9 +3093,9 @@ namespace oomph
       el_pt->set_boundary_number_in_bulk_mesh(Free_surface_boundary_id);
       // Set the product of the Reynolds number and the inverse of the
       // Froude number
-      // el_pt->re_invfr_pt() = &Parameters.reynolds_inverse_froude_number;
+      // el_pt->re_invfr_pt() = &Parameters_pt->reynolds_inverse_froude_number;
       // Set the direction of gravity
-      // el_pt->g_pt() = &Parameters.gravity_vector;
+      // el_pt->g_pt() = &Parameters_pt->gravity_vector;
       el_pt->set_subtract_from_residuals();
 
       unsigned n_element = Bulk_mesh_pt->nelement();
@@ -3225,20 +3230,20 @@ namespace oomph
         ELEMENT* el_pt = dynamic_cast<ELEMENT*>(Bulk_mesh_pt->element_pt(e));
 
         // Set the Reynolds number
-        el_pt->re_pt() = &Parameters.reynolds_number;
+        el_pt->re_pt() = &Parameters_pt->reynolds_number;
 
         // Set the Womersley number
-        el_pt->re_st_pt() = &Parameters.reynolds_strouhal_number;
+        el_pt->re_st_pt() = &Parameters_pt->reynolds_strouhal_number;
 
         // Set viscosity ratio
-        el_pt->viscosity_ratio_pt() = &Parameters.viscosity_ratio;
+        el_pt->viscosity_ratio_pt() = &Parameters_pt->viscosity_ratio;
 
         // Set the product of the Reynolds number and the inverse of the
         // Froude number
-        el_pt->re_invfr_pt() = &Parameters.reynolds_inverse_froude_number;
+        el_pt->re_invfr_pt() = &Parameters_pt->reynolds_inverse_froude_number;
 
         // Set the direction of gravity
-        el_pt->g_pt() = &Parameters.gravity_vector;
+        el_pt->g_pt() = &Parameters_pt->gravity_vector;
 
         // Set the constitutive law
         el_pt->constitutive_law_pt() = Constitutive_law_pt;
@@ -3267,7 +3272,7 @@ namespace oomph
           dist = pow(dist, 0.5);
 
           // If the distance to the corner is within the "inner" region, ...
-          const double inner_radius = Parameters.augmented_radius;
+          const double inner_radius = Parameters_pt->augmented_radius;
           if (dist < inner_radius)
           {
             el_pt->augment();
@@ -3438,8 +3443,8 @@ namespace oomph
         pin_interior_pressure();
       }
 
-      if (Parameters.slip_length == 0 &&
-          std::abs(Parameters.wall_velocity) >= 1e-8)
+      if (Parameters_pt->slip_length == 0 &&
+          std::abs(Parameters_pt->wall_velocity) >= 1e-8)
       {
         pin_velocity_on_boundary(v_index, Outer_boundary_with_slip_id);
         pin_contact_line();
@@ -3474,7 +3479,7 @@ namespace oomph
 
             // Vector<double> u = parameters::velocity_singular_fct(x);
             Vector<double> u(2, 0.0);
-            u[1] = Parameters.wall_velocity;
+            u[1] = Parameters_pt->wall_velocity;
 
             if (pin_bc)
             {
@@ -3541,8 +3546,8 @@ namespace oomph
         double x = node_pt->x(0);
         double flux = 0;
         flux_fct(this->time(), flux);
-        double U = 2 * (Parameters.wall_velocity + flux) * x * x -
-                   Parameters.wall_velocity - 2 * flux;
+        double U = 2 * (Parameters_pt->wall_velocity + flux) * x * x -
+                   Parameters_pt->wall_velocity - 2 * flux;
         node_pt->set_value(v_index, U);
       }
     }
@@ -3658,8 +3663,8 @@ namespace oomph
       // Create error estimator with the mesh control parameters.
       Corner_error_estimator_pt = new ContactlineErrorEstimator(
         dynamic_cast<SolidNode*>(Contact_line_node_pt),
-        Parameters.min_element_length,
-        Parameters.element_length_ratio);
+        Parameters_pt->min_element_length,
+        Parameters_pt->element_length_ratio);
     }
 
     bool is_almost_static()
@@ -3667,7 +3672,7 @@ namespace oomph
       double velocity_norm = 0;
       velocity_norm = global_velocity_norm();
 
-      if (std::abs(Parameters.wall_velocity) < 1e-8 || velocity_norm < 1e-8)
+      if (std::abs(Parameters_pt->wall_velocity) < 1e-8 || velocity_norm < 1e-8)
       {
         return true;
       }
@@ -3685,7 +3690,7 @@ namespace oomph
       double velocity_norm = 0;
       velocity_norm = global_velocity_norm();
 
-      if (std::abs(Parameters.wall_velocity) < 1e-8 || velocity_norm < 1e-8)
+      if (std::abs(Parameters_pt->wall_velocity) < 1e-8 || velocity_norm < 1e-8)
       {
         Using_contact_angle_error_estimator = true;
         create_corner_error_estimator();
@@ -3695,9 +3700,9 @@ namespace oomph
 
         // Set the refinement tolerances
         Bulk_mesh_pt->min_permitted_error() =
-          Parameters.min_permitted_mesh_residual;
+          Parameters_pt->min_permitted_mesh_residual;
         Bulk_mesh_pt->max_permitted_error() =
-          Parameters.max_permitted_mesh_residual;
+          Parameters_pt->max_permitted_mesh_residual;
       }
       else
       {
@@ -3706,8 +3711,10 @@ namespace oomph
         Bulk_mesh_pt->spatial_error_estimator_pt() = Z2_error_estimator_pt;
 
         // Set the refinement tolerances
-        Bulk_mesh_pt->min_permitted_error() = Parameters.min_permitted_z2_error;
-        Bulk_mesh_pt->max_permitted_error() = Parameters.max_permitted_z2_error;
+        Bulk_mesh_pt->min_permitted_error() =
+          Parameters_pt->min_permitted_z2_error;
+        Bulk_mesh_pt->max_permitted_error() =
+          Parameters_pt->max_permitted_z2_error;
       }
       if (Using_contact_angle_error_estimator)
       {
@@ -3736,8 +3743,8 @@ namespace oomph
 
         // Determine the value of the pressure at this node
         const double p_val_at_middle_node =
-          Parameters.gravity_vector[1] *
-          Parameters.reynolds_inverse_froude_number *
+          Parameters_pt->gravity_vector[1] *
+          Parameters_pt->reynolds_inverse_froude_number *
           (eulerian_z_pos_middle_node - 3.5);
 
         // Specify the pressure analytically

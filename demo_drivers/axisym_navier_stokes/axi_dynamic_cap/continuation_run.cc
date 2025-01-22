@@ -169,7 +169,8 @@ void normal_continuation_run(Params& parameters,
     SingularAxisymNavierStokesElement<
       ProjectableAxisymmetricTTaylorHoodPVDElement>,
     BDF<2>>
-    problem(parameters);
+    problem(&parameters);
+  problem.setup();
 
   // Load in restart file
   if (parameters.restart_filename != "")

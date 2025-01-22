@@ -58,7 +58,7 @@ BOOST_AUTO_TEST_CASE(acute_axisym_problem)
 {
   Params parameters;
   parameters.contact_angle = 60.0 * MathematicalConstants::Pi / 180.0;
-  AXISYM_PROBLEM problem(parameters);
+  AXISYM_PROBLEM problem(&parameters);
   problem.setup();
   BOOST_TEST(problem.debug_jacobian());
   problem.newton_solve();
@@ -69,7 +69,7 @@ BOOST_AUTO_TEST_CASE(acute_axisym_problem)
 BOOST_AUTO_TEST_CASE(singular_axisym_dynamic_cap_problem_creation)
 {
   Params parameters;
-  AXISYM_PROBLEM problem(parameters);
+  AXISYM_PROBLEM problem(&parameters);
   problem.setup();
   BOOST_TEST(problem.debug_jacobian());
   problem.newton_solve();
@@ -113,7 +113,7 @@ BOOST_AUTO_TEST_CASE(continuation)
     SingularAxisymNavierStokesElement<
       ProjectableAxisymmetricTTaylorHoodPVDElement>,
     BDF<2>>
-    problem(parameters);
+    problem(&parameters);
   problem.setup();
 
   double ds = 0.1;
