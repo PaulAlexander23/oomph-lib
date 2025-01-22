@@ -1446,7 +1446,7 @@ namespace oomph
       output_stream.close();
     }
 
-    void debug_jacobian()
+    bool debug_jacobian()
     {
       oomph_info << "debug_jacobian" << std::endl;
       if (!this->Is_steady)
@@ -1486,6 +1486,7 @@ namespace oomph
         this->describe_dofs(output_stream);
         output_stream.close();
       }
+      return jacobians_are_different;
     }
 
     void debug_mass_matrix()
