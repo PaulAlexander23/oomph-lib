@@ -24,7 +24,7 @@ check_PROGRAMS= ${EXEC}
 
 axi_dynamic_cap_SOURCES = axi_dynamic_cap.cc 
 create_parameter_files_SOURCES = create_parameter_files.cc
-run_tests_SOURCES = run_tests.cc
+run_tests_SOURCES = run_tests.cc test_utility.cc test_problem.cc
 
 # Required libraries: 
 # $(FLIBS) is included in case the solver involves fortran sources.

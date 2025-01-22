@@ -55,15 +55,15 @@ namespace oomph
     double volume = 3.5 / 2.0;
     double wall_velocity = 1.0;
     int max_adapt = 0;
-    std::string output_directory = "";
+    std::string output_directory = "RESLT";
     std::string restart_filename = "";
     unsigned azimuthal_mode_number = 0;
     unsigned bulk_element_number_of_plot_points = 3;
     unsigned error_estimator_flag = 1;
     unsigned initial_number_of_free_surface_points = 32;
-    unsigned interval_between_adapts = 5;
+    unsigned interval_between_adapts = 0;
     unsigned max_newton_iterations = 40;
-    unsigned max_number_of_adapts_for_refinement = 20;
+    unsigned max_number_of_adapts_for_refinement = 0;
     unsigned surface_element_number_of_plot_points = 3;
   };
 
