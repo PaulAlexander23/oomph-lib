@@ -3,25 +3,21 @@
 
 #include "generic.h"
 #include "complex_less.h"
+#include "temp.h"
 
 namespace oomph
 {
   // Provides the functionality to solve the problem's eigenproblem.
-  class MyEigenproblem : public Problem
+  class MyEigenproblem : public Problem, public Temp
   {
   private:
-    // Private variables
-    DocInfo Doc_info;
     // Provide storage for the latest eigensolve. Not full implemented yet.
     Vector<DoubleVector> eigenvector_real_storage;
     Vector<DoubleVector> eigenvector_imag_storage;
 
   public:
-    MyEigenproblem() : Problem(), Doc_info("RESLT") {}
-    DocInfo& doc_info()
-    {
-      return Doc_info;
-    }
+    // Constructor
+    MyEigenproblem() : Problem(), Temp() {}
 
     // Solve the eigenproblem for the n least stable eigensolution
     // Note that the eigensolutions are not documented
@@ -182,7 +178,7 @@ namespace oomph
       for (unsigned i = 0; i < n_eval; i++)
       {
         std::string filename =
-          Doc_info.directory() + "/eigenvector" + to_string(i) + ".dat";
+          this->doc_info().directory() + "/eigenvector" + to_string(i) + ".dat";
         std::ofstream output_stream(filename);
         for (unsigned j = 0; j < ndof(); j++)
         {
@@ -283,8 +279,8 @@ namespace oomph
 #endif
     }
 
-    // Broken doc solution
-    virtual void doc_solution() = 0;
+    // Empty doc solution
+    virtual void doc_solution() {};
 
   private:
     // Helper function to document the eigenvalues
@@ -292,8 +288,8 @@ namespace oomph
                          Vector<std::complex<double>> const& sorted_eigenvalues)
     {
       std::string filename;
-      filename = Doc_info.directory() + "/eigenvalues" +
-                 to_string(Doc_info.number()) + ".dat";
+      filename = this->doc_info().directory() + "/eigenvalues" +
+                 to_string(this->doc_info().number()) + ".dat";
 
       // Open an output file for the sorted eigenvalues
       std::ofstream output_stream(filename);

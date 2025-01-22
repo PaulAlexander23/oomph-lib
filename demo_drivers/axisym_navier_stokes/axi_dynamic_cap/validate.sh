@@ -98,7 +98,7 @@ echo "Validation directory: " >> $LOG
 echo " " >> $LOG
 echo "  " `pwd` >> $LOG
 echo " " >> $LOG
-if grep "run_tests.cc" Validation/OUTPUT; then
+if grep "fatal error" Validation/OUTPUT; then
     cat Validation/OUTPUT >> $LOG
     echo "[FAILED] -- Unit tests failed see validation log." >> $LOG
 else

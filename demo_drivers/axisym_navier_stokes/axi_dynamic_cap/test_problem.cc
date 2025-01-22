@@ -1,13 +1,24 @@
 #include <boost/test/unit_test.hpp>
 
 #include "run_tests.h"
-// #include "full_continuation_problem.h"
 #include "my_eigenproblem.h"
 
 using namespace std;
 using namespace oomph;
 
 // ***
+/// Test temp
+BOOST_AUTO_TEST_CASE(temp)
+{
+  Temp temp;
+}
+
+/// Test MyEigenproblem
+BOOST_AUTO_TEST_CASE(my_eigenproblem_creation)
+{
+  MyEigenproblem problem;
+}
+
 /// Test SingularAxisymDynamicCapProblem
 BOOST_AUTO_TEST_CASE(acute_axisym_problem)
 {
@@ -32,16 +43,16 @@ BOOST_AUTO_TEST_CASE(singular_axisym_dynamic_cap_problem_creation)
 }
 
 /// Full continuation problem creation
-// BOOST_AUTO_TEST_CASE(full_continuation_problem_reynolds_inverse_froude_number)
+//BOOST_AUTO_TEST_CASE(full_continuation_problem_reynolds_inverse_froude_number)
 //{
-//   Params parameters;
-//   FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(parameters);
-//   problem.setup();
-//   problem.set_continuation_parameter(parameters.reynolds_inverse_froude_number);
-//   BOOST_TEST(problem.debug_jacobian());
-//   // problem.newton_solve();
-//   //  If the problem solve completes, then it is a success.
-// }
+//  Params parameters;
+//  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(parameters);
+//  problem.setup();
+//  problem.set_continuation_parameter(parameters.reynolds_inverse_froude_number);
+//  BOOST_TEST(problem.debug_jacobian());
+//  // problem.newton_solve();
+//  //  If the problem solve completes, then it is a success.
+//}
 
 // ***
 // Test base problem
