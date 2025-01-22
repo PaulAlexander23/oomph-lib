@@ -30,7 +30,7 @@ namespace oomph
   wall_velocity_function_factory(const double& wall_velocity)
   {
     // Return a lambda that captures 's' and takes 't' and 'x' as arguments
-    return [wall_velocity](const double& t,
+    return [&wall_velocity](const double& t,
                            const Vector<double>& x,
                            const Vector<double>& n,
                            Vector<double>& velocity) -> void

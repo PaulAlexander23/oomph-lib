@@ -200,6 +200,7 @@ void normal_continuation_run(Params& parameters,
 
   // Document initial condition
   problem.create_restart_file();
+  problem.make_steady();
   problem.doc_solution();
 
   double step = starting_step;
