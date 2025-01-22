@@ -5,6 +5,7 @@ include $(top_srcdir)/config/makefile_templates/demo_drivers
 EXEC:= \
 	axi_dynamic_cap \
 	create_parameter_files \
+	continuation_run \
 	run_tests
 
 # Makefile rules
@@ -24,6 +25,7 @@ check_PROGRAMS= ${EXEC}
 
 axi_dynamic_cap_SOURCES = axi_dynamic_cap.cc 
 create_parameter_files_SOURCES = create_parameter_files.cc
+continuation_run_SOURCES = continuation_run.cc
 run_tests_SOURCES = run_tests.cc
 
 # Required libraries: 
