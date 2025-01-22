@@ -468,6 +468,14 @@ namespace oomph
       delete Constitutive_law_pt;
     }
 
+    double continuation_step_solve(double* const& parameter, double ds)
+    {
+      OomphLibWarning("Continuation step solve not implemented yet.",
+                      "continuation_step_solve",
+                      OOMPH_EXCEPTION_LOCATION);
+      return ds;
+    }
+
     void fix_c(const double& value)
     {
       SingularNavierStokesSolutionElement<ELEMENT>* el_pt =
@@ -1567,6 +1575,7 @@ namespace oomph
       if (Problem_has_been_distributed)
       {
         OomphLibWarning("This is unlikely to work with a distributed problem",
+                        "get_fd_mass_matrix",
                         OOMPH_EXCEPTION_LOCATION);
       }
 #endif

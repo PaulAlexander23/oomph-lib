@@ -106,15 +106,22 @@ BOOST_AUTO_TEST_CASE(height_continuation_problem_doc_solution)
 }
 
 /// Test straight-forward continuation
-// BOOST_AUTO_TEST_CASE(continuation)
-//{
-//  Params parameters;
-//  SingularAxisymDynamicCapProblem<
-//    SingularAxisymNavierStokesElement<
-//      ProjectableAxisymmetricTTaylorHoodPVDElement>,
-//    BDF<2>>
-//    problem(parameters);
-//}
+BOOST_AUTO_TEST_CASE(continuation)
+{
+  Params parameters;
+  SingularAxisymDynamicCapProblem<
+    SingularAxisymNavierStokesElement<
+      ProjectableAxisymmetricTTaylorHoodPVDElement>,
+    BDF<2>>
+    problem(parameters);
+  problem.setup();
+
+  double ds = 0.1;
+  ds = problem.continuation_step_solve(
+    &parameters.reynolds_inverse_froude_number, ds);
+
+  BOOST_TEST(ds > 0);
+}
 
 /// Full continuation problem creation
 // BOOST_AUTO_TEST_CASE(full_continuation_problem_reynolds_inverse_froude_number)
