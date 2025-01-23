@@ -1929,12 +1929,12 @@ namespace oomph
                       MathematicalConstants::Pi
                  << " ";
       // the parameters,
-      Trace_file << Parameters_pt->reynolds_inverse_froude_number << " ";
+      Trace_file << *Parameters_pt->reynolds_inverse_froude_number_pt << " ";
       Trace_file << Parameters_pt->capillary_number << " ";
       Trace_file << Parameters_pt->reynolds_number << " ";
       Trace_file << Parameters_pt->strouhal_number << " ";
       Trace_file << Parameters_pt->reynolds_strouhal_number << " ";
-      Trace_file << Parameters_pt->reynolds_inverse_froude_number << " ";
+      Trace_file << *Parameters_pt->reynolds_inverse_froude_number_pt << " ";
       Trace_file << Parameters_pt->wall_velocity << " ";
       // the external pressure,
       Trace_file << External_pressure_data_pt->value(0) << " ";
@@ -2010,6 +2010,16 @@ namespace oomph
     double get_centre_point_z()
     {
       return Inner_corner_solid_node_pt->x(1);
+    }
+
+    SolidNode* inner_corner_solid_node_pt()
+    {
+      return dynamic_cast<SolidNode*>(Inner_corner_solid_node_pt);
+    }
+
+    SolidNode* contact_line_node_pt()
+    {
+      return dynamic_cast<SolidNode*>(Contact_line_node_pt);
     }
 
     double get_height_drop()
@@ -3049,9 +3059,9 @@ namespace oomph
       el_pt->set_boundary_number_in_bulk_mesh(Outer_boundary_with_slip_id);
       // Set the product of the Reynolds number and the inverse of the
       // Froude number
-      // el_pt->re_invfr_pt() = &Parameters_pt->reynolds_inverse_froude_number;
-      // Set the direction of gravity
-      // el_pt->g_pt() = &Parameters_pt->gravity_vector;
+      // el_pt->re_invfr_pt() =
+      // Parameters_pt->reynolds_inverse_froude_number_pt; Set the direction of
+      // gravity el_pt->g_pt() = &Parameters_pt->gravity_vector;
 
       unsigned n_element = Bulk_mesh_pt->nelement();
       for (unsigned e = 0; e < n_element; e++)
@@ -3093,9 +3103,9 @@ namespace oomph
       el_pt->set_boundary_number_in_bulk_mesh(Free_surface_boundary_id);
       // Set the product of the Reynolds number and the inverse of the
       // Froude number
-      // el_pt->re_invfr_pt() = &Parameters_pt->reynolds_inverse_froude_number;
-      // Set the direction of gravity
-      // el_pt->g_pt() = &Parameters_pt->gravity_vector;
+      // el_pt->re_invfr_pt() =
+      // Parameters_pt->reynolds_inverse_froude_number_pt; Set the direction of
+      // gravity el_pt->g_pt() = &Parameters_pt->gravity_vector;
       el_pt->set_subtract_from_residuals();
 
       unsigned n_element = Bulk_mesh_pt->nelement();
@@ -3240,7 +3250,7 @@ namespace oomph
 
         // Set the product of the Reynolds number and the inverse of the
         // Froude number
-        el_pt->re_invfr_pt() = &Parameters_pt->reynolds_inverse_froude_number;
+        el_pt->re_invfr_pt() = Parameters_pt->reynolds_inverse_froude_number_pt;
 
         // Set the direction of gravity
         el_pt->g_pt() = &Parameters_pt->gravity_vector;
@@ -3744,7 +3754,7 @@ namespace oomph
         // Determine the value of the pressure at this node
         const double p_val_at_middle_node =
           Parameters_pt->gravity_vector[1] *
-          Parameters_pt->reynolds_inverse_froude_number *
+          *Parameters_pt->reynolds_inverse_froude_number_pt *
           (eulerian_z_pos_middle_node - 3.5);
 
         // Specify the pressure analytically
@@ -3765,6 +3775,7 @@ namespace oomph
       set_velocity_on_upper_boundary_to_parabola();
     }
 
+  public:
     // Actions before adapt
     void actions_before_adapt()
     {
@@ -3795,6 +3806,7 @@ namespace oomph
       this->rebuild_global_mesh();
     }
 
+  private:
     void unaugment_elements()
     {
       const unsigned n_aug_bulk = Augmented_bulk_element_number.size();
@@ -3825,10 +3837,17 @@ namespace oomph
       delete_elements(Singularity_scaling_mesh_pt);
       delete_elements(Pressure_contribution_mesh_1_pt);
       delete_elements(Pressure_contribution_mesh_2_pt);
-      delete Pressure_contribution_geom_mesh_1_pt;
-      delete Pressure_contribution_geom_mesh_2_pt;
+      if (Pressure_contribution_geom_mesh_1_pt)
+      {
+        delete Pressure_contribution_geom_mesh_1_pt;
+      }
+      if (Pressure_contribution_geom_mesh_2_pt)
+      {
+        delete Pressure_contribution_geom_mesh_2_pt;
+      }
     }
 
+  public:
     // Actions before adapt
     void actions_after_adapt()
     {
@@ -3880,6 +3899,7 @@ namespace oomph
       oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
     }
 
+  private:
     // void actions_after_newton_step()
     //{
     //   doc_solution();

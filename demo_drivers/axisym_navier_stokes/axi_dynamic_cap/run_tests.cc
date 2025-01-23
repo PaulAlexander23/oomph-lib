@@ -118,7 +118,7 @@ BOOST_AUTO_TEST_CASE(continuation)
 
   double ds = 0.1;
   ds = problem.continuation_step_solve(
-    &parameters.reynolds_inverse_froude_number, ds);
+    parameters.reynolds_inverse_froude_number_pt, ds);
 
   BOOST_TEST(ds > 0);
 }

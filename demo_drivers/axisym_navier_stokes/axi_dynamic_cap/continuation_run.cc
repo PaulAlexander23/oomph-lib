@@ -35,6 +35,7 @@
 // Local include files
 #include "projectable_axisymmetric_Ttaylor_hood_elements.h"
 #include "singular_axisym_dynamic_cap_problem.h"
+#include "full_continuation_problem.h"
 #include "parameters.h"
 #include "utility_functions.h"
 
@@ -309,7 +310,7 @@ void arc_continuation_run(Params& parameters,
   problem.doc_solution();
 
   // Set any analytic tracking parameters
-  problem.set_analytic_dparameter(&parameters.reynolds_inverse_froude_number);
+  problem.set_analytic_dparameter(parameters.reynolds_inverse_froude_number_pt);
 
   double ds = starting_step;
   const unsigned number_of_steps =
@@ -566,7 +567,7 @@ int main(int argc, char** argv)
   switch (args.continuation_param)
   {
     case ContinuationParameter::Bo:
-      continuation_param_pt = &parameters.reynolds_inverse_froude_number;
+      continuation_param_pt = parameters.reynolds_inverse_froude_number_pt;
       break;
     case ContinuationParameter::Ca:
       continuation_param_pt = &parameters.wall_velocity;

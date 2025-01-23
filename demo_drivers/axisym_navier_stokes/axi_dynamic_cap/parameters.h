@@ -3,6 +3,8 @@
 
 #include <sys/stat.h>
 #include <limits>
+#include <memory>
+
 #include "generic.h"
 
 namespace oomph
@@ -40,7 +42,7 @@ namespace oomph
     double polyline_refinement_tolerence = 4e-3; // 8e-3
     double polyline_unrefinement_tolerence = 2e-3; // 4e-3
     double ramp_up_time = 0.1;
-    double reynolds_inverse_froude_number = 0.0;
+    double* reynolds_inverse_froude_number_pt = new double(0.0);
     double reynolds_number = 0.0;
     double reynolds_strouhal_number = 0.0;
     double right_angle = MathematicalConstants::Pi * 90.0 / 180.0;
@@ -76,7 +78,7 @@ namespace oomph
 
     getline(parameter_filestream, input_string, '#');
     parameter_filestream.ignore(80, '\n');
-    params.reynolds_inverse_froude_number = stod(input_string);
+    *params.reynolds_inverse_froude_number_pt = stod(input_string);
 
     getline(parameter_filestream, input_string, '#');
     parameter_filestream.ignore(80, '\n');
@@ -252,7 +254,7 @@ namespace oomph
     parameter_filestream << std::setprecision(
       std::numeric_limits<double>::max_digits10);
 
-    parameter_filestream << params.reynolds_inverse_froude_number
+    parameter_filestream << *params.reynolds_inverse_froude_number_pt
                          << " # Bond number" << "\n";
     parameter_filestream << params.capillary_number << " # Capillary number"
                          << "\n";
