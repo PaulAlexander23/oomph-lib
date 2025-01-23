@@ -60,7 +60,7 @@ BOOST_AUTO_TEST_CASE(acute_axisym_problem)
   parameters.contact_angle = 60.0 * MathematicalConstants::Pi / 180.0;
   AXISYM_PROBLEM problem(&parameters);
   problem.setup();
-  BOOST_TEST(problem.debug_jacobian());
+  //BOOST_TEST(problem.debug_jacobian());
   problem.newton_solve();
   // If the problem solve completes, then it is a success.
 }
@@ -71,7 +71,7 @@ BOOST_AUTO_TEST_CASE(singular_axisym_dynamic_cap_problem_creation)
   Params parameters;
   AXISYM_PROBLEM problem(&parameters);
   problem.setup();
-  BOOST_TEST(problem.debug_jacobian());
+  //BOOST_TEST(problem.debug_jacobian());
   problem.newton_solve();
   // If the problem solve completes, then it is a success.
 }

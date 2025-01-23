@@ -1496,7 +1496,9 @@ namespace oomph
         this->describe_dofs(output_stream);
         output_stream.close();
       }
-      return jacobians_are_different;
+      // Return true if the jacobians are the same and
+      // false if the jacobians are different
+      return !jacobians_are_different;
     }
 
     void debug_mass_matrix()
