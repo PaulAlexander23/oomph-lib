@@ -3,6 +3,7 @@
 
 #include "generic.h"
 #include "axisym_navier_stokes.h"
+#include "height_continuation_problem.h"
 // #include "singular_axisym_dynamic_cap_problem.h"
 // #include "parameters.h"
 #include "run_tests.h"
@@ -60,7 +61,7 @@ BOOST_AUTO_TEST_CASE(acute_axisym_problem)
   parameters.contact_angle = 60.0 * MathematicalConstants::Pi / 180.0;
   AXISYM_PROBLEM problem(&parameters);
   problem.setup();
-  //BOOST_TEST(problem.debug_jacobian());
+  // BOOST_TEST(problem.debug_jacobian());
   problem.newton_solve();
   // If the problem solve completes, then it is a success.
 }
@@ -71,7 +72,7 @@ BOOST_AUTO_TEST_CASE(singular_axisym_dynamic_cap_problem_creation)
   Params parameters;
   AXISYM_PROBLEM problem(&parameters);
   problem.setup();
-  //BOOST_TEST(problem.debug_jacobian());
+  // BOOST_TEST(problem.debug_jacobian());
   problem.newton_solve();
   // If the problem solve completes, then it is a success.
 }
@@ -124,13 +125,12 @@ BOOST_AUTO_TEST_CASE(continuation)
 }
 
 /// Full continuation problem creation
-// BOOST_AUTO_TEST_CASE(full_continuation_problem_reynolds_inverse_froude_number)
-//{
-//  Params parameters;
-//  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(parameters);
-//  problem.setup();
-//  problem.set_continuation_parameter(parameters.reynolds_inverse_froude_number);
-//  BOOST_TEST(problem.debug_jacobian());
-//  // problem.newton_solve();
-//  //  If the problem solve completes, then it is a success.
-//}
+BOOST_AUTO_TEST_CASE(full_continuation_problem_reynolds_inverse_froude_number)
+{
+  Params parameters;
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(&parameters);
+  problem.setup();
+  problem.newton_solve();
+  problem.doc_solution();
+  //  If the problem solve completes, then it is a success.
+}

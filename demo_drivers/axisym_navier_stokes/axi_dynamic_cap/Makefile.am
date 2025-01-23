@@ -12,10 +12,13 @@ EXEC:= \
 run: ${EXEC}
 
 # Run parallel axi_dynamic_cap with the parameters in the validata directory
-test: axi_dynamic_cap
-	./generate_tests.zsh
-	./run_tests.zsh
-	cat tests.log
+# test: axi_dynamic_cap
+# 	./generate_tests.zsh
+# 	./run_tests.zsh
+# 	cat tests.log
+
+test.log: run_tests
+	./run_tests > tests.log
 
 # Automake
 #continuation_run_SOURCES = continuation_run.cc
