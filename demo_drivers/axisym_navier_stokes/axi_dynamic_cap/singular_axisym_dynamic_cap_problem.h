@@ -1478,7 +1478,7 @@ namespace oomph
       jacobianFD.sparse_indexed_output(
         this->doc_info().directory() + "/jacfdJ.dat", 16, true);
 
-      bool jacobians_are_different = compare_matrices(jacobian, jacobianFD);
+      bool jacobians_are_different = !compare_matrices(jacobian, jacobianFD);
 
       if (!jacobians_are_different)
       {
@@ -2919,11 +2919,11 @@ namespace oomph
       // el_pt->pin_c();
       el_pt->set_c(0.0);
 
-      // unsigned n_element = Bulk_mesh_pt->nelement();
-      // for (unsigned e = 0; e < n_element; e++)
+      //unsigned n_element = Bulk_mesh_pt->nelement();
+      //for (unsigned e = 0; e < n_element; e++)
       //{
-      //   ELEMENT* bulk_elem_pt =
-      //     dynamic_cast<ELEMENT*>(Bulk_mesh_pt->element_pt(e));
+      //  ELEMENT* bulk_elem_pt =
+      //    dynamic_cast<ELEMENT*>(Bulk_mesh_pt->element_pt(e));
 
       //  unsigned n_node = bulk_elem_pt->nnode();
       //  for (unsigned n = 0; n < n_node; n++)

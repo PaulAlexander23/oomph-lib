@@ -725,7 +725,8 @@ namespace oomph
 
       // Add the additional unknown of this object as external data in the
       // Navier-Stokes element
-      this->add_external_data(c_pt->internal_data_pt(0));
+      const bool use_fd = false;
+      this->add_external_data(c_pt->internal_data_pt(0), use_fd);
     }
 
     /// Add the element's contribution to its residual vector (wrapper)
@@ -2078,18 +2079,8 @@ namespace oomph
           s[d] = this->integral_pt()->knot(ipt, d);
         }
 
-        // Get the integral weight
-        double w = this->integral_pt()->weight(ipt);
-
-        // Call the derivatives of the velocity shape and test functions
-        double J = this->dshape_and_dtest_eulerian_at_knot_axi_nst(
-          ipt, psif, dpsifdx, testf, dtestfdx);
-
         // Call the pressure shape and test functions
         this->pshape_axi_nst(s, psip, testp);
-
-        // Premultiply the weights and the Jacobian
-        double W = w * J;
 
         // Initialise the global coordinate and velocity
         Vector<double> interpolated_x(cached_dim, 0.0);
