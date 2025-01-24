@@ -4,7 +4,6 @@
 
 namespace oomph
 {
-
   template<class ELEMENT>
   class SingularAxisymNavierStokesTractionElement
     : public virtual AxisymmetricNavierStokesTractionElement<ELEMENT>
