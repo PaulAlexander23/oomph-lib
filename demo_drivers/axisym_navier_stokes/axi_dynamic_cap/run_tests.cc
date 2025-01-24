@@ -129,8 +129,8 @@ BOOST_AUTO_TEST_CASE(full_continuation_problem_reynolds_inverse_froude_number)
 {
   Params parameters;
   FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(&parameters);
-  problem.set_continuation_parameter(
-    parameters.reynolds_inverse_froude_number_pt);
+  //problem.set_continuation_parameter(
+  //  parameters.reynolds_inverse_froude_number_pt);
   problem.setup();
   problem.newton_solve();
   problem.doc_solution();

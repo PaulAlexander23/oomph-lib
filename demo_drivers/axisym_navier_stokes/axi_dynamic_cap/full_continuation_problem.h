@@ -18,6 +18,9 @@ namespace oomph
     /// Storage for the traded height step data
     Data* Traded_data_pt;
 
+    /// Flag to indicate if the continuation parameter is set
+    bool Is_continuation_parameter_set;
+
   public:
     /// Typedef for the height element
     typedef HeightElement HEIGHT_ELEMENT;
@@ -28,7 +31,8 @@ namespace oomph
     FullContinuationProblem(Params* const& params)
       : SingularAxisymDynamicCapProblem<ELEMENT, TIMESTEPPER>(params),
         Height_mesh_pt(new Mesh),
-        Traded_data_pt(new Data(1))
+        Traded_data_pt(new Data(1)),
+        Is_continuation_parameter_set(false)
     {
       this->add_sub_mesh(Height_mesh_pt);
       this->add_global_data(Traded_data_pt);
@@ -41,19 +45,45 @@ namespace oomph
     /// Calls the base actions after adapt and creates the height elements.
     void actions_after_adapt()
     {
+      // Call the base actions after adapt
       SingularAxisymDynamicCapProblem<ELEMENT,
                                       TIMESTEPPER>::actions_after_adapt();
+
+      // Create the height elements
       this->create_height_elements(this->inner_corner_solid_node_pt(),
                                    this->contact_line_node_pt());
 
-      // Pin the height
-      dynamic_cast<HEIGHT_ELEMENT*>(Height_mesh_pt->element_pt(0))
-        ->unpin_height();
-      // Unpin the parameter
-      Traded_data_pt->pin(0);
+      // If the continuation parameter is set, pin the height and unpin the
+      // parameter
+      if (Is_continuation_parameter_set)
+      {
+        // Pin the height
+        dynamic_cast<HEIGHT_ELEMENT*>(Height_mesh_pt->element_pt(0))
+          ->pin_height();
+        // Unpin the parameter
+        Traded_data_pt->unpin(0);
 
-      this->rebuild_global_mesh();
+
+        // Loop over bulk elements and add Reynolds Inverse Froude number as
+        // external data
+        unsigned n_element = this->bulk_mesh_pt()->nelement();
+        for (unsigned e = 0; e < n_element; e++)
+        {
+          this->bulk_mesh_pt()->element_pt(e)->add_external_data(
+            Traded_data_pt);
+        }
+        // Loop over slip surface elements and add wall velocity as external
+        // data
+        n_element = this->slip_surface_mesh_pt()->nelement();
+        for (unsigned e = 0; e < n_element; e++)
+        {
+          this->slip_surface_mesh_pt()->element_pt(e)->add_external_data(
+            Traded_data_pt);
+        }
+      }
+
       // Setup the problem
+      this->rebuild_global_mesh();
       oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
                  << std::endl;
     }
@@ -62,13 +92,22 @@ namespace oomph
     /// Calls the base actions before adapt and deletes the height elements.
     void actions_before_adapt()
     {
+      // Delete the height elements before the mesh is adapted
       delete_height_elements();
 
       // Pin the parameter
       Traded_data_pt->pin(0);
 
+      // Call the base actions before adapt, which will also setup the problem
       SingularAxisymDynamicCapProblem<ELEMENT,
                                       TIMESTEPPER>::actions_before_adapt();
+    }
+
+    void actions_after_newton_step()
+    {
+      //this->debug_jacobian();
+      //throw OomphLibError(
+      //  "Debugging Jacobian", OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
     }
 
     /// Set the continuation parameter
@@ -82,6 +121,9 @@ namespace oomph
 
       // Use the data storage
       parameter_pt = Traded_data_pt->value_pt(0);
+
+      // set the flag
+      Is_continuation_parameter_set = true;
     }
 
     /// Unset the continuation parameter
@@ -92,6 +134,9 @@ namespace oomph
 
       // Unset the continuation parameter
       Traded_data_pt->set_value(0, 0.0);
+
+      // set the flag
+      Is_continuation_parameter_set = false;
     }
 
     /// Create the height elements using the inner corner and contact line nodes
@@ -102,8 +147,10 @@ namespace oomph
       // Create the height element
       HEIGHT_ELEMENT* height_el_pt = new HEIGHT_ELEMENT(
         Inner_corner_solid_node_pt, Contact_line_solid_node_pt);
+
       // Set the height step data
       height_el_pt->set_parameter_data_pt(Traded_data_pt);
+
       // Add the height element to the mesh
       Height_mesh_pt->add_element_pt(height_el_pt);
     }
