@@ -14,6 +14,23 @@ using namespace std;
 using namespace oomph;
 
 /// ----------------------------------------------------------------------------
+/// Check if we are running extra tests (debug jacobian, etc.)
+const bool shouldRunExtraTests()
+{
+  auto args = boost::unit_test::framework::master_test_suite().argc;
+  auto argv = boost::unit_test::framework::master_test_suite().argv;
+
+  for (int i = 0; i < args; ++i)
+  {
+    if (std::string(argv[i]) == "--run-extra-tests")
+    {
+      return true;
+    }
+  }
+  return false;
+}
+
+/// ----------------------------------------------------------------------------
 /// Matrix
 
 /// Test matrix comparison equal
@@ -61,7 +78,23 @@ BOOST_AUTO_TEST_CASE(acute_axisym_problem)
   parameters.contact_angle = 60.0 * MathematicalConstants::Pi / 180.0;
   AXISYM_PROBLEM problem(&parameters);
   problem.setup();
-  // BOOST_TEST(problem.debug_jacobian());
+  problem.newton_solve();
+  // If the problem solve completes, then it is a success.
+}
+
+BOOST_AUTO_TEST_CASE(acute_axisym_problem_jacobian)
+{
+  if (!shouldRunExtraTests())
+  {
+    cout << "Skipping extra test because --run-extra-tests was not specified."
+         << endl;
+    return;
+  }
+  Params parameters;
+  parameters.contact_angle = 60.0 * MathematicalConstants::Pi / 180.0;
+  AXISYM_PROBLEM problem(&parameters);
+  problem.setup();
+  BOOST_TEST(problem.debug_jacobian());
   problem.newton_solve();
   // If the problem solve completes, then it is a success.
 }
@@ -72,7 +105,23 @@ BOOST_AUTO_TEST_CASE(singular_axisym_dynamic_cap_problem_creation)
   Params parameters;
   AXISYM_PROBLEM problem(&parameters);
   problem.setup();
-  // BOOST_TEST(problem.debug_jacobian());
+  problem.newton_solve();
+  // If the problem solve completes, then it is a success.
+}
+
+/// Test SingularAxisymDynamicCapProblem
+BOOST_AUTO_TEST_CASE(singular_axisym_dynamic_cap_problem_jacobian)
+{
+  if (!shouldRunExtraTests())
+  {
+    cout << "Skipping extra test because --run-extra-tests was not specified."
+         << endl;
+    return;
+  }
+  Params parameters;
+  AXISYM_PROBLEM problem(&parameters);
+  problem.setup();
+  BOOST_TEST(problem.debug_jacobian());
   problem.newton_solve();
   // If the problem solve completes, then it is a success.
 }
@@ -129,10 +178,65 @@ BOOST_AUTO_TEST_CASE(full_continuation_problem_reynolds_inverse_froude_number)
 {
   Params parameters;
   FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(&parameters);
-  //problem.set_continuation_parameter(
-  //  parameters.reynolds_inverse_froude_number_pt);
+  // problem.set_continuation_parameter(
+  //   parameters.reynolds_inverse_froude_number_pt);
   problem.setup();
   problem.newton_solve();
+  problem.doc_solution();
+  //  If the problem solve completes, then it is a success.
+}
+
+/// Full continuation problem creation
+BOOST_AUTO_TEST_CASE(full_continuation_problem_jacobian)
+{
+  if (!shouldRunExtraTests())
+  {
+    cout << "Skipping extra test because --run-extra-tests was not specified."
+         << endl;
+    return;
+  }
+  Params parameters;
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(&parameters);
+  problem.setup();
+  problem.debug_jacobian();
+  problem.max_newton_iterations() = 1;
+  try
+  {
+    problem.newton_solve();
+  }
+  catch (NewtonSolverError& error)
+  {
+  }
+  problem.debug_jacobian();
+  problem.doc_solution();
+  //  If the problem solve completes, then it is a success.
+}
+
+/// Full continuation problem creation
+BOOST_AUTO_TEST_CASE(
+  full_continuation_problem_jacobian_with_continuation_parameter)
+{
+  if (!shouldRunExtraTests())
+  {
+    cout << "Skipping extra test because --run-extra-tests was not specified."
+         << endl;
+    return;
+  }
+  Params parameters;
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(&parameters);
+  problem.set_continuation_parameter(
+    parameters.reynolds_inverse_froude_number_pt);
+  problem.setup();
+  problem.debug_jacobian();
+  problem.max_newton_iterations() = 1;
+  try
+  {
+    problem.newton_solve();
+  }
+  catch (NewtonSolverError& error)
+  {
+  }
+  problem.debug_jacobian();
   problem.doc_solution();
   //  If the problem solve completes, then it is a success.
 }
