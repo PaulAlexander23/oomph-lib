@@ -85,7 +85,7 @@ validate "continuation_run --arc --wall_velocity 0.1 --parameters" validata/unst
 # validate "continuation_run --height_control --Bo 0.01 --parameters" validata/obtuse-height-continuation-parameters-with-restart.dat trace.dat obtuse-height-cont-bo-results.dat.gz
 # validate "continuation_run --height_control --wall_velocity 0.01 --parameters" validata/obtuse-height-continuation-parameters-with-restart.dat trace.dat continuation_run_obtuse-height-continuation-parameters-with-restart_results.dat.gz
 
-var="./run_tests > Validation/OUTPUT"
+var="./run_tests -t normal > Validation/OUTPUT"
 echo $var
 eval $var
 echo "done"

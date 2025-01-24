@@ -18,7 +18,7 @@ run: ${EXEC}
 # 	cat tests.log
 
 test.log: run_tests
-	./run_tests > tests.log
+	./run_tests -t extra > test.log
 
 # Automake
 #continuation_run_SOURCES = continuation_run.cc
