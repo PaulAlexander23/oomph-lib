@@ -80,7 +80,8 @@ namespace oomph
 
     // Contact line node pointer
     Node* Contact_line_node_pt;
-    Node* Inner_corner_solid_node_pt;
+    SolidNode* Contact_line_solid_node_pt;
+    SolidNode* Inner_corner_solid_node_pt;
 
     // Error Estimator pointers
     Z2ErrorEstimator* Z2_error_estimator_pt;
@@ -188,6 +189,7 @@ namespace oomph
                        Vector<double>&)>
       Slip_function;
 
+  public:
     std::function<void(const double&,
                        const Vector<double>&,
                        const Vector<double>&,
@@ -200,6 +202,7 @@ namespace oomph
     std::function<Vector<Vector<double>>(const Vector<double>&)>
       Grad_velocity_singular_function;
 
+  private:
     std::function<void(const double&,
                        const Vector<double>&,
                        const Vector<double>&,
@@ -230,6 +233,7 @@ namespace oomph
     SingularAxisymDynamicCapProblem(Params* const& parameters_pt)
       : Parameters_pt(parameters_pt),
         Contact_line_node_pt(0),
+        Contact_line_solid_node_pt(0),
         Inner_corner_solid_node_pt(0),
         Z2_error_estimator_pt(0),
         Corner_error_estimator_pt(0),
@@ -286,8 +290,7 @@ namespace oomph
       /// Create parameters from parameters file.
       Slip_function = slip_function_factory(Parameters_pt->slip_length);
       Wall_velocity_function =
-        wall_velocity_function_factory(Parameters_pt->wall_velocity);
-
+        wall_velocity_function_factory(Parameters_pt->wall_velocity_pt);
       Velocity_singular_function = velocity_singular_function_factory(
         Parameters_pt->contact_angle, Contact_line_node_pt);
       Grad_velocity_singular_function = grad_velocity_singular_function_factory(
@@ -957,8 +960,8 @@ namespace oomph
     {
       oomph_info << "Pin contact line" << std::endl;
 
-      dynamic_cast<SolidNode*>(Contact_line_node_pt)->pin_position(0);
-      dynamic_cast<SolidNode*>(Contact_line_node_pt)->pin_position(1);
+      Contact_line_solid_node_pt->pin_position(0);
+      Contact_line_solid_node_pt->pin_position(1);
       Contact_line_node_pt->pin(0);
       Contact_line_node_pt->pin(1);
       Contact_line_node_pt->pin(2);
@@ -977,8 +980,8 @@ namespace oomph
     {
       oomph_info << "Pin centre" << std::endl;
 
-      dynamic_cast<SolidNode*>(Inner_corner_solid_node_pt)->pin_position(0);
-      dynamic_cast<SolidNode*>(Inner_corner_solid_node_pt)->pin_position(1);
+      Inner_corner_solid_node_pt->pin_position(0);
+      Inner_corner_solid_node_pt->pin_position(1);
       Inner_corner_solid_node_pt->pin(0);
       Inner_corner_solid_node_pt->pin(1);
       Inner_corner_solid_node_pt->pin(2);
@@ -1067,8 +1070,8 @@ namespace oomph
 
       // dynamic_cast<SolidNode*>(node_pt)->unpin_position(0);
       // dynamic_cast<SolidNode*>(node_pt)->unpin_position(1);
-      dynamic_cast<SolidNode*>(Contact_line_node_pt)->unpin_position(0);
-      dynamic_cast<SolidNode*>(Contact_line_node_pt)->unpin_position(1);
+      Contact_line_solid_node_pt->unpin_position(0);
+      Contact_line_solid_node_pt->unpin_position(1);
     }
 
     void pin_kinematic_lagrange_multiplier()
@@ -1938,7 +1941,7 @@ namespace oomph
       Trace_file << Parameters_pt->strouhal_number << " ";
       Trace_file << Parameters_pt->reynolds_strouhal_number << " ";
       Trace_file << *Parameters_pt->reynolds_inverse_froude_number_pt << " ";
-      Trace_file << Parameters_pt->wall_velocity << " ";
+      Trace_file << *Parameters_pt->wall_velocity_pt << " ";
       // the external pressure,
       Trace_file << External_pressure_data_pt->value(0) << " ";
       // the height of the interface at the centre of the container,
@@ -1951,7 +1954,7 @@ namespace oomph
       Trace_file << this->ndof() << " ";
       // the desired corner element length
       Trace_file << 5e-2 * Parameters_pt->slip_length /
-                      Parameters_pt->wall_velocity
+                      *Parameters_pt->wall_velocity_pt
                  << " ";
       ELEMENT* element_pt = 0;
       int face_index = 0;
@@ -2017,17 +2020,23 @@ namespace oomph
 
     SolidNode* inner_corner_solid_node_pt()
     {
-      return dynamic_cast<SolidNode*>(Inner_corner_solid_node_pt);
+      return Inner_corner_solid_node_pt;
     }
 
     SolidNode* contact_line_node_pt()
     {
-      return dynamic_cast<SolidNode*>(Contact_line_node_pt);
+      return Contact_line_node_pt;
+    }
+
+    SolidNode* contact_line_solid_node_pt()
+    {
+      return Contact_line_solid_node_pt;
     }
 
     double get_height_drop()
     {
-      return Inner_corner_solid_node_pt->x(1) - Contact_line_node_pt->x(1);
+      return Inner_corner_solid_node_pt->x(1) -
+             Contact_line_solid_node_pt->x(1);
     }
 
     Vector<double> get_pressure_around_corner()
@@ -2317,8 +2326,8 @@ namespace oomph
 
     void pin_interior_pressure()
     {
-      Node* node_pt = 0;
-      find_corner_node(Outer_boundary_with_slip_id, Upper_boundary_id, node_pt);
+      Node* node_pt =
+        find_corner_node(Outer_boundary_with_slip_id, Upper_boundary_id);
       node_pt->pin(3);
       node_pt->set_value(3, 0.0);
       // Inner_corner_solid_node_pt->pin(3);
@@ -2363,7 +2372,8 @@ namespace oomph
     // Use the finite difference jacobian for the augmented bulk elements
     void use_fd_jacobian_for_the_bulk_augmented()
     {
-      // Loop over the augmented bulk elements and set the jacobian to finite difference
+      // Loop over the augmented bulk elements and set the jacobian to finite
+      // difference
       unsigned n_element = Augmented_bulk_element_number.size();
       for (unsigned n = 0; n < n_element; n++)
       {
@@ -3098,9 +3108,9 @@ namespace oomph
       el_pt->set_boundary_number_in_bulk_mesh(Outer_boundary_with_slip_id);
       // Set the product of the Reynolds number and the inverse of the
       // Froude number
-      // el_pt->re_invfr_pt() =
-      // Parameters_pt->reynolds_inverse_froude_number_pt; Set the direction of
-      // gravity el_pt->g_pt() = &Parameters_pt->gravity_vector;
+      el_pt->re_invfr_pt() = Parameters_pt->reynolds_inverse_froude_number_pt;
+      // Set the direction of gravity
+      el_pt->g_pt() = &Parameters_pt->gravity_vector;
 
       unsigned n_element = Bulk_mesh_pt->nelement();
       for (unsigned e = 0; e < n_element; e++)
@@ -3121,6 +3131,18 @@ namespace oomph
       Pressure_contribution_mesh_1_pt->add_element_pt(el_pt);
     }
 
+  public:
+    Mesh* pressure_evaluation_mesh1_pt()
+    {
+      return Pressure_contribution_mesh_1_pt;
+    }
+
+    Mesh* pressure_evaluation_mesh2_pt()
+    {
+      return Pressure_contribution_mesh_2_pt;
+    }
+
+  private:
     void create_pressure_contribution_2_elements()
     {
       oomph_info << "create_pressure_contribution_2_elements" << std::endl;
@@ -3142,9 +3164,9 @@ namespace oomph
       el_pt->set_boundary_number_in_bulk_mesh(Free_surface_boundary_id);
       // Set the product of the Reynolds number and the inverse of the
       // Froude number
-      // el_pt->re_invfr_pt() =
-      // Parameters_pt->reynolds_inverse_froude_number_pt; Set the direction of
-      // gravity el_pt->g_pt() = &Parameters_pt->gravity_vector;
+      el_pt->re_invfr_pt() = Parameters_pt->reynolds_inverse_froude_number_pt;
+      // Set the direction of gravity
+      el_pt->g_pt() = &Parameters_pt->gravity_vector;
       el_pt->set_subtract_from_residuals();
 
       unsigned n_element = Bulk_mesh_pt->nelement();
@@ -3314,8 +3336,7 @@ namespace oomph
           for (unsigned i = 0; i < 2; i++)
           {
             dist +=
-              pow(element_centre_x[i] -
-                    dynamic_cast<SolidNode*>(Contact_line_node_pt)->position(i),
+              pow(element_centre_x[i] - Contact_line_solid_node_pt->position(i),
                   2.0);
           }
           dist = pow(dist, 0.5);
@@ -3336,8 +3357,7 @@ namespace oomph
           if (el_pt->get_node_number(Contact_line_node_pt) == -1)
           {
             el_pt->add_external_data(
-              dynamic_cast<SolidNode*>(Contact_line_node_pt)
-                ->variable_position_pt());
+              Contact_line_solid_node_pt->variable_position_pt());
           }
         }
       }
@@ -3386,9 +3406,9 @@ namespace oomph
     }
 
     // Find corner node and return whether it has been found
-    bool find_corner_node(const unsigned& first_boundary_id,
-                          const unsigned& second_boundary_id,
-                          Node*& node_pt)
+    Node* find_corner_node(const unsigned& first_boundary_id,
+                           const unsigned& second_boundary_id)
+
     {
       unsigned n_nod = Bulk_mesh_pt->nboundary_node(first_boundary_id);
       for (unsigned inod = 0; inod < n_nod; inod++)
@@ -3398,12 +3418,10 @@ namespace oomph
 
         if (nod_pt->is_on_boundary(second_boundary_id))
         {
-          node_pt = nod_pt;
-
-          return true;
+          return nod_pt;
         }
       }
-      return false;
+      return nullptr;
     }
 
     void get_z2_error(double& max_err, double& min_err)
@@ -3493,7 +3511,7 @@ namespace oomph
       }
 
       if (Parameters_pt->slip_length == 0 &&
-          std::abs(Parameters_pt->wall_velocity) >= 1e-8)
+          std::abs(*Parameters_pt->wall_velocity_pt) >= 1e-8)
       {
         pin_velocity_on_boundary(v_index, Outer_boundary_with_slip_id);
         pin_contact_line();
@@ -3528,7 +3546,7 @@ namespace oomph
 
             // Vector<double> u = parameters::velocity_singular_fct(x);
             Vector<double> u(2, 0.0);
-            u[1] = Parameters_pt->wall_velocity;
+            u[1] = *Parameters_pt->wall_velocity_pt;
 
             if (pin_bc)
             {
@@ -3595,8 +3613,8 @@ namespace oomph
         double x = node_pt->x(0);
         double flux = 0;
         flux_fct(this->time(), flux);
-        double U = 2 * (Parameters_pt->wall_velocity + flux) * x * x -
-                   Parameters_pt->wall_velocity - 2 * flux;
+        double U = 2 * (*Parameters_pt->wall_velocity_pt + flux) * x * x -
+                   *Parameters_pt->wall_velocity_pt - 2 * flux;
         node_pt->set_value(v_index, U);
       }
     }
@@ -3662,8 +3680,8 @@ namespace oomph
 
     void unpin_interior_pressure()
     {
-      Node* node_pt = 0;
-      find_corner_node(Outer_boundary_with_slip_id, Upper_boundary_id, node_pt);
+      Node* node_pt =
+        find_corner_node(Outer_boundary_with_slip_id, Upper_boundary_id);
       node_pt->unpin(3);
       // Inner_corner_solid_node_pt->unpin(3);
     }
@@ -3671,12 +3689,12 @@ namespace oomph
     // Set the contact line node pointer
     void set_contact_line_node_pt()
     {
-      find_corner_node(Outer_boundary_with_slip_id,
-                       Free_surface_boundary_id,
-                       Contact_line_node_pt);
-      find_corner_node(Inner_boundary_id,
-                       Free_surface_boundary_id,
-                       Inner_corner_solid_node_pt);
+      Contact_line_node_pt =
+        find_corner_node(Outer_boundary_with_slip_id, Free_surface_boundary_id);
+      Contact_line_solid_node_pt = dynamic_cast<SolidNode*>(find_corner_node(
+        Outer_boundary_with_slip_id, Free_surface_boundary_id));
+      Inner_corner_solid_node_pt = dynamic_cast<SolidNode*>(
+        find_corner_node(Inner_boundary_id, Free_surface_boundary_id));
     }
 
     // Create both the Z2 and corner error estimators
@@ -3721,7 +3739,8 @@ namespace oomph
       double velocity_norm = 0;
       velocity_norm = global_velocity_norm();
 
-      if (std::abs(Parameters_pt->wall_velocity) < 1e-8 || velocity_norm < 1e-8)
+      if (std::abs(*Parameters_pt->wall_velocity_pt) < 1e-8 ||
+          velocity_norm < 1e-8)
       {
         return true;
       }
@@ -3739,7 +3758,8 @@ namespace oomph
       double velocity_norm = 0;
       velocity_norm = global_velocity_norm();
 
-      if (std::abs(Parameters_pt->wall_velocity) < 1e-8 || velocity_norm < 1e-8)
+      if (std::abs(*Parameters_pt->wall_velocity_pt) < 1e-8 ||
+          velocity_norm < 1e-8)
       {
         Using_contact_angle_error_estimator = true;
         create_corner_error_estimator();
@@ -3957,12 +3977,7 @@ namespace oomph
     void setup_refineable_elements()
     {
       // Reset the Contact_line_node_pt and Inner_corner_solid_node_pt
-      find_corner_node(Outer_boundary_with_slip_id,
-                       Free_surface_boundary_id,
-                       Contact_line_node_pt);
-      find_corner_node(Inner_boundary_id,
-                       Free_surface_boundary_id,
-                       Inner_corner_solid_node_pt);
+      set_contact_line_node_pt();
 
       // Reset error estimator for bulk mesh
       set_error_estimator();

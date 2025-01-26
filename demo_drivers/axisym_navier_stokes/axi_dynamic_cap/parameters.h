@@ -55,7 +55,7 @@ namespace oomph
     double uniform_element_area = 0.5 * std::pow(5e-1, 2.0);
     double viscosity_ratio = 1.0;
     double volume = 3.5 / 2.0;
-    double wall_velocity = 1.0;
+    double* wall_velocity_pt = new double(0.0);
     int max_adapt = 0;
     std::string output_directory = "RESLT";
     std::string restart_filename = "";
@@ -204,7 +204,7 @@ namespace oomph
 
     getline(parameter_filestream, input_string, '#');
     parameter_filestream.ignore(80, '\n');
-    params.wall_velocity = stod(input_string);
+    *params.wall_velocity_pt = stod(input_string);
 
     getline(parameter_filestream, input_string, '#');
     parameter_filestream.ignore(80, '\n');
@@ -305,7 +305,7 @@ namespace oomph
     parameter_filestream << params.time_step << " # Time step" << "\n";
     parameter_filestream << params.restart_filename << " # Restart filename"
                          << "\n";
-    parameter_filestream << params.wall_velocity << " # Wall velocity" << "\n";
+    parameter_filestream << *params.wall_velocity_pt << " # Wall velocity" << "\n";
     parameter_filestream << params.azimuthal_mode_number
                          << " # Azimuthal mode number" << "\n";
     parameter_filestream

@@ -285,23 +285,177 @@ BOOST_AUTO_TEST_CASE(full_continuation_problem_reynolds_inverse_froude_number)
   //  If the problem solve completes, then it is a success.
 }
 
+/// Test full continuation problem jacobian without continuation parameter and
+/// with an acute contact angle
+BOOST_AUTO_TEST_CASE(full_continuation_problem_jacobian_acute)
+{
+  Params parameters;
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(&parameters);
+  parameters.contact_angle = 60.0 * MathematicalConstants::Pi / 180.0;
+  problem.setup();
+  problem.use_fd_jacobian_for_the_bulk_augmented();
+  problem.debug_elemental_jacobian();
+  problem.max_newton_iterations() = 1;
+  try
+  {
+    problem.newton_solve();
+  }
+  catch (NewtonSolverError& error)
+  {
+  }
+  problem.debug_elemental_jacobian();
+  problem.debug_jacobian();
+  problem.doc_solution();
+  //  If the problem solve completes, then it is a success.
+}
+
 /// Full continuation problem creation
-//BOOST_AUTO_TEST_CASE(full_continuation_problem_wall_velocity)
+BOOST_AUTO_TEST_CASE(
+  full_continuation_problem_reynolds_inverse_froude_number_acute)
+{
+  Params parameters;
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(&parameters);
+  parameters.contact_angle = 60.0 * MathematicalConstants::Pi / 180.0;
+  problem.setup();
+  problem.use_fd_jacobian_for_the_bulk_augmented();
+  problem.newton_solve();
+  problem.set_continuation_parameter(
+    parameters.reynolds_inverse_froude_number_pt);
+  try
+  {
+    problem.newton_solve();
+  }
+  catch (NewtonSolverError& error)
+  {
+  }
+  problem.doc_solution();
+  //  If the problem solve completes, then it is a success.
+}
+
+BOOST_AUTO_TEST_CASE(
+  full_continuation_problem_reynolds_inverse_froude_number_acute_60_no_wall_velocity)
+{
+  Params parameters;
+  *parameters.wall_velocity_pt = 0;
+  parameters.contact_angle = 60.0 * MathematicalConstants::Pi / 180.0;
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(&parameters);
+  problem.setup();
+  problem.use_fd_jacobian_for_the_bulk_augmented();
+  problem.newton_solve();
+  problem.set_continuation_parameter(
+    parameters.reynolds_inverse_froude_number_pt);
+  for (unsigned i = 0; i < 10; i++)
+  {
+    problem.step_height(-0.01);
+    try
+    {
+      problem.newton_solve();
+    }
+    catch (NewtonSolverError& error)
+    {
+    }
+  }
+  problem.doc_solution();
+  //  If the problem solve completes, then it is a success.
+}
+
+BOOST_AUTO_TEST_CASE(
+  full_continuation_problem_reynolds_inverse_froude_number_no_wall_velocity)
+{
+  Params parameters;
+  *parameters.wall_velocity_pt = 0;
+  parameters.contact_angle = 120.0 * MathematicalConstants::Pi / 180.0;
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(&parameters);
+  problem.setup();
+  problem.use_fd_jacobian_for_the_bulk_augmented();
+  problem.newton_solve();
+  problem.set_continuation_parameter(
+    parameters.reynolds_inverse_froude_number_pt);
+  for (unsigned i = 0; i < 10; i++)
+  {
+    problem.step_height(-0.01);
+    try
+    {
+      problem.newton_solve();
+    }
+    catch (NewtonSolverError& error)
+    {
+    }
+  }
+  problem.doc_solution();
+  //  If the problem solve completes, then it is a success.
+}
+
+BOOST_AUTO_TEST_CASE(full_continuation_problem_wall_velocity_acute_90)
+{
+  Params parameters;
+  *parameters.wall_velocity_pt = 0;
+  parameters.contact_angle = 90.0 * MathematicalConstants::Pi / 180.0;
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(&parameters);
+  problem.setup();
+  problem.use_fd_jacobian_for_the_bulk_augmented();
+  problem.steady_newton_solve();
+  problem.set_continuation_parameter(parameters.wall_velocity_pt);
+  for (unsigned i = 0; i < 10; i++)
+  {
+    problem.step_height(0.01);
+    try
+    {
+      problem.steady_newton_solve();
+    }
+    catch (NewtonSolverError& error)
+    {
+    }
+    problem.output_height();
+  }
+  problem.doc_solution();
+  //  If the problem solve completes, then it is a success.
+}
+
+BOOST_AUTO_TEST_CASE(full_continuation_problem_wall_velocity)
+{
+  Params parameters;
+  *parameters.wall_velocity_pt = 0;
+  parameters.contact_angle = 120.0 * MathematicalConstants::Pi / 180.0;
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(&parameters);
+  problem.setup();
+  problem.use_fd_jacobian_for_the_bulk_augmented();
+  problem.steady_newton_solve();
+  problem.set_continuation_parameter(parameters.wall_velocity_pt);
+  for (unsigned i = 0; i < 10; i++)
+  {
+    problem.step_height(0.01);
+    try
+    {
+      problem.steady_newton_solve();
+    }
+    catch (NewtonSolverError& error)
+    {
+    }
+    problem.output_height();
+  }
+  problem.doc_solution();
+  //  If the problem solve completes, then it is a success.
+}
+
+
+/// Full continuation problem creation
+// BOOST_AUTO_TEST_CASE(full_continuation_problem_wall_velocity)
 //{
-//  Params parameters;
-//  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(&parameters);
-//  problem.set_continuation_parameter(
-//    &parameters.wall_velocity);
-//  problem.setup();
-//  problem.use_fd_jacobian_for_the_bulk_augmented();
-//  try
-//  {
-//    problem.newton_solve();
-//  }
-//  catch (NewtonSolverError& error)
-//  {
-//  }
-//  problem.doc_solution();
-//  //  If the problem solve completes, then it is a success.
-//}
+//   Params parameters;
+//   FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(&parameters);
+//   problem.set_continuation_parameter(
+//     parameters.wall_velocity_pt);
+//   problem.setup();
+//   problem.use_fd_jacobian_for_the_bulk_augmented();
+//   try
+//   {
+//     problem.newton_solve();
+//   }
+//   catch (NewtonSolverError& error)
+//   {
+//   }
+//   problem.doc_solution();
+//   //  If the problem solve completes, then it is a success.
+// }
 BOOST_AUTO_TEST_SUITE_END()

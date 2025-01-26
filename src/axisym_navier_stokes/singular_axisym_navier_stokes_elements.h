@@ -773,7 +773,7 @@ namespace oomph
       {
         // If the element is a solid finite element, call the solid
         // finite element's fill_in_contribution_to_jacobian function
-        if (dynamic_cast<SolidFiniteElement*>(this) != nullptr)
+        if (dynamic_cast<SolidFiniteElement*>(this))
         {
           SolidFiniteElement::fill_in_contribution_to_jacobian(residuals,
                                                                jacobian);

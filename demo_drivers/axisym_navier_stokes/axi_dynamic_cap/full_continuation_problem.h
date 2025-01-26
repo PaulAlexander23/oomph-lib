@@ -51,41 +51,68 @@ namespace oomph
 
       // Create the height elements
       this->create_height_elements(this->inner_corner_solid_node_pt(),
-                                   this->contact_line_node_pt());
+                                   this->contact_line_solid_node_pt());
 
       // If the continuation parameter is set, pin the height and unpin the
       // parameter
       if (Is_continuation_parameter_set)
       {
-        // Pin the height
-        dynamic_cast<HEIGHT_ELEMENT*>(Height_mesh_pt->element_pt(0))
-          ->pin_height();
-        // Unpin the parameter
-        Traded_data_pt->unpin(0);
-
-
-        // Loop over bulk elements and add Reynolds Inverse Froude number as
-        // external data
-        unsigned n_element = this->bulk_mesh_pt()->nelement();
-        for (unsigned e = 0; e < n_element; e++)
-        {
-          this->bulk_mesh_pt()->element_pt(e)->add_external_data(
-            Traded_data_pt);
-        }
-        // Loop over slip surface elements and add wall velocity as external
-        // data
-        n_element = this->slip_surface_mesh_pt()->nelement();
-        for (unsigned e = 0; e < n_element; e++)
-        {
-          this->slip_surface_mesh_pt()->element_pt(e)->add_external_data(
-            Traded_data_pt);
-        }
+        setup_elements();
       }
 
       // Setup the problem
       this->rebuild_global_mesh();
       oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
                  << std::endl;
+    }
+
+    void setup_elements()
+    {
+      // Pin the height
+      dynamic_cast<HEIGHT_ELEMENT*>(Height_mesh_pt->element_pt(0))
+        ->pin_height();
+      // Unpin the parameter
+      Traded_data_pt->unpin(0);
+
+      // Loop over bulk elements and add Reynolds Inverse Froude number as
+      // external data
+      unsigned n_element = this->bulk_mesh_pt()->nelement();
+      for (unsigned e = 0; e < n_element; e++)
+      {
+        dynamic_cast<ELEMENT*>(this->bulk_mesh_pt()->element_pt(e))
+          ->re_invfr_pt() = Traded_data_pt->value_pt(0);
+        this->bulk_mesh_pt()->element_pt(e)->add_external_data(Traded_data_pt);
+      }
+
+      n_element = this->pressure_evaluation_mesh1_pt()->nelement();
+      for (unsigned e = 0; e < n_element; e++)
+      {
+        dynamic_cast<PressureEvaluationElement<ELEMENT>*>(
+          this->pressure_evaluation_mesh1_pt()->element_pt(e))
+          ->re_invfr_pt() = Traded_data_pt->value_pt(0);
+        this->pressure_evaluation_mesh1_pt()->element_pt(e)->add_external_data(
+          Traded_data_pt);
+      }
+
+      n_element = this->pressure_evaluation_mesh2_pt()->nelement();
+      for (unsigned e = 0; e < n_element; e++)
+      {
+        dynamic_cast<PressureEvaluationElement<ELEMENT>*>(
+          this->pressure_evaluation_mesh2_pt()->element_pt(e))
+          ->re_invfr_pt() = Traded_data_pt->value_pt(0);
+        this->pressure_evaluation_mesh2_pt()->element_pt(e)->add_external_data(
+          Traded_data_pt);
+      }
+
+
+      // Loop over slip surface elements and add wall velocity as external
+      // data
+      n_element = this->slip_surface_mesh_pt()->nelement();
+      for (unsigned e = 0; e < n_element; e++)
+      {
+        this->slip_surface_mesh_pt()->element_pt(e)->add_external_data(
+          Traded_data_pt);
+      }
     }
 
     /// actions before adapt
@@ -105,9 +132,10 @@ namespace oomph
 
     void actions_after_newton_step()
     {
-      //this->debug_jacobian();
-      //throw OomphLibError(
-      //  "Debugging Jacobian", OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+      // this->debug_jacobian();
+      // throw OomphLibError(
+      //   "Debugging Jacobian", OOMPH_CURRENT_FUNCTION,
+      //   OOMPH_EXCEPTION_LOCATION);
     }
 
     /// Set the continuation parameter
@@ -124,6 +152,12 @@ namespace oomph
 
       // set the flag
       Is_continuation_parameter_set = true;
+
+      this->setup_elements();
+
+      this->rebuild_global_mesh();
+      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                 << std::endl;
     }
 
     /// Unset the continuation parameter
@@ -168,6 +202,12 @@ namespace oomph
       Height_mesh_pt->flush_element_and_node_storage();
     }
 
+
+    void step_height(const double& ds)
+    {
+      dynamic_cast<HEIGHT_ELEMENT*>(Height_mesh_pt->element_pt(0))
+        ->step_height(ds);
+    }
     ///// Takes a continuation step using a fixed height drop and solving for
     /// the
     ///// parameter.
@@ -236,6 +276,19 @@ namespace oomph
           ->output(output_file);
       }
       output_file.close();
+    }
+
+    void output_height()
+    {
+      for (unsigned e = 0; e < Height_mesh_pt->nelement(); e++)
+      {
+        dynamic_cast<HEIGHT_ELEMENT*>(Height_mesh_pt->element_pt(e))
+          ->output(*oomph_info.stream_pt());
+      }
+      for (unsigned n = 0; n < Traded_data_pt->nvalue(); n++)
+      {
+        oomph_info << Traded_data_pt->value(n) << std::endl;
+      }
     }
   };
 }; // namespace oomph
