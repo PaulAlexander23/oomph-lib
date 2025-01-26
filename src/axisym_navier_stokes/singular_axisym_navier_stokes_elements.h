@@ -65,6 +65,7 @@ namespace oomph
     bool IsAddingAdditionalTerms;
     bool IsAddingPressureAdditionalTerms;
     bool IsTotalEquationWeak;
+    bool IsJacobianFD;
 
     /// Vector of pointers to SingularNavierStokesSolutionElement objects
     Vector<SingularNavierStokesSolutionElement<
@@ -100,7 +101,8 @@ namespace oomph
         IsSwappingPressureEquations(false),
         IsAddingAdditionalTerms(false),
         IsAddingPressureAdditionalTerms(true),
-        IsTotalEquationWeak(false)
+        IsTotalEquationWeak(false),
+        IsJacobianFD(false)
     {
       // Find the number of nodes in the element
       const unsigned n_node = this->nnode();
@@ -402,6 +404,25 @@ namespace oomph
     {
       return IsAugmented;
     }
+
+    // Set the element to use finite differences for all data
+    void use_fd_jacobian()
+    {
+      IsJacobianFD = true;
+    }
+
+    // Set the element to use analytic Jacobian contributions
+    void use_analytic_jacobian()
+    {
+      IsJacobianFD = true;
+    }
+
+    // Check if the element is using finite differences for the Jacobian
+    bool is_using_fd_jacobian()
+    {
+      return IsJacobianFD;
+    }
+
 
     void swap_equations()
     {
@@ -747,12 +768,34 @@ namespace oomph
     void fill_in_contribution_to_jacobian(Vector<double>& residuals,
                                           DenseMatrix<double>& jacobian)
     {
-      // Call the generic routine with the flag set to 1 and dummy mass
-      // matrix
-      BASIC_AXISYM_NAVIER_STOKES_ELEMENT::fill_in_contribution_to_jacobian(
-        residuals, jacobian);
-      this->fill_in_generic_residual_contribution_wrapped_axi_nst(
-        residuals, jacobian, 1);
+      // Use finite differences
+      if (this->is_using_fd_jacobian())
+      {
+        // If the element is a solid finite element, call the solid
+        // finite element's fill_in_contribution_to_jacobian function
+        if (dynamic_cast<SolidFiniteElement*>(this) != nullptr)
+        {
+          SolidFiniteElement::fill_in_contribution_to_jacobian(residuals,
+                                                               jacobian);
+        }
+        // The element is a finite element, call the finite element's
+        // fill_in_contribution_to_jacobian function
+        else
+        {
+          FiniteElement::fill_in_contribution_to_jacobian(residuals, jacobian);
+        }
+      }
+      // Otherwise use analytic contributions
+      else
+      {
+        // Call the base fill_in_contribution_to_jacobian function
+        BASIC_AXISYM_NAVIER_STOKES_ELEMENT::fill_in_contribution_to_jacobian(
+          residuals, jacobian);
+        // Then call the singular Navier-Stokes element's
+        // fill_in_contribution_to_jacobian function
+        this->fill_in_generic_residual_contribution_wrapped_axi_nst(
+          residuals, jacobian, 1);
+      }
     }
 
     /// Add the element's contribution to its residual vector and

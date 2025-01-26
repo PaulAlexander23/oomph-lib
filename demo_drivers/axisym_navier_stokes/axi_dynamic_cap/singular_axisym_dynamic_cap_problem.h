@@ -631,20 +631,20 @@ namespace oomph
           cout << "free: " << compare_matrices(jacobianFD, jacobian) << endl;
         }
       }
-      {
-        unsigned n_element = Slip_boundary_mesh_pt->nelement();
-        for (unsigned e = 0; e < n_element; e++)
-        {
-          SLIP_ELEMENT* el_pt =
-            dynamic_cast<SLIP_ELEMENT*>(Slip_boundary_mesh_pt->element_pt(0));
-          unsigned n = el_pt->ndof();
-          Vector<double> residuals(n, 0.0);
-          DenseMatrix<double> jacobian(n, n, 0.0);
-          DenseMatrix<double> jacobianFD(n, n, 0.0);
-          el_pt->debug_jacobian(n, residuals, jacobian, jacobianFD);
-          cout << "slip: " << compare_matrices(jacobianFD, jacobian) << endl;
-        }
-      }
+      //{
+      //  unsigned n_element = Slip_boundary_mesh_pt->nelement();
+      //  for (unsigned e = 0; e < n_element; e++)
+      //  {
+      //    SLIP_ELEMENT* el_pt =
+      //      dynamic_cast<SLIP_ELEMENT*>(Slip_boundary_mesh_pt->element_pt(0));
+      //    unsigned n = el_pt->ndof();
+      //    Vector<double> residuals(n, 0.0);
+      //    DenseMatrix<double> jacobian(n, n, 0.0);
+      //    DenseMatrix<double> jacobianFD(n, n, 0.0);
+      //    el_pt->debug_jacobian(n, residuals, jacobian, jacobianFD);
+      //    cout << "slip: " << compare_matrices(jacobianFD, jacobian) << endl;
+      //  }
+      //}
       if (No_penetration_boundary_mesh_pt)
       {
         unsigned n_element = No_penetration_boundary_mesh_pt->nelement();
@@ -660,17 +660,17 @@ namespace oomph
           cout << "no pen: " << compare_matrices(jacobianFD, jacobian) << endl;
         }
       }
-      if (Flux_mesh_pt)
-      {
-        FLUX_ELEMENT* el_pt =
-          dynamic_cast<FLUX_ELEMENT*>(Flux_mesh_pt->element_pt(0));
-        unsigned n = el_pt->ndof();
-        Vector<double> residuals(n, 0.0);
-        DenseMatrix<double> jacobian(n, n, 0.0);
-        DenseMatrix<double> jacobianFD(n, n, 0.0);
-        el_pt->debug_jacobian(n, residuals, jacobian, jacobianFD);
-        cout << "flux: " << compare_matrices(jacobianFD, jacobian) << endl;
-      }
+      // if (Flux_mesh_pt)
+      //{
+      //   FLUX_ELEMENT* el_pt =
+      //     dynamic_cast<FLUX_ELEMENT*>(Flux_mesh_pt->element_pt(0));
+      //   unsigned n = el_pt->ndof();
+      //   Vector<double> residuals(n, 0.0);
+      //   DenseMatrix<double> jacobian(n, n, 0.0);
+      //   DenseMatrix<double> jacobianFD(n, n, 0.0);
+      //   el_pt->debug_jacobian(n, residuals, jacobian, jacobianFD);
+      //   cout << "flux: " << compare_matrices(jacobianFD, jacobian) << endl;
+      // }
       if (Volume_computation_mesh_pt)
       {
         VOLUME_COMPUTATION_ELEMENT* el_pt =
@@ -684,32 +684,33 @@ namespace oomph
         cout << "volume computation: " << compare_matrices(jacobianFD, jacobian)
              << endl;
       }
-      if (this->is_augmented())
-      {
-        PressureEvaluationElement<ELEMENT>* el_pt =
-          dynamic_cast<PressureEvaluationElement<ELEMENT>*>(
-            Pressure_contribution_mesh_1_pt->element_pt(0));
-        unsigned n = el_pt->ndof();
-        Vector<double> residuals(n, 0.0);
-        DenseMatrix<double> jacobian(n, n, 0.0);
-        DenseMatrix<double> jacobianFD(n, n, 0.0);
-        el_pt->debug_jacobian(n, residuals, jacobian, jacobianFD);
-        cout << "pressure contribution: "
-             << compare_matrices(jacobianFD, jacobian) << endl;
-      }
-      if (this->is_augmented())
-      {
-        SingularAxisymNavierStokesTractionElement<ELEMENT>* el_pt =
-          dynamic_cast<SingularAxisymNavierStokesTractionElement<ELEMENT>*>(
-            Eigensolution_slip_mesh_pt->element_pt(0));
-        unsigned n = el_pt->ndof();
-        Vector<double> residuals(n, 0.0);
-        DenseMatrix<double> jacobian(n, n, 0.0);
-        DenseMatrix<double> jacobianFD(n, n, 0.0);
-        el_pt->debug_jacobian(n, residuals, jacobian, jacobianFD);
-        cout << "singular traction: " << compare_matrices(jacobianFD, jacobian)
-             << endl;
-      }
+      // if (this->is_augmented())
+      // {
+      //   PressureEvaluationElement<ELEMENT>* el_pt =
+      //     dynamic_cast<PressureEvaluationElement<ELEMENT>*>(
+      //       Pressure_contribution_mesh_1_pt->element_pt(0));
+      //   unsigned n = el_pt->ndof();
+      //   Vector<double> residuals(n, 0.0);
+      //   DenseMatrix<double> jacobian(n, n, 0.0);
+      //   DenseMatrix<double> jacobianFD(n, n, 0.0);
+      //   el_pt->debug_jacobian(n, residuals, jacobian, jacobianFD);
+      //   cout << "pressure contribution: "
+      //        << compare_matrices(jacobianFD, jacobian) << endl;
+      // }
+      // if (this->is_augmented())
+      // {
+      //   SingularAxisymNavierStokesTractionElement<ELEMENT>* el_pt =
+      //     dynamic_cast<SingularAxisymNavierStokesTractionElement<ELEMENT>*>(
+      //       Eigensolution_slip_mesh_pt->element_pt(0));
+      //   unsigned n = el_pt->ndof();
+      //   Vector<double> residuals(n, 0.0);
+      //   DenseMatrix<double> jacobian(n, n, 0.0);
+      //   DenseMatrix<double> jacobianFD(n, n, 0.0);
+      //   el_pt->debug_jacobian(n, residuals, jacobian, jacobianFD);
+      //   cout << "singular traction: " << compare_matrices(jacobianFD,
+      //   jacobian)
+      //        << endl;
+      // }
       // if (Volume_constraint_mesh_pt)
       //{
       //   VOLUME_CONSTRAINT_ELEMENT* el_pt =
@@ -2348,6 +2349,42 @@ namespace oomph
       }
     }
 
+    // Use the finite difference jacobian for the bulk elements
+    void use_fd_jacobian_for_the_bulk()
+    {
+      // Loop over the bulk elements and set the jacobian to finite difference
+      unsigned n_element = Bulk_mesh_pt->nelement();
+      for (unsigned n = 0; n < n_element; n++)
+      {
+        dynamic_cast<ELEMENT*>(Bulk_mesh_pt->element_pt(n))->use_fd_jacobian();
+      }
+    }
+
+    // Use the finite difference jacobian for the augmented bulk elements
+    void use_fd_jacobian_for_the_bulk_augmented()
+    {
+      // Loop over the augmented bulk elements and set the jacobian to finite difference
+      unsigned n_element = Augmented_bulk_element_number.size();
+      for (unsigned n = 0; n < n_element; n++)
+      {
+        dynamic_cast<ELEMENT*>(
+          Bulk_mesh_pt->element_pt(Augmented_bulk_element_number[n]))
+          ->use_fd_jacobian();
+      }
+    }
+
+    // Use the analytic jacobian for the bulk elements
+    void use_analytic_jacobian_for_the_bulk()
+    {
+      // Loop over the bulk elements and set the jacobian to analytic
+      unsigned n_element = Bulk_mesh_pt->nelement();
+      for (unsigned n = 0; n < n_element; n++)
+      {
+        dynamic_cast<ELEMENT*>(Bulk_mesh_pt->element_pt(n))
+          ->use_analytic_jacobian();
+      }
+    }
+
   private:
     // Create the bulk mesh and its elements
     void create_bulk_mesh()
@@ -2919,11 +2956,11 @@ namespace oomph
       // el_pt->pin_c();
       el_pt->set_c(0.0);
 
-      //unsigned n_element = Bulk_mesh_pt->nelement();
-      //for (unsigned e = 0; e < n_element; e++)
+      // unsigned n_element = Bulk_mesh_pt->nelement();
+      // for (unsigned e = 0; e < n_element; e++)
       //{
-      //  ELEMENT* bulk_elem_pt =
-      //    dynamic_cast<ELEMENT*>(Bulk_mesh_pt->element_pt(e));
+      //   ELEMENT* bulk_elem_pt =
+      //     dynamic_cast<ELEMENT*>(Bulk_mesh_pt->element_pt(e));
 
       //  unsigned n_node = bulk_elem_pt->nnode();
       //  for (unsigned n = 0; n < n_node; n++)
@@ -3298,9 +3335,9 @@ namespace oomph
 
           if (el_pt->get_node_number(Contact_line_node_pt) == -1)
           {
-            // el_pt->add_external_data(
-            //   dynamic_cast<SolidNode*>(Contact_line_node_pt)
-            //     ->variable_position_pt());
+            el_pt->add_external_data(
+              dynamic_cast<SolidNode*>(Contact_line_node_pt)
+                ->variable_position_pt());
           }
         }
       }

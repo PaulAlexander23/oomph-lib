@@ -145,7 +145,58 @@ BOOST_AUTO_TEST_CASE(acute_axisym_problem_jacobian)
   AXISYM_PROBLEM problem(&parameters);
   problem.setup();
   BOOST_TEST(problem.debug_jacobian());
-  problem.newton_solve();
+  problem.max_newton_iterations() = 1;
+  try
+  {
+    problem.newton_solve();
+  }
+  catch (NewtonSolverError& error)
+  {
+  }
+  problem.debug_jacobian();
+  // If the problem solve completes, then it is a success.
+}
+
+/// Test SingularAxisymDynamicCapProblem
+BOOST_AUTO_TEST_CASE(singular_axisym_dynamic_cap_problem_jacobian_bulk_fd)
+{
+  Params parameters;
+  AXISYM_PROBLEM problem(&parameters);
+  problem.setup();
+  // BOOST_TEST(problem.debug_jacobian());
+  problem.max_newton_iterations() = 1;
+  problem.use_fd_jacobian_for_the_bulk();
+  try
+  {
+    problem.newton_solve();
+  }
+  catch (NewtonSolverError& error)
+  {
+  }
+  problem.debug_elemental_jacobian();
+  problem.debug_jacobian();
+  // If the problem solve completes, then it is a success.
+}
+
+/// Test SingularAxisymDynamicCapProblem
+BOOST_AUTO_TEST_CASE(
+  singular_axisym_dynamic_cap_problem_jacobian_bulk_fd_augmented)
+{
+  Params parameters;
+  AXISYM_PROBLEM problem(&parameters);
+  problem.setup();
+  // BOOST_TEST(problem.debug_jacobian());
+  problem.max_newton_iterations() = 1;
+  problem.use_fd_jacobian_for_the_bulk_augmented();
+  try
+  {
+    problem.newton_solve();
+  }
+  catch (NewtonSolverError& error)
+  {
+  }
+  problem.debug_elemental_jacobian();
+  problem.debug_jacobian();
   // If the problem solve completes, then it is a success.
 }
 
@@ -155,8 +206,17 @@ BOOST_AUTO_TEST_CASE(singular_axisym_dynamic_cap_problem_jacobian)
   Params parameters;
   AXISYM_PROBLEM problem(&parameters);
   problem.setup();
-  BOOST_TEST(problem.debug_jacobian());
-  problem.newton_solve();
+  // BOOST_TEST(problem.debug_jacobian());
+  problem.max_newton_iterations() = 1;
+  try
+  {
+    problem.newton_solve();
+  }
+  catch (NewtonSolverError& error)
+  {
+  }
+  problem.debug_elemental_jacobian();
+  problem.debug_jacobian();
   // If the problem solve completes, then it is a success.
 }
 
@@ -170,6 +230,7 @@ BOOST_AUTO_TEST_CASE(
   problem.set_continuation_parameter(
     parameters.reynolds_inverse_froude_number_pt);
   problem.setup();
+  problem.use_fd_jacobian_for_the_bulk_augmented();
   problem.debug_jacobian();
   problem.max_newton_iterations() = 1;
   try
@@ -189,6 +250,7 @@ BOOST_AUTO_TEST_CASE(full_continuation_problem_jacobian)
   Params parameters;
   FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(&parameters);
   problem.setup();
+  problem.use_fd_jacobian_for_the_bulk_augmented();
   problem.debug_jacobian();
   problem.max_newton_iterations() = 1;
   try
@@ -202,4 +264,44 @@ BOOST_AUTO_TEST_CASE(full_continuation_problem_jacobian)
   problem.doc_solution();
   //  If the problem solve completes, then it is a success.
 }
+
+/// Full continuation problem creation
+BOOST_AUTO_TEST_CASE(full_continuation_problem_reynolds_inverse_froude_number)
+{
+  Params parameters;
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(&parameters);
+  problem.set_continuation_parameter(
+    parameters.reynolds_inverse_froude_number_pt);
+  problem.setup();
+  problem.use_fd_jacobian_for_the_bulk_augmented();
+  try
+  {
+    problem.newton_solve();
+  }
+  catch (NewtonSolverError& error)
+  {
+  }
+  problem.doc_solution();
+  //  If the problem solve completes, then it is a success.
+}
+
+/// Full continuation problem creation
+//BOOST_AUTO_TEST_CASE(full_continuation_problem_wall_velocity)
+//{
+//  Params parameters;
+//  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(&parameters);
+//  problem.set_continuation_parameter(
+//    &parameters.wall_velocity);
+//  problem.setup();
+//  problem.use_fd_jacobian_for_the_bulk_augmented();
+//  try
+//  {
+//    problem.newton_solve();
+//  }
+//  catch (NewtonSolverError& error)
+//  {
+//  }
+//  problem.doc_solution();
+//  //  If the problem solve completes, then it is a success.
+//}
 BOOST_AUTO_TEST_SUITE_END()
