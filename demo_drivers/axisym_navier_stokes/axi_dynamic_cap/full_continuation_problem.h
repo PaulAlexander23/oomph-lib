@@ -84,26 +84,30 @@ namespace oomph
         this->bulk_mesh_pt()->element_pt(e)->add_external_data(Traded_data_pt);
       }
 
-      n_element = this->pressure_evaluation_mesh1_pt()->nelement();
-      for (unsigned e = 0; e < n_element; e++)
+      if (this->is_augmented())
       {
-        dynamic_cast<PressureEvaluationElement<ELEMENT>*>(
-          this->pressure_evaluation_mesh1_pt()->element_pt(e))
-          ->re_invfr_pt() = Traded_data_pt->value_pt(0);
-        this->pressure_evaluation_mesh1_pt()->element_pt(e)->add_external_data(
-          Traded_data_pt);
-      }
+        n_element = this->pressure_evaluation_mesh1_pt()->nelement();
+        for (unsigned e = 0; e < n_element; e++)
+        {
+          dynamic_cast<PressureEvaluationElement<ELEMENT>*>(
+            this->pressure_evaluation_mesh1_pt()->element_pt(e))
+            ->re_invfr_pt() = Traded_data_pt->value_pt(0);
+          this->pressure_evaluation_mesh1_pt()
+            ->element_pt(e)
+            ->add_external_data(Traded_data_pt);
+        }
 
-      n_element = this->pressure_evaluation_mesh2_pt()->nelement();
-      for (unsigned e = 0; e < n_element; e++)
-      {
-        dynamic_cast<PressureEvaluationElement<ELEMENT>*>(
-          this->pressure_evaluation_mesh2_pt()->element_pt(e))
-          ->re_invfr_pt() = Traded_data_pt->value_pt(0);
-        this->pressure_evaluation_mesh2_pt()->element_pt(e)->add_external_data(
-          Traded_data_pt);
+        n_element = this->pressure_evaluation_mesh2_pt()->nelement();
+        for (unsigned e = 0; e < n_element; e++)
+        {
+          dynamic_cast<PressureEvaluationElement<ELEMENT>*>(
+            this->pressure_evaluation_mesh2_pt()->element_pt(e))
+            ->re_invfr_pt() = Traded_data_pt->value_pt(0);
+          this->pressure_evaluation_mesh2_pt()
+            ->element_pt(e)
+            ->add_external_data(Traded_data_pt);
+        }
       }
-
 
       // Loop over slip surface elements and add wall velocity as external
       // data
