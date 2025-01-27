@@ -41,6 +41,70 @@ namespace oomph
       Traded_data_pt->pin(0);
     }
 
+    virtual void read(std::ifstream& restart_file, bool& unsteady_restart)
+    {
+      // Remove additional submeshes and global data
+      remove_sub_mesh(Height_mesh_pt);
+      remove_global_data(Traded_data_pt);
+      // Rebuild the problem
+      this->rebuild_global_mesh();
+      // Read the base problem
+      SingularAxisymDynamicCapProblem<ELEMENT, TIMESTEPPER>::read(
+        restart_file, unsteady_restart);
+      // Re-add the submeshes and global data
+      this->add_sub_mesh(Height_mesh_pt);
+      this->add_global_data(Traded_data_pt);
+      // Rebuild the problem
+      this->rebuild_global_mesh();
+    }
+
+    /// Remove submesh
+    void remove_sub_mesh(Mesh* const& mesh_pt)
+    {
+      // Loop over the submeshes and store a copy of each mesh
+      unsigned n_mesh = this->nsub_mesh();
+      std::vector<Mesh*> sub_meshes;
+      for (unsigned m = 0; m < n_mesh; m++)
+      {
+        sub_meshes.push_back(this->mesh_pt(m));
+      }
+      // Flush the meshes
+      this->flush_sub_meshes();
+      // Loop over the stored meshes and re-add them, except the one to be
+      // removed
+      for (unsigned m = 0; m < n_mesh; m++)
+      {
+        if (sub_meshes[m] != mesh_pt)
+        {
+          this->add_sub_mesh(sub_meshes[m]);
+        }
+      }
+    }
+
+    /// Remove global data
+    void remove_global_data(Data* const& data_pt)
+    {
+      // Loop over the global data and store a copy of each data
+      unsigned n_data = this->nglobal_data();
+      std::vector<Data*> global_data;
+      for (unsigned d = 0; d < n_data; d++)
+      {
+        global_data.push_back(this->global_data_pt(d));
+      }
+      // Flush the data
+      this->flush_global_data();
+      // Loop over the stored data and re-add them, except the one to be
+      // removed
+      for (unsigned d = 0; d < n_data; d++)
+      {
+        if (global_data[d] != data_pt)
+        {
+          this->add_global_data(global_data[d]);
+        }
+      }
+    }
+
+
     /// actions after adapt
     /// Calls the base actions after adapt and creates the height elements.
     void actions_after_adapt()
@@ -273,7 +337,8 @@ namespace oomph
       SingularAxisymDynamicCapProblem<ELEMENT, TIMESTEPPER>::doc_solution();
 
       // Output the height element
-      std::ofstream output_file(this->doc_info().directory() + "/height.dat");
+      std::ofstream output_file(this->doc_info().directory() + "/height" +
+                                to_string(this->doc_info().number()) + ".dat");
       for (unsigned e = 0; e < Height_mesh_pt->nelement(); e++)
       {
         dynamic_cast<HEIGHT_ELEMENT*>(Height_mesh_pt->element_pt(e))
