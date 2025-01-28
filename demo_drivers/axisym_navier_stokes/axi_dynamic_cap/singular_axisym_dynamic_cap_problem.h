@@ -182,6 +182,7 @@ namespace oomph
     bool Is_steady;
     bool Is_augmented;
     bool Using_contact_angle_error_estimator;
+    bool Is_lagrange_backup_required;
 
     std::function<void(const double&,
                        const Vector<double>&,
@@ -257,7 +258,8 @@ namespace oomph
         Backup_point_kinematic_lagrange_multiplier(1.0),
         Is_steady(true),
         Is_augmented(false),
-        Using_contact_angle_error_estimator(false)
+        Using_contact_angle_error_estimator(false),
+        Is_lagrange_backup_required(false)
     {
       //======================================================================
       // Set up the rest of the parameters
@@ -1398,6 +1400,9 @@ namespace oomph
 
       // Set the new boundary conditions
       set_boundary_conditions();
+
+      // Setup all the equation numbering and look-up schemes
+      oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
     }
 
     void make_unsteady()
@@ -1409,6 +1414,9 @@ namespace oomph
 
       // Set the new boundary conditions
       set_boundary_conditions();
+
+      // Setup all the equation numbering and look-up schemes
+      oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
     }
 
     bool is_augmented()
@@ -2168,6 +2176,16 @@ namespace oomph
         dynamic_cast<NET_FLUX_ELEMENT*>(Net_flux_mesh_pt->element_pt(0))
           ->internal_data_pt(0)
           ->pin(0);
+      }
+    }
+
+    void unpin_flux_constraint()
+    {
+      if (Net_flux_mesh_pt)
+      {
+        dynamic_cast<NET_FLUX_ELEMENT*>(Net_flux_mesh_pt->element_pt(0))
+          ->internal_data_pt(0)
+          ->unpin(0);
       }
     }
 
@@ -3499,20 +3517,20 @@ namespace oomph
         // don't have to pin an internal pressure.
         pin_volume_constraint();
         unpin_interior_pressure();
+
+        // Ensure the flux constraint is imposed
+        unpin_flux_constraint();
       }
       else
       {
         // Make sure the volume constraint is unpinned
         unpin_volume_constraint();
 
-        // Pin the flux constraint
-        if (Net_flux_mesh_pt)
-        {
-          pin_flux_constraint();
-        }
-
         // Pin an interior pressure
         pin_interior_pressure();
+
+        // Pin the flux constraint
+        pin_flux_constraint();
       }
 
       // If there is no velocity, pin the contact line and the wall velocity.
@@ -3868,7 +3886,10 @@ namespace oomph
       //======================================================================
       // Backup Lagrange multipliers
       //======================================================================
-      this->backup_lagrange_multipliers();
+      if (this->is_lagrange_backup_required())
+      {
+        this->backup_lagrange_multipliers();
+      }
 
       //======================================================================
       // Delete all non-refineable elements
@@ -3941,6 +3962,8 @@ namespace oomph
       // Restore the backed up mesh if there is one
       //======================================================================
       this->restore_lagrange_multipliers();
+      // Going forward, we need to backup the lagrange multipliers
+      Is_lagrange_backup_required = true;
 
       setup_augmented_elements();
 
@@ -3963,6 +3986,11 @@ namespace oomph
 
       // Setup all the equation numbering and look-up schemes
       oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
+    }
+
+    bool is_lagrange_backup_required()
+    {
+      return Is_lagrange_backup_required;
     }
 
   private:
