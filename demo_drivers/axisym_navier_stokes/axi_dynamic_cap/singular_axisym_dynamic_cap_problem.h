@@ -1389,31 +1389,26 @@ namespace oomph
       }
     }
 
-    // Make the problem static. Remove the flux elements and add the volume
-    // ones, by calling actions before and after adapt with the Is_steady flag
-    // set to true
     void make_steady()
     {
       oomph_info << "make_steady" << std::endl;
 
-      actions_before_adapt();
-
+      // Set flag
       this->Is_steady = true;
 
-      actions_after_adapt();
+      // Set the new boundary conditions
+      set_boundary_conditions();
     }
 
-    // Make the problem static. Add the flux elements and remove the volume
-    // ones, by calling actions before and after adapt with the Is_steady flag
-    // set to false
     void make_unsteady()
     {
       oomph_info << "make_unsteady" << std::endl;
-      actions_before_adapt();
 
+      // Set flag
       this->Is_steady = false;
 
-      actions_after_adapt();
+      // Set the new boundary conditions
+      set_boundary_conditions();
     }
 
     bool is_augmented()
@@ -1935,13 +1930,13 @@ namespace oomph
                       MathematicalConstants::Pi
                  << " ";
       // the parameters,
-      Trace_file << *Parameters_pt->reynolds_inverse_froude_number_pt << " ";
+      Trace_file << *(Parameters_pt->reynolds_inverse_froude_number_pt) << " ";
       Trace_file << Parameters_pt->capillary_number << " ";
       Trace_file << Parameters_pt->reynolds_number << " ";
       Trace_file << Parameters_pt->strouhal_number << " ";
       Trace_file << Parameters_pt->reynolds_strouhal_number << " ";
-      Trace_file << *Parameters_pt->reynolds_inverse_froude_number_pt << " ";
-      Trace_file << *Parameters_pt->wall_velocity_pt << " ";
+      Trace_file << *(Parameters_pt->reynolds_inverse_froude_number_pt) << " ";
+      Trace_file << *(Parameters_pt->wall_velocity_pt) << " ";
       // the external pressure,
       Trace_file << External_pressure_data_pt->value(0) << " ";
       // the height of the interface at the centre of the container,
@@ -2159,6 +2154,11 @@ namespace oomph
     void pin_volume_constraint()
     {
       External_pressure_data_pt->pin(0);
+    }
+
+    void unpin_volume_constraint()
+    {
+      External_pressure_data_pt->unpin(0);
     }
 
     void pin_flux_constraint()
@@ -3502,6 +3502,9 @@ namespace oomph
       }
       else
       {
+        // Make sure the volume constraint is unpinned
+        unpin_volume_constraint();
+
         // Pin the flux constraint
         if (Net_flux_mesh_pt)
         {
@@ -3512,11 +3515,22 @@ namespace oomph
         pin_interior_pressure();
       }
 
+      // If there is no velocity, pin the contact line and the wall velocity.
       if (Parameters_pt->slip_length == 0 &&
           std::abs(*Parameters_pt->wall_velocity_pt) >= 1e-8)
       {
         pin_velocity_on_boundary(v_index, Outer_boundary_with_slip_id);
         pin_contact_line();
+      }
+
+      // Set the timestepper to steady/unsteady
+      if (Is_steady)
+      {
+        time_stepper_pt()->make_steady();
+      }
+      else
+      {
+        time_stepper_pt()->undo_make_steady();
       }
     }
 
@@ -3940,15 +3954,6 @@ namespace oomph
       // Rebuild the global mesh
       this->rebuild_global_mesh();
 
-      // Set the timestepper to steady/unsteady
-      if (Is_steady)
-      {
-        time_stepper_pt()->make_steady();
-      }
-      else
-      {
-        time_stepper_pt()->undo_make_steady();
-      }
 
       // fix_c(1.0);
       if (CommandLineArgs::command_line_flag_has_been_set("--pin-solid"))
