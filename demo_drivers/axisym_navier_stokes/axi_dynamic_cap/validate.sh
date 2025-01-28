@@ -73,16 +73,16 @@ validate "continuation_run --Bo 0.1 --parameters " validata/unsteady-parameters-
 validate "continuation_run --wall_velocity 0.1 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat cont-ca-results.dat.gz
 validate "continuation_run --arc --Bo 0.1 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat arc-cont-bo-results.dat.gz
 validate "continuation_run --arc --wall_velocity 0.1 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat continuation_run_unsteady-parameters-with-restart_results.dat.gz
-validate "continuation_run --height_control --Bo 0.01 --parameters" validata/height-continuation-parameters-with-restart.dat trace.dat height-cont-bo-results.dat.gz
-validate "continuation_run --height_control --wall_velocity 0.1 --parameters" validata/height-continuation-parameters-with-restart.dat trace.dat continuation_run_height-continuation-parameters-with-restart_results.dat.gz
+validate "continuation_run --height_control --Bo 0.01 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat height-cont-bo-results.dat.gz
+validate "continuation_run --height_control --wall_velocity 0.1 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat continuation_run_height-continuation-parameters-with-restart_results.dat.gz
  
  # Obtuse continuation runs
  validate "continuation_run --Bo 0.1 --parameters " validata/obtuse-unsteady-parameters-with-restart.dat trace.dat obtuse-cont-bo-results.dat.gz
  validate "continuation_run --wall_velocity 0.01 --parameters" validata/obtuse-unsteady-parameters-with-restart.dat trace.dat obtuse-cont-ca-results.dat.gz
  validate "continuation_run --arc --Bo 0.1 --parameters" validata/obtuse-unsteady-parameters-with-restart.dat trace.dat obtuse-arc-cont-bo-results.dat.gz
  validate "continuation_run --arc --wall_velocity 0.01 --parameters" validata/obtuse-unsteady-parameters-with-restart.dat trace.dat continuation_run_obtuse-unsteady-parameters-with-restart_results.dat.gz
- validate "continuation_run --height_control --Bo 0.01 --parameters" validata/obtuse-height-continuation-parameters-with-restart.dat trace.dat obtuse-height-cont-bo-results.dat.gz
- validate "continuation_run --height_control --wall_velocity 0.01 --parameters" validata/obtuse-height-continuation-parameters-with-restart.dat trace.dat continuation_run_obtuse-height-continuation-parameters-with-restart_results.dat.gz
+ validate "continuation_run --height_control --Bo 0.01 --parameters" validata/obtuse-unsteady-parameters-with-restart.dat trace.dat obtuse-height-cont-bo-results.dat.gz
+ validate "continuation_run --height_control --wall_velocity 0.01 --parameters" validata/obtuse-unsteady-parameters-with-restart.dat trace.dat continuation_run_obtuse-height-continuation-parameters-with-restart_results.dat.gz
 
 var="./run_tests -t normal > Validation/OUTPUT"
 echo $var

@@ -150,6 +150,59 @@ BOOST_AUTO_TEST_CASE(full_continuation_problem_reynolds_inverse_froude_number)
   problem.doc_solution();
   //  If the problem solve completes, then it is a success.
 }
+
+/// Save and load
+BOOST_AUTO_TEST_CASE(save_and_load)
+{
+  // Create a normal problem
+  Params parameters;
+  AXISYM_PROBLEM problem(&parameters);
+  problem.setup();
+  // Save the problem
+  problem.create_restart_file();
+  // Load the problem
+  ifstream restart_filestream;
+  restart_filestream.open("RESLT/restart0.dat");
+  bool is_unsteady_restart = false;
+  problem.read(restart_filestream, is_unsteady_restart);
+  restart_filestream.close();
+
+  // Create a height continuation problem
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> continuation_problem(
+    &parameters);
+  continuation_problem.setup();
+
+  // Load in the normal problem
+  restart_filestream.open("RESLT/restart0.dat");
+  continuation_problem.read(restart_filestream, is_unsteady_restart);
+  restart_filestream.close();
+
+  // Save the continuation problem
+  continuation_problem.create_restart_file();
+
+  // Load in the normal problem
+  restart_filestream.open("RESLT/restart0.dat");
+  problem.read(restart_filestream, is_unsteady_restart);
+  restart_filestream.close();
+
+  // Set the continuation parameter
+  continuation_problem.set_continuation_parameter(
+    parameters.reynolds_inverse_froude_number_pt);
+
+  // Save the new continuation problem
+  continuation_problem.create_restart_file();
+
+  // Load in the normal problem
+  restart_filestream.open("RESLT/restart0.dat");
+  problem.read(restart_filestream, is_unsteady_restart);
+  restart_filestream.close();
+
+  // Load in the new continuation problem
+  restart_filestream.open("RESLT/restart0.dat");
+  continuation_problem.read(restart_filestream, is_unsteady_restart);
+  restart_filestream.close();
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_AUTO_TEST_SUITE(extra)

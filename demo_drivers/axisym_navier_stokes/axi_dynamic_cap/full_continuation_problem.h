@@ -58,6 +58,30 @@ namespace oomph
       this->rebuild_global_mesh();
     }
 
+    // Create a restart file
+    // Does not include all the problem and system parameters
+    // This means we need to do a newton solve to set the height dof.
+    virtual void create_restart_file()
+    {
+      // Remove additional submeshes and global data
+      remove_sub_mesh(Height_mesh_pt);
+      remove_global_data(Traded_data_pt);
+
+      // Rebuild the problem
+      this->rebuild_global_mesh();
+
+      // Create the restart file
+      SingularAxisymDynamicCapProblem<ELEMENT,
+                                      TIMESTEPPER>::create_restart_file();
+
+      // Re-add the submeshes and global data
+      this->add_sub_mesh(Height_mesh_pt);
+      this->add_global_data(Traded_data_pt);
+
+      // Rebuild the problem
+      this->rebuild_global_mesh();
+    }
+
     /// Remove submesh
     void remove_sub_mesh(Mesh* const& mesh_pt)
     {
