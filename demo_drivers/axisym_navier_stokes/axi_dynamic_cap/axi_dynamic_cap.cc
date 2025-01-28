@@ -131,6 +131,7 @@ int main(int argc, char** argv)
   // Document initial condition
   problem.create_restart_file();
   problem.doc_solution();
+  problem.use_fd_jacobian_for_the_bulk_augmented();
 
   // If the final time is zero (or less) then we are doing a steady solve,
   if (parameters.final_time <= 0)
