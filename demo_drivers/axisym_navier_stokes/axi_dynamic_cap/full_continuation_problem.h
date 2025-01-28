@@ -28,8 +28,8 @@ namespace oomph
     /// Constructor
     /// Calls the base constructor and initalises the height element mesh and
     /// traded data.
-    FullContinuationProblem(Params* const& params)
-      : SingularAxisymDynamicCapProblem<ELEMENT, TIMESTEPPER>(params),
+    FullContinuationProblem(Params& params)
+      : SingularAxisymDynamicCapProblem<ELEMENT, TIMESTEPPER>(&params),
         Height_mesh_pt(new Mesh),
         Traded_data_pt(new Data(1)),
         Is_continuation_parameter_set(false)

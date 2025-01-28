@@ -340,13 +340,6 @@ void arc_continuation_run(Params& parameters,
   problem.close_trace_files();
 }
 
-void bond_height_control_continuation_run(Params& parameters,
-                                          double& starting_step,
-                                          double*& continuation_param_pt);
-
-void ca_height_control_continuation_run(Params& parameters,
-                                        double& starting_step,
-                                        double*& continuation_param_pt);
 
 void height_control_continuation_run(Params& parameters,
                                      double& starting_step,
@@ -355,7 +348,7 @@ void height_control_continuation_run(Params& parameters,
   FullContinuationProblem<SingularAxisymNavierStokesElement<
                             ProjectableAxisymmetricTTaylorHoodPVDElement>,
                           BDF<2>>
-    problem(&parameters);
+    problem(parameters);
   problem.setup();
 
   // Load in restart file
