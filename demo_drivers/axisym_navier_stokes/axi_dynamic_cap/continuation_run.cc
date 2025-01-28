@@ -169,7 +169,6 @@ void normal_continuation_run(Params& parameters,
       ProjectableAxisymmetricTTaylorHoodPVDElement>,
     BDF<2>>
     problem(&parameters);
-  problem.setup();
 
   // Load in restart file
   if (parameters.restart_filename != "")
@@ -188,7 +187,6 @@ void normal_continuation_run(Params& parameters,
         "Restart filename can't be set, or opened, or read.");
     }
   }
-  problem.setup();
 
   // Setup trace file
   problem.open_trace_files(true);
@@ -199,7 +197,6 @@ void normal_continuation_run(Params& parameters,
 
   // Document initial condition
   problem.create_restart_file();
-  problem.make_steady();
   problem.doc_solution();
   problem.use_fd_jacobian_for_the_bulk_augmented();
 
@@ -298,7 +295,6 @@ void arc_continuation_run(Params& parameters,
 
   // Document initial condition
   problem.create_restart_file();
-  problem.make_steady();
   problem.doc_solution();
   problem.use_fd_jacobian_for_the_bulk_augmented();
 
@@ -369,8 +365,6 @@ void height_control_continuation_run(Params& parameters,
     }
   }
 
-  problem.setup();
-
   // Setup trace file
   problem.open_trace_files(true);
 
@@ -380,7 +374,6 @@ void height_control_continuation_run(Params& parameters,
 
   // Document initial condition
   problem.create_restart_file();
-  problem.make_steady();
   problem.doc_solution();
 
   problem.use_fd_jacobian_for_the_bulk_augmented();
