@@ -394,13 +394,12 @@ void height_control_continuation_run(Params& parameters,
   // Solve for the steady state adapting if needed by the Z2 error
   // estimator
   problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
-  problem.doc_solution();
 
   // Document the solution
   problem.create_restart_file();
   problem.doc_solution();
 
-  problem.set_continuation_parameter(parameters.wall_velocity_pt);
+  problem.set_continuation_parameter(continuation_param_pt);
 
   double ds = starting_step;
   const unsigned number_of_steps =
