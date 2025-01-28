@@ -228,6 +228,10 @@ namespace oomph
         residuals, GeneralisedElement::Dummy_matrix, 0);
     }
 
+    void fill_in_contribution_to_dresiduals_dparameter(
+      double* const& parameter_pt, Vector<double>& dres_dparam)
+    {
+    }
 
     /// Fill in contribution from Jacobian
     // void fill_in_contribution_to_jacobian(Vector<double>& residuals,

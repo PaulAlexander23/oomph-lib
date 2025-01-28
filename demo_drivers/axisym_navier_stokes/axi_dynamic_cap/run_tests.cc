@@ -140,7 +140,7 @@ BOOST_AUTO_TEST_CASE(continuation)
 BOOST_AUTO_TEST_CASE(full_continuation_problem_reynolds_inverse_froude_number)
 {
   Params parameters;
-  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(&parameters);
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(parameters);
   problem.setup();
   problem.use_fd_jacobian_for_the_bulk_augmented();
   problem.newton_solve();
@@ -169,7 +169,7 @@ BOOST_AUTO_TEST_CASE(save_and_load)
 
   // Create a height continuation problem
   FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> continuation_problem(
-    &parameters);
+    parameters);
   continuation_problem.setup();
 
   // Load in the normal problem
@@ -295,7 +295,7 @@ BOOST_AUTO_TEST_CASE(
   full_continuation_problem_jacobian_with_continuation_parameter)
 {
   Params parameters;
-  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(&parameters);
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(parameters);
   problem.setup();
   problem.use_fd_jacobian_for_the_bulk_augmented();
   problem.set_continuation_parameter(
@@ -317,7 +317,7 @@ BOOST_AUTO_TEST_CASE(
 BOOST_AUTO_TEST_CASE(full_continuation_problem_jacobian)
 {
   Params parameters;
-  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(&parameters);
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(parameters);
   problem.setup();
   problem.use_fd_jacobian_for_the_bulk_augmented();
   problem.debug_jacobian();
@@ -338,7 +338,7 @@ BOOST_AUTO_TEST_CASE(full_continuation_problem_jacobian)
 BOOST_AUTO_TEST_CASE(full_continuation_problem_reynolds_inverse_froude_number)
 {
   Params parameters;
-  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(&parameters);
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(parameters);
   problem.setup();
   problem.use_fd_jacobian_for_the_bulk_augmented();
   problem.newton_solve();
@@ -361,7 +361,7 @@ BOOST_AUTO_TEST_CASE(full_continuation_problem_jacobian_acute)
 {
   Params parameters;
   parameters.contact_angle = 60.0 * MathematicalConstants::Pi / 180.0;
-  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(&parameters);
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(parameters);
   problem.setup();
   problem.use_fd_jacobian_for_the_bulk_augmented();
   problem.debug_elemental_jacobian();
@@ -386,7 +386,7 @@ BOOST_AUTO_TEST_CASE(
   Params parameters;
   *parameters.wall_velocity_pt = 0.01;
   parameters.contact_angle = 60.0 * MathematicalConstants::Pi / 180.0;
-  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(&parameters);
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(parameters);
   problem.setup();
   problem.use_fd_jacobian_for_the_bulk_augmented();
   problem.newton_solve();
@@ -409,7 +409,7 @@ BOOST_AUTO_TEST_CASE(
   Params parameters;
   *parameters.wall_velocity_pt = 0;
   parameters.contact_angle = 60.0 * MathematicalConstants::Pi / 180.0;
-  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(&parameters);
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(parameters);
   problem.setup();
   problem.use_fd_jacobian_for_the_bulk_augmented();
   problem.newton_solve();
@@ -436,7 +436,7 @@ BOOST_AUTO_TEST_CASE(
   Params parameters;
   *parameters.wall_velocity_pt = 0;
   parameters.contact_angle = 120.0 * MathematicalConstants::Pi / 180.0;
-  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(&parameters);
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(parameters);
   problem.setup();
   problem.use_fd_jacobian_for_the_bulk_augmented();
   problem.newton_solve();
@@ -462,7 +462,7 @@ BOOST_AUTO_TEST_CASE(full_continuation_problem_wall_velocity_acute_90)
   Params parameters;
   *parameters.wall_velocity_pt = 0;
   parameters.contact_angle = 90.0 * MathematicalConstants::Pi / 180.0;
-  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(&parameters);
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(parameters);
   problem.setup();
   problem.steady_newton_solve();
   problem.set_continuation_parameter(parameters.wall_velocity_pt);
@@ -487,7 +487,7 @@ BOOST_AUTO_TEST_CASE(full_continuation_problem_wall_velocity)
   Params parameters;
   *parameters.wall_velocity_pt = 0;
   parameters.contact_angle = 120.0 * MathematicalConstants::Pi / 180.0;
-  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(&parameters);
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(parameters);
   problem.setup();
   problem.use_fd_jacobian_for_the_bulk_augmented();
   problem.steady_newton_solve();
