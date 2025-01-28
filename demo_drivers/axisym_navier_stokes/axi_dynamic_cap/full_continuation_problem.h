@@ -56,6 +56,8 @@ namespace oomph
       this->add_global_data(Traded_data_pt);
       // Rebuild the problem
       this->rebuild_global_mesh();
+      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                 << std::endl;
     }
 
     // Create a restart file
