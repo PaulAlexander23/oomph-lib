@@ -3108,7 +3108,8 @@ namespace oomph
       el_pt->set_boundary_number_in_bulk_mesh(Outer_boundary_with_slip_id);
       // Set the product of the Reynolds number and the inverse of the
       // Froude number
-      // el_pt->re_invfr_pt() = Parameters_pt->reynolds_inverse_froude_number_pt;
+      // el_pt->re_invfr_pt() =
+      // Parameters_pt->reynolds_inverse_froude_number_pt;
       // // Set the direction of gravity
       // el_pt->g_pt() = &Parameters_pt->gravity_vector;
 
@@ -3164,9 +3165,10 @@ namespace oomph
       el_pt->set_boundary_number_in_bulk_mesh(Free_surface_boundary_id);
       // Set the product of the Reynolds number and the inverse of the
       // Froude number
-      //el_pt->re_invfr_pt() = Parameters_pt->reynolds_inverse_froude_number_pt;
+      // el_pt->re_invfr_pt() =
+      // Parameters_pt->reynolds_inverse_froude_number_pt;
       //// Set the direction of gravity
-      //el_pt->g_pt() = &Parameters_pt->gravity_vector;
+      // el_pt->g_pt() = &Parameters_pt->gravity_vector;
       el_pt->set_subtract_from_residuals();
 
       unsigned n_element = Bulk_mesh_pt->nelement();
@@ -3372,6 +3374,8 @@ namespace oomph
                         "augmented region to be larger."
                      << std::endl;
         }
+
+        use_fd_jacobian_for_the_bulk_augmented();
       }
     }
 
