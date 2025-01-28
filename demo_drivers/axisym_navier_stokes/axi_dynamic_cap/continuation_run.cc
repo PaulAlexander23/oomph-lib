@@ -201,6 +201,7 @@ void normal_continuation_run(Params& parameters,
   problem.create_restart_file();
   problem.make_steady();
   problem.doc_solution();
+  problem.use_fd_jacobian_for_the_bulk_augmented();
 
   double step = starting_step;
   *continuation_param_pt -= step;
@@ -299,6 +300,7 @@ void arc_continuation_run(Params& parameters,
   problem.create_restart_file();
   problem.make_steady();
   problem.doc_solution();
+  problem.use_fd_jacobian_for_the_bulk_augmented();
 
   // Solve for the steady state adapting if needed by the Z2 error estimator
   problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
@@ -350,201 +352,70 @@ void height_control_continuation_run(Params& parameters,
                                      double& starting_step,
                                      double*& continuation_param_pt)
 {
-  //  if (continuation_param_pt == &Global_Physical_Params::Bo)
-  //  {
-  //    bond_height_control_continuation_run(
-  //      parameters, starting_step, continuation_param_pt);
-  //  }
-  //  else if (continuation_param_pt == &Slip_Params::wall_velocity)
-  //  {
-  //    ca_height_control_continuation_run(
-  //      parameters, starting_step, continuation_param_pt);
-  //  }
-}
+  FullContinuationProblem<SingularAxisymNavierStokesElement<
+                            ProjectableAxisymmetricTTaylorHoodPVDElement>,
+                          BDF<2>>
+    problem(&parameters);
+  problem.setup();
 
-void bond_height_control_continuation_run(Params& parameters,
-                                          double& starting_step,
-                                          double*& continuation_param_pt)
-{
-  //  // Construct the problem
-  //  if (parameters.restart_filename != "")
-  //  {
-  //    std::cout << "restarting" << std::endl;
-  //  }
-  //  BoHeightControlSingularAxisymDynamicCapProblem<
-  //    SingularAxisymNavierStokesElement<
-  //      ProjectableAxisymmetricTTaylorHoodPVDElement>,
-  //    BDF<2>>
-  //    problem(Global_Physical_Params::Equilibrium_contact_angle,
-  //    has_restart);
-  //
-  //  // Load in restart file
-  //  if (parameters.restart_filename != "")
-  //  {
-  //    try
-  //    {
-  //      ifstream restart_filestream;
-  //      restart_filestream.open(parameters.restart_filename);
-  //      bool is_unsteady_restart = false;
-  //      problem.read(restart_filestream, is_unsteady_restart);
-  //      restart_filestream.close();
-  //    }
-  //    catch (exception& e)
-  //    {
-  //      throw std::invalid_argument(
-  //        "Restart filename can't be set, or opened, or read.");
-  //    }
-  //  }
-  //
-  //  problem.set_contact_angle(
-  //    Global_Physical_Params::Equilibrium_contact_angle);
-  //  problem.set_bond_number(Global_Physical_Params::Bo);
-  //  problem.set_capillary_number(Global_Physical_Params::Ca);
-  //  problem.set_reynolds_number(Global_Physical_Params::Re);
-  //  problem.set_max_adapt(parameters.max_adapt);
-  //  problem.set_directory(parameters.dir_name);
-  //  problem.open_trace_files(true);
-  //
-  //  ofstream parameters_filestream(
-  //    (parameters.dir_name + "/parameters.dat").c_str());
-  //  parameters.doc(parameters_filestream);
-  //  parameters_filestream.close();
-  //
-  //  // Document initial condition
-  //  problem.create_restart_file();
-  //  problem.doc_solution();
-  //
-  //  // Solve for the steady state adapting if needed by the Z2 error estimator
-  //  problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
-  //
-  //  // Document the solution
-  //  problem.create_restart_file();
-  //  problem.doc_solution();
-  //
-  //  if (continuation_param_pt == &Global_Physical_Params::Bo)
-  //  {
-  //    problem.set_height_step_parameter_to_bond_number();
-  //  }
-  //  else if (continuation_param_pt == &Slip_Params::wall_velocity)
-  //  {
-  //    problem.set_height_step_parameter_to_wall_velocity();
-  //  }
-  //  else
-  //  {
-  //    throw std::runtime_error("Not implemented yet.");
-  //  }
-  //
-  //  double ds = starting_step;
-  //  const unsigned number_of_steps = floor(abs(parameters.ft /
-  //  parameters.dt)); for (unsigned n = 1; n < number_of_steps; n++)
-  //  {
-  //    TerminateHelper::setup();
-  //    problem.height_step_solve(ds);
-  //    problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
-  //
-  //    problem.create_restart_file();
-  //    problem.doc_solution();
-  //  }
-  //
-  //  // Close the trace files
-  //  problem.close_trace_files();
-  //  TerminateHelper::clean_up_memory();
-}
+  // Load in restart file
+  if (parameters.restart_filename != "")
+  {
+    try
+    {
+      ifstream restart_filestream;
+      restart_filestream.open(parameters.restart_filename);
+      bool is_unsteady_restart = false;
+      problem.read(restart_filestream, is_unsteady_restart);
+      restart_filestream.close();
+    }
+    catch (exception& e)
+    {
+      throw std::invalid_argument(
+        "Restart filename can't be set, or opened, or read.");
+    }
+  }
 
-void ca_height_control_continuation_run(Params& parameters,
-                                        double& starting_step,
-                                        double*& continuation_param_pt)
-{
-  //  // Construct the problem
-  //  if (parameters.restart_filename != "")
-  //  {
-  //    std::cout << "restarting" << std::endl;
-  //  }
-  //  CaHeightControlSingularAxisymDynamicCapProblem<
-  //    SingularAxisymNavierStokesElement<
-  //      ProjectableAxisymmetricTTaylorHoodPVDElement>,
-  //    BDF<2>>
-  //    problem(Global_Physical_Params::Equilibrium_contact_angle,
-  //    has_restart);
-  //
-  //  // Load in restart file
-  //  if (parameters.restart_filename != "")
-  //  {
-  //    try
-  //    {
-  //      ifstream restart_filestream;
-  //      restart_filestream.open(parameters.restart_filename);
-  //      bool is_unsteady_restart = false;
-  //      problem.read(restart_filestream, is_unsteady_restart);
-  //      restart_filestream.close();
-  //    }
-  //    catch (exception& e)
-  //    {
-  //      throw std::invalid_argument(
-  //        "Restart filename can't be set, or opened, or read.");
-  //    }
-  //  }
-  //
-  //  problem.set_contact_angle(
-  //    Global_Physical_Params::Equilibrium_contact_angle);
-  //  problem.set_bond_number(Global_Physical_Params::Bo);
-  //  problem.set_capillary_number(Global_Physical_Params::Ca);
-  //  problem.set_reynolds_number(Global_Physical_Params::Re);
-  //  problem.set_max_adapt(parameters.max_adapt);
-  //  problem.set_directory(parameters.dir_name);
-  //  problem.open_trace_files(true);
-  //
-  //  ofstream parameters_filestream(
-  //    (parameters.dir_name + "/parameters.dat").c_str());
-  //  parameters.doc(parameters_filestream);
-  //  parameters_filestream.close();
-  //
-  //  // Document initial condition
-  //  problem.create_restart_file();
-  //  problem.doc_solution();
-  //
-  //  // Solve for the steady state adapting if needed by the Z2 error estimator
-  //  problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
-  //
-  //  // Document the solution
-  //  problem.create_restart_file();
-  //  problem.doc_solution();
-  //
-  //  if (continuation_param_pt == &Global_Physical_Params::Bo)
-  //  {
-  //    problem.set_height_step_parameter_to_bond_number();
-  //  }
-  //  else if (continuation_param_pt == &Slip_Params::wall_velocity)
-  //  {
-  //    problem.set_height_step_parameter_to_wall_velocity();
-  //  }
-  //  else
-  //  {
-  //    throw std::runtime_error("Not implemented yet.");
-  //  }
-  //
-  //  double ds = starting_step;
-  //  const unsigned number_of_steps = floor(abs(parameters.ft /
-  //  parameters.dt)); for (unsigned n = 1; n < number_of_steps; n++)
-  //  {
-  //    TerminateHelper::setup();
-  //    try
-  //    {
-  //      problem.height_step_solve(ds);
-  //      problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
-  //    }
-  //    catch (exception& e)
-  //    {
-  //      ds /= 2;
-  //    }
-  //
-  //    problem.create_restart_file();
-  //    problem.doc_solution();
-  //  }
-  //
-  //  // Close the trace files
-  //  problem.close_trace_files();
-  //  TerminateHelper::clean_up_memory();
+  problem.setup();
+
+  // Setup trace file
+  problem.open_trace_files(true);
+
+  // Save a copy of the parameters
+  save_parameters_to_file(parameters,
+                          parameters.output_directory + "/parameters.dat");
+
+  // Document initial condition
+  problem.create_restart_file();
+  problem.make_steady();
+  problem.doc_solution();
+
+  problem.use_fd_jacobian_for_the_bulk_augmented();
+  // Solve for the steady state adapting if needed by the Z2 error
+  // estimator
+  problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
+  problem.doc_solution();
+
+  // Document the solution
+  problem.create_restart_file();
+  problem.doc_solution();
+
+  problem.set_continuation_parameter(parameters.wall_velocity_pt);
+
+  double ds = starting_step;
+  const unsigned number_of_steps =
+    floor(abs(parameters.final_time / parameters.time_step));
+  for (unsigned n = 1; n < number_of_steps; n++)
+  {
+    problem.step_height(ds);
+    problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
+
+    problem.create_restart_file();
+    problem.doc_solution();
+  }
+
+  // Close the trace files
+  problem.close_trace_files();
 }
 
 int main(int argc, char** argv)
@@ -570,7 +441,7 @@ int main(int argc, char** argv)
       continuation_param_pt = parameters.reynolds_inverse_froude_number_pt;
       break;
     case ContinuationParameter::Ca:
-      continuation_param_pt = &parameters.wall_velocity;
+      continuation_param_pt = parameters.wall_velocity_pt;
       break;
     case ContinuationParameter::Angle:
       continuation_param_pt = &parameters.contact_angle;
