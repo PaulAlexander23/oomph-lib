@@ -94,7 +94,19 @@ namespace oomph
 
     void output(std::ostream& outfile)
     {
-      outfile << this->internal_data_pt(0)->value(0) << std::endl;
+      // Output the height
+      outfile << this->internal_data_pt(0)->value(0) << " ";
+      // Output the traded data value
+      if (Traded_data_number >= 0)
+      {
+        outfile << this->external_data_pt(Traded_data_number)->value(0) << " ";
+      }
+      else
+      {
+        outfile << "0 ";
+      }
+      // Next line
+      outfile << std::endl;
     }
   };
 
