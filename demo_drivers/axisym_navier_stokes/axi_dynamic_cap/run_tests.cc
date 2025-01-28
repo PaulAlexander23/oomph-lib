@@ -77,6 +77,18 @@ BOOST_AUTO_TEST_CASE(singular_axisym_dynamic_cap_problem_creation)
   // If the problem solve completes, then it is a success.
 }
 
+/// Test SingularAxisymDynamicCapProblem
+BOOST_AUTO_TEST_CASE(obtuse_adapt)
+{
+  Params parameters;
+  AXISYM_PROBLEM problem(&parameters);
+  problem.setup();
+  problem.use_fd_jacobian_for_the_bulk_augmented();
+  const unsigned max_adapt = 1;
+  problem.newton_solve(max_adapt);
+  // If the problem solve completes, then it is a success.
+}
+
 /// ----------------------------------------------------------------------------
 /// Continuation
 
