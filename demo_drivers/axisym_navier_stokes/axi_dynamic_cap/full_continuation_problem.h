@@ -1,0 +1,468 @@
+#ifndef FULL_CONTINUATION_PROBLEM_HEADER
+#define FULL_CONTINUATION_PROBLEM_HEADER
+
+#include "singular_axisym_dynamic_cap_problem.h"
+#include "height_element.h"
+#include "parameters.h"
+
+namespace oomph
+{
+  template<class ELEMENT, class TIMESTEPPER>
+  class FullContinuationProblem
+    : public virtual SingularAxisymDynamicCapProblem<ELEMENT, TIMESTEPPER>
+  {
+  private:
+    /// Storage for the height element mesh
+    Mesh* Height_mesh_pt;
+
+    /// Storage for the traded height step data
+    Data* Traded_data_pt;
+
+    /// Flag to indicate if the continuation parameter is set
+    bool Is_continuation_parameter_set;
+
+  public:
+    /// Typedef for the height element
+    typedef HeightElement HEIGHT_ELEMENT;
+
+    /// Constructor
+    /// Calls the base constructor and initalises the height element mesh and
+    /// traded data.
+    FullContinuationProblem(Params& params)
+      : SingularAxisymDynamicCapProblem<ELEMENT, TIMESTEPPER>(&params),
+        Height_mesh_pt(new Mesh),
+        Traded_data_pt(new Data(1)),
+        Is_continuation_parameter_set(false)
+    {
+      this->add_sub_mesh(Height_mesh_pt);
+      this->add_global_data(Traded_data_pt);
+      this->rebuild_global_mesh();
+
+      // Turn this into a height problem
+      turn_into_height_problem();
+    }
+
+    virtual void read(std::ifstream& restart_file, bool& unsteady_restart)
+    {
+      // Remove additional submeshes and global data
+      remove_sub_mesh(Height_mesh_pt);
+      remove_global_data(Traded_data_pt);
+      // Rebuild the problem
+      this->rebuild_global_mesh();
+
+      // Read the base problem
+      SingularAxisymDynamicCapProblem<ELEMENT, TIMESTEPPER>::read(
+        restart_file, unsteady_restart);
+
+      // Re-add the submeshes and global data
+      this->add_sub_mesh(Height_mesh_pt);
+      this->add_global_data(Traded_data_pt);
+
+      // Rebuild the problem
+      this->rebuild_global_mesh();
+      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                 << std::endl;
+    }
+
+    // Create a restart file
+    // Does not include all the problem and system parameters
+    // This means we need to do a newton solve to set the height dof.
+    virtual void create_restart_file()
+    {
+      // Remove additional submeshes and global data
+      remove_sub_mesh(Height_mesh_pt);
+      remove_global_data(Traded_data_pt);
+
+      // Rebuild the problem
+      this->rebuild_global_mesh();
+
+      // Create the restart file
+      SingularAxisymDynamicCapProblem<ELEMENT,
+                                      TIMESTEPPER>::create_restart_file();
+
+      // Re-add the submeshes and global data
+      this->add_sub_mesh(Height_mesh_pt);
+      this->add_global_data(Traded_data_pt);
+
+      // Rebuild the problem
+      this->rebuild_global_mesh();
+      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                 << std::endl;
+    }
+
+    /// Remove submesh
+    void remove_sub_mesh(Mesh* const& mesh_pt)
+    {
+      // Loop over the submeshes and store a copy of each mesh
+      unsigned n_mesh = this->nsub_mesh();
+      std::vector<Mesh*> sub_meshes;
+      for (unsigned m = 0; m < n_mesh; m++)
+      {
+        sub_meshes.push_back(this->mesh_pt(m));
+      }
+      // Flush the meshes
+      this->flush_sub_meshes();
+      // Loop over the stored meshes and re-add them, except the one to be
+      // removed
+      for (unsigned m = 0; m < n_mesh; m++)
+      {
+        if (sub_meshes[m] != mesh_pt)
+        {
+          this->add_sub_mesh(sub_meshes[m]);
+        }
+      }
+    }
+
+    /// Remove global data
+    void remove_global_data(Data* const& data_pt)
+    {
+      // Loop over the global data and store a copy of each data
+      unsigned n_data = this->nglobal_data();
+      std::vector<Data*> global_data;
+      for (unsigned d = 0; d < n_data; d++)
+      {
+        global_data.push_back(this->global_data_pt(d));
+      }
+      // Flush the data
+      this->flush_global_data();
+      // Loop over the stored data and re-add them, except the one to be
+      // removed
+      for (unsigned d = 0; d < n_data; d++)
+      {
+        if (global_data[d] != data_pt)
+        {
+          this->add_global_data(global_data[d]);
+        }
+      }
+    }
+
+
+    /// actions after adapt
+    /// Calls the base actions after adapt and creates the height elements.
+    void actions_after_adapt()
+    {
+      oomph_info << "continuation actions after adapt" << std::endl;
+
+      // Call the base actions after adapt
+      SingularAxisymDynamicCapProblem<ELEMENT,
+                                      TIMESTEPPER>::actions_after_adapt();
+
+      turn_into_height_problem();
+    }
+
+    void turn_into_height_problem()
+    {
+      oomph_info << "Turning into height problem" << std::endl;
+
+      // Create the height elements
+      this->create_height_elements(this->inner_corner_solid_node_pt(),
+                                   this->contact_line_solid_node_pt());
+
+      // If the continuation parameter is set, pin the height and unpin the
+      // parameter
+      if (Is_continuation_parameter_set)
+      {
+        setup_height_element_interaction();
+      }
+
+      set_continuation_boundary_conditions();
+
+      // Setup the problem
+      this->rebuild_global_mesh();
+      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                 << std::endl;
+    }
+
+
+    void setup_height_element_interaction()
+    {
+      // Loop over bulk elements and add Reynolds Inverse Froude number as
+      // external data
+      unsigned n_element = this->bulk_mesh_pt()->nelement();
+      for (unsigned e = 0; e < n_element; e++)
+      {
+        dynamic_cast<ELEMENT*>(this->bulk_mesh_pt()->element_pt(e))
+          ->re_invfr_pt() = Traded_data_pt->value_pt(0);
+        this->bulk_mesh_pt()->element_pt(e)->add_external_data(Traded_data_pt);
+      }
+
+      if (this->is_augmented())
+      {
+        n_element = this->pressure_evaluation_mesh1_pt()->nelement();
+        for (unsigned e = 0; e < n_element; e++)
+        {
+          dynamic_cast<PressureEvaluationElement<ELEMENT>*>(
+            this->pressure_evaluation_mesh1_pt()->element_pt(e))
+            ->re_invfr_pt() = Traded_data_pt->value_pt(0);
+          this->pressure_evaluation_mesh1_pt()
+            ->element_pt(e)
+            ->add_external_data(Traded_data_pt);
+        }
+
+        n_element = this->pressure_evaluation_mesh2_pt()->nelement();
+        for (unsigned e = 0; e < n_element; e++)
+        {
+          dynamic_cast<PressureEvaluationElement<ELEMENT>*>(
+            this->pressure_evaluation_mesh2_pt()->element_pt(e))
+            ->re_invfr_pt() = Traded_data_pt->value_pt(0);
+          this->pressure_evaluation_mesh2_pt()
+            ->element_pt(e)
+            ->add_external_data(Traded_data_pt);
+        }
+      }
+
+      // Loop over slip surface elements and add wall velocity as external
+      // data
+      n_element = this->slip_surface_mesh_pt()->nelement();
+      for (unsigned e = 0; e < n_element; e++)
+      {
+        this->slip_surface_mesh_pt()->element_pt(e)->add_external_data(
+          Traded_data_pt);
+      }
+    }
+
+    void set_continuation_boundary_conditions()
+    {
+      if (this->Is_continuation_parameter_set)
+      {
+        // Pin the height
+        dynamic_cast<HEIGHT_ELEMENT*>(Height_mesh_pt->element_pt(0))
+          ->pin_height();
+        // Unpin the parameter
+        Traded_data_pt->unpin(0);
+      }
+      else
+      {
+        // Unpin the height
+        dynamic_cast<HEIGHT_ELEMENT*>(Height_mesh_pt->element_pt(0))
+          ->unpin_height();
+        // Pin the parameter
+        Traded_data_pt->pin(0);
+      }
+    }
+
+    /// actions before adapt
+    /// Calls the base actions before adapt and deletes the height elements.
+    void actions_before_adapt()
+    {
+      // Delete the height elements before the mesh is adapted
+      delete_height_elements();
+
+      // Call the base actions before adapt, which will also setup the problem
+      SingularAxisymDynamicCapProblem<ELEMENT,
+                                      TIMESTEPPER>::actions_before_adapt();
+    }
+
+    void actions_after_newton_step()
+    {
+      // this->debug_jacobian();
+      // throw OomphLibError(
+      //   "Debugging Jacobian", OOMPH_CURRENT_FUNCTION,
+      //   OOMPH_EXCEPTION_LOCATION);
+    }
+
+    /// Set the continuation parameter
+    void set_continuation_parameter(double*& parameter_pt)
+    {
+      if (!Is_continuation_parameter_set)
+      {
+        // Set the continuation parameter
+        Traded_data_pt->set_value(0, *parameter_pt);
+
+        unsigned cont_param_index = 0;
+        if (this->parameters_pt()->reynolds_inverse_froude_number_pt ==
+            parameter_pt)
+        {
+          cont_param_index = 1;
+        }
+        else if (this->parameters_pt()->wall_velocity_pt == parameter_pt)
+        {
+          cont_param_index = 2;
+        }
+
+
+        // Delete the original parameter storage
+        delete parameter_pt;
+
+        // Use the data storage
+        parameter_pt = Traded_data_pt->value_pt(0);
+        if (cont_param_index == 1)
+        {
+          this->parameters_pt()->reynolds_inverse_froude_number_pt =
+            parameter_pt;
+        }
+        else if (cont_param_index == 2)
+        {
+          this->parameters_pt()->wall_velocity_pt = parameter_pt;
+        }
+
+        // set the flag
+        Is_continuation_parameter_set = true;
+
+        setup_height_element_interaction();
+
+        set_continuation_boundary_conditions();
+
+        // Setup the problem
+        this->rebuild_global_mesh();
+        oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                   << std::endl;
+      }
+      else
+      {
+        throw OomphLibWarning("Continuation parameter already set",
+                              OOMPH_CURRENT_FUNCTION,
+                              OOMPH_EXCEPTION_LOCATION);
+      }
+    }
+
+    void set_height_from_soln()
+    {
+      dynamic_cast<HEIGHT_ELEMENT*>(Height_mesh_pt->element_pt(0))
+        ->set_height();
+    }
+
+    /// Unset the continuation parameter
+    void unset_continuation_parameter(double*& parameter_pt)
+    {
+      if (Is_continuation_parameter_set)
+      {
+        // Create new storage for the parameter and set it to the traded data
+        parameter_pt = new double(Traded_data_pt->value(0));
+
+        // Unset the continuation parameter
+        Traded_data_pt->set_value(0, 0.0);
+
+        // set the flag
+        Is_continuation_parameter_set = false;
+      }
+      else
+      {
+        throw OomphLibWarning("Continuation parameter not set",
+                              OOMPH_CURRENT_FUNCTION,
+                              OOMPH_EXCEPTION_LOCATION);
+      }
+    }
+
+    /// Create the height elements using the inner corner and contact line nodes
+    /// and trading for the height step data.
+    void create_height_elements(SolidNode* Inner_corner_solid_node_pt,
+                                SolidNode* Contact_line_solid_node_pt)
+    {
+      // Create the height element
+      HEIGHT_ELEMENT* height_el_pt = new HEIGHT_ELEMENT(
+        Inner_corner_solid_node_pt, Contact_line_solid_node_pt);
+
+      // Set the height step data
+      height_el_pt->set_parameter_data_pt(Traded_data_pt);
+
+      // Add the height element to the mesh
+      Height_mesh_pt->add_element_pt(height_el_pt);
+    }
+
+    /// Delete the height elements and unset the height step data.
+    void delete_height_elements()
+    {
+      // Delete the elements
+      unsigned n_element = Height_mesh_pt->nelement();
+      for (unsigned e = 0; e < n_element; e++)
+      {
+        delete Height_mesh_pt->element_pt(e);
+      }
+      // Now flush the storage
+      Height_mesh_pt->flush_element_and_node_storage();
+    }
+
+
+    void step_height(const double& ds)
+    {
+      dynamic_cast<HEIGHT_ELEMENT*>(Height_mesh_pt->element_pt(0))
+        ->step_height(ds);
+    }
+    ///// Takes a continuation step using a fixed height drop and solving for
+    /// the
+    ///// parameter.
+    // double height_step_solve(double ds)
+    //{
+    //   // Pin the height
+    //   dynamic_cast<HEIGHT_ELEMENT*>(Height_mesh_pt->element_pt(0))
+    //     ->pin_height();
+    //   // Unpin the parameter
+    //   Traded_data_pt->unpin(0);
+
+    //  // Setup the problem
+    //  oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+    //             << std::endl;
+
+    //  // Set the step height
+    //  dynamic_cast<HEIGHT_ELEMENT*>(Height_mesh_pt->element_pt(0))
+    //    ->step_height(ds);
+
+    //  // Debug the Jacobian
+    //  // this->debug_jacobian();
+
+    //  // Solve the problem
+    //  this->steady_newton_solve();
+
+    //  // Restore the problem to its original state
+    //  dynamic_cast<HEIGHT_ELEMENT*>(Height_mesh_pt->element_pt(0))
+    //    ->unpin_height();
+    //  Traded_data_pt->pin(0);
+
+    //  // Adapt the step size
+    //  ds = adapt_step_size(ds);
+
+    //  // Return the step size
+    //  return ds;
+    //}
+
+    ///// Adapt the step size based on the number of Newton iterations taken.
+    // double adapt_step_size(double ds)
+    //{
+    //   if (this->Nnewton_iter_taken < this->Desired_newton_iterations_ds)
+    //   {
+    //     ds *= 1.5;
+    //   }
+    //   else if (this->Nnewton_iter_taken > this->Desired_newton_iterations_ds)
+    //   {
+    //     ds *= 2.0 / 3.0;
+    //   }
+    //   return ds;
+    // }
+
+    // void set_nnewton_iter_taken(const unsigned& n)
+    //{
+    //   this->Nnewton_iter_taken = n;
+    // }
+
+    void doc_solution()
+    {
+      SingularAxisymDynamicCapProblem<ELEMENT, TIMESTEPPER>::doc_solution();
+
+      // Output the height element
+      std::ofstream output_file(this->doc_info().directory() + "/height" +
+                                to_string(this->doc_info().number()) + ".dat");
+      for (unsigned e = 0; e < Height_mesh_pt->nelement(); e++)
+      {
+        dynamic_cast<HEIGHT_ELEMENT*>(Height_mesh_pt->element_pt(e))
+          ->output(output_file);
+      }
+      output_file.close();
+    }
+
+    void output_height()
+    {
+      for (unsigned e = 0; e < Height_mesh_pt->nelement(); e++)
+      {
+        dynamic_cast<HEIGHT_ELEMENT*>(Height_mesh_pt->element_pt(e))
+          ->output(*oomph_info.stream_pt());
+      }
+      for (unsigned n = 0; n < Traded_data_pt->nvalue(); n++)
+      {
+        oomph_info << Traded_data_pt->value(n) << std::endl;
+      }
+    }
+  };
+}; // namespace oomph
+
+#endif

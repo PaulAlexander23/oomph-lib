@@ -65,6 +65,7 @@ namespace oomph
     bool IsAddingAdditionalTerms;
     bool IsAddingPressureAdditionalTerms;
     bool IsTotalEquationWeak;
+    bool IsJacobianFD;
 
     /// Vector of pointers to SingularNavierStokesSolutionElement objects
     Vector<SingularNavierStokesSolutionElement<
@@ -100,7 +101,8 @@ namespace oomph
         IsSwappingPressureEquations(false),
         IsAddingAdditionalTerms(false),
         IsAddingPressureAdditionalTerms(true),
-        IsTotalEquationWeak(false)
+        IsTotalEquationWeak(false),
+        IsJacobianFD(false)
     {
       // Find the number of nodes in the element
       const unsigned n_node = this->nnode();
@@ -402,6 +404,25 @@ namespace oomph
     {
       return IsAugmented;
     }
+
+    // Set the element to use finite differences for all data
+    void use_fd_jacobian()
+    {
+      IsJacobianFD = true;
+    }
+
+    // Set the element to use analytic Jacobian contributions
+    void use_analytic_jacobian()
+    {
+      IsJacobianFD = true;
+    }
+
+    // Check if the element is using finite differences for the Jacobian
+    bool is_using_fd_jacobian()
+    {
+      return IsJacobianFD;
+    }
+
 
     void swap_equations()
     {
@@ -725,7 +746,8 @@ namespace oomph
 
       // Add the additional unknown of this object as external data in the
       // Navier-Stokes element
-      this->add_external_data(c_pt->internal_data_pt(0));
+      const bool use_fd = false;
+      this->add_external_data(c_pt->internal_data_pt(0), use_fd);
     }
 
     /// Add the element's contribution to its residual vector (wrapper)
@@ -746,12 +768,36 @@ namespace oomph
     void fill_in_contribution_to_jacobian(Vector<double>& residuals,
                                           DenseMatrix<double>& jacobian)
     {
-      // Call the generic routine with the flag set to 1 and dummy mass
-      // matrix
-      BASIC_AXISYM_NAVIER_STOKES_ELEMENT::fill_in_contribution_to_jacobian(
-        residuals, jacobian);
-      this->fill_in_generic_residual_contribution_wrapped_axi_nst(
-        residuals, jacobian, 1);
+      // Use finite differences
+      if (this->is_using_fd_jacobian())
+      {
+        // If the element is a solid finite element, call the solid
+        // finite element's fill_in_contribution_to_jacobian function
+        SolidFiniteElement* solid_fe_pt =
+          dynamic_cast<SolidFiniteElement*>(this);
+        if (solid_fe_pt != nullptr)
+        {
+          SolidFiniteElement::fill_in_contribution_to_jacobian(residuals,
+                                                               jacobian);
+        }
+        // The element is a finite element, call the finite element's
+        // fill_in_contribution_to_jacobian function
+        else
+        {
+          FiniteElement::fill_in_contribution_to_jacobian(residuals, jacobian);
+        }
+      }
+      // Otherwise use analytic contributions
+      else
+      {
+        // Call the base fill_in_contribution_to_jacobian function
+        BASIC_AXISYM_NAVIER_STOKES_ELEMENT::fill_in_contribution_to_jacobian(
+          residuals, jacobian);
+        // Then call the singular Navier-Stokes element's
+        // fill_in_contribution_to_jacobian function
+        this->fill_in_generic_residual_contribution_wrapped_axi_nst(
+          residuals, jacobian, 1);
+      }
     }
 
     /// Add the element's contribution to its residual vector and
@@ -2078,18 +2124,8 @@ namespace oomph
           s[d] = this->integral_pt()->knot(ipt, d);
         }
 
-        // Get the integral weight
-        double w = this->integral_pt()->weight(ipt);
-
-        // Call the derivatives of the velocity shape and test functions
-        double J = this->dshape_and_dtest_eulerian_at_knot_axi_nst(
-          ipt, psif, dpsifdx, testf, dtestfdx);
-
         // Call the pressure shape and test functions
         this->pshape_axi_nst(s, psip, testp);
-
-        // Premultiply the weights and the Jacobian
-        double W = w * J;
 
         // Initialise the global coordinate and velocity
         Vector<double> interpolated_x(cached_dim, 0.0);

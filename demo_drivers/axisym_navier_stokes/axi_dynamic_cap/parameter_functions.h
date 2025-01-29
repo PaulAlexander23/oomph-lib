@@ -27,17 +27,17 @@ namespace oomph
                      const Vector<double>&,
                      const Vector<double>&,
                      Vector<double>&)>
-  wall_velocity_function_factory(const double& wall_velocity)
+  wall_velocity_function_factory(double*& wall_velocity_pt)
   {
     // Return a lambda that captures 's' and takes 't' and 'x' as arguments
-    return [wall_velocity](const double& t,
-                           const Vector<double>& x,
-                           const Vector<double>& n,
-                           Vector<double>& velocity) -> void
+    return [&wall_velocity_pt](const double& t,
+                               const Vector<double>& x,
+                               const Vector<double>& n,
+                               Vector<double>& velocity) -> void
     {
       // Assign solution
       velocity[0] = 0.0;
-      velocity[1] = wall_velocity;
+      velocity[1] = *wall_velocity_pt;
       velocity[2] = 0.0;
     };
   }

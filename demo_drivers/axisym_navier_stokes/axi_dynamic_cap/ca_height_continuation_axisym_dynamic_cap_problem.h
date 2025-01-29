@@ -45,7 +45,6 @@
 #include "my_error_estimator.h"
 
 
-
 #include "net_flux_elements.h"
 
 #include "height_element.h"
@@ -1158,7 +1157,8 @@ namespace oomph
           }
 
           // Then adapt is needed
-          oomph_info << "Adapt is needed due to contact angle error" << std::endl;
+          oomph_info << "Adapt is needed due to contact angle error"
+                     << std::endl;
           return true;
         }
       }
@@ -2281,7 +2281,8 @@ namespace oomph
       // Save current solution
       std::ofstream dump_filestream;
       std::string restart_filename = this->doc_info().directory() + "/restart" +
-                                to_string(this->doc_info().number()) + ".dat";
+                                     to_string(this->doc_info().number()) +
+                                     ".dat";
       dump_filestream.open(restart_filename);
       dump_filestream.precision(16);
       // actions_before_adapt();
@@ -2331,7 +2332,7 @@ namespace oomph
 
         el_pt->add_external_data(ReInvFr_data_pt);
 
-        //el_pt->enable_evaluate_jacobian_by_fd();
+        // el_pt->enable_evaluate_jacobian_by_fd();
       }
     }
 

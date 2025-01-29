@@ -27,7 +27,9 @@ namespace oomph
       fill_in_shape_derivatives(jacobian);
 
       // Fill in the external data entries by finite difference.
-      // fill_in_jacobian_from_external_by_fd(residuals, jacobian, true);
+      const bool use_fd_for_all_data = false;
+      fill_in_jacobian_from_external_by_fd(
+        residuals, jacobian, use_fd_for_all_data);
     }
 
     void fill_in_contribution_to_jacobian_and_mass_matrix(

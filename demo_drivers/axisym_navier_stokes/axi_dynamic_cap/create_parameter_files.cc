@@ -225,7 +225,7 @@ int main(int argc, char** argv)
       parameters,
       script_is_creating_folders,
       filestream,
-      &parameters.reynolds_inverse_froude_number);
+      parameters.reynolds_inverse_froude_number_pt);
   }
   else if (sl_range != "")
   {
@@ -255,7 +255,7 @@ int main(int argc, char** argv)
       parameters,
       script_is_creating_folders,
       filestream,
-      &parameters.wall_velocity);
+      parameters.wall_velocity_pt);
   }
   else if (ca_range != "")
   {

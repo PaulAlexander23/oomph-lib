@@ -3,6 +3,8 @@
 
 #include <sys/stat.h>
 #include <limits>
+#include <memory>
+
 #include "generic.h"
 
 namespace oomph
@@ -40,7 +42,7 @@ namespace oomph
     double polyline_refinement_tolerence = 4e-3; // 8e-3
     double polyline_unrefinement_tolerence = 2e-3; // 4e-3
     double ramp_up_time = 0.1;
-    double reynolds_inverse_froude_number = 0.0;
+    double* reynolds_inverse_froude_number_pt = new double(0.0);
     double reynolds_number = 0.0;
     double reynolds_strouhal_number = 0.0;
     double right_angle = MathematicalConstants::Pi * 90.0 / 180.0;
@@ -53,17 +55,17 @@ namespace oomph
     double uniform_element_area = 0.5 * std::pow(5e-1, 2.0);
     double viscosity_ratio = 1.0;
     double volume = 3.5 / 2.0;
-    double wall_velocity = 1.0;
+    double* wall_velocity_pt = new double(0.0);
     int max_adapt = 0;
-    std::string output_directory = "";
+    std::string output_directory = "RESLT";
     std::string restart_filename = "";
     unsigned azimuthal_mode_number = 0;
     unsigned bulk_element_number_of_plot_points = 3;
     unsigned error_estimator_flag = 1;
     unsigned initial_number_of_free_surface_points = 32;
-    unsigned interval_between_adapts = 5;
+    unsigned interval_between_adapts = 0;
     unsigned max_newton_iterations = 40;
-    unsigned max_number_of_adapts_for_refinement = 20;
+    unsigned max_number_of_adapts_for_refinement = 0;
     unsigned surface_element_number_of_plot_points = 3;
   };
 
@@ -76,7 +78,7 @@ namespace oomph
 
     getline(parameter_filestream, input_string, '#');
     parameter_filestream.ignore(80, '\n');
-    params.reynolds_inverse_froude_number = stod(input_string);
+    *params.reynolds_inverse_froude_number_pt = stod(input_string);
 
     getline(parameter_filestream, input_string, '#');
     parameter_filestream.ignore(80, '\n');
@@ -202,7 +204,7 @@ namespace oomph
 
     getline(parameter_filestream, input_string, '#');
     parameter_filestream.ignore(80, '\n');
-    params.wall_velocity = stod(input_string);
+    *params.wall_velocity_pt = stod(input_string);
 
     getline(parameter_filestream, input_string, '#');
     parameter_filestream.ignore(80, '\n');
@@ -252,7 +254,7 @@ namespace oomph
     parameter_filestream << std::setprecision(
       std::numeric_limits<double>::max_digits10);
 
-    parameter_filestream << params.reynolds_inverse_froude_number
+    parameter_filestream << *params.reynolds_inverse_froude_number_pt
                          << " # Bond number" << "\n";
     parameter_filestream << params.capillary_number << " # Capillary number"
                          << "\n";
@@ -303,7 +305,7 @@ namespace oomph
     parameter_filestream << params.time_step << " # Time step" << "\n";
     parameter_filestream << params.restart_filename << " # Restart filename"
                          << "\n";
-    parameter_filestream << params.wall_velocity << " # Wall velocity" << "\n";
+    parameter_filestream << *params.wall_velocity_pt << " # Wall velocity" << "\n";
     parameter_filestream << params.azimuthal_mode_number
                          << " # Azimuthal mode number" << "\n";
     parameter_filestream
