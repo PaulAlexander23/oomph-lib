@@ -5,7 +5,7 @@ OOMPH_ROOT_DIR=$(make -s --no-print-directory print-top_builddir)
 
 
 #Set the number of tests to be checked
-NUM_TESTS=18
+NUM_TESTS=22
 
 
 # Setup validation directory

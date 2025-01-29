@@ -269,12 +269,32 @@ namespace oomph
         // Set the continuation parameter
         Traded_data_pt->set_value(0, *parameter_pt);
 
+        unsigned cont_param_index = 0;
+        if (this->parameters_pt()->reynolds_inverse_froude_number_pt ==
+            parameter_pt)
+        {
+          cont_param_index = 1;
+        }
+        else if (this->parameters_pt()->wall_velocity_pt == parameter_pt)
+        {
+          cont_param_index = 2;
+        }
+
+
         // Delete the original parameter storage
         delete parameter_pt;
 
         // Use the data storage
         parameter_pt = Traded_data_pt->value_pt(0);
-        this->parameters_pt()->reynolds_inverse_froude_number_pt = parameter_pt;
+        if (cont_param_index == 1)
+        {
+          this->parameters_pt()->reynolds_inverse_froude_number_pt =
+            parameter_pt;
+        }
+        else if (cont_param_index == 2)
+        {
+          this->parameters_pt()->wall_velocity_pt = parameter_pt;
+        }
 
         // set the flag
         Is_continuation_parameter_set = true;
