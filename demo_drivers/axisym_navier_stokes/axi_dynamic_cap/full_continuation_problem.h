@@ -38,7 +38,8 @@ namespace oomph
       this->add_global_data(Traded_data_pt);
       this->rebuild_global_mesh();
 
-      Traded_data_pt->pin(0);
+      // Turn this into a height problem
+      turn_into_height_problem();
     }
 
     virtual void read(std::ifstream& restart_file, bool& unsteady_restart)
@@ -48,12 +49,15 @@ namespace oomph
       remove_global_data(Traded_data_pt);
       // Rebuild the problem
       this->rebuild_global_mesh();
+
       // Read the base problem
       SingularAxisymDynamicCapProblem<ELEMENT, TIMESTEPPER>::read(
         restart_file, unsteady_restart);
+
       // Re-add the submeshes and global data
       this->add_sub_mesh(Height_mesh_pt);
       this->add_global_data(Traded_data_pt);
+
       // Rebuild the problem
       this->rebuild_global_mesh();
       oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
@@ -82,6 +86,8 @@ namespace oomph
 
       // Rebuild the problem
       this->rebuild_global_mesh();
+      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                 << std::endl;
     }
 
     /// Remove submesh
@@ -135,9 +141,18 @@ namespace oomph
     /// Calls the base actions after adapt and creates the height elements.
     void actions_after_adapt()
     {
+      oomph_info << "continuation actions after adapt" << std::endl;
+
       // Call the base actions after adapt
       SingularAxisymDynamicCapProblem<ELEMENT,
                                       TIMESTEPPER>::actions_after_adapt();
+
+      turn_into_height_problem();
+    }
+
+    void turn_into_height_problem()
+    {
+      oomph_info << "Turning into height problem" << std::endl;
 
       // Create the height elements
       this->create_height_elements(this->inner_corner_solid_node_pt(),
@@ -147,8 +162,10 @@ namespace oomph
       // parameter
       if (Is_continuation_parameter_set)
       {
-        setup_elements();
+        setup_height_element_interaction();
       }
+
+      set_continuation_boundary_conditions();
 
       // Setup the problem
       this->rebuild_global_mesh();
@@ -156,14 +173,9 @@ namespace oomph
                  << std::endl;
     }
 
-    void setup_elements()
-    {
-      // Pin the height
-      dynamic_cast<HEIGHT_ELEMENT*>(Height_mesh_pt->element_pt(0))
-        ->pin_height();
-      // Unpin the parameter
-      Traded_data_pt->unpin(0);
 
+    void setup_height_element_interaction()
+    {
       // Loop over bulk elements and add Reynolds Inverse Froude number as
       // external data
       unsigned n_element = this->bulk_mesh_pt()->nelement();
@@ -209,15 +221,32 @@ namespace oomph
       }
     }
 
+    void set_continuation_boundary_conditions()
+    {
+      if (this->Is_continuation_parameter_set)
+      {
+        // Pin the height
+        dynamic_cast<HEIGHT_ELEMENT*>(Height_mesh_pt->element_pt(0))
+          ->pin_height();
+        // Unpin the parameter
+        Traded_data_pt->unpin(0);
+      }
+      else
+      {
+        // Unpin the height
+        dynamic_cast<HEIGHT_ELEMENT*>(Height_mesh_pt->element_pt(0))
+          ->unpin_height();
+        // Pin the parameter
+        Traded_data_pt->pin(0);
+      }
+    }
+
     /// actions before adapt
     /// Calls the base actions before adapt and deletes the height elements.
     void actions_before_adapt()
     {
       // Delete the height elements before the mesh is adapted
       delete_height_elements();
-
-      // Pin the parameter
-      Traded_data_pt->pin(0);
 
       // Call the base actions before adapt, which will also setup the problem
       SingularAxisymDynamicCapProblem<ELEMENT,
@@ -235,23 +264,35 @@ namespace oomph
     /// Set the continuation parameter
     void set_continuation_parameter(double*& parameter_pt)
     {
-      // Set the continuation parameter
-      Traded_data_pt->set_value(0, *parameter_pt);
+      if (!Is_continuation_parameter_set)
+      {
+        // Set the continuation parameter
+        Traded_data_pt->set_value(0, *parameter_pt);
 
-      // Delete the original parameter storage
-      delete parameter_pt;
+        // Delete the original parameter storage
+        delete parameter_pt;
 
-      // Use the data storage
-      parameter_pt = Traded_data_pt->value_pt(0);
+        // Use the data storage
+        parameter_pt = Traded_data_pt->value_pt(0);
 
-      // set the flag
-      Is_continuation_parameter_set = true;
+        // set the flag
+        Is_continuation_parameter_set = true;
 
-      this->setup_elements();
+        setup_height_element_interaction();
 
-      this->rebuild_global_mesh();
-      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
-                 << std::endl;
+        set_continuation_boundary_conditions();
+
+        // Setup the problem
+        this->rebuild_global_mesh();
+        oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                   << std::endl;
+      }
+      else
+      {
+        throw OomphLibWarning("Continuation parameter already set",
+                           OOMPH_CURRENT_FUNCTION,
+                           OOMPH_EXCEPTION_LOCATION);
+      }
     }
 
     void set_height_from_soln()
@@ -263,14 +304,23 @@ namespace oomph
     /// Unset the continuation parameter
     void unset_continuation_parameter(double*& parameter_pt)
     {
-      // Create new storage for the parameter and set it to the traded data
-      parameter_pt = new double(Traded_data_pt->value(0));
+      if (Is_continuation_parameter_set)
+      {
+        // Create new storage for the parameter and set it to the traded data
+        parameter_pt = new double(Traded_data_pt->value(0));
 
-      // Unset the continuation parameter
-      Traded_data_pt->set_value(0, 0.0);
+        // Unset the continuation parameter
+        Traded_data_pt->set_value(0, 0.0);
 
-      // set the flag
-      Is_continuation_parameter_set = false;
+        // set the flag
+        Is_continuation_parameter_set = false;
+      }
+      else
+      {
+        throw OomphLibWarning("Continuation parameter not set",
+                           OOMPH_CURRENT_FUNCTION,
+                           OOMPH_EXCEPTION_LOCATION);
+      }
     }
 
     /// Create the height elements using the inner corner and contact line nodes

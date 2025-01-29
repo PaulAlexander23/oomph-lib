@@ -266,7 +266,6 @@ void arc_continuation_run(Params& parameters,
       ProjectableAxisymmetricTTaylorHoodPVDElement>,
     BDF<2>>
     problem(&parameters);
-  problem.setup();
 
   // Load in restart file
   if (parameters.restart_filename != "")
@@ -345,7 +344,6 @@ void height_control_continuation_run(Params& parameters,
                             ProjectableAxisymmetricTTaylorHoodPVDElement>,
                           BDF<2>>
     problem(parameters);
-  problem.setup();
 
   // Load in restart file
   if (parameters.restart_filename != "")

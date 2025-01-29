@@ -409,16 +409,13 @@ namespace oomph
       // We can either build the global mesh here or create an empty mesh and
       // "rebuild" the global mesh in actions after adapt
       this->mesh_pt() = new Mesh;
-    } // end_of_constructor
 
-    virtual void setup()
-    {
       //======================================================================
       // Call actions after adapt to create the non-refineable elements and
       // setup the remainder of the problem
       //======================================================================
       actions_after_adapt();
-    }
+    } // end_of_constructor
 
     //============================================================================
     // Destruction functions
