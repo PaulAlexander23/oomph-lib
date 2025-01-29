@@ -87,7 +87,7 @@ namespace oomph
   }
 
   template<class PROBLEM_PT>
-  void debug_jacobian(const PROBLEM_PT& problem_pt)
+  bool debug_jacobian(const PROBLEM_PT& problem_pt)
   {
     std::ofstream out_stream;
 
@@ -99,11 +99,13 @@ namespace oomph
     DenseMatrix<double> expected_jacobian;
     problem_pt->get_fd_jacobian(residuals, expected_jacobian);
 
-    compare_matrices(expected_jacobian, actual_jacobian);
+    bool is_correct = compare_matrices(expected_jacobian, actual_jacobian);
 
     out_stream.open("dofs.txt");
     problem_pt->describe_dofs(out_stream);
     out_stream.close();
+
+    return is_correct;
   }
 
   CRDoubleMatrix* load_crdoublematrix(const std::string& filename,

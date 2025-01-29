@@ -21,7 +21,7 @@ vector<double> range_string_to_numbers(string range_str);
 void create_parameter_files_over_range_for_variable_pt(
   const std::string& range_str,
   const std::string& folder_base,
-  oomph::Parameters& parameters,
+  Params& parameters,
   const bool& script_is_creating_folders,
   std::ofstream& filestream,
   double* const variable_pt);
@@ -30,7 +30,7 @@ void create_parameter_files_over_range_for_variable_pt(
 void create_parameter_files_over_range_for_variable_pt(
   const std::string& range_str,
   const std::string& folder_base,
-  oomph::Parameters& parameters,
+  Params& parameters,
   const bool& script_is_creating_folders,
   std::ofstream& filestream,
   double* const variable_pt)
@@ -43,12 +43,13 @@ void create_parameter_files_over_range_for_variable_pt(
 
   for (int n = 0; n < N; n++)
   {
-    parameters.dir_name = folder_base + "/" + std::to_string(n);
+    parameters.output_directory = folder_base + "/" + std::to_string(n);
     // if (script_is_creating_folders)
     //{
-    const int success_flag = mkdir(parameters.dir_name.c_str(), 0777);
+    const int success_flag = mkdir(parameters.output_directory.c_str(), 0777);
     if (success_flag == FAIL)
-      std::cout << "Failed to create directory: " << parameters.dir_name << std::endl;
+      std::cout << "Failed to create directory: " << parameters.output_directory
+                << std::endl;
     //}
 
     if (CommandLineArgs::command_line_flag_has_been_set("--log"))
@@ -61,16 +62,15 @@ void create_parameter_files_over_range_for_variable_pt(
       *variable_pt = lower + double(n) / double(N - 1) * (upper - lower);
     }
 
-    filestream.open(parameters.dir_name + "/parameters.dat");
-    parameters.doc(filestream);
-    filestream.close();
+    save_parameters_to_file(parameters,
+                            parameters.output_directory + "/parameters.dat");
   }
 }
 
 void create_parameter_files_over_range_for_angle_pt(
   const std::string& range_str,
   const std::string& folder_base,
-  oomph::Parameters& parameters,
+  Params& parameters,
   const bool& script_is_creating_folders,
   std::ofstream& filestream,
   double* const variable_pt)
@@ -83,11 +83,12 @@ void create_parameter_files_over_range_for_angle_pt(
 
   for (int n = 0; n < N; n++)
   {
-    parameters.dir_name = folder_base + "/" + std::to_string(n);
+    parameters.output_directory = folder_base + "/" + std::to_string(n);
 
-    const int success_flag = mkdir(parameters.dir_name.c_str(), 0777);
+    const int success_flag = mkdir(parameters.output_directory.c_str(), 0777);
     if (success_flag == FAIL)
-      std::cout << "Failed to create directory: " << parameters.dir_name << std::endl;
+      std::cout << "Failed to create directory: " << parameters.output_directory
+                << std::endl;
 
     if (CommandLineArgs::command_line_flag_has_been_set("--log"))
     {
@@ -101,9 +102,8 @@ void create_parameter_files_over_range_for_angle_pt(
                      MathematicalConstants::Pi / 180.0;
     }
 
-    filestream.open(parameters.dir_name + "/parameters.dat");
-    parameters.doc(filestream);
-    filestream.close();
+    save_parameters_to_file(parameters,
+                            parameters.output_directory + "/parameters.dat");
   }
 }
 
@@ -187,23 +187,11 @@ int main(int argc, char** argv)
     script_is_creating_folders = false;
   }
 
-  Parameters parameters;
+  Params parameters;
   if (parameters_filename != "")
   {
-    read_parameters_from_file(parameters_filename, parameters);
+    parameters = create_parameters_from_file(parameters_filename);
   }
-
-  //    oomph::Global_Physical_Parameters::Ca = 1.0;
-  //    oomph::Global_Physical_Parameters::Equilibrium_contact_angle =
-  //      60.0 * oomph::MathematicalConstants::Pi / 180.0;
-
-  //    parameters.max_adapt = 5;
-
-  //    oomph::Mesh_Control_Parameters::min_element_length = 1e-3;
-  //    oomph::Mesh_Control_Parameters::Min_element_size = 1e-16;
-  //    // oomph::Mesh_Control_Parameters::Max_free_surface_polyline_length =
-  //    0.002; oomph::Slip_Parameters::slip_length = 0.01;
-  //    oomph::Slip_Parameters::wall_velocity = 0.01;
 
   std::ofstream filestream;
   if (script_is_creating_folders)
@@ -223,9 +211,10 @@ int main(int argc, char** argv)
   }
   else
   {
-    std::cout << "Overwriting parameter files in folders, creating the folders if "
-            "they don't exist."
-         << std::endl;
+    std::cout
+      << "Overwriting parameter files in folders, creating the folders if "
+         "they don't exist."
+      << std::endl;
   }
 
   if (bo_range != "")
@@ -236,7 +225,7 @@ int main(int argc, char** argv)
       parameters,
       script_is_creating_folders,
       filestream,
-      &oomph::Global_Physical_Parameters::Bo);
+      parameters.reynolds_inverse_froude_number_pt);
   }
   else if (sl_range != "")
   {
@@ -246,7 +235,7 @@ int main(int argc, char** argv)
       parameters,
       script_is_creating_folders,
       filestream,
-      &oomph::Slip_Parameters::slip_length);
+      &parameters.slip_length);
   }
   else if (min_element_range != "")
   {
@@ -256,7 +245,7 @@ int main(int argc, char** argv)
       parameters,
       script_is_creating_folders,
       filestream,
-      &oomph::Mesh_Control_Parameters::min_element_length);
+      &parameters.min_element_length);
   }
   else if (flux_range != "")
   {
@@ -266,33 +255,32 @@ int main(int argc, char** argv)
       parameters,
       script_is_creating_folders,
       filestream,
-      &oomph::Slip_Parameters::wall_velocity);
+      parameters.wall_velocity_pt);
   }
   else if (ca_range != "")
   {
-    create_parameter_files_over_range_for_angle_pt(
-      ca_range,
-      folder_base,
-      parameters,
-      script_is_creating_folders,
-      filestream,
-      &oomph::Global_Physical_Parameters::Equilibrium_contact_angle);
+    create_parameter_files_over_range_for_angle_pt(ca_range,
+                                                   folder_base,
+                                                   parameters,
+                                                   script_is_creating_folders,
+                                                   filestream,
+                                                   &parameters.contact_angle);
   }
   else
   {
-    parameters.dir_name = folder_base;
+    parameters.output_directory = folder_base;
 
-    const int success_flag = mkdir(parameters.dir_name.c_str(), 0777);
+    const int success_flag = mkdir(parameters.output_directory.c_str(), 0777);
     if (success_flag == FAIL)
     {
-      std::cout << "Failed to create directory: " << parameters.dir_name << std::endl;
+      std::cout << "Failed to create directory: " << parameters.output_directory
+                << std::endl;
 
       // return 1;
     }
 
-    filestream.open(folder_base + "/parameters.dat");
-    parameters.doc(filestream);
-    filestream.close();
+    save_parameters_to_file(parameters,
+                            parameters.output_directory + "/parameters.dat");
   }
 
   std::cout << "End of creation of parameter files." << std::endl;

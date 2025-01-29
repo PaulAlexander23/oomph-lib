@@ -12,12 +12,16 @@ EXEC:= \
 run: ${EXEC}
 
 # Run parallel axi_dynamic_cap with the parameters in the validata directory
-test: axi_dynamic_cap
-	./generate_tests.zsh
-	./run_tests.zsh
-	$(find log -type f -not -empty -name "stderr")
+# test: axi_dynamic_cap
+# 	./generate_tests.zsh
+# 	./run_tests.zsh
+# 	cat tests.log
+
+test.log: run_tests
+	./run_tests -t extra > test.log
 
 # Automake
+#continuation_run_SOURCES = continuation_run.cc
 
 # Name of executables
 check_PROGRAMS= ${EXEC}
@@ -36,7 +40,8 @@ LDADD = -L@libdir@ \
 	-lconstitutive \
 	-lgeneric \
 	$(EXTERNAL_LIBS) $(FLIBS)
-#-lboost_unit_test_framework -lgcov
+#-lboost_unit_test_framework \
+#-lgcov
 
 # Add the paranoid and range checking flags
 AM_CPPFLAGS += -Wno-misleading-indentation -Wfatal-errors #-I../../../build/include/ #-DPARANOID -DRANGE_CHECKING --coverage -O0 # 

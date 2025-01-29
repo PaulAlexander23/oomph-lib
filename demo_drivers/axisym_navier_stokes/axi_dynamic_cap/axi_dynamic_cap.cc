@@ -59,7 +59,8 @@ int main(int argc, char** argv)
   CommandLineArgs::setup(argc, argv);
 
   // Debug the jacobian
-  CommandLineArgs::specify_command_line_flag("--debug_jacobian");
+  CommandLineArgs::specify_command_line_flag("--debug-jacobian");
+  CommandLineArgs::specify_command_line_flag("--pin-solid");
 
   // Parameter file
   std::string parameters_filename = "default_parameters.dat";
@@ -81,8 +82,7 @@ int main(int argc, char** argv)
     SingularAxisymNavierStokesElement<
       ProjectableAxisymmetricTTaylorHoodPVDElement>,
     BDF<2>>
-    problem(parameters);
-  problem.setup();
+    problem(&parameters);
   save_dofs_types<SingularAxisymDynamicCapProblem<
     SingularAxisymNavierStokesElement<
       ProjectableAxisymmetricTTaylorHoodPVDElement>,
@@ -92,7 +92,7 @@ int main(int argc, char** argv)
   problem.get_jacobian(residuals, jacobian);
   jacobian.sparse_indexed_output("j.dat");
 
-  if (CommandLineArgs::command_line_flag_has_been_set("--debug_jacobian"))
+  if (CommandLineArgs::command_line_flag_has_been_set("--debug-jacobian"))
   {
     debug_jacobian<SingularAxisymDynamicCapProblem<
       SingularAxisymNavierStokesElement<
@@ -130,6 +130,7 @@ int main(int argc, char** argv)
   // Document initial condition
   problem.create_restart_file();
   problem.doc_solution();
+  problem.use_fd_jacobian_for_the_bulk_augmented();
 
   // If the final time is zero (or less) then we are doing a steady solve,
   if (parameters.final_time <= 0)
@@ -146,20 +147,8 @@ int main(int argc, char** argv)
   // ...otherwise, we are doing an unsteady run
   else
   {
-    // If the contact angle is acute, then timestep
-    if (parameters.contact_angle <= 90.0 * MathematicalConstants::Pi / 180.0)
-    {
-      // Timestep until the desired final time
-      problem.timestep(parameters.time_step, parameters.final_time);
-    }
-    // otherwise, throw a warning as we haven't implemented this yet
-    else
-    {
-      throw(OomphLibWarning(
-        "Timestepping is not implemented for obtuse contact angles yet.",
-        OOMPH_CURRENT_FUNCTION,
-        OOMPH_EXCEPTION_LOCATION));
-    }
+    // Timestep until the desired final time
+    problem.timestep(parameters.time_step, parameters.final_time);
   }
 
   // Close the trace files

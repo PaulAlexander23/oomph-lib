@@ -1,14 +1,23 @@
-#define BOOST_TEST_MODULE axisym_cap_test_module
+#define BOOST_TEST_MODULE Main
 #include <boost/test/included/unit_test.hpp>
 
+#include "generic.h"
+#include "axisym_navier_stokes.h"
+#include "height_continuation_problem.h"
+// #include "singular_axisym_dynamic_cap_problem.h"
+// #include "parameters.h"
 #include "run_tests.h"
+#include "full_continuation_problem.h"
+#include "my_eigenproblem.h"
 
 using namespace std;
 using namespace oomph;
 
-// ***
-// Test matrix comparison
+BOOST_AUTO_TEST_SUITE(normal)
+/// ----------------------------------------------------------------------------
+/// Matrix
 
+/// Test matrix comparison equal
 BOOST_AUTO_TEST_CASE(compare_matrix_same)
 {
   const unsigned N = 4;
@@ -20,6 +29,7 @@ BOOST_AUTO_TEST_CASE(compare_matrix_same)
   BOOST_TEST(compare_matrices(A, B) == 1);
 }
 
+/// Test matrix comparison different
 BOOST_AUTO_TEST_CASE(compare_matrix_different)
 {
   const unsigned N = 4;
@@ -30,519 +40,477 @@ BOOST_AUTO_TEST_CASE(compare_matrix_different)
   BOOST_TEST(compare_matrices(A, B) == 0);
 }
 
-// ***
-// Test base problem
+/// ----------------------------------------------------------------------------
+/// Problem
 
-// BOOST_AUTO_TEST_CASE(nonlinear_problem_creation_with_default_parameters)
-//{
-//   createBaseProblem();
-// }
-
-// BOOST_AUTO_TEST_CASE(default_problem_solves)
-//{
-//   shared_ptr<AXISYM_PROBLEM> problem_pt = createBaseProblem();
-//   problem_pt->steady_newton_solve();
-// }
-
-// BOOST_AUTO_TEST_CASE(default_problem_solves_with_adapt)
-//{
-//   shared_ptr<AXISYM_PROBLEM> problem_pt = createBaseProblem();
-//   problem_pt->steady_newton_solve(1);
-// }
-//
-// BOOST_AUTO_TEST_CASE(nonlinear_analytic_J_equals_fd_J_no_solve)
-//{
-//   shared_ptr<AXISYM_PROBLEM> problem_pt = createBaseProblem();
-//   Slip_Parameters::wall_velocity = 0.01;
-//   Global_Physical_Parameters::Bo = 1.0;
-//   DoubleVector residuals;
-//   DenseMatrix<double> expected_jacobian;
-//   DenseDoubleMatrix actual_jacobian;
-//   problem_pt->get_fd_jacobian(residuals, expected_jacobian);
-//   problem_pt->get_jacobian(residuals, actual_jacobian);
-//
-//   const unsigned N = expected_jacobian.nrow();
-//   const unsigned M = expected_jacobian.ncol();
-//
-//   BOOST_TEST(actual_jacobian.nrow() == N);
-//   BOOST_TEST(actual_jacobian.ncol() == M);
-//
-//   bool jacobians_are_equal =
-//     compare_matrices(expected_jacobian, actual_jacobian);
-//   BOOST_TEST(jacobians_are_equal);
-// }
-//
-// BOOST_AUTO_TEST_CASE(nonlinear_analytic_J_equals_fd_J_gravity)
-//{
-//   shared_ptr<AXISYM_PROBLEM> problem_pt = createBaseProblem();
-//   // Slip_Parameters::wall_velocity = 0.01;
-//   Global_Physical_Parameters::Bo = 1.0;
-//   problem_pt->steady_newton_solve();
-//   DoubleVector residuals;
-//   DenseMatrix<double> expected_jacobian;
-//   DenseDoubleMatrix actual_jacobian;
-//   problem_pt->get_fd_jacobian(residuals, expected_jacobian);
-//   problem_pt->get_jacobian(residuals, actual_jacobian);
-//
-//   std::ofstream output_stream;
-//   output_stream.open("RESLT/dofs.txt");
-//   problem_pt->describe_dofs(output_stream);
-//   output_stream.close();
-//
-//   const unsigned N = expected_jacobian.nrow();
-//   const unsigned M = expected_jacobian.ncol();
-//
-//   BOOST_TEST(actual_jacobian.nrow() == N);
-//   BOOST_TEST(actual_jacobian.ncol() == M);
-//
-//   bool jacobians_are_equal =
-//     compare_matrices(expected_jacobian, actual_jacobian);
-//   BOOST_TEST(jacobians_are_equal);
-// }
-//
-// BOOST_AUTO_TEST_CASE(nonlinear_analytic_J_equals_fd_J_gravity_60)
-//{
-//   shared_ptr<AXISYM_PROBLEM> problem_pt =
-//     createBaseProblem(60.0 * MathematicalConstants::Pi / 180.0);
-//   // Slip_Parameters::wall_velocity = 0.01;
-//   Global_Physical_Parameters::Bo = 1.0;
-//   problem_pt->steady_newton_solve();
-//   DoubleVector residuals;
-//   DenseMatrix<double> expected_jacobian;
-//   DenseDoubleMatrix actual_jacobian;
-//   problem_pt->get_fd_jacobian(residuals, expected_jacobian);
-//   problem_pt->get_jacobian(residuals, actual_jacobian);
-//
-//   std::ofstream output_stream;
-//   output_stream.open("RESLT/dofs.txt");
-//   problem_pt->describe_dofs(output_stream);
-//   output_stream.close();
-//
-//   const unsigned N = expected_jacobian.nrow();
-//   const unsigned M = expected_jacobian.ncol();
-//
-//   BOOST_TEST(actual_jacobian.nrow() == N);
-//   BOOST_TEST(actual_jacobian.ncol() == M);
-//
-//   bool jacobians_are_equal =
-//     compare_matrices(expected_jacobian, actual_jacobian);
-//   BOOST_TEST(jacobians_are_equal);
-// }
-//
-// BOOST_AUTO_TEST_CASE(nonlinear_analytic_J_equals_fd_J_gravity_120)
-//{
-//   shared_ptr<AXISYM_PROBLEM> problem_pt =
-//     createBaseProblem(120.0 * MathematicalConstants::Pi / 180.0);
-//   // Slip_Parameters::wall_velocity = 0.01;
-//   Global_Physical_Parameters::Bo = 1.0;
-//   Slip_Parameters::slip_length = -1.0;
-//   problem_pt->steady_newton_solve();
-//   problem_pt->debug_elemental_jacobian();
-//   DoubleVector residuals;
-//   DenseMatrix<double> expected_jacobian;
-//   DenseDoubleMatrix actual_jacobian;
-//   problem_pt->get_fd_jacobian(residuals, expected_jacobian);
-//   problem_pt->get_jacobian(residuals, actual_jacobian);
-//
-//   std::ofstream output_stream;
-//   output_stream.open("RESLT/dofs.txt");
-//   problem_pt->describe_dofs(output_stream);
-//   output_stream.close();
-//
-//   const unsigned N = expected_jacobian.nrow();
-//   const unsigned M = expected_jacobian.ncol();
-//
-//   BOOST_TEST(actual_jacobian.nrow() == N);
-//   BOOST_TEST(actual_jacobian.ncol() == M);
-//
-//   bool jacobians_are_equal =
-//     compare_matrices(expected_jacobian, actual_jacobian);
-//   BOOST_TEST(jacobians_are_equal);
-// }
-//
-// BOOST_AUTO_TEST_CASE(debug_elemental_jacobian)
-//{
-//   shared_ptr<AXISYM_PROBLEM> problem_pt = createBaseProblem();
-//   Slip_Parameters::wall_velocity = 0.01;
-//   problem_pt->steady_newton_solve();
-//   problem_pt->debug_elemental_jacobian();
-// }
-//
-// BOOST_AUTO_TEST_CASE(nonlinear_analytic_J_equals_fd_J_ca)
-//{
-//   shared_ptr<AXISYM_PROBLEM> problem_pt = createBaseProblem();
-//   Slip_Parameters::wall_velocity = 0.01;
-//   problem_pt->steady_newton_solve();
-//   problem_pt->debug_elemental_jacobian();
-//   DoubleVector residuals;
-//   DenseMatrix<double> expected_jacobian;
-//   DenseDoubleMatrix actual_jacobian;
-//   problem_pt->get_fd_jacobian(residuals, expected_jacobian);
-//   problem_pt->get_jacobian(residuals, actual_jacobian);
-//
-//   std::ofstream output_stream;
-//   output_stream.open("RESLT/dofs.txt");
-//   problem_pt->describe_dofs(output_stream);
-//   output_stream.close();
-//
-//   problem_pt->doc_solution();
-//
-//   const unsigned N = expected_jacobian.nrow();
-//   const unsigned M = expected_jacobian.ncol();
-//
-//   BOOST_TEST(actual_jacobian.nrow() == N);
-//   BOOST_TEST(actual_jacobian.ncol() == M);
-//
-//   bool jacobians_are_equal =
-//     compare_matrices(expected_jacobian, actual_jacobian);
-//   BOOST_TEST(jacobians_are_equal);
-// }
-
-// BOOST_AUTO_TEST_CASE(nonlinear_analytic_J_equals_fd_J_ca_60)
-//{
-//   shared_ptr<AXISYM_PROBLEM> problem_pt =
-//     createBaseProblem(60.0 * MathematicalConstants::Pi / 180.0);
-//   Slip_Parameters::wall_velocity = 0.01;
-//   problem_pt->steady_newton_solve();
-//   problem_pt->debug_elemental_jacobian();
-//   DoubleVector residuals;
-//   DenseMatrix<double> expected_jacobian;
-//   DenseDoubleMatrix actual_jacobian;
-//   problem_pt->get_fd_jacobian(residuals, expected_jacobian);
-//   problem_pt->get_jacobian(residuals, actual_jacobian);
-//
-//   std::ofstream output_stream;
-//   output_stream.open("RESLT/dofs.txt");
-//   problem_pt->describe_dofs(output_stream);
-//   output_stream.close();
-//
-//   problem_pt->doc_solution();
-//
-//   const unsigned N = expected_jacobian.nrow();
-//   const unsigned M = expected_jacobian.ncol();
-//
-//   BOOST_TEST(actual_jacobian.nrow() == N);
-//   BOOST_TEST(actual_jacobian.ncol() == M);
-//
-//   bool jacobians_are_equal =
-//     compare_matrices(expected_jacobian, actual_jacobian);
-//   BOOST_TEST(jacobians_are_equal);
-// }
-
-// BOOST_AUTO_TEST_CASE(nonlinear_analytic_J_equals_fd_J_ca_120)
-//{
-//   shared_ptr<AXISYM_PROBLEM> problem_pt =
-//     createBaseProblem(120.0 * MathematicalConstants::Pi / 180.0);
-//   Slip_Parameters::wall_velocity = 0.01;
-//   problem_pt->steady_newton_solve();
-//   problem_pt->debug_elemental_jacobian();
-//   DoubleVector residuals;
-//   DenseMatrix<double> expected_jacobian;
-//   DenseDoubleMatrix actual_jacobian;
-//   problem_pt->get_fd_jacobian(residuals, expected_jacobian);
-//   problem_pt->get_jacobian(residuals, actual_jacobian);
-//
-//   std::ofstream output_stream;
-//   output_stream.open("RESLT/dofs.txt");
-//   problem_pt->describe_dofs(output_stream);
-//   output_stream.close();
-//
-//   problem_pt->doc_solution();
-//
-//   const unsigned N = expected_jacobian.nrow();
-//   const unsigned M = expected_jacobian.ncol();
-//
-//   BOOST_TEST(actual_jacobian.nrow() == N);
-//   BOOST_TEST(actual_jacobian.ncol() == M);
-//
-//   bool jacobians_are_equal =
-//     compare_matrices(expected_jacobian, actual_jacobian);
-//   BOOST_TEST(jacobians_are_equal);
-// }
-
-// BOOST_AUTO_TEST_CASE(fd_solve)
-//{
-//   shared_ptr<AXISYM_PROBLEM> problem_pt = createBaseProblem();
-//   Slip_Parameters::wall_velocity = 0.1;
-//   problem_pt->linear_solver_pt() = new FD_LU;
-//   problem_pt->steady_newton_solve();
-//   problem_pt->debug_elemental_jacobian();
-//   DoubleVector residuals;
-//   DenseMatrix<double> expected_jacobian;
-//   DenseDoubleMatrix actual_jacobian;
-//   problem_pt->get_fd_jacobian(residuals, expected_jacobian);
-//   problem_pt->get_jacobian(residuals, actual_jacobian);
-//
-//   std::ofstream output_stream;
-//   output_stream.open("RESLT/dofs.txt");
-//   problem_pt->describe_dofs(output_stream);
-//   output_stream.close();
-//
-//   const unsigned N = expected_jacobian.nrow();
-//   const unsigned M = expected_jacobian.ncol();
-//
-//   BOOST_TEST(actual_jacobian.nrow() == N);
-//   BOOST_TEST(actual_jacobian.ncol() == M);
-//
-//   bool jacobians_are_equal =
-//     compare_matrices(expected_jacobian, actual_jacobian);
-//   BOOST_TEST(jacobians_are_equal);
-// }
-
-// BOOST_AUTO_TEST_CASE(fd_solve_120)
-//{
-//   shared_ptr<AXISYM_PROBLEM> problem_pt =
-//     createBaseProblem(120.0 * MathematicalConstants::Pi / 180.0);
-//   Slip_Parameters::wall_velocity = 0.1;
-//   problem_pt->linear_solver_pt() = new FD_LU;
-//   problem_pt->steady_newton_solve();
-//   problem_pt->debug_elemental_jacobian();
-//   DoubleVector residuals;
-//   DenseMatrix<double> expected_jacobian;
-//   DenseDoubleMatrix actual_jacobian;
-//   problem_pt->get_fd_jacobian(residuals, expected_jacobian);
-//   problem_pt->get_jacobian(residuals, actual_jacobian);
-//
-//   std::ofstream output_stream;
-//   output_stream.open("RESLT/dofs.txt");
-//   problem_pt->describe_dofs(output_stream);
-//   output_stream.close();
-//
-//   const unsigned N = expected_jacobian.nrow();
-//   const unsigned M = expected_jacobian.ncol();
-//
-//   BOOST_TEST(actual_jacobian.nrow() == N);
-//   BOOST_TEST(actual_jacobian.ncol() == M);
-//
-//   bool jacobians_are_equal =
-//     compare_matrices(expected_jacobian, actual_jacobian);
-//   BOOST_TEST(jacobians_are_equal);
-// }
-
-
-// BOOST_AUTO_TEST_CASE(nonlinear_analytic_J_equals_fd_J)
-//{
-//   shared_ptr<AXISYM_PROBLEM> problem_pt = createBaseProblem();
-//   Slip_Parameters::wall_velocity = 0.01;
-//   Global_Physical_Parameters::Bo = 1.0;
-//   problem_pt->steady_newton_solve();
-//   DoubleVector residuals;
-//   DenseMatrix<double> expected_jacobian;
-//   DenseDoubleMatrix actual_jacobian;
-//   problem_pt->get_fd_jacobian(residuals, expected_jacobian);
-//   problem_pt->get_jacobian(residuals, actual_jacobian);
-//
-//   std::ofstream output_stream;
-//   output_stream.open("RESLT/dofs.txt");
-//   problem_pt->describe_dofs(output_stream);
-//   output_stream.close();
-//
-//   const unsigned N = expected_jacobian.nrow();
-//   const unsigned M = expected_jacobian.ncol();
-//
-//   BOOST_TEST(actual_jacobian.nrow() == N);
-//   BOOST_TEST(actual_jacobian.ncol() == M);
-//
-//   bool jacobians_are_equal =
-//     compare_matrices(expected_jacobian, actual_jacobian);
-//   BOOST_TEST(jacobians_are_equal);
-// }
-
-// BOOST_AUTO_TEST_CASE(nonlinear_analytic_M_equals_fd_M)
-//{
-//   shared_ptr<AXISYM_PROBLEM> problem_pt = createBaseProblem();
-//   Slip_Parameters::wall_velocity = 0.01;
-//   problem_pt->steady_newton_solve();
-//   DoubleVector residuals;
-//   CRDoubleMatrix actual_jacobian;
-//   CRDoubleMatrix actual_mass_matrix;
-//   problem_pt->get_eigenproblem_matrices(actual_mass_matrix, actual_jacobian);
-//
-//   problem_pt->time_stepper_pt()->make_steady();
-//   DenseMatrix<double> expected_jacobian;
-//   problem_pt->get_fd_jacobian(residuals, expected_jacobian);
-//   problem_pt->time_stepper_pt()->undo_make_steady();
-//   DenseMatrix<double> unsteady_jacobian;
-//   problem_pt->get_fd_jacobian(residuals, unsteady_jacobian);
-//   const double dt = problem_pt->time_stepper_pt()->time_pt()->dt();
-//   const unsigned n_dof = problem_pt->ndof();
-//   DenseMatrix<double> expected_mass_matrix(n_dof, n_dof, 0.0);
-//   for (unsigned i = 0; i < n_dof; i++)
-//   {
-//     for (unsigned j = 0; j < n_dof; j++)
-//     {
-//       /// The 2/3 is due to the BDF<2> scheme.
-//       expected_mass_matrix(j, i) +=
-//         (2.0 / 3.0) * dt * (-unsteady_jacobian(j, i) + expected_jacobian(j,
-//         i));
-//     }
-//   }
-//
-//   const unsigned N = expected_jacobian.nrow();
-//   const unsigned M = expected_jacobian.ncol();
-//
-//   BOOST_TEST(actual_jacobian.nrow() == N);
-//   BOOST_TEST(actual_jacobian.ncol() == M);
-//
-//   bool jacobians_are_equal =
-//     compare_matrices(expected_jacobian, actual_jacobian);
-//   BOOST_TEST(jacobians_are_equal);
-//   bool mass_matrix_are_equal =
-//     compare_matrices(expected_mass_matrix, actual_mass_matrix);
-//   BOOST_TEST(mass_matrix_are_equal);
-// }
-
-// BOOST_AUTO_TEST_CASE(nonlinear_analytic_J_equals_fd_J_120)
-//{
-//   shared_ptr<AXISYM_PROBLEM> problem_pt =
-//     createBaseProblem(120.0 * MathematicalConstants::Pi / 180.0);
-//   Slip_Parameters::wall_velocity = 0.01;
-//   Global_Physical_Parameters::Bo = 1.0;
-//   problem_pt->steady_newton_solve();
-//   DoubleVector residuals;
-//   DenseMatrix<double> expected_jacobian;
-//   DenseDoubleMatrix actual_jacobian;
-//   problem_pt->get_fd_jacobian(residuals, expected_jacobian);
-//   problem_pt->get_jacobian(residuals, actual_jacobian);
-//
-//   std::ofstream output_stream;
-//   output_stream.open("RESLT/dofs.txt");
-//   problem_pt->describe_dofs(output_stream);
-//   output_stream.close();
-//
-//   const unsigned N = expected_jacobian.nrow();
-//   const unsigned M = expected_jacobian.ncol();
-//
-//   BOOST_TEST(actual_jacobian.nrow() == N);
-//   BOOST_TEST(actual_jacobian.ncol() == M);
-//
-//   bool jacobians_are_equal =
-//     compare_matrices(expected_jacobian, actual_jacobian);
-//   BOOST_TEST(jacobians_are_equal);
-// }
-
-BOOST_AUTO_TEST_CASE(obtuse_mass_matrix_and_jacobian)
+/// Test temp
+BOOST_AUTO_TEST_CASE(temp)
 {
-  shared_ptr<AXISYM_PROBLEM> problem_pt =
-    createBaseProblem(120.0 * MathematicalConstants::Pi / 180.0);
-  Slip_Parameters::wall_velocity = 0.01;
-  problem_pt->steady_newton_solve();
-  DoubleVector residuals;
-  CRDoubleMatrix actual_jacobian;
-  CRDoubleMatrix actual_mass_matrix;
-  problem_pt->get_eigenproblem_matrices(actual_mass_matrix, actual_jacobian);
-
-  problem_pt->time_stepper_pt()->make_steady();
-  DenseMatrix<double> expected_jacobian;
-  problem_pt->get_fd_jacobian(residuals, expected_jacobian);
-
-
-  const unsigned N = expected_jacobian.nrow();
-  const unsigned M = expected_jacobian.ncol();
-
-  BOOST_TEST(actual_jacobian.nrow() == N);
-  BOOST_TEST(actual_jacobian.ncol() == M);
-
-  bool jacobians_are_equal =
-    compare_matrices(expected_jacobian, actual_jacobian);
-  BOOST_TEST(jacobians_are_equal);
-
-  problem_pt->time_stepper_pt()->undo_make_steady();
-  DenseMatrix<double> unsteady_jacobian;
-  problem_pt->get_fd_jacobian(residuals, unsteady_jacobian);
-  const double dt = problem_pt->time_stepper_pt()->time_pt()->dt();
-  const unsigned n_dof = problem_pt->ndof();
-  DenseMatrix<double> expected_mass_matrix(n_dof, n_dof, 0.0);
-  for (unsigned i = 0; i < n_dof; i++)
-  {
-    for (unsigned j = 0; j < n_dof; j++)
-    {
-      /// The 2/3 is due to the BDF<2> scheme.
-      expected_mass_matrix(j, i) +=
-        (2.0 / 3.0) * dt * (-unsteady_jacobian(j, i) + expected_jacobian(j, i));
-    }
-  }
-  bool mass_matrix_are_equal =
-    compare_matrices(expected_mass_matrix, actual_mass_matrix);
-  BOOST_TEST(mass_matrix_are_equal);
+  Temp temp;
 }
 
-// BOOST_AUTO_TEST_CASE(nonlinear_problem_solve_eigenproblem)
-// {
-//   shared_ptr<AXISYM_PROBLEM> problem_pt = createBaseProblem();
-//   problem_pt->steady_newton_solve();
-//   problem_pt->reset_lagrange();
-//   problem_pt->assign_initial_values_impulsive();
-//   Vector<std::complex<double>> eigenvalue =
-//     problem_pt->solve_and_document_n_most_unstable_eigensolutions(1);
-//   printf("%16.11g \n", eigenvalue[0].real());
-//   BOOST_TEST(abs(eigenvalue[0].real() - (-0.24783965941010913)) < 1e-6);
-// }
-
-// BOOST_AUTO_TEST_CASE(nonlinear_problem_solve_eigenproblem_with_fluid_flow)
-// {
-//   shared_ptr<AXISYM_PROBLEM> problem_pt = createBaseProblem();
-//   Slip_Parameters::wall_velocity = 0.01;
-//   problem_pt->steady_newton_solve();
-//   problem_pt->reset_lagrange();
-//   problem_pt->assign_initial_values_impulsive();
-//   Vector<std::complex<double>> eigenvalue =
-//     problem_pt->solve_and_document_n_most_unstable_eigensolutions(1);
-//   printf("%16.11g \n", eigenvalue[0].real());
-//   BOOST_TEST(abs(eigenvalue[0].real() - (-0.27630985141964381)) < 1e-6);
-// }
-
-// Unpin the horizontal dofs
-// We don't expect the these to match. The inner boundary conditions imply
-// dR/ds = 0 but this is not imposed.
-// BOOST_AUTO_TEST_CASE(
-//  nonlinear_problem_solve_eigenproblem_with_and_without_x_deformation)
-//{
-//  shared_ptr<AXISYM_PROBLEM> problem_pt = createBaseProblem();
-//  problem_pt->steady_newton_solve();
-//  problem_pt->reset_lagrange();
-//  problem_pt->assign_initial_values_impulsive();
-//  Vector<std::complex<double>> expected_eigenvalue =
-//    problem_pt->solve_and_document_n_most_unstable_eigensolutions(1);
-//  printf("%16.11g \n", expected_eigenvalue[0].real());
-//
-//  problem_pt->pin_horizontal_displacement();
-//
-//  Vector<std::complex<double>> actual_eigenvalue =
-//    problem_pt->solve_and_document_n_most_unstable_eigensolutions(1);
-//  printf("%16.11g \n", actual_eigenvalue[0].real());
-//
-//  BOOST_TEST(abs(expected_eigenvalue[0].real() - actual_eigenvalue[0].real())
-//  <
-//             1e-3);
-//}
-
-// BOOST_AUTO_TEST_CASE(nonlinear_problem_unsteady_run)
-//{
-//   shared_ptr<AXISYM_PROBLEM> problem_pt = createBaseProblem();
-//   Flux_Parameters::Withdraw_speed = 0.1;
-//   const double dt = 0.005;
-//   const double ft = 3 * dt;
-//   problem_pt->timestep(dt, ft);
-//
-//   const double actual_centre_height = problem_pt->get_centre_point_z();
-//   BOOST_TEST(abs(actual_centre_height - 0.0028304837510845986) < 1.2e-3);
-// }
-
-// ***
-// Function definitions
-
-namespace oomph
+/// Test MyEigenproblem
+BOOST_AUTO_TEST_CASE(my_eigenproblem_creation)
 {
-  std::shared_ptr<AXISYM_PROBLEM> createBaseProblem(const double& contact_angle)
-  {
-    Slip_Parameters::wall_velocity = 0.0;
-    Slip_Parameters::slip_length = 1.0;
-    Global_Physical_Parameters::Equilibrium_contact_angle = contact_angle;
+  MyEigenproblem problem;
+}
 
-    // oomph_info.stream_pt() = &oomph_nullstream;
-    const bool has_restart = false;
-    return std::shared_ptr<AXISYM_PROBLEM>(new AXISYM_PROBLEM(
-      Global_Physical_Parameters::Equilibrium_contact_angle, has_restart));
+/// Test SingularAxisymDynamicCapProblem
+BOOST_AUTO_TEST_CASE(acute_axisym_problem)
+{
+  Params parameters;
+  parameters.contact_angle = 60.0 * MathematicalConstants::Pi / 180.0;
+  AXISYM_PROBLEM problem(&parameters);
+  problem.newton_solve();
+  // If the problem solve completes, then it is a success.
+}
+
+/// Test SingularAxisymDynamicCapProblem
+BOOST_AUTO_TEST_CASE(singular_axisym_dynamic_cap_problem_creation)
+{
+  Params parameters;
+  AXISYM_PROBLEM problem(&parameters);
+  problem.use_fd_jacobian_for_the_bulk_augmented();
+  problem.newton_solve();
+  // If the problem solve completes, then it is a success.
+}
+
+/// Test SingularAxisymDynamicCapProblem
+BOOST_AUTO_TEST_CASE(obtuse_adapt)
+{
+  Params parameters;
+  AXISYM_PROBLEM problem(&parameters);
+  problem.use_fd_jacobian_for_the_bulk_augmented();
+  const unsigned max_adapt = 1;
+  problem.newton_solve(max_adapt);
+  // If the problem solve completes, then it is a success.
+}
+
+/// ----------------------------------------------------------------------------
+/// Continuation
+
+/// Test adaptive step size
+BOOST_AUTO_TEST_CASE(height_continuation_problem_adapt_size)
+{
+  HeightContinuationProblem problem;
+  // This is the default value
+  const unsigned desired_newton_iterations_ds = 5;
+  problem.set_nnewton_iter_taken(1);
+  double actual = problem.adapt_step_size(1.0);
+  BOOST_TEST(actual == 1.5);
+
+  problem.set_nnewton_iter_taken(desired_newton_iterations_ds + 1);
+  actual = problem.adapt_step_size(1.0);
+  BOOST_TEST(actual == 2.0 / 3.0);
+
+  problem.set_nnewton_iter_taken(desired_newton_iterations_ds);
+  actual = problem.adapt_step_size(1.0);
+  BOOST_TEST(actual == 1.0);
+}
+
+/// Test the height doc solution
+BOOST_AUTO_TEST_CASE(height_continuation_problem_doc_solution)
+{
+  HeightContinuationProblem problem;
+  problem.doc_solution();
+}
+
+/// Test straight-forward continuation
+BOOST_AUTO_TEST_CASE(continuation)
+{
+  Params parameters;
+  SingularAxisymDynamicCapProblem<
+    SingularAxisymNavierStokesElement<
+      ProjectableAxisymmetricTTaylorHoodPVDElement>,
+    BDF<2>>
+    problem(&parameters);
+
+  double ds = 0.1;
+  ds = problem.continuation_step_solve(
+    parameters.reynolds_inverse_froude_number_pt, ds);
+
+  BOOST_TEST(ds > 0);
+}
+
+/// Full continuation problem creation
+BOOST_AUTO_TEST_CASE(full_continuation_problem_reynolds_inverse_froude_number)
+{
+  Params parameters;
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(parameters);
+  problem.use_fd_jacobian_for_the_bulk_augmented();
+  problem.newton_solve();
+  problem.set_continuation_parameter(
+    parameters.reynolds_inverse_froude_number_pt);
+  problem.newton_solve();
+  problem.doc_solution();
+  //  If the problem solve completes, then it is a success.
+}
+
+/// Save and load
+BOOST_AUTO_TEST_CASE(save_and_load)
+{
+  // Create a normal problem
+  Params parameters;
+  AXISYM_PROBLEM problem(&parameters);
+  // Save the problem
+  problem.create_restart_file();
+  // Load the problem
+  ifstream restart_filestream;
+  restart_filestream.open("RESLT/restart0.dat");
+  bool is_unsteady_restart = false;
+  problem.read(restart_filestream, is_unsteady_restart);
+  restart_filestream.close();
+
+  // Create a height continuation problem
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> continuation_problem(
+    parameters);
+
+  // Load in the normal problem
+  restart_filestream.open("RESLT/restart0.dat");
+  continuation_problem.read(restart_filestream, is_unsteady_restart);
+  restart_filestream.close();
+
+  // Save the continuation problem
+  continuation_problem.create_restart_file();
+
+  // Load in the normal problem
+  restart_filestream.open("RESLT/restart0.dat");
+  problem.read(restart_filestream, is_unsteady_restart);
+  restart_filestream.close();
+
+  // Set the continuation parameter
+  continuation_problem.set_continuation_parameter(
+    parameters.reynolds_inverse_froude_number_pt);
+
+  // Save the new continuation problem
+  continuation_problem.create_restart_file();
+
+  // Load in the normal problem
+  restart_filestream.open("RESLT/restart0.dat");
+  problem.read(restart_filestream, is_unsteady_restart);
+  restart_filestream.close();
+
+  // Load in the new continuation problem
+  restart_filestream.open("RESLT/restart0.dat");
+  continuation_problem.read(restart_filestream, is_unsteady_restart);
+  restart_filestream.close();
+}
+
+BOOST_AUTO_TEST_SUITE_END()
+
+BOOST_AUTO_TEST_SUITE(extra)
+BOOST_AUTO_TEST_CASE(acute_axisym_problem_jacobian)
+{
+  Params parameters;
+  parameters.contact_angle = 60.0 * MathematicalConstants::Pi / 180.0;
+  AXISYM_PROBLEM problem(&parameters);
+  BOOST_TEST(problem.debug_jacobian());
+  problem.max_newton_iterations() = 1;
+  try
+  {
+    problem.newton_solve();
   }
-} // namespace oomph
+  catch (NewtonSolverError& error)
+  {
+  }
+  problem.debug_jacobian();
+  // If the problem solve completes, then it is a success.
+}
+
+/// Test SingularAxisymDynamicCapProblem
+BOOST_AUTO_TEST_CASE(singular_axisym_dynamic_cap_problem_jacobian_bulk_fd)
+{
+  Params parameters;
+  AXISYM_PROBLEM problem(&parameters);
+  // BOOST_TEST(problem.debug_jacobian());
+  problem.max_newton_iterations() = 1;
+  problem.use_fd_jacobian_for_the_bulk();
+  try
+  {
+    problem.newton_solve();
+  }
+  catch (NewtonSolverError& error)
+  {
+  }
+  problem.debug_elemental_jacobian();
+  problem.debug_jacobian();
+  // If the problem solve completes, then it is a success.
+}
+
+/// Test SingularAxisymDynamicCapProblem
+BOOST_AUTO_TEST_CASE(
+  singular_axisym_dynamic_cap_problem_jacobian_bulk_fd_augmented)
+{
+  Params parameters;
+  AXISYM_PROBLEM problem(&parameters);
+  // BOOST_TEST(problem.debug_jacobian());
+  problem.max_newton_iterations() = 1;
+  problem.use_fd_jacobian_for_the_bulk_augmented();
+  try
+  {
+    problem.newton_solve();
+  }
+  catch (NewtonSolverError& error)
+  {
+  }
+  problem.debug_elemental_jacobian();
+  problem.debug_jacobian();
+  // If the problem solve completes, then it is a success.
+}
+
+/// Test SingularAxisymDynamicCapProblem
+BOOST_AUTO_TEST_CASE(singular_axisym_dynamic_cap_problem_jacobian)
+{
+  Params parameters;
+  AXISYM_PROBLEM problem(&parameters);
+  problem.use_fd_jacobian_for_the_bulk_augmented();
+  // BOOST_TEST(problem.debug_jacobian());
+  problem.max_newton_iterations() = 1;
+  try
+  {
+    problem.newton_solve();
+  }
+  catch (NewtonSolverError& error)
+  {
+  }
+  problem.debug_elemental_jacobian();
+  problem.debug_jacobian();
+  // If the problem solve completes, then it is a success.
+}
+
+
+/// Full continuation problem creation
+BOOST_AUTO_TEST_CASE(
+  full_continuation_problem_jacobian_with_continuation_parameter)
+{
+  Params parameters;
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(parameters);
+  problem.use_fd_jacobian_for_the_bulk_augmented();
+  problem.set_continuation_parameter(
+    parameters.reynolds_inverse_froude_number_pt);
+  problem.debug_jacobian();
+  problem.max_newton_iterations() = 1;
+  try
+  {
+    problem.newton_solve();
+  }
+  catch (NewtonSolverError& error)
+  {
+  }
+  problem.debug_jacobian();
+  problem.doc_solution();
+  //  If the problem solve completes, then it is a success.
+}
+/// Full continuation problem creation
+BOOST_AUTO_TEST_CASE(full_continuation_problem_jacobian)
+{
+  Params parameters;
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(parameters);
+  problem.use_fd_jacobian_for_the_bulk_augmented();
+  problem.debug_jacobian();
+  problem.max_newton_iterations() = 1;
+  try
+  {
+    problem.newton_solve();
+  }
+  catch (NewtonSolverError& error)
+  {
+  }
+  problem.debug_jacobian();
+  problem.doc_solution();
+  //  If the problem solve completes, then it is a success.
+}
+
+/// Full continuation problem creation
+BOOST_AUTO_TEST_CASE(full_continuation_problem_reynolds_inverse_froude_number)
+{
+  Params parameters;
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(parameters);
+  problem.use_fd_jacobian_for_the_bulk_augmented();
+  problem.newton_solve();
+  problem.set_continuation_parameter(
+    parameters.reynolds_inverse_froude_number_pt);
+  try
+  {
+    problem.newton_solve();
+  }
+  catch (NewtonSolverError& error)
+  {
+  }
+  problem.doc_solution();
+  //  If the problem solve completes, then it is a success.
+}
+
+/// Test full continuation problem jacobian without continuation parameter and
+/// with an acute contact angle
+BOOST_AUTO_TEST_CASE(full_continuation_problem_jacobian_acute)
+{
+  Params parameters;
+  parameters.contact_angle = 60.0 * MathematicalConstants::Pi / 180.0;
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(parameters);
+  problem.use_fd_jacobian_for_the_bulk_augmented();
+  problem.debug_elemental_jacobian();
+  problem.max_newton_iterations() = 1;
+  try
+  {
+    problem.newton_solve();
+  }
+  catch (NewtonSolverError& error)
+  {
+  }
+  problem.debug_elemental_jacobian();
+  problem.debug_jacobian();
+  problem.doc_solution();
+  //  If the problem solve completes, then it is a success.
+}
+
+/// Full continuation problem creation
+BOOST_AUTO_TEST_CASE(
+  full_continuation_problem_reynolds_inverse_froude_number_acute)
+{
+  Params parameters;
+  *parameters.wall_velocity_pt = 0.0;
+  parameters.contact_angle = 60.0 * MathematicalConstants::Pi / 180.0;
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(parameters);
+  problem.open_trace_files(true);
+  problem.use_fd_jacobian_for_the_bulk_augmented();
+  problem.doc_solution();
+  problem.newton_solve();
+  problem.doc_solution();
+  problem.set_continuation_parameter(
+    parameters.reynolds_inverse_froude_number_pt);
+  problem.doc_solution();
+  try
+  {
+    problem.step_height(0.01);
+    problem.newton_solve();
+  }
+  catch (NewtonSolverError& error)
+  {
+  }
+  problem.doc_solution();
+  problem.close_trace_files();
+  //  If the problem solve completes, then it is a success.
+}
+
+BOOST_AUTO_TEST_CASE(
+  full_continuation_problem_reynolds_inverse_froude_number_acute_60_no_wall_velocity)
+{
+  Params parameters;
+  *parameters.wall_velocity_pt = 0;
+  parameters.contact_angle = 60.0 * MathematicalConstants::Pi / 180.0;
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(parameters);
+  problem.use_fd_jacobian_for_the_bulk_augmented();
+  problem.newton_solve();
+  problem.set_continuation_parameter(
+    parameters.reynolds_inverse_froude_number_pt);
+  for (unsigned i = 0; i < 10; i++)
+  {
+    problem.step_height(-0.01);
+    try
+    {
+      problem.newton_solve();
+    }
+    catch (NewtonSolverError& error)
+    {
+    }
+  }
+  problem.doc_solution();
+  //  If the problem solve completes, then it is a success.
+}
+
+BOOST_AUTO_TEST_CASE(
+  full_continuation_problem_reynolds_inverse_froude_number_no_wall_velocity)
+{
+  Params parameters;
+  *parameters.wall_velocity_pt = 0;
+  parameters.contact_angle = 120.0 * MathematicalConstants::Pi / 180.0;
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(parameters);
+  problem.use_fd_jacobian_for_the_bulk_augmented();
+  problem.newton_solve();
+  problem.set_continuation_parameter(
+    parameters.reynolds_inverse_froude_number_pt);
+  for (unsigned i = 0; i < 10; i++)
+  {
+    problem.step_height(-0.01);
+    try
+    {
+      problem.newton_solve();
+    }
+    catch (NewtonSolverError& error)
+    {
+    }
+  }
+  problem.doc_solution();
+  //  If the problem solve completes, then it is a success.
+}
+
+BOOST_AUTO_TEST_CASE(full_continuation_problem_wall_velocity_acute_90)
+{
+  Params parameters;
+  *parameters.wall_velocity_pt = 0;
+  parameters.contact_angle = 90.0 * MathematicalConstants::Pi / 180.0;
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(parameters);
+  problem.steady_newton_solve();
+  problem.set_continuation_parameter(parameters.wall_velocity_pt);
+  for (unsigned i = 0; i < 10; i++)
+  {
+    problem.step_height(0.01);
+    try
+    {
+      problem.steady_newton_solve();
+    }
+    catch (NewtonSolverError& error)
+    {
+    }
+    problem.output_height();
+  }
+  problem.doc_solution();
+  //  If the problem solve completes, then it is a success.
+}
+
+BOOST_AUTO_TEST_CASE(full_continuation_problem_wall_velocity)
+{
+  Params parameters;
+  *parameters.wall_velocity_pt = 0;
+  parameters.contact_angle = 120.0 * MathematicalConstants::Pi / 180.0;
+  FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(parameters);
+  problem.use_fd_jacobian_for_the_bulk_augmented();
+  problem.steady_newton_solve();
+  problem.set_continuation_parameter(parameters.wall_velocity_pt);
+  for (unsigned i = 0; i < 10; i++)
+  {
+    problem.step_height(0.01);
+    try
+    {
+      problem.steady_newton_solve();
+    }
+    catch (NewtonSolverError& error)
+    {
+    }
+    problem.output_height();
+  }
+  problem.doc_solution();
+  //  If the problem solve completes, then it is a success.
+}
+
+
+/// Full continuation problem creation
+// BOOST_AUTO_TEST_CASE(full_continuation_problem_wall_velocity)
+//{
+//   Params parameters;
+//   FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(&parameters);
+//   problem.set_continuation_parameter(
+//     parameters.wall_velocity_pt);
+//   problem.use_fd_jacobian_for_the_bulk_augmented();
+//   try
+//   {
+//     problem.newton_solve();
+//   }
+//   catch (NewtonSolverError& error)
+//   {
+//   }
+//   problem.doc_solution();
+//   //  If the problem solve completes, then it is a success.
+// }
+BOOST_AUTO_TEST_SUITE_END()
