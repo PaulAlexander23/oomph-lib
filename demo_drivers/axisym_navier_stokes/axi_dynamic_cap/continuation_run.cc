@@ -386,6 +386,9 @@ void height_control_continuation_run(Params& parameters,
   problem.doc_solution();
 
   problem.set_continuation_parameter(continuation_param_pt);
+  problem.set_height_from_soln();
+  problem.actions_before_adapt();
+  problem.actions_after_adapt();
 
   double ds = starting_step;
   const unsigned number_of_steps =

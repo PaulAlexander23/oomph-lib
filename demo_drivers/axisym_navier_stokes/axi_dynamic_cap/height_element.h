@@ -86,6 +86,14 @@ namespace oomph
       }
     }
 
+    void set_height()
+    {
+      this->internal_data_pt(0)->set_value(
+        0,
+        this->external_data_pt(1)->value(1) -
+          this->external_data_pt(0)->value(1));
+    }
+
     void step_height(const double& ds)
     {
       this->internal_data_pt(0)->set_value(

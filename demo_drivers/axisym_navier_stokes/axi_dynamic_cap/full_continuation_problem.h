@@ -254,6 +254,12 @@ namespace oomph
                  << std::endl;
     }
 
+    void set_height_from_soln()
+    {
+      dynamic_cast<HEIGHT_ELEMENT*>(Height_mesh_pt->element_pt(0))
+        ->set_height();
+    }
+
     /// Unset the continuation parameter
     void unset_continuation_parameter(double*& parameter_pt)
     {
