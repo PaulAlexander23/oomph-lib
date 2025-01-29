@@ -471,6 +471,11 @@ namespace oomph
       delete Constitutive_law_pt;
     }
 
+    Params* parameters_pt() const
+    {
+      return Parameters_pt;
+    }
+
     double continuation_step_solve(double* const& parameter, double ds)
     {
       OomphLibWarning("Continuation step solve not implemented yet.",

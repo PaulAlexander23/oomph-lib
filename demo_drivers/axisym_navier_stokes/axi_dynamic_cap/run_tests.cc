@@ -369,21 +369,27 @@ BOOST_AUTO_TEST_CASE(
   full_continuation_problem_reynolds_inverse_froude_number_acute)
 {
   Params parameters;
-  *parameters.wall_velocity_pt = 0.01;
+  *parameters.wall_velocity_pt = 0.0;
   parameters.contact_angle = 60.0 * MathematicalConstants::Pi / 180.0;
   FullContinuationProblem<BASE_ELEMENT, TIMESTEPPER> problem(parameters);
+  problem.open_trace_files(true);
   problem.use_fd_jacobian_for_the_bulk_augmented();
+  problem.doc_solution();
   problem.newton_solve();
+  problem.doc_solution();
   problem.set_continuation_parameter(
     parameters.reynolds_inverse_froude_number_pt);
+  problem.doc_solution();
   try
   {
+    problem.step_height(0.01);
     problem.newton_solve();
   }
   catch (NewtonSolverError& error)
   {
   }
   problem.doc_solution();
+  problem.close_trace_files();
   //  If the problem solve completes, then it is a success.
 }
 

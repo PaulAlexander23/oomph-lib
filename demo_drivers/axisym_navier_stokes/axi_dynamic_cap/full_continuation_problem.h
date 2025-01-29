@@ -274,6 +274,7 @@ namespace oomph
 
         // Use the data storage
         parameter_pt = Traded_data_pt->value_pt(0);
+        this->parameters_pt()->reynolds_inverse_froude_number_pt = parameter_pt;
 
         // set the flag
         Is_continuation_parameter_set = true;
@@ -290,8 +291,8 @@ namespace oomph
       else
       {
         throw OomphLibWarning("Continuation parameter already set",
-                           OOMPH_CURRENT_FUNCTION,
-                           OOMPH_EXCEPTION_LOCATION);
+                              OOMPH_CURRENT_FUNCTION,
+                              OOMPH_EXCEPTION_LOCATION);
       }
     }
 
@@ -318,8 +319,8 @@ namespace oomph
       else
       {
         throw OomphLibWarning("Continuation parameter not set",
-                           OOMPH_CURRENT_FUNCTION,
-                           OOMPH_EXCEPTION_LOCATION);
+                              OOMPH_CURRENT_FUNCTION,
+                              OOMPH_EXCEPTION_LOCATION);
       }
     }
 
