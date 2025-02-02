@@ -58,6 +58,17 @@ namespace oomph
   private:
     unsigned Contact_line_data_index;
 
+    /// Pointer to an imposed slip function. Arguments:
+    /// Eulerian coordinate; outer unit normal;
+    /// applied slip. (Not all of the input arguments will be
+    /// required for all specific load functions but the list should
+    /// cover all cases)
+    std::function<void(const double&,
+                       const Vector<double>&,
+                       const Vector<double>&,
+                       Vector<double>&)>
+      Slip_function;
+
   protected:
     /// Index at which the i-th velocity component is stored
     Vector<unsigned> U_index_axisymmetric_nst_slip;
@@ -83,7 +94,23 @@ namespace oomph
                           const Vector<double>& n,
                           Vector<double>& slip) const
     {
-      Slip_fct_pt(time, x, n, slip);
+      try
+      {
+        Slip_function(time, x, n, slip);
+      }
+      catch (std::bad_function_call& e)
+      {
+        if (Slip_fct_pt == 0)
+        {
+          throw OomphLibError("No slip function has been set for the element",
+                              OOMPH_CURRENT_FUNCTION,
+                              OOMPH_EXCEPTION_LOCATION);
+        }
+        else
+        {
+          Slip_fct_pt(time, x, n, slip);
+        }
+      }
     }
 
     // Abstract function to get the solid perturbations
@@ -163,6 +190,15 @@ namespace oomph
       return Slip_fct_pt;
     }
 
+    /// Reference to the slip function pointer
+    void set_slip_function(
+      const std::function<void(const double&,
+                               const Vector<double>&,
+                               const Vector<double>&,
+                               Vector<double>&)>& slip_function)
+    {
+      Slip_function = slip_function;
+    }
 
     /// Return the residuals
     void fill_in_contribution_to_residuals(Vector<double>& residuals)

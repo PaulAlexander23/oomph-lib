@@ -1,19 +1,19 @@
 #ifndef PERTURBED_LINEAR_STABILITY_CAP_PROBLEM_HEADER
 #define PERTURBED_LINEAR_STABILITY_CAP_PROBLEM_HEADER
 
-//#include "axisym_linear_stability_cap_problem.h"
+// #include "axisym_linear_stability_cap_problem.h"
 #include "overlaying_elastic_linearised_axisym_fluid_slip_elements.h"
 #include "overlaying_linearised_elastic_axisym_fluid_interface_element.h"
-#include "parameters.h"
-#include "volume_constraint_elements_with_output.h"
+#include "../../axisym_navier_stokes/axi_dynamic_cap/parameters.h"
+#include "../../axisym_navier_stokes/axi_dynamic_cap/volume_constraint_elements_with_output.h"
 #include "decomposed_integral_elements.h"
 #include "decomposed_flux_elements.h"
 #include "linearised_contact_angle_elements.h"
-#include "my_eigenproblem.h"
-#include "my_triangle_mesh.h"
-#include "symmetry_velocity_condition_element.h"
-#include "utility_functions.h"
-#include "net_flux_elements.h"
+#include "../../axisym_navier_stokes/axi_dynamic_cap/my_eigenproblem.h"
+#include "../../axisym_navier_stokes/axi_dynamic_cap/my_triangle_mesh.h"
+#include "../../axisym_navier_stokes/axi_dynamic_cap/symmetry_velocity_condition_element.h"
+#include "../../axisym_navier_stokes/axi_dynamic_cap/utility_functions.h"
+#include "../../axisym_navier_stokes/axi_dynamic_cap/net_flux_elements.h"
 
 namespace oomph
 {
@@ -47,6 +47,7 @@ namespace oomph
       CONTACT_LINE_ELEMENT;
 
     MyTriangleMesh<PERTURBED_ELEMENT>* Fluid_mesh_pt;
+    Params* Parameters_pt;
     Mesh* Free_surface_mesh_pt;
     Mesh* Slip_mesh_pt;
     Mesh* Integral_mesh_pt;
@@ -64,16 +65,12 @@ namespace oomph
     Data* Volume_data_pt;
     Data* Flux_lagrange_multiplier_data_pt;
 
-    int Azimuthal_mode_number;
+    std::function<void(const double&,
+                       const Vector<double>&,
+                       const Vector<double>&,
+                       Vector<double>&)>
+      Slip_function;
 
-    double Volume;
-    double Bo;
-    double Ca;
-    double Contact_angle;
-    double Re;
-    double St;
-    double ReSt;
-    double ReInvFr;
     ConstitutiveLaw* Constitutive_law_pt;
     IsotropicElasticityTensor* ElasticityTensor_pt;
 
@@ -131,8 +128,9 @@ namespace oomph
     PerturbedLinearStabilityCapProblem(Mesh* external_base_mesh_pt,
                                        Mesh* external_free_surface_mesh_pt,
                                        Mesh* external_slip_surface_mesh_pt,
-                                       const int& azimuthal_mode_number)
-      : Free_surface_mesh_pt(0),
+                                       Params* const& params_pt)
+      : Parameters_pt(params_pt),
+        Free_surface_mesh_pt(0),
         Slip_mesh_pt(0),
         Integral_mesh_pt(0),
         Volume_mesh_pt(0),
@@ -145,15 +143,6 @@ namespace oomph
         External_slip_surface_mesh_pt(external_slip_surface_mesh_pt),
         Volume_data_pt(0),
         Flux_lagrange_multiplier_data_pt(0),
-        Azimuthal_mode_number(azimuthal_mode_number),
-        Volume((Global_Physical_Parameters::Initial_fluid_height) / 2.0),
-        Bo(1.0),
-        Ca(1.0),
-        Contact_angle(1.0),
-        Re(0.0),
-        St(1.0),
-        ReSt(0.0),
-        ReInvFr(1.0),
         problem_type(Bulk_only_problem),
         Is_steady(true)
     {
@@ -161,14 +150,31 @@ namespace oomph
 
       // Add the time stepper
       add_time_stepper_pt(new TIMESTEPPER);
+      // Set the maximum number of newton iterations
+      this->max_newton_iterations() = Parameters_pt->max_newton_iterations;
+      // Set the maximum residual before assuming newton is not converging
+      this->max_residuals() = Parameters_pt->max_residual;
+      this->newton_solver_tolerance() = Parameters_pt->newton_solver_tolerance;
+
+      // Suppress warning for restarting
+      this->Suppress_warning_about_actions_before_read_unstructured_meshes =
+        true;
+
+      this->Desired_newton_iterations_ds = 3;
+      this->Desired_proportion_of_arc_length = 0.01;
+
+
+      // Create DocInfo object (allows checking if output directory exists)
+      this->doc_info().number() = 0;
+      this->doc_info().set_directory(Parameters_pt->output_directory);
+
+      Slip_function = slip_function_factory(Parameters_pt->slip_length);
 
       // Set up the other variables.
-      this->Constitutive_law_pt =
-        new GeneralisedHookean(&Mesh_Control_Parameters::Nu);
+      this->Constitutive_law_pt = new GeneralisedHookean(&Parameters_pt->nu);
       ElasticityTensor_pt = new IsotropicElasticityTensor(0.1);
       Tilde_external_pressure_data_pt = new Data(1);
       Tilde_external_pressure_data_pt->set_value(0, 0.0);
-      this->doc_info().number() = 0;
 
       // Create the fluid mesh
       Fluid_mesh_pt =
@@ -189,7 +195,7 @@ namespace oomph
 
       // Create the integral elements if we are solving the axisymmetric
       // problem
-      if (this->Azimuthal_mode_number == 0)
+      if (this->parameters_pt()->azimuthal_mode_number == 0)
       {
         Integral_mesh_pt = new Mesh;
         Volume_mesh_pt = new Mesh;
@@ -198,7 +204,7 @@ namespace oomph
 
       // Create the flux elements if we are solving the axisymmetric
       // problem
-      if (this->Azimuthal_mode_number == 0)
+      if (this->parameters_pt()->azimuthal_mode_number == 0)
       {
         Flux_mesh_pt = new Mesh;
         Net_flux_mesh_pt = new Mesh;
@@ -207,7 +213,7 @@ namespace oomph
 
       // Create the velocity symmetry condition elements if we are solving the
       // mode 1 problem
-      if (this->Azimuthal_mode_number == 1)
+      if (this->parameters_pt()->azimuthal_mode_number == 1)
       {
         Centre_mesh_pt = new Mesh;
         create_centre_elements();
@@ -233,12 +239,12 @@ namespace oomph
         create_contact_line_elements();
         add_sub_mesh(Contact_line_mesh_pt);
       }
-      if (this->Azimuthal_mode_number == 0)
+      if (this->parameters_pt()->azimuthal_mode_number == 0)
       {
         add_sub_mesh(Volume_mesh_pt);
         add_sub_mesh(Integral_mesh_pt);
       }
-      if (this->Azimuthal_mode_number == 1)
+      if (this->parameters_pt()->azimuthal_mode_number == 1)
       {
         add_sub_mesh(Centre_mesh_pt);
       }
@@ -261,7 +267,7 @@ namespace oomph
       oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
 
       // Pin the horizontal mesh deformation.
-      if (this->Azimuthal_mode_number > 0)
+      if (this->parameters_pt()->azimuthal_mode_number > 0)
       {
         pin_horizontal_mesh_deformation();
       }
@@ -281,6 +287,11 @@ namespace oomph
       if (Centre_mesh_pt) delete Centre_mesh_pt;
     }
 
+    Params* parameters_pt() const
+    {
+      return Parameters_pt;
+    }
+
     void setup_bulk_elements()
     {
       // Loop over the elements to set the consitutive law and jacobian
@@ -293,12 +304,13 @@ namespace oomph
 
 
         // Set the Reynolds number
-        el_pt->re_pt() = &Re;
+        el_pt->re_pt() = &parameters_pt()->reynolds_number;
 
         // Set the Womersley number
-        el_pt->re_st_pt() = &ReSt;
+        el_pt->re_st_pt() = &parameters_pt()->reynolds_strouhal_number;
 
-        el_pt->azimuthal_mode_number_pt() = &Azimuthal_mode_number;
+        el_pt->azimuthal_mode_number_pt() =
+          &parameters_pt()->azimuthal_mode_number;
 
         // el_pt->constitutive_law_pt() = Constitutive_law_pt;
         // el_pt->enable_evaluate_jacobian_by_fd();
@@ -307,10 +319,11 @@ namespace oomph
 
         // // Set the product of the Reynolds number and the inverse of the
         // // Froude number
-        el_pt->re_invfr_pt() = &ReInvFr;
+        el_pt->re_invfr_pt() =
+          parameters_pt()->reynolds_inverse_froude_number_pt;
 
         // // Set the direction of gravity
-        el_pt->g_pt() = &Global_Physical_Parameters::G;
+        el_pt->g_pt() = &parameters_pt()->gravity_vector;
 
         el_pt->set_time_stepper_pt(time_stepper_pt());
         // el_pt->disable_ALE();
@@ -345,10 +358,11 @@ namespace oomph
         el_pt->set_boundary_number_in_bulk_mesh(b);
 
         // Add the capillary number
-        el_pt->ca_pt() = &Ca;
-        el_pt->st_pt() = &St;
+        el_pt->ca_pt() = &parameters_pt()->capillary_number;
+        el_pt->st_pt() = &parameters_pt()->strouhal_number;
 
-        el_pt->azimuthal_mode_number_pt() = &Azimuthal_mode_number;
+        el_pt->azimuthal_mode_number_pt() =
+          &parameters_pt()->azimuthal_mode_number;
 
         const unsigned value_index = 0;
         el_pt->set_external_pressure_data_pt(Tilde_external_pressure_data_pt,
@@ -384,7 +398,7 @@ namespace oomph
         // Add the appropriate boundary number
         el_pt->set_boundary_number_in_bulk_mesh(b);
 
-        el_pt->slip_fct_pt() = &Slip_Parameters::prescribed_slip_fct;
+        el_pt->set_slip_function(Slip_function);
 
         // Add it to the mesh
         Slip_mesh_pt->add_element_pt(el_pt);
@@ -398,7 +412,7 @@ namespace oomph
       // Volume_data_pt = int_el_pt->get_data_pt();
 
 
-      // if (this->Azimuthal_mode_number == 0)
+      // if (this->parameters_pt()->azimuthal_mode_number == 0)
       // {
       //   VOLUME_CONSTRAINT_ELEMENT* data_el_pt = new
       //   VOLUME_CONSTRAINT_ELEMENT(
@@ -436,7 +450,7 @@ namespace oomph
     void create_flux_elements()
     {
       NET_FLUX_ELEMENT* net_flux_el_pt =
-        new NET_FLUX_ELEMENT(&Flux_Parameters::flux_fct, time_pt());
+        new NET_FLUX_ELEMENT(&flux_fct, time_pt());
       Net_flux_mesh_pt->add_element_pt(net_flux_el_pt);
       Flux_lagrange_multiplier_data_pt = net_flux_el_pt->internal_data_pt(0);
 
@@ -560,11 +574,11 @@ namespace oomph
             CONTACT_LINE_ELEMENT* new_el_pt =
               new CONTACT_LINE_ELEMENT(el_pt, -1);
 
-            new_el_pt->ca_pt() = &Ca;
-            new_el_pt->contact_angle_pt() = &Contact_angle;
-            new_el_pt->wall_unit_normal_fct_pt() =
-              &Global_Physical_Parameters::wall_unit_normal_fct;
-            new_el_pt->azimuthal_mode_number_pt() = &Azimuthal_mode_number;
+            new_el_pt->ca_pt() = &parameters_pt()->capillary_number;
+            new_el_pt->contact_angle_pt() = &parameters_pt()->contact_angle;
+            new_el_pt->wall_unit_normal_fct_pt() = &wall_unit_normal_function;
+            new_el_pt->azimuthal_mode_number_pt() =
+              &parameters_pt()->azimuthal_mode_number;
             // new_el_pt->external_element_pt(0, 0) = el_pt;
             new_el_pt->add_external_data(el_pt->node_pt(1));
             new_el_pt->add_external_data(el_pt->node_pt(2));
@@ -575,11 +589,11 @@ namespace oomph
             CONTACT_LINE_ELEMENT* new_el_pt =
               new CONTACT_LINE_ELEMENT(el_pt, 1);
 
-            new_el_pt->ca_pt() = &Ca;
-            new_el_pt->contact_angle_pt() = &Contact_angle;
-            new_el_pt->wall_unit_normal_fct_pt() =
-              &Global_Physical_Parameters::wall_unit_normal_fct;
-            new_el_pt->azimuthal_mode_number_pt() = &Azimuthal_mode_number;
+            new_el_pt->ca_pt() = &parameters_pt()->capillary_number;
+            new_el_pt->contact_angle_pt() = &parameters_pt()->contact_angle;
+            new_el_pt->wall_unit_normal_fct_pt() = &wall_unit_normal_function;
+            new_el_pt->azimuthal_mode_number_pt() =
+              &parameters_pt()->azimuthal_mode_number;
             // new_el_pt->external_element_pt(0, 0) = el_pt;
             new_el_pt->add_external_data(el_pt->node_pt(0));
             new_el_pt->add_external_data(el_pt->node_pt(1));
@@ -627,7 +641,7 @@ namespace oomph
       // pin_horizontal_mesh_deformation();
 
       // If m = 0
-      if (this->Azimuthal_mode_number == 0)
+      if (this->parameters_pt()->azimuthal_mode_number == 0)
       {
         pin_sine_components();
         pin_azimuthal_velocity();
@@ -639,7 +653,7 @@ namespace oomph
       set_inner_boundary_condition();
       set_free_surface_boundary_condition();
 
-      if (this->Azimuthal_mode_number == 0)
+      if (this->parameters_pt()->azimuthal_mode_number == 0)
       {
         // If the problem is steady
         if (this->Is_steady)
@@ -663,7 +677,7 @@ namespace oomph
       }
 
       // If we have no slip
-      if (Slip_Parameters::slip_length == 0)
+      if (parameters_pt()->slip_length == 0)
       {
         // Impose a fixed contact line
         pin_velocity_on_boundary(Outer_boundary_with_slip_id, wc_index);
@@ -1148,19 +1162,19 @@ namespace oomph
         Fluid_mesh_pt->nboundary_node(Inner_boundary_id);
       for (unsigned n = 0; n < n_boundary_node; n++)
       {
-        if (Azimuthal_mode_number == 0)
+        if (parameters_pt()->azimuthal_mode_number == 0)
         {
           Fluid_mesh_pt->boundary_node_pt(Inner_boundary_id, n)->pin(uc_index);
           Fluid_mesh_pt->boundary_node_pt(Inner_boundary_id, n)->pin(us_index);
           Fluid_mesh_pt->boundary_node_pt(Inner_boundary_id, n)->pin(vc_index);
           Fluid_mesh_pt->boundary_node_pt(Inner_boundary_id, n)->pin(vs_index);
         }
-        else if (Azimuthal_mode_number == 1)
+        else if (parameters_pt()->azimuthal_mode_number == 1)
         {
           Fluid_mesh_pt->boundary_node_pt(Inner_boundary_id, n)->pin(wc_index);
           Fluid_mesh_pt->boundary_node_pt(Inner_boundary_id, n)->pin(ws_index);
         }
-        else if (Azimuthal_mode_number > 1)
+        else if (parameters_pt()->azimuthal_mode_number > 1)
         {
           Fluid_mesh_pt->boundary_node_pt(Inner_boundary_id, n)->pin(uc_index);
           Fluid_mesh_pt->boundary_node_pt(Inner_boundary_id, n)->pin(us_index);
@@ -1184,7 +1198,7 @@ namespace oomph
             for (unsigned j = 0; j < 2; j++)
             {
               el_pt->pin_Xhat(m, 0, j);
-              if (Azimuthal_mode_number > 0)
+              if (parameters_pt()->azimuthal_mode_number > 0)
               {
                 el_pt->pin_Xhat(m, 1, j);
               }
@@ -1193,7 +1207,7 @@ namespace oomph
         }
       }
 
-      if (Azimuthal_mode_number == 1)
+      if (parameters_pt()->azimuthal_mode_number == 1)
       {
         // pin_pressure_along_inner_boundary();
       }
@@ -1222,18 +1236,18 @@ namespace oomph
     {
       oomph_info << "set_free_surface_boundary_condition" << std::endl;
 
-      if (this->Azimuthal_mode_number == 0)
+      if (this->parameters_pt()->azimuthal_mode_number == 0)
       {
         // pin_centre_corner_lagrange_multipler();
       }
-      else if (this->Azimuthal_mode_number == 1)
+      else if (this->parameters_pt()->azimuthal_mode_number == 1)
       {
         // pin_centre_corner_displacement();
         // pin_centre_corner_horizontal_displacement();
         // pin_centre_corner_velocities();
         pin_centre_corner_lagrange_multipler();
       }
-      else if (this->Azimuthal_mode_number > 1)
+      else if (this->parameters_pt()->azimuthal_mode_number > 1)
       {
         pin_centre_corner_lagrange_multipler();
         pin_centre_corner_velocities();
@@ -1628,7 +1642,7 @@ namespace oomph
           const double amplitude = 0.01;
 
           // Smoother perturbation at the origin
-          if (this->Azimuthal_mode_number == 1)
+          if (this->parameters_pt()->azimuthal_mode_number == 1)
           {
             if (r < 0.5)
             {
@@ -1644,7 +1658,7 @@ namespace oomph
                   (1 - cos(4 * MathematicalConstants::Pi * (r - 0.5))));
             }
           }
-          else if (this->Azimuthal_mode_number > 1)
+          else if (this->parameters_pt()->azimuthal_mode_number > 1)
           {
             el_pt->set_value_Xhat(
               m,
@@ -1783,14 +1797,12 @@ namespace oomph
       }
 
       // Set up variables for the adaption procedure
-      unsigned steps_between_adapt =
-        Mesh_Control_Parameters::interval_between_adapts;
+      unsigned steps_between_adapt = Parameters_pt->interval_between_adapts;
       unsigned local_max_adapt = 0;
 
       // Set up variables for unsteady_newton_solve
       double local_dt = dt;
-      const double temporal_tolerance =
-        Mesh_Control_Parameters::Temporal_tolerance;
+      const double temporal_tolerance = Parameters_pt->temporal_tolerance;
       bool first_timestep = false;
       bool shift = true;
       unsigned it = 0;
@@ -1819,7 +1831,7 @@ namespace oomph
         // Call unsteady newton solver
         try
         {
-          if (Mesh_Control_Parameters::Use_adaptive_timestepping)
+          if (Parameters_pt->is_adaptive_timestepping)
           {
             local_dt =
               this->doubly_adaptive_unsteady_newton_solve(local_dt,
@@ -1841,13 +1853,13 @@ namespace oomph
         }
 
         // Document the solution
-        if ((it + 1) % Doc_Parameters::interval_between_doc == 0)
+        if ((it + 1) % parameters_pt()->rval_between_doc == 0)
         {
           this->doc_solution();
         }
 
         // Dump the solution
-        if ((it + 1) % Restart_Parameters::interval_between_dump == 0)
+        if ((it + 1) % parameters_pt()->interval_between_dump == 0)
         {
           // this->create_restart_file();
         }
@@ -1864,63 +1876,6 @@ namespace oomph
     void set_doc_number(const unsigned& doc_number)
     {
       this->doc_info().number() = doc_number;
-    }
-
-    // Set the bond number represented by ReInvFr
-    void set_bond_number(const double& bond_number)
-    {
-      this->Bo = bond_number;
-
-      update_ReInvFr();
-    }
-
-    // Set the bond number represented by ReInvFr
-    double* reynolds_number_inverse_froude_number_pt()
-    {
-      return &this->ReInvFr;
-    }
-
-    // Set the Capillary without changing the Bond number
-    void set_capillary_number(const double& capillary_number)
-    {
-      // Set the new capillary number
-      this->Ca = capillary_number;
-
-      update_ReInvFr();
-    }
-
-  private:
-    void update_ReInvFr()
-    {
-      this->ReInvFr = this->Bo / this->Ca;
-    }
-
-  public:
-    // Set the contact angle, not this is overridden by the contact angle
-    // function.
-    void set_contact_angle(const double& contact_angle)
-    {
-      this->Contact_angle = contact_angle;
-    }
-
-    // Set the Reynolds number without changing the Bond number or Strouhal
-    // number
-    void set_reynolds_number(const double& reynolds_number)
-    {
-      // Set new Reynolds number
-      this->Re = reynolds_number;
-
-      // this->ReInvFr = invFr * this->Re;
-
-      this->ReSt = this->St * this->Re;
-    }
-
-    // Set the Strouhal number
-    void set_strouhal_number(const double& strouhal_number)
-    {
-      this->St = strouhal_number;
-
-      this->ReSt = this->St * this->Re;
     }
 
     Vector<double> estimate_gradient_at_origin()
@@ -2383,6 +2338,18 @@ namespace oomph
             (2.0 / 3.0) * dt * (-jacobian_unsteady(j, i) + jacobian(j, i));
         }
       }
+    }
+
+    static void wall_unit_normal_function(const Vector<double>& x,
+                                          Vector<double>& unit_normal)
+    {
+      unit_normal[0] = -1.0;
+      unit_normal[1] = 0.0;
+    }
+
+    static void flux_fct(const double& t, double& flux)
+    {
+      flux = 0.0;
     }
   };
 } // namespace oomph

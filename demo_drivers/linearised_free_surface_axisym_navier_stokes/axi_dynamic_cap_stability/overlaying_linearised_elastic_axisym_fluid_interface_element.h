@@ -3,7 +3,7 @@
 
 //#include "generic.h"
 #include "linearised_elastic_axisym_fluid_interface_element.h"
-#include "free_surface_elements.h"
+#include "../../axisym_navier_stokes/axi_dynamic_cap/free_surface_elements.h"
 
 namespace oomph
 {

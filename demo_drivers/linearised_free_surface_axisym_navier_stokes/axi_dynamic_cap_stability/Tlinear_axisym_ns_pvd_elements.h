@@ -3,7 +3,7 @@
 
 #include "Tfull_linearised_axisym_navier_stokes_elements.h"
 #include "decomposed_pvd_elements.h"
-#include "debug_jacobian_elements.h"
+#include "../../axisym_navier_stokes/axi_dynamic_cap/debug_jacobian_elements.h"
 
 namespace oomph
 {

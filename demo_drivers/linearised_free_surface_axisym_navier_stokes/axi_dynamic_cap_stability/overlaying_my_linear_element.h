@@ -3,7 +3,7 @@
 
 //#include "generic.h"
 #include "MyLinearElements.h"
-#include "projectable_axisymmetric_Ttaylor_hood_elements.h"
+#include "../../axisym_navier_stokes/axi_dynamic_cap/projectable_axisymmetric_Ttaylor_hood_elements.h"
 
 namespace oomph
 {

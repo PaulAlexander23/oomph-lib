@@ -2,9 +2,9 @@
 #define OVERLAYING_LINEARISED_ELASTIC_AXISYM_FLUID_SLIP_ELEMENT_HEADER
 
 //#include "generic.h"
+#include "axisym_navier_stokes.h"
 #include "linearised_elastic_axisym_fluid_slip_elements.h"
-#include "axisym_fluid_slip_elements.h"
-#include "projectable_axisymmetric_Ttaylor_hood_elements.h"
+#include "../../axisym_navier_stokes/axi_dynamic_cap/projectable_axisymmetric_Ttaylor_hood_elements.h"
 
 namespace oomph
 {

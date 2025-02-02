@@ -6,7 +6,7 @@
 //#include "overlaying_my_linear_element.h"
 #include "overlaying_Tlinear_axisym_ns_pvd_elements.h"
 #include "linearised_axisymmetric_fluid_interface_elements.h"
-#include "debug_jacobian_elements.h"
+#include "../../axisym_navier_stokes/axi_dynamic_cap/debug_jacobian_elements.h"
 
 namespace oomph
 {

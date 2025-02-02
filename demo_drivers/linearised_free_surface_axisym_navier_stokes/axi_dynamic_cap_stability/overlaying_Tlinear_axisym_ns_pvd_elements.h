@@ -2,7 +2,7 @@
 #define OVERLAYING_TLINEAR_AXISYM_NS_PVD_ELEMENTS_HEADER
 
 //#include "generic.h"
-#include "projectable_axisymmetric_Ttaylor_hood_elements.h"
+#include "../../axisym_navier_stokes/axi_dynamic_cap/projectable_axisymmetric_Ttaylor_hood_elements.h"
 #include "Tlinear_axisym_ns_pvd_elements.h"
 
 namespace oomph
