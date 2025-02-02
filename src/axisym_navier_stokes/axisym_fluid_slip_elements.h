@@ -34,6 +34,7 @@
 #include <oomph-lib-config.h>
 #endif
 
+#include <functional>
 
 // OOMPH-LIB headers
 // #include "../generic/shape.h"
