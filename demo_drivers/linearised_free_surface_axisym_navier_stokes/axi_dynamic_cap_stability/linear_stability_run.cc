@@ -31,7 +31,8 @@
 // spherical shells and the pressure jump across the interface should be
 // 2 cos(alpha)/0.5 = 4 cos(alpha)/Ca.
 
-#include "algorithm"
+// STD includes
+#include <algorithm>
 
 // OOMPH-LIB include files
 #include "generic.h"
@@ -55,10 +56,7 @@
 #include "linearised_elastic_axisym_fluid_interface_element.h"
 #include "overlaying_linearised_elastic_axisym_fluid_interface_element.h"
 #include "overlaying_my_linear_element.h"
-
 #include "perturbed_linear_stability_cap_problem.h"
-
-#include "../../axisym_navier_stokes/axi_dynamic_cap/parameters.h"
 
 using namespace std;
 using namespace oomph;
@@ -133,6 +131,7 @@ int main(int argc, char** argv)
   // Output the initial condition
   base_problem.create_restart_file();
   base_problem.doc_solution();
+  base_problem.use_fd_jacobian_for_the_bulk_augmented();
 
   // Solve steady problem
   base_problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
