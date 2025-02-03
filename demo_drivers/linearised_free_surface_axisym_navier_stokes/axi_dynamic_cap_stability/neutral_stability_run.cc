@@ -39,41 +39,51 @@
 #include "fluid_interface.h"
 #include "constitutive.h"
 #include "solid.h"
-
-// The mesh
 #include "meshes/triangle_mesh.h"
-
-
 #include "linearised_axisym_navier_stokes.h"
 
-#include "projectable_axisymmetric_Ttaylor_hood_elements.h"
+// Other demo includes
+#include "../../axisym_navier_stokes/axi_dynamic_cap/projectable_axisymmetric_Ttaylor_hood_elements.h"
+#include "../../axisym_navier_stokes/axi_dynamic_cap/singular_axisym_dynamic_cap_problem.h"
+#include "../../axisym_navier_stokes/axi_dynamic_cap/parameters.h"
+#include "../../axisym_navier_stokes/axi_dynamic_cap/utility_functions.h"
+
+// Local includes
 #include "linearised_axisymmetric_fluid_interface_elements.h"
 #include "decomposed_linear_elasticity_elements.h"
-#include "singular_axisym_navier_stokes_elements.h"
-
 #include "linearised_elastic_axisym_fluid_interface_element.h"
 #include "overlaying_linearised_elastic_axisym_fluid_interface_element.h"
 #include "overlaying_my_linear_element.h"
-
-//#include "axisym_linear_stability_cap_problem.h"
-#include "singular_axisym_dynamic_cap_problem.h"
 #include "perturbed_linear_stability_cap_problem.h"
-
-#include "parameters.h"
 
 using namespace std;
 using namespace oomph;
 
-void parse_arguments(const int& argc,
-                     char** const& argv,
-                     std::string& parameters_filename,
-                     double& starting_step,
-                     double*& continuation_param_pt)
+enum ContinuationParameter
 {
+  Bo,
+  Ca,
+  Angle,
+  SlipLength
+};
+
+struct Arguments
+{
+  std::string parameters_filename = "";
+  double starting_step = 0.0;
+  ContinuationParameter continuation_param = ContinuationParameter::Bo;
+  bool has_arc_continuation = false;
+  bool has_height_control_continuation = false;
+};
+
+Arguments parse_arguments(const int& argc, char** const& argv)
+{
+  Arguments args;
+
   CommandLineArgs::setup(argc, argv);
 
   CommandLineArgs::specify_command_line_flag(
-    "--parameters", &parameters_filename, "Required: parameter filename");
+    "--parameters", &args.parameters_filename, "Required: parameter filename");
 
   double bo_initial_step = 0.0;
   CommandLineArgs::specify_command_line_flag(
@@ -113,7 +123,7 @@ void parse_arguments(const int& argc,
   {
     throw std::invalid_argument("Unrecognised args.");
   }
-  if (parameters_filename == "")
+  if (args.parameters_filename == "")
   {
     throw std::invalid_argument("Parameter file not set.");
   }
@@ -123,24 +133,23 @@ void parse_arguments(const int& argc,
   {
     if (bo_initial_step != 0)
     {
-      starting_step = bo_initial_step;
-      continuation_param_pt = &Global_Physical_Parameters::Bo;
+      args.starting_step = bo_initial_step;
+      args.continuation_param = ContinuationParameter::Bo;
     }
     else if (angle_initial_step != 0)
     {
-      starting_step = angle_initial_step;
-      continuation_param_pt =
-        &Global_Physical_Parameters::Equilibrium_contact_angle;
+      args.starting_step = angle_initial_step;
+      args.continuation_param = ContinuationParameter::Angle;
     }
     else if (ca_initial_step != 0)
     {
-      starting_step = ca_initial_step;
-      continuation_param_pt = &Slip_Parameters::wall_velocity;
+      args.starting_step = ca_initial_step;
+      args.continuation_param = ContinuationParameter::Ca;
     }
     else if (slip_length_initial_step != 0)
     {
-      starting_step = slip_length_initial_step;
-      continuation_param_pt = &Slip_Parameters::slip_length;
+      args.starting_step = slip_length_initial_step;
+      args.continuation_param = ContinuationParameter::SlipLength;
     }
     else
     {
@@ -151,6 +160,16 @@ void parse_arguments(const int& argc,
   {
     throw std::invalid_argument("Continuation parameter can't be set.");
   }
+
+  if (CommandLineArgs::command_line_flag_has_been_set("--arc"))
+  {
+    args.has_arc_continuation = true;
+  }
+  if (CommandLineArgs::command_line_flag_has_been_set("--height_control"))
+  {
+    args.has_height_control_continuation = true;
+  }
+  return args;
 }
 
 //===start_of_main=======================================================
@@ -165,15 +184,28 @@ int main(int argc, char** argv)
   MPI_Helpers::init(argc, argv, make_copy_of_mpi_comm_world);
 #endif
 
-  std::string parameters_filename = "";
-  double starting_step = 0.0;
-  double* continuation_param_pt = 0;
-  parse_arguments(
-    argc, argv, parameters_filename, starting_step, continuation_param_pt);
+  Arguments args = parse_arguments(argc, argv);
 
   // Problem parameters
-  Parameters parameters;
-  read_parameters_from_file(parameters_filename, parameters);
+  Params parameters = create_parameters_from_file(args.parameters_filename);
+
+  double* continuation_param_pt = 0;
+  // Continuation parameter pointer
+  switch (args.continuation_param)
+  {
+    case ContinuationParameter::Bo:
+      continuation_param_pt = parameters.reynolds_inverse_froude_number_pt;
+      break;
+    case ContinuationParameter::Ca:
+      continuation_param_pt = parameters.wall_velocity_pt;
+      break;
+    case ContinuationParameter::Angle:
+      continuation_param_pt = &parameters.contact_angle;
+      break;
+    case ContinuationParameter::SlipLength:
+      continuation_param_pt = &parameters.slip_length;
+      break;
+  }
 
   // Construct the base problem
   bool has_restart = false;
@@ -187,7 +219,7 @@ int main(int argc, char** argv)
     BASE_ELEMENT;
   typedef BDF<2> TIMESTEPPER;
   SingularAxisymDynamicCapProblem<BASE_ELEMENT, TIMESTEPPER> base_problem(
-    Global_Physical_Parameters::Equilibrium_contact_angle, has_restart);
+    &parameters);
 
   // Load in restart file
   if (parameters.restart_filename != "")
@@ -202,49 +234,40 @@ int main(int argc, char** argv)
     }
     catch (OomphLibError& e)
     {
-      std::cout << "Restart filename can't be set, or opened, or read." << std::endl;
+      std::cout << "Restart filename can't be set, or opened, or read."
+                << std::endl;
       std::cout << "File: " << parameters.restart_filename << std::endl;
       return 1;
     }
   }
 
-  base_problem.set_contact_angle(
-    Global_Physical_Parameters::Equilibrium_contact_angle);
-  base_problem.set_bond_number(Global_Physical_Parameters::Bo);
-  base_problem.set_capillary_number(Global_Physical_Parameters::Ca);
-  base_problem.set_reynolds_number(Global_Physical_Parameters::Re);
-
-  // Set maximum number of mesh adaptations per solve
-  base_problem.set_max_adapt(parameters.max_adapt);
-
-  // Set output directory
-  base_problem.set_directory(parameters.dir_name);
-
   // Setup trace file
   base_problem.open_trace_files(true);
 
-  ofstream parameters_filestream(
-    (parameters.dir_name + "/parameters.dat").c_str());
-  parameters.doc(parameters_filestream);
-  parameters_filestream.close();
+  // Save a copy of the parameters
+  save_parameters_to_file(parameters,
+                          parameters.output_directory + "/parameters.dat");
 
   // Output the initial condition
   base_problem.create_restart_file();
   base_problem.doc_solution();
+  base_problem.use_fd_jacobian_for_the_bulk_augmented();
 
   //====================================================================
 
   // Solve steady problem
   base_problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
+  base_problem.reset_lagrange();
+  base_problem.assign_initial_values_impulsive();
 
   // Output result
   base_problem.create_restart_file();
   base_problem.doc_solution();
 
+  //====================================================================
   // Solve the eigenvalue problem
   Vector<std::complex<double>> eigenvalues(1, 0.0);
 
-  //====================================================================
 
   // Create the linear stability problem
   typedef OverlayingMyLinearElement<BASE_ELEMENT> PERTURBED_ELEMENT;
@@ -254,23 +277,23 @@ int main(int argc, char** argv)
     initial_perturbed_problem(base_problem.bulk_mesh_pt(),
                               base_problem.free_surface_mesh_pt(),
                               base_problem.slip_surface_mesh_pt(),
-                              parameters.azimuthal_mode_number);
+                              &parameters);
 
-  initial_perturbed_problem.set_directory(parameters.dir_name);
-  initial_perturbed_problem.set_contact_angle(
-    Global_Physical_Parameters::Equilibrium_contact_angle);
-  initial_perturbed_problem.set_bond_number(Global_Physical_Parameters::Bo);
-  initial_perturbed_problem.set_capillary_number(
-    Global_Physical_Parameters::Ca);
-  initial_perturbed_problem.set_reynolds_number(Global_Physical_Parameters::Re);
+  initial_perturbed_problem.assign_initial_values_impulsive();
 
   // Document the solution before the solve for testing
   initial_perturbed_problem.doc_solution();
   initial_perturbed_problem.steady_newton_solve();
 
+  if (parameters.azimuthal_mode_number != 0)
+  {
+    initial_perturbed_problem.make_unsteady();
+  }
+
   eigenvalues =
     initial_perturbed_problem.solve_n_most_unstable_eigensolutions(1);
 
+  // Our new residual is the real part of the eigenvalue
   double residual = real(eigenvalues[0]);
 
   const double tolerance = 1e-8;
@@ -280,12 +303,14 @@ int main(int argc, char** argv)
     has_converged = true;
   }
 
+  // Newton iteration until we converge to the neutral stability point
   //====================================================================
 
   unsigned n_iterations = 0;
-  const unsigned max_n_iterations = floor(abs(parameters.ft / parameters.dt));
+  const unsigned max_n_iterations =
+    floor(abs(parameters.final_time / parameters.time_step));
   // const double step_tolerance = 1e-3;
-  double step_param = starting_step;
+  double step_param = args.starting_step;
   double old_param;
   double current_param = *continuation_param_pt;
   double old_residual;
@@ -297,7 +322,7 @@ int main(int argc, char** argv)
     std::cout << "-------------" << std::endl;
     std::cout << std::endl;
     std::cout << n_iterations << ", " << current_param << "," << residual << ","
-         << current_param + step_param << std::endl;
+              << current_param + step_param << std::endl;
     old_param = current_param;
     current_param += step_param;
     *continuation_param_pt = current_param;
@@ -313,12 +338,6 @@ int main(int argc, char** argv)
       base_problem.get_dofs(dofs);
       try
       {
-        base_problem.set_contact_angle(
-          Global_Physical_Parameters::Equilibrium_contact_angle);
-        base_problem.set_bond_number(Global_Physical_Parameters::Bo);
-        base_problem.set_capillary_number(Global_Physical_Parameters::Ca);
-        base_problem.set_reynolds_number(Global_Physical_Parameters::Re);
-
         // Solve steady problem
         int exit_flag = base_problem.steady_newton_solve_adapt_if_needed(
           parameters.max_adapt);
@@ -364,19 +383,16 @@ int main(int argc, char** argv)
       perturbed_problem(base_problem.bulk_mesh_pt(),
                         base_problem.free_surface_mesh_pt(),
                         base_problem.slip_surface_mesh_pt(),
-                        parameters.azimuthal_mode_number);
-
-    perturbed_problem.set_directory(parameters.dir_name);
-    perturbed_problem.set_contact_angle(
-      Global_Physical_Parameters::Equilibrium_contact_angle);
-    perturbed_problem.set_bond_number(Global_Physical_Parameters::Bo);
-    perturbed_problem.set_capillary_number(Global_Physical_Parameters::Ca);
-    perturbed_problem.set_reynolds_number(Global_Physical_Parameters::Re);
+                        &parameters);
 
     // Document the solution before the solve for testing
     perturbed_problem.doc_solution();
 
     perturbed_problem.steady_newton_solve();
+    if (parameters.azimuthal_mode_number != 0)
+    {
+      perturbed_problem.make_unsteady();
+    }
 
     eigenvalues = perturbed_problem.solve_n_most_unstable_eigensolutions(1);
 
@@ -390,6 +406,7 @@ int main(int argc, char** argv)
     }
     else
     {
+      // Newton iteration, using fd to approximate the derivative
       double deriv = (residual - old_residual) / (current_param - old_param);
       const double relaxation = 1.0;
       step_param = -relaxation * residual / (deriv);
@@ -398,7 +415,6 @@ int main(int argc, char** argv)
         perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(1);
       }
     }
-
 
     n_iterations++;
   }
