@@ -35,6 +35,7 @@ run_tests_SOURCES = run_tests.cc
 # $(FLIBS) is included in case the solver involves fortran sources.
 LDADD = -L@libdir@ \
 	-laxisym_navier_stokes \
+	-lnavier_stokes \
 	-lfluid_interface \
 	-lsolid \
 	-lconstitutive \
