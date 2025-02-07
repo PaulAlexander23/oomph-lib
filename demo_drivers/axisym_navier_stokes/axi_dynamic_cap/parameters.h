@@ -69,6 +69,88 @@ namespace oomph
     unsigned surface_element_number_of_plot_points = 3;
   };
 
+  template<class T>
+  class ArgParameterLine
+  {
+  private:
+    std::string Description;
+    T* Value_pt;
+
+  public:
+    ArgParameterLine(const std::string& passed_description, T* passed_value_pt)
+      : Description(passed_description), Value_pt(passed_value_pt)
+    {
+    }
+
+    std::string description()
+    {
+      return Description;
+    }
+
+    T* value()
+    {
+      return Value_pt;
+    }
+
+    virtual void update(std::string input_string) = 0;
+  };
+
+  template<>
+  class ArgParameterLine<double>
+  {
+  public:
+    virtual void update(std::string input_string)
+    {
+      *Value_pt = std::stod(input_string);
+    }
+  };
+
+  class DoubleParameterLine : public ArgParameterLine
+  {
+  private:
+    double* Value_pt;
+
+  public:
+    DoubleParameterLine(const std::string& passed_description,
+                        double* passed_value_pt)
+      : ArgParameterLine(passed_description), Value_pt(passed_value_pt)
+    {
+    }
+
+    double* value_pt()
+    {
+      return value_pt;
+    }
+
+    virtual void update(std::string input_string)
+    {
+      *Value_pt = std::stod(input_string);
+    }
+  };
+
+  class StringParameterLine : public ArgParameterLine
+  {
+  private:
+    std::string* Value_pt;
+
+  public:
+    StringParameterLine(const std::string& passed_description,
+                        std::string* passed_value_pt)
+      : ArgParameterLine(passed_description), Value_pt(passed_value_pt)
+    {
+    }
+
+    std::string* value_pt()
+    {
+      return Value_pt;
+    }
+
+    virtual void update(std::string input_string)
+    {
+      *Value_pt = input_string;
+    }
+  };
+
   Params create_parameters_from_file(const std::string& filename)
   {
     Params params;
@@ -305,7 +387,8 @@ namespace oomph
     parameter_filestream << params.time_step << " # Time step" << "\n";
     parameter_filestream << params.restart_filename << " # Restart filename"
                          << "\n";
-    parameter_filestream << *params.wall_velocity_pt << " # Wall velocity" << "\n";
+    parameter_filestream << *params.wall_velocity_pt << " # Wall velocity"
+                         << "\n";
     parameter_filestream << params.azimuthal_mode_number
                          << " # Azimuthal mode number" << "\n";
     parameter_filestream
