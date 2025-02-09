@@ -192,14 +192,14 @@ namespace oomph
     {
       ElasticAxisymmetricFluidInterfaceElement<ELEMENT>::output(outfile, npts);
 
-      outfile << get_error() << endl;
+      outfile << get_error() << std::endl;
     }
 
     void output(std::ostream& outfile)
     {
       ElasticAxisymmetricFluidInterfaceElement<ELEMENT>::output(outfile);
 
-      outfile << get_error() << endl;
+      outfile << get_error() << std::endl;
     }
   };
 

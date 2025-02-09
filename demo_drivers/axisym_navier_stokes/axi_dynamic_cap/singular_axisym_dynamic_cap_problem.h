@@ -621,7 +621,7 @@ namespace oomph
           DenseMatrix<double> jacobian(n, n, 0.0);
           DenseMatrix<double> jacobianFD(n, n, 0.0);
           el_pt->debug_jacobian(n, residuals, jacobian, jacobianFD);
-          cout << "bulk: " << compare_matrices(jacobianFD, jacobian) << endl;
+          std::cout << "bulk: " << compare_matrices(jacobianFD, jacobian) << std::endl;
         }
       }
       {
@@ -635,7 +635,7 @@ namespace oomph
           DenseMatrix<double> jacobian(n, n, 0.0);
           DenseMatrix<double> jacobianFD(n, n, 0.0);
           el_pt->debug_jacobian(n, residuals, jacobian, jacobianFD);
-          cout << "free: " << compare_matrices(jacobianFD, jacobian) << endl;
+          std::cout << "free: " << compare_matrices(jacobianFD, jacobian) << std::endl;
         }
       }
       //{
@@ -649,7 +649,7 @@ namespace oomph
       //    DenseMatrix<double> jacobian(n, n, 0.0);
       //    DenseMatrix<double> jacobianFD(n, n, 0.0);
       //    el_pt->debug_jacobian(n, residuals, jacobian, jacobianFD);
-      //    cout << "slip: " << compare_matrices(jacobianFD, jacobian) << endl;
+      //    std::cout << "slip: " << compare_matrices(jacobianFD, jacobian) << std::endl;
       //  }
       //}
       if (No_penetration_boundary_mesh_pt)
@@ -664,7 +664,7 @@ namespace oomph
           DenseMatrix<double> jacobian(n, n, 0.0);
           DenseMatrix<double> jacobianFD(n, n, 0.0);
           el_pt->debug_jacobian(n, residuals, jacobian, jacobianFD);
-          cout << "no pen: " << compare_matrices(jacobianFD, jacobian) << endl;
+          std::cout << "no pen: " << compare_matrices(jacobianFD, jacobian) << std::endl;
         }
       }
       // if (Flux_mesh_pt)
@@ -676,7 +676,7 @@ namespace oomph
       //   DenseMatrix<double> jacobian(n, n, 0.0);
       //   DenseMatrix<double> jacobianFD(n, n, 0.0);
       //   el_pt->debug_jacobian(n, residuals, jacobian, jacobianFD);
-      //   cout << "flux: " << compare_matrices(jacobianFD, jacobian) << endl;
+      //   std::cout << "flux: " << compare_matrices(jacobianFD, jacobian) << std::endl;
       // }
       if (Volume_computation_mesh_pt)
       {
@@ -688,8 +688,8 @@ namespace oomph
         DenseMatrix<double> jacobian(n, n, 0.0);
         DenseMatrix<double> jacobianFD(n, n, 0.0);
         el_pt->debug_jacobian(n, residuals, jacobian, jacobianFD);
-        cout << "volume computation: " << compare_matrices(jacobianFD, jacobian)
-             << endl;
+        std::cout << "volume computation: " << compare_matrices(jacobianFD, jacobian)
+             << std::endl;
       }
       // if (this->is_augmented())
       // {
@@ -701,8 +701,8 @@ namespace oomph
       //   DenseMatrix<double> jacobian(n, n, 0.0);
       //   DenseMatrix<double> jacobianFD(n, n, 0.0);
       //   el_pt->debug_jacobian(n, residuals, jacobian, jacobianFD);
-      //   cout << "pressure contribution: "
-      //        << compare_matrices(jacobianFD, jacobian) << endl;
+      //   std::cout << "pressure contribution: "
+      //        << compare_matrices(jacobianFD, jacobian) << std::endl;
       // }
       // if (this->is_augmented())
       // {
@@ -714,9 +714,9 @@ namespace oomph
       //   DenseMatrix<double> jacobian(n, n, 0.0);
       //   DenseMatrix<double> jacobianFD(n, n, 0.0);
       //   el_pt->debug_jacobian(n, residuals, jacobian, jacobianFD);
-      //   cout << "singular traction: " << compare_matrices(jacobianFD,
+      //   std::cout << "singular traction: " << compare_matrices(jacobianFD,
       //   jacobian)
-      //        << endl;
+      //        << std::endl;
       // }
       // if (Volume_constraint_mesh_pt)
       //{
@@ -728,9 +728,9 @@ namespace oomph
       //   DenseMatrix<double> jacobian(n, n, 0.0);
       //   DenseMatrix<double> jacobianFD(n, n, 0.0);
       //   el_pt->debug_jacobian(n, residuals, jacobian, jacobianFD);
-      //   cout << "volume constraint: " << compare_matrices(jacobianFD,
+      //   std::cout << "volume constraint: " << compare_matrices(jacobianFD,
       //   jacobian)
-      //        << endl;
+      //        << std::endl;
       // }
       // if (Net_flux_mesh_pt)
       //{
@@ -741,8 +741,8 @@ namespace oomph
       //   DenseMatrix<double> jacobian(n, n, 0.0);
       //   DenseMatrix<double> jacobianFD(n, n, 0.0);
       //   el_pt->debug_jacobian(n, residuals, jacobian, jacobianFD);
-      //   cout << "net flux: " << compare_matrices(jacobianFD, jacobian) <<
-      //   endl;
+      //   std::cout << "net flux: " << compare_matrices(jacobianFD, jacobian) <<
+      //   std::endl;
       // }
     }
 
@@ -1453,7 +1453,7 @@ namespace oomph
                                   to_string(this->doc_info().number()) +
                                   ".dat");
 
-      output_stream << "i residual" << endl;
+      output_stream << "i residual" << std::endl;
       for (unsigned i = 0; i < ndof(); i++)
       {
         output_stream << i << " " << residuals[i] << std::endl;

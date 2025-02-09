@@ -2438,7 +2438,7 @@ namespace oomph
           output_stream << "x ";
           output_stream << "y ";
           output_stream << "p ";
-          output_stream << endl;
+          output_stream << std::endl;
           Pressure_contribution_mesh_1_pt->output(output_stream);
           Pressure_contribution_mesh_2_pt->output(output_stream);
           output_stream.close();
