@@ -2588,11 +2588,18 @@ namespace oomph
       // Domain height
       double domain_height = Parameters_pt->volume / pow(half_width, 2.0) * 2.0;
 
+      const double radius = 1.0 / (cos(Parameters_pt->contact_angle));
+
+      // Compute number of points that will be under the free surface error
+      const unsigned my_npoints = ceil(
+        radius * Parameters_pt->contact_angle *
+        (pow(Parameters_pt->polyline_refinement_tolerence, 2) + 1.0 / 2.0) /
+        (2.0 * radius * Parameters_pt->polyline_refinement_tolerence));
+
       // Number of points to use for the free surface polyline
       const unsigned npoints =
         Parameters_pt->initial_number_of_free_surface_points;
 
-      double radius = 1.0 / (cos(Parameters_pt->contact_angle));
       double zeta_step =
         (0.5 * MathematicalConstants::Pi - Parameters_pt->contact_angle) /
         double(npoints - 1);
@@ -4299,6 +4306,7 @@ namespace oomph
       return sqrt(velocity_value_norm);
     }
 
+  public:
     double max_free_surface_error()
     {
       double max_error = 0.0;
@@ -4316,6 +4324,7 @@ namespace oomph
       return max_error;
     }
 
+  private:
     double global_deformation_norm()
     {
       // Set the velocity value error to zero

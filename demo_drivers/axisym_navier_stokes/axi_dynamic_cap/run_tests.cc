@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE(compare_matrix_different)
 
 /// ----------------------------------------------------------------------------
 /// Problem
-
+#include "adapt_tests.h"
 /// Test temp
 BOOST_AUTO_TEST_CASE(temp)
 {
