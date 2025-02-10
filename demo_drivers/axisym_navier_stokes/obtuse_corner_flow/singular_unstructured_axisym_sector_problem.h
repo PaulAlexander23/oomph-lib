@@ -9,6 +9,7 @@
 
 /// Local headers
 #include "unstructured_axisym_sector_problem.h"
+#include "my_element.h"
 
 namespace oomph
 {
@@ -18,7 +19,6 @@ namespace oomph
     : public UnstructuredAxisymSectorProblem<ELEMENT>
   {
   private:
-    double Contact_angle;
     Node* Contact_line_node_pt;
 
     Vector<unsigned> Augmented_bulk_element_number;
@@ -56,8 +56,10 @@ namespace oomph
     };
 
     // Constructor
-    SingularUnstructuredAxisymSectorProblem()
-      : UnstructuredAxisymSectorProblem<ELEMENT>(), Contact_line_node_pt(0)
+    SingularUnstructuredAxisymSectorProblem(
+      std::string parameter_file = "parameters.dat")
+      : UnstructuredAxisymSectorProblem<ELEMENT>(parameter_file),
+        Contact_line_node_pt(0)
     {
       // Re-assign doc info pointer
       this->doc_info_pt()->set_directory("RESLT_axi_fix_unstr");
@@ -75,16 +77,19 @@ namespace oomph
       UnstructuredAxisymSectorProblem<ELEMENT>::setup();
 
       set_contact_line_node_pt();
-      Contact_angle =
-        this->my_parameters().sector_angle * MathematicalConstants::Pi / 180.0;
-      Velocity_singular_function =
-        velocity_singular_function_factory(Contact_angle, Contact_line_node_pt);
+      Velocity_singular_function = velocity_singular_function_factory(
+        this->parameters().sector_angle * MathematicalConstants::Pi / 180.0,
+        Contact_line_node_pt);
       Grad_velocity_singular_function = grad_velocity_singular_function_factory(
-        Contact_angle, Contact_line_node_pt);
+        this->parameters().sector_angle * MathematicalConstants::Pi / 180.0,
+        Contact_line_node_pt);
       Eigensolution_slip_function = eigensolution_slip_function_factory(
-        this->my_parameters().slip_length, Velocity_singular_function);
+        this->parameters().slip_length, Velocity_singular_function);
+
       Eigensolution_traction_function = eigensolution_traction_function_factory(
-        Contact_angle, Grad_velocity_singular_function);
+        this->parameters().sector_angle,
+        Contact_line_node_pt,
+        Grad_velocity_singular_function);
 
       create_singular_elements();
 
@@ -110,14 +115,19 @@ namespace oomph
       UnstructuredAxisymSectorProblem<ELEMENT>::actions_after_adapt();
 
       set_contact_line_node_pt();
-      Velocity_singular_function =
-        velocity_singular_function_factory(Contact_angle, Contact_line_node_pt);
+      Velocity_singular_function = velocity_singular_function_factory(
+        this->parameters().sector_angle * MathematicalConstants::Pi / 180.0,
+        Contact_line_node_pt);
       Grad_velocity_singular_function = grad_velocity_singular_function_factory(
-        Contact_angle, Contact_line_node_pt);
+        this->parameters().sector_angle * MathematicalConstants::Pi / 180.0,
+        Contact_line_node_pt);
       Eigensolution_slip_function = eigensolution_slip_function_factory(
-        this->my_parameters().slip_length, Velocity_singular_function);
+        this->parameters().slip_length, Velocity_singular_function);
+
       Eigensolution_traction_function = eigensolution_traction_function_factory(
-        Contact_angle, Grad_velocity_singular_function);
+        this->parameters().sector_angle,
+        Contact_line_node_pt,
+        Grad_velocity_singular_function);
 
       create_singular_elements();
 
@@ -196,7 +206,7 @@ namespace oomph
         dist = pow(dist, 0.5);
 
         // If the distance to the corner is within the "inner" region, ...
-        if (dist < this->my_parameters().inner_radius)
+        if (dist < this->parameters().inner_radius)
         {
           // ... augment element
           el_pt->augment();
@@ -255,7 +265,7 @@ namespace oomph
     {
       char filename[100];
       sprintf(filename,
-              "%s/eigenslip_surface%i.csv",
+              "%s/eigenslip_surface%i.dat",
               this->doc_info_pt()->directory().c_str(),
               this->doc_info_pt()->number());
       std::ofstream output_stream;
@@ -266,18 +276,33 @@ namespace oomph
       output_stream.close();
 
       sprintf(filename,
-              "%s/scaling%i.csv",
+              "%s/scaling%i.dat",
               this->doc_info_pt()->directory().c_str(),
               this->doc_info_pt()->number());
       output_stream.open(filename);
       output_stream << "scaling" << std::endl;
-      dynamic_cast<SingularNavierStokesSolutionElement<ELEMENT>*>(
+      dynamic_cast<SingularNavierStokesSolutionElement<ProjectableAxisymmetricTaylorHoodElement<MyElement>>*>(
         Singularity_scaling_mesh_pt->element_pt(0))
         ->output(output_stream);
       output_stream.close();
 
       UnstructuredAxisymSectorProblem<ELEMENT>::doc_solution();
     }
+
+    virtual void add_trace_header(std::ofstream& trace_file) override
+    {
+      BaseProblem::add_trace_header(trace_file);
+      trace_file << "augmented_radius ";
+      trace_file << "augmented_elements ";
+    }
+
+    virtual void add_trace(std::ofstream& trace_file) override
+    {
+      BaseProblem::add_trace(trace_file);
+      trace_file << this->parameters().inner_radius << " ";
+      trace_file << Augmented_bulk_element_number.size() << " ";
+    }
+
 
   private:
     void create_slip_eigen_elements();
@@ -302,8 +327,8 @@ namespace oomph
 
     void fix_c(const double& value)
     {
-      SingularNavierStokesSolutionElement<ELEMENT>* el_pt =
-        dynamic_cast<SingularNavierStokesSolutionElement<ELEMENT>*>(
+      SingularNavierStokesSolutionElement<ProjectableAxisymmetricTaylorHoodElement<MyElement>>* el_pt =
+        dynamic_cast<SingularNavierStokesSolutionElement<ProjectableAxisymmetricTaylorHoodElement<MyElement>>*>(
           Singularity_scaling_mesh_pt->element_pt(0));
 
       el_pt->pin_c();
@@ -397,8 +422,8 @@ namespace oomph
     ELEMENT>::create_singularity_scaling_elements()
   {
     oomph_info << "create_singularity_scaling_elements" << std::endl;
-    SingularNavierStokesSolutionElement<ELEMENT>* el_pt =
-      new SingularNavierStokesSolutionElement<ELEMENT>;
+    SingularNavierStokesSolutionElement<ProjectableAxisymmetricTaylorHoodElement<MyElement>>* el_pt =
+      new SingularNavierStokesSolutionElement<ProjectableAxisymmetricTaylorHoodElement<MyElement>>;
 
     // Set the pointer to the velocity singular function for this
     // element, defined in parameters namespace
@@ -476,8 +501,8 @@ namespace oomph
   {
     oomph_info << "setup_mesh_interaction" << std::endl;
 
-    SingularNavierStokesSolutionElement<ELEMENT>* singular_el_pt =
-      dynamic_cast<SingularNavierStokesSolutionElement<ELEMENT>*>(
+    SingularNavierStokesSolutionElement<ProjectableAxisymmetricTaylorHoodElement<MyElement>>* singular_el_pt =
+      dynamic_cast<SingularNavierStokesSolutionElement<ProjectableAxisymmetricTaylorHoodElement<MyElement>>*>(
         Singularity_scaling_mesh_pt->element_pt(0));
 
     // Loop over the augmented bulk elements

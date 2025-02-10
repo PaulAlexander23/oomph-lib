@@ -120,7 +120,7 @@ BOOST_AUTO_TEST_CASE(continuation)
 {
   Params parameters;
   SingularAxisymDynamicCapProblem<
-    SingularAxisymNavierStokesElement<
+    SolidSingularAxisymNavierStokesElement<
       ProjectableAxisymmetricTTaylorHoodPVDElement>,
     BDF<2>>
     problem(&parameters);

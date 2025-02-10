@@ -21,7 +21,7 @@
 
 namespace oomph
 {
-  typedef SingularAxisymNavierStokesElement<
+  typedef SolidSingularAxisymNavierStokesElement<
     ProjectableAxisymmetricTTaylorHoodPVDElement>
     BASE_ELEMENT;
   typedef BDF<2> TIMESTEPPER;

@@ -69,7 +69,7 @@ namespace oomph
 
     /// Vector of pointers to SingularNavierStokesSolutionElement objects
     Vector<SingularNavierStokesSolutionElement<
-      SingularAxisymNavierStokesElement<BASIC_AXISYM_NAVIER_STOKES_ELEMENT>>*>
+      BASIC_AXISYM_NAVIER_STOKES_ELEMENT>*>
       C_equation_elements_pt;
 
     /// Vector indicating which velocity component of
@@ -725,7 +725,7 @@ namespace oomph
     /// Access function to vector of pointers to
     /// SingularNavierStokesSolutionElements
     Vector<SingularNavierStokesSolutionElement<
-      SingularAxisymNavierStokesElement<BASIC_AXISYM_NAVIER_STOKES_ELEMENT>>*>
+      BASIC_AXISYM_NAVIER_STOKES_ELEMENT>*>
     c_equation_elements_pt()
     {
       return C_equation_elements_pt;
@@ -738,7 +738,7 @@ namespace oomph
     /// be called after this function has been called.
     void add_c_equation_element_pt(
       SingularNavierStokesSolutionElement<
-        SingularAxisymNavierStokesElement<BASIC_AXISYM_NAVIER_STOKES_ELEMENT>>*
+        BASIC_AXISYM_NAVIER_STOKES_ELEMENT>*
         c_pt)
     {
       // Add the element
@@ -771,21 +771,7 @@ namespace oomph
       // Use finite differences
       if (this->is_using_fd_jacobian())
       {
-        // If the element is a solid finite element, call the solid
-        // finite element's fill_in_contribution_to_jacobian function
-        SolidFiniteElement* solid_fe_pt =
-          dynamic_cast<SolidFiniteElement*>(this);
-        if (solid_fe_pt != nullptr)
-        {
-          SolidFiniteElement::fill_in_contribution_to_jacobian(residuals,
-                                                               jacobian);
-        }
-        // The element is a finite element, call the finite element's
-        // fill_in_contribution_to_jacobian function
-        else
-        {
-          FiniteElement::fill_in_contribution_to_jacobian(residuals, jacobian);
-        }
+        FiniteElement::fill_in_contribution_to_jacobian(residuals, jacobian);
       }
       // Otherwise use analytic contributions
       else
@@ -2469,6 +2455,7 @@ namespace oomph
       }
     }
 
+  public:
     /// Overloaded fill-in function
     void fill_in_generic_residual_contribution_wrapped_axi_nst(
       Vector<double>& residuals,
@@ -2510,5 +2497,67 @@ namespace oomph
   public:
     FaceGeometry() : FaceGeometry<FaceGeometry<ELEMENT>>() {}
   };
+
+  //=======================================================================
+  ///  Upgrade to be a solid finite element
+  //=======================================================================
+  template<class BASIC_AXISYM_NAVIER_STOKES_ELEMENT>
+  class SolidSingularAxisymNavierStokesElement
+    : public virtual SolidFiniteElement,
+      public virtual SingularAxisymNavierStokesElement<
+        BASIC_AXISYM_NAVIER_STOKES_ELEMENT>
+  {
+  public:
+    /// Add the element's contribution to its residual vector and
+    /// element Jacobian matrix (wrapper)
+    void fill_in_contribution_to_jacobian(Vector<double>& residuals,
+                                          DenseMatrix<double>& jacobian)
+    {
+      // Use finite differences
+      if (this->is_using_fd_jacobian())
+      {
+        SolidFiniteElement::fill_in_contribution_to_jacobian(residuals,
+                                                             jacobian);
+      }
+      // Otherwise use analytic contributions
+      else
+      {
+        // Call the base fill_in_contribution_to_jacobian function
+        BASIC_AXISYM_NAVIER_STOKES_ELEMENT::fill_in_contribution_to_jacobian(
+          residuals, jacobian);
+        // Then call the singular Navier-Stokes element's
+        // fill_in_contribution_to_jacobian function
+        this->fill_in_generic_residual_contribution_wrapped_axi_nst(
+          residuals, jacobian, 1);
+      }
+    }
+  };
+
+  //=======================================================================
+  /// Face geometry for element is the same as that for the underlying
+  /// wrapped element
+  //=======================================================================
+  template<class ELEMENT>
+  class FaceGeometry<SolidSingularAxisymNavierStokesElement<ELEMENT>>
+    : public virtual FaceGeometry<ELEMENT>
+  {
+  public:
+    FaceGeometry() : FaceGeometry<ELEMENT>() {}
+  };
+
+
+  //=======================================================================
+  /// Face geometry of the Face Geometry for element is the same as
+  /// that for the underlying wrapped element
+  //=======================================================================
+  template<class ELEMENT>
+  class FaceGeometry<
+    FaceGeometry<SolidSingularAxisymNavierStokesElement<ELEMENT>>>
+    : public virtual FaceGeometry<FaceGeometry<ELEMENT>>
+  {
+  public:
+    FaceGeometry() : FaceGeometry<FaceGeometry<ELEMENT>>() {}
+  };
+
 } // namespace oomph
 #endif

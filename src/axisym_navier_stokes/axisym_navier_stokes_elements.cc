@@ -3,7 +3,7 @@
 // LIC// multi-physics finite-element library, available
 // LIC// at http://www.oomph-lib.org.
 // LIC//
-// LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel
+// LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel
 // LIC//
 // LIC// This library is free software; you can redistribute it and/or
 // LIC// modify it under the terms of the GNU Lesser General Public
@@ -1176,7 +1176,7 @@ namespace oomph
             /*This is the contribution from pressure gradient*/
             for (unsigned l2 = 0; l2 < n_pres; l2++)
             {
-              local_unknown = p_local_unknown(l2);
+              local_unknown = p_local_eqn(l2);
               /*If we are at a non-zero degree of freedom in the entry*/
               if (local_unknown >= 0)
               {
@@ -1318,7 +1318,7 @@ namespace oomph
             /*This is the contribution from pressure gradient*/
             for (unsigned l2 = 0; l2 < n_pres; l2++)
             {
-              local_unknown = p_local_unknown(l2);
+              local_unknown = p_local_eqn(l2);
               /*If we are at a non-zero degree of freedom in the entry*/
               if (local_unknown >= 0)
               {
@@ -2830,7 +2830,7 @@ namespace oomph
             /*This is the contribution from pressure gradient*/
             // for(unsigned l2=0;l2<n_pres;l2++)
             // {
-            //  local_unknown = p_local_unknown(l2);
+            //  local_unknown = p_local_eqn(l2);
             //  /*If we are at a non-zero degree of freedom in the entry*/
             //  if(local_unknown >= 0)
             //   {

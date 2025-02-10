@@ -3,11 +3,13 @@
 
 #include "generic.h"
 #include "navier_stokes.h"
+#include "axisym_navier_stokes.h"
 #include "fluid_interface.h"
 #include "meshes/triangle_mesh.h"
 
 /// Local headers
 #include "axisym_sector_problem.h"
+#include "my_element.h"
 
 
 namespace oomph
@@ -16,8 +18,10 @@ namespace oomph
   template<class ELEMENT>
   class SingularAxisymSectorProblem : public AxisymSectorProblem<ELEMENT>
   {
+  public:
+    typedef SingularNavierStokesSolutionElement<MyElement> SCALING_ELEMENT;
+
   private:
-    double Contact_angle;
     Node* Contact_line_node_pt;
 
     Vector<unsigned> Augmented_bulk_element_number;
@@ -66,6 +70,17 @@ namespace oomph
       this->rebuild_global_mesh();
     }
 
+    SingularAxisymSectorProblem(Params& params)
+      : AxisymSectorProblem<ELEMENT>(params), Contact_line_node_pt(0)
+    {
+      // Re-assign doc info pointer
+      this->doc_info_pt()->set_directory("RESLT_axi_fix");
+
+      add_singular_sub_meshes();
+
+      this->rebuild_global_mesh();
+    }
+
     void setup()
     {
       // Augment the bulk elements
@@ -74,16 +89,19 @@ namespace oomph
       AxisymSectorProblem<ELEMENT>::setup();
 
       set_contact_line_node_pt();
-      Contact_angle =
-        this->my_parameters().sector_angle * MathematicalConstants::Pi / 180.0;
-      Velocity_singular_function =
-        velocity_singular_function_factory(Contact_angle, Contact_line_node_pt);
+      Velocity_singular_function = velocity_singular_function_factory(
+        this->parameters().sector_angle * MathematicalConstants::Pi / 180.0,
+        Contact_line_node_pt);
       Grad_velocity_singular_function = grad_velocity_singular_function_factory(
-        Contact_angle, Contact_line_node_pt);
+        this->parameters().sector_angle * MathematicalConstants::Pi / 180.0,
+        Contact_line_node_pt);
       Eigensolution_slip_function = eigensolution_slip_function_factory(
-        this->my_parameters().slip_length, Velocity_singular_function);
+        this->parameters().slip_length, Velocity_singular_function);
+
       Eigensolution_traction_function = eigensolution_traction_function_factory(
-        Contact_angle, Grad_velocity_singular_function);
+        this->parameters().sector_angle,
+        Contact_line_node_pt,
+        Grad_velocity_singular_function);
 
       create_singular_elements();
 
@@ -152,7 +170,7 @@ namespace oomph
         dist = pow(dist, 0.5);
 
         // If the distance to the corner is within the "inner" region, ...
-        if (dist < this->my_parameters().inner_radius)
+        if (dist < this->parameters().inner_radius)
         {
           // ... augment element
           el_pt->augment();
@@ -197,7 +215,7 @@ namespace oomph
     {
       char filename[100];
       sprintf(filename,
-              "%s/eigenslip_surface%i.csv",
+              "%s/eigenslip_surface%i.dat",
               this->doc_info_pt()->directory().c_str(),
               this->doc_info_pt()->number());
       std::ofstream output_stream;
@@ -208,13 +226,12 @@ namespace oomph
       output_stream.close();
 
       sprintf(filename,
-              "%s/scaling%i.csv",
+              "%s/scaling%i.dat",
               this->doc_info_pt()->directory().c_str(),
               this->doc_info_pt()->number());
       output_stream.open(filename);
       output_stream << "scaling" << std::endl;
-      dynamic_cast<SingularNavierStokesSolutionElement<ELEMENT>*>(
-        Singularity_scaling_mesh_pt->element_pt(0))
+      dynamic_cast<SCALING_ELEMENT*>(Singularity_scaling_mesh_pt->element_pt(0))
         ->output(output_stream);
       output_stream.close();
 
@@ -244,9 +261,8 @@ namespace oomph
 
     void fix_c(const double& value)
     {
-      SingularNavierStokesSolutionElement<ELEMENT>* el_pt =
-        dynamic_cast<SingularNavierStokesSolutionElement<ELEMENT>*>(
-          Singularity_scaling_mesh_pt->element_pt(0));
+      SCALING_ELEMENT* el_pt = dynamic_cast<SCALING_ELEMENT*>(
+        Singularity_scaling_mesh_pt->element_pt(0));
 
       el_pt->pin_c();
       el_pt->set_c(value);
@@ -337,8 +353,7 @@ namespace oomph
     ELEMENT>::create_singularity_scaling_elements()
   {
     oomph_info << "create_singularity_scaling_elements" << std::endl;
-    SingularNavierStokesSolutionElement<ELEMENT>* el_pt =
-      new SingularNavierStokesSolutionElement<ELEMENT>;
+    SCALING_ELEMENT* el_pt = new SCALING_ELEMENT;
 
     // Set the pointer to the velocity singular function for this
     // element, defined in parameters namespace
@@ -415,9 +430,8 @@ namespace oomph
   {
     oomph_info << "setup_mesh_interaction" << std::endl;
 
-    SingularNavierStokesSolutionElement<ELEMENT>* singular_el_pt =
-      dynamic_cast<SingularNavierStokesSolutionElement<ELEMENT>*>(
-        Singularity_scaling_mesh_pt->element_pt(0));
+    SCALING_ELEMENT* singular_el_pt = dynamic_cast<SCALING_ELEMENT*>(
+      Singularity_scaling_mesh_pt->element_pt(0));
 
     // Loop over the augmented bulk elements
     unsigned n_aug_bulk = Augmented_bulk_element_number.size();

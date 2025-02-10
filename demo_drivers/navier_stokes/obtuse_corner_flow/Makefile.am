@@ -49,8 +49,6 @@ check_PROGRAMS= \
 	sprittles \
 	sprittles_region
 
-# Automake
-
 # Sources for second executable
 structured_no_correction_SOURCES = structured_no_correction.cc
 structured_no_correction_region_SOURCES = structured_no_correction_region.cc
@@ -70,8 +68,8 @@ LDADD = -L@libdir@ \
 		-lsolid \
 		-lconstitutive \
 		-lgeneric \
-		$(EXTERNAL_LIBS) $(FLIBS) \
-		-lgcov 
+		$(EXTERNAL_LIBS) $(FLIBS)
+# -lgcov 
 
 # Add the paranoid and range checking flags
 AM_CPPFLAGS += #-ggdb -O0 -Wno-misleading-indentation #--coverage #-DPARANOID  -DRANGE_CHECKING -ggdb -O0 

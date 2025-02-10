@@ -79,12 +79,12 @@ int main(int argc, char** argv)
 
   // Construct the problem
   SingularAxisymDynamicCapProblem<
-    SingularAxisymNavierStokesElement<
+    SolidSingularAxisymNavierStokesElement<
       ProjectableAxisymmetricTTaylorHoodPVDElement>,
     BDF<2>>
     problem(&parameters);
   save_dofs_types<SingularAxisymDynamicCapProblem<
-    SingularAxisymNavierStokesElement<
+    SolidSingularAxisymNavierStokesElement<
       ProjectableAxisymmetricTTaylorHoodPVDElement>,
     BDF<2>>*>(&problem, "dofs_types.dat");
   DoubleVector residuals;
@@ -95,7 +95,7 @@ int main(int argc, char** argv)
   if (CommandLineArgs::command_line_flag_has_been_set("--debug-jacobian"))
   {
     debug_jacobian<SingularAxisymDynamicCapProblem<
-      SingularAxisymNavierStokesElement<
+      SolidSingularAxisymNavierStokesElement<
         ProjectableAxisymmetricTTaylorHoodPVDElement>,
       BDF<2>>*>(&problem);
   }

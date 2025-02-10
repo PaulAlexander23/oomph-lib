@@ -165,7 +165,7 @@ void normal_continuation_run(Params& parameters,
     std::cout << "restarting" << std::endl;
   }
   SingularAxisymDynamicCapProblem<
-    SingularAxisymNavierStokesElement<
+    SolidSingularAxisymNavierStokesElement<
       ProjectableAxisymmetricTTaylorHoodPVDElement>,
     BDF<2>>
     problem(&parameters);
@@ -262,7 +262,7 @@ void arc_continuation_run(Params& parameters,
   }
 
   SingularAxisymDynamicCapProblem<
-    SingularAxisymNavierStokesElement<
+    SolidSingularAxisymNavierStokesElement<
       ProjectableAxisymmetricTTaylorHoodPVDElement>,
     BDF<2>>
     problem(&parameters);
@@ -340,7 +340,7 @@ void height_control_continuation_run(Params& parameters,
                                      double& starting_step,
                                      double*& continuation_param_pt)
 {
-  FullContinuationProblem<SingularAxisymNavierStokesElement<
+  FullContinuationProblem<SolidSingularAxisymNavierStokesElement<
                             ProjectableAxisymmetricTTaylorHoodPVDElement>,
                           BDF<2>>
     problem(parameters);

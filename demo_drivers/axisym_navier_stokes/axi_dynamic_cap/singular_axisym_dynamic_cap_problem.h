@@ -229,6 +229,9 @@ namespace oomph
     typedef NetFluxElement NET_FLUX_ELEMENT;
     typedef ElasticPointFluidInterfaceBoundingElement<ELEMENT>
       CONTACT_LINE_ELEMENT;
+    typedef SingularNavierStokesSolutionElement<
+      ProjectableAxisymmetricTTaylorHoodPVDElement>
+      SCALING_ELEMENT;
 
     // Constructor
     SingularAxisymDynamicCapProblem(Params* const& parameters_pt)
@@ -300,7 +303,9 @@ namespace oomph
       Eigensolution_slip_function = eigensolution_slip_function_factory(
         Parameters_pt->slip_length, Velocity_singular_function);
       Eigensolution_traction_function = eigensolution_traction_function_factory(
-        Parameters_pt->contact_angle, Grad_velocity_singular_function);
+        Parameters_pt->contact_angle,
+        Contact_line_node_pt,
+        Grad_velocity_singular_function);
 
       //======================================================================
       // Create the refineable bulk mesh
@@ -486,9 +491,8 @@ namespace oomph
 
     void fix_c(const double& value)
     {
-      SingularNavierStokesSolutionElement<ELEMENT>* el_pt =
-        dynamic_cast<SingularNavierStokesSolutionElement<ELEMENT>*>(
-          Singularity_scaling_mesh_pt->element_pt(0));
+      SCALING_ELEMENT* el_pt = dynamic_cast<SCALING_ELEMENT*>(
+        Singularity_scaling_mesh_pt->element_pt(0));
       el_pt->pin_c();
       el_pt->set_c(value);
       // Rebuild the global mesh
@@ -499,9 +503,8 @@ namespace oomph
 
     void free_c()
     {
-      SingularNavierStokesSolutionElement<ELEMENT>* el_pt =
-        dynamic_cast<SingularNavierStokesSolutionElement<ELEMENT>*>(
-          Singularity_scaling_mesh_pt->element_pt(0));
+      SCALING_ELEMENT* el_pt = dynamic_cast<SCALING_ELEMENT*>(
+        Singularity_scaling_mesh_pt->element_pt(0));
       el_pt->unpin_c();
       // Rebuild the global mesh
       this->rebuild_global_mesh();
@@ -621,7 +624,8 @@ namespace oomph
           DenseMatrix<double> jacobian(n, n, 0.0);
           DenseMatrix<double> jacobianFD(n, n, 0.0);
           el_pt->debug_jacobian(n, residuals, jacobian, jacobianFD);
-          std::cout << "bulk: " << compare_matrices(jacobianFD, jacobian) << std::endl;
+          std::cout << "bulk: " << compare_matrices(jacobianFD, jacobian)
+                    << std::endl;
         }
       }
       {
@@ -635,7 +639,8 @@ namespace oomph
           DenseMatrix<double> jacobian(n, n, 0.0);
           DenseMatrix<double> jacobianFD(n, n, 0.0);
           el_pt->debug_jacobian(n, residuals, jacobian, jacobianFD);
-          std::cout << "free: " << compare_matrices(jacobianFD, jacobian) << std::endl;
+          std::cout << "free: " << compare_matrices(jacobianFD, jacobian)
+                    << std::endl;
         }
       }
       //{
@@ -649,7 +654,8 @@ namespace oomph
       //    DenseMatrix<double> jacobian(n, n, 0.0);
       //    DenseMatrix<double> jacobianFD(n, n, 0.0);
       //    el_pt->debug_jacobian(n, residuals, jacobian, jacobianFD);
-      //    std::cout << "slip: " << compare_matrices(jacobianFD, jacobian) << std::endl;
+      //    std::cout << "slip: " << compare_matrices(jacobianFD, jacobian) <<
+      //    std::endl;
       //  }
       //}
       if (No_penetration_boundary_mesh_pt)
@@ -664,7 +670,8 @@ namespace oomph
           DenseMatrix<double> jacobian(n, n, 0.0);
           DenseMatrix<double> jacobianFD(n, n, 0.0);
           el_pt->debug_jacobian(n, residuals, jacobian, jacobianFD);
-          std::cout << "no pen: " << compare_matrices(jacobianFD, jacobian) << std::endl;
+          std::cout << "no pen: " << compare_matrices(jacobianFD, jacobian)
+                    << std::endl;
         }
       }
       // if (Flux_mesh_pt)
@@ -676,7 +683,8 @@ namespace oomph
       //   DenseMatrix<double> jacobian(n, n, 0.0);
       //   DenseMatrix<double> jacobianFD(n, n, 0.0);
       //   el_pt->debug_jacobian(n, residuals, jacobian, jacobianFD);
-      //   std::cout << "flux: " << compare_matrices(jacobianFD, jacobian) << std::endl;
+      //   std::cout << "flux: " << compare_matrices(jacobianFD, jacobian) <<
+      //   std::endl;
       // }
       if (Volume_computation_mesh_pt)
       {
@@ -688,8 +696,8 @@ namespace oomph
         DenseMatrix<double> jacobian(n, n, 0.0);
         DenseMatrix<double> jacobianFD(n, n, 0.0);
         el_pt->debug_jacobian(n, residuals, jacobian, jacobianFD);
-        std::cout << "volume computation: " << compare_matrices(jacobianFD, jacobian)
-             << std::endl;
+        std::cout << "volume computation: "
+                  << compare_matrices(jacobianFD, jacobian) << std::endl;
       }
       // if (this->is_augmented())
       // {
@@ -741,8 +749,8 @@ namespace oomph
       //   DenseMatrix<double> jacobian(n, n, 0.0);
       //   DenseMatrix<double> jacobianFD(n, n, 0.0);
       //   el_pt->debug_jacobian(n, residuals, jacobian, jacobianFD);
-      //   std::cout << "net flux: " << compare_matrices(jacobianFD, jacobian) <<
-      //   std::endl;
+      //   std::cout << "net flux: " << compare_matrices(jacobianFD, jacobian)
+      //   << std::endl;
       // }
     }
 
@@ -1863,11 +1871,10 @@ namespace oomph
 
           filename = this->doc_info().directory() + "/singular_scaling.dat";
           output_stream.open(filename, std::ios_base::app);
-          output_stream
-            << dynamic_cast<SingularNavierStokesSolutionElement<ELEMENT>*>(
-                 Singularity_scaling_mesh_pt->element_pt(0))
-                 ->c()
-            << std::endl;
+          output_stream << dynamic_cast<SCALING_ELEMENT*>(
+                             Singularity_scaling_mesh_pt->element_pt(0))
+                             ->c()
+                        << std::endl;
           output_stream.close();
         }
 
@@ -2965,8 +2972,7 @@ namespace oomph
     void create_singularity_scaling_elements()
     {
       oomph_info << "create_singularity_scaling_elements" << std::endl;
-      SingularNavierStokesSolutionElement<ELEMENT>* el_pt =
-        new SingularNavierStokesSolutionElement<ELEMENT>;
+      SCALING_ELEMENT* el_pt = new SCALING_ELEMENT;
 
       // Set the pointer to the velocity singular function for this
       // element, defined in parameters namespace
@@ -3088,9 +3094,8 @@ namespace oomph
     {
       oomph_info << "setup_mesh_interaction" << std::endl;
 
-      SingularNavierStokesSolutionElement<ELEMENT>* singular_el_pt =
-        dynamic_cast<SingularNavierStokesSolutionElement<ELEMENT>*>(
-          Singularity_scaling_mesh_pt->element_pt(0));
+      SCALING_ELEMENT* singular_el_pt = dynamic_cast<SCALING_ELEMENT*>(
+        Singularity_scaling_mesh_pt->element_pt(0));
 
       // Loop over the augmented bulk elements
       unsigned n_aug_bulk = Augmented_bulk_element_number.size();
@@ -4135,7 +4140,7 @@ namespace oomph
       if (this->is_augmented())
       {
         Backup_singularity_scaling_lagrange_multiplier =
-          dynamic_cast<SingularNavierStokesSolutionElement<ELEMENT>*>(
+          dynamic_cast<SCALING_ELEMENT*>(
             Singularity_scaling_mesh_pt->element_pt(0))
             ->c();
       }
@@ -4146,7 +4151,7 @@ namespace oomph
       oomph_info << "restore_lagrange_multipliers()" << std::endl;
       if (this->is_augmented())
       {
-        dynamic_cast<SingularNavierStokesSolutionElement<ELEMENT>*>(
+        dynamic_cast<SCALING_ELEMENT*>(
           Singularity_scaling_mesh_pt->element_pt(0))
           ->set_c(Backup_singularity_scaling_lagrange_multiplier);
       }
