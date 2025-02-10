@@ -30,6 +30,7 @@
 #include <chrono>
 #include <algorithm>
 #include <numeric>
+#include <vector>
 
 // OOMPH-LIB include files
 #include "generic.h"
@@ -3387,8 +3388,56 @@ namespace oomph
         }
       }
 
+      // Additional setup if the problem is augmented
       if (this->is_augmented())
       {
+        // Ensure the two elements closest to the corner are augmented
+        ELEMENT* corner_el_pt = 0;
+        unsigned node_index = 0;
+
+        for (unsigned i = 0; i < 2; i++)
+        {
+          switch (i)
+          {
+            case 0:
+              find_corner_bulk_element_and_node(Outer_boundary_with_slip_id,
+                                                Free_surface_boundary_id,
+                                                corner_el_pt,
+                                                node_index);
+              break;
+            case 1:
+              find_corner_bulk_element_and_node(Free_surface_boundary_id,
+                                                Outer_boundary_with_slip_id,
+                                                corner_el_pt,
+                                                node_index);
+              break;
+            default:
+              break;
+          }
+
+          // If this element is not already augmented, augment it
+          if (!corner_el_pt->is_augmented())
+          {
+            corner_el_pt->augment();
+            corner_el_pt->add_additional_terms();
+            corner_el_pt->swap_unknowns();
+
+            // Find the element iterator with the bulk mesh
+            std::vector<GeneralisedElement*>::iterator iter =
+              std::find(Bulk_mesh_pt->element_pt().begin(),
+                        Bulk_mesh_pt->element_pt().end(),
+                        dynamic_cast<GeneralisedElement*>(corner_el_pt));
+
+            // Use this to get the element number
+            unsigned e =
+              std::distance(Bulk_mesh_pt->element_pt().begin(), iter);
+            // Add the element number to the augmented element number vector
+            Augmented_bulk_element_number.push_back(e);
+          }
+        }
+
+
+        // Output the number of augmented elements
         oomph_info << Augmented_bulk_element_number.size()
                    << " augmented elements" << std::endl;
         if (Augmented_bulk_element_number.size() == 0)
@@ -3398,6 +3447,8 @@ namespace oomph
                      << std::endl;
         }
 
+        // If the problem is augmented, currently we need to use the fd Jacobian
+        // for the augmented elements
         use_fd_jacobian_for_the_bulk_augmented();
       }
     }
