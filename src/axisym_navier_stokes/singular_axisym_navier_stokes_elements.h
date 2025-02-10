@@ -68,8 +68,8 @@ namespace oomph
     bool IsJacobianFD;
 
     /// Vector of pointers to SingularNavierStokesSolutionElement objects
-    Vector<SingularNavierStokesSolutionElement<
-      BASIC_AXISYM_NAVIER_STOKES_ELEMENT>*>
+    Vector<
+      SingularNavierStokesSolutionElement<BASIC_AXISYM_NAVIER_STOKES_ELEMENT>*>
       C_equation_elements_pt;
 
     /// Vector indicating which velocity component of
@@ -724,9 +724,7 @@ namespace oomph
 
     /// Access function to vector of pointers to
     /// SingularNavierStokesSolutionElements
-    Vector<SingularNavierStokesSolutionElement<
-      BASIC_AXISYM_NAVIER_STOKES_ELEMENT>*>
-    c_equation_elements_pt()
+    Vector<SingularNavierStokesSolutionElement<BASIC_AXISYM_NAVIER_STOKES_ELEMENT>*> c_equation_elements_pt()
     {
       return C_equation_elements_pt;
     }
@@ -737,8 +735,7 @@ namespace oomph
     /// becomes external Data for this element so assign_eqn_numbers() must
     /// be called after this function has been called.
     void add_c_equation_element_pt(
-      SingularNavierStokesSolutionElement<
-        BASIC_AXISYM_NAVIER_STOKES_ELEMENT>*
+      SingularNavierStokesSolutionElement<BASIC_AXISYM_NAVIER_STOKES_ELEMENT>*
         c_pt)
     {
       // Add the element
