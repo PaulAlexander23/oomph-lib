@@ -241,6 +241,16 @@ namespace oomph
     {
     }
 
+    try
+    {
+      getline(parameter_filestream, input_string, '#');
+      parameter_filestream.ignore(80, '\n');
+      params.initial_number_of_free_surface_points = stoi(input_string);
+    }
+    catch (std::exception& e)
+    {
+    }
+
     parameter_filestream.close();
 
     return params;
@@ -305,7 +315,8 @@ namespace oomph
     parameter_filestream << params.time_step << " # Time step" << "\n";
     parameter_filestream << params.restart_filename << " # Restart filename"
                          << "\n";
-    parameter_filestream << *params.wall_velocity_pt << " # Wall velocity" << "\n";
+    parameter_filestream << *params.wall_velocity_pt << " # Wall velocity"
+                         << "\n";
     parameter_filestream << params.azimuthal_mode_number
                          << " # Azimuthal mode number" << "\n";
     parameter_filestream
@@ -317,8 +328,10 @@ namespace oomph
                          << " # Free surface polyline refinement tolerence"
                          << "\n ";
     parameter_filestream << params.augmented_radius
-                         << " # Augmented region's radius" << std::endl;
-
+                         << " # Augmented region's radius" << "\n";
+    parameter_filestream << params.initial_number_of_free_surface_points
+                         << " # Initial number of free surface points";
+    parameter_filestream << std::endl;
     parameter_filestream.close();
   }
 } // namespace oomph
