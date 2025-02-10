@@ -90,8 +90,8 @@ namespace oomph
   {
     /// Function that computes the gradient of the singular velocity
     /// near the corner x_centre_node_pt: \f$grad[i][j] = du_i/dx_j\f$
-    return [contact_angle,
-            &x_centre_node_pt](const Vector<double>& x) -> Vector<Vector<double>>
+    return [contact_angle, &x_centre_node_pt](
+             const Vector<double>& x) -> Vector<Vector<double>>
     {
       // Initialise the gradient matrix to return
       Vector<Vector<double>> grad_u(2);
