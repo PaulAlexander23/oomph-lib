@@ -1062,9 +1062,8 @@ namespace oomph
     }
 
     // Find corner node and return whether it has been found
-    bool find_corner_node(const unsigned& first_boundary_id,
-                          const unsigned& second_boundary_id,
-                          SolidNode*& node_pt)
+    Node* find_corner_node(const unsigned& first_boundary_id,
+                           const unsigned& second_boundary_id)
     {
       unsigned n_nod = Fluid_mesh_pt->nboundary_node(first_boundary_id);
       for (unsigned inod = 0; inod < n_nod; inod++)
@@ -1074,12 +1073,10 @@ namespace oomph
 
         if (nod_pt->is_on_boundary(second_boundary_id))
         {
-          node_pt = dynamic_cast<SolidNode*>(nod_pt);
-
-          return true;
+          return nod_pt;
         }
       }
-      return false;
+      return nullptr;
     }
 
     void set_outer_boundary_condition()

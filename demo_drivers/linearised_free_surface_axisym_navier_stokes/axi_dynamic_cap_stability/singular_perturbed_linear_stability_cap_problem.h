@@ -27,11 +27,12 @@ namespace oomph
     Mesh* Pressure_contribution_mesh_1_pt;
     Mesh* Pressure_contribution_mesh_2_pt;
 
+    // Eigensolution functions
     std::function<Vector<double>(const Vector<double>&)>
       Velocity_singular_function;
-
     std::function<Vector<Vector<double>>(const Vector<double>&)>
       Grad_velocity_singular_function;
+    Node* Contact_line_node_pt;
 
   public:
     // Boundary ids enumeration
@@ -64,6 +65,15 @@ namespace oomph
         Pressure_contribution_mesh_1_pt(0),
         Pressure_contribution_mesh_2_pt(0)
     {
+      // Setup the singular functions
+      Contact_line_node_pt = this->find_corner_node(Outer_boundary_with_slip_id,
+                                                    Free_surface_boundary_id);
+      Velocity_singular_function = velocity_singular_function_factory(
+        this->parameters_pt()->contact_angle, Contact_line_node_pt);
+      Grad_velocity_singular_function = grad_velocity_singular_function_factory(
+        this->parameters_pt()->contact_angle, Contact_line_node_pt);
+
+
       // Remove the original problem's boundary elements
       PerturbedLinearStabilityCapProblem<
         BASE_ELEMENT,
