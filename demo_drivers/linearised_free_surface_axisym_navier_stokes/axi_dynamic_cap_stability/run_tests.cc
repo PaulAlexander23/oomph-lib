@@ -54,8 +54,8 @@ BOOST_AUTO_TEST_CASE(augmented_linear_problem_mode_1)
   // Create the linear problem
   typedef OverlayingMyLinearElement<BASE_ELEMENT> PERTURBED_ELEMENT;
   SingularPerturbedLinearStabilityCapProblem<BASE_ELEMENT,
-                                     PERTURBED_ELEMENT,
-                                     TIMESTEPPER>
+                                             PERTURBED_ELEMENT,
+                                             TIMESTEPPER>
     perturbed_problem(base_problem.bulk_mesh_pt(),
                       base_problem.free_surface_mesh_pt(),
                       base_problem.slip_surface_mesh_pt(),
@@ -63,15 +63,17 @@ BOOST_AUTO_TEST_CASE(augmented_linear_problem_mode_1)
   perturbed_problem.assign_initial_values_impulsive();
   perturbed_problem.make_unsteady();
   perturbed_problem.pin_horizontal_mesh_deformation();
-  perturbed_problem.solve_n_most_unstable_eigensolutions(1);
+  Vector<std::complex<double>> eigenvalue =
+    perturbed_problem.solve_n_most_unstable_eigensolutions(1);
+  BOOST_TEST(abs(eigenvalue[0].real() - (-0.59363316433872149)) < 1e-6);
 
   parameters.azimuthal_mode_number = 0;
 
   // Create the linear problem
   typedef OverlayingMyLinearElement<BASE_ELEMENT> PERTURBED_ELEMENT;
   SingularPerturbedLinearStabilityCapProblem<BASE_ELEMENT,
-                                     PERTURBED_ELEMENT,
-                                     TIMESTEPPER>
+                                             PERTURBED_ELEMENT,
+                                             TIMESTEPPER>
     perturbed_problem0(base_problem.bulk_mesh_pt(),
                        base_problem.free_surface_mesh_pt(),
                        base_problem.slip_surface_mesh_pt(),
@@ -79,7 +81,8 @@ BOOST_AUTO_TEST_CASE(augmented_linear_problem_mode_1)
   perturbed_problem0.assign_initial_values_impulsive();
   perturbed_problem0.make_unsteady();
   perturbed_problem0.pin_horizontal_mesh_deformation();
-  perturbed_problem0.solve_n_most_unstable_eigensolutions(1);
+  eigenvalue = perturbed_problem0.solve_n_most_unstable_eigensolutions(1);
+  BOOST_TEST(abs(eigenvalue[0].real() - (5.4177233266917467e-05)) < 1e-6);
 }
 
 
