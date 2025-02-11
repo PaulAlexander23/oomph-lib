@@ -11,6 +11,11 @@ namespace oomph
                                                 PERTURBED_ELEMENT,
                                                 TIMESTEPPER>
   {
+  public:
+    typedef SingularNavierStokesSolutionElement<
+      OverlayingMyLinearElement<BASE_ELEMENT>>
+      SCALING_ELEMENT;
+
   private:
     // List of augmented element numbers
     Vector<unsigned> Augmented_bulk_element_number;
@@ -21,6 +26,12 @@ namespace oomph
     // Pressure contribution meshes
     Mesh* Pressure_contribution_mesh_1_pt;
     Mesh* Pressure_contribution_mesh_2_pt;
+
+    std::function<Vector<double>(const Vector<double>&)>
+      Velocity_singular_function;
+
+    std::function<Vector<Vector<double>>(const Vector<double>&)>
+      Grad_velocity_singular_function;
 
   public:
     // Boundary ids enumeration
@@ -70,8 +81,9 @@ namespace oomph
       Pressure_contribution_mesh_2_pt = new Mesh;
       this->add_sub_mesh(Pressure_contribution_mesh_2_pt);
 
-
       this->add_boundary_elements();
+
+      create_singularity_scaling_elements();
 
       // Set up the connections to the base state
       this->set_up_overlapping_domain_functions();
@@ -85,6 +97,37 @@ namespace oomph
       // Set up the equation numbering so we are ready to solve the problem.
       oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
                  << std::endl;
+    }
+
+    void create_singularity_scaling_elements()
+    {
+      oomph_info << "create_singularity_scaling_elements" << std::endl;
+      // Create two scaling elements
+      for (unsigned i = 0; i < 2; i++)
+      {
+        SCALING_ELEMENT* el_pt = new SCALING_ELEMENT;
+
+        // Set the pointer to the velocity singular function for this
+        // element, defined in parameters namespace
+        el_pt->velocity_singular_fct() = Velocity_singular_function;
+
+        // Set the pointer to the gradient of the velocity singular
+        // function for this element, defined in parameters namespace
+        el_pt->grad_velocity_singular_fct() = Grad_velocity_singular_function;
+
+        // Set the pointer to the first pressure singular function for this
+        // element, defined in parameters namespace
+        el_pt->pressure_singular_fct_pt() = &pressure_singular_fct;
+
+        // The singular function satisfies the Stokes equation
+        el_pt->singular_function_satisfies_stokes_equation() = false;
+
+        el_pt->pin_c();
+        el_pt->set_c(0.0);
+
+        // Add element to the mesh
+        Singularity_scaling_mesh_pt->add_element_pt(el_pt);
+      }
     }
 
     void augment_bulk_elements()
