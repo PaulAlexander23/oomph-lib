@@ -104,9 +104,7 @@ namespace oomph
             break;
         }
 
-        // corner_el_pt->augment();
-        // corner_el_pt->add_additional_terms();
-        // corner_el_pt->swap_unknowns();
+        corner_el_pt->augment();
 
         // Find the element iterator with the bulk mesh
         std::vector<GeneralisedElement*>::iterator iter =
@@ -157,11 +155,9 @@ namespace oomph
         if (dist < inner_radius)
         {
           // If this element is not already augmented, augment it
-          // if (!el_pt->is_augmented())
+          if (!el_pt->is_augmented())
           {
-            // el_pt->augment();
-            // el_pt->add_additional_terms();
-            // el_pt->swap_unknowns();
+            el_pt->augment();
 
             Augmented_bulk_element_number.push_back(e);
           }

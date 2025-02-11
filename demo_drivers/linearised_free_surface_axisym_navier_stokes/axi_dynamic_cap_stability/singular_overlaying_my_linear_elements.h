@@ -9,6 +9,24 @@ namespace oomph
   class SingularOverlayingMyLinearElement
     : public virtual OverlayingMyLinearElement<BASE_ELEMENT>
   {
+  private:
+    bool IsAugmented;
+
+  public:
+    SingularOverlayingMyLinearElement()
+      : OverlayingMyLinearElement<BASE_ELEMENT>(), IsAugmented(false)
+    {
+    }
+
+    bool is_augmented() const
+    {
+      return IsAugmented;
+    }
+
+    void augment()
+    {
+      IsAugmented = true;
+    }
   };
 
   template<class BASE_ELEMENT>
@@ -16,6 +34,6 @@ namespace oomph
     : public TElement<1, 3>
   {
   };
-}; // namespace
+}; // namespace oomph
 
 #endif
