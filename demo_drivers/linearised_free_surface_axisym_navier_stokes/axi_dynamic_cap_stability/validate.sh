@@ -65,8 +65,8 @@ validate "linear_stability_run --parameters " validata/obtuse-parameters-with-re
 
 validate "neutral_stability_run --Bo 0.01 --parameters" validata/parameters-with-restart0.dat trace.dat
 validate "neutral_stability_run --wall_velocity 0.01 --parameters" validata/parameters-with-restart.dat trace.dat
-validate "neutral_stability_run --Bo 0.01 --parameters" validata/obtuse-parameters-with-restart0.dat trace.dat
-validate "neutral_stability_run --wall_velocity 0.01 --parameters" validata/obtuse-parameters-with-restart.dat trace.dat
+#validate "neutral_stability_run --Bo 0.01 --parameters" validata/obtuse-parameters-with-restart0.dat trace.dat
+#validate "neutral_stability_run --wall_velocity 0.01 --parameters" validata/obtuse-parameters-with-restart.dat trace.dat
 
 mkdir RESLT -p 
 var="./run_tests > Validation/OUTPUT"

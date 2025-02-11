@@ -93,7 +93,7 @@ int main(int argc, char** argv)
   Params parameters = create_parameters_from_file(parameters_filename);
 
   // Construct the problem
-  typedef SingularAxisymNavierStokesElement<
+  typedef SolidSingularAxisymNavierStokesElement<
     ProjectableAxisymmetricTTaylorHoodPVDElement>
     BASE_ELEMENT;
   typedef BDF<2> TIMESTEPPER;
