@@ -30,7 +30,7 @@
 
 namespace oomph
 {
-  typedef SingularAxisymNavierStokesElement<
+  typedef SolidSingularAxisymNavierStokesElement<
     ProjectableAxisymmetricTTaylorHoodPVDElement>
     BASE_ELEMENT;
   // typedef OverlayingTLinearisedAxisymNSPVDElement PERTURBED_ELEMENT;
