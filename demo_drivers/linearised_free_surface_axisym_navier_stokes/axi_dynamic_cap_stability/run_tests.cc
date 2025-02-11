@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE(augmented_linear_problem_mode_1)
 
   // Create the linear problem
   typedef OverlayingMyLinearElement<BASE_ELEMENT> PERTURBED_ELEMENT;
-  PerturbedLinearStabilityCapProblem<BASE_ELEMENT,
+  SingularPerturbedLinearStabilityCapProblem<BASE_ELEMENT,
                                      PERTURBED_ELEMENT,
                                      TIMESTEPPER>
     perturbed_problem(base_problem.bulk_mesh_pt(),
@@ -69,7 +69,7 @@ BOOST_AUTO_TEST_CASE(augmented_linear_problem_mode_1)
 
   // Create the linear problem
   typedef OverlayingMyLinearElement<BASE_ELEMENT> PERTURBED_ELEMENT;
-  PerturbedLinearStabilityCapProblem<BASE_ELEMENT,
+  SingularPerturbedLinearStabilityCapProblem<BASE_ELEMENT,
                                      PERTURBED_ELEMENT,
                                      TIMESTEPPER>
     perturbed_problem0(base_problem.bulk_mesh_pt(),
