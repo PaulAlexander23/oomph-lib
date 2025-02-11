@@ -74,13 +74,14 @@ namespace oomph
     ConstitutiveLaw* Constitutive_law_pt;
     IsotropicElasticityTensor* ElasticityTensor_pt;
 
+  public:
     enum Lagrange_id
     {
       Kinematic,
       Centre,
     };
 
-    enum
+    enum Boundary_id
     {
       Upper_boundary_id,
       Outer_boundary_with_slip_id,
@@ -89,7 +90,7 @@ namespace oomph
     };
 
     // Radial, Vertical, Azimuthal
-    enum
+    enum Index
     {
       rc_index,
       rs_index,
@@ -112,6 +113,7 @@ namespace oomph
       Bulk_only_problem
     };
 
+  private:
     Problem_type problem_type;
 
 
@@ -2399,6 +2401,11 @@ namespace oomph
     static void flux_fct(const double& t, double& flux)
     {
       flux = 0.0;
+    }
+
+    Mesh* fluid_mesh_pt()
+    {
+      return Fluid_mesh_pt;
     }
   };
 } // namespace oomph
