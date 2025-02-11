@@ -187,11 +187,9 @@ namespace oomph
 
       // Create the free surface elements
       Free_surface_mesh_pt = new Mesh;
-      create_free_surface_elements();
 
       // Create the slip surface elements
       Slip_mesh_pt = new Mesh;
-      create_slip_elements();
 
       // Create the integral elements if we are solving the axisymmetric
       // problem
@@ -199,7 +197,6 @@ namespace oomph
       {
         Integral_mesh_pt = new Mesh;
         Volume_mesh_pt = new Mesh;
-        create_integral_elements();
       }
 
       // Create the flux elements if we are solving the axisymmetric
@@ -208,7 +205,6 @@ namespace oomph
       {
         Flux_mesh_pt = new Mesh;
         Net_flux_mesh_pt = new Mesh;
-        create_flux_elements();
       }
 
       // Create the velocity symmetry condition elements if we are solving the
@@ -216,7 +212,6 @@ namespace oomph
       if (this->parameters_pt()->azimuthal_mode_number == 1)
       {
         Centre_mesh_pt = new Mesh;
-        create_centre_elements();
       }
 
       // Create the contact line elements
@@ -236,7 +231,6 @@ namespace oomph
       }
       if (Contact_line_mesh_pt)
       {
-        create_contact_line_elements();
         add_sub_mesh(Contact_line_mesh_pt);
       }
       if (this->parameters_pt()->azimuthal_mode_number == 0)
@@ -254,22 +248,77 @@ namespace oomph
       }
       // add_global_data(Flux_lagrange_multiplier_data_pt);
 
-      // Set the boundary conditions
-      set_boundary_conditions();
+      // Build the global mesh
+      build_global_mesh();
+
+      add_boundary_elements();
 
       // Set up the connections to the base state
       set_up_overlapping_domain_functions();
 
-      // Build the global mesh
-      build_global_mesh();
-
-      // Set up the equation numbering so we are ready to solve the problem.
-      oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
+      // Set the boundary conditions
+      set_boundary_conditions();
 
       // Pin the horizontal mesh deformation.
       if (this->parameters_pt()->azimuthal_mode_number > 0)
       {
         pin_horizontal_mesh_deformation();
+      }
+
+      // Rebuild the global mesh
+      rebuild_global_mesh();
+
+      // Set up the equation numbering so we are ready to solve the problem.
+      oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
+    }
+
+    // Create the boundary elements for the problem
+    void add_boundary_elements()
+    {
+      create_free_surface_elements();
+      create_slip_elements();
+      if (this->parameters_pt()->azimuthal_mode_number == 0)
+      {
+        create_integral_elements();
+        create_flux_elements();
+      }
+      else if (this->parameters_pt()->azimuthal_mode_number == 1)
+      {
+        create_centre_elements();
+      }
+      if (Contact_line_mesh_pt)
+      {
+        create_contact_line_elements();
+      }
+    }
+
+    // Remove the boundary elements from the problem to allow for remeshing
+    void remove_boundary_elements()
+    {
+      // List of meshes to remove boundary elements from
+      std::vector<Mesh*> meshes = {Free_surface_mesh_pt,
+                                   Slip_mesh_pt,
+                                   Integral_mesh_pt,
+                                   Volume_mesh_pt,
+                                   Flux_mesh_pt,
+                                   Net_flux_mesh_pt,
+                                   Centre_mesh_pt,
+                                   Contact_line_mesh_pt};
+      // Loop over the meshes and remove the boundary elements
+      for (Mesh* mesh_pt : meshes)
+      {
+        // Check the mesh exists
+        if (mesh_pt)
+        {
+          // Delete the elements
+          unsigned n_element = mesh_pt->nelement();
+          for (unsigned e = 0; e < n_element; e++)
+          {
+            delete mesh_pt->element_pt(e);
+          }
+          // And flush the storage
+          mesh_pt->flush_element_and_node_storage();
+        }
       }
     }
 
