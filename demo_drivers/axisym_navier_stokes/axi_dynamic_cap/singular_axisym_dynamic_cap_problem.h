@@ -393,8 +393,7 @@ namespace oomph
       }
 
       if (Parameters_pt->contact_angle >
-            90.0 * MathematicalConstants::Pi / 180.0 &&
-          Parameters_pt->augmented_radius > 0)
+          90.0 * MathematicalConstants::Pi / 180.0)
       {
         this->Is_augmented = true;
       }
@@ -3319,6 +3318,61 @@ namespace oomph
     // Set the elements internal variable and function pointers
     void setup_bulk_elements()
     {
+      double inner_radius = Parameters_pt->augmented_radius;
+      if (this->is_augmented())
+      {
+        // Ensure the two elements closest to the corner are augmented and get
+        // their sizes
+        ELEMENT* corner_el_pt = 0;
+        unsigned node_index = 0;
+
+        double corner_element_size = 0.0;
+        for (unsigned i = 0; i < 2; i++)
+        {
+          switch (i)
+          {
+            case 0:
+              find_corner_bulk_element_and_node(Outer_boundary_with_slip_id,
+                                                Free_surface_boundary_id,
+                                                corner_el_pt,
+                                                node_index);
+              break;
+            case 1:
+              find_corner_bulk_element_and_node(Free_surface_boundary_id,
+                                                Outer_boundary_with_slip_id,
+                                                corner_el_pt,
+                                                node_index);
+              break;
+            default:
+              break;
+          }
+
+          corner_el_pt->augment();
+          corner_el_pt->add_additional_terms();
+          corner_el_pt->swap_unknowns();
+
+          // Find the element iterator with the bulk mesh
+          std::vector<GeneralisedElement*>::iterator iter =
+            std::find(Bulk_mesh_pt->element_pt().begin(),
+                      Bulk_mesh_pt->element_pt().end(),
+                      dynamic_cast<GeneralisedElement*>(corner_el_pt));
+
+          // Use this to get the element number
+          unsigned e = std::distance(Bulk_mesh_pt->element_pt().begin(), iter);
+          // Add the element number to the augmented element number vector
+          Augmented_bulk_element_number.push_back(e);
+
+          corner_element_size =
+            std::max(corner_element_size, corner_el_pt->size());
+        }
+
+        if (inner_radius < 0)
+        {
+          inner_radius = 5.0 * pow(2.0 * corner_element_size, 0.5);
+        }
+      }
+
+
       // Loop over the elements to set the consitutive law and jacobian
       unsigned n_bulk = Bulk_mesh_pt->nelement();
       for (unsigned e = 0; e < n_bulk; e++)
@@ -3368,16 +3422,19 @@ namespace oomph
           dist = pow(dist, 0.5);
 
           // If the distance to the corner is within the "inner" region, ...
-          const double inner_radius = Parameters_pt->augmented_radius;
           if (dist < inner_radius)
           {
-            el_pt->augment();
+            // If this element is not already augmented, augment it
+            if (!el_pt->is_augmented())
+            {
+              el_pt->augment();
 
-            el_pt->add_additional_terms();
+              el_pt->add_additional_terms();
 
-            el_pt->swap_unknowns();
+              el_pt->swap_unknowns();
 
-            Augmented_bulk_element_number.push_back(e);
+              Augmented_bulk_element_number.push_back(e);
+            }
           }
 
           if (el_pt->get_node_number(Contact_line_node_pt) == -1)
@@ -3391,52 +3448,6 @@ namespace oomph
       // Additional setup if the problem is augmented
       if (this->is_augmented())
       {
-        // Ensure the two elements closest to the corner are augmented
-        ELEMENT* corner_el_pt = 0;
-        unsigned node_index = 0;
-
-        for (unsigned i = 0; i < 2; i++)
-        {
-          switch (i)
-          {
-            case 0:
-              find_corner_bulk_element_and_node(Outer_boundary_with_slip_id,
-                                                Free_surface_boundary_id,
-                                                corner_el_pt,
-                                                node_index);
-              break;
-            case 1:
-              find_corner_bulk_element_and_node(Free_surface_boundary_id,
-                                                Outer_boundary_with_slip_id,
-                                                corner_el_pt,
-                                                node_index);
-              break;
-            default:
-              break;
-          }
-
-          // If this element is not already augmented, augment it
-          if (!corner_el_pt->is_augmented())
-          {
-            corner_el_pt->augment();
-            corner_el_pt->add_additional_terms();
-            corner_el_pt->swap_unknowns();
-
-            // Find the element iterator with the bulk mesh
-            std::vector<GeneralisedElement*>::iterator iter =
-              std::find(Bulk_mesh_pt->element_pt().begin(),
-                        Bulk_mesh_pt->element_pt().end(),
-                        dynamic_cast<GeneralisedElement*>(corner_el_pt));
-
-            // Use this to get the element number
-            unsigned e =
-              std::distance(Bulk_mesh_pt->element_pt().begin(), iter);
-            // Add the element number to the augmented element number vector
-            Augmented_bulk_element_number.push_back(e);
-          }
-        }
-
-
         // Output the number of augmented elements
         oomph_info << Augmented_bulk_element_number.size()
                    << " augmented elements" << std::endl;
