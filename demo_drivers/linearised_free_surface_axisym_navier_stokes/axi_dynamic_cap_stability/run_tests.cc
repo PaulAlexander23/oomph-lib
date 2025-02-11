@@ -32,11 +32,11 @@ BOOST_AUTO_TEST_CASE(compare_matrix_different)
 
 // ***
 // Test augmented linear problem
-BOOST_AUTO_TEST_CASE(augmented_linear_problem_creation)
-
+BOOST_AUTO_TEST_CASE(augmented_linear_problem_mode_1)
 {
   // Create the parameters
   Params parameters;
+  parameters.azimuthal_mode_number = 1;
   parameters.contact_angle = 120.0 / 180.0 * MathematicalConstants::Pi;
   *parameters.wall_velocity_pt = 0.01;
 
@@ -60,6 +60,26 @@ BOOST_AUTO_TEST_CASE(augmented_linear_problem_creation)
                       base_problem.free_surface_mesh_pt(),
                       base_problem.slip_surface_mesh_pt(),
                       &parameters);
+  perturbed_problem.assign_initial_values_impulsive();
+  perturbed_problem.make_unsteady();
+  perturbed_problem.pin_horizontal_mesh_deformation();
+  perturbed_problem.solve_n_most_unstable_eigensolutions(1);
+
+  parameters.azimuthal_mode_number = 0;
+
+  // Create the linear problem
+  typedef OverlayingMyLinearElement<BASE_ELEMENT> PERTURBED_ELEMENT;
+  PerturbedLinearStabilityCapProblem<BASE_ELEMENT,
+                                     PERTURBED_ELEMENT,
+                                     TIMESTEPPER>
+    perturbed_problem0(base_problem.bulk_mesh_pt(),
+                       base_problem.free_surface_mesh_pt(),
+                       base_problem.slip_surface_mesh_pt(),
+                       &parameters);
+  perturbed_problem0.assign_initial_values_impulsive();
+  perturbed_problem0.make_unsteady();
+  perturbed_problem0.pin_horizontal_mesh_deformation();
+  perturbed_problem0.solve_n_most_unstable_eigensolutions(1);
 }
 
 
