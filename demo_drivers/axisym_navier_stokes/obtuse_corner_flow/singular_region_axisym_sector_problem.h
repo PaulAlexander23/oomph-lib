@@ -10,6 +10,7 @@
 #include "region_axisym_sector_problem.h"
 #include "two_region_refined_sector_tri_mesh.template.h"
 #include "utility_functions.h"
+#include "my_element.h"
 
 
 namespace oomph
@@ -228,7 +229,7 @@ namespace oomph
               this->doc_info_pt()->number());
       output_stream.open(filename);
       output_stream << "scaling" << std::endl;
-      dynamic_cast<SingularNavierStokesSolutionElement<ELEMENT>*>(
+      dynamic_cast<SingularNavierStokesSolutionElement<MyElement>*>(
         Singularity_scaling_mesh_pt->element_pt(0))
         ->output(output_stream);
       output_stream.close();
@@ -259,8 +260,8 @@ namespace oomph
 
     void fix_c(const double& value)
     {
-      SingularNavierStokesSolutionElement<ELEMENT>* el_pt =
-        dynamic_cast<SingularNavierStokesSolutionElement<ELEMENT>*>(
+      SingularNavierStokesSolutionElement<MyElement>* el_pt =
+        dynamic_cast<SingularNavierStokesSolutionElement<MyElement>*>(
           Singularity_scaling_mesh_pt->element_pt(0));
 
       el_pt->pin_c();
@@ -353,8 +354,8 @@ namespace oomph
     ELEMENT>::create_singularity_scaling_elements()
   {
     oomph_info << "create_singularity_scaling_elements" << std::endl;
-    SingularNavierStokesSolutionElement<ELEMENT>* el_pt =
-      new SingularNavierStokesSolutionElement<ELEMENT>;
+    SingularNavierStokesSolutionElement<MyElement>* el_pt =
+      new SingularNavierStokesSolutionElement<MyElement>;
 
     // Set the pointer to the velocity singular function for this
     // element, defined in parameters namespace
@@ -431,8 +432,8 @@ namespace oomph
   {
     oomph_info << "setup_mesh_interaction" << std::endl;
 
-    SingularNavierStokesSolutionElement<ELEMENT>* singular_el_pt =
-      dynamic_cast<SingularNavierStokesSolutionElement<ELEMENT>*>(
+    SingularNavierStokesSolutionElement<MyElement>* singular_el_pt =
+      dynamic_cast<SingularNavierStokesSolutionElement<MyElement>*>(
         Singularity_scaling_mesh_pt->element_pt(0));
 
     // Loop over the augmented bulk elements

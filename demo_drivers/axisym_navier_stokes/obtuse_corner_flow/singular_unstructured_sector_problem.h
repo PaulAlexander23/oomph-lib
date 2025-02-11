@@ -8,7 +8,7 @@
 
 /// Local headers
 #include "unstructured_sector_problem.h"
-
+#include "my_element.h"
 
 namespace oomph
 {
@@ -55,8 +55,8 @@ namespace oomph
     };
 
     // Constructor
-    SingularUnstructuredSectorProblem(Params& parameters)
-      : UnstructuredSectorProblem<ELEMENT>(parameters), Contact_line_node_pt(0)
+    SingularUnstructuredSectorProblem()
+      : UnstructuredSectorProblem<ELEMENT>(), Contact_line_node_pt(0)
     {
       // Re-assign doc info pointer
       this->doc_info_pt()->set_directory("RESLT_fix_unstr");
@@ -216,7 +216,7 @@ namespace oomph
               this->doc_info_pt()->number());
       output_stream.open(filename);
       output_stream << "scaling" << std::endl;
-      dynamic_cast<SingularNavierStokesSolutionElement<ELEMENT>*>(
+      dynamic_cast<SingularNavierStokesSolutionElement<ProjectableAxisymmetricTaylorHoodElement<MyElement>>*>(
         Singularity_scaling_mesh_pt->element_pt(0))
         ->output(output_stream);
       output_stream.close();
@@ -248,8 +248,8 @@ namespace oomph
 
     void fix_c(const double& value)
     {
-      SingularNavierStokesSolutionElement<ELEMENT>* el_pt =
-        dynamic_cast<SingularNavierStokesSolutionElement<ELEMENT>*>(
+      SingularNavierStokesSolutionElement<ProjectableAxisymmetricTaylorHoodElement<MyElement>>* el_pt =
+        dynamic_cast<SingularNavierStokesSolutionElement<ProjectableAxisymmetricTaylorHoodElement<MyElement>>*>(
           Singularity_scaling_mesh_pt->element_pt(0));
 
       el_pt->pin_c();
@@ -378,8 +378,8 @@ namespace oomph
     ELEMENT>::create_singularity_scaling_elements()
   {
     oomph_info << "create_singularity_scaling_elements" << std::endl;
-    SingularNavierStokesSolutionElement<ELEMENT>* el_pt =
-      new SingularNavierStokesSolutionElement<ELEMENT>;
+    SingularNavierStokesSolutionElement<ProjectableAxisymmetricTaylorHoodElement<MyElement>>* el_pt =
+      new SingularNavierStokesSolutionElement<ProjectableAxisymmetricTaylorHoodElement<MyElement>>;
 
     // Set the pointer to the velocity singular function for this
     // element, defined in parameters namespace
@@ -456,8 +456,8 @@ namespace oomph
   {
     oomph_info << "setup_mesh_interaction" << std::endl;
 
-    SingularNavierStokesSolutionElement<ELEMENT>* singular_el_pt =
-      dynamic_cast<SingularNavierStokesSolutionElement<ELEMENT>*>(
+    SingularNavierStokesSolutionElement<ProjectableAxisymmetricTaylorHoodElement<MyElement>>* singular_el_pt =
+      dynamic_cast<SingularNavierStokesSolutionElement<ProjectableAxisymmetricTaylorHoodElement<MyElement>>*>(
         Singularity_scaling_mesh_pt->element_pt(0));
 
     // Loop over the augmented bulk elements

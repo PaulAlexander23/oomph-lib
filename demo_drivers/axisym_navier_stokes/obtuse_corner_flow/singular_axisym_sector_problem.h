@@ -3,11 +3,13 @@
 
 #include "generic.h"
 #include "navier_stokes.h"
+#include "axisym_navier_stokes.h"
 #include "fluid_interface.h"
 #include "meshes/triangle_mesh.h"
 
 /// Local headers
 #include "axisym_sector_problem.h"
+#include "my_element.h"
 
 
 namespace oomph
@@ -16,6 +18,9 @@ namespace oomph
   template<class ELEMENT>
   class SingularAxisymSectorProblem : public AxisymSectorProblem<ELEMENT>
   {
+  public:
+    typedef SingularNavierStokesSolutionElement<MyElement> SCALING_ELEMENT;
+
   private:
     Node* Contact_line_node_pt;
 
@@ -212,8 +217,7 @@ namespace oomph
               this->doc_info_pt()->number());
       output_stream.open(filename);
       output_stream << "scaling" << std::endl;
-      dynamic_cast<SingularNavierStokesSolutionElement<ELEMENT>*>(
-        Singularity_scaling_mesh_pt->element_pt(0))
+      dynamic_cast<SCALING_ELEMENT*>(Singularity_scaling_mesh_pt->element_pt(0))
         ->output(output_stream);
       output_stream.close();
 
@@ -243,9 +247,8 @@ namespace oomph
 
     void fix_c(const double& value)
     {
-      SingularNavierStokesSolutionElement<ELEMENT>* el_pt =
-        dynamic_cast<SingularNavierStokesSolutionElement<ELEMENT>*>(
-          Singularity_scaling_mesh_pt->element_pt(0));
+      SCALING_ELEMENT* el_pt = dynamic_cast<SCALING_ELEMENT*>(
+        Singularity_scaling_mesh_pt->element_pt(0));
 
       el_pt->pin_c();
       el_pt->set_c(value);
@@ -336,8 +339,7 @@ namespace oomph
     ELEMENT>::create_singularity_scaling_elements()
   {
     oomph_info << "create_singularity_scaling_elements" << std::endl;
-    SingularNavierStokesSolutionElement<ELEMENT>* el_pt =
-      new SingularNavierStokesSolutionElement<ELEMENT>;
+    SCALING_ELEMENT* el_pt = new SCALING_ELEMENT;
 
     // Set the pointer to the velocity singular function for this
     // element, defined in parameters namespace
@@ -414,9 +416,8 @@ namespace oomph
   {
     oomph_info << "setup_mesh_interaction" << std::endl;
 
-    SingularNavierStokesSolutionElement<ELEMENT>* singular_el_pt =
-      dynamic_cast<SingularNavierStokesSolutionElement<ELEMENT>*>(
-        Singularity_scaling_mesh_pt->element_pt(0));
+    SCALING_ELEMENT* singular_el_pt = dynamic_cast<SCALING_ELEMENT*>(
+      Singularity_scaling_mesh_pt->element_pt(0));
 
     // Loop over the augmented bulk elements
     unsigned n_aug_bulk = Augmented_bulk_element_number.size();
