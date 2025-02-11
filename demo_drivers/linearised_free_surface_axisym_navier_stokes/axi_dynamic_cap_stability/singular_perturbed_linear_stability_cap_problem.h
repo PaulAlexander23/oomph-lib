@@ -110,6 +110,7 @@ namespace oomph
                  << std::endl;
     }
 
+    /// Create the singular solution scaling elements
     void create_singularity_scaling_elements()
     {
       oomph_info << "create_singularity_scaling_elements" << std::endl;
@@ -141,6 +142,7 @@ namespace oomph
       }
     }
 
+    /// Create the pressure contribution elements for the first boundary
     void create_pressure_contribution_1_elements()
     {
       oomph_info << "create_pressure_contribution_1_elements" << std::endl;
@@ -175,6 +177,43 @@ namespace oomph
       Pressure_contribution_mesh_1_pt->add_element_pt(el_pt);
     }
 
+    /// Create the pressure contribution elements for the second boundary
+    void create_pressure_contribution_2_elements()
+    {
+      oomph_info << "create_pressure_contribution_1_elements" << std::endl;
+
+      PERTURBED_ELEMENT* element_pt = 0;
+      int face_index = 0;
+      find_corner_bulk_element_and_face_index(Free_surface_boundary_id,
+                                              Outer_boundary_with_slip_id,
+                                              element_pt,
+                                              face_index);
+
+
+      const unsigned pressure_value_index = 0;
+      DecomposedPressureEvaluationElement<PERTURBED_ELEMENT>* el_pt =
+        new DecomposedPressureEvaluationElement<PERTURBED_ELEMENT>(
+          element_pt, face_index, Contact_line_node_pt, pressure_value_index);
+
+      // Add the two singularity solution scaling data
+      el_pt->add_scaling_data(
+        Singularity_scaling_mesh_pt->element_pt(0)->internal_data_pt(0));
+      el_pt->add_scaling_data(
+        Singularity_scaling_mesh_pt->element_pt(1)->internal_data_pt(0));
+
+      el_pt->set_boundary_number_in_bulk_mesh(Free_surface_boundary_id);
+      // Set the product of the Reynolds number and the inverse of the
+      // Froude number
+      el_pt->re_invfr_pt() =
+        this->parameters_pt()->reynolds_inverse_froude_number_pt;
+      // Set the direction of gravity
+      el_pt->g_pt() = &this->parameters_pt()->gravity_vector;
+      el_pt->set_subtract_from_residuals();
+
+      Pressure_contribution_mesh_2_pt->add_element_pt(el_pt);
+    }
+
+    /// Find the corner element and the face for the first of the two boundaries
     void find_corner_bulk_element_and_face_index(const unsigned& boundary_1_id,
                                                  const unsigned& boundary_2_id,
                                                  PERTURBED_ELEMENT*& element_pt,
@@ -198,7 +237,8 @@ namespace oomph
           {
             // set the output arguments,
             element_pt = dynamic_cast<PERTURBED_ELEMENT*>(bulk_el_pt);
-            face_index = this->fluid_mesh_pt()->face_index_at_boundary(boundary_1_id, e);
+            face_index =
+              this->fluid_mesh_pt()->face_index_at_boundary(boundary_1_id, e);
 
             // Return to exit both loops and end function
             return;
@@ -209,6 +249,7 @@ namespace oomph
       oomph_info << "Warning: No corner node found!" << std::endl;
     }
 
+    /// Augment the bulk elements within a small radius of the corner
     void augment_bulk_elements()
     {
       double inner_radius = this->parameters_pt()->augmented_radius;
