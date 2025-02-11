@@ -1,6 +1,10 @@
 #Include commands common to every Makefile.am
 include $(top_srcdir)/config/makefile_templates/demo_drivers
 
+#Temporary!
+all: run_tests
+	./run_tests
+
 # Name of executables
 check_PROGRAMS= \
 	linear_stability_run \
