@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE(augmented_linear_problem_mode_1)
   base_problem.assign_initial_values_impulsive();
 
   // Create the linear problem
-  typedef OverlayingMyLinearElement<BASE_ELEMENT> PERTURBED_ELEMENT;
+  typedef SingularOverlayingMyLinearElement<BASE_ELEMENT> PERTURBED_ELEMENT;
   SingularPerturbedLinearStabilityCapProblem<BASE_ELEMENT,
                                              PERTURBED_ELEMENT,
                                              TIMESTEPPER>
@@ -70,7 +70,6 @@ BOOST_AUTO_TEST_CASE(augmented_linear_problem_mode_1)
   parameters.azimuthal_mode_number = 0;
 
   // Create the linear problem
-  typedef OverlayingMyLinearElement<BASE_ELEMENT> PERTURBED_ELEMENT;
   SingularPerturbedLinearStabilityCapProblem<BASE_ELEMENT,
                                              PERTURBED_ELEMENT,
                                              TIMESTEPPER>
