@@ -45,7 +45,6 @@ namespace oomph
                      const Vector<double>&,
                      Vector<double>&)>
   eigensolution_traction_function_factory(
-    const double& contact_angle,
     const std::function<Vector<Vector<double>>(const Vector<double>&)>&
       grad_velocity_singular_fct);
 

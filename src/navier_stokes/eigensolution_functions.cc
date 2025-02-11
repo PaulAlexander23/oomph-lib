@@ -148,7 +148,6 @@ namespace oomph
                      const Vector<double>&,
                      Vector<double>&)>
   eigensolution_traction_function_factory(
-    const double& contact_angle,
     const std::function<Vector<Vector<double>>(const Vector<double>&)>&
       grad_velocity_singular_fct)
   {
@@ -158,8 +157,7 @@ namespace oomph
     // traction at a point x with normal n using the gradient of the singular
     // velocity function grad_velocity_singular_fct The traction is computed as
     // - (grad u + grad u ^ T) dot n where u is the singular velocity function
-    return [contact_angle,
-            &grad_velocity_singular_fct](const double& t,
+    return [&grad_velocity_singular_fct](const double& t,
                                          const Vector<double>& x,
                                          const Vector<double>& n,
                                          Vector<double>& result) -> void
