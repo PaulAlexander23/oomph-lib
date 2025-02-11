@@ -31,6 +31,39 @@ BOOST_AUTO_TEST_CASE(compare_matrix_different)
 }
 
 // ***
+// Test augmented linear problem
+BOOST_AUTO_TEST_CASE(augmented_linear_problem_creation)
+
+{
+  // Create the parameters
+  Params parameters;
+  parameters.contact_angle = 120.0 / 180.0 * MathematicalConstants::Pi;
+  *parameters.wall_velocity_pt = 0.01;
+
+  // Create the base problem
+  typedef SolidSingularAxisymNavierStokesElement<
+    ProjectableAxisymmetricTTaylorHoodPVDElement>
+    BASE_ELEMENT;
+  typedef BDF<2> TIMESTEPPER;
+  SingularAxisymDynamicCapProblem<BASE_ELEMENT, TIMESTEPPER> base_problem(
+    &parameters);
+  base_problem.steady_newton_solve();
+  base_problem.reset_lagrange();
+  base_problem.assign_initial_values_impulsive();
+
+  // Create the linear problem
+  typedef OverlayingMyLinearElement<BASE_ELEMENT> PERTURBED_ELEMENT;
+  PerturbedLinearStabilityCapProblem<BASE_ELEMENT,
+                                     PERTURBED_ELEMENT,
+                                     TIMESTEPPER>
+    perturbed_problem(base_problem.bulk_mesh_pt(),
+                      base_problem.free_surface_mesh_pt(),
+                      base_problem.slip_surface_mesh_pt(),
+                      &parameters);
+}
+
+
+// ***
 // Test base problem
 
 // BOOST_AUTO_TEST_CASE(nonlinear_problem_creation_with_default_parameters)
@@ -1403,25 +1436,25 @@ BOOST_AUTO_TEST_CASE(compare_matrix_different)
 // ***
 // Function definitions
 
-//namespace oomph
+// namespace oomph
 //{
-//  std::shared_ptr<AXISYM_PROBLEM> createBaseProblem()
-//  {
-//    std::shared_ptr<Params> parameters = new Params;
-//    parameters->wall_velocity = 0.0;
-//    parameters->slip_length = 5e-3;
+//   std::shared_ptr<AXISYM_PROBLEM> createBaseProblem()
+//   {
+//     std::shared_ptr<Params> parameters = new Params;
+//     parameters->wall_velocity = 0.0;
+//     parameters->slip_length = 5e-3;
 //
-//    oomph_info.stream_pt() = &oomph_nullstream;
-//    return std::shared_ptr<AXISYM_PROBLEM>(new AXISYM_PROBLEM(parameters));
-//  }
+//     oomph_info.stream_pt() = &oomph_nullstream;
+//     return std::shared_ptr<AXISYM_PROBLEM>(new AXISYM_PROBLEM(parameters));
+//   }
 //
-//  std::shared_ptr<PERTURBED_PROBLEM> createLinearProblem(
-//    std::shared_ptr<AXISYM_PROBLEM> base_problem_pt, Params& parameters)
-//  {
-//    return std::shared_ptr<PERTURBED_PROBLEM>(
-//      new PERTURBED_PROBLEM(base_problem_pt->bulk_mesh_pt(),
-//                            base_problem_pt->free_surface_mesh_pt(),
-//                            base_problem_pt->slip_surface_mesh_pt(),
-//                            &parameters));
-//  }
-//} // namespace oomph
+//   std::shared_ptr<PERTURBED_PROBLEM> createLinearProblem(
+//     std::shared_ptr<AXISYM_PROBLEM> base_problem_pt, Params& parameters)
+//   {
+//     return std::shared_ptr<PERTURBED_PROBLEM>(
+//       new PERTURBED_PROBLEM(base_problem_pt->bulk_mesh_pt(),
+//                             base_problem_pt->free_surface_mesh_pt(),
+//                             base_problem_pt->slip_surface_mesh_pt(),
+//                             &parameters));
+//   }
+// } // namespace oomph
