@@ -2,6 +2,7 @@
 #define SINGULAR_PERTURBED_LINEAR_STABILITY_CAP_PROBLEM_HEADER
 
 #include "perturbed_linear_stability_cap_problem.h"
+#include "decomposed_pressure_evaluation_elements.h"
 
 namespace oomph
 {
@@ -138,6 +139,74 @@ namespace oomph
         // Add element to the mesh
         Singularity_scaling_mesh_pt->add_element_pt(el_pt);
       }
+    }
+
+    void create_pressure_contribution_1_elements()
+    {
+      oomph_info << "create_pressure_contribution_1_elements" << std::endl;
+
+      PERTURBED_ELEMENT* element_pt = 0;
+      int face_index = 0;
+      find_corner_bulk_element_and_face_index(Outer_boundary_with_slip_id,
+                                              Free_surface_boundary_id,
+                                              element_pt,
+                                              face_index);
+
+
+      const unsigned pressure_value_index = 0;
+      DecomposedPressureEvaluationElement<PERTURBED_ELEMENT>* el_pt =
+        new DecomposedPressureEvaluationElement<PERTURBED_ELEMENT>(
+          element_pt, face_index, Contact_line_node_pt, pressure_value_index);
+
+      // Add the two singularity solution scaling data
+      el_pt->add_scaling_data(
+        Singularity_scaling_mesh_pt->element_pt(0)->internal_data_pt(0));
+      el_pt->add_scaling_data(
+        Singularity_scaling_mesh_pt->element_pt(1)->internal_data_pt(0));
+
+      el_pt->set_boundary_number_in_bulk_mesh(Outer_boundary_with_slip_id);
+      // Set the product of the Reynolds number and the inverse of the
+      // Froude number
+      el_pt->re_invfr_pt() =
+        this->parameters_pt()->reynolds_inverse_froude_number_pt;
+      // Set the direction of gravity
+      el_pt->g_pt() = &this->parameters_pt()->gravity_vector;
+
+      Pressure_contribution_mesh_1_pt->add_element_pt(el_pt);
+    }
+
+    void find_corner_bulk_element_and_face_index(const unsigned& boundary_1_id,
+                                                 const unsigned& boundary_2_id,
+                                                 PERTURBED_ELEMENT*& element_pt,
+                                                 int& face_index)
+    {
+      unsigned n_boundary_element =
+        this->fluid_mesh_pt()->nboundary_element(boundary_1_id);
+      for (unsigned e = 0; e < n_boundary_element; e++)
+      {
+        // Locally cache the element pointer
+        FiniteElement* bulk_el_pt =
+          this->fluid_mesh_pt()->boundary_element_pt(boundary_1_id, e);
+
+        // Read out number of nodes in the element
+        unsigned n_node = bulk_el_pt->nnode();
+        for (unsigned i_node = 0; i_node < n_node; i_node++)
+        {
+          // If the node is on the free surface boundary as well then ...
+          if (bulk_el_pt->node_pt(i_node)->is_on_boundary(boundary_2_id) &&
+              bulk_el_pt->node_pt(i_node)->is_on_boundary(boundary_1_id))
+          {
+            // set the output arguments,
+            element_pt = dynamic_cast<PERTURBED_ELEMENT*>(bulk_el_pt);
+            face_index = this->fluid_mesh_pt()->face_index_at_boundary(boundary_1_id, e);
+
+            // Return to exit both loops and end function
+            return;
+          }
+        }
+      }
+      // If not found, issue warning and return anyway
+      oomph_info << "Warning: No corner node found!" << std::endl;
     }
 
     void augment_bulk_elements()
