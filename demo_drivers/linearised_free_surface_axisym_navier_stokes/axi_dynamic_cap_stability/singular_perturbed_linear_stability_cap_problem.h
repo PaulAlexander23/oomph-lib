@@ -15,11 +15,15 @@ namespace oomph
     // List of augmented element numbers
     Vector<unsigned> Augmented_bulk_element_number;
 
+    // Singular solution scaling mesh
+    Mesh* Singularity_scaling_mesh_pt;
+
+    // Pressure contribution meshes
+    Mesh* Pressure_contribution_mesh_1_pt;
+    Mesh* Pressure_contribution_mesh_2_pt;
+
   public:
-    // Use the boundary id's from the base class
-    // using PerturbedLinearStabilityCapProblem<BASE_ELEMENT,
-    //                                         PERTURBED_ELEMENT,
-    //                                         TIMESTEPPER>::Boundary_id;
+    // Boundary ids enumeration
     enum Boundary_id
     {
       Upper_boundary_id,
@@ -27,6 +31,10 @@ namespace oomph
       Free_surface_boundary_id,
       Inner_boundary_id,
     };
+    // Can't seem to use the boundary id's from the base class
+    // using PerturbedLinearStabilityCapProblem<BASE_ELEMENT,
+    //                                         PERTURBED_ELEMENT,
+    //                                         TIMESTEPPER>::Boundary_id;
 
     // Constructor
     SingularPerturbedLinearStabilityCapProblem(
@@ -40,14 +48,28 @@ namespace oomph
           external_base_mesh_pt,
           external_free_surface_mesh_pt,
           external_slip_surface_mesh_pt,
-          params_pt)
+          params_pt),
+        Singularity_scaling_mesh_pt(0),
+        Pressure_contribution_mesh_1_pt(0),
+        Pressure_contribution_mesh_2_pt(0)
     {
+      // Remove the original problem's boundary elements
       PerturbedLinearStabilityCapProblem<
         BASE_ELEMENT,
         PERTURBED_ELEMENT,
         TIMESTEPPER>::remove_boundary_elements();
 
+      // Augment the bulk elements
       augment_bulk_elements();
+
+      // Add the new sub meshes
+      Singularity_scaling_mesh_pt = new Mesh;
+      this->add_sub_mesh(Singularity_scaling_mesh_pt);
+      Pressure_contribution_mesh_1_pt = new Mesh;
+      this->add_sub_mesh(Pressure_contribution_mesh_1_pt);
+      Pressure_contribution_mesh_2_pt = new Mesh;
+      this->add_sub_mesh(Pressure_contribution_mesh_2_pt);
+
 
       this->add_boundary_elements();
 
