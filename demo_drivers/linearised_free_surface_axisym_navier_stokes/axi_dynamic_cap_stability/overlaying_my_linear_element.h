@@ -3,6 +3,7 @@
 
 // #include "generic.h"
 #include "MyLinearElements.h"
+#include "base_element.h"
 #include "../../axisym_navier_stokes/axi_dynamic_cap/projectable_axisymmetric_Ttaylor_hood_elements.h"
 
 namespace oomph
@@ -190,5 +191,12 @@ namespace oomph
     FaceGeometry() : TElement<1, 3>() {}
   };
 
+  extern template class OverlayingMyLinearElement<
+    SolidSingularAxisymNavierStokesElement<
+      ProjectableAxisymmetricTTaylorHoodPVDElement>>;
+
+  extern template class FaceGeometry<
+    OverlayingMyLinearElement<SolidSingularAxisymNavierStokesElement<
+      ProjectableAxisymmetricTTaylorHoodPVDElement>>>;
 } // namespace oomph
 #endif

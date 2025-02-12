@@ -16,11 +16,14 @@ linear_sources = linearised_axisymmetric_fluid_interface_elements.cc \
 				 full_linearised_axisym_navier_stokes_elements.cc \
 				 Tfull_linearised_axisym_navier_stokes_elements.cc \
 				 decomposed_pvd_elements.cc \
-				 decomposed_linear_elasticity_elements.cc
+				 decomposed_linear_elasticity_elements.cc \
+				 base_element.cc \
+				 overlaying_my_linear_element.cc
 
-linear_stability_run_SOURCES = linear_stability_run.cc $(linear_sources)
-neutral_stability_run_SOURCES = neutral_stability_run.cc $(linear_sources)
-run_tests_SOURCES = run_tests.cc $(linear_sources)
+
+linear_stability_run_SOURCES = $(linear_sources) linear_stability_run.cc 
+neutral_stability_run_SOURCES = $(linear_sources) neutral_stability_run.cc 
+run_tests_SOURCES = $(linear_sources) run_tests.cc 
 
 # Required libraries: 
 # $(FLIBS) is included in case the solver involves fortran sources.

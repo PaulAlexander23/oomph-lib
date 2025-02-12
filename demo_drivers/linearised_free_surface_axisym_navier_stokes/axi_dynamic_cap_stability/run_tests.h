@@ -29,6 +29,7 @@
 #include "perturbed_linear_stability_cap_problem.h"
 #include "singular_perturbed_linear_stability_cap_problem.h"
 #include "singular_overlaying_my_linear_elements.h"
+#include "base_element.h"
 
 namespace oomph
 {
