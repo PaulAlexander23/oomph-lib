@@ -517,6 +517,24 @@ namespace oomph
       Density_Ratio_pt = &Default_Physical_Ratio_Value;
     }
 
+    /// Return the number of velocity degrees of freedom
+    unsigned n_u_lin_axi_nst()
+    {
+      return 6;
+    }
+
+    /// Return the number of pressure degrees of freedom
+    unsigned n_p_lin_axi_nst()
+    {
+      return 2;
+    }
+
+    /// Check if the node index given is a node where the pressure is stored
+    bool is_pressure_node(const unsigned& n)
+    {
+      return (n < 3);
+    }
+
     /// Vector to decide whether the stress-divergence form is used or not.
     //  N.B. This needs to be public so that the intel compiler gets things
     // correct. Somehow the access function messes things up when going to
