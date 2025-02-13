@@ -24,7 +24,9 @@ linear_sources = linearised_axisymmetric_fluid_interface_elements.cc \
 				 decomposed_pvd_elements.cc \
 				 decomposed_linear_elasticity_elements.cc \
 				 base_element.cc \
-				 overlaying_my_linear_element.cc
+				 base_problem.cc \
+				 overlaying_my_linear_element.cc \
+				 perturbed_linear_stability_cap_problem_base.cc
 
 
 linear_stability_run_SOURCES = $(linear_sources) linear_stability_run.cc 
@@ -34,6 +36,8 @@ run_tests_SOURCES = $(linear_sources) run_tests.cc
 # Required libraries: 
 # $(FLIBS) is included in case the solver involves fortran sources.
 LDADD = -L@libdir@ \
+		../../axisym_navier_stokes/axi_dynamic_cap/parameters.o \
+		../../axisym_navier_stokes/axi_dynamic_cap/parameter_functions.o \
 	-llinear_elasticity \
 	-llinearised_axisym_navier_stokes \
 	-laxisym_navier_stokes \

@@ -2,6 +2,8 @@
 #define PERTURBED_LINEAR_STABILITY_CAP_PROBLEM_BASE_HEADER
 
 // #include "axisym_linear_stability_cap_problem.h"
+#include "navier_stokes/eigensolution_functions.h"
+#include "../../axisym_navier_stokes/axi_dynamic_cap/parameter_functions.h"
 #include "overlaying_elastic_linearised_axisym_fluid_slip_elements.h"
 #include "overlaying_linearised_elastic_axisym_fluid_interface_element.h"
 #include "../../axisym_navier_stokes/axi_dynamic_cap/parameters.h"
@@ -1878,17 +1880,8 @@ namespace oomph
           break;
         }
 
-        // Document the solution
-        if ((it + 1) % parameters_pt()->rval_between_doc == 0)
-        {
-          this->doc_solution();
-        }
-
-        // Dump the solution
-        if ((it + 1) % parameters_pt()->interval_between_dump == 0)
-        {
-          // this->create_restart_file();
-        }
+        this->doc_solution();
+        // this->create_restart_file();
         it++;
       }
     }
@@ -2398,6 +2391,13 @@ namespace oomph
       return Contact_line_mesh_pt;
     }
   };
+
+  extern template class PerturbedLinearStabilityCapProblemBase<
+    SolidSingularAxisymNavierStokesElement<
+      ProjectableAxisymmetricTTaylorHoodPVDElement>,
+    OverlayingMyLinearElement<SolidSingularAxisymNavierStokesElement<
+      ProjectableAxisymmetricTTaylorHoodPVDElement>>,
+    BDF<2>>;
 } // namespace oomph
 
 #endif
