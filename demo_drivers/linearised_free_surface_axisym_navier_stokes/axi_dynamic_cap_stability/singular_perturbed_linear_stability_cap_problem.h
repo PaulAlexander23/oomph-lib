@@ -1,14 +1,14 @@
 #ifndef SINGULAR_PERTURBED_LINEAR_STABILITY_CAP_PROBLEM_HEADER
 #define SINGULAR_PERTURBED_LINEAR_STABILITY_CAP_PROBLEM_HEADER
 
-#include "perturbed_linear_stability_cap_problem.h"
+#include "perturbed_linear_stability_cap_problem_base.h"
 #include "decomposed_pressure_evaluation_elements.h"
 
 namespace oomph
 {
   template<class BASE_ELEMENT, class PERTURBED_ELEMENT, class TIMESTEPPER>
   class SingularPerturbedLinearStabilityCapProblem
-    : public PerturbedLinearStabilityCapProblem<BASE_ELEMENT,
+    : public PerturbedLinearStabilityCapProblemBase<BASE_ELEMENT,
                                                 PERTURBED_ELEMENT,
                                                 TIMESTEPPER>
   {
@@ -55,9 +55,9 @@ namespace oomph
       Mesh* external_free_surface_mesh_pt,
       Mesh* external_slip_surface_mesh_pt,
       Params* const& params_pt)
-      : PerturbedLinearStabilityCapProblem<BASE_ELEMENT,
-                                           PERTURBED_ELEMENT,
-                                           TIMESTEPPER>(
+      : PerturbedLinearStabilityCapProblemBase<BASE_ELEMENT,
+                                               PERTURBED_ELEMENT,
+                                               TIMESTEPPER>(
           external_base_mesh_pt,
           external_free_surface_mesh_pt,
           external_slip_surface_mesh_pt,
@@ -74,16 +74,6 @@ namespace oomph
       Grad_velocity_singular_function = grad_velocity_singular_function_factory(
         this->parameters_pt()->contact_angle, Contact_line_node_pt);
 
-
-      // Remove the original problem's boundary elements
-      PerturbedLinearStabilityCapProblem<
-        BASE_ELEMENT,
-        PERTURBED_ELEMENT,
-        TIMESTEPPER>::remove_boundary_elements();
-
-      // Augment the bulk elements
-      augment_bulk_elements();
-
       // Add the new sub meshes
       Singularity_scaling_mesh_pt = new Mesh;
       this->add_sub_mesh(Singularity_scaling_mesh_pt);
@@ -91,6 +81,10 @@ namespace oomph
       this->add_sub_mesh(Pressure_contribution_mesh_1_pt);
       Pressure_contribution_mesh_2_pt = new Mesh;
       this->add_sub_mesh(Pressure_contribution_mesh_2_pt);
+
+
+      // Augment the bulk elements
+      augment_bulk_elements();
 
       this->add_boundary_elements();
 
@@ -105,6 +99,12 @@ namespace oomph
 
       // Set the boundary conditions
       this->set_boundary_conditions();
+
+      // Pin the horizontal mesh deformation.
+      if (this->parameters_pt()->azimuthal_mode_number > 0)
+      {
+        this->pin_horizontal_mesh_deformation();
+      }
 
       // Rebuild the global mesh
       this->rebuild_global_mesh();
