@@ -1,7 +1,7 @@
 #ifndef OVERLAYING_LINEARISED_ELASTIC_AXISYM_FLUID_INTERFACE_ELEMENT_HEADER
 #define OVERLAYING_LINEARISED_ELASTIC_AXISYM_FLUID_INTERFACE_ELEMENT_HEADER
 
-//#include "generic.h"
+// #include "generic.h"
 #include "linearised_elastic_axisym_fluid_interface_element.h"
 #include "../../axisym_navier_stokes/axi_dynamic_cap/free_surface_elements.h"
 
@@ -9,8 +9,8 @@ namespace oomph
 {
   template<class BASE_ELEMENT, class BULK_ELEMENT>
   class OverlayingLinearisedElasticAxisymmetricFluidInterfaceElement
-    : public virtual Hijacked<
-        LinearisedElasticAxisymmetricFluidInterfaceElement<BULK_ELEMENT>>
+    : public virtual LinearisedElasticAxisymmetricFluidInterfaceElement<
+        BULK_ELEMENT>
   {
   private:
     typedef FreeSurfaceElement<BASE_ELEMENT> BASE_FACE_ELEMENT;
