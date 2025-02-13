@@ -5,6 +5,12 @@ include $(top_srcdir)/config/makefile_templates/demo_drivers
 all: run_tests
 	./run_tests
 
+iwyu.out: ${run_test_SOURCES}
+	include-what-you-use -Xiwyu $(AM_CPPFLAGS) run_tests.cc 2> iwyu.out
+
+fix_include: iwyu.out
+	fix_include < iwyu.out
+
 # Name of executables
 check_PROGRAMS= \
 	linear_stability_run \
