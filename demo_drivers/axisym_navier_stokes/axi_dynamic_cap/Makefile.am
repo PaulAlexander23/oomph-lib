@@ -25,6 +25,7 @@ test.log: run_tests
 
 # Name of executables
 check_PROGRAMS= ${EXEC}
+noinst_LIBRARIES = libaxi_dynamic_cap.a
 
 sources = parameters.cc parameter_functions.cc
 
@@ -32,6 +33,7 @@ axi_dynamic_cap_SOURCES = $(sources) axi_dynamic_cap.cc
 create_parameter_files_SOURCES = $(sources) create_parameter_files.cc
 continuation_run_SOURCES = $(sources) continuation_run.cc
 run_tests_SOURCES = $(sources) run_tests.cc
+libaxi_dynamic_cap_a_SOURCES = $(sources)
 
 # Required libraries: 
 # $(FLIBS) is included in case the solver involves fortran sources.
