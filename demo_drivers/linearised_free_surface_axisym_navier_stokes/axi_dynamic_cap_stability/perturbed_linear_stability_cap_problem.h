@@ -562,9 +562,7 @@ namespace oomph
             // Hijack the velocity values
             Data* hijacked_data_pt =
               el_pt->hijack_nodal_value(i_node, uc_index);
-            add_global_data(hijacked_data_pt);
             hijacked_data_pt = el_pt->hijack_nodal_value(i_node, us_index);
-            add_global_data(hijacked_data_pt);
 
             if (found_node_pt == visited_nodes.end())
             {
