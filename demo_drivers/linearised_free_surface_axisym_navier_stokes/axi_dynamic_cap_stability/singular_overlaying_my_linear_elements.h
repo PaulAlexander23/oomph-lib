@@ -107,6 +107,67 @@ namespace oomph
       this->add_external_data(c_pt->internal_data_pt(0), use_fd);
     }
 
+    /// Evaluate sum of all velocity singular fcts
+    /// (incl. the amplitude) at Eulerian position x
+    double u_bar(const Vector<double>& x, const unsigned& i) const
+    {
+      // Find the number of singularities
+      unsigned n_sing = C_equation_elements_pt.size();
+
+      // Find the dimension of the problem
+      double sum = 0.0;
+      for (unsigned s = 0; s < n_sing; s++)
+      {
+        Vector<double> u_bar_local = C_equation_elements_pt[s]->u_bar(x);
+        sum += u_bar_local[i];
+      }
+      return sum;
+    }
+
+    /// Evaluate gradient of sum of all velocity singular fcts
+    /// (incl. the amplitudes) at Eulerian position x: grad[i][j] = du_i/dx_j
+    Vector<Vector<double>> grad_u_bar(const Vector<double>& x) const
+    {
+      // Find the number of singularities
+      unsigned n_sing = C_equation_elements_pt.size();
+
+      // Find the dimension of the problem
+      unsigned cached_dim = this->dim();
+      Vector<Vector<double>> sum(cached_dim);
+      for (unsigned i = 0; i < cached_dim; i++)
+      {
+        sum[i].resize(cached_dim, 0.0);
+      }
+      for (unsigned s = 0; s < n_sing; s++)
+      {
+        Vector<Vector<double>> grad_u_bar_local =
+          C_equation_elements_pt[s]->grad_u_bar(x);
+        for (unsigned i = 0; i < cached_dim; i++)
+        {
+          for (unsigned j = 0; j < cached_dim; j++)
+          {
+            sum[i][j] += grad_u_bar_local[i][j];
+          }
+        }
+      }
+      return sum;
+    }
+
+    /// Evaluate sum of all pressure singular fcts
+    /// (incl. the amplitudes) at Eulerian position x
+    double p_bar(const Vector<double>& x) const
+    {
+      // Find the number of singularities
+      unsigned n_sing = C_equation_elements_pt.size();
+
+      double sum = 0.0;
+      for (unsigned i = 0; i < n_sing; i++)
+      {
+        sum += C_equation_elements_pt[i]->p_bar(x);
+      }
+      return sum;
+    }
+
     /// Add the element's contribution to its residual vector (wrapper)
     void fill_in_contribution_to_residuals(Vector<double>& residuals)
     {
@@ -3386,6 +3447,65 @@ namespace oomph
 
         } // End of loop over pressure test functions
 
+        // TOTAL VELOCITY EQUATIONS
+        //-------------------
+
+        // Loop over the velocity test functions
+        for (unsigned l = 0; l < n_node; l++)
+        {
+          // Loop over the velocity components
+          for (unsigned i = 0; i < this->n_u_lin_axi_nst(); i++)
+          {
+            // Additional velocity data
+            // ------------------------
+
+            // Find its local equation number
+            local_eqn = this->nodal_local_eqn(l, u_index_lin_axi_nst_fe(l, i));
+
+            // If it is not pinned
+            if (local_eqn >= 0)
+            {
+              Vector<double> pos_n(2, 0.0);
+              for (unsigned k = 0; k < 2; k++)
+              {
+                pos_n[k] = this->nodal_position(l, k);
+              }
+
+              residuals[local_eqn] +=
+                (this->nodal_value(l, this->u_index_lin_axi_nst(i)) -
+                 (this->nodal_value(l, u_index_lin_axi_nst_fe(l, i)) +
+                  u_bar(pos_n, i)));
+            }
+          } // End of loop over velocity components
+        } // End of loop over test functions
+
+        // TOTAL PRESSURE EQUATION
+        //-------------------
+
+        // Loop over the Nodes
+        for (unsigned l = 0; l < this->npres_lin_axi_nst(); l++)
+        {
+          for (unsigned j = 0; j < 2; j++)
+          {
+            // Get the local equation number
+            local_eqn = this->nodal_local_eqn(l, p_index_lin_axi_nst_fe(l, j));
+
+            // If not a boundary conditions
+            if (local_eqn >= 0)
+            {
+              // If not subject to Dirichlet BC
+              Vector<double> pos_n(2, 0.0);
+              for (unsigned k = 0; k < 2; k++)
+              {
+                pos_n[k] = this->nodal_position(l, k);
+              }
+
+              residuals[local_eqn] +=
+                (this->nodal_value(l, this->p_index_lin_axi_nst(j)) -
+                 (this->nodal_value(l, p_index_lin_axi_nst_fe(l, j)) + p_bar(pos_n)));
+            }
+          }
+        } // End of loop over l
       } // End of loop over the integration points
     }
 
@@ -3446,19 +3566,6 @@ namespace oomph
       return (interpolated_p);
     }
 
-    double interpolated_u_lin_axi_nst_bar(const Vector<double>& s,
-                                          const unsigned& i)
-    {
-      return 0.0;
-    }
-
-    double interpolated_p_lin_axi_nst_bar(const Vector<double>& s,
-                                          const unsigned& i)
-    {
-      return 0.0;
-    }
-
-
     /// Output function in tecplot format:
     /// r, z,
     /// Displacements: R^C, R^S, Z^C, Z^S,
@@ -3483,11 +3590,13 @@ namespace oomph
       {
         // Get local coordinates of plot point
         this->get_s_plot(iplot, nplot, s);
+        Vector<double> x(2, 0.0);
+        this->interpolated_x(s, x);
 
         // Output global coordinates to file
         for (unsigned i = 0; i < 2; i++)
         {
-          outfile << this->interpolated_x(s, i) << " ";
+          outfile << x[i] << " ";
         }
 
         // Output perturbations to nodal positions to file
@@ -3525,13 +3634,14 @@ namespace oomph
         //  Output velocities to file
         for (unsigned i = 0; i < 6; i++)
         {
-          outfile << interpolated_u_lin_axi_nst_bar(s, i) << " ";
+          outfile << u_bar(x, i) << " ";
         }
 
         // Output pressure to file
+        double p = p_bar(x);
         for (unsigned i = 0; i < 2; i++)
         {
-          outfile << interpolated_p_lin_axi_nst_bar(s, i) << " ";
+          outfile << p << " ";
         }
 
         // Error
