@@ -9,8 +9,8 @@ namespace oomph
   template<class BASE_ELEMENT, class PERTURBED_ELEMENT, class TIMESTEPPER>
   class SingularPerturbedLinearStabilityCapProblem
     : public PerturbedLinearStabilityCapProblemBase<BASE_ELEMENT,
-                                                PERTURBED_ELEMENT,
-                                                TIMESTEPPER>
+                                                    PERTURBED_ELEMENT,
+                                                    TIMESTEPPER>
   {
   public:
     typedef SingularNavierStokesSolutionElement<

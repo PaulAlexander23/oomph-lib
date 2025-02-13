@@ -2378,9 +2378,24 @@ namespace oomph
       flux = 0.0;
     }
 
-    Mesh* fluid_mesh_pt()
+    MyTriangleMesh<PERTURBED_ELEMENT>* fluid_mesh_pt()
     {
       return Fluid_mesh_pt;
+    }
+
+    Mesh* free_surface_mesh_pt()
+    {
+      return Free_surface_mesh_pt;
+    }
+
+    Mesh* slip_mesh_pt()
+    {
+      return Slip_mesh_pt;
+    }
+
+    Mesh* contact_line_mesh_pt()
+    {
+      return Contact_line_mesh_pt;
     }
   };
 } // namespace oomph

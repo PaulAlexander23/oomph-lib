@@ -42,6 +42,37 @@ namespace oomph
 
     void augment()
     {
+      // Loop over the nodes and add extra data
+      const unsigned n_node = this->nnode();
+      for (unsigned n = 0; n < n_node; n++)
+      {
+        const unsigned original_n_value = this->node_pt(n)->nvalue();
+        // We need an additional n_u_lin_axi_nst values for the total velocity
+        // equations
+        unsigned desired_n_value =
+          this->n_r_lin_el() + 2 * this->n_u_lin_axi_nst();
+
+        // If this is a pressure node then we need to add additional pressure
+        // values.
+        if (this->is_pressure_node(n))
+        {
+          desired_n_value += 2 * this->n_p_lin_axi_nst();
+        }
+
+        // If we need to
+        if (original_n_value != desired_n_value)
+        {
+          // resize
+          this->node_pt(n)->resize(desired_n_value);
+        }
+
+        // Temporarily pin the additional values
+        for (unsigned i = original_n_value; i < desired_n_value; i++)
+        {
+          this->node_pt(n)->pin(i);
+        }
+      }
+
       IsAugmented = true;
     }
 
