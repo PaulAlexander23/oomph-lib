@@ -26,10 +26,12 @@ test.log: run_tests
 # Name of executables
 check_PROGRAMS= ${EXEC}
 
-axi_dynamic_cap_SOURCES = axi_dynamic_cap.cc 
-create_parameter_files_SOURCES = create_parameter_files.cc
-continuation_run_SOURCES = continuation_run.cc
-run_tests_SOURCES = run_tests.cc
+sources = parameters.cc parameter_functions.cc
+
+axi_dynamic_cap_SOURCES = $(sources) axi_dynamic_cap.cc 
+create_parameter_files_SOURCES = $(sources) create_parameter_files.cc
+continuation_run_SOURCES = $(sources) continuation_run.cc
+run_tests_SOURCES = $(sources) run_tests.cc
 
 # Required libraries: 
 # $(FLIBS) is included in case the solver involves fortran sources.

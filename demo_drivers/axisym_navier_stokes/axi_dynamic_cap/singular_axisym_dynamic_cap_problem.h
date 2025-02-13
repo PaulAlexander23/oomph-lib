@@ -1104,17 +1104,6 @@ namespace oomph
       oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
     }
 
-    void free_kinematic_lagrange_multiplier()
-    {
-      const unsigned n_el = Free_surface_mesh_pt->nelement();
-      for (unsigned i_el = 0; i_el < n_el; i_el++)
-      {
-        FREE_SURFACE_ELEMENT* el_pt = dynamic_cast<FREE_SURFACE_ELEMENT*>(
-          Free_surface_mesh_pt->element_pt(i_el));
-        el_pt->free();
-      }
-    }
-
     void set_kinematic_lagrange_multiplier(const double& value)
     {
       const unsigned n_el = Free_surface_mesh_pt->nelement();
