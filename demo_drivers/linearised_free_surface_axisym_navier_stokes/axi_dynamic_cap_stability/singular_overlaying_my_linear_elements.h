@@ -17,13 +17,13 @@ namespace oomph
     bool IsJacobianFD;
 
     /// Vector of pointers to SingularNavierStokesSolutionElement objects
-    Vector<
-      SingularNavierStokesSolutionElement<OverlayingMyLinearElement<BASE_ELEMENT>>*>
+    Vector<SingularNavierStokesSolutionElement<
+      OverlayingMyLinearElement<BASE_ELEMENT>>*>
       C_equation_elements_pt;
 
   public:
     SingularOverlayingMyLinearElement()
-          : OverlayingMyLinearElement<BASE_ELEMENT>(),
+      : OverlayingMyLinearElement<BASE_ELEMENT>(),
         IsAugmented(false),
         IsJacobianFD(false)
     {
@@ -88,8 +88,8 @@ namespace oomph
       else
       {
         // Call the base fill_in_contribution_to_jacobian function
-        OverlayingMyLinearElement<BASE_ELEMENT>::fill_in_contribution_to_jacobian(
-          residuals, jacobian);
+        OverlayingMyLinearElement<
+          BASE_ELEMENT>::fill_in_contribution_to_jacobian(residuals, jacobian);
         // Then call the singular Navier-Stokes element's
         // fill_in_contribution_to_jacobian function
         if (this->is_augmented())
