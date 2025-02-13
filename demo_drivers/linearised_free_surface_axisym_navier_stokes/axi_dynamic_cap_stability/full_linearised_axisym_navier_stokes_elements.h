@@ -229,9 +229,9 @@ namespace oomph
     }
 
     // Get error value
-    void get_error(double& error)
+    double error()
     {
-      error = Error;
+      return Error;
     }
 
 
