@@ -252,26 +252,6 @@ namespace oomph
 
       // Build the global mesh
       build_global_mesh();
-
-      add_boundary_elements();
-
-      // Set up the connections to the base state
-      set_up_overlapping_domain_functions();
-
-      // Set the boundary conditions
-      set_boundary_conditions();
-
-      // Pin the horizontal mesh deformation.
-      if (this->parameters_pt()->azimuthal_mode_number > 0)
-      {
-        pin_horizontal_mesh_deformation();
-      }
-
-      // Rebuild the global mesh
-      rebuild_global_mesh();
-
-      // Set up the equation numbering so we are ready to solve the problem.
-      oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
     }
 
     // Create the boundary elements for the problem
