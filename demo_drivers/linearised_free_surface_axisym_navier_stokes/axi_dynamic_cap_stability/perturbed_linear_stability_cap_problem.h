@@ -11,7 +11,7 @@
 #include "linearised_contact_angle_elements.h"
 #include "../../axisym_navier_stokes/axi_dynamic_cap/my_eigenproblem.h"
 #include "../../axisym_navier_stokes/axi_dynamic_cap/my_triangle_mesh.h"
-#include "../../axisym_navier_stokes/axi_dynamic_cap/symmetry_velocity_condition_element.h"
+#include "symmetry_velocity_condition_element.h"
 #include "../../axisym_navier_stokes/axi_dynamic_cap/utility_functions.h"
 #include "../../axisym_navier_stokes/axi_dynamic_cap/net_flux_elements.h"
 
