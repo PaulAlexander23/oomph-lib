@@ -2033,7 +2033,7 @@ namespace oomph
       return Inner_corner_solid_node_pt;
     }
 
-    SolidNode* contact_line_node_pt()
+    Node* contact_line_node_pt()
     {
       return Contact_line_node_pt;
     }
