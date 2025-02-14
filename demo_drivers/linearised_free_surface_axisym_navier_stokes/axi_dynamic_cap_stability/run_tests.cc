@@ -64,6 +64,7 @@ BOOST_AUTO_TEST_CASE(augmented_linear_problem)
   perturbed_problem.steady_newton_solve();
   perturbed_problem.make_unsteady();
   perturbed_problem.pin_horizontal_mesh_deformation();
+  // debug_jacobian(&perturbed_problem);
   Vector<std::complex<double>> eigenvalue =
     perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(1);
   BOOST_TEST(abs(eigenvalue[0].real() - (-0.59363316433872149)) < 1e-6);

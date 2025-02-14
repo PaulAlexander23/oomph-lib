@@ -595,6 +595,22 @@ namespace oomph
         const double dVCdt = dudt[4];
         const double dVSdt = dudt[5];
 
+        Vector<Vector<double>> u_bar_local(2);
+        Vector<Vector<Vector<double>>> grad_u_bar_local(2);
+        Vector<double> p_bar_local(2);
+        // Loop over cosine and sine
+        for (unsigned j = 0; j < 2; j++)
+        {
+          u_bar_local[j].resize(3, 0.0);
+          for (unsigned i = 0; i < 3; i++)
+          {
+            u_bar_local[j][i] = u_bar(interpolated_x, i, j);
+          }
+          grad_u_bar_local[j] = grad_u_bar(interpolated_x, j);
+          p_bar_local[j] = p_bar(interpolated_x, j);
+        }
+        const double W = Jbar * w;
+
         // ==================
         // MOMENTUM EQUATIONS
         // ==================
@@ -754,6 +770,29 @@ namespace oomph
             residuals[local_eqn] += base_flow_p * testf_ * JhatC * w;
             residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) *
                                     base_flow_ur * testf_ * JhatC * w / r;
+
+            // Singular part
+            // -------------
+
+            const unsigned j = 0;
+            // Pressure
+            residuals[local_eqn] +=
+              p_bar_local[j] * (testf[l] + r * dtestfdx(l, 0)) * W;
+
+            // Shear stress
+            residuals[local_eqn] -= visc_ratio * r * (1.0 + this->Gamma[0]) *
+                                    grad_u_bar_local[j][0][0] * dtestfdx(l, 0) *
+                                    W;
+
+            residuals[local_eqn] -=
+              visc_ratio * r *
+              (grad_u_bar_local[j][0][1] +
+               this->Gamma[0] * grad_u_bar_local[j][1][0]) *
+              dtestfdx(l, 1) * W;
+
+            residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) *
+                                    u_bar_local[j][0] * testf[l] * W / r;
+
 
             // Calculate the Jacobian
             // ----------------------
@@ -1199,6 +1238,27 @@ namespace oomph
             residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) *
                                     base_flow_ur * testf_ * JhatS * w / r;
 
+            // Singular part
+            // -------------
+
+            const unsigned j = 1;
+            // Pressure
+            residuals[local_eqn] +=
+              p_bar_local[j] * (testf[l] + r * dtestfdx(l, 0)) * W;
+
+            // Shear stress
+            residuals[local_eqn] -= visc_ratio * r * (1.0 + this->Gamma[0]) *
+                                    grad_u_bar_local[j][0][0] * dtestfdx(l, 0) *
+                                    W;
+
+            residuals[local_eqn] -=
+              visc_ratio * r *
+              (grad_u_bar_local[j][0][1] +
+               this->Gamma[0] * grad_u_bar_local[j][1][0]) *
+              dtestfdx(l, 1) * W;
+
+            residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) *
+                                    u_bar_local[j][0] * testf[l] * W / r;
 
             // Calculate the Jacobian
             // ----------------------
@@ -1611,6 +1671,22 @@ namespace oomph
             residuals[local_eqn] +=
               scaled_re_inv_fr * r * G[1] * testf_ * JhatC * w;
 
+            // Singular part
+            // -------------
+            const unsigned j = 0;
+            // Pressure
+            residuals[local_eqn] += p_bar_local[j] * r * dtestfdx(l, 1) * W;
+
+            // Shear stress
+            residuals[local_eqn] -=
+              visc_ratio * r *
+              (grad_u_bar_local[j][1][0] +
+               this->Gamma[1] * grad_u_bar_local[j][0][1]) *
+              dtestfdx(l, 0) * W;
+
+            residuals[local_eqn] -= visc_ratio * r * (1.0 + this->Gamma[1]) *
+                                    grad_u_bar_local[j][1][1] * dtestfdx(l, 1) *
+                                    W;
 
             // Calculate the Jacobian
             // ----------------------
@@ -1968,6 +2044,22 @@ namespace oomph
             residuals[local_eqn] +=
               scaled_re_inv_fr * r * G[1] * testf_ * JhatS * w;
 
+            // Singular part
+            // -------------
+            const unsigned j = 1;
+            // Pressure
+            residuals[local_eqn] += p_bar_local[j] * r * dtestfdx(l, 1) * W;
+
+            // Shear stress
+            residuals[local_eqn] -=
+              visc_ratio * r *
+              (grad_u_bar_local[j][1][0] +
+               this->Gamma[1] * grad_u_bar_local[j][0][1]) *
+              dtestfdx(l, 0) * W;
+
+            residuals[local_eqn] -= visc_ratio * r * (1.0 + this->Gamma[1]) *
+                                    grad_u_bar_local[j][1][1] * dtestfdx(l, 1) *
+                                    W;
 
             // Calculate the Jacobian
             // ----------------------
@@ -3165,6 +3257,15 @@ namespace oomph
             residuals[local_eqn] += base_flow_ur * testp_ * JhatC * w;
             residuals[local_eqn] -= source * r * testp_ * JhatC * w;
 
+            // Singular part
+            // -------------
+
+            const unsigned j = 0;
+            residuals[local_eqn] +=
+              (u_bar_local[j][0] + r * grad_u_bar_local[j][0][0] +
+               r * grad_u_bar_local[j][1][1]) *
+              testp[l] * W;
+
 
             // Calculate the Jacobian
             // ----------------------
@@ -3298,6 +3399,15 @@ namespace oomph
             residuals[local_eqn] += base_flow_ur * testp_ * JhatS * w;
             residuals[local_eqn] -= source * r * testp_ * JhatS * w;
 
+
+            // Singular part
+            // -------------
+
+            const unsigned j = 1;
+            residuals[local_eqn] +=
+              (u_bar_local[j][0] + r * grad_u_bar_local[j][0][0] +
+               r * grad_u_bar_local[j][1][1]) *
+              testp[l] * W;
 
             // Calculate the Jacobian
             // ----------------------

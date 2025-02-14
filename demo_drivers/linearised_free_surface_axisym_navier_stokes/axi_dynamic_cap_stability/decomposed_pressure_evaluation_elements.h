@@ -307,6 +307,7 @@ namespace oomph
       return Cast_bulk_element_pt->interpolated_p_lin_axi_nst(s_bulk, i);
     }
 
+  public:
     // Overwrite the output function
     void output(std::ostream& outfile)
     {

@@ -249,8 +249,8 @@ namespace oomph
         // The singular function satisfies the Stokes equation
         el_pt->singular_function_satisfies_stokes_equation() = false;
 
-        el_pt->pin_c();
-        el_pt->set_c(10);
+        // el_pt->pin_c();
+        el_pt->set_c(0.00);
 
         // Add element to the mesh
         Singularity_scaling_mesh_pt->add_element_pt(el_pt);
@@ -295,7 +295,7 @@ namespace oomph
     /// Create the pressure contribution elements for the second boundary
     void create_pressure_contribution_2_elements()
     {
-      oomph_info << "create_pressure_contribution_1_elements" << std::endl;
+      oomph_info << "create_pressure_contribution_2_elements" << std::endl;
 
       PERTURBED_ELEMENT* element_pt = 0;
       int face_index = 0;
@@ -392,6 +392,48 @@ namespace oomph
         // of the singular fct
         el_pt->add_c_equation_element_pt(singular_el_pt);
       }
+    }
+
+    void doc_solution()
+    {
+      PerturbedLinearStabilityCapProblemBase<BASE_ELEMENT,
+                                             PERTURBED_ELEMENT,
+                                             TIMESTEPPER>::doc_solution();
+
+      // Subtract from doc number
+      this->doc_info().number()--;
+
+      std::ofstream file;
+
+      DecomposedPressureEvaluationElement<PERTURBED_ELEMENT>* el_pt =
+        dynamic_cast<DecomposedPressureEvaluationElement<PERTURBED_ELEMENT>*>(
+          Pressure_contribution_mesh_1_pt->element_pt(0));
+      file.open("RESLT/pressure_contribution_1.dat");
+      el_pt->output(file);
+      file.close();
+
+      el_pt =
+        dynamic_cast<DecomposedPressureEvaluationElement<PERTURBED_ELEMENT>*>(
+          Pressure_contribution_mesh_2_pt->element_pt(0));
+      file.open("RESLT/pressure_contribution_2.dat");
+      el_pt->output(file);
+      file.close();
+
+      SCALING_ELEMENT* scaling_el_pt = dynamic_cast<SCALING_ELEMENT*>(
+        Singularity_scaling_mesh_pt->element_pt(0));
+      file.open("RESLT/singularity_scaling_1.dat");
+      scaling_el_pt->output(file);
+      file.close();
+
+       scaling_el_pt = dynamic_cast<SCALING_ELEMENT*>(
+        Singularity_scaling_mesh_pt->element_pt(1));
+      file.open("RESLT/singularity_scaling_2.dat");
+      scaling_el_pt->output(file);
+      file.close();
+
+
+      // Bump up counter
+      this->doc_info().number()++;
     }
   };
 }; // namespace oomph
