@@ -3433,8 +3433,8 @@ namespace oomph
 
               residuals[local_eqn] +=
                 (this->nodal_value(l, this->u_index_lin_axi_nst(i)) -
-                 (this->nodal_value(l, u_index_lin_axi_nst_fe(l, i)) +
-                  u_bar(pos_n, k, j)));
+                 (this->nodal_value(l, u_index_lin_axi_nst_fe(l, i))) +
+                 u_bar(pos_n, k, j));
             }
           } // End of loop over velocity components
         } // End of loop over test functions

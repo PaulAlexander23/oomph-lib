@@ -61,6 +61,7 @@ BOOST_AUTO_TEST_CASE(augmented_linear_problem)
                       base_problem.slip_surface_mesh_pt(),
                       &parameters);
   perturbed_problem.assign_initial_values_impulsive();
+  perturbed_problem.steady_newton_solve();
   perturbed_problem.make_unsteady();
   perturbed_problem.pin_horizontal_mesh_deformation();
   Vector<std::complex<double>> eigenvalue =
@@ -80,6 +81,7 @@ BOOST_AUTO_TEST_CASE(augmented_linear_problem)
                        &parameters);
   perturbed_problem0.assign_initial_values_impulsive();
   perturbed_problem0.doc_info().number() = 1;
+  perturbed_problem0.steady_newton_solve();
   perturbed_problem0.make_unsteady();
   perturbed_problem0.pin_horizontal_mesh_deformation();
   eigenvalue =

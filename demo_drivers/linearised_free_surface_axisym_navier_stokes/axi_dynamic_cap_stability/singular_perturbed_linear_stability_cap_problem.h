@@ -250,7 +250,7 @@ namespace oomph
         el_pt->singular_function_satisfies_stokes_equation() = false;
 
         el_pt->pin_c();
-        el_pt->set_c(0.0);
+        el_pt->set_c(10);
 
         // Add element to the mesh
         Singularity_scaling_mesh_pt->add_element_pt(el_pt);
