@@ -109,63 +109,28 @@ namespace oomph
 
     /// Evaluate sum of all velocity singular fcts
     /// (incl. the amplitude) at Eulerian position x
-    double u_bar(const Vector<double>& x, const unsigned& i) const
+    double u_bar(const Vector<double>& x,
+                 const unsigned& i,
+                 const unsigned& j) const
     {
-      // Find the number of singularities
-      unsigned n_sing = C_equation_elements_pt.size();
-
       // Find the dimension of the problem
-      double sum = 0.0;
-      for (unsigned s = 0; s < n_sing; s++)
-      {
-        Vector<double> u_bar_local = C_equation_elements_pt[s]->u_bar(x);
-        sum += u_bar_local[i];
-      }
-      return sum;
+      Vector<double> u_bar_local = C_equation_elements_pt[j]->u_bar(x);
+      return u_bar_local[i];
     }
 
     /// Evaluate gradient of sum of all velocity singular fcts
     /// (incl. the amplitudes) at Eulerian position x: grad[i][j] = du_i/dx_j
-    Vector<Vector<double>> grad_u_bar(const Vector<double>& x) const
+    Vector<Vector<double>> grad_u_bar(const Vector<double>& x,
+                                      const unsigned& j) const
     {
-      // Find the number of singularities
-      unsigned n_sing = C_equation_elements_pt.size();
-
-      // Find the dimension of the problem
-      unsigned cached_dim = this->dim();
-      Vector<Vector<double>> sum(cached_dim);
-      for (unsigned i = 0; i < cached_dim; i++)
-      {
-        sum[i].resize(cached_dim, 0.0);
-      }
-      for (unsigned s = 0; s < n_sing; s++)
-      {
-        Vector<Vector<double>> grad_u_bar_local =
-          C_equation_elements_pt[s]->grad_u_bar(x);
-        for (unsigned i = 0; i < cached_dim; i++)
-        {
-          for (unsigned j = 0; j < cached_dim; j++)
-          {
-            sum[i][j] += grad_u_bar_local[i][j];
-          }
-        }
-      }
-      return sum;
+      return C_equation_elements_pt[j]->grad_u_bar(x);
     }
 
     /// Evaluate sum of all pressure singular fcts
     /// (incl. the amplitudes) at Eulerian position x
-    double p_bar(const Vector<double>& x) const
+    double p_bar(const Vector<double>& x, const unsigned& j) const
     {
-      // Find the number of singularities
-      unsigned n_sing = C_equation_elements_pt.size();
-
-      double sum = 0.0;
-      for (unsigned i = 0; i < n_sing; i++)
-      {
-        sum += C_equation_elements_pt[i]->p_bar(x);
-      }
-      return sum;
+      return C_equation_elements_pt[j]->p_bar(x);
     }
 
     /// Add the element's contribution to its residual vector (wrapper)
@@ -3456,9 +3421,6 @@ namespace oomph
           // Loop over the velocity components
           for (unsigned i = 0; i < this->n_u_lin_axi_nst(); i++)
           {
-            // Additional velocity data
-            // ------------------------
-
             // Find its local equation number
             local_eqn = this->nodal_local_eqn(l, u_index_lin_axi_nst_fe(l, i));
 
@@ -3471,10 +3433,14 @@ namespace oomph
                 pos_n[k] = this->nodal_position(l, k);
               }
 
+              // Work out if it is a sine or cosine component
+              const unsigned j = i % 2;
+              const unsigned k = std::floor(i / 2);
+
               residuals[local_eqn] +=
                 (this->nodal_value(l, this->u_index_lin_axi_nst(i)) -
                  (this->nodal_value(l, u_index_lin_axi_nst_fe(l, i)) +
-                  u_bar(pos_n, i)));
+                  u_bar(pos_n, k, j)));
             }
           } // End of loop over velocity components
         } // End of loop over test functions
@@ -3485,6 +3451,7 @@ namespace oomph
         // Loop over the Nodes
         for (unsigned l = 0; l < this->npres_lin_axi_nst(); l++)
         {
+          // Loop over sine vs cosine components
           for (unsigned j = 0; j < 2; j++)
           {
             // Get the local equation number
@@ -3499,10 +3466,12 @@ namespace oomph
               {
                 pos_n[k] = this->nodal_position(l, k);
               }
+              // Work out if it is a sine or cosine component
 
               residuals[local_eqn] +=
                 (this->nodal_value(l, this->p_index_lin_axi_nst(j)) -
-                 (this->nodal_value(l, p_index_lin_axi_nst_fe(l, j)) + p_bar(pos_n)));
+                 (this->nodal_value(l, p_index_lin_axi_nst_fe(l, j)) +
+                  p_bar(pos_n, j)));
             }
           }
         } // End of loop over l
@@ -3634,14 +3603,15 @@ namespace oomph
         //  Output velocities to file
         for (unsigned i = 0; i < 6; i++)
         {
-          outfile << u_bar(x, i) << " ";
+          const unsigned j = i % 2;
+          const unsigned k = std::floor(i / 2);
+          outfile << u_bar(x, k, j) << " ";
         }
 
         // Output pressure to file
-        double p = p_bar(x);
-        for (unsigned i = 0; i < 2; i++)
+        for (unsigned j = 0; j < 2; j++)
         {
-          outfile << p << " ";
+          outfile << p_bar(x,j) << " ";
         }
 
         // Error
