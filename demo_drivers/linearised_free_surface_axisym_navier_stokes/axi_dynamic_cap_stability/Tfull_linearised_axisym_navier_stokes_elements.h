@@ -1,7 +1,7 @@
 #ifndef TFULL_LINEARISED_AXISYM_NAVIER_STOKES_HEADER
 #define TFULL_LINEARISED_AXISYM_NAVIER_STOKES_HEADER
 
-//#include "generic.h"
+// #include "generic.h"
 #include "full_linearised_axisym_navier_stokes_elements.h"
 
 namespace oomph
@@ -83,6 +83,11 @@ namespace oomph
     unsigned n_u_lin_axi_nst() const
     {
       return 6;
+    }
+
+    virtual inline int p_index_lin_axi_nst(const unsigned& i) const
+    {
+      return 6 + i;
     }
 
     double p_lin_axi_nst(const unsigned& n_p, const unsigned& i) const

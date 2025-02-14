@@ -32,7 +32,7 @@ BOOST_AUTO_TEST_CASE(compare_matrix_different)
 
 // ***
 // Test augmented linear problem
-BOOST_AUTO_TEST_CASE(augmented_linear_problem_mode_1)
+BOOST_AUTO_TEST_CASE(augmented_linear_problem)
 {
   // Create the parameters
   Params parameters;
@@ -64,8 +64,9 @@ BOOST_AUTO_TEST_CASE(augmented_linear_problem_mode_1)
   perturbed_problem.make_unsteady();
   perturbed_problem.pin_horizontal_mesh_deformation();
   Vector<std::complex<double>> eigenvalue =
-    perturbed_problem.solve_n_most_unstable_eigensolutions(1);
+    perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(1);
   BOOST_TEST(abs(eigenvalue[0].real() - (-0.59363316433872149)) < 1e-6);
+  perturbed_problem.doc_solution();
 
   parameters.azimuthal_mode_number = 0;
 
@@ -78,9 +79,11 @@ BOOST_AUTO_TEST_CASE(augmented_linear_problem_mode_1)
                        base_problem.slip_surface_mesh_pt(),
                        &parameters);
   perturbed_problem0.assign_initial_values_impulsive();
+  perturbed_problem0.doc_info().number() = 1;
   perturbed_problem0.make_unsteady();
   perturbed_problem0.pin_horizontal_mesh_deformation();
-  eigenvalue = perturbed_problem0.solve_n_most_unstable_eigensolutions(1);
+  eigenvalue =
+    perturbed_problem0.solve_and_document_n_most_unstable_eigensolutions(1);
   BOOST_TEST(abs(eigenvalue[0].real() - (5.4177233266917467e-05)) < 1e-6);
 }
 

@@ -65,12 +65,6 @@ namespace oomph
           // resize
           this->node_pt(n)->resize(desired_n_value);
         }
-
-        // Temporarily pin the additional values
-        for (unsigned i = original_n_value; i < desired_n_value; i++)
-        {
-          this->node_pt(n)->pin(i);
-        }
       }
 
       IsAugmented = true;
@@ -3591,27 +3585,55 @@ namespace oomph
         //  Output velocities to file
         for (unsigned i = 0; i < 6; i++)
         {
-          outfile << interpolated_u_lin_axi_nst_fe(s, i) << " ";
+          if (this->is_augmented())
+          {
+            outfile << interpolated_u_lin_axi_nst_fe(s, i) << " ";
+          }
+          else
+          {
+            outfile << 0.0 << " ";
+          }
         }
 
         // Output pressure to file
         for (unsigned i = 0; i < 2; i++)
         {
-          outfile << interpolated_p_lin_axi_nst_fe(s, i) << " ";
+          if (this->is_augmented())
+          {
+            outfile << interpolated_p_lin_axi_nst_fe(s, i) << " ";
+          }
+          else
+          {
+            outfile << 0.0 << " ";
+          }
         }
 
         //  Output velocities to file
         for (unsigned i = 0; i < 6; i++)
         {
-          const unsigned j = i % 2;
-          const unsigned k = std::floor(i / 2);
-          outfile << u_bar(x, k, j) << " ";
+          if (this->is_augmented())
+          {
+            const unsigned j = i % 2;
+            const unsigned k = std::floor(i / 2);
+            outfile << u_bar(x, k, j) << " ";
+          }
+          else
+          {
+            outfile << 0.0 << " ";
+          }
         }
 
         // Output pressure to file
         for (unsigned j = 0; j < 2; j++)
         {
-          outfile << p_bar(x,j) << " ";
+          if (this->is_augmented())
+          {
+            outfile << p_bar(x, j) << " ";
+          }
+          else
+          {
+            outfile << 0.0 << " ";
+          }
         }
 
         // Error
