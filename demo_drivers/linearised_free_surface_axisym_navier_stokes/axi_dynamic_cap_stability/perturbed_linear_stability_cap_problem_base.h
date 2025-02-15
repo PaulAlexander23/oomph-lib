@@ -666,7 +666,7 @@ namespace oomph
     }
 
     // Set the problem boundary conditions
-    void set_boundary_conditions()
+    virtual void set_boundary_conditions()
     {
       // Simplify by pinning the horizontal "deformation"/deviation
       // pin_horizontal_mesh_deformation();
@@ -1841,19 +1841,18 @@ namespace oomph
 
         // If (the step counter + 1) is a multiple of the number of steps
         // allowed between adapts, then ...
-        if (it % steps_between_adapt == 0)
+        local_max_adapt = 0;
+        if (steps_between_adapt > 0)
         {
-          // ... Set the local_max_adapt to the global one ...
-          local_max_adapt = 1; // this->Max_adapt;
-          // if (it == 0)
-          //{
-          //  local_max_adapt = 5;
-          //}
-        }
-        else
-        {
-          // ..otherwise don't allow adapting.
-          local_max_adapt = 0;
+          if (it % steps_between_adapt == 0)
+          {
+            // ... Set the local_max_adapt to the global one ...
+            local_max_adapt = 1; // this->Max_adapt;
+            // if (it == 0)
+            //{
+            //  local_max_adapt = 5;
+            //}
+          }
         }
 
         // Call unsteady newton solver
