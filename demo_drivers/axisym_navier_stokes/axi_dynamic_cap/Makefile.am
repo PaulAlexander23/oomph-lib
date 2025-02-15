@@ -25,9 +25,13 @@ test.log: run_tests
 
 # Name of executables
 check_PROGRAMS= ${EXEC}
+# Name of library used for linking to within the linearised free surface
+# axisymmetric Navier-Stokes demos which performs a linear stability about the
+# solutions in this folder.
 noinst_LIBRARIES = libaxi_dynamic_cap.a
 
-sources = parameters.cc parameter_functions.cc
+sources = parameters.cc parameter_functions.cc base_element.cc \
+		  singular_axisym_dynamic_cap_problem.cc
 
 axi_dynamic_cap_SOURCES = $(sources) axi_dynamic_cap.cc 
 create_parameter_files_SOURCES = $(sources) create_parameter_files.cc

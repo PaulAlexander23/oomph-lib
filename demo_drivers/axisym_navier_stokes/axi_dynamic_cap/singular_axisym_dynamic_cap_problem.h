@@ -4435,5 +4435,10 @@ namespace oomph
       flux = 0.0;
     }
   };
+
+  extern template class SingularAxisymDynamicCapProblem<
+    SolidSingularAxisymNavierStokesElement<
+      ProjectableAxisymmetricTTaylorHoodPVDElement>,
+    BDF<2>>;
 } // namespace oomph
 #endif
