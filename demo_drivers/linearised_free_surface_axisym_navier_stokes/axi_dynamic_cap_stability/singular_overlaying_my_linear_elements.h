@@ -81,6 +81,36 @@ namespace oomph
       return index;
     }
 
+    /// Return the i-th component of du/dt at local node n.
+    /// Uses suitably interpolated value for hanging nodes.
+    double du_dt_lin_axi_nst_fe(const unsigned& n, const unsigned& i)
+    {
+      // Get the data's timestepper
+      TimeStepper* time_stepper_pt = this->node_pt(n)->time_stepper_pt();
+
+      // Initialise dudt
+      double dudt = 0.0;
+
+      // Loop over the timesteps, if there is a non-steady timestepper
+      if (!time_stepper_pt->is_steady())
+      {
+        // Get the index at which the velocity is stored
+        const unsigned u_nodal_index = u_index_lin_axi_nst_fe(n, i);
+
+        // Determine number of timsteps (past & present)
+        const unsigned n_time = time_stepper_pt->ntstorage();
+
+        // Add the contributions to the time derivative
+        for (unsigned t = 0; t < n_time; t++)
+        {
+          dudt += time_stepper_pt->weight(1, t) *
+                  this->nodal_value(t, n, u_nodal_index);
+        }
+      }
+
+      return dudt;
+    }
+
     virtual inline unsigned p_index_lin_axi_nst_fe(const unsigned& n,
                                                    const unsigned& i)
     {
@@ -295,7 +325,8 @@ namespace oomph
           for (unsigned i = 0; i < 2; i++)
           {
             // Get the value
-            const double p_value = this->p_lin_axi_nst(l, i);
+            const double p_value =
+              this->nodal_value(l, this->p_index_lin_axi_nst_fe(l, i));
 
             // Add contribution
             interpolated_p[i] += p_value * psip_;
@@ -349,13 +380,14 @@ namespace oomph
           for (unsigned i = 0; i < 6; i++)
           {
             // Get the value
-            const double u_value = this->raw_nodal_value(l, u_nodal_index[i]);
+            const double u_value =
+              this->raw_nodal_value(l, u_index_lin_axi_nst_fe(l, i));
 
             // Add contribution
             interpolated_u[i] += u_value * psif_;
 
             // Add contribution to dudt
-            dudt[i] += this->du_dt_lin_axi_nst(l, i) * psif_;
+            dudt[i] += this->du_dt_lin_axi_nst_fe(l, i) * psif_;
 
             // Loop over the two coordinate directions (for derivatives)
             for (unsigned j = 0; j < 2; j++)
