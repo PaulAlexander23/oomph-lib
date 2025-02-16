@@ -67,9 +67,8 @@ BOOST_AUTO_TEST_CASE(augmented_linear_problem)
   perturbed_problem.assign_initial_values_impulsive();
   perturbed_problem.doc_solution();
 
-  // Time step
+  // Time step (docs within the timestepper)
   perturbed_problem.timestep(0.01, 0.01);
-  perturbed_problem.doc_solution();
 
   // Steady newton solve
   perturbed_problem.steady_newton_solve();
