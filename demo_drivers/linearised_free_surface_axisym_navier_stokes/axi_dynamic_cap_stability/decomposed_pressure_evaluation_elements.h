@@ -251,21 +251,12 @@ namespace oomph
         // Add to singular function scaling residual
         local_eqn = this->external_local_eqn(i, Pressure_value_index);
 
-        // Gravity contribution
-        double gravity_contribution = 0.0;
-        if (this->ReInvFr_pt && this->G_pt)
-        {
-          gravity_contribution =
-            (*this->ReInvFr_pt) * VectorHelpers::dot(*this->G_pt, x);
-        }
-
         // If the equation is not pinned
         if (local_eqn >= 0)
         {
           // Add (or subtract) the pressure at the evaluation point
           residuals[local_eqn] +=
-            (Cast_bulk_element_pt->interpolated_p_lin_axi_nst(s_bulk, i) +
-             gravity_contribution) *
+            Cast_bulk_element_pt->interpolated_p_lin_axi_nst(s_bulk, i) *
             multiplier;
 
           // If the Jacobian flag is on, add to the Jacobian
