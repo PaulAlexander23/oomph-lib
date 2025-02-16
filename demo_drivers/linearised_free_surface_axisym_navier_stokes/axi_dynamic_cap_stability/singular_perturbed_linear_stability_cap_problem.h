@@ -66,6 +66,7 @@ namespace oomph
         Pressure_contribution_mesh_1_pt(0),
         Pressure_contribution_mesh_2_pt(0)
     {
+      oomph_info << "SingularPerturbedLinearStabilityCapProblem" << std::endl;
       // Setup the singular functions
       Contact_line_node_pt = this->find_corner_node(Outer_boundary_with_slip_id,
                                                     Free_surface_boundary_id);
@@ -96,6 +97,10 @@ namespace oomph
       this->set_up_overlapping_domain_functions();
 
       setup_mesh_interaction();
+
+      // Set up the equation numbering so we are ready to solve the problem.
+      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                 << std::endl;
 
       // Set the boundary conditions
       this->set_boundary_conditions();
@@ -394,6 +399,26 @@ namespace oomph
       }
     }
 
+    /// Set the boundary conditions
+    void set_boundary_conditions()
+    {
+      oomph_info << "set_boundary_conditions" << std::endl;
+      // Set the boundary conditions of the base problem
+      PerturbedLinearStabilityCapProblemBase<
+        BASE_ELEMENT,
+        PERTURBED_ELEMENT,
+        TIMESTEPPER>::set_boundary_conditions();
+
+      if (this->parameters_pt()->azimuthal_mode_number == 0)
+      {
+        // Set the boundary conditions for the singular scaling elements
+        SCALING_ELEMENT* singular_el_pt = dynamic_cast<SCALING_ELEMENT*>(
+          Singularity_scaling_mesh_pt->element_pt(1));
+        singular_el_pt->pin_c();
+        singular_el_pt->set_c(0.0);
+      }
+    }
+
     void doc_solution()
     {
       PerturbedLinearStabilityCapProblemBase<BASE_ELEMENT,
@@ -425,7 +450,7 @@ namespace oomph
       scaling_el_pt->output(file);
       file.close();
 
-       scaling_el_pt = dynamic_cast<SCALING_ELEMENT*>(
+      scaling_el_pt = dynamic_cast<SCALING_ELEMENT*>(
         Singularity_scaling_mesh_pt->element_pt(1));
       file.open("RESLT/singularity_scaling_2.dat");
       scaling_el_pt->output(file);
