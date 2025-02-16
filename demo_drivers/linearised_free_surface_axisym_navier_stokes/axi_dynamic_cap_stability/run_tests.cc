@@ -51,6 +51,9 @@ BOOST_AUTO_TEST_CASE(augmented_linear_problem)
   base_problem.reset_lagrange();
   base_problem.assign_initial_values_impulsive();
 
+  parameters.azimuthal_mode_number = 0;
+  unsigned local_doc_number = 0;
+
   // Create the linear problem
   typedef SingularOverlayingMyLinearElement<BASE_ELEMENT> PERTURBED_ELEMENT;
   SingularPerturbedLinearStabilityCapProblem<BASE_ELEMENT,
@@ -60,17 +63,33 @@ BOOST_AUTO_TEST_CASE(augmented_linear_problem)
                       base_problem.free_surface_mesh_pt(),
                       base_problem.slip_surface_mesh_pt(),
                       &parameters);
+  perturbed_problem.set_initial_condition();
   perturbed_problem.assign_initial_values_impulsive();
-  perturbed_problem.steady_newton_solve();
-  perturbed_problem.make_unsteady();
-  perturbed_problem.pin_horizontal_mesh_deformation();
-  // debug_jacobian(&perturbed_problem);
-  Vector<std::complex<double>> eigenvalue =
-    perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(1);
-  BOOST_TEST(abs(eigenvalue[0].real() - (-0.59363316433872149)) < 1e-6);
   perturbed_problem.doc_solution();
 
-  parameters.azimuthal_mode_number = 0;
+  // Time step
+  perturbed_problem.timestep(0.01, 0.01);
+  perturbed_problem.doc_solution();
+
+  // Steady newton solve
+  perturbed_problem.steady_newton_solve();
+  perturbed_problem.doc_solution();
+
+  perturbed_problem.make_unsteady();
+  perturbed_problem.pin_horizontal_mesh_deformation();
+
+
+  // Eigensolve
+  Vector<std::complex<double>> eigenvalue =
+    perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(1);
+  BOOST_TEST(abs(eigenvalue[0].real() - (8.046912588166538e-05)) < 1e-6);
+  perturbed_problem.doc_solution();
+
+  local_doc_number = perturbed_problem.doc_info().number();
+
+  // debug_jacobian(&perturbed_problem);
+
+  parameters.azimuthal_mode_number = 1;
 
   // Create the linear problem
   SingularPerturbedLinearStabilityCapProblem<BASE_ELEMENT,
@@ -81,13 +100,13 @@ BOOST_AUTO_TEST_CASE(augmented_linear_problem)
                        base_problem.slip_surface_mesh_pt(),
                        &parameters);
   perturbed_problem0.assign_initial_values_impulsive();
-  perturbed_problem0.doc_info().number() = 1;
+  perturbed_problem0.doc_info().number() = local_doc_number;
   perturbed_problem0.steady_newton_solve();
   perturbed_problem0.make_unsteady();
   perturbed_problem0.pin_horizontal_mesh_deformation();
   eigenvalue =
     perturbed_problem0.solve_and_document_n_most_unstable_eigensolutions(1);
-  BOOST_TEST(abs(eigenvalue[0].real() - (5.4177233266917467e-05)) < 1e-6);
+  BOOST_TEST(abs(eigenvalue[0].real() - (-0.59363316433872149)) < 1e-6);
 }
 
 
