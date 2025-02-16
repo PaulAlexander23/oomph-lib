@@ -87,6 +87,7 @@ namespace oomph
       // Augment the bulk elements
       augment_bulk_elements();
 
+      // Add the boundary elements
       this->add_boundary_elements();
 
       create_singularity_scaling_elements();

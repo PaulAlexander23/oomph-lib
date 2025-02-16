@@ -259,8 +259,11 @@ namespace oomph
     // Create the boundary elements for the problem
     void add_boundary_elements()
     {
+      oomph_info << "add_boundary_elements" << std::endl;
+
       create_free_surface_elements();
       create_slip_elements();
+
       if (this->parameters_pt()->azimuthal_mode_number == 0)
       {
         create_integral_elements();
@@ -272,13 +275,21 @@ namespace oomph
       }
       if (Contact_line_mesh_pt)
       {
-        create_contact_line_elements();
+        // create_contact_line_elements();
       }
+      // Rebuild the global mesh
+      this->rebuild_global_mesh();
+
+      // Set up the equation numbering so we are ready to solve the problem.
+      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                 << std::endl;
     }
 
     // Remove the boundary elements from the problem to allow for remeshing
     void remove_boundary_elements()
     {
+      oomph_info << "remove_boundary_elements" << std::endl;
+
       // List of meshes to remove boundary elements from
       std::vector<Mesh*> meshes = {Free_surface_mesh_pt,
                                    Slip_mesh_pt,
@@ -365,6 +376,7 @@ namespace oomph
 
     void create_free_surface_elements()
     {
+      oomph_info << "create_free_surface_elements" << std::endl;
       // Loop over the free surface boundary and create the "interface
       // elements
       unsigned b = Free_surface_boundary_id;
