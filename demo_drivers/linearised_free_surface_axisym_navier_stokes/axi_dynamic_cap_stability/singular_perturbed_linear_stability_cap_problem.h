@@ -434,26 +434,30 @@ namespace oomph
       DecomposedPressureEvaluationElement<PERTURBED_ELEMENT>* el_pt =
         dynamic_cast<DecomposedPressureEvaluationElement<PERTURBED_ELEMENT>*>(
           Pressure_contribution_mesh_1_pt->element_pt(0));
-      file.open("RESLT/pressure_contribution_1.dat");
+      file.open("RESLT/pressure_contribution_1.dat", std::ios::app);
+      file << this->doc_info().number() << " ";
       el_pt->output(file);
       file.close();
 
       el_pt =
         dynamic_cast<DecomposedPressureEvaluationElement<PERTURBED_ELEMENT>*>(
           Pressure_contribution_mesh_2_pt->element_pt(0));
-      file.open("RESLT/pressure_contribution_2.dat");
+      file.open("RESLT/pressure_contribution_2.dat", std::ios::app);
+      file << this->doc_info().number() << " ";
       el_pt->output(file);
       file.close();
 
       SCALING_ELEMENT* scaling_el_pt = dynamic_cast<SCALING_ELEMENT*>(
         Singularity_scaling_mesh_pt->element_pt(0));
-      file.open("RESLT/singularity_scaling_1.dat");
+      file.open("RESLT/singularity_scaling_1.dat", std::ios::app);
+      file << this->doc_info().number() << " ";
       scaling_el_pt->output(file);
       file.close();
 
       scaling_el_pt = dynamic_cast<SCALING_ELEMENT*>(
         Singularity_scaling_mesh_pt->element_pt(1));
-      file.open("RESLT/singularity_scaling_2.dat");
+      file.open("RESLT/singularity_scaling_2.dat", std::ios::app);
+      file << this->doc_info().number() << " ";
       scaling_el_pt->output(file);
       file.close();
 
