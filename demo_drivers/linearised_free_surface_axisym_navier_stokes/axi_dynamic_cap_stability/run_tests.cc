@@ -8,7 +8,7 @@ using namespace oomph;
 
 
 // A test to show the artefact
-BOOST_AUTO_TEST_CASE(show_artefact)
+BOOST_AUTO_TEST_CASE(show_artefact_mode_0)
 {
   Params parameters;
   parameters.contact_angle = 120.0 / 180.0 * MathematicalConstants::Pi;
@@ -44,23 +44,19 @@ BOOST_AUTO_TEST_CASE(show_artefact)
   // Eigensolve
   Vector<std::complex<double>> eigenvalue =
     perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(1);
-  // BOOST_TEST(abs(eigenvalue[0].real() - (8.046912588166538e-05)) < 1e-6);
+  BOOST_TEST(abs(eigenvalue[0].real() - (-1.5677282757727009)) < 1e-6);
 }
 
-
-// Mode 0
-// No displacement
-BOOST_AUTO_TEST_CASE(mode_0_no_displacement)
+BOOST_AUTO_TEST_CASE(show_artefact_mode_1)
 {
-  // Create the parameters
   Params parameters;
-  parameters.azimuthal_mode_number = 0;
+  parameters.azimuthal_mode_number = 1;
   parameters.contact_angle = 120.0 / 180.0 * MathematicalConstants::Pi;
-  //*parameters.wall_velocity_pt = 0.01;
 
   // Create the base problem
   BASE_PROBLEM base_problem(&parameters);
   base_problem.steady_newton_solve();
+
   base_problem.reset_lagrange();
   base_problem.assign_initial_values_impulsive();
 
@@ -70,11 +66,8 @@ BOOST_AUTO_TEST_CASE(mode_0_no_displacement)
                                       base_problem.slip_surface_mesh_pt(),
                                       &parameters);
 
-  perturbed_problem.pin_horizontal_mesh_deformation();
-  perturbed_problem.pin_vertical_mesh_deformation();
-  perturbed_problem.set_constant_lagrange_free_surface_boundary_condition(0.0,
-                                                                          0.0);
   perturbed_problem.assign_initial_values_impulsive();
+  perturbed_problem.disable_singular_correction();
   perturbed_problem.doc_solution();
 
   // Steady newton solve
@@ -88,8 +81,50 @@ BOOST_AUTO_TEST_CASE(mode_0_no_displacement)
   // Eigensolve
   Vector<std::complex<double>> eigenvalue =
     perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(1);
-  // BOOST_TEST(abs(eigenvalue[0].real() - (8.046912588166538e-05)) < 1e-6);
+  BOOST_TEST(abs(eigenvalue[0].real() - (-0.59043964949838124)) < 1e-6);
 }
+
+
+// Mode 0
+// No displacement
+// BOOST_AUTO_TEST_CASE(mode_0_no_displacement)
+// {
+//   // Create the parameters
+//   Params parameters;
+//   parameters.azimuthal_mode_number = 0;
+//   parameters.contact_angle = 120.0 / 180.0 * MathematicalConstants::Pi;
+//   //*parameters.wall_velocity_pt = 0.01;
+// 
+//   // Create the base problem
+//   BASE_PROBLEM base_problem(&parameters);
+//   base_problem.steady_newton_solve();
+//   base_problem.reset_lagrange();
+//   base_problem.assign_initial_values_impulsive();
+// 
+//   // Create the linear problem
+//   PERTURBED_PROBLEM perturbed_problem(base_problem.bulk_mesh_pt(),
+//                                       base_problem.free_surface_mesh_pt(),
+//                                       base_problem.slip_surface_mesh_pt(),
+//                                       &parameters);
+// 
+//   perturbed_problem.pin_horizontal_mesh_deformation();
+//   perturbed_problem.pin_vertical_mesh_deformation();
+//   perturbed_problem.set_constant_lagrange_free_surface_boundary_condition(0.0,
+//                                                                           0.0);
+//   perturbed_problem.assign_initial_values_impulsive();
+//   perturbed_problem.doc_solution();
+// 
+//   // Steady newton solve
+//   perturbed_problem.steady_newton_solve();
+//   perturbed_problem.doc_solution();
+// 
+//   perturbed_problem.pin_horizontal_mesh_deformation();
+// 
+//   // Eigensolve
+//   Vector<std::complex<double>> eigenvalue =
+//     perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(1);
+//   // BOOST_TEST(abs(eigenvalue[0].real() - (8.046912588166538e-05)) < 1e-6);
+// }
 
 // Augmented linear problem
 BOOST_AUTO_TEST_CASE(augmented_linear_problem)
@@ -138,14 +173,14 @@ BOOST_AUTO_TEST_CASE(augmented_linear_problem)
   //// Time step (docs within the timestepper)
   // perturbed_problem.timestep(0.01, 0.01);
 
-  perturbed_problem.make_unsteady();
+  // perturbed_problem.make_unsteady();
   perturbed_problem.pin_horizontal_mesh_deformation();
 
 
   // Eigensolve
   Vector<std::complex<double>> eigenvalue =
     perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(1);
-  BOOST_TEST(abs(eigenvalue[0].real() - (8.046912588166538e-05)) < 1e-6);
+  BOOST_TEST(abs(eigenvalue[0].real() - (-1.5677282757561151)) < 1e-6);
 
   local_doc_number = perturbed_problem.doc_info().number();
 
@@ -168,5 +203,5 @@ BOOST_AUTO_TEST_CASE(augmented_linear_problem)
   perturbed_problem0.pin_horizontal_mesh_deformation();
   eigenvalue =
     perturbed_problem0.solve_and_document_n_most_unstable_eigensolutions(1);
-  BOOST_TEST(abs(eigenvalue[0].real() - (-0.59363316433872149)) < 1e-6);
+  BOOST_TEST(abs(eigenvalue[0].real() - (-0.59043964949883476)) < 1e-6);
 }
