@@ -418,6 +418,80 @@ namespace oomph
         singular_el_pt->pin_c();
         singular_el_pt->set_c(0.0);
       }
+
+      // unsigned n_aug_bulk = Augmented_bulk_element_number.size();
+      // for (unsigned e = 0; e < n_aug_bulk; e++)
+      //{
+      //   // Upcast from GeneralisedElement to the present element
+      //   PERTURBED_ELEMENT* el_pt = dynamic_cast<PERTURBED_ELEMENT*>(
+      //     this->fluid_mesh_pt()->element_pt(Augmented_bulk_element_number[e]));
+      //   // Setup the FE correction values
+      //   el_pt->setup_new_data();
+      // }
+    }
+
+    /// Disable the singular correction by pinning the singular function
+    /// scalings
+    void disable_singular_correction()
+    {
+      for (unsigned i = 0; i < 2; i++)
+      {
+        SCALING_ELEMENT* singular_el_pt = dynamic_cast<SCALING_ELEMENT*>(
+          Singularity_scaling_mesh_pt->element_pt(1));
+        singular_el_pt->pin_c();
+        singular_el_pt->set_c(0.0);
+      }
+      this->rebuild_global_mesh();
+      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                 << std::endl;
+    }
+
+    /// Enable the singular correction by unpinning the singular function
+    /// scalings
+    void enable_singular_correction()
+    {
+      for (unsigned i = 0; i < 2; i++)
+      {
+        SCALING_ELEMENT* singular_el_pt = dynamic_cast<SCALING_ELEMENT*>(
+          Singularity_scaling_mesh_pt->element_pt(1));
+        singular_el_pt->unpin_c();
+      }
+      this->rebuild_global_mesh();
+      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                 << std::endl;
+    }
+
+    virtual void set_outer_boundary_condition()
+    {
+      oomph_info << "set_outer_boundary_condition" << std::endl;
+
+      // Loop over the boundary elements
+      unsigned n_element =
+        this->fluid_mesh_pt()->nboundary_element(Outer_boundary_with_slip_id);
+      for (unsigned n = 0; n < n_element; n++)
+      {
+        PERTURBED_ELEMENT* el_pt = dynamic_cast<PERTURBED_ELEMENT*>(
+          this->fluid_mesh_pt()->boundary_element_pt(
+            Outer_boundary_with_slip_id, n));
+        for (unsigned m = 0; m < 6; m++)
+        {
+          if (el_pt->node_pt(m)->is_on_boundary(Outer_boundary_with_slip_id))
+          {
+            const unsigned uc_index = 0;
+            const unsigned us_index = 1;
+            const unsigned vc_index = 4;
+            const unsigned vs_index = 5;
+            el_pt->impose_velocity_dirichlet_bc_on_node(m, uc_index);
+            el_pt->impose_velocity_dirichlet_bc_on_node(m, vc_index);
+            el_pt->impose_velocity_dirichlet_bc_on_node(m, us_index);
+            el_pt->impose_velocity_dirichlet_bc_on_node(m, vs_index);
+            for (unsigned j = 0; j < 2; j++)
+            {
+              el_pt->pin_Xhat(m, 0, j);
+            }
+          }
+        }
+      }
     }
 
     void doc_solution()
