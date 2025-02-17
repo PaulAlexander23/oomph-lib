@@ -397,6 +397,42 @@ namespace oomph
           }
         } // End of loop over the element's nodes
 
+        // Add the singular solution contribution
+        Vector<Vector<double>> u_bar_local(2);
+        Vector<Vector<Vector<double>>> grad_u_bar_local(2);
+        Vector<double> p_bar_local(2);
+        // Loop over cosine and sine
+        for (unsigned j = 0; j < 2; j++)
+        {
+          u_bar_local[j].resize(3, 0.0);
+          for (unsigned i = 0; i < 3; i++)
+          {
+            u_bar_local[j][i] = u_bar(interpolated_x, i, j);
+          }
+          grad_u_bar_local[j] = grad_u_bar(interpolated_x, j);
+          p_bar_local[j] = p_bar(interpolated_x, j);
+        }
+
+        // Loop over the first four out of 6 velocity components
+        for (unsigned i = 0; i < 4; i++)
+        {
+          const unsigned mod = i % 2;
+          const unsigned rem = std::floor(i / 2);
+          interpolated_u[i] += u_bar_local[mod][rem];
+
+          // Loop over the two coordinate directions for the derivatives
+          for (unsigned j = 0; j < 2; j++)
+          {
+            // Loop over the two coordinate directions again for the sum of
+            // derivatives
+            for (unsigned l = 0; l < 2; l++)
+            {
+              interpolated_duds(i, j) +=
+                grad_u_bar_local[mod][rem][l] / interpolated_dxbar_ds(l, j) * Jbar;
+            }
+          }
+        }
+
         // Get the mesh velocity if ALE is enabled
         if (!this->ALE_is_disabled)
         {
@@ -627,20 +663,6 @@ namespace oomph
         const double dVCdt = dudt[4];
         const double dVSdt = dudt[5];
 
-        Vector<Vector<double>> u_bar_local(2);
-        Vector<Vector<Vector<double>>> grad_u_bar_local(2);
-        Vector<double> p_bar_local(2);
-        // Loop over cosine and sine
-        for (unsigned j = 0; j < 2; j++)
-        {
-          u_bar_local[j].resize(3, 0.0);
-          for (unsigned i = 0; i < 3; i++)
-          {
-            u_bar_local[j][i] = u_bar(interpolated_x, i, j);
-          }
-          grad_u_bar_local[j] = grad_u_bar(interpolated_x, j);
-          p_bar_local[j] = p_bar(interpolated_x, j);
-        }
         const double W = Jbar * w;
 
         // ==================
@@ -802,28 +824,6 @@ namespace oomph
             residuals[local_eqn] += base_flow_p * testf_ * JhatC * w;
             residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) *
                                     base_flow_ur * testf_ * JhatC * w / r;
-
-            // Singular part
-            // -------------
-
-            const unsigned j = 0;
-            // Pressure
-            residuals[local_eqn] +=
-              p_bar_local[j] * (testf[l] + r * dtestfdx(l, 0)) * W;
-
-            // Shear stress
-            residuals[local_eqn] -= visc_ratio * r * (1.0 + this->Gamma[0]) *
-                                    grad_u_bar_local[j][0][0] * dtestfdx(l, 0) *
-                                    W;
-
-            residuals[local_eqn] -=
-              visc_ratio * r *
-              (grad_u_bar_local[j][0][1] +
-               this->Gamma[0] * grad_u_bar_local[j][1][0]) *
-              dtestfdx(l, 1) * W;
-
-            residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) *
-                                    u_bar_local[j][0] * testf[l] * W / r;
 
 
             // Calculate the Jacobian
@@ -1270,28 +1270,6 @@ namespace oomph
             residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) *
                                     base_flow_ur * testf_ * JhatS * w / r;
 
-            // Singular part
-            // -------------
-
-            const unsigned j = 1;
-            // Pressure
-            residuals[local_eqn] +=
-              p_bar_local[j] * (testf[l] + r * dtestfdx(l, 0)) * W;
-
-            // Shear stress
-            residuals[local_eqn] -= visc_ratio * r * (1.0 + this->Gamma[0]) *
-                                    grad_u_bar_local[j][0][0] * dtestfdx(l, 0) *
-                                    W;
-
-            residuals[local_eqn] -=
-              visc_ratio * r *
-              (grad_u_bar_local[j][0][1] +
-               this->Gamma[0] * grad_u_bar_local[j][1][0]) *
-              dtestfdx(l, 1) * W;
-
-            residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) *
-                                    u_bar_local[j][0] * testf[l] * W / r;
-
             // Calculate the Jacobian
             // ----------------------
 
@@ -1703,23 +1681,6 @@ namespace oomph
             residuals[local_eqn] +=
               scaled_re_inv_fr * r * G[1] * testf_ * JhatC * w;
 
-            // Singular part
-            // -------------
-            const unsigned j = 0;
-            // Pressure
-            residuals[local_eqn] += p_bar_local[j] * r * dtestfdx(l, 1) * W;
-
-            // Shear stress
-            residuals[local_eqn] -=
-              visc_ratio * r *
-              (grad_u_bar_local[j][1][0] +
-               this->Gamma[1] * grad_u_bar_local[j][0][1]) *
-              dtestfdx(l, 0) * W;
-
-            residuals[local_eqn] -= visc_ratio * r * (1.0 + this->Gamma[1]) *
-                                    grad_u_bar_local[j][1][1] * dtestfdx(l, 1) *
-                                    W;
-
             // Calculate the Jacobian
             // ----------------------
 
@@ -2075,23 +2036,6 @@ namespace oomph
             residuals[local_eqn] += r * body_force[1] * testf_ * JhatS * w;
             residuals[local_eqn] +=
               scaled_re_inv_fr * r * G[1] * testf_ * JhatS * w;
-
-            // Singular part
-            // -------------
-            const unsigned j = 1;
-            // Pressure
-            residuals[local_eqn] += p_bar_local[j] * r * dtestfdx(l, 1) * W;
-
-            // Shear stress
-            residuals[local_eqn] -=
-              visc_ratio * r *
-              (grad_u_bar_local[j][1][0] +
-               this->Gamma[1] * grad_u_bar_local[j][0][1]) *
-              dtestfdx(l, 0) * W;
-
-            residuals[local_eqn] -= visc_ratio * r * (1.0 + this->Gamma[1]) *
-                                    grad_u_bar_local[j][1][1] * dtestfdx(l, 1) *
-                                    W;
 
             // Calculate the Jacobian
             // ----------------------
@@ -3289,16 +3233,6 @@ namespace oomph
             residuals[local_eqn] += base_flow_ur * testp_ * JhatC * w;
             residuals[local_eqn] -= source * r * testp_ * JhatC * w;
 
-            // Singular part
-            // -------------
-
-            const unsigned j = 0;
-            residuals[local_eqn] +=
-              (u_bar_local[j][0] + r * grad_u_bar_local[j][0][0] +
-               r * grad_u_bar_local[j][1][1]) *
-              testp[l] * W;
-
-
             // Calculate the Jacobian
             // ----------------------
 
@@ -3432,15 +3366,6 @@ namespace oomph
             residuals[local_eqn] -= source * r * testp_ * JhatS * w;
 
 
-            // Singular part
-            // -------------
-
-            const unsigned j = 1;
-            residuals[local_eqn] +=
-              (u_bar_local[j][0] + r * grad_u_bar_local[j][0][0] +
-               r * grad_u_bar_local[j][1][1]) *
-              testp[l] * W;
-
             // Calculate the Jacobian
             // ----------------------
 
@@ -3564,19 +3489,19 @@ namespace oomph
             if (local_eqn >= 0)
             {
               Vector<double> pos_n(2, 0.0);
-              for (unsigned k = 0; k < 2; k++)
+              for (unsigned index = 0; index < 2; index++)
               {
-                pos_n[k] = this->nodal_position(l, k);
+                pos_n[index] = this->nodal_position(l, index);
               }
 
               // Work out if it is a sine or cosine component
               const unsigned j = i % 2;
-              const unsigned k = std::floor(i / 2);
+              const unsigned rem = std::floor(i / 2);
 
               residuals[local_eqn] +=
                 (this->nodal_value(l, this->u_index_lin_axi_nst(i)) -
                  (this->nodal_value(l, u_index_lin_axi_nst_fe(l, i))) +
-                 u_bar(pos_n, k, j));
+                 u_bar(pos_n, rem, j));
             }
           } // End of loop over velocity components
         } // End of loop over test functions
@@ -3598,9 +3523,9 @@ namespace oomph
             {
               // If not subject to Dirichlet BC
               Vector<double> pos_n(2, 0.0);
-              for (unsigned k = 0; k < 2; k++)
+              for (unsigned index = 0; index < 2; index++)
               {
-                pos_n[k] = this->nodal_position(l, k);
+                pos_n[index] = this->nodal_position(l, index);
               }
               // Work out if it is a sine or cosine component
 
