@@ -50,4 +50,4 @@ LDADD = -L@libdir@ \
 	$(EXTERNAL_LIBS) $(FLIBS)# -lboost_unit_test_framework -lgcov
 
 # Add the paranoid and range checking flags
-AM_CPPFLAGS +=  -w -Wno-misleading-indentation #-DPARANOID  -DRANGE_CHECKING #-Wfatal-errors # --coverage -O0
+AM_CPPFLAGS += -g0 -O0 -w -Wno-misleading-indentation #-DPARANOID  -DRANGE_CHECKING #-Wfatal-errors # --coverage -O0
