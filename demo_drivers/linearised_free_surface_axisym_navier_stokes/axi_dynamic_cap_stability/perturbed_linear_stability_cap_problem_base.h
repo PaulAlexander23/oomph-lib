@@ -1195,7 +1195,7 @@ namespace oomph
       oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
     }
 
-    void set_inner_boundary_condition()
+    virtual void set_inner_boundary_condition()
     {
       oomph_info << "set_inner_boundary_condition" << std::endl;
       unsigned n_boundary_node =
