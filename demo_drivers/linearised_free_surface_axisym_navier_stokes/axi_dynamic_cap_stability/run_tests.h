@@ -36,19 +36,14 @@ namespace oomph
   typedef SolidSingularAxisymNavierStokesElement<
     ProjectableAxisymmetricTTaylorHoodPVDElement>
     BASE_ELEMENT;
-  // typedef OverlayingTLinearisedAxisymNSPVDElement PERTURBED_ELEMENT;
-  typedef OverlayingMyLinearElement<BASE_ELEMENT> PERTURBED_ELEMENT;
+  typedef SingularOverlayingMyLinearElement<BASE_ELEMENT> PERTURBED_ELEMENT;
   typedef BDF<2> TIMESTEPPER;
   typedef SingularAxisymDynamicCapProblem<BASE_ELEMENT, TIMESTEPPER>
-    AXISYM_PROBLEM;
-  typedef PerturbedLinearStabilityCapProblem<BASE_ELEMENT,
-                                             PERTURBED_ELEMENT,
-                                             TIMESTEPPER>
+    BASE_PROBLEM;
+  typedef SingularPerturbedLinearStabilityCapProblem<BASE_ELEMENT,
+                                                     PERTURBED_ELEMENT,
+                                                     TIMESTEPPER>
     PERTURBED_PROBLEM;
-
-  std::shared_ptr<AXISYM_PROBLEM> createBaseProblem();
-  std::shared_ptr<PERTURBED_PROBLEM> createLinearProblem(
-    std::shared_ptr<AXISYM_PROBLEM> base_problem_pt, Params& parameters);
 
   enum
   {
