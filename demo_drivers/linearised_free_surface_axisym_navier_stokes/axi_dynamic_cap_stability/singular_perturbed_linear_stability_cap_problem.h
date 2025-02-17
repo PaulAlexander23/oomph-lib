@@ -2,7 +2,9 @@
 #define SINGULAR_PERTURBED_LINEAR_STABILITY_CAP_PROBLEM_HEADER
 
 #include "perturbed_linear_stability_cap_problem_base.h"
+
 #include "decomposed_pressure_evaluation_elements.h"
+#include "singular_overlaying_my_linear_elements.h"
 
 namespace oomph
 {
@@ -540,5 +542,14 @@ namespace oomph
       this->doc_info().number()++;
     }
   };
+
+  // Explicit template instantiation is declared in the .cc file. Need to make
+  // sure that this is compiled and linked against.
+  extern template class SingularPerturbedLinearStabilityCapProblem<
+    SolidSingularAxisymNavierStokesElement<
+      ProjectableAxisymmetricTTaylorHoodPVDElement>,
+    SingularOverlayingMyLinearElement<SolidSingularAxisymNavierStokesElement<
+      ProjectableAxisymmetricTTaylorHoodPVDElement>>,
+    BDF<2>>;
 }; // namespace oomph
 #endif
