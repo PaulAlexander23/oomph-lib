@@ -21,12 +21,58 @@ namespace oomph
       OverlayingMyLinearElement<BASE_ELEMENT>>*>
       C_equation_elements_pt;
 
+    /// Vector indicating which velocity component of
+    /// which node is subject to Dirichlet BC
+    /// [size = number of nodes; initialised to false]
+    Vector<std::vector<bool>> Node_is_subject_to_velocity_dirichlet_bcs;
+
+    /// Imposed values of velocity component at nodes
+    /// that are subject to Dirichlet BC
+    /// [size = number of nodes; initialised to zero]
+    Vector<Vector<double>> Imposed_velocity_values_at_node;
+
   public:
     SingularOverlayingMyLinearElement()
       : OverlayingMyLinearElement<BASE_ELEMENT>(),
         IsAugmented(false),
         IsJacobianFD(true)
     {
+      const unsigned n_node = this->nnode();
+      const unsigned cached_n_u_nst = 6;
+
+      // Initialise the vector indicating which node is subject to velocity
+      // Dirichlet BCs. The size of the vector is equal to the number of nodes
+      // in the element. Each component of the vector is a vector of booleans
+      // indicating if the velocity components at the corresponding node are
+      // subject to Dirichlet BC. By default, no node is subject to Dirichlet
+      // BC, so the vector is full of false.
+      Node_is_subject_to_velocity_dirichlet_bcs.resize(n_node);
+      for (unsigned j = 0; j < n_node; j++)
+      {
+        Node_is_subject_to_velocity_dirichlet_bcs[j].resize(cached_n_u_nst);
+        for (unsigned d = 0; d < cached_n_u_nst; d++)
+        {
+          Node_is_subject_to_velocity_dirichlet_bcs[j][d] = false;
+        }
+      }
+
+      // Initialise the vector of imposed velocity values on the nodes
+      // subject to Dirichlet BC. The size of the vector is equal to the
+      // number of nodes in the element. Each component of the vector is
+      // a vector of length the dimension of the problem. This vector contains
+      // the imposed values of the velocity vector at the corresponding node.
+      // If a node is not subject to Dirichlet BC, its imposed values are zero.
+      // By default, no node is subject to Dirichlet BC so the vector is full
+      // of zeros
+      Imposed_velocity_values_at_node.resize(n_node);
+      for (unsigned j = 0; j < n_node; j++)
+      {
+        Imposed_velocity_values_at_node[j].resize(cached_n_u_nst);
+        for (unsigned d = 0; d < cached_n_u_nst; d++)
+        {
+          Imposed_velocity_values_at_node[j][d] = 0.0;
+        }
+      }
     }
 
     bool is_augmented() const
@@ -155,6 +201,56 @@ namespace oomph
     double p_bar(const Vector<double>& x, const unsigned& j) const
     {
       return C_equation_elements_pt[j]->p_bar(x);
+    }
+
+    /// Impose Dirichlet BC on the d-th component of the velocity
+    /// (including the singular contribution) at the j-th node
+    void impose_velocity_dirichlet_bc_on_node(const unsigned& j,
+                                              const unsigned& d)
+    {
+      Node_is_subject_to_velocity_dirichlet_bcs[j][d] = true;
+    }
+
+    /// Undo Dirichlet BC on the d-th velocity component (including the
+    /// singular contribution) of the jth node
+    void undo_velocity_dirichlet_bc_on_node(const unsigned& j,
+                                            const unsigned& d)
+    {
+      Node_is_subject_to_velocity_dirichlet_bcs[j][d] = false;
+    }
+
+    /// Specify Dirichlet boundary value for the d-th velocity component
+    /// (including the singular contribution) at the j-th local node
+    void set_velocity_dirichlet_value_on_node(const unsigned& j,
+                                              const unsigned& d,
+                                              const double& value)
+    {
+      Imposed_velocity_values_at_node[j][d] = value;
+    }
+
+    void setup_new_data()
+    {
+      // Loop over all the nodes
+      for (unsigned l = 0; l < this->nnode(); l++)
+      {
+        // Find the global coordinate of the node
+        Vector<double> global_coordinate(2);
+        for (unsigned d = 0; d < 2; d++)
+        {
+          global_coordinate[d] = this->raw_nodal_position(l, d);
+        }
+
+        // Loop over the velocity components
+        for (unsigned d = 0; d < this->n_u_lin_axi_nst(); d++)
+        {
+          const unsigned mod = d % 2;
+          const unsigned rem = std::floor(d / 2);
+          this->node_pt(l)->set_value(
+            u_index_lin_axi_nst_fe(l, d),
+            this->nodal_value(l, this->u_index_lin_axi_nst(d)) -
+              u_bar(global_coordinate, mod, rem));
+        }
+      }
     }
 
     /// Add the element's contribution to its residual vector (wrapper)
@@ -427,8 +523,8 @@ namespace oomph
             // derivatives
             for (unsigned l = 0; l < 2; l++)
             {
-              interpolated_duds(i, j) +=
-                grad_u_bar_local[mod][rem][l] / interpolated_dxbar_ds(l, j) * Jbar;
+              interpolated_duds(i, j) += grad_u_bar_local[mod][rem][l] /
+                                         interpolated_dxbar_ds(l, j) * Jbar;
             }
           }
         }
@@ -701,439 +797,445 @@ namespace oomph
           // If it's not a boundary condition
           if (local_eqn >= 0)
           {
-            residuals[local_eqn] -=
-              scaled_re_st * r * dUCdt * testf_ * Jbar * w;
-            residuals[local_eqn] -= scaled_re_st * interpolated_RC *
-                                    base_flow_durdt * testf_ * Jbar * w;
-            residuals[local_eqn] -= scaled_re * r * base_flow_ur *
-                                    interpolated_dUdRC * testf_ * Jbar * w;
-            residuals[local_eqn] += scaled_re_st * r * mesh_velocity[0] *
-                                    interpolated_dUdRC * testf_ * Jbar * w;
-            residuals[local_eqn] -= scaled_re * r * interpolated_UC *
-                                    base_flow_durdr * testf_ * Jbar * w;
-            residuals[local_eqn] +=
-              scaled_re_st * r * dRCdt * base_flow_durdr * testf_ * Jbar * w;
-            residuals[local_eqn] -= scaled_re * interpolated_RC * base_flow_ur *
-                                    base_flow_durdr * testf_ * Jbar * w;
-            residuals[local_eqn] += scaled_re_st * interpolated_RC *
-                                    mesh_velocity[0] * base_flow_durdr *
-                                    testf_ * Jbar * w;
-            residuals[local_eqn] -= k * scaled_re * base_flow_utheta *
-                                    interpolated_US * testf_ * Jbar * w;
-            residuals[local_eqn] += k * scaled_re * base_flow_utheta *
-                                    base_flow_durdr * interpolated_RS * testf_ *
-                                    Jbar * w;
-            residuals[local_eqn] += k * scaled_re * base_flow_utheta *
-                                    base_flow_durdz * interpolated_ZS * testf_ *
-                                    Jbar * w;
-            residuals[local_eqn] += 2 * scaled_re * base_flow_utheta *
-                                    interpolated_VC * testf_ * Jbar * w;
-            residuals[local_eqn] -= scaled_re * r * base_flow_uz *
-                                    interpolated_dUdZC * testf_ * Jbar * w;
-            residuals[local_eqn] += scaled_re_st * r * mesh_velocity[1] *
-                                    interpolated_dUdZC * testf_ * Jbar * w;
-            residuals[local_eqn] -= scaled_re * r * interpolated_WC *
-                                    base_flow_durdz * testf_ * Jbar * w;
-            residuals[local_eqn] +=
-              scaled_re_st * r * dZCdt * base_flow_durdz * testf_ * Jbar * w;
-            residuals[local_eqn] -= scaled_re * interpolated_RC * base_flow_uz *
-                                    base_flow_durdz * testf_ * Jbar * w;
-            residuals[local_eqn] += scaled_re_st * interpolated_RC *
-                                    mesh_velocity[1] * base_flow_durdz *
-                                    testf_ * Jbar * w;
-            residuals[local_eqn] +=
-              interpolated_RC * body_force[0] * testf_ * Jbar * w;
-            residuals[local_eqn] +=
-              scaled_re_inv_fr * interpolated_RC * G[0] * testf_ * Jbar * w;
-            residuals[local_eqn] += r * base_flow_p * dtestfdRC * Jbar * w;
-            residuals[local_eqn] += r * interpolated_PC * dtestfdr * Jbar * w;
-            residuals[local_eqn] +=
-              interpolated_RC * base_flow_p * dtestfdr * Jbar * w;
-            residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) * r *
-                                    base_flow_durdr * dtestfdRC * Jbar * w;
-            residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) * r *
-                                    interpolated_dUdRC * dtestfdr * Jbar * w;
-            residuals[local_eqn] += visc_ratio * (1.0 + this->Gamma[0]) * r *
-                                    base_flow_durdr * JhatC * dtestfdr * w;
-            residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) *
-                                    interpolated_RC * base_flow_durdr *
-                                    dtestfdr * Jbar * w;
-            residuals[local_eqn] += k * visc_ratio * this->Gamma[0] *
-                                    base_flow_duthetadr * dtestfdr *
-                                    interpolated_RS * Jbar * w;
-            residuals[local_eqn] += k * visc_ratio * this->Gamma[0] *
-                                    base_flow_duthetadr * dtestfdz *
-                                    interpolated_ZS * Jbar * w;
-            residuals[local_eqn] += k * visc_ratio * this->Gamma[0] *
-                                    interpolated_dVdRS * testf_ * Jbar * w;
-            residuals[local_eqn] -=
-              visc_ratio * k * k * interpolated_UC * testf_ * Jbar * w / r;
-            residuals[local_eqn] += visc_ratio * k * k * base_flow_durdr *
-                                    interpolated_RC * testf_ * Jbar * w / r;
-            residuals[local_eqn] += visc_ratio * k * k * base_flow_durdz *
-                                    interpolated_ZC * testf_ * Jbar * w / r;
-            residuals[local_eqn] -= visc_ratio * k * base_flow_utheta *
-                                    dtestfdr * interpolated_RS * Jbar * w / r;
-            residuals[local_eqn] -= visc_ratio * k * base_flow_utheta *
-                                    dtestfdz * interpolated_ZS * Jbar * w / r;
-            residuals[local_eqn] -=
-              visc_ratio * k * interpolated_VS * testf_ * Jbar * w / r;
-            residuals[local_eqn] += visc_ratio * k * interpolated_RS *
-                                    base_flow_utheta * testf_ * Jbar * w /
-                                    (r * r);
-            residuals[local_eqn] -= visc_ratio * this->Gamma[0] * r *
-                                    base_flow_duzdr * dtestfdZC * Jbar * w;
-            residuals[local_eqn] -= visc_ratio * this->Gamma[0] * r *
-                                    interpolated_dWdRC * dtestfdz * Jbar * w;
-            residuals[local_eqn] += visc_ratio * this->Gamma[0] * r *
-                                    base_flow_duzdr * JhatC * dtestfdz * w;
-            residuals[local_eqn] -= visc_ratio * this->Gamma[0] *
-                                    interpolated_RC * base_flow_duzdr *
-                                    dtestfdz * Jbar * w;
-            residuals[local_eqn] -=
-              visc_ratio * r * base_flow_durdz * dtestfdZC * Jbar * w;
-            residuals[local_eqn] -=
-              visc_ratio * r * interpolated_dUdZC * dtestfdz * Jbar * w;
-            residuals[local_eqn] +=
-              visc_ratio * r * base_flow_durdz * JhatC * dtestfdz * w;
-            residuals[local_eqn] -= visc_ratio * interpolated_RC *
-                                    base_flow_durdz * dtestfdz * Jbar * w;
-            residuals[local_eqn] += interpolated_PC * testf_ * Jbar * w;
-            residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) * k *
-                                    interpolated_VS * testf_ * Jbar * w / r;
-            residuals[local_eqn] += visc_ratio * (1.0 + this->Gamma[0]) * k *
-                                    base_flow_duthetadr * interpolated_RS *
-                                    testf_ * Jbar * w / r;
-            residuals[local_eqn] += visc_ratio * (1.0 + this->Gamma[0]) * k *
-                                    base_flow_duthetadz * interpolated_ZS *
-                                    testf_ * Jbar * w / r;
-            residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) *
-                                    interpolated_UC * testf_ * Jbar * w / r;
-            residuals[local_eqn] += visc_ratio * (1.0 + this->Gamma[0]) *
-                                    base_flow_ur * interpolated_RC * testf_ *
-                                    Jbar * w / (r * r);
-            residuals[local_eqn] -=
-              scaled_re_st * r * base_flow_durdt * testf_ * JhatC * w;
-            residuals[local_eqn] += scaled_re * base_flow_utheta *
-                                    base_flow_utheta * testf_ * JhatC * w;
-            residuals[local_eqn] += r * body_force[0] * testf_ * JhatC * w;
-            residuals[local_eqn] +=
-              scaled_re_inv_fr * r * G[0] * testf_ * JhatC * w;
-            residuals[local_eqn] -=
-              k * visc_ratio * base_flow_utheta * testf_ * JhatS * w / r;
-            residuals[local_eqn] += base_flow_p * testf_ * JhatC * w;
-            residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) *
-                                    base_flow_ur * testf_ * JhatC * w / r;
-
-
-            // Calculate the Jacobian
-            // ----------------------
-
-            if (flag)
+            if (not(Node_is_subject_to_velocity_dirichlet_bcs[l][0]))
             {
-              // Loop over the velocity shape functions again
-              for (unsigned l2 = 0; l2 < n_node; l2++)
+              residuals[local_eqn] -=
+                scaled_re_st * r * dUCdt * testf_ * Jbar * w;
+              residuals[local_eqn] -= scaled_re_st * interpolated_RC *
+                                      base_flow_durdt * testf_ * Jbar * w;
+              residuals[local_eqn] -= scaled_re * r * base_flow_ur *
+                                      interpolated_dUdRC * testf_ * Jbar * w;
+              residuals[local_eqn] += scaled_re_st * r * mesh_velocity[0] *
+                                      interpolated_dUdRC * testf_ * Jbar * w;
+              residuals[local_eqn] -= scaled_re * r * interpolated_UC *
+                                      base_flow_durdr * testf_ * Jbar * w;
+              residuals[local_eqn] +=
+                scaled_re_st * r * dRCdt * base_flow_durdr * testf_ * Jbar * w;
+              residuals[local_eqn] -= scaled_re * interpolated_RC *
+                                      base_flow_ur * base_flow_durdr * testf_ *
+                                      Jbar * w;
+              residuals[local_eqn] += scaled_re_st * interpolated_RC *
+                                      mesh_velocity[0] * base_flow_durdr *
+                                      testf_ * Jbar * w;
+              residuals[local_eqn] -= k * scaled_re * base_flow_utheta *
+                                      interpolated_US * testf_ * Jbar * w;
+              residuals[local_eqn] += k * scaled_re * base_flow_utheta *
+                                      base_flow_durdr * interpolated_RS *
+                                      testf_ * Jbar * w;
+              residuals[local_eqn] += k * scaled_re * base_flow_utheta *
+                                      base_flow_durdz * interpolated_ZS *
+                                      testf_ * Jbar * w;
+              residuals[local_eqn] += 2 * scaled_re * base_flow_utheta *
+                                      interpolated_VC * testf_ * Jbar * w;
+              residuals[local_eqn] -= scaled_re * r * base_flow_uz *
+                                      interpolated_dUdZC * testf_ * Jbar * w;
+              residuals[local_eqn] += scaled_re_st * r * mesh_velocity[1] *
+                                      interpolated_dUdZC * testf_ * Jbar * w;
+              residuals[local_eqn] -= scaled_re * r * interpolated_WC *
+                                      base_flow_durdz * testf_ * Jbar * w;
+              residuals[local_eqn] +=
+                scaled_re_st * r * dZCdt * base_flow_durdz * testf_ * Jbar * w;
+              residuals[local_eqn] -= scaled_re * interpolated_RC *
+                                      base_flow_uz * base_flow_durdz * testf_ *
+                                      Jbar * w;
+              residuals[local_eqn] += scaled_re_st * interpolated_RC *
+                                      mesh_velocity[1] * base_flow_durdz *
+                                      testf_ * Jbar * w;
+              residuals[local_eqn] +=
+                interpolated_RC * body_force[0] * testf_ * Jbar * w;
+              residuals[local_eqn] +=
+                scaled_re_inv_fr * interpolated_RC * G[0] * testf_ * Jbar * w;
+              residuals[local_eqn] += r * base_flow_p * dtestfdRC * Jbar * w;
+              residuals[local_eqn] += r * interpolated_PC * dtestfdr * Jbar * w;
+              residuals[local_eqn] +=
+                interpolated_RC * base_flow_p * dtestfdr * Jbar * w;
+              residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) * r *
+                                      base_flow_durdr * dtestfdRC * Jbar * w;
+              residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) * r *
+                                      interpolated_dUdRC * dtestfdr * Jbar * w;
+              residuals[local_eqn] += visc_ratio * (1.0 + this->Gamma[0]) * r *
+                                      base_flow_durdr * JhatC * dtestfdr * w;
+              residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) *
+                                      interpolated_RC * base_flow_durdr *
+                                      dtestfdr * Jbar * w;
+              residuals[local_eqn] += k * visc_ratio * this->Gamma[0] *
+                                      base_flow_duthetadr * dtestfdr *
+                                      interpolated_RS * Jbar * w;
+              residuals[local_eqn] += k * visc_ratio * this->Gamma[0] *
+                                      base_flow_duthetadr * dtestfdz *
+                                      interpolated_ZS * Jbar * w;
+              residuals[local_eqn] += k * visc_ratio * this->Gamma[0] *
+                                      interpolated_dVdRS * testf_ * Jbar * w;
+              residuals[local_eqn] -=
+                visc_ratio * k * k * interpolated_UC * testf_ * Jbar * w / r;
+              residuals[local_eqn] += visc_ratio * k * k * base_flow_durdr *
+                                      interpolated_RC * testf_ * Jbar * w / r;
+              residuals[local_eqn] += visc_ratio * k * k * base_flow_durdz *
+                                      interpolated_ZC * testf_ * Jbar * w / r;
+              residuals[local_eqn] -= visc_ratio * k * base_flow_utheta *
+                                      dtestfdr * interpolated_RS * Jbar * w / r;
+              residuals[local_eqn] -= visc_ratio * k * base_flow_utheta *
+                                      dtestfdz * interpolated_ZS * Jbar * w / r;
+              residuals[local_eqn] -=
+                visc_ratio * k * interpolated_VS * testf_ * Jbar * w / r;
+              residuals[local_eqn] += visc_ratio * k * interpolated_RS *
+                                      base_flow_utheta * testf_ * Jbar * w /
+                                      (r * r);
+              residuals[local_eqn] -= visc_ratio * this->Gamma[0] * r *
+                                      base_flow_duzdr * dtestfdZC * Jbar * w;
+              residuals[local_eqn] -= visc_ratio * this->Gamma[0] * r *
+                                      interpolated_dWdRC * dtestfdz * Jbar * w;
+              residuals[local_eqn] += visc_ratio * this->Gamma[0] * r *
+                                      base_flow_duzdr * JhatC * dtestfdz * w;
+              residuals[local_eqn] -= visc_ratio * this->Gamma[0] *
+                                      interpolated_RC * base_flow_duzdr *
+                                      dtestfdz * Jbar * w;
+              residuals[local_eqn] -=
+                visc_ratio * r * base_flow_durdz * dtestfdZC * Jbar * w;
+              residuals[local_eqn] -=
+                visc_ratio * r * interpolated_dUdZC * dtestfdz * Jbar * w;
+              residuals[local_eqn] +=
+                visc_ratio * r * base_flow_durdz * JhatC * dtestfdz * w;
+              residuals[local_eqn] -= visc_ratio * interpolated_RC *
+                                      base_flow_durdz * dtestfdz * Jbar * w;
+              residuals[local_eqn] += interpolated_PC * testf_ * Jbar * w;
+              residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) * k *
+                                      interpolated_VS * testf_ * Jbar * w / r;
+              residuals[local_eqn] += visc_ratio * (1.0 + this->Gamma[0]) * k *
+                                      base_flow_duthetadr * interpolated_RS *
+                                      testf_ * Jbar * w / r;
+              residuals[local_eqn] += visc_ratio * (1.0 + this->Gamma[0]) * k *
+                                      base_flow_duthetadz * interpolated_ZS *
+                                      testf_ * Jbar * w / r;
+              residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) *
+                                      interpolated_UC * testf_ * Jbar * w / r;
+              residuals[local_eqn] += visc_ratio * (1.0 + this->Gamma[0]) *
+                                      base_flow_ur * interpolated_RC * testf_ *
+                                      Jbar * w / (r * r);
+              residuals[local_eqn] -=
+                scaled_re_st * r * base_flow_durdt * testf_ * JhatC * w;
+              residuals[local_eqn] += scaled_re * base_flow_utheta *
+                                      base_flow_utheta * testf_ * JhatC * w;
+              residuals[local_eqn] += r * body_force[0] * testf_ * JhatC * w;
+              residuals[local_eqn] +=
+                scaled_re_inv_fr * r * G[0] * testf_ * JhatC * w;
+              residuals[local_eqn] -=
+                k * visc_ratio * base_flow_utheta * testf_ * JhatS * w / r;
+              residuals[local_eqn] += base_flow_p * testf_ * JhatC * w;
+              residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) *
+                                      base_flow_ur * testf_ * JhatC * w / r;
+
+
+              // Calculate the Jacobian
+              // ----------------------
+
+              if (flag)
               {
-                // Radial velocity component (cosine part) U_k^C
-                local_unknown = this->nodal_local_eqn(l2, u_nodal_index[0]);
-                if (local_unknown >= 0)
+                // Loop over the velocity shape functions again
+                for (unsigned l2 = 0; l2 < n_node; l2++)
                 {
-                  if (flag == 2)
+                  // Radial velocity component (cosine part) U_k^C
+                  local_unknown = this->nodal_local_eqn(l2, u_nodal_index[0]);
+                  if (local_unknown >= 0)
                   {
-                    // Add the mass matrix
-                    mass_matrix(local_eqn, local_unknown) +=
-                      scaled_re_st * r * psif[l2] * testf_ * Jbar * w;
+                    if (flag == 2)
+                    {
+                      // Add the mass matrix
+                      mass_matrix(local_eqn, local_unknown) +=
+                        scaled_re_st * r * psif[l2] * testf_ * Jbar * w;
+                    }
+
+                    // Add contributions to the Jacobian matrix
+                    jacobian(local_eqn, local_unknown) -=
+                      scaled_re_st * r * psif[l2] *
+                      this->node_pt(l2)->time_stepper_pt()->weight(1, 0) *
+                      testf_ * Jbar * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      scaled_re * r * base_flow_ur * group_B[l2] * testf_ * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      scaled_re_st * r * mesh_velocity[0] * group_B[l2] *
+                      testf_ * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      scaled_re * r * psif[l2] * base_flow_durdr * testf_ *
+                      Jbar * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      scaled_re * r * base_flow_uz * group_A[l2] * testf_ * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      scaled_re_st * r * mesh_velocity[1] * group_A[l2] *
+                      testf_ * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * (1.0 + this->Gamma[0]) * r * group_B[l2] *
+                      dtestfdr * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * k * k * psif[l2] * testf_ * Jbar * w / r;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * r * group_A[l2] * dtestfdz * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * (1.0 + this->Gamma[0]) * psif[l2] * testf_ *
+                      Jbar * w / r;
                   }
 
-                  // Add contributions to the Jacobian matrix
-                  jacobian(local_eqn, local_unknown) -=
-                    scaled_re_st * r * psif[l2] *
-                    this->node_pt(l2)->time_stepper_pt()->weight(1, 0) *
-                    testf_ * Jbar * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    scaled_re * r * base_flow_ur * group_B[l2] * testf_ * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    scaled_re_st * r * mesh_velocity[0] * group_B[l2] * testf_ *
-                    w;
-                  jacobian(local_eqn, local_unknown) -=
-                    scaled_re * r * psif[l2] * base_flow_durdr * testf_ * Jbar *
-                    w;
-                  jacobian(local_eqn, local_unknown) -=
-                    scaled_re * r * base_flow_uz * group_A[l2] * testf_ * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    scaled_re_st * r * mesh_velocity[1] * group_A[l2] * testf_ *
-                    w;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * (1.0 + this->Gamma[0]) * r * group_B[l2] *
-                    dtestfdr * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * k * k * psif[l2] * testf_ * Jbar * w / r;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * r * group_A[l2] * dtestfdz * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * (1.0 + this->Gamma[0]) * psif[l2] * testf_ *
-                    Jbar * w / r;
-                }
+                  // Radial velocity component (sine part) U_k^S
+                  local_unknown = this->nodal_local_eqn(l2, u_nodal_index[1]);
+                  if (local_unknown >= 0)
+                  {
+                    jacobian(local_eqn, local_unknown) -=
+                      k * scaled_re * base_flow_utheta * psif[l2] * testf_ *
+                      Jbar * w;
+                  }
 
-                // Radial velocity component (sine part) U_k^S
-                local_unknown = this->nodal_local_eqn(l2, u_nodal_index[1]);
-                if (local_unknown >= 0)
+                  // Axial velocity component (cosine part) W_k^C
+                  local_unknown = this->nodal_local_eqn(l2, u_nodal_index[2]);
+                  if (local_unknown >= 0)
+                  {
+                    jacobian(local_eqn, local_unknown) -=
+                      scaled_re * r * psif[l2] * base_flow_durdz * testf_ *
+                      Jbar * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * this->Gamma[0] * r * group_B[l2] * dtestfdz *
+                      w;
+                  }
+
+                  // Axial velocity component (sine part) W_k^S
+                  // has no contribution
+
+                  // Azimuthal velocity component (cosine part) V_k^C
+                  local_unknown = this->nodal_local_eqn(l2, u_nodal_index[4]);
+                  if (local_unknown >= 0)
+                  {
+                    jacobian(local_eqn, local_unknown) +=
+                      2.0 * scaled_re * base_flow_utheta * psif[l2] * testf_ *
+                      Jbar * w;
+                  }
+
+                  // Azimuthal velocity component (sine part) V_k^S
+                  local_unknown = this->nodal_local_eqn(l2, u_nodal_index[5]);
+                  if (local_unknown >= 0)
+                  {
+                    jacobian(local_eqn, local_unknown) +=
+                      k * visc_ratio * this->Gamma[0] * group_B[l2] * testf_ *
+                      w;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * k * psif[l2] * testf_ * Jbar * w / r;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * (1.0 + this->Gamma[0]) * k * psif[l2] *
+                      testf_ * Jbar * w / r;
+                  }
+
+                  // Perturbation to radial nodal coord (cosine part) R_k^C
+                  local_unknown = this->nodal_local_eqn(
+                    l2, this->xhat_index_lin_axi_nst(l2, 0));
+                  if (local_unknown >= 0)
+                  {
+                    jacobian(local_eqn, local_unknown) -=
+                      scaled_re_st * psif[l2] * base_flow_durdt * testf_ *
+                      Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      scaled_re_st * r * psif[l2] *
+                      this->node_pt(l2)->position_time_stepper_pt()->weight(1,
+                                                                            0) *
+                      base_flow_durdr * testf_ * Jbar * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      scaled_re * psif[l2] * base_flow_ur * base_flow_durdr *
+                      testf_ * Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      scaled_re_st * psif[l2] * mesh_velocity[0] *
+                      base_flow_durdr * testf_ * Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      scaled_re * r * base_flow_uz * group_C[l2] * testf_ * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      scaled_re_st * r * mesh_velocity[1] * group_C[l2] *
+                      testf_ * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      scaled_re * psif[l2] * base_flow_uz * base_flow_durdz *
+                      testf_ * Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      scaled_re_st * psif[l2] * mesh_velocity[1] *
+                      base_flow_durdz * testf_ * Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      psif[l2] * body_force[0] * testf_ * Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      scaled_re_inv_fr * psif[l2] * G[0] * testf_ * Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      psif[l2] * base_flow_p * dtestfdr * Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * (1.0 + this->Gamma[0]) * r *
+                      base_flow_durdr * group_B[l2] * dtestfdr * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * (1.0 + this->Gamma[0]) * psif[l2] *
+                      base_flow_durdr * dtestfdr * Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * k * k * base_flow_durdr * psif[l2] * testf_ *
+                      Jbar * w / r;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * this->Gamma[0] * r * base_flow_duzdr *
+                      group_F(l, l2) * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * this->Gamma[0] * r * base_flow_duzdr *
+                      group_B[l2] * dtestfdz * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * this->Gamma[0] * psif[l2] * base_flow_duzdr *
+                      dtestfdz * Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * r * base_flow_durdz * group_F(l, l2) * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * r * group_C[l2] * dtestfdz * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * r * base_flow_durdz * group_B[l2] *
+                      dtestfdz * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * psif[l2] * base_flow_durdz * dtestfdz *
+                      Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * (1.0 + this->Gamma[0]) * base_flow_ur *
+                      psif[l2] * testf_ * Jbar * w / (r * r);
+                    jacobian(local_eqn, local_unknown) -=
+                      scaled_re_st * r * base_flow_durdt * testf_ *
+                      group_B[l2] * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      scaled_re * base_flow_utheta * base_flow_utheta * testf_ *
+                      group_B[l2] * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      r * body_force[0] * testf_ * group_B[l2] * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      scaled_re_inv_fr * r * G[0] * testf_ * group_B[l2] * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      base_flow_p * testf_ * group_B[l2] * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * (1.0 + this->Gamma[0]) * base_flow_ur *
+                      testf_ * group_B[l2] * w / r;
+                  }
+
+                  // Perturbation to radial nodal coord (sine part) R_k^S
+                  local_unknown = this->nodal_local_eqn(
+                    l2, this->xhat_index_lin_axi_nst(l2, 1));
+                  if (local_unknown >= 0)
+                  {
+                    jacobian(local_eqn, local_unknown) +=
+                      k * scaled_re * base_flow_utheta * base_flow_durdr *
+                      psif[l2] * testf_ * Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      k * visc_ratio * this->Gamma[0] * base_flow_duthetadr *
+                      dtestfdr * psif[l2] * Jbar * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * k * base_flow_utheta * dtestfdr * psif[l2] *
+                      Jbar * w / r;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * k * psif[l2] * base_flow_utheta * testf_ *
+                      Jbar * w / (r * r);
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * (1.0 + this->Gamma[0]) * k *
+                      base_flow_duthetadr * psif[l2] * testf_ * Jbar * w / r;
+                    jacobian(local_eqn, local_unknown) -=
+                      k * visc_ratio * base_flow_utheta * testf_ * group_B[l2] *
+                      w / r;
+                  }
+
+                  // Perturbation to axial nodal coord (cosine part) Z_k^C
+                  local_unknown = this->nodal_local_eqn(
+                    l2, this->xhat_index_lin_axi_nst(l2, 2));
+                  if (local_unknown >= 0)
+                  {
+                    jacobian(local_eqn, local_unknown) -=
+                      scaled_re * r * base_flow_ur * group_C[l2] * testf_ * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      scaled_re_st * r * mesh_velocity[0] * group_C[l2] *
+                      testf_ * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      scaled_re_st * r * psif[l2] *
+                      this->node_pt(l2)->position_time_stepper_pt()->weight(1,
+                                                                            0) *
+                      base_flow_durdz * testf_ * Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      r * base_flow_p * group_F(l, l2) * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * (1.0 + this->Gamma[0]) * r *
+                      base_flow_durdr * group_F(l, l2) * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * (1.0 + this->Gamma[0]) * r * group_C[l2] *
+                      dtestfdr * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * (1.0 + this->Gamma[0]) * r *
+                      base_flow_durdr * group_A[l2] * dtestfdr * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * k * k * base_flow_durdz * psif[l2] * testf_ *
+                      Jbar * w / r;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * this->Gamma[0] * r * group_D[l2] * dtestfdz *
+                      w;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * this->Gamma[0] * r * base_flow_duzdr *
+                      group_A[l2] * dtestfdz * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * r * base_flow_durdz * group_A[l2] *
+                      dtestfdz * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      scaled_re_st * r * base_flow_durdt * testf_ *
+                      group_A[l2] * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      scaled_re * base_flow_utheta * base_flow_utheta * testf_ *
+                      group_A[l2] * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      r * body_force[0] * testf_ * group_A[l2] * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      scaled_re_inv_fr * r * G[0] * testf_ * group_A[l2] * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      base_flow_p * testf_ * group_A[l2] * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * (1.0 + this->Gamma[0]) * base_flow_ur *
+                      testf_ * group_A[l2] * w / r;
+                  }
+
+                  // Perturbation to axial nodal coord (sine part) Z_k^S
+                  local_unknown = this->nodal_local_eqn(
+                    l2, this->xhat_index_lin_axi_nst(l2, 3));
+                  if (local_unknown >= 0)
+                  {
+                    jacobian(local_eqn, local_unknown) +=
+                      k * scaled_re * base_flow_utheta * base_flow_durdz *
+                      psif[l2] * testf_ * Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      k * visc_ratio * this->Gamma[0] * base_flow_duthetadr *
+                      dtestfdz * psif[l2] * Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      k * visc_ratio * this->Gamma[0] * group_E[l2] * testf_ *
+                      w;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * k * base_flow_utheta * dtestfdz * psif[l2] *
+                      Jbar * w / r;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * (1.0 + this->Gamma[0]) * k *
+                      base_flow_duthetadz * psif[l2] * testf_ * Jbar * w / r;
+                    jacobian(local_eqn, local_unknown) -=
+                      k * visc_ratio * base_flow_utheta * testf_ * group_A[l2] *
+                      w / r;
+                  }
+
+                } // End of loop over velocity shape functions
+
+                // Now loop over pressure shape functions
+                // (This is the contribution from pressure gradient)
+                for (unsigned l2 = 0; l2 < n_pres; l2++)
                 {
-                  jacobian(local_eqn, local_unknown) -=
-                    k * scaled_re * base_flow_utheta * psif[l2] * testf_ *
-                    Jbar * w;
-                }
+                  // Cosine part P_k^C
+                  local_unknown = this->p_local_eqn(l2, 0);
+                  if (local_unknown >= 0)
+                  {
+                    jacobian(local_eqn, local_unknown) +=
+                      r * psip[l2] * dtestfdr * Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      psip[l2] * testf_ * Jbar * w;
+                  }
 
-                // Axial velocity component (cosine part) W_k^C
-                local_unknown = this->nodal_local_eqn(l2, u_nodal_index[2]);
-                if (local_unknown >= 0)
-                {
-                  jacobian(local_eqn, local_unknown) -=
-                    scaled_re * r * psif[l2] * base_flow_durdz * testf_ * Jbar *
-                    w;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * this->Gamma[0] * r * group_B[l2] * dtestfdz *
-                    w;
-                }
+                  // Sine part P_k^S has no contribution
 
-                // Axial velocity component (sine part) W_k^S
-                // has no contribution
+                } // End of loop over pressure shape functions
 
-                // Azimuthal velocity component (cosine part) V_k^C
-                local_unknown = this->nodal_local_eqn(l2, u_nodal_index[4]);
-                if (local_unknown >= 0)
-                {
-                  jacobian(local_eqn, local_unknown) +=
-                    2.0 * scaled_re * base_flow_utheta * psif[l2] * testf_ *
-                    Jbar * w;
-                }
+                // Geometric contribution to jacobian
+                // TODO
 
-                // Azimuthal velocity component (sine part) V_k^S
-                local_unknown = this->nodal_local_eqn(l2, u_nodal_index[5]);
-                if (local_unknown >= 0)
-                {
-                  jacobian(local_eqn, local_unknown) +=
-                    k * visc_ratio * this->Gamma[0] * group_B[l2] * testf_ * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * k * psif[l2] * testf_ * Jbar * w / r;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * (1.0 + this->Gamma[0]) * k * psif[l2] *
-                    testf_ * Jbar * w / r;
-                }
-
-                // Perturbation to radial nodal coord (cosine part) R_k^C
-                local_unknown = this->nodal_local_eqn(
-                  l2, this->xhat_index_lin_axi_nst(l2, 0));
-                if (local_unknown >= 0)
-                {
-                  jacobian(local_eqn, local_unknown) -=
-                    scaled_re_st * psif[l2] * base_flow_durdt * testf_ * Jbar *
-                    w;
-                  jacobian(local_eqn, local_unknown) +=
-                    scaled_re_st * r * psif[l2] *
-                    this->node_pt(l2)->position_time_stepper_pt()->weight(1,
-                                                                          0) *
-                    base_flow_durdr * testf_ * Jbar * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    scaled_re * psif[l2] * base_flow_ur * base_flow_durdr *
-                    testf_ * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    scaled_re_st * psif[l2] * mesh_velocity[0] *
-                    base_flow_durdr * testf_ * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    scaled_re * r * base_flow_uz * group_C[l2] * testf_ * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    scaled_re_st * r * mesh_velocity[1] * group_C[l2] * testf_ *
-                    w;
-                  jacobian(local_eqn, local_unknown) -=
-                    scaled_re * psif[l2] * base_flow_uz * base_flow_durdz *
-                    testf_ * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    scaled_re_st * psif[l2] * mesh_velocity[1] *
-                    base_flow_durdz * testf_ * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    psif[l2] * body_force[0] * testf_ * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    scaled_re_inv_fr * psif[l2] * G[0] * testf_ * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    psif[l2] * base_flow_p * dtestfdr * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * (1.0 + this->Gamma[0]) * r * base_flow_durdr *
-                    group_B[l2] * dtestfdr * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * (1.0 + this->Gamma[0]) * psif[l2] *
-                    base_flow_durdr * dtestfdr * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * k * k * base_flow_durdr * psif[l2] * testf_ *
-                    Jbar * w / r;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * this->Gamma[0] * r * base_flow_duzdr *
-                    group_F(l, l2) * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * this->Gamma[0] * r * base_flow_duzdr *
-                    group_B[l2] * dtestfdz * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * this->Gamma[0] * psif[l2] * base_flow_duzdr *
-                    dtestfdz * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * r * base_flow_durdz * group_F(l, l2) * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * r * group_C[l2] * dtestfdz * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * r * base_flow_durdz * group_B[l2] * dtestfdz *
-                    w;
-                  jacobian(local_eqn, local_unknown) -= visc_ratio * psif[l2] *
-                                                        base_flow_durdz *
-                                                        dtestfdz * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * (1.0 + this->Gamma[0]) * base_flow_ur *
-                    psif[l2] * testf_ * Jbar * w / (r * r);
-                  jacobian(local_eqn, local_unknown) -=
-                    scaled_re_st * r * base_flow_durdt * testf_ * group_B[l2] *
-                    w;
-                  jacobian(local_eqn, local_unknown) +=
-                    scaled_re * base_flow_utheta * base_flow_utheta * testf_ *
-                    group_B[l2] * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    r * body_force[0] * testf_ * group_B[l2] * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    scaled_re_inv_fr * r * G[0] * testf_ * group_B[l2] * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    base_flow_p * testf_ * group_B[l2] * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * (1.0 + this->Gamma[0]) * base_flow_ur *
-                    testf_ * group_B[l2] * w / r;
-                }
-
-                // Perturbation to radial nodal coord (sine part) R_k^S
-                local_unknown = this->nodal_local_eqn(
-                  l2, this->xhat_index_lin_axi_nst(l2, 1));
-                if (local_unknown >= 0)
-                {
-                  jacobian(local_eqn, local_unknown) +=
-                    k * scaled_re * base_flow_utheta * base_flow_durdr *
-                    psif[l2] * testf_ * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    k * visc_ratio * this->Gamma[0] * base_flow_duthetadr *
-                    dtestfdr * psif[l2] * Jbar * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * k * base_flow_utheta * dtestfdr * psif[l2] *
-                    Jbar * w / r;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * k * psif[l2] * base_flow_utheta * testf_ *
-                    Jbar * w / (r * r);
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * (1.0 + this->Gamma[0]) * k *
-                    base_flow_duthetadr * psif[l2] * testf_ * Jbar * w / r;
-                  jacobian(local_eqn, local_unknown) -=
-                    k * visc_ratio * base_flow_utheta * testf_ * group_B[l2] *
-                    w / r;
-                }
-
-                // Perturbation to axial nodal coord (cosine part) Z_k^C
-                local_unknown = this->nodal_local_eqn(
-                  l2, this->xhat_index_lin_axi_nst(l2, 2));
-                if (local_unknown >= 0)
-                {
-                  jacobian(local_eqn, local_unknown) -=
-                    scaled_re * r * base_flow_ur * group_C[l2] * testf_ * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    scaled_re_st * r * mesh_velocity[0] * group_C[l2] * testf_ *
-                    w;
-                  jacobian(local_eqn, local_unknown) +=
-                    scaled_re_st * r * psif[l2] *
-                    this->node_pt(l2)->position_time_stepper_pt()->weight(1,
-                                                                          0) *
-                    base_flow_durdz * testf_ * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    r * base_flow_p * group_F(l, l2) * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * (1.0 + this->Gamma[0]) * r * base_flow_durdr *
-                    group_F(l, l2) * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * (1.0 + this->Gamma[0]) * r * group_C[l2] *
-                    dtestfdr * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * (1.0 + this->Gamma[0]) * r * base_flow_durdr *
-                    group_A[l2] * dtestfdr * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * k * k * base_flow_durdz * psif[l2] * testf_ *
-                    Jbar * w / r;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * this->Gamma[0] * r * group_D[l2] * dtestfdz *
-                    w;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * this->Gamma[0] * r * base_flow_duzdr *
-                    group_A[l2] * dtestfdz * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * r * base_flow_durdz * group_A[l2] * dtestfdz *
-                    w;
-                  jacobian(local_eqn, local_unknown) -=
-                    scaled_re_st * r * base_flow_durdt * testf_ * group_A[l2] *
-                    w;
-                  jacobian(local_eqn, local_unknown) +=
-                    scaled_re * base_flow_utheta * base_flow_utheta * testf_ *
-                    group_A[l2] * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    r * body_force[0] * testf_ * group_A[l2] * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    scaled_re_inv_fr * r * G[0] * testf_ * group_A[l2] * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    base_flow_p * testf_ * group_A[l2] * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * (1.0 + this->Gamma[0]) * base_flow_ur *
-                    testf_ * group_A[l2] * w / r;
-                }
-
-                // Perturbation to axial nodal coord (sine part) Z_k^S
-                local_unknown = this->nodal_local_eqn(
-                  l2, this->xhat_index_lin_axi_nst(l2, 3));
-                if (local_unknown >= 0)
-                {
-                  jacobian(local_eqn, local_unknown) +=
-                    k * scaled_re * base_flow_utheta * base_flow_durdz *
-                    psif[l2] * testf_ * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    k * visc_ratio * this->Gamma[0] * base_flow_duthetadr *
-                    dtestfdz * psif[l2] * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    k * visc_ratio * this->Gamma[0] * group_E[l2] * testf_ * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * k * base_flow_utheta * dtestfdz * psif[l2] *
-                    Jbar * w / r;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * (1.0 + this->Gamma[0]) * k *
-                    base_flow_duthetadz * psif[l2] * testf_ * Jbar * w / r;
-                  jacobian(local_eqn, local_unknown) -=
-                    k * visc_ratio * base_flow_utheta * testf_ * group_A[l2] *
-                    w / r;
-                }
-
-              } // End of loop over velocity shape functions
-
-              // Now loop over pressure shape functions
-              // (This is the contribution from pressure gradient)
-              for (unsigned l2 = 0; l2 < n_pres; l2++)
-              {
-                // Cosine part P_k^C
-                local_unknown = this->p_local_eqn(l2, 0);
-                if (local_unknown >= 0)
-                {
-                  jacobian(local_eqn, local_unknown) +=
-                    r * psip[l2] * dtestfdr * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    psip[l2] * testf_ * Jbar * w;
-                }
-
-                // Sine part P_k^S has no contribution
-
-              } // End of loop over pressure shape functions
-
-              // Geometric contribution to jacobian
-              // TODO
-
-            } // End of Jacobian calculation
-
+              } // End of Jacobian calculation
+            }
           } // End of if not boundary condition statement
 
           // --------------------------------------------
@@ -1146,437 +1248,443 @@ namespace oomph
           // If it's not a boundary condition
           if (local_eqn >= 0)
           {
-            residuals[local_eqn] -=
-              scaled_re_st * r * dUSdt * testf_ * Jbar * w;
-            residuals[local_eqn] -= scaled_re_st * interpolated_RS *
-                                    base_flow_durdt * testf_ * Jbar * w;
-            residuals[local_eqn] -= scaled_re * r * base_flow_ur *
-                                    interpolated_dUdRS * testf_ * Jbar * w;
-            residuals[local_eqn] += scaled_re_st * r * mesh_velocity[0] *
-                                    interpolated_dUdRS * testf_ * Jbar * w;
-            residuals[local_eqn] -= scaled_re * r * interpolated_US *
-                                    base_flow_durdr * testf_ * Jbar * w;
-            residuals[local_eqn] +=
-              scaled_re_st * r * dRSdt * base_flow_durdr * testf_ * Jbar * w;
-            residuals[local_eqn] -= scaled_re * interpolated_RS * base_flow_ur *
-                                    base_flow_durdr * testf_ * Jbar * w;
-            residuals[local_eqn] += scaled_re_st * interpolated_RS *
-                                    mesh_velocity[0] * base_flow_durdr *
-                                    testf_ * Jbar * w;
-            residuals[local_eqn] += k * scaled_re * base_flow_utheta *
-                                    interpolated_UC * testf_ * Jbar * w;
-            residuals[local_eqn] -= k * scaled_re * base_flow_utheta *
-                                    base_flow_durdr * interpolated_RC * testf_ *
-                                    Jbar * w;
-            residuals[local_eqn] -= k * scaled_re * base_flow_utheta *
-                                    base_flow_durdz * interpolated_ZC * testf_ *
-                                    Jbar * w;
-            residuals[local_eqn] += 2 * scaled_re * base_flow_utheta *
-                                    interpolated_VS * testf_ * Jbar * w;
-            residuals[local_eqn] -= scaled_re * r * base_flow_uz *
-                                    interpolated_dUdZS * testf_ * Jbar * w;
-            residuals[local_eqn] += scaled_re_st * r * mesh_velocity[1] *
-                                    interpolated_dUdZS * testf_ * Jbar * w;
-            residuals[local_eqn] -= scaled_re * r * interpolated_WS *
-                                    base_flow_durdz * testf_ * Jbar * w;
-            residuals[local_eqn] +=
-              scaled_re_st * r * dZSdt * base_flow_durdz * testf_ * Jbar * w;
-            residuals[local_eqn] -= scaled_re * interpolated_RS * base_flow_uz *
-                                    base_flow_durdz * testf_ * Jbar * w;
-            residuals[local_eqn] += scaled_re_st * interpolated_RS *
-                                    mesh_velocity[1] * base_flow_durdz *
-                                    testf_ * Jbar * w;
-            residuals[local_eqn] +=
-              interpolated_RS * body_force[0] * testf_ * Jbar * w;
-            residuals[local_eqn] +=
-              scaled_re_inv_fr * interpolated_RS * G[0] * testf_ * Jbar * w;
-            residuals[local_eqn] += r * base_flow_p * dtestfdRS * Jbar * w;
-            residuals[local_eqn] += r * interpolated_PS * dtestfdr * Jbar * w;
-            residuals[local_eqn] +=
-              interpolated_RS * base_flow_p * dtestfdr * Jbar * w;
-            residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) * r *
-                                    base_flow_durdr * dtestfdRS * Jbar * w;
-            residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) * r *
-                                    interpolated_dUdRS * dtestfdr * Jbar * w;
-            residuals[local_eqn] += visc_ratio * (1.0 + this->Gamma[0]) * r *
-                                    base_flow_durdr * JhatS * dtestfdr * w;
-            residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) *
-                                    interpolated_RS * base_flow_durdr *
-                                    dtestfdr * Jbar * w;
-            residuals[local_eqn] -= k * visc_ratio * this->Gamma[0] *
-                                    base_flow_duthetadr * dtestfdr *
-                                    interpolated_RC * Jbar * w;
-            residuals[local_eqn] -= k * visc_ratio * this->Gamma[0] *
-                                    base_flow_duthetadr * dtestfdz *
-                                    interpolated_ZC * Jbar * w;
-            residuals[local_eqn] -= k * visc_ratio * this->Gamma[0] *
-                                    interpolated_dVdRC * testf_ * Jbar * w;
-            residuals[local_eqn] -=
-              visc_ratio * k * k * interpolated_US * testf_ * Jbar * w / r;
-            residuals[local_eqn] += visc_ratio * k * k * base_flow_durdr *
-                                    interpolated_RS * testf_ * Jbar * w / r;
-            residuals[local_eqn] += visc_ratio * k * k * base_flow_durdz *
-                                    interpolated_ZS * testf_ * Jbar * w / r;
-            residuals[local_eqn] += visc_ratio * k * base_flow_utheta *
-                                    dtestfdr * interpolated_RC * Jbar * w / r;
-            residuals[local_eqn] += visc_ratio * k * base_flow_utheta *
-                                    dtestfdz * interpolated_ZC * Jbar * w / r;
-            residuals[local_eqn] +=
-              visc_ratio * k * interpolated_VC * testf_ * Jbar * w / r;
-            residuals[local_eqn] -= visc_ratio * k * interpolated_RC *
-                                    base_flow_utheta * testf_ * Jbar * w /
-                                    (r * r);
-            residuals[local_eqn] -= visc_ratio * this->Gamma[0] * r *
-                                    base_flow_duzdr * dtestfdZS * Jbar * w;
-            residuals[local_eqn] -= visc_ratio * this->Gamma[0] * r *
-                                    interpolated_dWdRS * dtestfdz * Jbar * w;
-            residuals[local_eqn] += visc_ratio * this->Gamma[0] * r *
-                                    base_flow_duzdr * JhatS * dtestfdz * w;
-            residuals[local_eqn] -= visc_ratio * this->Gamma[0] *
-                                    interpolated_RS * base_flow_duzdr *
-                                    dtestfdz * Jbar * w;
-            residuals[local_eqn] -=
-              visc_ratio * r * base_flow_durdz * dtestfdZS * Jbar * w;
-            residuals[local_eqn] -=
-              visc_ratio * r * interpolated_dUdZS * dtestfdz * Jbar * w;
-            residuals[local_eqn] +=
-              visc_ratio * r * base_flow_durdz * JhatS * dtestfdz * w;
-            residuals[local_eqn] -= visc_ratio * interpolated_RS *
-                                    base_flow_durdz * dtestfdz * Jbar * w;
-            residuals[local_eqn] += interpolated_PS * testf_ * Jbar * w;
-            residuals[local_eqn] += visc_ratio * (1.0 + this->Gamma[0]) * k *
-                                    interpolated_VC * testf_ * Jbar * w / r;
-            residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) * k *
-                                    base_flow_duthetadr * interpolated_RC *
-                                    testf_ * Jbar * w / r;
-            residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) * k *
-                                    base_flow_duthetadz * interpolated_ZC *
-                                    testf_ * Jbar * w / r;
-            residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) *
-                                    interpolated_US * testf_ * Jbar * w / r;
-            residuals[local_eqn] += visc_ratio * (1.0 + this->Gamma[0]) *
-                                    base_flow_ur * interpolated_RS * testf_ *
-                                    Jbar * w / (r * r);
-            residuals[local_eqn] -=
-              scaled_re_st * r * base_flow_durdt * testf_ * JhatS * w;
-            residuals[local_eqn] += scaled_re * base_flow_utheta *
-                                    base_flow_utheta * testf_ * JhatS * w;
-            residuals[local_eqn] += r * body_force[0] * testf_ * JhatS * w;
-            residuals[local_eqn] +=
-              scaled_re_inv_fr * r * G[0] * testf_ * JhatS * w;
-            residuals[local_eqn] +=
-              k * visc_ratio * base_flow_utheta * testf_ * JhatC * w / r;
-            residuals[local_eqn] += base_flow_p * testf_ * JhatS * w;
-            residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) *
-                                    base_flow_ur * testf_ * JhatS * w / r;
-
-            // Calculate the Jacobian
-            // ----------------------
-
-            if (flag)
+            if (not(Node_is_subject_to_velocity_dirichlet_bcs[l][1]))
             {
-              // Loop over the velocity shape functions again
-              for (unsigned l2 = 0; l2 < n_node; l2++)
-              {
-                // Radial velocity component (cosine part) U_k^C
-                local_unknown = this->nodal_local_eqn(l2, u_nodal_index[0]);
-                if (local_unknown >= 0)
-                {
-                  jacobian(local_eqn, local_unknown) +=
-                    k * scaled_re * base_flow_utheta * psif[l2] * testf_ *
-                    Jbar * w;
-                }
+              residuals[local_eqn] -=
+                scaled_re_st * r * dUSdt * testf_ * Jbar * w;
+              residuals[local_eqn] -= scaled_re_st * interpolated_RS *
+                                      base_flow_durdt * testf_ * Jbar * w;
+              residuals[local_eqn] -= scaled_re * r * base_flow_ur *
+                                      interpolated_dUdRS * testf_ * Jbar * w;
+              residuals[local_eqn] += scaled_re_st * r * mesh_velocity[0] *
+                                      interpolated_dUdRS * testf_ * Jbar * w;
+              residuals[local_eqn] -= scaled_re * r * interpolated_US *
+                                      base_flow_durdr * testf_ * Jbar * w;
+              residuals[local_eqn] +=
+                scaled_re_st * r * dRSdt * base_flow_durdr * testf_ * Jbar * w;
+              residuals[local_eqn] -= scaled_re * interpolated_RS *
+                                      base_flow_ur * base_flow_durdr * testf_ *
+                                      Jbar * w;
+              residuals[local_eqn] += scaled_re_st * interpolated_RS *
+                                      mesh_velocity[0] * base_flow_durdr *
+                                      testf_ * Jbar * w;
+              residuals[local_eqn] += k * scaled_re * base_flow_utheta *
+                                      interpolated_UC * testf_ * Jbar * w;
+              residuals[local_eqn] -= k * scaled_re * base_flow_utheta *
+                                      base_flow_durdr * interpolated_RC *
+                                      testf_ * Jbar * w;
+              residuals[local_eqn] -= k * scaled_re * base_flow_utheta *
+                                      base_flow_durdz * interpolated_ZC *
+                                      testf_ * Jbar * w;
+              residuals[local_eqn] += 2 * scaled_re * base_flow_utheta *
+                                      interpolated_VS * testf_ * Jbar * w;
+              residuals[local_eqn] -= scaled_re * r * base_flow_uz *
+                                      interpolated_dUdZS * testf_ * Jbar * w;
+              residuals[local_eqn] += scaled_re_st * r * mesh_velocity[1] *
+                                      interpolated_dUdZS * testf_ * Jbar * w;
+              residuals[local_eqn] -= scaled_re * r * interpolated_WS *
+                                      base_flow_durdz * testf_ * Jbar * w;
+              residuals[local_eqn] +=
+                scaled_re_st * r * dZSdt * base_flow_durdz * testf_ * Jbar * w;
+              residuals[local_eqn] -= scaled_re * interpolated_RS *
+                                      base_flow_uz * base_flow_durdz * testf_ *
+                                      Jbar * w;
+              residuals[local_eqn] += scaled_re_st * interpolated_RS *
+                                      mesh_velocity[1] * base_flow_durdz *
+                                      testf_ * Jbar * w;
+              residuals[local_eqn] +=
+                interpolated_RS * body_force[0] * testf_ * Jbar * w;
+              residuals[local_eqn] +=
+                scaled_re_inv_fr * interpolated_RS * G[0] * testf_ * Jbar * w;
+              residuals[local_eqn] += r * base_flow_p * dtestfdRS * Jbar * w;
+              residuals[local_eqn] += r * interpolated_PS * dtestfdr * Jbar * w;
+              residuals[local_eqn] +=
+                interpolated_RS * base_flow_p * dtestfdr * Jbar * w;
+              residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) * r *
+                                      base_flow_durdr * dtestfdRS * Jbar * w;
+              residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) * r *
+                                      interpolated_dUdRS * dtestfdr * Jbar * w;
+              residuals[local_eqn] += visc_ratio * (1.0 + this->Gamma[0]) * r *
+                                      base_flow_durdr * JhatS * dtestfdr * w;
+              residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) *
+                                      interpolated_RS * base_flow_durdr *
+                                      dtestfdr * Jbar * w;
+              residuals[local_eqn] -= k * visc_ratio * this->Gamma[0] *
+                                      base_flow_duthetadr * dtestfdr *
+                                      interpolated_RC * Jbar * w;
+              residuals[local_eqn] -= k * visc_ratio * this->Gamma[0] *
+                                      base_flow_duthetadr * dtestfdz *
+                                      interpolated_ZC * Jbar * w;
+              residuals[local_eqn] -= k * visc_ratio * this->Gamma[0] *
+                                      interpolated_dVdRC * testf_ * Jbar * w;
+              residuals[local_eqn] -=
+                visc_ratio * k * k * interpolated_US * testf_ * Jbar * w / r;
+              residuals[local_eqn] += visc_ratio * k * k * base_flow_durdr *
+                                      interpolated_RS * testf_ * Jbar * w / r;
+              residuals[local_eqn] += visc_ratio * k * k * base_flow_durdz *
+                                      interpolated_ZS * testf_ * Jbar * w / r;
+              residuals[local_eqn] += visc_ratio * k * base_flow_utheta *
+                                      dtestfdr * interpolated_RC * Jbar * w / r;
+              residuals[local_eqn] += visc_ratio * k * base_flow_utheta *
+                                      dtestfdz * interpolated_ZC * Jbar * w / r;
+              residuals[local_eqn] +=
+                visc_ratio * k * interpolated_VC * testf_ * Jbar * w / r;
+              residuals[local_eqn] -= visc_ratio * k * interpolated_RC *
+                                      base_flow_utheta * testf_ * Jbar * w /
+                                      (r * r);
+              residuals[local_eqn] -= visc_ratio * this->Gamma[0] * r *
+                                      base_flow_duzdr * dtestfdZS * Jbar * w;
+              residuals[local_eqn] -= visc_ratio * this->Gamma[0] * r *
+                                      interpolated_dWdRS * dtestfdz * Jbar * w;
+              residuals[local_eqn] += visc_ratio * this->Gamma[0] * r *
+                                      base_flow_duzdr * JhatS * dtestfdz * w;
+              residuals[local_eqn] -= visc_ratio * this->Gamma[0] *
+                                      interpolated_RS * base_flow_duzdr *
+                                      dtestfdz * Jbar * w;
+              residuals[local_eqn] -=
+                visc_ratio * r * base_flow_durdz * dtestfdZS * Jbar * w;
+              residuals[local_eqn] -=
+                visc_ratio * r * interpolated_dUdZS * dtestfdz * Jbar * w;
+              residuals[local_eqn] +=
+                visc_ratio * r * base_flow_durdz * JhatS * dtestfdz * w;
+              residuals[local_eqn] -= visc_ratio * interpolated_RS *
+                                      base_flow_durdz * dtestfdz * Jbar * w;
+              residuals[local_eqn] += interpolated_PS * testf_ * Jbar * w;
+              residuals[local_eqn] += visc_ratio * (1.0 + this->Gamma[0]) * k *
+                                      interpolated_VC * testf_ * Jbar * w / r;
+              residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) * k *
+                                      base_flow_duthetadr * interpolated_RC *
+                                      testf_ * Jbar * w / r;
+              residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) * k *
+                                      base_flow_duthetadz * interpolated_ZC *
+                                      testf_ * Jbar * w / r;
+              residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) *
+                                      interpolated_US * testf_ * Jbar * w / r;
+              residuals[local_eqn] += visc_ratio * (1.0 + this->Gamma[0]) *
+                                      base_flow_ur * interpolated_RS * testf_ *
+                                      Jbar * w / (r * r);
+              residuals[local_eqn] -=
+                scaled_re_st * r * base_flow_durdt * testf_ * JhatS * w;
+              residuals[local_eqn] += scaled_re * base_flow_utheta *
+                                      base_flow_utheta * testf_ * JhatS * w;
+              residuals[local_eqn] += r * body_force[0] * testf_ * JhatS * w;
+              residuals[local_eqn] +=
+                scaled_re_inv_fr * r * G[0] * testf_ * JhatS * w;
+              residuals[local_eqn] +=
+                k * visc_ratio * base_flow_utheta * testf_ * JhatC * w / r;
+              residuals[local_eqn] += base_flow_p * testf_ * JhatS * w;
+              residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) *
+                                      base_flow_ur * testf_ * JhatS * w / r;
 
-                // Radial velocity component (sine part) U_k^S
-                local_unknown = this->nodal_local_eqn(l2, u_nodal_index[1]);
-                if (local_unknown >= 0)
+              // Calculate the Jacobian
+              // ----------------------
+
+              if (flag)
+              {
+                // Loop over the velocity shape functions again
+                for (unsigned l2 = 0; l2 < n_node; l2++)
                 {
-                  if (flag == 2)
+                  // Radial velocity component (cosine part) U_k^C
+                  local_unknown = this->nodal_local_eqn(l2, u_nodal_index[0]);
+                  if (local_unknown >= 0)
                   {
-                    // Add the mass matrix
-                    mass_matrix(local_eqn, local_unknown) +=
-                      scaled_re_st * r * psif[l2] * testf_ * Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      k * scaled_re * base_flow_utheta * psif[l2] * testf_ *
+                      Jbar * w;
                   }
 
-                  // Add contributions to the Jacobian matrix
-                  jacobian(local_eqn, local_unknown) -=
-                    scaled_re_st * r * psif[l2] *
-                    this->node_pt(l2)->time_stepper_pt()->weight(1, 0) *
-                    testf_ * Jbar * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    scaled_re * r * base_flow_ur * group_B[l2] * testf_ * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    scaled_re_st * r * mesh_velocity[0] * group_B[l2] * testf_ *
-                    w;
-                  jacobian(local_eqn, local_unknown) -=
-                    scaled_re * r * psif[l2] * base_flow_durdr * testf_ * Jbar *
-                    w;
-                  jacobian(local_eqn, local_unknown) -=
-                    scaled_re * r * base_flow_uz * group_A[l2] * testf_ * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    scaled_re_st * r * mesh_velocity[1] * group_A[l2] * testf_ *
-                    w;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * (1.0 + this->Gamma[0]) * r * group_B[l2] *
-                    dtestfdr * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * k * k * psif[l2] * testf_ * Jbar * w / r;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * r * group_A[l2] * dtestfdz * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * (1.0 + this->Gamma[0]) * psif[l2] * testf_ *
-                    Jbar * w / r;
-                }
+                  // Radial velocity component (sine part) U_k^S
+                  local_unknown = this->nodal_local_eqn(l2, u_nodal_index[1]);
+                  if (local_unknown >= 0)
+                  {
+                    if (flag == 2)
+                    {
+                      // Add the mass matrix
+                      mass_matrix(local_eqn, local_unknown) +=
+                        scaled_re_st * r * psif[l2] * testf_ * Jbar * w;
+                    }
 
-                // Axial velocity component (cosine part) W_k^C
-                // has no contribution
+                    // Add contributions to the Jacobian matrix
+                    jacobian(local_eqn, local_unknown) -=
+                      scaled_re_st * r * psif[l2] *
+                      this->node_pt(l2)->time_stepper_pt()->weight(1, 0) *
+                      testf_ * Jbar * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      scaled_re * r * base_flow_ur * group_B[l2] * testf_ * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      scaled_re_st * r * mesh_velocity[0] * group_B[l2] *
+                      testf_ * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      scaled_re * r * psif[l2] * base_flow_durdr * testf_ *
+                      Jbar * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      scaled_re * r * base_flow_uz * group_A[l2] * testf_ * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      scaled_re_st * r * mesh_velocity[1] * group_A[l2] *
+                      testf_ * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * (1.0 + this->Gamma[0]) * r * group_B[l2] *
+                      dtestfdr * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * k * k * psif[l2] * testf_ * Jbar * w / r;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * r * group_A[l2] * dtestfdz * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * (1.0 + this->Gamma[0]) * psif[l2] * testf_ *
+                      Jbar * w / r;
+                  }
 
-                // Axial velocity component (sine part) W_k^S
-                local_unknown = this->nodal_local_eqn(l2, u_nodal_index[3]);
-                if (local_unknown >= 0)
+                  // Axial velocity component (cosine part) W_k^C
+                  // has no contribution
+
+                  // Axial velocity component (sine part) W_k^S
+                  local_unknown = this->nodal_local_eqn(l2, u_nodal_index[3]);
+                  if (local_unknown >= 0)
+                  {
+                    jacobian(local_eqn, local_unknown) -=
+                      scaled_re * r * psif[l2] * base_flow_durdz * testf_ *
+                      Jbar * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * this->Gamma[0] * r * group_B[l2] * dtestfdz *
+                      w;
+                  }
+
+                  // Azimuthal velocity component (cosine part) V_k^C
+                  local_unknown = this->nodal_local_eqn(l2, u_nodal_index[4]);
+                  if (local_unknown >= 0)
+                  {
+                    jacobian(local_eqn, local_unknown) -=
+                      k * visc_ratio * this->Gamma[0] * group_B[l2] * testf_ *
+                      w;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * k * psif[l2] * testf_ * Jbar * w / r;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * (1.0 + this->Gamma[0]) * k * psif[l2] *
+                      testf_ * Jbar * w / r;
+                  }
+
+                  // Azimuthal velocity component (sine part) V_k^S
+                  local_unknown = this->nodal_local_eqn(l2, u_nodal_index[5]);
+                  if (local_unknown >= 0)
+                  {
+                    jacobian(local_eqn, local_unknown) +=
+                      2.0 * scaled_re * base_flow_utheta * psif[l2] * testf_ *
+                      Jbar * w;
+                  }
+
+                  // Perturbation to radial nodal coord (cosine part) R_k^C
+                  local_unknown = this->nodal_local_eqn(
+                    l2, this->xhat_index_lin_axi_nst(l2, 0));
+                  if (local_unknown >= 0)
+                  {
+                    jacobian(local_eqn, local_unknown) -=
+                      k * scaled_re * base_flow_utheta * base_flow_durdr *
+                      psif[l2] * testf_ * Jbar * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      k * visc_ratio * this->Gamma[0] * base_flow_duthetadr *
+                      dtestfdr * psif[l2] * Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * k * base_flow_utheta * dtestfdr * psif[l2] *
+                      Jbar * w / r;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * k * psif[l2] * base_flow_utheta * testf_ *
+                      Jbar * w / (r * r);
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * (1.0 + this->Gamma[0]) * k *
+                      base_flow_duthetadr * psif[l2] * testf_ * Jbar * w / r;
+                    jacobian(local_eqn, local_unknown) +=
+                      k * visc_ratio * base_flow_utheta * testf_ * group_B[l2] *
+                      w / r;
+                  }
+
+                  // Perturbation to radial nodal coord (sine part) R_k^S
+                  local_unknown = this->nodal_local_eqn(
+                    l2, this->xhat_index_lin_axi_nst(l2, 1));
+                  if (local_unknown >= 0)
+                  {
+                    jacobian(local_eqn, local_unknown) -=
+                      scaled_re_st * psif[l2] * base_flow_durdt * testf_ *
+                      Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      scaled_re_st * r * psif[l2] *
+                      this->node_pt(l2)->position_time_stepper_pt()->weight(1,
+                                                                            0) *
+                      base_flow_durdr * testf_ * Jbar * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      scaled_re * psif[l2] * base_flow_ur * base_flow_durdr *
+                      testf_ * Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      scaled_re_st * psif[l2] * mesh_velocity[0] *
+                      base_flow_durdr * testf_ * Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      scaled_re * r * base_flow_uz * group_C[l2] * testf_ * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      scaled_re_st * r * mesh_velocity[1] * group_C[l2] *
+                      testf_ * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      scaled_re * psif[l2] * base_flow_uz * base_flow_durdz *
+                      testf_ * Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      scaled_re_st * psif[l2] * mesh_velocity[1] *
+                      base_flow_durdz * testf_ * Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      psif[l2] * body_force[0] * testf_ * Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      scaled_re_inv_fr * psif[l2] * G[0] * testf_ * Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      psif[l2] * base_flow_p * dtestfdr * Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * (1.0 + this->Gamma[0]) * r *
+                      base_flow_durdr * group_B[l2] * dtestfdr * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * (1.0 + this->Gamma[0]) * psif[l2] *
+                      base_flow_durdr * dtestfdr * Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * k * k * base_flow_durdr * psif[l2] * testf_ *
+                      Jbar * w / r;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * this->Gamma[0] * r * base_flow_duzdr *
+                      group_F(l, l2) * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * this->Gamma[0] * r * base_flow_duzdr *
+                      group_B[l2] * dtestfdz * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * this->Gamma[0] * psif[l2] * base_flow_duzdr *
+                      dtestfdz * Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * r * base_flow_durdz * group_F(l, l2) * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * r * group_C[l2] * dtestfdz * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * r * base_flow_durdz * group_B[l2] *
+                      dtestfdz * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * psif[l2] * base_flow_durdz * dtestfdz *
+                      Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * (1.0 + this->Gamma[0]) * base_flow_ur *
+                      psif[l2] * testf_ * Jbar * w / (r * r);
+                    jacobian(local_eqn, local_unknown) -=
+                      scaled_re_st * r * base_flow_durdt * testf_ *
+                      group_B[l2] * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      scaled_re * base_flow_utheta * base_flow_utheta * testf_ *
+                      group_B[l2] * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      r * body_force[0] * testf_ * group_B[l2] * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      scaled_re_inv_fr * r * G[0] * testf_ * group_B[l2] * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      base_flow_p * testf_ * group_B[l2] * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * (1.0 + this->Gamma[0]) * base_flow_ur *
+                      testf_ * group_B[l2] * w / r;
+                  }
+
+                  // Perturbation to axial nodal coord (cosine part) Z_k^C
+                  local_unknown = this->nodal_local_eqn(
+                    l2, this->xhat_index_lin_axi_nst(l2, 2));
+                  if (local_unknown >= 0)
+                  {
+                    jacobian(local_eqn, local_unknown) -=
+                      k * scaled_re * base_flow_utheta * base_flow_durdz *
+                      psif[l2] * testf_ * Jbar * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      k * visc_ratio * this->Gamma[0] * base_flow_duthetadr *
+                      dtestfdz * psif[l2] * Jbar * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      k * visc_ratio * this->Gamma[0] * group_E[l2] * testf_ *
+                      w;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * k * base_flow_utheta * dtestfdz * psif[l2] *
+                      Jbar * w / r;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * (1.0 + this->Gamma[0]) * k *
+                      base_flow_duthetadz * psif[l2] * testf_ * Jbar * w / r;
+                    jacobian(local_eqn, local_unknown) +=
+                      k * visc_ratio * base_flow_utheta * testf_ * group_A[l2] *
+                      w / r;
+                  }
+
+                  // Perturbation to axial nodal coord (sine part) Z_k^S
+                  local_unknown = this->nodal_local_eqn(
+                    l2, this->xhat_index_lin_axi_nst(l2, 3));
+                  if (local_unknown >= 0)
+                  {
+                    jacobian(local_eqn, local_unknown) -=
+                      scaled_re * r * base_flow_ur * group_C[l2] * testf_ * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      scaled_re_st * r * mesh_velocity[0] * group_C[l2] *
+                      testf_ * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      scaled_re_st * r * psif[l2] *
+                      this->node_pt(l2)->position_time_stepper_pt()->weight(1,
+                                                                            0) *
+                      base_flow_durdz * testf_ * Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      r * base_flow_p * group_F(l, l2) * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * (1.0 + this->Gamma[0]) * r *
+                      base_flow_durdr * group_F(l, l2) * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * (1.0 + this->Gamma[0]) * r * group_C[l2] *
+                      dtestfdr * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * (1.0 + this->Gamma[0]) * r *
+                      base_flow_durdr * group_A[l2] * dtestfdr * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * k * k * base_flow_durdz * psif[l2] * testf_ *
+                      Jbar * w / r;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * this->Gamma[0] * r * base_flow_duzdr *
+                      dtestfdz * group_A[l2] * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * this->Gamma[0] * r * group_D[l2] * dtestfdz *
+                      w;
+                    jacobian(local_eqn, local_unknown) +=
+                      visc_ratio * r * base_flow_durdz * group_A[l2] *
+                      dtestfdz * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      scaled_re_st * r * base_flow_durdt * testf_ *
+                      group_A[l2] * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      scaled_re * base_flow_utheta * base_flow_utheta * testf_ *
+                      group_A[l2] * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      r * body_force[0] * testf_ * group_A[l2] * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      scaled_re_inv_fr * r * G[0] * testf_ * group_A[l2] * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      base_flow_p * testf_ * group_A[l2] * w;
+                    jacobian(local_eqn, local_unknown) -=
+                      visc_ratio * (1.0 + this->Gamma[0]) * base_flow_ur *
+                      testf_ * group_A[l2] * w / r;
+                  }
+
+                } // End of loop over velocity shape functions
+
+                // Now loop over pressure shape functions
+                // (This is the contribution from pressure gradient)
+                for (unsigned l2 = 0; l2 < n_pres; l2++)
                 {
-                  jacobian(local_eqn, local_unknown) -=
-                    scaled_re * r * psif[l2] * base_flow_durdz * testf_ * Jbar *
-                    w;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * this->Gamma[0] * r * group_B[l2] * dtestfdz *
-                    w;
-                }
+                  // Cosine part P_k^C has no contribution
 
-                // Azimuthal velocity component (cosine part) V_k^C
-                local_unknown = this->nodal_local_eqn(l2, u_nodal_index[4]);
-                if (local_unknown >= 0)
-                {
-                  jacobian(local_eqn, local_unknown) -=
-                    k * visc_ratio * this->Gamma[0] * group_B[l2] * testf_ * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * k * psif[l2] * testf_ * Jbar * w / r;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * (1.0 + this->Gamma[0]) * k * psif[l2] *
-                    testf_ * Jbar * w / r;
-                }
+                  // Sine part P_k^S
+                  local_unknown = this->p_local_eqn(l2, 1);
+                  if (local_unknown >= 0)
+                  {
+                    jacobian(local_eqn, local_unknown) +=
+                      r * psip[l2] * dtestfdr * Jbar * w;
+                    jacobian(local_eqn, local_unknown) +=
+                      psip[l2] * testf_ * Jbar * w;
+                  }
+                } // End of loop over pressure shape functions
 
-                // Azimuthal velocity component (sine part) V_k^S
-                local_unknown = this->nodal_local_eqn(l2, u_nodal_index[5]);
-                if (local_unknown >= 0)
-                {
-                  jacobian(local_eqn, local_unknown) +=
-                    2.0 * scaled_re * base_flow_utheta * psif[l2] * testf_ *
-                    Jbar * w;
-                }
+                // Geometric contribution to jacobian
+                // TODO
 
-                // Perturbation to radial nodal coord (cosine part) R_k^C
-                local_unknown = this->nodal_local_eqn(
-                  l2, this->xhat_index_lin_axi_nst(l2, 0));
-                if (local_unknown >= 0)
-                {
-                  jacobian(local_eqn, local_unknown) -=
-                    k * scaled_re * base_flow_utheta * base_flow_durdr *
-                    psif[l2] * testf_ * Jbar * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    k * visc_ratio * this->Gamma[0] * base_flow_duthetadr *
-                    dtestfdr * psif[l2] * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * k * base_flow_utheta * dtestfdr * psif[l2] *
-                    Jbar * w / r;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * k * psif[l2] * base_flow_utheta * testf_ *
-                    Jbar * w / (r * r);
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * (1.0 + this->Gamma[0]) * k *
-                    base_flow_duthetadr * psif[l2] * testf_ * Jbar * w / r;
-                  jacobian(local_eqn, local_unknown) +=
-                    k * visc_ratio * base_flow_utheta * testf_ * group_B[l2] *
-                    w / r;
-                }
-
-                // Perturbation to radial nodal coord (sine part) R_k^S
-                local_unknown = this->nodal_local_eqn(
-                  l2, this->xhat_index_lin_axi_nst(l2, 1));
-                if (local_unknown >= 0)
-                {
-                  jacobian(local_eqn, local_unknown) -=
-                    scaled_re_st * psif[l2] * base_flow_durdt * testf_ * Jbar *
-                    w;
-                  jacobian(local_eqn, local_unknown) +=
-                    scaled_re_st * r * psif[l2] *
-                    this->node_pt(l2)->position_time_stepper_pt()->weight(1,
-                                                                          0) *
-                    base_flow_durdr * testf_ * Jbar * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    scaled_re * psif[l2] * base_flow_ur * base_flow_durdr *
-                    testf_ * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    scaled_re_st * psif[l2] * mesh_velocity[0] *
-                    base_flow_durdr * testf_ * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    scaled_re * r * base_flow_uz * group_C[l2] * testf_ * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    scaled_re_st * r * mesh_velocity[1] * group_C[l2] * testf_ *
-                    w;
-                  jacobian(local_eqn, local_unknown) -=
-                    scaled_re * psif[l2] * base_flow_uz * base_flow_durdz *
-                    testf_ * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    scaled_re_st * psif[l2] * mesh_velocity[1] *
-                    base_flow_durdz * testf_ * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    psif[l2] * body_force[0] * testf_ * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    scaled_re_inv_fr * psif[l2] * G[0] * testf_ * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    psif[l2] * base_flow_p * dtestfdr * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * (1.0 + this->Gamma[0]) * r * base_flow_durdr *
-                    group_B[l2] * dtestfdr * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * (1.0 + this->Gamma[0]) * psif[l2] *
-                    base_flow_durdr * dtestfdr * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * k * k * base_flow_durdr * psif[l2] * testf_ *
-                    Jbar * w / r;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * this->Gamma[0] * r * base_flow_duzdr *
-                    group_F(l, l2) * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * this->Gamma[0] * r * base_flow_duzdr *
-                    group_B[l2] * dtestfdz * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * this->Gamma[0] * psif[l2] * base_flow_duzdr *
-                    dtestfdz * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * r * base_flow_durdz * group_F(l, l2) * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * r * group_C[l2] * dtestfdz * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * r * base_flow_durdz * group_B[l2] * dtestfdz *
-                    w;
-                  jacobian(local_eqn, local_unknown) -= visc_ratio * psif[l2] *
-                                                        base_flow_durdz *
-                                                        dtestfdz * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * (1.0 + this->Gamma[0]) * base_flow_ur *
-                    psif[l2] * testf_ * Jbar * w / (r * r);
-                  jacobian(local_eqn, local_unknown) -=
-                    scaled_re_st * r * base_flow_durdt * testf_ * group_B[l2] *
-                    w;
-                  jacobian(local_eqn, local_unknown) +=
-                    scaled_re * base_flow_utheta * base_flow_utheta * testf_ *
-                    group_B[l2] * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    r * body_force[0] * testf_ * group_B[l2] * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    scaled_re_inv_fr * r * G[0] * testf_ * group_B[l2] * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    base_flow_p * testf_ * group_B[l2] * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * (1.0 + this->Gamma[0]) * base_flow_ur *
-                    testf_ * group_B[l2] * w / r;
-                }
-
-                // Perturbation to axial nodal coord (cosine part) Z_k^C
-                local_unknown = this->nodal_local_eqn(
-                  l2, this->xhat_index_lin_axi_nst(l2, 2));
-                if (local_unknown >= 0)
-                {
-                  jacobian(local_eqn, local_unknown) -=
-                    k * scaled_re * base_flow_utheta * base_flow_durdz *
-                    psif[l2] * testf_ * Jbar * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    k * visc_ratio * this->Gamma[0] * base_flow_duthetadr *
-                    dtestfdz * psif[l2] * Jbar * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    k * visc_ratio * this->Gamma[0] * group_E[l2] * testf_ * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * k * base_flow_utheta * dtestfdz * psif[l2] *
-                    Jbar * w / r;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * (1.0 + this->Gamma[0]) * k *
-                    base_flow_duthetadz * psif[l2] * testf_ * Jbar * w / r;
-                  jacobian(local_eqn, local_unknown) +=
-                    k * visc_ratio * base_flow_utheta * testf_ * group_A[l2] *
-                    w / r;
-                }
-
-                // Perturbation to axial nodal coord (sine part) Z_k^S
-                local_unknown = this->nodal_local_eqn(
-                  l2, this->xhat_index_lin_axi_nst(l2, 3));
-                if (local_unknown >= 0)
-                {
-                  jacobian(local_eqn, local_unknown) -=
-                    scaled_re * r * base_flow_ur * group_C[l2] * testf_ * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    scaled_re_st * r * mesh_velocity[0] * group_C[l2] * testf_ *
-                    w;
-                  jacobian(local_eqn, local_unknown) +=
-                    scaled_re_st * r * psif[l2] *
-                    this->node_pt(l2)->position_time_stepper_pt()->weight(1,
-                                                                          0) *
-                    base_flow_durdz * testf_ * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    r * base_flow_p * group_F(l, l2) * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * (1.0 + this->Gamma[0]) * r * base_flow_durdr *
-                    group_F(l, l2) * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * (1.0 + this->Gamma[0]) * r * group_C[l2] *
-                    dtestfdr * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * (1.0 + this->Gamma[0]) * r * base_flow_durdr *
-                    group_A[l2] * dtestfdr * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * k * k * base_flow_durdz * psif[l2] * testf_ *
-                    Jbar * w / r;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * this->Gamma[0] * r * base_flow_duzdr *
-                    dtestfdz * group_A[l2] * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * this->Gamma[0] * r * group_D[l2] * dtestfdz *
-                    w;
-                  jacobian(local_eqn, local_unknown) +=
-                    visc_ratio * r * base_flow_durdz * group_A[l2] * dtestfdz *
-                    w;
-                  jacobian(local_eqn, local_unknown) -=
-                    scaled_re_st * r * base_flow_durdt * testf_ * group_A[l2] *
-                    w;
-                  jacobian(local_eqn, local_unknown) +=
-                    scaled_re * base_flow_utheta * base_flow_utheta * testf_ *
-                    group_A[l2] * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    r * body_force[0] * testf_ * group_A[l2] * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    scaled_re_inv_fr * r * G[0] * testf_ * group_A[l2] * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    base_flow_p * testf_ * group_A[l2] * w;
-                  jacobian(local_eqn, local_unknown) -=
-                    visc_ratio * (1.0 + this->Gamma[0]) * base_flow_ur *
-                    testf_ * group_A[l2] * w / r;
-                }
-
-              } // End of loop over velocity shape functions
-
-              // Now loop over pressure shape functions
-              // (This is the contribution from pressure gradient)
-              for (unsigned l2 = 0; l2 < n_pres; l2++)
-              {
-                // Cosine part P_k^C has no contribution
-
-                // Sine part P_k^S
-                local_unknown = this->p_local_eqn(l2, 1);
-                if (local_unknown >= 0)
-                {
-                  jacobian(local_eqn, local_unknown) +=
-                    r * psip[l2] * dtestfdr * Jbar * w;
-                  jacobian(local_eqn, local_unknown) +=
-                    psip[l2] * testf_ * Jbar * w;
-                }
-              } // End of loop over pressure shape functions
-
-              // Geometric contribution to jacobian
-              // TODO
-
-            } // End of Jacobian calculation
-
+              } // End of Jacobian calculation
+            }
           } // End of if not boundary condition statement
 
           // --------------------------------------------
@@ -1587,7 +1695,8 @@ namespace oomph
           local_eqn = this->nodal_local_eqn(l, u_nodal_index[2]);
 
           // If it's not a boundary condition
-          if (local_eqn >= 0)
+          if (local_eqn >= 0 &&
+              not(Node_is_subject_to_velocity_dirichlet_bcs[l][2]))
           {
             residuals[local_eqn] -=
               scaled_re_st * r * dWCdt * testf_ * Jbar * w;
@@ -1943,7 +2052,8 @@ namespace oomph
           local_eqn = this->nodal_local_eqn(l, u_nodal_index[3]);
 
           // If it's not a boundary condition
-          if (local_eqn >= 0)
+          if (local_eqn >= 0 &&
+              not(Node_is_subject_to_velocity_dirichlet_bcs[l][3]))
           {
             residuals[local_eqn] -=
               scaled_re_st * r * dWSdt * testf_ * Jbar * w;
@@ -2298,7 +2408,8 @@ namespace oomph
           local_eqn = this->nodal_local_eqn(l, u_nodal_index[4]);
 
           // If it's not a boundary condition
-          if (local_eqn >= 0)
+          if (local_eqn >= 0 &&
+              not(Node_is_subject_to_velocity_dirichlet_bcs[l][4]))
           {
             residuals[local_eqn] -=
               scaled_re_st * r * dVCdt * testf_ * Jbar * w;
@@ -2749,7 +2860,8 @@ namespace oomph
           local_eqn = this->nodal_local_eqn(l, u_nodal_index[5]);
 
           // If it's not a boundary condition
-          if (local_eqn >= 0)
+          if (local_eqn >= 0 &&
+              not(Node_is_subject_to_velocity_dirichlet_bcs[l][5]))
           {
             residuals[local_eqn] -=
               scaled_re_st * r * dVSdt * testf_ * Jbar * w;
@@ -3195,7 +3307,6 @@ namespace oomph
 
         } // End of loop over fluid test functions
 
-
         // ====================
         // CONTINUITY EQUATIONS
         // ====================
@@ -3537,6 +3648,51 @@ namespace oomph
           }
         } // End of loop over l
       } // End of loop over the integration points
+
+      // VELOCITY DIRICHLET BCS
+      //-----------------------
+      // Loop over the nodes
+      for (unsigned l = 0; l < n_node; l++)
+      {
+        // Find the global coordinate of the node
+        Vector<double> global_coordinate(2);
+        for (unsigned d = 0; d < 2; d++)
+        {
+          global_coordinate[d] = this->raw_nodal_position(l, d);
+        }
+
+        // Loop over the velocity components
+        for (unsigned d = 0; d < this->n_u_lin_axi_nst(); d++)
+        {
+          // Find its local equation number
+          local_eqn = this->nodal_local_eqn(l, u_nodal_index[d]);
+
+          // If it is not pinned
+          if (local_eqn >= 0)
+          {
+            // If it is a Dirichlet boundary condition
+            if (Node_is_subject_to_velocity_dirichlet_bcs[l][d])
+            {
+              // Initialise the residual
+              residuals[local_eqn] = 0.0;
+
+              // Add the contribution of the nodal value
+              residuals[local_eqn] +=
+                this->nodal_value(l, u_index_lin_axi_nst_fe(l, d));
+
+              const unsigned mod = d % 2;
+              const unsigned rem = std::floor(d / 2);
+              // Add the contribution of the singularities (all of them,
+              // summed)
+              residuals[local_eqn] += u_bar(global_coordinate, mod, rem);
+
+              // Substract the imposed Dirichlet value
+              residuals[local_eqn] -= Imposed_velocity_values_at_node[l][d];
+            }
+          }
+        }
+      }
+      // End of velocity Dirichlet conditions
     }
 
     /// Return the i-th component of the FE interpolated velocity
