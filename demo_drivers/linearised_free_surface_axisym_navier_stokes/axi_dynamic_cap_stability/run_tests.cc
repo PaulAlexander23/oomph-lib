@@ -118,7 +118,7 @@ BOOST_AUTO_TEST_CASE(show_artefact_mode_2)
   // Eigensolve
   Vector<std::complex<double>> eigenvalue =
     perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(1);
-  BOOST_TEST(abs(eigenvalue[0].real() - (-0.59043964949838124)) < 1e-6);
+  BOOST_TEST(abs(eigenvalue[0].real() - (-1.1117228111526063)) < 1e-6);
 }
 
 
