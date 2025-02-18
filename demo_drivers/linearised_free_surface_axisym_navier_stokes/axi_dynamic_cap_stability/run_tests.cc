@@ -84,6 +84,43 @@ BOOST_AUTO_TEST_CASE(show_artefact_mode_1)
   BOOST_TEST(abs(eigenvalue[0].real() - (-0.59043964949838124)) < 1e-6);
 }
 
+BOOST_AUTO_TEST_CASE(show_artefact_mode_2)
+{
+  Params parameters;
+  parameters.azimuthal_mode_number = 2;
+  parameters.contact_angle = 120.0 / 180.0 * MathematicalConstants::Pi;
+
+  // Create the base problem
+  BASE_PROBLEM base_problem(&parameters);
+  base_problem.steady_newton_solve();
+
+  base_problem.reset_lagrange();
+  base_problem.assign_initial_values_impulsive();
+
+  // Create the linear problem
+  PERTURBED_PROBLEM perturbed_problem(base_problem.bulk_mesh_pt(),
+                                      base_problem.free_surface_mesh_pt(),
+                                      base_problem.slip_surface_mesh_pt(),
+                                      &parameters);
+
+  perturbed_problem.assign_initial_values_impulsive();
+  perturbed_problem.disable_singular_correction();
+  perturbed_problem.doc_solution();
+
+  // Steady newton solve
+  perturbed_problem.steady_newton_solve();
+  perturbed_problem.doc_solution();
+
+  perturbed_problem.make_unsteady();
+  perturbed_problem.pin_horizontal_mesh_deformation();
+
+
+  // Eigensolve
+  Vector<std::complex<double>> eigenvalue =
+    perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(1);
+  BOOST_TEST(abs(eigenvalue[0].real() - (-0.59043964949838124)) < 1e-6);
+}
+
 
 // Mode 0
 // No displacement
