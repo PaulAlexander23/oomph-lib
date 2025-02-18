@@ -8,6 +8,10 @@ all: run_tests
 iwyu.out: ${run_test_SOURCES}
 	include-what-you-use -Xiwyu $(AM_CPPFLAGS) run_tests.cc 2> iwyu.out
 
+add-labels: labels.csv add-labels-to-vtu.sh 
+	./add-labels-to-vtu.sh labels.csv 'RESLT/perturbed*.vtu'
+	
+
 fix_include: iwyu.out
 	fix_include < iwyu.out
 
