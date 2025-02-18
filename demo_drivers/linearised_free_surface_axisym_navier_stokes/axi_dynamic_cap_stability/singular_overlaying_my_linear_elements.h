@@ -157,6 +157,37 @@ namespace oomph
       return dudt;
     }
 
+    /// Return the i-th component of the FE interpolated velocity
+    /// u[i] at local coordinate s
+    double interpolated_dudx_lin_axi_nst(const Vector<double>& s,
+                                         const unsigned& i,
+                                         const unsigned& j) const
+    {
+      // Determine number of nodes in the element
+      const unsigned n_node = this->nnode();
+
+      // Provide storage for local shape functions
+      Shape psi(n_node);
+      DShape dpsidx(n_node, 2);
+
+      // Find values of shape functions
+      double J = this->dshape_eulerian(s, psi, dpsidx);
+
+      // Get the index at which the velocity is stored
+      const unsigned u_nodal_index = this->u_index_lin_axi_nst(i);
+
+      // Initialise value of u
+      double interpolated_dudx = 0.0;
+
+      // Loop over the local nodes and sum
+      for (unsigned l = 0; l < n_node; l++)
+      {
+        interpolated_dudx += this->nodal_value(l, u_nodal_index) * dpsidx(l, j);
+      }
+
+      return (interpolated_dudx);
+    }
+
     virtual inline unsigned p_index_lin_axi_nst_fe(const unsigned& n,
                                                    const unsigned& i)
     {
@@ -3856,6 +3887,16 @@ namespace oomph
           else
           {
             outfile << 0.0 << " ";
+          }
+        }
+
+
+        // Output gradient of velocities
+        for (unsigned i = 0; i < 6; i++)
+        {
+          for (unsigned j = 0; j < 2; j++)
+          {
+            outfile << this->interpolated_dudx_lin_axi_nst(s, i, j) << " ";
           }
         }
 
