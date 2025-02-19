@@ -431,7 +431,7 @@ namespace oomph
           this->node_pt(l)->set_value(
             u_index_lin_axi_nst_fe(l, d),
             this->nodal_value(l, this->u_index_lin_axi_nst(d)) -
-              u_bar(global_coordinate, mod, rem));
+              u_bar(global_coordinate, rem, mod));
         }
       }
     }
@@ -672,6 +672,13 @@ namespace oomph
             for (unsigned j = 0; j < 2; j++)
             {
               interpolated_duds(i, j) += u_value * dpsifds(l, j);
+
+              if (!this->is_using_analytical_gradient())
+              {
+                interpolated_duds(i, j) +=
+                  u_bar(this->node_pt(l)->position(), floor(i / 2), i % 2) *
+                  dpsifds(l, j);
+              }
             }
           }
         } // End of loop over the element's nodes
@@ -697,17 +704,20 @@ namespace oomph
         {
           const unsigned mod = i % 2;
           const unsigned rem = std::floor(i / 2);
-          interpolated_u[i] += u_bar_local[rem][mod];
+          interpolated_u[i] += u_bar_local[mod][rem];
 
-          // Loop over the two coordinate directions for the derivatives
-          for (unsigned j = 0; j < 2; j++)
+          if (this->is_using_analytical_gradient())
           {
-            // Loop over the two coordinate directions again for the sum of
-            // derivatives
-            for (unsigned l = 0; l < 2; l++)
+            // Loop over the two coordinate directions for the derivatives
+            for (unsigned j = 0; j < 2; j++)
             {
-              interpolated_duds(i, j) +=
-                grad_u_bar_local[rem][mod][l] * interpolated_dxbar_ds(l, j);
+              // Loop over the two coordinate directions again for the sum of
+              // derivatives
+              for (unsigned l = 0; l < 2; l++)
+              {
+                interpolated_duds(i, j) +=
+                  grad_u_bar_local[mod][rem][l] * interpolated_dxbar_ds(l, j);
+              }
             }
           }
         }
