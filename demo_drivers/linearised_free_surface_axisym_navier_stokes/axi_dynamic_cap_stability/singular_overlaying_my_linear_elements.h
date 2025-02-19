@@ -16,6 +16,9 @@ namespace oomph
     /// Flag to indicate if the Jacobian is computed using finite differences
     bool IsJacobianFD;
 
+    /// Flag to indicate if the analytical gradient is used
+    bool IsUsingAnalyticalGradient;
+
     /// Vector of pointers to SingularNavierStokesSolutionElement objects
     Vector<SingularNavierStokesSolutionElement<
       OverlayingMyLinearElement<BASE_ELEMENT>>*>
@@ -35,7 +38,8 @@ namespace oomph
     SingularOverlayingMyLinearElement()
       : OverlayingMyLinearElement<BASE_ELEMENT>(),
         IsAugmented(false),
-        IsJacobianFD(true)
+        IsJacobianFD(true),
+        IsUsingAnalyticalGradient(true)
     {
       const unsigned n_node = this->nnode();
       const unsigned cached_n_u_nst = 6;
@@ -84,6 +88,11 @@ namespace oomph
     bool is_using_fd_jacobian()
     {
       return IsJacobianFD;
+    }
+
+    bool is_using_analytical_gradient()
+    {
+      return IsUsingAnalyticalGradient;
     }
 
     void augment()
