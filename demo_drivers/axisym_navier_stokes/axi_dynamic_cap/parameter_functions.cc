@@ -1,5 +1,7 @@
 #include "parameter_functions.h"
 
+#include <vector>
+
 namespace oomph
 {
   std::function<void(const double&,

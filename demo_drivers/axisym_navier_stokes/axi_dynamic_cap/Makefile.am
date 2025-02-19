@@ -11,11 +11,20 @@ EXEC:= \
 # Makefile rules
 run: ${EXEC}
 
+%.iwyu: %.cc
+	include-what-you-use $(AM_CPPFLAGS) $< 2> $@
+
 # Run parallel axi_dynamic_cap with the parameters in the validata directory
 # test: axi_dynamic_cap
 # 	./generate_tests.zsh
 # 	./run_tests.zsh
 # 	cat tests.log
+iwyu: $(IWYU)
+
+%.fixed: %.iwyu
+	fix_include < $< > $@
+
+fix_include: $(IWYU_FIXED)
 
 test.log: run_tests
 	./run_tests -t extra > test.log
@@ -32,6 +41,10 @@ noinst_LIBRARIES = libaxi_dynamic_cap.a
 
 sources = parameters.cc parameter_functions.cc base_element.cc \
 		  singular_axisym_dynamic_cap_problem.cc
+
+# Pattern replace sources cc with iwyu
+IWYU=$(patsubst %.cc,%.iwyu,$(sources))
+IWYU_FIXED=$(patsubst %.iwyu,%.fixed,$(IWYU))
 
 axi_dynamic_cap_SOURCES = $(sources) axi_dynamic_cap.cc 
 create_parameter_files_SOURCES = $(sources) create_parameter_files.cc
