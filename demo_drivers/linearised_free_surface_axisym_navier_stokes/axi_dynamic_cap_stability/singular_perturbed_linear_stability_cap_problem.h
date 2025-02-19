@@ -523,7 +523,7 @@ namespace oomph
       for (unsigned i = 0; i < 2; i++)
       {
         SCALING_ELEMENT* singular_el_pt = dynamic_cast<SCALING_ELEMENT*>(
-          Singularity_scaling_mesh_pt->element_pt(1));
+          Singularity_scaling_mesh_pt->element_pt(i));
         singular_el_pt->pin_c();
         singular_el_pt->set_c(0.0);
       }
