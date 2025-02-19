@@ -161,7 +161,7 @@ namespace oomph
     /// u[i] at local coordinate s
     double interpolated_dudx_lin_axi_nst(const Vector<double>& s,
                                          const unsigned& i,
-                                         const unsigned& j) const
+                                         const unsigned& j)
     {
       // Determine number of nodes in the element
       const unsigned n_node = this->nnode();
@@ -173,16 +173,159 @@ namespace oomph
       // Find values of shape functions
       double J = this->dshape_eulerian(s, psi, dpsidx);
 
-      // Get the index at which the velocity is stored
-      const unsigned u_nodal_index = this->u_index_lin_axi_nst(i);
-
       // Initialise value of u
       double interpolated_dudx = 0.0;
 
       // Loop over the local nodes and sum
       for (unsigned l = 0; l < n_node; l++)
       {
-        interpolated_dudx += this->nodal_value(l, u_nodal_index) * dpsidx(l, j);
+        interpolated_dudx +=
+          this->nodal_value(l, this->u_index_lin_axi_nst_fe(l, i)) *
+          dpsidx(l, j);
+      }
+
+      return (interpolated_dudx);
+    }
+
+    /// Return the i-th component of the FE interpolated velocity
+    /// u[i] at local coordinate s
+    double interpolated_duds_lin_axi_nst(const Vector<double>& s,
+                                         const unsigned& i,
+                                         const unsigned& j)
+    {
+      // Determine number of nodes in the element
+      const unsigned n_node = this->nnode();
+
+      // Provide storage for local shape functions
+      Shape psi(n_node);
+      DShape dpsids(n_node, 2);
+
+      // Find values of shape functions
+      this->dshape_local(s, psi, dpsids);
+
+      // Initialise value of u
+      double interpolated_duds = 0.0;
+
+      // Loop over the local nodes and sum
+      for (unsigned l = 0; l < n_node; l++)
+      {
+        interpolated_duds +=
+          this->nodal_value(l, this->u_index_lin_axi_nst_fe(l, i)) *
+          dpsids(l, j);
+      }
+
+      return (interpolated_duds);
+    }
+
+    /// Return the i-th component of the FE interpolated velocity
+    /// u[i] at local coordinate s
+    double interpolated_dudx_lin_axi_nst_bar(const Vector<double>& s,
+                                             const unsigned& i,
+                                             const unsigned& j)
+    {
+      // Determine number of nodes in the element
+      const unsigned n_node = this->nnode();
+
+      // Provide storage for local shape functions
+      Shape psi(n_node);
+      DShape dpsids(n_node, 2);
+      Shape psi2(n_node);
+      DShape dpsidx(n_node, 2);
+
+      // Find values of shape functions
+      this->dshape_local(s, psi, dpsids);
+      const double J = this->dshape_eulerian(s, psi2, dpsidx);
+
+      // Initialise value of u
+      double interpolated_dudx = 0.0;
+
+      Vector<double> interpolated_x(2, 0.0);
+      // Allocate storage for the derivatives of the unperturbed positions
+      // w.r.t. local coordinates (s_1 and s_2)
+      DenseMatrix<double> interpolated_dxbar_ds(2, 2, 0.0);
+      // Loop over the local nodes and sum
+      for (unsigned l = 0; l < n_node; l++)
+      {
+        for (unsigned n = 0; n < 2; n++)
+        {
+          // Calculate the unperturbed position xbar
+          interpolated_x[n] += this->raw_nodal_position(l, n) * psi[l];
+
+          // Loop over the two coordinate directions (for derivatives)
+          for (unsigned j = 0; j < 2; j++)
+          {
+            interpolated_dxbar_ds(n, j) +=
+              this->raw_nodal_position(l, n) * dpsids(l, j);
+          }
+        }
+      }
+
+      unsigned mod = i % 2;
+      unsigned rem = std::floor(i / 2);
+
+      for (unsigned l = 0; l < 2; l++)
+      {
+        Vector<Vector<double>> grad = grad_u_bar(interpolated_x, mod);
+        double dudx = grad[rem][l];
+        double dxds = interpolated_dxbar_ds(l, j);
+        interpolated_dudx += dudx; /// dxds * J;
+      }
+
+      return (interpolated_dudx);
+    }
+
+    /// Return the i-th component of the FE interpolated velocity
+    /// u[i] at local coordinate s
+    double interpolated_duds_lin_axi_nst_bar(const Vector<double>& s,
+                                             const unsigned& i,
+                                             const unsigned& j)
+    {
+      // Determine number of nodes in the element
+      const unsigned n_node = this->nnode();
+
+      // Provide storage for local shape functions
+      Shape psi(n_node);
+      DShape dpsids(n_node, 2);
+      Shape psi2(n_node);
+      DShape dpsidx(n_node, 2);
+
+      // Find values of shape functions
+      this->dshape_local(s, psi, dpsids);
+      const double J = this->dshape_eulerian(s, psi2, dpsidx);
+
+      // Initialise value of u
+      double interpolated_dudx = 0.0;
+
+      Vector<double> interpolated_x(2, 0.0);
+      // Allocate storage for the derivatives of the unperturbed positions
+      // w.r.t. local coordinates (s_1 and s_2)
+      DenseMatrix<double> interpolated_dxbar_ds(2, 2, 0.0);
+      // Loop over the local nodes and sum
+      for (unsigned l = 0; l < n_node; l++)
+      {
+        for (unsigned n = 0; n < 2; n++)
+        {
+          // Calculate the unperturbed position xbar
+          interpolated_x[n] += this->raw_nodal_position(l, n) * psi[l];
+
+          // Loop over the two coordinate directions (for derivatives)
+          for (unsigned j = 0; j < 2; j++)
+          {
+            interpolated_dxbar_ds(n, j) +=
+              this->raw_nodal_position(l, n) * dpsids(l, j);
+          }
+        }
+      }
+
+      unsigned mod = i % 2;
+      unsigned rem = std::floor(i / 2);
+
+      for (unsigned l = 0; l < 2; l++)
+      {
+        Vector<Vector<double>> grad = grad_u_bar(interpolated_x, mod);
+        double dudx = grad[rem][l];
+        double dxds = interpolated_dxbar_ds(l, j);
+        interpolated_dudx += dudx * dxds;
       }
 
       return (interpolated_dudx);
@@ -3890,13 +4033,69 @@ namespace oomph
           }
         }
 
+        // Output gradient of velocities
+        for (unsigned i = 0; i < 6; i++)
+        {
+          for (unsigned j = 0; j < 2; j++)
+          {
+            if (this->is_augmented())
+            {
+              outfile << this->interpolated_dudx_lin_axi_nst(s, i, j) << " ";
+            }
+            else
+            {
+              outfile << 0 << " ";
+            }
+          }
+        }
+
+        // Output gradient of velocities
+        for (unsigned i = 0; i < 4; i++)
+        {
+          for (unsigned j = 0; j < 2; j++)
+          {
+            if (this->is_augmented())
+            {
+              outfile << this->interpolated_dudx_lin_axi_nst_bar(s, i, j)
+                      << " ";
+            }
+            else
+            {
+              outfile << 0 << " ";
+            }
+          }
+        }
 
         // Output gradient of velocities
         for (unsigned i = 0; i < 6; i++)
         {
           for (unsigned j = 0; j < 2; j++)
           {
-            outfile << this->interpolated_dudx_lin_axi_nst(s, i, j) << " ";
+            if (this->is_augmented())
+            {
+              outfile << this->interpolated_duds_lin_axi_nst(s, i, j) << " ";
+            }
+            else
+            {
+              outfile << 0 << " ";
+            }
+          }
+        }
+
+        // Output gradient of velocities
+        for (unsigned i = 0; i < 4; i++)
+        {
+          for (unsigned j = 0; j < 2; j++)
+          {
+            if (this->is_augmented())
+            {
+              outfile << this->interpolated_duds_lin_axi_nst_bar(s, i, j)
+                      << " ";
+            }
+            else
+            {
+              outfile << 0 << " ";
+            }
           }
         }
 
