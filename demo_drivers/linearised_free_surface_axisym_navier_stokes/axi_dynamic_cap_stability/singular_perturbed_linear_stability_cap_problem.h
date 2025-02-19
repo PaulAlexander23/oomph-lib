@@ -412,6 +412,8 @@ namespace oomph
         PERTURBED_ELEMENT,
         TIMESTEPPER>::set_boundary_conditions();
 
+      set_outer_boundary_condition();
+
       if (this->parameters_pt()->azimuthal_mode_number == 0)
       {
         // Set the boundary conditions for the singular scaling elements
@@ -421,15 +423,49 @@ namespace oomph
         singular_el_pt->set_c(0.0);
       }
 
-      // unsigned n_aug_bulk = Augmented_bulk_element_number.size();
-      // for (unsigned e = 0; e < n_aug_bulk; e++)
-      //{
-      //   // Upcast from GeneralisedElement to the present element
-      //   PERTURBED_ELEMENT* el_pt = dynamic_cast<PERTURBED_ELEMENT*>(
-      //     this->fluid_mesh_pt()->element_pt(Augmented_bulk_element_number[e]));
-      //   // Setup the FE correction values
-      //   el_pt->setup_new_data();
-      // }
+      // Rebuild the global mesh
+      this->rebuild_global_mesh();
+
+      // Set up the equation numbering so we are ready to solve the problem.
+      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                 << std::endl;
+    }
+    void pin_wall_velocity()
+    {
+      oomph_info << "pin_wall_velocity" << std::endl;
+      // Get number of nodes along the slip surface
+      const unsigned n_node =
+        this->fluid_mesh_pt()->nboundary_node(Outer_boundary_with_slip_id);
+      // Loop over nodes and pin vertical velocity
+      for (unsigned n = 0; n < n_node; n++)
+      {
+        Node* nod_pt = this->fluid_mesh_pt()->boundary_node_pt(
+          Outer_boundary_with_slip_id, n);
+        nod_pt->pin(6);
+        nod_pt->pin(7);
+        nod_pt->set_value(6, 1.0);
+        nod_pt->set_value(7, 1.0);
+      }
+
+      // Rebuild the global mesh
+      this->rebuild_global_mesh();
+
+      // Set up the equation numbering so we are ready to solve the problem.
+      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                 << std::endl;
+    }
+
+    void setup_new_data()
+    {
+      unsigned n_aug_bulk = Augmented_bulk_element_number.size();
+      for (unsigned e = 0; e < n_aug_bulk; e++)
+      {
+        // Upcast from GeneralisedElement to the present element
+        PERTURBED_ELEMENT* el_pt = dynamic_cast<PERTURBED_ELEMENT*>(
+          this->fluid_mesh_pt()->element_pt(Augmented_bulk_element_number[e]));
+        // Setup the FE correction values
+        el_pt->setup_new_data();
+      }
     }
 
     /// Disable the singular correction by pinning the singular function
@@ -446,6 +482,17 @@ namespace oomph
       this->rebuild_global_mesh();
       oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
                  << std::endl;
+    }
+
+    // Set the singular correction
+    void set_the_singular_correction(const Vector<double>& c)
+    {
+      for (unsigned i = 0; i < 2; i++)
+      {
+        SCALING_ELEMENT* singular_el_pt = dynamic_cast<SCALING_ELEMENT*>(
+          Singularity_scaling_mesh_pt->element_pt(i));
+        singular_el_pt->set_c(c[i]);
+      }
     }
 
     /// Enable the singular correction by unpinning the singular function
@@ -483,10 +530,25 @@ namespace oomph
             const unsigned us_index = 1;
             const unsigned vc_index = 4;
             const unsigned vs_index = 5;
+            el_pt->node_pt(m)->unpin(4 + uc_index);
+            el_pt->node_pt(m)->unpin(4 + vc_index);
+            el_pt->node_pt(m)->unpin(4 + us_index);
+            el_pt->node_pt(m)->unpin(4 + vs_index);
             el_pt->impose_velocity_dirichlet_bc_on_node(m, uc_index);
             el_pt->impose_velocity_dirichlet_bc_on_node(m, vc_index);
             el_pt->impose_velocity_dirichlet_bc_on_node(m, us_index);
             el_pt->impose_velocity_dirichlet_bc_on_node(m, vs_index);
+
+            if (this->parameters_pt()->slip_length == 0)
+            {
+              const unsigned wc_index = 2;
+              const unsigned ws_index = 3;
+              el_pt->node_pt(m)->unpin(4 + wc_index);
+              el_pt->node_pt(m)->unpin(4 + ws_index);
+              el_pt->impose_velocity_dirichlet_bc_on_node(m, wc_index);
+              el_pt->impose_velocity_dirichlet_bc_on_node(m, ws_index);
+            }
+
             for (unsigned j = 0; j < 2; j++)
             {
               el_pt->pin_Xhat(m, 0, j);
