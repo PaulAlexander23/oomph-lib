@@ -39,7 +39,7 @@ namespace oomph
       : OverlayingMyLinearElement<BASE_ELEMENT>(),
         IsAugmented(false),
         IsJacobianFD(true),
-        IsUsingAnalyticalGradient(true)
+        IsUsingAnalyticalGradient(false)
     {
       const unsigned n_node = this->nnode();
       const unsigned cached_n_u_nst = 6;
@@ -4146,7 +4146,8 @@ namespace oomph
     SolidSingularAxisymNavierStokesElement<
       ProjectableAxisymmetricTTaylorHoodPVDElement>>;
 
-  extern template class FaceGeometry<SingularOverlayingMyLinearElement<SolidSingularAxisymNavierStokesElement<
+  extern template class FaceGeometry<
+    SingularOverlayingMyLinearElement<SolidSingularAxisymNavierStokesElement<
       ProjectableAxisymmetricTTaylorHoodPVDElement>>>;
 
 }; // namespace oomph
