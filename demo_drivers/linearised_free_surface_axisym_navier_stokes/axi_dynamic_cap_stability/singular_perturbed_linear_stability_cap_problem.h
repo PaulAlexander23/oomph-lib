@@ -257,7 +257,7 @@ namespace oomph
         // The singular function satisfies the Stokes equation
         el_pt->singular_function_satisfies_stokes_equation() = false;
 
-        el_pt->pin_c();
+        //el_pt->pin_c();
         el_pt->set_c(0.0);
 
         // Add element to the mesh
@@ -412,7 +412,6 @@ namespace oomph
         PERTURBED_ELEMENT,
         TIMESTEPPER>::set_boundary_conditions();
 
-      set_outer_boundary_condition();
 
       if (this->parameters_pt()->azimuthal_mode_number == 0)
       {
@@ -430,9 +429,13 @@ namespace oomph
       oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
                  << std::endl;
     }
-    void pin_wall_velocity()
+
+
+    Vector<Vector<double>> wall_velocity()
     {
-      oomph_info << "pin_wall_velocity" << std::endl;
+      Vector<Vector<double>> wall_velocity;
+
+      Vector<double> node_wall_velocity(2, 0.0);
       // Get number of nodes along the slip surface
       const unsigned n_node =
         this->fluid_mesh_pt()->nboundary_node(Outer_boundary_with_slip_id);
@@ -441,19 +444,64 @@ namespace oomph
       {
         Node* nod_pt = this->fluid_mesh_pt()->boundary_node_pt(
           Outer_boundary_with_slip_id, n);
-        nod_pt->pin(6);
-        nod_pt->pin(7);
-        nod_pt->set_value(6, 1.0);
-        nod_pt->set_value(7, 1.0);
+        node_wall_velocity[0] = nod_pt->value(6);
+        node_wall_velocity[1] = nod_pt->value(7);
+
+        wall_velocity.push_back(node_wall_velocity);
       }
 
-      // Rebuild the global mesh
-      this->rebuild_global_mesh();
-
-      // Set up the equation numbering so we are ready to solve the problem.
-      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
-                 << std::endl;
+      return wall_velocity;
     }
+
+    Vector<Vector<double>> velocity()
+    {
+      Vector<Vector<double>> velocity;
+
+      Vector<double> node_velocity(6, 0.0);
+      // Get number of nodes along the slip surface
+      const unsigned n_node =
+        this->fluid_mesh_pt()->nboundary_node(Outer_boundary_with_slip_id);
+      // Loop over nodes and pin vertical velocity
+      for (unsigned n = 0; n < n_node; n++)
+      {
+        Node* nod_pt = this->fluid_mesh_pt()->boundary_node_pt(
+          Outer_boundary_with_slip_id, n);
+
+        for (unsigned i = 0; i < 6; i++)
+        {
+          node_velocity[i] = nod_pt->value(4 + i);
+        }
+
+        velocity.push_back(node_velocity);
+      }
+
+      return velocity;
+    }
+
+    // void pin_wall_velocity(const double& velocity)
+    //{
+    //   oomph_info << "pin_wall_velocity" << std::endl;
+    //   // Get number of nodes along the slip surface
+    //   const unsigned n_node =
+    //     this->fluid_mesh_pt()->nboundary_node(Outer_boundary_with_slip_id);
+    //   // Loop over nodes and pin vertical velocity
+    //   for (unsigned n = 0; n < n_node; n++)
+    //   {
+    //     Node* nod_pt = this->fluid_mesh_pt()->boundary_node_pt(
+    //       Outer_boundary_with_slip_id, n);
+    //     nod_pt->pin(6);
+    //     nod_pt->pin(7);
+    //     nod_pt->set_value(6, 1.0);
+    //     nod_pt->set_value(7, 1.0);
+    //   }
+
+    //  // Rebuild the global mesh
+    //  this->rebuild_global_mesh();
+
+    //  // Set up the equation numbering so we are ready to solve the problem.
+    //  oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+    //             << std::endl;
+    //}
 
     void setup_new_data()
     {
@@ -510,53 +558,56 @@ namespace oomph
                  << std::endl;
     }
 
-    virtual void set_outer_boundary_condition()
-    {
-      oomph_info << "set_outer_boundary_condition" << std::endl;
+    // virtual void set_outer_boundary_condition()
+    //{
+    //   oomph_info << "set_outer_boundary_condition" << std::endl;
 
-      // Loop over the boundary elements
-      unsigned n_element =
-        this->fluid_mesh_pt()->nboundary_element(Outer_boundary_with_slip_id);
-      for (unsigned n = 0; n < n_element; n++)
-      {
-        PERTURBED_ELEMENT* el_pt = dynamic_cast<PERTURBED_ELEMENT*>(
-          this->fluid_mesh_pt()->boundary_element_pt(
-            Outer_boundary_with_slip_id, n));
-        for (unsigned m = 0; m < 6; m++)
-        {
-          if (el_pt->node_pt(m)->is_on_boundary(Outer_boundary_with_slip_id))
-          {
-            const unsigned uc_index = 0;
-            const unsigned us_index = 1;
-            const unsigned vc_index = 4;
-            const unsigned vs_index = 5;
-            el_pt->node_pt(m)->unpin(4 + uc_index);
-            el_pt->node_pt(m)->unpin(4 + vc_index);
-            el_pt->node_pt(m)->unpin(4 + us_index);
-            el_pt->node_pt(m)->unpin(4 + vs_index);
-            el_pt->impose_velocity_dirichlet_bc_on_node(m, uc_index);
-            el_pt->impose_velocity_dirichlet_bc_on_node(m, vc_index);
-            el_pt->impose_velocity_dirichlet_bc_on_node(m, us_index);
-            el_pt->impose_velocity_dirichlet_bc_on_node(m, vs_index);
+    //  // Loop over the boundary elements
+    //  unsigned n_element =
+    //    this->fluid_mesh_pt()->nboundary_element(Outer_boundary_with_slip_id);
+    //  for (unsigned n = 0; n < n_element; n++)
+    //  {
+    //    PERTURBED_ELEMENT* el_pt = dynamic_cast<PERTURBED_ELEMENT*>(
+    //      this->fluid_mesh_pt()->boundary_element_pt(
+    //        Outer_boundary_with_slip_id, n));
+    //    for (unsigned m = 0; m < 6; m++)
+    //    {
+    //      if (el_pt->node_pt(m)->is_on_boundary(Outer_boundary_with_slip_id))
+    //      {
+    //        const unsigned uc_index = 0;
+    //        const unsigned us_index = 1;
+    //        const unsigned vc_index = 4;
+    //        const unsigned vs_index = 5;
+    //        el_pt->node_pt(m)->unpin(4 + uc_index);
+    //        el_pt->node_pt(m)->unpin(4 + vc_index);
+    //        el_pt->node_pt(m)->unpin(4 + us_index);
+    //        el_pt->node_pt(m)->unpin(4 + vs_index);
+    //        el_pt->impose_velocity_dirichlet_bc_on_node(m, uc_index);
+    //        el_pt->impose_velocity_dirichlet_bc_on_node(m, vc_index);
+    //        el_pt->impose_velocity_dirichlet_bc_on_node(m, us_index);
+    //        el_pt->impose_velocity_dirichlet_bc_on_node(m, vs_index);
 
-            if (this->parameters_pt()->slip_length == 0)
-            {
-              const unsigned wc_index = 2;
-              const unsigned ws_index = 3;
-              el_pt->node_pt(m)->unpin(4 + wc_index);
-              el_pt->node_pt(m)->unpin(4 + ws_index);
-              el_pt->impose_velocity_dirichlet_bc_on_node(m, wc_index);
-              el_pt->impose_velocity_dirichlet_bc_on_node(m, ws_index);
-            }
+    //        if (this->parameters_pt()->slip_length == 0)
+    //        {
+    //          const unsigned wc_index = 2;
+    //          const unsigned ws_index = 3;
+    //          el_pt->node_pt(m)->unpin(4 + wc_index);
+    //          el_pt->node_pt(m)->unpin(4 + ws_index);
+    //          el_pt->impose_velocity_dirichlet_bc_on_node(m, wc_index);
+    //          el_pt->impose_velocity_dirichlet_bc_on_node(m, ws_index);
+    //        }
 
-            for (unsigned j = 0; j < 2; j++)
-            {
-              el_pt->pin_Xhat(m, 0, j);
-            }
-          }
-        }
-      }
-    }
+    //        for (unsigned j = 0; j < 2; j++)
+    //        {
+    //          el_pt->pin_Xhat(m, 0, j);
+    //        }
+    //      }
+    //    }
+    //  }
+    //  this->rebuild_global_mesh();
+    //  oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+    //             << std::endl;
+    //}
 
     void doc_solution()
     {
