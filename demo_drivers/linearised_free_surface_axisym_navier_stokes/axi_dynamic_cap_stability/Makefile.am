@@ -3,6 +3,9 @@ include $(top_srcdir)/config/makefile_templates/demo_drivers
 
 #Temporary!
 all: run_tests
+	./run_tests --run_test=free_surface_fixed_c
+
+perturbed.pvd: run_tests
 	./run_tests --run_test=mode_0_fix_c
 	../../../bin/oomph-convert.py RESLT/perturbed0.dat
 	../../../bin/oomph-convert.py RESLT/perturbed1.dat

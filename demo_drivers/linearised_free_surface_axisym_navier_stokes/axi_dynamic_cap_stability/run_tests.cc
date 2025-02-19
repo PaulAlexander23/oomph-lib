@@ -121,12 +121,346 @@ BOOST_AUTO_TEST_CASE(show_artefact_mode_2)
   BOOST_TEST(abs(eigenvalue[0].real() - (-1.1117228111526063)) < 1e-6);
 }
 
+
+BOOST_AUTO_TEST_CASE(total_velocity_equations)
+{
+  Params parameters;
+  parameters.azimuthal_mode_number = 1;
+  parameters.contact_angle = 120.0 / 180.0 * MathematicalConstants::Pi;
+
+  // Create the base problem
+  BASE_PROBLEM base_problem(&parameters);
+  base_problem.steady_newton_solve();
+
+  base_problem.reset_lagrange();
+  base_problem.assign_initial_values_impulsive();
+
+  // Create the linear problem
+  PERTURBED_PROBLEM perturbed_problem(base_problem.bulk_mesh_pt(),
+                                      base_problem.free_surface_mesh_pt(),
+                                      base_problem.slip_surface_mesh_pt(),
+                                      &parameters);
+
+  perturbed_problem.set_always_take_one_newton_step();
+  perturbed_problem.disable_singular_correction();
+  perturbed_problem.set_the_singular_correction(Vector<double>(2, 0.01));
+  // Pinning the mesh deformation
+  perturbed_problem.pin_horizontal_mesh_deformation();
+  perturbed_problem.pin_vertical_mesh_deformation();
+  // Pin the momentum equations
+  perturbed_problem.pin_volume_constraint();
+  perturbed_problem.pin_fluid();
+  perturbed_problem.assign_initial_values_impulsive();
+  perturbed_problem.pin_wall_velocity(upper, Vector<double>(6, 0.0));
+
+  perturbed_problem.setup_new_data();
+
+  DoubleVector residuals;
+  perturbed_problem.get_residuals(residuals);
+  BOOST_TEST(abs(residuals.max()) < 1e-8);
+  // Steady newton solve
+  perturbed_problem.steady_newton_solve();
+  perturbed_problem.doc_solution();
+}
+
+BOOST_AUTO_TEST_CASE(internal_boundary_test_mode_0)
+{
+  Params parameters;
+  parameters.slip_length = 0.0;
+  parameters.contact_angle = 120.0 / 180.0 * MathematicalConstants::Pi;
+
+  // Create the base problem
+  BASE_PROBLEM base_problem(&parameters);
+  base_problem.steady_newton_solve();
+  base_problem.create_restart_file();
+
+  base_problem.reset_lagrange();
+  base_problem.assign_initial_values_impulsive();
+
+  // Create the linear problem
+  PERTURBED_PROBLEM perturbed_problem(base_problem.bulk_mesh_pt(),
+                                      base_problem.free_surface_mesh_pt(),
+                                      base_problem.slip_surface_mesh_pt(),
+                                      &parameters);
+
+  perturbed_problem.assign_initial_values_impulsive();
+  perturbed_problem.disable_singular_correction();
+  // Pinning the mesh deformation
+  perturbed_problem.pin_horizontal_mesh_deformation();
+  perturbed_problem.pin_vertical_mesh_deformation();
+
+  perturbed_problem.pin_volume_constraint();
+  perturbed_problem.set_constant_lagrange_free_surface_boundary_condition(0.0,
+                                                                          0.0);
+  perturbed_problem.pin_flux_constraint();
+  perturbed_problem.pin_wall_velocity(outer, Vector<double>(6, 0.0));
+  perturbed_problem.pin_wall_velocity(upper, Vector<double>(6, 0.0));
+  perturbed_problem.pin_wall_velocity(lower, Vector<double>(6, 0.0));
+  perturbed_problem.pin_wall_velocity(inner, Vector<double>(6, 0.0));
+  // The kinematic condition has lagrange multiplier contributions to the
+  // momentum equations so should be imposed as a no penetration condition.
+  perturbed_problem.set_always_take_one_newton_step();
+  // Check the boundary conditions
+  Vector<Vector<double>> wall_velocity = perturbed_problem.wall_velocity();
+  for (unsigned n = 0; n < wall_velocity.size(); n++)
+  {
+    BOOST_TEST(abs(wall_velocity[n][1] - 0.0) < 1e-8);
+  }
+
+  // Steady newton solve
+  DoubleVector residuals;
+  // The residuals should be zero given that there is no driving force away from
+  // the equalibrium.
+  perturbed_problem.get_residuals(residuals);
+  BOOST_TEST(abs(residuals.max()) < 1e-8);
+
+
+  DoubleVector dummy_residuals;
+  CRDoubleMatrix jacobian;
+  perturbed_problem.get_jacobian(dummy_residuals, jacobian);
+  jacobian.sparse_indexed_output("jacobian.dat", true);
+  ofstream file("dofs.dat");
+  perturbed_problem.describe_dofs(file);
+  file.close();
+
+  perturbed_problem.steady_newton_solve();
+  perturbed_problem.doc_solution();
+
+  // Set the singular solution contribution to something non-zero
+  perturbed_problem.set_the_singular_correction(Vector<double>(2, 0.01));
+  // And make sure the wall velocity is pinned to zero correctly, so the
+  // new dirichlet conditions are used
+  perturbed_problem.set_outer_boundary_condition();
+  // Setup the new data for the augmented problem
+  perturbed_problem.setup_new_data();
+
+  // Check the wall dofs
+  wall_velocity = perturbed_problem.wall_velocity();
+  for (unsigned n = 0; n < wall_velocity.size(); n++)
+  {
+    BOOST_TEST(abs(wall_velocity[n][1] - 0.0) < 1e-8);
+  }
+
+  perturbed_problem.doc_solution();
+  DoubleVector new_residuals;
+  // The residuals should be still be zero (or small) given that there is no
+  // driving force away from the equalibrium.
+  perturbed_problem.get_residuals(new_residuals);
+  BOOST_TEST(abs(new_residuals.max()) < 1e-3);
+  // The problem should also solve
+  perturbed_problem.steady_newton_solve();
+  perturbed_problem.doc_solution();
+
+  // Check that the velocity is close to zero.
+  Vector<Vector<double>> velocity = perturbed_problem.velocity();
+  for (unsigned n = 0; n < velocity.size(); n++)
+  {
+    BOOST_TEST(abs(velocity[n][0]) < 1e-4);
+    BOOST_TEST(abs(velocity[n][2]) < 1e-4);
+  }
+}
+
+BOOST_AUTO_TEST_CASE(free_surface_fixed_c)
+{
+  Params parameters;
+  parameters.azimuthal_mode_number = 1;
+  parameters.slip_length = 0.0;
+  parameters.contact_angle = 120.0 / 180.0 * MathematicalConstants::Pi;
+
+  // Create the base problem
+  BASE_PROBLEM base_problem(&parameters);
+  base_problem.steady_newton_solve();
+  base_problem.create_restart_file();
+
+  base_problem.reset_lagrange();
+  base_problem.assign_initial_values_impulsive();
+
+  // Create the linear problem
+  PERTURBED_PROBLEM perturbed_problem(base_problem.bulk_mesh_pt(),
+                                      base_problem.free_surface_mesh_pt(),
+                                      base_problem.slip_surface_mesh_pt(),
+                                      &parameters);
+
+  perturbed_problem.assign_initial_values_impulsive();
+  perturbed_problem.disable_singular_correction();
+  // Pinning the mesh deformation
+  // perturbed_problem.pin_horizontal_mesh_deformation();
+  // perturbed_problem.pin_vertical_mesh_deformation();
+
+  perturbed_problem.pin_volume_constraint();
+  perturbed_problem.pin_wall_velocity(outer, Vector<double>(6, 0.0));
+  perturbed_problem.pin_wall_velocity(upper, Vector<double>(6, 0.0));
+  perturbed_problem.pin_centre_corner_lagrange_multipler();
+  perturbed_problem.pin_contact_line_and_lagrange_multiplier();
+  perturbed_problem.pin_wall_velocity(inner, Vector<double>(6, 0.0));
+  // The kinematic condition has lagrange multiplier contributions to the
+  // momentum equations so should be imposed as a no penetration condition.
+  perturbed_problem.set_always_take_one_newton_step();
+  // Check the boundary conditions
+  Vector<Vector<double>> wall_velocity = perturbed_problem.wall_velocity();
+  for (unsigned n = 0; n < wall_velocity.size(); n++)
+  {
+    BOOST_TEST(abs(wall_velocity[n][1] - 0.0) < 1e-8);
+  }
+
+  // Steady newton solve
+  DoubleVector residuals;
+  // The residuals should be zero given that there is no driving force away from
+  // the equalibrium.
+  perturbed_problem.get_residuals(residuals);
+  BOOST_TEST(abs(residuals.max()) < 1e-8);
+
+
+  DoubleVector dummy_residuals;
+  CRDoubleMatrix jacobian;
+  perturbed_problem.get_jacobian(dummy_residuals, jacobian);
+  jacobian.sparse_indexed_output("jacobian.dat", true);
+  ofstream file("dofs.dat");
+  perturbed_problem.describe_dofs(file);
+  file.close();
+
+  perturbed_problem.steady_newton_solve();
+  perturbed_problem.doc_solution();
+
+  // Set the singular solution contribution to something non-zero
+  perturbed_problem.set_the_singular_correction(Vector<double>(2, 0.01));
+  // And make sure the wall velocity is pinned to zero correctly, so the
+  // new dirichlet conditions are used
+  perturbed_problem.set_outer_boundary_condition();
+  // Setup the new data for the augmented problem
+  perturbed_problem.setup_new_data();
+
+  // Check the wall dofs
+  wall_velocity = perturbed_problem.wall_velocity();
+  for (unsigned n = 0; n < wall_velocity.size(); n++)
+  {
+    BOOST_TEST(abs(wall_velocity[n][1] - 0.0) < 1e-8);
+  }
+
+  perturbed_problem.doc_solution();
+  DoubleVector new_residuals;
+  // The residuals should be still be zero (or small) given that there is no
+  // driving force away from the equalibrium.
+  perturbed_problem.get_residuals(new_residuals);
+  BOOST_TEST(abs(new_residuals.max()) < 1e-2);
+  // The problem should also solve
+  perturbed_problem.steady_newton_solve();
+  perturbed_problem.doc_solution();
+
+  // Check that the velocity is close to zero.
+  Vector<Vector<double>> velocity = perturbed_problem.velocity();
+  for (unsigned n = 0; n < velocity.size(); n++)
+  {
+    BOOST_TEST(abs(velocity[n][0]) < 1e-4);
+    BOOST_TEST(abs(velocity[n][2]) < 1e-4);
+  }
+}
+
+BOOST_AUTO_TEST_CASE(smooth_velocity_on_outer_wall)
+{
+  Params parameters;
+  parameters.slip_length = 0.0;
+  parameters.contact_angle = 120.0 / 180.0 * MathematicalConstants::Pi;
+
+  // Create the base problem
+  BASE_PROBLEM base_problem(&parameters);
+  base_problem.steady_newton_solve();
+  base_problem.create_restart_file();
+
+  base_problem.reset_lagrange();
+  base_problem.assign_initial_values_impulsive();
+
+  // Create the linear problem
+  PERTURBED_PROBLEM perturbed_problem(base_problem.bulk_mesh_pt(),
+                                      base_problem.free_surface_mesh_pt(),
+                                      base_problem.slip_surface_mesh_pt(),
+                                      &parameters);
+
+  perturbed_problem.assign_initial_values_impulsive();
+  perturbed_problem.disable_singular_correction();
+  // Pinning the mesh deformation
+  perturbed_problem.pin_horizontal_mesh_deformation();
+  perturbed_problem.pin_vertical_mesh_deformation();
+
+  perturbed_problem.pin_volume_constraint();
+  // perturbed_problem.set_constant_lagrange_free_surface_boundary_condition(0.0,
+  //                                                                         0.0);
+  perturbed_problem.pin_flux_constraint();
+  perturbed_problem.pin_wall_velocity(outer, Vector<double>(6, 0.0));
+  perturbed_problem.pin_wall_velocity(upper, Vector<double>(6, 0.0));
+  // perturbed_problem.pin_wall_velocity(lower, Vector<double>(6, 0.0));
+  perturbed_problem.pin_centre_corner_lagrange_multipler();
+  perturbed_problem.pin_contact_line_and_lagrange_multiplier();
+  perturbed_problem.pin_wall_velocity(inner, Vector<double>(6, 0.0));
+  // The kinematic condition has lagrange multiplier contributions to the
+  // momentum equations so should be imposed as a no penetration condition.
+  perturbed_problem.set_always_take_one_newton_step();
+  // Check the boundary conditions
+  Vector<Vector<double>> wall_velocity = perturbed_problem.wall_velocity();
+  for (unsigned n = 0; n < wall_velocity.size(); n++)
+  {
+    BOOST_TEST(abs(wall_velocity[n][1] - 0.0) < 1e-8);
+  }
+
+  // Steady newton solve
+  DoubleVector residuals;
+  // The residuals should be zero given that there is no driving force away from
+  // the equalibrium.
+  perturbed_problem.get_residuals(residuals);
+  BOOST_TEST(abs(residuals.max()) < 1e-8);
+
+
+  DoubleVector dummy_residuals;
+  CRDoubleMatrix jacobian;
+  perturbed_problem.get_jacobian(dummy_residuals, jacobian);
+  jacobian.sparse_indexed_output("jacobian.dat", true);
+  ofstream file("dofs.dat");
+  perturbed_problem.describe_dofs(file);
+  file.close();
+
+  perturbed_problem.steady_newton_solve();
+  perturbed_problem.doc_solution();
+
+  // Set the singular solution contribution to something non-zero
+  perturbed_problem.set_the_singular_correction(Vector<double>(2, 0.01));
+  // And make sure the wall velocity is pinned to zero correctly, so the
+  // new dirichlet conditions are used
+  perturbed_problem.set_outer_boundary_condition();
+  // Setup the new data for the augmented problem
+  perturbed_problem.setup_new_data();
+
+  // Check the wall dofs
+  wall_velocity = perturbed_problem.wall_velocity();
+  for (unsigned n = 0; n < wall_velocity.size(); n++)
+  {
+    BOOST_TEST(abs(wall_velocity[n][1] - 0.0) < 1e-8);
+  }
+
+  perturbed_problem.doc_solution();
+  DoubleVector new_residuals;
+  // The residuals should be still be zero (or small) given that there is no
+  // driving force away from the equalibrium.
+  perturbed_problem.get_residuals(new_residuals);
+  BOOST_TEST(abs(new_residuals.max()) < 1e-3);
+  // The problem should also solve
+  perturbed_problem.steady_newton_solve();
+  perturbed_problem.doc_solution();
+
+  // Check that the velocity is close to zero.
+  Vector<Vector<double>> velocity = perturbed_problem.velocity();
+  for (unsigned n = 0; n < velocity.size(); n++)
+  {
+    BOOST_TEST(abs(velocity[n][0]) < 1e-4);
+    BOOST_TEST(abs(velocity[n][2]) < 1e-4);
+  }
+}
+
 // Fix the singular scaling to test the internal and external boundary
 // conditions
 BOOST_AUTO_TEST_CASE(mode_0_fix_c)
 {
   Params parameters;
-  //parameters.restart_filename = "RESLT/restart0.dat";
+  // parameters.restart_filename = "RESLT/restart0.dat";
   parameters.slip_length = 0.0;
   parameters.contact_angle = 120.0 / 180.0 * MathematicalConstants::Pi;
 
@@ -157,7 +491,9 @@ BOOST_AUTO_TEST_CASE(mode_0_fix_c)
   perturbed_problem.doc_solution();
 
   perturbed_problem.set_the_singular_correction(Vector<double>(2, 0.01));
-  perturbed_problem.pin_wall_velocity();
+  Vector<double> velocity(6, 0.0);
+  velocity[2] = 1.0;
+  perturbed_problem.pin_wall_velocity(outer, velocity);
   perturbed_problem.setup_new_data();
   // perturbed_problem.set_boundary_conditions();
   DoubleVector residuals;
