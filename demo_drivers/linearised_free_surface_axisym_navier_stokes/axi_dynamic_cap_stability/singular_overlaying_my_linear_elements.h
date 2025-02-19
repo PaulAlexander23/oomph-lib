@@ -3767,70 +3767,72 @@ namespace oomph
 
         } // End of loop over pressure test functions
 
-        // TOTAL VELOCITY EQUATIONS
-        //-------------------
-
-        // Loop over the velocity test functions
-        for (unsigned l = 0; l < n_node; l++)
-        {
-          // Loop over the velocity components
-          for (unsigned i = 0; i < this->n_u_lin_axi_nst(); i++)
-          {
-            // Find its local equation number
-            local_eqn = this->nodal_local_eqn(l, u_index_lin_axi_nst_fe(l, i));
-
-            // If it is not pinned
-            if (local_eqn >= 0)
-            {
-              Vector<double> pos_n(2, 0.0);
-              for (unsigned index = 0; index < 2; index++)
-              {
-                pos_n[index] = this->nodal_position(l, index);
-              }
-
-              // Work out if it is a sine or cosine component
-              const unsigned j = i % 2;
-              const unsigned rem = std::floor(i / 2);
-              const double u = this->nodal_value(l, this->u_index_lin_axi_nst(i));
-              const double ufe = this->nodal_value(l, u_index_lin_axi_nst_fe(l, i));
-              const double ub = u_bar(pos_n, rem, j);
-
-              residuals[local_eqn] += u - (ufe + ub);
-            }
-          } // End of loop over velocity components
-        } // End of loop over test functions
-
-        // TOTAL PRESSURE EQUATION
-        //-------------------
-
-        // Loop over the Nodes
-        for (unsigned l = 0; l < this->npres_lin_axi_nst(); l++)
-        {
-          // Loop over sine vs cosine components
-          for (unsigned j = 0; j < 2; j++)
-          {
-            // Get the local equation number
-            local_eqn = this->nodal_local_eqn(l, p_index_lin_axi_nst_fe(l, j));
-
-            // If not a boundary conditions
-            if (local_eqn >= 0)
-            {
-              // If not subject to Dirichlet BC
-              Vector<double> pos_n(2, 0.0);
-              for (unsigned index = 0; index < 2; index++)
-              {
-                pos_n[index] = this->nodal_position(l, index);
-              }
-              // Work out if it is a sine or cosine component
-
-              residuals[local_eqn] +=
-                (this->nodal_value(l, this->p_index_lin_axi_nst(j)) -
-                 (this->nodal_value(l, p_index_lin_axi_nst_fe(l, j)) +
-                  p_bar(pos_n, j)));
-            }
-          }
-        } // End of loop over l
       } // End of loop over the integration points
+
+      // TOTAL VELOCITY EQUATIONS
+      //-------------------
+
+      // Loop over the velocity test functions
+      for (unsigned l = 0; l < n_node; l++)
+      {
+        // Loop over the velocity components
+        for (unsigned i = 0; i < this->n_u_lin_axi_nst(); i++)
+        {
+          // Find its local equation number
+          local_eqn = this->nodal_local_eqn(l, u_index_lin_axi_nst_fe(l, i));
+
+          // If it is not pinned
+          if (local_eqn >= 0)
+          {
+            Vector<double> pos_n(2, 0.0);
+            for (unsigned index = 0; index < 2; index++)
+            {
+              pos_n[index] = this->nodal_position(l, index);
+            }
+
+            // Work out if it is a sine or cosine component
+            const unsigned j = i % 2;
+            const unsigned rem = std::floor(i / 2);
+            const double u = this->nodal_value(l, this->u_index_lin_axi_nst(i));
+            const double ufe =
+              this->nodal_value(l, u_index_lin_axi_nst_fe(l, i));
+            const double ub = u_bar(pos_n, rem, j);
+
+            residuals[local_eqn] += u - (ufe + ub);
+          }
+        } // End of loop over velocity components
+      } // End of loop over test functions
+
+      // TOTAL PRESSURE EQUATION
+      //-------------------
+
+      // Loop over the Nodes
+      for (unsigned l = 0; l < this->npres_lin_axi_nst(); l++)
+      {
+        // Loop over sine vs cosine components
+        for (unsigned j = 0; j < 2; j++)
+        {
+          // Get the local equation number
+          local_eqn = this->nodal_local_eqn(l, p_index_lin_axi_nst_fe(l, j));
+
+          // If not a boundary conditions
+          if (local_eqn >= 0)
+          {
+            // If not subject to Dirichlet BC
+            Vector<double> pos_n(2, 0.0);
+            for (unsigned index = 0; index < 2; index++)
+            {
+              pos_n[index] = this->nodal_position(l, index);
+            }
+            // Work out if it is a sine or cosine component
+
+            residuals[local_eqn] +=
+              (this->nodal_value(l, this->p_index_lin_axi_nst(j)) -
+               (this->nodal_value(l, p_index_lin_axi_nst_fe(l, j)) +
+                p_bar(pos_n, j)));
+          }
+        }
+      } // End of loop over l
 
       // VELOCITY DIRICHLET BCS
       //-----------------------
