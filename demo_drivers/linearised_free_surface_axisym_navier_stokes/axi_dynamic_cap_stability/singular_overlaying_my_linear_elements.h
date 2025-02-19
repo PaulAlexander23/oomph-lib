@@ -688,7 +688,7 @@ namespace oomph
         {
           const unsigned mod = i % 2;
           const unsigned rem = std::floor(i / 2);
-          interpolated_u[i] += u_bar_local[mod][rem];
+          interpolated_u[i] += u_bar_local[rem][mod];
 
           // Loop over the two coordinate directions for the derivatives
           for (unsigned j = 0; j < 2; j++)
@@ -697,8 +697,8 @@ namespace oomph
             // derivatives
             for (unsigned l = 0; l < 2; l++)
             {
-              interpolated_duds(i, j) += grad_u_bar_local[mod][rem][l] /
-                                         interpolated_dxbar_ds(l, j) * Jbar;
+              interpolated_duds(i, j) +=
+                grad_u_bar_local[rem][mod][l] * interpolated_dxbar_ds(l, j);
             }
           }
         }
@@ -3782,11 +3782,11 @@ namespace oomph
               // Work out if it is a sine or cosine component
               const unsigned j = i % 2;
               const unsigned rem = std::floor(i / 2);
+              const double u = this->nodal_value(l, this->u_index_lin_axi_nst(i));
+              const double ufe = this->nodal_value(l, u_index_lin_axi_nst_fe(l, i));
+              const double ub = u_bar(pos_n, rem, j);
 
-              residuals[local_eqn] +=
-                (this->nodal_value(l, this->u_index_lin_axi_nst(i)) -
-                 (this->nodal_value(l, u_index_lin_axi_nst_fe(l, i))) +
-                 u_bar(pos_n, rem, j));
+              residuals[local_eqn] += u - (ufe + ub);
             }
           } // End of loop over velocity components
         } // End of loop over test functions
@@ -3858,7 +3858,7 @@ namespace oomph
               const unsigned rem = std::floor(d / 2);
               // Add the contribution of the singularities (all of them,
               // summed)
-              residuals[local_eqn] += u_bar(global_coordinate, mod, rem);
+              residuals[local_eqn] += u_bar(global_coordinate, rem, mod);
 
               // Substract the imposed Dirichlet value
               residuals[local_eqn] -= Imposed_velocity_values_at_node[l][d];
