@@ -3,7 +3,12 @@ include $(top_srcdir)/config/makefile_templates/demo_drivers
 
 #Temporary!
 all: run_tests
-	./run_tests
+	./run_tests --run_test=mode_0_fix_c
+	../../../bin/oomph-convert.py RESLT/perturbed0.dat
+	../../../bin/oomph-convert.py RESLT/perturbed1.dat
+	$(MAKE) add-labels
+	../../../bin/makePvd RESLT/perturbed perturbed.pvd
+	paraview perturbed.pvd
 
 iwyu.out: ${run_test_SOURCES}
 	include-what-you-use -Xiwyu $(AM_CPPFLAGS) run_tests.cc 2> iwyu.out
