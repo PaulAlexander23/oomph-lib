@@ -1689,6 +1689,25 @@ namespace oomph
       oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
     }
 
+    void unset_constant_lagrange_free_surface_boundary_condition()
+    {
+      unsigned n_element = Free_surface_mesh_pt->nelement();
+      for (unsigned n = 0; n < n_element; n++)
+      {
+        FREE_SURFACE_ELEMENT* el_pt = dynamic_cast<FREE_SURFACE_ELEMENT*>(
+          Free_surface_mesh_pt->element_pt(n));
+        for (unsigned m = 0; m < 3; m++)
+        {
+          double r = el_pt->node_pt(m)->x(0);
+          el_pt->unpin_lagrange_multiplier(m, 0);
+          el_pt->unpin_lagrange_multiplier(m, 1);
+        }
+      }
+
+      // Set up the equation numbering so we are ready to solve the problem.
+      oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
+    }
+
     void set_initial_condition()
     {
       oomph_info << "set_initial_condition" << std::endl;
