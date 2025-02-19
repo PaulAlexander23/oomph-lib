@@ -1071,7 +1071,32 @@ namespace oomph
       return nullptr;
     }
 
-    void set_outer_boundary_condition()
+    void pin_wall_velocity()
+    {
+      oomph_info << "pin_wall_velocity" << std::endl;
+      // Get number of nodes along the slip surface
+      const unsigned n_node =
+        this->fluid_mesh_pt()->nboundary_node(Outer_boundary_with_slip_id);
+      // Loop over nodes and pin vertical velocity
+      for (unsigned n = 0; n < n_node; n++)
+      {
+        Node* nod_pt = this->fluid_mesh_pt()->boundary_node_pt(
+          Outer_boundary_with_slip_id, n);
+        nod_pt->pin(6);
+        nod_pt->pin(7);
+        nod_pt->set_value(6, 1.0);
+        nod_pt->set_value(7, 1.0);
+      }
+
+      // Rebuild the global mesh
+      this->rebuild_global_mesh();
+
+      // Set up the equation numbering so we are ready to solve the problem.
+      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                 << std::endl;
+    }
+
+    virtual void set_outer_boundary_condition()
     {
       oomph_info << "set_outer_boundary_condition" << std::endl;
       // Loop over the nodes on the boundary
