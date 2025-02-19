@@ -38,6 +38,7 @@ linear_sources = linearised_axisymmetric_fluid_interface_elements.cc \
 				 base_element.cc \
 				 base_problem.cc \
 				 overlaying_my_linear_element.cc \
+				 singular_overlaying_my_linear_elements.cc \
 				 perturbed_linear_stability_cap_problem_base.cc \
 				 singular_perturbed_linear_stability_cap_problem.cc
 

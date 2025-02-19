@@ -4141,6 +4141,14 @@ namespace oomph
     : public TElement<1, 3>
   {
   };
+
+  extern template class SingularOverlayingMyLinearElement<
+    SolidSingularAxisymNavierStokesElement<
+      ProjectableAxisymmetricTTaylorHoodPVDElement>>;
+
+  extern template class FaceGeometry<SingularOverlayingMyLinearElement<SolidSingularAxisymNavierStokesElement<
+      ProjectableAxisymmetricTTaylorHoodPVDElement>>>;
+
 }; // namespace oomph
 
 #endif
