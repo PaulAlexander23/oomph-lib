@@ -865,14 +865,12 @@ namespace oomph
       oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
     }
 
-  private:
     void pin_volume_constraint()
     {
       Tilde_external_pressure_data_pt->pin(0);
       Tilde_external_pressure_data_pt->set_value(0, 0.0);
     }
 
-  public:
     void pin_position_on_boundary(const unsigned& direction,
                                   const unsigned& b,
                                   const unsigned& cs)
@@ -924,6 +922,7 @@ namespace oomph
           el_pt->pin_Xhat(m, 1, 1);
         }
       }
+      oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
     }
 
     void pin_azimuthal_velocity()
@@ -1071,21 +1070,24 @@ namespace oomph
       return nullptr;
     }
 
-    void pin_wall_velocity()
+    void pin_wall_velocity(const unsigned boundary_id,
+                           const Vector<double>& velocity)
     {
       oomph_info << "pin_wall_velocity" << std::endl;
       // Get number of nodes along the slip surface
       const unsigned n_node =
-        this->fluid_mesh_pt()->nboundary_node(Outer_boundary_with_slip_id);
+        this->fluid_mesh_pt()->nboundary_node(boundary_id);
       // Loop over nodes and pin vertical velocity
       for (unsigned n = 0; n < n_node; n++)
       {
-        Node* nod_pt = this->fluid_mesh_pt()->boundary_node_pt(
-          Outer_boundary_with_slip_id, n);
-        nod_pt->pin(6);
-        nod_pt->pin(7);
-        nod_pt->set_value(6, 1.0);
-        nod_pt->set_value(7, 1.0);
+        Node* nod_pt = this->fluid_mesh_pt()->boundary_node_pt(boundary_id, n);
+        for (unsigned i = 4; i < 10; i++)
+        {
+          nod_pt->pin(i);
+          nod_pt->pin(i);
+          nod_pt->set_value(i, velocity[i - 4]);
+          nod_pt->set_value(i, velocity[i - 4]);
+        }
       }
 
       // Rebuild the global mesh
