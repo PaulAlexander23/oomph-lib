@@ -257,7 +257,7 @@ namespace oomph
         // The singular function satisfies the Stokes equation
         el_pt->singular_function_satisfies_stokes_equation() = false;
 
-        //el_pt->pin_c();
+        // el_pt->pin_c();
         el_pt->set_c(0.0);
 
         // Add element to the mesh
@@ -558,56 +558,93 @@ namespace oomph
                  << std::endl;
     }
 
-    // virtual void set_outer_boundary_condition()
-    //{
-    //   oomph_info << "set_outer_boundary_condition" << std::endl;
+    virtual void set_outer_boundary_condition()
+    {
+      oomph_info << "overridden set_outer_boundary_condition" << std::endl;
 
-    //  // Loop over the boundary elements
-    //  unsigned n_element =
-    //    this->fluid_mesh_pt()->nboundary_element(Outer_boundary_with_slip_id);
-    //  for (unsigned n = 0; n < n_element; n++)
-    //  {
-    //    PERTURBED_ELEMENT* el_pt = dynamic_cast<PERTURBED_ELEMENT*>(
-    //      this->fluid_mesh_pt()->boundary_element_pt(
-    //        Outer_boundary_with_slip_id, n));
-    //    for (unsigned m = 0; m < 6; m++)
-    //    {
-    //      if (el_pt->node_pt(m)->is_on_boundary(Outer_boundary_with_slip_id))
-    //      {
-    //        const unsigned uc_index = 0;
-    //        const unsigned us_index = 1;
-    //        const unsigned vc_index = 4;
-    //        const unsigned vs_index = 5;
-    //        el_pt->node_pt(m)->unpin(4 + uc_index);
-    //        el_pt->node_pt(m)->unpin(4 + vc_index);
-    //        el_pt->node_pt(m)->unpin(4 + us_index);
-    //        el_pt->node_pt(m)->unpin(4 + vs_index);
-    //        el_pt->impose_velocity_dirichlet_bc_on_node(m, uc_index);
-    //        el_pt->impose_velocity_dirichlet_bc_on_node(m, vc_index);
-    //        el_pt->impose_velocity_dirichlet_bc_on_node(m, us_index);
-    //        el_pt->impose_velocity_dirichlet_bc_on_node(m, vs_index);
+      // Loop over the boundary elements
+      unsigned n_element =
+        this->fluid_mesh_pt()->nboundary_element(Outer_boundary_with_slip_id);
+      const unsigned uc_index = 0;
+      const unsigned us_index = 1;
+      const unsigned wc_index = 2;
+      const unsigned ws_index = 3;
+      const unsigned vc_index = 4;
+      const unsigned vs_index = 5;
+      for (unsigned n = 0; n < n_element; n++)
+      {
+        PERTURBED_ELEMENT* el_pt = dynamic_cast<PERTURBED_ELEMENT*>(
+          this->fluid_mesh_pt()->boundary_element_pt(
+            Outer_boundary_with_slip_id, n));
+        if (el_pt->is_augmented())
+        {
+          for (unsigned m = 0; m < 6; m++)
+          {
+            if (el_pt->node_pt(m)->is_on_boundary(Outer_boundary_with_slip_id))
+            {
+              el_pt->node_pt(m)->pin(4 + uc_index);
+              el_pt->node_pt(m)->pin(4 + vc_index);
+              el_pt->node_pt(m)->pin(4 + us_index);
+              el_pt->node_pt(m)->pin(4 + vs_index);
+              // el_pt->node_pt(m)->unpin(4 + uc_index);
+              // el_pt->node_pt(m)->unpin(4 + vc_index);
+              // el_pt->node_pt(m)->unpin(4 + us_index);
+              // el_pt->node_pt(m)->unpin(4 + vs_index);
+              // el_pt->impose_velocity_dirichlet_bc_on_node(m, uc_index);
+              // el_pt->impose_velocity_dirichlet_bc_on_node(m, us_index);
+              // el_pt->impose_velocity_dirichlet_bc_on_node(m, vc_index);
+              // el_pt->impose_velocity_dirichlet_bc_on_node(m, vs_index);
+              // el_pt->set_velocity_dirichlet_value_on_node(m, uc_index, 0.0);
+              // el_pt->set_velocity_dirichlet_value_on_node(m, us_index, 0.0);
+              // el_pt->set_velocity_dirichlet_value_on_node(m, vc_index, 0.0);
+              // el_pt->set_velocity_dirichlet_value_on_node(m, vs_index, 0.0);
 
-    //        if (this->parameters_pt()->slip_length == 0)
-    //        {
-    //          const unsigned wc_index = 2;
-    //          const unsigned ws_index = 3;
-    //          el_pt->node_pt(m)->unpin(4 + wc_index);
-    //          el_pt->node_pt(m)->unpin(4 + ws_index);
-    //          el_pt->impose_velocity_dirichlet_bc_on_node(m, wc_index);
-    //          el_pt->impose_velocity_dirichlet_bc_on_node(m, ws_index);
-    //        }
+              if (this->parameters_pt()->slip_length == 0)
+              {
+                el_pt->node_pt(m)->unpin(4 + wc_index);
+                el_pt->node_pt(m)->unpin(4 + ws_index);
+                el_pt->impose_velocity_dirichlet_bc_on_node(m, wc_index);
+                el_pt->impose_velocity_dirichlet_bc_on_node(m, ws_index);
+                el_pt->set_velocity_dirichlet_value_on_node(m, ws_index, 0.0);
+                el_pt->set_velocity_dirichlet_value_on_node(m, ws_index, 0.0);
+              }
+            }
+          }
+        }
+        else
+        {
+          for (unsigned m = 0; m < 6; m++)
+          {
+            if (el_pt->node_pt(m)->is_on_boundary(Outer_boundary_with_slip_id))
+            {
+              el_pt->node_pt(m)->pin(4 + uc_index);
+              el_pt->node_pt(m)->pin(4 + vc_index);
+              el_pt->node_pt(m)->pin(4 + us_index);
+              el_pt->node_pt(m)->pin(4 + vs_index);
+              if (this->parameters_pt()->slip_length == 0)
+              {
+                el_pt->node_pt(m)->pin(4 + wc_index);
+                el_pt->node_pt(m)->pin(4 + ws_index);
+              }
+            }
+          }
+        }
 
-    //        for (unsigned j = 0; j < 2; j++)
-    //        {
-    //          el_pt->pin_Xhat(m, 0, j);
-    //        }
-    //      }
-    //    }
-    //  }
-    //  this->rebuild_global_mesh();
-    //  oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
-    //             << std::endl;
-    //}
+        for (unsigned m = 0; m < 6; m++)
+        {
+          if (el_pt->node_pt(m)->is_on_boundary(Outer_boundary_with_slip_id))
+          {
+            for (unsigned j = 0; j < 2; j++)
+            {
+              el_pt->pin_Xhat(m, 0, j);
+            }
+          }
+        }
+      }
+      this->rebuild_global_mesh();
+      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                 << std::endl;
+    }
 
     void doc_solution()
     {
