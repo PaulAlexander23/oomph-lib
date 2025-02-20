@@ -14,7 +14,7 @@ namespace oomph
   private:
     static const unsigned Initial_Nvalue[];
 
-  protected:
+  public:
     /// Static array of ints to hold conversion from pressure
     /// node numbers to actual node numbers
     static const unsigned Pconv[];
