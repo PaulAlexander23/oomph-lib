@@ -19,6 +19,9 @@ namespace oomph
     /// Flag to indicate if the analytical gradient is used
     bool IsUsingAnalyticalGradient;
 
+    /// Flag to indicate if the singular solution forcing terms are explicit
+    bool IsForcingExplicit;
+
     /// Vector of pointers to SingularNavierStokesSolutionElement objects
     Vector<SingularNavierStokesSolutionElement<
       OverlayingMyLinearElement<BASE_ELEMENT>>*>
@@ -39,7 +42,8 @@ namespace oomph
       : OverlayingMyLinearElement<BASE_ELEMENT>(),
         IsAugmented(false),
         IsJacobianFD(true),
-        IsUsingAnalyticalGradient(true)
+        IsUsingAnalyticalGradient(true),
+        IsForcingExplicit(true)
     {
       const unsigned n_node = this->nnode();
       const unsigned cached_n_u_nst = 6;
@@ -93,6 +97,11 @@ namespace oomph
     bool is_using_analytical_gradient()
     {
       return IsUsingAnalyticalGradient;
+    }
+
+    bool is_forcing_explicit()
+    {
+      return IsForcingExplicit;
     }
 
     void augment()
