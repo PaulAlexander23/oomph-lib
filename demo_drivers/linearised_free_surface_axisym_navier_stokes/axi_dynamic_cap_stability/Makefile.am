@@ -1,6 +1,10 @@
 #Include commands common to every Makefile.am
 include $(top_srcdir)/config/makefile_templates/demo_drivers
 
+CC=ccache gcc
+CXX=ccache g++
+
+
 #Temporary!
 all: run_tests
 	./run_tests --run_test=free_surface_fixed_c
