@@ -39,7 +39,7 @@ namespace oomph
       : OverlayingMyLinearElement<BASE_ELEMENT>(),
         IsAugmented(false),
         IsJacobianFD(true),
-        IsUsingAnalyticalGradient(false)
+        IsUsingAnalyticalGradient(true)
     {
       const unsigned n_node = this->nnode();
       const unsigned cached_n_u_nst = 6;
