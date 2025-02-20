@@ -167,17 +167,13 @@ namespace oomph
     }
 
     // Calculate the element's residual vector and Jacobian
-    // void fill_in_contribution_to_jacobian(Vector<double>& residuals,
-    //                                       DenseMatrix<double>& jacobian)
-    // {
-    //   // Call the generic routine with the flag set to 1
-    //   fill_in_generic_residual_contribution_pressure_contribution(
-    //     residuals, jacobian, 1);
-
-    //   // Call the generic finite difference routine to handle the solid
-    //   // variables
-    //   this->fill_in_jacobian_from_solid_position_by_fd(jacobian);
-    // }
+    void fill_in_contribution_to_jacobian(Vector<double>& residuals,
+                                          DenseMatrix<double>& jacobian)
+    {
+      // Call the generic routine with the flag set to 1
+      fill_in_generic_residual_contribution_pressure_contribution(
+        residuals, jacobian, 1);
+    }
 
     void fill_in_contribution_to_dresiduals_dparameter(
       double* const& parameter_pt, Vector<double>& dres_dparam)
@@ -238,7 +234,8 @@ namespace oomph
 
       // Evaluate the pressure shape functions at the coordinate in the bulk
       // element
-      // Cast_bulk_element_pt->pshape_nst(s_bulk, psip);
+      Shape psip(3);
+      Cast_bulk_element_pt->pshape_lin_axi_nst(s_bulk, psip);
       Vector<double> x(dim() + 2, 0.0);
       Cast_bulk_element_pt->interpolated_x(s_bulk, x);
 
@@ -260,28 +257,28 @@ namespace oomph
             multiplier;
 
           // If the Jacobian flag is on, add to the Jacobian
-          // if (flag)
-          //{
-          //  // Initialise a variable for the local_unknown
-          //  int local_unknown = 0;
+          if (flag)
+          {
+            // Initialise a variable for the local_unknown
+            int local_unknown = 0;
 
-          //  // Loop over shape functions
-          //  const unsigned n_local_pres = Node_index.size();
-          //  for (unsigned j = 0; j < n_local_pres; j++)
-          //  {
-          //    // The residual depends on the pressure at each of the bulk
-          //    // elements nodes, which are stored here as external data.
-          //    local_unknown = this->external_local_eqn(
-          //      Node_index[j], Cast_bulk_element_pt->p_nodal_index_nst());
+            // Loop over shape functions
+            const unsigned n_local_pres = Node_index.size();
+            for (unsigned j = 0; j < n_local_pres; j++)
+            {
+              // The residual depends on the pressure at each of the bulk
+              // elements nodes, which are stored here as external data.
+              local_unknown = this->external_local_eqn(
+                Node_index[j], Cast_bulk_element_pt->p_index_lin_axi_nst(i));
 
-          //    // If not pinned
-          //    if (local_unknown > 0)
-          //    {
-          //      // Add the contribution of the node to the local jacobian
-          //      jacobian(local_eqn, local_unknown) += psip(j) * multiplier;
-          //    }
-          //  }
-          //}
+              // If not pinned
+              if (local_unknown > 0)
+              {
+                // Add the contribution of the node to the local jacobian
+                jacobian(local_eqn, local_unknown) += psip(j) * multiplier;
+              }
+            }
+          }
         }
       }
     }
