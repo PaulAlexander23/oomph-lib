@@ -4,6 +4,7 @@ include $(top_srcdir)/config/makefile_templates/demo_drivers
 # Variables
 EXEC:= \
 	axi_dynamic_cap \
+	run_eigenproblem \
 	create_parameter_files \
 	continuation_run \
 	run_tests
@@ -47,6 +48,7 @@ IWYU=$(patsubst %.cc,%.iwyu,$(sources))
 IWYU_FIXED=$(patsubst %.iwyu,%.fixed,$(IWYU))
 
 axi_dynamic_cap_SOURCES = $(sources) axi_dynamic_cap.cc 
+run_eigenproblem_SOURCES = $(sources) run_eigenproblem.cc 
 create_parameter_files_SOURCES = $(sources) create_parameter_files.cc
 continuation_run_SOURCES = $(sources) continuation_run.cc
 run_tests_SOURCES = $(sources) run_tests.cc
