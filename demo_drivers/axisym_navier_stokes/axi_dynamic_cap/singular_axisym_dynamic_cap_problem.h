@@ -527,6 +527,17 @@ namespace oomph
       oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
     }
 
+    void fix_c()
+    {
+      SCALING_ELEMENT* el_pt = dynamic_cast<SCALING_ELEMENT*>(
+        Singularity_scaling_mesh_pt->element_pt(0));
+      el_pt->pin_c();
+      // Rebuild the global mesh
+      this->rebuild_global_mesh();
+      // Setup all the equation numbering and look-up schemes
+      oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
+    }
+
     void free_c()
     {
       SCALING_ELEMENT* el_pt = dynamic_cast<SCALING_ELEMENT*>(
