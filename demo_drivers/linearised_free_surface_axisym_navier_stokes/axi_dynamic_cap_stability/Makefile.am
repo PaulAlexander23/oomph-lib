@@ -4,10 +4,12 @@ include $(top_srcdir)/config/makefile_templates/demo_drivers
 CC=ccache gcc
 CXX=ccache g++
 
+%.h.pch: %.h
+	$(CXX) $(AM_CPPFLAGS) -x c++-header -o $@ $<
 
 #Temporary!
 all: run_tests
-	./run_tests --run_test=free_surface_fixed_c
+	./run_tests --run_test=weak_no_penetration_condition
 
 perturbed.pvd: run_tests
 	./run_tests --run_test=mode_0_fix_c
@@ -46,10 +48,16 @@ linear_sources = linearised_axisymmetric_fluid_interface_elements.cc \
 				 perturbed_linear_stability_cap_problem_base.cc \
 				 singular_perturbed_linear_stability_cap_problem.cc
 
+linear_precompiled_headers = $(patsubst %.cc,%.h.pch,$(linear_sources))
+
+echo-headers:
+	echo $(linear_precompiled_headers)
+
+compile-headers: $(linear_precompiled_headers)
 
 linear_stability_run_SOURCES = $(linear_sources) linear_stability_run.cc 
 neutral_stability_run_SOURCES = $(linear_sources) neutral_stability_run.cc 
-run_tests_SOURCES = $(linear_sources) run_tests.cc 
+run_tests_SOURCES = $(linear_precompiled_headers) $(linear_sources) run_tests.cc 
 
 # Required libraries: 
 # $(FLIBS) is included in case the solver involves fortran sources.
