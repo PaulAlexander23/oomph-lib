@@ -43,7 +43,7 @@ namespace oomph
         IsAugmented(false),
         IsJacobianFD(true),
         IsUsingAnalyticalGradient(true),
-        IsForcingExplicit(false)
+        IsForcingExplicit(true)
     {
       const unsigned n_node = this->nnode();
       const unsigned cached_n_u_nst = 6;
