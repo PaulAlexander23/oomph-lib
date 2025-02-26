@@ -435,7 +435,7 @@ namespace oomph
     {
       Vector<Vector<double>> wall_velocity;
 
-      Vector<double> node_wall_velocity(2, 0.0);
+      Vector<double> node_wall_velocity(4, 0.0);
       // Get number of nodes along the slip surface
       const unsigned n_node =
         this->fluid_mesh_pt()->nboundary_node(Outer_boundary_with_slip_id);
@@ -444,8 +444,10 @@ namespace oomph
       {
         Node* nod_pt = this->fluid_mesh_pt()->boundary_node_pt(
           Outer_boundary_with_slip_id, n);
-        node_wall_velocity[0] = nod_pt->value(6);
-        node_wall_velocity[1] = nod_pt->value(7);
+        node_wall_velocity[0] = nod_pt->value(4);
+        node_wall_velocity[1] = nod_pt->value(5);
+        node_wall_velocity[2] = nod_pt->value(6);
+        node_wall_velocity[3] = nod_pt->value(7);
 
         wall_velocity.push_back(node_wall_velocity);
       }

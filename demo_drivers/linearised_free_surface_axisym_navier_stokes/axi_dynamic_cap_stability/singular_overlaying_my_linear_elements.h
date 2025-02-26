@@ -43,7 +43,7 @@ namespace oomph
         IsAugmented(false),
         IsJacobianFD(true),
         IsUsingAnalyticalGradient(true),
-        IsForcingExplicit(true)
+        IsForcingExplicit(false)
     {
       const unsigned n_node = this->nnode();
       const unsigned cached_n_u_nst = 6;
@@ -682,7 +682,10 @@ namespace oomph
             {
               interpolated_duds(i, j) += u_value * dpsifds(l, j);
 
-              if (!this->is_using_analytical_gradient())
+              // If we are using the implicit forcing and computing the gradient
+              // of u bar then we need to add this term on here.
+              if (!this->is_forcing_explicit() &&
+                  !this->is_using_analytical_gradient())
               {
                 interpolated_duds(i, j) +=
                   u_bar(this->node_pt(l)->position(), floor(i / 2), i % 2) *
@@ -708,24 +711,27 @@ namespace oomph
           p_bar_local[j] = p_bar(interpolated_x, j);
         }
 
-        // Loop over the first four out of 6 velocity components
-        for (unsigned i = 0; i < 4; i++)
+        if (!this->is_forcing_explicit())
         {
-          const unsigned mod = i % 2;
-          const unsigned rem = std::floor(i / 2);
-          interpolated_u[i] += u_bar_local[mod][rem];
-
-          if (this->is_using_analytical_gradient())
+          // Loop over the first four out of 6 velocity components
+          for (unsigned i = 0; i < 4; i++)
           {
-            // Loop over the two coordinate directions for the derivatives
-            for (unsigned j = 0; j < 2; j++)
+            const unsigned mod = i % 2;
+            const unsigned rem = std::floor(i / 2);
+            interpolated_u[i] += u_bar_local[mod][rem];
+
+            if (this->is_using_analytical_gradient())
             {
-              // Loop over the two coordinate directions again for the sum of
-              // derivatives
-              for (unsigned l = 0; l < 2; l++)
+              // Loop over the two coordinate directions for the derivatives
+              for (unsigned j = 0; j < 2; j++)
               {
-                interpolated_duds(i, j) +=
-                  grad_u_bar_local[mod][rem][l] * interpolated_dxbar_ds(l, j);
+                // Loop over the two coordinate directions again for the sum of
+                // derivatives
+                for (unsigned l = 0; l < 2; l++)
+                {
+                  interpolated_duds(i, j) +=
+                    grad_u_bar_local[mod][rem][l] * interpolated_dxbar_ds(l, j);
+                }
               }
             }
           }
@@ -1127,6 +1133,74 @@ namespace oomph
               residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) *
                                       base_flow_ur * testf_ * JhatC * w / r;
 
+              // SINGULAR PART
+              if (this->is_forcing_explicit())
+              {
+                // Using the cosine singular solution contributions
+                const unsigned j = 0;
+                // Stress contribution
+                // -------------------
+                // Pressure
+                residuals[local_eqn] +=
+                  p_bar_local[j] * (testf[l] + r * dtestfdx(l, 0)) * W;
+
+                // Shear stress
+                residuals[local_eqn] -=
+                  visc_ratio * r * (1.0 + this->Gamma[0]) *
+                  grad_u_bar_local[j][0][0] * dtestfdx(l, 0) * W;
+
+                residuals[local_eqn] -=
+                  visc_ratio * r *
+                  (grad_u_bar_local[j][0][1] +
+                   this->Gamma[0] * grad_u_bar_local[j][1][0]) *
+                  dtestfdx(l, 1) * W;
+
+                residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) *
+                                        u_bar_local[j][0] * testf[l] * W / r;
+
+                // Nonlinear terms - Always add (unless Re=0)
+                //-------------------------------------------
+                if (scaled_re > 0.0)
+                {
+                  //  // Add singular convective terms
+                  //  // -----------------------------
+                  //  // Radial
+                  //  residuals[local_eqn] -= scaled_re * r * u_bar_local[j][0]
+                  //  *
+                  //                          grad_u_bar_local[j][0][0] *
+                  //                          testf[l] * W;
+
+                  //  residuals[local_eqn] -=
+                  //    scaled_re *
+                  //    (r * u_bar_local[j][0] * interpolated_dudx(0, 0) +
+                  //     r * interpolated_u_reconstructed[0] *
+                  //       grad_u_bar_local[j][0][0]) *
+                  //    testf[l] * W;
+
+                  //  // Axial
+                  //  residuals[local_eqn] -= scaled_re * r * u_bar_local[j][1]
+                  //  *
+                  //                          grad_u_bar_local[j][0][1] *
+                  //                          testf[l] * W;
+
+                  //  residuals[local_eqn] -=
+                  //    scaled_re *
+                  //    (r * u_bar_local[j][1] * interpolated_dudx(0, 1) +
+                  //     r * interpolated_u_reconstructed[1] *
+                  //       grad_u_bar_local[j][0][1]) *
+                  //    testf[l] * W;
+
+                  //  // Azimuthal
+                  //  residuals[local_eqn] += scaled_re * u_bar_local[j][2] *
+                  //                          u_bar_local[j][2] * testf[l] * W;
+
+                  //  residuals[local_eqn] +=
+                  //    scaled_re *
+                  //    (u_bar_local[j][2] * interpolated_u_reconstructed[2] +
+                  //     interpolated_u_reconstructed[2] * u_bar_local[j][2]) *
+                  //    testf[l] * W;
+                } // End of Re > 0
+              }
 
               // Calculate the Jacobian
               // ----------------------
@@ -1578,6 +1652,75 @@ namespace oomph
               residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) *
                                       base_flow_ur * testf_ * JhatS * w / r;
 
+              // SINGULAR PART
+              if (this->is_forcing_explicit())
+              {
+                // Using the sine singular solution contributions
+                const unsigned j = 1;
+                // Stress contribution
+                // -------------------
+                // Pressure
+                residuals[local_eqn] +=
+                  p_bar_local[j] * (testf[l] + r * dtestfdx(l, 0)) * W;
+
+                // Shear stress
+                residuals[local_eqn] -=
+                  visc_ratio * r * (1.0 + this->Gamma[0]) *
+                  grad_u_bar_local[j][0][0] * dtestfdx(l, 0) * W;
+
+                residuals[local_eqn] -=
+                  visc_ratio * r *
+                  (grad_u_bar_local[j][0][1] +
+                   this->Gamma[0] * grad_u_bar_local[j][1][0]) *
+                  dtestfdx(l, 1) * W;
+
+                residuals[local_eqn] -= visc_ratio * (1.0 + this->Gamma[0]) *
+                                        u_bar_local[j][0] * testf[l] * W / r;
+
+                // Nonlinear terms - Always add (unless Re=0)
+                //-------------------------------------------
+                if (scaled_re > 0.0)
+                {
+                  //  // Add singular convective terms
+                  //  // -----------------------------
+                  //  // Radial
+                  //  residuals[local_eqn] -= scaled_re * r * u_bar_local[j][0]
+                  //  *
+                  //                          grad_u_bar_local[j][0][0] *
+                  //                          testf[l] * W;
+
+                  //  residuals[local_eqn] -=
+                  //    scaled_re *
+                  //    (r * u_bar_local[j][0] * interpolated_dudx(0, 0) +
+                  //     r * interpolated_u_reconstructed[0] *
+                  //       grad_u_bar_local[j][0][0]) *
+                  //    testf[l] * W;
+
+                  //  // Axial
+                  //  residuals[local_eqn] -= scaled_re * r * u_bar_local[j][1]
+                  //  *
+                  //                          grad_u_bar_local[j][0][1] *
+                  //                          testf[l] * W;
+
+                  //  residuals[local_eqn] -=
+                  //    scaled_re *
+                  //    (r * u_bar_local[j][1] * interpolated_dudx(0, 1) +
+                  //     r * interpolated_u_reconstructed[1] *
+                  //       grad_u_bar_local[j][0][1]) *
+                  //    testf[l] * W;
+
+                  //  // Azimuthal
+                  //  residuals[local_eqn] += scaled_re * u_bar_local[j][2] *
+                  //                          u_bar_local[j][2] * testf[l] * W;
+
+                  //  residuals[local_eqn] +=
+                  //    scaled_re *
+                  //    (u_bar_local[j][2] * interpolated_u_reconstructed[2] +
+                  //     interpolated_u_reconstructed[2] * u_bar_local[j][2]) *
+                  //    testf[l] * W;
+                } // End of Re > 0
+              }
+
               // Calculate the Jacobian
               // ----------------------
 
@@ -1992,6 +2135,60 @@ namespace oomph
             residuals[local_eqn] +=
               scaled_re_inv_fr * r * G[1] * testf_ * JhatC * w;
 
+            // SINGULAR PART
+            if (this->is_forcing_explicit())
+            {
+              // Using the cosine singular solution contributions
+              const unsigned j = 0;
+              // Stress contribution
+              // -------------------
+              // Pressure
+              residuals[local_eqn] += p_bar_local[j] * r * dtestfdx(l, 1) * W;
+
+              // Shear stress
+              residuals[local_eqn] -=
+                visc_ratio * r *
+                (grad_u_bar_local[j][1][0] +
+                 this->Gamma[1] * grad_u_bar_local[j][0][1]) *
+                dtestfdx(l, 0) * W;
+
+              residuals[local_eqn] -= visc_ratio * r * (1.0 + this->Gamma[1]) *
+                                      grad_u_bar_local[j][1][1] *
+                                      dtestfdx(l, 1) * W;
+
+              // Nonlinear term. Always add (unless Re=0)
+              //-----------------------------------------
+              // if (scaled_re > 0.0)
+              //{
+              //  // Add singular convective terms
+              //  // -----------------------------
+              //  // Radial
+              //  residuals[local_eqn] -= scaled_re * r * u_bar_local[0] *
+              //                          grad_u_bar_local[1][0] * testf[l] *
+              //                          W;
+
+              //  residuals[local_eqn] -=
+              //    scaled_re *
+              //    (r * u_bar_local[0] * interpolated_dudx(1, 0) +
+              //     r * interpolated_u_reconstructed[0] *
+              //       grad_u_bar_local[1][0]) *
+              //    testf[l] * W;
+
+              //  // Axial
+              //  residuals[local_eqn] -= scaled_re * r * u_bar_local[1] *
+              //                          grad_u_bar_local[1][1] * testf[l] *
+              //                          W;
+
+              //  residuals[local_eqn] -=
+              //    scaled_re *
+              //    (r * u_bar_local[1] * interpolated_dudx(1, 1) +
+              //     r * interpolated_u_reconstructed[1] *
+              //       grad_u_bar_local[1][1]) *
+              //    testf[l] * W;
+
+              //}
+            }
+
             // Calculate the Jacobian
             // ----------------------
 
@@ -2348,6 +2545,60 @@ namespace oomph
             residuals[local_eqn] += r * body_force[1] * testf_ * JhatS * w;
             residuals[local_eqn] +=
               scaled_re_inv_fr * r * G[1] * testf_ * JhatS * w;
+
+            // SINGULAR PART
+            if (this->is_forcing_explicit())
+            {
+              // Using the sine singular solution contributions
+              const unsigned j = 1;
+              // Stress contribution
+              // -------------------
+              // Pressure
+              residuals[local_eqn] += p_bar_local[j] * r * dtestfdx(l, 1) * W;
+
+              // Shear stress
+              residuals[local_eqn] -=
+                visc_ratio * r *
+                (grad_u_bar_local[j][1][0] +
+                 this->Gamma[1] * grad_u_bar_local[j][0][1]) *
+                dtestfdx(l, 0) * W;
+
+              residuals[local_eqn] -= visc_ratio * r * (1.0 + this->Gamma[1]) *
+                                      grad_u_bar_local[j][1][1] *
+                                      dtestfdx(l, 1) * W;
+
+              // Nonlinear term. Always add (unless Re=0)
+              //-----------------------------------------
+              // if (scaled_re > 0.0)
+              //{
+              //  // Add singular convective terms
+              //  // -----------------------------
+              //  // Radial
+              //  residuals[local_eqn] -= scaled_re * r * u_bar_local[0] *
+              //                          grad_u_bar_local[1][0] * testf[l] *
+              //                          W;
+
+              //  residuals[local_eqn] -=
+              //    scaled_re *
+              //    (r * u_bar_local[0] * interpolated_dudx(1, 0) +
+              //     r * interpolated_u_reconstructed[0] *
+              //       grad_u_bar_local[1][0]) *
+              //    testf[l] * W;
+
+              //  // Axial
+              //  residuals[local_eqn] -= scaled_re * r * u_bar_local[1] *
+              //                          grad_u_bar_local[1][1] * testf[l] *
+              //                          W;
+
+              //  residuals[local_eqn] -=
+              //    scaled_re *
+              //    (r * u_bar_local[1] * interpolated_dudx(1, 1) +
+              //     r * interpolated_u_reconstructed[1] *
+              //       grad_u_bar_local[1][1]) *
+              //    testf[l] * W;
+
+              //}
+            }
 
             // Calculate the Jacobian
             // ----------------------
@@ -3546,6 +3797,15 @@ namespace oomph
             residuals[local_eqn] += base_flow_ur * testp_ * JhatC * w;
             residuals[local_eqn] -= source * r * testp_ * JhatC * w;
 
+            if (this->is_forcing_explicit())
+            {
+              const unsigned j = 0;
+              residuals[local_eqn] +=
+                (u_bar_local[j][0] + r * grad_u_bar_local[j][0][0] +
+                 r * grad_u_bar_local[j][1][1]) *
+                testp[l] * W;
+            }
+
             // Calculate the Jacobian
             // ----------------------
 
@@ -3678,6 +3938,14 @@ namespace oomph
             residuals[local_eqn] += base_flow_ur * testp_ * JhatS * w;
             residuals[local_eqn] -= source * r * testp_ * JhatS * w;
 
+            if (this->is_forcing_explicit())
+            {
+              const unsigned j = 1;
+              residuals[local_eqn] +=
+                (u_bar_local[j][0] + r * grad_u_bar_local[j][0][0] +
+                 r * grad_u_bar_local[j][1][1]) *
+                testp[l] * W;
+            }
 
             // Calculate the Jacobian
             // ----------------------
