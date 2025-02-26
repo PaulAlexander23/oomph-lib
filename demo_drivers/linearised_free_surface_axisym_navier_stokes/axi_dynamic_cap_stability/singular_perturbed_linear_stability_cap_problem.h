@@ -549,9 +549,12 @@ namespace oomph
     /// scalings
     void enable_singular_correction()
     {
-      for (unsigned i = 0; i < 2; i++)
+      SCALING_ELEMENT* singular_el_pt = dynamic_cast<SCALING_ELEMENT*>(
+        Singularity_scaling_mesh_pt->element_pt(0));
+      singular_el_pt->unpin_c();
+      if (this->parameters_pt()->azimuthal_mode_number > 0)
       {
-        SCALING_ELEMENT* singular_el_pt = dynamic_cast<SCALING_ELEMENT*>(
+        singular_el_pt = dynamic_cast<SCALING_ELEMENT*>(
           Singularity_scaling_mesh_pt->element_pt(1));
         singular_el_pt->unpin_c();
       }
