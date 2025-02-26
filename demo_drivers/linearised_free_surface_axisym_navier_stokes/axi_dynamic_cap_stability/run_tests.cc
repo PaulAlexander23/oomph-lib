@@ -27,8 +27,14 @@ BOOST_AUTO_TEST_CASE(show_artefact_mode_0)
                                       &parameters);
 
   perturbed_problem.assign_initial_values_impulsive();
-  perturbed_problem.disable_singular_correction();
+  ofstream file("dofs.dat");
+  perturbed_problem.describe_dofs(file);
+  file.close();
+  debug_jacobian(&perturbed_problem);
+  // perturbed_problem.disable_singular_correction();
+  // perturbed_problem.set_the_singular_correction(Vector<double>(2, 0.01));
   perturbed_problem.doc_solution();
+  perturbed_problem.use_weak_no_penetration_condition();
 
   // Steady newton solve
   perturbed_problem.steady_newton_solve();
@@ -241,7 +247,7 @@ BOOST_AUTO_TEST_CASE(internal_boundary_test_mode_0)
   Vector<Vector<double>> wall_velocity = perturbed_problem.wall_velocity();
   for (unsigned n = 0; n < wall_velocity.size(); n++)
   {
-    BOOST_TEST(abs(wall_velocity[n][1] - 0.0) < 1e-8);
+    BOOST_TEST(abs(wall_velocity[n][3] - 0.0) < 1e-8);
   }
 
   // Steady newton solve
@@ -275,7 +281,7 @@ BOOST_AUTO_TEST_CASE(internal_boundary_test_mode_0)
   wall_velocity = perturbed_problem.wall_velocity();
   for (unsigned n = 0; n < wall_velocity.size(); n++)
   {
-    BOOST_TEST(abs(wall_velocity[n][1] - 0.0) < 1e-8);
+    BOOST_TEST(abs(wall_velocity[n][3] - 0.0) < 1e-8);
   }
 
   perturbed_problem.doc_solution();
@@ -296,6 +302,233 @@ BOOST_AUTO_TEST_CASE(internal_boundary_test_mode_0)
     BOOST_TEST(abs(velocity[n][2]) < 1e-2);
   }
 }
+
+BOOST_AUTO_TEST_CASE(weak_no_penetration_condition)
+{
+  Params parameters;
+  parameters.contact_angle = 120.0 / 180.0 * MathematicalConstants::Pi;
+
+  // Create the base problem
+  BASE_PROBLEM base_problem(&parameters);
+  base_problem.steady_newton_solve();
+  base_problem.create_restart_file();
+
+  base_problem.reset_lagrange();
+  base_problem.assign_initial_values_impulsive();
+
+  // Create the linear problem
+  PERTURBED_PROBLEM perturbed_problem(base_problem.bulk_mesh_pt(),
+                                      base_problem.free_surface_mesh_pt(),
+                                      base_problem.slip_surface_mesh_pt(),
+                                      &parameters);
+
+  perturbed_problem.assign_initial_values_impulsive();
+  perturbed_problem.disable_singular_correction();
+  perturbed_problem.set_the_singular_correction(Vector<double>(2, 0.01));
+  // Pinning the mesh deformation
+  perturbed_problem.pin_horizontal_mesh_deformation();
+
+  perturbed_problem.use_weak_no_penetration_condition();
+
+  perturbed_problem.steady_newton_solve();
+
+  // Check the horizontal velocity at the wall is zero
+  Vector<Vector<double>> wall_velocity = perturbed_problem.wall_velocity();
+  for (unsigned n = 0; n < wall_velocity.size(); n++)
+  {
+    BOOST_TEST(abs(wall_velocity[n][0] - 0.0) < 1e-8);
+  }
+
+  // Eigensolve
+  perturbed_problem.time_stepper_pt()->make_steady();
+  Vector<std::complex<double>> eigenvalue =
+    perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(1);
+}
+
+BOOST_AUTO_TEST_CASE(non_zero_wall_velocity_static)
+{
+  Params parameters;
+  parameters.contact_angle = 120.0 / 180.0 * MathematicalConstants::Pi;
+
+  // Create the base problem
+  BASE_PROBLEM base_problem(&parameters);
+  base_problem.steady_newton_solve();
+
+  base_problem.reset_lagrange();
+  base_problem.assign_initial_values_impulsive();
+
+  // Create the linear problem
+  PERTURBED_PROBLEM perturbed_problem(base_problem.bulk_mesh_pt(),
+                                      base_problem.free_surface_mesh_pt(),
+                                      base_problem.slip_surface_mesh_pt(),
+                                      &parameters);
+
+  perturbed_problem.assign_initial_values_impulsive();
+
+  perturbed_problem.pin_vertical_mesh_deformation();
+  perturbed_problem.pin_horizontal_mesh_deformation();
+  for (unsigned n = 0; n < 6; n++)
+  {
+    perturbed_problem.pin_velocity_on_boundary(lower, n);
+  }
+  perturbed_problem.use_weak_no_penetration_condition();
+
+  // ofstream file("dofs.dat");
+  // perturbed_problem.describe_dofs(file);
+  // file.close();
+  // debug_jacobian(&perturbed_problem);
+
+  perturbed_problem.disable_singular_correction();
+  perturbed_problem.set_the_singular_correction(Vector<double>(2, 0.0));
+  perturbed_problem.steady_newton_solve();
+  perturbed_problem.doc_solution();
+
+  perturbed_problem.set_the_singular_correction(Vector<double>(2, 0.1));
+  perturbed_problem.steady_newton_solve();
+  perturbed_problem.doc_solution();
+
+  perturbed_problem.enable_singular_correction();
+  perturbed_problem.steady_newton_solve();
+  perturbed_problem.doc_solution();
+}
+
+BOOST_AUTO_TEST_CASE(steady_newton_solve)
+{
+  Params parameters;
+  parameters.contact_angle = 120.0 / 180.0 * MathematicalConstants::Pi;
+  *parameters.wall_velocity_pt = 0.01;
+
+  // Create the base problem
+  BASE_PROBLEM base_problem(&parameters);
+  base_problem.fix_c(0.0);
+  base_problem.steady_newton_solve();
+  base_problem.doc_solution();
+
+  base_problem.fix_c(0.01);
+  base_problem.steady_newton_solve();
+  base_problem.doc_solution();
+
+  base_problem.free_c();
+  base_problem.steady_newton_solve();
+
+  base_problem.create_restart_file();
+  base_problem.doc_solution();
+
+  base_problem.reset_lagrange();
+  base_problem.assign_initial_values_impulsive();
+
+  // Create the linear problem
+  PERTURBED_PROBLEM perturbed_problem(base_problem.bulk_mesh_pt(),
+                                      base_problem.free_surface_mesh_pt(),
+                                      base_problem.slip_surface_mesh_pt(),
+                                      &parameters);
+
+  perturbed_problem.assign_initial_values_impulsive();
+  // Pinning the mesh deformation
+
+  perturbed_problem.use_weak_no_penetration_condition();
+  perturbed_problem.pin_horizontal_mesh_deformation();
+  perturbed_problem.disable_singular_correction();
+  //   perturbed_problem.set_always_take_one_newton_step();
+  //*parameters.reynolds_inverse_froude_number_pt = 0.1;
+
+  perturbed_problem.steady_newton_solve();
+  perturbed_problem.doc_solution();
+
+  perturbed_problem.set_the_singular_correction(Vector<double>{0.1, 0});
+
+  DoubleVector dummy_residuals;
+  CRDoubleMatrix jacobian;
+  perturbed_problem.get_jacobian(dummy_residuals, jacobian);
+  jacobian.sparse_indexed_output("jacobian.dat", true);
+  ofstream file("dofs.dat");
+  perturbed_problem.describe_dofs(file);
+  file.close();
+
+  // debug_jacobian(&perturbed_problem);
+
+  perturbed_problem.steady_newton_solve();
+  perturbed_problem.doc_solution();
+
+  perturbed_problem.enable_singular_correction();
+
+  perturbed_problem.steady_newton_solve();
+  perturbed_problem.doc_solution();
+
+  Vector<std::complex<double>> eigenvalue =
+    perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(1);
+  BOOST_TEST(abs(eigenvalue[0].real() - 2.2462138855927112) < 1e-8);
+}
+
+BOOST_AUTO_TEST_CASE(steady_newton_solve_static)
+{
+  Params parameters;
+  parameters.contact_angle = 120.0 / 180.0 * MathematicalConstants::Pi;
+  *parameters.wall_velocity_pt = 0.01;
+
+  // Create the base problem
+  BASE_PROBLEM base_problem(&parameters);
+  base_problem.fix_c(0.0);
+  base_problem.steady_newton_solve();
+  base_problem.doc_solution();
+
+  base_problem.fix_c(0.01);
+  base_problem.steady_newton_solve();
+  base_problem.doc_solution();
+
+  base_problem.free_c();
+  base_problem.steady_newton_solve();
+
+  base_problem.create_restart_file();
+  base_problem.doc_solution();
+
+  base_problem.reset_lagrange();
+  base_problem.assign_initial_values_impulsive();
+
+  // Create the linear problem
+  PERTURBED_PROBLEM perturbed_problem(base_problem.bulk_mesh_pt(),
+                                      base_problem.free_surface_mesh_pt(),
+                                      base_problem.slip_surface_mesh_pt(),
+                                      &parameters);
+
+  perturbed_problem.assign_initial_values_impulsive();
+  // Pinning the mesh deformation
+
+  perturbed_problem.use_weak_no_penetration_condition();
+  perturbed_problem.pin_horizontal_mesh_deformation();
+  perturbed_problem.pin_vertical_mesh_deformation();
+  perturbed_problem.pin_volume_constraint();
+  perturbed_problem.disable_singular_correction();
+  //   perturbed_problem.set_always_take_one_newton_step();
+  //*parameters.reynolds_inverse_froude_number_pt = 0.1;
+
+  perturbed_problem.steady_newton_solve();
+  perturbed_problem.doc_solution();
+
+  perturbed_problem.set_the_singular_correction(Vector<double>{0.1, 0});
+
+  DoubleVector dummy_residuals;
+  CRDoubleMatrix jacobian;
+  perturbed_problem.get_jacobian(dummy_residuals, jacobian);
+  jacobian.sparse_indexed_output("jacobian.dat", true);
+  ofstream file("dofs.dat");
+  perturbed_problem.describe_dofs(file);
+  file.close();
+
+  // debug_jacobian(&perturbed_problem);
+
+  perturbed_problem.steady_newton_solve();
+  perturbed_problem.doc_solution();
+
+  perturbed_problem.enable_singular_correction();
+
+  perturbed_problem.steady_newton_solve();
+  perturbed_problem.doc_solution();
+
+  // perturbed_problem.steady_newton_solve();
+  // perturbed_problem.doc_solution();
+}
+
 
 BOOST_AUTO_TEST_CASE(free_surface_fixed_c)
 {
@@ -337,7 +570,7 @@ BOOST_AUTO_TEST_CASE(free_surface_fixed_c)
   Vector<Vector<double>> wall_velocity = perturbed_problem.wall_velocity();
   for (unsigned n = 0; n < wall_velocity.size(); n++)
   {
-    BOOST_TEST(abs(wall_velocity[n][1] - 0.0) < 1e-8);
+    BOOST_TEST(abs(wall_velocity[n][3] - 0.0) < 1e-8);
   }
 
   // Steady newton solve
@@ -371,7 +604,7 @@ BOOST_AUTO_TEST_CASE(free_surface_fixed_c)
   wall_velocity = perturbed_problem.wall_velocity();
   for (unsigned n = 0; n < wall_velocity.size(); n++)
   {
-    BOOST_TEST(abs(wall_velocity[n][1] - 0.0) < 1e-8);
+    BOOST_TEST(abs(wall_velocity[n][3] - 0.0) < 1e-8);
   }
 
   perturbed_problem.doc_solution();
@@ -432,7 +665,7 @@ BOOST_AUTO_TEST_CASE(dirichlet_bcs)
   Vector<Vector<double>> wall_velocity = perturbed_problem.wall_velocity();
   for (unsigned n = 0; n < wall_velocity.size(); n++)
   {
-    BOOST_TEST(abs(wall_velocity[n][1] - 0.0) < 1e-8);
+    BOOST_TEST(abs(wall_velocity[n][3] - 0.0) < 1e-8);
   }
 
   // Steady newton solve
@@ -466,7 +699,7 @@ BOOST_AUTO_TEST_CASE(dirichlet_bcs)
   wall_velocity = perturbed_problem.wall_velocity();
   for (unsigned n = 0; n < wall_velocity.size(); n++)
   {
-    BOOST_TEST(abs(wall_velocity[n][1] - 0.0) < 1e-8);
+    BOOST_TEST(abs(wall_velocity[n][3] - 0.0) < 1e-8);
   }
 
   perturbed_problem.doc_solution();
@@ -534,7 +767,7 @@ BOOST_AUTO_TEST_CASE(smooth_velocity_on_outer_wall)
   Vector<Vector<double>> wall_velocity = perturbed_problem.wall_velocity();
   for (unsigned n = 0; n < wall_velocity.size(); n++)
   {
-    BOOST_TEST(abs(wall_velocity[n][1] - 0.0) < 1e-8);
+    BOOST_TEST(abs(wall_velocity[n][3] - 0.0) < 1e-8);
   }
 
   // Steady newton solve
@@ -568,7 +801,7 @@ BOOST_AUTO_TEST_CASE(smooth_velocity_on_outer_wall)
   wall_velocity = perturbed_problem.wall_velocity();
   for (unsigned n = 0; n < wall_velocity.size(); n++)
   {
-    BOOST_TEST(abs(wall_velocity[n][1] - 0.0) < 1e-8);
+    BOOST_TEST(abs(wall_velocity[n][3] - 0.0) < 1e-8);
   }
 
   perturbed_problem.doc_solution();
@@ -592,11 +825,11 @@ BOOST_AUTO_TEST_CASE(smooth_velocity_on_outer_wall)
 
 // Fix the singular scaling to test the internal and external boundary
 // conditions
-BOOST_AUTO_TEST_CASE(mode_0_fix_c)
+BOOST_AUTO_TEST_CASE(mode_0_fix_c_acute)
 {
   Params parameters;
   // parameters.restart_filename = "RESLT/restart0.dat";
-  parameters.contact_angle = 120.0 / 180.0 * MathematicalConstants::Pi;
+  parameters.contact_angle = 60.0 / 180.0 * MathematicalConstants::Pi;
 
   // Create the base problem
   BASE_PROBLEM base_problem(&parameters);
@@ -607,6 +840,7 @@ BOOST_AUTO_TEST_CASE(mode_0_fix_c)
   //  restart_filestream.close();
   base_problem.steady_newton_solve();
   base_problem.create_restart_file();
+  base_problem.doc_solution();
 
   base_problem.reset_lagrange();
   base_problem.assign_initial_values_impulsive();
@@ -619,6 +853,8 @@ BOOST_AUTO_TEST_CASE(mode_0_fix_c)
 
   perturbed_problem.assign_initial_values_impulsive();
   perturbed_problem.disable_singular_correction();
+
+  perturbed_problem.pin_horizontal_mesh_deformation();
 
   // Steady newton solve
   perturbed_problem.steady_newton_solve();
@@ -643,7 +879,113 @@ BOOST_AUTO_TEST_CASE(mode_0_fix_c)
   // Eigensolve
   eigenvalue =
     perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(1);
+}
 
+// Fix the singular scaling to test the internal and external boundary
+// conditions
+BOOST_AUTO_TEST_CASE(mode_0_fix_c)
+{
+  Params parameters;
+  // parameters.restart_filename = "RESLT/restart0.dat";
+  parameters.contact_angle = 120.0 / 180.0 * MathematicalConstants::Pi;
+
+  // Create the base problem
+  BASE_PROBLEM base_problem(&parameters);
+  //  ifstream restart_filestream;
+  //  restart_filestream.open(parameters.restart_filename);
+  //  bool is_unsteady_restart = false;
+  //  base_problem.read(restart_filestream, is_unsteady_restart);
+  //  restart_filestream.close();
+  base_problem.steady_newton_solve();
+  base_problem.create_restart_file();
+  base_problem.doc_solution();
+
+  base_problem.reset_lagrange();
+  base_problem.assign_initial_values_impulsive();
+
+  // Create the linear problem
+  PERTURBED_PROBLEM perturbed_problem(base_problem.bulk_mesh_pt(),
+                                      base_problem.free_surface_mesh_pt(),
+                                      base_problem.slip_surface_mesh_pt(),
+                                      &parameters);
+
+  perturbed_problem.assign_initial_values_impulsive();
+  perturbed_problem.disable_singular_correction();
+
+  perturbed_problem.pin_horizontal_mesh_deformation();
+
+  perturbed_problem.set_the_singular_correction(Vector<double>(2, 1));
+  perturbed_problem.setup_new_data();
+  perturbed_problem.set_boundary_conditions();
+
+  // Steady newton solve
+  perturbed_problem.steady_newton_solve();
+  perturbed_problem.doc_solution();
+
+  // Eigensolve
+  Vector<std::complex<double>> eigenvalue =
+    perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(1);
+
+  DoubleVector residuals;
+  perturbed_problem.get_residuals(residuals);
+  residuals.output("residuals.dat");
+  ofstream file("dofs.dat");
+  perturbed_problem.describe_dofs(file);
+  file.close();
+  perturbed_problem.doc_solution();
+
+  // Eigensolve
+  eigenvalue =
+    perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(1);
+}
+
+// Fix the singular scaling to test the internal and external boundary
+// conditions
+BOOST_AUTO_TEST_CASE(mode_0)
+{
+  Params parameters;
+  // parameters.restart_filename = "RESLT/restart0.dat";
+  parameters.contact_angle = 120.0 / 180.0 * MathematicalConstants::Pi;
+
+  // Create the base problem
+  BASE_PROBLEM base_problem(&parameters);
+  //  ifstream restart_filestream;
+  //  restart_filestream.open(parameters.restart_filename);
+  //  bool is_unsteady_restart = false;
+  //  base_problem.read(restart_filestream, is_unsteady_restart);
+  //  restart_filestream.close();
+  base_problem.steady_newton_solve();
+  base_problem.create_restart_file();
+  base_problem.doc_solution();
+
+  base_problem.reset_lagrange();
+  base_problem.assign_initial_values_impulsive();
+
+  // Create the linear problem
+  PERTURBED_PROBLEM perturbed_problem(base_problem.bulk_mesh_pt(),
+                                      base_problem.free_surface_mesh_pt(),
+                                      base_problem.slip_surface_mesh_pt(),
+                                      &parameters);
+
+  perturbed_problem.assign_initial_values_impulsive();
+  perturbed_problem.set_always_take_one_newton_step();
+
+  DoubleVector dummy_residuals;
+  CRDoubleMatrix jacobian;
+  perturbed_problem.get_jacobian(dummy_residuals, jacobian);
+  jacobian.sparse_indexed_output("jacobian.dat", true);
+
+  ofstream file("dofs.dat");
+  perturbed_problem.describe_dofs(file);
+  file.close();
+
+  // debug_jacobian(&perturbed_problem);
+
+  // Eigensolve
+  Vector<std::complex<double>> eigenvalue =
+    perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(1);
+
+  // Steady newton solve
   perturbed_problem.steady_newton_solve();
   perturbed_problem.doc_solution();
 
@@ -654,116 +996,61 @@ BOOST_AUTO_TEST_CASE(mode_0_fix_c)
 
 // Fix the singular scaling to test the internal and external boundary
 // conditions
-// BOOST_AUTO_TEST_CASE(mode_0)
-// {
-//   Params parameters;
-//   // parameters.restart_filename = "RESLT/restart0.dat";
-//   parameters.contact_angle = 120.0 / 180.0 * MathematicalConstants::Pi;
-// 
-//   // Create the base problem
-//   BASE_PROBLEM base_problem(&parameters);
-//   //  ifstream restart_filestream;
-//   //  restart_filestream.open(parameters.restart_filename);
-//   //  bool is_unsteady_restart = false;
-//   //  base_problem.read(restart_filestream, is_unsteady_restart);
-//   //  restart_filestream.close();
-//   base_problem.steady_newton_solve();
-//   base_problem.create_restart_file();
-// 
-//   base_problem.reset_lagrange();
-//   base_problem.assign_initial_values_impulsive();
-// 
-//   // Create the linear problem
-//   PERTURBED_PROBLEM perturbed_problem(base_problem.bulk_mesh_pt(),
-//                                       base_problem.free_surface_mesh_pt(),
-//                                       base_problem.slip_surface_mesh_pt(),
-//                                       &parameters);
-// 
-//   perturbed_problem.assign_initial_values_impulsive();
-//   perturbed_problem.set_always_take_one_newton_step();
-// 
-//   DoubleVector dummy_residuals;
-//   CRDoubleMatrix jacobian;
-//   perturbed_problem.get_jacobian(dummy_residuals, jacobian);
-//   jacobian.sparse_indexed_output("jacobian.dat", true);
-// 
-//   ofstream file("dofs.dat");
-//   perturbed_problem.describe_dofs(file);
-//   file.close();
-// 
-//   // debug_jacobian(&perturbed_problem);
-// 
-//   // Steady newton solve
-//   perturbed_problem.steady_newton_solve();
-//   perturbed_problem.doc_solution();
-// 
-//   // Eigensolve
-//   Vector<std::complex<double>> eigenvalue =
-//     perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(1);
-// }
+BOOST_AUTO_TEST_CASE(mode_1_fix_c)
+{
+  Params parameters;
+  // parameters.restart_filename = "RESLT/restart0.dat";
+  parameters.azimuthal_mode_number = 1;
+  parameters.contact_angle = 120.0 / 180.0 * MathematicalConstants::Pi;
 
-// Fix the singular scaling to test the internal and external boundary
-// conditions
-//BOOST_AUTO_TEST_CASE(mode_1_fix_c)
-//{
-//  Params parameters;
-//  // parameters.restart_filename = "RESLT/restart0.dat";
-//  parameters.azimuthal_mode_number = 1;
-//  parameters.contact_angle = 120.0 / 180.0 * MathematicalConstants::Pi;
-//
-//  // Create the base problem
-//  BASE_PROBLEM base_problem(&parameters);
-//  //  ifstream restart_filestream;
-//  //  restart_filestream.open(parameters.restart_filename);
-//  //  bool is_unsteady_restart = false;
-//  //  base_problem.read(restart_filestream, is_unsteady_restart);
-//  //  restart_filestream.close();
-//  base_problem.steady_newton_solve();
-//  base_problem.create_restart_file();
-//
-//  base_problem.reset_lagrange();
-//  base_problem.assign_initial_values_impulsive();
-//
-//  // Create the linear problem
-//  PERTURBED_PROBLEM perturbed_problem(base_problem.bulk_mesh_pt(),
-//                                      base_problem.free_surface_mesh_pt(),
-//                                      base_problem.slip_surface_mesh_pt(),
-//                                      &parameters);
-//
-//  perturbed_problem.assign_initial_values_impulsive();
-//  perturbed_problem.disable_singular_correction();
-//
-//  // Steady newton solve
-//  perturbed_problem.steady_newton_solve();
-//  perturbed_problem.doc_solution();
-//
-//  // Eigensolve
-//  Vector<std::complex<double>> eigenvalue =
-//    perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(1);
-//
-//  perturbed_problem.set_the_singular_correction(Vector<double>(2, 0.1));
-//  perturbed_problem.setup_new_data();
-//  perturbed_problem.set_boundary_conditions();
-//
-//  DoubleVector residuals;
-//  perturbed_problem.get_residuals(residuals);
-//  residuals.output("residuals.dat");
-//  ofstream file("dofs.dat");
-//  perturbed_problem.describe_dofs(file);
-//  file.close();
-//  perturbed_problem.doc_solution();
-//
-//  // Eigensolve
-//  eigenvalue =
-//    perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(1);
-//
-//  perturbed_problem.steady_newton_solve();
-//  perturbed_problem.doc_solution();
-//
-//  // Eigensolve
-//  eigenvalue =
-//    perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(1);
-//}
+  // Create the base problem
+  BASE_PROBLEM base_problem(&parameters);
+  //  ifstream restart_filestream;
+  //  restart_filestream.open(parameters.restart_filename);
+  //  bool is_unsteady_restart = false;
+  //  base_problem.read(restart_filestream, is_unsteady_restart);
+  //  restart_filestream.close();
+  base_problem.steady_newton_solve();
+  base_problem.create_restart_file();
+
+  base_problem.reset_lagrange();
+  base_problem.assign_initial_values_impulsive();
+
+  // Create the linear problem
+  PERTURBED_PROBLEM perturbed_problem(base_problem.bulk_mesh_pt(),
+                                      base_problem.free_surface_mesh_pt(),
+                                      base_problem.slip_surface_mesh_pt(),
+                                      &parameters);
+
+  perturbed_problem.assign_initial_values_impulsive();
+  perturbed_problem.disable_singular_correction();
+
+  perturbed_problem.pin_horizontal_mesh_deformation();
+
+  // Steady newton solve
+  perturbed_problem.steady_newton_solve();
+  perturbed_problem.doc_solution();
+
+  // Eigensolve
+  Vector<std::complex<double>> eigenvalue =
+    perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(1);
+
+  perturbed_problem.set_the_singular_correction(Vector<double>{0.1, 0});
+  perturbed_problem.setup_new_data();
+  perturbed_problem.set_boundary_conditions();
+
+  DoubleVector residuals;
+  perturbed_problem.get_residuals(residuals);
+  residuals.output("residuals.dat");
+  ofstream file("dofs.dat");
+  perturbed_problem.describe_dofs(file);
+  file.close();
+  perturbed_problem.doc_solution();
+
+  // Eigensolve
+  eigenvalue =
+    perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(1);
+}
 
 // Fix the singular scaling to test the internal and external boundary
 // conditions
