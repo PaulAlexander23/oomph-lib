@@ -57,6 +57,8 @@
 #include "overlaying_linearised_elastic_axisym_fluid_interface_element.h"
 #include "overlaying_my_linear_element.h"
 #include "perturbed_linear_stability_cap_problem.h"
+#include "singular_overlaying_my_linear_elements.h"
+#include "singular_perturbed_linear_stability_cap_problem.h"
 
 using namespace std;
 using namespace oomph;
@@ -146,28 +148,63 @@ int main(int argc, char** argv)
   base_problem.close_trace_files();
 
   // Create the linear stability problem
-  typedef OverlayingMyLinearElement<BASE_ELEMENT> PERTURBED_ELEMENT;
-  PerturbedLinearStabilityCapProblem<BASE_ELEMENT,
-                                     PERTURBED_ELEMENT,
-                                     TIMESTEPPER>
-    perturbed_problem(base_problem.bulk_mesh_pt(),
-                      base_problem.free_surface_mesh_pt(),
-                      base_problem.slip_surface_mesh_pt(),
-                      &parameters);
 
-  perturbed_problem.assign_initial_values_impulsive();
-
-  // Document the solution before the solve for testing
-  perturbed_problem.doc_solution();
-
-  // Solve
-  // eigenproblem
-  if (parameters.azimuthal_mode_number != 0)
+  // If the contact angle is acute then we use the normal problem,
+  // otherwise we include the singular correction
+  if (parameters.contact_angle <= 90.0 / 180.0 * MathematicalConstants::Pi)
   {
-    perturbed_problem.make_unsteady();
+    typedef OverlayingMyLinearElement<BASE_ELEMENT> PERTURBED_ELEMENT;
+    PerturbedLinearStabilityCapProblem<BASE_ELEMENT,
+                                       PERTURBED_ELEMENT,
+                                       TIMESTEPPER>
+      perturbed_problem(base_problem.bulk_mesh_pt(),
+                        base_problem.free_surface_mesh_pt(),
+                        base_problem.slip_surface_mesh_pt(),
+                        &parameters);
+
+
+    perturbed_problem.assign_initial_values_impulsive();
+
+    // Document the solution before the solve for testing
+    perturbed_problem.doc_solution();
+
+    // Solve
+    // eigenproblem
+    if (parameters.azimuthal_mode_number != 0)
+    {
+      perturbed_problem.make_unsteady();
+    }
+    perturbed_problem.pin_horizontal_mesh_deformation();
+    perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(8);
   }
-  perturbed_problem.pin_horizontal_mesh_deformation();
-  perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(8);
+  else
+  {
+    typedef SingularOverlayingMyLinearElement<BASE_ELEMENT> PERTURBED_ELEMENT;
+    SingularPerturbedLinearStabilityCapProblem<BASE_ELEMENT,
+                                               PERTURBED_ELEMENT,
+                                               TIMESTEPPER>
+      perturbed_problem(base_problem.bulk_mesh_pt(),
+                        base_problem.free_surface_mesh_pt(),
+                        base_problem.slip_surface_mesh_pt(),
+                        &parameters);
+
+
+    perturbed_problem.assign_initial_values_impulsive();
+    perturbed_problem.pin_horizontal_mesh_deformation();
+    perturbed_problem.use_weak_no_penetration_condition();
+    perturbed_problem.steady_newton_solve();
+
+    // Document the solution before the solve for testing
+    perturbed_problem.doc_solution();
+
+    // Solve
+    // eigenproblem
+    if (parameters.azimuthal_mode_number != 0)
+    {
+      perturbed_problem.make_unsteady();
+    }
+    perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(8);
+  }
 
 // Finalise MPI after all computations are complete
 #ifdef OOMPH_HAS_MPI

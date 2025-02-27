@@ -34,6 +34,7 @@ namespace oomph
     unsigned Pressure_value_index;
     double* ReInvFr_pt;
     Vector<double>* G_pt;
+    Vector<unsigned> External_data_index;
 
   public:
     // Constructor
@@ -147,7 +148,7 @@ namespace oomph
     // Set and add the pressure data as external data
     void add_scaling_data(Data* const& pressure_data_pt)
     {
-      add_external_data(pressure_data_pt);
+      External_data_index.push_back(add_external_data(pressure_data_pt));
     }
 
     // Calculate the element's residual vector
@@ -242,11 +243,12 @@ namespace oomph
       // Set the local equation
       int local_eqn = 0;
 
-      const unsigned n_external_data = this->nexternal_data();
+      const unsigned n_external_data = External_data_index.size();
       for (unsigned i = 0; i < n_external_data; i++)
       {
         // Add to singular function scaling residual
-        local_eqn = this->external_local_eqn(i, Pressure_value_index);
+        local_eqn = this->external_local_eqn(External_data_index[i],
+                                             Pressure_value_index);
 
         // If the equation is not pinned
         if (local_eqn >= 0)
