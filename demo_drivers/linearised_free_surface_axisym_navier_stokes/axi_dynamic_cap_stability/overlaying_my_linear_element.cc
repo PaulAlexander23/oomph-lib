@@ -1,4 +1,5 @@
 #include "overlaying_my_linear_element.h"
+#include "base_element.h"
 
 namespace oomph
 {

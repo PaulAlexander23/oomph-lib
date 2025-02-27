@@ -109,6 +109,11 @@ namespace oomph
     {
       this->node_pt(n)->pin(this->lagrange_index(n, i));
     }
+    
+    void unpin_lagrange_multiplier(const unsigned& n, const unsigned& i)
+    {
+      this->node_pt(n)->unpin(this->lagrange_index(n, i));
+    }
 
     void pin_lagrange_multiplier(const unsigned& n,
                                  const unsigned& i,

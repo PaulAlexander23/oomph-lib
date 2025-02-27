@@ -2,7 +2,9 @@
 #define SINGULAR_PERTURBED_LINEAR_STABILITY_CAP_PROBLEM_HEADER
 
 #include "perturbed_linear_stability_cap_problem_base.h"
+
 #include "decomposed_pressure_evaluation_elements.h"
+#include "singular_overlaying_my_linear_elements.h"
 
 namespace oomph
 {
@@ -255,7 +257,7 @@ namespace oomph
         // The singular function satisfies the Stokes equation
         el_pt->singular_function_satisfies_stokes_equation() = false;
 
-        el_pt->pin_c();
+        // el_pt->pin_c();
         el_pt->set_c(0.0);
 
         // Add element to the mesh
@@ -410,6 +412,7 @@ namespace oomph
         PERTURBED_ELEMENT,
         TIMESTEPPER>::set_boundary_conditions();
 
+
       if (this->parameters_pt()->azimuthal_mode_number == 0)
       {
         // Set the boundary conditions for the singular scaling elements
@@ -418,7 +421,262 @@ namespace oomph
         singular_el_pt->pin_c();
         singular_el_pt->set_c(0.0);
       }
+
+      // Rebuild the global mesh
+      this->rebuild_global_mesh();
+
+      // Set up the equation numbering so we are ready to solve the problem.
+      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                 << std::endl;
     }
+
+
+    Vector<Vector<double>> wall_velocity()
+    {
+      Vector<Vector<double>> wall_velocity;
+
+      Vector<double> node_wall_velocity(4, 0.0);
+      // Get number of nodes along the slip surface
+      const unsigned n_node =
+        this->fluid_mesh_pt()->nboundary_node(Outer_boundary_with_slip_id);
+      // Loop over nodes and pin vertical velocity
+      for (unsigned n = 0; n < n_node; n++)
+      {
+        Node* nod_pt = this->fluid_mesh_pt()->boundary_node_pt(
+          Outer_boundary_with_slip_id, n);
+        node_wall_velocity[0] = nod_pt->value(4);
+        node_wall_velocity[1] = nod_pt->value(5);
+        node_wall_velocity[2] = nod_pt->value(6);
+        node_wall_velocity[3] = nod_pt->value(7);
+
+        wall_velocity.push_back(node_wall_velocity);
+      }
+
+      return wall_velocity;
+    }
+
+    Vector<Vector<double>> velocity()
+    {
+      Vector<Vector<double>> velocity;
+
+      Vector<double> node_velocity(6, 0.0);
+      // Get number of nodes along the slip surface
+      const unsigned n_node =
+        this->fluid_mesh_pt()->nboundary_node(Outer_boundary_with_slip_id);
+      // Loop over nodes and pin vertical velocity
+      for (unsigned n = 0; n < n_node; n++)
+      {
+        Node* nod_pt = this->fluid_mesh_pt()->boundary_node_pt(
+          Outer_boundary_with_slip_id, n);
+
+        for (unsigned i = 0; i < 6; i++)
+        {
+          node_velocity[i] = nod_pt->value(4 + i);
+        }
+
+        velocity.push_back(node_velocity);
+      }
+
+      return velocity;
+    }
+
+    // void pin_wall_velocity(const double& velocity)
+    //{
+    //   oomph_info << "pin_wall_velocity" << std::endl;
+    //   // Get number of nodes along the slip surface
+    //   const unsigned n_node =
+    //     this->fluid_mesh_pt()->nboundary_node(Outer_boundary_with_slip_id);
+    //   // Loop over nodes and pin vertical velocity
+    //   for (unsigned n = 0; n < n_node; n++)
+    //   {
+    //     Node* nod_pt = this->fluid_mesh_pt()->boundary_node_pt(
+    //       Outer_boundary_with_slip_id, n);
+    //     nod_pt->pin(6);
+    //     nod_pt->pin(7);
+    //     nod_pt->set_value(6, 1.0);
+    //     nod_pt->set_value(7, 1.0);
+    //   }
+
+    //  // Rebuild the global mesh
+    //  this->rebuild_global_mesh();
+
+    //  // Set up the equation numbering so we are ready to solve the problem.
+    //  oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+    //             << std::endl;
+    //}
+
+    void setup_new_data()
+    {
+      unsigned n_aug_bulk = Augmented_bulk_element_number.size();
+      for (unsigned e = 0; e < n_aug_bulk; e++)
+      {
+        // Upcast from GeneralisedElement to the present element
+        PERTURBED_ELEMENT* el_pt = dynamic_cast<PERTURBED_ELEMENT*>(
+          this->fluid_mesh_pt()->element_pt(Augmented_bulk_element_number[e]));
+        // Setup the FE correction values
+        el_pt->setup_new_data();
+      }
+    }
+
+    /// Disable the singular correction by pinning the singular function
+    /// scalings
+    void disable_singular_correction()
+    {
+      for (unsigned i = 0; i < 2; i++)
+      {
+        SCALING_ELEMENT* singular_el_pt = dynamic_cast<SCALING_ELEMENT*>(
+          Singularity_scaling_mesh_pt->element_pt(i));
+        singular_el_pt->pin_c();
+        singular_el_pt->set_c(0.0);
+      }
+      this->rebuild_global_mesh();
+      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                 << std::endl;
+    }
+
+    // Set the singular correction
+    void set_the_singular_correction(const Vector<double>& c)
+    {
+      for (unsigned i = 0; i < 2; i++)
+      {
+        SCALING_ELEMENT* singular_el_pt = dynamic_cast<SCALING_ELEMENT*>(
+          Singularity_scaling_mesh_pt->element_pt(i));
+        singular_el_pt->set_c(c[i]);
+      }
+    }
+
+    /// Enable the singular correction by unpinning the singular function
+    /// scalings
+    void enable_singular_correction()
+    {
+      SCALING_ELEMENT* singular_el_pt = dynamic_cast<SCALING_ELEMENT*>(
+        Singularity_scaling_mesh_pt->element_pt(0));
+      singular_el_pt->unpin_c();
+      if (this->parameters_pt()->azimuthal_mode_number > 0)
+      {
+        singular_el_pt = dynamic_cast<SCALING_ELEMENT*>(
+          Singularity_scaling_mesh_pt->element_pt(1));
+        singular_el_pt->unpin_c();
+      }
+      this->rebuild_global_mesh();
+      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                 << std::endl;
+    }
+
+    // Override setting the no-penetration condition strongly.
+    virtual void set_strong_no_penetration_condition_on_wall()
+    {
+      oomph_info << "overridden set_strong_no_penetration_condition"
+                 << std::endl;
+
+
+      // Call the base class function first
+      PerturbedLinearStabilityCapProblemBase<
+        BASE_ELEMENT,
+        PERTURBED_ELEMENT,
+        TIMESTEPPER>::set_strong_no_penetration_condition_on_wall();
+
+      // Now we loop over the elements and for the augmented elements we
+      // set the no penetration condition strongly through the elements
+      // rather than by pinning the values
+
+      // Loop over the boundary elements
+      unsigned n_element =
+        this->fluid_mesh_pt()->nboundary_element(Outer_boundary_with_slip_id);
+      const unsigned uc_index = 0;
+      const unsigned us_index = 1;
+      const unsigned wc_index = 2;
+      const unsigned ws_index = 3;
+      const unsigned vc_index = 4;
+      const unsigned vs_index = 5;
+      for (unsigned n = 0; n < n_element; n++)
+      {
+        PERTURBED_ELEMENT* el_pt = dynamic_cast<PERTURBED_ELEMENT*>(
+          this->fluid_mesh_pt()->boundary_element_pt(
+            Outer_boundary_with_slip_id, n));
+        if (el_pt->is_augmented())
+        {
+          // Loop over the nodes
+          for (unsigned m = 0; m < 6; m++)
+          {
+            // If the node is on the outer boundary then
+            if (el_pt->node_pt(m)->is_on_boundary(Outer_boundary_with_slip_id))
+            {
+              // Unpin the velocity components
+              el_pt->node_pt(m)->unpin(4 + uc_index);
+              el_pt->node_pt(m)->unpin(4 + vc_index);
+              el_pt->node_pt(m)->unpin(4 + us_index);
+              el_pt->node_pt(m)->unpin(4 + vs_index);
+              // Set their imposition by Dirichlet BC within the element
+              el_pt->impose_velocity_dirichlet_bc_on_node(m, uc_index);
+              el_pt->impose_velocity_dirichlet_bc_on_node(m, us_index);
+              el_pt->impose_velocity_dirichlet_bc_on_node(m, vc_index);
+              el_pt->impose_velocity_dirichlet_bc_on_node(m, vs_index);
+              el_pt->set_velocity_dirichlet_value_on_node(m, uc_index, 0.0);
+              el_pt->set_velocity_dirichlet_value_on_node(m, us_index, 0.0);
+              el_pt->set_velocity_dirichlet_value_on_node(m, vc_index, 0.0);
+              el_pt->set_velocity_dirichlet_value_on_node(m, vs_index, 0.0);
+            }
+          }
+        }
+      }
+
+      this->rebuild_global_mesh();
+      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                 << std::endl;
+    }
+
+    void set_no_vertical_velocity_on_wall() override
+    {
+      // Call the base class function first
+      PerturbedLinearStabilityCapProblemBase<
+        BASE_ELEMENT,
+        PERTURBED_ELEMENT,
+        TIMESTEPPER>::set_no_vertical_velocity_on_wall();
+
+      // Now we loop over the elements and for the augmented elements we
+      // set the no vertical velocity condition strongly through the elements
+      // rather than by pinning the values
+
+      // Loop over the boundary elements
+      unsigned n_element =
+        this->fluid_mesh_pt()->nboundary_element(Outer_boundary_with_slip_id);
+      const unsigned uc_index = 0;
+      const unsigned us_index = 1;
+      const unsigned wc_index = 2;
+      const unsigned ws_index = 3;
+      const unsigned vc_index = 4;
+      const unsigned vs_index = 5;
+      for (unsigned n = 0; n < n_element; n++)
+      {
+        PERTURBED_ELEMENT* el_pt = dynamic_cast<PERTURBED_ELEMENT*>(
+          this->fluid_mesh_pt()->boundary_element_pt(
+            Outer_boundary_with_slip_id, n));
+        if (el_pt->is_augmented())
+        {
+          // Loop over the nodes
+          for (unsigned m = 0; m < 6; m++)
+          {
+            // If the node is on the outer boundary then
+            if (el_pt->node_pt(m)->is_on_boundary(Outer_boundary_with_slip_id))
+            {
+              // If the slip length is zero, the vertical velocity is also
+              // pinned to zero
+              if (this->parameters_pt()->slip_length == 0)
+              {
+                el_pt->node_pt(m)->unpin(4 + wc_index);
+                el_pt->node_pt(m)->unpin(4 + ws_index);
+                el_pt->impose_velocity_dirichlet_bc_on_node(m, wc_index);
+                el_pt->impose_velocity_dirichlet_bc_on_node(m, ws_index);
+                el_pt->set_velocity_dirichlet_value_on_node(m, ws_index, 0.0);
+                el_pt->set_velocity_dirichlet_value_on_node(m, ws_index, 0.0);
+              }
+            }
+          }
+        }
+      }
+    }
+
 
     void doc_solution()
     {
@@ -466,5 +724,14 @@ namespace oomph
       this->doc_info().number()++;
     }
   };
+
+  // Explicit template instantiation is declared in the .cc file. Need to make
+  // sure that this is compiled and linked against.
+  extern template class SingularPerturbedLinearStabilityCapProblem<
+    SolidSingularAxisymNavierStokesElement<
+      ProjectableAxisymmetricTTaylorHoodPVDElement>,
+    SingularOverlayingMyLinearElement<SolidSingularAxisymNavierStokesElement<
+      ProjectableAxisymmetricTTaylorHoodPVDElement>>,
+    BDF<2>>;
 }; // namespace oomph
 #endif

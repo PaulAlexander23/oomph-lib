@@ -27,22 +27,24 @@
 #ifndef SINGULAR_AXISYM_DYNAMIC_CAP_PROBLEM_HEADER
 #define SINGULAR_AXISYM_DYNAMIC_CAP_PROBLEM_HEADER
 
+#include <bits/chrono.h>
+#include <bits/std_abs.h>
+#include <math.h>
 #include <chrono>
 #include <algorithm>
 #include <numeric>
 #include <vector>
+#include <fstream>
+#include <functional>
+#include <iostream>
+#include <iterator>
+#include <map>
+#include <stdexcept>
+#include <string>
 
 // OOMPH-LIB include files
-#include "generic.h"
-#include "axisym_navier_stokes.h"
-#include "navier_stokes.h"
-#include "fluid_interface.h"
-#include "constitutive.h"
-#include "solid.h"
-
 // The mesh
 #include "meshes/triangle_mesh.h"
-
 #include "my_error_estimator.h"
 #include "net_flux_elements.h"
 #include "parameters.h"
@@ -55,6 +57,32 @@
 #include "projectable_axisymmetric_Ttaylor_hood_elements.h"
 #include "debug_elastic_axisymmetric_volume_constraint_boundary_elements.h"
 #include "debug_impose_impenetratibility_elements.h"
+#include "axisym_navier_stokes/axisym_fluid_flux_elements.h"
+#include "axisym_navier_stokes/axisym_fluid_slip_elements.h"
+#include "axisym_navier_stokes/singular_axisym_fluid_traction_elements.h"
+#include "axisym_navier_stokes/singular_axisym_navier_stokes_elements.h"
+#include "constitutive/constitutive_laws.h"
+#include "fluid_interface/interface_elements.h"
+#include "fluid_interface/specific_node_update_interface_elements.h"
+#include "generic/Telements.h"
+#include "generic/Vector.h"
+#include "generic/double_vector.h"
+#include "generic/elements.h"
+#include "generic/error_estimator.h"
+#include "generic/face_mesh_project.h"
+#include "generic/geom_objects.h"
+#include "generic/matrices.h"
+#include "generic/mesh.h"
+#include "generic/mesh_as_geometric_object.h"
+#include "generic/nodes.h"
+#include "generic/oomph_definitions.h"
+#include "generic/oomph_utilities.h"
+#include "generic/timesteppers.h"
+#include "generic/unstructured_two_d_mesh_geometry_base.h"
+#include "meshes/triangle_mesh.template.h"
+#include "navier_stokes/eigensolution_functions.h"
+#include "navier_stokes/pressure_evaluation_elements.h"
+#include "navier_stokes/singular_navier_stokes_solution_elements.h"
 
 namespace oomph
 {
@@ -493,6 +521,17 @@ namespace oomph
         Singularity_scaling_mesh_pt->element_pt(0));
       el_pt->pin_c();
       el_pt->set_c(value);
+      // Rebuild the global mesh
+      this->rebuild_global_mesh();
+      // Setup all the equation numbering and look-up schemes
+      oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
+    }
+
+    void fix_c()
+    {
+      SCALING_ELEMENT* el_pt = dynamic_cast<SCALING_ELEMENT*>(
+        Singularity_scaling_mesh_pt->element_pt(0));
+      el_pt->pin_c();
       // Rebuild the global mesh
       this->rebuild_global_mesh();
       // Setup all the equation numbering and look-up schemes

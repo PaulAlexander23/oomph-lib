@@ -1,5 +1,15 @@
 #include "parameters.h"
 
+#include <ctype.h>
+#include <sys/stat.h>
+#include <algorithm>
+#include <exception>
+#include <fstream>
+#include <iomanip>
+#include <limits>
+
+#include "generic/oomph_definitions.h"
+
 namespace oomph{
   Params create_parameters_from_file(const std::string& filename)
   {

@@ -181,6 +181,15 @@ namespace oomph
       fill_in_contribution_to_residuals_axisymmetric_nst_traction(residuals);
     }
 
+    void fill_in_contribution_to_jacobian_and_mass_matrix(
+      Vector<double>& residuals,
+      DenseMatrix<double>& jacobian,
+      DenseMatrix<double>& mass_matrix)
+    {
+      fill_in_contribution_to_jacobian(residuals, jacobian);
+    }
+
+
     /// Specify the value of nodal zeta from the face geometry
     /// The "global" intrinsic coordinate of the element when
     /// viewed as part of a geometric object should be given by

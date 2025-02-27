@@ -4,8 +4,12 @@
 #include <sys/stat.h>
 #include <limits>
 #include <memory>
+#include <cmath>
+#include <string>
 
 #include "generic.h"
+#include "generic/Vector.h"
+#include "generic/oomph_utilities.h"
 
 namespace oomph
 {

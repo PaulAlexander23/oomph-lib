@@ -1,7 +1,10 @@
 #ifndef PARAMETER_FUNCTIONS_HEADER
 #define PARAMETER_FUNCTIONS_HEADER
 
+#include <functional>
+
 #include "generic.h"
+#include "generic/Vector.h"
 
 namespace oomph
 {

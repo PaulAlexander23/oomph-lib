@@ -55,6 +55,8 @@
 #include "overlaying_linearised_elastic_axisym_fluid_interface_element.h"
 #include "overlaying_my_linear_element.h"
 #include "perturbed_linear_stability_cap_problem.h"
+#include "singular_overlaying_my_linear_elements.h"
+#include "singular_perturbed_linear_stability_cap_problem.h"
 
 using namespace std;
 using namespace oomph;
@@ -214,7 +216,7 @@ int main(int argc, char** argv)
     std::cout << "restarting" << std::endl;
     has_restart = true;
   }
-  typedef SingularAxisymNavierStokesElement<
+  typedef SolidSingularAxisymNavierStokesElement<
     ProjectableAxisymmetricTTaylorHoodPVDElement>
     BASE_ELEMENT;
   typedef BDF<2> TIMESTEPPER;
@@ -264,168 +266,345 @@ int main(int argc, char** argv)
   base_problem.create_restart_file();
   base_problem.doc_solution();
 
-  //====================================================================
-  // Solve the eigenvalue problem
-  Vector<std::complex<double>> eigenvalues(1, 0.0);
-
-
-  // Create the linear stability problem
-  typedef OverlayingMyLinearElement<BASE_ELEMENT> PERTURBED_ELEMENT;
-  PerturbedLinearStabilityCapProblem<BASE_ELEMENT,
-                                     PERTURBED_ELEMENT,
-                                     TIMESTEPPER>
-    initial_perturbed_problem(base_problem.bulk_mesh_pt(),
-                              base_problem.free_surface_mesh_pt(),
-                              base_problem.slip_surface_mesh_pt(),
-                              &parameters);
-
-  initial_perturbed_problem.assign_initial_values_impulsive();
-
-  // Document the solution before the solve for testing
-  initial_perturbed_problem.doc_solution();
-  initial_perturbed_problem.steady_newton_solve();
-
-  if (parameters.azimuthal_mode_number != 0)
+  // If the contact angle is acute then we use the normal problem,
+  // otherwise we include the singular correction
+  if (parameters.contact_angle <= 90.0 / 180.0 * MathematicalConstants::Pi)
   {
-    initial_perturbed_problem.make_unsteady();
-  }
-
-  eigenvalues =
-    initial_perturbed_problem.solve_n_most_unstable_eigensolutions(1);
-
-  // Our new residual is the real part of the eigenvalue
-  double residual = real(eigenvalues[0]);
-
-  const double tolerance = 1e-8;
-  bool has_converged = false;
-  if (abs(residual) < tolerance)
-  {
-    has_converged = true;
-  }
-
-  // Newton iteration until we converge to the neutral stability point
-  //====================================================================
-
-  unsigned n_iterations = 0;
-  const unsigned max_n_iterations =
-    floor(abs(parameters.final_time / parameters.time_step));
-  // const double step_tolerance = 1e-3;
-  double step_param = args.starting_step;
-  double old_param;
-  double current_param = *continuation_param_pt;
-  double old_residual;
-  while (!has_converged && n_iterations < max_n_iterations)
-  {
-    TerminateHelper::setup();
-    std::cout << "-------------" << std::endl;
-    std::cout << "Start of loop" << std::endl;
-    std::cout << "-------------" << std::endl;
-    std::cout << std::endl;
-    std::cout << n_iterations << ", " << current_param << "," << residual << ","
-              << current_param + step_param << std::endl;
-    old_param = current_param;
-    current_param += step_param;
-    *continuation_param_pt = current_param;
-
-
-    // Solve steady problem
-    bool has_base_state = false;
-    unsigned base_state_iterations = 0;
-    const unsigned max_base_state_iterations = 8;
-    while (!has_base_state && base_state_iterations < max_base_state_iterations)
-    {
-      DoubleVector dofs;
-      base_problem.get_dofs(dofs);
-      try
-      {
-        // Solve steady problem
-        int exit_flag = base_problem.steady_newton_solve_adapt_if_needed(
-          parameters.max_adapt);
-
-        // Output result
-        base_problem.create_restart_file();
-        base_problem.doc_solution();
-
-        if (exit_flag >= 0)
-        {
-          has_base_state = true;
-        }
-      }
-      catch (OomphLibError& e)
-      {
-        std::cout << "Caught exception" << std::endl;
-        std::cout << "Resetting problem" << std::endl;
-        base_problem.set_dofs(dofs);
-        current_param -= step_param;
-        step_param /= 3.0;
-        current_param += step_param;
-        *continuation_param_pt = current_param;
-        std::cout << "Reducing step size.";
-        std::cout << "Number of attempts: " << base_state_iterations;
-        std::cout << ", Step size: " << step_param;
-        std::cout << ", Target wall velocity: " << current_param << std::endl;
-      }
-      base_state_iterations++;
-    }
-
-    if (!has_base_state)
-    {
-      std::cout << "WARNING: Base state not found." << std::endl;
-      break;
-    }
-
     //====================================================================
+    // Solve the eigenvalue problem
+    Vector<std::complex<double>> eigenvalues(1, 0.0);
+
 
     // Create the linear stability problem
+    typedef OverlayingMyLinearElement<BASE_ELEMENT> PERTURBED_ELEMENT;
     PerturbedLinearStabilityCapProblem<BASE_ELEMENT,
                                        PERTURBED_ELEMENT,
                                        TIMESTEPPER>
-      perturbed_problem(base_problem.bulk_mesh_pt(),
-                        base_problem.free_surface_mesh_pt(),
-                        base_problem.slip_surface_mesh_pt(),
-                        &parameters);
+      initial_perturbed_problem(base_problem.bulk_mesh_pt(),
+                                base_problem.free_surface_mesh_pt(),
+                                base_problem.slip_surface_mesh_pt(),
+                                &parameters);
+
+    initial_perturbed_problem.assign_initial_values_impulsive();
 
     // Document the solution before the solve for testing
-    perturbed_problem.doc_solution();
+    initial_perturbed_problem.doc_solution();
+    initial_perturbed_problem.steady_newton_solve();
 
-    perturbed_problem.steady_newton_solve();
     if (parameters.azimuthal_mode_number != 0)
     {
-      perturbed_problem.make_unsteady();
+      initial_perturbed_problem.make_unsteady();
     }
 
-    eigenvalues = perturbed_problem.solve_n_most_unstable_eigensolutions(1);
+    eigenvalues =
+      initial_perturbed_problem.solve_n_most_unstable_eigensolutions(1);
 
-    old_residual = residual;
-    residual = real(eigenvalues[0]);
+    // Our new residual is the real part of the eigenvalue
+    double residual = real(eigenvalues[0]);
 
+    const double tolerance = 1e-8;
+    bool has_converged = false;
     if (abs(residual) < tolerance)
     {
       has_converged = true;
-      perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(1);
     }
-    else
+
+    // Newton iteration until we converge to the neutral stability point
+    //====================================================================
+
+    unsigned n_iterations = 0;
+    const unsigned max_n_iterations =
+      floor(abs(parameters.final_time / parameters.time_step));
+    // const double step_tolerance = 1e-3;
+    double step_param = args.starting_step;
+    double old_param;
+    double current_param = *continuation_param_pt;
+    double old_residual;
+    while (!has_converged && n_iterations < max_n_iterations)
     {
-      // Newton iteration, using fd to approximate the derivative
-      double deriv = (residual - old_residual) / (current_param - old_param);
-      const double relaxation = 1.0;
-      step_param = -relaxation * residual / (deriv);
-      if (n_iterations == (max_n_iterations - 1))
+      TerminateHelper::setup();
+      std::cout << "-------------" << std::endl;
+      std::cout << "Start of loop" << std::endl;
+      std::cout << "-------------" << std::endl;
+      std::cout << std::endl;
+      std::cout << n_iterations << ", " << current_param << "," << residual
+                << "," << current_param + step_param << std::endl;
+      old_param = current_param;
+      current_param += step_param;
+      *continuation_param_pt = current_param;
+
+
+      // Solve steady problem
+      bool has_base_state = false;
+      unsigned base_state_iterations = 0;
+      const unsigned max_base_state_iterations = 8;
+      while (!has_base_state &&
+             base_state_iterations < max_base_state_iterations)
       {
+        DoubleVector dofs;
+        base_problem.get_dofs(dofs);
+        try
+        {
+          // Solve steady problem
+          int exit_flag = base_problem.steady_newton_solve_adapt_if_needed(
+            parameters.max_adapt);
+
+          // Output result
+          base_problem.create_restart_file();
+          base_problem.doc_solution();
+
+          if (exit_flag >= 0)
+          {
+            has_base_state = true;
+          }
+        }
+        catch (OomphLibError& e)
+        {
+          std::cout << "Caught exception" << std::endl;
+          std::cout << "Resetting problem" << std::endl;
+          base_problem.set_dofs(dofs);
+          current_param -= step_param;
+          step_param /= 3.0;
+          current_param += step_param;
+          *continuation_param_pt = current_param;
+          std::cout << "Reducing step size.";
+          std::cout << "Number of attempts: " << base_state_iterations;
+          std::cout << ", Step size: " << step_param;
+          std::cout << ", Target wall velocity: " << current_param << std::endl;
+        }
+        base_state_iterations++;
+      }
+
+      if (!has_base_state)
+      {
+        std::cout << "WARNING: Base state not found." << std::endl;
+        break;
+      }
+
+      //====================================================================
+
+      // Create the linear stability problem
+      PerturbedLinearStabilityCapProblem<BASE_ELEMENT,
+                                         PERTURBED_ELEMENT,
+                                         TIMESTEPPER>
+        perturbed_problem(base_problem.bulk_mesh_pt(),
+                          base_problem.free_surface_mesh_pt(),
+                          base_problem.slip_surface_mesh_pt(),
+                          &parameters);
+
+      // Document the solution before the solve for testing
+      perturbed_problem.doc_solution();
+
+      perturbed_problem.steady_newton_solve();
+      if (parameters.azimuthal_mode_number != 0)
+      {
+        perturbed_problem.make_unsteady();
+      }
+
+      eigenvalues = perturbed_problem.solve_n_most_unstable_eigensolutions(1);
+
+      old_residual = residual;
+      residual = real(eigenvalues[0]);
+
+      if (abs(residual) < tolerance)
+      {
+        has_converged = true;
         perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(1);
       }
+      else
+      {
+        // Newton iteration, using fd to approximate the derivative
+        double deriv = (residual - old_residual) / (current_param - old_param);
+        const double relaxation = 1.0;
+        step_param = -relaxation * residual / (deriv);
+        if (n_iterations == (max_n_iterations - 1))
+        {
+          perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(
+            1);
+        }
+      }
+
+      n_iterations++;
     }
 
-    n_iterations++;
+    if (!has_converged)
+    {
+      std::cout << "WARNING: Critical Bond number not converged." << std::endl;
+    }
   }
-
-  if (!has_converged)
+  else
   {
-    std::cout << "WARNING: Critical Bond number not converged." << std::endl;
+    //====================================================================
+    // Solve the eigenvalue problem
+    Vector<std::complex<double>> eigenvalues(1, 0.0);
+
+
+    // Create the linear stability problem
+    typedef SingularOverlayingMyLinearElement<BASE_ELEMENT> PERTURBED_ELEMENT;
+    SingularPerturbedLinearStabilityCapProblem<BASE_ELEMENT,
+                                               PERTURBED_ELEMENT,
+                                               TIMESTEPPER>
+      initial_perturbed_problem(base_problem.bulk_mesh_pt(),
+                                base_problem.free_surface_mesh_pt(),
+                                base_problem.slip_surface_mesh_pt(),
+                                &parameters);
+
+    initial_perturbed_problem.assign_initial_values_impulsive();
+    initial_perturbed_problem.pin_horizontal_mesh_deformation();
+    initial_perturbed_problem.use_weak_no_penetration_condition();
+
+    // Document the solution before the solve for testing
+    initial_perturbed_problem.doc_solution();
+    initial_perturbed_problem.steady_newton_solve();
+
+    if (parameters.azimuthal_mode_number != 0)
+    {
+      initial_perturbed_problem.make_unsteady();
+    }
+
+    eigenvalues =
+      initial_perturbed_problem.solve_n_most_unstable_eigensolutions(1);
+
+    // Our new residual is the real part of the eigenvalue
+    double residual = real(eigenvalues[0]);
+
+    const double tolerance = 1e-8;
+    bool has_converged = false;
+    if (abs(residual) < tolerance)
+    {
+      has_converged = true;
+    }
+
+    // Newton iteration until we converge to the neutral stability point
+    //====================================================================
+
+    unsigned n_iterations = 0;
+    const unsigned max_n_iterations =
+      floor(abs(parameters.final_time / parameters.time_step));
+    // const double step_tolerance = 1e-3;
+    double step_param = args.starting_step;
+    double old_param;
+    double current_param = *continuation_param_pt;
+    double old_residual;
+    while (!has_converged && n_iterations < max_n_iterations)
+    {
+      TerminateHelper::setup();
+      std::cout << "-------------" << std::endl;
+      std::cout << "Start of loop" << std::endl;
+      std::cout << "-------------" << std::endl;
+      std::cout << std::endl;
+      std::cout << n_iterations << ", " << current_param << "," << residual
+                << "," << current_param + step_param << std::endl;
+      old_param = current_param;
+      current_param += step_param;
+      *continuation_param_pt = current_param;
+
+
+      // Solve steady problem
+      bool has_base_state = false;
+      unsigned base_state_iterations = 0;
+      const unsigned max_base_state_iterations = 8;
+      while (!has_base_state &&
+             base_state_iterations < max_base_state_iterations)
+      {
+        DoubleVector dofs;
+        base_problem.get_dofs(dofs);
+        try
+        {
+          // Solve steady problem
+          int exit_flag = base_problem.steady_newton_solve_adapt_if_needed(
+            parameters.max_adapt);
+
+          // Output result
+          base_problem.create_restart_file();
+          base_problem.doc_solution();
+
+          if (exit_flag >= 0)
+          {
+            has_base_state = true;
+          }
+        }
+        catch (OomphLibError& e)
+        {
+          std::cout << "Caught exception" << std::endl;
+          std::cout << "Resetting problem" << std::endl;
+          base_problem.set_dofs(dofs);
+          current_param -= step_param;
+          step_param /= 3.0;
+          current_param += step_param;
+          *continuation_param_pt = current_param;
+          std::cout << "Reducing step size.";
+          std::cout << "Number of attempts: " << base_state_iterations;
+          std::cout << ", Step size: " << step_param;
+          std::cout << ", Target wall velocity: " << current_param << std::endl;
+        }
+        base_state_iterations++;
+      }
+
+      if (!has_base_state)
+      {
+        std::cout << "WARNING: Base state not found." << std::endl;
+        break;
+      }
+
+      //====================================================================
+
+      // Create the linear stability problem
+      SingularPerturbedLinearStabilityCapProblem<BASE_ELEMENT,
+                                                 PERTURBED_ELEMENT,
+                                                 TIMESTEPPER>
+        perturbed_problem(base_problem.bulk_mesh_pt(),
+                          base_problem.free_surface_mesh_pt(),
+                          base_problem.slip_surface_mesh_pt(),
+                          &parameters);
+
+      perturbed_problem.assign_initial_values_impulsive();
+      perturbed_problem.pin_horizontal_mesh_deformation();
+      perturbed_problem.use_weak_no_penetration_condition();
+      // Document the solution before the solve for testing
+      perturbed_problem.doc_solution();
+
+      perturbed_problem.steady_newton_solve();
+      if (parameters.azimuthal_mode_number != 0)
+      {
+        perturbed_problem.make_unsteady();
+      }
+
+      eigenvalues = perturbed_problem.solve_n_most_unstable_eigensolutions(1);
+
+      old_residual = residual;
+      residual = real(eigenvalues[0]);
+
+      if (abs(residual) < tolerance)
+      {
+        has_converged = true;
+        perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(1);
+      }
+      else
+      {
+        // Newton iteration, using fd to approximate the derivative
+        double deriv = (residual - old_residual) / (current_param - old_param);
+        const double relaxation = 1.0;
+        step_param = -relaxation * residual / (deriv);
+        if (n_iterations == (max_n_iterations - 1))
+        {
+          perturbed_problem.solve_and_document_n_most_unstable_eigensolutions(
+            1);
+        }
+      }
+
+      n_iterations++;
+    }
+
+    if (!has_converged)
+    {
+      std::cout << "WARNING: Critical Bond number not converged." << std::endl;
+    }
   }
 
   // Close the trace files
   base_problem.close_trace_files();
+
 
   TerminateHelper::clean_up_memory();
 

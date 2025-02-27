@@ -1,21 +1,21 @@
 #ifndef PERTURBED_LINEAR_STABILITY_CAP_PROBLEM_BASE_HEADER
 #define PERTURBED_LINEAR_STABILITY_CAP_PROBLEM_BASE_HEADER
 
-// #include "axisym_linear_stability_cap_problem.h"
 #include "navier_stokes/eigensolution_functions.h"
 #include "../../axisym_navier_stokes/axi_dynamic_cap/parameter_functions.h"
-#include "overlaying_elastic_linearised_axisym_fluid_slip_elements.h"
-#include "overlaying_linearised_elastic_axisym_fluid_interface_element.h"
 #include "../../axisym_navier_stokes/axi_dynamic_cap/parameters.h"
 #include "../../axisym_navier_stokes/axi_dynamic_cap/volume_constraint_elements_with_output.h"
+#include "../../axisym_navier_stokes/axi_dynamic_cap/my_eigenproblem.h"
+#include "../../axisym_navier_stokes/axi_dynamic_cap/my_triangle_mesh.h"
+#include "../../axisym_navier_stokes/axi_dynamic_cap/utility_functions.h"
+#include "../../axisym_navier_stokes/axi_dynamic_cap/net_flux_elements.h"
+#include "overlaying_elastic_linearised_axisym_fluid_slip_elements.h"
+#include "overlaying_linearised_elastic_axisym_fluid_interface_element.h"
 #include "decomposed_integral_elements.h"
 #include "decomposed_flux_elements.h"
 #include "linearised_contact_angle_elements.h"
-#include "../../axisym_navier_stokes/axi_dynamic_cap/my_eigenproblem.h"
-#include "../../axisym_navier_stokes/axi_dynamic_cap/my_triangle_mesh.h"
 #include "symmetry_velocity_condition_element.h"
-#include "../../axisym_navier_stokes/axi_dynamic_cap/utility_functions.h"
-#include "../../axisym_navier_stokes/axi_dynamic_cap/net_flux_elements.h"
+#include "decomposed_no_penetration_elements.h"
 
 namespace oomph
 {
@@ -47,6 +47,9 @@ namespace oomph
     typedef SymmetryVelocityConditionElement SYMMETRY_CONDITION_ELEMENT;
     typedef LinearisedContactAngleElement<FREE_SURFACE_ELEMENT>
       CONTACT_LINE_ELEMENT;
+    typedef DecomposedAxisymmetricImposeImpenetrabilityElement<
+      PERTURBED_ELEMENT>
+      NO_PENETRATION_ELEMENT;
 
     MyTriangleMesh<PERTURBED_ELEMENT>* Fluid_mesh_pt;
     Params* Parameters_pt;
@@ -58,6 +61,7 @@ namespace oomph
     Mesh* Net_flux_mesh_pt;
     Mesh* Centre_mesh_pt;
     Mesh* Contact_line_mesh_pt;
+    Mesh* No_penetration_boundary_mesh_pt;
 
     Mesh* External_base_mesh_pt;
     Mesh* External_free_surface_mesh_pt;
@@ -81,6 +85,7 @@ namespace oomph
     {
       Kinematic,
       Centre,
+      No_penetration,
     };
 
     enum Boundary_id
@@ -122,6 +127,9 @@ namespace oomph
     // Static problem state Boolean
     bool Is_steady;
 
+    /// Boolean to determine if the no penetration condition is weakly imposed
+    bool Is_no_penetration_weakly_imposed;
+
   public:
     // Constructor
     // Uses the external base and surface mesh of the base state to create a
@@ -142,13 +150,15 @@ namespace oomph
         Net_flux_mesh_pt(0),
         Centre_mesh_pt(0),
         Contact_line_mesh_pt(0),
+        No_penetration_boundary_mesh_pt(new Mesh),
         External_base_mesh_pt(external_base_mesh_pt),
         External_free_surface_mesh_pt(external_free_surface_mesh_pt),
         External_slip_surface_mesh_pt(external_slip_surface_mesh_pt),
         Volume_data_pt(0),
         Flux_lagrange_multiplier_data_pt(0),
         problem_type(Bulk_only_problem),
-        Is_steady(true)
+        Is_steady(true),
+        Is_no_penetration_weakly_imposed(false)
     {
       // Problem::Always_take_one_newton_step = true;
 
@@ -250,6 +260,8 @@ namespace oomph
       {
         add_sub_mesh(Net_flux_mesh_pt);
       }
+      // Add no penetration elements
+      add_sub_mesh(No_penetration_boundary_mesh_pt);
       // add_global_data(Flux_lagrange_multiplier_data_pt);
 
       // Build the global mesh
@@ -263,6 +275,7 @@ namespace oomph
 
       create_free_surface_elements();
       create_slip_elements();
+      create_no_penetration_elements();
 
       if (this->parameters_pt()->azimuthal_mode_number == 0)
       {
@@ -447,6 +460,38 @@ namespace oomph
 
         // Add it to the mesh
         Slip_mesh_pt->add_element_pt(el_pt);
+      }
+    }
+
+    void create_no_penetration_elements()
+    {
+      // Loop over the free surface boundary and create the "interface
+      // elements
+      unsigned b = Outer_boundary_with_slip_id;
+
+      // How many bulk fluid elements are adjacent to boundary b?
+      unsigned n_element = Fluid_mesh_pt->nboundary_element(b);
+
+      // Loop over the bulk fluid elements adjacent to boundary b?
+      for (unsigned e = 0; e < n_element; e++)
+      {
+        // Get pointer to the bulk fluid element that is
+        // adjacent to boundary b
+        PERTURBED_ELEMENT* bulk_elem_pt = dynamic_cast<PERTURBED_ELEMENT*>(
+          Fluid_mesh_pt->boundary_element_pt(b, e));
+
+        // Find the index of the face of element e along boundary b
+        int face_index = Fluid_mesh_pt->face_index_at_boundary(b, e);
+
+        // Create new element
+        NO_PENETRATION_ELEMENT* el_pt = new NO_PENETRATION_ELEMENT(
+          bulk_elem_pt, face_index, Lagrange_id::No_penetration);
+
+        // Add the appropriate boundary number
+        el_pt->set_boundary_number_in_bulk_mesh(b);
+
+        // Add it to the mesh
+        No_penetration_boundary_mesh_pt->add_element_pt(el_pt);
       }
     }
 
@@ -646,6 +691,18 @@ namespace oomph
       }
     }
 
+    void use_weak_no_penetration_condition()
+    {
+      this->Is_no_penetration_weakly_imposed = true;
+      set_boundary_conditions();
+    }
+
+    void use_strong_no_penetration_condition()
+    {
+      this->Is_no_penetration_weakly_imposed = false;
+      set_boundary_conditions();
+    }
+
     // Make the problem steady.
     // This will change what boundary conditions we are imposing
     void make_steady()
@@ -655,8 +712,6 @@ namespace oomph
       this->Is_steady = true;
 
       set_boundary_conditions();
-
-      oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
     }
 
     // Make the problem unsteady.
@@ -668,8 +723,6 @@ namespace oomph
       this->Is_steady = false;
 
       set_boundary_conditions();
-
-      oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
     }
 
     const bool is_steady()
@@ -715,30 +768,19 @@ namespace oomph
       else
       {
         pin_volume_constraint();
-        // pin_interior_pressure();
-        //  pin_flux_constraint();
       }
 
       // If we have no slip
       if (parameters_pt()->slip_length == 0)
       {
         // Impose a fixed contact line
-        pin_velocity_on_boundary(Outer_boundary_with_slip_id, wc_index);
-        pin_velocity_on_boundary(Outer_boundary_with_slip_id, ws_index);
         pin_contact_line();
       }
 
-      // pin_fluid();
-      // pin_all_pressure();
-      // pin_vertical_mesh_deformation();
-
-      // set_constant_lagrange_free_surface_boundary_condition(0.001, 0.0);
-      // Tilde_external_pressure_data_pt->pin(0);
-
-      // pin_fluid_boundary(Free_surface_boundary_id);
-      // pin_fluid_boundary(Upper_boundary_id);
-      // pin_fluid_boundary(Outer_boundary_with_slip_id);
-      // pin_fluid_boundary(Inner_boundary_id);
+      // Rebuild the global mesh and assign the equation numbers
+      this->rebuild_global_mesh();
+      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                 << std::endl;
     }
 
     void isolate_volume()
@@ -865,14 +907,12 @@ namespace oomph
       oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
     }
 
-  private:
     void pin_volume_constraint()
     {
       Tilde_external_pressure_data_pt->pin(0);
       Tilde_external_pressure_data_pt->set_value(0, 0.0);
     }
 
-  public:
     void pin_position_on_boundary(const unsigned& direction,
                                   const unsigned& b,
                                   const unsigned& cs)
@@ -924,6 +964,7 @@ namespace oomph
           el_pt->pin_Xhat(m, 1, 1);
         }
       }
+      oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
     }
 
     void pin_azimuthal_velocity()
@@ -1071,29 +1112,84 @@ namespace oomph
       return nullptr;
     }
 
-    void set_outer_boundary_condition()
+    void pin_wall_velocity(const unsigned boundary_id,
+                           const Vector<double>& velocity)
     {
-      oomph_info << "set_outer_boundary_condition" << std::endl;
-      // Loop over the nodes on the boundary
-      unsigned n_boundary_node;
-      n_boundary_node =
-        Fluid_mesh_pt->nboundary_node(Outer_boundary_with_slip_id);
-      for (unsigned n = 0; n < n_boundary_node; n++)
+      oomph_info << "pin_wall_velocity" << std::endl;
+      // Get number of nodes along the slip surface
+      const unsigned n_node =
+        this->fluid_mesh_pt()->nboundary_node(boundary_id);
+      // Loop over nodes and pin vertical velocity
+      for (unsigned n = 0; n < n_node; n++)
       {
-        Fluid_mesh_pt->boundary_node_pt(Outer_boundary_with_slip_id, n)
-          ->pin(uc_index);
-        Fluid_mesh_pt->boundary_node_pt(Outer_boundary_with_slip_id, n)
-          ->pin(vc_index);
-        // Fluid_mesh_pt->boundary_node_pt(Outer_boundary_with_slip_id, n)
-        //  ->pin(wc_index);
-        Fluid_mesh_pt->boundary_node_pt(Outer_boundary_with_slip_id, n)
-          ->pin(us_index);
-        Fluid_mesh_pt->boundary_node_pt(Outer_boundary_with_slip_id, n)
-          ->pin(vs_index);
-        // Fluid_mesh_pt->boundary_node_pt(Outer_boundary_with_slip_id, n)
-        //  ->pin(ws_index);
+        Node* nod_pt = this->fluid_mesh_pt()->boundary_node_pt(boundary_id, n);
+        for (unsigned i = 4; i < 10; i++)
+        {
+          nod_pt->pin(i);
+          nod_pt->pin(i);
+          nod_pt->set_value(i, velocity[i - 4]);
+          nod_pt->set_value(i, velocity[i - 4]);
+        }
       }
 
+      // Rebuild the global mesh
+      this->rebuild_global_mesh();
+
+      // Set up the equation numbering so we are ready to solve the problem.
+      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                 << std::endl;
+    }
+
+    virtual void set_outer_boundary_condition()
+    {
+      oomph_info << "set_outer_boundary_condition" << std::endl;
+
+
+      // No penetration condition
+
+      // Loop over the nodes on the boundary
+      if (this->Is_no_penetration_weakly_imposed)
+      {
+        // loop over boundary nodes and unpin the horizontal velocity
+        const unsigned n_node =
+          Fluid_mesh_pt->nboundary_node(Outer_boundary_with_slip_id);
+        for (unsigned n = 0; n < n_node; n++)
+        {
+          Node* nod_pt =
+            Fluid_mesh_pt->boundary_node_pt(Outer_boundary_with_slip_id, n);
+          nod_pt->unpin(uc_index);
+          nod_pt->unpin(us_index);
+        }
+
+        // Loop over the no penetration elements and pin the lagrange multiplier
+        const unsigned n_element = No_penetration_boundary_mesh_pt->nelement();
+        for (unsigned n = 0; n < n_element; n++)
+        {
+          for (unsigned i = 0; i < 3; i++)
+          {
+            for (unsigned j = 0; j < 2; j++)
+            {
+              dynamic_cast<NO_PENETRATION_ELEMENT*>(
+                No_penetration_boundary_mesh_pt->element_pt(n))
+                ->unpin_lagrange_multiplier(i, j);
+            }
+          }
+        }
+      }
+      else
+      {
+        set_strong_no_penetration_condition_on_wall();
+      }
+
+
+      // No vertical velocity condition when slip length is zero
+
+      if (parameters_pt()->slip_length == 0)
+      {
+        set_no_vertical_velocity_on_wall();
+      }
+
+      // Zero horizontal displacement condition
       unsigned n_element;
       n_element = Fluid_mesh_pt->nboundary_element(Outer_boundary_with_slip_id);
       for (unsigned n = 0; n < n_element; n++)
@@ -1111,6 +1207,46 @@ namespace oomph
           }
         }
       }
+    }
+
+    void set_strong_no_penetration_condition_on_wall()
+    {
+      unsigned n_boundary_node;
+      n_boundary_node =
+        Fluid_mesh_pt->nboundary_node(Outer_boundary_with_slip_id);
+      for (unsigned n = 0; n < n_boundary_node; n++)
+      {
+        Fluid_mesh_pt->boundary_node_pt(Outer_boundary_with_slip_id, n)
+          ->pin(uc_index);
+        Fluid_mesh_pt->boundary_node_pt(Outer_boundary_with_slip_id, n)
+          ->pin(vc_index);
+        Fluid_mesh_pt->boundary_node_pt(Outer_boundary_with_slip_id, n)
+          ->pin(us_index);
+        Fluid_mesh_pt->boundary_node_pt(Outer_boundary_with_slip_id, n)
+          ->pin(vs_index);
+      }
+
+
+      // Loop over the no penetration elements and pin the lagrange multiplier
+      const unsigned n_element = No_penetration_boundary_mesh_pt->nelement();
+      for (unsigned n = 0; n < n_element; n++)
+      {
+        for (unsigned i = 0; i < 3; i++)
+        {
+          for (unsigned j = 0; j < 2; j++)
+          {
+            dynamic_cast<NO_PENETRATION_ELEMENT*>(
+              No_penetration_boundary_mesh_pt->element_pt(n))
+              ->pin_lagrange_multiplier(i, j);
+          }
+        }
+      }
+    }
+
+    virtual void set_no_vertical_velocity_on_wall()
+    {
+      pin_velocity_on_boundary(Outer_boundary_with_slip_id, wc_index);
+      pin_velocity_on_boundary(Outer_boundary_with_slip_id, ws_index);
     }
 
     void pin_velocity_on_boundary(const unsigned boundary_id,
@@ -1195,7 +1331,7 @@ namespace oomph
       oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
     }
 
-    void set_inner_boundary_condition()
+    virtual void set_inner_boundary_condition()
     {
       oomph_info << "set_inner_boundary_condition" << std::endl;
       unsigned n_boundary_node =
@@ -1655,6 +1791,25 @@ namespace oomph
           double r = el_pt->node_pt(m)->x(0);
           el_pt->pin_lagrange_multiplier(m, 0, a * r);
           el_pt->pin_lagrange_multiplier(m, 1, b * r);
+        }
+      }
+
+      // Set up the equation numbering so we are ready to solve the problem.
+      oomph_info << "Number of unknowns: " << assign_eqn_numbers() << std::endl;
+    }
+
+    void unset_constant_lagrange_free_surface_boundary_condition()
+    {
+      unsigned n_element = Free_surface_mesh_pt->nelement();
+      for (unsigned n = 0; n < n_element; n++)
+      {
+        FREE_SURFACE_ELEMENT* el_pt = dynamic_cast<FREE_SURFACE_ELEMENT*>(
+          Free_surface_mesh_pt->element_pt(n));
+        for (unsigned m = 0; m < 3; m++)
+        {
+          double r = el_pt->node_pt(m)->x(0);
+          el_pt->unpin_lagrange_multiplier(m, 0);
+          el_pt->unpin_lagrange_multiplier(m, 1);
         }
       }
 

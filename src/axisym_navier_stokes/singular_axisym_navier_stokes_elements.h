@@ -2528,6 +2528,16 @@ namespace oomph
           residuals, jacobian, 1);
       }
     }
+
+    /// Add the element's contribution to its residual vector and
+    /// element Jacobian matrix (wrapper)
+    void fill_in_contribution_to_jacobian_and_mass_matrix(
+      Vector<double>& residuals,
+      DenseMatrix<double>& jacobian,
+      DenseMatrix<double>& mass_matrix)
+    {
+      fill_in_contribution_to_jacobian(residuals, jacobian);
+    }
   };
 
   //=======================================================================

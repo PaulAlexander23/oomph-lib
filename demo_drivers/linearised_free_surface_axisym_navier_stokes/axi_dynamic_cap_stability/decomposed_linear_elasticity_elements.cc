@@ -291,8 +291,8 @@ namespace oomph
         }
 
         // Get body force at current time
-        Vector<double> b(DIM);
-        this->body_force(interpolated_x, b);
+        Vector<double> B(DIM);
+        this->body_force(interpolated_x, B);
 
         // Premultiply the weights and the Jacobian
         double W = w * J;
@@ -313,7 +313,7 @@ namespace oomph
             {
               // Acceleration and body force
               residuals[local_eqn] +=
-                (Lambda_sq * accel[a] - b[a]) * psi(l) * W;
+                (Lambda_sq * accel[a] - B[a]) * psi(l) * W;
 
               // Stress term
               for (unsigned b = 0; b < DIM; b++)
