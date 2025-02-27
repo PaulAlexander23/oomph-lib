@@ -768,30 +768,14 @@ namespace oomph
       else
       {
         pin_volume_constraint();
-        // pin_interior_pressure();
-        //  pin_flux_constraint();
       }
 
       // If we have no slip
       if (parameters_pt()->slip_length == 0)
       {
         // Impose a fixed contact line
-        pin_velocity_on_boundary(Outer_boundary_with_slip_id, wc_index);
-        pin_velocity_on_boundary(Outer_boundary_with_slip_id, ws_index);
         pin_contact_line();
       }
-
-      // pin_fluid();
-      // pin_all_pressure();
-      // pin_vertical_mesh_deformation();
-
-      // set_constant_lagrange_free_surface_boundary_condition(0.001, 0.0);
-      // Tilde_external_pressure_data_pt->pin(0);
-
-      // pin_fluid_boundary(Free_surface_boundary_id);
-      // pin_fluid_boundary(Upper_boundary_id);
-      // pin_fluid_boundary(Outer_boundary_with_slip_id);
-      // pin_fluid_boundary(Inner_boundary_id);
 
       // Rebuild the global mesh and assign the equation numbers
       this->rebuild_global_mesh();
@@ -1159,6 +1143,10 @@ namespace oomph
     virtual void set_outer_boundary_condition()
     {
       oomph_info << "set_outer_boundary_condition" << std::endl;
+
+
+      // No penetration condition
+
       // Loop over the nodes on the boundary
       if (this->Is_no_penetration_weakly_imposed)
       {
@@ -1190,42 +1178,18 @@ namespace oomph
       }
       else
       {
-        unsigned n_boundary_node;
-        n_boundary_node =
-          Fluid_mesh_pt->nboundary_node(Outer_boundary_with_slip_id);
-        for (unsigned n = 0; n < n_boundary_node; n++)
-        {
-          Fluid_mesh_pt->boundary_node_pt(Outer_boundary_with_slip_id, n)
-            ->pin(uc_index);
-          Fluid_mesh_pt->boundary_node_pt(Outer_boundary_with_slip_id, n)
-            ->pin(vc_index);
-          // Fluid_mesh_pt->boundary_node_pt(Outer_boundary_with_slip_id, n)
-          //  ->pin(wc_index);
-          Fluid_mesh_pt->boundary_node_pt(Outer_boundary_with_slip_id, n)
-            ->pin(us_index);
-          Fluid_mesh_pt->boundary_node_pt(Outer_boundary_with_slip_id, n)
-            ->pin(vs_index);
-          // Fluid_mesh_pt->boundary_node_pt(Outer_boundary_with_slip_id, n)
-          //  ->pin(ws_index);
-        }
-
-
-        // Loop over the no penetration elements and pin the lagrange multiplier
-        const unsigned n_element = No_penetration_boundary_mesh_pt->nelement();
-        for (unsigned n = 0; n < n_element; n++)
-        {
-          for (unsigned i = 0; i < 3; i++)
-          {
-            for (unsigned j = 0; j < 2; j++)
-            {
-              dynamic_cast<NO_PENETRATION_ELEMENT*>(
-                No_penetration_boundary_mesh_pt->element_pt(n))
-                ->pin_lagrange_multiplier(i, j);
-            }
-          }
-        }
+        set_strong_no_penetration_condition_on_wall();
       }
 
+
+      // No vertical velocity condition when slip length is zero
+
+      if (parameters_pt()->slip_length == 0)
+      {
+        set_no_vertical_velocity_on_wall();
+      }
+
+      // Zero horizontal displacement condition
       unsigned n_element;
       n_element = Fluid_mesh_pt->nboundary_element(Outer_boundary_with_slip_id);
       for (unsigned n = 0; n < n_element; n++)
@@ -1243,6 +1207,46 @@ namespace oomph
           }
         }
       }
+    }
+
+    void set_strong_no_penetration_condition_on_wall()
+    {
+      unsigned n_boundary_node;
+      n_boundary_node =
+        Fluid_mesh_pt->nboundary_node(Outer_boundary_with_slip_id);
+      for (unsigned n = 0; n < n_boundary_node; n++)
+      {
+        Fluid_mesh_pt->boundary_node_pt(Outer_boundary_with_slip_id, n)
+          ->pin(uc_index);
+        Fluid_mesh_pt->boundary_node_pt(Outer_boundary_with_slip_id, n)
+          ->pin(vc_index);
+        Fluid_mesh_pt->boundary_node_pt(Outer_boundary_with_slip_id, n)
+          ->pin(us_index);
+        Fluid_mesh_pt->boundary_node_pt(Outer_boundary_with_slip_id, n)
+          ->pin(vs_index);
+      }
+
+
+      // Loop over the no penetration elements and pin the lagrange multiplier
+      const unsigned n_element = No_penetration_boundary_mesh_pt->nelement();
+      for (unsigned n = 0; n < n_element; n++)
+      {
+        for (unsigned i = 0; i < 3; i++)
+        {
+          for (unsigned j = 0; j < 2; j++)
+          {
+            dynamic_cast<NO_PENETRATION_ELEMENT*>(
+              No_penetration_boundary_mesh_pt->element_pt(n))
+              ->pin_lagrange_multiplier(i, j);
+          }
+        }
+      }
+    }
+
+    virtual void set_no_vertical_velocity_on_wall()
+    {
+      pin_velocity_on_boundary(Outer_boundary_with_slip_id, wc_index);
+      pin_velocity_on_boundary(Outer_boundary_with_slip_id, ws_index);
     }
 
     void pin_velocity_on_boundary(const unsigned boundary_id,
