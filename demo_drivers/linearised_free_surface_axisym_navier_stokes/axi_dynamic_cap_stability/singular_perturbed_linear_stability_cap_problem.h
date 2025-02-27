@@ -1,0 +1,737 @@
+#ifndef SINGULAR_PERTURBED_LINEAR_STABILITY_CAP_PROBLEM_HEADER
+#define SINGULAR_PERTURBED_LINEAR_STABILITY_CAP_PROBLEM_HEADER
+
+#include "perturbed_linear_stability_cap_problem_base.h"
+
+#include "decomposed_pressure_evaluation_elements.h"
+#include "singular_overlaying_my_linear_elements.h"
+
+namespace oomph
+{
+  template<class BASE_ELEMENT, class PERTURBED_ELEMENT, class TIMESTEPPER>
+  class SingularPerturbedLinearStabilityCapProblem
+    : public PerturbedLinearStabilityCapProblemBase<BASE_ELEMENT,
+                                                    PERTURBED_ELEMENT,
+                                                    TIMESTEPPER>
+  {
+  public:
+    typedef SingularNavierStokesSolutionElement<
+      OverlayingMyLinearElement<BASE_ELEMENT>>
+      SCALING_ELEMENT;
+
+  private:
+    // List of augmented element numbers
+    Vector<unsigned> Augmented_bulk_element_number;
+
+    // Singular solution scaling mesh
+    Mesh* Singularity_scaling_mesh_pt;
+
+    // Pressure contribution meshes
+    Mesh* Pressure_contribution_mesh_1_pt;
+    Mesh* Pressure_contribution_mesh_2_pt;
+
+    // Eigensolution functions
+    std::function<Vector<double>(const Vector<double>&)>
+      Velocity_singular_function;
+    std::function<Vector<Vector<double>>(const Vector<double>&)>
+      Grad_velocity_singular_function;
+    Node* Contact_line_node_pt;
+
+  public:
+    // Boundary ids enumeration
+    enum Boundary_id
+    {
+      Upper_boundary_id,
+      Outer_boundary_with_slip_id,
+      Free_surface_boundary_id,
+      Inner_boundary_id,
+    };
+    // Can't seem to use the boundary id's from the base class
+    // using PerturbedLinearStabilityCapProblem<BASE_ELEMENT,
+    //                                         PERTURBED_ELEMENT,
+    //                                         TIMESTEPPER>::Boundary_id;
+
+    // Constructor
+    SingularPerturbedLinearStabilityCapProblem(
+      Mesh* external_base_mesh_pt,
+      Mesh* external_free_surface_mesh_pt,
+      Mesh* external_slip_surface_mesh_pt,
+      Params* const& params_pt)
+      : PerturbedLinearStabilityCapProblemBase<BASE_ELEMENT,
+                                               PERTURBED_ELEMENT,
+                                               TIMESTEPPER>(
+          external_base_mesh_pt,
+          external_free_surface_mesh_pt,
+          external_slip_surface_mesh_pt,
+          params_pt),
+        Singularity_scaling_mesh_pt(0),
+        Pressure_contribution_mesh_1_pt(0),
+        Pressure_contribution_mesh_2_pt(0)
+    {
+      oomph_info << "SingularPerturbedLinearStabilityCapProblem" << std::endl;
+      // Setup the singular functions
+      Contact_line_node_pt = this->find_corner_node(Outer_boundary_with_slip_id,
+                                                    Free_surface_boundary_id);
+      Velocity_singular_function = velocity_singular_function_factory(
+        this->parameters_pt()->contact_angle, Contact_line_node_pt);
+      Grad_velocity_singular_function = grad_velocity_singular_function_factory(
+        this->parameters_pt()->contact_angle, Contact_line_node_pt);
+
+      // Add the new sub meshes
+      Singularity_scaling_mesh_pt = new Mesh;
+      this->add_sub_mesh(Singularity_scaling_mesh_pt);
+      Pressure_contribution_mesh_1_pt = new Mesh;
+      this->add_sub_mesh(Pressure_contribution_mesh_1_pt);
+      Pressure_contribution_mesh_2_pt = new Mesh;
+      this->add_sub_mesh(Pressure_contribution_mesh_2_pt);
+
+
+      // Augment the bulk elements
+      augment_bulk_elements();
+
+      // Add the boundary elements
+      this->add_boundary_elements();
+
+      create_singularity_scaling_elements();
+      create_pressure_contribution_1_elements();
+      create_pressure_contribution_2_elements();
+
+      // Set up the connections to the base state
+      this->set_up_overlapping_domain_functions();
+
+      setup_mesh_interaction();
+
+      // Set up the equation numbering so we are ready to solve the problem.
+      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                 << std::endl;
+
+      // Set the boundary conditions
+      this->set_boundary_conditions();
+
+      // Pin the horizontal mesh deformation.
+      if (this->parameters_pt()->azimuthal_mode_number > 0)
+      {
+        this->pin_horizontal_mesh_deformation();
+      }
+
+      // Rebuild the global mesh
+      this->rebuild_global_mesh();
+
+      // Set up the equation numbering so we are ready to solve the problem.
+      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                 << std::endl;
+    }
+
+    /// Augment the bulk elements within a small radius of the corner
+    void augment_bulk_elements()
+    {
+      double inner_radius = this->parameters_pt()->augmented_radius;
+
+      // Ensure the two elements closest to the corner are augmented and get
+      // their sizes
+      PERTURBED_ELEMENT* corner_el_pt = 0;
+      unsigned node_index = 0;
+
+      double corner_element_size = 0.0;
+      for (unsigned i = 0; i < 2; i++)
+      {
+        unsigned element_index;
+        switch (i)
+        {
+          case 0:
+            this->find_corner_bulk_element_and_node(
+              Boundary_id::Outer_boundary_with_slip_id,
+              Boundary_id::Free_surface_boundary_id,
+              element_index,
+              node_index);
+            corner_el_pt = dynamic_cast<PERTURBED_ELEMENT*>(
+              this->fluid_mesh_pt()->boundary_element_pt(
+                Boundary_id::Outer_boundary_with_slip_id, element_index));
+            break;
+          case 1:
+            this->find_corner_bulk_element_and_node(
+              Boundary_id::Free_surface_boundary_id,
+              Boundary_id::Outer_boundary_with_slip_id,
+              element_index,
+              node_index);
+            corner_el_pt = dynamic_cast<PERTURBED_ELEMENT*>(
+              this->fluid_mesh_pt()->boundary_element_pt(
+                Boundary_id::Free_surface_boundary_id, element_index));
+            break;
+          default:
+            break;
+        }
+
+        corner_el_pt->augment();
+
+        // Find the element iterator with the bulk mesh
+        std::vector<GeneralisedElement*>::iterator iter =
+          std::find(this->fluid_mesh_pt()->element_pt().begin(),
+                    this->fluid_mesh_pt()->element_pt().end(),
+                    dynamic_cast<GeneralisedElement*>(corner_el_pt));
+
+        // Use this to get the element number
+        unsigned e =
+          std::distance(this->fluid_mesh_pt()->element_pt().begin(), iter);
+        // Add the element number to the augmented element number vector
+        Augmented_bulk_element_number.push_back(e);
+
+        corner_element_size =
+          std::max(corner_element_size, corner_el_pt->size());
+      }
+
+      if (inner_radius < 0)
+      {
+        inner_radius = 5.0 * pow(2.0 * corner_element_size, 0.5);
+      }
+      Node* contact_line_node_pt = corner_el_pt->node_pt(node_index);
+
+      // Loop over the elements to set the consitutive law and jacobian
+      unsigned n_bulk = this->fluid_mesh_pt()->nelement();
+      for (unsigned e = 0; e < n_bulk; e++)
+      {
+        // Upcast from GeneralisedElement to the present element
+        PERTURBED_ELEMENT* el_pt = dynamic_cast<PERTURBED_ELEMENT*>(
+          this->fluid_mesh_pt()->element_pt(e));
+
+        // Augmented elements close to the corner
+        // Check distance from
+        // s centre is centre of mass of a uniform triangle, so (1/3,1/3)
+        // for Triangle[(1,0),(0,1),(0,0)]
+        Vector<double> s_centre(2, 1.0 / 3.0);
+        Vector<double> element_centre_x(2, 0.0);
+        el_pt->get_x(s_centre, element_centre_x);
+        double dist = 0;
+        for (unsigned i = 0; i < 2; i++)
+        {
+          dist +=
+            pow(element_centre_x[i] - contact_line_node_pt->position(i), 2.0);
+        }
+        dist = pow(dist, 0.5);
+
+        // If the distance to the corner is within the "inner" region, ...
+        if (dist < inner_radius)
+        {
+          // If this element is not already augmented, augment it
+          if (!el_pt->is_augmented())
+          {
+            el_pt->augment();
+
+            Augmented_bulk_element_number.push_back(e);
+          }
+        }
+      }
+
+      // Output the number of augmented elements
+      oomph_info << Augmented_bulk_element_number.size()
+                 << " augmented elements" << std::endl;
+      if (Augmented_bulk_element_number.size() == 0)
+      {
+        oomph_info << "WARNING: No augmented elements! Try setting the "
+                      "augmented region to be larger."
+                   << std::endl;
+      }
+    }
+
+    /// Create the singular solution scaling elements
+    void create_singularity_scaling_elements()
+    {
+      oomph_info << "create_singularity_scaling_elements" << std::endl;
+      // Create two scaling elements
+      for (unsigned i = 0; i < 2; i++)
+      {
+        SCALING_ELEMENT* el_pt = new SCALING_ELEMENT;
+
+        // Set the pointer to the velocity singular function for this
+        // element, defined in parameters namespace
+        el_pt->velocity_singular_fct() = Velocity_singular_function;
+
+        // Set the pointer to the gradient of the velocity singular
+        // function for this element, defined in parameters namespace
+        el_pt->grad_velocity_singular_fct() = Grad_velocity_singular_function;
+
+        // Set the pointer to the first pressure singular function for this
+        // element, defined in parameters namespace
+        el_pt->pressure_singular_fct_pt() = &pressure_singular_fct;
+
+        // The singular function satisfies the Stokes equation
+        el_pt->singular_function_satisfies_stokes_equation() = false;
+
+        // el_pt->pin_c();
+        el_pt->set_c(0.0);
+
+        // Add element to the mesh
+        Singularity_scaling_mesh_pt->add_element_pt(el_pt);
+      }
+    }
+
+    /// Create the pressure contribution elements for the first boundary
+    void create_pressure_contribution_1_elements()
+    {
+      oomph_info << "create_pressure_contribution_1_elements" << std::endl;
+
+      PERTURBED_ELEMENT* element_pt = 0;
+      int face_index = 0;
+      find_corner_bulk_element_and_face_index(Outer_boundary_with_slip_id,
+                                              Free_surface_boundary_id,
+                                              element_pt,
+                                              face_index);
+
+
+      const unsigned pressure_value_index = 0;
+      DecomposedPressureEvaluationElement<PERTURBED_ELEMENT>* el_pt =
+        new DecomposedPressureEvaluationElement<PERTURBED_ELEMENT>(
+          element_pt, face_index, Contact_line_node_pt, pressure_value_index);
+
+      // Add the two singularity solution scaling data
+      el_pt->add_scaling_data(
+        Singularity_scaling_mesh_pt->element_pt(0)->internal_data_pt(0));
+      el_pt->add_scaling_data(
+        Singularity_scaling_mesh_pt->element_pt(1)->internal_data_pt(0));
+
+      el_pt->set_boundary_number_in_bulk_mesh(Outer_boundary_with_slip_id);
+      // Set the product of the Reynolds number and the inverse of the
+      // Froude number
+      el_pt->re_invfr_pt() =
+        this->parameters_pt()->reynolds_inverse_froude_number_pt;
+      // Set the direction of gravity
+      el_pt->g_pt() = &this->parameters_pt()->gravity_vector;
+
+      Pressure_contribution_mesh_1_pt->add_element_pt(el_pt);
+    }
+
+    /// Create the pressure contribution elements for the second boundary
+    void create_pressure_contribution_2_elements()
+    {
+      oomph_info << "create_pressure_contribution_2_elements" << std::endl;
+
+      PERTURBED_ELEMENT* element_pt = 0;
+      int face_index = 0;
+      find_corner_bulk_element_and_face_index(Free_surface_boundary_id,
+                                              Outer_boundary_with_slip_id,
+                                              element_pt,
+                                              face_index);
+
+
+      const unsigned pressure_value_index = 0;
+      DecomposedPressureEvaluationElement<PERTURBED_ELEMENT>* el_pt =
+        new DecomposedPressureEvaluationElement<PERTURBED_ELEMENT>(
+          element_pt, face_index, Contact_line_node_pt, pressure_value_index);
+
+      // Add the two singularity solution scaling data
+      el_pt->add_scaling_data(
+        Singularity_scaling_mesh_pt->element_pt(0)->internal_data_pt(0));
+      el_pt->add_scaling_data(
+        Singularity_scaling_mesh_pt->element_pt(1)->internal_data_pt(0));
+
+      el_pt->set_boundary_number_in_bulk_mesh(Free_surface_boundary_id);
+      // Set the product of the Reynolds number and the inverse of the
+      // Froude number
+      el_pt->re_invfr_pt() =
+        this->parameters_pt()->reynolds_inverse_froude_number_pt;
+      // Set the direction of gravity
+      el_pt->g_pt() = &this->parameters_pt()->gravity_vector;
+      el_pt->set_subtract_from_residuals();
+
+      Pressure_contribution_mesh_2_pt->add_element_pt(el_pt);
+    }
+
+    /// Find the corner element and the face for the first of the two boundaries
+    void find_corner_bulk_element_and_face_index(const unsigned& boundary_1_id,
+                                                 const unsigned& boundary_2_id,
+                                                 PERTURBED_ELEMENT*& element_pt,
+                                                 int& face_index)
+    {
+      unsigned n_boundary_element =
+        this->fluid_mesh_pt()->nboundary_element(boundary_1_id);
+      for (unsigned e = 0; e < n_boundary_element; e++)
+      {
+        // Locally cache the element pointer
+        FiniteElement* bulk_el_pt =
+          this->fluid_mesh_pt()->boundary_element_pt(boundary_1_id, e);
+
+        // Read out number of nodes in the element
+        unsigned n_node = bulk_el_pt->nnode();
+        for (unsigned i_node = 0; i_node < n_node; i_node++)
+        {
+          // If the node is on the free surface boundary as well then ...
+          if (bulk_el_pt->node_pt(i_node)->is_on_boundary(boundary_2_id) &&
+              bulk_el_pt->node_pt(i_node)->is_on_boundary(boundary_1_id))
+          {
+            // set the output arguments,
+            element_pt = dynamic_cast<PERTURBED_ELEMENT*>(bulk_el_pt);
+            face_index =
+              this->fluid_mesh_pt()->face_index_at_boundary(boundary_1_id, e);
+
+            // Return to exit both loops and end function
+            return;
+          }
+        }
+      }
+      // If not found, issue warning and return anyway
+      oomph_info << "Warning: No corner node found!" << std::endl;
+    }
+
+    /// Setup the mesh interactions
+    void setup_mesh_interaction()
+    {
+      SCALING_ELEMENT* singular_el_pt = 0;
+
+      // Loop over the augmented bulk elements
+      unsigned n_aug_bulk = Augmented_bulk_element_number.size();
+      for (unsigned e = 0; e < n_aug_bulk; e++)
+      {
+        // Augment elements
+        // Upcast from GeneralisedElement to the present element
+        PERTURBED_ELEMENT* el_pt = dynamic_cast<PERTURBED_ELEMENT*>(
+          this->fluid_mesh_pt()->element_pt(Augmented_bulk_element_number[e]));
+
+        singular_el_pt = dynamic_cast<SCALING_ELEMENT*>(
+          Singularity_scaling_mesh_pt->element_pt(0));
+
+        // Set the pointer to the element that determines the amplitude
+        // of the singular fct
+        el_pt->add_c_equation_element_pt(singular_el_pt);
+
+        singular_el_pt = dynamic_cast<SCALING_ELEMENT*>(
+          Singularity_scaling_mesh_pt->element_pt(1));
+
+        // Set the pointer to the element that determines the amplitude
+        // of the singular fct
+        el_pt->add_c_equation_element_pt(singular_el_pt);
+      }
+    }
+
+    /// Set the boundary conditions
+    void set_boundary_conditions()
+    {
+      oomph_info << "set_boundary_conditions" << std::endl;
+      // Set the boundary conditions of the base problem
+      PerturbedLinearStabilityCapProblemBase<
+        BASE_ELEMENT,
+        PERTURBED_ELEMENT,
+        TIMESTEPPER>::set_boundary_conditions();
+
+
+      if (this->parameters_pt()->azimuthal_mode_number == 0)
+      {
+        // Set the boundary conditions for the singular scaling elements
+        SCALING_ELEMENT* singular_el_pt = dynamic_cast<SCALING_ELEMENT*>(
+          Singularity_scaling_mesh_pt->element_pt(1));
+        singular_el_pt->pin_c();
+        singular_el_pt->set_c(0.0);
+      }
+
+      // Rebuild the global mesh
+      this->rebuild_global_mesh();
+
+      // Set up the equation numbering so we are ready to solve the problem.
+      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                 << std::endl;
+    }
+
+
+    Vector<Vector<double>> wall_velocity()
+    {
+      Vector<Vector<double>> wall_velocity;
+
+      Vector<double> node_wall_velocity(4, 0.0);
+      // Get number of nodes along the slip surface
+      const unsigned n_node =
+        this->fluid_mesh_pt()->nboundary_node(Outer_boundary_with_slip_id);
+      // Loop over nodes and pin vertical velocity
+      for (unsigned n = 0; n < n_node; n++)
+      {
+        Node* nod_pt = this->fluid_mesh_pt()->boundary_node_pt(
+          Outer_boundary_with_slip_id, n);
+        node_wall_velocity[0] = nod_pt->value(4);
+        node_wall_velocity[1] = nod_pt->value(5);
+        node_wall_velocity[2] = nod_pt->value(6);
+        node_wall_velocity[3] = nod_pt->value(7);
+
+        wall_velocity.push_back(node_wall_velocity);
+      }
+
+      return wall_velocity;
+    }
+
+    Vector<Vector<double>> velocity()
+    {
+      Vector<Vector<double>> velocity;
+
+      Vector<double> node_velocity(6, 0.0);
+      // Get number of nodes along the slip surface
+      const unsigned n_node =
+        this->fluid_mesh_pt()->nboundary_node(Outer_boundary_with_slip_id);
+      // Loop over nodes and pin vertical velocity
+      for (unsigned n = 0; n < n_node; n++)
+      {
+        Node* nod_pt = this->fluid_mesh_pt()->boundary_node_pt(
+          Outer_boundary_with_slip_id, n);
+
+        for (unsigned i = 0; i < 6; i++)
+        {
+          node_velocity[i] = nod_pt->value(4 + i);
+        }
+
+        velocity.push_back(node_velocity);
+      }
+
+      return velocity;
+    }
+
+    // void pin_wall_velocity(const double& velocity)
+    //{
+    //   oomph_info << "pin_wall_velocity" << std::endl;
+    //   // Get number of nodes along the slip surface
+    //   const unsigned n_node =
+    //     this->fluid_mesh_pt()->nboundary_node(Outer_boundary_with_slip_id);
+    //   // Loop over nodes and pin vertical velocity
+    //   for (unsigned n = 0; n < n_node; n++)
+    //   {
+    //     Node* nod_pt = this->fluid_mesh_pt()->boundary_node_pt(
+    //       Outer_boundary_with_slip_id, n);
+    //     nod_pt->pin(6);
+    //     nod_pt->pin(7);
+    //     nod_pt->set_value(6, 1.0);
+    //     nod_pt->set_value(7, 1.0);
+    //   }
+
+    //  // Rebuild the global mesh
+    //  this->rebuild_global_mesh();
+
+    //  // Set up the equation numbering so we are ready to solve the problem.
+    //  oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+    //             << std::endl;
+    //}
+
+    void setup_new_data()
+    {
+      unsigned n_aug_bulk = Augmented_bulk_element_number.size();
+      for (unsigned e = 0; e < n_aug_bulk; e++)
+      {
+        // Upcast from GeneralisedElement to the present element
+        PERTURBED_ELEMENT* el_pt = dynamic_cast<PERTURBED_ELEMENT*>(
+          this->fluid_mesh_pt()->element_pt(Augmented_bulk_element_number[e]));
+        // Setup the FE correction values
+        el_pt->setup_new_data();
+      }
+    }
+
+    /// Disable the singular correction by pinning the singular function
+    /// scalings
+    void disable_singular_correction()
+    {
+      for (unsigned i = 0; i < 2; i++)
+      {
+        SCALING_ELEMENT* singular_el_pt = dynamic_cast<SCALING_ELEMENT*>(
+          Singularity_scaling_mesh_pt->element_pt(i));
+        singular_el_pt->pin_c();
+        singular_el_pt->set_c(0.0);
+      }
+      this->rebuild_global_mesh();
+      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                 << std::endl;
+    }
+
+    // Set the singular correction
+    void set_the_singular_correction(const Vector<double>& c)
+    {
+      for (unsigned i = 0; i < 2; i++)
+      {
+        SCALING_ELEMENT* singular_el_pt = dynamic_cast<SCALING_ELEMENT*>(
+          Singularity_scaling_mesh_pt->element_pt(i));
+        singular_el_pt->set_c(c[i]);
+      }
+    }
+
+    /// Enable the singular correction by unpinning the singular function
+    /// scalings
+    void enable_singular_correction()
+    {
+      SCALING_ELEMENT* singular_el_pt = dynamic_cast<SCALING_ELEMENT*>(
+        Singularity_scaling_mesh_pt->element_pt(0));
+      singular_el_pt->unpin_c();
+      if (this->parameters_pt()->azimuthal_mode_number > 0)
+      {
+        singular_el_pt = dynamic_cast<SCALING_ELEMENT*>(
+          Singularity_scaling_mesh_pt->element_pt(1));
+        singular_el_pt->unpin_c();
+      }
+      this->rebuild_global_mesh();
+      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                 << std::endl;
+    }
+
+    // Override setting the no-penetration condition strongly.
+    virtual void set_strong_no_penetration_condition_on_wall()
+    {
+      oomph_info << "overridden set_strong_no_penetration_condition"
+                 << std::endl;
+
+
+      // Call the base class function first
+      PerturbedLinearStabilityCapProblemBase<
+        BASE_ELEMENT,
+        PERTURBED_ELEMENT,
+        TIMESTEPPER>::set_strong_no_penetration_condition_on_wall();
+
+      // Now we loop over the elements and for the augmented elements we
+      // set the no penetration condition strongly through the elements
+      // rather than by pinning the values
+
+      // Loop over the boundary elements
+      unsigned n_element =
+        this->fluid_mesh_pt()->nboundary_element(Outer_boundary_with_slip_id);
+      const unsigned uc_index = 0;
+      const unsigned us_index = 1;
+      const unsigned wc_index = 2;
+      const unsigned ws_index = 3;
+      const unsigned vc_index = 4;
+      const unsigned vs_index = 5;
+      for (unsigned n = 0; n < n_element; n++)
+      {
+        PERTURBED_ELEMENT* el_pt = dynamic_cast<PERTURBED_ELEMENT*>(
+          this->fluid_mesh_pt()->boundary_element_pt(
+            Outer_boundary_with_slip_id, n));
+        if (el_pt->is_augmented())
+        {
+          // Loop over the nodes
+          for (unsigned m = 0; m < 6; m++)
+          {
+            // If the node is on the outer boundary then
+            if (el_pt->node_pt(m)->is_on_boundary(Outer_boundary_with_slip_id))
+            {
+              // Unpin the velocity components
+              el_pt->node_pt(m)->unpin(4 + uc_index);
+              el_pt->node_pt(m)->unpin(4 + vc_index);
+              el_pt->node_pt(m)->unpin(4 + us_index);
+              el_pt->node_pt(m)->unpin(4 + vs_index);
+              // Set their imposition by Dirichlet BC within the element
+              el_pt->impose_velocity_dirichlet_bc_on_node(m, uc_index);
+              el_pt->impose_velocity_dirichlet_bc_on_node(m, us_index);
+              el_pt->impose_velocity_dirichlet_bc_on_node(m, vc_index);
+              el_pt->impose_velocity_dirichlet_bc_on_node(m, vs_index);
+              el_pt->set_velocity_dirichlet_value_on_node(m, uc_index, 0.0);
+              el_pt->set_velocity_dirichlet_value_on_node(m, us_index, 0.0);
+              el_pt->set_velocity_dirichlet_value_on_node(m, vc_index, 0.0);
+              el_pt->set_velocity_dirichlet_value_on_node(m, vs_index, 0.0);
+            }
+          }
+        }
+      }
+
+      this->rebuild_global_mesh();
+      oomph_info << "Number of unknowns: " << this->assign_eqn_numbers()
+                 << std::endl;
+    }
+
+    void set_no_vertical_velocity_on_wall() override
+    {
+      // Call the base class function first
+      PerturbedLinearStabilityCapProblemBase<
+        BASE_ELEMENT,
+        PERTURBED_ELEMENT,
+        TIMESTEPPER>::set_no_vertical_velocity_on_wall();
+
+      // Now we loop over the elements and for the augmented elements we
+      // set the no vertical velocity condition strongly through the elements
+      // rather than by pinning the values
+
+      // Loop over the boundary elements
+      unsigned n_element =
+        this->fluid_mesh_pt()->nboundary_element(Outer_boundary_with_slip_id);
+      const unsigned uc_index = 0;
+      const unsigned us_index = 1;
+      const unsigned wc_index = 2;
+      const unsigned ws_index = 3;
+      const unsigned vc_index = 4;
+      const unsigned vs_index = 5;
+      for (unsigned n = 0; n < n_element; n++)
+      {
+        PERTURBED_ELEMENT* el_pt = dynamic_cast<PERTURBED_ELEMENT*>(
+          this->fluid_mesh_pt()->boundary_element_pt(
+            Outer_boundary_with_slip_id, n));
+        if (el_pt->is_augmented())
+        {
+          // Loop over the nodes
+          for (unsigned m = 0; m < 6; m++)
+          {
+            // If the node is on the outer boundary then
+            if (el_pt->node_pt(m)->is_on_boundary(Outer_boundary_with_slip_id))
+            {
+              // If the slip length is zero, the vertical velocity is also
+              // pinned to zero
+              if (this->parameters_pt()->slip_length == 0)
+              {
+                el_pt->node_pt(m)->unpin(4 + wc_index);
+                el_pt->node_pt(m)->unpin(4 + ws_index);
+                el_pt->impose_velocity_dirichlet_bc_on_node(m, wc_index);
+                el_pt->impose_velocity_dirichlet_bc_on_node(m, ws_index);
+                el_pt->set_velocity_dirichlet_value_on_node(m, ws_index, 0.0);
+                el_pt->set_velocity_dirichlet_value_on_node(m, ws_index, 0.0);
+              }
+            }
+          }
+        }
+      }
+    }
+
+
+    void doc_solution()
+    {
+      PerturbedLinearStabilityCapProblemBase<BASE_ELEMENT,
+                                             PERTURBED_ELEMENT,
+                                             TIMESTEPPER>::doc_solution();
+
+      // Subtract from doc number
+      this->doc_info().number()--;
+
+      std::ofstream file;
+
+      DecomposedPressureEvaluationElement<PERTURBED_ELEMENT>* el_pt =
+        dynamic_cast<DecomposedPressureEvaluationElement<PERTURBED_ELEMENT>*>(
+          Pressure_contribution_mesh_1_pt->element_pt(0));
+      file.open("RESLT/pressure_contribution_1.dat", std::ios::app);
+      file << this->doc_info().number() << " ";
+      el_pt->output(file);
+      file.close();
+
+      el_pt =
+        dynamic_cast<DecomposedPressureEvaluationElement<PERTURBED_ELEMENT>*>(
+          Pressure_contribution_mesh_2_pt->element_pt(0));
+      file.open("RESLT/pressure_contribution_2.dat", std::ios::app);
+      file << this->doc_info().number() << " ";
+      el_pt->output(file);
+      file.close();
+
+      SCALING_ELEMENT* scaling_el_pt = dynamic_cast<SCALING_ELEMENT*>(
+        Singularity_scaling_mesh_pt->element_pt(0));
+      file.open("RESLT/singularity_scaling_1.dat", std::ios::app);
+      file << this->doc_info().number() << " ";
+      scaling_el_pt->output(file);
+      file.close();
+
+      scaling_el_pt = dynamic_cast<SCALING_ELEMENT*>(
+        Singularity_scaling_mesh_pt->element_pt(1));
+      file.open("RESLT/singularity_scaling_2.dat", std::ios::app);
+      file << this->doc_info().number() << " ";
+      scaling_el_pt->output(file);
+      file.close();
+
+
+      // Bump up counter
+      this->doc_info().number()++;
+    }
+  };
+
+  // Explicit template instantiation is declared in the .cc file. Need to make
+  // sure that this is compiled and linked against.
+  extern template class SingularPerturbedLinearStabilityCapProblem<
+    SolidSingularAxisymNavierStokesElement<
+      ProjectableAxisymmetricTTaylorHoodPVDElement>,
+    SingularOverlayingMyLinearElement<SolidSingularAxisymNavierStokesElement<
+      ProjectableAxisymmetricTTaylorHoodPVDElement>>,
+    BDF<2>>;
+}; // namespace oomph
+#endif

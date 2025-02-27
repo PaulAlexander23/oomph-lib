@@ -3,7 +3,7 @@
 
 #include <algorithm>
 
-//#include "overlaying_my_linear_element.h"
+// #include "overlaying_my_linear_element.h"
 #include "overlaying_Tlinear_axisym_ns_pvd_elements.h"
 #include "linearised_axisymmetric_fluid_interface_elements.h"
 #include "../../axisym_navier_stokes/axi_dynamic_cap/debug_jacobian_elements.h"
@@ -12,7 +12,8 @@ namespace oomph
 {
   template<class BULK_ELEMENT>
   class LinearisedElasticAxisymmetricFluidInterfaceElement
-    : public virtual LinearisedAxisymmetricFluidInterfaceElement<BULK_ELEMENT>,
+    : public virtual Hijacked<
+        LinearisedAxisymmetricFluidInterfaceElement<BULK_ELEMENT>>,
       public virtual TElement<1, 3>,
       public virtual DebugJacobianFiniteElement
   {
@@ -107,6 +108,11 @@ namespace oomph
     void pin_lagrange_multiplier(const unsigned& n, const unsigned& i)
     {
       this->node_pt(n)->pin(this->lagrange_index(n, i));
+    }
+    
+    void unpin_lagrange_multiplier(const unsigned& n, const unsigned& i)
+    {
+      this->node_pt(n)->unpin(this->lagrange_index(n, i));
     }
 
     void pin_lagrange_multiplier(const unsigned& n,

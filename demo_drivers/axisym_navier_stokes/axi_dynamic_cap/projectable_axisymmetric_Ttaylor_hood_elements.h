@@ -3,6 +3,7 @@
 
 #include "solid/solid_elements.h"
 #include "navier_stokes.h"
+#include "axisym_navier_stokes.h"
 #include "fluid_interface/constrained_volume_elements.h"
 #include "debug_jacobian_elements.h"
 

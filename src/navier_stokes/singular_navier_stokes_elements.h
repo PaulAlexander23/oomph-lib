@@ -739,6 +739,14 @@ namespace oomph
         residuals, jacobian, 1);
     }
 
+    void fill_in_contribution_to_jacobian_and_mass_matrix(
+      Vector<double>& residuals,
+      DenseMatrix<double>& jacobian,
+      DenseMatrix<double>& mass_matrix)
+    {
+      fill_in_contribution_to_jacobian(residuals, jacobian);
+    }
+
     /// Overload the output function
     /// x, y, [z,] u, v, [w], p, u_fe, v_fe, [w_fe], p_fe,
     // u_sing, v_sing, [w_sing], p_sing

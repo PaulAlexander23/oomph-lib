@@ -52,27 +52,22 @@ namespace oomph
       return i + 4;
     }
 
+    virtual inline int p_index_lin_axi_nst(const unsigned& i) const
+    {
+      return 10 + i;
+    }
+
     virtual inline unsigned xhat_index_lin_axi_nst(const unsigned& n,
                                                    const unsigned& i) const
     {
       return i;
     }
 
-    double p_lin_axi_nst(const unsigned& n_p, const unsigned& i) const
-    {
-      return this->nodal_value(Pconv[n_p], 10 + i);
-    }
-
-    virtual int p_local_eqn(const unsigned& n, const unsigned& i)
-    {
-      return this->nodal_local_eqn(Pconv[n], 10 + i);
-    }
-
-    virtual void pin_pressure(const unsigned& j)
+    virtual void pin_pressure(const unsigned& i)
     {
       for (unsigned n_p = 0; n_p < 3; n_p++)
       {
-        this->node_pt(Pconv[n_p])->pin(10 + j);
+        this->node_pt(Pconv[n_p])->pin(p_index_lin_axi_nst(i));
       }
     }
 
@@ -113,8 +108,8 @@ namespace oomph
           this->node_pt(i)->pin(4 + j);
         }
       }
-      pin_pressure(0);
-      pin_pressure(1);
+      this->pin_pressure(0);
+      this->pin_pressure(1);
     }
 
     /// Compute the element's residual Vector

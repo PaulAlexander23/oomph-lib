@@ -246,18 +246,13 @@ namespace oomph
     //  fill_in_jacobian_from_external_by_fd(residuals, jacobian, false);
     //}
 
-    // void fill_in_contribution_to_jacobian_and_mass_matrix(
-    //   Vector<double>& residuals,
-    //   DenseMatrix<double>& jacobian,
-    //   DenseMatrix<double>& mass_matrix)
-    //{
-    //   //  Fill in analytic contribution of internal equations
-    //   fill_in_contribution_to_residuals_axisymmetric_nst_slip(
-    //     residuals, jacobian, 1);
-
-    //  // Fill in the contribution from external data by finite differences
-    //  fill_in_jacobian_from_external_by_fd(residuals, jacobian, false);
-    //}
+    void fill_in_contribution_to_jacobian_and_mass_matrix(
+      Vector<double>& residuals,
+      DenseMatrix<double>& jacobian,
+      DenseMatrix<double>& mass_matrix)
+    {
+      fill_in_contribution_to_jacobian(residuals, jacobian);
+    }
 
     /// Specify the value of nodal zeta from the face geometry
     /// The "global" intrinsic coordinate of the element when

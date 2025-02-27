@@ -4,6 +4,7 @@ include $(top_srcdir)/config/makefile_templates/demo_drivers
 # Variables
 EXEC:= \
 	axi_dynamic_cap \
+	run_eigenproblem \
 	create_parameter_files \
 	continuation_run \
 	run_tests
@@ -11,11 +12,20 @@ EXEC:= \
 # Makefile rules
 run: ${EXEC}
 
+%.iwyu: %.cc
+	include-what-you-use $(AM_CPPFLAGS) $< 2> $@
+
 # Run parallel axi_dynamic_cap with the parameters in the validata directory
 # test: axi_dynamic_cap
 # 	./generate_tests.zsh
 # 	./run_tests.zsh
 # 	cat tests.log
+iwyu: $(IWYU)
+
+%.fixed: %.iwyu
+	fix_include < $< > $@
+
+fix_include: $(IWYU_FIXED)
 
 test.log: run_tests
 	./run_tests -t extra > test.log
@@ -25,11 +35,24 @@ test.log: run_tests
 
 # Name of executables
 check_PROGRAMS= ${EXEC}
+# Name of library used for linking to within the linearised free surface
+# axisymmetric Navier-Stokes demos which performs a linear stability about the
+# solutions in this folder.
+noinst_LIBRARIES = libaxi_dynamic_cap.a
 
-axi_dynamic_cap_SOURCES = axi_dynamic_cap.cc 
-create_parameter_files_SOURCES = create_parameter_files.cc
-continuation_run_SOURCES = continuation_run.cc
-run_tests_SOURCES = run_tests.cc
+sources = parameters.cc parameter_functions.cc base_element.cc \
+		  singular_axisym_dynamic_cap_problem.cc
+
+# Pattern replace sources cc with iwyu
+IWYU=$(patsubst %.cc,%.iwyu,$(sources))
+IWYU_FIXED=$(patsubst %.iwyu,%.fixed,$(IWYU))
+
+axi_dynamic_cap_SOURCES = $(sources) axi_dynamic_cap.cc 
+run_eigenproblem_SOURCES = $(sources) run_eigenproblem.cc 
+create_parameter_files_SOURCES = $(sources) create_parameter_files.cc
+continuation_run_SOURCES = $(sources) continuation_run.cc
+run_tests_SOURCES = $(sources) run_tests.cc
+libaxi_dynamic_cap_a_SOURCES = $(sources)
 
 # Required libraries: 
 # $(FLIBS) is included in case the solver involves fortran sources.

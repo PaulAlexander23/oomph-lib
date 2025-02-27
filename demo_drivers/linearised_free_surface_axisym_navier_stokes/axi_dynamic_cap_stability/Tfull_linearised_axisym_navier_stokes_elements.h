@@ -1,7 +1,7 @@
 #ifndef TFULL_LINEARISED_AXISYM_NAVIER_STOKES_HEADER
 #define TFULL_LINEARISED_AXISYM_NAVIER_STOKES_HEADER
 
-//#include "generic.h"
+// #include "generic.h"
 #include "full_linearised_axisym_navier_stokes_elements.h"
 
 namespace oomph
@@ -14,7 +14,7 @@ namespace oomph
   private:
     static const unsigned Initial_Nvalue[];
 
-  protected:
+  public:
     /// Static array of ints to hold conversion from pressure
     /// node numbers to actual node numbers
     static const unsigned Pconv[];
@@ -85,23 +85,28 @@ namespace oomph
       return 6;
     }
 
+    virtual inline int p_index_lin_axi_nst(const unsigned& i) const
+    {
+      return 6 + i;
+    }
+
     double p_lin_axi_nst(const unsigned& n_p, const unsigned& i) const
     {
-      return this->nodal_value(Pconv[n_p], 6 + i);
+      return this->nodal_value(Pconv[n_p], p_index_lin_axi_nst(i));
     }
 
     virtual void pin_pressure(const unsigned& i)
     {
       for (unsigned n_p = 0; n_p < 3; n_p++)
       {
-        this->node_pt(Pconv[n_p])->pin(6 + i);
+        this->node_pt(Pconv[n_p])->pin(p_index_lin_axi_nst(i));
       }
     }
 
     /// Return the local equation numbers for the pressure values.
     virtual int p_local_eqn(const unsigned& n, const unsigned& i)
     {
-      return this->nodal_local_eqn(Pconv[n], 6 + i);
+      return this->nodal_local_eqn(Pconv[n], p_index_lin_axi_nst(i));
     }
 
     virtual inline unsigned xhat_index_lin_axi_nst(const unsigned& n,

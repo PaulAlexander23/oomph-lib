@@ -5,7 +5,7 @@ OOMPH_ROOT_DIR=$(make -s --no-print-directory print-top_builddir)
 
 
 #Set the number of tests to be checked
-NUM_TESTS=9
+NUM_TESTS=10
 
 
 # Setup validation directory
@@ -65,29 +65,8 @@ validate "linear_stability_run --parameters " validata/obtuse-parameters-with-re
 
 validate "neutral_stability_run --Bo 0.01 --parameters" validata/parameters-with-restart0.dat trace.dat
 validate "neutral_stability_run --wall_velocity 0.01 --parameters" validata/parameters-with-restart.dat trace.dat
-#validate "neutral_stability_run --Bo 0.01 --parameters" validata/obtuse-parameters-with-restart0.dat trace.dat
-#validate "neutral_stability_run --wall_velocity 0.01 --parameters" validata/obtuse-parameters-with-restart.dat trace.dat
-
-mkdir RESLT -p 
-var="./run_tests > Validation/OUTPUT"
-echo $var
-eval $var
-echo "done"
-LOG="Validation/validation.log"
-echo " " >> $LOG 
-echo "Validation run" >> $LOG
-echo "---------------------------------------------" >> $LOG
-echo " " >> $LOG
-echo "Validation directory: " >> $LOG
-echo " " >> $LOG
-echo "  " `pwd` >> $LOG
-echo " " >> $LOG
-if grep "run_tests.cc" Validation/OUTPUT; then
-    cat Validation/OUTPUT >> $LOG
-    echo "[FAILED] -- Unit tests failed see validation log." >> $LOG
-else
-    echo "[OK] -- Unit tests passed" >> $LOG
-fi
+validate "neutral_stability_run --Bo 0.01 --parameters" validata/obtuse-parameters-with-restart0.dat trace.dat
+validate "neutral_stability_run --wall_velocity 0.01 --parameters" validata/obtuse-parameters-with-restart.dat trace.dat
 
 #######################################################################
 

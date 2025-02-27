@@ -2355,6 +2355,18 @@ namespace oomph
     bool does_pointer_correspond_to_problem_data(double* const& parameter_pt);
 
   public:
+    /// Provide a way to set the flag
+    void set_always_take_one_newton_step()
+    {
+      this->Always_take_one_newton_step = true;
+    }
+
+    /// Provide a way to unset the flag
+    void unset_always_take_one_newton_step()
+    {
+      this->Always_take_one_newton_step = false;
+    }
+
     /// Virtual function that is used to symmetrise the problem so that
     /// the current solution exactly satisfies any symmetries within the system.
     /// Used when adpativly solving pitchfork detection problems when small

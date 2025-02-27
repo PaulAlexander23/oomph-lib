@@ -331,6 +331,11 @@ namespace oomph
     /// Number of values required at node n.
     unsigned required_nvalue(const unsigned& n) const
     {
+      return this->n_r_lin_el();
+    }
+
+    unsigned n_r_lin_el() const
+    {
       return 2 * DIM;
     }
 
