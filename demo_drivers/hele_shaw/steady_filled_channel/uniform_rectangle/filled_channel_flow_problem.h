@@ -2,7 +2,7 @@
 #define OOMPH_FILLED_CHANNEL_FLOW_PROBLEM_HEADER
 
 #include "generic.h"
-//#include "meshes.h"
+// #include "meshes.h"
 #include "hele_shaw.h"
 #include "info_element.h"
 #include "problem_parameter.h"
@@ -192,11 +192,9 @@ template<class ELEMENT>
 void HeleShawChannelProblem<ELEMENT>::pin_data()
 {
   unsigned n_boundary = this->Bulk_mesh_pt->nboundary();
-  bool pin_boundary[n_boundary] = {false};
-  pin_boundary[1] = true;
   for (unsigned b = 0; b < n_boundary; b++)
   {
-    if (pin_boundary[b])
+    if (b == 1)
     {
       unsigned n_node = this->Bulk_mesh_pt->nboundary_node(b);
       for (unsigned n = 0; n < n_node; n++)
