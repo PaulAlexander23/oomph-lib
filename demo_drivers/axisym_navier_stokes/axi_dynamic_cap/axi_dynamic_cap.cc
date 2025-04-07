@@ -130,6 +130,7 @@ int main(int argc, char** argv)
   // Document initial condition
   problem.create_restart_file();
   problem.doc_solution();
+  problem.increment_doc_number();
   problem.use_fd_jacobian_for_the_bulk_augmented();
 
   // If the final time is zero (or less) then we are doing a steady solve,
@@ -143,6 +144,7 @@ int main(int argc, char** argv)
 
     // Document the solution
     problem.doc_solution();
+    problem.increment_doc_number();
   }
   // ...otherwise, we are doing an unsteady run
   else

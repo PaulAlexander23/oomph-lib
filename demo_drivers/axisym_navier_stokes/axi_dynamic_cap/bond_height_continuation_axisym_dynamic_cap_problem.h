@@ -45,7 +45,6 @@
 #include "my_error_estimator.h"
 
 
-
 #include "net_flux_elements.h"
 
 #include "height_element.h"
@@ -1196,7 +1195,8 @@ namespace oomph
             }
 
             // Then adapt is needed
-            oomph_info << "Adapt is needed due to contact angle error" << std::endl;
+            oomph_info << "Adapt is needed due to contact angle error"
+                       << std::endl;
             return true;
           }
         }
@@ -1231,7 +1231,8 @@ namespace oomph
             }
 
             // Then adapt is needed
-            oomph_info << "Adapt is needed due to inner angle error" << std::endl;
+            oomph_info << "Adapt is needed due to inner angle error"
+                       << std::endl;
             return true;
           }
         }
@@ -1637,6 +1638,7 @@ namespace oomph
         if ((it + 1) % Doc_Parameters::interval_between_doc == 0)
         {
           this->doc_solution();
+          this->increment_doc_number();
         }
 
         // Dump the solution
@@ -2201,9 +2203,6 @@ namespace oomph
         // Document height drop to std::cout
         dynamic_cast<HEIGHT_ELEMENT*>(Height_mesh_pt->element_pt(0))
           ->output(std::cout);
-
-        // Bump up counter
-        this->doc_info().number()++;
       }
 
 #ifdef OOMPH_HAS_MPI
@@ -2213,6 +2212,12 @@ namespace oomph
 #endif
 
     } // end_of_doc_solution
+
+    // Bump the doc number
+    void increment_doc_number()
+    {
+      this->doc_info().number()++;
+    }
 
     // Doc adaptivity targets
     void doc_adaptivity_targets(std::ostream& outfile)
@@ -2375,7 +2380,8 @@ namespace oomph
       // Save current solution
       std::ofstream dump_filestream;
       std::string restart_filename = this->doc_info().directory() + "/restart" +
-                                to_string(this->doc_info().number()) + ".dat";
+                                     to_string(this->doc_info().number()) +
+                                     ".dat";
       dump_filestream.open(restart_filename);
       dump_filestream.precision(16);
       // actions_before_adapt();

@@ -198,6 +198,7 @@ void normal_continuation_run(Params& parameters,
   // Document initial condition
   problem.create_restart_file();
   problem.doc_solution();
+  problem.increment_doc_number();
   problem.use_fd_jacobian_for_the_bulk_augmented();
 
   double step = starting_step;
@@ -232,6 +233,7 @@ void normal_continuation_run(Params& parameters,
 
       // Document the solution
       problem.doc_solution();
+      problem.increment_doc_number();
     }
     // If error in solving for the steady state
     catch (OomphLibException& e)
@@ -295,6 +297,7 @@ void arc_continuation_run(Params& parameters,
   // Document initial condition
   problem.create_restart_file();
   problem.doc_solution();
+  problem.increment_doc_number();
   problem.use_fd_jacobian_for_the_bulk_augmented();
 
   // Solve for the steady state adapting if needed by the Z2 error estimator
@@ -305,6 +308,7 @@ void arc_continuation_run(Params& parameters,
 
   // Document the solution
   problem.doc_solution();
+  problem.increment_doc_number();
 
   // Set any analytic tracking parameters
   problem.set_analytic_dparameter(parameters.reynolds_inverse_froude_number_pt);
@@ -319,6 +323,7 @@ void arc_continuation_run(Params& parameters,
 
     problem.create_restart_file();
     problem.doc_solution();
+    problem.increment_doc_number();
 
     // Adapt and solve the problem by the number of intervals between adapts
     // parameter.
@@ -373,6 +378,7 @@ void height_control_continuation_run(Params& parameters,
   // Document initial condition
   problem.create_restart_file();
   problem.doc_solution();
+  problem.increment_doc_number();
 
   problem.use_fd_jacobian_for_the_bulk_augmented();
   // Solve for the steady state adapting if needed by the Z2 error
@@ -382,6 +388,7 @@ void height_control_continuation_run(Params& parameters,
   // Document the solution
   problem.create_restart_file();
   problem.doc_solution();
+  problem.increment_doc_number();
 
   problem.set_continuation_parameter(continuation_param_pt);
   problem.set_height_from_soln();
@@ -396,6 +403,7 @@ void height_control_continuation_run(Params& parameters,
 
     problem.create_restart_file();
     problem.doc_solution();
+    problem.increment_doc_number();
   }
 
   // Close the trace files

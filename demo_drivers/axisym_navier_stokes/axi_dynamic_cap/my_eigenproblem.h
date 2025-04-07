@@ -170,6 +170,7 @@ namespace oomph
                                         eigenvector_plot2[eig_index[i]]);
           // Output result
           this->doc_solution();
+          this->increment_doc_number();
 
           this->set_dofs(backup_dofs);
         }
@@ -280,7 +281,10 @@ namespace oomph
     }
 
     // Empty doc solution
-    virtual void doc_solution() {};
+    virtual void doc_solution(){};
+
+    // Empty increment doc number
+    virtual void increment_doc_number(){};
 
   private:
     // Helper function to document the eigenvalues

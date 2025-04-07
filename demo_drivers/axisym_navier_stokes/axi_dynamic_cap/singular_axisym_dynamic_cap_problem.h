@@ -1423,6 +1423,8 @@ namespace oomph
 
         // Dump the solution
         this->create_restart_file();
+
+        this->increment_doc_number();
         it++;
       }
     }
@@ -1903,10 +1905,6 @@ namespace oomph
                         << std::endl;
           output_stream.close();
         }
-
-
-        // Bump up counter
-        this->doc_info().number()++;
       }
 
 #ifdef OOMPH_HAS_MPI
@@ -1916,6 +1914,12 @@ namespace oomph
 #endif
 
     } // end_of_doc_solution
+
+    // Bump the documenting counter
+    void increment_doc_number()
+    {
+      this->doc_info().number()++;
+    }
 
     // Doc adaptivity targets
     void doc_adaptivity_targets(std::ostream& outfile)

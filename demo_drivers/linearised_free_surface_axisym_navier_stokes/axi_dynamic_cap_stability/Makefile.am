@@ -1,9 +1,6 @@
 #Include commands common to every Makefile.am
 include $(top_srcdir)/config/makefile_templates/demo_drivers
 
-CC=ccache gcc
-CXX=ccache g++
-
 %.h.pch: %.h
 	$(CXX) $(AM_CPPFLAGS) -x c++-header -o $@ $<
 

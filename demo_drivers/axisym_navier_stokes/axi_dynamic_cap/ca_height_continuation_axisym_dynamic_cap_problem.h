@@ -1559,6 +1559,7 @@ namespace oomph
         if ((it + 1) % Doc_Parameters::interval_between_doc == 0)
         {
           this->doc_solution();
+          this->increment_doc_number();
         }
 
         // Dump the solution
@@ -2107,9 +2108,6 @@ namespace oomph
         // Document height drop to std::cout
         dynamic_cast<HEIGHT_ELEMENT*>(Height_mesh_pt->element_pt(0))
           ->output(std::cout);
-
-        // Bump up counter
-        this->doc_info().number()++;
       }
 
 #ifdef OOMPH_HAS_MPI
@@ -2119,6 +2117,12 @@ namespace oomph
 #endif
 
     } // end_of_doc_solution
+
+    // Bump up the doc number
+    void increment_doc_number()
+    {
+      this->doc_info().number()++;
+    }
 
     // Doc adaptivity targets
     void doc_adaptivity_targets(std::ostream& outfile)
