@@ -367,12 +367,12 @@ void height_control_continuation_run(Params& parameters,
   problem.increment_doc_number();
 
   problem.use_fd_jacobian_for_the_bulk_augmented();
-  // Solve for the steady state adapting if needed by the Z2 error
-  // estimator
-  problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
 
   problem.set_continuation_parameter(continuation_param_pt);
   problem.set_height_from_soln();
+  // Solve for the steady state adapting if needed by the Z2 error
+  // estimator
+  problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
 
   double ds = starting_step;
   const unsigned number_of_steps =
