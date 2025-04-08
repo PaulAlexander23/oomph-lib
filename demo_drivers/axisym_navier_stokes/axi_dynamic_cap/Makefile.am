@@ -32,7 +32,7 @@ test.log: run_tests
 
 update-regression-tests-validata: 
 	gzip Validation/*.dat
-	mv Validation/*.dat.gz validata/
+	cp Validation/*.dat.gz validata/
 
 
 # Automake
