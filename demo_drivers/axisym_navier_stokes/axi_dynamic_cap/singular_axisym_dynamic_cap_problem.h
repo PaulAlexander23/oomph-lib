@@ -865,18 +865,18 @@ namespace oomph
           adapt();
           n++;
 
-          this->create_restart_file();
-          this->doc_solution();
-          this->increment_doc_number();
+          create_restart_file();
+          doc_solution();
+          increment_doc_number();
         }
 
         // Solve steady problem
         steady_newton_solve(0);
         local_is_adaption_needed = is_adaption_needed();
 
-        this->create_restart_file();
-        this->doc_solution();
-        this->increment_doc_number();
+        create_restart_file();
+        doc_solution();
+        increment_doc_number();
 
         // Increment loop count
       } while (n < max_adapt && local_is_adaption_needed);
@@ -1429,10 +1429,10 @@ namespace oomph
         }
 
         // Document the solution
-        this->doc_solution();
+        doc_solution();
 
         // Dump the solution
-        this->create_restart_file();
+        create_restart_file();
 
         this->increment_doc_number();
         it++;
@@ -1783,7 +1783,7 @@ namespace oomph
     // Outputs the solution in the bulk and on the surfaces.
     // Uses the Z2 error estimator to compute an approximation to the error on
     // each element
-    void doc_solution()
+    virtual void doc_solution()
     {
       oomph_info << "doc_solution" << std::endl;
       int local_rank = 0;
@@ -2043,7 +2043,7 @@ namespace oomph
 
     // Create a restart file
     // Does not include all the problem and system parameters
-    void create_restart_file()
+    virtual void create_restart_file()
     {
       // Save current solution
       std::ofstream dump_filestream;
