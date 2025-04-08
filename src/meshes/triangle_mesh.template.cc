@@ -29613,7 +29613,7 @@ namespace oomph
     // Post-process to allow only quantised target areas
     // in an attempt to more closely mimick the structured
     // case and limit the diffusion of small elements.
-    bool quantised_areas = true;
+    bool quantised_areas = false;
     if (quantised_areas)
     {
       unsigned n = target_area.size();
