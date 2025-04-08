@@ -4009,6 +4009,8 @@ namespace oomph
       // Rebuild the global mesh
       //======================================================================
       this->rebuild_global_mesh();
+
+      this->Nnewton_iter_taken = 0;
     }
 
   private:
