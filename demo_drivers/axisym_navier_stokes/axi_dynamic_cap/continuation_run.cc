@@ -227,13 +227,6 @@ void normal_continuation_run(Params& parameters,
       // Solve for the steady state adapting if needed by the Z2 error
       // estimator
       problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
-
-      // Create the restart file - needed before the doc solution
-      problem.create_restart_file();
-
-      // Document the solution
-      problem.doc_solution();
-      problem.increment_doc_number();
     }
     // If error in solving for the steady state
     catch (OomphLibException& e)
@@ -303,13 +296,6 @@ void arc_continuation_run(Params& parameters,
   // Solve for the steady state adapting if needed by the Z2 error estimator
   problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
 
-  // Create the restart file - needed before the doc solution
-  problem.create_restart_file();
-
-  // Document the solution
-  problem.doc_solution();
-  problem.increment_doc_number();
-
   // Set any analytic tracking parameters
   problem.set_analytic_dparameter(parameters.reynolds_inverse_froude_number_pt);
 
@@ -319,11 +305,11 @@ void arc_continuation_run(Params& parameters,
   for (unsigned n = 1; n < number_of_steps; n++)
   {
     problem.arc_length_step_solve(continuation_param_pt, ds);
-    problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
-
     problem.create_restart_file();
     problem.doc_solution();
     problem.increment_doc_number();
+
+    problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
 
     // Adapt and solve the problem by the number of intervals between adapts
     // parameter.
@@ -385,11 +371,6 @@ void height_control_continuation_run(Params& parameters,
   // estimator
   problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
 
-  // Document the solution
-  problem.create_restart_file();
-  problem.doc_solution();
-  problem.increment_doc_number();
-
   problem.set_continuation_parameter(continuation_param_pt);
   problem.set_height_from_soln();
 
@@ -400,10 +381,6 @@ void height_control_continuation_run(Params& parameters,
   {
     problem.step_height(ds);
     problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
-
-    problem.create_restart_file();
-    problem.doc_solution();
-    problem.increment_doc_number();
   }
 
   // Close the trace files

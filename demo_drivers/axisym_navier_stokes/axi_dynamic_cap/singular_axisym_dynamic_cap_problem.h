@@ -864,10 +864,20 @@ namespace oomph
         {
           adapt();
           n++;
+
+          this->create_restart_file();
+          this->doc_solution();
+          this->increment_doc_number();
         }
+
         // Solve steady problem
         steady_newton_solve(0);
         local_is_adaption_needed = is_adaption_needed();
+
+        this->create_restart_file();
+        this->doc_solution();
+        this->increment_doc_number();
+
         // Increment loop count
       } while (n < max_adapt && local_is_adaption_needed);
       int is_solved = 0;

@@ -30,6 +30,11 @@ fix_include: $(IWYU_FIXED)
 test.log: run_tests
 	./run_tests -t extra > test.log
 
+update-regression-tests-validata: 
+	gzip Validation/*.dat
+	mv Validation/*.dat.gz validata/
+
+
 # Automake
 #continuation_run_SOURCES = continuation_run.cc
 
