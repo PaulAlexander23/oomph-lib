@@ -1301,7 +1301,7 @@ namespace oomph
                           "PressureBasedSolidLSCPreconditioner::assemble_mass_"
                           "matrix_diagonal()",
                           OOMPH_EXCEPTION_LOCATION);
-//#pragma clang diagnostic pop
+// #pragma clang diagnostic pop
 #endif
         }
         else

@@ -1,6 +1,7 @@
 
 /*! @file ilu_csnode_dfs.c
- * \brief Determines the union of row structures of columns within the relaxed node
+ * \brief Determines the union of row structures of columns within the relaxed
+ * node
  *
  * <pre>
  * -- SuperLU routine (version 4.0) --
@@ -28,63 +29,59 @@
  * </pre>
  */
 
-int
-ilu_csnode_dfs(
-	   const int  jcol,	    /* in - start of the supernode */
-	   const int  kcol,	    /* in - end of the supernode */
-	   const int  *asub,	    /* in */
-	   const int  *xa_begin,    /* in */
-	   const int  *xa_end,	    /* in */
-	   int	      *marker,	    /* modified */
-	   GlobalLU_t *Glu	    /* modified */
-	   )
+int ilu_csnode_dfs(const int jcol, /* in - start of the supernode */
+                   const int kcol, /* in - end of the supernode */
+                   const int* asub, /* in */
+                   const int* xa_begin, /* in */
+                   const int* xa_end, /* in */
+                   int* marker, /* modified */
+                   GlobalLU_t* Glu /* modified */
+)
 {
+  register int i, k, nextl;
+  int nsuper, krow, kmark, mem_error;
+  int *xsup, *supno;
+  int *lsub, *xlsub;
+  int nzlmax;
 
-    register int i, k, nextl;
-    int 	 nsuper, krow, kmark, mem_error;
-    int 	 *xsup, *supno;
-    int 	 *lsub, *xlsub;
-    int 	 nzlmax;
+  xsup = Glu->xsup;
+  supno = Glu->supno;
+  lsub = Glu->lsub;
+  xlsub = Glu->xlsub;
+  nzlmax = Glu->nzlmax;
 
-    xsup    = Glu->xsup;
-    supno   = Glu->supno;
-    lsub    = Glu->lsub;
-    xlsub   = Glu->xlsub;
-    nzlmax  = Glu->nzlmax;
+  nsuper = ++supno[jcol]; /* Next available supernode number */
+  nextl = xlsub[jcol];
 
-    nsuper = ++supno[jcol];	/* Next available supernode number */
-    nextl = xlsub[jcol];
-
-    for (i = jcol; i <= kcol; i++)
+  for (i = jcol; i <= kcol; i++)
+  {
+    /* For each nonzero in A[*,i] */
+    for (k = xa_begin[i]; k < xa_end[i]; k++)
     {
-	/* For each nonzero in A[*,i] */
-	for (k = xa_begin[i]; k < xa_end[i]; k++)
-	{
-	    krow = asub[k];
-	    kmark = marker[krow];
-	    if ( kmark != kcol )
-	    { /* First time visit krow */
-		marker[krow] = kcol;
-		lsub[nextl++] = krow;
-		if ( nextl >= nzlmax )
-		{
-		    if ( (mem_error = cLUMemXpand(jcol, nextl, LSUB, &nzlmax,
-			    Glu)) != 0)
-			return (mem_error);
-		    lsub = Glu->lsub;
-		}
-	    }
-	}
-	supno[i] = nsuper;
+      krow = asub[k];
+      kmark = marker[krow];
+      if (kmark != kcol)
+      { /* First time visit krow */
+        marker[krow] = kcol;
+        lsub[nextl++] = krow;
+        if (nextl >= nzlmax)
+        {
+          if ((mem_error = cLUMemXpand(jcol, nextl, LSUB, &nzlmax, Glu)) != 0)
+            return (mem_error);
+          lsub = Glu->lsub;
+        }
+      }
     }
+    supno[i] = nsuper;
+  }
 
-    /* Supernode > 1 */
-    if ( jcol < kcol )
-	for (i = jcol+1; i <= kcol; i++) xlsub[i] = nextl;
+  /* Supernode > 1 */
+  if (jcol < kcol)
+    for (i = jcol + 1; i <= kcol; i++) xlsub[i] = nextl;
 
-    xsup[nsuper+1] = kcol + 1;
-    supno[kcol+1]  = nsuper;
-    xlsub[kcol+1]  = nextl;
+  xsup[nsuper + 1] = kcol + 1;
+  supno[kcol + 1] = nsuper;
+  xlsub[kcol + 1] = nextl;
 
-    return 0;
+  return 0;
 }

@@ -308,10 +308,10 @@ namespace oomph
   {
   public:
     /// Constructor (empty)
-    TemplateFreeNavierStokesEquationsBase(){};
+    TemplateFreeNavierStokesEquationsBase() {};
 
     /// Virtual destructor (empty)
-    virtual ~TemplateFreeNavierStokesEquationsBase(){};
+    virtual ~TemplateFreeNavierStokesEquationsBase() {};
 
     /// Compute the residuals for the associated pressure advection
     /// diffusion problem. Used by the Fp preconditioner.

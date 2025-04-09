@@ -553,7 +553,7 @@ namespace oomph
     Smoother() : Use_as_smoother(false) {}
 
     /// Virtual empty destructor
-    virtual ~Smoother(){};
+    virtual ~Smoother() {};
 
     /// The smoother_solve function performs fixed number of iterations
     /// on the system A*result=rhs. The number of (smoothing) iterations is

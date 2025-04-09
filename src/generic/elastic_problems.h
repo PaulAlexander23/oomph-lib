@@ -54,7 +54,7 @@ namespace oomph
   {
   public:
     // Empty constructor
-    DummyMesh(){};
+    DummyMesh() {};
   };
 
   /// /////////////////////////////////////////////////////////////////////

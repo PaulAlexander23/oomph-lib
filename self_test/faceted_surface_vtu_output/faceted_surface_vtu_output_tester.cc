@@ -54,7 +54,7 @@ int main()
   double box_half_length = 2.0;
   CubicTetMeshFacetedSurface cubic_faceted_surface(
     box_half_width, box_half_length, dummy_id);
-  
+
   // Output into the Paraview .vtu format
   cubic_faceted_surface.output_paraview("cubic_faceted.vtu");
 
@@ -75,10 +75,7 @@ int main()
   Vector<double> offset(3, 0.0); // Set the rectangle at the origin
   RectangularTetMeshFacetedSurface rectangular_faceted_surface(
     half_x_width, half_y_length, offset, dummy_id);
-  
+
   // Output into the Paraview .vtu format
   rectangular_faceted_surface.output_paraview("rectangular_faceted.vtu");
-
-
-
 }

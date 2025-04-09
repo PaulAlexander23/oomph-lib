@@ -15,15 +15,19 @@
 #include <parmetislib.h>
 
 
-
-
 /***********************************************************************************
-* This function is the entry point of the parallel ordering algorithm.
-* This function assumes that the graph is already nice partitioned among the 
-* processors and then proceeds to perform recursive bisection.
-************************************************************************************/
-void ParMETIS_V3_NodeND(idxtype *vtxdist, idxtype *xadj, idxtype *adjncy, int *numflag,
-              int *options, idxtype *order, idxtype *sizes, MPI_Comm *comm)
+ * This function is the entry point of the parallel ordering algorithm.
+ * This function assumes that the graph is already nice partitioned among the
+ * processors and then proceeds to perform recursive bisection.
+ ************************************************************************************/
+void ParMETIS_V3_NodeND(idxtype* vtxdist,
+                        idxtype* xadj,
+                        idxtype* adjncy,
+                        int* numflag,
+                        int* options,
+                        idxtype* order,
+                        idxtype* sizes,
+                        MPI_Comm* comm)
 {
   int i, j;
   int ltvwgts[MAXNCON];
@@ -31,69 +35,75 @@ void ParMETIS_V3_NodeND(idxtype *vtxdist, idxtype *xadj, idxtype *adjncy, int *n
   CtrlType ctrl;
   WorkSpaceType wspace;
   GraphType *graph, *mgraph;
-  idxtype *morder;
+  idxtype* morder;
   int minnvtxs;
   int dbglvl_original;
 
   MPI_Comm_size(*comm, &npes);
   MPI_Comm_rank(*comm, &mype);
 
-  nparts = 1*npes;
+  nparts = 1 * npes;
 
-  if (!ispow2(npes)) {
+  if (!ispow2(npes))
+  {
     if (mype == 0)
       printf("Error: The number of processors must be a power of 2!\n");
     return;
   }
 
-  if (vtxdist[npes] < (int)((float)(npes*npes)*1.2)) {
+  if (vtxdist[npes] < (int)((float)(npes * npes) * 1.2))
+  {
     if (mype == 0)
       printf("Error: Too many processors for this many vertices.\n");
     return;
   }
 
-  minnvtxs = vtxdist[1]-vtxdist[0];
-  for (i=0; i<npes; i++)
-    minnvtxs = (minnvtxs < vtxdist[i+1]-vtxdist[i]) ? minnvtxs : vtxdist[i+1]-vtxdist[i];
+  minnvtxs = vtxdist[1] - vtxdist[0];
+  for (i = 0; i < npes; i++)
+    minnvtxs = (minnvtxs < vtxdist[i + 1] - vtxdist[i]) ?
+                 minnvtxs :
+                 vtxdist[i + 1] - vtxdist[i];
 
-  if (minnvtxs < (int)((float)npes*1.1)) {
-    if (mype == 0)
-      printf("Error: vertices are not distributed equally.\n");
+  if (minnvtxs < (int)((float)npes * 1.1))
+  {
+    if (mype == 0) printf("Error: vertices are not distributed equally.\n");
     return;
   }
- 
-  if (*numflag == 1) 
+
+  if (*numflag == 1)
     ChangeNumbering(vtxdist, xadj, adjncy, order, npes, mype, 1);
 
 
   /*****************************/
   /* Set up control structures */
   /*****************************/
-  if (options == NULL && options[0] == 0) {
+  if (options == NULL && options[0] == 0)
+  {
     dbglvl_original = GLOBAL_DBGLVL;
-    seed            = GLOBAL_SEED;
+    seed = GLOBAL_SEED;
   }
-  else {
+  else
+  {
     dbglvl_original = options[PMV3_OPTION_DBGLVL];
-    seed            = options[PMV3_OPTION_SEED];
+    seed = options[PMV3_OPTION_SEED];
   }
 
   SetUpCtrl(&ctrl, nparts, 0, *comm);
 
-  ctrl.CoarsenTo   = amin(vtxdist[npes]+1, 25*amax(npes, nparts));
-  ctrl.seed        = (seed == 0 ? mype : seed*mype);
-  ctrl.sync        = GlobalSEMax(&ctrl, seed);
-  ctrl.partType    = STATIC_PARTITION;
+  ctrl.CoarsenTo = amin(vtxdist[npes] + 1, 25 * amax(npes, nparts));
+  ctrl.seed = (seed == 0 ? mype : seed * mype);
+  ctrl.sync = GlobalSEMax(&ctrl, seed);
+  ctrl.partType = STATIC_PARTITION;
   ctrl.ps_relation = -1;
-  ctrl.tpwgts      = fsmalloc(nparts, 1.0/(float)(nparts), "tpwgts");
-  ctrl.ubvec[0]    = 1.03;
+  ctrl.tpwgts = fsmalloc(nparts, 1.0 / (float)(nparts), "tpwgts");
+  ctrl.ubvec[0] = 1.03;
 
   graph = Mc_SetUpGraph(&ctrl, 1, vtxdist, xadj, NULL, adjncy, NULL, &wgtflag);
 
   AllocateWSpace(&ctrl, graph, &wspace);
 
   /*=======================================================
-   * Compute the initial k-way partitioning 
+   * Compute the initial k-way partitioning
    =======================================================*/
   IFSET(dbglvl_original, DBG_TIME, InitTimers(&ctrl));
   IFSET(dbglvl_original, DBG_TIME, MPI_Barrier(ctrl.gcomm));
@@ -102,8 +112,7 @@ void ParMETIS_V3_NodeND(idxtype *vtxdist, idxtype *xadj, idxtype *adjncy, int *n
   Mc_Global_Partition(&ctrl, graph, &wspace);
 
   /* Collapse the number of partitions to be from 0..npes-1 */
-  for (i=0; i<graph->nvtxs; i++)
-    graph->where[i] = graph->where[i]%npes;
+  for (i = 0; i < graph->nvtxs; i++) graph->where[i] = graph->where[i] % npes;
   ctrl.nparts = nparts = npes;
 
   /*=======================================================
@@ -129,23 +138,23 @@ void ParMETIS_V3_NodeND(idxtype *vtxdist, idxtype *xadj, idxtype *adjncy, int *n
   AdjustWSpace(&ctrl, mgraph, &wspace);
 
   ctrl.ipart = ISEP_NODE;
-  ctrl.CoarsenTo = amin(vtxdist[npes]+1, amax(20*npes, 1000));
+  ctrl.CoarsenTo = amin(vtxdist[npes] + 1, amax(20 * npes, 1000));
 
   /* compute tvwgts */
-  for (j=0; j<mgraph->ncon; j++)
-    ltvwgts[j] = 0;
+  for (j = 0; j < mgraph->ncon; j++) ltvwgts[j] = 0;
 
-  for (i=0; i<mgraph->nvtxs; i++)
-    for (j=0; j<mgraph->ncon; j++)
-      ltvwgts[j] += mgraph->vwgt[i*mgraph->ncon+j];
+  for (i = 0; i < mgraph->nvtxs; i++)
+    for (j = 0; j < mgraph->ncon; j++)
+      ltvwgts[j] += mgraph->vwgt[i * mgraph->ncon + j];
 
-  for (j=0; j<mgraph->ncon; j++)
+  for (j = 0; j < mgraph->ncon; j++)
     ctrl.tvwgts[j] = GlobalSESum(&ctrl, ltvwgts[j]);
 
-  mgraph->nvwgt = fmalloc(mgraph->nvtxs*mgraph->ncon, "mgraph->nvwgt");
-  for (i=0; i<mgraph->nvtxs; i++)
-    for (j=0; j<mgraph->ncon; j++)
-      mgraph->nvwgt[i*mgraph->ncon+j] = (float)(mgraph->vwgt[i*mgraph->ncon+j]) / (float)(ctrl.tvwgts[j]);
+  mgraph->nvwgt = fmalloc(mgraph->nvtxs * mgraph->ncon, "mgraph->nvwgt");
+  for (i = 0; i < mgraph->nvtxs; i++)
+    for (j = 0; j < mgraph->ncon; j++)
+      mgraph->nvwgt[i * mgraph->ncon + j] =
+        (float)(mgraph->vwgt[i * mgraph->ncon + j]) / (float)(ctrl.tvwgts[j]);
 
 
   morder = idxmalloc(mgraph->nvtxs, "PAROMETIS: morder");
@@ -163,13 +172,13 @@ void ParMETIS_V3_NodeND(idxtype *vtxdist, idxtype *xadj, idxtype *adjncy, int *n
   IFSET(dbglvl_original, DBG_TIME, PrintTimingInfo(&ctrl));
   IFSET(dbglvl_original, DBG_TIME, MPI_Barrier(ctrl.gcomm));
 
-  GKfree((void **)&ctrl.tpwgts, &morder, LTERM);
+  GKfree((void**)&ctrl.tpwgts, &morder, LTERM);
   FreeGraph(mgraph);
   FreeInitialGraphAndRemap(graph, 0, 1);
   FreeWSpace(&wspace);
   FreeCtrl(&ctrl);
 
-  if (*numflag == 1) 
+  if (*numflag == 1)
     ChangeNumbering(vtxdist, xadj, adjncy, order, npes, mype, 0);
 
   MALLOC_CHECK(NULL);
@@ -177,12 +186,19 @@ void ParMETIS_V3_NodeND(idxtype *vtxdist, idxtype *xadj, idxtype *adjncy, int *n
 
 
 /***********************************************************************************
-* This function is the entry point of the parallel ordering algorithm.
-* This function assumes that the graph is already nice partitioned among the 
-* processors and then proceeds to perform recursive bisection.
-************************************************************************************/
-void PAROMETIS(idxtype *vtxdist, idxtype *xadj, idxtype *vwgt, idxtype *adjncy, idxtype *adjwgt, 
-                idxtype *order, idxtype *sizes, int *options, MPI_Comm comm)
+ * This function is the entry point of the parallel ordering algorithm.
+ * This function assumes that the graph is already nice partitioned among the
+ * processors and then proceeds to perform recursive bisection.
+ ************************************************************************************/
+void PAROMETIS(idxtype* vtxdist,
+               idxtype* xadj,
+               idxtype* vwgt,
+               idxtype* adjncy,
+               idxtype* adjwgt,
+               idxtype* order,
+               idxtype* sizes,
+               int* options,
+               MPI_Comm comm)
 {
   int numflag, newoptions[5];
 
@@ -192,9 +208,8 @@ void PAROMETIS(idxtype *vtxdist, idxtype *xadj, idxtype *vwgt, idxtype *adjncy, 
 
   numflag = options[3];
 
-  ParMETIS_V3_NodeND(vtxdist, xadj, adjncy, &numflag, newoptions, order, sizes, &comm);
+  ParMETIS_V3_NodeND(
+    vtxdist, xadj, adjncy, &numflag, newoptions, order, sizes, &comm);
 
   options[0] = -1;
-
 }
-

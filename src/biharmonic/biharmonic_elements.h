@@ -63,7 +63,7 @@ namespace oomph
     BiharmonicEquations() : Source_fct_pt(0) {}
 
 
-    ~BiharmonicEquations(){};
+    ~BiharmonicEquations() {};
 
     /// Access function: Nodal function value at local node n
     /// Uses suitably interpolated value for hanging nodes.
@@ -538,7 +538,7 @@ namespace oomph
     BiharmonicElement() : QHermiteElement<DIM>(), BiharmonicEquations<DIM>() {}
 
 
-    ~BiharmonicElement(){};
+    ~BiharmonicElement() {};
 
 
     ///  Required  # of `values' (pinned or dofs)

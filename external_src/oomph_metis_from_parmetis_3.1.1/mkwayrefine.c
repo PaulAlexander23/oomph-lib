@@ -15,32 +15,35 @@
 
 
 /*************************************************************************
-* This function is the entry point of refinement
-**************************************************************************/
-void MocRefineKWayHorizontal(CtrlType *ctrl, GraphType *orggraph, GraphType *graph, int nparts, 
-       float *ubvec)
+ * This function is the entry point of refinement
+ **************************************************************************/
+void MocRefineKWayHorizontal(CtrlType* ctrl,
+                             GraphType* orggraph,
+                             GraphType* graph,
+                             int nparts,
+                             float* ubvec)
 {
-
   IFSET(ctrl->dbglvl, DBG_TIME, starttimer(ctrl->UncoarsenTmr));
 
   /* Compute the parameters of the coarsest graph */
   MocComputeKWayPartitionParams(ctrl, graph, nparts);
 
-  for (;;) {
+  for (;;)
+  {
     IFSET(ctrl->dbglvl, DBG_TIME, starttimer(ctrl->RefTmr));
 
-    if (!MocIsHBalanced(graph->ncon, nparts, graph->npwgts, ubvec)) {
+    if (!MocIsHBalanced(graph->ncon, nparts, graph->npwgts, ubvec))
+    {
       MocComputeKWayBalanceBoundary(ctrl, graph, nparts);
-      MCGreedy_KWayEdgeBalanceHorizontal(ctrl, graph, nparts, ubvec, 4); 
+      MCGreedy_KWayEdgeBalanceHorizontal(ctrl, graph, nparts, ubvec, 4);
       ComputeKWayBoundary(ctrl, graph, nparts);
     }
 
-    MCRandom_KWayEdgeRefineHorizontal(ctrl, graph, nparts, ubvec, 10); 
+    MCRandom_KWayEdgeRefineHorizontal(ctrl, graph, nparts, ubvec, 10);
 
     IFSET(ctrl->dbglvl, DBG_TIME, stoptimer(ctrl->RefTmr));
 
-    if (graph == orggraph)
-      break;
+    if (graph == orggraph) break;
 
     graph = graph->finer;
     IFSET(ctrl->dbglvl, DBG_TIME, starttimer(ctrl->ProjectTmr));
@@ -48,49 +51,53 @@ void MocRefineKWayHorizontal(CtrlType *ctrl, GraphType *orggraph, GraphType *gra
     IFSET(ctrl->dbglvl, DBG_TIME, stoptimer(ctrl->ProjectTmr));
   }
 
-  if (!MocIsHBalanced(graph->ncon, nparts, graph->npwgts, ubvec)) {
+  if (!MocIsHBalanced(graph->ncon, nparts, graph->npwgts, ubvec))
+  {
     MocComputeKWayBalanceBoundary(ctrl, graph, nparts);
-    MCGreedy_KWayEdgeBalanceHorizontal(ctrl, graph, nparts, ubvec, 4); 
+    MCGreedy_KWayEdgeBalanceHorizontal(ctrl, graph, nparts, ubvec, 4);
     ComputeKWayBoundary(ctrl, graph, nparts);
-    MCRandom_KWayEdgeRefineHorizontal(ctrl, graph, nparts, ubvec, 10); 
+    MCRandom_KWayEdgeRefineHorizontal(ctrl, graph, nparts, ubvec, 10);
   }
 
   IFSET(ctrl->dbglvl, DBG_TIME, stoptimer(ctrl->UncoarsenTmr));
 }
 
 
-
-
 /*************************************************************************
-* This function allocates memory for k-way edge refinement
-**************************************************************************/
-void MocAllocateKWayPartitionMemory(CtrlType *ctrl, GraphType *graph, int nparts)
+ * This function allocates memory for k-way edge refinement
+ **************************************************************************/
+void MocAllocateKWayPartitionMemory(CtrlType* ctrl,
+                                    GraphType* graph,
+                                    int nparts)
 {
   int nvtxs, ncon, pad64;
 
   nvtxs = graph->nvtxs;
   ncon = graph->ncon;
 
-  pad64 = (3*nvtxs+nparts)%2;
+  pad64 = (3 * nvtxs + nparts) % 2;
 
-  graph->rdata = idxmalloc(3*nvtxs+ncon*nparts+(sizeof(RInfoType)/sizeof(idxtype))*nvtxs+pad64, "AllocateKWayPartitionMemory: rdata");
-  graph->npwgts         = (float *)graph->rdata;
-  graph->where          = graph->rdata + ncon*nparts;
-  graph->bndptr         = graph->rdata + nvtxs + ncon*nparts;
-  graph->bndind         = graph->rdata + 2*nvtxs + ncon*nparts;
-  graph->rinfo          = (RInfoType *)(graph->rdata + 3*nvtxs+ncon*nparts + pad64);
+  graph->rdata =
+    idxmalloc(3 * nvtxs + ncon * nparts +
+                (sizeof(RInfoType) / sizeof(idxtype)) * nvtxs + pad64,
+              "AllocateKWayPartitionMemory: rdata");
+  graph->npwgts = (float*)graph->rdata;
+  graph->where = graph->rdata + ncon * nparts;
+  graph->bndptr = graph->rdata + nvtxs + ncon * nparts;
+  graph->bndind = graph->rdata + 2 * nvtxs + ncon * nparts;
+  graph->rinfo = (RInfoType*)(graph->rdata + 3 * nvtxs + ncon * nparts + pad64);
 }
 
 
 /*************************************************************************
-* This function computes the initial id/ed 
-**************************************************************************/
-void MocComputeKWayPartitionParams(CtrlType *ctrl, GraphType *graph, int nparts)
+ * This function computes the initial id/ed
+ **************************************************************************/
+void MocComputeKWayPartitionParams(CtrlType* ctrl, GraphType* graph, int nparts)
 {
   int i, j, k, l, nvtxs, ncon, nbnd, mincut, me, other;
   idxtype *xadj, *adjncy, *adjwgt, *where, *bndind, *bndptr;
   RInfoType *rinfo, *myrinfo;
-  EDegreeType *myedegrees;
+  EDegreeType* myedegrees;
   float *nvwgt, *npwgts;
 
   nvtxs = graph->nvtxs;
@@ -101,7 +108,7 @@ void MocComputeKWayPartitionParams(CtrlType *ctrl, GraphType *graph, int nparts)
   adjwgt = graph->adjwgt;
 
   where = graph->where;
-  npwgts = sset(ncon*nparts, 0.0, graph->npwgts);
+  npwgts = sset(ncon * nparts, 0.0, graph->npwgts);
   bndind = graph->bndind;
   bndptr = idxset(nvtxs, -1, graph->bndptr);
   rinfo = graph->rinfo;
@@ -112,72 +119,76 @@ void MocComputeKWayPartitionParams(CtrlType *ctrl, GraphType *graph, int nparts)
   /------------------------------------------------------------*/
   ctrl->wspace.cdegree = 0;
   nbnd = mincut = 0;
-  for (i=0; i<nvtxs; i++) {
+  for (i = 0; i < nvtxs; i++)
+  {
     me = where[i];
-    saxpy(ncon, 1.0, nvwgt+i*ncon, 1, npwgts+me*ncon, 1);
+    saxpy(ncon, 1.0, nvwgt + i * ncon, 1, npwgts + me * ncon, 1);
 
-    myrinfo = rinfo+i;
+    myrinfo = rinfo + i;
     myrinfo->id = myrinfo->ed = myrinfo->ndegrees = 0;
     myrinfo->edegrees = NULL;
 
-    for (j=xadj[i]; j<xadj[i+1]; j++) {
-      if (me != where[adjncy[j]])
-        myrinfo->ed += adjwgt[j];
+    for (j = xadj[i]; j < xadj[i + 1]; j++)
+    {
+      if (me != where[adjncy[j]]) myrinfo->ed += adjwgt[j];
     }
     myrinfo->id = graph->adjwgtsum[i] - myrinfo->ed;
 
-    if (myrinfo->ed > 0) 
-      mincut += myrinfo->ed;
+    if (myrinfo->ed > 0) mincut += myrinfo->ed;
 
-    if (myrinfo->ed-myrinfo->id >= 0)
-      BNDInsert(nbnd, bndind, bndptr, i);
+    if (myrinfo->ed - myrinfo->id >= 0) BNDInsert(nbnd, bndind, bndptr, i);
 
     /* Time to compute the particular external degrees */
-    if (myrinfo->ed > 0) { 
-      myedegrees = myrinfo->edegrees = ctrl->wspace.edegrees+ctrl->wspace.cdegree;
-      ctrl->wspace.cdegree += xadj[i+1]-xadj[i];
+    if (myrinfo->ed > 0)
+    {
+      myedegrees = myrinfo->edegrees =
+        ctrl->wspace.edegrees + ctrl->wspace.cdegree;
+      ctrl->wspace.cdegree += xadj[i + 1] - xadj[i];
 
-      for (j=xadj[i]; j<xadj[i+1]; j++) {
+      for (j = xadj[i]; j < xadj[i + 1]; j++)
+      {
         other = where[adjncy[j]];
-        if (me != other) {
-          for (k=0; k<myrinfo->ndegrees; k++) {
-            if (myedegrees[k].pid == other) {
+        if (me != other)
+        {
+          for (k = 0; k < myrinfo->ndegrees; k++)
+          {
+            if (myedegrees[k].pid == other)
+            {
               myedegrees[k].ed += adjwgt[j];
               break;
             }
           }
-          if (k == myrinfo->ndegrees) {
+          if (k == myrinfo->ndegrees)
+          {
             myedegrees[myrinfo->ndegrees].pid = other;
             myedegrees[myrinfo->ndegrees++].ed = adjwgt[j];
           }
         }
       }
 
-      ASSERT(myrinfo->ndegrees <= xadj[i+1]-xadj[i]);
+      ASSERT(myrinfo->ndegrees <= xadj[i + 1] - xadj[i]);
     }
   }
 
-  graph->mincut = mincut/2;
+  graph->mincut = mincut / 2;
   graph->nbnd = nbnd;
-
 }
 
 
-
 /*************************************************************************
-* This function projects a partition, and at the same time computes the
-* parameters for refinement.
-**************************************************************************/
-void MocProjectKWayPartition(CtrlType *ctrl, GraphType *graph, int nparts)
+ * This function projects a partition, and at the same time computes the
+ * parameters for refinement.
+ **************************************************************************/
+void MocProjectKWayPartition(CtrlType* ctrl, GraphType* graph, int nparts)
 {
   int i, j, k, nvtxs, nbnd, me, other, istart, iend, ndegrees;
   idxtype *xadj, *adjncy, *adjwgt, *adjwgtsum;
   idxtype *cmap, *where, *bndptr, *bndind;
-  idxtype *cwhere;
-  GraphType *cgraph;
+  idxtype* cwhere;
+  GraphType* cgraph;
   RInfoType *crinfo, *rinfo, *myrinfo;
-  EDegreeType *myedegrees;
-  idxtype *htable;
+  EDegreeType* myedegrees;
+  idxtype* htable;
 
   cgraph = graph->coarser;
   cwhere = cgraph->where;
@@ -197,42 +208,50 @@ void MocProjectKWayPartition(CtrlType *ctrl, GraphType *graph, int nparts)
   bndptr = idxset(nvtxs, -1, graph->bndptr);
 
   /* Go through and project partition and compute id/ed for the nodes */
-  for (i=0; i<nvtxs; i++) {
+  for (i = 0; i < nvtxs; i++)
+  {
     k = cmap[i];
     where[i] = cwhere[k];
-    cmap[i] = crinfo[k].ed;  /* For optimization */
+    cmap[i] = crinfo[k].ed; /* For optimization */
   }
 
   htable = idxset(nparts, -1, idxwspacemalloc(ctrl, nparts));
 
   ctrl->wspace.cdegree = 0;
-  for (nbnd=0, i=0; i<nvtxs; i++) {
+  for (nbnd = 0, i = 0; i < nvtxs; i++)
+  {
     me = where[i];
 
-    myrinfo = rinfo+i;
+    myrinfo = rinfo + i;
     myrinfo->id = myrinfo->ed = myrinfo->ndegrees = 0;
     myrinfo->edegrees = NULL;
 
     myrinfo->id = adjwgtsum[i];
 
-    if (cmap[i] > 0) { /* If it is an interface node. Note cmap[i] = crinfo[cmap[i]].ed */
+    if (cmap[i] > 0)
+    { /* If it is an interface node. Note cmap[i] = crinfo[cmap[i]].ed */
       istart = xadj[i];
-      iend = xadj[i+1];
+      iend = xadj[i + 1];
 
-      myedegrees = myrinfo->edegrees = ctrl->wspace.edegrees+ctrl->wspace.cdegree;
-      ctrl->wspace.cdegree += iend-istart;
+      myedegrees = myrinfo->edegrees =
+        ctrl->wspace.edegrees + ctrl->wspace.cdegree;
+      ctrl->wspace.cdegree += iend - istart;
 
       ndegrees = 0;
-      for (j=istart; j<iend; j++) {
+      for (j = istart; j < iend; j++)
+      {
         other = where[adjncy[j]];
-        if (me != other) {
+        if (me != other)
+        {
           myrinfo->ed += adjwgt[j];
-          if ((k = htable[other]) == -1) {
+          if ((k = htable[other]) == -1)
+          {
             htable[other] = ndegrees;
             myedegrees[ndegrees].pid = other;
             myedegrees[ndegrees++].ed = adjwgt[j];
           }
-          else {
+          else
+          {
             myedegrees[k].ed += adjwgt[j];
           }
         }
@@ -240,23 +259,23 @@ void MocProjectKWayPartition(CtrlType *ctrl, GraphType *graph, int nparts)
       myrinfo->id -= myrinfo->ed;
 
       /* Remove space for edegrees if it was interior */
-      if (myrinfo->ed == 0) { 
+      if (myrinfo->ed == 0)
+      {
         myrinfo->edegrees = NULL;
-        ctrl->wspace.cdegree -= iend-istart;
+        ctrl->wspace.cdegree -= iend - istart;
       }
-      else {
-        if (myrinfo->ed-myrinfo->id >= 0) 
-          BNDInsert(nbnd, bndind, bndptr, i); 
+      else
+      {
+        if (myrinfo->ed - myrinfo->id >= 0) BNDInsert(nbnd, bndind, bndptr, i);
 
         myrinfo->ndegrees = ndegrees;
 
-        for (j=0; j<ndegrees; j++)
-          htable[myedegrees[j].pid] = -1;
+        for (j = 0; j < ndegrees; j++) htable[myedegrees[j].pid] = -1;
       }
     }
   }
 
-  scopy(graph->ncon*nparts, cgraph->npwgts, graph->npwgts);
+  scopy(graph->ncon * nparts, cgraph->npwgts, graph->npwgts);
   graph->mincut = cgraph->mincut;
   graph->nbnd = nbnd;
 
@@ -266,15 +285,13 @@ void MocProjectKWayPartition(CtrlType *ctrl, GraphType *graph, int nparts)
   idxwspacefree(ctrl, nparts);
 
   ASSERT(CheckBnd2(graph));
-
 }
 
 
-
 /*************************************************************************
-* This function computes the boundary definition for balancing
-**************************************************************************/
-void MocComputeKWayBalanceBoundary(CtrlType *ctrl, GraphType *graph, int nparts)
+ * This function computes the boundary definition for balancing
+ **************************************************************************/
+void MocComputeKWayBalanceBoundary(CtrlType* ctrl, GraphType* graph, int nparts)
 {
   int i, nvtxs, nbnd;
   idxtype *bndind, *bndptr;
@@ -286,11 +303,10 @@ void MocComputeKWayBalanceBoundary(CtrlType *ctrl, GraphType *graph, int nparts)
 
   /* Compute the new boundary */
   nbnd = 0;
-  for (i=0; i<nvtxs; i++) {
-    if (graph->rinfo[i].ed > 0) 
-      BNDInsert(nbnd, bndind, bndptr, i);
+  for (i = 0; i < nvtxs; i++)
+  {
+    if (graph->rinfo[i].ed > 0) BNDInsert(nbnd, bndind, bndptr, i);
   }
 
   graph->nbnd = nbnd;
 }
-

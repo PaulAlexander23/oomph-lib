@@ -49,7 +49,7 @@ namespace oomph
     HelmholtzSmoother() : Use_as_smoother(false) {}
 
     /// Virtual empty destructor
-    virtual ~HelmholtzSmoother(){};
+    virtual ~HelmholtzSmoother() {};
 
     /// The smoother_solve function performs fixed number of iterations
     /// on the system A*result=rhs. The number of (smoothing) iterations is
@@ -286,7 +286,7 @@ namespace oomph
       : Matrix_can_be_deleted(true),
         Matrix_real_pt(0),
         Matrix_imag_pt(0),
-        Omega(omega){};
+        Omega(omega) {};
 
     /// Empty destructor
     ~ComplexDampedJacobi()

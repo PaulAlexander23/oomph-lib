@@ -3702,7 +3702,7 @@ namespace oomph
   {
   public:
     /// Constructor: Empty
-    TSolidElementBase(){};
+    TSolidElementBase() {};
 
     /// Broken copy constructor
     TSolidElementBase(const TSolidElementBase&) = delete;

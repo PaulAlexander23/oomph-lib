@@ -141,7 +141,7 @@ namespace oomph
 
 
     /// Destructor - does nothing - handled in mesh base class
-    ~HermiteQuadMesh(){};
+    ~HermiteQuadMesh() {};
 
 
     /// Access function for number of elements in mesh in each dimension

@@ -49,9 +49,9 @@
 // offset macros for the 1-indexed (FORTRAN) arrays in the
 // MUMPS interface; makes the control integers, info etc. easier to
 // read w.r.t. the MUMPS documentation
-#define ICNTL(i) icntl[(i)-1]
-#define INFOG(i) infog[(i)-1]
-#define INFO(i) info[(i)-1]
+#define ICNTL(i) icntl[(i) - 1]
+#define INFOG(i) infog[(i) - 1]
+#define INFO(i) info[(i) - 1]
 
 namespace oomph
 {

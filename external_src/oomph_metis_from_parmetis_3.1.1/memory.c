@@ -16,94 +16,113 @@
 
 
 /*************************************************************************
-* This function allocates memory for the workspace
-**************************************************************************/
-void AllocateWorkSpace(CtrlType *ctrl, GraphType *graph, int nparts)
+ * This function allocates memory for the workspace
+ **************************************************************************/
+void AllocateWorkSpace(CtrlType* ctrl, GraphType* graph, int nparts)
 {
   ctrl->wspace.pmat = NULL;
 
-  if (ctrl->optype == OP_KMETIS) {
-    ctrl->wspace.edegrees = (EDegreeType *)GKmalloc(graph->nedges*sizeof(EDegreeType), "AllocateWorkSpace: edegrees");
+  if (ctrl->optype == OP_KMETIS)
+  {
+    ctrl->wspace.edegrees = (EDegreeType*)GKmalloc(
+      graph->nedges * sizeof(EDegreeType), "AllocateWorkSpace: edegrees");
     ctrl->wspace.vedegrees = NULL;
-    ctrl->wspace.auxcore = (idxtype *)ctrl->wspace.edegrees;
+    ctrl->wspace.auxcore = (idxtype*)ctrl->wspace.edegrees;
 
-    ctrl->wspace.pmat = idxmalloc(nparts*nparts, "AllocateWorkSpace: pmat");
+    ctrl->wspace.pmat = idxmalloc(nparts * nparts, "AllocateWorkSpace: pmat");
 
     /* Memory requirements for different phases
           Coarsening
                     Matching: 4*nvtxs vectors
-                 Contraction: 2*nvtxs vectors (from the above 4), 1*nparts, 1*Nedges
-            Total = MAX(4*nvtxs, 2*nvtxs+nparts+nedges)
+                 Contraction: 2*nvtxs vectors (from the above 4), 1*nparts,
+       1*Nedges Total = MAX(4*nvtxs, 2*nvtxs+nparts+nedges)
 
           Refinement
                 Random Refinement/Balance: 5*nparts + 1*nvtxs + 2*nedges
-                Greedy Refinement/Balance: 5*nparts + 2*nvtxs + 2*nedges + 1*PQueue(==Nvtxs)
-            Total = 5*nparts + 3*nvtxs + 2*nedges
+                Greedy Refinement/Balance: 5*nparts + 2*nvtxs + 2*nedges +
+       1*PQueue(==Nvtxs) Total = 5*nparts + 3*nvtxs + 2*nedges
 
-         Total = 5*nparts + 3*nvtxs + 2*nedges 
+         Total = 5*nparts + 3*nvtxs + 2*nedges
     */
-    ctrl->wspace.maxcore = 3*(graph->nvtxs+1) +                 /* Match/Refinement vectors */
-                           5*(nparts+1) +                       /* Partition weights etc */
-                           graph->nvtxs*(sizeof(ListNodeType)/sizeof(idxtype)) + /* Greedy k-way balance/refine */
-                           20  /* padding for 64 bit machines */
-                           ;
+    ctrl->wspace.maxcore =
+      3 * (graph->nvtxs + 1) + /* Match/Refinement vectors */
+      5 * (nparts + 1) + /* Partition weights etc */
+      graph->nvtxs * (sizeof(ListNodeType) /
+                      sizeof(idxtype)) + /* Greedy k-way balance/refine */
+      20 /* padding for 64 bit machines */
+      ;
   }
-  else if (ctrl->optype == OP_KVMETIS) {
+  else if (ctrl->optype == OP_KVMETIS)
+  {
     ctrl->wspace.edegrees = NULL;
-    ctrl->wspace.vedegrees = (VEDegreeType *)GKmalloc(graph->nedges*sizeof(VEDegreeType), "AllocateWorkSpace: vedegrees");
-    ctrl->wspace.auxcore = (idxtype *)ctrl->wspace.vedegrees;
+    ctrl->wspace.vedegrees = (VEDegreeType*)GKmalloc(
+      graph->nedges * sizeof(VEDegreeType), "AllocateWorkSpace: vedegrees");
+    ctrl->wspace.auxcore = (idxtype*)ctrl->wspace.vedegrees;
 
-    ctrl->wspace.pmat = idxmalloc(nparts*nparts, "AllocateWorkSpace: pmat");
+    ctrl->wspace.pmat = idxmalloc(nparts * nparts, "AllocateWorkSpace: pmat");
 
     /* Memory requirements for different phases are identical to KMETIS */
-    ctrl->wspace.maxcore = 3*(graph->nvtxs+1) +                 /* Match/Refinement vectors */
-                           3*(nparts+1) +                       /* Partition weights etc */
-                           graph->nvtxs*(sizeof(ListNodeType)/sizeof(idxtype)) + /* Greedy k-way balance/refine */
-                           20  /* padding for 64 bit machines */
-                           ;
+    ctrl->wspace.maxcore =
+      3 * (graph->nvtxs + 1) + /* Match/Refinement vectors */
+      3 * (nparts + 1) + /* Partition weights etc */
+      graph->nvtxs * (sizeof(ListNodeType) /
+                      sizeof(idxtype)) + /* Greedy k-way balance/refine */
+      20 /* padding for 64 bit machines */
+      ;
   }
-  else {
-    ctrl->wspace.edegrees = (EDegreeType *)idxmalloc(graph->nedges, "AllocateWorkSpace: edegrees");
+  else
+  {
+    ctrl->wspace.edegrees =
+      (EDegreeType*)idxmalloc(graph->nedges, "AllocateWorkSpace: edegrees");
     ctrl->wspace.vedegrees = NULL;
-    ctrl->wspace.auxcore = (idxtype *)ctrl->wspace.edegrees;
+    ctrl->wspace.auxcore = (idxtype*)ctrl->wspace.edegrees;
 
-    ctrl->wspace.maxcore = 5*(graph->nvtxs+1) +                 /* Refinement vectors */
-                           4*(nparts+1) +                       /* Partition weights etc */
-                           2*graph->ncon*graph->nvtxs*(sizeof(ListNodeType)/sizeof(idxtype)) + /* 2-way refinement */
-                           2*graph->ncon*(NEG_GAINSPAN+PLUS_GAINSPAN+1)*(sizeof(ListNodeType *)/sizeof(idxtype)) + /* 2-way refinement */
-                           20  /* padding for 64 bit machines */
-                           ;
+    ctrl->wspace.maxcore =
+      5 * (graph->nvtxs + 1) + /* Refinement vectors */
+      4 * (nparts + 1) + /* Partition weights etc */
+      2 * graph->ncon * graph->nvtxs *
+        (sizeof(ListNodeType) / sizeof(idxtype)) + /* 2-way refinement */
+      2 * graph->ncon * (NEG_GAINSPAN + PLUS_GAINSPAN + 1) *
+        (sizeof(ListNodeType*) / sizeof(idxtype)) + /* 2-way refinement */
+      20 /* padding for 64 bit machines */
+      ;
   }
 
   ctrl->wspace.maxcore += HTLENGTH;
-  ctrl->wspace.core = idxmalloc(ctrl->wspace.maxcore, "AllocateWorkSpace: maxcore");
+  ctrl->wspace.core =
+    idxmalloc(ctrl->wspace.maxcore, "AllocateWorkSpace: maxcore");
   ctrl->wspace.ccore = 0;
 }
 
 
 /*************************************************************************
-* This function allocates memory for the workspace
-**************************************************************************/
-void FreeWorkSpace(CtrlType *ctrl, GraphType *graph)
+ * This function allocates memory for the workspace
+ **************************************************************************/
+void FreeWorkSpace(CtrlType* ctrl, GraphType* graph)
 {
-  GKfree(&ctrl->wspace.edegrees, &ctrl->wspace.vedegrees, &ctrl->wspace.core, &ctrl->wspace.pmat, LTERM);
+  GKfree(&ctrl->wspace.edegrees,
+         &ctrl->wspace.vedegrees,
+         &ctrl->wspace.core,
+         &ctrl->wspace.pmat,
+         LTERM);
 }
 
 /*************************************************************************
-* This function returns how may words are left in the workspace
-**************************************************************************/
-int WspaceAvail(CtrlType *ctrl)
+ * This function returns how may words are left in the workspace
+ **************************************************************************/
+int WspaceAvail(CtrlType* ctrl)
 {
   return ctrl->wspace.maxcore - ctrl->wspace.ccore;
 }
 
 
 /*************************************************************************
-* This function allocate space from the core 
-**************************************************************************/
-idxtype *idxwspacemalloc(CtrlType *ctrl, int n)
+ * This function allocate space from the core
+ **************************************************************************/
+idxtype* idxwspacemalloc(CtrlType* ctrl, int n)
 {
-  n += n%2; /* This is a fix for 64 bit machines that require 8-byte pointer allignment */
+  n += n % 2; /* This is a fix for 64 bit machines that require 8-byte pointer
+                 allignment */
 
   ctrl->wspace.ccore += n;
   ASSERT(ctrl->wspace.ccore <= ctrl->wspace.maxcore);
@@ -111,11 +130,12 @@ idxtype *idxwspacemalloc(CtrlType *ctrl, int n)
 }
 
 /*************************************************************************
-* This function frees space from the core 
-**************************************************************************/
-void idxwspacefree(CtrlType *ctrl, int n)
+ * This function frees space from the core
+ **************************************************************************/
+void idxwspacefree(CtrlType* ctrl, int n)
 {
-  n += n%2; /* This is a fix for 64 bit machines that require 8-byte pointer allignment */
+  n += n % 2; /* This is a fix for 64 bit machines that require 8-byte pointer
+                 allignment */
 
   ctrl->wspace.ccore -= n;
   ASSERT(ctrl->wspace.ccore >= 0);
@@ -123,39 +143,40 @@ void idxwspacefree(CtrlType *ctrl, int n)
 
 
 /*************************************************************************
-* This function allocate space from the core 
-**************************************************************************/
-float *fwspacemalloc(CtrlType *ctrl, int n)
+ * This function allocate space from the core
+ **************************************************************************/
+float* fwspacemalloc(CtrlType* ctrl, int n)
 {
-  n += n%2; /* This is a fix for 64 bit machines that require 8-byte pointer allignment */
+  n += n % 2; /* This is a fix for 64 bit machines that require 8-byte pointer
+                 allignment */
 
   ctrl->wspace.ccore += n;
   ASSERT(ctrl->wspace.ccore <= ctrl->wspace.maxcore);
-  return (float *) (ctrl->wspace.core + ctrl->wspace.ccore - n);
+  return (float*)(ctrl->wspace.core + ctrl->wspace.ccore - n);
 }
 
 /*************************************************************************
-* This function frees space from the core 
-**************************************************************************/
-void fwspacefree(CtrlType *ctrl, int n)
+ * This function frees space from the core
+ **************************************************************************/
+void fwspacefree(CtrlType* ctrl, int n)
 {
-  n += n%2; /* This is a fix for 64 bit machines that require 8-byte pointer allignment */
+  n += n % 2; /* This is a fix for 64 bit machines that require 8-byte pointer
+                 allignment */
 
   ctrl->wspace.ccore -= n;
   ASSERT(ctrl->wspace.ccore >= 0);
 }
 
 
-
 /*************************************************************************
-* This function creates a CoarseGraphType data structure and initializes
-* the various fields
-**************************************************************************/
-GraphType *CreateGraph(void)
+ * This function creates a CoarseGraphType data structure and initializes
+ * the various fields
+ **************************************************************************/
+GraphType* CreateGraph(void)
 {
-  GraphType *graph;
+  GraphType* graph;
 
-  graph = (GraphType *)GKmalloc(sizeof(GraphType), "CreateCoarseGraph: graph");
+  graph = (GraphType*)GKmalloc(sizeof(GraphType), "CreateCoarseGraph: graph");
 
   InitGraph(graph);
 
@@ -164,10 +185,10 @@ GraphType *CreateGraph(void)
 
 
 /*************************************************************************
-* This function creates a CoarseGraphType data structure and initializes
-* the various fields
-**************************************************************************/
-void InitGraph(GraphType *graph) 
+ * This function creates a CoarseGraphType data structure and initializes
+ * the various fields
+ **************************************************************************/
+void InitGraph(GraphType* graph)
 {
   graph->gdata = graph->rdata = NULL;
 
@@ -193,16 +214,13 @@ void InitGraph(GraphType *graph)
   graph->vsize = NULL;
 
   graph->coarser = graph->finer = NULL;
-
 }
 
 /*************************************************************************
-* This function deallocates any memory stored in a graph
-**************************************************************************/
-void FreeGraph(GraphType *graph) 
+ * This function deallocates any memory stored in a graph
+ **************************************************************************/
+void FreeGraph(GraphType* graph)
 {
-
   GKfree(&graph->gdata, &graph->nvwgt, &graph->rdata, &graph->npwgts, LTERM);
   free(graph);
 }
-

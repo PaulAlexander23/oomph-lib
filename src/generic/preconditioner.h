@@ -59,7 +59,7 @@ namespace oomph
         Stream_pt(0),
         Matrix_pt(0),
         Comm_pt(0),
-        Setup_time(0){};
+        Setup_time(0) {};
 
     /// Broken copy constructor
     Preconditioner(const Preconditioner&) = delete;

@@ -450,9 +450,9 @@ namespace oomph
   void RefineableTetgenMesh<ELEMENT>::adapt(const Vector<double>& elem_error)
   {
     double t_start = 0.0;
-    //###################################
+    // ###################################
     t_start = TimingHelpers::timer();
-    //###################################
+    // ###################################
 
     // Get refinement targets
     Vector<double> target_size(elem_error.size());
@@ -481,11 +481,11 @@ namespace oomph
     oomph_info << "Max/min element size in original mesh: " << orig_max_size
                << " " << orig_min_size << std::endl;
 
-    //##################################################################
+    // ##################################################################
     oomph_info
       << "adapt: Time for getting volume targets                      : "
       << TimingHelpers::timer() - t_start << " sec " << std::endl;
-    //##################################################################
+    // ##################################################################
 
     //===============================================================
     // END: Compute target volumes
@@ -524,9 +524,9 @@ namespace oomph
       }
 
 
-      //###################################
+      // ###################################
       t_start = TimingHelpers::timer();
-      //###################################
+      // ###################################
 
       // Are we dealing with a solid mesh?
       SolidMesh* solid_mesh_pt = dynamic_cast<SolidMesh*>(this);
@@ -561,11 +561,11 @@ namespace oomph
       }
 
 
-      //##################################################################
+      // ##################################################################
       oomph_info
         << "adapt: Time for building temp mesh                        : "
         << TimingHelpers::timer() - t_start << " sec " << std::endl;
-      //##################################################################
+      // ##################################################################
 
       // tmp_new_mesh_pt->output("pre_mesh_nodes_snapped_0.dat");
 
@@ -944,11 +944,11 @@ namespace oomph
           << "==================================================\n"
           << "\n\n\n";
 
-        //##################################################################
+        // ##################################################################
         oomph_info
           << "adapt: Time for new_target_size[.]                      : "
           << TimingHelpers::timer() - t_start << " sec " << std::endl;
-        //##################################################################
+        // ##################################################################
 
 
         // Now create the new mesh from TriangulateIO structure
@@ -958,9 +958,9 @@ namespace oomph
         // associated target element sizes.
         //---------------------------------
 
-        //###################################
+        // ###################################
         t_start = TimingHelpers::timer();
-        //###################################
+        // ###################################
 
         // Solid mesh?
         if (solid_mesh_pt != 0)
@@ -991,11 +991,11 @@ namespace oomph
                                               this->Use_attributes);
         }
 
-        //##################################################################
+        // ##################################################################
         oomph_info
           << "adapt: Time for new_mesh_pt                            : "
           << TimingHelpers::timer() - t_start << " sec " << std::endl;
-        //##################################################################
+        // ##################################################################
 
 
         // Not done: get ready for another iteration
@@ -1066,9 +1066,9 @@ namespace oomph
       // Check that the projection step is not disabled
       if (!Projection_is_disabled)
       {
-        //###################################
+        // ###################################
         t_start = TimingHelpers::timer();
-        //###################################
+        // ###################################
 
         // Project current solution onto new mesh
         //---------------------------------------
@@ -1078,16 +1078,16 @@ namespace oomph
         project_problem_pt->project(this);
         delete project_problem_pt;
 
-        //##################################################################
+        // ##################################################################
         oomph_info
           << "adapt: Time for project soln onto new mesh                : "
           << TimingHelpers::timer() - t_start << " sec " << std::endl;
-        //##################################################################
+        // ##################################################################
       }
 
-      //###################################
+      // ###################################
       t_start = TimingHelpers::timer();
-      //###################################
+      // ###################################
 
       // this->output("pre_proj",5);
       // new_mesh_pt->output("post_proj.dat",5);
@@ -1216,11 +1216,11 @@ namespace oomph
       delete new_mesh_pt;
 
 
-      //##################################################################
+      // ##################################################################
       oomph_info
         << "adapt: Time for moving nodes etc. to actual mesh          : "
         << TimingHelpers::timer() - t_start << " sec " << std::endl;
-      //##################################################################
+      // ##################################################################
 
       // Solid mesh?
       if (solid_mesh_pt != 0)

@@ -2242,7 +2242,7 @@ namespace oomph
   //=========================================================================
   // Temporary flag to enable full annotation of RefineableTriangleMesh
   // comms
-  //#define ANNOTATE_REFINEABLE_TRIANGLE_MESH_COMMUNICATION
+  // #define ANNOTATE_REFINEABLE_TRIANGLE_MESH_COMMUNICATION
   template<class ELEMENT>
   class RefineableTriangleMesh : public virtual TriangleMesh<ELEMENT>,
                                  public virtual RefineableMeshBase
@@ -3175,7 +3175,7 @@ namespace oomph
     // Methods for load balancing
     // ====================================================================
 
-    //#define ANNOTATE_REFINEABLE_TRIANGLE_MESH_COMMUNICATION_LOAD_BALANCE
+    // #define ANNOTATE_REFINEABLE_TRIANGLE_MESH_COMMUNICATION_LOAD_BALANCE
 
     // *********************************************************************
     // BEGIN: Methods to perform load balance

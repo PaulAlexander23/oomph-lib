@@ -543,9 +543,9 @@ namespace oomph
       Linear_solver_pt->solve(AsigmaM_pt, X, Y);
 
       // Need to synchronise
-      //#ifdef OOMPH_HAS_MPI
+      // #ifdef OOMPH_HAS_MPI
       //   Problem_pt->synchronise_all_dofs();
-      //#endif
+      // #endif
 
       for (unsigned i = 0; i < n_row_local; i++)
       {
@@ -558,9 +558,9 @@ namespace oomph
         M_pt->multiply(x.doublevector(v), X);
         Linear_solver_pt->resolve(X, Y);
 
-        //#ifdef OOMPH_HAS_MPI
-        //     Problem_pt->synchronise_all_dofs();
-        //#endif
+        // #ifdef OOMPH_HAS_MPI
+        //      Problem_pt->synchronise_all_dofs();
+        // #endif
 
         for (unsigned i = 0; i < n_row_local; i++)
         {

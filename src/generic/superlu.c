@@ -28,10 +28,10 @@ typedef void* fptr;
 /* ================================================= */
 typedef struct
 {
-  SuperMatrix *L;
-  SuperMatrix *U;
-  int *perm_c;
-  int *perm_r;
+  SuperMatrix* L;
+  SuperMatrix* U;
+  int* perm_c;
+  int* perm_r;
 } factors_t;
 
 
@@ -53,7 +53,7 @@ struct MemoryStatisticsStorage
 double get_lu_factor_memory_usage_in_bytes()
 {
   // If the LU decomposition has been stored
-  if (memory_statistics_storage.Memory_usage_has_been_recorded==1)
+  if (memory_statistics_storage.Memory_usage_has_been_recorded == 1)
   {
     return memory_statistics_storage.Memory_usage.for_lu;
   }
@@ -69,7 +69,7 @@ double get_lu_factor_memory_usage_in_bytes()
 double get_total_memory_usage_in_bytes()
 {
   // If the LU decomposition has been stored
-  if (memory_statistics_storage.Memory_usage_has_been_recorded==1)
+  if (memory_statistics_storage.Memory_usage_has_been_recorded == 1)
   {
     return memory_statistics_storage.Memory_usage.total_needed;
   }
@@ -84,10 +84,9 @@ double get_total_memory_usage_in_bytes()
 /* ========================================================================= */
 void get_memory_usage_in_bytes(double* lu_factor_memory, double* total_memory)
 {
-  (*lu_factor_memory)=memory_statistics_storage.Memory_usage.for_lu;
-  (*total_memory)=memory_statistics_storage.Memory_usage.total_needed;
+  (*lu_factor_memory) = memory_statistics_storage.Memory_usage.for_lu;
+  (*total_memory) = memory_statistics_storage.Memory_usage.total_needed;
 }
-
 
 
 /* =========================================================================
@@ -115,37 +114,45 @@ void get_memory_usage_in_bytes(double* lu_factor_memory, double* total_memory)
    Returns the SIGN of the determinant of the matrix
    =========================================================================
 */
-int superlu(int *op_flag, int *n, int *nnz, int *nrhs,
-            double *values, int *rowind, int *colptr,
-            double *b, int *ldb, int *transpose, int *doc,
-            fptr *f_factors, int *info)
+int superlu(int* op_flag,
+            int* n,
+            int* nnz,
+            int* nrhs,
+            double* values,
+            int* rowind,
+            int* colptr,
+            double* b,
+            int* ldb,
+            int* transpose,
+            int* doc,
+            fptr* f_factors,
+            int* info)
 
 {
-
   SuperMatrix A, AC, B;
   SuperMatrix *L, *U;
-  int *perm_r; /* row permutations from partial pivoting */
-  int *perm_c; /* column permutation vector */
-  int *etree;  /* column elimination tree */
-  SCformat *Lstore;
-  NCformat *Ustore;
-  int      i, j, panel_size, permc_spec, relax;
-  trans_t  trans;
-  //double   drop_tol = 0.0; //No longer need SuperLU 4.3
-  //mem_usage_t   mem_usage;
+  int* perm_r; /* row permutations from partial pivoting */
+  int* perm_c; /* column permutation vector */
+  int* etree; /* column elimination tree */
+  SCformat* Lstore;
+  NCformat* Ustore;
+  int i, j, panel_size, permc_spec, relax;
+  trans_t trans;
+  // double   drop_tol = 0.0; //No longer need SuperLU 4.3
+  // mem_usage_t   mem_usage;
   superlu_options_t options;
   SuperLUStat_t stat;
-  factors_t *LUfactors;
+  factors_t* LUfactors;
 
-  double *Lval;
+  double* Lval;
   double *diagU, *dblock;
   int_t fsupc, nsupr, nsupc, luptr;
   int_t i2, k2, nsupers;
-  int signature=1;
+  int signature = 1;
   int sign = 0;
 
   /*   Do we need to transpose? */
-  if (*transpose==0)
+  if (*transpose == 0)
   {
     trans = NOTRANS;
   }
@@ -154,19 +161,18 @@ int superlu(int *op_flag, int *n, int *nnz, int *nrhs,
     trans = TRANS;
   }
 
-  if (*op_flag == 1)     /* LU decomposition */
+  if (*op_flag == 1) /* LU decomposition */
   {
-
     /* Set the default input options. */
     set_default_options(&options);
 
     /* Initialize the statistics variables. */
     StatInit(&stat);
 
-    dCreate_CompCol_Matrix(&A, *n, *n, *nnz, values, rowind, colptr,
-                           SLU_NC, SLU_D, SLU_GE);
-    L = (SuperMatrix *) SUPERLU_MALLOC(sizeof(SuperMatrix));
-    U = (SuperMatrix *) SUPERLU_MALLOC(sizeof(SuperMatrix));
+    dCreate_CompCol_Matrix(
+      &A, *n, *n, *nnz, values, rowind, colptr, SLU_NC, SLU_D, SLU_GE);
+    L = (SuperMatrix*)SUPERLU_MALLOC(sizeof(SuperMatrix));
+    U = (SuperMatrix*)SUPERLU_MALLOC(sizeof(SuperMatrix));
     if (!(perm_r = intMalloc(*n))) ABORT("Malloc fails for perm_r[].");
     if (!(perm_c = intMalloc(*n))) ABORT("Malloc fails for perm_c[].");
     if (!(etree = intMalloc(*n))) ABORT("Malloc fails for etree[].");
@@ -186,24 +192,35 @@ int superlu(int *op_flag, int *n, int *nnz, int *nrhs,
     panel_size = sp_ienv(1);
     relax = sp_ienv(2);
 
-    dgstrf(&options, &AC, /*drop_tol,*/ relax, panel_size,
-           etree, NULL, 0, perm_c, perm_r, L, U, &stat, info);
+    dgstrf(&options,
+           &AC,
+           /*drop_tol,*/ relax,
+           panel_size,
+           etree,
+           NULL,
+           0,
+           perm_c,
+           perm_r,
+           L,
+           U,
+           &stat,
+           info);
 
     if (*info == 0)
     {
-      Lstore = (SCformat *) L->Store;
-      Ustore = (NCformat *) U->Store;
+      Lstore = (SCformat*)L->Store;
+      Ustore = (NCformat*)U->Store;
       dQuerySpace(L, U, &memory_statistics_storage.Memory_usage);
-      if (*doc!=0)
+      if (*doc != 0)
       {
         printf(" No of nonzeros in factor L = %d\n", Lstore->nnz);
         printf(" No of nonzeros in factor U = %d\n", Ustore->nnz);
         printf(" No of nonzeros in L+U = %d\n", Lstore->nnz + Ustore->nnz);
         printf(" L\\U MB %.3f\ttotal MB needed %.3f\n",
                //\texpansions %d\n",
-               memory_statistics_storage.Memory_usage.for_lu/1e6,
-               memory_statistics_storage.Memory_usage.total_needed/1e6);
-        //mem_usage.expansions);
+               memory_statistics_storage.Memory_usage.for_lu / 1e6,
+               memory_statistics_storage.Memory_usage.total_needed / 1e6);
+        // mem_usage.expansions);
       }
     }
     else
@@ -213,51 +230,50 @@ int superlu(int *op_flag, int *n, int *nnz, int *nrhs,
       {
         printf("Argument number %d had an illegal value", *info);
       }
-      else if (*info <= *n)     /* factorization completes */
+      else if (*info <= *n) /* factorization completes */
       {
-        printf("U(%i,%i) is exactly zero so U is exactly singular.",
-               *n, *n);
+        printf("U(%i,%i) is exactly zero so U is exactly singular.", *n, *n);
         dQuerySpace(L, U, &memory_statistics_storage.Memory_usage);
         printf(" L\\U MB %.3f\ttotal MB needed %.3f\n",
                //\texpansions %d\n\n",
-               memory_statistics_storage.Memory_usage.for_lu/1e6,
-               memory_statistics_storage.Memory_usage.total_needed/1e6);
-        //mem_usage.expansions);
+               memory_statistics_storage.Memory_usage.for_lu / 1e6,
+               memory_statistics_storage.Memory_usage.total_needed / 1e6);
+        // mem_usage.expansions);
       }
     }
 
     /* PM: Indicate that the memory statistics have been recorded */
-    memory_statistics_storage.Memory_usage_has_been_recorded=1;
+    memory_statistics_storage.Memory_usage_has_been_recorded = 1;
 
-    //printf(" L\\U MB %.3f\ttotal MB needed %.3f\n",
-    //       get_lu_factor_memory_usage_in_bytes()/1e6,
-    //       get_total_memory_usage_in_bytes()/1e6);
+    // printf(" L\\U MB %.3f\ttotal MB needed %.3f\n",
+    //        get_lu_factor_memory_usage_in_bytes()/1e6,
+    //        get_total_memory_usage_in_bytes()/1e6);
 
     /* Save the LU factors in the factors handle */
-    LUfactors = (factors_t*) SUPERLU_MALLOC(sizeof(factors_t));
+    LUfactors = (factors_t*)SUPERLU_MALLOC(sizeof(factors_t));
     LUfactors->L = L;
     LUfactors->U = U;
     LUfactors->perm_c = perm_c;
     LUfactors->perm_r = perm_r;
-    *f_factors = (fptr) LUfactors;
+    *f_factors = (fptr)LUfactors;
 
-    //Work out and print the sign of the determinant
-    //This code is hacked from supraLU by  Alex Pletzer
-    //and Doug McCune (NTCC) (http://w3.pppl.gov/ntcc/SupraLu/)
+    // Work out and print the sign of the determinant
+    // This code is hacked from supraLU by  Alex Pletzer
+    // and Doug McCune (NTCC) (http://w3.pppl.gov/ntcc/SupraLu/)
     Lstore = L->Store;
     Lval = Lstore->nzval;
     nsupers = Lstore->nsuper + 1;
 
-    //Get the diagonal entries of the U matrix
-    //Allocate store for the entries
+    // Get the diagonal entries of the U matrix
+    // Allocate store for the entries
     if (!(diagU = SUPERLU_MALLOC(*n * sizeof(SuperMatrix))))
       ABORT("Malloc fails for diagU[].");
-    //Loop over the number of super diagonal terms(?)
-    for (k2=0; k2< nsupers; k2++)
+    // Loop over the number of super diagonal terms(?)
+    for (k2 = 0; k2 < nsupers; k2++)
     {
       fsupc = L_FST_SUPC(k2);
-      nsupc = L_FST_SUPC(k2+1) - fsupc;
-      nsupr = L_SUB_START(fsupc+1) - L_SUB_START(fsupc);
+      nsupc = L_FST_SUPC(k2 + 1) - fsupc;
+      nsupr = L_SUB_START(fsupc + 1) - L_SUB_START(fsupc);
       luptr = L_NZ_START(fsupc);
 
       dblock = &diagU[fsupc];
@@ -268,33 +284,45 @@ int superlu(int *op_flag, int *n, int *nnz, int *nrhs,
       }
     }
 
-    //Now multiply all the diagonal terms together to get the determinant
-    //Note that we need to use the mantissa, exponent formulation to
-    //avoid underflow errors
-    double determinant_mantissa=1.0;
+    // Now multiply all the diagonal terms together to get the determinant
+    // Note that we need to use the mantissa, exponent formulation to
+    // avoid underflow errors
+    double determinant_mantissa = 1.0;
     int determinant_exponent = 0, iexp;
-    for (i=0; i<*n; i++)
+    for (i = 0; i < *n; i++)
     {
       determinant_mantissa *= frexp(diagU[i], &iexp);
       determinant_exponent += iexp;
       /* normalise*/
-      determinant_mantissa = frexp(determinant_mantissa,&iexp);
+      determinant_mantissa = frexp(determinant_mantissa, &iexp);
       determinant_exponent += iexp;
 
       /*Now worry about the permutations
         (this is done in a stupid, but not too inefficient way)*/
-      for (j=i; j<*n; j++)
+      for (j = i; j < *n; j++)
       {
-        if (perm_r[j] < perm_r[i]) {signature *= -1;}
-        if (perm_c[j] < perm_c[i]) {signature *= -1;}
+        if (perm_r[j] < perm_r[i])
+        {
+          signature *= -1;
+        }
+        if (perm_c[j] < perm_c[i])
+        {
+          signature *= -1;
+        }
       }
     }
 
-    //Find the sign of the determinant
-    if (determinant_mantissa > 0.0) {sign = 1;}
-    if (determinant_mantissa < 0.0) {sign = -1;}
+    // Find the sign of the determinant
+    if (determinant_mantissa > 0.0)
+    {
+      sign = 1;
+    }
+    if (determinant_mantissa < 0.0)
+    {
+      sign = -1;
+    }
 
-    //Multiply the sign by the signature
+    // Multiply the sign by the signature
     sign *= signature;
 
     /* Free un-wanted storage */
@@ -304,17 +332,16 @@ int superlu(int *op_flag, int *n, int *nnz, int *nrhs,
     Destroy_CompCol_Permuted(&AC);
     StatFree(&stat);
 
-    //Return the sign of the determinant
+    // Return the sign of the determinant
     return sign;
-
   }
-  else if (*op_flag == 2)       /* Triangular solve */
+  else if (*op_flag == 2) /* Triangular solve */
   {
     /* Initialize the statistics variables. */
     StatInit(&stat);
 
     /* Extract the LU factors in the factors handle */
-    LUfactors = (factors_t*) *f_factors;
+    LUfactors = (factors_t*)*f_factors;
     L = LUfactors->L;
     U = LUfactors->U;
     perm_c = LUfactors->perm_c;
@@ -328,14 +355,13 @@ int superlu(int *op_flag, int *n, int *nnz, int *nrhs,
     Destroy_SuperMatrix_Store(&B);
     StatFree(&stat);
 
-    //Return zero
+    // Return zero
     return 0;
-
   }
-  else if (*op_flag == 3)       /* Free storage */
+  else if (*op_flag == 3) /* Free storage */
   {
     /* Free the LU factors in the factors handle */
-    LUfactors = (factors_t*) *f_factors;
+    LUfactors = (factors_t*)*f_factors;
     SUPERLU_FREE(LUfactors->perm_r);
     SUPERLU_FREE(LUfactors->perm_c);
     Destroy_SuperNode_Matrix(LUfactors->L);
@@ -347,8 +373,7 @@ int superlu(int *op_flag, int *n, int *nnz, int *nrhs,
   }
   else
   {
-    fprintf(stderr,"Invalid op_flag=%d passed to c_cpp_dgssv()\n",*op_flag);
+    fprintf(stderr, "Invalid op_flag=%d passed to c_cpp_dgssv()\n", *op_flag);
     exit(-1);
   }
 }
-

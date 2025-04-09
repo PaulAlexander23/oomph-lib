@@ -3,9 +3,9 @@
  *
  * <pre>
  *  Implementation of disjoint set union routines.
- *  Elements are integers in 0..n-1, and the 
+ *  Elements are integers in 0..n-1, and the
  *  names of the sets themselves are of type int.
- *  
+ *
  *  Calls are:
  *  initialize_disjoint_sets (n) initial call.
  *  s = make_set (i)             returns a set containing only i.
@@ -26,70 +26,55 @@
 #include "superlu_ddefs.h"
 
 
-static 
-int_t *mxCallocInt(int_t n)
+static int_t* mxCallocInt(int_t n)
 {
-    register int_t i;
-    int_t *buf;
+  register int_t i;
+  int_t* buf;
 
-    buf = (int_t *) SUPERLU_MALLOC( n * sizeof(int_t) );
-    if ( buf ) 
-	for (i = 0; i < n; i++) buf[i] = 0;
-    return (buf);
+  buf = (int_t*)SUPERLU_MALLOC(n * sizeof(int_t));
+  if (buf)
+    for (i = 0; i < n; i++) buf[i] = 0;
+  return (buf);
 }
-      
-static
-void initialize_disjoint_sets (
-			       int_t n,
-			       int_t **pp    /* parent array for sets */
-			       )
+
+static void initialize_disjoint_sets(int_t n,
+                                     int_t** pp /* parent array for sets */
+)
 {
-	if ( !( (*pp) = mxCallocInt(n)) ) 
-	    ABORT("mxCallocInit fails for pp[]");
+  if (!((*pp) = mxCallocInt(n))) ABORT("mxCallocInit fails for pp[]");
 }
 
 
-static
-int_t make_set (
-		int_t   i,
-		int_t	*pp    /* parent array for sets */
-		)
+static int_t make_set(int_t i, int_t* pp /* parent array for sets */
+)
 {
-	pp[i] = i;
-	return i;
+  pp[i] = i;
+  return i;
 }
 
 
-static
-int_t link (
-	    int_t s,
-	    int_t t,
-	    int_t *pp
-	    )
+static int_t link(int_t s, int_t t, int_t* pp)
 {
-	pp[s] = t;
-	return t;
+  pp[s] = t;
+  return t;
 }
 
 
 /* PATH HALVING */
-static
-int_t find (
-	    int_t i,
-	    int_t *pp
-	    )
+static int_t find(int_t i, int_t* pp)
 {
-    register int_t p, gp;
-    
+  register int_t p, gp;
+
+  p = pp[i];
+  gp = pp[p];
+  while (gp != p)
+  {
+    pp[i] = gp;
+    i = gp;
     p = pp[i];
     gp = pp[p];
-    while (gp != p) {
-	pp[i] = gp;
-	i = gp;
-	p = pp[i];
-	gp = pp[p];
-    }
-    return (p);
+  }
+  return (p);
 }
 
 #if 0
@@ -105,12 +90,9 @@ int_t find (
 }
 #endif
 
-static
-void finalize_disjoint_sets (
-			     int_t *pp
-			    )
+static void finalize_disjoint_sets(int_t* pp)
 {
-	SUPERLU_FREE(pp);
+  SUPERLU_FREE(pp);
 }
 
 /*! \brief Symmetric elimination tree
@@ -124,12 +106,12 @@ void finalize_disjoint_sets (
  *      Input:
  *        Square sparse matrix A.  No check is made for symmetry;
  *        elements below and on the diagonal are ignored.
- *        Numeric values are ignored, so any explicit zeros are 
+ *        Numeric values are ignored, so any explicit zeros are
  *        treated as nonzero.
  *      Output:
  *        Integer array of parents representing the etree, with n
  *        meaning a root of the elimination forest.
- *      Note:  
+ *      Note:
  *        This routine uses only the upper triangle, while sparse
  *        Cholesky (as in spchol.c) uses only the lower.  Matlab's
  *        dense Cholesky uses only the upper.  This routine could
@@ -142,51 +124,53 @@ void finalize_disjoint_sets (
  *      Modified by X.S. Li, November 1999.
  * </pre>
  */
-int_t
-sp_symetree_dist(
-	    int_t *acolst, int_t *acolend, /* column starts and ends past 1 */
-	    int_t *arow,            /* row indices of A */
-	    int_t n,                /* dimension of A */
-	    int_t *parent	    /* parent in elim tree */
-	    )
+int_t sp_symetree_dist(int_t* acolst,
+                       int_t* acolend, /* column starts and ends past 1 */
+                       int_t* arow, /* row indices of A */
+                       int_t n, /* dimension of A */
+                       int_t* parent /* parent in elim tree */
+)
 {
-	int_t	*root;		    /* root of subtee of etree 	*/
-	int_t	rset, cset;             
-	int_t	row, col;
-	int_t	rroot;
-	int_t	p;
-	int_t   *pp;
+  int_t* root; /* root of subtee of etree 	*/
+  int_t rset, cset;
+  int_t row, col;
+  int_t rroot;
+  int_t p;
+  int_t* pp;
 
-#if ( DEBUGlevel>=1 )
-	CHECK_MALLOC(0, "Enter sp_symetree()");
+#if (DEBUGlevel >= 1)
+  CHECK_MALLOC(0, "Enter sp_symetree()");
 #endif
 
-	root = mxCallocInt (n);
-	initialize_disjoint_sets (n, &pp);
+  root = mxCallocInt(n);
+  initialize_disjoint_sets(n, &pp);
 
-	for (col = 0; col < n; col++) {
-		cset = make_set (col, pp);
-		root[cset] = col;
-		parent[col] = n; /* Matlab */
-		for (p = acolst[col]; p < acolend[col]; p++) {
-			row = arow[p];
-			if (row >= col) continue;
-			rset = find (row, pp);
-			rroot = root[rset];
-			if (rroot != col) {
-				parent[rroot] = col;
-				cset = link (cset, rset, pp);
-				root[cset] = col;
-			}
-		}
-	}
-	SUPERLU_FREE (root);
-	finalize_disjoint_sets (pp);
+  for (col = 0; col < n; col++)
+  {
+    cset = make_set(col, pp);
+    root[cset] = col;
+    parent[col] = n; /* Matlab */
+    for (p = acolst[col]; p < acolend[col]; p++)
+    {
+      row = arow[p];
+      if (row >= col) continue;
+      rset = find(row, pp);
+      rroot = root[rset];
+      if (rroot != col)
+      {
+        parent[rroot] = col;
+        cset = link(cset, rset, pp);
+        root[cset] = col;
+      }
+    }
+  }
+  SUPERLU_FREE(root);
+  finalize_disjoint_sets(pp);
 
-#if ( DEBUGlevel>=1 )
-	CHECK_MALLOC(0, "Exit sp_symetree()");
+#if (DEBUGlevel >= 1)
+  CHECK_MALLOC(0, "Exit sp_symetree()");
 #endif
-	return 0;
+  return 0;
 } /* SP_SYMETREE_DIST */
 
 
@@ -194,7 +178,7 @@ sp_symetree_dist(
  *
  * <pre>
  *      Find the elimination tree for A'*A.
- *      This uses something similar to Liu's algorithm. 
+ *      This uses something similar to Liu's algorithm.
  *      It runs in time O(nz(A)*log n) and does not form A'*A.
  *
  *      Input:
@@ -209,70 +193,74 @@ sp_symetree_dist(
  *      Based on code by JRG dated 1987, 1988, and 1990.
  * </pre>
  */
-int_t
-sp_coletree_dist(
-	    int_t *acolst, int_t *acolend, /* column start and end past 1 */
-	    int_t *arow,                   /* row indices of A */
-	    int_t nr, int_t nc,            /* dimension of A */
-	    int_t *parent	           /* parent in elim tree */
-	    )
+int_t sp_coletree_dist(int_t* acolst,
+                       int_t* acolend, /* column start and end past 1 */
+                       int_t* arow, /* row indices of A */
+                       int_t nr,
+                       int_t nc, /* dimension of A */
+                       int_t* parent /* parent in elim tree */
+)
 {
-	int_t	*root;			/* root of subtee of etree 	*/
-	int_t   *firstcol;		/* first nonzero col in each row*/
-	int_t	rset, cset;             
-	int_t	row, col;
-	int_t	rroot;
-	int_t	p;
-	int_t   *pp;
+  int_t* root; /* root of subtee of etree 	*/
+  int_t* firstcol; /* first nonzero col in each row*/
+  int_t rset, cset;
+  int_t row, col;
+  int_t rroot;
+  int_t p;
+  int_t* pp;
 
-#if ( DEBUGlevel>=1 )
-	int_t iam = 0;
-	CHECK_MALLOC(iam, "Enter sp_coletree()");
+#if (DEBUGlevel >= 1)
+  int_t iam = 0;
+  CHECK_MALLOC(iam, "Enter sp_coletree()");
 #endif
 
-	root = mxCallocInt (nc);
-	initialize_disjoint_sets (nc, &pp);
+  root = mxCallocInt(nc);
+  initialize_disjoint_sets(nc, &pp);
 
-	/* Compute firstcol[row] = first nonzero column in row */
+  /* Compute firstcol[row] = first nonzero column in row */
 
-	firstcol = mxCallocInt (nr);
-	for (row = 0; row < nr; firstcol[row++] = nc);
-	for (col = 0; col < nc; col++) 
-		for (p = acolst[col]; p < acolend[col]; p++) {
-			row = arow[p];
-			firstcol[row] = SUPERLU_MIN(firstcol[row], col);
-		}
+  firstcol = mxCallocInt(nr);
+  for (row = 0; row < nr; firstcol[row++] = nc);
+  for (col = 0; col < nc; col++)
+    for (p = acolst[col]; p < acolend[col]; p++)
+    {
+      row = arow[p];
+      firstcol[row] = SUPERLU_MIN(firstcol[row], col);
+    }
 
-	/* Compute etree by Liu's algorithm for symmetric matrices,
+  /* Compute etree by Liu's algorithm for symmetric matrices,
            except use (firstcol[r],c) in place of an edge (r,c) of A.
-	   Thus each row clique in A'*A is replaced by a star
-	   centered at its first vertex, which has the same fill. */
+     Thus each row clique in A'*A is replaced by a star
+     centered at its first vertex, which has the same fill. */
 
-	for (col = 0; col < nc; col++) {
-		cset = make_set (col, pp);
-		root[cset] = col;
-		parent[col] = nc; /* Matlab */
-		for (p = acolst[col]; p < acolend[col]; p++) {
-			row = firstcol[arow[p]];
-			if (row >= col) continue;
-			rset = find (row, pp);
-			rroot = root[rset];
-			if (rroot != col) {
-				parent[rroot] = col;
-				cset = link (cset, rset, pp);
-				root[cset] = col;
-			}
-		}
-	}
+  for (col = 0; col < nc; col++)
+  {
+    cset = make_set(col, pp);
+    root[cset] = col;
+    parent[col] = nc; /* Matlab */
+    for (p = acolst[col]; p < acolend[col]; p++)
+    {
+      row = firstcol[arow[p]];
+      if (row >= col) continue;
+      rset = find(row, pp);
+      rroot = root[rset];
+      if (rroot != col)
+      {
+        parent[rroot] = col;
+        cset = link(cset, rset, pp);
+        root[cset] = col;
+      }
+    }
+  }
 
-	SUPERLU_FREE (root);
-	SUPERLU_FREE (firstcol);
-	finalize_disjoint_sets (pp);
+  SUPERLU_FREE(root);
+  SUPERLU_FREE(firstcol);
+  finalize_disjoint_sets(pp);
 
-#if ( DEBUGlevel>=1 )
-	CHECK_MALLOC(iam, "Exit sp_coletree()");
+#if (DEBUGlevel >= 1)
+  CHECK_MALLOC(iam, "Exit sp_coletree()");
 #endif
-	return 0;
+  return 0;
 } /* SP_COLETREE_DIST */
 
 /*! \brief Depth-first search from vertext
@@ -296,126 +284,124 @@ sp_coletree_dist(
  *	In the child structure, lower-numbered children are represented
  *	first, so that a tree which is already numbered in postorder
  *	will not have its order changed.
- *    
+ *
  *  Written by John Gilbert, Xerox, 10 Dec 1990.
  *  Based on code written by John Gilbert at CMI in 1987.
  * </pre>
  */
 
-static int_t	*first_kid, *next_kid;	/* Linked list of children.	*/
-static int_t	*post, postnum;
+static int_t *first_kid, *next_kid; /* Linked list of children.	*/
+static int_t *post, postnum;
 
 static
-/*
- * Depth-first search from vertex v.
- */
-void etdfs (
-	    int_t	  v,
-	    int_t   first_kid[],
-	    int_t   next_kid[],
-	    int_t   post[], 
-	    int_t   *postnum
-	    )
+  /*
+   * Depth-first search from vertex v.
+   */
+  void
+  etdfs(
+    int_t v, int_t first_kid[], int_t next_kid[], int_t post[], int_t* postnum)
 {
-	int	w;
+  int w;
 
-	for (w = first_kid[v]; w != -1; w = next_kid[w]) {
-		etdfs (w, first_kid, next_kid, post, postnum);
-	}
-	/* post[postnum++] = v; in Matlab */
-	post[v] = (*postnum)++;    /* Modified by X. Li on 08/10/07 */
+  for (w = first_kid[v]; w != -1; w = next_kid[w])
+  {
+    etdfs(w, first_kid, next_kid, post, postnum);
+  }
+  /* post[postnum++] = v; in Matlab */
+  post[v] = (*postnum)++; /* Modified by X. Li on 08/10/07 */
 }
 
 
 static
-/*
- * Depth-first search from vertex n.
- * No recursion.
- */
-void nr_etdfs (int_t n, int_t *parent,
-	       int_t *first_kid, int_t *next_kid,
-	       int_t *post, int_t postnum)
+  /*
+   * Depth-first search from vertex n.
+   * No recursion.
+   */
+  void
+  nr_etdfs(int_t n,
+           int_t* parent,
+           int_t* first_kid,
+           int_t* next_kid,
+           int_t* post,
+           int_t postnum)
 {
-    int_t current = n, first, next;
+  int_t current = n, first, next;
 
-    while (postnum != n){
-     
-        /* no kid for the current node */
-        first = first_kid[current];
+  while (postnum != n)
+  {
+    /* no kid for the current node */
+    first = first_kid[current];
 
-        /* no first kid for the current node */
-        if (first == -1){
+    /* no first kid for the current node */
+    if (first == -1)
+    {
+      /* numbering this node because it has no kid */
+      post[current] = postnum++;
 
-            /* numbering this node because it has no kid */
-            post[current] = postnum++;
+      /* looking for the next kid */
+      next = next_kid[current];
 
-            /* looking for the next kid */
-            next = next_kid[current];
+      while (next == -1)
+      {
+        /* no more kids : back to the parent node */
+        current = parent[current];
 
-            while (next == -1){
+        /* numbering the parent node */
+        post[current] = postnum++;
 
-                /* no more kids : back to the parent node */
-                current = parent[current];
+        /* get the next kid */
+        next = next_kid[current];
+      }
 
-                /* numbering the parent node */
-                post[current] = postnum++;
+      /* stopping criterion */
+      if (postnum == n + 1) return;
 
-                /* get the next kid */
-                next = next_kid[current];
-	    }
-            
-            /* stopping criterion */
-            if (postnum==n+1) return;
-
-            /* updating current node */
-            current = next;
-        }
-        /* updating current node */
-        else {
-            current = first;
-	}
+      /* updating current node */
+      current = next;
     }
+    /* updating current node */
+    else
+    {
+      current = first;
+    }
+  }
 }
 
 /*
  * Post order a tree
  */
-int_t *TreePostorder_dist(
-			  int_t n,
-			  int_t *parent
-			  )
+int_t* TreePostorder_dist(int_t n, int_t* parent)
 {
-	int_t	v, dad;
-	int_t   *first_kid, *next_kid, *post, postnum;
+  int_t v, dad;
+  int_t *first_kid, *next_kid, *post, postnum;
 
-	/* Allocate storage for working arrays and results	*/
-	if ( !(first_kid = mxCallocInt (n+1)) )
-	    ABORT("mxCallocInt fails for first_kid[]");
-	if ( !(next_kid = mxCallocInt (n+1)) )
-	    ABORT("mxCallocInt fails for next_kid[]");
-	if ( !(post = mxCallocInt (n+1)) )
-	    ABORT("mxCallocInt fails for post[]");
+  /* Allocate storage for working arrays and results	*/
+  if (!(first_kid = mxCallocInt(n + 1)))
+    ABORT("mxCallocInt fails for first_kid[]");
+  if (!(next_kid = mxCallocInt(n + 1)))
+    ABORT("mxCallocInt fails for next_kid[]");
+  if (!(post = mxCallocInt(n + 1))) ABORT("mxCallocInt fails for post[]");
 
-	/* Set up structure describing children */
-	for (v = 0; v <= n; first_kid[v++] = -1);
-	for (v = n-1; v >= 0; v--) {
-		dad = parent[v];
-		next_kid[v] = first_kid[dad];
-		first_kid[dad] = v;
-	}
+  /* Set up structure describing children */
+  for (v = 0; v <= n; first_kid[v++] = -1);
+  for (v = n - 1; v >= 0; v--)
+  {
+    dad = parent[v];
+    next_kid[v] = first_kid[dad];
+    first_kid[dad] = v;
+  }
 
-	/* Depth-first search from dummy root vertex #n */
-	postnum = 0;
+  /* Depth-first search from dummy root vertex #n */
+  postnum = 0;
 #if 0
 	/* recursion */
 	etdfs (n, first_kid, next_kid, post, &postnum);
 #else
-	/* no recursion */
-	nr_etdfs(n, parent, first_kid, next_kid, post, postnum);
+  /* no recursion */
+  nr_etdfs(n, parent, first_kid, next_kid, post, postnum);
 #endif
 
-	SUPERLU_FREE(first_kid);
-	SUPERLU_FREE(next_kid);
-	return post;
+  SUPERLU_FREE(first_kid);
+  SUPERLU_FREE(next_kid);
+  return post;
 }
-

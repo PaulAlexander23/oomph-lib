@@ -23,4 +23,3 @@
 #include <time.h>
 #include <assert.h>
 #include <mpi.h>
-

@@ -331,7 +331,7 @@ namespace oomph
   {
   public:
     /// Constructor: Empty
-    QSolidElementBase(){};
+    QSolidElementBase() {};
 
     /// Broken copy constructor
     QSolidElementBase(const QSolidElementBase&) = delete;

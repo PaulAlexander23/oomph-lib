@@ -16,28 +16,27 @@
 #include <metis.h>
 
 
-
 /*************************************************************************
-* This function uses simple counting sort to return a permutation array
-* corresponding to the sorted order. The keys are assumed to start from
-* 0 and they are positive.  This sorting is used during matching.
-**************************************************************************/
-void BucketSortKeysInc(int n, int max, idxtype *keys, idxtype *tperm, idxtype *perm)
+ * This function uses simple counting sort to return a permutation array
+ * corresponding to the sorted order. The keys are assumed to start from
+ * 0 and they are positive.  This sorting is used during matching.
+ **************************************************************************/
+void BucketSortKeysInc(
+  int n, int max, idxtype* keys, idxtype* tperm, idxtype* perm)
 {
   int i, ii;
-  idxtype *counts;
+  idxtype* counts;
 
-  counts = idxsmalloc(max+2, 0, "BucketSortKeysInc: counts");
+  counts = idxsmalloc(max + 2, 0, "BucketSortKeysInc: counts");
 
-  for (i=0; i<n; i++)
-    counts[keys[i]]++;
-  MAKECSR(i, max+1, counts);
+  for (i = 0; i < n; i++) counts[keys[i]]++;
+  MAKECSR(i, max + 1, counts);
 
-  for (ii=0; ii<n; ii++) {
+  for (ii = 0; ii < n; ii++)
+  {
     i = tperm[ii];
     perm[counts[keys[i]]++] = i;
   }
 
   free(counts);
 }
-

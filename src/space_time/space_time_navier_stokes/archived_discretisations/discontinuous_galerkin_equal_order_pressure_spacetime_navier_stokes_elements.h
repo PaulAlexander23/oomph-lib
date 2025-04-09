@@ -365,11 +365,11 @@ namespace oomph
   {
   public:
     /// Constructor (empty)
-    TemplateFreeSpaceTimeNavierStokesEquationsBase(){};
+    TemplateFreeSpaceTimeNavierStokesEquationsBase() {};
 
 
     /// Virtual destructor (empty)
-    virtual ~TemplateFreeSpaceTimeNavierStokesEquationsBase(){};
+    virtual ~TemplateFreeSpaceTimeNavierStokesEquationsBase() {};
 
 
     /// Compute the residuals for the associated pressure advection

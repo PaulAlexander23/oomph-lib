@@ -36,10 +36,8 @@ using namespace oomph;
 //=================================================================
 namespace global_parameters
 {
- DenseMatrix<double> FixedRandomAsymmetricMatrix(64,64);
+  DenseMatrix<double> FixedRandomAsymmetricMatrix(64, 64);
 };
-
-
 
 
 //=======================================================================
@@ -49,34 +47,31 @@ namespace global_parameters
 class BaseEigenElement : public GeneralisedElement
 {
 public:
+  /// Constructor
+  BaseEigenElement() {}
 
- /// Constructor
- BaseEigenElement() {}
- 
- /// Set problem size
- void set_size(const unsigned& n)
+  /// Set problem size
+  void set_size(const unsigned& n)
   {
-   N_value = n;
-   
-   Data_index = add_internal_data(new Data(N_value));
+    N_value = n;
+
+    Data_index = add_internal_data(new Data(N_value));
   }
 
- /// Create the matrices in the eigenproblem, equivalent to the Jacobian and
- /// mass matrix (virtual)
- void fill_in_contribution_to_jacobian_and_mass_matrix(
-  Vector<double>& residuals,
-  DenseMatrix<double>& jacobian,
-  DenseMatrix<double>& mass_matrix) = 0;
- 
+  /// Create the matrices in the eigenproblem, equivalent to the Jacobian and
+  /// mass matrix (virtual)
+  void fill_in_contribution_to_jacobian_and_mass_matrix(
+    Vector<double>& residuals,
+    DenseMatrix<double>& jacobian,
+    DenseMatrix<double>& mass_matrix) = 0;
+
 protected:
+  /// Number of values
+  unsigned N_value;
 
- /// Number of values 
- unsigned N_value;
-
- /// Data index
- unsigned Data_index;
+  /// Data index
+  unsigned Data_index;
 };
-
 
 
 //=========================================================================
@@ -86,30 +81,27 @@ protected:
 class IdentityEigenElement : public BaseEigenElement
 {
 public:
- 
- /// Implement the Jacobian and mass matrix construction
- void fill_in_contribution_to_jacobian_and_mass_matrix(
-  Vector<double>& residuals,
-  DenseMatrix<double>& jacobian,
-  DenseMatrix<double>& mass_matrix)
+  /// Implement the Jacobian and mass matrix construction
+  void fill_in_contribution_to_jacobian_and_mass_matrix(
+    Vector<double>& residuals,
+    DenseMatrix<double>& jacobian,
+    DenseMatrix<double>& mass_matrix)
   {
-   for (unsigned i = 0; i < N_value; i++)
+    for (unsigned i = 0; i < N_value; i++)
     {
-     unsigned local_eqn = internal_local_eqn(Data_index, i);
-     for (unsigned j = 0; j < N_value; j++)
+      unsigned local_eqn = internal_local_eqn(Data_index, i);
+      for (unsigned j = 0; j < N_value; j++)
       {
-       unsigned local_unknown = internal_local_eqn(Data_index, j);
-       if (i == j)
+        unsigned local_unknown = internal_local_eqn(Data_index, j);
+        if (i == j)
         {
-         jacobian(local_eqn, local_unknown) += 1;
-         mass_matrix(local_eqn, local_unknown) += 1;
+          jacobian(local_eqn, local_unknown) += 1;
+          mass_matrix(local_eqn, local_unknown) += 1;
         }
       }
     }
   }
 };
-
-
 
 
 //=========================================================================
@@ -120,37 +112,35 @@ public:
 class AsymmetricEigenElement : public BaseEigenElement
 {
 public:
- 
- /// Implement creation of the matrices
- void fill_in_contribution_to_jacobian_and_mass_matrix(
-  Vector<double>& residuals,
-  DenseMatrix<double>& jacobian,
-  DenseMatrix<double>& mass_matrix)
+  /// Implement creation of the matrices
+  void fill_in_contribution_to_jacobian_and_mass_matrix(
+    Vector<double>& residuals,
+    DenseMatrix<double>& jacobian,
+    DenseMatrix<double>& mass_matrix)
   {
-   for (unsigned i = 0; i < N_value; i++)
+    for (unsigned i = 0; i < N_value; i++)
     {
-     unsigned local_eqn = internal_local_eqn(Data_index, i);
-     for (unsigned j = 0; j < N_value; j++)
+      unsigned local_eqn = internal_local_eqn(Data_index, i);
+      for (unsigned j = 0; j < N_value; j++)
       {
-       unsigned local_unknown = internal_local_eqn(Data_index, j);
-       // Set the elements of the Jacobian's diagonal to 1, 2, 3, ..., 64
-       // and the mass matrix's diagonal to 1, 1, ..., 1
-       if (i == j)
+        unsigned local_unknown = internal_local_eqn(Data_index, j);
+        // Set the elements of the Jacobian's diagonal to 1, 2, 3, ..., 64
+        // and the mass matrix's diagonal to 1, 1, ..., 1
+        if (i == j)
         {
-         jacobian(local_eqn, local_unknown) += i + 1.0;
-         mass_matrix(local_eqn, local_unknown) += 1.0;
+          jacobian(local_eqn, local_unknown) += i + 1.0;
+          mass_matrix(local_eqn, local_unknown) += 1.0;
         }
-       // Set the upper diagonal elements to one for both matrices
-       else if (i > j)
+        // Set the upper diagonal elements to one for both matrices
+        else if (i > j)
         {
-         jacobian(local_eqn, local_unknown) += 1.0;
-         mass_matrix(local_eqn, local_unknown) += 1.0;
+          jacobian(local_eqn, local_unknown) += 1.0;
+          mass_matrix(local_eqn, local_unknown) += 1.0;
         }
       }
     }
   }
 };
-
 
 
 //=========================================================================
@@ -159,33 +149,30 @@ public:
 //=========================================================================
 class RandomAsymmetricEigenElement : public BaseEigenElement
 {
- 
 public:
-
- /// Implement creation of eigenproblem matrices
- void fill_in_contribution_to_jacobian_and_mass_matrix(
-  Vector<double>& residuals,
-  DenseMatrix<double>& jacobian,
-  DenseMatrix<double>& mass_matrix)
+  /// Implement creation of eigenproblem matrices
+  void fill_in_contribution_to_jacobian_and_mass_matrix(
+    Vector<double>& residuals,
+    DenseMatrix<double>& jacobian,
+    DenseMatrix<double>& mass_matrix)
   {
-   // Initialise the random number generator to a fixed seed
-   unsigned seed = 0;
-   srand(seed);
-   
-   for (unsigned i = 0; i < N_value; i++)
+    // Initialise the random number generator to a fixed seed
+    unsigned seed = 0;
+    srand(seed);
+
+    for (unsigned i = 0; i < N_value; i++)
     {
-     unsigned local_eqn = internal_local_eqn(Data_index, i);
-     for (unsigned j = 0; j < N_value; j++)
+      unsigned local_eqn = internal_local_eqn(Data_index, i);
+      for (unsigned j = 0; j < N_value; j++)
       {
-       unsigned local_unknown = internal_local_eqn(Data_index, j);
-       // Create two dense, random, asymmetric matrices
-       jacobian(local_eqn, local_unknown) += rand() % 256 - 128;
-       mass_matrix(local_eqn, local_unknown) += rand() % 256 - 128;
+        unsigned local_unknown = internal_local_eqn(Data_index, j);
+        // Create two dense, random, asymmetric matrices
+        jacobian(local_eqn, local_unknown) += rand() % 256 - 128;
+        mass_matrix(local_eqn, local_unknown) += rand() % 256 - 128;
       }
     }
   }
 };
-
 
 
 //=========================================================================
@@ -196,32 +183,31 @@ public:
 class FixedRandomAsymmetricEigenElement : public BaseEigenElement
 {
 public:
- 
- /// Override set_size to ensure the problem is 64x64
- void set_size(const unsigned& n)
+  /// Override set_size to ensure the problem is 64x64
+  void set_size(const unsigned& n)
   {
-   /// Override the input argument as the Rosser matrix is fixed at 8x8
-   N_value = 64;
-   
-   Data_index = add_internal_data(new Data(N_value));
+    /// Override the input argument as the Rosser matrix is fixed at 8x8
+    N_value = 64;
+
+    Data_index = add_internal_data(new Data(N_value));
   }
- 
- /// Implement creation of eigenproblem matrices
- void fill_in_contribution_to_jacobian_and_mass_matrix(
-  Vector<double>& residuals,
-  DenseMatrix<double>& jacobian,
-  DenseMatrix<double>& mass_matrix)
+
+  /// Implement creation of eigenproblem matrices
+  void fill_in_contribution_to_jacobian_and_mass_matrix(
+    Vector<double>& residuals,
+    DenseMatrix<double>& jacobian,
+    DenseMatrix<double>& mass_matrix)
   {
-   // Initialise the random number generator to a fixed seed
-   for (unsigned i = 0; i < N_value; i++)
+    // Initialise the random number generator to a fixed seed
+    for (unsigned i = 0; i < N_value; i++)
     {
-     unsigned local_eqn = internal_local_eqn(Data_index, i);
-     for (unsigned j = 0; j < N_value; j++)
+      unsigned local_eqn = internal_local_eqn(Data_index, i);
+      for (unsigned j = 0; j < N_value; j++)
       {
-       unsigned local_unknown = internal_local_eqn(Data_index, j);
-       jacobian(local_eqn, local_unknown) +=
-        global_parameters::FixedRandomAsymmetricMatrix(i, j);
-       mass_matrix(local_eqn, local_unknown) += 1;
+        unsigned local_unknown = internal_local_eqn(Data_index, j);
+        jacobian(local_eqn, local_unknown) +=
+          global_parameters::FixedRandomAsymmetricMatrix(i, j);
+        mass_matrix(local_eqn, local_unknown) += 1;
       }
     }
   }
@@ -235,44 +221,43 @@ public:
 class RosserSymmetricEigenElement : public BaseEigenElement
 {
 public:
- 
- /// Override set_size to ensure the problem is 8x8
- void set_size(const unsigned& n)
+  /// Override set_size to ensure the problem is 8x8
+  void set_size(const unsigned& n)
   {
-   // Override the input argument as the Rosser matrix is fixed at 8x8
-   N_value = 8;
+    // Override the input argument as the Rosser matrix is fixed at 8x8
+    N_value = 8;
 
-   Data_index = add_internal_data(new Data(N_value));
+    Data_index = add_internal_data(new Data(N_value));
   }
 
- /// Implement creation of Jacobian and mass matrices by setting the Jacobian
- /// equal to the Rosser matrix and the mass matrix to the identity matrix
- void fill_in_contribution_to_jacobian_and_mass_matrix(
-  Vector<double>& residuals,
-  DenseMatrix<double>& jacobian,
-  DenseMatrix<double>& mass_matrix)
+  /// Implement creation of Jacobian and mass matrices by setting the Jacobian
+  /// equal to the Rosser matrix and the mass matrix to the identity matrix
+  void fill_in_contribution_to_jacobian_and_mass_matrix(
+    Vector<double>& residuals,
+    DenseMatrix<double>& jacobian,
+    DenseMatrix<double>& mass_matrix)
   {
-   // The Rosser matrix, eigenvalues = 10*sqrt(10405), 1020, 510 +
-   // 100*sqrt(26), 1000, 1000, 510 - 100*sqrt(26), 0, -10*sqrt(10405)
-   int A[8][8] = {{611, 196, -192, 407, -8, -52, -49, 29},
-                  {196, 899, 113, -192, -71, -43, -8, -44},
-                  {-192, 113, 899, 196, 61, 49, 8, 52},
-                  {407, -192, 196, 611, 8, 44, 59, -23},
-                  {-8, -71, 61, 8, 411, -599, 208, 208},
-                  {-52, -43, 49, 44, -599, 411, 208, 208},
-                  {-49, -8, 8, 59, 208, 208, 99, -911},
-                  {29, -44, 52, -23, 208, 208, -911, 99}};
-   
-   for (unsigned i = 0; i < N_value; i++)
+    // The Rosser matrix, eigenvalues = 10*sqrt(10405), 1020, 510 +
+    // 100*sqrt(26), 1000, 1000, 510 - 100*sqrt(26), 0, -10*sqrt(10405)
+    int A[8][8] = {{611, 196, -192, 407, -8, -52, -49, 29},
+                   {196, 899, 113, -192, -71, -43, -8, -44},
+                   {-192, 113, 899, 196, 61, 49, 8, 52},
+                   {407, -192, 196, 611, 8, 44, 59, -23},
+                   {-8, -71, 61, 8, 411, -599, 208, 208},
+                   {-52, -43, 49, 44, -599, 411, 208, 208},
+                   {-49, -8, 8, 59, 208, 208, 99, -911},
+                   {29, -44, 52, -23, 208, 208, -911, 99}};
+
+    for (unsigned i = 0; i < N_value; i++)
     {
-     unsigned local_eqn = internal_local_eqn(Data_index, i);
-     for (unsigned j = 0; j < N_value; j++)
+      unsigned local_eqn = internal_local_eqn(Data_index, i);
+      for (unsigned j = 0; j < N_value; j++)
       {
-       unsigned local_unknown = internal_local_eqn(Data_index, j);
-       jacobian(local_eqn, local_unknown) += double(A[i][j]);
-       if (i == j)
+        unsigned local_unknown = internal_local_eqn(Data_index, j);
+        jacobian(local_eqn, local_unknown) += double(A[i][j]);
+        if (i == j)
         {
-         mass_matrix(local_eqn, local_unknown) += 1;
+          mass_matrix(local_eqn, local_unknown) += 1;
         }
       }
     }
@@ -288,30 +273,29 @@ template<class ELEMENT>
 class Eigenproblem : public Problem
 {
 public:
+  /// Constructor
+  Eigenproblem(const unsigned& size)
+  {
+    // Create mesh
+    this->mesh_pt() = new Mesh;
 
- /// Constructor
- Eigenproblem(const unsigned& size)
-  {
-   // Create mesh
-   this->mesh_pt() = new Mesh;
-   
-   // Create a single eigenproblem element
-   ELEMENT* el_pt = new ELEMENT;
-   
-   // Set problem size
-   el_pt->set_size(size);
-   
-   // Add element to mesh
-   this->mesh_pt()->add_element_pt(el_pt);
-   
-   // Assign eqn numbers
-   assign_eqn_numbers();
+    // Create a single eigenproblem element
+    ELEMENT* el_pt = new ELEMENT;
+
+    // Set problem size
+    el_pt->set_size(size);
+
+    // Add element to mesh
+    this->mesh_pt()->add_element_pt(el_pt);
+
+    // Assign eqn numbers
+    assign_eqn_numbers();
   }
- 
- // Class destructor. Delete mesh
- ~Eigenproblem()
+
+  // Class destructor. Delete mesh
+  ~Eigenproblem()
   {
-   delete this->mesh_pt();
+    delete this->mesh_pt();
   }
 };
 
@@ -323,91 +307,89 @@ template<class ELEMENT>
 class SolveEigenProblemTest
 {
 public:
+  /// Constructor
+  SolveEigenProblemTest(EigenSolver* const& eigen_solver_pt,
+                        const unsigned& N,
+                        const unsigned& n_timing_loops,
+                        DocInfo* const& doc_info_pt,
+                        bool do_adjoint_problem)
+    : Eigen_solver_pt(eigen_solver_pt),
+      Matrix_size(N),
+      Do_adjoint_problem(do_adjoint_problem),
+      N_timing_loops(n_timing_loops),
+      Doc_info_pt(doc_info_pt)
 
- /// Constructor
- SolveEigenProblemTest(EigenSolver* const& eigen_solver_pt,
-                       const unsigned& N,
-                       const unsigned& n_timing_loops,
-                       DocInfo* const& doc_info_pt,
-                       bool do_adjoint_problem)
-  : Eigen_solver_pt(eigen_solver_pt),
-    Matrix_size(N),
-    Do_adjoint_problem(do_adjoint_problem),
-    N_timing_loops(n_timing_loops),
-    Doc_info_pt(doc_info_pt)
-    
   {
-   // Create Eigenproblem
-   Problem_pt = new Eigenproblem<ELEMENT>(Matrix_size);
-   
-   // Output the first 8 eigenvalues
-   N_eval = 8;
-   
-   // Store outputs
-   Vector<complex<double>> eval(N_eval);
-   Vector<DoubleVector> eigenvector_real(N_eval);
-   Vector<DoubleVector> eigenvector_imag(N_eval);
-   
-   // Start clock
-   clock_t t_start = clock();
-   for (unsigned i = 0; i < N_timing_loops; i++)
+    // Create Eigenproblem
+    Problem_pt = new Eigenproblem<ELEMENT>(Matrix_size);
+
+    // Output the first 8 eigenvalues
+    N_eval = 8;
+
+    // Store outputs
+    Vector<complex<double>> eval(N_eval);
+    Vector<DoubleVector> eigenvector_real(N_eval);
+    Vector<DoubleVector> eigenvector_imag(N_eval);
+
+    // Start clock
+    clock_t t_start = clock();
+    for (unsigned i = 0; i < N_timing_loops; i++)
     {
-     // Call solve_eigenproblem
-     Eigen_solver_pt->solve_eigenproblem(Problem_pt,
-                                         N_eval,
-                                         eval,
-                                         eigenvector_real,
-                                         eigenvector_imag,
-                                         Do_adjoint_problem);
+      // Call solve_eigenproblem
+      Eigen_solver_pt->solve_eigenproblem(Problem_pt,
+                                          N_eval,
+                                          eval,
+                                          eigenvector_real,
+                                          eigenvector_imag,
+                                          Do_adjoint_problem);
     }
-   // Stop clock
-   clock_t t_end = clock();
-   
-   // Document duration
-   double t_length = (double)(t_end - t_start) / CLOCKS_PER_SEC;
-   ofstream timing_stream;
-   timing_stream.open("timing.dat", ios_base::app);
-   timing_stream << "test" << Doc_info_pt->number()
-                 << ", time: " << t_length / double(N_timing_loops) << endl;
-   timing_stream.close();
-   
-   // Document solution
-   string filename = Doc_info_pt->directory() + "test" +
-    to_string(Doc_info_pt->number()) + ".dat";
-   ofstream output_stream;
-   output_stream.open(filename);
-   for (unsigned i = 0; i < N_eval; i++)
+    // Stop clock
+    clock_t t_end = clock();
+
+    // Document duration
+    double t_length = (double)(t_end - t_start) / CLOCKS_PER_SEC;
+    ofstream timing_stream;
+    timing_stream.open("timing.dat", ios_base::app);
+    timing_stream << "test" << Doc_info_pt->number()
+                  << ", time: " << t_length / double(N_timing_loops) << endl;
+    timing_stream.close();
+
+    // Document solution
+    string filename = Doc_info_pt->directory() + "test" +
+                      to_string(Doc_info_pt->number()) + ".dat";
+    ofstream output_stream;
+    output_stream.open(filename);
+    for (unsigned i = 0; i < N_eval; i++)
     {
-     output_stream << eval[i].real() << " " << eval[i].imag() << endl;
+      output_stream << eval[i].real() << " " << eval[i].imag() << endl;
     }
-   output_stream.close();
-   
-   // Increment doc info number
-   Doc_info_pt->number()++;
+    output_stream.close();
+
+    // Increment doc info number
+    Doc_info_pt->number()++;
   }
- 
+
 private:
- 
- /// Eigen solver pointer
- EigenSolver* Eigen_solver_pt;
- 
- /// Eigenproblem 
- Problem* Problem_pt;
+  /// Eigen solver pointer
+  EigenSolver* Eigen_solver_pt;
 
- /// Matrix size
- unsigned Matrix_size;
- 
- /// Number of eigenvalues required
- unsigned N_eval;
+  /// Eigenproblem
+  Problem* Problem_pt;
 
- /// Do the adjoint problem?
- bool Do_adjoint_problem;
- 
- /// Number of times the function should be call for improved timing
- unsigned N_timing_loops;
+  /// Matrix size
+  unsigned Matrix_size;
 
- // Store a pointer to doc_info
- DocInfo* Doc_info_pt;
+  /// Number of eigenvalues required
+  unsigned N_eval;
+
+  /// Do the adjoint problem?
+  bool Do_adjoint_problem;
+
+  /// Number of times the function should be call for improved timing
+  unsigned N_timing_loops;
+
+  // Store a pointer to doc_info
+  DocInfo* Doc_info_pt;
 };
 
 
@@ -418,21 +400,19 @@ void test_anasazi(const unsigned N,
                   const unsigned n_timing_loops,
                   DocInfo* doc_info_pt)
 {
- // Create a new eigensolver
- EigenSolver* eigen_solver_pt = new ANASAZI;
+  // Create a new eigensolver
+  EigenSolver* eigen_solver_pt = new ANASAZI;
 
- // Test both the adjoint and regular problem
- const bool do_adjoint_problem = false;
+  // Test both the adjoint and regular problem
+  const bool do_adjoint_problem = false;
 
- // Test the regular solve_eigenproblem
- SolveEigenProblemTest<AsymmetricEigenElement>(
-  eigen_solver_pt, N, n_timing_loops, doc_info_pt, do_adjoint_problem);
+  // Test the regular solve_eigenproblem
+  SolveEigenProblemTest<AsymmetricEigenElement>(
+    eigen_solver_pt, N, n_timing_loops, doc_info_pt, do_adjoint_problem);
 
- // Free the eigen_solver_pt
- delete eigen_solver_pt;
+  // Free the eigen_solver_pt
+  delete eigen_solver_pt;
 }
-
-
 
 
 //====================================================================
@@ -440,40 +420,40 @@ void test_anasazi(const unsigned N,
 //====================================================================
 int main(int argc, char** argv)
 {
- MPI_Helpers::init(argc, argv);
+  MPI_Helpers::init(argc, argv);
 
- int my_rank, size;
- // Get number of MPI processes
- MPI_Comm_size(MPI_COMM_WORLD, &size);
- // Get current process rank id
- MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
+  int my_rank, size;
+  // Get number of MPI processes
+  MPI_Comm_size(MPI_COMM_WORLD, &size);
+  // Get current process rank id
+  MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
 
- // Number of times to repeat the operation for better timings
- const unsigned n_timing_loops = 2;
+  // Number of times to repeat the operation for better timings
+  const unsigned n_timing_loops = 2;
 
- // Matrix dimensions
- const unsigned N = 64;
+  // Matrix dimensions
+  const unsigned N = 64;
 
- // Create a DocInfo
- DocInfo* doc_info_pt = new DocInfo;
+  // Create a DocInfo
+  DocInfo* doc_info_pt = new DocInfo;
 
- // Set directory to anasazi and reset the numbering
- doc_info_pt->set_directory("RESLT_anasazi/");
- doc_info_pt->number() = 0;
+  // Set directory to anasazi and reset the numbering
+  doc_info_pt->set_directory("RESLT_anasazi/");
+  doc_info_pt->number() = 0;
 
- // Add a header to the timing data stream
- ofstream timing_stream;
- timing_stream.open("timing.dat", ios_base::app);
- timing_stream << "ANASAZI" << endl;
- timing_stream.close();
+  // Add a header to the timing data stream
+  ofstream timing_stream;
+  timing_stream.open("timing.dat", ios_base::app);
+  timing_stream << "ANASAZI" << endl;
+  timing_stream.close();
 
- // Call test anasazi
- test_anasazi(N, n_timing_loops, doc_info_pt);
+  // Call test anasazi
+  test_anasazi(N, n_timing_loops, doc_info_pt);
 
- // Delete doc_info_pt
- delete doc_info_pt;
+  // Delete doc_info_pt
+  delete doc_info_pt;
 
- MPI_Helpers::finalize();
+  MPI_Helpers::finalize();
 
- return 0;
+  return 0;
 }

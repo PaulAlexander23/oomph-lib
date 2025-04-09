@@ -68,7 +68,7 @@ namespace oomph
     this->set_nboundary(4);
 
     // Allocate the store for the elements
-    unsigned n_element = (Nx) * (Ny)*2;
+    unsigned n_element = (Nx) * (Ny) * 2;
     Element_pt.resize(n_element, 0);
 
     // Create first element

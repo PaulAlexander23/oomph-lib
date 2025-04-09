@@ -17,14 +17,14 @@
 
 
 /*************************************************************************
-* This function finds a matching using the HEM heuristic
-**************************************************************************/
-void MCMatch_RM(CtrlType *ctrl, GraphType *graph)
+ * This function finds a matching using the HEM heuristic
+ **************************************************************************/
+void MCMatch_RM(CtrlType* ctrl, GraphType* graph)
 {
   int i, ii, j, k, nvtxs, ncon, cnvtxs, maxidx;
   idxtype *xadj, *adjncy, *adjwgt;
   idxtype *match, *cmap, *perm;
-  float *nvwgt;
+  float* nvwgt;
 
   IFSET(ctrl->dbglvl, DBG_TIME, starttimer(ctrl->MatchTmr));
 
@@ -42,16 +42,22 @@ void MCMatch_RM(CtrlType *ctrl, GraphType *graph)
   RandomPermute(nvtxs, perm, 1);
 
   cnvtxs = 0;
-  for (ii=0; ii<nvtxs; ii++) {
+  for (ii = 0; ii < nvtxs; ii++)
+  {
     i = perm[ii];
 
-    if (match[i] == UNMATCHED) {  /* Unmatched */
+    if (match[i] == UNMATCHED)
+    { /* Unmatched */
       maxidx = i;
 
       /* Find a random matching, subject to maxvwgt constraints */
-      for (j=xadj[i]; j<xadj[i+1]; j++) {
+      for (j = xadj[i]; j < xadj[i + 1]; j++)
+      {
         k = adjncy[j];
-        if (match[k] == UNMATCHED && AreAllVwgtsBelowFast(ncon, nvwgt+i*ncon, nvwgt+k*ncon, ctrl->nmaxvwgt)) {
+        if (match[k] == UNMATCHED &&
+            AreAllVwgtsBelowFast(
+              ncon, nvwgt + i * ncon, nvwgt + k * ncon, ctrl->nmaxvwgt))
+        {
           maxidx = k;
           break;
         }
@@ -72,16 +78,15 @@ void MCMatch_RM(CtrlType *ctrl, GraphType *graph)
 }
 
 
-
 /*************************************************************************
-* This function finds a matching using the HEM heuristic
-**************************************************************************/
-void MCMatch_HEM(CtrlType *ctrl, GraphType *graph)
+ * This function finds a matching using the HEM heuristic
+ **************************************************************************/
+void MCMatch_HEM(CtrlType* ctrl, GraphType* graph)
 {
   int i, ii, j, k, l, nvtxs, cnvtxs, ncon, maxidx, maxwgt;
   idxtype *xadj, *adjncy, *adjwgt;
   idxtype *match, *cmap, *perm;
-  float *nvwgt;
+  float* nvwgt;
 
   IFSET(ctrl->dbglvl, DBG_TIME, starttimer(ctrl->MatchTmr));
 
@@ -99,18 +104,23 @@ void MCMatch_HEM(CtrlType *ctrl, GraphType *graph)
   RandomPermute(nvtxs, perm, 1);
 
   cnvtxs = 0;
-  for (ii=0; ii<nvtxs; ii++) {
+  for (ii = 0; ii < nvtxs; ii++)
+  {
     i = perm[ii];
 
-    if (match[i] == UNMATCHED) {  /* Unmatched */
+    if (match[i] == UNMATCHED)
+    { /* Unmatched */
       maxidx = i;
       maxwgt = 0;
 
       /* Find a heavy-edge matching, subject to maxvwgt constraints */
-      for (j=xadj[i]; j<xadj[i+1]; j++) {
+      for (j = xadj[i]; j < xadj[i + 1]; j++)
+      {
         k = adjncy[j];
         if (match[k] == UNMATCHED && maxwgt <= adjwgt[j] &&
-               AreAllVwgtsBelowFast(ncon, nvwgt+i*ncon, nvwgt+k*ncon, ctrl->nmaxvwgt)) {
+            AreAllVwgtsBelowFast(
+              ncon, nvwgt + i * ncon, nvwgt + k * ncon, ctrl->nmaxvwgt))
+        {
           maxwgt = adjwgt[j];
           maxidx = adjncy[j];
         }
@@ -131,16 +141,15 @@ void MCMatch_HEM(CtrlType *ctrl, GraphType *graph)
 }
 
 
-
 /*************************************************************************
-* This function finds a matching using the HEM heuristic
-**************************************************************************/
-void MCMatch_SHEM(CtrlType *ctrl, GraphType *graph)
+ * This function finds a matching using the HEM heuristic
+ **************************************************************************/
+void MCMatch_SHEM(CtrlType* ctrl, GraphType* graph)
 {
   int i, ii, j, k, nvtxs, cnvtxs, ncon, maxidx, maxwgt, avgdegree;
   idxtype *xadj, *adjncy, *adjwgt;
   idxtype *match, *cmap, *degrees, *perm, *tperm;
-  float *nvwgt;
+  float* nvwgt;
 
   IFSET(ctrl->dbglvl, DBG_TIME, starttimer(ctrl->MatchTmr));
 
@@ -159,25 +168,30 @@ void MCMatch_SHEM(CtrlType *ctrl, GraphType *graph)
   degrees = idxwspacemalloc(ctrl, nvtxs);
 
   RandomPermute(nvtxs, tperm, 1);
-  avgdegree = 0.7*(xadj[nvtxs]/nvtxs);
-  for (i=0; i<nvtxs; i++) 
-    degrees[i] = (xadj[i+1]-xadj[i] > avgdegree ? avgdegree : xadj[i+1]-xadj[i]);
+  avgdegree = 0.7 * (xadj[nvtxs] / nvtxs);
+  for (i = 0; i < nvtxs; i++)
+    degrees[i] =
+      (xadj[i + 1] - xadj[i] > avgdegree ? avgdegree : xadj[i + 1] - xadj[i]);
   BucketSortKeysInc(nvtxs, avgdegree, degrees, tperm, perm);
 
   cnvtxs = 0;
 
-  /* Take care any islands. Islands are matched with non-islands due to coarsening */
-  for (ii=0; ii<nvtxs; ii++) {
+  /* Take care any islands. Islands are matched with non-islands due to
+   * coarsening */
+  for (ii = 0; ii < nvtxs; ii++)
+  {
     i = perm[ii];
 
-    if (match[i] == UNMATCHED) {  /* Unmatched */
-      if (xadj[i] < xadj[i+1])
-        break;
+    if (match[i] == UNMATCHED)
+    { /* Unmatched */
+      if (xadj[i] < xadj[i + 1]) break;
 
       maxidx = i;
-      for (j=nvtxs-1; j>ii; j--) {
+      for (j = nvtxs - 1; j > ii; j--)
+      {
         k = perm[j];
-        if (match[k] == UNMATCHED && xadj[k] < xadj[k+1]) {
+        if (match[k] == UNMATCHED && xadj[k] < xadj[k + 1])
+        {
           maxidx = k;
           break;
         }
@@ -190,18 +204,23 @@ void MCMatch_SHEM(CtrlType *ctrl, GraphType *graph)
   }
 
   /* Continue with normal matching */
-  for (; ii<nvtxs; ii++) {
+  for (; ii < nvtxs; ii++)
+  {
     i = perm[ii];
 
-    if (match[i] == UNMATCHED) {  /* Unmatched */
+    if (match[i] == UNMATCHED)
+    { /* Unmatched */
       maxidx = i;
       maxwgt = 0;
 
       /* Find a heavy-edge matching, subject to maxvwgt constraints */
-      for (j=xadj[i]; j<xadj[i+1]; j++) {
+      for (j = xadj[i]; j < xadj[i + 1]; j++)
+      {
         k = adjncy[j];
         if (match[k] == UNMATCHED && maxwgt <= adjwgt[j] &&
-               AreAllVwgtsBelowFast(ncon, nvwgt+i*ncon, nvwgt+k*ncon, ctrl->nmaxvwgt)) {
+            AreAllVwgtsBelowFast(
+              ncon, nvwgt + i * ncon, nvwgt + k * ncon, ctrl->nmaxvwgt))
+        {
           maxwgt = adjwgt[j];
           maxidx = adjncy[j];
         }
@@ -215,8 +234,8 @@ void MCMatch_SHEM(CtrlType *ctrl, GraphType *graph)
 
   IFSET(ctrl->dbglvl, DBG_TIME, stoptimer(ctrl->MatchTmr));
 
-  idxwspacefree(ctrl, nvtxs);  /* degrees */
-  idxwspacefree(ctrl, nvtxs);  /* tperm */
+  idxwspacefree(ctrl, nvtxs); /* degrees */
+  idxwspacefree(ctrl, nvtxs); /* tperm */
 
   CreateCoarseGraph(ctrl, graph, cnvtxs, match, perm);
 
@@ -225,16 +244,15 @@ void MCMatch_SHEM(CtrlType *ctrl, GraphType *graph)
 }
 
 
-
 /*************************************************************************
-* This function finds a matching using the HEM heuristic
-**************************************************************************/
-void MCMatch_SHEBM(CtrlType *ctrl, GraphType *graph, int norm)
+ * This function finds a matching using the HEM heuristic
+ **************************************************************************/
+void MCMatch_SHEBM(CtrlType* ctrl, GraphType* graph, int norm)
 {
   int i, ii, j, k, nvtxs, cnvtxs, ncon, maxidx, maxwgt, avgdegree;
   idxtype *xadj, *adjncy, *adjwgt;
   idxtype *match, *cmap, *degrees, *perm, *tperm;
-  float *nvwgt;
+  float* nvwgt;
 
   IFSET(ctrl->dbglvl, DBG_TIME, starttimer(ctrl->MatchTmr));
 
@@ -253,25 +271,30 @@ void MCMatch_SHEBM(CtrlType *ctrl, GraphType *graph, int norm)
   degrees = idxwspacemalloc(ctrl, nvtxs);
 
   RandomPermute(nvtxs, tperm, 1);
-  avgdegree = 0.7*(xadj[nvtxs]/nvtxs);
-  for (i=0; i<nvtxs; i++) 
-    degrees[i] = (xadj[i+1]-xadj[i] > avgdegree ? avgdegree : xadj[i+1]-xadj[i]);
+  avgdegree = 0.7 * (xadj[nvtxs] / nvtxs);
+  for (i = 0; i < nvtxs; i++)
+    degrees[i] =
+      (xadj[i + 1] - xadj[i] > avgdegree ? avgdegree : xadj[i + 1] - xadj[i]);
   BucketSortKeysInc(nvtxs, avgdegree, degrees, tperm, perm);
 
   cnvtxs = 0;
 
-  /* Take care any islands. Islands are matched with non-islands due to coarsening */
-  for (ii=0; ii<nvtxs; ii++) {
+  /* Take care any islands. Islands are matched with non-islands due to
+   * coarsening */
+  for (ii = 0; ii < nvtxs; ii++)
+  {
     i = perm[ii];
 
-    if (match[i] == UNMATCHED) {  /* Unmatched */
-      if (xadj[i] < xadj[i+1])
-        break;
+    if (match[i] == UNMATCHED)
+    { /* Unmatched */
+      if (xadj[i] < xadj[i + 1]) break;
 
       maxidx = i;
-      for (j=nvtxs-1; j>ii; j--) {
+      for (j = nvtxs - 1; j > ii; j--)
+      {
         k = perm[j];
-        if (match[k] == UNMATCHED && xadj[k] < xadj[k+1]) {
+        if (match[k] == UNMATCHED && xadj[k] < xadj[k + 1])
+        {
           maxidx = k;
           break;
         }
@@ -284,25 +307,30 @@ void MCMatch_SHEBM(CtrlType *ctrl, GraphType *graph, int norm)
   }
 
   /* Continue with normal matching */
-  for (; ii<nvtxs; ii++) {
+  for (; ii < nvtxs; ii++)
+  {
     i = perm[ii];
 
-    if (match[i] == UNMATCHED) {  /* Unmatched */
+    if (match[i] == UNMATCHED)
+    { /* Unmatched */
       maxidx = i;
       maxwgt = -1;
 
       /* Find a heavy-edge matching, subject to maxvwgt constraints */
-      for (j=xadj[i]; j<xadj[i+1]; j++) {
+      for (j = xadj[i]; j < xadj[i + 1]; j++)
+      {
         k = adjncy[j];
 
-        if (match[k] == UNMATCHED && 
-            AreAllVwgtsBelowFast(ncon, nvwgt+i*ncon, nvwgt+k*ncon, ctrl->nmaxvwgt) &&
-            (maxwgt < adjwgt[j] || 
-              (maxwgt == adjwgt[j] && 
-               BetterVBalance(ncon, norm, nvwgt+i*ncon, nvwgt+maxidx*ncon, nvwgt+k*ncon) >= 0
-              )
-            )
-           ) {
+        if (match[k] == UNMATCHED &&
+            AreAllVwgtsBelowFast(
+              ncon, nvwgt + i * ncon, nvwgt + k * ncon, ctrl->nmaxvwgt) &&
+            (maxwgt < adjwgt[j] ||
+             (maxwgt == adjwgt[j] && BetterVBalance(ncon,
+                                                    norm,
+                                                    nvwgt + i * ncon,
+                                                    nvwgt + maxidx * ncon,
+                                                    nvwgt + k * ncon) >= 0)))
+        {
           maxwgt = adjwgt[j];
           maxidx = k;
         }
@@ -316,8 +344,8 @@ void MCMatch_SHEBM(CtrlType *ctrl, GraphType *graph, int norm)
 
   IFSET(ctrl->dbglvl, DBG_TIME, stoptimer(ctrl->MatchTmr));
 
-  idxwspacefree(ctrl, nvtxs);  /* degrees */
-  idxwspacefree(ctrl, nvtxs);  /* tperm */
+  idxwspacefree(ctrl, nvtxs); /* degrees */
+  idxwspacefree(ctrl, nvtxs); /* tperm */
 
   CreateCoarseGraph(ctrl, graph, cnvtxs, match, perm);
 
@@ -326,11 +354,10 @@ void MCMatch_SHEBM(CtrlType *ctrl, GraphType *graph, int norm)
 }
 
 
-
 /*************************************************************************
-* This function finds a matching using the HEM heuristic
-**************************************************************************/
-void MCMatch_SBHEM(CtrlType *ctrl, GraphType *graph, int norm)
+ * This function finds a matching using the HEM heuristic
+ **************************************************************************/
+void MCMatch_SBHEM(CtrlType* ctrl, GraphType* graph, int norm)
 {
   int i, ii, j, k, nvtxs, cnvtxs, ncon, maxidx, maxwgt, avgdegree;
   idxtype *xadj, *adjncy, *adjwgt;
@@ -354,25 +381,30 @@ void MCMatch_SBHEM(CtrlType *ctrl, GraphType *graph, int norm)
   degrees = idxwspacemalloc(ctrl, nvtxs);
 
   RandomPermute(nvtxs, tperm, 1);
-  avgdegree = 0.7*(xadj[nvtxs]/nvtxs);
-  for (i=0; i<nvtxs; i++) 
-    degrees[i] = (xadj[i+1]-xadj[i] > avgdegree ? avgdegree : xadj[i+1]-xadj[i]);
+  avgdegree = 0.7 * (xadj[nvtxs] / nvtxs);
+  for (i = 0; i < nvtxs; i++)
+    degrees[i] =
+      (xadj[i + 1] - xadj[i] > avgdegree ? avgdegree : xadj[i + 1] - xadj[i]);
   BucketSortKeysInc(nvtxs, avgdegree, degrees, tperm, perm);
 
   cnvtxs = 0;
 
-  /* Take care any islands. Islands are matched with non-islands due to coarsening */
-  for (ii=0; ii<nvtxs; ii++) {
+  /* Take care any islands. Islands are matched with non-islands due to
+   * coarsening */
+  for (ii = 0; ii < nvtxs; ii++)
+  {
     i = perm[ii];
 
-    if (match[i] == UNMATCHED) {  /* Unmatched */
-      if (xadj[i] < xadj[i+1])
-        break;
+    if (match[i] == UNMATCHED)
+    { /* Unmatched */
+      if (xadj[i] < xadj[i + 1]) break;
 
       maxidx = i;
-      for (j=nvtxs-1; j>ii; j--) {
+      for (j = nvtxs - 1; j > ii; j--)
+      {
         k = perm[j];
-        if (match[k] == UNMATCHED && xadj[k] < xadj[k+1]) {
+        if (match[k] == UNMATCHED && xadj[k] < xadj[k + 1])
+        {
           maxidx = k;
           break;
         }
@@ -385,22 +417,33 @@ void MCMatch_SBHEM(CtrlType *ctrl, GraphType *graph, int norm)
   }
 
   /* Continue with normal matching */
-  for (; ii<nvtxs; ii++) {
+  for (; ii < nvtxs; ii++)
+  {
     i = perm[ii];
 
-    if (match[i] == UNMATCHED) {  /* Unmatched */
+    if (match[i] == UNMATCHED)
+    { /* Unmatched */
       maxidx = i;
       maxwgt = -1;
       vbal = 0.0;
 
       /* Find a heavy-edge matching, subject to maxvwgt constraints */
-      for (j=xadj[i]; j<xadj[i+1]; j++) {
+      for (j = xadj[i]; j < xadj[i + 1]; j++)
+      {
         k = adjncy[j];
-        if (match[k] == UNMATCHED && AreAllVwgtsBelowFast(ncon, nvwgt+i*ncon, nvwgt+k*ncon, ctrl->nmaxvwgt)) {
+        if (match[k] == UNMATCHED &&
+            AreAllVwgtsBelowFast(
+              ncon, nvwgt + i * ncon, nvwgt + k * ncon, ctrl->nmaxvwgt))
+        {
           if (maxidx != i)
-            vbal = BetterVBalance(ncon, norm, nvwgt+i*ncon, nvwgt+maxidx*ncon, nvwgt+k*ncon);
+            vbal = BetterVBalance(ncon,
+                                  norm,
+                                  nvwgt + i * ncon,
+                                  nvwgt + maxidx * ncon,
+                                  nvwgt + k * ncon);
 
-          if (vbal > 0 || (vbal > -.01 && maxwgt < adjwgt[j])) {
+          if (vbal > 0 || (vbal > -.01 && maxwgt < adjwgt[j]))
+          {
             maxwgt = adjwgt[j];
             maxidx = k;
           }
@@ -415,8 +458,8 @@ void MCMatch_SBHEM(CtrlType *ctrl, GraphType *graph, int norm)
 
   IFSET(ctrl->dbglvl, DBG_TIME, stoptimer(ctrl->MatchTmr));
 
-  idxwspacefree(ctrl, nvtxs);  /* degrees */
-  idxwspacefree(ctrl, nvtxs);  /* tperm */
+  idxwspacefree(ctrl, nvtxs); /* degrees */
+  idxwspacefree(ctrl, nvtxs); /* tperm */
 
   CreateCoarseGraph(ctrl, graph, cnvtxs, match, perm);
 
@@ -425,59 +468,59 @@ void MCMatch_SBHEM(CtrlType *ctrl, GraphType *graph, int norm)
 }
 
 
-
-
-
 /*************************************************************************
-* This function checks if v+u2 provides a better balance in the weight 
-* vector that v+u1
-**************************************************************************/
-float BetterVBalance(int ncon, int norm, float *vwgt, float *u1wgt, float *u2wgt)
+ * This function checks if v+u2 provides a better balance in the weight
+ * vector that v+u1
+ **************************************************************************/
+float BetterVBalance(
+  int ncon, int norm, float* vwgt, float* u1wgt, float* u2wgt)
 {
   int i;
   float sum1, sum2, max1, max2, min1, min2, diff1, diff2;
 
-  if (norm == -1) {
-    max1 = min1 = vwgt[0]+u1wgt[0];
-    max2 = min2 = vwgt[0]+u2wgt[0];
-    sum1 = vwgt[0]+u1wgt[0];
-    sum2 = vwgt[0]+u2wgt[0];
+  if (norm == -1)
+  {
+    max1 = min1 = vwgt[0] + u1wgt[0];
+    max2 = min2 = vwgt[0] + u2wgt[0];
+    sum1 = vwgt[0] + u1wgt[0];
+    sum2 = vwgt[0] + u2wgt[0];
 
-    for (i=1; i<ncon; i++) {
-      if (max1 < vwgt[i]+u1wgt[i])
-        max1 = vwgt[i]+u1wgt[i];
-      if (min1 > vwgt[i]+u1wgt[i])
-        min1 = vwgt[i]+u1wgt[i];
+    for (i = 1; i < ncon; i++)
+    {
+      if (max1 < vwgt[i] + u1wgt[i]) max1 = vwgt[i] + u1wgt[i];
+      if (min1 > vwgt[i] + u1wgt[i]) min1 = vwgt[i] + u1wgt[i];
 
-      if (max2 < vwgt[i]+u2wgt[i])
-        max2 = vwgt[i]+u2wgt[i];
-      if (min2 > vwgt[i]+u2wgt[i])
-        min2 = vwgt[i]+u2wgt[i];
+      if (max2 < vwgt[i] + u2wgt[i]) max2 = vwgt[i] + u2wgt[i];
+      if (min2 > vwgt[i] + u2wgt[i]) min2 = vwgt[i] + u2wgt[i];
 
-      sum1 += vwgt[i]+u1wgt[i];
-      sum2 += vwgt[i]+u2wgt[i];
+      sum1 += vwgt[i] + u1wgt[i];
+      sum2 += vwgt[i] + u2wgt[i];
     }
 
-    return ((max1-min1)/sum1) - ((max2-min2)/sum2);
+    return ((max1 - min1) / sum1) - ((max2 - min2) / sum2);
   }
-  else if (norm == 1) {
+  else if (norm == 1)
+  {
     sum1 = sum2 = 0.0;
-    for (i=0; i<ncon; i++) {
-      sum1 += vwgt[i]+u1wgt[i];
-      sum2 += vwgt[i]+u2wgt[i];
+    for (i = 0; i < ncon; i++)
+    {
+      sum1 += vwgt[i] + u1wgt[i];
+      sum2 += vwgt[i] + u2wgt[i];
     }
-    sum1 = sum1/(1.0*ncon);
-    sum2 = sum2/(1.0*ncon);
+    sum1 = sum1 / (1.0 * ncon);
+    sum2 = sum2 / (1.0 * ncon);
 
     diff1 = diff2 = 0.0;
-    for (i=0; i<ncon; i++) {
-      diff1 += fabs(sum1 - (vwgt[i]+u1wgt[i]));
-      diff2 += fabs(sum2 - (vwgt[i]+u2wgt[i]));
+    for (i = 0; i < ncon; i++)
+    {
+      diff1 += fabs(sum1 - (vwgt[i] + u1wgt[i]));
+      diff2 += fabs(sum2 - (vwgt[i] + u2wgt[i]));
     }
 
     return diff1 - diff2;
   }
-  else {
+  else
+  {
     errexit("Unknown norm: %d\n", norm);
   }
   return 0.0;
@@ -485,17 +528,15 @@ float BetterVBalance(int ncon, int norm, float *vwgt, float *u1wgt, float *u2wgt
 
 
 /*************************************************************************
-* This function checks if the vertex weights of two vertices are below 
-* a given set of values
-**************************************************************************/
-int AreAllVwgtsBelowFast(int ncon, float *vwgt1, float *vwgt2, float limit)
+ * This function checks if the vertex weights of two vertices are below
+ * a given set of values
+ **************************************************************************/
+int AreAllVwgtsBelowFast(int ncon, float* vwgt1, float* vwgt2, float limit)
 {
   int i;
 
-  for (i=0; i<ncon; i++)
-    if (vwgt1[i] + vwgt2[i] > limit)
-      return 0;
+  for (i = 0; i < ncon; i++)
+    if (vwgt1[i] + vwgt2[i] > limit) return 0;
 
   return 1;
 }
-

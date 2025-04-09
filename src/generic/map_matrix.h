@@ -109,7 +109,7 @@ namespace oomph
   {
   public:
     /// Default (empty) constructor
-    MapMatrixMixed(){};
+    MapMatrixMixed() {};
 
     /// Broken assignment operator
     void operator=(const MapMatrixMixed&) = delete;
@@ -508,7 +508,7 @@ namespace oomph
   {
   public:
     /// Default (empty) constructor
-    MapMatrix(){};
+    MapMatrix() {};
 
     /// Typedef to keep the code more readable
     typedef std::map<KEY_TYPE, VALUE_TYPE> InnerMap;

@@ -1,5 +1,5 @@
 /*! @file
- * \brief Extracts the main diagonal of matrix U 
+ * \brief Extracts the main diagonal of matrix U
  *
  * <pre>
  * -- Auxiliary routine in distributed SuperLU (version 1.0) --
@@ -18,7 +18,7 @@
  * =======
  *
  * GetDiagU extracts the main diagonal of matrix U of the LU factorization.
- *  
+ *
  * Arguments
  * =========
  *
@@ -50,58 +50,62 @@
  * This routine is modified from gather_diag_to_all() in pdgstrs_Bglobal.c.
  * </pre>
  */
-void GetDiagU(int_t n, LUstruct_t *LUstruct, gridinfo_t *grid, double *diagU)
+void GetDiagU(int_t n, LUstruct_t* LUstruct, gridinfo_t* grid, double* diagU)
 {
+  int_t* xsup;
+  int iam, knsupc, pkk;
+  int nsupr; /* number of rows in the block L(:,k) (LDA) */
+  int_t i, j, jj, k, lk, lwork, nsupers, p;
+  int_t num_diag_procs, *diag_procs, *diag_len;
+  Glu_persist_t* Glu_persist = LUstruct->Glu_persist;
+  LocalLU_t* Llu = LUstruct->Llu;
+  double *dblock, *dwork, *lusup;
 
-    int_t *xsup;
-    int iam, knsupc, pkk;
-    int nsupr; /* number of rows in the block L(:,k) (LDA) */
-    int_t i, j, jj, k, lk, lwork, nsupers, p;
-    int_t num_diag_procs, *diag_procs, *diag_len;
-    Glu_persist_t *Glu_persist = LUstruct->Glu_persist;
-    LocalLU_t *Llu = LUstruct->Llu;
-    double *dblock, *dwork, *lusup;
+  iam = grid->iam;
+  nsupers = Glu_persist->supno[n - 1] + 1;
+  xsup = Glu_persist->xsup;
 
-    iam = grid->iam;
-    nsupers = Glu_persist->supno[n-1] + 1;
-    xsup = Glu_persist->xsup;
+  get_diag_procs(n, Glu_persist, grid, &num_diag_procs, &diag_procs, &diag_len);
+  jj = diag_len[0];
+  for (j = 1; j < num_diag_procs; ++j) jj = SUPERLU_MAX(jj, diag_len[j]);
+  if (!(dwork = doubleMalloc_dist(jj))) ABORT("Malloc fails for dwork[]");
 
-    get_diag_procs(n, Glu_persist, grid, &num_diag_procs,
-		   &diag_procs, &diag_len);
-    jj = diag_len[0];
-    for (j = 1; j < num_diag_procs; ++j) jj = SUPERLU_MAX( jj, diag_len[j] );
-    if ( !(dwork = doubleMalloc_dist(jj)) ) ABORT("Malloc fails for dwork[]");
+  for (p = 0; p < num_diag_procs; ++p)
+  {
+    pkk = diag_procs[p];
+    if (iam == pkk)
+    {
+      /* Copy diagonal into buffer dwork[]. */
+      lwork = 0;
+      for (k = p; k < nsupers; k += num_diag_procs)
+      {
+        knsupc = SuperSize(k);
+        lk = LBj(k, grid);
+        nsupr = Llu->Lrowind_bc_ptr[lk][1]; /* LDA of lusup[] */
+        lusup = Llu->Lnzval_bc_ptr[lk];
+        for (i = 0; i < knsupc; ++i) /* Copy the diagonal. */
+          dwork[lwork + i] = lusup[i * (nsupr + 1)];
+        lwork += knsupc;
+      }
+      MPI_Bcast(dwork, lwork, MPI_DOUBLE, pkk, grid->comm);
+    }
+    else
+    {
+      MPI_Bcast(dwork, diag_len[p], MPI_DOUBLE, pkk, grid->comm);
+    }
 
-    for (p = 0; p < num_diag_procs; ++p) {
-	pkk = diag_procs[p];
-	if ( iam == pkk ) {
-	    /* Copy diagonal into buffer dwork[]. */
-	    lwork = 0;
-	    for (k = p; k < nsupers; k += num_diag_procs) {
-		knsupc = SuperSize( k );
-		lk = LBj( k, grid );
-		nsupr = Llu->Lrowind_bc_ptr[lk][1]; /* LDA of lusup[] */
-		lusup = Llu->Lnzval_bc_ptr[lk];
-		for (i = 0; i < knsupc; ++i) /* Copy the diagonal. */
-		    dwork[lwork+i] = lusup[i*(nsupr+1)];
-		lwork += knsupc;
-	    }
-	    MPI_Bcast( dwork, lwork, MPI_DOUBLE, pkk, grid->comm );
-	} else {
-	    MPI_Bcast( dwork, diag_len[p], MPI_DOUBLE, pkk, grid->comm );
-	}
+    /* Scatter dwork[] into global diagU vector. */
+    lwork = 0;
+    for (k = p; k < nsupers; k += num_diag_procs)
+    {
+      knsupc = SuperSize(k);
+      dblock = &diagU[FstBlockC(k)];
+      for (i = 0; i < knsupc; ++i) dblock[i] = dwork[lwork + i];
+      lwork += knsupc;
+    }
+  } /* for p = ... */
 
-	/* Scatter dwork[] into global diagU vector. */
-	lwork = 0;
-	for (k = p; k < nsupers; k += num_diag_procs) {
-	    knsupc = SuperSize( k );
-	    dblock = &diagU[FstBlockC( k )];
-	    for (i = 0; i < knsupc; ++i) dblock[i] = dwork[lwork+i];
-	    lwork += knsupc;
-	}
-    } /* for p = ... */
-
-    SUPERLU_FREE(diag_procs);
-    SUPERLU_FREE(diag_len);
-    SUPERLU_FREE(dwork);
+  SUPERLU_FREE(diag_procs);
+  SUPERLU_FREE(diag_len);
+  SUPERLU_FREE(dwork);
 }

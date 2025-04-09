@@ -16,9 +16,12 @@
 
 
 /*************************************************************************
-* This function computes the balance of the partitioning
-**************************************************************************/
-void Moc_ComputePartitionBalance(GraphType *graph, int nparts, idxtype *where, float *ubvec)
+ * This function computes the balance of the partitioning
+ **************************************************************************/
+void Moc_ComputePartitionBalance(GraphType* graph,
+                                 int nparts,
+                                 idxtype* where,
+                                 float* ubvec)
 {
   int i, j, nvtxs, ncon;
   float *kpwgts, *nvwgt;
@@ -30,15 +33,14 @@ void Moc_ComputePartitionBalance(GraphType *graph, int nparts, idxtype *where, f
 
   kpwgts = fmalloc(nparts, "ComputePartitionInfo: kpwgts");
 
-  for (j=0; j<ncon; j++) {
+  for (j = 0; j < ncon; j++)
+  {
     sset(nparts, 0.0, kpwgts);
-    for (i=0; i<graph->nvtxs; i++)
-      kpwgts[where[i]] += nvwgt[i*ncon+j];
+    for (i = 0; i < graph->nvtxs; i++) kpwgts[where[i]] += nvwgt[i * ncon + j];
 
-    ubvec[j] = (float)nparts*kpwgts[samax(nparts, kpwgts)]/ssum(nparts, kpwgts);
+    ubvec[j] =
+      (float)nparts * kpwgts[samax(nparts, kpwgts)] / ssum(nparts, kpwgts);
   }
 
   free(kpwgts);
-
 }
-

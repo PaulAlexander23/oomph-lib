@@ -1,6 +1,7 @@
 
-/*! @file 
- * \brief Improves the computed solution to a system of linear equations and provides error bounds and backward error estimates
+/*! @file
+ * \brief Improves the computed solution to a system of linear equations and
+ * provides error bounds and backward error estimates
  *
  * <pre>
  * -- Distributed SuperLU routine (version 2.0) --
@@ -12,15 +13,15 @@
 #include <math.h>
 #include "superlu_zdefs.h"
 
-/*! \brief 
+/*! \brief
  *
  * <pre>
  * Purpose
  * =======
  *
- * PZGSRFS improves the computed solution to a system of linear   
+ * PZGSRFS improves the computed solution to a system of linear
  * equations and provides error bounds and backward error estimates
- * for the solution. 
+ * for the solution.
  *
  * Arguments
  * =========
@@ -58,7 +59,7 @@
  * B      (input) doublecomplex* (local)
  *        The m_loc-by-NRHS right-hand side matrix of the possibly
  *        equilibrated system. That is, B may be overwritten by diag(R)*B.
- *       
+ *
  * ldb    (input) int (local)
  *        Leading dimension of matrix B.
  *
@@ -84,8 +85,8 @@
  *        solution phase.
  *
  * berr   (output) double*, dimension (nrhs)
- *         The componentwise relative backward error of each solution   
- *         vector X(j) (i.e., the smallest relative change in   
+ *         The componentwise relative backward error of each solution
+ *         vector X(j) (i.e., the smallest relative change in
  *         any element of A or B that makes X(j) an exact solution).
  *
  * stat   (output) SuperLUStat_t*
@@ -95,156 +96,190 @@
  * info   (output) int*
  *        = 0: successful exit
  *        < 0: if info = -i, the i-th argument had an illegal value
- *        
- * Internal Parameters   
- * ===================   
  *
- * ITMAX is the maximum number of steps of iterative refinement.   
+ * Internal Parameters
+ * ===================
+ *
+ * ITMAX is the maximum number of steps of iterative refinement.
  * </pre>
  */
-void
-pzgsrfs(int_t n, SuperMatrix *A, double anorm, LUstruct_t *LUstruct,
-	ScalePermstruct_t *ScalePermstruct, gridinfo_t *grid,
-	doublecomplex *B, int_t ldb, doublecomplex *X, int_t ldx, int nrhs, 
-	SOLVEstruct_t *SOLVEstruct,
-	double *berr, SuperLUStat_t *stat, int *info)
+void pzgsrfs(int_t n,
+             SuperMatrix* A,
+             double anorm,
+             LUstruct_t* LUstruct,
+             ScalePermstruct_t* ScalePermstruct,
+             gridinfo_t* grid,
+             doublecomplex* B,
+             int_t ldb,
+             doublecomplex* X,
+             int_t ldx,
+             int nrhs,
+             SOLVEstruct_t* SOLVEstruct,
+             double* berr,
+             SuperLUStat_t* stat,
+             int* info)
 {
 #define ITMAX 20
-    
-    Glu_persist_t *Glu_persist = LUstruct->Glu_persist;
-    LocalLU_t *Llu = LUstruct->Llu;
-    doublecomplex *ax, *R, *dx, *temp, *work, *B_col, *X_col;
-    double *rtemp;
-    int_t count, i, j, lwork, nz;
-    int   iam;
-    double eps, lstres;
-    double s, safmin, safe1, safe2;
 
-    /* Data structures used by matrix-vector multiply routine. */
-    pzgsmv_comm_t *gsmv_comm = SOLVEstruct->gsmv_comm;
-    NRformat_loc *Astore;
-    int_t        m_loc, fst_row;
+  Glu_persist_t* Glu_persist = LUstruct->Glu_persist;
+  LocalLU_t* Llu = LUstruct->Llu;
+  doublecomplex *ax, *R, *dx, *temp, *work, *B_col, *X_col;
+  double* rtemp;
+  int_t count, i, j, lwork, nz;
+  int iam;
+  double eps, lstres;
+  double s, safmin, safe1, safe2;
 
-
-    /* Initialization. */
-    Astore = (NRformat_loc *) A->Store;
-    m_loc = Astore->m_loc;
-    fst_row = Astore->fst_row;
-    iam = grid->iam;
-
-    /* Test the input parameters. */
-    *info = 0;
-    if ( n < 0 ) *info = -1;
-    else if ( A->nrow != A->ncol || A->nrow < 0 || A->Stype != SLU_NR_loc
-	      || A->Dtype != SLU_Z || A->Mtype != SLU_GE )
-	*info = -2;
-    else if ( ldb < SUPERLU_MAX(0, m_loc) ) *info = -10;
-    else if ( ldx < SUPERLU_MAX(0, m_loc) ) *info = -12;
-    else if ( nrhs < 0 ) *info = -13;
-    if (*info != 0) {
-	i = -(*info);
-	pxerbla("PZGSRFS", grid, i);
-	return;
-    }
-
-    /* Quick return if possible. */
-    if ( n == 0 || nrhs == 0 ) {
-	return;
-    }
+  /* Data structures used by matrix-vector multiply routine. */
+  pzgsmv_comm_t* gsmv_comm = SOLVEstruct->gsmv_comm;
+  NRformat_loc* Astore;
+  int_t m_loc, fst_row;
 
 
-#if ( DEBUGlevel>=1 )
-    CHECK_MALLOC(iam, "Enter pzgsrfs()");
+  /* Initialization. */
+  Astore = (NRformat_loc*)A->Store;
+  m_loc = Astore->m_loc;
+  fst_row = Astore->fst_row;
+  iam = grid->iam;
+
+  /* Test the input parameters. */
+  *info = 0;
+  if (n < 0) *info = -1;
+  else if (A->nrow != A->ncol || A->nrow < 0 || A->Stype != SLU_NR_loc ||
+           A->Dtype != SLU_Z || A->Mtype != SLU_GE)
+    *info = -2;
+  else if (ldb < SUPERLU_MAX(0, m_loc))
+    *info = -10;
+  else if (ldx < SUPERLU_MAX(0, m_loc))
+    *info = -12;
+  else if (nrhs < 0)
+    *info = -13;
+  if (*info != 0)
+  {
+    i = -(*info);
+    pxerbla("PZGSRFS", grid, i);
+    return;
+  }
+
+  /* Quick return if possible. */
+  if (n == 0 || nrhs == 0)
+  {
+    return;
+  }
+
+
+#if (DEBUGlevel >= 1)
+  CHECK_MALLOC(iam, "Enter pzgsrfs()");
 #endif
 
-    lwork = 2 * m_loc;  /* For ax/R/dx and temp */
-    if ( !(work = doublecomplexMalloc_dist(lwork)) )
-	ABORT("Malloc fails for work[]");
-    ax = R = dx = work;
-    temp = ax + m_loc;
-    rtemp = (double *) temp;
+  lwork = 2 * m_loc; /* For ax/R/dx and temp */
+  if (!(work = doublecomplexMalloc_dist(lwork)))
+    ABORT("Malloc fails for work[]");
+  ax = R = dx = work;
+  temp = ax + m_loc;
+  rtemp = (double*)temp;
 
-    /* NZ = maximum number of nonzero elements in each row of A, plus 1 */
-    nz     = A->ncol + 1;
-    eps    = dlamch_("Epsilon");
-    safmin = dlamch_("Safe minimum");
+  /* NZ = maximum number of nonzero elements in each row of A, plus 1 */
+  nz = A->ncol + 1;
+  eps = dlamch_("Epsilon");
+  safmin = dlamch_("Safe minimum");
 
-    /* Set SAFE1 essentially to be the underflow threshold times the
-       number of additions in each row. */
-    safe1  = nz * safmin;
-    safe2  = safe1 / eps;
+  /* Set SAFE1 essentially to be the underflow threshold times the
+     number of additions in each row. */
+  safe1 = nz * safmin;
+  safe2 = safe1 / eps;
 
-#if ( DEBUGlevel>=1 )
-    if ( !iam ) printf(".. eps = %e\tanorm = %e\tsafe1 = %e\tsafe2 = %e\n",
-		       eps, anorm, safe1, safe2);
+#if (DEBUGlevel >= 1)
+  if (!iam)
+    printf(".. eps = %e\tanorm = %e\tsafe1 = %e\tsafe2 = %e\n",
+           eps,
+           anorm,
+           safe1,
+           safe2);
 #endif
 
-    /* Do for each right-hand side ... */
-    for (j = 0; j < nrhs; ++j) {
-	count = 0;
-	lstres = 3.;
-	B_col = &B[j*ldb];
-	X_col = &X[j*ldx];
+  /* Do for each right-hand side ... */
+  for (j = 0; j < nrhs; ++j)
+  {
+    count = 0;
+    lstres = 3.;
+    B_col = &B[j * ldb];
+    X_col = &X[j * ldx];
 
-	while (1) { /* Loop until stopping criterion is satisfied. */
+    while (1)
+    { /* Loop until stopping criterion is satisfied. */
 
-	    /* Compute residual R = B - op(A) * X,   
-	       where op(A) = A, A**T, or A**H, depending on TRANS. */
+      /* Compute residual R = B - op(A) * X,
+         where op(A) = A, A**T, or A**H, depending on TRANS. */
 
-	    /* Matrix-vector multiply. */
-	    pzgsmv(0, A, grid, gsmv_comm, X_col, ax);
-	    
-	    /* Compute residual, stored in R[]. */
-	    for (i = 0; i < m_loc; ++i) z_sub(&R[i], &B_col[i], &ax[i]);
+      /* Matrix-vector multiply. */
+      pzgsmv(0, A, grid, gsmv_comm, X_col, ax);
 
-	    /* Compute abs(op(A))*abs(X) + abs(B), stored in temp[]. */
-	    pzgsmv(1, A, grid, gsmv_comm, X_col, temp);
-            /* NOTE: rtemp is aliased to temp */
-	    for (i = 0; i < m_loc; ++i) rtemp[i] += slud_z_abs1(&B_col[i]);
-	    
-	    s = 0.0;
-	    for (i = 0; i < m_loc; ++i) {
-		if ( rtemp[i] > safe2 ) {
-		    s = SUPERLU_MAX(s, slud_z_abs1(&R[i]) / rtemp[i]);
-		} else if ( rtemp[i] != 0.0 ) {
-		    s = SUPERLU_MAX(s, (safe1 + slud_z_abs1(&R[i])) / rtemp[i]);
-                }
-                /* If temp[i] is exactly 0.0 (computed by PxGSMV), then
-                   we know the true residual also must be exactly 0.0. */
-	    }
-	    MPI_Allreduce( &s, &berr[j], 1, MPI_DOUBLE, MPI_MAX, grid->comm );
-		
-#if ( PRNTlevel>= 1 )
-	    if ( !iam )
-		printf("(%2d) .. Step %2d: berr[j] = %e\n", iam, count, berr[j]);
+      /* Compute residual, stored in R[]. */
+      for (i = 0; i < m_loc; ++i) z_sub(&R[i], &B_col[i], &ax[i]);
+
+      /* Compute abs(op(A))*abs(X) + abs(B), stored in temp[]. */
+      pzgsmv(1, A, grid, gsmv_comm, X_col, temp);
+      /* NOTE: rtemp is aliased to temp */
+      for (i = 0; i < m_loc; ++i) rtemp[i] += slud_z_abs1(&B_col[i]);
+
+      s = 0.0;
+      for (i = 0; i < m_loc; ++i)
+      {
+        if (rtemp[i] > safe2)
+        {
+          s = SUPERLU_MAX(s, slud_z_abs1(&R[i]) / rtemp[i]);
+        }
+        else if (rtemp[i] != 0.0)
+        {
+          s = SUPERLU_MAX(s, (safe1 + slud_z_abs1(&R[i])) / rtemp[i]);
+        }
+        /* If temp[i] is exactly 0.0 (computed by PxGSMV), then
+           we know the true residual also must be exactly 0.0. */
+      }
+      MPI_Allreduce(&s, &berr[j], 1, MPI_DOUBLE, MPI_MAX, grid->comm);
+
+#if (PRNTlevel >= 1)
+      if (!iam)
+        printf("(%2d) .. Step %2d: berr[j] = %e\n", iam, count, berr[j]);
 #endif
-	    if ( berr[j] > eps && berr[j] * 2 <= lstres && count < ITMAX ) {
-		/* Compute new dx. */
-		pzgstrs(n, LUstruct, ScalePermstruct, grid,
-			dx, m_loc, fst_row, m_loc, 1, 
-			SOLVEstruct, stat, info);
+      if (berr[j] > eps && berr[j] * 2 <= lstres && count < ITMAX)
+      {
+        /* Compute new dx. */
+        pzgstrs(n,
+                LUstruct,
+                ScalePermstruct,
+                grid,
+                dx,
+                m_loc,
+                fst_row,
+                m_loc,
+                1,
+                SOLVEstruct,
+                stat,
+                info);
 
-		/* Update solution. */
-		for (i = 0; i < m_loc; ++i)
-                    z_add(&X_col[i], &X_col[i], &dx[i]);
+        /* Update solution. */
+        for (i = 0; i < m_loc; ++i) z_add(&X_col[i], &X_col[i], &dx[i]);
 
-		lstres = berr[j];
-		++count;
-	    } else {
-		break;
-	    }
-	} /* end while */
+        lstres = berr[j];
+        ++count;
+      }
+      else
+      {
+        break;
+      }
+    } /* end while */
 
-	stat->RefineSteps = count;
+    stat->RefineSteps = count;
 
-    } /* for j ... */
+  } /* for j ... */
 
-    /* Deallocate storage. */
-    SUPERLU_FREE(work);
+  /* Deallocate storage. */
+  SUPERLU_FREE(work);
 
-#if ( DEBUGlevel>=1 )
-    CHECK_MALLOC(iam, "Exit pzgsrfs()");
+#if (DEBUGlevel >= 1)
+  CHECK_MALLOC(iam, "Exit pzgsrfs()");
 #endif
 
 } /* PZGSRFS */
-

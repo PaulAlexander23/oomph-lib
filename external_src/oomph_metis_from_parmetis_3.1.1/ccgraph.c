@@ -15,23 +15,25 @@
 #include <metis.h>
 
 
-
 /*************************************************************************
-* This function creates the coarser graph
-**************************************************************************/
-void CreateCoarseGraph(CtrlType *ctrl, GraphType *graph, int cnvtxs, idxtype *match, idxtype *perm)
+ * This function creates the coarser graph
+ **************************************************************************/
+void CreateCoarseGraph(
+  CtrlType* ctrl, GraphType* graph, int cnvtxs, idxtype* match, idxtype* perm)
 {
-  int i, j, jj, k, kk, l, m, istart, iend, nvtxs, nedges, ncon, cnedges, v, u, mask, dovsize;
+  int i, j, jj, k, kk, l, m, istart, iend, nvtxs, nedges, ncon, cnedges, v, u,
+    mask, dovsize;
   idxtype *xadj, *vwgt, *vsize, *adjncy, *adjwgt, *adjwgtsum, *auxadj;
   idxtype *cmap, *htable;
   idxtype *cxadj, *cvwgt, *cvsize, *cadjncy, *cadjwgt, *cadjwgtsum;
   float *nvwgt, *cnvwgt;
-  GraphType *cgraph;
+  GraphType* cgraph;
 
   dovsize = (ctrl->optype == OP_KVMETIS ? 1 : 0);
 
   mask = HTLENGTH;
-  if (cnvtxs < 8*mask || graph->nedges/graph->nvtxs > 15) { 
+  if (cnvtxs < 8 * mask || graph->nedges / graph->nvtxs > 15)
+  {
     CreateCoarseGraphNoMask(ctrl, graph, cnvtxs, match, perm);
     return;
   }
@@ -61,90 +63,100 @@ void CreateCoarseGraph(CtrlType *ctrl, GraphType *graph, int cnvtxs, idxtype *ma
 
 
   iend = xadj[nvtxs];
-  auxadj = ctrl->wspace.auxcore; 
-  memcpy(auxadj, adjncy, iend*sizeof(idxtype)); 
-  for (i=0; i<iend; i++)
-    auxadj[i] = cmap[auxadj[i]];
+  auxadj = ctrl->wspace.auxcore;
+  memcpy(auxadj, adjncy, iend * sizeof(idxtype));
+  for (i = 0; i < iend; i++) auxadj[i] = cmap[auxadj[i]];
 
-  htable = idxset(mask+1, -1, idxwspacemalloc(ctrl, mask+1)); 
+  htable = idxset(mask + 1, -1, idxwspacemalloc(ctrl, mask + 1));
 
   cxadj[0] = cnvtxs = cnedges = 0;
-  for (i=0; i<nvtxs; i++) {
+  for (i = 0; i < nvtxs; i++)
+  {
     v = perm[i];
-    if (cmap[v] != cnvtxs) 
-      continue;
+    if (cmap[v] != cnvtxs) continue;
 
     u = match[v];
-    if (ncon == 1)
-      cvwgt[cnvtxs] = vwgt[v];
+    if (ncon == 1) cvwgt[cnvtxs] = vwgt[v];
     else
-      scopy(ncon, nvwgt+v*ncon, cnvwgt+cnvtxs*ncon);
+      scopy(ncon, nvwgt + v * ncon, cnvwgt + cnvtxs * ncon);
 
-    if (dovsize)
-      cvsize[cnvtxs] = vsize[v];
+    if (dovsize) cvsize[cnvtxs] = vsize[v];
 
     cadjwgtsum[cnvtxs] = adjwgtsum[v];
     nedges = 0;
 
     istart = xadj[v];
-    iend = xadj[v+1];
-    for (j=istart; j<iend; j++) {
+    iend = xadj[v + 1];
+    for (j = istart; j < iend; j++)
+    {
       k = auxadj[j];
-      kk = k&mask;
-      if ((m = htable[kk]) == -1) {
+      kk = k & mask;
+      if ((m = htable[kk]) == -1)
+      {
         cadjncy[nedges] = k;
         cadjwgt[nedges] = adjwgt[j];
         htable[kk] = nedges++;
       }
-      else if (cadjncy[m] == k) {
+      else if (cadjncy[m] == k)
+      {
         cadjwgt[m] += adjwgt[j];
       }
-      else {
-        for (jj=0; jj<nedges; jj++) {
-          if (cadjncy[jj] == k) {
+      else
+      {
+        for (jj = 0; jj < nedges; jj++)
+        {
+          if (cadjncy[jj] == k)
+          {
             cadjwgt[jj] += adjwgt[j];
             break;
           }
         }
-        if (jj == nedges) {
+        if (jj == nedges)
+        {
           cadjncy[nedges] = k;
           cadjwgt[nedges++] = adjwgt[j];
         }
       }
     }
 
-    if (v != u) { 
-      if (ncon == 1)
-        cvwgt[cnvtxs] += vwgt[u];
+    if (v != u)
+    {
+      if (ncon == 1) cvwgt[cnvtxs] += vwgt[u];
       else
-        saxpy(ncon, 1.0, nvwgt+u*ncon, 1, cnvwgt+cnvtxs*ncon, 1);
+        saxpy(ncon, 1.0, nvwgt + u * ncon, 1, cnvwgt + cnvtxs * ncon, 1);
 
-      if (dovsize)
-        cvsize[cnvtxs] += vsize[u];
+      if (dovsize) cvsize[cnvtxs] += vsize[u];
 
       cadjwgtsum[cnvtxs] += adjwgtsum[u];
 
       istart = xadj[u];
-      iend = xadj[u+1];
-      for (j=istart; j<iend; j++) {
+      iend = xadj[u + 1];
+      for (j = istart; j < iend; j++)
+      {
         k = auxadj[j];
-        kk = k&mask;
-        if ((m = htable[kk]) == -1) {
+        kk = k & mask;
+        if ((m = htable[kk]) == -1)
+        {
           cadjncy[nedges] = k;
           cadjwgt[nedges] = adjwgt[j];
           htable[kk] = nedges++;
         }
-        else if (cadjncy[m] == k) {
+        else if (cadjncy[m] == k)
+        {
           cadjwgt[m] += adjwgt[j];
         }
-        else {
-          for (jj=0; jj<nedges; jj++) {
-            if (cadjncy[jj] == k) {
+        else
+        {
+          for (jj = 0; jj < nedges; jj++)
+          {
+            if (cadjncy[jj] == k)
+            {
               cadjwgt[jj] += adjwgt[j];
               break;
             }
           }
-          if (jj == nedges) {
+          if (jj == nedges)
+          {
             cadjncy[nedges] = k;
             cadjwgt[nedges++] = adjwgt[j];
           }
@@ -152,25 +164,33 @@ void CreateCoarseGraph(CtrlType *ctrl, GraphType *graph, int cnvtxs, idxtype *ma
       }
 
       /* Remove the contracted adjacency weight */
-      jj = htable[cnvtxs&mask];
-      if (jj >= 0 && cadjncy[jj] != cnvtxs) {
-        for (jj=0; jj<nedges; jj++) {
-          if (cadjncy[jj] == cnvtxs) 
-            break;
+      jj = htable[cnvtxs & mask];
+      if (jj >= 0 && cadjncy[jj] != cnvtxs)
+      {
+        for (jj = 0; jj < nedges; jj++)
+        {
+          if (cadjncy[jj] == cnvtxs) break;
         }
       }
-      if (jj >= 0 && cadjncy[jj] == cnvtxs) { /* This 2nd check is needed for non-adjacent matchings */
+      if (jj >= 0 && cadjncy[jj] == cnvtxs)
+      { /* This 2nd check is needed for non-adjacent matchings */
         cadjwgtsum[cnvtxs] -= cadjwgt[jj];
         cadjncy[jj] = cadjncy[--nedges];
         cadjwgt[jj] = cadjwgt[nedges];
       }
     }
 
-    ASSERTP(cadjwgtsum[cnvtxs] == idxsum(nedges, cadjwgt), ("%d %d %d %d %d\n", cnvtxs, cadjwgtsum[cnvtxs], idxsum(nedges, cadjwgt), adjwgtsum[u], adjwgtsum[v]));
+    ASSERTP(cadjwgtsum[cnvtxs] == idxsum(nedges, cadjwgt),
+            ("%d %d %d %d %d\n",
+             cnvtxs,
+             cadjwgtsum[cnvtxs],
+             idxsum(nedges, cadjwgt),
+             adjwgtsum[u],
+             adjwgtsum[v]));
 
-    for (j=0; j<nedges; j++)
-      htable[cadjncy[j]&mask] = -1;  /* Zero out the htable */
-    htable[cnvtxs&mask] = -1;
+    for (j = 0; j < nedges; j++)
+      htable[cadjncy[j] & mask] = -1; /* Zero out the htable */
+    htable[cnvtxs & mask] = -1;
 
     cnedges += nedges;
     cxadj[++cnvtxs] = cnedges;
@@ -184,22 +204,22 @@ void CreateCoarseGraph(CtrlType *ctrl, GraphType *graph, int cnvtxs, idxtype *ma
 
   IFSET(ctrl->dbglvl, DBG_TIME, stoptimer(ctrl->ContractTmr));
 
-  idxwspacefree(ctrl, mask+1);
-
+  idxwspacefree(ctrl, mask + 1);
 }
 
 
 /*************************************************************************
-* This function creates the coarser graph
-**************************************************************************/
-void CreateCoarseGraphNoMask(CtrlType *ctrl, GraphType *graph, int cnvtxs, idxtype *match, idxtype *perm)
+ * This function creates the coarser graph
+ **************************************************************************/
+void CreateCoarseGraphNoMask(
+  CtrlType* ctrl, GraphType* graph, int cnvtxs, idxtype* match, idxtype* perm)
 {
   int i, j, k, m, istart, iend, nvtxs, nedges, ncon, cnedges, v, u, dovsize;
   idxtype *xadj, *vwgt, *vsize, *adjncy, *adjwgt, *adjwgtsum, *auxadj;
   idxtype *cmap, *htable;
   idxtype *cxadj, *cvwgt, *cvsize, *cadjncy, *cadjwgt, *cadjwgtsum;
   float *nvwgt, *cnvwgt;
-  GraphType *cgraph;
+  GraphType* cgraph;
 
   dovsize = (ctrl->optype == OP_KVMETIS ? 1 : 0);
 
@@ -231,70 +251,73 @@ void CreateCoarseGraphNoMask(CtrlType *ctrl, GraphType *graph, int cnvtxs, idxty
   htable = idxset(cnvtxs, -1, idxwspacemalloc(ctrl, cnvtxs));
 
   iend = xadj[nvtxs];
-  auxadj = ctrl->wspace.auxcore; 
-  memcpy(auxadj, adjncy, iend*sizeof(idxtype)); 
-  for (i=0; i<iend; i++)
-    auxadj[i] = cmap[auxadj[i]];
+  auxadj = ctrl->wspace.auxcore;
+  memcpy(auxadj, adjncy, iend * sizeof(idxtype));
+  for (i = 0; i < iend; i++) auxadj[i] = cmap[auxadj[i]];
 
   cxadj[0] = cnvtxs = cnedges = 0;
-  for (i=0; i<nvtxs; i++) {
+  for (i = 0; i < nvtxs; i++)
+  {
     v = perm[i];
-    if (cmap[v] != cnvtxs) 
-      continue;
+    if (cmap[v] != cnvtxs) continue;
 
     u = match[v];
-    if (ncon == 1)
-      cvwgt[cnvtxs] = vwgt[v];
+    if (ncon == 1) cvwgt[cnvtxs] = vwgt[v];
     else
-      scopy(ncon, nvwgt+v*ncon, cnvwgt+cnvtxs*ncon);
+      scopy(ncon, nvwgt + v * ncon, cnvwgt + cnvtxs * ncon);
 
-    if (dovsize)
-      cvsize[cnvtxs] = vsize[v];
+    if (dovsize) cvsize[cnvtxs] = vsize[v];
 
     cadjwgtsum[cnvtxs] = adjwgtsum[v];
     nedges = 0;
 
     istart = xadj[v];
-    iend = xadj[v+1];
-    for (j=istart; j<iend; j++) {
+    iend = xadj[v + 1];
+    for (j = istart; j < iend; j++)
+    {
       k = auxadj[j];
-      if ((m = htable[k]) == -1) {
+      if ((m = htable[k]) == -1)
+      {
         cadjncy[nedges] = k;
         cadjwgt[nedges] = adjwgt[j];
         htable[k] = nedges++;
       }
-      else {
+      else
+      {
         cadjwgt[m] += adjwgt[j];
       }
     }
 
-    if (v != u) { 
-      if (ncon == 1)
-        cvwgt[cnvtxs] += vwgt[u];
+    if (v != u)
+    {
+      if (ncon == 1) cvwgt[cnvtxs] += vwgt[u];
       else
-        saxpy(ncon, 1.0, nvwgt+u*ncon, 1, cnvwgt+cnvtxs*ncon, 1);
+        saxpy(ncon, 1.0, nvwgt + u * ncon, 1, cnvwgt + cnvtxs * ncon, 1);
 
-      if (dovsize)
-        cvsize[cnvtxs] += vsize[u];
+      if (dovsize) cvsize[cnvtxs] += vsize[u];
 
       cadjwgtsum[cnvtxs] += adjwgtsum[u];
 
       istart = xadj[u];
-      iend = xadj[u+1];
-      for (j=istart; j<iend; j++) {
+      iend = xadj[u + 1];
+      for (j = istart; j < iend; j++)
+      {
         k = auxadj[j];
-        if ((m = htable[k]) == -1) {
+        if ((m = htable[k]) == -1)
+        {
           cadjncy[nedges] = k;
           cadjwgt[nedges] = adjwgt[j];
           htable[k] = nedges++;
         }
-        else {
+        else
+        {
           cadjwgt[m] += adjwgt[j];
         }
       }
 
       /* Remove the contracted adjacency weight */
-      if ((j = htable[cnvtxs]) != -1) {
+      if ((j = htable[cnvtxs]) != -1)
+      {
         ASSERT(cadjncy[j] == cnvtxs);
         cadjwgtsum[cnvtxs] -= cadjwgt[j];
         cadjncy[j] = cadjncy[--nedges];
@@ -303,10 +326,11 @@ void CreateCoarseGraphNoMask(CtrlType *ctrl, GraphType *graph, int cnvtxs, idxty
       }
     }
 
-    ASSERTP(cadjwgtsum[cnvtxs] == idxsum(nedges, cadjwgt), ("%d %d\n", cadjwgtsum[cnvtxs], idxsum(nedges, cadjwgt)));
+    ASSERTP(cadjwgtsum[cnvtxs] == idxsum(nedges, cadjwgt),
+            ("%d %d\n", cadjwgtsum[cnvtxs], idxsum(nedges, cadjwgt)));
 
-    for (j=0; j<nedges; j++)
-      htable[cadjncy[j]] = -1;  /* Zero out the htable */
+    for (j = 0; j < nedges; j++)
+      htable[cadjncy[j]] = -1; /* Zero out the htable */
 
     cnedges += nedges;
     cxadj[++cnvtxs] = cnedges;
@@ -325,16 +349,18 @@ void CreateCoarseGraphNoMask(CtrlType *ctrl, GraphType *graph, int cnvtxs, idxty
 
 
 /*************************************************************************
-* This function creates the coarser graph
-**************************************************************************/
-void CreateCoarseGraph_NVW(CtrlType *ctrl, GraphType *graph, int cnvtxs, idxtype *match, idxtype *perm)
+ * This function creates the coarser graph
+ **************************************************************************/
+void CreateCoarseGraph_NVW(
+  CtrlType* ctrl, GraphType* graph, int cnvtxs, idxtype* match, idxtype* perm)
 {
-  int i, j, jj, k, kk, l, m, istart, iend, nvtxs, nedges, ncon, cnedges, v, u, mask;
+  int i, j, jj, k, kk, l, m, istart, iend, nvtxs, nedges, ncon, cnedges, v, u,
+    mask;
   idxtype *xadj, *adjncy, *adjwgtsum, *auxadj;
   idxtype *cmap, *htable;
   idxtype *cxadj, *cvwgt, *cadjncy, *cadjwgt, *cadjwgtsum;
   float *nvwgt, *cnvwgt;
-  GraphType *cgraph;
+  GraphType* cgraph;
 
 
   IFSET(ctrl->dbglvl, DBG_TIME, starttimer(ctrl->ContractTmr));
@@ -358,19 +384,18 @@ void CreateCoarseGraph_NVW(CtrlType *ctrl, GraphType *graph, int cnvtxs, idxtype
 
 
   iend = xadj[nvtxs];
-  auxadj = ctrl->wspace.auxcore; 
-  memcpy(auxadj, adjncy, iend*sizeof(idxtype)); 
-  for (i=0; i<iend; i++)
-    auxadj[i] = cmap[auxadj[i]];
+  auxadj = ctrl->wspace.auxcore;
+  memcpy(auxadj, adjncy, iend * sizeof(idxtype));
+  for (i = 0; i < iend; i++) auxadj[i] = cmap[auxadj[i]];
 
   mask = HTLENGTH;
-  htable = idxset(mask+1, -1, idxwspacemalloc(ctrl, mask+1)); 
+  htable = idxset(mask + 1, -1, idxwspacemalloc(ctrl, mask + 1));
 
   cxadj[0] = cnvtxs = cnedges = 0;
-  for (i=0; i<nvtxs; i++) {
+  for (i = 0; i < nvtxs; i++)
+  {
     v = perm[i];
-    if (cmap[v] != cnvtxs) 
-      continue;
+    if (cmap[v] != cnvtxs) continue;
 
     u = match[v];
     cvwgt[cnvtxs] = 1;
@@ -378,57 +403,72 @@ void CreateCoarseGraph_NVW(CtrlType *ctrl, GraphType *graph, int cnvtxs, idxtype
     nedges = 0;
 
     istart = xadj[v];
-    iend = xadj[v+1];
-    for (j=istart; j<iend; j++) {
+    iend = xadj[v + 1];
+    for (j = istart; j < iend; j++)
+    {
       k = auxadj[j];
-      kk = k&mask;
-      if ((m = htable[kk]) == -1) {
+      kk = k & mask;
+      if ((m = htable[kk]) == -1)
+      {
         cadjncy[nedges] = k;
         cadjwgt[nedges] = 1;
         htable[kk] = nedges++;
       }
-      else if (cadjncy[m] == k) {
+      else if (cadjncy[m] == k)
+      {
         cadjwgt[m]++;
       }
-      else {
-        for (jj=0; jj<nedges; jj++) {
-          if (cadjncy[jj] == k) {
+      else
+      {
+        for (jj = 0; jj < nedges; jj++)
+        {
+          if (cadjncy[jj] == k)
+          {
             cadjwgt[jj]++;
             break;
           }
         }
-        if (jj == nedges) {
+        if (jj == nedges)
+        {
           cadjncy[nedges] = k;
           cadjwgt[nedges++] = 1;
         }
       }
     }
 
-    if (v != u) { 
+    if (v != u)
+    {
       cvwgt[cnvtxs]++;
       cadjwgtsum[cnvtxs] += adjwgtsum[u];
 
       istart = xadj[u];
-      iend = xadj[u+1];
-      for (j=istart; j<iend; j++) {
+      iend = xadj[u + 1];
+      for (j = istart; j < iend; j++)
+      {
         k = auxadj[j];
-        kk = k&mask;
-        if ((m = htable[kk]) == -1) {
+        kk = k & mask;
+        if ((m = htable[kk]) == -1)
+        {
           cadjncy[nedges] = k;
           cadjwgt[nedges] = 1;
           htable[kk] = nedges++;
         }
-        else if (cadjncy[m] == k) {
+        else if (cadjncy[m] == k)
+        {
           cadjwgt[m]++;
         }
-        else {
-          for (jj=0; jj<nedges; jj++) {
-            if (cadjncy[jj] == k) {
+        else
+        {
+          for (jj = 0; jj < nedges; jj++)
+          {
+            if (cadjncy[jj] == k)
+            {
               cadjwgt[jj]++;
               break;
             }
           }
-          if (jj == nedges) {
+          if (jj == nedges)
+          {
             cadjncy[nedges] = k;
             cadjwgt[nedges++] = 1;
           }
@@ -436,25 +476,33 @@ void CreateCoarseGraph_NVW(CtrlType *ctrl, GraphType *graph, int cnvtxs, idxtype
       }
 
       /* Remove the contracted adjacency weight */
-      jj = htable[cnvtxs&mask];
-      if (jj >= 0 && cadjncy[jj] != cnvtxs) {
-        for (jj=0; jj<nedges; jj++) {
-          if (cadjncy[jj] == cnvtxs) 
-            break;
+      jj = htable[cnvtxs & mask];
+      if (jj >= 0 && cadjncy[jj] != cnvtxs)
+      {
+        for (jj = 0; jj < nedges; jj++)
+        {
+          if (cadjncy[jj] == cnvtxs) break;
         }
       }
-      if (jj >= 0 && cadjncy[jj] == cnvtxs) { /* This 2nd check is needed for non-adjacent matchings */
+      if (jj >= 0 && cadjncy[jj] == cnvtxs)
+      { /* This 2nd check is needed for non-adjacent matchings */
         cadjwgtsum[cnvtxs] -= cadjwgt[jj];
         cadjncy[jj] = cadjncy[--nedges];
         cadjwgt[jj] = cadjwgt[nedges];
       }
     }
 
-    ASSERTP(cadjwgtsum[cnvtxs] == idxsum(nedges, cadjwgt), ("%d %d %d %d %d\n", cnvtxs, cadjwgtsum[cnvtxs], idxsum(nedges, cadjwgt), adjwgtsum[u], adjwgtsum[v]));
+    ASSERTP(cadjwgtsum[cnvtxs] == idxsum(nedges, cadjwgt),
+            ("%d %d %d %d %d\n",
+             cnvtxs,
+             cadjwgtsum[cnvtxs],
+             idxsum(nedges, cadjwgt),
+             adjwgtsum[u],
+             adjwgtsum[v]));
 
-    for (j=0; j<nedges; j++)
-      htable[cadjncy[j]&mask] = -1;  /* Zero out the htable */
-    htable[cnvtxs&mask] = -1;
+    for (j = 0; j < nedges; j++)
+      htable[cadjncy[j] & mask] = -1; /* Zero out the htable */
+    htable[cnvtxs & mask] = -1;
 
     cnedges += nedges;
     cxadj[++cnvtxs] = cnedges;
@@ -468,17 +516,16 @@ void CreateCoarseGraph_NVW(CtrlType *ctrl, GraphType *graph, int cnvtxs, idxtype
 
   IFSET(ctrl->dbglvl, DBG_TIME, stoptimer(ctrl->ContractTmr));
 
-  idxwspacefree(ctrl, mask+1);
-
+  idxwspacefree(ctrl, mask + 1);
 }
 
 
 /*************************************************************************
-* Setup the various arrays for the coarse graph
-**************************************************************************/
-GraphType *SetUpCoarseGraph(GraphType *graph, int cnvtxs, int dovsize)
+ * Setup the various arrays for the coarse graph
+ **************************************************************************/
+GraphType* SetUpCoarseGraph(GraphType* graph, int cnvtxs, int dovsize)
 {
-  GraphType *cgraph;
+  GraphType* cgraph;
 
   cgraph = CreateGraph();
   cgraph->nvtxs = cnvtxs;
@@ -489,47 +536,57 @@ GraphType *SetUpCoarseGraph(GraphType *graph, int cnvtxs, int dovsize)
 
 
   /* Allocate memory for the coarser graph */
-  if (graph->ncon == 1) {
-    if (dovsize) {
-      cgraph->gdata = idxmalloc(5*cnvtxs+1 + 2*graph->nedges, "SetUpCoarseGraph: gdata");
-      cgraph->xadj 		= cgraph->gdata;
-      cgraph->vwgt 		= cgraph->gdata + cnvtxs+1;
-      cgraph->vsize 		= cgraph->gdata + 2*cnvtxs+1;
-      cgraph->adjwgtsum 	= cgraph->gdata + 3*cnvtxs+1;
-      cgraph->cmap 		= cgraph->gdata + 4*cnvtxs+1;
-      cgraph->adjncy 		= cgraph->gdata + 5*cnvtxs+1;
-      cgraph->adjwgt 		= cgraph->gdata + 5*cnvtxs+1 + graph->nedges;
+  if (graph->ncon == 1)
+  {
+    if (dovsize)
+    {
+      cgraph->gdata = idxmalloc(5 * cnvtxs + 1 + 2 * graph->nedges,
+                                "SetUpCoarseGraph: gdata");
+      cgraph->xadj = cgraph->gdata;
+      cgraph->vwgt = cgraph->gdata + cnvtxs + 1;
+      cgraph->vsize = cgraph->gdata + 2 * cnvtxs + 1;
+      cgraph->adjwgtsum = cgraph->gdata + 3 * cnvtxs + 1;
+      cgraph->cmap = cgraph->gdata + 4 * cnvtxs + 1;
+      cgraph->adjncy = cgraph->gdata + 5 * cnvtxs + 1;
+      cgraph->adjwgt = cgraph->gdata + 5 * cnvtxs + 1 + graph->nedges;
     }
-    else {
-      cgraph->gdata = idxmalloc(4*cnvtxs+1 + 2*graph->nedges, "SetUpCoarseGraph: gdata");
-      cgraph->xadj 		= cgraph->gdata;
-      cgraph->vwgt 		= cgraph->gdata + cnvtxs+1;
-      cgraph->adjwgtsum 	= cgraph->gdata + 2*cnvtxs+1;
-      cgraph->cmap 		= cgraph->gdata + 3*cnvtxs+1;
-      cgraph->adjncy 		= cgraph->gdata + 4*cnvtxs+1;
-      cgraph->adjwgt 		= cgraph->gdata + 4*cnvtxs+1 + graph->nedges;
+    else
+    {
+      cgraph->gdata = idxmalloc(4 * cnvtxs + 1 + 2 * graph->nedges,
+                                "SetUpCoarseGraph: gdata");
+      cgraph->xadj = cgraph->gdata;
+      cgraph->vwgt = cgraph->gdata + cnvtxs + 1;
+      cgraph->adjwgtsum = cgraph->gdata + 2 * cnvtxs + 1;
+      cgraph->cmap = cgraph->gdata + 3 * cnvtxs + 1;
+      cgraph->adjncy = cgraph->gdata + 4 * cnvtxs + 1;
+      cgraph->adjwgt = cgraph->gdata + 4 * cnvtxs + 1 + graph->nedges;
     }
   }
-  else {
-    if (dovsize) {
-      cgraph->gdata = idxmalloc(4*cnvtxs+1 + 2*graph->nedges, "SetUpCoarseGraph: gdata");
-      cgraph->xadj 		= cgraph->gdata;
-      cgraph->vsize 		= cgraph->gdata + cnvtxs+1;
-      cgraph->adjwgtsum 	= cgraph->gdata + 2*cnvtxs+1;
-      cgraph->cmap 		= cgraph->gdata + 3*cnvtxs+1;
-      cgraph->adjncy 		= cgraph->gdata + 4*cnvtxs+1;
-      cgraph->adjwgt 		= cgraph->gdata + 4*cnvtxs+1 + graph->nedges;
+  else
+  {
+    if (dovsize)
+    {
+      cgraph->gdata = idxmalloc(4 * cnvtxs + 1 + 2 * graph->nedges,
+                                "SetUpCoarseGraph: gdata");
+      cgraph->xadj = cgraph->gdata;
+      cgraph->vsize = cgraph->gdata + cnvtxs + 1;
+      cgraph->adjwgtsum = cgraph->gdata + 2 * cnvtxs + 1;
+      cgraph->cmap = cgraph->gdata + 3 * cnvtxs + 1;
+      cgraph->adjncy = cgraph->gdata + 4 * cnvtxs + 1;
+      cgraph->adjwgt = cgraph->gdata + 4 * cnvtxs + 1 + graph->nedges;
     }
-    else {
-      cgraph->gdata = idxmalloc(3*cnvtxs+1 + 2*graph->nedges, "SetUpCoarseGraph: gdata");
-      cgraph->xadj 		= cgraph->gdata;
-      cgraph->adjwgtsum 	= cgraph->gdata + cnvtxs+1;
-      cgraph->cmap 		= cgraph->gdata + 2*cnvtxs+1;
-      cgraph->adjncy 		= cgraph->gdata + 3*cnvtxs+1;
-      cgraph->adjwgt 		= cgraph->gdata + 3*cnvtxs+1 + graph->nedges;
+    else
+    {
+      cgraph->gdata = idxmalloc(3 * cnvtxs + 1 + 2 * graph->nedges,
+                                "SetUpCoarseGraph: gdata");
+      cgraph->xadj = cgraph->gdata;
+      cgraph->adjwgtsum = cgraph->gdata + cnvtxs + 1;
+      cgraph->cmap = cgraph->gdata + 2 * cnvtxs + 1;
+      cgraph->adjncy = cgraph->gdata + 3 * cnvtxs + 1;
+      cgraph->adjwgt = cgraph->gdata + 3 * cnvtxs + 1 + graph->nedges;
     }
 
-    cgraph->nvwgt 	= fmalloc(graph->ncon*cnvtxs, "SetUpCoarseGraph: nvwgt");
+    cgraph->nvwgt = fmalloc(graph->ncon * cnvtxs, "SetUpCoarseGraph: nvwgt");
   }
 
   return cgraph;
@@ -537,63 +594,76 @@ GraphType *SetUpCoarseGraph(GraphType *graph, int cnvtxs, int dovsize)
 
 
 /*************************************************************************
-* This function re-adjusts the amount of memory that was allocated if
-* it will lead to significant savings
-**************************************************************************/
-void ReAdjustMemory(GraphType *graph, GraphType *cgraph, int dovsize) 
+ * This function re-adjusts the amount of memory that was allocated if
+ * it will lead to significant savings
+ **************************************************************************/
+void ReAdjustMemory(GraphType* graph, GraphType* cgraph, int dovsize)
 {
+  if (cgraph->nedges > 100000 && graph->nedges < 0.7 * graph->nedges)
+  {
+    idxcopy(cgraph->nedges, cgraph->adjwgt, cgraph->adjncy + cgraph->nedges);
 
-  if (cgraph->nedges > 100000 && graph->nedges < 0.7*graph->nedges) {
-    idxcopy(cgraph->nedges, cgraph->adjwgt, cgraph->adjncy+cgraph->nedges);
-
-    if (graph->ncon == 1) {
-      if (dovsize) {
-        cgraph->gdata = realloc(cgraph->gdata, (5*cgraph->nvtxs+1 + 2*cgraph->nedges)*sizeof(idxtype));
+    if (graph->ncon == 1)
+    {
+      if (dovsize)
+      {
+        cgraph->gdata = realloc(cgraph->gdata,
+                                (5 * cgraph->nvtxs + 1 + 2 * cgraph->nedges) *
+                                  sizeof(idxtype));
 
         /* Do this, in case everything was copied into new space */
-        cgraph->xadj 		= cgraph->gdata;
-        cgraph->vwgt 		= cgraph->gdata + cgraph->nvtxs+1;
-        cgraph->vsize 		= cgraph->gdata + 2*cgraph->nvtxs+1;
-        cgraph->adjwgtsum	= cgraph->gdata + 3*cgraph->nvtxs+1;
-        cgraph->cmap 		= cgraph->gdata + 4*cgraph->nvtxs+1;
-        cgraph->adjncy 		= cgraph->gdata + 5*cgraph->nvtxs+1;
-        cgraph->adjwgt 		= cgraph->gdata + 5*cgraph->nvtxs+1 + cgraph->nedges;
+        cgraph->xadj = cgraph->gdata;
+        cgraph->vwgt = cgraph->gdata + cgraph->nvtxs + 1;
+        cgraph->vsize = cgraph->gdata + 2 * cgraph->nvtxs + 1;
+        cgraph->adjwgtsum = cgraph->gdata + 3 * cgraph->nvtxs + 1;
+        cgraph->cmap = cgraph->gdata + 4 * cgraph->nvtxs + 1;
+        cgraph->adjncy = cgraph->gdata + 5 * cgraph->nvtxs + 1;
+        cgraph->adjwgt = cgraph->gdata + 5 * cgraph->nvtxs + 1 + cgraph->nedges;
       }
-      else {
-        cgraph->gdata = realloc(cgraph->gdata, (4*cgraph->nvtxs+1 + 2*cgraph->nedges)*sizeof(idxtype));
+      else
+      {
+        cgraph->gdata = realloc(cgraph->gdata,
+                                (4 * cgraph->nvtxs + 1 + 2 * cgraph->nedges) *
+                                  sizeof(idxtype));
 
         /* Do this, in case everything was copied into new space */
-        cgraph->xadj 	= cgraph->gdata;
-        cgraph->vwgt 	= cgraph->gdata + cgraph->nvtxs+1;
-        cgraph->adjwgtsum	= cgraph->gdata + 2*cgraph->nvtxs+1;
-        cgraph->cmap 	= cgraph->gdata + 3*cgraph->nvtxs+1;
-        cgraph->adjncy 	= cgraph->gdata + 4*cgraph->nvtxs+1;
-        cgraph->adjwgt 	= cgraph->gdata + 4*cgraph->nvtxs+1 + cgraph->nedges;
+        cgraph->xadj = cgraph->gdata;
+        cgraph->vwgt = cgraph->gdata + cgraph->nvtxs + 1;
+        cgraph->adjwgtsum = cgraph->gdata + 2 * cgraph->nvtxs + 1;
+        cgraph->cmap = cgraph->gdata + 3 * cgraph->nvtxs + 1;
+        cgraph->adjncy = cgraph->gdata + 4 * cgraph->nvtxs + 1;
+        cgraph->adjwgt = cgraph->gdata + 4 * cgraph->nvtxs + 1 + cgraph->nedges;
       }
     }
-    else {
-      if (dovsize) {
-        cgraph->gdata = realloc(cgraph->gdata, (4*cgraph->nvtxs+1 + 2*cgraph->nedges)*sizeof(idxtype));
+    else
+    {
+      if (dovsize)
+      {
+        cgraph->gdata = realloc(cgraph->gdata,
+                                (4 * cgraph->nvtxs + 1 + 2 * cgraph->nedges) *
+                                  sizeof(idxtype));
 
         /* Do this, in case everything was copied into new space */
-        cgraph->xadj 		= cgraph->gdata;
-        cgraph->vsize		= cgraph->gdata + cgraph->nvtxs+1;
-        cgraph->adjwgtsum	= cgraph->gdata + 2*cgraph->nvtxs+1;
-        cgraph->cmap 		= cgraph->gdata + 3*cgraph->nvtxs+1;
-        cgraph->adjncy 		= cgraph->gdata + 4*cgraph->nvtxs+1;
-        cgraph->adjwgt 		= cgraph->gdata + 4*cgraph->nvtxs+1 + cgraph->nedges;
+        cgraph->xadj = cgraph->gdata;
+        cgraph->vsize = cgraph->gdata + cgraph->nvtxs + 1;
+        cgraph->adjwgtsum = cgraph->gdata + 2 * cgraph->nvtxs + 1;
+        cgraph->cmap = cgraph->gdata + 3 * cgraph->nvtxs + 1;
+        cgraph->adjncy = cgraph->gdata + 4 * cgraph->nvtxs + 1;
+        cgraph->adjwgt = cgraph->gdata + 4 * cgraph->nvtxs + 1 + cgraph->nedges;
       }
-      else {
-        cgraph->gdata = realloc(cgraph->gdata, (3*cgraph->nvtxs+1 + 2*cgraph->nedges)*sizeof(idxtype));
+      else
+      {
+        cgraph->gdata = realloc(cgraph->gdata,
+                                (3 * cgraph->nvtxs + 1 + 2 * cgraph->nedges) *
+                                  sizeof(idxtype));
 
         /* Do this, in case everything was copied into new space */
-        cgraph->xadj 		= cgraph->gdata;
-        cgraph->adjwgtsum	= cgraph->gdata + cgraph->nvtxs+1;
-        cgraph->cmap 		= cgraph->gdata + 2*cgraph->nvtxs+1;
-        cgraph->adjncy 		= cgraph->gdata + 3*cgraph->nvtxs+1;
-        cgraph->adjwgt 		= cgraph->gdata + 3*cgraph->nvtxs+1 + cgraph->nedges;
+        cgraph->xadj = cgraph->gdata;
+        cgraph->adjwgtsum = cgraph->gdata + cgraph->nvtxs + 1;
+        cgraph->cmap = cgraph->gdata + 2 * cgraph->nvtxs + 1;
+        cgraph->adjncy = cgraph->gdata + 3 * cgraph->nvtxs + 1;
+        cgraph->adjwgt = cgraph->gdata + 3 * cgraph->nvtxs + 1 + cgraph->nedges;
       }
     }
   }
-
 }

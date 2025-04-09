@@ -16,41 +16,43 @@
 
 
 /*************************************************************************
-* This function is the entry point of the separator refinement
-**************************************************************************/
-void Refine2WayNode(CtrlType *ctrl, GraphType *orggraph, GraphType *graph, float ubfactor)
+ * This function is the entry point of the separator refinement
+ **************************************************************************/
+void Refine2WayNode(CtrlType* ctrl,
+                    GraphType* orggraph,
+                    GraphType* graph,
+                    float ubfactor)
 {
-
   IFSET(ctrl->dbglvl, DBG_TIME, starttimer(ctrl->UncoarsenTmr));
 
-  for (;;) {
+  for (;;)
+  {
     IFSET(ctrl->dbglvl, DBG_TIME, starttimer(ctrl->RefTmr));
-    if (ctrl->RType != 15)
-      FM_2WayNodeBalance(ctrl, graph, ubfactor); 
+    if (ctrl->RType != 15) FM_2WayNodeBalance(ctrl, graph, ubfactor);
 
-    switch (ctrl->RType) {
+    switch (ctrl->RType)
+    {
       case 1:
-        FM_2WayNodeRefine(ctrl, graph, ubfactor, 8); 
+        FM_2WayNodeRefine(ctrl, graph, ubfactor, 8);
         break;
       case 2:
-        FM_2WayNodeRefine_OneSided(ctrl, graph, ubfactor, 8); 
+        FM_2WayNodeRefine_OneSided(ctrl, graph, ubfactor, 8);
         break;
       case 3:
-        FM_2WayNodeRefine(ctrl, graph, ubfactor, 8); 
-        FM_2WayNodeRefine_OneSided(ctrl, graph, ubfactor, 8); 
+        FM_2WayNodeRefine(ctrl, graph, ubfactor, 8);
+        FM_2WayNodeRefine_OneSided(ctrl, graph, ubfactor, 8);
         break;
       case 4:
-        FM_2WayNodeRefine_OneSided(ctrl, graph, ubfactor, 8); 
-        FM_2WayNodeRefine(ctrl, graph, ubfactor, 8); 
+        FM_2WayNodeRefine_OneSided(ctrl, graph, ubfactor, 8);
+        FM_2WayNodeRefine(ctrl, graph, ubfactor, 8);
         break;
       case 5:
-        FM_2WayNodeRefineEqWgt(ctrl, graph, 8); 
+        FM_2WayNodeRefineEqWgt(ctrl, graph, 8);
         break;
     }
     IFSET(ctrl->dbglvl, DBG_TIME, stoptimer(ctrl->RefTmr));
 
-    if (graph == orggraph) 
-      break;
+    if (graph == orggraph) break;
 
     graph = graph->finer;
     IFSET(ctrl->dbglvl, DBG_TIME, starttimer(ctrl->ProjectTmr));
@@ -63,35 +65,36 @@ void Refine2WayNode(CtrlType *ctrl, GraphType *orggraph, GraphType *graph, float
 
 
 /*************************************************************************
-* This function allocates memory for 2-way edge refinement
-**************************************************************************/
-void Allocate2WayNodePartitionMemory(CtrlType *ctrl, GraphType *graph)
+ * This function allocates memory for 2-way edge refinement
+ **************************************************************************/
+void Allocate2WayNodePartitionMemory(CtrlType* ctrl, GraphType* graph)
 {
   int nvtxs, pad64;
 
   nvtxs = graph->nvtxs;
 
-  pad64 = (3*nvtxs+3)%2;
+  pad64 = (3 * nvtxs + 3) % 2;
 
-  graph->rdata = idxmalloc(3*nvtxs+3+(sizeof(NRInfoType)/sizeof(idxtype))*nvtxs+pad64, "Allocate2WayPartitionMemory: rdata");
-  graph->pwgts          = graph->rdata;
-  graph->where          = graph->rdata + 3;
-  graph->bndptr         = graph->rdata + nvtxs + 3;
-  graph->bndind         = graph->rdata + 2*nvtxs + 3;
-  graph->nrinfo         = (NRInfoType *)(graph->rdata + 3*nvtxs + 3 + pad64);
+  graph->rdata = idxmalloc(
+    3 * nvtxs + 3 + (sizeof(NRInfoType) / sizeof(idxtype)) * nvtxs + pad64,
+    "Allocate2WayPartitionMemory: rdata");
+  graph->pwgts = graph->rdata;
+  graph->where = graph->rdata + 3;
+  graph->bndptr = graph->rdata + nvtxs + 3;
+  graph->bndind = graph->rdata + 2 * nvtxs + 3;
+  graph->nrinfo = (NRInfoType*)(graph->rdata + 3 * nvtxs + 3 + pad64);
 }
 
 
-
 /*************************************************************************
-* This function computes the initial id/ed 
-**************************************************************************/
-void Compute2WayNodePartitionParams(CtrlType *ctrl, GraphType *graph)
+ * This function computes the initial id/ed
+ **************************************************************************/
+void Compute2WayNodePartitionParams(CtrlType* ctrl, GraphType* graph)
 {
   int i, j, k, l, nvtxs, nbnd;
   idxtype *xadj, *adjncy, *adjwgt, *vwgt;
   idxtype *where, *pwgts, *bndind, *bndptr, *edegrees;
-  NRInfoType *rinfo;
+  NRInfoType* rinfo;
   int me, other;
 
   nvtxs = graph->nvtxs;
@@ -111,22 +114,24 @@ void Compute2WayNodePartitionParams(CtrlType *ctrl, GraphType *graph)
   / Compute now the separator external degrees
   /------------------------------------------------------------*/
   nbnd = 0;
-  for (i=0; i<nvtxs; i++) {
+  for (i = 0; i < nvtxs; i++)
+  {
     me = where[i];
     pwgts[me] += vwgt[i];
 
-    ASSERT(me >=0 && me <= 2);
+    ASSERT(me >= 0 && me <= 2);
 
-    if (me == 2) { /* If it is on the separator do some computations */
+    if (me == 2)
+    { /* If it is on the separator do some computations */
       BNDInsert(nbnd, bndind, bndptr, i);
 
       edegrees = rinfo[i].edegrees;
       edegrees[0] = edegrees[1] = 0;
 
-      for (j=xadj[i]; j<xadj[i+1]; j++) {
+      for (j = xadj[i]; j < xadj[i + 1]; j++)
+      {
         other = where[adjncy[j]];
-        if (other != 2)
-          edegrees[other] += vwgt[adjncy[j]];
+        if (other != 2) edegrees[other] += vwgt[adjncy[j]];
       }
     }
   }
@@ -139,13 +144,13 @@ void Compute2WayNodePartitionParams(CtrlType *ctrl, GraphType *graph)
 
 
 /*************************************************************************
-* This function computes the initial id/ed 
-**************************************************************************/
-void Project2WayNodePartition(CtrlType *ctrl, GraphType *graph)
+ * This function computes the initial id/ed
+ **************************************************************************/
+void Project2WayNodePartition(CtrlType* ctrl, GraphType* graph)
 {
   int i, j, nvtxs;
   idxtype *cmap, *where, *cwhere;
-  GraphType *cgraph;
+  GraphType* cgraph;
 
   cgraph = graph->coarser;
   cwhere = cgraph->where;
@@ -155,11 +160,13 @@ void Project2WayNodePartition(CtrlType *ctrl, GraphType *graph)
 
   Allocate2WayNodePartitionMemory(ctrl, graph);
   where = graph->where;
-  
+
   /* Project the partition */
-  for (i=0; i<nvtxs; i++) {
+  for (i = 0; i < nvtxs; i++)
+  {
     where[i] = cwhere[cmap[i]];
-    ASSERTP(where[i] >= 0 && where[i] <= 2, ("%d %d %d %d\n", i, cmap[i], where[i], cwhere[cmap[i]]));
+    ASSERTP(where[i] >= 0 && where[i] <= 2,
+            ("%d %d %d %d\n", i, cmap[i], where[i], cwhere[cmap[i]]));
   }
 
   FreeGraph(graph->coarser);

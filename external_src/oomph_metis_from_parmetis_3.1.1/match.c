@@ -17,9 +17,9 @@
 
 
 /*************************************************************************
-* This function finds a matching using the HEM heuristic
-**************************************************************************/
-void Match_RM(CtrlType *ctrl, GraphType *graph)
+ * This function finds a matching using the HEM heuristic
+ **************************************************************************/
+void Match_RM(CtrlType* ctrl, GraphType* graph)
 {
   int i, ii, j, nvtxs, cnvtxs, maxidx;
   idxtype *xadj, *vwgt, *adjncy, *adjwgt;
@@ -40,15 +40,20 @@ void Match_RM(CtrlType *ctrl, GraphType *graph)
   RandomPermute(nvtxs, perm, 1);
 
   cnvtxs = 0;
-  for (ii=0; ii<nvtxs; ii++) {
+  for (ii = 0; ii < nvtxs; ii++)
+  {
     i = perm[ii];
 
-    if (match[i] == UNMATCHED) {  /* Unmatched */
+    if (match[i] == UNMATCHED)
+    { /* Unmatched */
       maxidx = i;
 
       /* Find a random matching, subject to maxvwgt constraints */
-      for (j=xadj[i]; j<xadj[i+1]; j++) {
-        if (match[adjncy[j]] == UNMATCHED && vwgt[i]+vwgt[adjncy[j]] <= ctrl->maxvwgt) {
+      for (j = xadj[i]; j < xadj[i + 1]; j++)
+      {
+        if (match[adjncy[j]] == UNMATCHED &&
+            vwgt[i] + vwgt[adjncy[j]] <= ctrl->maxvwgt)
+        {
           maxidx = adjncy[j];
           break;
         }
@@ -70,9 +75,9 @@ void Match_RM(CtrlType *ctrl, GraphType *graph)
 
 
 /*************************************************************************
-* This function finds a matching using the HEM heuristic
-**************************************************************************/
-void Match_RM_NVW(CtrlType *ctrl, GraphType *graph)
+ * This function finds a matching using the HEM heuristic
+ **************************************************************************/
+void Match_RM_NVW(CtrlType* ctrl, GraphType* graph)
 {
   int i, ii, j, nvtxs, cnvtxs, maxidx;
   idxtype *xadj, *adjncy;
@@ -91,15 +96,19 @@ void Match_RM_NVW(CtrlType *ctrl, GraphType *graph)
   RandomPermute(nvtxs, perm, 1);
 
   cnvtxs = 0;
-  for (ii=0; ii<nvtxs; ii++) {
+  for (ii = 0; ii < nvtxs; ii++)
+  {
     i = perm[ii];
 
-    if (match[i] == UNMATCHED) {  /* Unmatched */
+    if (match[i] == UNMATCHED)
+    { /* Unmatched */
       maxidx = i;
 
       /* Find a random matching, subject to maxvwgt constraints */
-      for (j=xadj[i]; j<xadj[i+1]; j++) {
-        if (match[adjncy[j]] == UNMATCHED) {
+      for (j = xadj[i]; j < xadj[i + 1]; j++)
+      {
+        if (match[adjncy[j]] == UNMATCHED)
+        {
           maxidx = adjncy[j];
           break;
         }
@@ -120,11 +129,10 @@ void Match_RM_NVW(CtrlType *ctrl, GraphType *graph)
 }
 
 
-
 /*************************************************************************
-* This function finds a matching using the HEM heuristic
-**************************************************************************/
-void Match_HEM(CtrlType *ctrl, GraphType *graph)
+ * This function finds a matching using the HEM heuristic
+ **************************************************************************/
+void Match_HEM(CtrlType* ctrl, GraphType* graph)
 {
   int i, ii, j, k, nvtxs, cnvtxs, maxidx, maxwgt;
   idxtype *xadj, *vwgt, *adjncy, *adjwgt;
@@ -145,17 +153,22 @@ void Match_HEM(CtrlType *ctrl, GraphType *graph)
   RandomPermute(nvtxs, perm, 1);
 
   cnvtxs = 0;
-  for (ii=0; ii<nvtxs; ii++) {
+  for (ii = 0; ii < nvtxs; ii++)
+  {
     i = perm[ii];
 
-    if (match[i] == UNMATCHED) {  /* Unmatched */
+    if (match[i] == UNMATCHED)
+    { /* Unmatched */
       maxidx = i;
       maxwgt = 0;
 
       /* Find a heavy-edge matching, subject to maxvwgt constraints */
-      for (j=xadj[i]; j<xadj[i+1]; j++) {
+      for (j = xadj[i]; j < xadj[i + 1]; j++)
+      {
         k = adjncy[j];
-        if (match[k] == UNMATCHED && maxwgt < adjwgt[j] && vwgt[i]+vwgt[k] <= ctrl->maxvwgt) {
+        if (match[k] == UNMATCHED && maxwgt < adjwgt[j] &&
+            vwgt[i] + vwgt[k] <= ctrl->maxvwgt)
+        {
           maxwgt = adjwgt[j];
           maxidx = adjncy[j];
         }
@@ -176,11 +189,10 @@ void Match_HEM(CtrlType *ctrl, GraphType *graph)
 }
 
 
-
 /*************************************************************************
-* This function finds a matching using the HEM heuristic
-**************************************************************************/
-void Match_SHEM(CtrlType *ctrl, GraphType *graph)
+ * This function finds a matching using the HEM heuristic
+ **************************************************************************/
+void Match_SHEM(CtrlType* ctrl, GraphType* graph)
 {
   int i, ii, j, k, nvtxs, cnvtxs, maxidx, maxwgt, avgdegree;
   idxtype *xadj, *vwgt, *adjncy, *adjwgt;
@@ -202,25 +214,30 @@ void Match_SHEM(CtrlType *ctrl, GraphType *graph)
   degrees = idxwspacemalloc(ctrl, nvtxs);
 
   RandomPermute(nvtxs, tperm, 1);
-  avgdegree = 0.7*(xadj[nvtxs]/nvtxs);
-  for (i=0; i<nvtxs; i++) 
-    degrees[i] = (xadj[i+1]-xadj[i] > avgdegree ? avgdegree : xadj[i+1]-xadj[i]);
+  avgdegree = 0.7 * (xadj[nvtxs] / nvtxs);
+  for (i = 0; i < nvtxs; i++)
+    degrees[i] =
+      (xadj[i + 1] - xadj[i] > avgdegree ? avgdegree : xadj[i + 1] - xadj[i]);
   BucketSortKeysInc(nvtxs, avgdegree, degrees, tperm, perm);
 
   cnvtxs = 0;
 
-  /* Take care any islands. Islands are matched with non-islands due to coarsening */
-  for (ii=0; ii<nvtxs; ii++) {
+  /* Take care any islands. Islands are matched with non-islands due to
+   * coarsening */
+  for (ii = 0; ii < nvtxs; ii++)
+  {
     i = perm[ii];
 
-    if (match[i] == UNMATCHED) {  /* Unmatched */
-      if (xadj[i] < xadj[i+1])
-        break;
+    if (match[i] == UNMATCHED)
+    { /* Unmatched */
+      if (xadj[i] < xadj[i + 1]) break;
 
       maxidx = i;
-      for (j=nvtxs-1; j>ii; j--) {
+      for (j = nvtxs - 1; j > ii; j--)
+      {
         k = perm[j];
-        if (match[k] == UNMATCHED && xadj[k] < xadj[k+1]) {
+        if (match[k] == UNMATCHED && xadj[k] < xadj[k + 1])
+        {
           maxidx = k;
           break;
         }
@@ -233,16 +250,21 @@ void Match_SHEM(CtrlType *ctrl, GraphType *graph)
   }
 
   /* Continue with normal matching */
-  for (; ii<nvtxs; ii++) {
+  for (; ii < nvtxs; ii++)
+  {
     i = perm[ii];
 
-    if (match[i] == UNMATCHED) {  /* Unmatched */
+    if (match[i] == UNMATCHED)
+    { /* Unmatched */
       maxidx = i;
       maxwgt = 0;
 
       /* Find a heavy-edge matching, subject to maxvwgt constraints */
-      for (j=xadj[i]; j<xadj[i+1]; j++) {
-        if (match[adjncy[j]] == UNMATCHED && maxwgt < adjwgt[j] && vwgt[i]+vwgt[adjncy[j]] <= ctrl->maxvwgt) {
+      for (j = xadj[i]; j < xadj[i + 1]; j++)
+      {
+        if (match[adjncy[j]] == UNMATCHED && maxwgt < adjwgt[j] &&
+            vwgt[i] + vwgt[adjncy[j]] <= ctrl->maxvwgt)
+        {
           maxwgt = adjwgt[j];
           maxidx = adjncy[j];
         }
@@ -256,12 +278,11 @@ void Match_SHEM(CtrlType *ctrl, GraphType *graph)
 
   IFSET(ctrl->dbglvl, DBG_TIME, stoptimer(ctrl->MatchTmr));
 
-  idxwspacefree(ctrl, nvtxs);  /* degrees */
-  idxwspacefree(ctrl, nvtxs);  /* tperm */
+  idxwspacefree(ctrl, nvtxs); /* degrees */
+  idxwspacefree(ctrl, nvtxs); /* tperm */
 
   CreateCoarseGraph(ctrl, graph, cnvtxs, match, perm);
 
   idxwspacefree(ctrl, nvtxs);
   idxwspacefree(ctrl, nvtxs);
 }
-

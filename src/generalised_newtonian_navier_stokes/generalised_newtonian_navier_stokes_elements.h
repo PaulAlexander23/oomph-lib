@@ -58,10 +58,10 @@ namespace oomph
   {
   public:
     /// Constructor (empty)
-    GeneralisedNewtonianTemplateFreeNavierStokesEquationsBase(){};
+    GeneralisedNewtonianTemplateFreeNavierStokesEquationsBase() {};
 
     /// Virtual destructor (empty)
-    virtual ~GeneralisedNewtonianTemplateFreeNavierStokesEquationsBase(){};
+    virtual ~GeneralisedNewtonianTemplateFreeNavierStokesEquationsBase() {};
 
 
     /// Return the index at which the pressure is stored if it is

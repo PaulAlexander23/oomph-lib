@@ -742,7 +742,7 @@ namespace oomph
     } // End of MGPreconditioner (constructor)
 
     /// Destructor (empty)
-    ~MGPreconditioner(){};
+    ~MGPreconditioner() {};
 
     /// Broken copy constructor.
     MGPreconditioner(const MGPreconditioner&) = delete;

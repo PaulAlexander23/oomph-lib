@@ -874,7 +874,7 @@ namespace oomph
           } // End of loop over the nodes
         }
 
-        //:use second order approximation
+        //: use second order approximation
         if (*ABC_order_pt == 2)
         {
           // Now add to the appropriate equations:use second order approximation

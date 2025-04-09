@@ -369,11 +369,11 @@ namespace oomph
   {
   public:
     /// Constructor (empty)
-    TemplateFreeSpaceTimeNavierStokesMixedOrderEquationsBase(){};
+    TemplateFreeSpaceTimeNavierStokesMixedOrderEquationsBase() {};
 
 
     /// Virtual destructor (empty)
-    virtual ~TemplateFreeSpaceTimeNavierStokesMixedOrderEquationsBase(){};
+    virtual ~TemplateFreeSpaceTimeNavierStokesMixedOrderEquationsBase() {};
 
 
     /// Compute the residuals for the associated pressure advection

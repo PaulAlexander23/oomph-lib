@@ -3,8 +3,8 @@
  *
  * <pre>
  * Purpose
- * ======= 
- * 
+ * =======
+ *
  * Returns the time in seconds used by the process.
  *
  * Note: the timer function call is machine dependent. Use conditional
@@ -13,15 +13,16 @@
  */
 
 
-#ifdef SUN 
+#ifdef SUN
 /*
- * 	It uses the system call gethrtime(3C), which is accurate to 
- *	nanoseconds. 
-*/
+ * 	It uses the system call gethrtime(3C), which is accurate to
+ *	nanoseconds.
+ */
 #include <sys/time.h>
 
-double SuperLU_timer_() {
-    return ( (double)gethrtime() / 1e9 );
+double SuperLU_timer_()
+{
+  return ((double)gethrtime() / 1e9);
 }
 
 #elif _WIN32
@@ -30,10 +31,10 @@ double SuperLU_timer_() {
 
 double SuperLU_timer_()
 {
-    clock_t t;
-    t=clock();
+  clock_t t;
+  t = clock();
 
-    return ((double)t)/CLOCKS_PER_SEC;
+  return ((double)t) / CLOCKS_PER_SEC;
 }
 
 #else
@@ -46,27 +47,26 @@ double SuperLU_timer_()
 #endif
 
 /*! \brief Timer function
- */ 
+ */
 
 double SuperLU_timer_()
 {
 #ifdef NO_TIMER
-    /* no sys/times.h on WIN32 */
-    double tmp;
-    tmp = 0.0;
-    /* return (double)(tmp) / CLK_TCK;*/
-    return 0.0;
+  /* no sys/times.h on WIN32 */
+  double tmp;
+  tmp = 0.0;
+  /* return (double)(tmp) / CLK_TCK;*/
+  return 0.0;
 #else
-    struct tms use;
-    double tmp;
-    int clocks_per_sec = sysconf(_SC_CLK_TCK);
+  struct tms use;
+  double tmp;
+  int clocks_per_sec = sysconf(_SC_CLK_TCK);
 
-    times ( &use );
-    tmp = use.tms_utime;
-    tmp += use.tms_stime;
-    return (double)(tmp) / clocks_per_sec;
+  times(&use);
+  tmp = use.tms_utime;
+  tmp += use.tms_stime;
+  return (double)(tmp) / clocks_per_sec;
 #endif
 }
 
 #endif
-

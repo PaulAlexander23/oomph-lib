@@ -16,11 +16,10 @@
 
 
 /*************************************************************************
-* This function initializes the various fields of a MeshType.
-**************************************************************************/
-void InitMesh(MeshType *mesh)
+ * This function initializes the various fields of a MeshType.
+ **************************************************************************/
+void InitMesh(MeshType* mesh)
 {
-
   mesh->etype = -1;
   mesh->gnelms = -1;
   mesh->gnns = -1;
@@ -37,14 +36,14 @@ void InitMesh(MeshType *mesh)
 }
 
 /*************************************************************************
-* This function creates a MeshType data structure and initializes
-* the various fields
-**************************************************************************/
-MeshType *CreateMesh(void)
+ * This function creates a MeshType data structure and initializes
+ * the various fields
+ **************************************************************************/
+MeshType* CreateMesh(void)
 {
-  MeshType *mesh;
+  MeshType* mesh;
 
-  mesh = (MeshType *)GKmalloc(sizeof(MeshType), "CreateMesh: mesh");
+  mesh = (MeshType*)GKmalloc(sizeof(MeshType), "CreateMesh: mesh");
 
   InitMesh(mesh);
 
@@ -52,16 +51,18 @@ MeshType *CreateMesh(void)
 }
 
 
-
-
-
 /*************************************************************************
-* This function setsup the CtrlType structure
-**************************************************************************/
-MeshType *SetUpMesh(int *etype, int *ncon, idxtype *elmdist, idxtype *elements,
-  idxtype *elmwgt, int *wgtflag, MPI_Comm *comm)
+ * This function setsup the CtrlType structure
+ **************************************************************************/
+MeshType* SetUpMesh(int* etype,
+                    int* ncon,
+                    idxtype* elmdist,
+                    idxtype* elements,
+                    idxtype* elmwgt,
+                    int* wgtflag,
+                    MPI_Comm* comm)
 {
-  MeshType *mesh;
+  MeshType* mesh;
   int i, npes, mype;
   int esizes[5] = {-1, 3, 4, 8, 4};
   int maxnode, gmaxnode, minnode, gminnode;
@@ -72,27 +73,26 @@ MeshType *SetUpMesh(int *etype, int *ncon, idxtype *elmdist, idxtype *elements,
   mesh = CreateMesh();
   mesh->elmdist = elmdist;
   mesh->gnelms = elmdist[npes];
-  mesh->nelms = elmdist[mype+1]-elmdist[mype];
+  mesh->nelms = elmdist[mype + 1] - elmdist[mype];
   mesh->elements = elements;
   mesh->elmwgt = elmwgt;
   mesh->etype = *etype;
   mesh->ncon = *ncon;
   mesh->esize = esizes[*etype];
 
-  if (((*wgtflag)&1) == 0) {
-    mesh->elmwgt = idxsmalloc(mesh->nelms*mesh->ncon, 1, "SetUpMesh: elmwgt");
+  if (((*wgtflag) & 1) == 0)
+  {
+    mesh->elmwgt = idxsmalloc(mesh->nelms * mesh->ncon, 1, "SetUpMesh: elmwgt");
   }
 
-  minnode = elements[idxamin(mesh->nelms*mesh->esize, elements)];
-  MPI_Allreduce((void *)&minnode, (void *)&gminnode, 1, MPI_INT, MPI_MIN, *comm);
-  for (i=0; i<mesh->nelms*mesh->esize; i++)
-    elements[i] -= gminnode;
+  minnode = elements[idxamin(mesh->nelms * mesh->esize, elements)];
+  MPI_Allreduce((void*)&minnode, (void*)&gminnode, 1, MPI_INT, MPI_MIN, *comm);
+  for (i = 0; i < mesh->nelms * mesh->esize; i++) elements[i] -= gminnode;
   mesh->gminnode = gminnode;
 
-  maxnode = elements[idxamax(mesh->nelms*mesh->esize, elements)];
-  MPI_Allreduce((void *)&maxnode, (void *)&gmaxnode, 1, MPI_INT, MPI_MAX, *comm);
-  mesh->gnns = gmaxnode+1;
+  maxnode = elements[idxamax(mesh->nelms * mesh->esize, elements)];
+  MPI_Allreduce((void*)&maxnode, (void*)&gmaxnode, 1, MPI_INT, MPI_MAX, *comm);
+  mesh->gnns = gmaxnode + 1;
 
   return mesh;
 }
-

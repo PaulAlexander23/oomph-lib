@@ -16,40 +16,50 @@
 #include <metis.h>
 
 
-
 /*************************************************************************
-* This function is the entry point for PWMETIS that accepts exact weights
-* for the target partitions
-**************************************************************************/
-void METIS_mCPartGraphRecursive(int *nvtxs, int *ncon, idxtype *xadj, idxtype *adjncy, 
-       idxtype *vwgt, idxtype *adjwgt, int *wgtflag, int *numflag, int *nparts, 
-       int *options, int *edgecut, idxtype *part)
+ * This function is the entry point for PWMETIS that accepts exact weights
+ * for the target partitions
+ **************************************************************************/
+void METIS_mCPartGraphRecursive(int* nvtxs,
+                                int* ncon,
+                                idxtype* xadj,
+                                idxtype* adjncy,
+                                idxtype* vwgt,
+                                idxtype* adjwgt,
+                                int* wgtflag,
+                                int* numflag,
+                                int* nparts,
+                                int* options,
+                                int* edgecut,
+                                idxtype* part)
 {
   int i, j;
   GraphType graph;
   CtrlType ctrl;
 
-  if (*numflag == 1)
-    Change2CNumbering(*nvtxs, xadj, adjncy);
+  if (*numflag == 1) Change2CNumbering(*nvtxs, xadj, adjncy);
 
-  SetUpGraph(&graph, OP_PMETIS, *nvtxs, *ncon, xadj, adjncy, vwgt, adjwgt, *wgtflag);
+  SetUpGraph(
+    &graph, OP_PMETIS, *nvtxs, *ncon, xadj, adjncy, vwgt, adjwgt, *wgtflag);
 
-  if (options[0] == 0) {  /* Use the default parameters */
-    ctrl.CType  = McPMETIS_CTYPE;
-    ctrl.IType  = McPMETIS_ITYPE;
-    ctrl.RType  = McPMETIS_RTYPE;
+  if (options[0] == 0)
+  { /* Use the default parameters */
+    ctrl.CType = McPMETIS_CTYPE;
+    ctrl.IType = McPMETIS_ITYPE;
+    ctrl.RType = McPMETIS_RTYPE;
     ctrl.dbglvl = McPMETIS_DBGLVL;
   }
-  else {
-    ctrl.CType  = options[OPTION_CTYPE];
-    ctrl.IType  = options[OPTION_ITYPE];
-    ctrl.RType  = options[OPTION_RTYPE];
+  else
+  {
+    ctrl.CType = options[OPTION_CTYPE];
+    ctrl.IType = options[OPTION_ITYPE];
+    ctrl.RType = options[OPTION_RTYPE];
     ctrl.dbglvl = options[OPTION_DBGLVL];
   }
   ctrl.optype = OP_PMETIS;
   ctrl.CoarsenTo = 100;
 
-  ctrl.nmaxvwgt = 1.5/(1.0*ctrl.CoarsenTo);
+  ctrl.nmaxvwgt = 1.5 / (1.0 * ctrl.CoarsenTo);
 
   InitRandom(-1);
 
@@ -65,37 +75,47 @@ void METIS_mCPartGraphRecursive(int *nvtxs, int *ncon, idxtype *xadj, idxtype *a
 
   FreeWorkSpace(&ctrl, &graph);
 
-  if (*numflag == 1)
-    Change2FNumbering(*nvtxs, xadj, adjncy, part);
+  if (*numflag == 1) Change2FNumbering(*nvtxs, xadj, adjncy, part);
 }
 
 
-
 /*************************************************************************
-* This function is the entry point for PWMETIS that accepts exact weights
-* for the target partitions
-**************************************************************************/
-void METIS_mCHPartGraphRecursive(int *nvtxs, int *ncon, idxtype *xadj, idxtype *adjncy, 
-       idxtype *vwgt, idxtype *adjwgt, int *wgtflag, int *numflag, int *nparts, 
-       float *ubvec, int *options, int *edgecut, idxtype *part)
+ * This function is the entry point for PWMETIS that accepts exact weights
+ * for the target partitions
+ **************************************************************************/
+void METIS_mCHPartGraphRecursive(int* nvtxs,
+                                 int* ncon,
+                                 idxtype* xadj,
+                                 idxtype* adjncy,
+                                 idxtype* vwgt,
+                                 idxtype* adjwgt,
+                                 int* wgtflag,
+                                 int* numflag,
+                                 int* nparts,
+                                 float* ubvec,
+                                 int* options,
+                                 int* edgecut,
+                                 idxtype* part)
 {
   int i, j;
   GraphType graph;
   CtrlType ctrl;
-  float *myubvec;
+  float* myubvec;
 
-  if (*numflag == 1)
-    Change2CNumbering(*nvtxs, xadj, adjncy);
+  if (*numflag == 1) Change2CNumbering(*nvtxs, xadj, adjncy);
 
-  SetUpGraph(&graph, OP_PMETIS, *nvtxs, *ncon, xadj, adjncy, vwgt, adjwgt, *wgtflag);
+  SetUpGraph(
+    &graph, OP_PMETIS, *nvtxs, *ncon, xadj, adjncy, vwgt, adjwgt, *wgtflag);
 
-  if (options[0] == 0) {  /* Use the default parameters */
+  if (options[0] == 0)
+  { /* Use the default parameters */
     ctrl.CType = PMETIS_CTYPE;
     ctrl.IType = PMETIS_ITYPE;
     ctrl.RType = PMETIS_RTYPE;
     ctrl.dbglvl = PMETIS_DBGLVL;
   }
-  else {
+  else
+  {
     ctrl.CType = options[OPTION_CTYPE];
     ctrl.IType = options[OPTION_ITYPE];
     ctrl.RType = options[OPTION_RTYPE];
@@ -104,7 +124,7 @@ void METIS_mCHPartGraphRecursive(int *nvtxs, int *ncon, idxtype *xadj, idxtype *
   ctrl.optype = OP_PMETIS;
   ctrl.CoarsenTo = 100;
 
-  ctrl.nmaxvwgt = 1.5/(1.0*ctrl.CoarsenTo);
+  ctrl.nmaxvwgt = 1.5 / (1.0 * ctrl.CoarsenTo);
 
   myubvec = fmalloc(*ncon, "PWMETIS: mytpwgts");
   scopy(*ncon, ubvec, myubvec);
@@ -116,7 +136,8 @@ void METIS_mCHPartGraphRecursive(int *nvtxs, int *ncon, idxtype *xadj, idxtype *
   IFSET(ctrl.dbglvl, DBG_TIME, InitTimers(&ctrl));
   IFSET(ctrl.dbglvl, DBG_TIME, starttimer(ctrl.TotalTmr));
 
-  *edgecut = MCHMlevelRecursiveBisection(&ctrl, &graph, *nparts, part, myubvec, 0);
+  *edgecut =
+    MCHMlevelRecursiveBisection(&ctrl, &graph, *nparts, part, myubvec, 0);
 
   IFSET(ctrl.dbglvl, DBG_TIME, stoptimer(ctrl.TotalTmr));
   IFSET(ctrl.dbglvl, DBG_TIME, PrintTimers(&ctrl));
@@ -124,18 +145,24 @@ void METIS_mCHPartGraphRecursive(int *nvtxs, int *ncon, idxtype *xadj, idxtype *
   FreeWorkSpace(&ctrl, &graph);
   GKfree(&myubvec, LTERM);
 
-  if (*numflag == 1)
-    Change2FNumbering(*nvtxs, xadj, adjncy, part);
+  if (*numflag == 1) Change2FNumbering(*nvtxs, xadj, adjncy, part);
 }
 
 
-
 /*************************************************************************
-* This function is the entry point for PWMETIS that accepts exact weights
-* for the target partitions
-**************************************************************************/
-void METIS_mCPartGraphRecursiveInternal(int *nvtxs, int *ncon, idxtype *xadj, idxtype *adjncy, 
-       float *nvwgt, idxtype *adjwgt, int *nparts, int *options, int *edgecut, idxtype *part)
+ * This function is the entry point for PWMETIS that accepts exact weights
+ * for the target partitions
+ **************************************************************************/
+void METIS_mCPartGraphRecursiveInternal(int* nvtxs,
+                                        int* ncon,
+                                        idxtype* xadj,
+                                        idxtype* adjncy,
+                                        float* nvwgt,
+                                        idxtype* adjwgt,
+                                        int* nparts,
+                                        int* options,
+                                        int* edgecut,
+                                        idxtype* part)
 {
   int i, j;
   GraphType graph;
@@ -143,13 +170,15 @@ void METIS_mCPartGraphRecursiveInternal(int *nvtxs, int *ncon, idxtype *xadj, id
 
   SetUpGraph2(&graph, *nvtxs, *ncon, xadj, adjncy, nvwgt, adjwgt);
 
-  if (options[0] == 0) {  /* Use the default parameters */
+  if (options[0] == 0)
+  { /* Use the default parameters */
     ctrl.CType = PMETIS_CTYPE;
     ctrl.IType = PMETIS_ITYPE;
     ctrl.RType = PMETIS_RTYPE;
     ctrl.dbglvl = PMETIS_DBGLVL;
   }
-  else {
+  else
+  {
     ctrl.CType = options[OPTION_CTYPE];
     ctrl.IType = options[OPTION_ITYPE];
     ctrl.RType = options[OPTION_RTYPE];
@@ -158,7 +187,7 @@ void METIS_mCPartGraphRecursiveInternal(int *nvtxs, int *ncon, idxtype *xadj, id
   ctrl.optype = OP_PMETIS;
   ctrl.CoarsenTo = 100;
 
-  ctrl.nmaxvwgt = 1.5/(1.0*ctrl.CoarsenTo);
+  ctrl.nmaxvwgt = 1.5 / (1.0 * ctrl.CoarsenTo);
 
   InitRandom(-1);
 
@@ -173,32 +202,41 @@ void METIS_mCPartGraphRecursiveInternal(int *nvtxs, int *ncon, idxtype *xadj, id
   IFSET(ctrl.dbglvl, DBG_TIME, PrintTimers(&ctrl));
 
   FreeWorkSpace(&ctrl, &graph);
-
 }
 
 
 /*************************************************************************
-* This function is the entry point for PWMETIS that accepts exact weights
-* for the target partitions
-**************************************************************************/
-void METIS_mCHPartGraphRecursiveInternal(int *nvtxs, int *ncon, idxtype *xadj, idxtype *adjncy, 
-       float *nvwgt, idxtype *adjwgt, int *nparts, float *ubvec, int *options, int *edgecut, 
-       idxtype *part)
+ * This function is the entry point for PWMETIS that accepts exact weights
+ * for the target partitions
+ **************************************************************************/
+void METIS_mCHPartGraphRecursiveInternal(int* nvtxs,
+                                         int* ncon,
+                                         idxtype* xadj,
+                                         idxtype* adjncy,
+                                         float* nvwgt,
+                                         idxtype* adjwgt,
+                                         int* nparts,
+                                         float* ubvec,
+                                         int* options,
+                                         int* edgecut,
+                                         idxtype* part)
 {
   int i, j;
   GraphType graph;
   CtrlType ctrl;
-  float *myubvec;
+  float* myubvec;
 
   SetUpGraph2(&graph, *nvtxs, *ncon, xadj, adjncy, nvwgt, adjwgt);
 
-  if (options[0] == 0) {  /* Use the default parameters */
+  if (options[0] == 0)
+  { /* Use the default parameters */
     ctrl.CType = PMETIS_CTYPE;
     ctrl.IType = PMETIS_ITYPE;
     ctrl.RType = PMETIS_RTYPE;
     ctrl.dbglvl = PMETIS_DBGLVL;
   }
-  else {
+  else
+  {
     ctrl.CType = options[OPTION_CTYPE];
     ctrl.IType = options[OPTION_ITYPE];
     ctrl.RType = options[OPTION_RTYPE];
@@ -207,7 +245,7 @@ void METIS_mCHPartGraphRecursiveInternal(int *nvtxs, int *ncon, idxtype *xadj, i
   ctrl.optype = OP_PMETIS;
   ctrl.CoarsenTo = 100;
 
-  ctrl.nmaxvwgt = 1.5/(1.0*ctrl.CoarsenTo);
+  ctrl.nmaxvwgt = 1.5 / (1.0 * ctrl.CoarsenTo);
 
   myubvec = fmalloc(*ncon, "PWMETIS: mytpwgts");
   scopy(*ncon, ubvec, myubvec);
@@ -219,24 +257,26 @@ void METIS_mCHPartGraphRecursiveInternal(int *nvtxs, int *ncon, idxtype *xadj, i
   IFSET(ctrl.dbglvl, DBG_TIME, InitTimers(&ctrl));
   IFSET(ctrl.dbglvl, DBG_TIME, starttimer(ctrl.TotalTmr));
 
-  *edgecut = MCHMlevelRecursiveBisection(&ctrl, &graph, *nparts, part, myubvec, 0);
+  *edgecut =
+    MCHMlevelRecursiveBisection(&ctrl, &graph, *nparts, part, myubvec, 0);
 
   IFSET(ctrl.dbglvl, DBG_TIME, stoptimer(ctrl.TotalTmr));
   IFSET(ctrl.dbglvl, DBG_TIME, PrintTimers(&ctrl));
 
   FreeWorkSpace(&ctrl, &graph);
   GKfree(&myubvec, LTERM);
-
 }
 
 
-
-
 /*************************************************************************
-* This function takes a graph and produces a bisection of it
-**************************************************************************/
-int MCMlevelRecursiveBisection(CtrlType *ctrl, GraphType *graph, int nparts, idxtype *part, 
-       float ubfactor, int fpart)
+ * This function takes a graph and produces a bisection of it
+ **************************************************************************/
+int MCMlevelRecursiveBisection(CtrlType* ctrl,
+                               GraphType* graph,
+                               int nparts,
+                               idxtype* part,
+                               float ubfactor,
+                               int fpart)
 {
   int i, j, nvtxs, ncon, cut;
   idxtype *label, *where;
@@ -244,13 +284,15 @@ int MCMlevelRecursiveBisection(CtrlType *ctrl, GraphType *graph, int nparts, idx
   float tpwgts[2];
 
   nvtxs = graph->nvtxs;
-  if (nvtxs == 0) {
-    printf("\t***Cannot bisect a graph with 0 vertices!\n\t***You are trying to partition a graph into too many parts!\n");
+  if (nvtxs == 0)
+  {
+    printf("\t***Cannot bisect a graph with 0 vertices!\n\t***You are trying "
+           "to partition a graph into too many parts!\n");
     return 0;
   }
 
   /* Determine the weights of the partitions */
-  tpwgts[0] = 1.0*(nparts>>1)/(1.0*nparts);
+  tpwgts[0] = 1.0 * (nparts >> 1) / (1.0 * nparts);
   tpwgts[1] = 1.0 - tpwgts[0];
 
   MCMlevelEdgeBisection(ctrl, graph, tpwgts, ubfactor);
@@ -258,37 +300,42 @@ int MCMlevelRecursiveBisection(CtrlType *ctrl, GraphType *graph, int nparts, idx
 
   label = graph->label;
   where = graph->where;
-  for (i=0; i<nvtxs; i++)
-    part[label[i]] = where[i] + fpart;
+  for (i = 0; i < nvtxs; i++) part[label[i]] = where[i] + fpart;
 
-  if (nparts > 2) 
-    SplitGraphPart(ctrl, graph, &lgraph, &rgraph);
+  if (nparts > 2) SplitGraphPart(ctrl, graph, &lgraph, &rgraph);
 
   /* Free the memory of the top level graph */
   GKfree(&graph->gdata, &graph->nvwgt, &graph->rdata, &graph->label, LTERM);
 
 
   /* Do the recursive call */
-  if (nparts > 3) {
-    cut += MCMlevelRecursiveBisection(ctrl, &lgraph, nparts/2, part, ubfactor, fpart);
-    cut += MCMlevelRecursiveBisection(ctrl, &rgraph, nparts-nparts/2, part, ubfactor, fpart+nparts/2);
+  if (nparts > 3)
+  {
+    cut += MCMlevelRecursiveBisection(
+      ctrl, &lgraph, nparts / 2, part, ubfactor, fpart);
+    cut += MCMlevelRecursiveBisection(
+      ctrl, &rgraph, nparts - nparts / 2, part, ubfactor, fpart + nparts / 2);
   }
-  else if (nparts == 3) {
-    cut += MCMlevelRecursiveBisection(ctrl, &rgraph, nparts-nparts/2, part, ubfactor, fpart+nparts/2);
+  else if (nparts == 3)
+  {
+    cut += MCMlevelRecursiveBisection(
+      ctrl, &rgraph, nparts - nparts / 2, part, ubfactor, fpart + nparts / 2);
     GKfree(&lgraph.gdata, &lgraph.nvwgt, &lgraph.label, LTERM);
   }
 
   return cut;
-
 }
 
 
-
 /*************************************************************************
-* This function takes a graph and produces a bisection of it
-**************************************************************************/
-int MCHMlevelRecursiveBisection(CtrlType *ctrl, GraphType *graph, int nparts, idxtype *part, 
-      float *ubvec, int fpart)
+ * This function takes a graph and produces a bisection of it
+ **************************************************************************/
+int MCHMlevelRecursiveBisection(CtrlType* ctrl,
+                                GraphType* graph,
+                                int nparts,
+                                idxtype* part,
+                                float* ubvec,
+                                int fpart)
 {
   int i, j, nvtxs, ncon, cut;
   idxtype *label, *where;
@@ -299,38 +346,40 @@ int MCHMlevelRecursiveBisection(CtrlType *ctrl, GraphType *graph, int nparts, id
 
   nvtxs = graph->nvtxs;
   ncon = graph->ncon;
-  if (nvtxs == 0) {
-    printf("\t***Cannot bisect a graph with 0 vertices!\n\t***You are trying to partition a graph into too many parts!\n");
+  if (nvtxs == 0)
+  {
+    printf("\t***Cannot bisect a graph with 0 vertices!\n\t***You are trying "
+           "to partition a graph into too many parts!\n");
     return 0;
   }
 
   /* Determine the weights of the partitions */
-  tpwgts[0] = 1.0*(nparts>>1)/(1.0*nparts);
+  tpwgts[0] = 1.0 * (nparts >> 1) / (1.0 * nparts);
   tpwgts[1] = 1.0 - tpwgts[0];
 
   /* For now, relax at the coarsest level only */
-  if (nparts == 2)
-    MCHMlevelEdgeBisection(ctrl, graph, tpwgts, ubvec);
+  if (nparts == 2) MCHMlevelEdgeBisection(ctrl, graph, tpwgts, ubvec);
   else
     MCMlevelEdgeBisection(ctrl, graph, tpwgts, 1.000);
   cut = graph->mincut;
 
   label = graph->label;
   where = graph->where;
-  for (i=0; i<nvtxs; i++)
-    part[label[i]] = where[i] + fpart;
+  for (i = 0; i < nvtxs; i++) part[label[i]] = where[i] + fpart;
 
-  if (nparts > 2) {
+  if (nparts > 2)
+  {
     /* Adjust the ubvecs before the split */
     npwgts = graph->npwgts;
     lubvec = fmalloc(ncon, "MCHMlevelRecursiveBisection");
     rubvec = fmalloc(ncon, "MCHMlevelRecursiveBisection");
 
-    for (i=0; i<ncon; i++) {
-      lubvec[i] = ubvec[i]*tpwgts[0]/npwgts[i];
+    for (i = 0; i < ncon; i++)
+    {
+      lubvec[i] = ubvec[i] * tpwgts[0] / npwgts[i];
       lubvec[i] = amax(lubvec[i], 1.01);
 
-      rubvec[i] = ubvec[i]*tpwgts[1]/npwgts[ncon+i];
+      rubvec[i] = ubvec[i] * tpwgts[1] / npwgts[ncon + i];
       rubvec[i] = amax(rubvec[i], 1.01);
     }
 
@@ -342,61 +391,64 @@ int MCHMlevelRecursiveBisection(CtrlType *ctrl, GraphType *graph, int nparts, id
 
 
   /* Do the recursive call */
-  if (nparts > 3) {
-    cut += MCHMlevelRecursiveBisection(ctrl, &lgraph, nparts/2, part, lubvec, fpart);
-    cut += MCHMlevelRecursiveBisection(ctrl, &rgraph, nparts-nparts/2, part, rubvec, fpart+nparts/2);
+  if (nparts > 3)
+  {
+    cut += MCHMlevelRecursiveBisection(
+      ctrl, &lgraph, nparts / 2, part, lubvec, fpart);
+    cut += MCHMlevelRecursiveBisection(
+      ctrl, &rgraph, nparts - nparts / 2, part, rubvec, fpart + nparts / 2);
   }
-  else if (nparts == 3) {
-    cut += MCHMlevelRecursiveBisection(ctrl, &rgraph, nparts-nparts/2, part, rubvec, fpart+nparts/2);
+  else if (nparts == 3)
+  {
+    cut += MCHMlevelRecursiveBisection(
+      ctrl, &rgraph, nparts - nparts / 2, part, rubvec, fpart + nparts / 2);
     GKfree(&lgraph.gdata, &lgraph.nvwgt, &lgraph.label, LTERM);
   }
 
   GKfree(&lubvec, &rubvec, LTERM);
 
   return cut;
-
 }
 
 
-
-
 /*************************************************************************
-* This function performs multilevel bisection
-**************************************************************************/
-void MCMlevelEdgeBisection(CtrlType *ctrl, GraphType *graph, float *tpwgts, float ubfactor)
+ * This function performs multilevel bisection
+ **************************************************************************/
+void MCMlevelEdgeBisection(CtrlType* ctrl,
+                           GraphType* graph,
+                           float* tpwgts,
+                           float ubfactor)
 {
-  GraphType *cgraph;
+  GraphType* cgraph;
 
   cgraph = MCCoarsen2Way(ctrl, graph);
 
   MocInit2WayPartition(ctrl, cgraph, tpwgts, ubfactor);
 
-  MocRefine2Way(ctrl, graph, cgraph, tpwgts, ubfactor); 
-
+  MocRefine2Way(ctrl, graph, cgraph, tpwgts, ubfactor);
 }
 
 
-
 /*************************************************************************
-* This function performs multilevel bisection
-**************************************************************************/
-void MCHMlevelEdgeBisection(CtrlType *ctrl, GraphType *graph, float *tpwgts, float *ubvec)
+ * This function performs multilevel bisection
+ **************************************************************************/
+void MCHMlevelEdgeBisection(CtrlType* ctrl,
+                            GraphType* graph,
+                            float* tpwgts,
+                            float* ubvec)
 {
   int i;
-  GraphType *cgraph;
+  GraphType* cgraph;
 
-/*
-  for (i=0; i<graph->ncon; i++)
-    printf("%.4f ", ubvec[i]);
-  printf("\n");
-*/
+  /*
+    for (i=0; i<graph->ncon; i++)
+      printf("%.4f ", ubvec[i]);
+    printf("\n");
+  */
 
   cgraph = MCCoarsen2Way(ctrl, graph);
 
   MocInit2WayPartition2(ctrl, cgraph, tpwgts, ubvec);
 
-  MocRefine2Way2(ctrl, graph, cgraph, tpwgts, ubvec); 
-
+  MocRefine2Way2(ctrl, graph, cgraph, tpwgts, ubvec);
 }
-
-

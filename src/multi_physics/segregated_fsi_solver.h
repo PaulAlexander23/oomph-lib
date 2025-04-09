@@ -51,7 +51,7 @@ namespace oomph
     }
 
     /// Empty destructor
-    ~PicardConvergenceData(){};
+    ~PicardConvergenceData() {};
 
     /// Number of iterations performed
     unsigned& niter()

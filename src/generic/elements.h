@@ -1408,7 +1408,7 @@ namespace oomph
     void set_n_node(const unsigned& n)
     {
       // This should only be done once, in a Node constructor
-      //#ifdef PARANOID
+      // #ifdef PARANOID
       // if(Node_pt)
       // {
       //  OomphLibWarning(
@@ -1416,7 +1416,7 @@ namespace oomph
       //   "FiniteElement::set_n_node()",
       //   OOMPH_EXCEPTION_LOCATION);
       // }
-      //#endif
+      // #endif
       // Delete any previous storage to avoid memory leaks
       // This will only happen in very special cases
       delete[] Node_pt;
@@ -3501,7 +3501,7 @@ namespace oomph
   public:
     /// Constructor: Pass geometric object; initialise time deriv to 0
     SolidInitialCondition(GeomObject* geom_object_pt)
-      : Geom_object_pt(geom_object_pt), IC_time_deriv(0){};
+      : Geom_object_pt(geom_object_pt), IC_time_deriv(0) {};
 
 
     /// Broken copy constructor

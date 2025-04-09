@@ -18,7 +18,7 @@
  *   Broadcast an array of *dtype* numbers. The communication pattern
  *   is a tree with number of branches equal to NBRANCHES.
  *   The process ranks are between 0 and Np-1.
- * 
+ *
  *   The following two pairs of graphs give different ways of viewing the same
  *   algorithm.  The first pair shows the trees as they should be visualized
  *   when examining the algorithm.  The second pair are isomorphic graphs of
@@ -28,7 +28,7 @@
  *   power of two to work).
  *
  *    TREE BROADCAST, NBRANCHES = 2     *    TREE BROADCAST, NBRANCHES = 3
- *       
+ *
  *     root=2
  * i=4   &______________                *
  *       |              \               *       root=2
@@ -53,62 +53,67 @@
  *
  * Arguments
  * =========
- * 
+ *
  * scope
  * </pre>
  */
 
-void
-bcast_tree(void *buf, int count, MPI_Datatype dtype, int root, int tag,
-	   gridinfo_t *grid, int scope, int *recvcnt)
+void bcast_tree(void* buf,
+                int count,
+                MPI_Datatype dtype,
+                int root,
+                int tag,
+                gridinfo_t* grid,
+                int scope,
+                int* recvcnt)
 
 {
-    int Iam, i, j, Np, nbranches = 2;
-    int destdist; /* The distance of the destination node. */
-    int mydist;   /* My distance from root. */
-    superlu_scope_t *scp;
-    MPI_Status status;
+  int Iam, i, j, Np, nbranches = 2;
+  int destdist; /* The distance of the destination node. */
+  int mydist; /* My distance from root. */
+  superlu_scope_t* scp;
+  MPI_Status status;
 
-    if ( scope == COMM_COLUMN ) scp = &grid->cscp;
-    else if ( scope == ROW ) scp = &grid->rscp;
-    Np = scp->Np;
-    if ( Np < 2 ) return;
-    Iam = scp->Iam;
-    
-    if ( Iam == root ) {
-	for (i = nbranches; i < Np; i *= nbranches);
-	for (i /= nbranches; i > 0; i /= nbranches) {
-	    for (j = 1; j < nbranches; ++j) {
-		destdist = i*j;
-		if ( destdist < Np )
-		    MPI_Send( buf, count, dtype, (Iam+destdist)%Np, 
-			     tag, scp->comm );
-	    }
-	}
-    } else {
-	mydist = (Np + Iam - root) % Np;
-	for (i = nbranches; i < Np; i *= nbranches);
-	for (i /= nbranches; (mydist%i); i /= nbranches);
-/*	MPI_Probe( MPI_ANY_SOURCE, tag, scp->comm, &status );*/
-	MPI_Recv( buf, count, dtype, MPI_ANY_SOURCE, tag, scp->comm, &status );
-	MPI_Get_count( &status, dtype, recvcnt );
+  if (scope == COMM_COLUMN) scp = &grid->cscp;
+  else if (scope == ROW)
+    scp = &grid->rscp;
+  Np = scp->Np;
+  if (Np < 2) return;
+  Iam = scp->Iam;
 
-	/* I need to send data to others. */
-	while ( (i > 1) && !(mydist%i) ) {
-	    i /= nbranches;
-	    for (j = 1; j < nbranches; ++j) {
-		destdist = mydist + j*i;
-		if ( destdist < Np )
-		    MPI_Send( buf, *recvcnt, dtype, (root+destdist)%Np, 
-			     tag, scp->comm );
-	    }
-	}
+  if (Iam == root)
+  {
+    for (i = nbranches; i < Np; i *= nbranches);
+    for (i /= nbranches; i > 0; i /= nbranches)
+    {
+      for (j = 1; j < nbranches; ++j)
+      {
+        destdist = i * j;
+        if (destdist < Np)
+          MPI_Send(buf, count, dtype, (Iam + destdist) % Np, tag, scp->comm);
+      }
     }
+  }
+  else
+  {
+    mydist = (Np + Iam - root) % Np;
+    for (i = nbranches; i < Np; i *= nbranches);
+    for (i /= nbranches; (mydist % i); i /= nbranches);
+    /*	MPI_Probe( MPI_ANY_SOURCE, tag, scp->comm, &status );*/
+    MPI_Recv(buf, count, dtype, MPI_ANY_SOURCE, tag, scp->comm, &status);
+    MPI_Get_count(&status, dtype, recvcnt);
+
+    /* I need to send data to others. */
+    while ((i > 1) && !(mydist % i))
+    {
+      i /= nbranches;
+      for (j = 1; j < nbranches; ++j)
+      {
+        destdist = mydist + j * i;
+        if (destdist < Np)
+          MPI_Send(
+            buf, *recvcnt, dtype, (root + destdist) % Np, tag, scp->comm);
+      }
+    }
+  }
 } /* BCAST_TREE */
-
-
-
-
-
-
-

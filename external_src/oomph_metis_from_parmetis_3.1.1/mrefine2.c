@@ -15,33 +15,36 @@
 
 
 /*************************************************************************
-* This function is the entry point of refinement
-**************************************************************************/
-void MocRefine2Way2(CtrlType *ctrl, GraphType *orggraph, GraphType *graph, float *tpwgts, 
-       float *ubvec)
+ * This function is the entry point of refinement
+ **************************************************************************/
+void MocRefine2Way2(CtrlType* ctrl,
+                    GraphType* orggraph,
+                    GraphType* graph,
+                    float* tpwgts,
+                    float* ubvec)
 {
-
   IFSET(ctrl->dbglvl, DBG_TIME, starttimer(ctrl->UncoarsenTmr));
 
   /* Compute the parameters of the coarsest graph */
   MocCompute2WayPartitionParams(ctrl, graph);
 
-  for (;;) {
+  for (;;)
+  {
     ASSERT(CheckBnd(graph));
 
     IFSET(ctrl->dbglvl, DBG_TIME, starttimer(ctrl->RefTmr));
-    switch (ctrl->RType) {
+    switch (ctrl->RType)
+    {
       case RTYPE_FM:
         MocBalance2Way2(ctrl, graph, tpwgts, ubvec);
-        MocFM_2WayEdgeRefine2(ctrl, graph, tpwgts, ubvec, 8); 
+        MocFM_2WayEdgeRefine2(ctrl, graph, tpwgts, ubvec, 8);
         break;
       default:
         errexit("Unknown refinement type: %d\n", ctrl->RType);
     }
     IFSET(ctrl->dbglvl, DBG_TIME, stoptimer(ctrl->RefTmr));
 
-    if (graph == orggraph)
-      break;
+    if (graph == orggraph) break;
 
     graph = graph->finer;
     IFSET(ctrl->dbglvl, DBG_TIME, starttimer(ctrl->ProjectTmr));
@@ -51,5 +54,3 @@ void MocRefine2Way2(CtrlType *ctrl, GraphType *orggraph, GraphType *graph, float
 
   IFSET(ctrl->dbglvl, DBG_TIME, stoptimer(ctrl->UncoarsenTmr));
 }
-
-

@@ -11,7 +11,7 @@
  * Purpose
  * =======
  *
- * Read a DOUBLE PRECISION matrix stored in Rutherford-Boeing format 
+ * Read a DOUBLE PRECISION matrix stored in Rutherford-Boeing format
  * as described below.
  *
  * Line 1 (A72, A8)
@@ -73,168 +73,183 @@
 
 
 /*! \brief Eat up the rest of the current line */
-static int dDumpLine(FILE *fp)
+static int dDumpLine(FILE* fp)
 {
-    register int c;
-    while ((c = fgetc(fp)) != '\n') ;
-    return 0;
+  register int c;
+  while ((c = fgetc(fp)) != '\n');
+  return 0;
 }
 
-static int dParseIntFormat(char *buf, int *num, int *size)
+static int dParseIntFormat(char* buf, int* num, int* size)
 {
-    char *tmp;
+  char* tmp;
 
-    tmp = buf;
-    while (*tmp++ != '(') ;
-    sscanf(tmp, "%d", num);
-    while (*tmp != 'I' && *tmp != 'i') ++tmp;
-    ++tmp;
-    sscanf(tmp, "%d", size);
-    return 0;
+  tmp = buf;
+  while (*tmp++ != '(');
+  sscanf(tmp, "%d", num);
+  while (*tmp != 'I' && *tmp != 'i') ++tmp;
+  ++tmp;
+  sscanf(tmp, "%d", size);
+  return 0;
 }
 
-static int dParseFloatFormat(char *buf, int *num, int *size)
+static int dParseFloatFormat(char* buf, int* num, int* size)
 {
-    char *tmp, *period;
+  char *tmp, *period;
 
-    tmp = buf;
-    while (*tmp++ != '(') ;
-    *num = atoi(tmp); /*sscanf(tmp, "%d", num);*/
-    while (*tmp != 'E' && *tmp != 'e' && *tmp != 'D' && *tmp != 'd'
-           && *tmp != 'F' && *tmp != 'f') {
-        /* May find kP before nE/nD/nF, like (1P6F13.6). In this case the
-           num picked up refers to P, which should be skipped. */
-        if (*tmp=='p' || *tmp=='P') {
-           ++tmp;
-           *num = atoi(tmp); /*sscanf(tmp, "%d", num);*/
-        } else {
-           ++tmp;
-        }
+  tmp = buf;
+  while (*tmp++ != '(');
+  *num = atoi(tmp); /*sscanf(tmp, "%d", num);*/
+  while (*tmp != 'E' && *tmp != 'e' && *tmp != 'D' && *tmp != 'd' &&
+         *tmp != 'F' && *tmp != 'f')
+  {
+    /* May find kP before nE/nD/nF, like (1P6F13.6). In this case the
+       num picked up refers to P, which should be skipped. */
+    if (*tmp == 'p' || *tmp == 'P')
+    {
+      ++tmp;
+      *num = atoi(tmp); /*sscanf(tmp, "%d", num);*/
     }
-    ++tmp;
-    period = tmp;
-    while (*period != '.' && *period != ')') ++period ;
-    *period = '\0';
-    *size = atoi(tmp); /*sscanf(tmp, "%2d", size);*/
+    else
+    {
+      ++tmp;
+    }
+  }
+  ++tmp;
+  period = tmp;
+  while (*period != '.' && *period != ')') ++period;
+  *period = '\0';
+  *size = atoi(tmp); /*sscanf(tmp, "%2d", size);*/
 
-    return 0;
+  return 0;
 }
 
-static int ReadVector(FILE *fp, int n, int *where, int perline, int persize)
+static int ReadVector(FILE* fp, int n, int* where, int perline, int persize)
 {
-    register int i, j, item;
-    char tmp, buf[100];
+  register int i, j, item;
+  char tmp, buf[100];
 
-    i = 0;
-    while (i < n) {
-        fgets(buf, 100, fp);    /* read a line at a time */
-        for (j=0; j<perline && i<n; j++) {
-            tmp = buf[(j+1)*persize];     /* save the char at that place */
-            buf[(j+1)*persize] = 0;       /* null terminate */
-            item = atoi(&buf[j*persize]); 
-            buf[(j+1)*persize] = tmp;     /* recover the char at that place */
-            where[i++] = item - 1;
-        }
+  i = 0;
+  while (i < n)
+  {
+    fgets(buf, 100, fp); /* read a line at a time */
+    for (j = 0; j < perline && i < n; j++)
+    {
+      tmp = buf[(j + 1) * persize]; /* save the char at that place */
+      buf[(j + 1) * persize] = 0; /* null terminate */
+      item = atoi(&buf[j * persize]);
+      buf[(j + 1) * persize] = tmp; /* recover the char at that place */
+      where[i++] = item - 1;
     }
+  }
 
-    return 0;
+  return 0;
 }
 
-static int dReadValues(FILE *fp, int n, double *destination, int perline,
-        int persize)
+static int dReadValues(
+  FILE* fp, int n, double* destination, int perline, int persize)
 {
-    register int i, j, k, s;
-    char tmp, buf[100];
+  register int i, j, k, s;
+  char tmp, buf[100];
 
-    i = 0;
-    while (i < n) {
-        fgets(buf, 100, fp);    /* read a line at a time */
-        for (j=0; j<perline && i<n; j++) {
-            tmp = buf[(j+1)*persize];     /* save the char at that place */
-            buf[(j+1)*persize] = 0;       /* null terminate */
-            s = j*persize;
-            for (k = 0; k < persize; ++k) /* No D_ format in C */
-                if ( buf[s+k] == 'D' || buf[s+k] == 'd' ) buf[s+k] = 'E';
-            destination[i++] = atof(&buf[s]);
-            buf[(j+1)*persize] = tmp;     /* recover the char at that place */
-        }
+  i = 0;
+  while (i < n)
+  {
+    fgets(buf, 100, fp); /* read a line at a time */
+    for (j = 0; j < perline && i < n; j++)
+    {
+      tmp = buf[(j + 1) * persize]; /* save the char at that place */
+      buf[(j + 1) * persize] = 0; /* null terminate */
+      s = j * persize;
+      for (k = 0; k < persize; ++k) /* No D_ format in C */
+        if (buf[s + k] == 'D' || buf[s + k] == 'd') buf[s + k] = 'E';
+      destination[i++] = atof(&buf[s]);
+      buf[(j + 1) * persize] = tmp; /* recover the char at that place */
     }
+  }
 
-    return 0;
+  return 0;
 }
 
 
-
-void
-dreadrb(FILE *fp, int *nrow, int *ncol, int *nonz,
-        double **nzval, int **rowind, int **colptr)
+void dreadrb(FILE* fp,
+             int* nrow,
+             int* ncol,
+             int* nonz,
+             double** nzval,
+             int** rowind,
+             int** colptr)
 {
+  register int i, numer_lines = 0;
+  int tmp, colnum, colsize, rownum, rowsize, valnum, valsize;
+  char buf[100], type[4];
 
-    register int i, numer_lines = 0;
-    int tmp, colnum, colsize, rownum, rowsize, valnum, valsize;
-    char buf[100], type[4];
 
+  /* Line 1 */
+  fgets(buf, 100, fp);
+  fputs(buf, stdout);
 
-    /* Line 1 */
-    fgets(buf, 100, fp);
-    fputs(buf, stdout);
+  /* Line 2 */
+  for (i = 0; i < 4; i++)
+  {
+    fscanf(fp, "%14c", buf);
+    buf[14] = 0;
+    sscanf(buf, "%d", &tmp);
+    if (i == 3) numer_lines = tmp;
+  }
+  dDumpLine(fp);
 
-    /* Line 2 */
-    for (i=0; i<4; i++) {
-        fscanf(fp, "%14c", buf); buf[14] = 0;
-        sscanf(buf, "%d", &tmp);
-        if (i == 3) numer_lines = tmp;
-    }
-    dDumpLine(fp);
-
-    /* Line 3 */
-    fscanf(fp, "%3c", type);
-    fscanf(fp, "%11c", buf); /* pad */
-    type[3] = 0;
+  /* Line 3 */
+  fscanf(fp, "%3c", type);
+  fscanf(fp, "%11c", buf); /* pad */
+  type[3] = 0;
 #ifdef DEBUG
-    printf("Matrix type %s\n", type);
+  printf("Matrix type %s\n", type);
 #endif
 
-    fscanf(fp, "%14c", buf); sscanf(buf, "%d", nrow);
-    fscanf(fp, "%14c", buf); sscanf(buf, "%d", ncol);
-    fscanf(fp, "%14c", buf); sscanf(buf, "%d", nonz);
-    fscanf(fp, "%14c", buf); sscanf(buf, "%d", &tmp);
+  fscanf(fp, "%14c", buf);
+  sscanf(buf, "%d", nrow);
+  fscanf(fp, "%14c", buf);
+  sscanf(buf, "%d", ncol);
+  fscanf(fp, "%14c", buf);
+  sscanf(buf, "%d", nonz);
+  fscanf(fp, "%14c", buf);
+  sscanf(buf, "%d", &tmp);
 
-    if (tmp != 0)
-        printf("This is not an assembled matrix!\n");
-    if (*nrow != *ncol)
-        printf("Matrix is not square.\n");
-    dDumpLine(fp);
+  if (tmp != 0) printf("This is not an assembled matrix!\n");
+  if (*nrow != *ncol) printf("Matrix is not square.\n");
+  dDumpLine(fp);
 
-    /* Allocate storage for the three arrays ( nzval, rowind, colptr ) */
-    dallocateA_dist(*ncol, *nonz, nzval, rowind, colptr);
+  /* Allocate storage for the three arrays ( nzval, rowind, colptr ) */
+  dallocateA_dist(*ncol, *nonz, nzval, rowind, colptr);
 
-    /* Line 4: format statement */
-    fscanf(fp, "%16c", buf);
-    dParseIntFormat(buf, &colnum, &colsize);
-    fscanf(fp, "%16c", buf);
-    dParseIntFormat(buf, &rownum, &rowsize);
-    fscanf(fp, "%20c", buf);
-    dParseFloatFormat(buf, &valnum, &valsize);
-    dDumpLine(fp);
+  /* Line 4: format statement */
+  fscanf(fp, "%16c", buf);
+  dParseIntFormat(buf, &colnum, &colsize);
+  fscanf(fp, "%16c", buf);
+  dParseIntFormat(buf, &rownum, &rowsize);
+  fscanf(fp, "%20c", buf);
+  dParseFloatFormat(buf, &valnum, &valsize);
+  dDumpLine(fp);
 
 #ifdef DEBUG
-    printf("%d rows, %d nonzeros\n", *nrow, *nonz);
-    printf("colnum %d, colsize %d\n", colnum, colsize);
-    printf("rownum %d, rowsize %d\n", rownum, rowsize);
-    printf("valnum %d, valsize %d\n", valnum, valsize);
+  printf("%d rows, %d nonzeros\n", *nrow, *nonz);
+  printf("colnum %d, colsize %d\n", colnum, colsize);
+  printf("rownum %d, rowsize %d\n", rownum, rowsize);
+  printf("valnum %d, valsize %d\n", valnum, valsize);
 #endif
 
-    ReadVector(fp, *ncol+1, *colptr, colnum, colsize);
-    ReadVector(fp, *nonz, *rowind, rownum, rowsize);
-    if ( numer_lines ) {
-        dReadValues(fp, *nonz, *nzval, valnum, valsize);
-    }
+  ReadVector(fp, *ncol + 1, *colptr, colnum, colsize);
+  ReadVector(fp, *nonz, *rowind, rownum, rowsize);
+  if (numer_lines)
+  {
+    dReadValues(fp, *nonz, *nzval, valnum, valsize);
+  }
 
-    //sym = (type[1] == 'S' || type[1] == 's');
-    //if ( sym ) {
-	FormFullA(*ncol, nonz, nzval, rowind, colptr);
-    //}
+  // sym = (type[1] == 'S' || type[1] == 's');
+  // if ( sym ) {
+  FormFullA(*ncol, nonz, nzval, rowind, colptr);
+  //}
 
-    fclose(fp);
+  fclose(fp);
 }

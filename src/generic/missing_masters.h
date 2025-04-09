@@ -29,7 +29,7 @@
 // Temporary flag to enable full annotation of multi domain
 // comms (but keep alive because it would be such a bloody pain to
 // rewrite it if things ever go wrong again...)
-//#define ANNOTATE_MULTI_DOMAIN_COMMUNICATION
+// #define ANNOTATE_MULTI_DOMAIN_COMMUNICATION
 
 // Include guards to prevent multiple inclusion of the header
 #ifndef OOMPH_MISSING_MASTERS_HEADER

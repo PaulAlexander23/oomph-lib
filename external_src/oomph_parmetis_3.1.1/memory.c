@@ -18,37 +18,46 @@
 /*************************************************************************/
 /*! This function allocate various pools of memory */
 /*************************************************************************/
-void AllocateWSpace(CtrlType *ctrl, GraphType *graph, WorkSpaceType *wspace)
+void AllocateWSpace(CtrlType* ctrl, GraphType* graph, WorkSpaceType* wspace)
 {
-  wspace->nlarge  = 2*graph->nedges;
-  wspace->nparts  = ctrl->nparts;
-  wspace->npes    = ctrl->npes;
+  wspace->nlarge = 2 * graph->nedges;
+  wspace->nparts = ctrl->nparts;
+  wspace->npes = ctrl->npes;
 
-  wspace->maxcore = 8*graph->nedges+1;
-  wspace->core    = idxmalloc(wspace->maxcore, "AllocateWSpace: wspace->core");
+  wspace->maxcore = 8 * graph->nedges + 1;
+  wspace->core = idxmalloc(wspace->maxcore, "AllocateWSpace: wspace->core");
 
-  wspace->pairs   = (KeyValueType *)wspace->core;
-  wspace->indices = (idxtype *)(wspace->pairs + wspace->nlarge);
-  wspace->degrees = (EdgeType *)(wspace->indices + wspace->nlarge);
+  wspace->pairs = (KeyValueType*)wspace->core;
+  wspace->indices = (idxtype*)(wspace->pairs + wspace->nlarge);
+  wspace->degrees = (EdgeType*)(wspace->indices + wspace->nlarge);
 
 
-  wspace->pv1 = idxmalloc(ctrl->nparts+ctrl->npes+1, "AllocateWSpace: wspace->pv1");
-  wspace->pv2 = idxmalloc(ctrl->nparts+ctrl->npes+1, "AllocateWSpace: wspace->pv2");
-  wspace->pv3 = idxmalloc(ctrl->nparts+ctrl->npes+1, "AllocateWSpace: wspace->pv3");
-  wspace->pv4 = idxmalloc(ctrl->nparts+ctrl->npes+1, "AllocateWSpace: wspace->pv4");
+  wspace->pv1 =
+    idxmalloc(ctrl->nparts + ctrl->npes + 1, "AllocateWSpace: wspace->pv1");
+  wspace->pv2 =
+    idxmalloc(ctrl->nparts + ctrl->npes + 1, "AllocateWSpace: wspace->pv2");
+  wspace->pv3 =
+    idxmalloc(ctrl->nparts + ctrl->npes + 1, "AllocateWSpace: wspace->pv3");
+  wspace->pv4 =
+    idxmalloc(ctrl->nparts + ctrl->npes + 1, "AllocateWSpace: wspace->pv4");
 
-  wspace->pepairs1 = (KeyValueType *)GKmalloc(sizeof(KeyValueType)*(ctrl->nparts+ctrl->npes+1), "AllocateWSpace: wspace->pepairs?");
-  wspace->pepairs2 = (KeyValueType *)GKmalloc(sizeof(KeyValueType)*(ctrl->nparts+ctrl->npes+1), "AllocateWSpace: wspace->pepairs?");
-
+  wspace->pepairs1 = (KeyValueType*)GKmalloc(
+    sizeof(KeyValueType) * (ctrl->nparts + ctrl->npes + 1),
+    "AllocateWSpace: wspace->pepairs?");
+  wspace->pepairs2 = (KeyValueType*)GKmalloc(
+    sizeof(KeyValueType) * (ctrl->nparts + ctrl->npes + 1),
+    "AllocateWSpace: wspace->pepairs?");
 }
 
 /*************************************************************************/
 /*! This function re-allocates the workspace if previous one is not large
     enough */
 /*************************************************************************/
-void AdjustWSpace(CtrlType *ctrl, GraphType *graph, WorkSpaceType *wspace)
+void AdjustWSpace(CtrlType* ctrl, GraphType* graph, WorkSpaceType* wspace)
 {
-  if (wspace->nlarge < 2*graph->nedges || wspace->nparts < ctrl->nparts || wspace->npes < ctrl->npes) {
+  if (wspace->nlarge < 2 * graph->nedges || wspace->nparts < ctrl->nparts ||
+      wspace->npes < ctrl->npes)
+  {
     FreeWSpace(wspace);
     AllocateWSpace(ctrl, graph, wspace);
   }
@@ -57,38 +66,37 @@ void AdjustWSpace(CtrlType *ctrl, GraphType *graph, WorkSpaceType *wspace)
 /*************************************************************************/
 /*! This function de-allocate various pools of memory */
 /**************************************************************************/
-void FreeWSpace(WorkSpaceType *wspace)
+void FreeWSpace(WorkSpaceType* wspace)
 {
-
-  GKfree((void **)&wspace->core, 
-         (void **)&wspace->pv1, 
-         (void **)&wspace->pv2, 
-         (void **)&wspace->pv3,
-         (void **)&wspace->pv4, 
-         (void **)&wspace->pepairs1, 
-         (void **)&wspace->pepairs2, 
+  GKfree((void**)&wspace->core,
+         (void**)&wspace->pv1,
+         (void**)&wspace->pv2,
+         (void**)&wspace->pv3,
+         (void**)&wspace->pv4,
+         (void**)&wspace->pepairs1,
+         (void**)&wspace->pepairs2,
          LTERM);
 }
 
 
 /*************************************************************************
-* This function de-allocates memory allocated for the control structures
-**************************************************************************/
-void FreeCtrl(CtrlType *ctrl)
+ * This function de-allocates memory allocated for the control structures
+ **************************************************************************/
+void FreeCtrl(CtrlType* ctrl)
 {
   MPI_Comm_free(&(ctrl->gcomm));
 }
 
 
 /*************************************************************************
-* This function creates a CoarseGraphType data structure and initializes
-* the various fields
-**************************************************************************/
-GraphType *CreateGraph(void)
+ * This function creates a CoarseGraphType data structure and initializes
+ * the various fields
+ **************************************************************************/
+GraphType* CreateGraph(void)
 {
-  GraphType *graph;
+  GraphType* graph;
 
-  graph = (GraphType *)GKmalloc(sizeof(GraphType), "CreateCoarseGraph: graph");
+  graph = (GraphType*)GKmalloc(sizeof(GraphType), "CreateCoarseGraph: graph");
 
   InitGraph(graph);
 
@@ -97,14 +105,15 @@ GraphType *CreateGraph(void)
 
 
 /*************************************************************************
-* This function creates a CoarseGraphType data structure and initializes
-* the various fields
-**************************************************************************/
-void InitGraph(GraphType *graph) 
+ * This function creates a CoarseGraphType data structure and initializes
+ * the various fields
+ **************************************************************************/
+void InitGraph(GraphType* graph)
 {
   graph->gnvtxs = graph->nvtxs = graph->nedges = graph->nsep = -1;
   graph->nnbrs = graph->nrecv = graph->nsend = graph->nlocal = -1;
-  graph->xadj = graph->vwgt = graph->vsize = graph->adjncy = graph->adjwgt = NULL;
+  graph->xadj = graph->vwgt = graph->vsize = graph->adjncy = graph->adjwgt =
+    NULL;
   graph->nvwgt = NULL;
   graph->vtxdist = NULL;
   graph->match = graph->cmap = NULL;
@@ -123,111 +132,106 @@ void InitGraph(GraphType *graph)
   graph->lnpwgts = graph->gnpwgts = NULL;
   graph->rinfo = NULL;
 
-  graph->nrinfo  = NULL;
-  graph->sepind  = NULL;
+  graph->nrinfo = NULL;
+  graph->sepind = NULL;
   graph->hmarker = NULL;
 
   graph->coarser = graph->finer = NULL;
-
 }
 
 /*************************************************************************
-* This function deallocates any memory stored in a graph
-**************************************************************************/
-void FreeGraph(GraphType *graph) 
+ * This function deallocates any memory stored in a graph
+ **************************************************************************/
+void FreeGraph(GraphType* graph)
 {
-
-  GKfree((void **)&graph->xadj, 
-         (void **)&graph->vwgt,
-         (void **)&graph->nvwgt,
-         (void **)&graph->vsize,
-         (void **)&graph->adjncy,
-         (void **)&graph->adjwgt,
-         (void **)&graph->vtxdist, 
-         (void **)&graph->match, 
-         (void **)&graph->cmap, 
-         (void **)&graph->lperm, 
-         (void **)&graph->label, 
-         (void **)&graph->where, 
-         (void **)&graph->home, 
-         (void **)&graph->rinfo, 
-         (void **)&graph->nrinfo, 
-         (void **)&graph->sepind,
-         (void **)&graph->hmarker,
-         (void **)&graph->lpwgts, 
-         (void **)&graph->gpwgts, 
-         (void **)&graph->lnpwgts, 
-         (void **)&graph->gnpwgts, 
-         (void **)&graph->peind, 
-         (void **)&graph->sendptr, 
-         (void **)&graph->sendind, 
-         (void **)&graph->recvptr, 
-         (void **)&graph->recvind, 
-         (void **)&graph->imap,
-         (void **)&graph->rlens,
-         (void **)&graph->slens,
-         (void **)&graph->rcand,
-         (void **)&graph->pexadj,
-         (void **)&graph->peadjncy,
-         (void **)&graph->peadjloc,
+  GKfree((void**)&graph->xadj,
+         (void**)&graph->vwgt,
+         (void**)&graph->nvwgt,
+         (void**)&graph->vsize,
+         (void**)&graph->adjncy,
+         (void**)&graph->adjwgt,
+         (void**)&graph->vtxdist,
+         (void**)&graph->match,
+         (void**)&graph->cmap,
+         (void**)&graph->lperm,
+         (void**)&graph->label,
+         (void**)&graph->where,
+         (void**)&graph->home,
+         (void**)&graph->rinfo,
+         (void**)&graph->nrinfo,
+         (void**)&graph->sepind,
+         (void**)&graph->hmarker,
+         (void**)&graph->lpwgts,
+         (void**)&graph->gpwgts,
+         (void**)&graph->lnpwgts,
+         (void**)&graph->gnpwgts,
+         (void**)&graph->peind,
+         (void**)&graph->sendptr,
+         (void**)&graph->sendind,
+         (void**)&graph->recvptr,
+         (void**)&graph->recvind,
+         (void**)&graph->imap,
+         (void**)&graph->rlens,
+         (void**)&graph->slens,
+         (void**)&graph->rcand,
+         (void**)&graph->pexadj,
+         (void**)&graph->peadjncy,
+         (void**)&graph->peadjloc,
          LTERM);
 
   free(graph);
 }
 
 
-
 /*************************************************************************
-* This function deallocates any memory stored in a graph
-**************************************************************************/
-void FreeInitialGraphAndRemap(GraphType *graph, int wgtflag, int freevsize) 
+ * This function deallocates any memory stored in a graph
+ **************************************************************************/
+void FreeInitialGraphAndRemap(GraphType* graph, int wgtflag, int freevsize)
 {
   int i, nedges;
   idxtype *adjncy, *imap;
 
   nedges = graph->nedges;
   adjncy = graph->adjncy;
-  imap   = graph->imap;
+  imap = graph->imap;
 
-  if (imap != NULL) {
-    for (i=0; i<nedges; i++)
-      adjncy[i] = imap[adjncy[i]];  /* Apply local to global transformation */
+  if (imap != NULL)
+  {
+    for (i = 0; i < nedges; i++)
+      adjncy[i] = imap[adjncy[i]]; /* Apply local to global transformation */
   }
 
   /* Free Metis's things */
-  GKfree((void **)&graph->match, 
-         (void **)&graph->cmap, 
-         (void **)&graph->lperm, 
-         (void **)&graph->where, 
-         (void **)&graph->label, 
-         (void **)&graph->rinfo, 
-         (void **)&graph->nrinfo, 
-         (void **)&graph->nvwgt, 
-         (void **)&graph->lpwgts, 
-         (void **)&graph->gpwgts, 
-         (void **)&graph->lnpwgts, 
-         (void **)&graph->gnpwgts, 
-         (void **)&graph->sepind,
-         (void **)&graph->peind, 
-         (void **)&graph->sendptr, 
-         (void **)&graph->sendind, 
-         (void **)&graph->recvptr, 
-         (void **)&graph->recvind, 
-         (void **)&graph->imap,
-         (void **)&graph->rlens,
-         (void **)&graph->slens,
-         (void **)&graph->rcand,
-         (void **)&graph->pexadj,
-         (void **)&graph->peadjncy,
-         (void **)&graph->peadjloc,
+  GKfree((void**)&graph->match,
+         (void**)&graph->cmap,
+         (void**)&graph->lperm,
+         (void**)&graph->where,
+         (void**)&graph->label,
+         (void**)&graph->rinfo,
+         (void**)&graph->nrinfo,
+         (void**)&graph->nvwgt,
+         (void**)&graph->lpwgts,
+         (void**)&graph->gpwgts,
+         (void**)&graph->lnpwgts,
+         (void**)&graph->gnpwgts,
+         (void**)&graph->sepind,
+         (void**)&graph->peind,
+         (void**)&graph->sendptr,
+         (void**)&graph->sendind,
+         (void**)&graph->recvptr,
+         (void**)&graph->recvind,
+         (void**)&graph->imap,
+         (void**)&graph->rlens,
+         (void**)&graph->slens,
+         (void**)&graph->rcand,
+         (void**)&graph->pexadj,
+         (void**)&graph->peadjncy,
+         (void**)&graph->peadjloc,
          LTERM);
 
-  if (freevsize)
-    GKfree((void **)&graph->vsize, LTERM);
-  if ((wgtflag&2) == 0) 
-    GKfree((void **)&graph->vwgt, LTERM);
-  if ((wgtflag&1) == 0) 
-    GKfree((void **)&graph->adjwgt, LTERM);
+  if (freevsize) GKfree((void**)&graph->vsize, LTERM);
+  if ((wgtflag & 2) == 0) GKfree((void**)&graph->vwgt, LTERM);
+  if ((wgtflag & 1) == 0) GKfree((void**)&graph->adjwgt, LTERM);
 
   free(graph);
 }

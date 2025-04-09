@@ -16,14 +16,25 @@
 
 
 /***********************************************************************************
-* This function is the entry point of the parallel k-way multilevel mesh partitionioner. 
-* This function assumes nothing about the mesh distribution.
-* It is the general case.
-************************************************************************************/
-void ParMETIS_V3_PartMeshKway(idxtype *elmdist, idxtype *eptr, idxtype *eind, idxtype *elmwgt, 
-                 int *wgtflag, int *numflag, int *ncon, int *ncommonnodes, int *nparts, 
-		 float *tpwgts, float *ubvec, int *options, int *edgecut, idxtype *part, 
-		 MPI_Comm *comm)
+ * This function is the entry point of the parallel k-way multilevel mesh
+ *partitionioner. This function assumes nothing about the mesh distribution. It
+ *is the general case.
+ ************************************************************************************/
+void ParMETIS_V3_PartMeshKway(idxtype* elmdist,
+                              idxtype* eptr,
+                              idxtype* eind,
+                              idxtype* elmwgt,
+                              int* wgtflag,
+                              int* numflag,
+                              int* ncon,
+                              int* ncommonnodes,
+                              int* nparts,
+                              float* tpwgts,
+                              float* ubvec,
+                              int* options,
+                              int* edgecut,
+                              idxtype* part,
+                              MPI_Comm* comm)
 {
   int i, nvtxs, nedges, gnedges, npes, mype;
   idxtype *xadj, *adjncy;
@@ -33,20 +44,24 @@ void ParMETIS_V3_PartMeshKway(idxtype *elmdist, idxtype *eptr, idxtype *eind, id
   /********************************/
   /* Try and take care bad inputs */
   /********************************/
-  if (elmdist == NULL || eptr == NULL || eind == NULL || wgtflag == NULL || 
-      numflag == NULL || ncon == NULL || ncommonnodes == NULL || nparts == NULL ||
-      tpwgts == NULL || ubvec == NULL || options == NULL || edgecut == NULL || 
-      part == NULL || comm == NULL) {
+  if (elmdist == NULL || eptr == NULL || eind == NULL || wgtflag == NULL ||
+      numflag == NULL || ncon == NULL || ncommonnodes == NULL ||
+      nparts == NULL || tpwgts == NULL || ubvec == NULL || options == NULL ||
+      edgecut == NULL || part == NULL || comm == NULL)
+  {
     printf("ERROR: One or more required parameters is NULL. Aborting.\n");
     abort();
   }
-  if (((*wgtflag)&2) && elmwgt == NULL) {
-    printf("ERROR: elmwgt == NULL when vertex weights were specified. Aborting.\n");
+  if (((*wgtflag) & 2) && elmwgt == NULL)
+  {
+    printf(
+      "ERROR: elmwgt == NULL when vertex weights were specified. Aborting.\n");
     abort();
   }
 
-  
-  SetUpCtrl(&ctrl, *nparts, (options[0] == 1 ? options[PMV3_OPTION_DBGLVL] : 0), *comm);
+
+  SetUpCtrl(
+    &ctrl, *nparts, (options[0] == 1 ? options[PMV3_OPTION_DBGLVL] : 0), *comm);
   npes = ctrl.npes;
   mype = ctrl.mype;
 
@@ -58,13 +73,17 @@ void ParMETIS_V3_PartMeshKway(idxtype *elmdist, idxtype *eptr, idxtype *eind, id
   starttimer(TotalTmr);
   starttimer(Mesh2DualTmr);
 
-  ParMETIS_V3_Mesh2Dual(elmdist, eptr, eind, numflag, ncommonnodes, &xadj, &adjncy, &(ctrl.comm));
+  ParMETIS_V3_Mesh2Dual(
+    elmdist, eptr, eind, numflag, ncommonnodes, &xadj, &adjncy, &(ctrl.comm));
 
-  if (ctrl.dbglvl&DBG_INFO) {
-    nvtxs = elmdist[mype+1]-elmdist[mype];
+  if (ctrl.dbglvl & DBG_INFO)
+  {
+    nvtxs = elmdist[mype + 1] - elmdist[mype];
     nedges = xadj[nvtxs] + (*numflag == 0 ? 0 : -1);
-    rprintf(&ctrl, "Completed Dual Graph -- Nvtxs: %d, Nedges: %d \n", 
-            elmdist[npes], GlobalSESum(&ctrl, nedges));
+    rprintf(&ctrl,
+            "Completed Dual Graph -- Nvtxs: %d, Nedges: %d \n",
+            elmdist[npes],
+            GlobalSESum(&ctrl, nedges));
   }
 
   MPI_Barrier(ctrl.comm);
@@ -76,18 +95,31 @@ void ParMETIS_V3_PartMeshKway(idxtype *elmdist, idxtype *eptr, idxtype *eind, id
   /***********************/
   starttimer(ParMETISTmr);
 
-  ParMETIS_V3_PartKway(elmdist, xadj, adjncy, elmwgt, NULL, wgtflag, numflag, ncon, 
-                       nparts, tpwgts, ubvec, options, edgecut, part, &(ctrl.comm));
+  ParMETIS_V3_PartKway(elmdist,
+                       xadj,
+                       adjncy,
+                       elmwgt,
+                       NULL,
+                       wgtflag,
+                       numflag,
+                       ncon,
+                       nparts,
+                       tpwgts,
+                       ubvec,
+                       options,
+                       edgecut,
+                       part,
+                       &(ctrl.comm));
 
   MPI_Barrier(ctrl.comm);
   stoptimer(ParMETISTmr);
   stoptimer(TotalTmr);
 
-  IFSET(ctrl.dbglvl, DBG_TIME, PrintTimer(&ctrl, Mesh2DualTmr,	"   Mesh2Dual"));
-  IFSET(ctrl.dbglvl, DBG_TIME, PrintTimer(&ctrl, ParMETISTmr,	"    ParMETIS"));
-  IFSET(ctrl.dbglvl, DBG_TIME, PrintTimer(&ctrl, TotalTmr,	"       Total"));
+  IFSET(ctrl.dbglvl, DBG_TIME, PrintTimer(&ctrl, Mesh2DualTmr, "   Mesh2Dual"));
+  IFSET(ctrl.dbglvl, DBG_TIME, PrintTimer(&ctrl, ParMETISTmr, "    ParMETIS"));
+  IFSET(ctrl.dbglvl, DBG_TIME, PrintTimer(&ctrl, TotalTmr, "       Total"));
 
-  GKfree((void **)&xadj, (void **)&adjncy, LTERM);
+  GKfree((void**)&xadj, (void**)&adjncy, LTERM);
 
   FreeCtrl(&ctrl);
 
