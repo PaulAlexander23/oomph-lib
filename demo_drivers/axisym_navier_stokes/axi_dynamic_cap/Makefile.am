@@ -67,6 +67,7 @@ LDADD = -L@libdir@ \
 	-lfluid_interface \
 	-lsolid \
 	-lconstitutive \
+	-lmeshes \
 	-lgeneric \
 	$(EXTERNAL_LIBS) $(FLIBS)
 #-lboost_unit_test_framework \
