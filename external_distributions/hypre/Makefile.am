@@ -12,16 +12,16 @@ endif
 #makefile variable to hold the configure command (part 2)
 run_command2 = " "
 if ALREADY_HAVE_BLAS
-run_command2 += " --with-blas=$(BLAS_LIB)  "
+run_command2 += " --with-blas-libs=\"$(BLAS_LIB)\" --with-blas-libs-dir=\"/home/paul/apps/open-blas/lib/\" "
 else
 run_command2 += "  --with-blas=dummy  "
 endif
 if ALREADY_HAVE_LAPACK
-run_command2 += " --with-lapack=$(LAPACK_LIB) "
+run_command2 += " --with-lapack-libs=\"$(LAPACK_LIB)\" --with-lapack-libs-dir=\"/home/paul/apps/open-blas/lib/\" "
 else
 run_command2 += " --with-lapack=dummy" 
 endif
-run_command2 += " F77=\"$(F77)\"  CC=\"$(CC)\" CXX=\"$(CXX)\" FFLAGS=\"$(FFLAGS)\"  CFLAGS=\"$(CFLAGS)\" CXXFLAGS=\"$(CXXFLAGS)\" LDFLAGS=\"$(LDFLAGS)\" " 
+run_command2 += " F77=\"$(F77)\"  CC=\"$(CC)\" CXX=\"$(CXX)\" FFLAGS=\"$(FFLAGS)\"  CFLAGS=\"$(CFLAGS)\" CXXFLAGS=\"$(CXXFLAGS)\" LDFLAGS=\"$(LDFLAGS)\" FLIBS=\"-L/opt/AMD/aocc-compiler-5.0.0/lib -lflang -lflangrti -lompstub -lpgmath -lmpi_usempif08 -lmpi_usempi_ignore_tkr -lmpi_mpifh -lmpi\" " 
 
 all:
 	echo "#! /bin/bash" > build_script.bash
