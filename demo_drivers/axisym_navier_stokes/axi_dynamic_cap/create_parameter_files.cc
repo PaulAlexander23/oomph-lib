@@ -124,6 +124,13 @@ vector<double> range_string_to_numbers(string range_str)
 
 int main(int argc, char** argv)
 {
+#ifdef OOMPH_HAS_MPI
+  // Setup mpi but don't make a copy of mpi_comm_world because
+  // mumps wants to work with the real thing.
+  bool make_copy_of_mpi_comm_world = false;
+  MPI_Helpers::init(argc, argv, make_copy_of_mpi_comm_world);
+#endif
+
   std::cout << "Create parameter files." << std::endl;
   CommandLineArgs::setup(argc, argv);
 
@@ -284,6 +291,11 @@ int main(int argc, char** argv)
   }
 
   std::cout << "End of creation of parameter files." << std::endl;
+
+// Finalise MPI after all computations are complete
+#ifdef OOMPH_HAS_MPI
+  MPI_Helpers::finalize();
+#endif
 
   return 0;
 }
