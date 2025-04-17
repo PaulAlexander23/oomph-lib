@@ -79,7 +79,6 @@
 #include "generic/oomph_utilities.h"
 #include "generic/timesteppers.h"
 #include "generic/unstructured_two_d_mesh_geometry_base.h"
-#include "meshes/triangle_mesh.template.h"
 #include "navier_stokes/eigensolution_functions.h"
 #include "navier_stokes/pressure_evaluation_elements.h"
 #include "navier_stokes/singular_navier_stokes_solution_elements.h"
@@ -297,6 +296,11 @@ namespace oomph
       // Set up the rest of the parameters
       //======================================================================
 
+#ifdef OOMPH_HAS_MUMPS
+      MumpsSolver* mumps_solver_pt = new MumpsSolver;
+      this->linear_solver_pt() = mumps_solver_pt;
+#endif
+
       this->Start_time = std::chrono::high_resolution_clock::now();
 
       // Create time stepper
@@ -500,6 +504,14 @@ namespace oomph
       delete Bulk_mesh_pt;
 
       delete Constitutive_law_pt;
+
+#ifdef OOMPH_HAS_MUMPS
+      // Delete the solver
+      if (this->linear_solver_pt())
+      {
+        delete this->linear_solver_pt();
+      }
+#endif
     }
 
     Params* parameters_pt() const
