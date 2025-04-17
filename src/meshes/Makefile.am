@@ -49,7 +49,7 @@ collapsible_channel_domain.h  fish_domain.h channel_with_leaflet_domain.h \
 quarter_tube_domain.h eighth_sphere_domain.h quarter_circle_sector_domain.h \
 cylinder_with_flag_domain.h topologically_rectangular_domain.h \
 tube_domain.h full_circle_domain.h quarter_pipe_domain.h annular_domain.h \
-rectangle_with_hole_domain.h
+rectangle_with_hole_domain.h classcomp.h
 
 # Define the non-mesh sources
 non_mesh_sources =  \
@@ -68,7 +68,8 @@ lib_LTLIBRARIES = libmeshes.la
 # Sources that the library depends on: 
 #-------------------------------------
 libmeshes_la_SOURCES=mesh_instructions.aux mesh_names.aux mesh_clean.aux \
-	             $(headers_and_sources)
+	             $(headers_and_sources) \
+				 classcomp.cc
 
 # The library's include headers:
 #-------------------------------
