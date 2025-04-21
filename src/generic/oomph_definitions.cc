@@ -100,13 +100,10 @@ namespace oomph
     void clean_up_memory()
     {
       // If it's a null pointer
-      if (Exception_stringstream_pt != 0)
+      if (Exception_stringstream_pt != nullptr)
       {
-        // Delete it
-        delete Exception_stringstream_pt;
-
         // Make it a null pointer
-        Exception_stringstream_pt = 0;
+        Exception_stringstream_pt.reset(nullptr);
       }
     } // End of clean_up_memory
 
@@ -114,7 +111,7 @@ namespace oomph
     std::ostream* Error_message_stream_pt = &std::cerr;
 
     /// String stream that records the error message
-    std::stringstream* Exception_stringstream_pt = 0;
+    std::unique_ptr<std::stringstream> Exception_stringstream_pt = nullptr;
   } // namespace TerminateHelper
 
   /// ////////////////////////////////////////////////////////////////////
@@ -139,12 +136,16 @@ namespace oomph
   //==========================================================================
   OomphLibException::~OomphLibException() throw()
   {
-    if (!Suppress_error_message)
+    if (!Suppress_error_message && Exception_stream_pt != 0 &&
+        Exception_stringstream_pt != 0)
     {
       (*Exception_stream_pt) << (*Exception_stringstream_pt).str();
     }
-    delete Exception_stringstream_pt;
-    Exception_stringstream_pt = 0;
+    if (Exception_stringstream_pt != 0)
+    {
+      delete Exception_stringstream_pt;
+      Exception_stringstream_pt = 0;
+    }
   }
 
   //========================================================================
