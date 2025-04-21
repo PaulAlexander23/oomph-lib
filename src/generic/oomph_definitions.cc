@@ -62,23 +62,37 @@ namespace oomph
     /// Setup terminate helper
     void setup()
     {
-      if (Exception_stringstream_pt != 0) delete Exception_stringstream_pt;
-      Exception_stringstream_pt = new std::stringstream;
-      std::set_terminate(spawn_errors_from_uncaught_errors);
+      if (Exception_stringstream_pt == nullptr)
+      {
+        Exception_stringstream_pt = std::make_unique<std::stringstream>();
+        std::set_terminate(spawn_errors_from_uncaught_errors);
+      }
     }
 
     /// Flush string stream of error messages (call when error has been
     /// caught)
     void suppress_exception_error_messages()
     {
-      delete Exception_stringstream_pt;
-      Exception_stringstream_pt = new std::stringstream;
+      if (Exception_stringstream_pt != nullptr)
+      {
+        // Clear the string stream
+        Exception_stringstream_pt->str("");
+        Exception_stringstream_pt->clear();
+      }
+      else
+      {
+        setup();
+      }
     }
 
     /// Function to spawn messages from uncaught errors
     void spawn_errors_from_uncaught_errors()
     {
-      (*Error_message_stream_pt) << (*Exception_stringstream_pt).str();
+      if (Exception_stringstream_pt != 0 && Error_message_stream_pt != 0)
+      {
+        // Output the error message
+        (*Error_message_stream_pt) << (*Exception_stringstream_pt).str();
+      }
     }
 
     /// Clean up function that deletes anything dynamically allocated
@@ -212,8 +226,11 @@ namespace oomph
 
     // Copy message to stream in terminate helper in case the message
     // doesn't get caught and/or doesn/t make it to the destructor
-    (*TerminateHelper::Exception_stringstream_pt)
-      << (*Exception_stringstream_pt).str();
+    if (TerminateHelper::Exception_stringstream_pt != nullptr)
+    {
+      (*TerminateHelper::Exception_stringstream_pt)
+        << (*Exception_stringstream_pt).str();
+    }
   }
 
   //========================================================================
