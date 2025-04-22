@@ -88,7 +88,7 @@ namespace oomph
     /// Function to spawn messages from uncaught errors
     void spawn_errors_from_uncaught_errors()
     {
-      if (Exception_stringstream_pt != 0 && Error_message_stream_pt != 0)
+      if (Exception_stringstream_pt != nullptr && Error_message_stream_pt != 0)
       {
         // Output the error message
         (*Error_message_stream_pt) << (*Exception_stringstream_pt).str();

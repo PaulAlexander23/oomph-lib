@@ -45,6 +45,7 @@
 #include "generalised_timesteppers.h"
 #include "explicit_timesteppers.h"
 #include "double_vector_with_halo.h"
+#include "oomph_definitions.h"
 #include <complex>
 #include <map>
 
@@ -3062,41 +3063,25 @@ namespace oomph
   //=======================================================================
   /// A class to handle errors in the Newton solver
   //=======================================================================
-  class NewtonSolverError
+  class NewtonSolverError : public OomphLibError
   {
   public:
-    /// Error in the linear solver
-    bool Linear_solver_error;
-
     /// Max. # of iterations performed when the Newton solver died
     unsigned Iterations;
 
     /// Max. residual when Newton solver died
     double Maxres;
 
-    /// Default constructor, does nothing
-    NewtonSolverError() : Linear_solver_error(false), Iterations(0), Maxres(0.0)
-    {
-    }
-
-    /// Constructor that passes a failure of the linear solver
-    NewtonSolverError(const bool& Passed_linear_failure)
-      : Linear_solver_error(Passed_linear_failure), Iterations(0), Maxres(0.0)
-    {
-    }
-
     /// Constructor that passes number of iterations and residuals
-    NewtonSolverError(unsigned Passed_iterations, double Passed_maxres)
-      : Linear_solver_error(false),
+    NewtonSolverError(const std::string& error_description,
+                      const std::string& function_name,
+                      const char* location,
+                      unsigned Passed_iterations,
+                      double Passed_maxres)
+      : OomphLibError(error_description, function_name, location),
         Iterations(Passed_iterations),
         Maxres(Passed_maxres)
     {
-    }
-
-    /// Access function to the error in the linear solver
-    bool linear_solver_error()
-    {
-      return Linear_solver_error;
     }
 
     /// Access function to Max. # of iterations performed when the Newton solver

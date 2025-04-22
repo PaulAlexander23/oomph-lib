@@ -861,5 +861,19 @@ namespace oomph
 
 #endif
   }; // end of SuperLUSolver
+
+  /// Linear Solver Error class
+  /// This class is used to throw exceptions when the linear solver
+  /// encounters an error.
+  class LinearSolverError : public OomphLibError
+  {
+  public:
+    LinearSolverError(const std::string& error_description,
+                      const std::string& function_name,
+                      const char* location)
+      : OomphLibError(error_description, function_name, location)
+    {
+    }
+  };
 } // namespace oomph
 #endif
