@@ -886,9 +886,11 @@ namespace oomph
         steady_newton_solve(0);
         local_is_adaption_needed = is_adaption_needed();
 
+      if (this->Nnewton_iter_taken != 0){
         create_restart_file();
         doc_solution();
         increment_doc_number();
+      }
 
         // Increment loop count
       } while (n < max_adapt && local_is_adaption_needed);
