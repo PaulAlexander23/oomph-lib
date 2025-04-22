@@ -222,11 +222,15 @@ void normal_continuation_run(Params& parameters,
     // Store current state of problem
     DoubleVector dofs;
     problem.get_dofs(dofs);
+
+    // Check we can take a step before we adapt
+    bool solve_is_succesful = false;
     try
     {
       // Solve for the steady state adapting if needed by the Z2 error
       // estimator
-      problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
+      problem.steady_newton_solve();
+      solve_is_succesful = true;
     }
     // If error in solving for the steady state
     catch (OomphLibException& e)
@@ -239,6 +243,11 @@ void normal_continuation_run(Params& parameters,
 
       // Reduce step size
       step /= 2.0;
+    }
+    // If the solve is successful then we can adapt if needed
+    if (solve_is_succesful)
+    {
+      problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
     }
   }
 
