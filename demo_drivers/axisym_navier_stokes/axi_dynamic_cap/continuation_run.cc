@@ -30,7 +30,6 @@
 #include "fluid_interface.h"
 #include "constitutive.h"
 #include "solid.h"
-#include "meshes/triangle_mesh.h"
 
 // Local include files
 #include "projectable_axisymmetric_Ttaylor_hood_elements.h"
@@ -233,8 +232,9 @@ void normal_continuation_run(Params& parameters,
       solve_is_succesful = true;
     }
     // If error in solving for the steady state
-    catch (OomphLibException& e)
+    catch (OomphLibError& err)
     {
+      cout << "Caught OomphLibError: " << err.what() << endl;
       // Restore state of the problem
       problem.set_dofs(dofs);
 
@@ -441,8 +441,15 @@ int main(int argc, char** argv)
   }
   else
   {
-    normal_continuation_run(
-      parameters, args.starting_step, continuation_param_pt);
+    try
+    {
+      normal_continuation_run(
+        parameters, args.starting_step, continuation_param_pt);
+    }
+    catch (exception& e)
+    {
+      std::cout << "Caught OomphLibError: " << e.what() << std::endl;
+    }
   }
 
 // Finalise MPI after all computations are complete
