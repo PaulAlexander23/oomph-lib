@@ -304,7 +304,9 @@ namespace oomph
           // ALH : throw an exception if the frontal_solver fails
           if (Info[0] < 0)
           {
-            throw NewtonSolverError(true);
+            throw LinearSolverError("Linear solver MA42AD failed",
+                                    OOMPH_CURRENT_FUNCTION,
+                                    OOMPH_EXCEPTION_LOCATION);
           }
         }
 
@@ -377,7 +379,9 @@ namespace oomph
           // ALH : throw an exception if the frontal_solver fails
           if (Info[0] < 0)
           {
-            throw NewtonSolverError(true);
+            throw LinearSolverError("Linear solver MA42JD failed",
+                                    OOMPH_CURRENT_FUNCTION,
+                                    OOMPH_EXCEPTION_LOCATION);
           }
         }
 
@@ -757,7 +761,10 @@ namespace oomph
               {
                 oomph_info << "Can't recover from this error" << std::endl;
               }
-              throw NewtonSolverError(true);
+              throw LinearSolverError(
+                "Linear solver MA42BD failed. Can't recover from this error.",
+                OOMPH_CURRENT_FUNCTION,
+                OOMPH_EXCEPTION_LOCATION);
             }
           }
 
@@ -877,7 +884,7 @@ namespace oomph
     }
 
     // Free the memory assigned
-    delete[] * dx;
+    delete[] *dx;
     delete dx;
     delete[] last;
   }
@@ -945,7 +952,9 @@ namespace oomph
     // If there has been an error throw it
     if (Info[0] < 0)
     {
-      throw NewtonSolverError(true);
+      throw LinearSolverError("Linear solver MA42CD failed",
+                              OOMPH_CURRENT_FUNCTION,
+                              OOMPH_EXCEPTION_LOCATION);
     }
 
     result.build(this->distribution_pt());
@@ -956,9 +965,9 @@ namespace oomph
     }
 
     // Delete the allocated storage
-    delete[] * x;
+    delete[] *x;
     delete x;
-    delete[] * b;
+    delete[] *b;
     delete b;
   }
 
