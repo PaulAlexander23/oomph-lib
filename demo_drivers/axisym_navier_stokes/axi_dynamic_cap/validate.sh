@@ -20,35 +20,52 @@ validate(){
     # Expects to be called as
     # validate executable input actual_output_filename expected_output_filename
   
-  mkdir Validation/RESLT
+  mkdir -p Validation/RESLT
 
   var="./$1 $2"
   echo $var
   eval $var 
-  echo "done"
-  LOG="Validation/validation.log"
-  echo " " >> $LOG 
-  echo "Validation run" >> $LOG
-  echo "---------------------------------------------" >> $LOG
-  echo " " >> $LOG
-  echo "Validation directory: " >> $LOG
-  echo " " >> $LOG
-  echo "  " `pwd` >> $LOG
-  echo " " >> $LOG
+  if test "$?" = "0"; then
+      echo "done"
+      LOG="Validation/validation.log"
+      echo " " >> $LOG 
+      echo "Validation run" >> $LOG
+      echo "---------------------------------------------" >> $LOG
+      echo " " >> $LOG
+      echo "Validation directory: " >> $LOG
+      echo " " >> $LOG
+      echo "  " `pwd` >> $LOG
+      echo " " >> $LOG
 
-  ## Compute expected file name 
-  #TEMP=$(basename -- $2)
-  #FILE=${1%% *}"_"${TEMP%.*}"_results.dat"
-  FILE=${4%.*}
-  echo Validation/$FILE
-  cat  Validation/RESLT/$3 > Validation/$FILE
-  rm Validation/RESLT -r
-  
-  if test "$1" = "no_fpdiff"; then
-    echo "dummy [OK] -- Can't run fpdiff.py because we don't have python or validata" >> $LOG
+      ## Compute expected file name 
+      #TEMP=$(basename -- $2)
+      #FILE=${1%% *}"_"${TEMP%.*}"_results.dat"
+      FILE=${4%.*}
+      echo Validation/$FILE
+      cat  Validation/RESLT/$3 > Validation/$FILE
+      rm Validation/RESLT -r
+      
+      if test "$1" = "no_fpdiff"; then
+        echo "dummy [OK] -- Can't run fpdiff.py because we don't have python or validata" >> $LOG
+      else
+        ../../../bin/fpdiff.py validata/$4  \
+               Validation/$FILE 0.1 2e-7 >> $LOG
+      fi
   else
-    ../../../bin/fpdiff.py validata/$4  \
-           Validation/$FILE 0.1 2e-7 >> $LOG
+      echo "done - returned error"
+      LOG="Validation/validation.log"
+      echo " " >> $LOG 
+      echo "Validation run" >> $LOG
+      echo "---------------------------------------------" >> $LOG
+      echo " " >> $LOG
+      echo "Validation directory: " >> $LOG
+      echo " " >> $LOG
+      echo "  " `pwd` >> $LOG
+      echo " " >> $LOG
+      FILE=${4%.*}
+      echo Validation/$FILE
+      echo "[FAILED] -- Returned and exit code" >> $LOG
+      rm Validation/RESLT -r
   fi
   
 }
@@ -63,16 +80,16 @@ validate "axi_dynamic_cap --parameters " validata/unsteady-parameters.dat trace.
 validate "axi_dynamic_cap --parameters " validata/unsteady-parameters-with-restart.dat trace.dat axi_dynamic_cap_unsteady-parameters-with-restart_results.dat.gz
 
 # Obtuse runs
-validate "axi_dynamic_cap --parameters " validata/obtuse-parameters.dat trace.dat axi_dynamic_cap_obtuse-parameters_results.dat.gz                   
+validate "axi_dynamic_cap --parameters " validata/obtuse-parameters.dat trace.dat axi_dynamic_cap_obtuse-parameters_results.dat.gz
 validate "axi_dynamic_cap --parameters " validata/obtuse-parameters-with-restart.dat trace.dat axi_dynamic_cap_obtuse-parameters-with-restart_results.dat.gz
 validate "axi_dynamic_cap --parameters " validata/obtuse-unsteady-parameters.dat trace.dat unsteady_run_parameters_results.dat.gz
 validate "axi_dynamic_cap --parameters " validata/obtuse-unsteady-parameters-with-restart.dat trace.dat unsteady_run_parameters-with-restart_results.dat.gz
 
 # # Continuation runs
 validate "continuation_run --Bo 0.1 --parameters " validata/unsteady-parameters-with-restart.dat trace.dat cont-bo-results.dat.gz
-validate "continuation_run --wall_velocity 0.1 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat cont-ca-results.dat.gz
-validate "continuation_run --arc --Bo 0.1 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat arc-cont-bo-results.dat.gz
-validate "continuation_run --arc --wall_velocity 0.1 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat continuation_run_unsteady-parameters-with-restart_results.dat.gz
+validate "continuation_run --wall_velocity 0.01 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat cont-ca-results.dat.gz
+validate "continuation_run --arc --Bo 0.01 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat arc-cont-bo-results.dat.gz
+validate "continuation_run --arc --wall_velocity 0.01 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat continuation_run_unsteady-parameters-with-restart_results.dat.gz
 validate "continuation_run --height_control --Bo 0.01 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat height-cont-bo-results.dat.gz
 validate "continuation_run --height_control --wall_velocity 0.1 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat continuation_run_height-continuation-parameters-with-restart_results.dat.gz
  
