@@ -396,6 +396,16 @@ void height_control_continuation_run(Params& parameters,
   problem.close_trace_files();
 }
 
+void write_error_to_exit_file(Params& parameters, OomphLibException& err)
+{
+  // Open file
+  ofstream output_stream(parameters.output_directory + "/exit_code.txt");
+  output_stream << "Caught an unhandled error during the run." << std::endl;
+  output_stream << "The err caught is ";
+  output_stream << err.what() << std::endl;
+  output_stream.close();
+}
+
 int main(int argc, char** argv)
 {
 #ifdef OOMPH_HAS_MPI
@@ -430,19 +440,29 @@ int main(int argc, char** argv)
   }
 
 
-  if (args.has_arc_continuation)
+  try
   {
-    arc_continuation_run(parameters, args.starting_step, continuation_param_pt);
+    if (args.has_arc_continuation)
+    {
+      arc_continuation_run(
+        parameters, args.starting_step, continuation_param_pt);
+    }
+    else if (args.has_height_control_continuation)
+    {
+      height_control_continuation_run(
+        parameters, args.starting_step, continuation_param_pt);
+    }
+    else
+    {
+      normal_continuation_run(
+        parameters, args.starting_step, continuation_param_pt);
+    }
   }
-  else if (args.has_height_control_continuation)
+  catch (OomphLibException& err)
   {
-    height_control_continuation_run(
-      parameters, args.starting_step, continuation_param_pt);
-  }
-  else
-  {
-    normal_continuation_run(
-      parameters, args.starting_step, continuation_param_pt);
+    cout << "Caught error" << endl;
+    write_error_to_exit_file(parameters, err);
+    return 1;
   }
 
 // Finalise MPI after all computations are complete

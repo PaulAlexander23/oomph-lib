@@ -85,13 +85,16 @@ validate "axi_dynamic_cap --parameters " validata/obtuse-parameters-with-restart
 validate "axi_dynamic_cap --parameters " validata/obtuse-unsteady-parameters.dat trace.dat unsteady_run_parameters_results.dat.gz
 validate "axi_dynamic_cap --parameters " validata/obtuse-unsteady-parameters-with-restart.dat trace.dat unsteady_run_parameters-with-restart_results.dat.gz
 
-# # Continuation runs
+# Continuation runs
 validate "continuation_run --Bo 0.1 --parameters " validata/unsteady-parameters-with-restart.dat trace.dat cont-bo-results.dat.gz
 validate "continuation_run --wall_velocity 0.01 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat cont-ca-results.dat.gz
 validate "continuation_run --arc --Bo 0.01 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat arc-cont-bo-results.dat.gz
 validate "continuation_run --arc --wall_velocity 0.01 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat continuation_run_unsteady-parameters-with-restart_results.dat.gz
 validate "continuation_run --height_control --Bo 0.01 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat height-cont-bo-results.dat.gz
 validate "continuation_run --height_control --wall_velocity 0.1 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat continuation_run_height-continuation-parameters-with-restart_results.dat.gz
+
+# Test exception handling.
+validate "continuation_run --wall_velocity 0.1 --parameters" validata/unsteady-parameters-with-restart-reduced-tolerance.dat exit_code.txt exit_code.txt.gz
  
 # Obtuse continuation runs
 validate "continuation_run --Bo 0.1 --parameters " validata/obtuse-unsteady-parameters-with-restart.dat trace.dat obtuse-cont-bo-results.dat.gz
