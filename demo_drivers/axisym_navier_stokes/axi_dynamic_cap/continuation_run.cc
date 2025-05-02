@@ -222,18 +222,15 @@ void normal_continuation_run(Params& parameters,
     // Store current state of problem
     DoubleVector dofs;
     problem.get_dofs(dofs);
+
+    // Check we can take a step before we adapt
+    bool solve_is_succesful = false;
     try
     {
       // Solve for the steady state adapting if needed by the Z2 error
       // estimator
-      problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
-
-      // Create the restart file - needed before the doc solution
-      problem.create_restart_file();
-
-      // Document the solution
-      problem.doc_solution();
-      problem.increment_doc_number();
+      problem.steady_newton_solve();
+      solve_is_succesful = true;
     }
     // If error in solving for the steady state
     catch (OomphLibException& e)
@@ -246,6 +243,11 @@ void normal_continuation_run(Params& parameters,
 
       // Reduce step size
       step /= 2.0;
+    }
+    // If the solve is successful then we can adapt if needed
+    if (solve_is_succesful)
+    {
+      problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
     }
   }
 
@@ -303,13 +305,6 @@ void arc_continuation_run(Params& parameters,
   // Solve for the steady state adapting if needed by the Z2 error estimator
   problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
 
-  // Create the restart file - needed before the doc solution
-  problem.create_restart_file();
-
-  // Document the solution
-  problem.doc_solution();
-  problem.increment_doc_number();
-
   // Set any analytic tracking parameters
   problem.set_analytic_dparameter(parameters.reynolds_inverse_froude_number_pt);
 
@@ -319,11 +314,11 @@ void arc_continuation_run(Params& parameters,
   for (unsigned n = 1; n < number_of_steps; n++)
   {
     problem.arc_length_step_solve(continuation_param_pt, ds);
-    problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
-
     problem.create_restart_file();
     problem.doc_solution();
     problem.increment_doc_number();
+
+    problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
 
     // Adapt and solve the problem by the number of intervals between adapts
     // parameter.
@@ -385,11 +380,6 @@ void height_control_continuation_run(Params& parameters,
   // estimator
   problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
 
-  // Document the solution
-  problem.create_restart_file();
-  problem.doc_solution();
-  problem.increment_doc_number();
-
   problem.set_continuation_parameter(continuation_param_pt);
   problem.set_height_from_soln();
 
@@ -400,14 +390,20 @@ void height_control_continuation_run(Params& parameters,
   {
     problem.step_height(ds);
     problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
-
-    problem.create_restart_file();
-    problem.doc_solution();
-    problem.increment_doc_number();
   }
 
   // Close the trace files
   problem.close_trace_files();
+}
+
+void write_error_to_exit_file(Params& parameters, OomphLibException& err)
+{
+  // Open file
+  ofstream output_stream(parameters.output_directory + "/exit_code.txt");
+  output_stream << "Caught an unhandled error during the run." << std::endl;
+  output_stream << "The err caught is ";
+  output_stream << err.what() << std::endl;
+  output_stream.close();
 }
 
 int main(int argc, char** argv)
@@ -444,19 +440,29 @@ int main(int argc, char** argv)
   }
 
 
-  if (args.has_arc_continuation)
+  try
   {
-    arc_continuation_run(parameters, args.starting_step, continuation_param_pt);
+    if (args.has_arc_continuation)
+    {
+      arc_continuation_run(
+        parameters, args.starting_step, continuation_param_pt);
+    }
+    else if (args.has_height_control_continuation)
+    {
+      height_control_continuation_run(
+        parameters, args.starting_step, continuation_param_pt);
+    }
+    else
+    {
+      normal_continuation_run(
+        parameters, args.starting_step, continuation_param_pt);
+    }
   }
-  else if (args.has_height_control_continuation)
+  catch (OomphLibException& err)
   {
-    height_control_continuation_run(
-      parameters, args.starting_step, continuation_param_pt);
-  }
-  else
-  {
-    normal_continuation_run(
-      parameters, args.starting_step, continuation_param_pt);
+    cout << "Caught error" << endl;
+    write_error_to_exit_file(parameters, err);
+    return 1;
   }
 
 // Finalise MPI after all computations are complete

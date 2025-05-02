@@ -4,7 +4,7 @@
 OOMPH_ROOT_DIR=$(make -s --no-print-directory print-top_builddir)
 
 #Set the number of tests to be checked
-NUM_TESTS=1
+NUM_TESTS=2
 
 # Setup validation directory
 #---------------------------
@@ -39,8 +39,19 @@ else
 fi
 rm -rf RESLT
 
+# Validation for newton solver error tests
 #-----------------------------------------
+echo "Running complex eigensolver validation "
+echo "Newton Solver Error validation" >> validation.log
+echo "--------------------------" >> validation.log
+echo " " >> validation.log
+../newton_solver_error_test && echo "[OK]" >> validation.log || echo "[FAILED]" >> validation.log
+echo "done"
+echo " " >> validation.log
 
+rm -rf RESLT
+
+#-----------------------------------------
 # Append log to main validation log
 cat validation.log >> ../../../../validation.log
 

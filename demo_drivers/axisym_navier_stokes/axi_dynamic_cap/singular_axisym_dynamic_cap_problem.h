@@ -79,7 +79,6 @@
 #include "generic/oomph_utilities.h"
 #include "generic/timesteppers.h"
 #include "generic/unstructured_two_d_mesh_geometry_base.h"
-#include "meshes/triangle_mesh.template.h"
 #include "navier_stokes/eigensolution_functions.h"
 #include "navier_stokes/pressure_evaluation_elements.h"
 #include "navier_stokes/singular_navier_stokes_solution_elements.h"
@@ -297,6 +296,11 @@ namespace oomph
       // Set up the rest of the parameters
       //======================================================================
 
+#ifdef OOMPH_HAS_MUMPS
+      MumpsSolver* mumps_solver_pt = new MumpsSolver;
+      this->linear_solver_pt() = mumps_solver_pt;
+#endif
+
       this->Start_time = std::chrono::high_resolution_clock::now();
 
       // Create time stepper
@@ -500,6 +504,14 @@ namespace oomph
       delete Bulk_mesh_pt;
 
       delete Constitutive_law_pt;
+
+#ifdef OOMPH_HAS_MUMPS
+      // Delete the solver
+      if (this->linear_solver_pt())
+      {
+        delete this->linear_solver_pt();
+      }
+#endif
     }
 
     Params* parameters_pt() const
@@ -864,10 +876,22 @@ namespace oomph
         {
           adapt();
           n++;
+
+          create_restart_file();
+          doc_solution();
+          increment_doc_number();
         }
+
         // Solve steady problem
         steady_newton_solve(0);
         local_is_adaption_needed = is_adaption_needed();
+
+      if (this->Nnewton_iter_taken != 0){
+        create_restart_file();
+        doc_solution();
+        increment_doc_number();
+      }
+
         // Increment loop count
       } while (n < max_adapt && local_is_adaption_needed);
       int is_solved = 0;
@@ -1419,10 +1443,10 @@ namespace oomph
         }
 
         // Document the solution
-        this->doc_solution();
+        doc_solution();
 
         // Dump the solution
-        this->create_restart_file();
+        create_restart_file();
 
         this->increment_doc_number();
         it++;
@@ -1773,7 +1797,7 @@ namespace oomph
     // Outputs the solution in the bulk and on the surfaces.
     // Uses the Z2 error estimator to compute an approximation to the error on
     // each element
-    void doc_solution()
+    virtual void doc_solution()
     {
       oomph_info << "doc_solution" << std::endl;
       int local_rank = 0;
@@ -2033,7 +2057,7 @@ namespace oomph
 
     // Create a restart file
     // Does not include all the problem and system parameters
-    void create_restart_file()
+    virtual void create_restart_file()
     {
       // Save current solution
       std::ofstream dump_filestream;
@@ -3999,6 +4023,8 @@ namespace oomph
       // Rebuild the global mesh
       //======================================================================
       this->rebuild_global_mesh();
+
+      this->Nnewton_iter_taken = 0;
     }
 
   private:

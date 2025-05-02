@@ -138,13 +138,6 @@ int main(int argc, char** argv)
   {
     // Solve for the steady state adapting if needed by the Z2 error estimator
     problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
-
-    // Create the restart file - needed before the doc solution
-    problem.create_restart_file();
-
-    // Document the solution
-    problem.doc_solution();
-    problem.increment_doc_number();
   }
   // ...otherwise, we are doing an unsteady run
   else

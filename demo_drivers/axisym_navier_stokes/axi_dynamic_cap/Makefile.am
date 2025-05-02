@@ -30,6 +30,11 @@ fix_include: $(IWYU_FIXED)
 test.log: run_tests
 	./run_tests -t extra > test.log
 
+update-regression-tests-validata: 
+	gzip Validation/*.dat
+	cp Validation/*.dat.gz validata/
+
+
 # Automake
 #continuation_run_SOURCES = continuation_run.cc
 
@@ -62,6 +67,7 @@ LDADD = -L@libdir@ \
 	-lfluid_interface \
 	-lsolid \
 	-lconstitutive \
+	-lmeshes \
 	-lgeneric \
 	$(EXTERNAL_LIBS) $(FLIBS)
 #-lboost_unit_test_framework \

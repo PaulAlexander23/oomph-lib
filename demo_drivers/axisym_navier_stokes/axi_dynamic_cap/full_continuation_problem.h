@@ -148,6 +148,8 @@ namespace oomph
                                       TIMESTEPPER>::actions_after_adapt();
 
       turn_into_height_problem();
+
+      set_height_from_soln();
     }
 
     void turn_into_height_problem()
@@ -435,7 +437,7 @@ namespace oomph
     //   this->Nnewton_iter_taken = n;
     // }
 
-    void doc_solution()
+    virtual void doc_solution()
     {
       SingularAxisymDynamicCapProblem<ELEMENT, TIMESTEPPER>::doc_solution();
 

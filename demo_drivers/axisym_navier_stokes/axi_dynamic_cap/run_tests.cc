@@ -13,6 +13,23 @@
 using namespace std;
 using namespace oomph;
 
+struct MPIConfig
+{
+  MPIConfig()
+  {
+    bool make_copy_of_mpi_comm_world = false;
+    MPI_Helpers::init(boost::unit_test::framework::master_test_suite().argc,
+                      boost::unit_test::framework::master_test_suite().argv,
+                      make_copy_of_mpi_comm_world);
+  }
+  ~MPIConfig()
+  {
+    MPI_Helpers::finalize();
+  }
+};
+
+BOOST_GLOBAL_FIXTURE(MPIConfig);
+
 BOOST_AUTO_TEST_SUITE(normal)
 /// ----------------------------------------------------------------------------
 /// Matrix
@@ -61,6 +78,10 @@ BOOST_AUTO_TEST_CASE(acute_axisym_problem)
   Params parameters;
   parameters.contact_angle = 60.0 * MathematicalConstants::Pi / 180.0;
   AXISYM_PROBLEM problem(&parameters);
+#ifdef OOMPH_HAS_MUMPS
+  MumpsSolver solver;
+  problem.linear_solver_pt() = &solver;
+#endif
   problem.newton_solve();
   // If the problem solve completes, then it is a success.
 }

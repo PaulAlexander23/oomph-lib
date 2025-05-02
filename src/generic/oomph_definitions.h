@@ -40,9 +40,10 @@
 // Standard libray headers
 #include <stdexcept>
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
-
+#include <memory>
 
 namespace oomph
 {
@@ -133,7 +134,7 @@ namespace oomph
     extern std::ostream* Error_message_stream_pt;
 
     /// String stream that records the error message
-    extern std::stringstream* Exception_stringstream_pt;
+    extern std::unique_ptr<std::stringstream> Exception_stringstream_pt;
 
   } // namespace TerminateHelper
 

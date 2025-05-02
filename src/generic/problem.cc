@@ -9112,7 +9112,11 @@ namespace oomph
                      << std::endl;
         }
         // Now throw...
-        throw NewtonSolverError(count, maxres);
+        throw NewtonSolverError("Max iterations.",
+                                OOMPH_CURRENT_FUNCTION,
+                                OOMPH_EXCEPTION_LOCATION,
+                                count,
+                                maxres);
       }
 
     } while (LOOP_FLAG);
@@ -9342,13 +9346,8 @@ namespace oomph
     {
       oomph_info << std::endl
                  << "USER-DEFINED ERROR IN NEWTON SOLVER " << std::endl;
-      // Check whether it's the linear solver
-      if (error.linear_solver_error())
-      {
-        oomph_info << "ERROR IN THE LINEAR SOLVER" << std::endl;
-      }
       // Check to see whether we have reached Max_iterations
-      else if (error.iterations() == Max_newton_iterations)
+      if (error.iterations() == Max_newton_iterations)
       {
         oomph_info << "MAXIMUM NUMBER OF ITERATIONS (" << error.iterations()
                    << ") REACHED WITHOUT CONVERGENCE " << std::endl;
@@ -9361,11 +9360,7 @@ namespace oomph
                    << std::endl;
       }
 
-      // Die horribly!!
-      std::ostringstream error_stream;
-      error_stream << "Error occured in Newton solver. " << std::endl;
-      throw OomphLibError(
-        error_stream.str(), OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+      throw error;
     }
 
 
@@ -9699,9 +9694,21 @@ namespace oomph
       // This section will not be reached if we have converged already
       // If the maximum number of residuals is too high or the maximum number
       // of iterations has been reached
-      if ((maxres > Max_residuals) || (count == Max_newton_iterations))
+      if (maxres > Max_residuals)
       {
-        throw NewtonSolverError(count, maxres);
+        throw NewtonSolverError("Residual too large.",
+                                OOMPH_CURRENT_FUNCTION,
+                                OOMPH_EXCEPTION_LOCATION,
+                                count,
+                                maxres);
+      }
+      if (count == Max_newton_iterations)
+      {
+        throw NewtonSolverError("Max iterations.",
+                                OOMPH_CURRENT_FUNCTION,
+                                OOMPH_EXCEPTION_LOCATION,
+                                count,
+                                maxres);
       }
 
     } while (LOOP_FLAG);
@@ -10723,25 +10730,10 @@ namespace oomph
         // Catch any exceptions thrown in the Newton solver
         catch (NewtonSolverError& error)
         {
-          // Check whether it's the linear solver
-          if (error.linear_solver_error())
-          {
-            std::ostringstream error_stream;
-            error_stream << std::endl
-                         << "USER-DEFINED ERROR IN NEWTON SOLVER " << std::endl;
-            oomph_info << "ERROR IN THE LINEAR SOLVER" << std::endl;
-            throw OomphLibError(error_stream.str(),
-                                OOMPH_CURRENT_FUNCTION,
-                                OOMPH_EXCEPTION_LOCATION);
-          }
-          // Otherwise mark the step as having failed
-          else
-          {
-            oomph_info << "STEP REJECTED --- TRYING AGAIN" << std::endl;
-            STEP_REJECTED = true;
-            // Let's take a smaller step
-            Ds_current *= (2.0 / 3.0);
-          }
+          oomph_info << "STEP REJECTED --- TRYING AGAIN" << std::endl;
+          STEP_REJECTED = true;
+          // Let's take a smaller step
+          Ds_current *= (2.0 / 3.0);
         }
       } while (STEP_REJECTED); // continue until a step is accepted
 
@@ -11027,13 +11019,8 @@ namespace oomph
     {
       oomph_info << std::endl
                  << "USER-DEFINED ERROR IN NEWTON SOLVER " << std::endl;
-      // Check whether it's the linear solver
-      if (error.linear_solver_error())
-      {
-        oomph_info << "ERROR IN THE LINEAR SOLVER" << std::endl;
-      }
       // Check to see whether we have reached Max_iterations
-      else if (error.iterations() == Max_newton_iterations)
+      if (error.iterations() == Max_newton_iterations)
       {
         oomph_info << "MAXIMUM NUMBER OF ITERATIONS (" << error.iterations()
                    << ") REACHED WITHOUT CONVERGENCE " << std::endl;
@@ -11045,11 +11032,9 @@ namespace oomph
                    << " EXCEEDS PREDEFINED MAXIMUM " << Max_residuals
                    << std::endl;
       }
-      // Die horribly!!
-      std::ostringstream error_stream;
-      error_stream << "Error occured in unsteady Newton solver. " << std::endl;
-      throw OomphLibError(
-        error_stream.str(), OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+
+      // Re-throw the error
+      throw error;
     }
 
     // Run the individual timesteppers actions, these need to be before the
@@ -11179,22 +11164,17 @@ namespace oomph
         // Solve the non-linear problem at this timestep
         newton_solve();
       }
-      // Catch any exceptions thrown
-      catch (NewtonSolverError& error)
+      catch (LinearSolverError& error)
       {
-        // If it's a solver error then die
-        if (error.linear_solver_error() ||
-            Time_adaptive_newton_crash_on_solve_fail)
+        if (Time_adaptive_newton_crash_on_solve_fail)
         {
           std::string error_message = "USER-DEFINED ERROR IN NEWTON SOLVER\n";
           error_message += "ERROR IN THE LINEAR SOLVER\n";
-
-          // Die
-          throw OomphLibError(
-            error_message, OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+          throw error;
         }
         else
         {
+          // If it's a solver error then die
           // Reject the timestep, if we have an exception
           oomph_info << "TIMESTEP REJECTED" << std::endl;
           reject_timestep = true;
@@ -11202,6 +11182,17 @@ namespace oomph
           // Half the time step
           dt_rescaling_factor = Timestep_reduction_factor_after_nonconvergence;
         }
+      }
+      // Catch any exceptions thrown
+      catch (NewtonSolverError& error)
+      {
+        // If it's a solver error then die
+        // Reject the timestep, if we have an exception
+        oomph_info << "TIMESTEP REJECTED" << std::endl;
+        reject_timestep = true;
+
+        // Half the time step
+        dt_rescaling_factor = Timestep_reduction_factor_after_nonconvergence;
       }
 
       // Run the individual timesteppers actions, these need to be before the
@@ -16355,13 +16346,7 @@ namespace oomph
                        << std::endl;
           }
 
-          // Die horribly!!
-          std::ostringstream error_stream;
-          error_stream << "Error occured in adaptive Newton solver. "
-                       << std::endl;
-          throw OomphLibError(error_stream.str(),
-                              OOMPH_CURRENT_FUNCTION,
-                              OOMPH_EXCEPTION_LOCATION);
+          throw error;
         }
 
         // Now update anything that needs updating
