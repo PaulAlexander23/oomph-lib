@@ -1,10 +1,12 @@
-#! /bin/sh
+#!/usr/bin/bash
 
 # Default: serial
 MAX_JOBS=1
 
 # Get the number of cpu cores
 NUM_CORES=$(nproc 2>/dev/null || sysctl -n hw.ncpu)
+
+trap 'echo "Interrupt detected. Killing jobs..."; kill $(jobs -rp); exit 1' INT
 
 # Parse arguments
 while [[ "$#" -gt 0 ]]; do
@@ -43,17 +45,20 @@ validate(){
     # Expects to be called as
     # validate executable input actual_output_filename expected_output_filename
 
-  TEMP_DIR=$(mktemp)
+  TEMP_DIR=$(mktemp -p . -d)
+  mkdir -p $TEMP_DIR/validata
+  cp -r validata $TEMP_DIR
   cd $TEMP_DIR
-
   mkdir -p Validation/RESLT
 
   var="../$1 $2"
   echo $var
   eval $var 
-  if test "$?" = "0"; then
+
+
+  if test "$?" = "$5"; then
       echo "done"
-      LOG="Validation/"$(mktemp)
+      LOG="Validation/validation.log"
       echo " " >> $LOG 
       echo "Validation run" >> $LOG
       echo "---------------------------------------------" >> $LOG
@@ -87,6 +92,8 @@ validate(){
       echo " " >> $LOG
       echo "  " `pwd` >> $LOG
       echo " " >> $LOG
+      echo $var >> $LOG
+      echo " " >> $LOG
       FILE=${4%.*}
       echo Validation/$FILE
       echo "[FAILED] -- Returned and exit code" >> $LOG
@@ -94,7 +101,7 @@ validate(){
 
 
   # Copy temp log into the main log
-  cat $LOG > "Validation/validation.log"
+  cat $LOG >> "../Validation/validation.log"
 
   # Exit temporary directory and quit
   cd ..
@@ -139,38 +146,38 @@ run_with_limit() {
 
 
 # Utility scripts
-run_with_limit validate "create_parameter_files --folder Validation/RESLT --overwrite --parameters" validata/unsteady-parameters-with-restart.dat parameters.dat create_parameter_files_unsteady-parameters-with-restart_results.dat.gz
+run_with_limit validate "create_parameter_files --folder Validation/RESLT --overwrite --parameters" validata/unsteady-parameters-with-restart.dat parameters.dat create_parameter_files_unsteady-parameters-with-restart_results.dat.gz 0
 
 # Base state scripts
-run_with_limit validate "axi_dynamic_cap --parameters " validata/parameters.dat trace.dat axi_dynamic_cap_parameters_results.dat.gz
-run_with_limit validate "axi_dynamic_cap --parameters " validata/parameters-with-restart.dat trace.dat axi_dynamic_cap_parameters-with-restart_results.dat.gz
-run_with_limit validate "axi_dynamic_cap --parameters " validata/unsteady-parameters.dat trace.dat axi_dynamic_cap_unsteady-parameters_results.dat.gz
-run_with_limit validate "axi_dynamic_cap --parameters " validata/unsteady-parameters-with-restart.dat trace.dat axi_dynamic_cap_unsteady-parameters-with-restart_results.dat.gz
+run_with_limit validate "axi_dynamic_cap --parameters " validata/parameters.dat trace.dat axi_dynamic_cap_parameters_results.dat.gz 0
+run_with_limit validate "axi_dynamic_cap --parameters " validata/parameters-with-restart.dat trace.dat axi_dynamic_cap_parameters-with-restart_results.dat.gz 0
+run_with_limit validate "axi_dynamic_cap --parameters " validata/unsteady-parameters.dat trace.dat axi_dynamic_cap_unsteady-parameters_results.dat.gz 0
+run_with_limit validate "axi_dynamic_cap --parameters " validata/unsteady-parameters-with-restart.dat trace.dat axi_dynamic_cap_unsteady-parameters-with-restart_results.dat.gz 0
 
 # Obtuse runs
-run_with_limit validate "axi_dynamic_cap --parameters " validata/obtuse-parameters.dat trace.dat axi_dynamic_cap_obtuse-parameters_results.dat.gz
-run_with_limit validate "axi_dynamic_cap --parameters " validata/obtuse-parameters-with-restart.dat trace.dat axi_dynamic_cap_obtuse-parameters-with-restart_results.dat.gz
-run_with_limit validate "axi_dynamic_cap --parameters " validata/obtuse-unsteady-parameters.dat trace.dat unsteady_run_parameters_results.dat.gz
-run_with_limit validate "axi_dynamic_cap --parameters " validata/obtuse-unsteady-parameters-with-restart.dat trace.dat unsteady_run_parameters-with-restart_results.dat.gz
+run_with_limit validate "axi_dynamic_cap --parameters " validata/obtuse-parameters.dat trace.dat axi_dynamic_cap_obtuse-parameters_results.dat.gz 0
+run_with_limit validate "axi_dynamic_cap --parameters " validata/obtuse-parameters-with-restart.dat trace.dat axi_dynamic_cap_obtuse-parameters-with-restart_results.dat.gz 0
+run_with_limit validate "axi_dynamic_cap --parameters " validata/obtuse-unsteady-parameters.dat trace.dat unsteady_run_parameters_results.dat.gz 0
+run_with_limit validate "axi_dynamic_cap --parameters " validata/obtuse-unsteady-parameters-with-restart.dat trace.dat unsteady_run_parameters-with-restart_results.dat.gz 0
 
 # Continuation runs
-run_with_limit validate "continuation_run --Bo 0.1 --parameters " validata/unsteady-parameters-with-restart.dat trace.dat cont-bo-results.dat.gz
-run_with_limit validate "continuation_run --wall_velocity 0.01 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat cont-ca-results.dat.gz
-run_with_limit validate "continuation_run --arc --Bo 0.01 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat arc-cont-bo-results.dat.gz
-run_with_limit validate "continuation_run --arc --wall_velocity 0.01 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat continuation_run_unsteady-parameters-with-restart_results.dat.gz
-run_with_limit validate "continuation_run --height_control --Bo 0.01 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat height-cont-bo-results.dat.gz
-run_with_limit validate "continuation_run --height_control --wall_velocity 0.1 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat continuation_run_height-continuation-parameters-with-restart_results.dat.gz
+run_with_limit validate "continuation_run --Bo 0.1 --parameters " validata/unsteady-parameters-with-restart.dat trace.dat cont-bo-results.dat.gz 0
+run_with_limit validate "continuation_run --wall_velocity 0.01 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat cont-ca-results.dat.gz 0
+run_with_limit validate "continuation_run --arc --Bo 0.01 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat arc-cont-bo-results.dat.gz 0
+run_with_limit validate "continuation_run --arc --wall_velocity 0.01 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat continuation_run_unsteady-parameters-with-restart_results.dat.gz 0
+run_with_limit validate "continuation_run --height_control --Bo 0.01 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat height-cont-bo-results.dat.gz 0
+run_with_limit validate "continuation_run --height_control --wall_velocity 0.1 --parameters" validata/unsteady-parameters-with-restart.dat trace.dat continuation_run_height-continuation-parameters-with-restart_results.dat.gz 0
 
 # Test exception handling.
-run_with_limit validate "continuation_run --wall_velocity 0.1 --parameters" validata/unsteady-parameters-with-restart-reduced-tolerance.dat exit_code.txt exit_code.txt.gz
+run_with_limit validate "continuation_run --wall_velocity 0.1 --parameters" validata/unsteady-parameters-with-restart-reduced-tolerance.dat exit_code.txt exit_code.txt.gz 1
  
 # Obtuse continuation runs
-run_with_limit validate "continuation_run --Bo 0.1 --parameters " validata/obtuse-unsteady-parameters-with-restart.dat trace.dat obtuse-cont-bo-results.dat.gz
-run_with_limit validate "continuation_run --wall_velocity 0.01 --parameters" validata/obtuse-unsteady-parameters-with-restart.dat trace.dat obtuse-cont-ca-results.dat.gz
-run_with_limit validate "continuation_run --arc --Bo 0.1 --parameters" validata/obtuse-unsteady-parameters-with-restart.dat trace.dat obtuse-arc-cont-bo-results.dat.gz
-run_with_limit validate "continuation_run --arc --wall_velocity 0.01 --parameters" validata/obtuse-unsteady-parameters-with-restart.dat trace.dat continuation_run_obtuse-unsteady-parameters-with-restart_results.dat.gz
-run_with_limit validate "continuation_run --height_control --Bo 0.01 --parameters" validata/obtuse-unsteady-parameters-with-restart.dat trace.dat obtuse-height-cont-bo-results.dat.gz
-run_with_limit validate "continuation_run --height_control --wall_velocity 0.01 --parameters" validata/obtuse-unsteady-parameters-with-restart.dat trace.dat continuation_run_obtuse-height-continuation-parameters-with-restart_results.dat.gz
+run_with_limit validate "continuation_run --Bo 0.1 --parameters " validata/obtuse-unsteady-parameters-with-restart.dat trace.dat obtuse-cont-bo-results.dat.gz 0
+run_with_limit validate "continuation_run --wall_velocity 0.01 --parameters" validata/obtuse-unsteady-parameters-with-restart.dat trace.dat obtuse-cont-ca-results.dat.gz 0
+run_with_limit validate "continuation_run --arc --Bo 0.1 --parameters" validata/obtuse-unsteady-parameters-with-restart.dat trace.dat obtuse-arc-cont-bo-results.dat.gz 0
+run_with_limit validate "continuation_run --arc --wall_velocity 0.01 --parameters" validata/obtuse-unsteady-parameters-with-restart.dat trace.dat continuation_run_obtuse-unsteady-parameters-with-restart_results.dat.gz 0
+run_with_limit validate "continuation_run --height_control --Bo 0.01 --parameters" validata/obtuse-unsteady-parameters-with-restart.dat trace.dat obtuse-height-cont-bo-results.dat.gz 0
+run_with_limit validate "continuation_run --height_control --wall_velocity 0.01 --parameters" validata/obtuse-unsteady-parameters-with-restart.dat trace.dat continuation_run_obtuse-height-continuation-parameters-with-restart_results.dat.gz 0
 
 run_with_limit run_tests
 
