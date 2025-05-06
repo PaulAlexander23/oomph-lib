@@ -884,7 +884,7 @@ namespace oomph
     }
 
     // Free the memory assigned
-    delete[] *dx;
+    delete[] * dx;
     delete dx;
     delete[] last;
   }
@@ -965,9 +965,9 @@ namespace oomph
     }
 
     // Delete the allocated storage
-    delete[] *x;
+    delete[] * x;
     delete x;
-    delete[] *b;
+    delete[] * b;
     delete b;
   }
 
