@@ -468,48 +468,69 @@ namespace oomph
       if (Net_flux_mesh_pt)
       {
         delete Net_flux_mesh_pt;
+        Net_flux_mesh_pt = nullptr;
       }
       if (Flux_mesh_pt)
       {
         delete Flux_mesh_pt;
+        Flux_mesh_pt = nullptr;
       }
       if (No_penetration_boundary_mesh_pt)
       {
         delete No_penetration_boundary_mesh_pt;
+        No_penetration_boundary_mesh_pt = nullptr;
       }
       if (Slip_boundary_mesh_pt)
       {
         delete Slip_boundary_mesh_pt;
+        Slip_boundary_mesh_pt = nullptr;
       }
       if (Contact_angle_mesh_pt)
       {
         delete Contact_angle_mesh_pt;
+        Contact_angle_mesh_pt = nullptr;
       }
       if (Volume_computation_mesh_pt)
       {
         delete Volume_computation_mesh_pt;
+        Volume_computation_mesh_pt = nullptr;
       }
       if (Volume_constraint_mesh_pt)
       {
         delete Volume_constraint_mesh_pt;
+        Volume_constraint_mesh_pt = nullptr;
       }
       if (Free_surface_mesh_pt)
       {
         delete Free_surface_mesh_pt;
+        Free_surface_mesh_pt = nullptr;
       }
 
       // Next delete the external data
-      delete External_pressure_data_pt;
+      if (External_pressure_data_pt)
+      {
+        delete External_pressure_data_pt;
+        External_pressure_data_pt = nullptr;
+      }
 
-      delete Bulk_mesh_pt;
+      if (Bulk_mesh_pt)
+      {
+        delete Bulk_mesh_pt;
+        Bulk_mesh_pt = nullptr;
+      }
 
-      delete Constitutive_law_pt;
+      if (Constitutive_law_pt)
+      {
+        delete Constitutive_law_pt;
+        Constitutive_law_pt = nullptr;
+      }
 
 #ifdef OOMPH_HAS_MUMPS
       // Delete the solver
       if (this->linear_solver_pt())
       {
         delete this->linear_solver_pt();
+        this->linear_solver_pt() = nullptr;
       }
 #endif
     }
@@ -886,11 +907,12 @@ namespace oomph
         steady_newton_solve(0);
         local_is_adaption_needed = is_adaption_needed();
 
-      if (this->Nnewton_iter_taken != 0){
-        create_restart_file();
-        doc_solution();
-        increment_doc_number();
-      }
+        if (this->Nnewton_iter_taken != 0)
+        {
+          create_restart_file();
+          doc_solution();
+          increment_doc_number();
+        }
 
         // Increment loop count
       } while (n < max_adapt && local_is_adaption_needed);
@@ -3880,6 +3902,7 @@ namespace oomph
       {
         // Delete it
         delete Corner_error_estimator_pt;
+        Corner_error_estimator_pt = nullptr;
       }
 
       // We need to know which is the corner node
@@ -4061,10 +4084,12 @@ namespace oomph
       if (Pressure_contribution_geom_mesh_1_pt)
       {
         delete Pressure_contribution_geom_mesh_1_pt;
+        Pressure_contribution_geom_mesh_1_pt = nullptr;
       }
       if (Pressure_contribution_geom_mesh_2_pt)
       {
         delete Pressure_contribution_geom_mesh_2_pt;
+        Pressure_contribution_geom_mesh_2_pt = nullptr;
       }
     }
 
