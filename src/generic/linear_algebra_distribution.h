@@ -450,7 +450,11 @@ namespace oomph
     /// Destructor
     virtual ~DistributableLinearAlgebraObject()
     {
-      delete Distribution_pt;
+      if (Distribution_pt)
+      {
+        delete Distribution_pt;
+        Distribution_pt = nullptr;
+      }
     }
 
     /// access to the LinearAlgebraDistribution

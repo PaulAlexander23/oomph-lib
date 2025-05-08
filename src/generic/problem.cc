@@ -194,12 +194,32 @@ namespace oomph
     // somebody else must have built it, so that person
     // must be in charge of killing it.
     // We can safely delete the defaults, however
-    delete Default_linear_solver_pt;
+    if (Default_linear_solver_pt)
+    {
+      delete Default_linear_solver_pt;
+      Default_linear_solver_pt = nullptr;
+    }
 
-    delete Default_eigen_solver_pt;
-    delete Default_assembly_handler_pt;
-    delete Communicator_pt;
-    delete Dof_distribution_pt;
+    if (Default_eigen_solver_pt)
+    {
+      delete Default_eigen_solver_pt;
+      Default_eigen_solver_pt = nullptr;
+    }
+    if (Default_assembly_handler_pt)
+    {
+      delete Default_assembly_handler_pt;
+      Default_assembly_handler_pt = nullptr;
+    }
+    if (Communicator_pt)
+    {
+      delete Communicator_pt;
+      Communicator_pt = nullptr;
+    }
+    if (Dof_distribution_pt)
+    {
+      delete Dof_distribution_pt;
+      Dof_distribution_pt = nullptr;
+    }
 
     // Delete any copies of the problem that have been created for
     // use in adaptive bifurcation tracking.
@@ -207,14 +227,22 @@ namespace oomph
     unsigned n_copies = Copy_of_problem_pt.size();
     for (unsigned c = 0; c < n_copies; c++)
     {
-      delete Copy_of_problem_pt[c];
+      if (Copy_of_problem_pt[c])
+      {
+        delete Copy_of_problem_pt[c];
+        Copy_of_problem_pt[c] = nullptr;
+      }
     }
 
     // if this problem has sub meshes then we must delete the Mesh_pt
     if (Sub_mesh_pt.size() != 0)
     {
       Mesh_pt->flush_element_and_node_storage();
-      delete Mesh_pt;
+      if (Mesh_pt)
+      {
+        delete Mesh_pt;
+        Mesh_pt = nullptr;
+      }
     }
 
     // Since we called the TerminateHelper setup function in the constructor,
