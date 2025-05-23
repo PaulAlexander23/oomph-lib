@@ -41,17 +41,25 @@ public:
   }
 };
 
-void test_singular_jacobian()
+template<class ELEMENT>
+Problem* create_single_element_problem()
 {
   Mesh* mesh = new Mesh;
-  mesh->add_element_pt(new SingularJacobianElement);
-  Problem problem;
-  problem.add_sub_mesh(mesh);
-  problem.build_global_mesh();
-  problem.assign_eqn_numbers();
+  mesh->add_element_pt(new UnsolveableElement);
+  Problem* problem_pt = new Problem;
+  problem_pt->add_sub_mesh(mesh);
+  problem_pt->build_global_mesh();
+  problem_pt->assign_eqn_numbers();
+  return problem_pt;
+}
+
+void test_singular_jacobian()
+{
+  Problem* problem_pt =
+    create_single_element_problem<SingularJacobianElement>();
   try
   {
-    problem.newton_solve();
+    problem_pt->newton_solve();
   }
   catch (OomphLibError& err)
   {
@@ -59,17 +67,68 @@ void test_singular_jacobian()
   }
 }
 
+
 void test_unsolveable_problem()
 {
-  Mesh* mesh = new Mesh;
-  mesh->add_element_pt(new UnsolveableElement);
-  Problem problem;
-  problem.add_sub_mesh(mesh);
-  problem.build_global_mesh();
-  problem.assign_eqn_numbers();
+  Problem* problem_pt = create_single_element_problem<UnsolveableElement>();
   try
   {
-    problem.newton_solve();
+    problem_pt->newton_solve();
+  }
+  catch (OomphLibError& err)
+  {
+    cout << "Caught OomphLibError: " << err.what() << endl;
+  }
+}
+
+void test_handling_of_multiple_exceptions()
+{
+  Problem* problem_pt = create_single_element_problem<UnsolveableElement>();
+  try
+  {
+    problem_pt->newton_solve();
+  }
+  catch (OomphLibError& err)
+  {
+    cout << "Caught OomphLibError: " << err.what() << endl;
+  }
+  try
+  {
+    problem_pt->newton_solve();
+  }
+  catch (OomphLibError& err)
+  {
+    cout << "Caught OomphLibError: " << err.what() << endl;
+  }
+}
+
+void test_handling_of_exceptions_with_multiple_problems()
+{
+  Problem* problem_pt = create_single_element_problem<UnsolveableElement>();
+  Problem* problem2_pt = create_single_element_problem<UnsolveableElement>();
+  try
+  {
+    problem_pt->newton_solve();
+  }
+  catch (OomphLibError& err)
+  {
+    cout << "Caught OomphLibError: " << err.what() << endl;
+  }
+  try
+  {
+    problem2_pt->newton_solve();
+  }
+  catch (OomphLibError& err)
+  {
+    cout << "Caught OomphLibError: " << err.what() << endl;
+  }
+
+  delete problem_pt;
+  problem_pt = 0;
+
+  try
+  {
+    problem2_pt->newton_solve();
   }
   catch (OomphLibError& err)
   {
@@ -82,5 +141,7 @@ int main()
 {
   test_singular_jacobian();
   test_unsolveable_problem();
+  test_handling_of_multiple_exceptions();
+  test_handling_of_exceptions_with_multiple_problems();
   return 0;
 }

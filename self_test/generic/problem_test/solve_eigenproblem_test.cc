@@ -38,10 +38,10 @@ using namespace oomph;
 namespace SwapReAndIm
 {
 
- // Swap factor for eigenvalues
- std::complex<double> Re_im_swap_factor=std::complex<double>(1.0,0.0);
+  // Swap factor for eigenvalues
+  std::complex<double> Re_im_swap_factor = std::complex<double>(1.0, 0.0);
 
-}
+} // namespace SwapReAndIm
 
 
 //=====================================================================
@@ -49,139 +49,136 @@ namespace SwapReAndIm
 //=====================================================================
 namespace EigensolverTester
 {
-  
- /// Check eigensolutions, compute residual norm of complex eigen system,
- /// with (complex) matrices specified as args.
- double check_eigensolutions(
-  const ComplexMatrixBase& A,
-  const ComplexMatrixBase& M,
-  const Vector<std::complex<double>>& eigenvalue,
-  const Vector<Vector<std::complex<double>>>& eigenvector)
- {
-  
-  // Get the dimension of the matrix
-  unsigned n = A.nrow();
 
-  // Global residual
-  double global_res=0.0;
+  /// Check eigensolutions, compute residual norm of complex eigen system,
+  /// with (complex) matrices specified as args.
+  double check_eigensolutions(
+    const ComplexMatrixBase& A,
+    const ComplexMatrixBase& M,
+    const Vector<std::complex<double>>& eigenvalue,
+    const Vector<Vector<std::complex<double>>>& eigenvector)
+  {
+    // Get the dimension of the matrix
+    unsigned n = A.nrow();
 
-  // Loop over eigenvalues
-  unsigned n_eval=eigenvalue.size();
-  for (unsigned eval=0;eval<n_eval;eval++)
-   {
-    // Skip non-finite ones
-    if ((!isfinite(eigenvalue[eval].real()))||
-        (!isfinite(eigenvalue[eval].imag())))
-     {
-      // oomph_info << "Eigenvalue " << eval << " : " << eigenvalue[eval]
-      //            << " is not a finite number; skipping" << std::endl;
-     }
-    else
-     {
-      // Should really use black box matrix vector product which is likely
-      // to be MUCH more efficient for sparse matrices.
-      double res_norm=0.0;
-      for (unsigned i=0;i<n;i++)
-       {
-        std::complex<double> res=std::complex<double>(0.0,0.0);
-        //Storage for the two matrices multipled by the eigenvectors
-        Vector<std::complex<double>> Av, Mv;
+    // Global residual
+    double global_res = 0.0;
 
-        //Multiply both matrices by the eigenvector
-        //Need to cast away constness because multiply hasn't been
-        //defined as a const function in the base class.
-        const_cast<ComplexMatrixBase&>(A).multiply(eigenvector[eval],Av);
-        const_cast<ComplexMatrixBase&>(M).multiply(eigenvector[eval],Mv);
-        
-        //Now calculate the residual of the eigenvalue problem
-        //Av - lambda M v
-        for (unsigned j=0;j<n;j++)
-         {
-          //res+=(A(i,j)-eigenvalue[eval]*M(i,j))*eigenvector[eval][j];
-          res+= Av[j] - eigenvalue[eval]*Mv[j];
-         }
-        res_norm+=res.real()*res.real()+res.imag()*res.imag();
-       }
-      res_norm=sqrt(res_norm/double(n));
-      global_res+=res_norm;
-     }
-   }
-  
-  global_res/=double(n_eval);
-  return global_res;
-  
- }
+    // Loop over eigenvalues
+    unsigned n_eval = eigenvalue.size();
+    for (unsigned eval = 0; eval < n_eval; eval++)
+    {
+      // Skip non-finite ones
+      if ((!isfinite(eigenvalue[eval].real())) ||
+          (!isfinite(eigenvalue[eval].imag())))
+      {
+        // oomph_info << "Eigenvalue " << eval << " : " << eigenvalue[eval]
+        //            << " is not a finite number; skipping" << std::endl;
+      }
+      else
+      {
+        // Should really use black box matrix vector product which is likely
+        // to be MUCH more efficient for sparse matrices.
+        double res_norm = 0.0;
+        for (unsigned i = 0; i < n; i++)
+        {
+          std::complex<double> res = std::complex<double>(0.0, 0.0);
+          // Storage for the two matrices multipled by the eigenvectors
+          Vector<std::complex<double>> Av, Mv;
+
+          // Multiply both matrices by the eigenvector
+          // Need to cast away constness because multiply hasn't been
+          // defined as a const function in the base class.
+          const_cast<ComplexMatrixBase&>(A).multiply(eigenvector[eval], Av);
+          const_cast<ComplexMatrixBase&>(M).multiply(eigenvector[eval], Mv);
+
+          // Now calculate the residual of the eigenvalue problem
+          // Av - lambda M v
+          for (unsigned j = 0; j < n; j++)
+          {
+            // res+=(A(i,j)-eigenvalue[eval]*M(i,j))*eigenvector[eval][j];
+            res += Av[j] - eigenvalue[eval] * Mv[j];
+          }
+          res_norm += res.real() * res.real() + res.imag() * res.imag();
+        }
+        res_norm = sqrt(res_norm / double(n));
+        global_res += res_norm;
+      }
+    }
+
+    global_res /= double(n_eval);
+    return global_res;
+  }
 
 
- /// Check eigensolutions, compute residual norm of complex eigen system,
- /// with (complex) matrices specified by problem object (zero shift)
- double check_eigensolutions(
-  Problem* const& problem_pt,
-  const Vector<std::complex<double>>& eigenvalue,
-  const Vector<Vector<std::complex<double>>> & eigenvector)
- {
-  // Get the dimension 
-  unsigned n = eigenvector[0].size();
+  /// Check eigensolutions, compute residual norm of complex eigen system,
+  /// with (complex) matrices specified by problem object (zero shift)
+  double check_eigensolutions(
+    Problem* const& problem_pt,
+    const Vector<std::complex<double>>& eigenvalue,
+    const Vector<Vector<std::complex<double>>>& eigenvector)
+  {
+    // Get the dimension
+    unsigned n = eigenvector[0].size();
 
-  // Out of laziness, assemble all the matrices everywhere so we don't have
-  // have to bother about distribution below
-  LinearAlgebraDistribution* dist_pt=new LinearAlgebraDistribution(
-   problem_pt->communicator_pt(), n, false);
-  
-  // Allocated row compressed matrices for the mass matrix and main
-  // matrix 
-  CRDoubleMatrix M(dist_pt);
-  CRDoubleMatrix A(dist_pt);
-  
-  // Assemble the matrices; pass the shift into the assembly (without shift)
-  double zero_shift=0.0;
-  problem_pt->get_eigenproblem_matrices(M,A,zero_shift);
-  
-  // Global residual
-  double global_res=0.0;
-  
-  // Loop over eigenvalues
-  unsigned n_eval=eigenvalue.size();
-  for (unsigned eval=0;eval<n_eval;eval++)
-   {
-    // Ignore non-finite ones
-    if ((!isfinite(eigenvalue[eval].real()))||
-        (!isfinite(eigenvalue[eval].imag())))
-     {
-      // oomph_info << "Eigenvalue " << eval << " : " << eigenvalue[eval]
-      //            << " is not a finite number; skipping" << std::endl;
-     }
-    else
-     {
-      double res_norm=0.0;
-      for (unsigned i=0;i<n;i++)
-       {
-        // Should really use matrix vector product for this, but too lazy
-        // since I'dhave to copy the eigenvectors into separate vectors,
-        // deal with real and imag stuff etc.
-        std::complex<double> res = std::complex<double>(0.0,0.0);
-        for (unsigned j=0;j<n;j++)
-         {
-          res+=(A(i,j)-eigenvalue[eval]*M(i,j))*eigenvector[eval][j];
-         }
-        res_norm+=res.real()*res.real()+res.imag()*res.imag();
-       }
-      res_norm=sqrt(res_norm/double(n));
-      global_res+=res_norm;
-     }
-   }
-  global_res/=double(n_eval);
+    // Out of laziness, assemble all the matrices everywhere so we don't have
+    // have to bother about distribution below
+    LinearAlgebraDistribution* dist_pt =
+      new LinearAlgebraDistribution(problem_pt->communicator_pt(), n, false);
 
-  // Clean up...
-  delete dist_pt;
+    // Allocated row compressed matrices for the mass matrix and main
+    // matrix
+    CRDoubleMatrix M(dist_pt);
+    CRDoubleMatrix A(dist_pt);
 
-  //...and get the hell out of here
-  return global_res;  
- }
+    // Assemble the matrices; pass the shift into the assembly (without shift)
+    double zero_shift = 0.0;
+    problem_pt->get_eigenproblem_matrices(M, A, zero_shift);
 
-}
+    // Global residual
+    double global_res = 0.0;
 
+    // Loop over eigenvalues
+    unsigned n_eval = eigenvalue.size();
+    for (unsigned eval = 0; eval < n_eval; eval++)
+    {
+      // Ignore non-finite ones
+      if ((!isfinite(eigenvalue[eval].real())) ||
+          (!isfinite(eigenvalue[eval].imag())))
+      {
+        // oomph_info << "Eigenvalue " << eval << " : " << eigenvalue[eval]
+        //            << " is not a finite number; skipping" << std::endl;
+      }
+      else
+      {
+        double res_norm = 0.0;
+        for (unsigned i = 0; i < n; i++)
+        {
+          // Should really use matrix vector product for this, but too lazy
+          // since I'dhave to copy the eigenvectors into separate vectors,
+          // deal with real and imag stuff etc.
+          std::complex<double> res = std::complex<double>(0.0, 0.0);
+          for (unsigned j = 0; j < n; j++)
+          {
+            res +=
+              (A(i, j) - eigenvalue[eval] * M(i, j)) * eigenvector[eval][j];
+          }
+          res_norm += res.real() * res.real() + res.imag() * res.imag();
+        }
+        res_norm = sqrt(res_norm / double(n));
+        global_res += res_norm;
+      }
+    }
+    global_res /= double(n_eval);
 
+    // Clean up...
+    delete dist_pt;
+
+    //...and get the hell out of here
+    return global_res;
+  }
+
+} // namespace EigensolverTester
 
 
 /// Base eigenproblem element class used to generate the Jacobian and mass
@@ -189,7 +186,7 @@ namespace EigensolverTester
 class BaseEigenElement : public GeneralisedElement
 {
 public:
- BaseEigenElement() : N_value(0), Data_index(0) {}
+  BaseEigenElement() : N_value(0), Data_index(0) {}
 
   void set_size(const unsigned& n)
   {
@@ -242,17 +239,16 @@ public:
   // Override set_size to ensure the problem is 64x64
   void set_size(const unsigned& n)
   {
-   if(n != 64)
+    if (n != 64)
     {
-     std::ostringstream error_stream;
-     error_stream << "Size of problem must be 64."
-                  << "It is being set to " << n << std::endl;
-     throw OomphLibError(error_stream.str(),
-                         OOMPH_CURRENT_FUNCTION,
-                         OOMPH_EXCEPTION_LOCATION);
+      std::ostringstream error_stream;
+      error_stream << "Size of problem must be 64."
+                   << "It is being set to " << n << std::endl;
+      throw OomphLibError(
+        error_stream.str(), OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
     }
 
-   BaseEigenElement::set_size(n);
+    BaseEigenElement::set_size(n);
   }
 
   // Implement creation of eigenproblem matrices
@@ -290,12 +286,12 @@ public:
 template<class ELEMENT>
 class Eigenproblem : public Problem
 {
- //Storage for the size
- unsigned Size;
+  // Storage for the size
+  unsigned Size;
 
 public:
- //Choose the default size equal to the stored matrix
- Eigenproblem(const unsigned& size=64) : Size(size)
+  // Choose the default size equal to the stored matrix
+  Eigenproblem(const unsigned& size = 64) : Size(size)
   {
     this->mesh_pt() = new Mesh;
 
@@ -314,78 +310,108 @@ public:
   }
 
 
-void doc_solution(string filename,
-                  Vector<std::complex<double>>& eigenvalue,
-                  Vector<DoubleVector>& eigenvector_real,
-                  Vector<DoubleVector>& eigenvector_imag)
-{
-  //Open the output stream
-  std::ofstream output_stream;
-  output_stream.open(filename);
-  //output the eigenvalues
-  const unsigned N = eigenvalue.size();
-  for (unsigned i = 0; i < N; i++)
+  // Compare complex numbers
+  bool compare_complex_numbers(const std::complex<double>& A,
+                               const std::complex<double>& B)
   {
-     output_stream << eigenvalue[i].real() << " , " << eigenvalue[i].imag()
-                   << endl;
+    bool greater_than = false;
+    const double tol = 1e-13;
+    // Check if difference is more than tol
+    if (abs(A.real() - B.real()) > tol)
+    {
+      // Then compare the real parts
+      if (A.real() > B.real()) greater_than = true;
+    }
+    else
+    {
+      // otherwise  compare the imaginary parts
+      if (A.imag() > B.imag()) greater_than = true;
+    }
+
+    return greater_than;
   }
-  output_stream << endl;
+
+  void doc_solution(string filename,
+                    Vector<std::complex<double>>& eigenvalue,
+                    Vector<DoubleVector>& eigenvector_real,
+                    Vector<DoubleVector>& eigenvector_imag)
+  {
+    // Open the output stream
+    std::ofstream output_stream;
+    output_stream.open(filename);
+
+    // Create a copy of the eigenvalues to sort before outputting
+    Vector<std::complex<double>> eigenvalue_copy(eigenvalue.size());
+    for (unsigned i = 0; i < eigenvalue.size(); i++)
+    {
+      eigenvalue_copy[i] = eigenvalue[i];
+    }
+
+    // Sort the eigenvalues before outputting
+    sort(eigenvalue_copy.begin(),
+         eigenvalue_copy.end(),
+         [this](const std::complex<double>& A, const std::complex<double>& B)
+         { return compare_complex_numbers(A, B); });
+
+    // output the eigenvalues
+    const unsigned N = eigenvalue_copy.size();
+    for (unsigned i = 0; i < N; i++)
+    {
+      output_stream << eigenvalue_copy[i].real() << " , " << eigenvalue_copy[i].imag()
+                    << endl;
+    }
+    output_stream << endl;
 
 
-  //Set up additional storage for the eigenvectors as complex numbers
-  Vector<Vector<std::complex<double>>> eigenvector_size_2n;
-  
- // If the problem has been distributed collect all the data by redistribution
- // into non-distributed vectors
-  unsigned n_dof = this->ndof();
-  LinearAlgebraDistribution* non_distributed_dist_pt=
-   new LinearAlgebraDistribution(this->communicator_pt(),
-                                 n_dof, false);
-  //Read out the number of expected eigenvalues from the size of the problem
-  unsigned n_eval = this->Size;
-  for (unsigned eval=0;eval<n_eval;eval++)
-   {
-    eigenvector_real[eval].redistribute(non_distributed_dist_pt);
-    eigenvector_imag[eval].redistribute(non_distributed_dist_pt);
-   }
-  
-  // Now copy the eigenvectors across into complex vectors
-  eigenvector_size_2n.resize(n_eval);
-  for (unsigned eval=0;eval<n_eval;eval++)
-   {
-    eigenvector_size_2n[eval].resize(n_dof);
-    for (unsigned i=0;i<n_dof;i++)
-     {
-      eigenvector_size_2n[eval][i]=
-       std::complex<double>(eigenvector_real[eval][i],
-                            eigenvector_imag[eval][i]);
-     }
-   }
-  
-  //Rescale the eigenvalue to be the expected size
-  eigenvalue.resize(n_eval);
-  
-  //Find out the average residuals of the eigenvalue problems
-  double global_eigenproblem_res = 
-   EigensolverTester::check_eigensolutions(this,
-                                           eigenvalue,
-                                           eigenvector_size_2n);
+    // Set up additional storage for the eigenvectors as complex numbers
+    Vector<Vector<std::complex<double>>> eigenvector_size_2n;
 
-  output_stream << "Global Eigenproblem Average Error "
-                << global_eigenproblem_res << std::endl;
+    // If the problem has been distributed collect all the data by
+    // redistribution into non-distributed vectors
+    unsigned n_dof = this->ndof();
+    LinearAlgebraDistribution* non_distributed_dist_pt =
+      new LinearAlgebraDistribution(this->communicator_pt(), n_dof, false);
+    // Read out the number of expected eigenvalues from the size of the problem
+    unsigned n_eval = this->Size;
+    for (unsigned eval = 0; eval < n_eval; eval++)
+    {
+      eigenvector_real[eval].redistribute(non_distributed_dist_pt);
+      eigenvector_imag[eval].redistribute(non_distributed_dist_pt);
+    }
 
-  if(global_eigenproblem_res < 1.0e-13)
-   {
-    output_stream << "Test Passed" << std::endl;
-   }
-  else
-   {
-    output_stream << "Test Failed" << std::endl;
-   }
-  
-  output_stream.close();
-}
+    // Now copy the eigenvectors across into complex vectors
+    eigenvector_size_2n.resize(n_eval);
+    for (unsigned eval = 0; eval < n_eval; eval++)
+    {
+      eigenvector_size_2n[eval].resize(n_dof);
+      for (unsigned i = 0; i < n_dof; i++)
+      {
+        eigenvector_size_2n[eval][i] = std::complex<double>(
+          eigenvector_real[eval][i], eigenvector_imag[eval][i]);
+      }
+    }
 
+    // Rescale the eigenvalue to be the expected size
+    eigenvalue.resize(n_eval);
+
+    // Find out the average residuals of the eigenvalue problems
+    double global_eigenproblem_res = EigensolverTester::check_eigensolutions(
+      this, eigenvalue, eigenvector_size_2n);
+
+    output_stream << "Global Eigenproblem Average Error "
+                  << global_eigenproblem_res << std::endl;
+
+    if (global_eigenproblem_res < 1.0e-13)
+    {
+      output_stream << "Test Passed" << std::endl;
+    }
+    else
+    {
+      output_stream << "Test Failed" << std::endl;
+    }
+
+    output_stream.close();
+  }
 };
 
 
@@ -414,10 +440,10 @@ int main()
   problem.solve_eigenproblem(
     n_eval, eigenvalue, eigenvector_real, eigenvector_imag);
   problem.doc_solution(doc_info.directory() + "solve_eigenproblem_test.dat",
-               eigenvalue,
-               eigenvector_real,
-               eigenvector_imag);
+                       eigenvalue,
+                       eigenvector_real,
+                       eigenvector_imag);
 
-  
+
   return (EXIT_SUCCESS);
 }
