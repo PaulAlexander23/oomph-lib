@@ -9359,7 +9359,7 @@ namespace oomph
 
     try
     {
-      // Solve the non-linear problem with Newton's method
+      // Solve the non-linear problem with Newton's method 
       if (max_adapt == 0)
       {
         newton_solve();
@@ -9388,7 +9388,7 @@ namespace oomph
                    << std::endl;
       }
 
-      throw error;
+      throw;
     }
 
 
@@ -11062,7 +11062,7 @@ namespace oomph
       }
 
       // Re-throw the error
-      throw error;
+      throw;
     }
 
     // Run the individual timesteppers actions, these need to be before the
@@ -11198,7 +11198,7 @@ namespace oomph
         {
           std::string error_message = "USER-DEFINED ERROR IN NEWTON SOLVER\n";
           error_message += "ERROR IN THE LINEAR SOLVER\n";
-          throw error;
+          throw;
         }
         else
         {
@@ -16374,7 +16374,7 @@ namespace oomph
                        << std::endl;
           }
 
-          throw error;
+          throw;
         }
 
         // Now update anything that needs updating
