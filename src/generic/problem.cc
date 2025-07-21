@@ -9359,7 +9359,7 @@ namespace oomph
 
     try
     {
-      // Solve the non-linear problem with Newton's method 
+      // Solve the non-linear problem with Newton's method
       if (max_adapt == 0)
       {
         newton_solve();
