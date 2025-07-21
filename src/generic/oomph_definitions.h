@@ -185,6 +185,11 @@ namespace oomph
       TerminateHelper::suppress_exception_error_messages();
     }
 
+  private:
+    // Disallow copying
+    OomphLibException(const OomphLibException&) = delete;
+    OomphLibException& operator=(const OomphLibException&) = delete;
+
   protected:
     /// Constructor takes the error description, function name
     /// and a location string provided by the OOMPH_EXCEPTION_LOCATION
@@ -207,7 +212,7 @@ namespace oomph
     std::ostream* Exception_stream_pt;
 
     /// String stream that records the error message
-    std::stringstream* Exception_stringstream_pt;
+    std::unique_ptr<std::stringstream> Exception_stringstream_pt;
 
     /// Boolean to suppress issuing of the error message in destructor
     /// (useful if error is caught successfully!)

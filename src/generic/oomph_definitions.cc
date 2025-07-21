@@ -134,17 +134,22 @@ namespace oomph
   /// The OomphLibException destructor actually spawns the error message
   /// created in the constructor (unless suppresed)
   //==========================================================================
-  OomphLibException::~OomphLibException() throw()
+  OomphLibException::~OomphLibException() noexcept
   {
-    if (!Suppress_error_message && Exception_stream_pt != 0 &&
-        Exception_stringstream_pt != 0)
+    // Catch and suppress any exceptions to ensure the destructor remains
+    // noexcept and does not throw during stack unwinding
+    try
     {
-      (*Exception_stream_pt) << (*Exception_stringstream_pt).str();
+      if (!Suppress_error_message && Exception_stream_pt &&
+          Exception_stringstream_pt)
+      {
+        (*Exception_stream_pt) << Exception_stringstream_pt->str();
+      }
     }
-    if (Exception_stringstream_pt != 0)
+    catch (...)
     {
-      delete Exception_stringstream_pt;
-      Exception_stringstream_pt = 0;
+      std::cerr
+        << "Exception while printing OomphLibException message in destructor\n";
     }
   }
 
@@ -172,7 +177,7 @@ namespace oomph
     Exception_stream_pt = &exception_stream;
 
     // Create storage for error message
-    Exception_stringstream_pt = new std::stringstream;
+    Exception_stringstream_pt = std::make_unique<std::stringstream>();
 
     // Build an exception header string from the information passed
     // Start with a couple of new lines to space things out
