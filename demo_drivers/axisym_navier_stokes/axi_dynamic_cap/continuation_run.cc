@@ -98,6 +98,8 @@ Arguments parse_arguments(const int& argc, char** const& argv)
   CommandLineArgs::specify_command_line_flag(
     "--height_control", "Optional: Use height control continuation");
 
+  CommandLineArgs::specify_command_line_flag("--verbose",
+                                             "Optional: Print verbose output");
 
   // Parse and assign command line arguments
   bool has_unrecognised_arg = false;
@@ -152,6 +154,16 @@ Arguments parse_arguments(const int& argc, char** const& argv)
   {
     args.has_height_control_continuation = true;
   }
+  if (!CommandLineArgs::command_line_flag_has_been_set("--verbose"))
+  {
+    // Suppress oomph output
+    oomph_info.stream_pt() = &oomph_nullstream;
+  }
+  else
+  {
+    oomph_info << "Verbose output enabled." << std::endl;
+  }
+
   return args;
 }
 
@@ -212,6 +224,13 @@ void normal_continuation_run(Params& parameters,
     std::cout << "Iteration: " << iterations
               << ", param: " << *continuation_param_pt << ", step: " << step
               << std::endl;
+
+    if (abs(step) < 1e-6)
+    {
+      oomph_info << "Step size too small, < 1e-6, stopping continuation."
+                 << std::endl;
+      break;
+    }
 
     // Update iteration number
     iterations++;
@@ -388,8 +407,44 @@ void height_control_continuation_run(Params& parameters,
     floor(abs(parameters.final_time / parameters.time_step));
   for (unsigned n = 1; n < number_of_steps; n++)
   {
+    if (abs(ds) < 1e-6)
+    {
+      oomph_info << "Step size too small, < 1e-6, stopping continuation."
+                 << std::endl;
+      break;
+    }
+
+    // Store current state of problem before we take a step
+    DoubleVector dofs;
+    problem.get_dofs(dofs);
+
     problem.step_height(ds);
-    problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
+
+    // Check we can take a step before we adapt
+    bool solve_is_succesful = false;
+    try
+    {
+      // Solve for the steady state adapting if needed by the Z2 error
+      // estimator
+      problem.steady_newton_solve();
+      solve_is_succesful = true;
+    }
+    // If error in solving for the steady state
+    catch (OomphLibException& e)
+    {
+      problem.step_height(-ds);
+
+      // Restore state of the problem to before we took a step
+      problem.set_dofs(dofs);
+
+      // Reduce step size
+      ds /= 2.0;
+    }
+    // If the solve is successful then we can adapt if needed
+    if (solve_is_succesful)
+    {
+      problem.steady_newton_solve_adapt_if_needed(parameters.max_adapt);
+    }
   }
 
   // Close the trace files
