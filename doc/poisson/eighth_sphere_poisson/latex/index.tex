@@ -402,7 +402,7 @@ The function {\ttfamily doc\+\_\+solution(...)} writes the FE solution and the c
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ solution\ }}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ mesh\_pt()-\/>output(some\_file,npts);}
@@ -411,7 +411,7 @@ The function {\ttfamily doc\+\_\+solution(...)} writes the FE solution and the c
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ exact\ solution\ }}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ mesh\_pt()-\/>output\_fct(some\_file,npts,\mbox{\hyperlink{namespaceTanhSolnForPoisson_af7896e9c18ce6438c73ae2a875e8b7de}{TanhSolnForPoisson::get\_exact\_u}});\ }
@@ -421,7 +421,7 @@ The function {\ttfamily doc\+\_\+solution(...)} writes the FE solution and the c
 \DoxyCodeLine{\ \textcolor{comment}{//\ Doc\ error}}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{\ \textcolor{keywordtype}{double}\ error,norm;}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/error\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/error\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ mesh\_pt()-\/>compute\_error(some\_file,\mbox{\hyperlink{namespaceTanhSolnForPoisson_af7896e9c18ce6438c73ae2a875e8b7de}{TanhSolnForPoisson::get\_exact\_u}},}
@@ -453,4 +453,4 @@ demo_drivers/poisson/eighth_sphere_poisson/eighth_sphere_poisson.cc
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

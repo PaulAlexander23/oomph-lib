@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -121,10 +115,10 @@
 </div><!--header-->
 <div class="contents">
 
-<p>///////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////  
+<p>Adaptative version of the <a class="el" href="classoomph_1_1FullCircleMesh.html" title="Full circle mesh class. The domain is specified by the GeomObject that identifies the entire area....">FullCircleMesh</a> base mesh. The domain is specified by the GeomObject that identifies the entire area.  
  <a href="classoomph_1_1RefineableFullCircleMesh.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="full__circle__mesh_8template_8h_source.html">full_circle_mesh.template.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="full__circle__mesh_8h_source.html">full_circle_mesh.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for oomph::RefineableFullCircleMesh&lt; ELEMENT &gt;:</div>
 <div class="dyncontent">
@@ -172,13 +166,12 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">class</a> <a class="el" href="classoomph_1_1RefineableTriangleMesh.html">ELEMENT</a>&gt;<br />
-class oomph::RefineableFullCircleMesh&lt; ELEMENT &gt;</div><p>///////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////// </p>
-<p>Adaptative version of the <a class="el" href="classoomph_1_1FullCircleMesh.html" title="Full circle mesh class. The domain is specified by the GeomObject that identifies the entire area....">FullCircleMesh</a> base mesh. The domain is specified by the GeomObject that identifies the entire area</p>
+class oomph::RefineableFullCircleMesh&lt; ELEMENT &gt;</div><p>Adaptative version of the <a class="el" href="classoomph_1_1FullCircleMesh.html" title="Full circle mesh class. The domain is specified by the GeomObject that identifies the entire area....">FullCircleMesh</a> base mesh. The domain is specified by the GeomObject that identifies the entire area. </p>
 <p>The mesh boundaries are numbered as follows:</p><ul>
-<li>Boundary 1: The outer wall, represetned by <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\xi_1 = 1$" src="form_9.png" width="35" height="13"/></picture>.</li>
+<li>Boundary 1: The outer wall, represetned by <img class="formulaInl" alt="$\xi_1 = 1$" src="form_9.png" width="35" height="13"/>.</li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="full__circle__mesh_8template_8h_source.html#l00111">111</a> of file <a class="el" href="full__circle__mesh_8template_8h_source.html">full_circle_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="full__circle__mesh_8h_source.html#l00110">110</a> of file <a class="el" href="full__circle__mesh_8h_source.html">full_circle_mesh.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a08abf23ee7b1c7cc3082bcf8aa9fc8c9" name="a08abf23ee7b1c7cc3082bcf8aa9fc8c9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a08abf23ee7b1c7cc3082bcf8aa9fc8c9">&#9670;&#160;</a></span>RefineableFullCircleMesh()</h2>
@@ -230,9 +223,9 @@ template&lt;<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">class
 
 <p>Constructor for adaptive deformable quarter tube mesh class. Pass pointer to geometric object that specifies the volume, start and end coordinates for the centreline on the geometric object. Values of theta at which dividing lines are to be placed, fractions of the radius for the central box at the dividing lines, the number of layers and the timestepper. Timestepper defaults to Steady dummy timestepper. </p>
 
-<p class="definition">Definition at line <a class="el" href="full__circle__mesh_8template_8h_source.html#l00124">124</a> of file <a class="el" href="full__circle__mesh_8template_8h_source.html">full_circle_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="full__circle__mesh_8h_source.html#l00123">123</a> of file <a class="el" href="full__circle__mesh_8h_source.html">full_circle_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="full__circle__mesh_8template_8h_source.html#l00088">oomph::FullCircleMesh&lt; ELEMENT &gt;::Domain_pt</a>.</p>
+<p class="reference">References <a class="el" href="full__circle__mesh_8h_source.html#l00088">oomph::FullCircleMesh&lt; ELEMENT &gt;::Domain_pt</a>.</p>
 
 </div>
 </div>
@@ -263,12 +256,12 @@ template&lt;<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">class
 
 <p>Destructor: empty. </p>
 
-<p class="definition">Definition at line <a class="el" href="full__circle__mesh_8template_8h_source.html#l00173">173</a> of file <a class="el" href="full__circle__mesh_8template_8h_source.html">full_circle_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="full__circle__mesh_8h_source.html#l00171">171</a> of file <a class="el" href="full__circle__mesh_8h_source.html">full_circle_mesh.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li><a class="el" href="full__circle__mesh_8template_8h_source.html">full_circle_mesh.template.h</a></li>
+<li><a class="el" href="full__circle__mesh_8h_source.html">full_circle_mesh.h</a></li>
 </ul>
 </div><!-- contents -->
 
@@ -298,7 +291,7 @@ template&lt;<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">class
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 13:59:23
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:37:41
         </div>
       </div>
     </footer>

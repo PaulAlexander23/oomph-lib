@@ -9,7 +9,7 @@ Our first "{}real"{} fluid-\/structure interaction problem\+: We study the finit
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -385,7 +385,7 @@ Our first "{}real"{} fluid-\/structure interaction problem\+: We study the finit
 \DoxyCodeLine{\ \ \ \ ofstream\ some\_file;\ \textcolor{keywordtype}{char}\ filename[100];}
 \DoxyCodeLine{\ \ \ \ \textcolor{comment}{//Construct\ the\ output\ filename\ from\ the\ doc\_info\ number\ and\ the}}
 \DoxyCodeLine{\ \ \ \ \textcolor{comment}{//output\ directory}}
-\DoxyCodeLine{\ \ \ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ \ \ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ \ \ \ \textcolor{comment}{//Open\ the\ output\ file}}
 \DoxyCodeLine{\ \ \ \ some\_file.open(filename);\textcolor{comment}{}}
@@ -856,4 +856,4 @@ Our first "{}real"{} fluid-\/structure interaction problem\+: We study the finit
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

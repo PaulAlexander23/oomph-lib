@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -228,9 +222,9 @@
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="comment"></span> </div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="comment"></span> </div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="comment">//===start_of_problem_class===========================================</span><span class="comment"></span></div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="comment">/// LinearWave problem in rectanglular domain</span></div>
@@ -558,7 +552,7 @@
 <div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span> </div>
 <div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span> <span class="comment">// Output solution </span></div>
 <div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span> <span class="comment">//-----------------</span></div>
-<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>         doc_info.number());</div>
 <div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span> some_file.open(filename);</div>
 <div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span> mesh_pt()-&gt;output(some_file,npts);</div>
@@ -573,7 +567,7 @@
 <div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span> </div>
 <div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span> <span class="comment">// Output exact solution </span></div>
 <div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span> <span class="comment">//----------------------</span></div>
-<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span> sprintf(filename,<span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>         doc_info.number());</div>
 <div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span> oomph_info &lt;&lt; <span class="stringliteral">&quot; FILENAME: &quot;</span> &lt;&lt; filename &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span> some_file.open(filename);</div>
@@ -584,7 +578,7 @@
 <div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span> <span class="comment">// Doc error</span></div>
 <div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span> <span class="comment">//----------</span></div>
 <div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span> <span class="keywordtype">double</span> error,norm;</div>
-<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span> sprintf(filename,<span class="stringliteral">&quot;%s/error%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/error%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>         doc_info.number());</div>
 <div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span> some_file.open(filename);</div>
 <div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span> mesh_pt()-&gt;compute_error(some_file,</div>
@@ -629,7 +623,7 @@
 <div class="line"><a id="l00487" name="l00487"></a><span class="lineno">  487</span> </div>
 <div class="line"><a id="l00488" name="l00488"></a><span class="lineno">  488</span> <span class="comment">// Open trace file</span></div>
 <div class="line"><a id="l00489" name="l00489"></a><span class="lineno">  489</span> <span class="keywordtype">char</span> filename[100];   </div>
-<div class="line"><a id="l00490" name="l00490"></a><span class="lineno">  490</span> sprintf(filename,<span class="stringliteral">&quot;%s/trace.dat&quot;</span>,doc_info.directory().c_str());</div>
+<div class="line"><a id="l00490" name="l00490"></a><span class="lineno">  490</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/trace.dat&quot;</span>,doc_info.directory().c_str());</div>
 <div class="line"><a id="l00491" name="l00491"></a><span class="lineno">  491</span> Trace_file.open(filename);</div>
 <div class="line"><a id="l00492" name="l00492"></a><span class="lineno">  492</span> </div>
 <div class="line"><a id="l00493" name="l00493"></a><span class="lineno">  493</span> <span class="comment">// Initialise time</span></div>
@@ -684,9 +678,9 @@
 <div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span> </div>
 <div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span> </div>
 <div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span><span class="comment"></span> </div>
-<div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span><span class="comment"></span> </div>
 <div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span> </div>
 <div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span> </div>
@@ -739,7 +733,7 @@
 <div class="line"><a id="l00595" name="l00595"></a><span class="lineno">  595</span> </div>
 <div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span>}; <span class="comment">// end of main</span></div>
 </div>
-<div class="ttc" id="aclassLinearWaveProblem_html"><div class="ttname"><a href="classLinearWaveProblem.html">LinearWaveProblem</a></div><div class="ttdoc">///////////////////////////////////////////////////////////////////// ///////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="two__d__linear__wave_8cc_source.html#l00108">two_d_linear_wave.cc:109</a></div></div>
+<div class="ttc" id="aclassLinearWaveProblem_html"><div class="ttname"><a href="classLinearWaveProblem.html">LinearWaveProblem</a></div><div class="ttdoc">LinearWave problem in rectanglular domain.</div><div class="ttdef"><b>Definition</b> <a href="two__d__linear__wave_8cc_source.html#l00108">two_d_linear_wave.cc:109</a></div></div>
 <div class="ttc" id="aclassLinearWaveProblem_html_a296c67402f065a1a3776064492003670"><div class="ttname"><a href="classLinearWaveProblem.html#a296c67402f065a1a3776064492003670">LinearWaveProblem::Impulsive_start</a></div><div class="ttdeci">bool Impulsive_start</div><div class="ttdef"><b>Definition</b> <a href="two__d__linear__wave_8cc_source.html#l00202">two_d_linear_wave.cc:202</a></div></div>
 <div class="ttc" id="aclassLinearWaveProblem_html_a39cfcb8ce06463ace1ac09fa43afa00a"><div class="ttname"><a href="classLinearWaveProblem.html#a39cfcb8ce06463ace1ac09fa43afa00a">LinearWaveProblem::actions_before_implicit_timestep</a></div><div class="ttdeci">void actions_before_implicit_timestep()</div><div class="ttdoc">Update the problem specs before next timestep: Set time-dependent Dirchlet boundary from exact soluti...</div><div class="ttdef"><b>Definition</b> <a href="two__d__linear__wave_8cc_source.html#l00134">two_d_linear_wave.cc:134</a></div></div>
 <div class="ttc" id="aclassLinearWaveProblem_html_a459a58b7afd588cfa78a5e1e98c3c41e"><div class="ttname"><a href="classLinearWaveProblem.html#a459a58b7afd588cfa78a5e1e98c3c41e">LinearWaveProblem::LinearWaveProblem</a></div><div class="ttdeci">LinearWaveProblem(const unsigned &amp;nx, const unsigned &amp;ny, const bool &amp;impulsive_start, LinearWaveEquations&lt; 2 &gt;::LinearWaveSourceFctPt source_fct_pt)</div><div class="ttdoc">Constructor: pass number of elements in x and y directions, bool indicating impulsive or &quot;smooth&quot; sta...</div><div class="ttdef"><b>Definition</b> <a href="two__d__linear__wave_8cc_source.html#l00212">two_d_linear_wave.cc:212</a></div></div>
@@ -759,7 +753,7 @@
 <div class="ttc" id="anamespaceTanhSolnForLinearWave_html_a7dd7e9f155d19f871ba87d3fe41fd8e9"><div class="ttname"><a href="namespaceTanhSolnForLinearWave.html#a7dd7e9f155d19f871ba87d3fe41fd8e9">TanhSolnForLinearWave::get_exact_u</a></div><div class="ttdeci">void get_exact_u(const double &amp;time, const Vector&lt; double &gt; &amp;x, Vector&lt; double &gt; &amp;u)</div><div class="ttdoc">Exact solution as a vector.</div><div class="ttdef"><b>Definition</b> <a href="two__d__linear__wave_8cc_source.html#l00082">two_d_linear_wave.cc:82</a></div></div>
 <div class="ttc" id="anamespaceTanhSolnForLinearWave_html_aa2081bd3d3d518a38497f664b0e498bc"><div class="ttname"><a href="namespaceTanhSolnForLinearWave.html#aa2081bd3d3d518a38497f664b0e498bc">TanhSolnForLinearWave::exact_dudt</a></div><div class="ttdeci">double exact_dudt(const double &amp;time, const Vector&lt; double &gt; &amp;x)</div><div class="ttdoc">1st time-deriv of exact solution</div><div class="ttdef"><b>Definition</b> <a href="two__d__linear__wave_8cc_source.html#l00065">two_d_linear_wave.cc:65</a></div></div>
 <div class="ttc" id="anamespaceTanhSolnForLinearWave_html_aceea2935b2d3815ce72aae8c9de2b468"><div class="ttname"><a href="namespaceTanhSolnForLinearWave.html#aceea2935b2d3815ce72aae8c9de2b468">TanhSolnForLinearWave::exact_u</a></div><div class="ttdeci">double exact_u(const double &amp;time, const Vector&lt; double &gt; &amp;x)</div><div class="ttdoc">Exact solution.</div><div class="ttdef"><b>Definition</b> <a href="two__d__linear__wave_8cc_source.html#l00058">two_d_linear_wave.cc:58</a></div></div>
-<div class="ttc" id="atwo__d__linear__wave_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="two__d__linear__wave_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">///////////////////////////////////////////////////////////////////// ///////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="two__d__linear__wave_8cc_source.html#l00553">two_d_linear_wave.cc:553</a></div></div>
+<div class="ttc" id="atwo__d__linear__wave_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="two__d__linear__wave_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">Demonstrate how to solve LinearWave problem.</div><div class="ttdef"><b>Definition</b> <a href="two__d__linear__wave_8cc_source.html#l00553">two_d_linear_wave.cc:553</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 
     <!-- jQuery for Bootstrap and Doxygen -->
@@ -788,7 +782,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:09:46
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:36:02
         </div>
       </div>
     </footer>

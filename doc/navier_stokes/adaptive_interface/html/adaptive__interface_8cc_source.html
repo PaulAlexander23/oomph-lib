@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -1390,7 +1384,7 @@
 <div class="line"><a id="l01224" name="l01224"></a><span class="lineno"> 1224</span>         &lt;&lt; Bulk_mesh_pt-&gt;boundary_node_pt(2,0)-&gt;x(1) &lt;&lt; <a class="code hl_function" href="classRefineableCylinderAndInterfaceMesh.html#a2f42954cee8f7ba47d87f842dbdc4cc2">std::endl</a>;   </div>
 <div class="line"><a id="l01225" name="l01225"></a><span class="lineno"> 1225</span>   </div>
 <div class="line"><a id="l01226" name="l01226"></a><span class="lineno"> 1226</span>   <span class="keywordtype">char</span> <a class="code hl_class" href="classRefineableCylinderAndInterfaceMesh.html">file</a>[100];</div>
-<div class="line"><a id="l01227" name="l01227"></a><span class="lineno"> 1227</span>   <a class="code hl_class" href="classRefineableCylinderAndInterfaceMesh.html">sprintf</a>(<a class="code hl_class" href="classRefineableCylinderAndInterfaceMesh.html">file</a>,<span class="stringliteral">&quot;step%i.dat&quot;</span>,<a class="code hl_class" href="classRefineableCylinderAndInterfaceMesh.html">i</a>);</div>
+<div class="line"><a id="l01227" name="l01227"></a><span class="lineno"> 1227</span>   <a class="code hl_class" href="classRefineableCylinderAndInterfaceMesh.html">snprintf</a>(<a class="code hl_class" href="classRefineableCylinderAndInterfaceMesh.html">file</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classRefineableCylinderAndInterfaceMesh.html">file</a>), <span class="stringliteral">&quot;step%i.dat&quot;</span>,<a class="code hl_class" href="classRefineableCylinderAndInterfaceMesh.html">i</a>);</div>
 <div class="line"><a id="l01228" name="l01228"></a><span class="lineno"> 1228</span>   <a class="code hl_class" href="classRefineableCylinderAndInterfaceMesh.html">filename</a>.open(<a class="code hl_class" href="classRefineableCylinderAndInterfaceMesh.html">file</a>);</div>
 <div class="line"><a id="l01229" name="l01229"></a><span class="lineno"> 1229</span>   Bulk_mesh_pt-&gt;output(<a class="code hl_class" href="classRefineableCylinderAndInterfaceMesh.html">filename</a>,5);</div>
 <div class="line"><a id="l01230" name="l01230"></a><span class="lineno"> 1230</span>   Surface_mesh_pt-&gt;output(<a class="code hl_class" href="classRefineableCylinderAndInterfaceMesh.html">filename</a>,5);</div>
@@ -1433,9 +1427,9 @@
 </div>
 <div class="line"><a id="l01267" name="l01267"></a><span class="lineno"> 1267</span> </div>
 <div class="line"><a id="l01268" name="l01268"></a><span class="lineno"> 1268</span><span class="comment"></span> </div>
-<div class="line"><a id="l01269" name="l01269"></a><span class="lineno"> 1269</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l01270" name="l01270"></a><span class="lineno"> 1270</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l01271" name="l01271"></a><span class="lineno"> 1271</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l01269" name="l01269"></a><span class="lineno"> 1269</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l01270" name="l01270"></a><span class="lineno"> 1270</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l01271" name="l01271"></a><span class="lineno"> 1271</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l01272" name="l01272"></a><span class="lineno"> 1272</span><span class="comment"></span> </div>
 <div class="line"><a id="l01273" name="l01273"></a><span class="lineno"> 1273</span> </div>
 <div class="foldopen" id="foldopen01274" data-start="{" data-end="}">
@@ -1452,7 +1446,7 @@
 <div class="line"><a id="l01284" name="l01284"></a><span class="lineno"> 1284</span>   <a class="code hl_class" href="classRefineableCylinderAndInterfaceMesh.html">problem</a>.solve();</div>
 <div class="line"><a id="l01285" name="l01285"></a><span class="lineno"> 1285</span>  }</div>
 </div>
-<div class="ttc" id="aadaptive__interface_8cc_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="adaptive__interface_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="adaptive__interface_8cc_source.html#l01274">adaptive_interface.cc:1274</a></div></div>
+<div class="ttc" id="aadaptive__interface_8cc_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="adaptive__interface_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdef"><b>Definition</b> <a href="adaptive__interface_8cc_source.html#l01274">adaptive_interface.cc:1274</a></div></div>
 <div class="ttc" id="aclassCylinderAndInterfaceDomain_html"><div class="ttname"><a href="classCylinderAndInterfaceDomain.html">CylinderAndInterfaceDomain</a></div><div class="ttdef"><b>Definition</b> <a href="adaptive__interface_8cc_source.html#l00098">adaptive_interface.cc:99</a></div></div>
 <div class="ttc" id="aclassCylinderAndInterfaceDomain_html_a01c924b854c98cb5a45ba2d1af43aa46"><div class="ttname"><a href="classCylinderAndInterfaceDomain.html#a01c924b854c98cb5a45ba2d1af43aa46">CylinderAndInterfaceDomain::Upper_mid_left</a></div><div class="ttdeci">double Upper_mid_left[2]</div><div class="ttdef"><b>Definition</b> <a href="adaptive__interface_8cc_source.html#l00106">adaptive_interface.cc:106</a></div></div>
 <div class="ttc" id="aclassCylinderAndInterfaceDomain_html_a04206f6c72189356d5eecf32b81595f4"><div class="ttname"><a href="classCylinderAndInterfaceDomain.html#a04206f6c72189356d5eecf32b81595f4">CylinderAndInterfaceDomain::Lower_right</a></div><div class="ttdeci">double Lower_right[2]</div><div class="ttdef"><b>Definition</b> <a href="adaptive__interface_8cc_source.html#l00105">adaptive_interface.cc:105</a></div></div>
@@ -1550,7 +1544,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:14:20
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:40:27
         </div>
       </div>
     </footer>

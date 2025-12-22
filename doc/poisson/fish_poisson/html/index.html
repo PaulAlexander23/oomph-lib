@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -117,16 +111,16 @@
 <center> <table class="doxtable">
 <tr>
 <td><center> <b>Two-dimensional model Poisson problem in a non-trivial domain</b> </center> Solve  <p class="formulaDsp">
-<picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \sum_{i=1}^2 \frac{\partial^2u}{\partial x_i^2} = -1,
  \ \ \ \ \ \ \ \ \ \ (1)
-\]" src="form_0.png" width="139" height="38"/></picture>
+\]" src="form_0.png" width="139" height="38"/>
 </p>
- in the fish-shaped domain <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$D_{fish} $" src="form_1.png" width="30" height="14"/></picture>, with homogeneous Dirichlet boundary conditions  <p class="formulaDsp">
-<picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ in the fish-shaped domain <img class="formulaInl" alt="$D_{fish} $" src="form_1.png" width="30" height="14"/>, with homogeneous Dirichlet boundary conditions  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \left. u\right|_{\partial D_{fish}}=0.
 \ \ \ \ \ \ \ \ \ \ (2)
-\]" src="form_2.png" width="128" height="16"/></picture>
+\]" src="form_2.png" width="128" height="16"/>
 </p>
    </td></tr>
 </table>
@@ -146,7 +140,7 @@ Plot of the solution </div></div>
  </p><hr  />
 <h1><a class="anchor" id="global"></a>
 Global parameters and functions</h1>
-<p>The namespace <code><a class="el" href="namespaceConstSourceForPoisson.html" title="Namespace for const source term in Poisson equation.">ConstSourceForPoisson</a></code> only contains the constant source function <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ f(x)=-1 $" src="form_3.png" width="56" height="14"/></picture>.</p>
+<p>The namespace <code><a class="el" href="namespaceConstSourceForPoisson.html" title="Namespace for const source term in Poisson equation.">ConstSourceForPoisson</a></code> only contains the constant source function <img class="formulaInl" alt="$ f(x)=-1 $" src="form_3.png" width="56" height="14"/>.</p>
  <div class="fragment"><div class="line"><span class="comment">//============ start_of_namespace=====================================</span></div>
 <div class="line"><span class="comment">/// Namespace for const source term in Poisson equation</span></div>
 <div class="line"><span class="comment">//====================================================================</span></div>
@@ -466,7 +460,7 @@ Post-processing</h1>
 <div class="line"> npts=5; </div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output solution </span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> mesh_pt()-&gt;output(some_file,npts);</div>
@@ -500,7 +494,7 @@ Problem adaptation vs. Mesh adaptation</h2>
 <h2><a class="anchor" id="exercises"></a>
 Exercises</h2>
 <p>To familiarise yourself with <code>oomph-lib's</code> mesh adaptation procedures we suggest the following exercises:</p><ol type="1">
-<li>When the Poisson problem is solved with the default refinement targets, no elements are unrefined. Increase the minimum permitted error from its default value of <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ 10^{-5} $" src="form_4.png" width="25" height="11"/></picture> to <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ 10^{-4} $" src="form_5.png" width="25" height="11"/></picture> by adding the statement <div class="fragment"><div class="line">problem.mesh_pt()-&gt;min_permitted_error()=1.0e-4;</div>
+<li>When the Poisson problem is solved with the default refinement targets, no elements are unrefined. Increase the minimum permitted error from its default value of <img class="formulaInl" alt="$ 10^{-5} $" src="form_4.png" width="25" height="11"/> to <img class="formulaInl" alt="$ 10^{-4} $" src="form_5.png" width="25" height="11"/> by adding the statement <div class="fragment"><div class="line">problem.mesh_pt()-&gt;min_permitted_error()=1.0e-4;</div>
 </div><!-- fragment --> before <div class="fragment"><div class="line">problem.mesh_pt()-&gt;doc_adaptivity_targets(cout);</div>
 </div><!-- fragment --> This value forces an unrefinement of several elements in the mesh: <div class="image">
 <img src="fish_poisson_soln2.gif" alt=""/>
@@ -528,7 +522,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -558,7 +552,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:07:14
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:43:07
         </div>
       </div>
     </footer>

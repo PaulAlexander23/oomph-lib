@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -449,7 +449,7 @@
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00445}00445\ \ ofstream\ some\_file;}
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00446}00446\ \ \textcolor{keywordtype}{char}\ filename[100];}
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00447}00447\ \ \textcolor{comment}{//YoungLaplaceEquations::Output\_meniscus\_and\_spines=false;}}
-\DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00448}00448\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00448}00448\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00449}00449\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00450}00450\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00451}00451\ \ Bulk\_mesh\_pt-\/>output(some\_file,npts);}
@@ -459,20 +459,20 @@
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00455}00455\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00456}00456\ }
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00457}00457\ \ ofstream\ tangent\_file;}
-\DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00458}00458\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/tangent\_to\_contact\_line\%i.dat"{}},}
+\DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00458}00458\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/tangent\_to\_contact\_line\%i.dat"{}},}
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00459}00459\ \ \ \ \ \ \ \ \ \ doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00460}00460\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00461}00461\ \ tangent\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00462}00462\ \ }
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00463}00463\ \ ofstream\ normal\_file;}
-\DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00464}00464\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/normal\_to\_contact\_line\%i.dat"{}},}
+\DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00464}00464\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/normal\_to\_contact\_line\%i.dat"{}},}
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00465}00465\ \ \ \ \ \ \ \ \ \ doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00466}00466\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00467}00467\ \ normal\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00468}00468\ \ }
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00469}00469\ \ }
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00470}00470\ \ ofstream\ contact\_angle\_file;}
-\DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00471}00471\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/contact\_angle\%i.dat"{}},}
+\DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00471}00471\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/contact\_angle\%i.dat"{}},}
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00472}00472\ \ \ \ \ \ \ \ \ \ doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00473}00473\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00474}00474\ \ contact\_angle\_file.open(filename);}
@@ -558,7 +558,7 @@
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00554}00554\ \ }
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00555}00555\ \ \textcolor{comment}{//\ Open\ a\ trace\ file}}
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00556}00556\ \ \textcolor{keywordtype}{char}\ filename[100];}
-\DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00557}00557\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00557}00557\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00558}00558\ \ trace\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00559}00559\ }
 \DoxyCodeLine{\Hypertarget{refineable__t__junction_8cc_source_l00560}00560\ \ \textcolor{comment}{//\ Tecplot\ header\ for\ trace\ file:\ kappa\ and\ height\ value}}

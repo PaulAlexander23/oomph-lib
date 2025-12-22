@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -124,12 +118,12 @@
  <hr  />
 <h1><a class="anchor" id="problem"></a>
 The problem</h1>
-<p>The figure below shows a sketch of the basic problem: A 2D circular disk of radius <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ a $" src="form_0.png" width="6" height="6"/></picture> is loaded by a uniform pressure <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p_0^*$" src="form_1.png" width="13" height="14"/></picture>. We wish to compute the disk's deformation for a variety of constitutive equations.</p>
+<p>The figure below shows a sketch of the basic problem: A 2D circular disk of radius <img class="formulaInl" alt="$ a $" src="form_0.png" width="6" height="6"/> is loaded by a uniform pressure <img class="formulaInl" alt="$ p_0^*$" src="form_1.png" width="13" height="14"/>. We wish to compute the disk's deformation for a variety of constitutive equations.</p>
 <div class="image">
 <img src="disk_compression.gif" alt=""/>
 <div class="caption">
 Sketch of the problem. </div></div>
- <p>The next sketch shows a variant of the problem: We assume that the material undergoes isotropic growth (<a class="el" href="classElasticRefineableQuarterCircleSectorMesh.html#a123699deecd2a908a7a882a9d2a9f4dd" title="Constructor: Build mesh and copy Eulerian coords to Lagrangian ones so that the initial configuration...">e.g</a>. via a biological growth process or thermal expansion, say) with a constant growth factor <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \Gamma $" src="form_2.png" width="9" height="10"/></picture>. We refer to the the document <a href="../../solid_theory/html/index.html#isotropic_growth">"Solid mechanics: Theory and implementation"</a> for a detailed discussion of the theory of isotropic growth. Briefly, the growth factor defines the relative increase in the volume of an infinitesimal material element, relative to its volume in the stress-free reference configuration. If the growth factor is spatially uniform, isotropic growth leads to a uniform expansion of the material. For a circular disk, uniform growth increases the disk's radius from <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ a_0 $" src="form_3.png" width="11" height="9"/></picture> to <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ a = a_0 \sqrt{\Gamma} $" src="form_4.png" width="54" height="15"/></picture> without inducing any internal stresses. This uniformly expanded disk may then be regarded as the stress-free reference configuration upon which the external pressure acts.</p>
+ <p>The next sketch shows a variant of the problem: We assume that the material undergoes isotropic growth (<a class="el" href="classElasticRefineableQuarterCircleSectorMesh.html#a123699deecd2a908a7a882a9d2a9f4dd" title="Constructor: Build mesh and copy Eulerian coords to Lagrangian ones so that the initial configuration...">e.g</a>. via a biological growth process or thermal expansion, say) with a constant growth factor <img class="formulaInl" alt="$ \Gamma $" src="form_2.png" width="9" height="10"/>. We refer to the the document <a href="../../solid_theory/html/index.html#isotropic_growth">"Solid mechanics: Theory and implementation"</a> for a detailed discussion of the theory of isotropic growth. Briefly, the growth factor defines the relative increase in the volume of an infinitesimal material element, relative to its volume in the stress-free reference configuration. If the growth factor is spatially uniform, isotropic growth leads to a uniform expansion of the material. For a circular disk, uniform growth increases the disk's radius from <img class="formulaInl" alt="$ a_0 $" src="form_3.png" width="11" height="9"/> to <img class="formulaInl" alt="$ a = a_0 \sqrt{\Gamma} $" src="form_4.png" width="54" height="15"/> without inducing any internal stresses. This uniformly expanded disk may then be regarded as the stress-free reference configuration upon which the external pressure acts.</p>
 <div class="image">
 <img src="disk_compression_with_growth.gif" alt=""/>
 <div class="caption">
@@ -138,12 +132,12 @@ Sketch of the problem. </div></div>
  <hr  />
 <h1><a class="anchor" id="results"></a>
 Results</h1>
-<p>The animation shows the disk's deformation when subjected to uniform growth of <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \Gamma = 1.1 $" src="form_5.png" width="41" height="10"/></picture> and loaded by a pressure that ranges from negative to positive values. All lengths were scaled on the disks initial radius (<a class="el" href="classElasticRefineableQuarterCircleSectorMesh.html#a123699deecd2a908a7a882a9d2a9f4dd" title="Constructor: Build mesh and copy Eulerian coords to Lagrangian ones so that the initial configuration...">i.e</a>. its radius in the absence of growth and without any external load).</p>
+<p>The animation shows the disk's deformation when subjected to uniform growth of <img class="formulaInl" alt="$ \Gamma = 1.1 $" src="form_5.png" width="41" height="10"/> and loaded by a pressure that ranges from negative to positive values. All lengths were scaled on the disks initial radius (<a class="el" href="classElasticRefineableQuarterCircleSectorMesh.html#a123699deecd2a908a7a882a9d2a9f4dd" title="Constructor: Build mesh and copy Eulerian coords to Lagrangian ones so that the initial configuration...">i.e</a>. its radius in the absence of growth and without any external load).</p>
 <div class="image">
 <img src="disk_compression_anim.gif" alt=""/>
 <div class="caption">
 Deformation of the uniformly grown disk when subjected to an external pressure. </div></div>
- <p>The figure below illustrates the disk's load-displacement characteristics by plotting the disk's non-dimensional radius as function of the non-dimensional pressure, <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p_0 = p_0^*/{\cal S} $" src="form_6.png" width="56" height="14"/></picture> , where <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\cal S} $" src="form_7.png" width="10" height="10"/></picture> is the characteristic stiffness of the material, for a variety of constitutive equations. <br  />
+ <p>The figure below illustrates the disk's load-displacement characteristics by plotting the disk's non-dimensional radius as function of the non-dimensional pressure, <img class="formulaInl" alt="$ p_0 = p_0^*/{\cal S} $" src="form_6.png" width="56" height="14"/> , where <img class="formulaInl" alt="$ {\cal S} $" src="form_7.png" width="10" height="10"/> is the characteristic stiffness of the material, for a variety of constitutive equations. <br  />
 </p>
 <div class="image">
 <img src="trace.gif" alt=""/>
@@ -151,37 +145,37 @@ Deformation of the uniformly grown disk when subjected to an external pressure. 
 Load displacement characteristics for various constitutive equations. </div></div>
  <h2><a class="anchor" id="hooke"></a>
 Generalised Hooke's law</h2>
-<p>The blue, dash-dotted line corresponds to <code>oomph-lib's</code> generalisation of Hooke's law (with Young's modulus <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ E $" src="form_8.png" width="10" height="10"/></picture> and Poisson ratio <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \nu $" src="form_9.png" width="6" height="6"/></picture> ) in which the dimensionless second Piola Kirchhoff stress tensor (non-dimensionalised with the material's Young's modulus <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ E $" src="form_8.png" width="10" height="10"/></picture>, so that <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\cal S} = E $" src="form_10.png" width="36" height="10"/></picture> ) is given by  </p><p class="formulaDsp">
-<picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p>The blue, dash-dotted line corresponds to <code>oomph-lib's</code> generalisation of Hooke's law (with Young's modulus <img class="formulaInl" alt="$ E $" src="form_8.png" width="10" height="10"/> and Poisson ratio <img class="formulaInl" alt="$ \nu $" src="form_9.png" width="6" height="6"/> ) in which the dimensionless second Piola Kirchhoff stress tensor (non-dimensionalised with the material's Young's modulus <img class="formulaInl" alt="$ E $" src="form_8.png" width="10" height="10"/>, so that <img class="formulaInl" alt="$ {\cal S} = E $" src="form_10.png" width="36" height="10"/> ) is given by  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \sigma^{ij} = \frac{1}{2(1+\nu)}
 \left( 
 G^{ik} G^{jl} + G^{il} G^{jk}  +
 \frac{2\nu}{1-2\nu} G^{ij} G^{kl} 
 \right) \gamma_{kl}.
-\]" src="form_11.png" width="303" height="31"/></picture>
+\]" src="form_11.png" width="303" height="31"/>
 </p>
-<p> Here <picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \gamma_{ij}= 1/2 (G_{ij}-g_{ij})$" src="form_12.png" width="109" height="14"/></picture> is Green's strain tensor, formed from the difference between the deformed and undeformed metric tensors, <picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ G_{ij} $" src="form_13.png" width="18" height="14"/></picture> and <picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ g_{ij} $" src="form_14.png" width="15" height="10"/></picture>, respectively. The three different markers identify the results obtained with the two forms of the principle of virtual displacement, employing the displacement formulation (squares), and a pressure/displacement formulation with a continuous (delta) and a discontinuous (nabla) pressure interpolation.</p>
-<p>For zero pressure the disk's non-dimensional radius is equal to the uniformly grown radius <picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \sqrt{\Gamma} = 1.0488. $" src="form_15.png" width="73" height="14"/></picture> For small pressures the load-displacement curve follows the linear approximation  </p><p class="formulaDsp">
-<picture><source srcset="form_16_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> Here <img class="formulaInl" alt="$ \gamma_{ij}= 1/2 (G_{ij}-g_{ij})$" src="form_12.png" width="109" height="14"/> is Green's strain tensor, formed from the difference between the deformed and undeformed metric tensors, <img class="formulaInl" alt="$ G_{ij} $" src="form_13.png" width="18" height="14"/> and <img class="formulaInl" alt="$ g_{ij} $" src="form_14.png" width="15" height="10"/>, respectively. The three different markers identify the results obtained with the two forms of the principle of virtual displacement, employing the displacement formulation (squares), and a pressure/displacement formulation with a continuous (delta) and a discontinuous (nabla) pressure interpolation.</p>
+<p>For zero pressure the disk's non-dimensional radius is equal to the uniformly grown radius <img class="formulaInl" alt="$ \sqrt{\Gamma} = 1.0488. $" src="form_15.png" width="73" height="14"/> For small pressures the load-displacement curve follows the linear approximation  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 r =  \sqrt{\Gamma} \big( 1-p_0 (1+\nu)(1-2\nu) \big).
-\]" src="form_16.png" width="171" height="18"/></picture>
+\]" src="form_16.png" width="171" height="18"/>
 </p>
 <p> We note that the generalised Hooke's law leads to strain softening behaviour under compression (the pressure required to reduce the disk's radius to a given value increases more rapidly than predicted by the linear approximation) whereas under expansion (for negative external pressures) the behaviour is strain softening.</p>
 <h2><a class="anchor" id="mr"></a>
 Generalised Mooney-Rivlin law</h2>
-<p>The red, dashed line illustrates the behaviour when Fung &amp; Tong's generalisation of the Mooney-Rivlin law (with Young's modulus, <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ E $" src="form_8.png" width="10" height="10"/></picture>, Poisson ratio <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \nu $" src="form_9.png" width="6" height="6"/></picture> and Mooney-Rivlin parameter <picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ C_1$" src="form_17.png" width="14" height="13"/></picture>) is used as the constitutive equation. For this constitutive law, the non-dimensional strain energy function <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ W = W^*/{\cal S}$" src="form_18.png" width="64" height="14"/></picture>, where the characteristic stress is given by Young's modulus, <a class="el" href="classElasticRefineableQuarterCircleSectorMesh.html#a123699deecd2a908a7a882a9d2a9f4dd" title="Constructor: Build mesh and copy Eulerian coords to Lagrangian ones so that the initial configuration...">i.e</a>. <picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\cal
-S} =E $" src="form_19.png" width="36" height="10"/></picture>, is given by  </p><p class="formulaDsp">
-<picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p>The red, dashed line illustrates the behaviour when Fung &amp; Tong's generalisation of the Mooney-Rivlin law (with Young's modulus, <img class="formulaInl" alt="$ E $" src="form_8.png" width="10" height="10"/>, Poisson ratio <img class="formulaInl" alt="$ \nu $" src="form_9.png" width="6" height="6"/> and Mooney-Rivlin parameter <img class="formulaInl" alt="$ C_1$" src="form_17.png" width="14" height="13"/>) is used as the constitutive equation. For this constitutive law, the non-dimensional strain energy function <img class="formulaInl" alt="$ W = W^*/{\cal S}$" src="form_18.png" width="64" height="14"/>, where the characteristic stress is given by Young's modulus, <a class="el" href="classElasticRefineableQuarterCircleSectorMesh.html#a123699deecd2a908a7a882a9d2a9f4dd" title="Constructor: Build mesh and copy Eulerian coords to Lagrangian ones so that the initial configuration...">i.e</a>. <img class="formulaInl" alt="$ {\cal
+S} =E $" src="form_19.png" width="36" height="10"/>, is given by  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 W =  \frac{1}{2} (I_1-3) + (G-C_1)(I_2-3) + (C_1-2G)(I_3-1)
 + (I_3-1)^2 \ \frac{G(1-\nu)}{2(1-2\nu)} \ ,
-\]" src="form_20.png" width="429" height="31"/></picture>
+\]" src="form_20.png" width="429" height="31"/>
 </p>
 <p> where  </p><p class="formulaDsp">
-<picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 G = \frac{E}{2(1+\nu)}
-\]" src="form_21.png" width="73" height="30"/></picture>
+\]" src="form_21.png" width="73" height="30"/>
 </p>
-<p> is the shear modulus, and <picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ I_1, I_2 $" src="form_22.png" width="28" height="13"/></picture> and <picture><source srcset="form_23_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ I_3 $" src="form_23.png" width="11" height="13"/></picture> are the three invariants of Green's strain tensor. See <a href="../../solid_theory/html/index.html#strain-energy">"Solid mechanics: Theory and implementation"</a> for a detailed discussion of strain energy functions. The figure shows that for small deflections, the disk's behaviour is again well approximated by linear elasticity. However, in the large-displacement regime the Mooney-Rivlin is strain hardening under extension and softening under compression when compared to the linear elastic behaviour.</p>
+<p> is the shear modulus, and <img class="formulaInl" alt="$ I_1, I_2 $" src="form_22.png" width="28" height="13"/> and <img class="formulaInl" alt="$ I_3 $" src="form_23.png" width="11" height="13"/> are the three invariants of Green's strain tensor. See <a href="../../solid_theory/html/index.html#strain-energy">"Solid mechanics: Theory and implementation"</a> for a detailed discussion of strain energy functions. The figure shows that for small deflections, the disk's behaviour is again well approximated by linear elasticity. However, in the large-displacement regime the Mooney-Rivlin is strain hardening under extension and softening under compression when compared to the linear elastic behaviour.</p>
 <hr  />
  <hr  />
 <h1><a class="anchor" id="namespace"></a>
@@ -206,7 +200,7 @@ Global parameters and functions</h1>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// &quot;Mooney Rivlin&quot; coefficient for generalised Mooney Rivlin law</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a849754fa7155c1a31481674ce4845658">C1</a>=1.3;</div>
-<div class="ttc" id="aclassElasticRefineableQuarterCircleSectorMesh_html"><div class="ttname"><a href="classElasticRefineableQuarterCircleSectorMesh.html">ElasticRefineableQuarterCircleSectorMesh</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="disk__compression_8cc_source.html#l00112">disk_compression.cc:115</a></div></div>
+<div class="ttc" id="aclassElasticRefineableQuarterCircleSectorMesh_html"><div class="ttname"><a href="classElasticRefineableQuarterCircleSectorMesh.html">ElasticRefineableQuarterCircleSectorMesh</a></div><div class="ttdoc">Elastic quarter circle sector mesh with functionality to attach traction elements to the curved surfa...</div><div class="ttdef"><b>Definition</b> <a href="disk__compression_8cc_source.html#l00112">disk_compression.cc:115</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">Global variables.</div><div class="ttdef"><b>Definition</b> <a href="disk__compression_8cc_source.html#l00049">disk_compression.cc:50</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a09a019474b7405b35da2437f7779bc7e"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a09a019474b7405b35da2437f7779bc7e">Global_Physical_Variables::E</a></div><div class="ttdeci">double E</div><div class="ttdoc">Elastic modulus.</div><div class="ttdef"><b>Definition</b> <a href="disk__compression_8cc_source.html#l00058">disk_compression.cc:58</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a2a37fb040c832ee7a086bb13bb02a100"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a2a37fb040c832ee7a086bb13bb02a100">Global_Physical_Variables::Constitutive_law_pt</a></div><div class="ttdeci">ConstitutiveLaw * Constitutive_law_pt</div><div class="ttdoc">Pointer to constitutive law.</div><div class="ttdef"><b>Definition</b> <a href="disk__compression_8cc_source.html#l00055">disk_compression.cc:55</a></div></div>
@@ -540,7 +534,7 @@ The Constructor</h1>
 <div class="line"> Trace_node_pt.resize(<a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">n_boundary_node</a>);</div>
 <div class="line"> <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> <a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">j</a>=0;<a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">j</a>&lt;<a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">n_boundary_node</a>;<a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">j</a>++)</div>
 <div class="line">  {Trace_node_pt[<a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">j</a>]=Solid_mesh_pt-&gt;boundary_node_pt(1,<a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">j</a>);}</div>
-</div><!-- fragment --><p> The <code>QuarterCircleSectorMesh</code> that forms the basis of the "bulk" mesh contains only three elements &ndash; not enough to expect the solution to be accurate. Therefore we apply one round of uniform mesh refinement before attaching the <code>SolidTractionElements</code> to the mesh boundary 1, using the function <code>make_traction_element_mesh()</code> in the <code><a class="el" href="classElasticRefineableQuarterCircleSectorMesh.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////...">ElasticRefineableQuarterCircleSectorMesh</a></code>.</p>
+</div><!-- fragment --><p> The <code>QuarterCircleSectorMesh</code> that forms the basis of the "bulk" mesh contains only three elements &ndash; not enough to expect the solution to be accurate. Therefore we apply one round of uniform mesh refinement before attaching the <code>SolidTractionElements</code> to the mesh boundary 1, using the function <code>make_traction_element_mesh()</code> in the <code><a class="el" href="classElasticRefineableQuarterCircleSectorMesh.html" title="Elastic quarter circle sector mesh with functionality to attach traction elements to the curved surfa...">ElasticRefineableQuarterCircleSectorMesh</a></code>.</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"> <span class="comment">// Refine the mesh uniformly</span></div>
 <div class="line"> Solid_mesh_pt-&gt;refine_uniformly();</div>
@@ -632,7 +626,7 @@ Post-processing</h1>
 <div class="line"> <span class="keywordtype">unsigned</span> <a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">npts</a> = 5; </div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output shape of deformed body</span></div>
-<div class="line"> <a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">sprintf</a>(<a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">filename</a>,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,<a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">doc_info</a>.directory().c_str(),</div>
+<div class="line"> <a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">snprintf</a>(<a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">filename</a>), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,<a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">doc_info</a>.directory().c_str(),</div>
 <div class="line">         <a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">doc_info</a>.number());</div>
 <div class="line"> <a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">some_file</a>.open(<a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">filename</a>);</div>
 <div class="line"> Solid_mesh_pt-&gt;output(<a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">some_file</a>,<a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">npts</a>);</div>
@@ -689,7 +683,7 @@ Performing the parameter study</h1>
 <div class="line"> <a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">DocInfo</a> <a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">doc_info</a>;</div>
 <div class="line"> </div>
 <div class="line"> <span class="keywordtype">char</span> <a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">dirname</a>[100];</div>
-<div class="line"> <a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">sprintf</a>(<a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">dirname</a>,<span class="stringliteral">&quot;RESLT%i&quot;</span>,<a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">case_number</a>);</div>
+<div class="line"> <a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">snprintf</a>(<a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">dirname</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">dirname</a>), <span class="stringliteral">&quot;RESLT%i&quot;</span>,<a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">case_number</a>);</div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Set output directory</span></div>
 <div class="line"> <a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">doc_info</a>.set_directory(<a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">dirname</a>);</div>
@@ -699,7 +693,7 @@ Performing the parameter study</h1>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Open trace file</span></div>
 <div class="line"> <span class="keywordtype">char</span> <a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">filename</a>[100];   </div>
-<div class="line"> <a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">sprintf</a>(<a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">filename</a>,<span class="stringliteral">&quot;%s/trace.dat&quot;</span>,<a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">doc_info</a>.directory().c_str());</div>
+<div class="line"> <a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">snprintf</a>(<a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">filename</a>), <span class="stringliteral">&quot;%s/trace.dat&quot;</span>,<a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">doc_info</a>.directory().c_str());</div>
 <div class="line"> Trace_file.open(<a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">filename</a>);</div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">//Parameter incrementation</span></div>
@@ -757,7 +751,7 @@ Exercises</h2>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -787,7 +781,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:22:07
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:44:12
         </div>
       </div>
     </footer>

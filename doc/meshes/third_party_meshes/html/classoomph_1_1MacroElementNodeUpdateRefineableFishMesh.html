@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -124,14 +118,14 @@
 <p>Refineable fish shaped mesh with MacroElement-based node update. The fish's back is represented by a specified geometric object. Some or all of the geometric Data in that geometric object may contain unknowns in the global Problem. The dependency on these unknowns is taken into account when setting up the Jacobian matrix of the elements. For this purpose, the element (whose type is specified by the template parameter) must inherit from MacroElementNodeUpdateElementBase.  
  <a href="classoomph_1_1MacroElementNodeUpdateRefineableFishMesh.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="fish__mesh_8template_8h_source.html">fish_mesh.template.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="fish__mesh_8h_source.html">fish_mesh.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for oomph::MacroElementNodeUpdateRefineableFishMesh&lt; ELEMENT &gt;:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="classoomph_1_1MacroElementNodeUpdateRefineableFishMesh.png" usemap="#oomph::MacroElementNodeUpdateRefineableFishMesh_3C_20ELEMENT_20_3E_map" alt=""/>
   <map id="oomph::MacroElementNodeUpdateRefineableFishMesh_3C_20ELEMENT_20_3E_map" name="oomph::MacroElementNodeUpdateRefineableFishMesh_3C_20ELEMENT_20_3E_map">
-<area href="classoomph_1_1RefineableFishMesh.html" title="////////////////////////////////////////////////////////////////////" alt="oomph::RefineableFishMesh&lt; ELEMENT &gt;" shape="rect" coords="412,112,814,136"/>
+<area href="classoomph_1_1RefineableFishMesh.html" title="Refineable fish shaped mesh. The geometry is defined by the Domain object FishDomain." alt="oomph::RefineableFishMesh&lt; ELEMENT &gt;" shape="rect" coords="412,112,814,136"/>
 <area href="classoomph_1_1FishMesh.html" title="Fish shaped mesh. The geometry is defined by the Domain object FishDomain." alt="oomph::FishMesh&lt; ELEMENT &gt;" shape="rect" coords="206,56,608,80"/>
   </map>
 </div></div>
@@ -207,7 +201,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">class</a> <a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">ELEMENT</a>&gt;<br />
 class oomph::MacroElementNodeUpdateRefineableFishMesh&lt; ELEMENT &gt;</div><p>Refineable fish shaped mesh with MacroElement-based node update. The fish's back is represented by a specified geometric object. Some or all of the geometric Data in that geometric object may contain unknowns in the global Problem. The dependency on these unknowns is taken into account when setting up the Jacobian matrix of the elements. For this purpose, the element (whose type is specified by the template parameter) must inherit from MacroElementNodeUpdateElementBase. </p>
 
-<p class="definition">Definition at line <a class="el" href="fish__mesh_8template_8h_source.html#l00197">197</a> of file <a class="el" href="fish__mesh_8template_8h_source.html">fish_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fish__mesh_8h_source.html#l00192">192</a> of file <a class="el" href="fish__mesh_8h_source.html">fish_mesh.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a7adcb19be3d66c63d88bf87d4822dacc" name="a7adcb19be3d66c63d88bf87d4822dacc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7adcb19be3d66c63d88bf87d4822dacc">&#9670;&#160;</a></span>MacroElementNodeUpdateRefineableFishMesh()</h2>
@@ -247,9 +241,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Constructor: Pass pointer GeomObject that defines the fish's back and pointer to timestepper (defaults to (Steady) default timestepper defined in Mesh). </p>
 
-<p class="definition">Definition at line <a class="el" href="fish__mesh_8template_8h_source.html#l00205">205</a> of file <a class="el" href="fish__mesh_8template_8h_source.html">fish_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fish__mesh_8h_source.html#l00200">200</a> of file <a class="el" href="fish__mesh_8h_source.html">fish_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="fish__mesh_8template_8h_source.html#l00105">oomph::FishMesh&lt; ELEMENT &gt;::Back_pt</a>, and <a class="el" href="fish__mesh_8template_8h_source.html#l00086">oomph::FishMesh&lt; ELEMENT &gt;::domain_pt()</a>.</p>
+<p class="reference">References <a class="el" href="fish__mesh_8h_source.html#l00103">oomph::FishMesh&lt; ELEMENT &gt;::Back_pt</a>, and <a class="el" href="fish__mesh_8h_source.html#l00084">oomph::FishMesh&lt; ELEMENT &gt;::domain_pt()</a>.</p>
 
 </div>
 </div>
@@ -280,7 +274,7 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Destructor: empty. </p>
 
-<p class="definition">Definition at line <a class="el" href="fish__mesh_8template_8h_source.html#l00284">284</a> of file <a class="el" href="fish__mesh_8template_8h_source.html">fish_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fish__mesh_8h_source.html#l00278">278</a> of file <a class="el" href="fish__mesh_8h_source.html">fish_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -313,12 +307,12 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Resolve mesh update: NodeUpdate current nodal positions via sparse MacroElement-based update. [Doesn't make sense to use this mesh with SolidElements anyway, so we buffer the case if update_all_solid_nodes is set to true.]. </p>
 
-<p class="definition">Definition at line <a class="el" href="fish__mesh_8template_8h_source.html#l00291">291</a> of file <a class="el" href="fish__mesh_8template_8h_source.html">fish_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fish__mesh_8h_source.html#l00285">285</a> of file <a class="el" href="fish__mesh_8h_source.html">fish_mesh.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li><a class="el" href="fish__mesh_8template_8h_source.html">fish_mesh.template.h</a></li>
+<li><a class="el" href="fish__mesh_8h_source.html">fish_mesh.h</a></li>
 </ul>
 </div><!-- contents -->
 
@@ -348,7 +342,7 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 13:58:23
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:36:30
         </div>
       </div>
     </footer>

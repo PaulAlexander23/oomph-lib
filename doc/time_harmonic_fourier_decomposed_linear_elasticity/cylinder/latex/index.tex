@@ -571,13 +571,13 @@ As expected, this member function documents the computed solution.
 \DoxyCodeLine{\ \textcolor{keywordtype}{unsigned}\ npts=5;\ }
 \DoxyCodeLine{\ }
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ solution\ }}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ Bulk\_mesh\_pt-\/>output(some\_file,npts);}
 \DoxyCodeLine{\ some\_file.close();}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ exact\ solution\ }}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/exact\_soln.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/exact\_soln.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ Bulk\_mesh\_pt-\/>output\_fct(some\_file,npts,}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceGlobal__Parameters_a6e53a9e4370e8719e9091eff6b6a0c01}{Global\_Parameters::exact\_solution}});}
@@ -586,7 +586,7 @@ As expected, this member function documents the computed solution.
 \DoxyCodeLine{\ \textcolor{comment}{//\ Doc\ error}}
 \DoxyCodeLine{\ \textcolor{keywordtype}{double}\ error=0.0;}
 \DoxyCodeLine{\ \textcolor{keywordtype}{double}\ norm=0.0;}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/error.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/error.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ Bulk\_mesh\_pt-\/>compute\_error(some\_file,}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceGlobal__Parameters_a6e53a9e4370e8719e9091eff6b6a0c01}{Global\_Parameters::exact\_solution}},\ }
@@ -628,4 +628,4 @@ As expected, this member function documents the computed solution.
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

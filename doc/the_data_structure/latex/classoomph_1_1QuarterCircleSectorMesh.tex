@@ -7,7 +7,7 @@
 
 
 
-{\ttfamily \#include $<$quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+template.\+h$>$}
+{\ttfamily \#include $<$quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+h$>$}
 
 Inheritance diagram for oomph\+::Quarter\+Circle\+Sector\+Mesh\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
 \begin{center}
@@ -104,6 +104,10 @@ Inheritance diagram for oomph\+::Quarter\+Circle\+Sector\+Mesh\texorpdfstring{$<
 \begin{DoxyCompactList}\small\item\em Replace existing boundary node lookup schemes with new schemes created using the boundary data stored in the nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1Mesh_ad1b124a959628aba00162b89617b3a62}{boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Indicate whether the i-\/th boundary has an intrinsic coordinate. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_ab137d0c0debf5ba0d6ea6990103e620c}{set\+\_\+boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be existing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_a3b9d63e0057ed721190b109f48f7c92e}{set\+\_\+boundary\+\_\+coordinate\+\_\+does\+\_\+not\+\_\+exist}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be non-\/existing. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_af01dfefb66c15579b540be62999d93ee}{nelement}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return number of elements in the mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
@@ -435,9 +439,7 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_aca12acfe655a4d5c4a4eab4a7b970812}{Element\+\_\+pt}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a412a5051be9e81f0ba61bf85e5abc4a6}{Boundary\+\_\+coordinate\+\_\+exists}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of boolean data that indicates whether the boundary coordinates have been set for the boundary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Public Types inherited from \mbox{\hyperlink{classoomph_1_1Mesh}{oomph\+::\+Mesh}}}
 \begin{DoxyCompactItemize}
@@ -512,7 +514,7 @@ class oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$}
 
 \doxylink{classoomph_1_1Domain}{Domain} is parametrised by three macro elements as sketched. Nodal positions are determined via macro-\/element-\/based representation of the \doxylink{classoomph_1_1Domain}{Domain} (as a \doxylink{classoomph_1_1QuarterCircleSectorDomain}{Quarter\+Circle\+Sector\+Domain}). 
 
-Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00086}{86}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00083}{83}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+h}}.
 
 
 
@@ -530,11 +532,11 @@ Constructor\+: Pass pointer to geometric object that specifies the wall, start a
 
 Constructor for deformable 2D Ring mesh class. Pass pointer to geometric object that specifies the wall, start and end coordinates on the geometric object, and the fraction along which the dividing line is to be placed, and the timestepper (defaults to (\doxylink{classoomph_1_1Steady}{Steady}) default timestepper defined in \doxylink{classoomph_1_1Mesh}{Mesh}). Nodal positions are determined via macro-\/element-\/based representation of the \doxylink{classoomph_1_1Domain}{Domain} (as a \doxylink{classoomph_1_1QuarterCircleSectorDomain}{Quarter\+Circle\+Sector\+Domain}). 
 
-Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l00044}{44}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+template.\+cc}}.
+Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l00045}{45}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+template.\+cc}}.
 
 
 
-References \mbox{\hyperlink{mesh_8cc_source_l00243}{oomph\+::\+Mesh\+::add\+\_\+boundary\+\_\+node()}}, \mbox{\hyperlink{mesh_8h_source_l00190}{oomph\+::\+Mesh\+::\+Boundary\+\_\+coordinate\+\_\+exists}}, \mbox{\hyperlink{elements_8h_source_l02542}{oomph\+::\+Finite\+Element\+::construct\+\_\+boundary\+\_\+node()}}, \mbox{\hyperlink{elements_8h_source_l02513}{oomph\+::\+Finite\+Element\+::construct\+\_\+node()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00128}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::\+Domain\+\_\+pt}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00186}{oomph\+::\+Mesh\+::\+Element\+\_\+pt}}, \mbox{\hyperlink{mesh_8h_source_l00460}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00473}{oomph\+::\+Mesh\+::finite\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00138}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::\+Fract\+\_\+mid}}, \mbox{\hyperlink{domain_8h_source_l00116}{oomph\+::\+Domain\+::macro\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{macro__element_8h_source_l00126}{oomph\+::\+Macro\+Element\+::macro\+\_\+map()}}, \mbox{\hyperlink{mesh_8h_source_l00590}{oomph\+::\+Mesh\+::nelement()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00183}{oomph\+::\+Mesh\+::\+Node\+\_\+pt}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{elements_8h_source_l01876}{oomph\+::\+Finite\+Element\+::set\+\_\+macro\+\_\+elem\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00505}{oomph\+::\+Mesh\+::set\+\_\+nboundary()}}, \mbox{\hyperlink{quad__mesh_8h_source_l00073}{oomph\+::\+Quad\+Mesh\+Base\+::setup\+\_\+boundary\+\_\+element\+\_\+info()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00105}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::wall\+\_\+pt()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00141}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::\+Xi\+\_\+hi}}, and \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00135}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::\+Xi\+\_\+lo}}.
+References \mbox{\hyperlink{mesh_8cc_source_l00243}{oomph\+::\+Mesh\+::add\+\_\+boundary\+\_\+node()}}, \mbox{\hyperlink{elements_8h_source_l02542}{oomph\+::\+Finite\+Element\+::construct\+\_\+boundary\+\_\+node()}}, \mbox{\hyperlink{elements_8h_source_l02513}{oomph\+::\+Finite\+Element\+::construct\+\_\+node()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00124}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::\+Domain\+\_\+pt}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00186}{oomph\+::\+Mesh\+::\+Element\+\_\+pt}}, \mbox{\hyperlink{mesh_8h_source_l00464}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00477}{oomph\+::\+Mesh\+::finite\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00134}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::\+Fract\+\_\+mid}}, \mbox{\hyperlink{domain_8h_source_l00116}{oomph\+::\+Domain\+::macro\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{macro__element_8h_source_l00126}{oomph\+::\+Macro\+Element\+::macro\+\_\+map()}}, \mbox{\hyperlink{mesh_8h_source_l00598}{oomph\+::\+Mesh\+::nelement()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00183}{oomph\+::\+Mesh\+::\+Node\+\_\+pt}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{mesh_8h_source_l00584}{oomph\+::\+Mesh\+::set\+\_\+boundary\+\_\+coordinate\+\_\+exists()}}, \mbox{\hyperlink{elements_8h_source_l01876}{oomph\+::\+Finite\+Element\+::set\+\_\+macro\+\_\+elem\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00509}{oomph\+::\+Mesh\+::set\+\_\+nboundary()}}, \mbox{\hyperlink{quad__mesh_8h_source_l00073}{oomph\+::\+Quad\+Mesh\+Base\+::setup\+\_\+boundary\+\_\+element\+\_\+info()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00102}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::wall\+\_\+pt()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00137}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::\+Xi\+\_\+hi}}, and \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00131}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::\+Xi\+\_\+lo}}.
 
 \Hypertarget{classoomph_1_1QuarterCircleSectorMesh_af3aec899bd005cacb011c13bcb6e5f22}\label{classoomph_1_1QuarterCircleSectorMesh_af3aec899bd005cacb011c13bcb6e5f22} 
 \index{oomph::QuarterCircleSectorMesh$<$ ELEMENT $>$@{oomph::QuarterCircleSectorMesh$<$ ELEMENT $>$}!````~QuarterCircleSectorMesh@{\texorpdfstring{$\sim$}{\string~}QuarterCircleSectorMesh}}
@@ -549,7 +551,7 @@ Destructor\+:
 
 
 
-Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00102}{102}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00099}{99}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+h}}.
 
 
 
@@ -567,11 +569,11 @@ Function pointer for function that squashes the outer two macro elements towards
 
 
 
-Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00120}{120}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00117}{117}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{quarter__circle__sector__domain_8h_source_l00091}{oomph\+::\+Quarter\+Circle\+Sector\+Domain\+::bl\+\_\+squash\+\_\+fct\+\_\+pt()}}, and \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00128}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::\+Domain\+\_\+pt}}.
+References \mbox{\hyperlink{quarter__circle__sector__domain_8h_source_l00089}{oomph\+::\+Quarter\+Circle\+Sector\+Domain\+::bl\+\_\+squash\+\_\+fct\+\_\+pt()}}, and \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00124}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::\+Domain\+\_\+pt}}.
 
 \Hypertarget{classoomph_1_1QuarterCircleSectorMesh_a7c04179cca1d5eeb0a175ce30312ddbd}\label{classoomph_1_1QuarterCircleSectorMesh_a7c04179cca1d5eeb0a175ce30312ddbd} 
 \index{oomph::QuarterCircleSectorMesh$<$ ELEMENT $>$@{oomph::QuarterCircleSectorMesh$<$ ELEMENT $>$}!domain\_pt@{domain\_pt}}
@@ -586,15 +588,15 @@ Access function to domain.
 
 
 
-Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00111}{111}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00108}{108}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00128}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::\+Domain\+\_\+pt}}.
+References \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00124}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::\+Domain\+\_\+pt}}.
 
 
 
-Referenced by \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00344}{oomph\+::\+Macro\+Element\+Node\+Update\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+macro\+\_\+element\+\_\+node\+\_\+update()}}.
+Referenced by \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00339}{oomph\+::\+Macro\+Element\+Node\+Update\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+macro\+\_\+element\+\_\+node\+\_\+update()}}.
 
 \Hypertarget{classoomph_1_1QuarterCircleSectorMesh_a1ebdc75ae69205b3863c0433f8d25025}\label{classoomph_1_1QuarterCircleSectorMesh_a1ebdc75ae69205b3863c0433f8d25025} 
 \index{oomph::QuarterCircleSectorMesh$<$ ELEMENT $>$@{oomph::QuarterCircleSectorMesh$<$ ELEMENT $>$}!wall\_pt@{wall\_pt}}
@@ -609,15 +611,15 @@ Access function to \doxylink{classoomph_1_1GeomObject}{Geom\+Object} representin
 
 
 
-Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00105}{105}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00102}{102}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00132}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::\+Wall\+\_\+pt}}.
+References \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00128}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::\+Wall\+\_\+pt}}.
 
 
 
-Referenced by \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00451}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh()}}, and \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l00044}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::\+Quarter\+Circle\+Sector\+Mesh()}}.
+Referenced by \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00445}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh()}}, and \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l00045}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::\+Quarter\+Circle\+Sector\+Mesh()}}.
 
 
 
@@ -635,11 +637,11 @@ Pointer to \doxylink{classoomph_1_1Domain}{Domain}.
 
 
 
-Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00128}{128}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00124}{124}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00120}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::bl\+\_\+squash\+\_\+fct\+\_\+pt()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00111}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::domain\+\_\+pt()}}, and \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l00044}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::\+Quarter\+Circle\+Sector\+Mesh()}}.
+Referenced by \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00117}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::bl\+\_\+squash\+\_\+fct\+\_\+pt()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00108}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::domain\+\_\+pt()}}, and \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l00045}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::\+Quarter\+Circle\+Sector\+Mesh()}}.
 
 \Hypertarget{classoomph_1_1QuarterCircleSectorMesh_a149224b002f785eb357553f8210ad5d3}\label{classoomph_1_1QuarterCircleSectorMesh_a149224b002f785eb357553f8210ad5d3} 
 \index{oomph::QuarterCircleSectorMesh$<$ ELEMENT $>$@{oomph::QuarterCircleSectorMesh$<$ ELEMENT $>$}!Fract\_mid@{Fract\_mid}}
@@ -654,11 +656,11 @@ Fraction along wall where outer ring is to be divided.
 
 
 
-Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00138}{138}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00134}{134}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l00044}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::\+Quarter\+Circle\+Sector\+Mesh()}}.
+Referenced by \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l00045}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::\+Quarter\+Circle\+Sector\+Mesh()}}.
 
 \Hypertarget{classoomph_1_1QuarterCircleSectorMesh_a2cbdec5f0ee2f370c38f1fdc4e2904f8}\label{classoomph_1_1QuarterCircleSectorMesh_a2cbdec5f0ee2f370c38f1fdc4e2904f8} 
 \index{oomph::QuarterCircleSectorMesh$<$ ELEMENT $>$@{oomph::QuarterCircleSectorMesh$<$ ELEMENT $>$}!Wall\_pt@{Wall\_pt}}
@@ -673,11 +675,11 @@ Pointer to the geometric object that represents the curved wall (mesh boundary 1
 
 
 
-Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00132}{132}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00128}{128}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00344}{oomph\+::\+Macro\+Element\+Node\+Update\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+macro\+\_\+element\+\_\+node\+\_\+update()}}, and \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00105}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::wall\+\_\+pt()}}.
+Referenced by \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00339}{oomph\+::\+Macro\+Element\+Node\+Update\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+macro\+\_\+element\+\_\+node\+\_\+update()}}, and \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00102}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::wall\+\_\+pt()}}.
 
 \Hypertarget{classoomph_1_1QuarterCircleSectorMesh_a1fa3bfeddd4467e9fe0ec45fbfac0740}\label{classoomph_1_1QuarterCircleSectorMesh_a1fa3bfeddd4467e9fe0ec45fbfac0740} 
 \index{oomph::QuarterCircleSectorMesh$<$ ELEMENT $>$@{oomph::QuarterCircleSectorMesh$<$ ELEMENT $>$}!Xi\_hi@{Xi\_hi}}
@@ -692,11 +694,11 @@ Upper limit for the (1D) coordinates along the wall.
 
 
 
-Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00141}{141}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00137}{137}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l00044}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::\+Quarter\+Circle\+Sector\+Mesh()}}.
+Referenced by \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l00045}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::\+Quarter\+Circle\+Sector\+Mesh()}}.
 
 \Hypertarget{classoomph_1_1QuarterCircleSectorMesh_ab5c1e4484c69eb78bd3323321605a93c}\label{classoomph_1_1QuarterCircleSectorMesh_ab5c1e4484c69eb78bd3323321605a93c} 
 \index{oomph::QuarterCircleSectorMesh$<$ ELEMENT $>$@{oomph::QuarterCircleSectorMesh$<$ ELEMENT $>$}!Xi\_lo@{Xi\_lo}}
@@ -711,15 +713,15 @@ Lower limit for the (1D) coordinates along the wall.
 
 
 
-Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00135}{135}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00131}{131}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l00044}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::\+Quarter\+Circle\+Sector\+Mesh()}}.
+Referenced by \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l00045}{oomph\+::\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::\+Quarter\+Circle\+Sector\+Mesh()}}.
 
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+template.\+h}}\item 
+\mbox{\hyperlink{quarter__circle__sector__mesh_8h}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+h}}\item 
 \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+template.\+cc}}\end{DoxyCompactItemize}

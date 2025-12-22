@@ -285,7 +285,7 @@ As with most time-\/dependent demo codes, the specification of a non-\/zero numb
 \DoxyCodeLine{\ \textcolor{comment}{//\ Trace\ file}}
 \DoxyCodeLine{\ ofstream\ trace;}
 \DoxyCodeLine{\ \textcolor{keywordtype}{char}\ filename[100];}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\ trace.open(filename);}
 
 \end{DoxyCodeInclude}
@@ -906,14 +906,14 @@ The function {\ttfamily doc\+\_\+solution(...)} documents the results. We output
 \DoxyCodeLine{\ npts=5;\ }
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ fluid\ solution\ }}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ Fluid\_mesh\_pt-\/>output(some\_file,npts);}
 \DoxyCodeLine{\ some\_file.close();}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ wall\ solution\ }}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/wall\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/wall\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ Wall\_mesh\_pt-\/>output(some\_file,npts);}
@@ -949,7 +949,7 @@ The function {\ttfamily doc\+\_\+solution(...)} documents the results. We output
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ fluid\ elements\ on\ fluid\ mesh\ boundary\ 4\ (associated\ with}}
 \DoxyCodeLine{\ \textcolor{comment}{//\ the\ "{}front"{})}}
 \DoxyCodeLine{\ \textcolor{keywordtype}{unsigned}\ bound=4;}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/fluid\_boundary\_elements\_front\_\%i.dat"{}},}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/fluid\_boundary\_elements\_front\_\%i.dat"{}},}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
@@ -965,7 +965,7 @@ The function {\ttfamily doc\+\_\+solution(...)} documents the results. We output
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ fluid\ elements\ on\ fluid\ mesh\ boundary\ 5\ (associated\ with}}
 \DoxyCodeLine{\ \textcolor{comment}{//\ the\ "{}back"{})}}
 \DoxyCodeLine{\ bound=5;}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/fluid\_boundary\_elements\_back\_\%i.dat"{}},}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/fluid\_boundary\_elements\_back\_\%i.dat"{}},}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
@@ -979,7 +979,7 @@ The function {\ttfamily doc\+\_\+solution(...)} documents the results. We output
 \DoxyCodeLine{}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ normal\ vector\ on\ wall\ elements}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/wall\_normal\_\%i.dat"{}},}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/wall\_normal\_\%i.dat"{}},}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
@@ -1129,4 +1129,4 @@ demo_drivers/interaction/fsi_channel_with_leaflet/fsi_channel_with_leaflet.cc
 \end{DoxyItemize}\DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

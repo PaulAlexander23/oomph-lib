@@ -4,11 +4,11 @@
 \begin{DoxyCompactItemize}
 \item 
 namespace \mbox{\hyperlink{namespaceoomph}{oomph}}
-\begin{DoxyCompactList}\small\item\em //////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////// \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em DRAIG\+: Change all instances of (SPATIAL\+\_\+\+DIM) to (DIM-\/1). \end{DoxyCompactList}\item 
 namespace \mbox{\hyperlink{namespaceoomph_1_1Hypre__default__settings}{oomph\+::\+Hypre\+\_\+default\+\_\+settings}}
-\begin{DoxyCompactList}\small\item\em ///////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////// \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Default settings for various uses of the HYPRE solver. \end{DoxyCompactList}\item 
 namespace \mbox{\hyperlink{namespaceoomph_1_1HypreHelpers}{oomph\+::\+Hypre\+Helpers}}
-\begin{DoxyCompactList}\small\item\em ///////////////////////////////////////////////////////////////////// \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Helper functions for use with the Hypre library. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -31,6 +31,8 @@ namespace \mbox{\hyperlink{namespaceoomph_1_1HypreHelpers}{oomph\+::\+Hypre\+Hel
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{namespaceoomph_1_1HypreHelpers_a6bfb56c0c255b2b6a82625afe91c6b70}{oomph\+::\+Hypre\+Helpers\+::\+Number\+\_\+of\+\_\+active\+\_\+hypre\+\_\+solvers}} = 0
+\begin{DoxyCompactList}\small\item\em Number of active Hypre solvers (smart pointer like behaviuor to make sure that the initialise/finalize functions are only called the required number of times. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} \mbox{\hyperlink{namespaceoomph_1_1HypreHelpers_aa3d3b58e30a8eba0adce2c335d2fc437}{oomph\+::\+Hypre\+Helpers\+::\+AMG\+\_\+strength}} = 0.\+25
 \begin{DoxyCompactList}\small\item\em Default for AMG strength (0.\+25 recommended for 2D problems; larger (0.\+5-\/0.\+75, say) for 3D. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{namespaceoomph_1_1HypreHelpers_a8d34acec927aff8f150737afaec9651a}{oomph\+::\+Hypre\+Helpers\+::\+AMG\+\_\+coarsening}} = 6

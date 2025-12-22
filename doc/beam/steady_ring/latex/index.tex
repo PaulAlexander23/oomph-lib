@@ -548,7 +548,7 @@ The post-\/processing function documents the ring shapes and adds the load/displ
 \DoxyCodeLine{\ \textcolor{keywordtype}{unsigned}\ npts=5;}
 \DoxyCodeLine{\ }
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ solution\ }}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/ring\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/ring\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ mesh\_pt()-\/>output(some\_file,npts);}
@@ -593,7 +593,7 @@ We start by opening a trace file to record the load/displacement characteristics
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//Open\ a\ trace\ file}}
 \DoxyCodeLine{\ \textcolor{keywordtype}{char}\ filename[100];}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\ ofstream\ trace\_file(filename);}
 \DoxyCodeLine{\ trace\_file\ <<\ \textcolor{stringliteral}{"{}VARIABLES=\(\backslash\)"{}p\_e\_x\_t\(\backslash\)"{},\(\backslash\)"{}R\_1\(\backslash\)"{},\(\backslash\)"{}R\_2\(\backslash\)"{}"{}}\ <<\ std::endl;}
 \DoxyCodeLine{\ trace\_file\ <<\ \textcolor{stringliteral}{"{}ZONE"{}}\ <<\ std::endl;}
@@ -783,4 +783,4 @@ demo_drivers/beam/steady_ring/steady_ring.cc
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

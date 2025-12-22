@@ -99,7 +99,7 @@ The Problem constructor {\ttfamily Some\+Specific\+Problem(...)} usually contain
 
 \end{DoxyCode}
  This statement sets the first (= zero-\/th in C++\textquotesingle{}s zero-\/based indexing) nodal value to 1.\+0.
-\item Completion of the build of the elements\+: Elements are typically constructed during the mesh generation process. To allow a generic implementation of this process, mesh constructors use an argument-\/free constructor to create the elements. Thus, element constructors must not have any arguments. (See the section `new\+\_\+mesh\&rsquo;, below, for an illustration of this process.) If an element requires any global parameters (such as pointers to physical parameters, function pointers to source functions, etc.), these parameters should be passed to the element via suitable access functions, {\itshape after} the element has been created by the mesh constructor.
+\item Completion of the build of the elements\+: Elements are typically constructed during the mesh generation process. To allow a generic implementation of this process, mesh constructors use an argument-\/free constructor to create the elements. Thus, element constructors must not have any arguments. (See the section \doxysectlink{index_new_mesh}{How to build a completely new Mesh}{2} , below, for an illustration of this process.) If an element requires any global parameters (such as pointers to physical parameters, function pointers to source functions, etc.), these parameters should be passed to the element via suitable access functions, {\itshape after} the element has been created by the mesh constructor.
 \item Assignment of the global and local equation numbers 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{Problem::assign\_eqn\_numbers();\ }
@@ -1508,4 +1508,4 @@ In moving mesh problems, the time-\/derivative of a nodal value (approximated by
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

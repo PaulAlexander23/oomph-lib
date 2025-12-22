@@ -568,7 +568,7 @@ The {\ttfamily parameter\+\_\+study}(..) function creates a {\ttfamily Doc\+Info
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\ \textcolor{keywordtype}{char}\ filename[100];\ \ \ }
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\ Trace\_file.open(filename);}
 
 \end{DoxyCodeInclude}
@@ -611,7 +611,7 @@ The {\ttfamily doc\+\_\+solution} function writes the bulk fluid mesh into an ou
 \DoxyCodeLine{\ \textcolor{keywordtype}{unsigned}\ npts=5;\ }
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//Output\ domain}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ Bulk\_mesh\_pt-\/>output(some\_file,npts);}
@@ -688,4 +688,4 @@ The {\ttfamily doc\+\_\+solution} function writes the bulk fluid mesh into an ou
 \end{DoxyItemize}\DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

@@ -263,7 +263,7 @@ We start by preparing an output directory and open a trace file to record the co
 \DoxyCodeLine{\ \textcolor{comment}{//Open\ a\ trace\ file}}
 \DoxyCodeLine{\ ofstream\ trace\_file;}
 \DoxyCodeLine{\ \textcolor{keywordtype}{char}\ filename[100];}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\ trace\_file.open(filename);}
 \DoxyCodeLine{\ }
 \DoxyCodeLine{\ \textcolor{comment}{//\ Write\ kappa,\ exact\ kappa\ and\ height\ values}}
@@ -552,7 +552,7 @@ We document the exact and computed meniscus curvatures in the trace file and out
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{\ ofstream\ some\_file;}
 \DoxyCodeLine{\ \textcolor{keywordtype}{char}\ filename[100];}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ mesh\_pt()-\/>output(some\_file,npts);}
@@ -666,4 +666,4 @@ We document the exact and computed meniscus curvatures in the trace file and out
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

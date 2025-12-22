@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -361,9 +361,9 @@
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l00357}00357\ }
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l00358}00358\ }
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l00359}00359\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l00360}00360\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l00361}00361\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l00362}00362\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l00360}00360\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l00361}00361\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l00362}00362\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l00363}00363\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l00364}00364\ }
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l00365}00365\ }
@@ -1026,14 +1026,14 @@
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l01022}01022\ \ \textcolor{keywordtype}{unsigned}\ n\_plot\ =\ 5;\ }
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l01023}01023\ }
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l01024}01024\ \ \textcolor{comment}{//\ Output\ solid\ solution}}
-\DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l01025}01025\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/solid\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l01025}01025\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/solid\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l01026}01026\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l01027}01027\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l01028}01028\ \ solid\_mesh\_pt()-\/>output(some\_file,n\_plot);}
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l01029}01029\ \ some\_file.close();}
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l01030}01030\ \ }
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l01031}01031\ \ \textcolor{comment}{//\ Output\ fluid\ solution}}
-\DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l01032}01032\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l01032}01032\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l01033}01033\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l01034}01034\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l01035}01035\ \ fluid\_mesh\_pt()-\/>output(some\_file,n\_plot);}
@@ -1041,7 +1041,7 @@
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l01037}01037\ }
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l01038}01038\ }
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l01039}01039\ \textcolor{comment}{//Output\ the\ traction}}
-\DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l01040}01040\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/traction\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l01040}01040\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/traction\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l01041}01041\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l01042}01042\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{turek__flag_8cc_source_l01043}01043\ \textcolor{comment}{//\ Loop\ over\ the\ traction\ meshes}}

@@ -163,7 +163,7 @@ Inheritance diagram for oomph\+::Dense\+LU\+:\begin{figure}[H]
 \doxysubsection{Detailed Description}
 Dense LU decomposition-\/based solve of full assembled linear system. VERY inefficient but useful to illustrate the principle. Only suitable for use with Serial matrices and vectors. This solver will only work with non-\/distributed matrices and vectors (note\+: \doxylink{classoomph_1_1DenseDoubleMatrix}{Dense\+Double\+Matrix} is not distributable) 
 
-Definition at line \mbox{\hyperlink{linear__solver_8h_source_l00333}{333}} of file \mbox{\hyperlink{linear__solver_8h_source}{linear\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{linear__solver_8h_source_l00335}{335}} of file \mbox{\hyperlink{linear__solver_8h_source}{linear\+\_\+solver.\+h}}.
 
 
 
@@ -180,11 +180,11 @@ Constructor, initialise storage.
 
 
 
-Definition at line \mbox{\hyperlink{linear__solver_8h_source_l00340}{340}} of file \mbox{\hyperlink{linear__solver_8h_source}{linear\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{linear__solver_8h_source_l00342}{342}} of file \mbox{\hyperlink{linear__solver_8h_source}{linear\+\_\+solver.\+h}}.
 
 
 
-References \mbox{\hyperlink{linear__solver_8h_source_l00077}{oomph\+::\+Linear\+Solver\+::\+Doc\+\_\+time}}.
+References \mbox{\hyperlink{linear__solver_8h_source_l00079}{oomph\+::\+Linear\+Solver\+::\+Doc\+\_\+time}}.
 
 \Hypertarget{classoomph_1_1DenseLU_ae3b4f2e06409180d9833058a52aa3a10}\label{classoomph_1_1DenseLU_ae3b4f2e06409180d9833058a52aa3a10} 
 \index{oomph::DenseLU@{oomph::DenseLU}!DenseLU@{DenseLU}}
@@ -208,11 +208,11 @@ Destructor, clean up the stored LU factors.
 
 
 
-Definition at line \mbox{\hyperlink{linear__solver_8h_source_l00358}{358}} of file \mbox{\hyperlink{linear__solver_8h_source}{linear\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{linear__solver_8h_source_l00360}{360}} of file \mbox{\hyperlink{linear__solver_8h_source}{linear\+\_\+solver.\+h}}.
 
 
 
-References \mbox{\hyperlink{linear__solver_8cc_source_l00106}{clean\+\_\+up\+\_\+memory()}}.
+References \mbox{\hyperlink{linear__solver_8cc_source_l00110}{clean\+\_\+up\+\_\+memory()}}.
 
 
 
@@ -229,15 +229,15 @@ Do the backsubstitution step to solve the system LU result = rhs.
 
 Do the backsubstitution for the \doxylink{classoomph_1_1DenseLU}{Dense\+LU} solver. WARNING\+: this class does not perform any PARANOID checks on the vectors -\/ these are all performed in the solve(...) method. 
 
-Definition at line \mbox{\hyperlink{linear__solver_8cc_source_l00320}{320}} of file \mbox{\hyperlink{linear__solver_8cc_source}{linear\+\_\+solver.\+cc}}.
+Definition at line \mbox{\hyperlink{linear__solver_8cc_source_l00324}{324}} of file \mbox{\hyperlink{linear__solver_8cc_source}{linear\+\_\+solver.\+cc}}.
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{linear__solver_8h_source_l00419}{Index}}, and \mbox{\hyperlink{linear__solver_8h_source_l00422}{LU\+\_\+factors}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{linear__solver_8h_source_l00421}{Index}}, and \mbox{\hyperlink{linear__solver_8h_source_l00424}{LU\+\_\+factors}}.
 
 
 
-Referenced by \mbox{\hyperlink{linear__solver_8cc_source_l00419}{solve()}}, and \mbox{\hyperlink{linear__solver_8cc_source_l00541}{solve()}}.
+Referenced by \mbox{\hyperlink{linear__solver_8cc_source_l00423}{solve()}}, and \mbox{\hyperlink{linear__solver_8cc_source_l00545}{solve()}}.
 
 \Hypertarget{classoomph_1_1DenseLU_acef3a68bf4e28465a7c316dba135f504}\label{classoomph_1_1DenseLU_acef3a68bf4e28465a7c316dba135f504} 
 \index{oomph::DenseLU@{oomph::DenseLU}!backsub@{backsub}}
@@ -251,11 +251,11 @@ perform back substitution using \doxylink{classoomph_1_1Vector}{Vector$<$double$
 
 Do the backsubstitution for the \doxylink{classoomph_1_1DenseLU}{Dense\+LU} solver. WARNING\+: this class does not perform any PARANOID checks on the vectors -\/ these are all performed in the solve(...) method. So, if you call backsub directly, you have been warned... 
 
-Definition at line \mbox{\hyperlink{linear__solver_8cc_source_l00372}{372}} of file \mbox{\hyperlink{linear__solver_8cc_source}{linear\+\_\+solver.\+cc}}.
+Definition at line \mbox{\hyperlink{linear__solver_8cc_source_l00376}{376}} of file \mbox{\hyperlink{linear__solver_8cc_source}{linear\+\_\+solver.\+cc}}.
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{linear__solver_8h_source_l00419}{Index}}, \mbox{\hyperlink{linear__solver_8h_source_l00422}{LU\+\_\+factors}}, and \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{linear__solver_8h_source_l00421}{Index}}, \mbox{\hyperlink{linear__solver_8h_source_l00424}{LU\+\_\+factors}}, and \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}.
 
 \Hypertarget{classoomph_1_1DenseLU_a5d4d454874476adadb3bc23913b1190b}\label{classoomph_1_1DenseLU_a5d4d454874476adadb3bc23913b1190b} 
 \index{oomph::DenseLU@{oomph::DenseLU}!clean\_up\_memory@{clean\_up\_memory}}
@@ -273,15 +273,15 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1LinearSolver_a9d66f3262e80ca06
 
 
 
-Definition at line \mbox{\hyperlink{linear__solver_8cc_source_l00106}{106}} of file \mbox{\hyperlink{linear__solver_8cc_source}{linear\+\_\+solver.\+cc}}.
+Definition at line \mbox{\hyperlink{linear__solver_8cc_source_l00110}{110}} of file \mbox{\hyperlink{linear__solver_8cc_source}{linear\+\_\+solver.\+cc}}.
 
 
 
-References \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00522}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::clear\+\_\+distribution()}}, \mbox{\hyperlink{linear__solver_8h_source_l00419}{Index}}, and \mbox{\hyperlink{linear__solver_8h_source_l00422}{LU\+\_\+factors}}.
+References \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00522}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::clear\+\_\+distribution()}}, \mbox{\hyperlink{linear__solver_8h_source_l00421}{Index}}, and \mbox{\hyperlink{linear__solver_8h_source_l00424}{LU\+\_\+factors}}.
 
 
 
-Referenced by \mbox{\hyperlink{linear__solver_8cc_source_l00131}{factorise()}}, \mbox{\hyperlink{linear__solver_8cc_source_l00419}{solve()}}, \mbox{\hyperlink{linear__solver_8cc_source_l00541}{solve()}}, and \mbox{\hyperlink{linear__solver_8h_source_l00358}{\texorpdfstring{$\sim$}{\string~}\+Dense\+LU()}}.
+Referenced by \mbox{\hyperlink{linear__solver_8cc_source_l00135}{factorise()}}, \mbox{\hyperlink{linear__solver_8cc_source_l00423}{solve()}}, \mbox{\hyperlink{linear__solver_8cc_source_l00545}{solve()}}, and \mbox{\hyperlink{linear__solver_8h_source_l00360}{\texorpdfstring{$\sim$}{\string~}\+Dense\+LU()}}.
 
 \Hypertarget{classoomph_1_1DenseLU_a943a629a67289120473855bc96766dfc}\label{classoomph_1_1DenseLU_a943a629a67289120473855bc96766dfc} 
 \index{oomph::DenseLU@{oomph::DenseLU}!factorise@{factorise}}
@@ -295,15 +295,15 @@ Perform the LU decomposition of the matrix.
 
 LU decompose the matrix. WARNING\+: this class does not perform any PARANOID checks on the vectors -\/ these are all performed in the solve(...) method. 
 
-Definition at line \mbox{\hyperlink{linear__solver_8cc_source_l00131}{131}} of file \mbox{\hyperlink{linear__solver_8cc_source}{linear\+\_\+solver.\+cc}}.
+Definition at line \mbox{\hyperlink{linear__solver_8cc_source_l00135}{135}} of file \mbox{\hyperlink{linear__solver_8cc_source}{linear\+\_\+solver.\+cc}}.
 
 
 
-References \mbox{\hyperlink{linear__solver_8cc_source_l00106}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{linear__solver_8h_source_l00419}{Index}}, \mbox{\hyperlink{linear__solver_8h_source_l00422}{LU\+\_\+factors}}, \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase_acdcd6e1ea2bf2380f1a2fa32c7829cb5}{oomph\+::\+Double\+Matrix\+Base\+::nrow()}}, and \mbox{\hyperlink{linear__solver_8h_source_l00415}{Sign\+\_\+of\+\_\+determinant\+\_\+of\+\_\+matrix}}.
+References \mbox{\hyperlink{linear__solver_8cc_source_l00110}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{linear__solver_8h_source_l00421}{Index}}, \mbox{\hyperlink{linear__solver_8h_source_l00424}{LU\+\_\+factors}}, \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase_acdcd6e1ea2bf2380f1a2fa32c7829cb5}{oomph\+::\+Double\+Matrix\+Base\+::nrow()}}, and \mbox{\hyperlink{linear__solver_8h_source_l00417}{Sign\+\_\+of\+\_\+determinant\+\_\+of\+\_\+matrix}}.
 
 
 
-Referenced by \mbox{\hyperlink{linear__solver_8cc_source_l00419}{solve()}}, and \mbox{\hyperlink{linear__solver_8cc_source_l00541}{solve()}}.
+Referenced by \mbox{\hyperlink{linear__solver_8cc_source_l00423}{solve()}}, and \mbox{\hyperlink{linear__solver_8cc_source_l00545}{solve()}}.
 
 \Hypertarget{classoomph_1_1DenseLU_a4605ec2ca02ff0b30f4cefc2458dfb66}\label{classoomph_1_1DenseLU_a4605ec2ca02ff0b30f4cefc2458dfb66} 
 \index{oomph::DenseLU@{oomph::DenseLU}!jacobian\_setup\_time@{jacobian\_setup\_time}}
@@ -321,11 +321,11 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1LinearSolver_a0fedfb9d9855d0e9
 
 
 
-Definition at line \mbox{\hyperlink{linear__solver_8h_source_l00382}{382}} of file \mbox{\hyperlink{linear__solver_8h_source}{linear\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{linear__solver_8h_source_l00384}{384}} of file \mbox{\hyperlink{linear__solver_8h_source}{linear\+\_\+solver.\+h}}.
 
 
 
-References \mbox{\hyperlink{linear__solver_8h_source_l00408}{Jacobian\+\_\+setup\+\_\+time}}.
+References \mbox{\hyperlink{linear__solver_8h_source_l00410}{Jacobian\+\_\+setup\+\_\+time}}.
 
 \Hypertarget{classoomph_1_1DenseLU_aabe93cf400bb488f0bc08755ee0dfde4}\label{classoomph_1_1DenseLU_aabe93cf400bb488f0bc08755ee0dfde4} 
 \index{oomph::DenseLU@{oomph::DenseLU}!linear\_solver\_solution\_time@{linear\_solver\_solution\_time}}
@@ -343,11 +343,11 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1LinearSolver_a3c66f77db812a9c1
 
 
 
-Definition at line \mbox{\hyperlink{linear__solver_8h_source_l00389}{389}} of file \mbox{\hyperlink{linear__solver_8h_source}{linear\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{linear__solver_8h_source_l00391}{391}} of file \mbox{\hyperlink{linear__solver_8h_source}{linear\+\_\+solver.\+h}}.
 
 
 
-References \mbox{\hyperlink{linear__solver_8h_source_l00411}{Solution\+\_\+time}}.
+References \mbox{\hyperlink{linear__solver_8h_source_l00413}{Solution\+\_\+time}}.
 
 \Hypertarget{classoomph_1_1DenseLU_a9d26161eb3767e708584e2cf6b703c40}\label{classoomph_1_1DenseLU_a9d26161eb3767e708584e2cf6b703c40} 
 \index{oomph::DenseLU@{oomph::DenseLU}!operator=@{operator=}}
@@ -379,11 +379,11 @@ Reimplemented in \mbox{\hyperlink{classoomph_1_1FD__LU_ab8c9d6006352d0ea61a721b9
 
 
 
-Definition at line \mbox{\hyperlink{linear__solver_8cc_source_l00419}{419}} of file \mbox{\hyperlink{linear__solver_8cc_source}{linear\+\_\+solver.\+cc}}.
+Definition at line \mbox{\hyperlink{linear__solver_8cc_source_l00423}{423}} of file \mbox{\hyperlink{linear__solver_8cc_source}{linear\+\_\+solver.\+cc}}.
 
 
 
-References \mbox{\hyperlink{linear__solver_8cc_source_l00320}{backsub()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00507}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::build\+\_\+distribution()}}, \mbox{\hyperlink{linear__solver_8cc_source_l00106}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01316}{oomph\+::\+Timing\+Helpers\+::convert\+\_\+secs\+\_\+to\+\_\+formatted\+\_\+string()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00457}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::distribution\+\_\+pt()}}, \mbox{\hyperlink{linear__solver_8h_source_l00077}{oomph\+::\+Linear\+Solver\+::\+Doc\+\_\+time}}, \mbox{\hyperlink{linear__solver_8h_source_l00073}{oomph\+::\+Linear\+Solver\+::\+Enable\+\_\+resolve}}, \mbox{\hyperlink{linear__solver_8cc_source_l00131}{factorise()}}, \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase_a253feffbf1db1976cdd86c6134c50abe}{oomph\+::\+Double\+Matrix\+Base\+::ncol()}}, \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase_acdcd6e1ea2bf2380f1a2fa32c7829cb5}{oomph\+::\+Double\+Matrix\+Base\+::nrow()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{linear__solver_8h_source_l00411}{Solution\+\_\+time}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01295}{oomph\+::\+Timing\+Helpers\+::timer()}}.
+References \mbox{\hyperlink{linear__solver_8cc_source_l00324}{backsub()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00507}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::build\+\_\+distribution()}}, \mbox{\hyperlink{linear__solver_8cc_source_l00110}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01324}{oomph\+::\+Timing\+Helpers\+::convert\+\_\+secs\+\_\+to\+\_\+formatted\+\_\+string()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00457}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::distribution\+\_\+pt()}}, \mbox{\hyperlink{linear__solver_8h_source_l00079}{oomph\+::\+Linear\+Solver\+::\+Doc\+\_\+time}}, \mbox{\hyperlink{linear__solver_8h_source_l00075}{oomph\+::\+Linear\+Solver\+::\+Enable\+\_\+resolve}}, \mbox{\hyperlink{linear__solver_8cc_source_l00135}{factorise()}}, \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase_a253feffbf1db1976cdd86c6134c50abe}{oomph\+::\+Double\+Matrix\+Base\+::ncol()}}, \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase_acdcd6e1ea2bf2380f1a2fa32c7829cb5}{oomph\+::\+Double\+Matrix\+Base\+::nrow()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{linear__solver_8h_source_l00413}{Solution\+\_\+time}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01303}{oomph\+::\+Timing\+Helpers\+::timer()}}.
 
 \Hypertarget{classoomph_1_1DenseLU_a1d79cf13a269733d655e3e90c447f84d}\label{classoomph_1_1DenseLU_a1d79cf13a269733d655e3e90c447f84d} 
 \index{oomph::DenseLU@{oomph::DenseLU}!solve@{solve}}
@@ -405,11 +405,11 @@ Reimplemented in \mbox{\hyperlink{classoomph_1_1FD__LU_a2a44542b29faa39f1b816dc8
 
 
 
-Definition at line \mbox{\hyperlink{linear__solver_8cc_source_l00541}{541}} of file \mbox{\hyperlink{linear__solver_8cc_source}{linear\+\_\+solver.\+cc}}.
+Definition at line \mbox{\hyperlink{linear__solver_8cc_source_l00545}{545}} of file \mbox{\hyperlink{linear__solver_8cc_source}{linear\+\_\+solver.\+cc}}.
 
 
 
-References \mbox{\hyperlink{linear__solver_8cc_source_l00320}{backsub()}}, \mbox{\hyperlink{linear__solver_8cc_source_l00106}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01316}{oomph\+::\+Timing\+Helpers\+::convert\+\_\+secs\+\_\+to\+\_\+formatted\+\_\+string()}}, \mbox{\hyperlink{linear__solver_8h_source_l00077}{oomph\+::\+Linear\+Solver\+::\+Doc\+\_\+time}}, \mbox{\hyperlink{linear__solver_8h_source_l00073}{oomph\+::\+Linear\+Solver\+::\+Enable\+\_\+resolve}}, \mbox{\hyperlink{linear__solver_8cc_source_l00131}{factorise()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, and \mbox{\hyperlink{linear__solver_8h_source_l00411}{Solution\+\_\+time}}.
+References \mbox{\hyperlink{linear__solver_8cc_source_l00324}{backsub()}}, \mbox{\hyperlink{linear__solver_8cc_source_l00110}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01324}{oomph\+::\+Timing\+Helpers\+::convert\+\_\+secs\+\_\+to\+\_\+formatted\+\_\+string()}}, \mbox{\hyperlink{linear__solver_8h_source_l00079}{oomph\+::\+Linear\+Solver\+::\+Doc\+\_\+time}}, \mbox{\hyperlink{linear__solver_8h_source_l00075}{oomph\+::\+Linear\+Solver\+::\+Enable\+\_\+resolve}}, \mbox{\hyperlink{linear__solver_8cc_source_l00135}{factorise()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, and \mbox{\hyperlink{linear__solver_8h_source_l00413}{Solution\+\_\+time}}.
 
 \Hypertarget{classoomph_1_1DenseLU_ac354b224819146618ce8a1396f8f980e}\label{classoomph_1_1DenseLU_ac354b224819146618ce8a1396f8f980e} 
 \index{oomph::DenseLU@{oomph::DenseLU}!solve@{solve}}
@@ -431,15 +431,15 @@ Reimplemented in \mbox{\hyperlink{classoomph_1_1FD__LU_a6fd251bef9cdb7efbed4927f
 
 
 
-Definition at line \mbox{\hyperlink{linear__solver_8cc_source_l00051}{51}} of file \mbox{\hyperlink{linear__solver_8cc_source}{linear\+\_\+solver.\+cc}}.
+Definition at line \mbox{\hyperlink{linear__solver_8cc_source_l00055}{55}} of file \mbox{\hyperlink{linear__solver_8cc_source}{linear\+\_\+solver.\+cc}}.
 
 
 
-References \mbox{\hyperlink{oomph__utilities_8cc_source_l01316}{oomph\+::\+Timing\+Helpers\+::convert\+\_\+secs\+\_\+to\+\_\+formatted\+\_\+string()}}, \mbox{\hyperlink{linear__solver_8h_source_l00077}{oomph\+::\+Linear\+Solver\+::\+Doc\+\_\+time}}, \mbox{\hyperlink{problem_8cc_source_l03922}{oomph\+::\+Problem\+::get\+\_\+jacobian()}}, \mbox{\hyperlink{linear__solver_8h_source_l00408}{Jacobian\+\_\+setup\+\_\+time}}, \mbox{\hyperlink{problem_8h_source_l01704}{oomph\+::\+Problem\+::ndof()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{linear__solver_8h_source_l00415}{Sign\+\_\+of\+\_\+determinant\+\_\+of\+\_\+matrix}}, \mbox{\hyperlink{problem_8h_source_l02529}{oomph\+::\+Problem\+::sign\+\_\+of\+\_\+jacobian()}}, \mbox{\hyperlink{linear__solver_8cc_source_l00051}{solve()}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01295}{oomph\+::\+Timing\+Helpers\+::timer()}}.
+References \mbox{\hyperlink{oomph__utilities_8cc_source_l01324}{oomph\+::\+Timing\+Helpers\+::convert\+\_\+secs\+\_\+to\+\_\+formatted\+\_\+string()}}, \mbox{\hyperlink{linear__solver_8h_source_l00079}{oomph\+::\+Linear\+Solver\+::\+Doc\+\_\+time}}, \mbox{\hyperlink{problem_8cc_source_l03935}{oomph\+::\+Problem\+::get\+\_\+jacobian()}}, \mbox{\hyperlink{linear__solver_8h_source_l00410}{Jacobian\+\_\+setup\+\_\+time}}, \mbox{\hyperlink{problem_8h_source_l01704}{oomph\+::\+Problem\+::ndof()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{linear__solver_8h_source_l00417}{Sign\+\_\+of\+\_\+determinant\+\_\+of\+\_\+matrix}}, \mbox{\hyperlink{problem_8h_source_l02529}{oomph\+::\+Problem\+::sign\+\_\+of\+\_\+jacobian()}}, \mbox{\hyperlink{linear__solver_8cc_source_l00055}{solve()}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01303}{oomph\+::\+Timing\+Helpers\+::timer()}}.
 
 
 
-Referenced by \mbox{\hyperlink{linear__solver_8h_source_l00450}{oomph\+::\+FD\+\_\+\+LU\+::solve()}}, and \mbox{\hyperlink{linear__solver_8cc_source_l00051}{solve()}}.
+Referenced by \mbox{\hyperlink{linear__solver_8h_source_l00452}{oomph\+::\+FD\+\_\+\+LU\+::solve()}}, and \mbox{\hyperlink{linear__solver_8cc_source_l00055}{solve()}}.
 
 
 
@@ -456,7 +456,7 @@ The \doxylink{classoomph_1_1DenseDoubleMatrix}{Dense\+Double\+Matrix} class is a
 
 
 
-Definition at line \mbox{\hyperlink{linear__solver_8h_source_l00336}{336}} of file \mbox{\hyperlink{linear__solver_8h_source}{linear\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{linear__solver_8h_source_l00338}{338}} of file \mbox{\hyperlink{linear__solver_8h_source}{linear\+\_\+solver.\+h}}.
 
 
 
@@ -473,11 +473,11 @@ Pointer to storage for the index of permutations in the LU solve.
 
 
 
-Definition at line \mbox{\hyperlink{linear__solver_8h_source_l00419}{419}} of file \mbox{\hyperlink{linear__solver_8h_source}{linear\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{linear__solver_8h_source_l00421}{421}} of file \mbox{\hyperlink{linear__solver_8h_source}{linear\+\_\+solver.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{linear__solver_8cc_source_l00320}{backsub()}}, \mbox{\hyperlink{linear__solver_8cc_source_l00372}{backsub()}}, \mbox{\hyperlink{linear__solver_8cc_source_l00106}{clean\+\_\+up\+\_\+memory()}}, and \mbox{\hyperlink{linear__solver_8cc_source_l00131}{factorise()}}.
+Referenced by \mbox{\hyperlink{linear__solver_8cc_source_l00324}{backsub()}}, \mbox{\hyperlink{linear__solver_8cc_source_l00376}{backsub()}}, \mbox{\hyperlink{linear__solver_8cc_source_l00110}{clean\+\_\+up\+\_\+memory()}}, and \mbox{\hyperlink{linear__solver_8cc_source_l00135}{factorise()}}.
 
 \Hypertarget{classoomph_1_1DenseLU_a3618b27ae286e468251f52091ddf1e70}\label{classoomph_1_1DenseLU_a3618b27ae286e468251f52091ddf1e70} 
 \index{oomph::DenseLU@{oomph::DenseLU}!Jacobian\_setup\_time@{Jacobian\_setup\_time}}
@@ -491,11 +491,11 @@ Jacobian setup time.
 
 
 
-Definition at line \mbox{\hyperlink{linear__solver_8h_source_l00408}{408}} of file \mbox{\hyperlink{linear__solver_8h_source}{linear\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{linear__solver_8h_source_l00410}{410}} of file \mbox{\hyperlink{linear__solver_8h_source}{linear\+\_\+solver.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{linear__solver_8h_source_l00382}{jacobian\+\_\+setup\+\_\+time()}}, \mbox{\hyperlink{linear__solver_8cc_source_l00051}{solve()}}, and \mbox{\hyperlink{linear__solver_8cc_source_l00575}{oomph\+::\+FD\+\_\+\+LU\+::solve()}}.
+Referenced by \mbox{\hyperlink{linear__solver_8h_source_l00384}{jacobian\+\_\+setup\+\_\+time()}}, \mbox{\hyperlink{linear__solver_8cc_source_l00055}{solve()}}, and \mbox{\hyperlink{linear__solver_8cc_source_l00579}{oomph\+::\+FD\+\_\+\+LU\+::solve()}}.
 
 \Hypertarget{classoomph_1_1DenseLU_a9b393b33667887cfdafa6290c7b3e209}\label{classoomph_1_1DenseLU_a9b393b33667887cfdafa6290c7b3e209} 
 \index{oomph::DenseLU@{oomph::DenseLU}!LU\_factors@{LU\_factors}}
@@ -509,11 +509,11 @@ Pointer to storage for the LU decomposition.
 
 
 
-Definition at line \mbox{\hyperlink{linear__solver_8h_source_l00422}{422}} of file \mbox{\hyperlink{linear__solver_8h_source}{linear\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{linear__solver_8h_source_l00424}{424}} of file \mbox{\hyperlink{linear__solver_8h_source}{linear\+\_\+solver.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{linear__solver_8cc_source_l00320}{backsub()}}, \mbox{\hyperlink{linear__solver_8cc_source_l00372}{backsub()}}, \mbox{\hyperlink{linear__solver_8cc_source_l00106}{clean\+\_\+up\+\_\+memory()}}, and \mbox{\hyperlink{linear__solver_8cc_source_l00131}{factorise()}}.
+Referenced by \mbox{\hyperlink{linear__solver_8cc_source_l00324}{backsub()}}, \mbox{\hyperlink{linear__solver_8cc_source_l00376}{backsub()}}, \mbox{\hyperlink{linear__solver_8cc_source_l00110}{clean\+\_\+up\+\_\+memory()}}, and \mbox{\hyperlink{linear__solver_8cc_source_l00135}{factorise()}}.
 
 \Hypertarget{classoomph_1_1DenseLU_aea4118f8ead9e3f89f8d234f572766d1}\label{classoomph_1_1DenseLU_aea4118f8ead9e3f89f8d234f572766d1} 
 \index{oomph::DenseLU@{oomph::DenseLU}!Sign\_of\_determinant\_of\_matrix@{Sign\_of\_determinant\_of\_matrix}}
@@ -527,11 +527,11 @@ Sign of the determinant of the matrix (obtained during the LU decomposition)
 
 
 
-Definition at line \mbox{\hyperlink{linear__solver_8h_source_l00415}{415}} of file \mbox{\hyperlink{linear__solver_8h_source}{linear\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{linear__solver_8h_source_l00417}{417}} of file \mbox{\hyperlink{linear__solver_8h_source}{linear\+\_\+solver.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{linear__solver_8cc_source_l00131}{factorise()}}, \mbox{\hyperlink{linear__solver_8cc_source_l00051}{solve()}}, and \mbox{\hyperlink{linear__solver_8cc_source_l00575}{oomph\+::\+FD\+\_\+\+LU\+::solve()}}.
+Referenced by \mbox{\hyperlink{linear__solver_8cc_source_l00135}{factorise()}}, \mbox{\hyperlink{linear__solver_8cc_source_l00055}{solve()}}, and \mbox{\hyperlink{linear__solver_8cc_source_l00579}{oomph\+::\+FD\+\_\+\+LU\+::solve()}}.
 
 \Hypertarget{classoomph_1_1DenseLU_abd10caf6beabb9c81fb7a8072212c6ad}\label{classoomph_1_1DenseLU_abd10caf6beabb9c81fb7a8072212c6ad} 
 \index{oomph::DenseLU@{oomph::DenseLU}!Solution\_time@{Solution\_time}}
@@ -545,11 +545,11 @@ Solution time.
 
 
 
-Definition at line \mbox{\hyperlink{linear__solver_8h_source_l00411}{411}} of file \mbox{\hyperlink{linear__solver_8h_source}{linear\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{linear__solver_8h_source_l00413}{413}} of file \mbox{\hyperlink{linear__solver_8h_source}{linear\+\_\+solver.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{linear__solver_8h_source_l00389}{linear\+\_\+solver\+\_\+solution\+\_\+time()}}, \mbox{\hyperlink{linear__solver_8cc_source_l00419}{solve()}}, and \mbox{\hyperlink{linear__solver_8cc_source_l00541}{solve()}}.
+Referenced by \mbox{\hyperlink{linear__solver_8h_source_l00391}{linear\+\_\+solver\+\_\+solution\+\_\+time()}}, \mbox{\hyperlink{linear__solver_8cc_source_l00423}{solve()}}, and \mbox{\hyperlink{linear__solver_8cc_source_l00545}{solve()}}.
 
 
 

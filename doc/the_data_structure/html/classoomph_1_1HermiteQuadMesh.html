@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -137,7 +131,7 @@ $(function() {
 <p>A two dimensional Hermite bicubic element quadrilateral mesh for a topologically rectangular domain. The geometry of the problem must be prescribed using the <a class="el" href="classoomph_1_1TopologicallyRectangularDomain.html" title="Topologically Rectangular Domain - a domain dexcribing a topologically rectangular problem - primaril...">TopologicallyRectangularDomain</a>. Non uniform node spacing can be prescribed using a function pointer.  
  <a href="classoomph_1_1HermiteQuadMesh.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="hermite__element__quad__mesh_8template_8h_source.html">hermite_element_quad_mesh.template.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="hermite__element__quad__mesh_8h_source.html">hermite_element_quad_mesh.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for oomph::HermiteQuadMesh&lt; ELEMENT &gt;:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -266,6 +260,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad1b124a959628aba00162b89617b3a62 inherit pub_methods_classoomph_1_1Mesh" id="r_ad1b124a959628aba00162b89617b3a62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#ad1b124a959628aba00162b89617b3a62">boundary_coordinate_exists</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>) <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a></td></tr>
 <tr class="memdesc:ad1b124a959628aba00162b89617b3a62 inherit pub_methods_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicate whether the i-th boundary has an intrinsic coordinate.  <br /></td></tr>
 <tr class="separator:ad1b124a959628aba00162b89617b3a62 inherit pub_methods_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab137d0c0debf5ba0d6ea6990103e620c inherit pub_methods_classoomph_1_1Mesh" id="r_ab137d0c0debf5ba0d6ea6990103e620c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#ab137d0c0debf5ba0d6ea6990103e620c">set_boundary_coordinate_exists</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>)</td></tr>
+<tr class="memdesc:ab137d0c0debf5ba0d6ea6990103e620c inherit pub_methods_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set boundary coordinate on the i-th boundary to be existing.  <br /></td></tr>
+<tr class="separator:ab137d0c0debf5ba0d6ea6990103e620c inherit pub_methods_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b9d63e0057ed721190b109f48f7c92e inherit pub_methods_classoomph_1_1Mesh" id="r_a3b9d63e0057ed721190b109f48f7c92e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#a3b9d63e0057ed721190b109f48f7c92e">set_boundary_coordinate_does_not_exist</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>)</td></tr>
+<tr class="memdesc:a3b9d63e0057ed721190b109f48f7c92e inherit pub_methods_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set boundary coordinate on the i-th boundary to be non-existing.  <br /></td></tr>
+<tr class="separator:a3b9d63e0057ed721190b109f48f7c92e inherit pub_methods_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af01dfefb66c15579b540be62999d93ee inherit pub_methods_classoomph_1_1Mesh" id="r_af01dfefb66c15579b540be62999d93ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">long</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#af01dfefb66c15579b540be62999d93ee">nelement</a> () <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a></td></tr>
 <tr class="memdesc:af01dfefb66c15579b540be62999d93ee inherit pub_methods_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return number of elements in the mesh.  <br /></td></tr>
 <tr class="separator:af01dfefb66c15579b540be62999d93ee inherit pub_methods_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -733,7 +733,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a90a3555bd14fdfe3b0c503672f832a43 inherit pub_attribs_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_attribs_classoomph_1_1Mesh"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_classoomph_1_1Mesh')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="classoomph_1_1Mesh.html">oomph::Mesh</a></td></tr>
 <tr class="memitem:a12243d0fee2b1fcee729ee5a4777ea10 inherit pub_static_attribs_classoomph_1_1Mesh" id="r_a12243d0fee2b1fcee729ee5a4777ea10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">static</a> <a class="el" href="classoomph_1_1Steady.html">Steady</a>&lt; 0 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#a12243d0fee2b1fcee729ee5a4777ea10">Default_TimeStepper</a></td></tr>
-<tr class="memdesc:a12243d0fee2b1fcee729ee5a4777ea10 inherit pub_static_attribs_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default <a class="el" href="classoomph_1_1Steady.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////...">Steady</a> Timestepper, to be used in default arguments to <a class="el" href="classoomph_1_1Mesh.html" title="A general mesh class.">Mesh</a> constructors.  <br /></td></tr>
+<tr class="memdesc:a12243d0fee2b1fcee729ee5a4777ea10 inherit pub_static_attribs_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default <a class="el" href="classoomph_1_1Steady.html" title="Faux time-stepper for steady problems. Allows storage for NSTEPS previous values.">Steady</a> Timestepper, to be used in default arguments to <a class="el" href="classoomph_1_1Mesh.html" title="A general mesh class.">Mesh</a> constructors.  <br /></td></tr>
 <tr class="separator:a12243d0fee2b1fcee729ee5a4777ea10 inherit pub_static_attribs_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada6bc12304d1536b747596d1049e48be inherit pub_static_attribs_classoomph_1_1Mesh" id="r_ada6bc12304d1536b747596d1049e48be"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">static</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#ada6bc12304d1536b747596d1049e48be">Suppress_warning_about_empty_mesh_level_time_stepper_function</a></td></tr>
 <tr class="memdesc:ada6bc12304d1536b747596d1049e48be inherit pub_static_attribs_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean used to control warning about empty mesh level timestepper function.  <br /></td></tr>
@@ -815,15 +815,12 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:aca12acfe655a4d5c4a4eab4a7b970812 inherit pro_attribs_classoomph_1_1Mesh" id="r_aca12acfe655a4d5c4a4eab4a7b970812"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; <a class="el" href="classoomph_1_1GeneralisedElement.html">GeneralisedElement</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#aca12acfe655a4d5c4a4eab4a7b970812">Element_pt</a></td></tr>
 <tr class="memdesc:aca12acfe655a4d5c4a4eab4a7b970812 inherit pro_attribs_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> of pointers to generalised elements.  <br /></td></tr>
 <tr class="separator:aca12acfe655a4d5c4a4eab4a7b970812 inherit pro_attribs_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a412a5051be9e81f0ba61bf85e5abc4a6 inherit pro_attribs_classoomph_1_1Mesh" id="r_a412a5051be9e81f0ba61bf85e5abc4a6"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#a412a5051be9e81f0ba61bf85e5abc4a6">Boundary_coordinate_exists</a></td></tr>
-<tr class="memdesc:a412a5051be9e81f0ba61bf85e5abc4a6 inherit pro_attribs_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> of boolean data that indicates whether the boundary coordinates have been set for the boundary.  <br /></td></tr>
-<tr class="separator:a412a5051be9e81f0ba61bf85e5abc4a6 inherit pro_attribs_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">class</a> ELEMENT&gt;<br />
 class oomph::HermiteQuadMesh&lt; ELEMENT &gt;</div><p>A two dimensional Hermite bicubic element quadrilateral mesh for a topologically rectangular domain. The geometry of the problem must be prescribed using the <a class="el" href="classoomph_1_1TopologicallyRectangularDomain.html" title="Topologically Rectangular Domain - a domain dexcribing a topologically rectangular problem - primaril...">TopologicallyRectangularDomain</a>. Non uniform node spacing can be prescribed using a function pointer. </p>
 
-<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00052">52</a> of file <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html">hermite_element_quad_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00053">53</a> of file <a class="el" href="hermite__element__quad__mesh_8h_source.html">hermite_element_quad_mesh.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="abebf4806b300591f976398404ed0ef3f" name="abebf4806b300591f976398404ed0ef3f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abebf4806b300591f976398404ed0ef3f">&#9670;&#160;</a></span>MeshSpacingFnPtr</h2>
@@ -841,7 +838,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p><a class="el" href="classoomph_1_1Mesh.html" title="A general mesh class.">Mesh</a> Spacing Function Pointer - an optional function pointer to prescibe the node spacing in a non-uniformly spaced mesh - takes the position of a node (in macro element coordinates) in the uniformly spaced mesh and return the position in the non-uniformly spaced mesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00059">59</a> of file <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html">hermite_element_quad_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00060">60</a> of file <a class="el" href="hermite__element__quad__mesh_8h_source.html">hermite_element_quad_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -902,9 +899,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p><a class="el" href="classoomph_1_1Mesh.html" title="A general mesh class.">Mesh</a> Constructor (for a uniformly spaced mesh). Takes the following arguments : nx : number of elements in x direction; ny : number of elements in y direction; domain : topologically rectangular domain; periodic_in_x : flag specifying if the mesh is periodic in the x direction (default = false); time_stepper_pt : pointer to the time stepper (default = no timestepper);. </p>
 
-<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00073">73</a> of file <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html">hermite_element_quad_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00074">74</a> of file <a class="el" href="hermite__element__quad__mesh_8h_source.html">hermite_element_quad_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="hermite__element__quad__mesh_8template_8cc_source.html#l00603">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::build_mesh()</a>, <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00241">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::Domain_pt</a>, <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00233">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::Nelement</a>, <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00244">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::Node_spacing_fn</a>, and <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00237">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::Xperiodic</a>.</p>
+<p class="reference">References <a class="el" href="hermite__element__quad__mesh_8template_8cc_source.html#l00599">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::build_mesh()</a>, <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00238">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::Domain_pt</a>, <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00230">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::Nelement</a>, <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00241">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::Node_spacing_fn</a>, and <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00234">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::Xperiodic</a>.</p>
 
 </div>
 </div>
@@ -971,9 +968,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 <p><a class="el" href="classoomph_1_1Mesh.html" title="A general mesh class.">Mesh</a> Constructor (for a non-uniformly spaced mesh). Takes the following arguments : nx : number of elements in x direction; ny : number of elements in y direction; domain : topologically rectangular domain; spacing_fn : spacing function prescribing a non-uniformly spaced mesh periodic_in_x : flag specifying if the mesh is periodic in the x direction (default = false); time_stepper_pt : pointer to the time stepper (default = notimestepper);. </p>
 <p>build the mesh</p>
 
-<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00114">114</a> of file <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html">hermite_element_quad_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00115">115</a> of file <a class="el" href="hermite__element__quad__mesh_8h_source.html">hermite_element_quad_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="hermite__element__quad__mesh_8template_8cc_source.html#l00603">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::build_mesh()</a>, <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00241">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::Domain_pt</a>, <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00233">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::Nelement</a>, <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00244">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::Node_spacing_fn</a>, and <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00237">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::Xperiodic</a>.</p>
+<p class="reference">References <a class="el" href="hermite__element__quad__mesh_8template_8cc_source.html#l00599">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::build_mesh()</a>, <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00238">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::Domain_pt</a>, <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00230">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::Nelement</a>, <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00241">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::Node_spacing_fn</a>, and <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00234">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::Xperiodic</a>.</p>
 
 </div>
 </div>
@@ -1004,7 +1001,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Destructor - does nothing - handled in mesh base class. </p>
 
-<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00144">144</a> of file <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html">hermite_element_quad_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00144">144</a> of file <a class="el" href="hermite__element__quad__mesh_8h_source.html">hermite_element_quad_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -1037,11 +1034,11 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Generic mesh construction function to build the mesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8template_8cc_source.html#l00603">603</a> of file <a class="el" href="hermite__element__quad__mesh_8template_8cc_source.html">hermite_element_quad_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8template_8cc_source.html#l00599">599</a> of file <a class="el" href="hermite__element__quad__mesh_8template_8cc_source.html">hermite_element_quad_mesh.template.cc</a>.</p>
 
 <p class="reference">References <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="elements_8h_source.html#l01323">oomph::FiniteElement::Node_pt</a>, <a class="el" href="elements_8h_source.html#l02179">oomph::FiniteElement::node_pt()</a>, <a class="el" href="nodes_8cc_source.html#l02167">oomph::Node::resize()</a>, <a class="el" href="elements_8h_source.html#l01876">oomph::FiniteElement::set_macro_elem_pt()</a>, <a class="el" href="Tadvection__diffusion__reaction__elements_8h_source.html#l00070">oomph::TAdvectionDiffusionReactionElement&lt; NREAGENT, DIM, NNODE_1D &gt;::TAdvectionDiffusionReactionElement()</a>, and <a class="el" href="geom__objects_8h_source.html#l00192">oomph::GeomObject::time_stepper_pt()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00073">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::HermiteQuadMesh()</a>, and <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00114">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::HermiteQuadMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00074">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::HermiteQuadMesh()</a>, and <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00115">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::HermiteQuadMesh()</a>.</p>
 
 </div>
 </div>
@@ -1089,7 +1086,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>computes the generalised position of the node at position (node_num_x, node_num_y) in the macro element coordinate scheme. index 0 of m_gen : 0 - m_i 1 - dm_i/ds_0 2 - dm_i/ds_1 3 - d2m_i/ds_0ds_1 (where i is index 1 of m_gen) </p>
 
-<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8template_8cc_source.html#l00200">200</a> of file <a class="el" href="hermite__element__quad__mesh_8template_8cc_source.html">hermite_element_quad_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8template_8cc_source.html#l00197">197</a> of file <a class="el" href="hermite__element__quad__mesh_8template_8cc_source.html">hermite_element_quad_mesh.template.cc</a>.</p>
 
 <p class="reference">References <a class="el" href="Tadvection__diffusion__reaction__elements_8h_source.html#l00070">oomph::TAdvectionDiffusionReactionElement&lt; NREAGENT, DIM, NNODE_1D &gt;::TAdvectionDiffusionReactionElement()</a>.</p>
 
@@ -1139,9 +1136,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>returns the macro element position of the node that is the x-th node along from the LHS and the y-th node up from the lower edge </p>
 
-<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00157">157</a> of file <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html">hermite_element_quad_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00155">155</a> of file <a class="el" href="hermite__element__quad__mesh_8h_source.html">hermite_element_quad_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00233">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::Nelement</a>, and <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00244">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::Node_spacing_fn</a>.</p>
+<p class="reference">References <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00230">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::Nelement</a>, and <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00241">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::Node_spacing_fn</a>.</p>
 
 </div>
 </div>
@@ -1173,9 +1170,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Access function for number of elements in mesh in each dimension. </p>
 
-<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00148">148</a> of file <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html">hermite_element_quad_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00147">147</a> of file <a class="el" href="hermite__element__quad__mesh_8h_source.html">hermite_element_quad_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00233">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::Nelement</a>.</p>
+<p class="reference">References <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00230">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::Nelement</a>.</p>
 
 </div>
 </div>
@@ -1223,7 +1220,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>sets the generalised position of the node (i.e. - x_i, dx_i/ds_0, dx_i/ds_1 &amp; d2x_i/ds_0ds_1 for i = 1,2). Takes the x,y coordinates of the node from which its position can be determined. Also sets coordinates on boundary vector for the node to be the generalised position of the node in macro element coordinates </p>
 
-<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8template_8cc_source.html#l00116">116</a> of file <a class="el" href="hermite__element__quad__mesh_8template_8cc_source.html">hermite_element_quad_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8template_8cc_source.html#l00115">115</a> of file <a class="el" href="hermite__element__quad__mesh_8template_8cc_source.html">hermite_element_quad_mesh.template.cc</a>.</p>
 
 <p class="reference">References <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="nodes_8h_source.html#l01373">oomph::Node::is_on_boundary()</a>, <a class="el" href="elements_8h_source.html#l02179">oomph::FiniteElement::node_pt()</a>, <a class="el" href="nodes_8cc_source.html#l02394">oomph::Node::set_coordinates_on_boundary()</a>, <a class="el" href="Tadvection__diffusion__reaction__elements_8h_source.html#l00070">oomph::TAdvectionDiffusionReactionElement&lt; NREAGENT, DIM, NNODE_1D &gt;::TAdvectionDiffusionReactionElement()</a>, and <a class="el" href="nodes_8h_source.html#l01126">oomph::Node::x_gen()</a>.</p>
 
@@ -1273,7 +1270,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>sets the generalised position of the node (i.e. - x_i, dx_i/ds_0, dx_i/ds_1 &amp; d2x_i/ds_0ds_1 for i = 1,2). Takes the x,y coordinates of the node from which its position can be determined. </p>
 
-<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8template_8cc_source.html#l00048">48</a> of file <a class="el" href="hermite__element__quad__mesh_8template_8cc_source.html">hermite_element_quad_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8template_8cc_source.html#l00049">49</a> of file <a class="el" href="hermite__element__quad__mesh_8template_8cc_source.html">hermite_element_quad_mesh.template.cc</a>.</p>
 
 <p class="reference">References <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="elements_8h_source.html#l02179">oomph::FiniteElement::node_pt()</a>, <a class="el" href="Tadvection__diffusion__reaction__elements_8h_source.html#l00070">oomph::TAdvectionDiffusionReactionElement&lt; NREAGENT, DIM, NNODE_1D &gt;::TAdvectionDiffusionReactionElement()</a>, and <a class="el" href="nodes_8h_source.html#l01126">oomph::Node::x_gen()</a>.</p>
 
@@ -1308,11 +1305,11 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Reimplemented from <a class="el" href="classoomph_1_1Mesh.html#a6cc8bcd6b41209f0e9295cc993d9c6bb">oomph::Mesh</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00215">215</a> of file <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html">hermite_element_quad_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00212">212</a> of file <a class="el" href="hermite__element__quad__mesh_8h_source.html">hermite_element_quad_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00215">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::setup_boundary_element_info()</a>.</p>
+<p class="reference">References <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00212">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::setup_boundary_element_info()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00215">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::setup_boundary_element_info()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00212">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::setup_boundary_element_info()</a>.</p>
 
 </div>
 </div>
@@ -1346,7 +1343,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Reimplemented from <a class="el" href="classoomph_1_1Mesh.html#a413cbcbea4fb1111703da9ee97429640">oomph::Mesh</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8template_8cc_source.html#l01271">1271</a> of file <a class="el" href="hermite__element__quad__mesh_8template_8cc_source.html">hermite_element_quad_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8template_8cc_source.html#l01250">1250</a> of file <a class="el" href="hermite__element__quad__mesh_8template_8cc_source.html">hermite_element_quad_mesh.template.cc</a>.</p>
 
 <p class="reference">References <a class="el" href="elements_8h_source.html#l02615">oomph::FiniteElement::dim()</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="nodes_8h_source.html#l01365">oomph::Node::get_boundaries_pt()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="elements_8h_source.html#l02222">oomph::FiniteElement::nnode_1d()</a>, <a class="el" href="elements_8h_source.html#l02179">oomph::FiniteElement::node_pt()</a>, <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>, and <a class="el" href="Tadvection__diffusion__reaction__elements_8h_source.html#l00070">oomph::TAdvectionDiffusionReactionElement&lt; NREAGENT, DIM, NNODE_1D &gt;::TAdvectionDiffusionReactionElement()</a>.</p>
 
@@ -1377,9 +1374,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Pointer to the topologically rectangular domain which prescribes the problem domain. </p>
 
-<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00241">241</a> of file <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html">hermite_element_quad_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00238">238</a> of file <a class="el" href="hermite__element__quad__mesh_8h_source.html">hermite_element_quad_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00073">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::HermiteQuadMesh()</a>, and <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00114">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::HermiteQuadMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00074">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::HermiteQuadMesh()</a>, and <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00115">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::HermiteQuadMesh()</a>.</p>
 
 </div>
 </div>
@@ -1407,9 +1404,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>number of elements in each coordinate direction </p>
 
-<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00233">233</a> of file <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html">hermite_element_quad_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00230">230</a> of file <a class="el" href="hermite__element__quad__mesh_8h_source.html">hermite_element_quad_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00073">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::HermiteQuadMesh()</a>, <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00114">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::HermiteQuadMesh()</a>, <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00157">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::macro_coordinate_position()</a>, and <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00148">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::nelement_in_dim()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00074">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::HermiteQuadMesh()</a>, <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00115">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::HermiteQuadMesh()</a>, <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00155">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::macro_coordinate_position()</a>, and <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00147">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::nelement_in_dim()</a>.</p>
 
 </div>
 </div>
@@ -1437,9 +1434,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>non uniform mesh spacing function pointer </p>
 
-<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00244">244</a> of file <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html">hermite_element_quad_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00241">241</a> of file <a class="el" href="hermite__element__quad__mesh_8h_source.html">hermite_element_quad_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00073">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::HermiteQuadMesh()</a>, <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00114">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::HermiteQuadMesh()</a>, and <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00157">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::macro_coordinate_position()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00074">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::HermiteQuadMesh()</a>, <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00115">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::HermiteQuadMesh()</a>, and <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00155">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::macro_coordinate_position()</a>.</p>
 
 </div>
 </div>
@@ -1467,14 +1464,14 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>boolean variable to determine whether the mesh is periodic in the x-direction </p>
 
-<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00237">237</a> of file <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html">hermite_element_quad_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00234">234</a> of file <a class="el" href="hermite__element__quad__mesh_8h_source.html">hermite_element_quad_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00073">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::HermiteQuadMesh()</a>, and <a class="el" href="hermite__element__quad__mesh_8template_8h_source.html#l00114">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::HermiteQuadMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00074">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::HermiteQuadMesh()</a>, and <a class="el" href="hermite__element__quad__mesh_8h_source.html#l00115">oomph::HermiteQuadMesh&lt; ELEMENT &gt;::HermiteQuadMesh()</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="hermite__element__quad__mesh_8template_8h_source.html">hermite_element_quad_mesh.template.h</a></li>
+<li><a class="el" href="hermite__element__quad__mesh_8h_source.html">hermite_element_quad_mesh.h</a></li>
 <li><a class="el" href="hermite__element__quad__mesh_8template_8cc_source.html">hermite_element_quad_mesh.template.cc</a></li>
 </ul>
 </div><!-- contents -->
@@ -1505,7 +1502,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:04:32
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:40:01
         </div>
       </div>
     </footer>

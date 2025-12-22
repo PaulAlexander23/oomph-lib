@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,48 +116,48 @@ Problem formulation</h1>
 <img src="sketch.gif" alt=""/>
 <div class="caption">
 A film of incompressible viscous fluid of a given thickness flows down a plane inclined at a prescribed angle to the gravitational field. </div></div>
- <p>Formulating the problem in coordinates tangential ( <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$x^{*}$" src="form_0.png" width="13" height="10"/></picture>) and normal ( <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$y^{*}$" src="form_1.png" width="13" height="13"/></picture>) to the plane and assuming that the flow is steady and only in the tangential direction, but independent of the tangential coordinate, reduces the momentum equations to</p>
+ <p>Formulating the problem in coordinates tangential ( <img class="formulaInl" alt="$x^{*}$" src="form_0.png" width="13" height="10"/>) and normal ( <img class="formulaInl" alt="$y^{*}$" src="form_1.png" width="13" height="13"/>) to the plane and assuming that the flow is steady and only in the tangential direction, but independent of the tangential coordinate, reduces the momentum equations to</p>
 <center>  <p class="formulaDsp">
-<picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[ \frac{\partial p^*}{\partial x^*}  = \rho \,g \sin\alpha +
-\mu\,\frac{\partial^{2} u^*}{\partial y^{*2}}, \]" src="form_2.png" width="138" height="31"/></picture>
+<img class="formulaDsp" alt="\[ \frac{\partial p^*}{\partial x^*}  = \rho \,g \sin\alpha +
+\mu\,\frac{\partial^{2} u^*}{\partial y^{*2}}, \]" src="form_2.png" width="138" height="31"/>
 </p>
  <p class="formulaDsp">
-<picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[ \frac{\partial p^*}{\partial y^*} = -\rho \,g \cos\alpha, \]" src="form_3.png" width="95" height="30"/></picture>
+<img class="formulaDsp" alt="\[ \frac{\partial p^*}{\partial y^*} = -\rho \,g \cos\alpha, \]" src="form_3.png" width="95" height="30"/>
 </p>
- </center><p> where <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$u^*$" src="form_4.png" width="13" height="10"/></picture> is the velocity component tangential to the plane and <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$p^*$" src="form_5.png" width="13" height="13"/></picture> is the fluid pressure. Note that the continuity equation is automatically satisfied.</p>
-<p>We non-dimensionalise using the only length-scale in the problem <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$H$" src="form_6.png" width="11" height="10"/></picture>, choosing the viscous scale for the pressure and choosing a reference velocity scale <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$U$" src="form_7.png" width="10" height="10"/></picture>:  </p><p class="formulaDsp">
-<picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[ x^{*} = H x,\qquad y^{*} = H y,\qquad u^* = U u,\qquad p^* = \mu
-U/H,\]" src="form_8.png" width="299" height="14"/></picture>
+ </center><p> where <img class="formulaInl" alt="$u^*$" src="form_4.png" width="13" height="10"/> is the velocity component tangential to the plane and <img class="formulaInl" alt="$p^*$" src="form_5.png" width="13" height="13"/> is the fluid pressure. Note that the continuity equation is automatically satisfied.</p>
+<p>We non-dimensionalise using the only length-scale in the problem <img class="formulaInl" alt="$H$" src="form_6.png" width="11" height="10"/>, choosing the viscous scale for the pressure and choosing a reference velocity scale <img class="formulaInl" alt="$U$" src="form_7.png" width="10" height="10"/>:  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ x^{*} = H x,\qquad y^{*} = H y,\qquad u^* = U u,\qquad p^* = \mu
+U/H,\]" src="form_8.png" width="299" height="14"/>
 </p>
 <p> and the governing equations become </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[ \frac{\partial p}{\partial x}  = \frac{\rho \,g H^{2}}{\mu U} \sin\alpha +
+<img class="formulaDsp" alt="\[ \frac{\partial p}{\partial x}  = \frac{\rho \,g H^{2}}{\mu U} \sin\alpha +
     \frac{\partial^{2} u}{\partial y^{2}} = \frac{Re}{Fr} \sin \alpha + 
-    \frac{\partial^{2} u}{\partial y^{2}}, \]" src="form_9.png" width="238" height="31"/></picture>
+    \frac{\partial^{2} u}{\partial y^{2}}, \]" src="form_9.png" width="238" height="31"/>
 </p>
   <p class="formulaDsp">
-<picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[ \frac{\partial p}{\partial y} = -\frac{\rho \,g H^{2}}{\mu U} 
-    \cos\alpha = - \frac{Re}{Fr} \cos\alpha. \]" src="form_10.png" width="183" height="31"/></picture>
+<img class="formulaDsp" alt="\[ \frac{\partial p}{\partial y} = -\frac{\rho \,g H^{2}}{\mu U} 
+    \cos\alpha = - \frac{Re}{Fr} \cos\alpha. \]" src="form_10.png" width="183" height="31"/>
 </p>
- </center><p> The dimensionless grouping <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \rho g H^{2} / (\mu U) $" src="form_11.png" width="64" height="15"/></picture> represents the ratio of gravitational forces to viscous forces and we choose to identify it as a Reynolds number <picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re = \rho U H / \mu$" src="form_12.png" width="73" height="14"/></picture> divided by a Froude number <picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Fr = U^{2} / (g H)$" src="form_13.png" width="80" height="15"/></picture>.</p>
-<p>We proceed by assuming that the flow is driven entirely by the gravitational body force and that there is no additional tangential pressure gradient. Then, integrating the tangential momentum balance twice and using the boundary conditions of no-slip at the plane ( <picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$y=0$" src="form_14.png" width="30" height="11"/></picture>)and that the free surface ( <picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$y=1$" src="form_15.png" width="30" height="11"/></picture>) is tangentially stress-free gives </p><p class="formulaDsp">
-<picture><source srcset="form_16_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[ u =  \frac{1}{2}\frac{Re}{Fr}\sin\alpha \left(2 y - y^{2}\right). \]" src="form_16.png" width="139" height="28"/></picture>
+ </center><p> The dimensionless grouping <img class="formulaInl" alt="$ \rho g H^{2} / (\mu U) $" src="form_11.png" width="64" height="15"/> represents the ratio of gravitational forces to viscous forces and we choose to identify it as a Reynolds number <img class="formulaInl" alt="$ Re = \rho U H / \mu$" src="form_12.png" width="73" height="14"/> divided by a Froude number <img class="formulaInl" alt="$ Fr = U^{2} / (g H)$" src="form_13.png" width="80" height="15"/>.</p>
+<p>We proceed by assuming that the flow is driven entirely by the gravitational body force and that there is no additional tangential pressure gradient. Then, integrating the tangential momentum balance twice and using the boundary conditions of no-slip at the plane ( <img class="formulaInl" alt="$y=0$" src="form_14.png" width="30" height="11"/>)and that the free surface ( <img class="formulaInl" alt="$y=1$" src="form_15.png" width="30" height="11"/>) is tangentially stress-free gives </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ u =  \frac{1}{2}\frac{Re}{Fr}\sin\alpha \left(2 y - y^{2}\right). \]" src="form_16.png" width="139" height="28"/>
 </p>
 <p> Integrating the normal momentum balance and setting the reference external pressure to be zero at the free surface gives </p><p class="formulaDsp">
-<picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[ p = \frac{Re}{Fr}\cos\alpha (1 - y).\]" src="form_17.png" width="113" height="28"/></picture>
+<img class="formulaDsp" alt="\[ p = \frac{Re}{Fr}\cos\alpha (1 - y).\]" src="form_17.png" width="113" height="28"/>
 </p>
-<p>Finally, we specify a "natural" velocity scale by setting <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$Re/Fr =
-2$" src="form_18.png" width="60" height="14"/></picture>, corresponding to the velocity of the free-surface for a vertical film ( <picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\alpha = \pi/2$" src="form_19.png" width="44" height="14"/></picture>).</p>
+<p>Finally, we specify a "natural" velocity scale by setting <img class="formulaInl" alt="$Re/Fr =
+2$" src="form_18.png" width="60" height="14"/>, corresponding to the velocity of the free-surface for a vertical film ( <img class="formulaInl" alt="$\alpha = \pi/2$" src="form_19.png" width="44" height="14"/>).</p>
 <p>We shall assess the stability of the flat-film solution by applying a small, short-duration perturbation to the wall velocity and evolving the system in time. If the interface is stable, the perturbation should decay, if not it should grow. A linear stability analysis for this problem was performed by Benjamin (1957) and Yih (1963), who both found that for long waves in the absence of surface tension, the interface was unstable when </p><p class="formulaDsp">
-<picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[ Re &gt; \frac{5}{4} \sin\alpha. \]" src="form_20.png" width="71" height="26"/></picture>
+<img class="formulaDsp" alt="\[ Re &gt; \frac{5}{4} \sin\alpha. \]" src="form_20.png" width="71" height="26"/>
 </p>
 <p> (If you read the papers you will see that the Reynolds number was defined such that the average fluid downslope velocity was one; to convert to our Reynolds number, we must multiply by 3/2.)</p>
-<p>The figure below shows the time evolution of the interface on a slope of <picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \pi/4 $" src="form_21.png" width="21" height="14"/></picture> for Reynolds numbers of zero (red line) and <picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ 4 \sin\alpha $" src="form_22.png" width="35" height="9"/></picture> (green line). The perturbation wavenumber is <picture><source srcset="form_23_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ K = 0.1 $" src="form_23.png" width="44" height="10"/></picture> and the interface rapidly develops waves that grow as they are convected downslope for the higher Reynolds number, but decay when <picture><source srcset="form_24_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$
-Re = 0 $" src="form_24.png" width="38" height="10"/></picture>.</p>
+<p>The figure below shows the time evolution of the interface on a slope of <img class="formulaInl" alt="$ \pi/4 $" src="form_21.png" width="21" height="14"/> for Reynolds numbers of zero (red line) and <img class="formulaInl" alt="$ 4 \sin\alpha $" src="form_22.png" width="35" height="9"/> (green line). The perturbation wavenumber is <img class="formulaInl" alt="$ K = 0.1 $" src="form_23.png" width="44" height="10"/> and the interface rapidly develops waves that grow as they are convected downslope for the higher Reynolds number, but decay when <img class="formulaInl" alt="$
+Re = 0 $" src="form_24.png" width="38" height="10"/>.</p>
 <div class="image">
 <img src="animated_surface.gif" alt=""/>
 <div class="caption">
 Time evolution (or static snapshot at t = 7.5) of the interface shape for Re = 0 (Red) and 4 sin(alpha) (Green). </div></div>
- <p>The decay rate of the interfacial perturbation at <picture><source srcset="form_25_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re = 0 $" src="form_25.png" width="38" height="10"/></picture> is slow, but can be seen in the next figure, which shows the height of the interface at the downstream end of the domain plotted against time. The domain is chosen so that it will contain three waves and the decay or growth of successive crests and troughs can be seen.</p>
+ <p>The decay rate of the interfacial perturbation at <img class="formulaInl" alt="$ Re = 0 $" src="form_25.png" width="38" height="10"/> is slow, but can be seen in the next figure, which shows the height of the interface at the downstream end of the domain plotted against time. The domain is chosen so that it will contain three waves and the decay or growth of successive crests and troughs can be seen.</p>
 <div class="image">
 <img src="time_trace.gif" alt=""/>
 <div class="caption">
@@ -175,13 +169,13 @@ A note on the boundary conditions</h2>
 <li>Prescribe the velocity profile as a Dirichlet condition at both ends.</li>
 <li>Prescribe the appropriate hydrostatic pressure gradient and zero normal velocity.</li>
 </ul>
-<p>We have chosen the last option, in which case the hydrostatic pressure gradient must be consistent with the external pressure. In other words, the pressure must be zero at the free surface ( <picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$y=0$" src="form_14.png" width="30" height="11"/></picture>). Changing the external pressure would correspond to changing the film thickness, so the external pressure is directly responsible for enforcing a specific volume constraint, unless <picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\alpha = \pi/2$" src="form_19.png" width="44" height="14"/></picture>. When <picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\alpha = \pi/2$" src="form_19.png" width="44" height="14"/></picture> there is no variation in hydrostatic pressure through the film and its thickness is not specified by the external pressure.</p>
-<p>We must also worry about the boundary conditions on the free surface itself and we choose to impose a contact angle condition of <picture><source srcset="form_26_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \pi/2 $" src="form_26.png" width="21" height="14"/></picture> at the upstream end, which ensures that the film remains flat. At the downstream end, we add a line tension term that arises from use of the surface divergence theorem to integrate the contribution of the dynamic boundary condition. This term can be used to enforce contact angle conditions in a weak formulation, but here we simply add the term using the angle calculated from the current position of the free surface.</p>
+<p>We have chosen the last option, in which case the hydrostatic pressure gradient must be consistent with the external pressure. In other words, the pressure must be zero at the free surface ( <img class="formulaInl" alt="$y=0$" src="form_14.png" width="30" height="11"/>). Changing the external pressure would correspond to changing the film thickness, so the external pressure is directly responsible for enforcing a specific volume constraint, unless <img class="formulaInl" alt="$\alpha = \pi/2$" src="form_19.png" width="44" height="14"/>. When <img class="formulaInl" alt="$\alpha = \pi/2$" src="form_19.png" width="44" height="14"/> there is no variation in hydrostatic pressure through the film and its thickness is not specified by the external pressure.</p>
+<p>We must also worry about the boundary conditions on the free surface itself and we choose to impose a contact angle condition of <img class="formulaInl" alt="$ \pi/2 $" src="form_26.png" width="21" height="14"/> at the upstream end, which ensures that the film remains flat. At the downstream end, we add a line tension term that arises from use of the surface divergence theorem to integrate the contribution of the dynamic boundary condition. This term can be used to enforce contact angle conditions in a weak formulation, but here we simply add the term using the angle calculated from the current position of the free surface.</p>
 <hr  />
  <hr  />
 <h1><a class="anchor" id="global"></a>
 Global parameters and functions</h1>
-<p>The global parameters are the Reynolds number, the dimensionless grouping <picture><source srcset="form_27_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$Re/Fr$" src="form_27.png" width="38" height="14"/></picture>, the angle of inclination of the slope <picture><source srcset="form_28_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\alpha$" src="form_28.png" width="8" height="6"/></picture>, the direction of the gravity vector <picture><source srcset="form_29_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$G$" src="form_29.png" width="10" height="10"/></picture> and the capillary number <picture><source srcset="form_30_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$Ca$" src="form_30.png" width="16" height="10"/></picture>, which only influences the dynamics.</p>
+<p>The global parameters are the Reynolds number, the dimensionless grouping <img class="formulaInl" alt="$Re/Fr$" src="form_27.png" width="38" height="14"/>, the angle of inclination of the slope <img class="formulaInl" alt="$\alpha$" src="form_28.png" width="8" height="6"/>, the direction of the gravity vector <img class="formulaInl" alt="$G$" src="form_29.png" width="10" height="10"/> and the capillary number <img class="formulaInl" alt="$Ca$" src="form_30.png" width="16" height="10"/>, which only influences the dynamics.</p>
  <div class="fragment"><div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdef"><b>Definition</b> <a href="inclined__plane_8cc_source.html#l00051">inclined_plane.cc:52</a></div></div>
 <div class="line">{<span class="comment"></span></div>
@@ -208,11 +202,11 @@ Global parameters and functions</h1>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_aa6286f02b476912dd7550eced538331a"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#aa6286f02b476912dd7550eced538331a">Global_Physical_Variables::ReInvFr</a></div><div class="ttdeci">double ReInvFr</div><div class="ttdoc">The product of Reynolds number and inverse Froude number is set to two in this problem,...</div><div class="ttdef"><b>Definition</b> <a href="inclined__plane_8cc_source.html#l00060">inclined_plane.cc:60</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_ab814e627d2eb5bc50318879d19ab16b9"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#ab814e627d2eb5bc50318879d19ab16b9">Global_Physical_Variables::Re</a></div><div class="ttdeci">double Re</div><div class="ttdoc">Reynolds number, based on the average velocity within the fluid film.</div><div class="ttdef"><b>Definition</b> <a href="inclined__plane_8cc_source.html#l00054">inclined_plane.cc:54</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_ad40b4c9ef4cf48648fee0914736e7341"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#ad40b4c9ef4cf48648fee0914736e7341">Global_Physical_Variables::G</a></div><div class="ttdeci">Vector&lt; double &gt; G(2, 0.0)</div><div class="ttdoc">The Vector direction of gravity, set in main()</div></div>
-</div><!-- fragment --><p> The hydrostatic pressure field is specified as an applied traction. At the outlet (inlet), the outer unit normal is in the positive (negative) <picture><source srcset="form_31_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$x$" src="form_31.png" width="8" height="6"/></picture> direction and so the required traction is given by <picture><source srcset="form_32_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$-p$" src="form_32.png" width="16" height="9"/></picture> ( <picture><source srcset="form_33_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$p$" src="form_33.png" width="8" height="9"/></picture>),  </p><p class="formulaDsp">
-<picture><source srcset="form_34_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[ \mbox{\boldmath$t$}|_{\mbox{outlet}} = (- (Re/Fr)\cos\alpha (1 -
+</div><!-- fragment --><p> The hydrostatic pressure field is specified as an applied traction. At the outlet (inlet), the outer unit normal is in the positive (negative) <img class="formulaInl" alt="$x$" src="form_31.png" width="8" height="6"/> direction and so the required traction is given by <img class="formulaInl" alt="$-p$" src="form_32.png" width="16" height="9"/> ( <img class="formulaInl" alt="$p$" src="form_33.png" width="8" height="9"/>),  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ \mbox{\boldmath$t$}|_{\mbox{outlet}} = (- (Re/Fr)\cos\alpha (1 -
  y), 0), \qquad 
  \mbox{\boldmath$t$}|_{\mbox{inlet}} = ((Re/Fr)\cos\alpha (1 -
- y), 0).\]" src="form_34.png" width="421" height="15"/></picture>
+ y), 0).\]" src="form_34.png" width="421" height="15"/>
 </p>
 <p> These tractions are specified by the two different functions </p><div class="fragment"><div class="line"><span class="comment"> /// Function that prescribes the hydrostatic pressure field at the outlet</span></div>
 <div class="line"> <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceGlobal__Physical__Variables.html#ab577639e7c51979d3db7565c08c69c70">hydrostatic_pressure_outlet</a>(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; <a class="code hl_class" href="classSpineInclinedPlaneMesh.html">time</a>, <span class="keyword">const</span> <a class="code hl_class" href="classSpineInclinedPlaneMesh.html">Vector&lt;double&gt;</a> &amp;<a class="code hl_class" href="classSpineInclinedPlaneMesh.html">x</a>, </div>
@@ -234,9 +228,9 @@ Global parameters and functions</h1>
 <div class="line"> <span class="comment">//end of traction functions</span></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_ab577639e7c51979d3db7565c08c69c70"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#ab577639e7c51979d3db7565c08c69c70">Global_Physical_Variables::hydrostatic_pressure_outlet</a></div><div class="ttdeci">void hydrostatic_pressure_outlet(const double &amp;time, const Vector&lt; double &gt; &amp;x, const Vector&lt; double &gt; &amp;n, Vector&lt; double &gt; &amp;traction)</div><div class="ttdoc">Function that prescribes the hydrostatic pressure field at the outlet.</div><div class="ttdef"><b>Definition</b> <a href="inclined__plane_8cc_source.html#l00106">inclined_plane.cc:106</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_af1f48eb04a3c7f97b1efacea533acdbc"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#af1f48eb04a3c7f97b1efacea533acdbc">Global_Physical_Variables::hydrostatic_pressure_inlet</a></div><div class="ttdeci">void hydrostatic_pressure_inlet(const double &amp;time, const Vector&lt; double &gt; &amp;x, const Vector&lt; double &gt; &amp;n, Vector&lt; double &gt; &amp;traction)</div><div class="ttdoc">Function that prescribes hydrostatic pressure field at the inlet.</div><div class="ttdef"><b>Definition</b> <a href="inclined__plane_8cc_source.html#l00115">inclined_plane.cc:115</a></div></div>
-</div><!-- fragment --><p> Note that <code>G</code> [ <code>1</code> ] is the component of the gravitational body force in the vertical direction, so <picture><source srcset="form_35_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ G[1] = - \cos\alpha$" src="form_35.png" width="78" height="14"/></picture>. <br  />
+</div><!-- fragment --><p> Note that <code>G</code> [ <code>1</code> ] is the component of the gravitational body force in the vertical direction, so <img class="formulaInl" alt="$ G[1] = - \cos\alpha$" src="form_35.png" width="78" height="14"/>. <br  />
 </p>
-<p>We must also specify the direction of the normals (directed out of the fluid) to the notional walls that form the inlet and outlet and a contact angle of <picture><source srcset="form_36_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \pi /2 $" src="form_36.png" width="21" height="14"/></picture> that will be used as a boundary condition on the free surface at the upstream end of the domain. In this case the normal to the inlet is in the negative x-direction and the normal to the outlet is in the positive x-direction. The actual value of the <code>Wall_normal</code> vector is set in <code><a class="el" href="inclined__plane_8cc.html#a3c04138a5bfe5d72780bb7e82a18e627">main()</a></code> </p>
+<p>We must also specify the direction of the normals (directed out of the fluid) to the notional walls that form the inlet and outlet and a contact angle of <img class="formulaInl" alt="$ \pi /2 $" src="form_36.png" width="21" height="14"/> that will be used as a boundary condition on the free surface at the upstream end of the domain. In this case the normal to the inlet is in the negative x-direction and the normal to the outlet is in the positive x-direction. The actual value of the <code>Wall_normal</code> vector is set in <code><a class="el" href="inclined__plane_8cc.html#a3c04138a5bfe5d72780bb7e82a18e627">main()</a></code> </p>
  <div class="fragment"><div class="line"><span class="comment"> /// Direction of the wall normal vector (at the inlet)</span></div>
 <div class="line"> <a class="code hl_class" href="classSpineInclinedPlaneMesh.html">Vector&lt;double&gt;</a> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a5feb3df21fc4a0adefadecb8a8ed98d7">Wall_normal</a>;</div>
 <div class="line"><span class="comment"></span> </div>
@@ -283,7 +277,7 @@ The driver code</h1>
 <div class="line"><span class="preprocessor">#else</span></div>
 <div class="line"><span class="preprocessor">#define FLUID_ELEMENT QTaylorHoodElement&lt;2&gt;</span></div>
 <div class="line"><span class="preprocessor">#endif </span></div>
-</div><!-- fragment --><p> We then initialise the physical parameters, the Reynolds number and the direction of the gravitational body force, both based on the angle of inclination <picture><source srcset="form_28_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\alpha$" src="form_28.png" width="8" height="6"/></picture>. </p><div class="fragment"><div class="line"> <span class="comment">//Initialise physical parameters</span></div>
+</div><!-- fragment --><p> We then initialise the physical parameters, the Reynolds number and the direction of the gravitational body force, both based on the angle of inclination <img class="formulaInl" alt="$\alpha$" src="form_28.png" width="8" height="6"/>. </p><div class="fragment"><div class="line"> <span class="comment">//Initialise physical parameters</span></div>
 <div class="line"> <span class="comment">//Scale Reynolds number to be independent of alpha.</span></div>
 <div class="line"> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#ab814e627d2eb5bc50318879d19ab16b9">Re</a> = 4.0/<a class="code hl_class" href="classSpineInclinedPlaneMesh.html">sin</a>(<a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#aa2e802ee7cc8e1ac900ba94c3ce86eb7">Alpha</a>); </div>
 <div class="line"> </div>
@@ -478,7 +472,7 @@ The generic problem</h2>
 <div class="ttc" id="aclassInclinedPlaneProblem_html_aba36d367278218bf00356c3bee0733a0"><div class="ttname"><a href="classInclinedPlaneProblem.html#aba36d367278218bf00356c3bee0733a0">InclinedPlaneProblem::Surface_mesh_pt</a></div><div class="ttdeci">Mesh * Surface_mesh_pt</div><div class="ttdoc">Mesh for the free surface elements.</div><div class="ttdef"><b>Definition</b> <a href="inclined__plane_8cc_source.html#l00150">inclined_plane.cc:150</a></div></div>
 <div class="ttc" id="aclassInclinedPlaneProblem_html_adefbac5880323d7de622e2ba0c526746"><div class="ttname"><a href="classInclinedPlaneProblem.html#adefbac5880323d7de622e2ba0c526746">InclinedPlaneProblem::Point_mesh_pt</a></div><div class="ttdeci">Mesh * Point_mesh_pt</div><div class="ttdoc">Mesh for the point elements at each end of the free surface.</div><div class="ttdef"><b>Definition</b> <a href="inclined__plane_8cc_source.html#l00153">inclined_plane.cc:153</a></div></div>
 </div><!-- fragment --><p> The time-dependent perturbation is introduced in the function <code>actions_before_implicit_timestep()</code>, which sets the vertical velocity on the wall (boundary 0) </p><p class="formulaDsp">
-<picture><source srcset="form_37_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[ v = \epsilon \sin(K x) t \mbox{e}^{-t} \]" src="form_37.png" width="96" height="15"/></picture>
+<img class="formulaDsp" alt="\[ v = \epsilon \sin(K x) t \mbox{e}^{-t} \]" src="form_37.png" width="96" height="15"/>
 </p>
  <div class="fragment"><div class="line"> <span class="keywordtype">void</span> actions_before_implicit_timestep()</div>
 <div class="line">  {</div>
@@ -887,9 +881,9 @@ The pseudo-solid-based formulation</h2>
 Exercises</h1>
 <ol type="1">
 <li>Confirm that the steady solution agrees with the exact solution.</li>
-<li>Investigate what happens when the angle is varied. What happens when the angle is set to zero? What happens when the angle is set to <picture><source srcset="form_38_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\pi/2$" src="form_38.png" width="21" height="14"/></picture>?</li>
+<li>Investigate what happens when the angle is varied. What happens when the angle is set to zero? What happens when the angle is set to <img class="formulaInl" alt="$\pi/2$" src="form_38.png" width="21" height="14"/>?</li>
 <li>What happens if the hydrostatic pressure boundary conditions are not applied?</li>
-<li>How does the stability of the system to the perturbation change with angle, <picture><source srcset="form_39_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Ca $" src="form_39.png" width="16" height="10"/></picture> and <picture><source srcset="form_40_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ K $" src="form_40.png" width="11" height="10"/></picture>? Are the results in agreement with the theoretical predictions?</li>
+<li>How does the stability of the system to the perturbation change with angle, <img class="formulaInl" alt="$ Ca $" src="form_39.png" width="16" height="10"/> and <img class="formulaInl" alt="$ K $" src="form_40.png" width="11" height="10"/>? Are the results in agreement with the theoretical predictions?</li>
 <li>Are the results independent of the length of the domain?</li>
 <li>Compare the spine-based and pseudo-elastic-based formulations? What is the same and what is different? Which method do you prefer? <hr  />
  <hr  />
@@ -910,7 +904,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -940,7 +934,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:13:46
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:40:39
         </div>
       </div>
     </footer>

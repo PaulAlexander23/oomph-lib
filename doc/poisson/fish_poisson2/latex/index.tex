@@ -315,7 +315,6 @@ To illustrate the general procedure, here is the complete listing of the {\ttfam
 \DoxyCodeLine{\ \ \{}
 \DoxyCodeLine{\ \ \ \ \textcolor{keyword}{using\ namespace\ }QuadTreeNames;}
 \DoxyCodeLine{}
-\DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{preprocessor}{\#ifdef\ WARN\_ABOUT\_SUBTLY\_CHANGED\_OOMPH\_INTERFACES}}
 \DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Warn\ about\ time\ argument\ being\ moved\ to\ the\ front}}
 \DoxyCodeLine{\ \ \ \ OomphLibWarning(}
@@ -323,7 +322,6 @@ To illustrate the general procedure, here is the complete listing of the {\ttfam
 \DoxyCodeLine{\ \ \ \ \ \ \textcolor{stringliteral}{"{}FishDomain::macro\_element\_boundary(...)"{}},}
 \DoxyCodeLine{\ \ \ \ \ \ OOMPH\_EXCEPTION\_LOCATION);}
 \DoxyCodeLine{\textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Which\ macro\ element?}}
 \DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
@@ -395,7 +393,6 @@ To illustrate the general procedure, here is the complete listing of the {\ttfam
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
 \DoxyCodeLine{}
-\DoxyCodeLine{}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Macro\ element\ 2:\ Upper\ body}}
 \DoxyCodeLine{\ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
 \DoxyCodeLine{}
@@ -428,7 +425,6 @@ To illustrate the general procedure, here is the complete listing of the {\ttfam
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Macro\ element\ 3:\ Upper\ Fin}}
 \DoxyCodeLine{\ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
@@ -524,7 +520,6 @@ Here are a few of the private member functions that define individual {\ttfamily
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \ \ r[0]\ =\ r\_back[0]\ +\ (r\_top[0]\ -\/\ r\_back[0])\ *\ 0.5\ *\ (zeta[0]\ +\ 1.0);}
 \DoxyCodeLine{\ \ \ \ r[1]\ =\ r\_back[1]\ +\ (r\_top[1]\ -\/\ r\_back[1])\ *\ 0.5\ *\ (zeta[0]\ +\ 1.0);}
-\DoxyCodeLine{}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \}\ \textcolor{comment}{//\ end\ of\ r\_upper\_body\_E}}
 
@@ -692,12 +687,7 @@ The above example demonstrated how the representation of curvilinear domain boun
 \end{DoxyCode}
  which allows the mesh writer to store the (vector of) boundary coordinates that a given ({\ttfamily Boundary}){\ttfamily Node} is located at. The argument {\ttfamily b} specifies the number of the mesh boundary, reflecting the fact that nodes may be located on multiple domain boundaries, each of which is likely to have a different set of surface coordinates. \mbox{[}{\bfseries{Note\+:}} The function is implemented as a broken virtual function in the {\ttfamily Node} base class. The actual functionality to store boundary coordinates is only provided in (and required by) the derived {\ttfamily Boundary\+Node} class.\mbox{]}
 
-Since the storage of boundary coordinates is optional, the {\ttfamily Mesh} base class provides a protected vector of bools, 
-\begin{DoxyCode}{0}
-\DoxyCodeLine{std::vector<bool>\ Mesh::Boundary\_coordinate\_exists;}
-
-\end{DoxyCode}
- that indicates if the boundary coordinates have been stored for all {\ttfamily Nodes} on a specific mesh boundary. This vector is resized and its entries are initialised to {\ttfamily false}, when the number of mesh boundaries is declared with a call to {\ttfamily Mesh\+::set\+\_\+nboundary(...)}. If, during mesh refinement, a new {\ttfamily Boundary\+Node} is created on the mesh\textquotesingle{}s boundary {\ttfamily b}, its boundary coordinates are computed by interpolation from the corresponding values at the nodes in the father element, if {\ttfamily Mesh\+::\+Boundary\+\_\+coordinate\+\_\+exists}\mbox{[}b\mbox{]} has been set to {\ttfamily true}.
+Since the storage of boundary coordinates is optional, the {\ttfamily Mesh} base class provides storage to indicate if the boundary coordinates have been stored for all {\ttfamily Nodes} on a specific mesh boundary. The storage is resized and its entries are initialised to {\ttfamily false}, when the number of mesh boundaries is declared with a call to {\ttfamily Mesh\+::set\+\_\+nboundary(...)}. If, during mesh refinement, a new {\ttfamily Boundary\+Node} is created on the mesh\textquotesingle{}s boundary {\ttfamily b}, its boundary coordinates are computed by interpolation from the corresponding values at the nodes in the father element, if boundary coordinates had been set up on boundary {\ttfamily b}.
 
 We regard it as good practice to set boundary coordinates for all {\ttfamily Boundary\+Nodes} that are located on curvlinear mesh boundaries. The source code \href{../../../../src/meshes/fish_mesh.template.cc}{\texttt{ fish\+\_\+mesh.\+template.\+cc}} for the refineable Fish\+Mesh illustrates the methodology.
 
@@ -711,4 +701,4 @@ We regard it as good practice to set boundary coordinates for all {\ttfamily Bou
 \end{DoxyItemize}\DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

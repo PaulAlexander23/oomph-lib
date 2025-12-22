@@ -486,7 +486,7 @@ The post-\/processing routine outputs the deformed domain shape and the applied 
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ solution}}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\ \mbox{\hyperlink{classElasticTetMesh}{sprintf}}(\mbox{\hyperlink{classElasticTetMesh}{filename}},\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},\mbox{\hyperlink{classElasticTetMesh}{doc\_info}}.directory().c\_str(),}
+\DoxyCodeLine{\ \mbox{\hyperlink{classElasticTetMesh}{snprintf}}(\mbox{\hyperlink{classElasticTetMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticTetMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},\mbox{\hyperlink{classElasticTetMesh}{doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classElasticTetMesh}{doc\_info}}.number());}
 \DoxyCodeLine{\ \mbox{\hyperlink{classElasticTetMesh}{some\_file}}.open(\mbox{\hyperlink{classElasticTetMesh}{filename}});}
 \DoxyCodeLine{\ Solid\_mesh\_pt-\/>output(\mbox{\hyperlink{classElasticTetMesh}{some\_file}},\mbox{\hyperlink{classElasticTetMesh}{npts}});}
@@ -494,7 +494,7 @@ The post-\/processing routine outputs the deformed domain shape and the applied 
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ traction}}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\ \mbox{\hyperlink{classElasticTetMesh}{sprintf}}(\mbox{\hyperlink{classElasticTetMesh}{filename}},\textcolor{stringliteral}{"{}\%s/traction\%i.dat"{}},\mbox{\hyperlink{classElasticTetMesh}{doc\_info}}.directory().c\_str(),}
+\DoxyCodeLine{\ \mbox{\hyperlink{classElasticTetMesh}{snprintf}}(\mbox{\hyperlink{classElasticTetMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticTetMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/traction\%i.dat"{}},\mbox{\hyperlink{classElasticTetMesh}{doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classElasticTetMesh}{doc\_info}}.number());}
 \DoxyCodeLine{\ \mbox{\hyperlink{classElasticTetMesh}{some\_file}}.open(\mbox{\hyperlink{classElasticTetMesh}{filename}});}
 \DoxyCodeLine{\ Traction\_mesh\_pt-\/>output(\mbox{\hyperlink{classElasticTetMesh}{some\_file}},\mbox{\hyperlink{classElasticTetMesh}{npts}});}
@@ -502,7 +502,7 @@ The post-\/processing routine outputs the deformed domain shape and the applied 
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ boundaries}}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\ \mbox{\hyperlink{classElasticTetMesh}{sprintf}}(\mbox{\hyperlink{classElasticTetMesh}{filename}},\textcolor{stringliteral}{"{}\%s/boundaries.dat"{}},\mbox{\hyperlink{classElasticTetMesh}{doc\_info}}.directory().c\_str());}
+\DoxyCodeLine{\ \mbox{\hyperlink{classElasticTetMesh}{snprintf}}(\mbox{\hyperlink{classElasticTetMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticTetMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/boundaries.dat"{}},\mbox{\hyperlink{classElasticTetMesh}{doc\_info}}.directory().c\_str());}
 \DoxyCodeLine{\ \mbox{\hyperlink{classElasticTetMesh}{some\_file}}.open(\mbox{\hyperlink{classElasticTetMesh}{filename}});}
 \DoxyCodeLine{\ Solid\_mesh\_pt-\/>output\_boundaries(\mbox{\hyperlink{classElasticTetMesh}{some\_file}});}
 \DoxyCodeLine{\ \mbox{\hyperlink{classElasticTetMesh}{some\_file}}.close();}
@@ -556,4 +556,4 @@ An alternative three-\/dimensional problem\+: the deformation of a bifurcating t
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

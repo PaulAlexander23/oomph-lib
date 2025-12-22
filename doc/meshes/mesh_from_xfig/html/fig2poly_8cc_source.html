@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -204,9 +198,9 @@
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment"></span> </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment">/// /////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="comment">/// /////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="comment">/// /////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment">////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="comment">////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="comment">////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment"></span> </div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
@@ -425,7 +419,7 @@
 <div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span> <span class="comment">// Output points in pslg format</span></div>
 <div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span> <span class="comment">//-----------------------------</span></div>
 <div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span> <span class="keywordtype">char</span> filename[100];</div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> sprintf(filename,<span class="stringliteral">&quot;%s.poly&quot;</span>,argv[1]);</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s.poly&quot;</span>,argv[1]);</div>
 <div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span> ofstream poly_file(filename);</div>
 <div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>  {</div>
 <div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>   poly_file </div>
@@ -549,7 +543,7 @@
 <div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span>} </div>
 </div>
 <div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span> </div>
-<div class="ttc" id="afig2poly_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="fig2poly_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">///////////////////////////////////////////////////////////////// ///////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="fig2poly_8cc_source.html#l00090">fig2poly.cc:90</a></div></div>
+<div class="ttc" id="afig2poly_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="fig2poly_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">fig2poly: Converts xfig drawings into input files for Jonathan Shewczuk's triangle code.</div><div class="ttdef"><b>Definition</b> <a href="fig2poly_8cc_source.html#l00090">fig2poly.cc:90</a></div></div>
 <div class="ttc" id="afig2poly_8cc_html_a781aa0eb2a08692d0f8e765b777194a1"><div class="ttname"><a href="fig2poly_8cc.html#a781aa0eb2a08692d0f8e765b777194a1">ignore_ints</a></div><div class="ttdeci">void ignore_ints(std::ifstream &amp;fig_file, const unsigned &amp;nints=1)</div><div class="ttdoc">Helper function – ignores specified number of ints from input stream.</div><div class="ttdef"><b>Definition</b> <a href="fig2poly_8cc_source.html#l00039">fig2poly.cc:39</a></div></div>
 <div class="ttc" id="afig2poly_8cc_html_a958b57e4081428a197a9f7cb46b36c0a"><div class="ttname"><a href="fig2poly_8cc.html#a958b57e4081428a197a9f7cb46b36c0a">ignore_floats</a></div><div class="ttdeci">void ignore_floats(std::ifstream &amp;fig_file, const unsigned &amp;nfloats=1)</div><div class="ttdoc">Helper function – ignores specified number of floats from input stream.</div><div class="ttdef"><b>Definition</b> <a href="fig2poly_8cc_source.html#l00049">fig2poly.cc:49</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -580,7 +574,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 13:58:36
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:36:31
         </div>
       </div>
     </footer>

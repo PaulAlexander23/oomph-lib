@@ -2,7 +2,7 @@
 \hypertarget{classoomph_1_1PressureBasedSolidExactPreconditioner}{}\label{classoomph_1_1PressureBasedSolidExactPreconditioner}\index{oomph::PressureBasedSolidExactPreconditioner$<$ MATRIX $>$@{oomph::PressureBasedSolidExactPreconditioner$<$ MATRIX $>$}}
 
 
-//////////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////////////  
+The exact solid preconditioner. This extracts 2x2 blocks (corresponding to the displacement/position and pressure unknowns) and uses these to build a single preconditioner matrix for testing purposes. Iterative solvers should converge in a single step if this is used. If it doesn\textquotesingle{}t something is wrong in the setup of the block matrices.  
 
 
 
@@ -198,7 +198,7 @@ Inheritance diagram for oomph\+::Pressure\+Based\+Solid\+Exact\+Preconditioner\t
 \begin{DoxyCompactList}\small\item\em Apply the preconditioner. Pure virtual generic interface function. This method should apply the preconditioner operator to the vector r and return the vector z. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_a1e469ffc87f31f6f2eebbe5ccf03d78b}{preconditioner\+\_\+solve\+\_\+transpose}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{r}}, \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&z)
 \begin{DoxyCompactList}\small\item\em Apply the preconditioner. Pure virtual generic interface function. This method should apply the preconditioner operator to the vector r and return the vector z. (broken virtual) \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_a0b95e7159585b5151f9e5dc1d1713655}{setup}} (\mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1Preconditioner_a08e0582b77c6cbfaf85b80a4ac5c11f3}{matrix\+\_\+pt}})
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_ac2c0f7f39eccd814e72cc5813ec864e0}{setup}} (\mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1Preconditioner_a08e0582b77c6cbfaf85b80a4ac5c11f3}{matrix\+\_\+pt}})
 \begin{DoxyCompactList}\small\item\em Setup the preconditioner\+: store the matrix pointer and the communicator pointer then call preconditioner specific \doxylink{classoomph_1_1Preconditioner_af4886f4efe510e5c9b0eb19422943588}{setup()} function. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_a783fae97e4b898f8de72b504a4f4bec6}{setup}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Problem}{Problem}} \texorpdfstring{$\ast$}{*}problem\+\_\+pt, \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1Preconditioner_a08e0582b77c6cbfaf85b80a4ac5c11f3}{matrix\+\_\+pt}})
 \begin{DoxyCompactList}\small\item\em Compatability layer for old preconditioners where problem pointers were needed. The problem pointer is only used to get a communicator pointer. \end{DoxyCompactList}\item 
@@ -330,11 +330,9 @@ std\+::ostream \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classoomph_1_1Precond
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{typename}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{MATRIX}}$>$\newline
 class oomph\+::\+Pressure\+Based\+Solid\+Exact\+Preconditioner$<$ MATRIX $>$}
-//////////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////////// 
-
 The exact solid preconditioner. This extracts 2x2 blocks (corresponding to the displacement/position and pressure unknowns) and uses these to build a single preconditioner matrix for testing purposes. Iterative solvers should converge in a single step if this is used. If it doesn\textquotesingle{}t something is wrong in the setup of the block matrices. 
 
-Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00378}{378}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
+Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00380}{380}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
 
 
 
@@ -352,7 +350,7 @@ Constructor -\/ do nothing.
 
 
 
-Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00383}{383}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
+Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00385}{385}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
 
 \Hypertarget{classoomph_1_1PressureBasedSolidExactPreconditioner_a2d505f2b8f06846bd191552ee63c40a1}\label{classoomph_1_1PressureBasedSolidExactPreconditioner_a2d505f2b8f06846bd191552ee63c40a1} 
 \index{oomph::PressureBasedSolidExactPreconditioner$<$ MATRIX $>$@{oomph::PressureBasedSolidExactPreconditioner$<$ MATRIX $>$}!````~PressureBasedSolidExactPreconditioner@{\texorpdfstring{$\sim$}{\string~}PressureBasedSolidExactPreconditioner}}
@@ -367,7 +365,7 @@ Destructor -\/ do nothing.
 
 
 
-Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00387}{387}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
+Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00389}{389}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
 
 \Hypertarget{classoomph_1_1PressureBasedSolidExactPreconditioner_aa3131a9c42d60144319cbc7bd40b5b39}\label{classoomph_1_1PressureBasedSolidExactPreconditioner_aa3131a9c42d60144319cbc7bd40b5b39} 
 \index{oomph::PressureBasedSolidExactPreconditioner$<$ MATRIX $>$@{oomph::PressureBasedSolidExactPreconditioner$<$ MATRIX $>$}!PressureBasedSolidExactPreconditioner@{PressureBasedSolidExactPreconditioner}}
@@ -425,7 +423,7 @@ Implements \mbox{\hyperlink{classoomph_1_1Preconditioner_af4886f4efe510e5c9b0eb1
 
 
 
-Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00407}{407}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
+Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00409}{409}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
 
 
 

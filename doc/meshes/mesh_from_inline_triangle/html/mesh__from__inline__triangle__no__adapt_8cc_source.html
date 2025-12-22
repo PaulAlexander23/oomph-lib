@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -197,9 +191,9 @@
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment"></span> </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="comment">/// ////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="comment">/// ////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment">/// ////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="comment">///////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="comment">///////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment">///////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment"></span> </div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="comment">//==start_of_problem_class============================================</span><span class="comment"></span></div>
@@ -537,7 +531,7 @@
 <div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span> </div>
 <div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span> <span class="comment">// Open trace file</span></div>
 <div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span> <span class="keywordtype">char</span> filename[100];   </div>
-<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span> sprintf(filename,<span class="stringliteral">&quot;RESLT/trace.dat&quot;</span>);</div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;RESLT/trace.dat&quot;</span>);</div>
 <div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span> Trace_file.open(filename);</div>
 <div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span> </div>
 <div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span> <span class="comment">// Setup equation numbering scheme</span></div>
@@ -642,7 +636,7 @@
 <div class="line"><a id="l00521" name="l00521"></a><span class="lineno">  521</span> <span class="keywordtype">unsigned</span> npts;</div>
 <div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span> npts=5; </div>
 <div class="line"><a id="l00523" name="l00523"></a><span class="lineno">  523</span> </div>
-<div class="line"><a id="l00524" name="l00524"></a><span class="lineno">  524</span> sprintf(filename,<span class="stringliteral">&quot;RESLT/soln%i.dat&quot;</span>,Doc_info.number());</div>
+<div class="line"><a id="l00524" name="l00524"></a><span class="lineno">  524</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;RESLT/soln%i.dat&quot;</span>,Doc_info.number());</div>
 <div class="line"><a id="l00525" name="l00525"></a><span class="lineno">  525</span> some_file.open(filename);</div>
 <div class="line"><a id="l00526" name="l00526"></a><span class="lineno">  526</span> this-&gt;My_mesh_pt-&gt;output(some_file,npts); </div>
 <div class="line"><a id="l00527" name="l00527"></a><span class="lineno">  527</span> some_file &lt;&lt; <span class="stringliteral">&quot;TEXT X = 22, Y = 92, CS=FRAME T = \&quot;&quot;</span> </div>
@@ -651,14 +645,14 @@
 <div class="line"><a id="l00530" name="l00530"></a><span class="lineno">  530</span> </div>
 <div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span> <span class="comment">// Output exact solution </span></div>
 <div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span> <span class="comment">//----------------------</span></div>
-<div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span> sprintf(filename,<span class="stringliteral">&quot;RESLT/exact_soln%i.dat&quot;</span>,Doc_info.number());</div>
+<div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;RESLT/exact_soln%i.dat&quot;</span>,Doc_info.number());</div>
 <div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span> some_file.open(filename);</div>
 <div class="line"><a id="l00535" name="l00535"></a><span class="lineno">  535</span> My_mesh_pt-&gt;output_fct(some_file,npts,<a class="code hl_function" href="namespaceTanhSolnForPoisson.html#af7896e9c18ce6438c73ae2a875e8b7de">TanhSolnForPoisson::get_exact_u</a>); </div>
 <div class="line"><a id="l00536" name="l00536"></a><span class="lineno">  536</span> some_file.close();</div>
 <div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span> </div>
 <div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span> <span class="comment">// Output boundaries</span></div>
 <div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span> <span class="comment">//------------------</span></div>
-<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span> sprintf(filename,<span class="stringliteral">&quot;RESLT/boundaries%i.dat&quot;</span>,Doc_info.number());</div>
+<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;RESLT/boundaries%i.dat&quot;</span>,Doc_info.number());</div>
 <div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span> some_file.open(filename);</div>
 <div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span> My_mesh_pt-&gt;output_boundaries(some_file);</div>
 <div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span> some_file.close();</div>
@@ -667,7 +661,7 @@
 <div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span> <span class="comment">// Doc error and return of the square of the L2 error</span></div>
 <div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span> <span class="comment">//---------------------------------------------------</span></div>
 <div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span> <span class="keywordtype">double</span> error,norm,dummy_error,zero_norm;</div>
-<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span> sprintf(filename,<span class="stringliteral">&quot;RESLT/error%i.dat&quot;</span>,Doc_info.number());</div>
+<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;RESLT/error%i.dat&quot;</span>,Doc_info.number());</div>
 <div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span> some_file.open(filename);</div>
 <div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span> My_mesh_pt-&gt;compute_error(some_file,<a class="code hl_function" href="namespaceTanhSolnForPoisson.html#af7896e9c18ce6438c73ae2a875e8b7de">TanhSolnForPoisson::get_exact_u</a>,</div>
 <div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span>                           error,norm); </div>
@@ -737,7 +731,7 @@
 <div class="line"><a id="l00615" name="l00615"></a><span class="lineno">  615</span> </div>
 <div class="line"><a id="l00616" name="l00616"></a><span class="lineno">  616</span>} <span class="comment">//End of main</span></div>
 </div>
-<div class="ttc" id="aclassUnstructuredPoissonProblem_html"><div class="ttname"><a href="classUnstructuredPoissonProblem.html">UnstructuredPoissonProblem</a></div><div class="ttdoc">//////////////////////////////////////////////////////// ////////////////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="mesh__from__inline__triangle_8cc_source.html#l00090">mesh_from_inline_triangle.cc:91</a></div></div>
+<div class="ttc" id="aclassUnstructuredPoissonProblem_html"><div class="ttname"><a href="classUnstructuredPoissonProblem.html">UnstructuredPoissonProblem</a></div><div class="ttdoc">Class definition.</div><div class="ttdef"><b>Definition</b> <a href="mesh__from__inline__triangle_8cc_source.html#l00090">mesh_from_inline_triangle.cc:91</a></div></div>
 <div class="ttc" id="aclassUnstructuredPoissonProblem_html_a138fcf0adb978a7f3ae9e27ba6df900b"><div class="ttname"><a href="classUnstructuredPoissonProblem.html#a138fcf0adb978a7f3ae9e27ba6df900b">UnstructuredPoissonProblem::My_mesh_pt</a></div><div class="ttdeci">TriangleMesh&lt; ELEMENT &gt; * My_mesh_pt</div><div class="ttdoc">Pointers to specific mesh.</div><div class="ttdef"><b>Definition</b> <a href="mesh__from__inline__triangle__no__adapt_8cc_source.html#l00127">mesh_from_inline_triangle_no_adapt.cc:127</a></div></div>
 <div class="ttc" id="aclassUnstructuredPoissonProblem_html_a26e7610a714aea17c9278beec4842371"><div class="ttname"><a href="classUnstructuredPoissonProblem.html#a26e7610a714aea17c9278beec4842371">UnstructuredPoissonProblem::UnstructuredPoissonProblem</a></div><div class="ttdeci">UnstructuredPoissonProblem()</div><div class="ttdoc">Constructor.</div></div>
 <div class="ttc" id="aclassUnstructuredPoissonProblem_html_a2ab9d23c0e6e6631ffe1a761f6bdf026"><div class="ttname"><a href="classUnstructuredPoissonProblem.html#a2ab9d23c0e6e6631ffe1a761f6bdf026">UnstructuredPoissonProblem::actions_before_newton_solve</a></div><div class="ttdeci">void actions_before_newton_solve()</div><div class="ttdoc">Update the problem specs before solve: Re-apply boundary conditons.</div><div class="ttdef"><b>Definition</b> <a href="mesh__from__inline__triangle__no__adapt_8cc_source.html#l00105">mesh_from_inline_triangle_no_adapt.cc:105</a></div></div>
@@ -784,7 +778,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 13:58:52
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:37:02
         </div>
       </div>
     </footer>

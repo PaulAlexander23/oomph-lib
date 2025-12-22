@@ -371,7 +371,7 @@ The post-\/processing function {\ttfamily doc\+\_\+solution()} simply outputs th
 \DoxyCodeLine{\ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classRefineableElasticQuarterTubeMesh}{n\_plot}}\ =\ 5;\ }
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ shape\ of\ deformed\ body}}
-\DoxyCodeLine{\ \mbox{\hyperlink{classRefineableElasticQuarterTubeMesh}{sprintf}}(\mbox{\hyperlink{classRefineableElasticQuarterTubeMesh}{filename}},\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ \mbox{\hyperlink{classRefineableElasticQuarterTubeMesh}{snprintf}}(\mbox{\hyperlink{classRefineableElasticQuarterTubeMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classRefineableElasticQuarterTubeMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ Doc\_info.number());}
 \DoxyCodeLine{\ \mbox{\hyperlink{classRefineableElasticQuarterTubeMesh}{some\_file}}.open(\mbox{\hyperlink{classRefineableElasticQuarterTubeMesh}{filename}});}
 \DoxyCodeLine{\ mesh\_pt()-\/>output(\mbox{\hyperlink{classRefineableElasticQuarterTubeMesh}{some\_file}},\mbox{\hyperlink{classRefineableElasticQuarterTubeMesh}{n\_plot}});}
@@ -422,4 +422,4 @@ As usual, {\ttfamily oomph-\/lib} provides self-\/tests that assess if the enfor
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

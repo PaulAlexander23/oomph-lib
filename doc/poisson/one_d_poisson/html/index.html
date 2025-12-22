@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -117,33 +111,33 @@
 <center> <table class="doxtable">
 <tr>
 <td><center> <b>One-dimensional model Poisson problem</b> </center> Solve  <p class="formulaDsp">
-<picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \frac{\mbox{d}^2u}{\mbox{d}x^2} = f(x),
  \ \ \ \ \ \ \ \ \ \ (1)
-\]" src="form_0.png" width="125" height="30"/></picture>
+\]" src="form_0.png" width="125" height="30"/>
 </p>
- in a one-dimensional domain <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x\in[0,1] $" src="form_1.png" width="48" height="14"/></picture>, with boundary conditions  <p class="formulaDsp">
-<picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ in a one-dimensional domain <img class="formulaInl" alt="$ x\in[0,1] $" src="form_1.png" width="48" height="14"/>, with boundary conditions  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 u(0)=u_0 \ \mbox{\ \ \ and \ \ \ } \ \ u(1)=u_1, 
 \ \ \ \ \ \ \ \ \ \ (2)
-\]" src="form_2.png" width="229" height="14"/></picture>
+\]" src="form_2.png" width="229" height="14"/>
 </p>
- where <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ u_0 $" src="form_3.png" width="14" height="9"/></picture> and <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ u_1 $" src="form_4.png" width="13" height="9"/></picture> are given.   </td></tr>
+ where <img class="formulaInl" alt="$ u_0 $" src="form_3.png" width="14" height="9"/> and <img class="formulaInl" alt="$ u_1 $" src="form_4.png" width="13" height="9"/> are given.   </td></tr>
 </table>
 </center><p>We provide a detailed discussion of the driver code <a href="../../../../demo_drivers/poisson/one_d_poisson/one_d_poisson.cc">one_d_poisson.cc</a> which solves the problem for the specific source function  </p><p class="formulaDsp">
-<picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 f(x) = \pm 30 \sin(\sqrt{30} x),  \ \ \ \  (3)
-\]" src="form_5.png" width="158" height="16"/></picture>
+\]" src="form_5.png" width="158" height="16"/>
 </p>
 <p> and boundary conditions  </p><p class="formulaDsp">
-<picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 u_0= 0; \ \ \  u_1 = \mp 1.
-\]" src="form_6.png" width="103" height="11"/></picture>
+\]" src="form_6.png" width="103" height="11"/>
 </p>
 <p> In this case, the problem has the (fish-shaped) exact solution  </p><p class="formulaDsp">
-<picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 u(x) = \pm \left[ \left(\sin(\sqrt{30})-1\right) x - \sin(\sqrt{30} x)\right].
-\ \ \ \ \  (4)\]" src="form_7.png" width="270" height="24"/></picture>
+\ \ \ \ \  (4)\]" src="form_7.png" width="270" height="24"/>
 </p>
 <div class="image">
 <img src="one_d_fish.gif" alt=""/>
@@ -240,7 +234,7 @@ The driver code</h1>
 <div class="line"> </div>
 <div class="line">} <span class="comment">// end of main</span></div>
 <div class="ttc" id="aclassOneDPoissonProblem_html"><div class="ttname"><a href="classOneDPoissonProblem.html">OneDPoissonProblem</a></div><div class="ttdoc">1D Poisson problem in unit interval.</div><div class="ttdef"><b>Definition</b> <a href="one__d__poisson_8cc_source.html#l00078">one_d_poisson.cc:79</a></div></div>
-<div class="ttc" id="aone__d__poisson_8cc_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="one__d__poisson_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdoc">///////////////////////////////////////////////////////////////////// ///////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="one__d__poisson_8cc_source.html#l00259">one_d_poisson.cc:259</a></div></div>
+<div class="ttc" id="aone__d__poisson_8cc_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="one__d__poisson_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdoc">Driver for 1D Poisson problem.</div><div class="ttdef"><b>Definition</b> <a href="one__d__poisson_8cc_source.html#l00259">one_d_poisson.cc:259</a></div></div>
 </div><!-- fragment --><hr  />
  <hr  />
 <h1><a class="anchor" id="problem"></a>
@@ -422,7 +416,7 @@ The Problem constructor</h1>
 <h1><a class="anchor" id="doc"></a>
 Post-processing</h1>
 <p>The function <code>doc_solution(...)</code> writes the FE solution and the corresponding exact solution, defined in <code>FishSolnOneDPoisson::get_exact_u(...)</code> to disk. The argument <code>label</code> is used to add identifiers to the output file names. Note that all output functions are implemented in the generic <code>Mesh</code> class:</p><ul>
-<li>The function <code>Mesh::output(...)</code> executes the <code>FiniteElement::output(...)</code> function for each element in a mesh. For 1D Poisson elements, this function writes the values of <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x $" src="form_8.png" width="8" height="6"/></picture> and <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ u(x) $" src="form_9.png" width="24" height="14"/></picture> at <code>npts</code> uniformly spaced points in the element to the specified file.</li>
+<li>The function <code>Mesh::output(...)</code> executes the <code>FiniteElement::output(...)</code> function for each element in a mesh. For 1D Poisson elements, this function writes the values of <img class="formulaInl" alt="$ x $" src="form_8.png" width="8" height="6"/> and <img class="formulaInl" alt="$ u(x) $" src="form_9.png" width="24" height="14"/> at <code>npts</code> uniformly spaced points in the element to the specified file.</li>
 <li>The function <code>Mesh::output_fct(...)</code> plots the function specified by the function pointer in its last argument at the specified number of points in each of the constituent elements. This allows point-by-point comparisons between exact and FE solutions. Here we plot the exact solution at a larger number of points to ensure that the exact solution looks smooth even if only a small number of elements are used for the discretisation of the ODE.</li>
 </ul>
 <p>Finally, we call the function <code>Mesh::compute_error(...)</code> which determines the square of the L2 error, based on the difference between the exact solution (specified by a function pointer) and the FE solution. We also plot the pointwise error in the specified output file.</p>
@@ -470,11 +464,11 @@ Exercises</h1>
 <li>Run the code with different numbers of elements. How does the error between the exact and the analytical solution change?</li>
 <li>Compare the error obtained with different element types &ndash; replace the four-node Poisson element, <code>QPoissonElement&lt;1,4&gt;</code>, by its lower-order counterparts <code>QPoissonElement&lt;1,3&gt;</code> and <code>QPoissonElement&lt;1,2&gt;</code>.</li>
 <li>The fish-shaped exact solution (4) is fairly smooth. Postulate a more rapidly varying "exact" solution, such as  <p class="formulaDsp">
-<picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
    u(x) = \tanh\left[\alpha \left(x-\frac{1}{2}\right)\right]
-   \]" src="form_10.png" width="139" height="31"/></picture>
+   \]" src="form_10.png" width="139" height="31"/>
 </p>
- which produces a "step" at <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x=1/2 $" src="form_11.png" width="44" height="14"/></picture> when <picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \alpha $" src="form_12.png" width="8" height="6"/></picture> becomes sufficiently large. Calculate the source function required for this function to be an exact solution and implement both functions in another namespace, <code>TanhSolnOneDPoisson</code>, say. Replace the reference to <code><a class="el" href="namespaceFishSolnOneDPoisson.html" title="Namespace for fish-shaped solution of 1D Poisson equation.">FishSolnOneDPoisson</a></code> by <code>TanhSolnOneDPoisson</code> and repeat the above exercises.</li>
+ which produces a "step" at <img class="formulaInl" alt="$ x=1/2 $" src="form_11.png" width="44" height="14"/> when <img class="formulaInl" alt="$ \alpha $" src="form_12.png" width="8" height="6"/> becomes sufficiently large. Calculate the source function required for this function to be an exact solution and implement both functions in another namespace, <code>TanhSolnOneDPoisson</code>, say. Replace the reference to <code><a class="el" href="namespaceFishSolnOneDPoisson.html" title="Namespace for fish-shaped solution of 1D Poisson equation.">FishSolnOneDPoisson</a></code> by <code>TanhSolnOneDPoisson</code> and repeat the above exercises.</li>
 <li>Remove the Dirichlet boundary condition at the left end of the domain. What do you observe? [We shall return to this question in <a href="../../../poisson/two_d_poisson_flux_bc/html/index.html">another example</a> where we discuss the <a href="../../../poisson/two_d_poisson_flux_bc/html/index.html">application of Neumann-type boundary conditions</a>.]</li>
 </ol>
 <hr  />
@@ -489,7 +483,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -519,7 +513,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:06:36
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:42:51
         </div>
       </div>
     </footer>

@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00003}00003\ \textcolor{comment}{//\ LIC//\ multi-\/physics\ finite-\/element\ library,\ available}}
 \DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00004}00004\ \textcolor{comment}{//\ LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00005}00005\ \textcolor{comment}{//\ LIC//}}
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00006}00006\ \textcolor{comment}{//\ LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00006}00006\ \textcolor{comment}{//\ LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00007}00007\ \textcolor{comment}{//\ LIC//}}
 \DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00008}00008\ \textcolor{comment}{//\ LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00009}00009\ \textcolor{comment}{//\ LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -35,9 +35,9 @@
 \DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00031}00031\ }
 \DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00032}00032\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceoomph}{oomph}}}
 \DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00033}00033\ \{\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00034}00034\ \textcolor{comment}{\ \ ///\ ///////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00035}00035\ \textcolor{comment}{\ \ ///\ ///////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00036}00036\ \textcolor{comment}{\ \ ///\ ///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00034}00034\ \textcolor{comment}{\ \ //////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00035}00035\ \textcolor{comment}{\ \ //////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00036}00036\ \textcolor{comment}{\ \ //////////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00037}00037\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00038}00038\ }
 \DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00039}00039\ \ \ \textcolor{comment}{//======================================================================}\textcolor{comment}{}}
@@ -572,34 +572,42 @@
 \DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00568}00568\ \ \ \ \ \textcolor{comment}{//\ scheme}}
 \DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00569}00569\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1SolidICProblem_a4bbb8c404d1f4ea3827a2c64ae9e06de}{setup\_problem}}();}
 \DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00570}00570\ }
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00571}00571\ \ \ \ \ \textcolor{comment}{//\ Assign\ displacements}}
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00572}00572\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1SolidICProblem_ac69ec7322cfe32c7c6a0a82a0ce0ff0d}{IC\_pt}}-\/>\mbox{\hyperlink{classoomph_1_1SolidInitialCondition_a45e82aac50f26c3ede07936b66c16948}{ic\_time\_deriv}}()\ =\ 0;}
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00573}00573\ }
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00574}00574\ \ \ \ \ \textcolor{comment}{//\ Solve\ the\ problem\ for\ initial\ shape}}
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00575}00575\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1Problem_a62a989ae9a9169b9d905f844db59787f}{newton\_solve}}();}
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00576}00576\ }
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00577}00577\ \ \ \ \ \textcolor{comment}{//\ Impulsive\ start}}
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00578}00578\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1Problem_a10e5dc4d944dfb2b141918e18e5e3de8}{assign\_initial\_values\_impulsive}}();}
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00579}00579\ }
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00580}00580\ \ \ \ \ \textcolor{comment}{//\ Reset\ the\ pinned\ status\ and\ re-\/attach\ the\ external\ data\ to\ the\ elements}}
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00581}00581\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1SolidICProblem_aa2cb88ac90e7d24cdd63a08a8a35eed6}{reset\_original\_state}}();}
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00582}00582\ }
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00583}00583\ \ \ \ \ \textcolor{comment}{//\ Reset\ time}}
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00584}00584\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{timestepper\_pt}}\ !=\ 0)}
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00585}00585\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00586}00586\ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{timestepper\_pt}}-\/>time\_pt()-\/>time()\ =\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{backup\_time}};}
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00587}00587\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00588}00588\ }
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00589}00589\ \ \ \ \ \textcolor{comment}{//\ Set\ pointer\ to\ dummy\ mesh\ so\ there's\ something\ that\ can\ be\ deleted}}
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00590}00590\ \ \ \ \ \textcolor{comment}{//\ when\ static\ problem\ finally\ goes\ out\ of\ scope.}}
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00591}00591\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{mesh\_pt}}()\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classoomph_1_1DummyMesh}{DummyMesh}};}
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00592}00592\ }
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00593}00593\ \ \ \ \ \textcolor{comment}{//\ We\ have\ temporarily\ over-\/written\ equation\ numbers\ -\/-\/\ need}}
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00594}00594\ \ \ \ \ \textcolor{comment}{//\ to\ reset\ them\ now}}
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00595}00595\ \ \ \ \ \mbox{\hyperlink{namespaceoomph_aec474227917784dc0a255faf289cfc16}{oomph\_info}}\ <<\ \textcolor{stringliteral}{"{}Number\ of\ equations\ in\ big\ problem:\ "{}}}
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00596}00596\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ problem\_pt-\/>\mbox{\hyperlink{classoomph_1_1Problem_a0df501c6aed60c4938861df776b10119}{assign\_eqn\_numbers}}()\ <<\ std::endl;}
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00597}00597\ \ \ \}}
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00598}00598\ }
-\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00599}00599\ \}\ \textcolor{comment}{//\ namespace\ oomph}}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00571}00571\ \ \ \ \ \textcolor{comment}{//\ Choose\ the\ right\ linear\ solver}}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00572}00572\ \textcolor{preprocessor}{\#if\ defined(OOMPH\_HAS\_MUMPS)\ \&\&\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00573}00573\ \textcolor{preprocessor}{\ \ defined(OOMPH\_ENABLE\_MUMPS\_AS\_DEFAULT\_LINEAR\_SOLVER)}}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00574}00574\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1Problem_ac7276ac27f16ea9b90cd6008b365c85a}{linear\_solver\_pt}}()\ =\ \mbox{\hyperlink{classoomph_1_1SolidICProblem_a4bab4a8f4ae6b420259fc4d8f01443e2}{Mumps\_solver\_pt}};}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00575}00575\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00576}00576\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1Problem_ac7276ac27f16ea9b90cd6008b365c85a}{linear\_solver\_pt}}()\ =\ \mbox{\hyperlink{classoomph_1_1SolidICProblem_a9644d3f8300974ee4b02070b0d5f4d64}{SuperLU\_solver\_pt}};}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00577}00577\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00578}00578\ }
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00579}00579\ \ \ \ \ \textcolor{comment}{//\ Assign\ displacements}}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00580}00580\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1SolidICProblem_ac69ec7322cfe32c7c6a0a82a0ce0ff0d}{IC\_pt}}-\/>\mbox{\hyperlink{classoomph_1_1SolidInitialCondition_a45e82aac50f26c3ede07936b66c16948}{ic\_time\_deriv}}()\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00581}00581\ }
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00582}00582\ \ \ \ \ \textcolor{comment}{//\ Solve\ the\ problem\ for\ initial\ shape}}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00583}00583\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1Problem_a62a989ae9a9169b9d905f844db59787f}{newton\_solve}}();}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00584}00584\ }
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00585}00585\ \ \ \ \ \textcolor{comment}{//\ Impulsive\ start}}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00586}00586\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1Problem_a10e5dc4d944dfb2b141918e18e5e3de8}{assign\_initial\_values\_impulsive}}();}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00587}00587\ }
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00588}00588\ \ \ \ \ \textcolor{comment}{//\ Reset\ the\ pinned\ status\ and\ re-\/attach\ the\ external\ data\ to\ the\ elements}}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00589}00589\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1SolidICProblem_aa2cb88ac90e7d24cdd63a08a8a35eed6}{reset\_original\_state}}();}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00590}00590\ }
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00591}00591\ \ \ \ \ \textcolor{comment}{//\ Reset\ time}}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00592}00592\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{timestepper\_pt}}\ !=\ 0)}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00593}00593\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00594}00594\ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{timestepper\_pt}}-\/>time\_pt()-\/>time()\ =\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{backup\_time}};}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00595}00595\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00596}00596\ }
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00597}00597\ \ \ \ \ \textcolor{comment}{//\ Set\ pointer\ to\ dummy\ mesh\ so\ there's\ something\ that\ can\ be\ deleted}}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00598}00598\ \ \ \ \ \textcolor{comment}{//\ when\ static\ problem\ finally\ goes\ out\ of\ scope.}}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00599}00599\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{mesh\_pt}}()\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classoomph_1_1DummyMesh}{DummyMesh}};}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00600}00600\ }
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00601}00601\ \ \ \ \ \textcolor{comment}{//\ We\ have\ temporarily\ over-\/written\ equation\ numbers\ -\/-\/\ need}}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00602}00602\ \ \ \ \ \textcolor{comment}{//\ to\ reset\ them\ now}}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00603}00603\ \ \ \ \ \mbox{\hyperlink{namespaceoomph_aec474227917784dc0a255faf289cfc16}{oomph\_info}}\ <<\ \textcolor{stringliteral}{"{}Number\ of\ equations\ in\ big\ problem:\ "{}}}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00604}00604\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ problem\_pt-\/>\mbox{\hyperlink{classoomph_1_1Problem_a0df501c6aed60c4938861df776b10119}{assign\_eqn\_numbers}}()\ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00605}00605\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00606}00606\ }
+\DoxyCodeLine{\Hypertarget{elastic__problems_8cc_source_l00607}00607\ \}\ \textcolor{comment}{//\ namespace\ oomph}}
 
 \end{DoxyCode}

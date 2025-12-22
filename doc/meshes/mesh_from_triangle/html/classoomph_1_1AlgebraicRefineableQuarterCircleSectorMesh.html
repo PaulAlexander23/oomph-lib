@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -124,17 +118,17 @@
 </div><!--header-->
 <div class="contents">
 
-<p>Algebraic version of <a class="el" href="classoomph_1_1RefineableQuarterCircleSectorMesh.html" title="///////////////////////////////////////////////////////////////// ///////////////////////////////////...">RefineableQuarterCircleSectorMesh</a>.  
+<p>Algebraic version of <a class="el" href="classoomph_1_1RefineableQuarterCircleSectorMesh.html" title="2D quarter ring mesh class inherited from RefineableQuadMesh. The domain is specified by the GeomObje...">RefineableQuarterCircleSectorMesh</a>.  
  <a href="classoomph_1_1AlgebraicRefineableQuarterCircleSectorMesh.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html">quarter_circle_sector_mesh.template.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="quarter__circle__sector__mesh_8h_source.html">quarter_circle_sector_mesh.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="classoomph_1_1AlgebraicRefineableQuarterCircleSectorMesh.png" usemap="#oomph::AlgebraicRefineableQuarterCircleSectorMesh_3C_20ELEMENT_20_3E_map" alt=""/>
   <map id="oomph::AlgebraicRefineableQuarterCircleSectorMesh_3C_20ELEMENT_20_3E_map" name="oomph::AlgebraicRefineableQuarterCircleSectorMesh_3C_20ELEMENT_20_3E_map">
-<area href="classoomph_1_1RefineableQuarterCircleSectorMesh.html" title="///////////////////////////////////////////////////////////////// ///////////////////////////////////..." alt="oomph::RefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;" shape="rect" coords="408,112,806,136"/>
+<area href="classoomph_1_1RefineableQuarterCircleSectorMesh.html" title="2D quarter ring mesh class inherited from RefineableQuadMesh. The domain is specified by the GeomObje..." alt="oomph::RefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;" shape="rect" coords="408,112,806,136"/>
 <area href="classoomph_1_1QuarterCircleSectorMesh.html" title="2D quarter ring mesh class. The domain is specified by the GeomObject that identifies boundary 1." alt="oomph::QuarterCircleSectorMesh&lt; ELEMENT &gt;" shape="rect" coords="204,56,602,80"/>
   </map>
 </div></div>
@@ -142,7 +136,7 @@ Inheritance diagram for oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; EL
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4245d6f0499af21053a0381bc69de271" id="r_a4245d6f0499af21053a0381bc69de271"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1AlgebraicRefineableQuarterCircleSectorMesh.html#a4245d6f0499af21053a0381bc69de271">AlgebraicRefineableQuarterCircleSectorMesh</a> (<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">GeomObject</a> *<a class="el" href="classoomph_1_1QuarterCircleSectorMesh.html#a1ebdc75ae69205b3863c0433f8d25025">wall_pt</a>, <a class="el" href="classoomph_1_1RefineableTriangleMesh.html">const</a> <a class="el" href="classoomph_1_1RefineableTriangleMesh.html">double</a> &amp;<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">xi_lo</a>, <a class="el" href="classoomph_1_1RefineableTriangleMesh.html">const</a> <a class="el" href="classoomph_1_1RefineableTriangleMesh.html">double</a> &amp;<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">fract_mid</a>, <a class="el" href="classoomph_1_1RefineableTriangleMesh.html">const</a> <a class="el" href="classoomph_1_1RefineableTriangleMesh.html">double</a> &amp;<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">xi_hi</a>, <a class="el" href="classoomph_1_1RefineableTriangleMesh.html">TimeStepper</a> *<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">time_stepper_pt</a>=&amp;Mesh::Default_TimeStepper)</td></tr>
-<tr class="memdesc:a4245d6f0499af21053a0381bc69de271"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Pass pointer to geometric object, start and end coordinates on the geometric object and the fraction along which the dividing line is to be placed when updating the nodal positions, and timestepper (defaults to (Steady) default timestepper defined in Mesh). Setup the refineable mesh (by calling the constructor for the underlying <a class="el" href="classoomph_1_1RefineableQuarterCircleSectorMesh.html" title="///////////////////////////////////////////////////////////////// ///////////////////////////////////...">RefineableQuarterCircleSectorMesh</a>) and the algebraic update functions for nodes.  <br /></td></tr>
+<tr class="memdesc:a4245d6f0499af21053a0381bc69de271"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Pass pointer to geometric object, start and end coordinates on the geometric object and the fraction along which the dividing line is to be placed when updating the nodal positions, and timestepper (defaults to (Steady) default timestepper defined in Mesh). Setup the refineable mesh (by calling the constructor for the underlying <a class="el" href="classoomph_1_1RefineableQuarterCircleSectorMesh.html" title="2D quarter ring mesh class inherited from RefineableQuadMesh. The domain is specified by the GeomObje...">RefineableQuarterCircleSectorMesh</a>) and the algebraic update functions for nodes.  <br /></td></tr>
 <tr class="separator:a4245d6f0499af21053a0381bc69de271"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68d9738e3d3eedc4d2dd8e1b7fb09d8c" id="r_a68d9738e3d3eedc4d2dd8e1b7fb09d8c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1RefineableTriangleMesh.html">unsigned</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1AlgebraicRefineableQuarterCircleSectorMesh.html#a68d9738e3d3eedc4d2dd8e1b7fb09d8c">self_test</a> ()</td></tr>
 <tr class="memdesc:a68d9738e3d3eedc4d2dd8e1b7fb09d8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run self-test for algebraic mesh &ndash; return 0/1 for OK/failure.  <br /></td></tr>
@@ -240,7 +234,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">class</a> <a class="el" href="classoomph_1_1RefineableTriangleMesh.html">ELEMENT</a>&gt;<br />
-class oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;</div><p>Algebraic version of <a class="el" href="classoomph_1_1RefineableQuarterCircleSectorMesh.html" title="///////////////////////////////////////////////////////////////// ///////////////////////////////////...">RefineableQuarterCircleSectorMesh</a>. </p>
+class oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;</div><p>Algebraic version of <a class="el" href="classoomph_1_1RefineableQuarterCircleSectorMesh.html" title="2D quarter ring mesh class inherited from RefineableQuadMesh. The domain is specified by the GeomObje...">RefineableQuarterCircleSectorMesh</a>. </p>
 <div class="fragment"><div class="line">                     ---<a class="code hl_class" href="classoomph_1_1RefineableTriangleMesh.html">___</a></div>
 <div class="line">                    |      ---<a class="code hl_class" href="classoomph_1_1RefineableTriangleMesh.html">____</a></div>
 <div class="line">                    |              -   <a class="code hl_class" href="classoomph_1_1RefineableTriangleMesh.html">BOUNDARY</a> 1</div>
@@ -263,10 +257,10 @@ class oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;</div><p
 <div class="line"><a class="code hl_class" href="classoomph_1_1RefineableTriangleMesh.html">are</a> <a class="code hl_class" href="classoomph_1_1RefineableTriangleMesh.html">such</a> <a class="code hl_class" href="classoomph_1_1RefineableTriangleMesh.html">that</a> <a class="code hl_class" href="classoomph_1_1RefineableTriangleMesh.html">the</a> (<a class="code hl_class" href="classoomph_1_1RefineableTriangleMesh.html">E</a>)<a class="code hl_class" href="classoomph_1_1RefineableTriangleMesh.html">astern</a> <a class="code hl_class" href="classoomph_1_1RefineableTriangleMesh.html">direction</a> <a class="code hl_class" href="classoomph_1_1RefineableTriangleMesh.html">coincides</a> <a class="code hl_class" href="classoomph_1_1RefineableTriangleMesh.html">with</a> <a class="code hl_class" href="classoomph_1_1RefineableTriangleMesh.html">the</a> <a class="code hl_class" href="classoomph_1_1RefineableTriangleMesh.html">positive</a></div>
 <div class="line"><a class="code hl_class" href="classoomph_1_1RefineableTriangleMesh.html">s_0</a> <a class="code hl_class" href="classoomph_1_1RefineableTriangleMesh.html">direction</a>,  <span class="keywordflow">while</span> <a class="code hl_class" href="classoomph_1_1RefineableTriangleMesh.html">the</a> (N)<a class="code hl_class" href="classoomph_1_1RefineableTriangleMesh.html">orther</a> <a class="code hl_class" href="classoomph_1_1RefineableTriangleMesh.html">direction</a> <a class="code hl_class" href="classoomph_1_1RefineableTriangleMesh.html">coincides</a> <a class="code hl_class" href="classoomph_1_1RefineableTriangleMesh.html">with</a> <a class="code hl_class" href="classoomph_1_1RefineableTriangleMesh.html">the</a> <a class="code hl_class" href="classoomph_1_1RefineableTriangleMesh.html">positive</a></div>
 <div class="line"><a class="code hl_class" href="classoomph_1_1RefineableTriangleMesh.html">s_1</a> <a class="code hl_class" href="classoomph_1_1RefineableTriangleMesh.html">direction</a>.</div>
-<div class="ttc" id="aclassoomph_1_1RefineableTriangleMesh_html"><div class="ttname"><a href="classoomph_1_1RefineableTriangleMesh.html">oomph::RefineableTriangleMesh</a></div><div class="ttdoc">/////////////////////////////////////////////////////////////////// /////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="triangle__mesh_8template_8h_source.html#l02247">triangle_mesh.template.h:2249</a></div></div>
-</div><!-- fragment --><p>Domain is parametrised by three macro elements as sketched. Elements need to be derived from AlgebraicElementBase. In addition to all the refinement procedures available for <a class="el" href="classoomph_1_1RefineableQuarterCircleSectorMesh.html" title="///////////////////////////////////////////////////////////////// ///////////////////////////////////...">RefineableQuarterCircleSectorMesh</a> which forms the basis for this mesh, we implement algebraic node update functions for the nodes. </p>
+<div class="ttc" id="aclassoomph_1_1RefineableTriangleMesh_html"><div class="ttname"><a href="classoomph_1_1RefineableTriangleMesh.html">oomph::RefineableTriangleMesh</a></div><div class="ttdoc">Unstructured refineable Triangle Mesh.</div><div class="ttdef"><b>Definition</b> <a href="triangle__mesh_8h_source.html#l02223">triangle_mesh.h:2225</a></div></div>
+</div><!-- fragment --><p>Domain is parametrised by three macro elements as sketched. Elements need to be derived from AlgebraicElementBase. In addition to all the refinement procedures available for <a class="el" href="classoomph_1_1RefineableQuarterCircleSectorMesh.html" title="2D quarter ring mesh class inherited from RefineableQuadMesh. The domain is specified by the GeomObje...">RefineableQuarterCircleSectorMesh</a> which forms the basis for this mesh, we implement algebraic node update functions for the nodes. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00439">439</a> of file <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html">quarter_circle_sector_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00433">433</a> of file <a class="el" href="quarter__circle__sector__mesh_8h_source.html">quarter_circle_sector_mesh.h</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a85eef4c11c2a88ba4bb5f99bc8406e67" name="a85eef4c11c2a88ba4bb5f99bc8406e67"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a85eef4c11c2a88ba4bb5f99bc8406e67">&#9670;&#160;</a></span>anonymous enum</h2>
@@ -297,7 +291,7 @@ template&lt;<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">class
 <tr><td class="fieldname"><a id="a85eef4c11c2a88ba4bb5f99bc8406e67a5ff22a2cd960ec680a42f181d6cbdfb0" name="a85eef4c11c2a88ba4bb5f99bc8406e67a5ff22a2cd960ec680a42f181d6cbdfb0"></a>Upper_left_box&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00625">625</a> of file <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html">quarter_circle_sector_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00617">617</a> of file <a class="el" href="quarter__circle__sector__mesh_8h_source.html">quarter_circle_sector_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -356,11 +350,11 @@ template&lt;<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">class
 </table>
 </div><div class="memdoc">
 
-<p>Constructor: Pass pointer to geometric object, start and end coordinates on the geometric object and the fraction along which the dividing line is to be placed when updating the nodal positions, and timestepper (defaults to (Steady) default timestepper defined in Mesh). Setup the refineable mesh (by calling the constructor for the underlying <a class="el" href="classoomph_1_1RefineableQuarterCircleSectorMesh.html" title="///////////////////////////////////////////////////////////////// ///////////////////////////////////...">RefineableQuarterCircleSectorMesh</a>) and the algebraic update functions for nodes. </p>
+<p>Constructor: Pass pointer to geometric object, start and end coordinates on the geometric object and the fraction along which the dividing line is to be placed when updating the nodal positions, and timestepper (defaults to (Steady) default timestepper defined in Mesh). Setup the refineable mesh (by calling the constructor for the underlying <a class="el" href="classoomph_1_1RefineableQuarterCircleSectorMesh.html" title="2D quarter ring mesh class inherited from RefineableQuadMesh. The domain is specified by the GeomObje...">RefineableQuarterCircleSectorMesh</a>) and the algebraic update functions for nodes. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00451">451</a> of file <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html">quarter_circle_sector_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00445">445</a> of file <a class="el" href="quarter__circle__sector__mesh_8h_source.html">quarter_circle_sector_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html#l00557">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::setup_algebraic_node_update()</a>, and <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00105">oomph::QuarterCircleSectorMesh&lt; ELEMENT &gt;::wall_pt()</a>.</p>
+<p class="reference">References <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html#l00544">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::setup_algebraic_node_update()</a>, and <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00102">oomph::QuarterCircleSectorMesh&lt; ELEMENT &gt;::wall_pt()</a>.</p>
 
 </div>
 </div>
@@ -403,9 +397,9 @@ template&lt;<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">class
 
 <p>Implement the algebraic node update function for a node at time level t (t=0: present; t&gt;0: previous): Update with the node's first (default) update function. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00527">527</a> of file <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html">quarter_circle_sector_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00521">521</a> of file <a class="el" href="quarter__circle__sector__mesh_8h_source.html">quarter_circle_sector_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00627">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::Central_box</a>, <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00628">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::Lower_right_box</a>, <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html#l00851">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::node_update_in_central_box()</a>, <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html#l00940">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::node_update_in_lower_right_box()</a>, <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html#l01048">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::node_update_in_upper_left_box()</a>, and <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00629">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::Upper_left_box</a>.</p>
+<p class="reference">References <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00619">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::Central_box</a>, <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00620">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::Lower_right_box</a>, <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html#l00834">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::node_update_in_central_box()</a>, <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html#l00921">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::node_update_in_lower_right_box()</a>, <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html#l01029">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::node_update_in_upper_left_box()</a>, and <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00621">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::Upper_left_box</a>.</p>
 
 </div>
 </div>
@@ -437,7 +431,7 @@ template&lt;<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">class
 
 <p>Resolve mesh update: Update current nodal positions via algebraic node update. [Doesn't make sense to use this mesh with SolidElements anyway, so we buffer the case if update_all_solid_nodes is set to true.]. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00501">501</a> of file <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html">quarter_circle_sector_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00495">495</a> of file <a class="el" href="quarter__circle__sector__mesh_8h_source.html">quarter_circle_sector_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -480,9 +474,9 @@ template&lt;<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">class
 <p>Algebraic update function for a node that is located in the central box. </p>
 <p>Algebraic update function: Update in central box according to wall shape at time level t (t=0: present; t&gt;0: previous) </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html#l00851">851</a> of file <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html">quarter_circle_sector_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html#l00834">834</a> of file <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html">quarter_circle_sector_mesh.template.cc</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00527">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::algebraic_node_update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00521">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::algebraic_node_update()</a>.</p>
 
 </div>
 </div>
@@ -525,9 +519,9 @@ template&lt;<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">class
 <p>Algebraic update function for a node that is located in the lower right box. </p>
 <p>Algebraic update function: Update in lower right box according to wall shape at time level t (t=0: present; t&gt;0: previous) </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html#l00940">940</a> of file <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html">quarter_circle_sector_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html#l00921">921</a> of file <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html">quarter_circle_sector_mesh.template.cc</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00527">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::algebraic_node_update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00521">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::algebraic_node_update()</a>.</p>
 
 </div>
 </div>
@@ -570,9 +564,9 @@ template&lt;<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">class
 <p>Algebraic update function for a node that is located in the upper left box. </p>
 <p>Algebraic update function: Update in upper left box according to wall shape at time level t (t=0: present; t&gt;0: previous) </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html#l01048">1048</a> of file <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html">quarter_circle_sector_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html#l01029">1029</a> of file <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html">quarter_circle_sector_mesh.template.cc</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00527">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::algebraic_node_update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00521">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::algebraic_node_update()</a>.</p>
 
 </div>
 </div>
@@ -603,7 +597,7 @@ template&lt;<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">class
 
 <p>Run self-test for algebraic mesh &ndash; return 0/1 for OK/failure. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00491">491</a> of file <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html">quarter_circle_sector_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00485">485</a> of file <a class="el" href="quarter__circle__sector__mesh_8h_source.html">quarter_circle_sector_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -633,16 +627,16 @@ template&lt;<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">class
 </div><div class="memdoc">
 
 <p>Setup algebraic update operation for all nodes. </p>
-<p>////////////////////////////////////////////////////////////////////</p>
-<p>//////////////////////////////////////////////////////////////////// Setup algebraic update operation, based on individual blocks. Mesh is suspended from the &lsquo;wall&rsquo; GeomObject pointed to by wall_pt. The lower right corner of the mesh is located at the wall's coordinate xi_lo, the upper left corner at xi_hi; The dividing line between the two blocks at the outer ring is located at the fraction fract_mid between these two coordinates. Node updating strategy:</p><ul>
+<p>Setup algebraic update operation, based on individual blocks. Mesh is suspended from the &lsquo;wall&rsquo; GeomObject pointed to by wall_pt. The lower right corner of the mesh is located at the wall's coordinate xi_lo, the upper left corner at xi_hi; The dividing line between the two blocks at the outer ring is located at the fraction fract_mid between these two coordinates. Node updating strategy:</p>
+<ul>
 <li>the shape of the central box remains rectangular; the position of its top right corner is located at a fixed fraction of the width and height of the domain. Nodes in this region are located at fixed horizontal and vertical fractions of the box.</li>
 <li>Nodes in the two outer "ring" elements (bottom right and top left) are located on straight lines running from the edges of the central box to the outer wall. </li>
 </ul>
 <p>Pointer to algebraic element in central box</p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html#l00557">557</a> of file <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html">quarter_circle_sector_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html#l00544">544</a> of file <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html">quarter_circle_sector_mesh.template.cc</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00451">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::AlgebraicRefineableQuarterCircleSectorMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00445">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::AlgebraicRefineableQuarterCircleSectorMesh()</a>.</p>
 
 </div>
 </div>
@@ -674,9 +668,9 @@ template&lt;<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">class
 
 <p>Update the node update info for specified algebraic node following any spatial mesh adaptation. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00573">573</a> of file <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html">quarter_circle_sector_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00566">566</a> of file <a class="el" href="quarter__circle__sector__mesh_8h_source.html">quarter_circle_sector_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00627">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::Central_box</a>, <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00628">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::Lower_right_box</a>, <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html#l01159">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::update_node_update_in_lower_right_box()</a>, <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html#l01259">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::update_node_update_in_upper_left_box()</a>, and <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00629">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::Upper_left_box</a>.</p>
+<p class="reference">References <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00619">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::Central_box</a>, <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00620">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::Lower_right_box</a>, <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html#l01138">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::update_node_update_in_lower_right_box()</a>, <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html#l01234">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::update_node_update_in_upper_left_box()</a>, and <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00621">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::Upper_left_box</a>.</p>
 
 </div>
 </div>
@@ -709,9 +703,9 @@ template&lt;<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">class
 <p>Update algebraic node update function for nodes in lower right box. </p>
 <p>Update algebraic update function for nodes in lower right box. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html#l01159">1159</a> of file <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html">quarter_circle_sector_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html#l01138">1138</a> of file <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html">quarter_circle_sector_mesh.template.cc</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00573">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::update_node_update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00566">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::update_node_update()</a>.</p>
 
 </div>
 </div>
@@ -744,9 +738,9 @@ template&lt;<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">class
 <p>Update algebraic node update function for nodes in upper left box. </p>
 <p>Update algebraic update function for nodes in upper left box. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html#l01259">1259</a> of file <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html">quarter_circle_sector_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html#l01234">1234</a> of file <a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html">quarter_circle_sector_mesh.template.cc</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00573">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::update_node_update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00566">oomph::AlgebraicRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::update_node_update()</a>.</p>
 
 </div>
 </div>
@@ -775,7 +769,7 @@ template&lt;<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">class
 
 <p>Fractional width of central box. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00634">634</a> of file <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html">quarter_circle_sector_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00625">625</a> of file <a class="el" href="quarter__circle__sector__mesh_8h_source.html">quarter_circle_sector_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -803,12 +797,12 @@ template&lt;<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">class
 
 <p>Fractional height of central box. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00637">637</a> of file <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html">quarter_circle_sector_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00628">628</a> of file <a class="el" href="quarter__circle__sector__mesh_8h_source.html">quarter_circle_sector_mesh.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html">quarter_circle_sector_mesh.template.h</a></li>
+<li><a class="el" href="quarter__circle__sector__mesh_8h_source.html">quarter_circle_sector_mesh.h</a></li>
 <li><a class="el" href="quarter__circle__sector__mesh_8template_8cc_source.html">quarter_circle_sector_mesh.template.cc</a></li>
 </ul>
 </div><!-- contents -->
@@ -839,7 +833,7 @@ template&lt;<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">class
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 13:59:16
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:37:24
         </div>
       </div>
     </footer>

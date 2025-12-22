@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -218,9 +212,9 @@
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>} <span class="comment">// end of namespace</span></div>
 </div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment"></span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="comment">/// ///////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="comment">/// ///////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="comment">/// ///////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="comment">//////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="comment">//////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="comment">//////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="comment"></span> </div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="comment">//====== start_of_problem_class=======================================</span><span class="comment"></span></div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="comment">/// 2D AdvectionDiffusion problem on rectangular domain, discretised </span></div>
@@ -425,7 +419,7 @@
 <div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> </div>
 <div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span> <span class="comment">// Output solution </span></div>
 <div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span> <span class="comment">//-----------------</span></div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>         Doc_info.number());</div>
 <div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> some_file.open(filename);</div>
 <div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span> mesh_pt()-&gt;output(some_file,npts);</div>
@@ -433,7 +427,7 @@
 <div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
 <div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span> <span class="comment">// Output exact solution </span></div>
 <div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span> <span class="comment">//----------------------</span></div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span> sprintf(filename,<span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>         Doc_info.number());</div>
 <div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span> some_file.open(filename);</div>
 <div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span> mesh_pt()-&gt;output_fct(some_file,npts,<a class="code hl_function" href="namespaceTanhSolnForAdvectionDiffusion.html#ae4c9ed0a4f123ec8e634f0cc45bfcebc">TanhSolnForAdvectionDiffusion::get_exact_u</a>); </div>
@@ -442,7 +436,7 @@
 <div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span> <span class="comment">// Doc error and return of the square of the L2 error</span></div>
 <div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> <span class="comment">//---------------------------------------------------</span></div>
 <div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> <span class="keywordtype">double</span> error,norm;</div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> sprintf(filename,<span class="stringliteral">&quot;%s/error%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/error%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>         Doc_info.number());</div>
 <div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span> some_file.open(filename);</div>
 <div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span> mesh_pt()-&gt;compute_error(some_file,<a class="code hl_function" href="namespaceTanhSolnForAdvectionDiffusion.html#ae4c9ed0a4f123ec8e634f0cc45bfcebc">TanhSolnForAdvectionDiffusion::get_exact_u</a>,</div>
@@ -511,7 +505,7 @@
 <div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span> </div>
 <div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span> </div>
 <div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span> </div>
-<div class="ttc" id="aclassRefineableAdvectionDiffusionProblem_html"><div class="ttname"><a href="classRefineableAdvectionDiffusionProblem.html">RefineableAdvectionDiffusionProblem</a></div><div class="ttdoc">/////////////////////////////////////////////////////////////////// /////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="two__d__adv__diff__adapt_8cc_source.html#l00102">two_d_adv_diff_adapt.cc:103</a></div></div>
+<div class="ttc" id="aclassRefineableAdvectionDiffusionProblem_html"><div class="ttname"><a href="classRefineableAdvectionDiffusionProblem.html">RefineableAdvectionDiffusionProblem</a></div><div class="ttdoc">2D AdvectionDiffusion problem on rectangular domain, discretised with refineable 2D QAdvectionDiffusi...</div><div class="ttdef"><b>Definition</b> <a href="two__d__adv__diff__adapt_8cc_source.html#l00102">two_d_adv_diff_adapt.cc:103</a></div></div>
 <div class="ttc" id="aclassRefineableAdvectionDiffusionProblem_html_a3470a408c458e5500ac614b8f0e65634"><div class="ttname"><a href="classRefineableAdvectionDiffusionProblem.html#a3470a408c458e5500ac614b8f0e65634">RefineableAdvectionDiffusionProblem::actions_before_adapt</a></div><div class="ttdeci">void actions_before_adapt()</div><div class="ttdoc">Actions before adapt: Document the solution.</div><div class="ttdef"><b>Definition</b> <a href="two__d__adv__diff__adapt_8cc_source.html#l00123">two_d_adv_diff_adapt.cc:123</a></div></div>
 <div class="ttc" id="aclassRefineableAdvectionDiffusionProblem_html_a42bd65f40095a70a103ee900e7614b19"><div class="ttname"><a href="classRefineableAdvectionDiffusionProblem.html#a42bd65f40095a70a103ee900e7614b19">RefineableAdvectionDiffusionProblem::Doc_info</a></div><div class="ttdeci">DocInfo Doc_info</div><div class="ttdoc">DocInfo object.</div><div class="ttdef"><b>Definition</b> <a href="two__d__adv__diff__adapt_8cc_source.html#l00147">two_d_adv_diff_adapt.cc:147</a></div></div>
 <div class="ttc" id="aclassRefineableAdvectionDiffusionProblem_html_a515147bf0907ad339811955edb89817c"><div class="ttname"><a href="classRefineableAdvectionDiffusionProblem.html#a515147bf0907ad339811955edb89817c">RefineableAdvectionDiffusionProblem::RefineableAdvectionDiffusionProblem</a></div><div class="ttdeci">RefineableAdvectionDiffusionProblem(AdvectionDiffusionEquations&lt; 2 &gt;::AdvectionDiffusionSourceFctPt source_fct_pt, AdvectionDiffusionEquations&lt; 2 &gt;::AdvectionDiffusionWindFctPt wind_fct_pt)</div><div class="ttdoc">Constructor: Pass pointer to source and wind functions.</div><div class="ttdef"><b>Definition</b> <a href="two__d__adv__diff__adapt_8cc_source.html#l00164">two_d_adv_diff_adapt.cc:164</a></div></div>
@@ -558,7 +552,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:19:54
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:31:47
         </div>
       </div>
     </footer>

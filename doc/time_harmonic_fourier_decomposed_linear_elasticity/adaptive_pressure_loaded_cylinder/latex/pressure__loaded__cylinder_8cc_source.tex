@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{pressure__loaded__cylinder_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{pressure__loaded__cylinder_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{pressure__loaded__cylinder_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{pressure__loaded__cylinder_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{pressure__loaded__cylinder_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{pressure__loaded__cylinder_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{pressure__loaded__cylinder_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{pressure__loaded__cylinder_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -426,14 +426,14 @@
 \DoxyCodeLine{\Hypertarget{pressure__loaded__cylinder_8cc_source_l00422}00422\ \ \textcolor{keywordtype}{unsigned}\ npts=5;\ }
 \DoxyCodeLine{\Hypertarget{pressure__loaded__cylinder_8cc_source_l00423}00423\ \ }
 \DoxyCodeLine{\Hypertarget{pressure__loaded__cylinder_8cc_source_l00424}00424\ \ \textcolor{comment}{//\ Output\ solution\ }}
-\DoxyCodeLine{\Hypertarget{pressure__loaded__cylinder_8cc_source_l00425}00425\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{pressure__loaded__cylinder_8cc_source_l00425}00425\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{pressure__loaded__cylinder_8cc_source_l00426}00426\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{pressure__loaded__cylinder_8cc_source_l00427}00427\ \ Bulk\_mesh\_pt-\/>output(some\_file,npts);}
 \DoxyCodeLine{\Hypertarget{pressure__loaded__cylinder_8cc_source_l00428}00428\ \ some\_file.close();}
 \DoxyCodeLine{\Hypertarget{pressure__loaded__cylinder_8cc_source_l00429}00429\ }
 \DoxyCodeLine{\Hypertarget{pressure__loaded__cylinder_8cc_source_l00430}00430\ \ \textcolor{comment}{//\ Output\ norm\ of\ solution\ (to\ allow\ validation\ of\ solution\ even}}
 \DoxyCodeLine{\Hypertarget{pressure__loaded__cylinder_8cc_source_l00431}00431\ \ \textcolor{comment}{//\ if\ triangle\ generates\ a\ slightly\ different\ mesh)}}
-\DoxyCodeLine{\Hypertarget{pressure__loaded__cylinder_8cc_source_l00432}00432\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/norm.dat"{}},doc\_info.directory().c\_str());\ \ \ }
+\DoxyCodeLine{\Hypertarget{pressure__loaded__cylinder_8cc_source_l00432}00432\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/norm.dat"{}},doc\_info.directory().c\_str());\ \ \ }
 \DoxyCodeLine{\Hypertarget{pressure__loaded__cylinder_8cc_source_l00433}00433\ \ some\_file.open(filename);\ \ \ }
 \DoxyCodeLine{\Hypertarget{pressure__loaded__cylinder_8cc_source_l00434}00434\ \ \textcolor{keywordtype}{double}\ norm=0.0;}
 \DoxyCodeLine{\Hypertarget{pressure__loaded__cylinder_8cc_source_l00435}00435\ \ \textcolor{keywordtype}{unsigned}\ nel=Bulk\_mesh\_pt-\/>nelement();}

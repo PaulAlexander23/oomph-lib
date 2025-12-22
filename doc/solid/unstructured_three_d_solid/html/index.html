@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -118,7 +112,7 @@
  <hr  />
 <h1><a class="anchor" id="problem"></a>
 The problem (and results)</h1>
-<p>Here is an animation of the problem: An elastic, bifurcating vessel is loaded by an internal pressure and by gravity which acts in the negative <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$x$" src="form_0.png" width="8" height="6"/></picture>-direction. The "ends" of the vessel are held in a fixed position. As the magnitude of the loading is increased the vessel inflates and sags downwards.</p>
+<p>Here is an animation of the problem: An elastic, bifurcating vessel is loaded by an internal pressure and by gravity which acts in the negative <img class="formulaInl" alt="$x$" src="form_0.png" width="8" height="6"/>-direction. The "ends" of the vessel are held in a fixed position. As the magnitude of the loading is increased the vessel inflates and sags downwards.</p>
 <div class="image">
 <img src="deform.gif" alt=""/>
 <div class="caption">
@@ -195,7 +189,7 @@ Creating the mesh</h1>
  <hr  />
 <h1><a class="anchor" id="namespace"></a>
 Problem parameters</h1>
-<p>As usual, we define the various problem parameters in a global namespace. We use <code>oomph-lib's</code> generalised Hookean constitutive law as the constitutive equation, using a Poisson's ratio of <a class="el" href="classMySolidTetgenMesh.html#ac6f8d5bf403bb9da0149184c30eb6d8d" title="Constructor:">0.3</a>. (<a href="../../solid_theory/html/index.html#non-dim_solid">Recall</a> that omitting the specification of Young's modulus, <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ E $" src="form_1.png" width="10" height="10"/></picture>, implies that the stresses are non-dimensionalised on <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ E $" src="form_1.png" width="10" height="10"/></picture> .)</p>
+<p>As usual, we define the various problem parameters in a global namespace. We use <code>oomph-lib's</code> generalised Hookean constitutive law as the constitutive equation, using a Poisson's ratio of <a class="el" href="classMySolidTetgenMesh.html#ac6f8d5bf403bb9da0149184c30eb6d8d" title="Constructor:">0.3</a>. (<a href="../../solid_theory/html/index.html#non-dim_solid">Recall</a> that omitting the specification of Young's modulus, <img class="formulaInl" alt="$ E $" src="form_1.png" width="10" height="10"/>, implies that the stresses are non-dimensionalised on <img class="formulaInl" alt="$ E $" src="form_1.png" width="10" height="10"/> .)</p>
 <div class="fragment"><div class="line"><span class="comment">//=======start_namespace==========================================</span></div>
 <div class="line"><span class="comment">/// Global variables</span></div>
 <div class="line"><span class="comment">//================================================================</span></div>
@@ -207,10 +201,10 @@ Problem parameters</h1>
 <div class="line"> <span class="comment"></span></div>
 <div class="line"><span class="comment"> /// Create constitutive law</span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_class" href="classMySolidTetgenMesh.html">ConstitutiveLaw</a>* <a class="code hl_variable" href="namespaceGlobal__Parameters.html#adbd1f040f375c96fe56b3f475f7dbec2">Constitutive_law_pt</a>=<span class="keyword">new</span> <a class="code hl_class" href="classMySolidTetgenMesh.html">GeneralisedHookean</a>(&amp;<a class="code hl_variable" href="namespaceGlobal__Parameters.html#a20fccdcfa2c15ad8b951b9ada3bb1661">Nu</a>);</div>
-<div class="ttc" id="anamespaceGlobal__Parameters_html"><div class="ttname"><a href="namespaceGlobal__Parameters.html">Global_Parameters</a></div><div class="ttdoc">/////////////////////////////////////////////////////////////// /////////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="unstructured__three__d__solid_8cc_source.html#l00084">unstructured_three_d_solid.cc:85</a></div></div>
+<div class="ttc" id="anamespaceGlobal__Parameters_html"><div class="ttname"><a href="namespaceGlobal__Parameters.html">Global_Parameters</a></div><div class="ttdoc">Global variables.</div><div class="ttdef"><b>Definition</b> <a href="unstructured__three__d__solid_8cc_source.html#l00084">unstructured_three_d_solid.cc:85</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Parameters_html_a20fccdcfa2c15ad8b951b9ada3bb1661"><div class="ttname"><a href="namespaceGlobal__Parameters.html#a20fccdcfa2c15ad8b951b9ada3bb1661">Global_Parameters::Nu</a></div><div class="ttdeci">double Nu</div><div class="ttdoc">Poisson's ratio.</div><div class="ttdef"><b>Definition</b> <a href="unstructured__three__d__solid_8cc_source.html#l00088">unstructured_three_d_solid.cc:88</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Parameters_html_adbd1f040f375c96fe56b3f475f7dbec2"><div class="ttname"><a href="namespaceGlobal__Parameters.html#adbd1f040f375c96fe56b3f475f7dbec2">Global_Parameters::Constitutive_law_pt</a></div><div class="ttdeci">ConstitutiveLaw * Constitutive_law_pt</div><div class="ttdoc">Create constitutive law.</div><div class="ttdef"><b>Definition</b> <a href="unstructured__three__d__solid_8cc_source.html#l00091">unstructured_three_d_solid.cc:91</a></div></div>
-</div><!-- fragment --><p> Next we define the gravitational body force which acts in the negative <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$x$" src="form_0.png" width="8" height="6"/></picture>-direction,</p>
+</div><!-- fragment --><p> Next we define the gravitational body force which acts in the negative <img class="formulaInl" alt="$x$" src="form_0.png" width="8" height="6"/>-direction,</p>
 <div class="fragment"><div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Non-dim gravity</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> Gravity=0.0;</div>
@@ -224,7 +218,7 @@ Problem parameters</h1>
 <div class="line">  <a class="code hl_class" href="classMySolidTetgenMesh.html">b</a>[1]=0.0;</div>
 <div class="line">  <a class="code hl_class" href="classMySolidTetgenMesh.html">b</a>[2]=0.0;</div>
 <div class="line"> } <span class="comment">// end gravity</span></div>
-</div><!-- fragment --><p> and the pressure load, <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf t} = -P {\bf n} $" src="form_2.png" width="51" height="10"/></picture>, that acts on internal walls of the bifurcation (note that the outer unit normal <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf n} $" src="form_3.png" width="8" height="6"/></picture> on the wall is passed to the function).</p>
+</div><!-- fragment --><p> and the pressure load, <img class="formulaInl" alt="$ {\bf t} = -P {\bf n} $" src="form_2.png" width="51" height="10"/>, that acts on internal walls of the bifurcation (note that the outer unit normal <img class="formulaInl" alt="$ {\bf n} $" src="form_3.png" width="8" height="6"/> on the wall is passed to the function).</p>
 <div class="fragment"><div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Uniform pressure</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> P = 0.0;</div>
@@ -559,7 +553,7 @@ Post-processing</h1>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output solid solution</span></div>
 <div class="line"> <span class="comment">//-----------------------</span></div>
-<div class="line"> <a class="code hl_class" href="classMySolidTetgenMesh.html">sprintf</a>(<a class="code hl_class" href="classMySolidTetgenMesh.html">filename</a>,<span class="stringliteral">&quot;%s/solid_soln%i.dat&quot;</span>,<a class="code hl_class" href="classMySolidTetgenMesh.html">doc_info</a>.directory().c_str(),</div>
+<div class="line"> <a class="code hl_class" href="classMySolidTetgenMesh.html">snprintf</a>(<a class="code hl_class" href="classMySolidTetgenMesh.html">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classMySolidTetgenMesh.html">filename</a>), <span class="stringliteral">&quot;%s/solid_soln%i.dat&quot;</span>,<a class="code hl_class" href="classMySolidTetgenMesh.html">doc_info</a>.directory().c_str(),</div>
 <div class="line">         <a class="code hl_class" href="classMySolidTetgenMesh.html">doc_info</a>.number());</div>
 <div class="line"> <a class="code hl_class" href="classMySolidTetgenMesh.html">some_file</a>.open(<a class="code hl_class" href="classMySolidTetgenMesh.html">filename</a>);</div>
 <div class="line"> Solid_mesh_pt-&gt;output(<a class="code hl_class" href="classMySolidTetgenMesh.html">some_file</a>,<a class="code hl_class" href="classMySolidTetgenMesh.html">npts</a>);</div>
@@ -568,7 +562,7 @@ Post-processing</h1>
 <div class="line">    </div>
 <div class="line"> <span class="comment">// Output traction</span></div>
 <div class="line"> <span class="comment">//----------------</span></div>
-<div class="line"> <a class="code hl_class" href="classMySolidTetgenMesh.html">sprintf</a>(<a class="code hl_class" href="classMySolidTetgenMesh.html">filename</a>,<span class="stringliteral">&quot;%s/traction%i.dat&quot;</span>,<a class="code hl_class" href="classMySolidTetgenMesh.html">doc_info</a>.directory().c_str(),</div>
+<div class="line"> <a class="code hl_class" href="classMySolidTetgenMesh.html">snprintf</a>(<a class="code hl_class" href="classMySolidTetgenMesh.html">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classMySolidTetgenMesh.html">filename</a>), <span class="stringliteral">&quot;%s/traction%i.dat&quot;</span>,<a class="code hl_class" href="classMySolidTetgenMesh.html">doc_info</a>.directory().c_str(),</div>
 <div class="line">         <a class="code hl_class" href="classMySolidTetgenMesh.html">doc_info</a>.number());</div>
 <div class="line"> <a class="code hl_class" href="classMySolidTetgenMesh.html">some_file</a>.open(<a class="code hl_class" href="classMySolidTetgenMesh.html">filename</a>);</div>
 <div class="line"> <span class="keywordtype">unsigned</span> <a class="code hl_class" href="classMySolidTetgenMesh.html">n</a>=Solid_traction_boundary_id.size();</div>
@@ -617,7 +611,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -647,7 +641,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:24:29
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:44:43
         </div>
       </div>
     </footer>

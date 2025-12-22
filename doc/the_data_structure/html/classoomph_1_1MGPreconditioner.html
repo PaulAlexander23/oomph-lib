@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -143,7 +137,7 @@ $(function() {
  <div class="center">
   <img src="classoomph_1_1MGPreconditioner.png" usemap="#oomph::MGPreconditioner_3C_20DIM_20_3E_map" alt=""/>
   <map id="oomph::MGPreconditioner_3C_20DIM_20_3E_map" name="oomph::MGPreconditioner_3C_20DIM_20_3E_map">
-<area href="classoomph_1_1MGSolver.html" title="/////////////////////////////////////////////////////// /////////////////////////////////////////////..." alt="oomph::MGSolver&lt; DIM &gt;" shape="rect" coords="0,168,243,192"/>
+<area href="classoomph_1_1MGSolver.html" alt="oomph::MGSolver&lt; DIM &gt;" shape="rect" coords="0,168,243,192"/>
 <area href="classoomph_1_1Preconditioner.html" title="Preconditioner base class. Gives an interface to call all other preconditioners through and stores th..." alt="oomph::Preconditioner" shape="rect" coords="253,168,496,192"/>
 <area href="classoomph_1_1IterativeLinearSolver.html" title="Base class for all linear iterative solvers. This merely defines standard interfaces for linear itera..." alt="oomph::IterativeLinearSolver" shape="rect" coords="0,112,243,136"/>
 <area href="classoomph_1_1DistributableLinearAlgebraObject.html" title="Base class for any linear algebra object that is distributable. Just contains storage for the LinearA..." alt="oomph::DistributableLinearAlgebraObject" shape="rect" coords="253,112,496,136"/>
@@ -474,9 +468,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1e469ffc87f31f6f2eebbe5ccf03d78b inherit pub_methods_classoomph_1_1Preconditioner" id="r_a1e469ffc87f31f6f2eebbe5ccf03d78b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">virtual</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Preconditioner.html#a1e469ffc87f31f6f2eebbe5ccf03d78b">preconditioner_solve_transpose</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">r</a>, <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;z)</td></tr>
 <tr class="memdesc:a1e469ffc87f31f6f2eebbe5ccf03d78b inherit pub_methods_classoomph_1_1Preconditioner"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply the preconditioner. Pure virtual generic interface function. This method should apply the preconditioner operator to the vector r and return the vector z. (broken virtual)  <br /></td></tr>
 <tr class="separator:a1e469ffc87f31f6f2eebbe5ccf03d78b inherit pub_methods_classoomph_1_1Preconditioner"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b95e7159585b5151f9e5dc1d1713655 inherit pub_methods_classoomph_1_1Preconditioner" id="r_a0b95e7159585b5151f9e5dc1d1713655"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Preconditioner.html#a0b95e7159585b5151f9e5dc1d1713655">setup</a> (<a class="el" href="classoomph_1_1DoubleMatrixBase.html">DoubleMatrixBase</a> *<a class="el" href="classoomph_1_1Preconditioner.html#a08e0582b77c6cbfaf85b80a4ac5c11f3">matrix_pt</a>)</td></tr>
-<tr class="memdesc:a0b95e7159585b5151f9e5dc1d1713655 inherit pub_methods_classoomph_1_1Preconditioner"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup the preconditioner: store the matrix pointer and the communicator pointer then call preconditioner specific <a class="el" href="classoomph_1_1Preconditioner.html#af4886f4efe510e5c9b0eb19422943588" title="Setup the preconditioner. Pure virtual generic interface function.">setup()</a> function.  <br /></td></tr>
-<tr class="separator:a0b95e7159585b5151f9e5dc1d1713655 inherit pub_methods_classoomph_1_1Preconditioner"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2c0f7f39eccd814e72cc5813ec864e0 inherit pub_methods_classoomph_1_1Preconditioner" id="r_ac2c0f7f39eccd814e72cc5813ec864e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">virtual</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Preconditioner.html#ac2c0f7f39eccd814e72cc5813ec864e0">setup</a> (<a class="el" href="classoomph_1_1DoubleMatrixBase.html">DoubleMatrixBase</a> *<a class="el" href="classoomph_1_1Preconditioner.html#a08e0582b77c6cbfaf85b80a4ac5c11f3">matrix_pt</a>)</td></tr>
+<tr class="memdesc:ac2c0f7f39eccd814e72cc5813ec864e0 inherit pub_methods_classoomph_1_1Preconditioner"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup the preconditioner: store the matrix pointer and the communicator pointer then call preconditioner specific <a class="el" href="classoomph_1_1Preconditioner.html#af4886f4efe510e5c9b0eb19422943588" title="Setup the preconditioner. Pure virtual generic interface function.">setup()</a> function.  <br /></td></tr>
+<tr class="separator:ac2c0f7f39eccd814e72cc5813ec864e0 inherit pub_methods_classoomph_1_1Preconditioner"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a783fae97e4b898f8de72b504a4f4bec6 inherit pub_methods_classoomph_1_1Preconditioner" id="r_a783fae97e4b898f8de72b504a4f4bec6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Preconditioner.html#a783fae97e4b898f8de72b504a4f4bec6">setup</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1Problem.html">Problem</a> *problem_pt, <a class="el" href="classoomph_1_1DoubleMatrixBase.html">DoubleMatrixBase</a> *<a class="el" href="classoomph_1_1Preconditioner.html#a08e0582b77c6cbfaf85b80a4ac5c11f3">matrix_pt</a>)</td></tr>
 <tr class="memdesc:a783fae97e4b898f8de72b504a4f4bec6 inherit pub_methods_classoomph_1_1Preconditioner"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compatability layer for old preconditioners where problem pointers were needed. The problem pointer is only used to get a communicator pointer.  <br /></td></tr>
 <tr class="separator:a783fae97e4b898f8de72b504a4f4bec6 inherit pub_methods_classoomph_1_1Preconditioner"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -512,10 +506,10 @@ Public Member Functions</h2></td></tr>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_types_classoomph_1_1MGSolver"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classoomph_1_1MGSolver')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classoomph_1_1MGSolver.html">oomph::MGSolver&lt; DIM &gt;</a></td></tr>
 <tr class="memitem:a60aa316ebfc000491554e28dbfbebc10 inherit pub_types_classoomph_1_1MGSolver" id="r_a60aa316ebfc000491554e28dbfbebc10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">typedef</a> <a class="el" href="classoomph_1_1Smoother.html">Smoother</a> *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1MGSolver.html#a60aa316ebfc000491554e28dbfbebc10">PreSmootherFactoryFctPt</a>) ()</td></tr>
-<tr class="memdesc:a60aa316ebfc000491554e28dbfbebc10 inherit pub_types_classoomph_1_1MGSolver"><td class="mdescLeft">&#160;</td><td class="mdescRight">typedef for a function that returns a pointer to an object of the class <a class="el" href="classoomph_1_1Smoother.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////...">Smoother</a> to be used as the pre-smoother  <br /></td></tr>
+<tr class="memdesc:a60aa316ebfc000491554e28dbfbebc10 inherit pub_types_classoomph_1_1MGSolver"><td class="mdescLeft">&#160;</td><td class="mdescRight">typedef for a function that returns a pointer to an object of the class <a class="el" href="classoomph_1_1Smoother.html" title="Smoother class: The smoother class is designed for to be used in conjunction with multigrid....">Smoother</a> to be used as the pre-smoother  <br /></td></tr>
 <tr class="separator:a60aa316ebfc000491554e28dbfbebc10 inherit pub_types_classoomph_1_1MGSolver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a46fa180d8a32f54272fc98e28001cf inherit pub_types_classoomph_1_1MGSolver" id="r_a0a46fa180d8a32f54272fc98e28001cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">typedef</a> <a class="el" href="classoomph_1_1Smoother.html">Smoother</a> *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1MGSolver.html#a0a46fa180d8a32f54272fc98e28001cf">PostSmootherFactoryFctPt</a>) ()</td></tr>
-<tr class="memdesc:a0a46fa180d8a32f54272fc98e28001cf inherit pub_types_classoomph_1_1MGSolver"><td class="mdescLeft">&#160;</td><td class="mdescRight">typedef for a function that returns a pointer to an object of the class <a class="el" href="classoomph_1_1Smoother.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////...">Smoother</a> to be used as the post-smoother  <br /></td></tr>
+<tr class="memdesc:a0a46fa180d8a32f54272fc98e28001cf inherit pub_types_classoomph_1_1MGSolver"><td class="mdescLeft">&#160;</td><td class="mdescRight">typedef for a function that returns a pointer to an object of the class <a class="el" href="classoomph_1_1Smoother.html" title="Smoother class: The smoother class is designed for to be used in conjunction with multigrid....">Smoother</a> to be used as the post-smoother  <br /></td></tr>
 <tr class="separator:a0a46fa180d8a32f54272fc98e28001cf inherit pub_types_classoomph_1_1MGSolver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classoomph_1_1MGSolver"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classoomph_1_1MGSolver')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classoomph_1_1MGSolver.html">oomph::MGSolver&lt; DIM &gt;</a></td></tr>
 <tr class="memitem:a70f1090e0673b8f9c4b87080adff0e2f inherit pro_methods_classoomph_1_1MGSolver" id="r_a70f1090e0673b8f9c4b87080adff0e2f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1MGSolver.html#a70f1090e0673b8f9c4b87080adff0e2f">mg_solve</a> (<a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">result</a>)</td></tr>
@@ -616,7 +610,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> DIM&gt;<br />
 class oomph::MGPreconditioner&lt; DIM &gt;</div><p>An interface to allow scalar MG to be used as a <a class="el" href="classoomph_1_1Preconditioner.html" title="Preconditioner base class. Gives an interface to call all other preconditioners through and stores th...">Preconditioner</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="geometric__multigrid_8h_source.html#l00734">734</a> of file <a class="el" href="geometric__multigrid_8h_source.html">geometric_multigrid.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="geometric__multigrid_8h_source.html#l00732">732</a> of file <a class="el" href="geometric__multigrid_8h_source.html">geometric_multigrid.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a57daf87cd60b23d39670c462afba7371" name="a57daf87cd60b23d39670c462afba7371"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a57daf87cd60b23d39670c462afba7371">&#9670;&#160;</a></span>MGPreconditioner() <span class="overload">[1/2]</span></h2>
@@ -646,9 +640,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Constructor. </p>
 
-<p class="definition">Definition at line <a class="el" href="geometric__multigrid_8h_source.html#l00738">738</a> of file <a class="el" href="geometric__multigrid_8h_source.html">geometric_multigrid.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="geometric__multigrid_8h_source.html#l00736">736</a> of file <a class="el" href="geometric__multigrid_8h_source.html">geometric_multigrid.h</a>.</p>
 
-<p class="reference">References <a class="el" href="geometric__multigrid_8h_source.html#l00622">oomph::MGSolver&lt; DIM &gt;::Nvcycle</a>.</p>
+<p class="reference">References <a class="el" href="geometric__multigrid_8h_source.html#l00620">oomph::MGSolver&lt; DIM &gt;::Nvcycle</a>.</p>
 
 </div>
 </div>
@@ -679,7 +673,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Destructor (empty) </p>
 
-<p class="definition">Definition at line <a class="el" href="geometric__multigrid_8h_source.html#l00745">745</a> of file <a class="el" href="geometric__multigrid_8h_source.html">geometric_multigrid.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="geometric__multigrid_8h_source.html#l00743">743</a> of file <a class="el" href="geometric__multigrid_8h_source.html">geometric_multigrid.h</a>.</p>
 
 </div>
 </div>
@@ -743,7 +737,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Reimplemented from <a class="el" href="classoomph_1_1LinearSolver.html#a9d66f3262e80ca06a365f98216afd85f">oomph::LinearSolver</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="geometric__multigrid_8h_source.html#l00818">818</a> of file <a class="el" href="geometric__multigrid_8h_source.html">geometric_multigrid.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="geometric__multigrid_8h_source.html#l00816">816</a> of file <a class="el" href="geometric__multigrid_8h_source.html">geometric_multigrid.h</a>.</p>
 
 </div>
 </div>
@@ -817,9 +811,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Implements <a class="el" href="classoomph_1_1Preconditioner.html#ace1199369e4465cd2b9a34884bb64ec8">oomph::Preconditioner</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="geometric__multigrid_8h_source.html#l00781">781</a> of file <a class="el" href="geometric__multigrid_8h_source.html">geometric_multigrid.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="geometric__multigrid_8h_source.html#l00779">779</a> of file <a class="el" href="geometric__multigrid_8h_source.html">geometric_multigrid.h</a>.</p>
 
-<p class="reference">References <a class="el" href="geometric__multigrid_8h_source.html#l00626">oomph::MGSolver&lt; DIM &gt;::Mg_problem_pt</a>, <a class="el" href="geometric__multigrid_8h_source.html#l02525">oomph::MGSolver&lt; DIM &gt;::mg_solve()</a>, <a class="el" href="problem_8h_source.html#l01704">oomph::Problem::ndof()</a>, <a class="el" href="linear__algebra__distribution_8h_source.html#l00463">oomph::DistributableLinearAlgebraObject::nrow()</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00319">oomph::oomph_info</a>, <a class="el" href="geometric__multigrid_8h_source.html#l00631">oomph::MGSolver&lt; DIM &gt;::Rhs_mg_vectors_storage</a>, <a class="el" href="geometric__multigrid_8h_source.html#l00648">oomph::MGSolver&lt; DIM &gt;::Stream_pt</a>, <a class="el" href="oomph__definitions_8h_source.html#l00464">oomph::OomphInfo::stream_pt()</a>, <a class="el" href="geometric__multigrid_8h_source.html#l00642">oomph::MGSolver&lt; DIM &gt;::Suppress_all_output</a>, and <a class="el" href="geometric__multigrid_8h_source.html#l00637">oomph::MGSolver&lt; DIM &gt;::Suppress_v_cycle_output</a>.</p>
+<p class="reference">References <a class="el" href="geometric__multigrid_8h_source.html#l00624">oomph::MGSolver&lt; DIM &gt;::Mg_problem_pt</a>, <a class="el" href="geometric__multigrid_8h_source.html#l02520">oomph::MGSolver&lt; DIM &gt;::mg_solve()</a>, <a class="el" href="problem_8h_source.html#l01704">oomph::Problem::ndof()</a>, <a class="el" href="linear__algebra__distribution_8h_source.html#l00463">oomph::DistributableLinearAlgebraObject::nrow()</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00326">oomph::oomph_info</a>, <a class="el" href="geometric__multigrid_8h_source.html#l00629">oomph::MGSolver&lt; DIM &gt;::Rhs_mg_vectors_storage</a>, <a class="el" href="geometric__multigrid_8h_source.html#l00646">oomph::MGSolver&lt; DIM &gt;::Stream_pt</a>, <a class="el" href="oomph__definitions_8h_source.html#l00471">oomph::OomphInfo::stream_pt()</a>, <a class="el" href="geometric__multigrid_8h_source.html#l00640">oomph::MGSolver&lt; DIM &gt;::Suppress_all_output</a>, and <a class="el" href="geometric__multigrid_8h_source.html#l00635">oomph::MGSolver&lt; DIM &gt;::Suppress_v_cycle_output</a>.</p>
 
 </div>
 </div>
@@ -852,9 +846,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Implements <a class="el" href="classoomph_1_1Preconditioner.html#af4886f4efe510e5c9b0eb19422943588">oomph::Preconditioner</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="geometric__multigrid_8h_source.html#l00754">754</a> of file <a class="el" href="geometric__multigrid_8h_source.html">geometric_multigrid.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="geometric__multigrid_8h_source.html#l00752">752</a> of file <a class="el" href="geometric__multigrid_8h_source.html">geometric_multigrid.h</a>.</p>
 
-<p class="reference">References <a class="el" href="oomph__utilities_8cc_source.html#l01046">oomph::MPI_Helpers::communicator_pt()</a>, <a class="el" href="geometric__multigrid_8h_source.html#l00826">oomph::MGSolver&lt; DIM &gt;::full_setup()</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00319">oomph::oomph_info</a>, <a class="el" href="geometric__multigrid_8h_source.html#l00648">oomph::MGSolver&lt; DIM &gt;::Stream_pt</a>, <a class="el" href="oomph__definitions_8h_source.html#l00464">oomph::OomphInfo::stream_pt()</a>, and <a class="el" href="geometric__multigrid_8h_source.html#l00642">oomph::MGSolver&lt; DIM &gt;::Suppress_all_output</a>.</p>
+<p class="reference">References <a class="el" href="oomph__utilities_8cc_source.html#l01054">oomph::MPI_Helpers::communicator_pt()</a>, <a class="el" href="geometric__multigrid_8h_source.html#l00823">oomph::MGSolver&lt; DIM &gt;::full_setup()</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00326">oomph::oomph_info</a>, <a class="el" href="geometric__multigrid_8h_source.html#l00646">oomph::MGSolver&lt; DIM &gt;::Stream_pt</a>, <a class="el" href="oomph__definitions_8h_source.html#l00471">oomph::OomphInfo::stream_pt()</a>, and <a class="el" href="geometric__multigrid_8h_source.html#l00640">oomph::MGSolver&lt; DIM &gt;::Suppress_all_output</a>.</p>
 
 </div>
 </div>
@@ -889,7 +883,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:04:42
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:40:28
         </div>
       </div>
     </footer>

@@ -2,7 +2,7 @@
 \hypertarget{classoomph_1_1AxisymmetricQTaylorHoodElement}{}\label{classoomph_1_1AxisymmetricQTaylorHoodElement}\index{oomph::AxisymmetricQTaylorHoodElement@{oomph::AxisymmetricQTaylorHoodElement}}
 
 
-/////////////////////////////////////////////////////////////////////////  
+Taylor--Hood elements are Navier--Stokes elements with quadratic interpolation for velocities and positions and continous linear pressure interpolation.  
 
 
 
@@ -111,7 +111,7 @@ Inheritance diagram for oomph\+::Axisymmetric\+QTaylor\+Hood\+Element\+:\begin{f
 \begin{DoxyCompactList}\small\item\em Write values of the i-\/th scalar field at the plot points. Needs to be implemented for each new specific element type. \end{DoxyCompactList}\item 
 std\+::string \mbox{\hyperlink{classoomph_1_1AxisymmetricNavierStokesEquations_a44ffef8f80dd1419fd6a7b281e2185b3}{scalar\+\_\+name\+\_\+paraview}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Name of the i-\/th scalar field. Default implementation returns V1 for the first one, V2 for the second etc. Can (should!) be overloaded with more meaningful names in specific elements. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1AxisymmetricNavierStokesEquations_a011b01b75649aaeba4cf759ba5e4b9e8}{point\+\_\+output\+\_\+data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{data}})
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1AxisymmetricNavierStokesEquations_a011b01b75649aaeba4cf759ba5e4b9e8}{point\+\_\+output\+\_\+data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&data)
 \begin{DoxyCompactList}\small\item\em Output solution in data vector at local cordinates s\+: r,z,u\+\_\+r,u\+\_\+z,u\+\_\+phi,p. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1AxisymmetricNavierStokesEquations_a3993d25e1ae47080505ec2570ba8c41f}{output\+\_\+veloc}} (std\+::ostream \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{outfile}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{nplot}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}})
 \begin{DoxyCompactList}\small\item\em Output function\+: x,y,\mbox{[}z\mbox{]},u,v,\mbox{[}w\mbox{]} in tecplot format. nplot points in each coordinate direction at timestep t (t=0\+: present; t\texorpdfstring{$>$}{>}0\+: previous timestep) \end{DoxyCompactList}\item 
@@ -427,8 +427,10 @@ std\+::string \mbox{\hyperlink{classoomph_1_1AxisymmetricNavierStokesEquations_a
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{oomph\+::\+Generalised\+Element}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}}() \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a76c506edf49c5bbfe94f424ec94191ab}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
-\begin{DoxyCompactList}\small\item\em Constructor\+: Initialise all pointers and all values to zero. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a6a34bffcef1bbbc5271630042afe7ca9}{\texorpdfstring{$\sim$}{\string~}\+Generalised\+Element}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor to clean up any memory allocated by the object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1GeneralisedElement_a4e4a9177fdb093fc85c890bb86bdf655}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
+\begin{DoxyCompactList}\small\item\em Broken copy constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a180b550ae69f8bcbaae3f37f38c475ff}{operator=}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
 \begin{DoxyCompactList}\small\item\em Broken assignment operator. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Data}{Data}} \texorpdfstring{$\ast$}{*}\& \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a3b83389f2c80788013421c6d59604f0b}{internal\+\_\+data\+\_\+pt}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
@@ -850,9 +852,7 @@ template$<$$>$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement
 
 
 \doxysubsection{Detailed Description}
-///////////////////////////////////////////////////////////////////////// 
-
-Taylor--Hood elements are Navier--Stokes elements with quadratic interpolation for velocities and positions and continous linear pressure interpolation 
+Taylor--Hood elements are Navier--Stokes elements with quadratic interpolation for velocities and positions and continous linear pressure interpolation. 
 
 Definition at line \mbox{\hyperlink{axisym__navier__stokes__elements_8h_source_l01529}{1529}} of file \mbox{\hyperlink{axisym__navier__stokes__elements_8h_source}{axisym\+\_\+navier\+\_\+stokes\+\_\+elements.\+h}}.
 
@@ -972,8 +972,6 @@ References \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Elemen
 
 Create a list of pairs for all unknowns in this element, so that the first entry in each pair contains the global equation number of the unknown, while the second one contains the number of the "{}\+DOF type"{} that this unknown is associated with. (Function can obviously only be called if the equation numbering scheme has been set up.) 
 
-//////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////////
-
 Create a list of pairs for all unknowns in this element, so the first entry in each pair contains the global equation number of the unknown, while the second one contains the number of the "{}\+DOF type"{} that this unknown is associated with. (Function can obviously only be called if the equation numbering scheme has been set up.) 
 
 Reimplemented from \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a069f59bfc3e607a5bebba52c6314d777}{oomph\+::\+Generalised\+Element}}.
@@ -984,7 +982,7 @@ Definition at line \mbox{\hyperlink{axisym__navier__stokes__elements_8cc_source_
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l00708}{oomph\+::\+Generalised\+Element\+::eqn\+\_\+number()}}, \mbox{\hyperlink{elements_8h_source_l00730}{oomph\+::\+Generalised\+Element\+::local\+\_\+eqn\+\_\+number()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l01436}{oomph\+::\+Finite\+Element\+::nodal\+\_\+local\+\_\+eqn()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, and \mbox{\hyperlink{nodes_8h_source_l00483}{oomph\+::\+Data\+::nvalue()}}.
+References \mbox{\hyperlink{elements_8h_source_l00691}{oomph\+::\+Generalised\+Element\+::eqn\+\_\+number()}}, \mbox{\hyperlink{elements_8h_source_l00713}{oomph\+::\+Generalised\+Element\+::local\+\_\+eqn\+\_\+number()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l01436}{oomph\+::\+Finite\+Element\+::nodal\+\_\+local\+\_\+eqn()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, and \mbox{\hyperlink{nodes_8h_source_l00483}{oomph\+::\+Data\+::nvalue()}}.
 
 \Hypertarget{classoomph_1_1AxisymmetricQTaylorHoodElement_abfaf2fb0ff51a888f77c724af8c20809}\label{classoomph_1_1AxisymmetricQTaylorHoodElement_abfaf2fb0ff51a888f77c724af8c20809} 
 \index{oomph::AxisymmetricQTaylorHoodElement@{oomph::AxisymmetricQTaylorHoodElement}!get\_traction@{get\_traction}}

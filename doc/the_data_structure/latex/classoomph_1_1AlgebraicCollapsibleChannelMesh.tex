@@ -2,12 +2,12 @@
 \hypertarget{classoomph_1_1AlgebraicCollapsibleChannelMesh}{}\label{classoomph_1_1AlgebraicCollapsibleChannelMesh}\index{oomph::AlgebraicCollapsibleChannelMesh$<$ ELEMENT $>$@{oomph::AlgebraicCollapsibleChannelMesh$<$ ELEMENT $>$}}
 
 
-////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////  
+Collapsible channel mesh with algebraic node update.  
 
 
 
 
-{\ttfamily \#include $<$collapsible\+\_\+channel\+\_\+mesh.\+template.\+h$>$}
+{\ttfamily \#include $<$collapsible\+\_\+channel\+\_\+mesh.\+h$>$}
 
 Inheritance diagram for oomph\+::Algebraic\+Collapsible\+Channel\+Mesh\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
 \begin{center}
@@ -132,6 +132,10 @@ Inheritance diagram for oomph\+::Algebraic\+Collapsible\+Channel\+Mesh\texorpdfs
 \begin{DoxyCompactList}\small\item\em Replace existing boundary node lookup schemes with new schemes created using the boundary data stored in the nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1Mesh_ad1b124a959628aba00162b89617b3a62}{boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Indicate whether the i-\/th boundary has an intrinsic coordinate. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_ab137d0c0debf5ba0d6ea6990103e620c}{set\+\_\+boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be existing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_a3b9d63e0057ed721190b109f48f7c92e}{set\+\_\+boundary\+\_\+coordinate\+\_\+does\+\_\+not\+\_\+exist}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be non-\/existing. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_af01dfefb66c15579b540be62999d93ee}{nelement}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return number of elements in the mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
@@ -511,9 +515,7 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_aca12acfe655a4d5c4a4eab4a7b970812}{Element\+\_\+pt}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a412a5051be9e81f0ba61bf85e5abc4a6}{Boundary\+\_\+coordinate\+\_\+exists}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of boolean data that indicates whether the boundary coordinates have been set for the boundary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Public Types inherited from \mbox{\hyperlink{classoomph_1_1Mesh}{oomph\+::\+Mesh}}}
 \begin{DoxyCompactItemize}
@@ -539,11 +541,9 @@ std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionEleme
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{class}} ELEMENT$>$\newline
 class oomph\+::\+Algebraic\+Collapsible\+Channel\+Mesh$<$ ELEMENT $>$}
-////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////// 
+Collapsible channel mesh with algebraic node update. 
 
-Collapsible channel mesh with algebraic node update 
-
-Definition at line \mbox{\hyperlink{collapsible__channel__mesh_8template_8h_source_l00426}{426}} of file \mbox{\hyperlink{collapsible__channel__mesh_8template_8h_source}{collapsible\+\_\+channel\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{collapsible__channel__mesh_8h_source_l00418}{418}} of file \mbox{\hyperlink{collapsible__channel__mesh_8h_source}{collapsible\+\_\+channel\+\_\+mesh.\+h}}.
 
 
 
@@ -561,11 +561,11 @@ Constructor\+: Pass number of elements in upstream/collapsible/ downstream segme
 
 
 
-Definition at line \mbox{\hyperlink{collapsible__channel__mesh_8template_8h_source_l00436}{436}} of file \mbox{\hyperlink{collapsible__channel__mesh_8template_8h_source}{collapsible\+\_\+channel\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{collapsible__channel__mesh_8h_source_l00428}{428}} of file \mbox{\hyperlink{collapsible__channel__mesh_8h_source}{collapsible\+\_\+channel\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{algebraic__elements_8h_source_l00823}{oomph\+::\+Algebraic\+Mesh\+::add\+\_\+geom\+\_\+object\+\_\+list\+\_\+pt()}}, \mbox{\hyperlink{collapsible__channel__mesh_8template_8cc_source_l00324}{oomph\+::\+Algebraic\+Collapsible\+Channel\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+algebraic\+\_\+node\+\_\+update()}}, and \mbox{\hyperlink{collapsible__channel__mesh_8template_8h_source_l00091}{oomph\+::\+Collapsible\+Channel\+Mesh$<$ ELEMENT $>$\+::wall\+\_\+pt()}}.
+References \mbox{\hyperlink{algebraic__elements_8h_source_l00823}{oomph\+::\+Algebraic\+Mesh\+::add\+\_\+geom\+\_\+object\+\_\+list\+\_\+pt()}}, \mbox{\hyperlink{collapsible__channel__mesh_8template_8cc_source_l00324}{oomph\+::\+Algebraic\+Collapsible\+Channel\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+algebraic\+\_\+node\+\_\+update()}}, and \mbox{\hyperlink{collapsible__channel__mesh_8h_source_l00090}{oomph\+::\+Collapsible\+Channel\+Mesh$<$ ELEMENT $>$\+::wall\+\_\+pt()}}.
 
 \Hypertarget{classoomph_1_1AlgebraicCollapsibleChannelMesh_ab921ed3dbc5678fc5d39626fdf32c4ed}\label{classoomph_1_1AlgebraicCollapsibleChannelMesh_ab921ed3dbc5678fc5d39626fdf32c4ed} 
 \index{oomph::AlgebraicCollapsibleChannelMesh$<$ ELEMENT $>$@{oomph::AlgebraicCollapsibleChannelMesh$<$ ELEMENT $>$}!````~AlgebraicCollapsibleChannelMesh@{\texorpdfstring{$\sim$}{\string~}AlgebraicCollapsibleChannelMesh}}
@@ -580,7 +580,7 @@ Destructor\+: empty.
 
 
 
-Definition at line \mbox{\hyperlink{collapsible__channel__mesh_8template_8h_source_l00466}{466}} of file \mbox{\hyperlink{collapsible__channel__mesh_8template_8h_source}{collapsible\+\_\+channel\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{collapsible__channel__mesh_8h_source_l00458}{458}} of file \mbox{\hyperlink{collapsible__channel__mesh_8h_source}{collapsible\+\_\+channel\+\_\+mesh.\+h}}.
 
 \Hypertarget{classoomph_1_1AlgebraicCollapsibleChannelMesh_a3c19524e69a9408c79047d130b79d6b3}\label{classoomph_1_1AlgebraicCollapsibleChannelMesh_a3c19524e69a9408c79047d130b79d6b3} 
 \index{oomph::AlgebraicCollapsibleChannelMesh$<$ ELEMENT $>$@{oomph::AlgebraicCollapsibleChannelMesh$<$ ELEMENT $>$}!AlgebraicCollapsibleChannelMesh@{AlgebraicCollapsibleChannelMesh}}
@@ -595,11 +595,11 @@ Constructor\+: Pass number of elements in upstream/collapsible/ downstream segme
 
 
 
-Definition at line \mbox{\hyperlink{collapsible__channel__mesh_8template_8h_source_l00474}{474}} of file \mbox{\hyperlink{collapsible__channel__mesh_8template_8h_source}{collapsible\+\_\+channel\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{collapsible__channel__mesh_8h_source_l00466}{466}} of file \mbox{\hyperlink{collapsible__channel__mesh_8h_source}{collapsible\+\_\+channel\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{algebraic__elements_8h_source_l00823}{oomph\+::\+Algebraic\+Mesh\+::add\+\_\+geom\+\_\+object\+\_\+list\+\_\+pt()}}, \mbox{\hyperlink{collapsible__channel__domain_8h_source_l00165}{oomph\+::\+Collapsible\+Channel\+Domain\+::bl\+\_\+squash\+\_\+fct\+\_\+pt()}}, \mbox{\hyperlink{collapsible__channel__mesh_8template_8h_source_l00147}{oomph\+::\+Collapsible\+Channel\+Mesh$<$ ELEMENT $>$\+::\+Domain\+\_\+pt}}, \mbox{\hyperlink{mesh_8cc_source_l00287}{oomph\+::\+Mesh\+::node\+\_\+update()}}, \mbox{\hyperlink{collapsible__channel__mesh_8template_8cc_source_l00324}{oomph\+::\+Algebraic\+Collapsible\+Channel\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+algebraic\+\_\+node\+\_\+update()}}, and \mbox{\hyperlink{collapsible__channel__mesh_8template_8h_source_l00091}{oomph\+::\+Collapsible\+Channel\+Mesh$<$ ELEMENT $>$\+::wall\+\_\+pt()}}.
+References \mbox{\hyperlink{algebraic__elements_8h_source_l00823}{oomph\+::\+Algebraic\+Mesh\+::add\+\_\+geom\+\_\+object\+\_\+list\+\_\+pt()}}, \mbox{\hyperlink{collapsible__channel__domain_8h_source_l00163}{oomph\+::\+Collapsible\+Channel\+Domain\+::bl\+\_\+squash\+\_\+fct\+\_\+pt()}}, \mbox{\hyperlink{collapsible__channel__mesh_8h_source_l00145}{oomph\+::\+Collapsible\+Channel\+Mesh$<$ ELEMENT $>$\+::\+Domain\+\_\+pt}}, \mbox{\hyperlink{mesh_8cc_source_l00287}{oomph\+::\+Mesh\+::node\+\_\+update()}}, \mbox{\hyperlink{collapsible__channel__mesh_8template_8cc_source_l00324}{oomph\+::\+Algebraic\+Collapsible\+Channel\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+algebraic\+\_\+node\+\_\+update()}}, and \mbox{\hyperlink{collapsible__channel__mesh_8h_source_l00090}{oomph\+::\+Collapsible\+Channel\+Mesh$<$ ELEMENT $>$\+::wall\+\_\+pt()}}.
 
 
 
@@ -615,15 +615,13 @@ References \mbox{\hyperlink{algebraic__elements_8h_source_l00823}{oomph\+::\+Alg
 
 Update nodal position at time level t (t=0\+: present; t\texorpdfstring{$>$}{>}0\+: previous) 
 
-//////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////////
-
 Perform algebraic mesh update at time level t (t=0\+: present; t\texorpdfstring{$>$}{>}0\+: previous) 
 
 Implements \mbox{\hyperlink{classoomph_1_1AlgebraicMesh_ab01d6f93354f3c4e5c9d1f0a5885a65b}{oomph\+::\+Algebraic\+Mesh}}.
 
 
 
-Definition at line \mbox{\hyperlink{collapsible__channel__mesh_8template_8cc_source_l00242}{242}} of file \mbox{\hyperlink{collapsible__channel__mesh_8template_8cc_source}{collapsible\+\_\+channel\+\_\+mesh.\+template.\+cc}}.
+Definition at line \mbox{\hyperlink{collapsible__channel__mesh_8template_8cc_source_l00243}{243}} of file \mbox{\hyperlink{collapsible__channel__mesh_8template_8cc_source}{collapsible\+\_\+channel\+\_\+mesh.\+template.\+cc}}.
 
 
 
@@ -646,11 +644,11 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1CollapsibleChannelMesh_a0ff4dd
 
 
 
-Definition at line \mbox{\hyperlink{collapsible__channel__mesh_8template_8h_source_l00542}{542}} of file \mbox{\hyperlink{collapsible__channel__mesh_8template_8h_source}{collapsible\+\_\+channel\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{collapsible__channel__mesh_8h_source_l00534}{534}} of file \mbox{\hyperlink{collapsible__channel__mesh_8h_source}{collapsible\+\_\+channel\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{collapsible__channel__mesh_8template_8h_source_l00574}{oomph\+::\+Algebraic\+Collapsible\+Channel\+Mesh$<$ ELEMENT $>$\+::\+Dummy\+\_\+fct\+\_\+pt}}.
+References \mbox{\hyperlink{collapsible__channel__mesh_8h_source_l00566}{oomph\+::\+Algebraic\+Collapsible\+Channel\+Mesh$<$ ELEMENT $>$\+::\+Dummy\+\_\+fct\+\_\+pt}}.
 
 \Hypertarget{classoomph_1_1AlgebraicCollapsibleChannelMesh_ac994da2ea0b8583a8ae6db5bab8de113}\label{classoomph_1_1AlgebraicCollapsibleChannelMesh_ac994da2ea0b8583a8ae6db5bab8de113} 
 \index{oomph::AlgebraicCollapsibleChannelMesh$<$ ELEMENT $>$@{oomph::AlgebraicCollapsibleChannelMesh$<$ ELEMENT $>$}!bl\_squash\_fct\_pt@{bl\_squash\_fct\_pt}}
@@ -669,11 +667,11 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1CollapsibleChannelMesh_a4d6a58
 
 
 
-Definition at line \mbox{\hyperlink{collapsible__channel__mesh_8template_8h_source_l00517}{517}} of file \mbox{\hyperlink{collapsible__channel__mesh_8template_8h_source}{collapsible\+\_\+channel\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{collapsible__channel__mesh_8h_source_l00509}{509}} of file \mbox{\hyperlink{collapsible__channel__mesh_8h_source}{collapsible\+\_\+channel\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{collapsible__channel__mesh_8template_8h_source_l00574}{oomph\+::\+Algebraic\+Collapsible\+Channel\+Mesh$<$ ELEMENT $>$\+::\+Dummy\+\_\+fct\+\_\+pt}}.
+References \mbox{\hyperlink{collapsible__channel__mesh_8h_source_l00566}{oomph\+::\+Algebraic\+Collapsible\+Channel\+Mesh$<$ ELEMENT $>$\+::\+Dummy\+\_\+fct\+\_\+pt}}.
 
 \Hypertarget{classoomph_1_1AlgebraicCollapsibleChannelMesh_a54e93316a561cd77a68c0774d2772030}\label{classoomph_1_1AlgebraicCollapsibleChannelMesh_a54e93316a561cd77a68c0774d2772030} 
 \index{oomph::AlgebraicCollapsibleChannelMesh$<$ ELEMENT $>$@{oomph::AlgebraicCollapsibleChannelMesh$<$ ELEMENT $>$}!setup\_algebraic\_node\_update@{setup\_algebraic\_node\_update}}
@@ -696,7 +694,7 @@ References \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Elemen
 
 
 
-Referenced by \mbox{\hyperlink{collapsible__channel__mesh_8template_8h_source_l00474}{oomph\+::\+Algebraic\+Collapsible\+Channel\+Mesh$<$ ELEMENT $>$\+::\+Algebraic\+Collapsible\+Channel\+Mesh()}}, and \mbox{\hyperlink{collapsible__channel__mesh_8template_8h_source_l00436}{oomph\+::\+Algebraic\+Collapsible\+Channel\+Mesh$<$ ELEMENT $>$\+::\+Algebraic\+Collapsible\+Channel\+Mesh()}}.
+Referenced by \mbox{\hyperlink{collapsible__channel__mesh_8h_source_l00466}{oomph\+::\+Algebraic\+Collapsible\+Channel\+Mesh$<$ ELEMENT $>$\+::\+Algebraic\+Collapsible\+Channel\+Mesh()}}, and \mbox{\hyperlink{collapsible__channel__mesh_8h_source_l00428}{oomph\+::\+Algebraic\+Collapsible\+Channel\+Mesh$<$ ELEMENT $>$\+::\+Algebraic\+Collapsible\+Channel\+Mesh()}}.
 
 \Hypertarget{classoomph_1_1AlgebraicCollapsibleChannelMesh_abad38fb50d067a126af1161a3a603972}\label{classoomph_1_1AlgebraicCollapsibleChannelMesh_abad38fb50d067a126af1161a3a603972} 
 \index{oomph::AlgebraicCollapsibleChannelMesh$<$ ELEMENT $>$@{oomph::AlgebraicCollapsibleChannelMesh$<$ ELEMENT $>$}!update\_node\_update@{update\_node\_update}}
@@ -719,7 +717,7 @@ Reimplemented in \mbox{\hyperlink{classoomph_1_1RefineableAlgebraicCollapsibleCh
 
 
 
-Definition at line \mbox{\hyperlink{collapsible__channel__mesh_8template_8h_source_l00567}{567}} of file \mbox{\hyperlink{collapsible__channel__mesh_8template_8h_source}{collapsible\+\_\+channel\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{collapsible__channel__mesh_8h_source_l00559}{559}} of file \mbox{\hyperlink{collapsible__channel__mesh_8h_source}{collapsible\+\_\+channel\+\_\+mesh.\+h}}.
 
 
 
@@ -737,15 +735,15 @@ Dummy function pointer.
 
 
 
-Definition at line \mbox{\hyperlink{collapsible__channel__mesh_8template_8h_source_l00574}{574}} of file \mbox{\hyperlink{collapsible__channel__mesh_8template_8h_source}{collapsible\+\_\+channel\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{collapsible__channel__mesh_8h_source_l00566}{566}} of file \mbox{\hyperlink{collapsible__channel__mesh_8h_source}{collapsible\+\_\+channel\+\_\+mesh.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{collapsible__channel__mesh_8template_8h_source_l00542}{oomph\+::\+Algebraic\+Collapsible\+Channel\+Mesh$<$ ELEMENT $>$\+::axial\+\_\+spacing\+\_\+fct\+\_\+pt()}}, and \mbox{\hyperlink{collapsible__channel__mesh_8template_8h_source_l00517}{oomph\+::\+Algebraic\+Collapsible\+Channel\+Mesh$<$ ELEMENT $>$\+::bl\+\_\+squash\+\_\+fct\+\_\+pt()}}.
+Referenced by \mbox{\hyperlink{collapsible__channel__mesh_8h_source_l00534}{oomph\+::\+Algebraic\+Collapsible\+Channel\+Mesh$<$ ELEMENT $>$\+::axial\+\_\+spacing\+\_\+fct\+\_\+pt()}}, and \mbox{\hyperlink{collapsible__channel__mesh_8h_source_l00509}{oomph\+::\+Algebraic\+Collapsible\+Channel\+Mesh$<$ ELEMENT $>$\+::bl\+\_\+squash\+\_\+fct\+\_\+pt()}}.
 
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{collapsible__channel__mesh_8template_8h}{collapsible\+\_\+channel\+\_\+mesh.\+template.\+h}}\item 
+\mbox{\hyperlink{collapsible__channel__mesh_8h}{collapsible\+\_\+channel\+\_\+mesh.\+h}}\item 
 \mbox{\hyperlink{collapsible__channel__mesh_8template_8cc}{collapsible\+\_\+channel\+\_\+mesh.\+template.\+cc}}\end{DoxyCompactItemize}

@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -118,7 +112,7 @@
 </div><!--header-->
 <div class="contents">
 
-<p>/////////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////////  
+<p>Undeformed wall is a steady, straight 1D line in 2D space.  
  <a href="classUndeformedWall.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="fsi__chan__problem_8h_source.html">fsi_chan_problem.h</a>&gt;</code></p>
@@ -141,7 +135,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a9cbb52e30fd47d1841c1c3dc812f4b96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parametrised position on object: r(zeta). Evaluated at previous timestep. t=0: current time; t&gt;0: previous timestep. Calls steady version.  <br /></td></tr>
 <tr class="separator:a9cbb52e30fd47d1841c1c3dc812f4b96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a709e65fc95e9443a886125e455595e5d" id="r_a709e65fc95e9443a886125e455595e5d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUndeformedWall.html#a709e65fc95e9443a886125e455595e5d">d2position</a> (const Vector&lt; double &gt; &amp;zeta, Vector&lt; double &gt; &amp;r, DenseMatrix&lt; double &gt; &amp;drdzeta, RankThreeTensor&lt; double &gt; &amp;ddrdzeta) const</td></tr>
-<tr class="memdesc:a709e65fc95e9443a886125e455595e5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Posn vector and its 1st &amp; 2nd derivatives w.r.t. to coordinates: <picture><source srcset="form_27_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \frac{dR_i}{d \zeta_\alpha}$" src="form_27.png" width="19" height="19"/></picture> = drdzeta(alpha,i). <picture><source srcset="form_28_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \frac{d^2R_i}{d \zeta_\alpha d \zeta_\beta}$" src="form_28.png" width="34" height="21"/></picture> = ddrdzeta(alpha,beta,i). Evaluated at current time.  <br /></td></tr>
+<tr class="memdesc:a709e65fc95e9443a886125e455595e5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Posn vector and its 1st &amp; 2nd derivatives w.r.t. to coordinates: <img class="formulaInl" alt="$ \frac{dR_i}{d \zeta_\alpha}$" src="form_27.png" width="19" height="19"/> = drdzeta(alpha,i). <img class="formulaInl" alt="$ \frac{d^2R_i}{d \zeta_\alpha d \zeta_\beta}$" src="form_28.png" width="34" height="21"/> = ddrdzeta(alpha,beta,i). Evaluated at current time.  <br /></td></tr>
 <tr class="separator:a709e65fc95e9443a886125e455595e5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
@@ -154,12 +148,12 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a4525dbe0b5d2108ee51f16bee9af88ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>/////////////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////// </p>
-<p>Undeformed wall is a steady, straight 1D line in 2D space </p><p class="formulaDsp">
-<picture><source srcset="form_25_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[ x = X_0 + \zeta \]" src="form_25.png" width="61" height="13"/></picture>
+<div class="textblock"><p>Undeformed wall is a steady, straight 1D line in 2D space. </p>
+<p class="formulaDsp">
+<img class="formulaDsp" alt="\[ x = X_0 + \zeta \]" src="form_25.png" width="61" height="13"/>
 </p>
  <p class="formulaDsp">
-<picture><source srcset="form_26_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[ y = H \]" src="form_26.png" width="35" height="13"/></picture>
+<img class="formulaDsp" alt="\[ y = H \]" src="form_26.png" width="35" height="13"/>
 </p>
  
 <p class="definition">Definition at line <a class="el" href="fsi__chan__problem_8h_source.html#l00155">155</a> of file <a class="el" href="fsi__chan__problem_8h_source.html">fsi_chan_problem.h</a>.</p>
@@ -253,7 +247,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Posn vector and its 1st &amp; 2nd derivatives w.r.t. to coordinates: <picture><source srcset="form_27_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \frac{dR_i}{d \zeta_\alpha}$" src="form_27.png" width="19" height="19"/></picture> = drdzeta(alpha,i). <picture><source srcset="form_28_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \frac{d^2R_i}{d \zeta_\alpha d \zeta_\beta}$" src="form_28.png" width="34" height="21"/></picture> = ddrdzeta(alpha,beta,i). Evaluated at current time. </p>
+<p>Posn vector and its 1st &amp; 2nd derivatives w.r.t. to coordinates: <img class="formulaInl" alt="$ \frac{dR_i}{d \zeta_\alpha}$" src="form_27.png" width="19" height="19"/> = drdzeta(alpha,i). <img class="formulaInl" alt="$ \frac{d^2R_i}{d \zeta_\alpha d \zeta_\beta}$" src="form_28.png" width="34" height="21"/> = ddrdzeta(alpha,beta,i). Evaluated at current time. </p>
 
 <p class="definition">Definition at line <a class="el" href="fsi__chan__problem_8h_source.html#l00195">195</a> of file <a class="el" href="fsi__chan__problem_8h_source.html">fsi_chan_problem.h</a>.</p>
 
@@ -441,7 +435,7 @@ Private Attributes</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:27:38
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:34:28
         </div>
       </div>
     </footer>

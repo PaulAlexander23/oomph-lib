@@ -2,7 +2,7 @@
 \hypertarget{classoomph_1_1SurfaceVolumeConstraintBoundingElement}{}\label{classoomph_1_1SurfaceVolumeConstraintBoundingElement}\index{oomph::SurfaceVolumeConstraintBoundingElement@{oomph::SurfaceVolumeConstraintBoundingElement}}
 
 
-////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////  
+Two-\/dimensional interface elements that allow the application of a volume constraint on the region bounded by these elements. The volume is computed by integrating x.\+n around the boundary of the domain and then dividing by three. The sign is chosen so that the volume will be positive when the elements surround a fluid domain.  
 
 
 
@@ -56,9 +56,7 @@ Inheritance diagram for oomph\+::Surface\+Volume\+Constraint\+Bounding\+Element\
 
 
 \doxysubsection{Detailed Description}
-////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////// 
-
-Two-\/dimensional interface elements that allow the application of a volume constraint on the region bounded by these elements. The volume is computed by integrating x.\+n around the boundary of the domain and then dividing by three. The sign is chosen so that the volume will be positive when the elements surround a fluid domain.
+Two-\/dimensional interface elements that allow the application of a volume constraint on the region bounded by these elements. The volume is computed by integrating x.\+n around the boundary of the domain and then dividing by three. The sign is chosen so that the volume will be positive when the elements surround a fluid domain. 
 
 These elements must be used together with the associated \doxylink{classoomph_1_1VolumeConstraintElement}{Volume\+Constraint\+Element}, which stores the value of the target volume. 
 
@@ -108,9 +106,7 @@ Definition at line \mbox{\hyperlink{constrained__volume__elements_8h_source_l007
 
 Helper function to fill in contributions to residuals (remember that part of the residual is added by the the associated \doxylink{classoomph_1_1VolumeConstraintElement}{Volume\+Constraint\+Element}). This is specific for 2D surface elements that bound 3D cartesian fluid elements. 
 
-/////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////
 
-Helper function to fill in contributions to residuals (remember that part of the residual is added by the the associated \doxylink{classoomph_1_1VolumeConstraintElement}{Volume\+Constraint\+Element}). This is specific for 2D surface elements that bound 3D cartesian fluid elements. 
 
 Implements \mbox{\hyperlink{classoomph_1_1VolumeConstraintBoundingElement_a717f1085709bd8820b8043ff94ecb0c5}{oomph\+::\+Volume\+Constraint\+Bounding\+Element}}.
 

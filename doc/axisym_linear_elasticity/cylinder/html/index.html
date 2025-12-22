@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -124,40 +118,40 @@ This implementation of the equations and the documentation were developed jointl
  <hr  />
 <h1><a class="anchor" id="theory"></a>
 Theory</h1>
-<p>Consider a three-dimensional, axisymmetric body (of density <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \rho
-$" src="form_0.png" width="8" height="9"/></picture>, Young's modulus <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ E $" src="form_1.png" width="10" height="10"/></picture>, and Poisson's ratio <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \nu $" src="form_2.png" width="6" height="6"/></picture>), occupying the region <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ D $" src="form_3.png" width="10" height="10"/></picture> whose boundary is <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial D $" src="form_4.png" width="18" height="10"/></picture>. Using cylindrical coordinates <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$
-(r^*,\theta,z^*) $" src="form_5.png" width="50" height="14"/></picture>, the equations of linear elasticity can be written as  </p><p class="formulaDsp">
-<picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p>Consider a three-dimensional, axisymmetric body (of density <img class="formulaInl" alt="$ \rho
+$" src="form_0.png" width="8" height="9"/>, Young's modulus <img class="formulaInl" alt="$ E $" src="form_1.png" width="10" height="10"/>, and Poisson's ratio <img class="formulaInl" alt="$ \nu $" src="form_2.png" width="6" height="6"/>), occupying the region <img class="formulaInl" alt="$ D $" src="form_3.png" width="10" height="10"/> whose boundary is <img class="formulaInl" alt="$ \partial D $" src="form_4.png" width="18" height="10"/>. Using cylindrical coordinates <img class="formulaInl" alt="$
+(r^*,\theta,z^*) $" src="form_5.png" width="50" height="14"/>, the equations of linear elasticity can be written as  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \nabla^* \cdot \bm{\tau}^* + \rho \mathbf{F}^* = \rho\frac{\partial^2\mathbf{u}^*}
 {\partial {t^*}^2},
-\]" src="form_6.png" width="131" height="29"/></picture>
+\]" src="form_6.png" width="131" height="29"/>
 </p>
-<p> where <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\nabla^* = \left(\frac{\partial}{\partial r^*},
+<p> where <img class="formulaInl" alt="$\nabla^* = \left(\frac{\partial}{\partial r^*},
 \frac{1}{r^*}\frac{\partial}
-{\partial \theta},\frac{\partial}{\partial z^*}\right)$" src="form_7.png" width="119" height="18"/></picture>, <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \bm{\tau}^*(r^*,z^*,t^*) $" src="form_8.png" width="69" height="14"/></picture> is the stress tensor, <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\mathbf{F}^*(r^*,z^*,t^*)$" src="form_9.png" width="70" height="14"/></picture> is the body force and <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mathbf{u^*}(r^*,z^*,t^*) $" src="form_10.png" width="68" height="14"/></picture> is the displacement field.</p>
-<p>Note that, despite the fact that none of the above physical quantities depend on the azimuthal angle <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \theta $" src="form_11.png" width="6" height="10"/></picture>, each can have a non-zero <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \theta $" src="form_11.png" width="6" height="10"/></picture> component. Also note that variables written with a superscript asterisk are dimensional, and their non-dimensional counterparts will be written without an asterisk. (The coordinate <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \theta $" src="form_11.png" width="6" height="10"/></picture> is, by definition, non-dimensional, so it will always be written without an asterisk.)</p>
-<p>A boundary traction <picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \hat{\bm{\tau}}^* $" src="form_12.png" width="14" height="10"/></picture> and boundary displacement <picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$
-\hat{\mathbf{u}}^* $" src="form_13.png" width="13" height="10"/></picture> are imposed along the boundaries <picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial
-D_\mathrm{n} $" src="form_14.png" width="23" height="13"/></picture> and <picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial D_\mathrm{d} $" src="form_15.png" width="23" height="13"/></picture> respectively, where <picture><source srcset="form_16_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$
-\partial D = \partial D_\mathrm{d} \cup \partial D_\mathrm{n} $" src="form_16.png" width="95" height="13"/></picture> so that  </p><p class="formulaDsp">
-<picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+{\partial \theta},\frac{\partial}{\partial z^*}\right)$" src="form_7.png" width="119" height="18"/>, <img class="formulaInl" alt="$ \bm{\tau}^*(r^*,z^*,t^*) $" src="form_8.png" width="69" height="14"/> is the stress tensor, <img class="formulaInl" alt="$\mathbf{F}^*(r^*,z^*,t^*)$" src="form_9.png" width="70" height="14"/> is the body force and <img class="formulaInl" alt="$ \mathbf{u^*}(r^*,z^*,t^*) $" src="form_10.png" width="68" height="14"/> is the displacement field.</p>
+<p>Note that, despite the fact that none of the above physical quantities depend on the azimuthal angle <img class="formulaInl" alt="$ \theta $" src="form_11.png" width="6" height="10"/>, each can have a non-zero <img class="formulaInl" alt="$ \theta $" src="form_11.png" width="6" height="10"/> component. Also note that variables written with a superscript asterisk are dimensional, and their non-dimensional counterparts will be written without an asterisk. (The coordinate <img class="formulaInl" alt="$ \theta $" src="form_11.png" width="6" height="10"/> is, by definition, non-dimensional, so it will always be written without an asterisk.)</p>
+<p>A boundary traction <img class="formulaInl" alt="$ \hat{\bm{\tau}}^* $" src="form_12.png" width="14" height="10"/> and boundary displacement <img class="formulaInl" alt="$
+\hat{\mathbf{u}}^* $" src="form_13.png" width="13" height="10"/> are imposed along the boundaries <img class="formulaInl" alt="$ \partial
+D_\mathrm{n} $" src="form_14.png" width="23" height="13"/> and <img class="formulaInl" alt="$ \partial D_\mathrm{d} $" src="form_15.png" width="23" height="13"/> respectively, where <img class="formulaInl" alt="$
+\partial D = \partial D_\mathrm{d} \cup \partial D_\mathrm{n} $" src="form_16.png" width="95" height="13"/> so that  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \mathbf{u}^* = \hat{\mathbf{u}}^*\text{ on }\partial D_\mathrm{d},
 \qquad
 \bm{\tau}^*\cdot\mathbf{n} = \hat{\bm{\tau}}^*\text{ on }\partial
 D_\mathrm{n},
-\]" src="form_17.png" width="229" height="13"/></picture>
+\]" src="form_17.png" width="229" height="13"/>
 </p>
-<p> where <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mathbf{n} $" src="form_18.png" width="8" height="6"/></picture> is the outer unit normal vector.</p>
+<p> where <img class="formulaInl" alt="$ \mathbf{n} $" src="form_18.png" width="8" height="6"/> is the outer unit normal vector.</p>
 <p>The constitutive equations relating the stresses to the displacements are  </p><p class="formulaDsp">
-<picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \bm{\tau}^* =
 \frac{E}{1+\nu}\left(\frac{\nu}{1-2\nu}\left(\nabla^*\cdot\mathbf{u}^*\right)
 \mathbf{I} + \frac{1}{2}\left(\nabla^*\mathbf{u}^* +
 \left(\nabla^*\mathbf{u}^*\right)^\mathrm{T}\right)\right),
-\]" src="form_19.png" width="316" height="31"/></picture>
+\]" src="form_19.png" width="316" height="31"/>
 </p>
-<p> where <picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mathbf{I} $" src="form_20.png" width="6" height="10"/></picture> is the identity tensor and superscript <picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mathrm{T} $" src="form_21.png" width="10" height="9"/></picture> denotes the transpose. In cylindrical coordinates, the matrix representation of the tensor <picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \nabla^*\mathbf{u}^* $" src="form_22.png" width="29" height="11"/></picture> is  </p><p class="formulaDsp">
-<picture><source srcset="form_23_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> where <img class="formulaInl" alt="$ \mathbf{I} $" src="form_20.png" width="6" height="10"/> is the identity tensor and superscript <img class="formulaInl" alt="$ \mathrm{T} $" src="form_21.png" width="10" height="9"/> denotes the transpose. In cylindrical coordinates, the matrix representation of the tensor <img class="formulaInl" alt="$ \nabla^*\mathbf{u}^* $" src="form_22.png" width="29" height="11"/> is  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \nabla^*\mathbf{u}^* =
 \begin{pmatrix}
 \dfrac{\strut \partial u_r^*}{\strut \partial r^*} &amp;
@@ -169,76 +163,76 @@ u_\theta^*}{\strut \partial z^*}\\
 \dfrac{\strut \partial u_z^*}{\strut \partial r^*} &amp; 0
 &amp; \dfrac{\strut \partial u_z^*}{\strut \partial z^*}
 \end{pmatrix}
-\]" src="form_23.png" width="161" height="99"/></picture>
+\]" src="form_23.png" width="161" height="99"/>
 </p>
-<p> and <picture><source srcset="form_24_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \nabla^*\cdot \mathbf{u}^* $" src="form_24.png" width="38" height="11"/></picture> is equal to the trace of this matrix.</p>
-<p>We non-dimensionalise the equations, using a problem specific reference length, <picture><source srcset="form_25_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mathcal{L} $" src="form_25.png" width="10" height="10"/></picture>, and a timescale <picture><source srcset="form_26_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mathcal{T} $" src="form_26.png" width="11" height="11"/></picture>, and use Young's modulus to non-dimensionalise the body force and the stress tensor:  </p><p class="formulaDsp">
-<picture><source srcset="form_27_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> and <img class="formulaInl" alt="$ \nabla^*\cdot \mathbf{u}^* $" src="form_24.png" width="38" height="11"/> is equal to the trace of this matrix.</p>
+<p>We non-dimensionalise the equations, using a problem specific reference length, <img class="formulaInl" alt="$ \mathcal{L} $" src="form_25.png" width="10" height="10"/>, and a timescale <img class="formulaInl" alt="$ \mathcal{T} $" src="form_26.png" width="11" height="11"/>, and use Young's modulus to non-dimensionalise the body force and the stress tensor:  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \bm{\tau}^* = E \bm{\tau}, \qquad
 r^* = \mathcal{L}r, \qquad
 z^* = \mathcal{L}z
-\]" src="form_27.png" width="196" height="13"/></picture>
+\]" src="form_27.png" width="196" height="13"/>
 </p>
   <p class="formulaDsp">
-<picture><source srcset="form_28_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \mathbf{u}^* = \mathcal{L} \mathbf{u} \qquad
 \mathbf{F}^* = \frac{E}{\rho \mathcal{L}}\mathbf{F},
 \qquad
 t^* = \mathcal{T}t.
-\]" src="form_28.png" width="205" height="30"/></picture>
+\]" src="form_28.png" width="205" height="30"/>
 </p>
 <p>The non-dimensional form of the axisymmetric linear elasticity equations is then given by  </p><p class="formulaDsp">
-<picture><source srcset="form_29_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \nabla\cdot \bm{\tau} + \mathbf{F} = \Lambda^2\frac{\partial^2\mathbf{u}}
 {\partial t^2},\qquad\qquad (1)
-\]" src="form_29.png" width="178" height="29"/></picture>
+\]" src="form_29.png" width="178" height="29"/>
 </p>
-<p> where <picture><source srcset="form_30_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \nabla = \left(\frac{\partial}{\partial r},
+<p> where <img class="formulaInl" alt="$ \nabla = \left(\frac{\partial}{\partial r},
 \frac{1}{r}\frac{\partial}
-{\partial \theta},\frac{\partial}{\partial z}\right) $" src="form_30.png" width="98" height="18"/></picture>,  </p><p class="formulaDsp">
-<picture><source srcset="form_31_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+{\partial \theta},\frac{\partial}{\partial z}\right) $" src="form_30.png" width="98" height="18"/>,  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \bm{\tau} =
 \frac{1}{1+\nu}\left(\frac{\nu}{1-2\nu}\left(\nabla\cdot\mathbf{u}\right)
 \mathbf{I} + \frac{1}{2}\left(\nabla\mathbf{u} +
 \left(\nabla\mathbf{u}\right)^\mathrm{T}\right)\right),\qquad\qquad
 (2)
-\]" src="form_31.png" width="344" height="31"/></picture>
+\]" src="form_31.png" width="344" height="31"/>
 </p>
 <p> and the non-dimensional parameter  </p><p class="formulaDsp">
-<picture><source srcset="form_32_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \Lambda = \frac{\mathcal{L}}{\mathcal{T}}\sqrt{\frac{\rho}{E}}
-\]" src="form_32.png" width="65" height="31"/></picture>
+\]" src="form_32.png" width="65" height="31"/>
 </p>
-<p> is the ratio of the elastic body's intrinsic timescale, <picture><source srcset="form_33_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mathcal{L} \sqrt{\frac{\rho}{E}} $" src="form_33.png" width="34" height="16"/></picture>, to the problem-specific timescale, <picture><source srcset="form_26_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mathcal{T} $" src="form_26.png" width="11" height="11"/></picture>, that we use for time-dependent problems. The boundary conditions are  </p><p class="formulaDsp">
-<picture><source srcset="form_34_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> is the ratio of the elastic body's intrinsic timescale, <img class="formulaInl" alt="$ \mathcal{L} \sqrt{\frac{\rho}{E}} $" src="form_33.png" width="34" height="16"/>, to the problem-specific timescale, <img class="formulaInl" alt="$ \mathcal{T} $" src="form_26.png" width="11" height="11"/>, that we use for time-dependent problems. The boundary conditions are  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \mathbf{u} = \hat{\mathbf{u}}\text{ on } \partial D_\mathrm{d}\qquad
 \bm{\tau}\cdot\mathbf{n} = \hat{\bm{\tau}}\text{ on } \partial D_\mathrm{n}.
-\]" src="form_34.png" width="201" height="13"/></picture>
+\]" src="form_34.png" width="201" height="13"/>
 </p>
 <p> We must also specify initial conditions:  </p><p class="formulaDsp">
-<picture><source srcset="form_35_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \left.\mathbf{u}\right|_{t=t_0} = \mathbf{u}^0,\qquad
 \left.\frac{\partial\mathbf{u}}{\partial t}\right|_{t=t_0} =
 \mathbf{v}^0.\qquad\qquad (3)
-\]" src="form_35.png" width="235" height="34"/></picture>
+\]" src="form_35.png" width="235" height="34"/>
 </p>
 <hr  />
  <hr  />
 <h1><a class="anchor" id="element_types"></a>
 Implementation</h1>
 <p>Within <code>oomph-lib</code>, the non-dimensional version of the axisymmetric linear elasticity equations (1) combined with the constitutive equations (2) are implemented in the <code>AxisymmetricLinearElasticityEquations</code> class. This class implements the equations in a way which is general with respect to the specific element geometry. To obtain a fully functioning element class, we must combine the equations class with a specific geometric element class, as discussed in the <a href="../../../quick_guide/html/index.html">(Not-So-)Quick Guide</a>. For example, we will combine the <code>AxisymmetricLinearElasticityEquations</code> class with <code>QElement&lt;2,3&gt;</code> elements, which are 9-node quadrilateral elements, in our example problem. As usual, the mapping between local and global (Eulerian) coordinates within an element is given by  </p><p class="formulaDsp">
-<picture><source srcset="form_36_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 x_i = \sum_{j=1}^{N^{(E)}} X_{ij}^{(E)}\psi_j,\qquad i = 1,2,
-\]" src="form_36.png" width="166" height="43"/></picture>
+\]" src="form_36.png" width="166" height="43"/>
 </p>
-<p> where <picture><source srcset="form_37_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_1 = r, x_2 = z $" src="form_37.png" width="76" height="9"/></picture>; <picture><source srcset="form_38_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ N^{(E)} $" src="form_38.png" width="26" height="13"/></picture> is the number of nodes in the element. <picture><source srcset="form_39_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ X_{ij}^{(E)} $" src="form_39.png" width="28" height="20"/></picture> is the <picture><source srcset="form_40_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ i $" src="form_40.png" width="5" height="9"/></picture>-th global (Eulerian) coordinate of the <picture><source srcset="form_41_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ j $" src="form_41.png" width="6" height="11"/></picture>-th node in the element and the <picture><source srcset="form_42_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \psi_j $" src="form_42.png" width="14" height="14"/></picture> are the element's shape functions, which are specific to each type of geometric element.</p>
-<p>We store the three components of the displacement vector as nodal data in the order <picture><source srcset="form_43_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ u_r, u_z, u_\theta $" src="form_43.png" width="50" height="9"/></picture> and use the shape functions to interpolate the displacements as  </p><p class="formulaDsp">
-<picture><source srcset="form_44_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> where <img class="formulaInl" alt="$ x_1 = r, x_2 = z $" src="form_37.png" width="76" height="9"/>; <img class="formulaInl" alt="$ N^{(E)} $" src="form_38.png" width="26" height="13"/> is the number of nodes in the element. <img class="formulaInl" alt="$ X_{ij}^{(E)} $" src="form_39.png" width="28" height="20"/> is the <img class="formulaInl" alt="$ i $" src="form_40.png" width="5" height="9"/>-th global (Eulerian) coordinate of the <img class="formulaInl" alt="$ j $" src="form_41.png" width="6" height="11"/>-th node in the element and the <img class="formulaInl" alt="$ \psi_j $" src="form_42.png" width="14" height="14"/> are the element's shape functions, which are specific to each type of geometric element.</p>
+<p>We store the three components of the displacement vector as nodal data in the order <img class="formulaInl" alt="$ u_r, u_z, u_\theta $" src="form_43.png" width="50" height="9"/> and use the shape functions to interpolate the displacements as  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 u_i = \sum_{j=1}^{N^{(E)}}U_{ij}^{(E)}\psi_{ij},\qquad i = 1,\dotsc,3,
-\]" src="form_44.png" width="191" height="43"/></picture>
+\]" src="form_44.png" width="191" height="43"/>
 </p>
-<p> where <picture><source srcset="form_45_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ U_{ij} $" src="form_45.png" width="16" height="14"/></picture> is the <picture><source srcset="form_40_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ i $" src="form_40.png" width="5" height="9"/></picture>-th displacement component at the <picture><source srcset="form_46_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ j
-$" src="form_46.png" width="6" height="11"/></picture>-th node in the element, i.e., <picture><source srcset="form_47_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ u_1=u_r, u_2=u_z,u_3=u_\theta $" src="form_47.png" width="138" height="9"/></picture>.</p>
+<p> where <img class="formulaInl" alt="$ U_{ij} $" src="form_45.png" width="16" height="14"/> is the <img class="formulaInl" alt="$ i $" src="form_40.png" width="5" height="9"/>-th displacement component at the <img class="formulaInl" alt="$ j
+$" src="form_46.png" width="6" height="11"/>-th node in the element, i.e., <img class="formulaInl" alt="$ u_1=u_r, u_2=u_z,u_3=u_\theta $" src="form_47.png" width="138" height="9"/>.</p>
 <p>The solution of time dependent problems requires the specification of a <code>TimeStepper</code> that is capable of approximating second time derivatives. In the example problem below we use the Newmark timestepper.</p>
 <hr  />
  <hr  />
@@ -250,7 +244,7 @@ The test problem</h1>
 Azimuthal cross-section of the geometry. </div></div>
  <p>It is difficult to find non-trivial exact solutions of the governing equations (1), (2), so we manufacture a time-harmonic solution:</p>
 <p class="formulaDsp">
-<picture><source srcset="form_48_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \mathbf{u} =
 \begin{pmatrix}
 u_r\\
@@ -263,10 +257,10 @@ r^3\cos(z)\\
 r^3z^3\\
 r^3\sin(z)
 \end{pmatrix}.\qquad\qquad (4)
-\]" src="form_48.png" width="248" height="46"/></picture>
+\]" src="form_48.png" width="248" height="46"/>
 </p>
 <p> This is an exact solution if we set the body force to  </p><p class="formulaDsp">
-<picture><source srcset="form_49_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \mathbf{F} = 
 \cos(t)
 \begin{pmatrix}
@@ -277,11 +271,11 @@ r\sin(z)\left\{- 9\mu + 4r\left(\lambda + \mu\right) +
 r^2\left(\lambda + 2\mu -
 \Lambda^2\right)\right\}
 \end{pmatrix},\qquad\qquad (5)
-\]" src="form_49.png" width="421" height="46"/></picture>
+\]" src="form_49.png" width="421" height="46"/>
 </p>
-<p> where <picture><source srcset="form_50_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \lambda = \nu/((1+\nu)(1-2\nu)) $" src="form_50.png" width="129" height="14"/></picture> and <picture><source srcset="form_51_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mu = 1/(2(1+\nu)) $" src="form_51.png" width="91" height="14"/></picture> are the nondimensional Lam&eacute; parameters. We impose the displacement along the boundaries <picture><source srcset="form_52_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ r=r_\mathrm{max},
-z=z_\mathrm{min}, z=z_\mathrm{max} $" src="form_52.png" width="153" height="9"/></picture> according to (4), and impose the traction  </p><p class="formulaDsp">
-<picture><source srcset="form_53_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> where <img class="formulaInl" alt="$ \lambda = \nu/((1+\nu)(1-2\nu)) $" src="form_50.png" width="129" height="14"/> and <img class="formulaInl" alt="$ \mu = 1/(2(1+\nu)) $" src="form_51.png" width="91" height="14"/> are the nondimensional Lam&eacute; parameters. We impose the displacement along the boundaries <img class="formulaInl" alt="$ r=r_\mathrm{max},
+z=z_\mathrm{min}, z=z_\mathrm{max} $" src="form_52.png" width="153" height="9"/> according to (4), and impose the traction  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \hat{\bm{\tau}}_3 = \bm{\tau}(r_\mathrm{min},z,t) =
 \cos(\omega t)
 \begin{pmatrix}
@@ -290,18 +284,18 @@ z=z_\mathrm{min}, z=z_\mathrm{max} $" src="form_52.png" width="153" height="9"/>
 -2\mu r_\mathrm{min}^2z^3\\
 -\mu r_\mathrm{min}^2\sin(z)\left(3-r_\mathrm{min}\right)
 \end{pmatrix},\qquad\qquad (6)
-\]" src="form_53.png" width="415" height="46"/></picture>
+\]" src="form_53.png" width="415" height="46"/>
 </p>
-<p> along the boundary <picture><source srcset="form_54_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ r = r_\mathrm{min} $" src="form_54.png" width="46" height="9"/></picture>.</p>
+<p> along the boundary <img class="formulaInl" alt="$ r = r_\mathrm{min} $" src="form_54.png" width="46" height="9"/>.</p>
 <p>The problem we are solving then consists of equations (1), (2) along with the body force, (5) and boundary traction (6). The initial conditions for the problem are the exact displacement, velocity (and acceleration; see below) according to the solution (4).</p>
 <h1><a class="anchor" id="results"></a>
 Results</h1>
-<p>The animation below shows the time dependent deformation of the cylinder in the <picture><source srcset="form_55_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ r $" src="form_55.png" width="8" height="6"/></picture>- <picture><source srcset="form_56_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ z $" src="form_56.png" width="6" height="6"/></picture> plane, while the colour contours indicate the azimuthal displacement component. The animation is for <picture><source srcset="form_57_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ t \in [0,2\pi] $" src="form_57.png" width="53" height="14"/></picture>, since the time scale is nondimensionalised on the reciprocal of the angular frequency of the oscillations.</p>
+<p>The animation below shows the time dependent deformation of the cylinder in the <img class="formulaInl" alt="$ r $" src="form_55.png" width="8" height="6"/>- <img class="formulaInl" alt="$ z $" src="form_56.png" width="6" height="6"/> plane, while the colour contours indicate the azimuthal displacement component. The animation is for <img class="formulaInl" alt="$ t \in [0,2\pi] $" src="form_57.png" width="53" height="14"/>, since the time scale is nondimensionalised on the reciprocal of the angular frequency of the oscillations.</p>
 <div class="image">
 <img src="a.gif" alt=""/>
 <div class="caption">
 Animation (HTML only) of the resulting displacement field. </div></div>
-<p>  The next three figures show plots of the radial, axial and azimuthal displacements as functions of <picture><source srcset="form_58_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ (r,z) $" src="form_58.png" width="26" height="14"/></picture> at <picture><source srcset="form_59_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ t = 2.64 $" src="form_59.png" width="45" height="9"/></picture>. Note the excellent agreement between the numerical and exact solutions. </p><div class="image">
+<p>  The next three figures show plots of the radial, axial and azimuthal displacements as functions of <img class="formulaInl" alt="$ (r,z) $" src="form_58.png" width="26" height="14"/> at <img class="formulaInl" alt="$ t = 2.64 $" src="form_59.png" width="45" height="9"/>. Note the excellent agreement between the numerical and exact solutions. </p><div class="image">
 <img src="u_r.gif" alt=""/>
 <div class="caption">
 Comparison between exact and FE solutions for the r-component of displacement at t = 2.64 </div></div>
@@ -317,7 +311,7 @@ Comparison between exact and FE solutions for the theta-component of displacemen
  <hr  />
 <h1><a class="anchor" id="global_namespace"></a>
 Global parameters and functions</h1>
-<p>As usual, we define all non-dimensional parameters in a namespace. In this namespace, we also define the body force, the traction to be applied on the boundary <picture><source srcset="form_60_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ r=r_\mathrm{min} $" src="form_60.png" width="46" height="9"/></picture>, and the exact solution. Note that, consistent with the enumeration of the unknowns, discussed above, the order of the components in the functions that specify the body force and the surface traction is <picture><source srcset="form_61_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ (r,z,\theta) $" src="form_61.png" width="38" height="14"/></picture>.</p>
+<p>As usual, we define all non-dimensional parameters in a namespace. In this namespace, we also define the body force, the traction to be applied on the boundary <img class="formulaInl" alt="$ r=r_\mathrm{min} $" src="form_60.png" width="46" height="9"/>, and the exact solution. Note that, consistent with the enumeration of the unknowns, discussed above, the order of the components in the functions that specify the body force and the surface traction is <img class="formulaInl" alt="$ (r,z,\theta) $" src="form_61.png" width="38" height="14"/>.</p>
  <div class="fragment"><div class="line"><span class="comment">//===start_of_Global_Parameters_namespace===============================</span></div>
 <div class="line"><span class="comment">/// Namespace for global parameters</span></div>
 <div class="line"><span class="comment">//======================================================================</span></div>
@@ -651,7 +645,7 @@ The problem constructor</h1>
  <hr  />
 <h1><a class="anchor" id="traction_elements"></a>
 The traction elements</h1>
-<p>We create the face elements that apply the traction to the boundary <picture><source srcset="form_60_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ r=r_\mathrm{min} $" src="form_60.png" width="46" height="9"/></picture>.</p>
+<p>We create the face elements that apply the traction to the boundary <img class="formulaInl" alt="$ r=r_\mathrm{min} $" src="form_60.png" width="46" height="9"/>.</p>
 <div class="fragment"><div class="line"><span class="comment">//===start_of_traction===============================================</span></div>
 <div class="line"><span class="comment">/// Make traction elements along the boundary r=Rmin</span></div>
 <div class="line"><span class="comment">//===================================================================</span></div>
@@ -794,14 +788,14 @@ Post-processing</h1>
 <div class="line"> <span class="keywordtype">unsigned</span> npts=10; </div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output solution </span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">   doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> Bulk_mesh_pt-&gt;output(some_file,npts);</div>
 <div class="line"> some_file.close();</div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output exact solution </span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">   doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> Bulk_mesh_pt-&gt;output_fct(some_file,npts,time_pt()-&gt;time(),</div>
@@ -811,7 +805,7 @@ Post-processing</h1>
 <div class="line"> <span class="comment">// Doc error</span></div>
 <div class="line"> <span class="keywordtype">double</span> error=0.0;</div>
 <div class="line"> <span class="keywordtype">double</span> norm=0.0;</div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/error%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/error%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">   doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> Bulk_mesh_pt-&gt;compute_error(some_file,</div>
@@ -855,7 +849,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -885,7 +879,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:41:15
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:32:46
         </div>
       </div>
     </footer>

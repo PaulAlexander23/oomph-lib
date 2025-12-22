@@ -467,7 +467,7 @@ We do not pursue either approach here because the difficulty is a direct consequ
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ solution\ }}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ mesh\_pt()-\/>output(some\_file,npts);}
@@ -475,7 +475,7 @@ We do not pursue either approach here because the difficulty is a direct consequ
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ exact\ solution\ }}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned}\ e=0;e<Npoisson\_elements;e++)}
@@ -506,7 +506,7 @@ We do not pursue either approach here because the difficulty is a direct consequ
 \DoxyCodeLine{\textcolor{comment}{//\ Doc\ error\ and\ return\ of\ the\ square\ of\ the\ L2\ error}}
 \DoxyCodeLine{\textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{\textcolor{keywordtype}{double}\ error,norm;}
-\DoxyCodeLine{sprintf(filename,\textcolor{stringliteral}{"{}\%s/error\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/error\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{some\_file.open(filename);}
 \DoxyCodeLine{mesh\_pt()-\/>compute\_error(some\_file,\mbox{\hyperlink{namespaceTanhSolnForPoisson_af7896e9c18ce6438c73ae2a875e8b7de}{TanhSolnForPoisson::get\_exact\_u}},}
@@ -545,4 +545,4 @@ A general convention}}\end{center}  Some {\ttfamily oomph-\/lib} functions, such
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

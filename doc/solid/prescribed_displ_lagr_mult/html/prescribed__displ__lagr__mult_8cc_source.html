@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -263,9 +257,9 @@
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="comment"></span> </div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="comment"></span> </div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="comment">//=======start_namespace==========================================</span><span class="comment"></span></div>
@@ -598,7 +592,7 @@
 <div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span> </div>
 <div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span> <span class="comment">// Output shape of deformed body</span></div>
 <div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span> <span class="comment">//------------------------------</span></div>
-<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>         Doc_info.number());</div>
 <div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span> some_file.open(filename);</div>
 <div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span> solid_mesh_pt()-&gt;output(some_file,n_plot);</div>
@@ -606,7 +600,7 @@
 <div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span> </div>
 <div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span> <span class="comment">// Output Lagrange multipliers</span></div>
 <div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span> <span class="comment">//----------------------------</span></div>
-<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span> sprintf(filename,<span class="stringliteral">&quot;%s/lagr%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/lagr%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span>         Doc_info.number());</div>
 <div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span> some_file.open(filename);</div>
 <div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span> </div>
@@ -707,7 +701,7 @@
 <div class="ttc" id="aclassWarpedLine_html_ac44286e84ff213e67e0f247d00ad50af"><div class="ttname"><a href="classWarpedLine.html#ac44286e84ff213e67e0f247d00ad50af">WarpedLine::Ampl</a></div><div class="ttdeci">double Ampl</div><div class="ttdoc">Amplitude of perturbation.</div><div class="ttdef"><b>Definition</b> <a href="prescribed__displ__lagr__mult_8cc_source.html#l00123">prescribed_displ_lagr_mult.cc:123</a></div></div>
 <div class="ttc" id="aclassWarpedLine_html_ae2ee796906c0caa7e94f277f6fc499e1"><div class="ttname"><a href="classWarpedLine.html#ae2ee796906c0caa7e94f277f6fc499e1">WarpedLine::operator=</a></div><div class="ttdeci">void operator=(const WarpedLine &amp;)</div><div class="ttdoc">Broken assignment operator.</div><div class="ttdef"><b>Definition</b> <a href="prescribed__displ__lagr__mult_8cc_source.html#l00084">prescribed_displ_lagr_mult.cc:84</a></div></div>
 <div class="ttc" id="aclassWarpedLine_html_aea69e0dccb0af23ffeb8cd98c0aa6853"><div class="ttname"><a href="classWarpedLine.html#aea69e0dccb0af23ffeb8cd98c0aa6853">WarpedLine::ampl</a></div><div class="ttdeci">double &amp; ampl()</div><div class="ttdoc">Access to amplitude.</div><div class="ttdef"><b>Definition</b> <a href="prescribed__displ__lagr__mult_8cc_source.html#l00111">prescribed_displ_lagr_mult.cc:111</a></div></div>
-<div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="prescribed__displ__lagr__mult_8cc_source.html#l00137">prescribed_displ_lagr_mult.cc:138</a></div></div>
+<div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">Global parameters.</div><div class="ttdef"><b>Definition</b> <a href="prescribed__displ__lagr__mult_8cc_source.html#l00137">prescribed_displ_lagr_mult.cc:138</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a9e06f4ada334a9a911aa8cdcfb3ff30b"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a9e06f4ada334a9a911aa8cdcfb3ff30b">Global_Physical_Variables::Nu</a></div><div class="ttdeci">double Nu</div><div class="ttdoc">Poisson's ratio.</div><div class="ttdef"><b>Definition</b> <a href="prescribed__displ__lagr__mult_8cc_source.html#l00144">prescribed_displ_lagr_mult.cc:144</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_ab0a184463cbaaa353f2235411adef3c4"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#ab0a184463cbaaa353f2235411adef3c4">Global_Physical_Variables::Boundary_geom_object</a></div><div class="ttdeci">WarpedLine Boundary_geom_object(0.0)</div><div class="ttdoc">GeomObject specifying the shape of the boundary: Initially it's flat.</div></div>
 <div class="ttc" id="anamespaceoomph_html"><div class="ttname"><a href="namespaceoomph.html">oomph</a></div><div class="ttdef"><b>Definition</b> <a href="prescribed__displ__lagr__mult__precond_8cc_source.html#l00046">prescribed_displ_lagr_mult_precond.cc:46</a></div></div>
@@ -740,7 +734,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:23:58
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:44:29
         </div>
       </div>
     </footer>

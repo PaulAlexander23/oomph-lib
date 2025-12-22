@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -137,7 +131,7 @@ Inheritance diagram for oomph::TubeDomain:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a025d462a0676026e5902d07ffbb3510e" id="r_a025d462a0676026e5902d07ffbb3510e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TubeDomain.html#a025d462a0676026e5902d07ffbb3510e">TubeDomain</a> (<a class="el" href="classoomph_1_1TetgenMesh.html">GeomObject</a> *<a class="el" href="classoomph_1_1TetgenMesh.html">volume_geom_object_pt</a>, <a class="el" href="classoomph_1_1TetgenMesh.html">const</a> <a class="el" href="classoomph_1_1TetgenMesh.html">Vector</a>&lt; <a class="el" href="classoomph_1_1TetgenMesh.html">double</a> &gt; &amp;<a class="el" href="classoomph_1_1TetgenMesh.html">centreline_limits</a>, <a class="el" href="classoomph_1_1TetgenMesh.html">const</a> <a class="el" href="classoomph_1_1TetgenMesh.html">Vector</a>&lt; <a class="el" href="classoomph_1_1TetgenMesh.html">double</a> &gt; &amp;<a class="el" href="classoomph_1_1TetgenMesh.html">theta_positions</a>, <a class="el" href="classoomph_1_1TetgenMesh.html">const</a> <a class="el" href="classoomph_1_1TetgenMesh.html">Vector</a>&lt; <a class="el" href="classoomph_1_1TetgenMesh.html">double</a> &gt; &amp;<a class="el" href="classoomph_1_1TetgenMesh.html">radius_box</a>, <a class="el" href="classoomph_1_1TetgenMesh.html">const</a> <a class="el" href="classoomph_1_1TetgenMesh.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1TetgenMesh.html">nlayer</a>)</td></tr>
-<tr class="memdesc:a025d462a0676026e5902d07ffbb3510e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Pass geometric object; start and end limit of the centreline coordinate; the theta locations marking the division between the elements of the outer ring, labelled from the lower left to the upper left in order, theta should be in the range <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$-\pi$" src="form_10.png" width="18" height="6"/></picture> to <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\pi$" src="form_11.png" width="9" height="6"/></picture>; the corresponding fractions of the radius at which the central box is to be placed; and the number of layers in the domain.  <br /></td></tr>
+<tr class="memdesc:a025d462a0676026e5902d07ffbb3510e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Pass geometric object; start and end limit of the centreline coordinate; the theta locations marking the division between the elements of the outer ring, labelled from the lower left to the upper left in order, theta should be in the range <img class="formulaInl" alt="$-\pi$" src="form_10.png" width="18" height="6"/> to <img class="formulaInl" alt="$\pi$" src="form_11.png" width="9" height="6"/>; the corresponding fractions of the radius at which the central box is to be placed; and the number of layers in the domain.  <br /></td></tr>
 <tr class="separator:a025d462a0676026e5902d07ffbb3510e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4289916ff42a7ad4189cf060cb35bfbb" id="r_a4289916ff42a7ad4189cf060cb35bfbb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TubeDomain.html#a4289916ff42a7ad4189cf060cb35bfbb">TubeDomain</a> (<a class="el" href="classoomph_1_1TetgenMesh.html">const</a> <a class="el" href="classoomph_1_1TubeDomain.html">TubeDomain</a> &amp;)=<a class="el" href="classoomph_1_1TetgenMesh.html">delete</a></td></tr>
 <tr class="memdesc:a4289916ff42a7ad4189cf060cb35bfbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Broken copy constructor.  <br /></td></tr>
@@ -236,7 +230,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Constructor: Pass geometric object; start and end limit of the centreline coordinate; the theta locations marking the division between the elements of the outer ring, labelled from the lower left to the upper left in order, theta should be in the range <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$-\pi$" src="form_10.png" width="18" height="6"/></picture> to <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\pi$" src="form_11.png" width="9" height="6"/></picture>; the corresponding fractions of the radius at which the central box is to be placed; and the number of layers in the domain. </p>
+<p>Constructor: Pass geometric object; start and end limit of the centreline coordinate; the theta locations marking the division between the elements of the outer ring, labelled from the lower left to the upper left in order, theta should be in the range <img class="formulaInl" alt="$-\pi$" src="form_10.png" width="18" height="6"/> to <img class="formulaInl" alt="$\pi$" src="form_11.png" width="9" height="6"/>; the corresponding fractions of the radius at which the central box is to be placed; and the number of layers in the domain. </p>
 
 <p class="definition">Definition at line <a class="el" href="tube__domain_8h_source.html#l00079">79</a> of file <a class="el" href="tube__domain_8h_source.html">tube_domain.h</a>.</p>
 
@@ -350,7 +344,7 @@ Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="tube__domain_8h_source.html#l00143">143</a> of file <a class="el" href="tube__domain_8h_source.html">tube_domain.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="tube__domain_8h_source.html#l00167">macro_element_boundary()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="tube__domain_8h_source.html#l00166">macro_element_boundary()</a>.</p>
 
 </div>
 </div>
@@ -370,13 +364,13 @@ Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="classoomph_1_1TetgenMesh.html">const</a> <a class="el" href="classoomph_1_1TetgenMesh.html">unsigned</a> &amp;&#160;</td>
-          <td class="paramname"><em>imacro</em>, </td>
+          <td class="paramname"><em>i_macro</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="classoomph_1_1TetgenMesh.html">const</a> <a class="el" href="classoomph_1_1TetgenMesh.html">unsigned</a> &amp;&#160;</td>
-          <td class="paramname"><em>idirect</em>, </td>
+          <td class="paramname"><em>i_direct</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -399,10 +393,9 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Vector representation of the i_macro-th macro element boundary i_direct (L/R/D/U/B/F) at time level t (t=0: present; t&gt;0: previous): f(s). </p>
-<p>////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////</p>
 <p>Vector representation of the imacro-th macro element boundary idirect (L/R/D/U/B/F) at time level t (t=0: present; t&gt;0: previous): f(s) </p>
 
-<p class="definition">Definition at line <a class="el" href="tube__domain_8h_source.html#l00167">167</a> of file <a class="el" href="tube__domain_8h_source.html">tube_domain.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tube__domain_8h_source.html#l00166">166</a> of file <a class="el" href="tube__domain_8h_source.html">tube_domain.h</a>.</p>
 
 <p class="reference">References <a class="el" href="tube__domain_8h_source.html#l00122">Centreline_limits</a>, <a class="el" href="tube__domain_8h_source.html#l00143">lin_interpolate()</a>, <a class="el" href="tube__domain_8h_source.html#l00134">Nlayer</a>, <a class="el" href="tube__domain_8h_source.html#l00131">Radius_box</a>, <a class="el" href="tube__domain_8h_source.html#l00127">Theta_positions</a>, and <a class="el" href="tube__domain_8h_source.html#l00137">Volume_pt</a>.</p>
 
@@ -461,7 +454,7 @@ Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="tube__domain_8h_source.html#l00122">122</a> of file <a class="el" href="tube__domain_8h_source.html">tube_domain.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="tube__domain_8h_source.html#l00167">macro_element_boundary()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="tube__domain_8h_source.html#l00166">macro_element_boundary()</a>.</p>
 
 </div>
 </div>
@@ -489,7 +482,7 @@ Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="tube__domain_8h_source.html#l00134">134</a> of file <a class="el" href="tube__domain_8h_source.html">tube_domain.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="tube__domain_8h_source.html#l00167">macro_element_boundary()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="tube__domain_8h_source.html#l00166">macro_element_boundary()</a>.</p>
 
 </div>
 </div>
@@ -517,7 +510,7 @@ Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="tube__domain_8h_source.html#l00131">131</a> of file <a class="el" href="tube__domain_8h_source.html">tube_domain.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="tube__domain_8h_source.html#l00167">macro_element_boundary()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="tube__domain_8h_source.html#l00166">macro_element_boundary()</a>.</p>
 
 </div>
 </div>
@@ -545,7 +538,7 @@ Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="tube__domain_8h_source.html#l00127">127</a> of file <a class="el" href="tube__domain_8h_source.html">tube_domain.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="tube__domain_8h_source.html#l00167">macro_element_boundary()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="tube__domain_8h_source.html#l00166">macro_element_boundary()</a>.</p>
 
 </div>
 </div>
@@ -573,7 +566,7 @@ Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="tube__domain_8h_source.html#l00137">137</a> of file <a class="el" href="tube__domain_8h_source.html">tube_domain.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="tube__domain_8h_source.html#l00167">macro_element_boundary()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="tube__domain_8h_source.html#l00166">macro_element_boundary()</a>.</p>
 
 </div>
 </div>
@@ -608,7 +601,7 @@ Private Attributes</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:01:07
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:38:48
         </div>
       </div>
     </footer>

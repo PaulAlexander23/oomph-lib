@@ -33,7 +33,7 @@ So far, so good! A subtle problem arises when we try to assign the positional hi
 \hypertarget{index_soln}{}\doxysubsection{\texorpdfstring{The solution\+: The Steady$<$\+NSTEPS$>$ timestepper}{The solution: The Steady<NSTEPS> timestepper}}\label{index_soln}
 The solution to the problem is simple\+: Recall that the final entry in the argument list of {\ttfamily oomph-\/lib\textquotesingle{}s} mesh constructors specifies the {\ttfamily Time\+Stepper} to be used for the evaluation of any time-\/derivatives. The {\ttfamily Time\+Stepper\textquotesingle{}s} member function {\ttfamily Time\+Stepper\+::ntstorage()} specifies the total number of values (the current value plus the number of history values) required to evaluate the time-\/derivatives; it is used by the {\ttfamily Finite\+Element\+::construct\+\_\+node(...)} function to create the required amount of storage at the elements\textquotesingle{} {\ttfamily Nodes} when the {\ttfamily Nodes} are created in the mesh constructor. To maximise the potential for code-\/reuse, we always provide a default argument for the pointer to the {\ttfamily Time\+Stepper} -- a pointer to a static instantiation of {\ttfamily oomph-\/lib\textquotesingle{}s} dummy {\ttfamily Time\+Stepper}, {\ttfamily Steady$<$0$>$}. This ensures that the "{}user"{} can use the mesh for steady problems without having to artificially create a dummy {\ttfamily Time\+Stepper} that would be completely irrelevant for his/her problem.
 
-For instance, the full interface to the constructor of the {\ttfamily One\+DLagrangian\+Mesh}, defined in \href{../../../../src/meshes/one_d_lagrangian_mesh.template.h}{\texttt{ one\+\_\+d\+\_\+lagrangian\+\_\+mesh.\+template.\+h}} is given by
+For instance, the full interface to the constructor of the {\ttfamily One\+DLagrangian\+Mesh}, defined in \href{../../../../src/meshes/one_d_lagrangian_mesh.h}{\texttt{ one\+\_\+d\+\_\+lagrangian\+\_\+mesh.\+h}} is given by
 
  
 \begin{DoxyCodeInclude}{0}
@@ -481,4 +481,4 @@ As usual, we then employ the function {\ttfamily Problem\+::actions\+\_\+after\+
 \end{DoxyItemize}\DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

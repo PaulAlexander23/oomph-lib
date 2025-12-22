@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -125,7 +119,7 @@
 <p>Horizontal Single-layer spine mesh class derived from standard 2D mesh. The mesh contains a layer of spinified fluid elements (of type ELEMENT; e.g SpineElement&lt;QCrouzeixRaviartElement&lt;2&gt;) and the information required to update their position. Additional equations must be specified in order to determine how the spines move.  
  <a href="classoomph_1_1HorizontalSingleLayerSpineMesh.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="horizontal__single__layer__spine__mesh_8template_8h_source.html">horizontal_single_layer_spine_mesh.template.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="horizontal__single__layer__spine__mesh_8h_source.html">horizontal_single_layer_spine_mesh.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for oomph::HorizontalSingleLayerSpineMesh&lt; ELEMENT &gt;:</div>
 <div class="dyncontent">
@@ -230,7 +224,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleChannelMesh.html">class</a> <a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleChannelMesh.html">ELEMENT</a>&gt;<br />
 class oomph::HorizontalSingleLayerSpineMesh&lt; ELEMENT &gt;</div><p>Horizontal Single-layer spine mesh class derived from standard 2D mesh. The mesh contains a layer of spinified fluid elements (of type ELEMENT; e.g SpineElement&lt;QCrouzeixRaviartElement&lt;2&gt;) and the information required to update their position. Additional equations must be specified in order to determine how the spines move. </p>
 
-<p class="definition">Definition at line <a class="el" href="horizontal__single__layer__spine__mesh_8template_8h_source.html#l00045">45</a> of file <a class="el" href="horizontal__single__layer__spine__mesh_8template_8h_source.html">horizontal_single_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="horizontal__single__layer__spine__mesh_8h_source.html#l00045">45</a> of file <a class="el" href="horizontal__single__layer__spine__mesh_8h_source.html">horizontal_single_layer_spine_mesh.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a765856597150d37a20eabdb53e58d49c" name="a765856597150d37a20eabdb53e58d49c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a765856597150d37a20eabdb53e58d49c">&#9670;&#160;</a></span>HorizontalSingleLayerSpineMesh()</h2>
@@ -282,9 +276,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 <p>Constructor for spine 2D mesh: Pass number of elements in x-direction, number of elements in y-direction, axial length and height of layer, and pointer to timestepper (defaults to Static timestepper).</p>
 <p>The mesh contains a layer of spinified fluid elements (of type ELEMENT; e.g SpineElement&lt;QCrouzeixRaviartElement&lt;2&gt;) and information about how the internal nodes positions are affected by changes in spine length. Additional equations that determine the spine heights must be specified in order to use this mesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="horizontal__single__layer__spine__mesh_8template_8cc_source.html#l00047">47</a> of file <a class="el" href="horizontal__single__layer__spine__mesh_8template_8cc_source.html">horizontal_single_layer_spine_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="horizontal__single__layer__spine__mesh_8template_8cc_source.html#l00049">49</a> of file <a class="el" href="horizontal__single__layer__spine__mesh_8template_8cc_source.html">horizontal_single_layer_spine_mesh.template.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="horizontal__single__layer__spine__mesh_8template_8cc_source.html#l00075">oomph::HorizontalSingleLayerSpineMesh&lt; ELEMENT &gt;::build_horizontal_single_layer_mesh()</a>.</p>
+<p class="reference">References <a class="el" href="horizontal__single__layer__spine__mesh_8template_8cc_source.html#l00077">oomph::HorizontalSingleLayerSpineMesh&lt; ELEMENT &gt;::build_horizontal_single_layer_mesh()</a>.</p>
 
 </div>
 </div>
@@ -318,11 +312,11 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 <p>Helper function to actually build the single-layer spine mesh (called from various constructors) </p>
 <p>Helper function that actually builds the single-layer spine mesh based on the parameters set in the various constructors. </p>
 
-<p class="definition">Definition at line <a class="el" href="horizontal__single__layer__spine__mesh_8template_8cc_source.html#l00075">75</a> of file <a class="el" href="horizontal__single__layer__spine__mesh_8template_8cc_source.html">horizontal_single_layer_spine_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="horizontal__single__layer__spine__mesh_8template_8cc_source.html#l00077">77</a> of file <a class="el" href="horizontal__single__layer__spine__mesh_8template_8cc_source.html">horizontal_single_layer_spine_mesh.template.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="rectangular__quadmesh_8template_8cc_source.html#l00043">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::build_mesh()</a>.</p>
+<p class="reference">References <a class="el" href="rectangular__quadmesh_8template_8cc_source.html#l00044">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::build_mesh()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="horizontal__single__layer__spine__mesh_8template_8cc_source.html#l00047">oomph::HorizontalSingleLayerSpineMesh&lt; ELEMENT &gt;::HorizontalSingleLayerSpineMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="horizontal__single__layer__spine__mesh_8template_8cc_source.html#l00049">oomph::HorizontalSingleLayerSpineMesh&lt; ELEMENT &gt;::HorizontalSingleLayerSpineMesh()</a>.</p>
 
 </div>
 </div>
@@ -354,12 +348,12 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>General node update function implements pure virtual function defined in SpineMesh base class and performs specific node update actions: along vertical spines. </p>
 
-<p class="definition">Definition at line <a class="el" href="horizontal__single__layer__spine__mesh_8template_8h_source.html#l00063">63</a> of file <a class="el" href="horizontal__single__layer__spine__mesh_8template_8h_source.html">horizontal_single_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="horizontal__single__layer__spine__mesh_8h_source.html#l00063">63</a> of file <a class="el" href="horizontal__single__layer__spine__mesh_8h_source.html">horizontal_single_layer_spine_mesh.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="horizontal__single__layer__spine__mesh_8template_8h_source.html">horizontal_single_layer_spine_mesh.template.h</a></li>
+<li><a class="el" href="horizontal__single__layer__spine__mesh_8h_source.html">horizontal_single_layer_spine_mesh.h</a></li>
 <li><a class="el" href="horizontal__single__layer__spine__mesh_8template_8cc_source.html">horizontal_single_layer_spine_mesh.template.cc</a></li>
 </ul>
 </div><!-- contents -->
@@ -390,7 +384,7 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:26:39
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:34:29
         </div>
       </div>
     </footer>

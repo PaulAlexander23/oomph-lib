@@ -1016,7 +1016,7 @@ The post-\/processing routine simply executes the output functions for the fluid
 \DoxyCodeLine{\ npts=5;\ }
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ fluid\ solution\ }}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/fluid\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/fluid\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ Fluid\_mesh\_pt-\/>output(some\_file,npts);}
@@ -1024,7 +1024,7 @@ The post-\/processing routine simply executes the output functions for the fluid
 \DoxyCodeLine{}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ solid\ solution\ }}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/solid\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/solid\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ Solid\_mesh\_pt-\/>output(some\_file,npts);}
@@ -1175,4 +1175,4 @@ As indicated above, the methodology employed in this tutorial makes the formulat
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

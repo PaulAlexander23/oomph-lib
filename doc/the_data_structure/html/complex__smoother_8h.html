@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -139,22 +133,22 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helmholtz smoother class: The smoother class is designed for the Helmholtz equation to be used in conjunction with multigrid. The action of the smoother should reduce the high frequency errors. These methods are inefficient as stand-alone solvers.  <a href="classoomph_1_1HelmholtzSmoother.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1ComplexDampedJacobi.html">oomph::ComplexDampedJacobi&lt; MATRIX &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">//////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////  <a href="classoomph_1_1ComplexDampedJacobi.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Damped Jacobi "solver" templated by matrix type. The "solver" exists in many different incarnations: It's an <a class="el" href="classoomph_1_1IterativeLinearSolver.html" title="Base class for all linear iterative solvers. This merely defines standard interfaces for linear itera...">IterativeLinearSolver</a>, and a <a class="el" href="classoomph_1_1Smoother.html" title="Smoother class: The smoother class is designed for to be used in conjunction with multigrid....">Smoother</a>, all of which use the same basic iteration.  <a href="classoomph_1_1ComplexDampedJacobi.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1ComplexGMRES.html">oomph::ComplexGMRES&lt; MATRIX &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classoomph_1_1GMRES.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////...">GMRES</a> method rewritten for complex matrices.  <a href="classoomph_1_1ComplexGMRES.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classoomph_1_1GMRES.html" title="The GMRES method.">GMRES</a> method rewritten for complex matrices.  <a href="classoomph_1_1ComplexGMRES.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1HelmholtzGMRESMG.html">oomph::HelmholtzGMRESMG&lt; MATRIX &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">//////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////  <a href="classoomph_1_1HelmholtzGMRESMG.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classoomph_1_1GMRES.html" title="The GMRES method.">GMRES</a> method for the Helmholtz solver.  <a href="classoomph_1_1HelmholtzGMRESMG.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1HelmholtzFGMRESMG.html">oomph::HelmholtzFGMRESMG&lt; MATRIX &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">//////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////  <a href="classoomph_1_1HelmholtzFGMRESMG.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The FGMRES method, i.e. the flexible variant of the <a class="el" href="classoomph_1_1GMRES.html" title="The GMRES method.">GMRES</a> method which allows for nonconstant preconditioners [see Saad Y, "Iterative methods for sparse linear systems", p.287]. Note, FGMRES can only cater to right preconditioning; if the user tries to switch to left preconditioning they will be notified of this.  <a href="classoomph_1_1HelmholtzFGMRESMG.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespaceoomph" id="r_namespaceoomph"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceoomph.html">oomph</a></td></tr>
-<tr class="memdesc:namespaceoomph"><td class="mdescLeft">&#160;</td><td class="mdescRight">//////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////// <br /></td></tr>
+<tr class="memdesc:namespaceoomph"><td class="mdescLeft">&#160;</td><td class="mdescRight">DRAIG: Change all instances of (SPATIAL_DIM) to (DIM-1). <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
@@ -185,7 +179,7 @@ Namespaces</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:03:12
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:36:34
         </div>
       </div>
     </footer>

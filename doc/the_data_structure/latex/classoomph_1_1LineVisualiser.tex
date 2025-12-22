@@ -20,7 +20,7 @@ Class to aid visualisation of the values on a set of points. NOTE\+: in a distri
 \begin{DoxyCompactList}\small\item\em Constructor reading centerline file. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1LineVisualiser_adafda17eaa1c034ff7236e1f7dcbc771}{output}} (std\+::ostream \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{outfile}})
 \begin{DoxyCompactList}\small\item\em Output function\+: output each plot point. NOTE\+: in a distributed problem, output is only done on processor 0. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1LineVisualiser_af2fadf8f1270a15a912cadfea152891e}{get\+\_\+output\+\_\+data}} (\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ $>$ \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{data}})
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1LineVisualiser_af2fadf8f1270a15a912cadfea152891e}{get\+\_\+output\+\_\+data}} (\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ $>$ \&data)
 \begin{DoxyCompactList}\small\item\em Output data function\+: store data associated with each plot point in data array. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1LineVisualiser_a88beccc9e1770c7acb14a7e088999ab0}{update\+\_\+plot\+\_\+points\+\_\+coordinates}} (\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ $>$ \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{coord\+\_\+vec}})
 \begin{DoxyCompactList}\small\item\em Update plot points coordinates (in preparation of remesh, say). \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -31,7 +31,7 @@ Class to aid visualisation of the values on a set of points. NOTE\+: in a distri
 \begin{DoxyCompactList}\small\item\em Helper function to setup from file. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1LineVisualiser_a8989cffc2b0ed7c32d9bd8a02c170de4}{setup}} (\mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}} \texorpdfstring{$\ast$}{*}mesh\+\_\+pt, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ $>$ \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{coord\+\_\+vec}})
 \begin{DoxyCompactList}\small\item\em Helper function to setup the output structures. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1LineVisualiser_aa1aad15408d65e8ee48dbff02fc97928}{get\+\_\+local\+\_\+plot\+\_\+points\+\_\+coordinates}} (\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ $>$ \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{data}})
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1LineVisualiser_aa1aad15408d65e8ee48dbff02fc97928}{get\+\_\+local\+\_\+plot\+\_\+points\+\_\+coordinates}} (\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ $>$ \&data)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
@@ -193,7 +193,7 @@ Definition at line \mbox{\hyperlink{line__visualiser_8h_source_l00668}{668}} of 
 
 
 
-References \mbox{\hyperlink{line__visualiser_8h_source_l00600}{Comm\+\_\+pt}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8cc_source_l04764}{oomph\+::\+Finite\+Element\+::locate\+\_\+zeta()}}, \mbox{\hyperlink{line__visualiser_8h_source_l00596}{Max\+\_\+search\+\_\+radius}}, \mbox{\hyperlink{line__visualiser_8h_source_l00827}{Nplot\+\_\+points}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{line__visualiser_8h_source_l00824}{Plot\+\_\+point}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01295}{oomph\+::\+Timing\+Helpers\+::timer()}}.
+References \mbox{\hyperlink{line__visualiser_8h_source_l00600}{Comm\+\_\+pt}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8cc_source_l04764}{oomph\+::\+Finite\+Element\+::locate\+\_\+zeta()}}, \mbox{\hyperlink{line__visualiser_8h_source_l00596}{Max\+\_\+search\+\_\+radius}}, \mbox{\hyperlink{line__visualiser_8h_source_l00827}{Nplot\+\_\+points}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{line__visualiser_8h_source_l00824}{Plot\+\_\+point}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01303}{oomph\+::\+Timing\+Helpers\+::timer()}}.
 
 
 
@@ -215,7 +215,7 @@ Definition at line \mbox{\hyperlink{line__visualiser_8h_source_l00603}{603}} of 
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, and \mbox{\hyperlink{line__visualiser_8h_source_l00668}{setup()}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, and \mbox{\hyperlink{line__visualiser_8h_source_l00668}{setup()}}.
 
 
 

@@ -7,7 +7,7 @@
 
 
 
-{\ttfamily \#include $<$one\+\_\+d\+\_\+lagrangian\+\_\+mesh.\+template.\+h$>$}
+{\ttfamily \#include $<$one\+\_\+d\+\_\+lagrangian\+\_\+mesh.\+h$>$}
 
 Inheritance diagram for oomph\+::One\+DLagrangian\+Mesh\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
 \begin{center}
@@ -21,9 +21,7 @@ Inheritance diagram for oomph\+::One\+DLagrangian\+Mesh\texorpdfstring{$<$}{<} E
 \mbox{\hyperlink{classoomph_1_1OneDLagrangianMesh_a7061998be3fb4131c6b58c4943595d49}{One\+DLagrangian\+Mesh}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{n\+\_\+element}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{length}}, \mbox{\hyperlink{classoomph_1_1GeomObject}{Geom\+Object}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{undef\+\_\+eulerian\+\_\+posn\+\_\+pt}}, \mbox{\hyperlink{classoomph_1_1TimeStepper}{Time\+Stepper}} \texorpdfstring{$\ast$}{*}time\+\_\+stepper\+\_\+pt=\&\mbox{\hyperlink{classoomph_1_1Mesh_a12243d0fee2b1fcee729ee5a4777ea10}{Mesh\+::\+Default\+\_\+\+Time\+Stepper}})
 \begin{DoxyCompactList}\small\item\em Constructor\+: Pass number of elements, length, pointer to \doxylink{classoomph_1_1GeomObject}{Geom\+Object} that defines the undeformed Eulerian position, and the timestepper -- defaults to (\doxylink{classoomph_1_1Steady}{Steady}) default timestepper defined in the \doxylink{classoomph_1_1Mesh}{Mesh} base class. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1OneDLagrangianMesh_a20e1ab05b023f65bea5503938cd70385}{One\+DLagrangian\+Mesh}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{n\+\_\+element}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{xmin}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{xmax}}, \mbox{\hyperlink{classoomph_1_1GeomObject}{Geom\+Object}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{undef\+\_\+eulerian\+\_\+posn\+\_\+pt}}, \mbox{\hyperlink{classoomph_1_1TimeStepper}{Time\+Stepper}} \texorpdfstring{$\ast$}{*}time\+\_\+stepper\+\_\+pt=\&\mbox{\hyperlink{classoomph_1_1Mesh_a12243d0fee2b1fcee729ee5a4777ea10}{Mesh\+::\+Default\+\_\+\+Time\+Stepper}})
-\begin{DoxyCompactList}\small\item\em Constructor\+: Pass number of elements, xmin, xmax pointer to \doxylink{classoomph_1_1GeomObject}{Geom\+Object} that defines the undeformed Eulerian position, and the timestepper -- defaults to (\doxylink{classoomph_1_1Steady}{Steady}) default timestepper defined in the \doxylink{classoomph_1_1Mesh}{Mesh} base class. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1OneDLagrangianMesh_a1eebb0eddd75a7c2847615c05b5fb4d8}{assign\+\_\+undeformed\+\_\+positions}} ()
-\begin{DoxyCompactList}\small\item\em Assign the undeformed Eulerian positions to the nodes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Constructor\+: Pass number of elements, xmin, xmax pointer to \doxylink{classoomph_1_1GeomObject}{Geom\+Object} that defines the undeformed Eulerian position, and the timestepper -- defaults to (\doxylink{classoomph_1_1Steady}{Steady}) default timestepper defined in the \doxylink{classoomph_1_1Mesh}{Mesh} base class. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classoomph_1_1OneDMesh}{oomph\+::\+One\+DMesh$<$ ELEMENT $>$}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -105,6 +103,10 @@ Inheritance diagram for oomph\+::One\+DLagrangian\+Mesh\texorpdfstring{$<$}{<} E
 \begin{DoxyCompactList}\small\item\em Replace existing boundary node lookup schemes with new schemes created using the boundary data stored in the nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1Mesh_ad1b124a959628aba00162b89617b3a62}{boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Indicate whether the i-\/th boundary has an intrinsic coordinate. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_ab137d0c0debf5ba0d6ea6990103e620c}{set\+\_\+boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be existing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_a3b9d63e0057ed721190b109f48f7c92e}{set\+\_\+boundary\+\_\+coordinate\+\_\+does\+\_\+not\+\_\+exist}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be non-\/existing. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_af01dfefb66c15579b540be62999d93ee}{nelement}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return number of elements in the mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
@@ -410,7 +412,9 @@ std\+::set$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1OneDLagrangianMesh_a7a4eabf4901a90b3015d2620fc70f648}{assign\+\_\+default\+\_\+element\+\_\+gradients}} ()
-\begin{DoxyCompactList}\small\item\em Set the default gradients of the elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Set the default gradients of the elements. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1OneDLagrangianMesh_a1eebb0eddd75a7c2847615c05b5fb4d8}{assign\+\_\+undeformed\+\_\+positions}} ()
+\begin{DoxyCompactList}\small\item\em Assign the undeformed Eulerian positions to the nodes. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -514,9 +518,7 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_aca12acfe655a4d5c4a4eab4a7b970812}{Element\+\_\+pt}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a412a5051be9e81f0ba61bf85e5abc4a6}{Boundary\+\_\+coordinate\+\_\+exists}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of boolean data that indicates whether the boundary coordinates have been set for the boundary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -524,7 +526,7 @@ std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionEleme
 class oomph\+::\+One\+DLagrangian\+Mesh$<$ ELEMENT $>$}
 1D mesh parametrised in terms of a 1D Lagrangian coordinate. The Eulerian positions of the nodes are determined by the \doxylink{classoomph_1_1GeomObject}{Geom\+Object}. 
 
-Definition at line \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8h_source_l00045}{45}} of file \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8h_source}{one\+\_\+d\+\_\+lagrangian\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{one__d__lagrangian__mesh_8h_source_l00044}{44}} of file \mbox{\hyperlink{one__d__lagrangian__mesh_8h_source}{one\+\_\+d\+\_\+lagrangian\+\_\+mesh.\+h}}.
 
 
 
@@ -542,11 +544,11 @@ Constructor\+: Pass number of elements, length, pointer to \doxylink{classoomph_
 
 Constructor for 1D mesh\+: n\+\_\+element \+: number of elements length \+: length of domain undef\+\_\+eulerian\+\_\+posn\+\_\+pt\+: pointer to geom object that describes the initial Eulerian position of the mesh. time\+\_\+stepper\+\_\+pt \+: timestepper. 
 
-Definition at line \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00047}{47}} of file \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source}{one\+\_\+d\+\_\+lagrangian\+\_\+mesh.\+template.\+cc}}.
+Definition at line \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00049}{49}} of file \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source}{one\+\_\+d\+\_\+lagrangian\+\_\+mesh.\+template.\+cc}}.
 
 
 
-References \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00108}{oomph\+::\+One\+DLagrangian\+Mesh$<$ ELEMENT $>$\+::assign\+\_\+default\+\_\+element\+\_\+gradients()}}, \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00138}{oomph\+::\+One\+DLagrangian\+Mesh$<$ ELEMENT $>$\+::assign\+\_\+undeformed\+\_\+positions()}}, and \mbox{\hyperlink{mesh_8cc_source_l09564}{oomph\+::\+Solid\+Mesh\+::set\+\_\+lagrangian\+\_\+nodal\+\_\+coordinates()}}.
+References \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00109}{oomph\+::\+One\+DLagrangian\+Mesh$<$ ELEMENT $>$\+::assign\+\_\+default\+\_\+element\+\_\+gradients()}}, \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00139}{oomph\+::\+One\+DLagrangian\+Mesh$<$ ELEMENT $>$\+::assign\+\_\+undeformed\+\_\+positions()}}, and \mbox{\hyperlink{mesh_8cc_source_l09564}{oomph\+::\+Solid\+Mesh\+::set\+\_\+lagrangian\+\_\+nodal\+\_\+coordinates()}}.
 
 \Hypertarget{classoomph_1_1OneDLagrangianMesh_a20e1ab05b023f65bea5503938cd70385}\label{classoomph_1_1OneDLagrangianMesh_a20e1ab05b023f65bea5503938cd70385} 
 \index{oomph::OneDLagrangianMesh$<$ ELEMENT $>$@{oomph::OneDLagrangianMesh$<$ ELEMENT $>$}!OneDLagrangianMesh@{OneDLagrangianMesh}}
@@ -561,11 +563,11 @@ Constructor\+: Pass number of elements, xmin, xmax pointer to \doxylink{classoom
 
 Constructor for 1D mesh\+: n\+\_\+element \+: number of elements xmin \+: minimum coordinate value (LH end) xmax \+: maximum coordinate value (RH end) undef\+\_\+eulerian\+\_\+posn\+\_\+pt\+: pointer to geom object that describes the initial Eulerian position of the mesh. time\+\_\+stepper\+\_\+pt \+: timestepper. 
 
-Definition at line \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00078}{78}} of file \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source}{one\+\_\+d\+\_\+lagrangian\+\_\+mesh.\+template.\+cc}}.
+Definition at line \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00080}{80}} of file \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source}{one\+\_\+d\+\_\+lagrangian\+\_\+mesh.\+template.\+cc}}.
 
 
 
-References \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00108}{oomph\+::\+One\+DLagrangian\+Mesh$<$ ELEMENT $>$\+::assign\+\_\+default\+\_\+element\+\_\+gradients()}}, \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00138}{oomph\+::\+One\+DLagrangian\+Mesh$<$ ELEMENT $>$\+::assign\+\_\+undeformed\+\_\+positions()}}, and \mbox{\hyperlink{mesh_8cc_source_l09564}{oomph\+::\+Solid\+Mesh\+::set\+\_\+lagrangian\+\_\+nodal\+\_\+coordinates()}}.
+References \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00109}{oomph\+::\+One\+DLagrangian\+Mesh$<$ ELEMENT $>$\+::assign\+\_\+default\+\_\+element\+\_\+gradients()}}, \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00139}{oomph\+::\+One\+DLagrangian\+Mesh$<$ ELEMENT $>$\+::assign\+\_\+undeformed\+\_\+positions()}}, and \mbox{\hyperlink{mesh_8cc_source_l09564}{oomph\+::\+Solid\+Mesh\+::set\+\_\+lagrangian\+\_\+nodal\+\_\+coordinates()}}.
 
 
 
@@ -583,7 +585,7 @@ Set the default gradients of the elements.
 
 Set the default (initial) gradients within each element, which are merely the distances between the nodes, scaled by 0.\+5 because the elements have length 2 in local coordinates. N.\+B. This only works for QHermite\+Elements at the moment. 
 
-Definition at line \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00108}{108}} of file \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source}{one\+\_\+d\+\_\+lagrangian\+\_\+mesh.\+template.\+cc}}.
+Definition at line \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00109}{109}} of file \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source}{one\+\_\+d\+\_\+lagrangian\+\_\+mesh.\+template.\+cc}}.
 
 
 
@@ -591,14 +593,14 @@ References \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Elemen
 
 
 
-Referenced by \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00047}{oomph\+::\+One\+DLagrangian\+Mesh$<$ ELEMENT $>$\+::\+One\+DLagrangian\+Mesh()}}, and \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00078}{oomph\+::\+One\+DLagrangian\+Mesh$<$ ELEMENT $>$\+::\+One\+DLagrangian\+Mesh()}}.
+Referenced by \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00049}{oomph\+::\+One\+DLagrangian\+Mesh$<$ ELEMENT $>$\+::\+One\+DLagrangian\+Mesh()}}, and \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00080}{oomph\+::\+One\+DLagrangian\+Mesh$<$ ELEMENT $>$\+::\+One\+DLagrangian\+Mesh()}}.
 
 \Hypertarget{classoomph_1_1OneDLagrangianMesh_a1eebb0eddd75a7c2847615c05b5fb4d8}\label{classoomph_1_1OneDLagrangianMesh_a1eebb0eddd75a7c2847615c05b5fb4d8} 
 \index{oomph::OneDLagrangianMesh$<$ ELEMENT $>$@{oomph::OneDLagrangianMesh$<$ ELEMENT $>$}!assign\_undeformed\_positions@{assign\_undeformed\_positions}}
 \index{assign\_undeformed\_positions@{assign\_undeformed\_positions}!oomph::OneDLagrangianMesh$<$ ELEMENT $>$@{oomph::OneDLagrangianMesh$<$ ELEMENT $>$}}
 \doxysubsubsection{\texorpdfstring{assign\_undeformed\_positions()}{assign\_undeformed\_positions()}}
 {\footnotesize\ttfamily template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{class}} ELEMENT $>$ \\
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1OneDLagrangianMesh}{oomph\+::\+One\+DLagrangian\+Mesh}}$<$ ELEMENT $>$\+::assign\+\_\+undeformed\+\_\+positions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1OneDLagrangianMesh}{oomph\+::\+One\+DLagrangian\+Mesh}}$<$ ELEMENT $>$\+::assign\+\_\+undeformed\+\_\+positions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
@@ -606,7 +608,7 @@ Assign the undeformed Eulerian positions to the nodes.
 
 Set the initial (2D Eulerian!) positions of the nodes. 
 
-Definition at line \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00138}{138}} of file \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source}{one\+\_\+d\+\_\+lagrangian\+\_\+mesh.\+template.\+cc}}.
+Definition at line \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00139}{139}} of file \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source}{one\+\_\+d\+\_\+lagrangian\+\_\+mesh.\+template.\+cc}}.
 
 
 
@@ -614,7 +616,7 @@ References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nod
 
 
 
-Referenced by \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00047}{oomph\+::\+One\+DLagrangian\+Mesh$<$ ELEMENT $>$\+::\+One\+DLagrangian\+Mesh()}}, and \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00078}{oomph\+::\+One\+DLagrangian\+Mesh$<$ ELEMENT $>$\+::\+One\+DLagrangian\+Mesh()}}.
+Referenced by \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00049}{oomph\+::\+One\+DLagrangian\+Mesh$<$ ELEMENT $>$\+::\+One\+DLagrangian\+Mesh()}}, and \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00080}{oomph\+::\+One\+DLagrangian\+Mesh$<$ ELEMENT $>$\+::\+One\+DLagrangian\+Mesh()}}.
 
 
 
@@ -632,11 +634,11 @@ Undeformed Eulerian shape.
 
 
 
-Definition at line \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8h_source_l00049}{49}} of file \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8h_source}{one\+\_\+d\+\_\+lagrangian\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{one__d__lagrangian__mesh_8h_source_l00048}{48}} of file \mbox{\hyperlink{one__d__lagrangian__mesh_8h_source}{one\+\_\+d\+\_\+lagrangian\+\_\+mesh.\+h}}.
 
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{one__d__lagrangian__mesh_8template_8h}{one\+\_\+d\+\_\+lagrangian\+\_\+mesh.\+template.\+h}}\item 
+\mbox{\hyperlink{one__d__lagrangian__mesh_8h}{one\+\_\+d\+\_\+lagrangian\+\_\+mesh.\+h}}\item 
 \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc}{one\+\_\+d\+\_\+lagrangian\+\_\+mesh.\+template.\+cc}}\end{DoxyCompactItemize}

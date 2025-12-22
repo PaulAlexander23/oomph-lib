@@ -2,7 +2,7 @@
 \hypertarget{classoomph_1_1PolarCrouzeixRaviartElement}{}\label{classoomph_1_1PolarCrouzeixRaviartElement}\index{oomph::PolarCrouzeixRaviartElement@{oomph::PolarCrouzeixRaviartElement}}
 
 
-/////////////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////////////  
+Crouzeix\+\_\+\+Raviart elements are Navier--Stokes elements with quadratic interpolation for velocities and positions, but a discontinuous linear pressure interpolation.  
 
 
 
@@ -148,7 +148,7 @@ Inheritance diagram for oomph\+::Polar\+Crouzeix\+Raviart\+Element\+:\begin{figu
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} \mbox{\hyperlink{classoomph_1_1PolarNavierStokesEquations_afcc85389a45dfa0e811852012fc40442}{interpolated\+\_\+p\+\_\+pnst}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return FE interpolated pressure at local coordinate s. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} \mbox{\hyperlink{classoomph_1_1PolarNavierStokesEquations_af92453e32bfbc37cd9dd93992d1e4211}{interpolated\+\_\+dudx\+\_\+pnst}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{j}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
-\begin{DoxyCompactList}\small\item\em //////////////////////////////////////////////////////////////// My own work\+: /// Return FE interpolated velocity derivative du\mbox{[}i\mbox{]}/dx\mbox{[}j\mbox{]} /// at local coordinate s /// \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em My own work\+: /// Return FE interpolated velocity derivative du\mbox{[}i\mbox{]}/dx\mbox{[}j\mbox{]} /// at local coordinate s ///. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classoomph_1_1FiniteElement}{oomph\+::\+Finite\+Element}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -358,7 +358,7 @@ Inheritance diagram for oomph\+::Polar\+Crouzeix\+Raviart\+Element\+:\begin{figu
 \begin{DoxyCompactList}\small\item\em Calculate the size of the element (length, area, volume,...) in Eulerian computational coordinates. Use suitably overloaded \doxylink{classoomph_1_1FiniteElement_a782a540035dc31cb6ef548d9d930d8b8}{compute\+\_\+physical\+\_\+size()} function to compute the actual size (taking into account factors such as 2pi or radii the integrand) -- such function can only be implemented on an equation-\/by-\/equation basis. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} \mbox{\hyperlink{classoomph_1_1FiniteElement_a782a540035dc31cb6ef548d9d930d8b8}{compute\+\_\+physical\+\_\+size}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Broken virtual function to compute the actual size (taking into account factors such as 2pi or radii the integrand) -- such function can only be implemented on an equation-\/by-\/equation basis. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1FiniteElement_a8bf3f75b55d4e67b644df3e22c192596}{point\+\_\+output\+\_\+data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{data}})
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1FiniteElement_a8bf3f75b55d4e67b644df3e22c192596}{point\+\_\+output\+\_\+data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&data)
 \begin{DoxyCompactList}\small\item\em Virtual function to write the double precision numbers that appear in a single line of output into the data vector. Empty virtual, can be overloaded for specific elements; used e.\+g. by \doxylink{classoomph_1_1LineVisualiser}{Line\+Visualiser}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1FiniteElement_a57e514bf089797717b80a61725aad622}{point\+\_\+output}} (std\+::ostream \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{outfile}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}})
 \begin{DoxyCompactList}\small\item\em Output solution (as defined by \doxylink{classoomph_1_1FiniteElement_a8bf3f75b55d4e67b644df3e22c192596}{point\+\_\+output\+\_\+data()}) at local cordinates s. \end{DoxyCompactList}\item 
@@ -435,8 +435,10 @@ Inheritance diagram for oomph\+::Polar\+Crouzeix\+Raviart\+Element\+:\begin{figu
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{oomph\+::\+Generalised\+Element}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}}() \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a76c506edf49c5bbfe94f424ec94191ab}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
-\begin{DoxyCompactList}\small\item\em Constructor\+: Initialise all pointers and all values to zero. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a6a34bffcef1bbbc5271630042afe7ca9}{\texorpdfstring{$\sim$}{\string~}\+Generalised\+Element}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor to clean up any memory allocated by the object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1GeneralisedElement_a4e4a9177fdb093fc85c890bb86bdf655}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
+\begin{DoxyCompactList}\small\item\em Broken copy constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a180b550ae69f8bcbaae3f37f38c475ff}{operator=}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
 \begin{DoxyCompactList}\small\item\em Broken assignment operator. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Data}{Data}} \texorpdfstring{$\ast$}{*}\& \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a3b83389f2c80788013421c6d59604f0b}{internal\+\_\+data\+\_\+pt}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
@@ -843,9 +845,7 @@ template$<$$>$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement
 
 
 \doxysubsection{Detailed Description}
-/////////////////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////////// 
-
-Crouzeix\+\_\+\+Raviart elements are Navier--Stokes elements with quadratic interpolation for velocities and positions, but a discontinuous linear pressure interpolation 
+Crouzeix\+\_\+\+Raviart elements are Navier--Stokes elements with quadratic interpolation for velocities and positions, but a discontinuous linear pressure interpolation. 
 
 Definition at line \mbox{\hyperlink{polar__navier__stokes__elements_8h_source_l00770}{770}} of file \mbox{\hyperlink{polar__navier__stokes__elements_8h_source}{polar\+\_\+navier\+\_\+stokes\+\_\+elements.\+h}}.
 
@@ -937,7 +937,7 @@ Definition at line \mbox{\hyperlink{polar__navier__stokes__elements_8h_source_l0
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l00622}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l00385}{oomph\+::\+Data\+::pin()}}, and \mbox{\hyperlink{nodes_8h_source_l00324}{oomph\+::\+Data\+::value\+\_\+pt()}}.
+References \mbox{\hyperlink{elements_8h_source_l00605}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l00385}{oomph\+::\+Data\+::pin()}}, and \mbox{\hyperlink{nodes_8h_source_l00324}{oomph\+::\+Data\+::value\+\_\+pt()}}.
 
 \Hypertarget{classoomph_1_1PolarCrouzeixRaviartElement_afbc0b41da46fa27fa5cd35d9b38de2e1}\label{classoomph_1_1PolarCrouzeixRaviartElement_afbc0b41da46fa27fa5cd35d9b38de2e1} 
 \index{oomph::PolarCrouzeixRaviartElement@{oomph::PolarCrouzeixRaviartElement}!full\_output@{full\_output}}
@@ -991,7 +991,7 @@ Definition at line \mbox{\hyperlink{polar__navier__stokes__elements_8cc_source_l
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l00622}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{elements_8h_source_l00827}{oomph\+::\+Generalised\+Element\+::ninternal\+\_\+data()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, and \mbox{\hyperlink{nodes_8h_source_l00483}{oomph\+::\+Data\+::nvalue()}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l00605}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{elements_8h_source_l00810}{oomph\+::\+Generalised\+Element\+::ninternal\+\_\+data()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, and \mbox{\hyperlink{nodes_8h_source_l00483}{oomph\+::\+Data\+::nvalue()}}.
 
 \Hypertarget{classoomph_1_1PolarCrouzeixRaviartElement_a22bc07f82b9e2c5b373db917ca071085}\label{classoomph_1_1PolarCrouzeixRaviartElement_a22bc07f82b9e2c5b373db917ca071085} 
 \index{oomph::PolarCrouzeixRaviartElement@{oomph::PolarCrouzeixRaviartElement}!npres\_pnst@{npres\_pnst}}
@@ -1145,7 +1145,7 @@ Definition at line \mbox{\hyperlink{polar__navier__stokes__elements_8h_source_l0
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l00622}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, and \mbox{\hyperlink{nodes_8h_source_l00324}{oomph\+::\+Data\+::value\+\_\+pt()}}.
+References \mbox{\hyperlink{elements_8h_source_l00605}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, and \mbox{\hyperlink{nodes_8h_source_l00324}{oomph\+::\+Data\+::value\+\_\+pt()}}.
 
 \Hypertarget{classoomph_1_1PolarCrouzeixRaviartElement_a1898936dd70065cb4054d1e1ba6a9d49}\label{classoomph_1_1PolarCrouzeixRaviartElement_a1898936dd70065cb4054d1e1ba6a9d49} 
 \index{oomph::PolarCrouzeixRaviartElement@{oomph::PolarCrouzeixRaviartElement}!pshape\_pnst@{pshape\_pnst}}
@@ -1279,8 +1279,6 @@ References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink
 
 
 Static array of ints to hold required number of variables at nodes. 
-
-/////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////
 
 2D Crouzeix-\/\+Raviart elements 
 

@@ -7,7 +7,7 @@ Simple rectangular 2D Quad mesh class. Nx \+: number of elements in the x direct
 
 
 
-{\ttfamily \#include $<$simple\+\_\+rectangular\+\_\+quadmesh.\+template.\+h$>$}
+{\ttfamily \#include $<$simple\+\_\+rectangular\+\_\+quadmesh.\+h$>$}
 
 Inheritance diagram for oomph\+::Simple\+Rectangular\+Quad\+Mesh\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
 \begin{center}
@@ -100,6 +100,10 @@ Inheritance diagram for oomph\+::Simple\+Rectangular\+Quad\+Mesh\texorpdfstring{
 \begin{DoxyCompactList}\small\item\em Replace existing boundary node lookup schemes with new schemes created using the boundary data stored in the nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1Mesh_ad1b124a959628aba00162b89617b3a62}{boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Indicate whether the i-\/th boundary has an intrinsic coordinate. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_ab137d0c0debf5ba0d6ea6990103e620c}{set\+\_\+boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be existing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_a3b9d63e0057ed721190b109f48f7c92e}{set\+\_\+boundary\+\_\+coordinate\+\_\+does\+\_\+not\+\_\+exist}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be non-\/existing. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_af01dfefb66c15579b540be62999d93ee}{nelement}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return number of elements in the mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
@@ -462,9 +466,7 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_aca12acfe655a4d5c4a4eab4a7b970812}{Element\+\_\+pt}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a412a5051be9e81f0ba61bf85e5abc4a6}{Boundary\+\_\+coordinate\+\_\+exists}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of boolean data that indicates whether the boundary coordinates have been set for the boundary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -482,7 +484,7 @@ Ordering of elements\+: \textquotesingle{}Lower left\textquotesingle{} to \textq
 
 Timestepper defaults to \doxylink{classoomph_1_1Steady}{Steady}. 
 
-Definition at line \mbox{\hyperlink{simple__rectangular__quadmesh_8template_8h_source_l00057}{57}} of file \mbox{\hyperlink{simple__rectangular__quadmesh_8template_8h_source}{simple\+\_\+rectangular\+\_\+quadmesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{simple__rectangular__quadmesh_8h_source_l00057}{57}} of file \mbox{\hyperlink{simple__rectangular__quadmesh_8h_source}{simple\+\_\+rectangular\+\_\+quadmesh.\+h}}.
 
 
 
@@ -512,7 +514,7 @@ Ordering of elements\+: \textquotesingle{}Lower left\textquotesingle{} to \textq
 
 Timestepper defaults to \doxylink{classoomph_1_1Steady}{Steady}. 
 
-Definition at line \mbox{\hyperlink{simple__rectangular__quadmesh_8template_8cc_source_l00051}{51}} of file \mbox{\hyperlink{simple__rectangular__quadmesh_8template_8cc_source}{simple\+\_\+rectangular\+\_\+quadmesh.\+template.\+cc}}.
+Definition at line \mbox{\hyperlink{simple__rectangular__quadmesh_8template_8cc_source_l00053}{53}} of file \mbox{\hyperlink{simple__rectangular__quadmesh_8template_8cc_source}{simple\+\_\+rectangular\+\_\+quadmesh.\+template.\+cc}}.
 
 
 
@@ -534,15 +536,15 @@ Access function for number of elements in x directions.
 
 
 
-Definition at line \mbox{\hyperlink{simple__rectangular__quadmesh_8template_8h_source_l00071}{71}} of file \mbox{\hyperlink{simple__rectangular__quadmesh_8template_8h_source}{simple\+\_\+rectangular\+\_\+quadmesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{simple__rectangular__quadmesh_8h_source_l00071}{71}} of file \mbox{\hyperlink{simple__rectangular__quadmesh_8h_source}{simple\+\_\+rectangular\+\_\+quadmesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{simple__rectangular__quadmesh_8template_8h_source_l00084}{oomph\+::\+Simple\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::\+NX}}.
+References \mbox{\hyperlink{simple__rectangular__quadmesh_8h_source_l00084}{oomph\+::\+Simple\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::\+NX}}.
 
 
 
-Referenced by \mbox{\hyperlink{fsi__driven__cavity__mesh_8template_8cc_source_l00041}{oomph\+::\+FSIDriven\+Cavity\+Mesh$<$ ELEMENT $>$\+::\+FSIDriven\+Cavity\+Mesh()}}.
+Referenced by \mbox{\hyperlink{fsi__driven__cavity__mesh_8template_8cc_source_l00043}{oomph\+::\+FSIDriven\+Cavity\+Mesh$<$ ELEMENT $>$\+::\+FSIDriven\+Cavity\+Mesh()}}.
 
 \Hypertarget{classoomph_1_1SimpleRectangularQuadMesh_a2fb0d63a354817c162e37507673e26e9}\label{classoomph_1_1SimpleRectangularQuadMesh_a2fb0d63a354817c162e37507673e26e9} 
 \index{oomph::SimpleRectangularQuadMesh$<$ ELEMENT $>$@{oomph::SimpleRectangularQuadMesh$<$ ELEMENT $>$}!ny@{ny}}
@@ -557,15 +559,15 @@ Access function for number of elements in y directions.
 
 
 
-Definition at line \mbox{\hyperlink{simple__rectangular__quadmesh_8template_8h_source_l00077}{77}} of file \mbox{\hyperlink{simple__rectangular__quadmesh_8template_8h_source}{simple\+\_\+rectangular\+\_\+quadmesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{simple__rectangular__quadmesh_8h_source_l00077}{77}} of file \mbox{\hyperlink{simple__rectangular__quadmesh_8h_source}{simple\+\_\+rectangular\+\_\+quadmesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{simple__rectangular__quadmesh_8template_8h_source_l00087}{oomph\+::\+Simple\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::\+NY}}.
+References \mbox{\hyperlink{simple__rectangular__quadmesh_8h_source_l00087}{oomph\+::\+Simple\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::\+NY}}.
 
 
 
-Referenced by \mbox{\hyperlink{collapsible__channel__mesh_8template_8cc_source_l00043}{oomph\+::\+Collapsible\+Channel\+Mesh$<$ ELEMENT $>$\+::\+Collapsible\+Channel\+Mesh()}}, and \mbox{\hyperlink{fsi__driven__cavity__mesh_8template_8cc_source_l00041}{oomph\+::\+FSIDriven\+Cavity\+Mesh$<$ ELEMENT $>$\+::\+FSIDriven\+Cavity\+Mesh()}}.
+Referenced by \mbox{\hyperlink{collapsible__channel__mesh_8template_8cc_source_l00045}{oomph\+::\+Collapsible\+Channel\+Mesh$<$ ELEMENT $>$\+::\+Collapsible\+Channel\+Mesh()}}, and \mbox{\hyperlink{fsi__driven__cavity__mesh_8template_8cc_source_l00043}{oomph\+::\+FSIDriven\+Cavity\+Mesh$<$ ELEMENT $>$\+::\+FSIDriven\+Cavity\+Mesh()}}.
 
 
 
@@ -583,11 +585,11 @@ Number of elements in x direction.
 
 
 
-Definition at line \mbox{\hyperlink{simple__rectangular__quadmesh_8template_8h_source_l00084}{84}} of file \mbox{\hyperlink{simple__rectangular__quadmesh_8template_8h_source}{simple\+\_\+rectangular\+\_\+quadmesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{simple__rectangular__quadmesh_8h_source_l00084}{84}} of file \mbox{\hyperlink{simple__rectangular__quadmesh_8h_source}{simple\+\_\+rectangular\+\_\+quadmesh.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{simple__rectangular__quadmesh_8template_8h_source_l00071}{oomph\+::\+Simple\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::nx()}}.
+Referenced by \mbox{\hyperlink{simple__rectangular__quadmesh_8h_source_l00071}{oomph\+::\+Simple\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::nx()}}.
 
 \Hypertarget{classoomph_1_1SimpleRectangularQuadMesh_a6db96125790b46858fb00eef46bf7201}\label{classoomph_1_1SimpleRectangularQuadMesh_a6db96125790b46858fb00eef46bf7201} 
 \index{oomph::SimpleRectangularQuadMesh$<$ ELEMENT $>$@{oomph::SimpleRectangularQuadMesh$<$ ELEMENT $>$}!NY@{NY}}
@@ -602,15 +604,15 @@ Number of elements in y direction.
 
 
 
-Definition at line \mbox{\hyperlink{simple__rectangular__quadmesh_8template_8h_source_l00087}{87}} of file \mbox{\hyperlink{simple__rectangular__quadmesh_8template_8h_source}{simple\+\_\+rectangular\+\_\+quadmesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{simple__rectangular__quadmesh_8h_source_l00087}{87}} of file \mbox{\hyperlink{simple__rectangular__quadmesh_8h_source}{simple\+\_\+rectangular\+\_\+quadmesh.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{simple__rectangular__quadmesh_8template_8h_source_l00077}{oomph\+::\+Simple\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::ny()}}.
+Referenced by \mbox{\hyperlink{simple__rectangular__quadmesh_8h_source_l00077}{oomph\+::\+Simple\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::ny()}}.
 
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{simple__rectangular__quadmesh_8template_8h}{simple\+\_\+rectangular\+\_\+quadmesh.\+template.\+h}}\item 
+\mbox{\hyperlink{simple__rectangular__quadmesh_8h}{simple\+\_\+rectangular\+\_\+quadmesh.\+h}}\item 
 \mbox{\hyperlink{simple__rectangular__quadmesh_8template_8cc}{simple\+\_\+rectangular\+\_\+quadmesh.\+template.\+cc}}\end{DoxyCompactItemize}

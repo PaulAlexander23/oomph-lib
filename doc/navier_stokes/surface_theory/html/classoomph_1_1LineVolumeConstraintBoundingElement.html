@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 </div><!--header-->
 <div class="contents">
 
-<p>////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////  
+<p>One-dimensional interface elements that allow the application of a volume constraint on the region bounded by these elements. The volume is computed by integrating x.n around the boundary of the domain and then dividing by two. The sign is chosen so that the volume will be positive when the elements surround a fluid domain.  
  <a href="classoomph_1_1LineVolumeConstraintBoundingElement.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="constrained__volume__elements_8h_source.html">constrained_volume_elements.h</a>&gt;</code></p>
@@ -132,8 +126,8 @@ Inheritance diagram for oomph::LineVolumeConstraintBoundingElement:</div>
  <div class="center">
   <img src="classoomph_1_1LineVolumeConstraintBoundingElement.png" usemap="#oomph::LineVolumeConstraintBoundingElement_map" alt=""/>
   <map id="oomph::LineVolumeConstraintBoundingElement_map" name="oomph::LineVolumeConstraintBoundingElement_map">
-<area href="classoomph_1_1VolumeConstraintBoundingElement.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////..." alt="oomph::VolumeConstraintBoundingElement" shape="rect" coords="202,56,596,80"/>
-<area href="classoomph_1_1ElasticLineVolumeConstraintBoundingElement.html" title="/////////////////////////////////////////////////////////////////// /////////////////////////////////..." alt="oomph::ElasticLineVolumeConstraintBoundingElement&lt; ELEMENT &gt;" shape="rect" coords="0,168,394,192"/>
+<area href="classoomph_1_1VolumeConstraintBoundingElement.html" title="Base class for interface elements that allow the application of a volume constraint on the region bou..." alt="oomph::VolumeConstraintBoundingElement" shape="rect" coords="202,56,596,80"/>
+<area href="classoomph_1_1ElasticLineVolumeConstraintBoundingElement.html" title="The one-dimensional interface elements that allow imposition of a volume constraint specialised for t..." alt="oomph::ElasticLineVolumeConstraintBoundingElement&lt; ELEMENT &gt;" shape="rect" coords="0,168,394,192"/>
 <area href="classoomph_1_1SpineLineVolumeConstraintBoundingElement.html" title="The one-dimensional interface elements that allow imposition of a volume constraint specialised for t..." alt="oomph::SpineLineVolumeConstraintBoundingElement&lt; ELEMENT &gt;" shape="rect" coords="404,168,798,192"/>
   </map>
 </div></div>
@@ -187,8 +181,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a8f9aa94f106fd443fa690851a0268720 inherit pro_attribs_classoomph_1_1VolumeConstraintBoundingElement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////// </p>
-<p>One-dimensional interface elements that allow the application of a volume constraint on the region bounded by these elements. The volume is computed by integrating x.n around the boundary of the domain and then dividing by two. The sign is chosen so that the volume will be positive when the elements surround a fluid domain.</p>
+<div class="textblock"><p>One-dimensional interface elements that allow the application of a volume constraint on the region bounded by these elements. The volume is computed by integrating x.n around the boundary of the domain and then dividing by two. The sign is chosen so that the volume will be positive when the elements surround a fluid domain. </p>
 <p>These elements must be used together with the associated <a class="el" href="classoomph_1_1VolumeConstraintElement.html" title="A class that is used to implement the constraint that the fluid volume in a region bounded by associa...">VolumeConstraintElement</a>, which stores the value of the target volume. </p>
 
 <p class="definition">Definition at line <a class="el" href="constrained__volume__elements_8h_source.html#l00330">330</a> of file <a class="el" href="constrained__volume__elements_8h_source.html">constrained_volume_elements.h</a>.</p>
@@ -298,8 +291,6 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Helper function to fill in contributions to residuals (remember that part of the residual is added by the the associated <a class="el" href="classoomph_1_1VolumeConstraintElement.html" title="A class that is used to implement the constraint that the fluid volume in a region bounded by associa...">VolumeConstraintElement</a>). This is specific for 1D line elements that bound 2D cartesian fluid elements. </p>
-<p>////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////</p>
-<p>Helper function to fill in contributions to residuals (remember that part of the residual is added by the the associated <a class="el" href="classoomph_1_1VolumeConstraintElement.html" title="A class that is used to implement the constraint that the fluid volume in a region bounded by associa...">VolumeConstraintElement</a>). This is specific for 1D line elements that bound 2D cartesian fluid elements. </p>
 
 <p>Implements <a class="el" href="classoomph_1_1VolumeConstraintBoundingElement.html#a717f1085709bd8820b8043ff94ecb0c5">oomph::VolumeConstraintBoundingElement</a>.</p>
 
@@ -343,7 +334,7 @@ Additional Inherited Members</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:18:31
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:42:34
         </div>
       </div>
     </footer>

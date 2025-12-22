@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -364,7 +364,7 @@
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00360}00360\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00361}00361\ \ ofstream\ some\_file;}
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00362}00362\ \ \textcolor{keywordtype}{char}\ filename[100];}
-\DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00363}00363\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00363}00363\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00364}00364\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00365}00365\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00366}00366\ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned}\ i=0;i<N\_bulk\_elements;i++)}
@@ -383,20 +383,20 @@
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00379}00379\ \ \ \{}
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00380}00380\ \ \ \ }
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00381}00381\ \ \ \ ofstream\ tangent\_file;}
-\DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00382}00382\ \ \ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/tangent\_to\_contact\_line\%i.dat"{}},}
+\DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00382}00382\ \ \ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/tangent\_to\_contact\_line\%i.dat"{}},}
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00383}00383\ \ \ \ \ \ \ \ \ \ \ \ doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00384}00384\ \ \ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00385}00385\ \ \ \ tangent\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00386}00386\ \ \ \ }
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00387}00387\ \ \ \ ofstream\ normal\_file;}
-\DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00388}00388\ \ \ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/normal\_to\_contact\_line\%i.dat"{}},}
+\DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00388}00388\ \ \ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/normal\_to\_contact\_line\%i.dat"{}},}
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00389}00389\ \ \ \ \ \ \ \ \ \ \ \ doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00390}00390\ \ \ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00391}00391\ \ \ \ normal\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00392}00392\ \ \ \ }
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00393}00393\ \ \ \ }
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00394}00394\ \ \ \ ofstream\ contact\_angle\_file;}
-\DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00395}00395\ \ \ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/contact\_angle\%i.dat"{}},}
+\DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00395}00395\ \ \ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/contact\_angle\%i.dat"{}},}
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00396}00396\ \ \ \ \ \ \ \ \ \ \ \ doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00397}00397\ \ \ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00398}00398\ \ \ \ contact\_angle\_file.open(filename);}
@@ -497,7 +497,7 @@
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00493}00493\ \ }
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00494}00494\ \ \textcolor{comment}{//Open\ a\ trace\ file}}
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00495}00495\ \ \textcolor{keywordtype}{char}\ filename[100];}
-\DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00496}00496\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00496}00496\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00497}00497\ \ trace\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00498}00498\ \ }
 \DoxyCodeLine{\Hypertarget{young__laplace_8cc_source_l00499}00499\ \ \textcolor{comment}{//\ Write\ kappa,\ exact\ kappa\ if\ exists\ and\ height\ values}}

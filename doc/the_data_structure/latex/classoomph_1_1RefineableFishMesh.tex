@@ -2,12 +2,12 @@
 \hypertarget{classoomph_1_1RefineableFishMesh}{}\label{classoomph_1_1RefineableFishMesh}\index{oomph::RefineableFishMesh$<$ ELEMENT $>$@{oomph::RefineableFishMesh$<$ ELEMENT $>$}}
 
 
-////////////////////////////////////////////////////////////////////  
+Refineable fish shaped mesh. The geometry is defined by the \doxylink{classoomph_1_1Domain}{Domain} object \doxylink{classoomph_1_1FishDomain}{Fish\+Domain}.  
 
 
 
 
-{\ttfamily \#include $<$fish\+\_\+mesh.\+template.\+h$>$}
+{\ttfamily \#include $<$fish\+\_\+mesh.\+h$>$}
 
 Inheritance diagram for oomph\+::Refineable\+Fish\+Mesh\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
 \begin{center}
@@ -113,6 +113,10 @@ Inheritance diagram for oomph\+::Refineable\+Fish\+Mesh\texorpdfstring{$<$}{<} E
 \begin{DoxyCompactList}\small\item\em Replace existing boundary node lookup schemes with new schemes created using the boundary data stored in the nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1Mesh_ad1b124a959628aba00162b89617b3a62}{boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Indicate whether the i-\/th boundary has an intrinsic coordinate. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_ab137d0c0debf5ba0d6ea6990103e620c}{set\+\_\+boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be existing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_a3b9d63e0057ed721190b109f48f7c92e}{set\+\_\+boundary\+\_\+coordinate\+\_\+does\+\_\+not\+\_\+exist}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be non-\/existing. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_af01dfefb66c15579b540be62999d93ee}{nelement}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return number of elements in the mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
@@ -670,9 +674,7 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_aca12acfe655a4d5c4a4eab4a7b970812}{Element\+\_\+pt}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a412a5051be9e81f0ba61bf85e5abc4a6}{Boundary\+\_\+coordinate\+\_\+exists}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of boolean data that indicates whether the boundary coordinates have been set for the boundary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMeshBase}{oomph\+::\+Tree\+Based\+Refineable\+Mesh\+Base}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -722,11 +724,9 @@ std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionEleme
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{class}} ELEMENT$>$\newline
 class oomph\+::\+Refineable\+Fish\+Mesh$<$ ELEMENT $>$}
-//////////////////////////////////////////////////////////////////// 
+Refineable fish shaped mesh. The geometry is defined by the \doxylink{classoomph_1_1Domain}{Domain} object \doxylink{classoomph_1_1FishDomain}{Fish\+Domain}. 
 
-//////////////////////////////////////////////////////////////////// Refineable fish shaped mesh. The geometry is defined by the \doxylink{classoomph_1_1Domain}{Domain} object \doxylink{classoomph_1_1FishDomain}{Fish\+Domain}. 
-
-Definition at line \mbox{\hyperlink{fish__mesh_8template_8h_source_l00127}{127}} of file \mbox{\hyperlink{fish__mesh_8template_8h_source}{fish\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{fish__mesh_8h_source_l00124}{124}} of file \mbox{\hyperlink{fish__mesh_8h_source}{fish\+\_\+mesh.\+h}}.
 
 
 
@@ -744,11 +744,11 @@ Constructor\+: Pass pointer to timestepper -- defaults to (\doxylink{classoomph_
 
 
 
-Definition at line \mbox{\hyperlink{fish__mesh_8template_8h_source_l00133}{133}} of file \mbox{\hyperlink{fish__mesh_8template_8h_source}{fish\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{fish__mesh_8h_source_l00130}{130}} of file \mbox{\hyperlink{fish__mesh_8h_source}{fish\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{fish__mesh_8template_8cc_source_l00661}{oomph\+::\+Refineable\+Fish\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+adaptivity()}}.
+References \mbox{\hyperlink{fish__mesh_8template_8cc_source_l00641}{oomph\+::\+Refineable\+Fish\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+adaptivity()}}.
 
 \Hypertarget{classoomph_1_1RefineableFishMesh_a82bc04aea6deaf2faa7306aa047e12ef}\label{classoomph_1_1RefineableFishMesh_a82bc04aea6deaf2faa7306aa047e12ef} 
 \index{oomph::RefineableFishMesh$<$ ELEMENT $>$@{oomph::RefineableFishMesh$<$ ELEMENT $>$}!RefineableFishMesh@{RefineableFishMesh}}
@@ -763,11 +763,11 @@ Constructor\+: Pass pointer \doxylink{classoomph_1_1GeomObject}{Geom\+Object} th
 
 
 
-Definition at line \mbox{\hyperlink{fish__mesh_8template_8h_source_l00149}{149}} of file \mbox{\hyperlink{fish__mesh_8template_8h_source}{fish\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{fish__mesh_8h_source_l00146}{146}} of file \mbox{\hyperlink{fish__mesh_8h_source}{fish\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{fish__mesh_8template_8cc_source_l00661}{oomph\+::\+Refineable\+Fish\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+adaptivity()}}.
+References \mbox{\hyperlink{fish__mesh_8template_8cc_source_l00641}{oomph\+::\+Refineable\+Fish\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+adaptivity()}}.
 
 \Hypertarget{classoomph_1_1RefineableFishMesh_a8304d093e015001a6d56faebdd2d4636}\label{classoomph_1_1RefineableFishMesh_a8304d093e015001a6d56faebdd2d4636} 
 \index{oomph::RefineableFishMesh$<$ ELEMENT $>$@{oomph::RefineableFishMesh$<$ ELEMENT $>$}!````~RefineableFishMesh@{\texorpdfstring{$\sim$}{\string~}RefineableFishMesh}}
@@ -782,7 +782,7 @@ Destructor\+: Empty -- all cleanup gets handled in the base classes.
 
 
 
-Definition at line \mbox{\hyperlink{fish__mesh_8template_8h_source_l00163}{163}} of file \mbox{\hyperlink{fish__mesh_8template_8h_source}{fish\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{fish__mesh_8h_source_l00160}{160}} of file \mbox{\hyperlink{fish__mesh_8h_source}{fish\+\_\+mesh.\+h}}.
 
 
 
@@ -798,19 +798,17 @@ Definition at line \mbox{\hyperlink{fish__mesh_8template_8h_source_l00163}{163}}
 
 Setup all the information that\textquotesingle{}s required for spatial adaptivity\+: Set pointers to macro elements and build quadtree forest. (contained in separate function as this functionality is common to both constructors),. 
 
-///////////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-
 Setup all the information that\textquotesingle{}s required for spatial adaptivity\+: Build quadtree forest. 
 
-Definition at line \mbox{\hyperlink{fish__mesh_8template_8cc_source_l00661}{661}} of file \mbox{\hyperlink{fish__mesh_8template_8cc_source}{fish\+\_\+mesh.\+template.\+cc}}.
+Definition at line \mbox{\hyperlink{fish__mesh_8template_8cc_source_l00641}{641}} of file \mbox{\hyperlink{fish__mesh_8template_8cc_source}{fish\+\_\+mesh.\+template.\+cc}}.
 
 
 
-Referenced by \mbox{\hyperlink{fish__mesh_8template_8h_source_l00149}{oomph\+::\+Refineable\+Fish\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Fish\+Mesh()}}, and \mbox{\hyperlink{fish__mesh_8template_8h_source_l00133}{oomph\+::\+Refineable\+Fish\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Fish\+Mesh()}}.
+Referenced by \mbox{\hyperlink{fish__mesh_8h_source_l00146}{oomph\+::\+Refineable\+Fish\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Fish\+Mesh()}}, and \mbox{\hyperlink{fish__mesh_8h_source_l00130}{oomph\+::\+Refineable\+Fish\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Fish\+Mesh()}}.
 
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{fish__mesh_8template_8h}{fish\+\_\+mesh.\+template.\+h}}\item 
+\mbox{\hyperlink{fish__mesh_8h}{fish\+\_\+mesh.\+h}}\item 
 \mbox{\hyperlink{fish__mesh_8template_8cc}{fish\+\_\+mesh.\+template.\+cc}}\end{DoxyCompactItemize}

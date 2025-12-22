@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -383,7 +377,7 @@ Upgrading the advection-diffusion element to an ElementWithExternalElement</h2>
  <hr  />
 <h1><a class="anchor" id="multi_domain_boussinesq"></a>
 Part III: The driver code for the multi-domain Boussinesq problem</h1>
-<p>Using the upgraded elements discussed above, <a href="../../../../demo_drivers/multi_physics/boussinesq_convection/multi_domain_ref_b_convection.cc">the driver code </a> for the multi-domain-based solution of the Boussinesq convection problem is very similar to that of the <a href="../../refine_b_convect/html/index.html">single-domain example.</a> Indeed, the <code><a class="el" href="multi__domain__ref__b__convection_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Driver code for 2D Boussinesq convection problem with adaptivity.">main()</a></code> functions are virtually identical. The only difference is that the <code><a class="el" href="classRefineableConvectionProblem.html" title="/////////////////////////////////////////////////////////////////// /////////////////////////////////...">RefineableConvectionProblem</a></code> takes two template arguments (specifying the two different element types) instead of one (specifying the type of the single, combined element).</p>
+<p>Using the upgraded elements discussed above, <a href="../../../../demo_drivers/multi_physics/boussinesq_convection/multi_domain_ref_b_convection.cc">the driver code </a> for the multi-domain-based solution of the Boussinesq convection problem is very similar to that of the <a href="../../refine_b_convect/html/index.html">single-domain example.</a> Indeed, the <code><a class="el" href="multi__domain__ref__b__convection_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Driver code for 2D Boussinesq convection problem with adaptivity.">main()</a></code> functions are virtually identical. The only difference is that the <code><a class="el" href="classRefineableConvectionProblem.html" title="2D Convection problem on two rectangular domains, discretised with refineable Navier-Stokes and Advec...">RefineableConvectionProblem</a></code> takes two template arguments (specifying the two different element types) instead of one (specifying the type of the single, combined element).</p>
 <hr  />
 <h2><a class="anchor" id="problem_class"></a>
 The problem class</h2>
@@ -426,7 +420,7 @@ The problem class</h2>
 </div><!-- fragment --> <hr  />
 <h2><a class="anchor" id="constructor"></a>
 The Problem constructor</h2>
-<p>The problem constructor is slightly different from the equivalent single-domain version, mainly because there are two meshes instead of one. Firstly, we build two coarse meshes with the same number of elements ( <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ 9 \times 8 $" src="form_0.png" width="29" height="9"/></picture>, as in the original single-domain problem) and dimensions for each mesh. Error estimators and error targets are set separately for each mesh.</p>
+<p>The problem constructor is slightly different from the equivalent single-domain version, mainly because there are two meshes instead of one. Firstly, we build two coarse meshes with the same number of elements ( <img class="formulaInl" alt="$ 9 \times 8 $" src="form_0.png" width="29" height="9"/>, as in the original single-domain problem) and dimensions for each mesh. Error estimators and error targets are set separately for each mesh.</p>
  <div class="fragment"><div class="line"><span class="comment">//=======start_of_constructor=============================================</span></div>
 <div class="line"><span class="comment">/// Constructor for adaptive thermal convection problem</span></div>
 <div class="line"><span class="comment">//========================================================================</span></div>
@@ -695,14 +689,14 @@ The function doc_solution(...)</h2>
 <div class="line"> <span class="keywordtype">unsigned</span> npts=5;</div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output Navier-Stokes solution</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/fluid_soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/fluid_soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line">         Doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> nst_mesh_pt()-&gt;output(some_file,npts);</div>
 <div class="line"> some_file.close();</div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output advection diffusion solution</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/temperature_soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/temperature_soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line">         Doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> adv_diff_mesh_pt()-&gt;output(some_file,npts);</div>
@@ -838,7 +832,7 @@ demo_drivers/multi_physics/boussinesq_convection/multi_domain_boussinesq_convect
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -868,7 +862,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:30:29
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:39:18
         </div>
       </div>
     </footer>

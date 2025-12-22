@@ -2,7 +2,7 @@
 \hypertarget{classoomph_1_1NetFluxControlElement}{}\label{classoomph_1_1NetFluxControlElement}\index{oomph::NetFluxControlElement@{oomph::NetFluxControlElement}}
 
 
-/////////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////////  
+A class for an element that controls the net fluid flux across a boundary by the imposition of an unknown applied pressure to the Navier-\/\+Stokes equations. This element is used with a mesh of \doxylink{classoomph_1_1NavierStokesFluxControlElement}{Navier\+Stokes\+Flux\+Control\+Element} elements which are attached to the boundary. Note\+: \doxylink{classoomph_1_1NetFluxControlElement_a7b7d3a32fcad5b06fe6a49f05f2c01a9}{fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian()} does not calculate Jacobian contributions for this element as they are calculated by Navier\+Stokes\+Flux\+Control\+Element\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian(...)  
 
 
 
@@ -41,8 +41,10 @@ Inheritance diagram for oomph\+::Net\+Flux\+Control\+Element\+:\begin{figure}[H]
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{oomph\+::\+Generalised\+Element}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}}() \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a76c506edf49c5bbfe94f424ec94191ab}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
-\begin{DoxyCompactList}\small\item\em Constructor\+: Initialise all pointers and all values to zero. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a6a34bffcef1bbbc5271630042afe7ca9}{\texorpdfstring{$\sim$}{\string~}\+Generalised\+Element}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor to clean up any memory allocated by the object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1GeneralisedElement_a4e4a9177fdb093fc85c890bb86bdf655}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
+\begin{DoxyCompactList}\small\item\em Broken copy constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a180b550ae69f8bcbaae3f37f38c475ff}{operator=}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
 \begin{DoxyCompactList}\small\item\em Broken assignment operator. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Data}{Data}} \texorpdfstring{$\ast$}{*}\& \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a3b83389f2c80788013421c6d59604f0b}{internal\+\_\+data\+\_\+pt}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
@@ -253,8 +255,6 @@ Inheritance diagram for oomph\+::Net\+Flux\+Control\+Element\+:\begin{figure}[H]
 
 
 \doxysubsection{Detailed Description}
-/////////////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////// 
-
 A class for an element that controls the net fluid flux across a boundary by the imposition of an unknown applied pressure to the Navier-\/\+Stokes equations. This element is used with a mesh of \doxylink{classoomph_1_1NavierStokesFluxControlElement}{Navier\+Stokes\+Flux\+Control\+Element} elements which are attached to the boundary. Note\+: \doxylink{classoomph_1_1NetFluxControlElement_a7b7d3a32fcad5b06fe6a49f05f2c01a9}{fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian()} does not calculate Jacobian contributions for this element as they are calculated by Navier\+Stokes\+Flux\+Control\+Element\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian(...) 
 
 Definition at line \mbox{\hyperlink{navier__stokes__flux__control__elements_8h_source_l00103}{103}} of file \mbox{\hyperlink{navier__stokes__flux__control__elements_8h_source}{navier\+\_\+stokes\+\_\+flux\+\_\+control\+\_\+elements.\+h}}.
@@ -278,7 +278,7 @@ Definition at line \mbox{\hyperlink{navier__stokes__flux__control__elements_8h_s
 
 
 
-References \mbox{\hyperlink{elements_8cc_source_l00067}{oomph\+::\+Generalised\+Element\+::add\+\_\+internal\+\_\+data()}}, \mbox{\hyperlink{navier__stokes__flux__control__elements_8h_source_l00326}{Dof\+\_\+number\+\_\+for\+\_\+unknown}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00448}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{navier__stokes__flux__control__elements_8h_source_l00316}{Flux\+\_\+control\+\_\+mesh\+\_\+pt}}, \mbox{\hyperlink{mesh_8h_source_l00590}{oomph\+::\+Mesh\+::nelement()}}, and \mbox{\hyperlink{navier__stokes__flux__control__elements_8h_source_l00312}{Pressure\+\_\+data\+\_\+pt}}.
+References \mbox{\hyperlink{elements_8cc_source_l00067}{oomph\+::\+Generalised\+Element\+::add\+\_\+internal\+\_\+data()}}, \mbox{\hyperlink{navier__stokes__flux__control__elements_8h_source_l00326}{Dof\+\_\+number\+\_\+for\+\_\+unknown}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00452}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{navier__stokes__flux__control__elements_8h_source_l00316}{Flux\+\_\+control\+\_\+mesh\+\_\+pt}}, \mbox{\hyperlink{mesh_8h_source_l00598}{oomph\+::\+Mesh\+::nelement()}}, and \mbox{\hyperlink{navier__stokes__flux__control__elements_8h_source_l00312}{Pressure\+\_\+data\+\_\+pt}}.
 
 \Hypertarget{classoomph_1_1NetFluxControlElement_a7a321d25a4fc51822abe7c92c8f37b94}\label{classoomph_1_1NetFluxControlElement_a7a321d25a4fc51822abe7c92c8f37b94} 
 \index{oomph::NetFluxControlElement@{oomph::NetFluxControlElement}!````~NetFluxControlElement@{\texorpdfstring{$\sim$}{\string~}NetFluxControlElement}}
@@ -403,7 +403,7 @@ Definition at line \mbox{\hyperlink{navier__stokes__flux__control__elements_8h_s
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00448}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{navier__stokes__flux__control__elements_8h_source_l00316}{Flux\+\_\+control\+\_\+mesh\+\_\+pt}}, \mbox{\hyperlink{mesh_8h_source_l00590}{oomph\+::\+Mesh\+::nelement()}}, and \mbox{\hyperlink{navier__stokes__flux__control__elements_8h_source_l00319}{Prescribed\+\_\+flux\+\_\+value\+\_\+pt}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00452}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{navier__stokes__flux__control__elements_8h_source_l00316}{Flux\+\_\+control\+\_\+mesh\+\_\+pt}}, \mbox{\hyperlink{mesh_8h_source_l00598}{oomph\+::\+Mesh\+::nelement()}}, and \mbox{\hyperlink{navier__stokes__flux__control__elements_8h_source_l00319}{Prescribed\+\_\+flux\+\_\+value\+\_\+pt}}.
 
 
 
@@ -433,7 +433,7 @@ Definition at line \mbox{\hyperlink{navier__stokes__flux__control__elements_8h_s
 
 
 
-References \mbox{\hyperlink{navier__stokes__flux__control__elements_8h_source_l00326}{Dof\+\_\+number\+\_\+for\+\_\+unknown}}, and \mbox{\hyperlink{elements_8h_source_l00708}{oomph\+::\+Generalised\+Element\+::eqn\+\_\+number()}}.
+References \mbox{\hyperlink{navier__stokes__flux__control__elements_8h_source_l00326}{Dof\+\_\+number\+\_\+for\+\_\+unknown}}, and \mbox{\hyperlink{elements_8h_source_l00691}{oomph\+::\+Generalised\+Element\+::eqn\+\_\+number()}}.
 
 \Hypertarget{classoomph_1_1NetFluxControlElement_a16809a8ad123ba41f826d9e920aba9e0}\label{classoomph_1_1NetFluxControlElement_a16809a8ad123ba41f826d9e920aba9e0} 
 \index{oomph::NetFluxControlElement@{oomph::NetFluxControlElement}!ndof\_types@{ndof\_types}}

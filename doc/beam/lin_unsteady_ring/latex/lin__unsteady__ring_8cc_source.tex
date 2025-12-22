@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -38,9 +38,9 @@
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00034}00034\ }
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00035}00035\ \textcolor{keyword}{using\ namespace\ }oomph;}
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00036}00036\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00037}00037\ \textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00038}00038\ \textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00039}00039\ \textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00037}00037\ \textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00038}00038\ \textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00039}00039\ \textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00040}00040\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00041}00041\ }
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00042}00042\ \textcolor{comment}{//====start\_of\_namespace============================}\textcolor{comment}{}}
@@ -61,9 +61,9 @@
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00057}00057\ }
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00058}00058\ \}\ \textcolor{comment}{//\ end\ of\ namespace}}
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00059}00059\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00060}00060\ \textcolor{comment}{///\ //////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00061}00061\ \textcolor{comment}{///\ //////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00062}00062\ \textcolor{comment}{///\ //////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00060}00060\ \textcolor{comment}{/////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00061}00061\ \textcolor{comment}{/////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00062}00062\ \textcolor{comment}{/////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00063}00063\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00064}00064\ }
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00065}00065\ }
@@ -261,7 +261,7 @@
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00257}00257\ \ \textcolor{keywordtype}{unsigned}\ npts=5;}
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00258}00258\ }
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00259}00259\ \ \textcolor{comment}{//\ Output\ solution\ }}
-\DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00260}00260\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/ring\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00260}00260\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/ring\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00261}00261\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00262}00262\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00263}00263\ \ mesh\_pt()-\/>output(some\_file,npts);}
@@ -271,7 +271,7 @@
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00267}00267\ \ \textcolor{keywordtype}{unsigned}\ nsteps=time\_stepper\_pt()-\/>nprev\_values();}
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00268}00268\ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ t=0;t<=nsteps;t++)}
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00269}00269\ \ \ \{\ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00270}00270\ \ \ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/ring\%i-\/\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00270}00270\ \ \ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/ring\%i-\/\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ doc\_info.number(),t);}
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00272}00272\ \ \ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00273}00273\ \ \ \ \textcolor{keywordtype}{unsigned}\ Nelem=mesh\_pt()-\/>nelement();}
@@ -284,7 +284,7 @@
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00280}00280\ \ \ \}}
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00281}00281\ \ \ }
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00282}00282\ \ \textcolor{comment}{//\ Output\ for\ initial\ condition\ object}}
-\DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00283}00283\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/ic\_ring\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00283}00283\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/ic\_ring\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00284}00284\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00285}00285\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00286}00286\ \ \ }
@@ -335,7 +335,7 @@
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00331}00331\ }
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00332}00332\ \ \textcolor{comment}{//\ Set\ up\ trace\ file}}
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00333}00333\ \ \textcolor{keywordtype}{char}\ filename[100];}
-\DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00334}00334\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace\_ring.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00334}00334\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace\_ring.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00335}00335\ \ Trace\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00336}00336\ }
 \DoxyCodeLine{\Hypertarget{lin__unsteady__ring_8cc_source_l00337}00337\ \ Trace\_file\ <<\ \ \textcolor{stringliteral}{"{}VARIABLES=\(\backslash\)"{}time\(\backslash\)"{},\(\backslash\)"{}R<sub>ctrl</sub>\(\backslash\)"{},\(\backslash\)"{}E<sub>pot</sub>\(\backslash\)"{}"{}};}

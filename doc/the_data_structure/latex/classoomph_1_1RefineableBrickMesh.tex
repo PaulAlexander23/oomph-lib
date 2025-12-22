@@ -240,6 +240,10 @@ Inheritance diagram for oomph\+::Refineable\+Brick\+Mesh\texorpdfstring{$<$}{<} 
 \begin{DoxyCompactList}\small\item\em Replace existing boundary node lookup schemes with new schemes created using the boundary data stored in the nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1Mesh_ad1b124a959628aba00162b89617b3a62}{boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Indicate whether the i-\/th boundary has an intrinsic coordinate. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_ab137d0c0debf5ba0d6ea6990103e620c}{set\+\_\+boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be existing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_a3b9d63e0057ed721190b109f48f7c92e}{set\+\_\+boundary\+\_\+coordinate\+\_\+does\+\_\+not\+\_\+exist}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be non-\/existing. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_af01dfefb66c15579b540be62999d93ee}{nelement}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return number of elements in the mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
@@ -664,9 +668,7 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_aca12acfe655a4d5c4a4eab4a7b970812}{Element\+\_\+pt}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a412a5051be9e81f0ba61bf85e5abc4a6}{Boundary\+\_\+coordinate\+\_\+exists}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of boolean data that indicates whether the boundary coordinates have been set for the boundary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -676,7 +678,7 @@ Intermediate mesh class that implements the mesh adaptation functions specified 
 
 \doxylink{classoomph_1_1Mesh}{Mesh} adaptation/refinement is implemented by \doxylink{classoomph_1_1OcTree}{Oc\+Tree} procedures and any concrete implementation of this class needs to provide a \doxylink{classoomph_1_1OcTreeForest}{Oc\+Tree\+Forest} representation of the initial (coarse) mesh. 
 
-Definition at line \mbox{\hyperlink{refineable__brick__mesh_8h_source_l00059}{59}} of file \mbox{\hyperlink{refineable__brick__mesh_8h_source}{refineable\+\_\+brick\+\_\+mesh.\+h}}.
+Definition at line \mbox{\hyperlink{refineable__brick__mesh_8h_source_l00057}{57}} of file \mbox{\hyperlink{refineable__brick__mesh_8h_source}{refineable\+\_\+brick\+\_\+mesh.\+h}}.
 
 
 
@@ -694,7 +696,7 @@ Constructor\+: Setup static octree data.
 
 
 
-Definition at line \mbox{\hyperlink{refineable__brick__mesh_8h_source_l00064}{64}} of file \mbox{\hyperlink{refineable__brick__mesh_8h_source}{refineable\+\_\+brick\+\_\+mesh.\+h}}.
+Definition at line \mbox{\hyperlink{refineable__brick__mesh_8h_source_l00062}{62}} of file \mbox{\hyperlink{refineable__brick__mesh_8h_source}{refineable\+\_\+brick\+\_\+mesh.\+h}}.
 
 
 
@@ -724,7 +726,7 @@ Destructor\+:
 
 
 
-Definition at line \mbox{\hyperlink{refineable__brick__mesh_8h_source_l00078}{78}} of file \mbox{\hyperlink{refineable__brick__mesh_8h_source}{refineable\+\_\+brick\+\_\+mesh.\+h}}.
+Definition at line \mbox{\hyperlink{refineable__brick__mesh_8h_source_l00076}{76}} of file \mbox{\hyperlink{refineable__brick__mesh_8h_source}{refineable\+\_\+brick\+\_\+mesh.\+h}}.
 
 
 
@@ -753,15 +755,15 @@ Do what it says...
 
 
 
-Definition at line \mbox{\hyperlink{refineable__brick__mesh_8h_source_l00088}{88}} of file \mbox{\hyperlink{refineable__brick__mesh_8h_source}{refineable\+\_\+brick\+\_\+mesh.\+h}}.
+Definition at line \mbox{\hyperlink{refineable__brick__mesh_8h_source_l00086}{86}} of file \mbox{\hyperlink{refineable__brick__mesh_8h_source}{refineable\+\_\+brick\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{mesh_8h_source_l00119}{oomph\+::\+Mesh\+::\+Comm\+\_\+pt}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00460}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{tree_8h_source_l00135}{oomph\+::\+Tree\+::flush\+\_\+sons()}}, \mbox{\hyperlink{tree_8h_source_l00472}{oomph\+::\+Tree\+Forest\+::flush\+\_\+trees()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00768}{oomph\+::\+Tree\+Based\+Refineable\+Mesh\+Base\+::\+Forest\+\_\+pt}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l00830}{oomph\+::\+Tree\+Based\+Refineable\+Mesh\+Base\+::get\+\_\+refinement\+\_\+levels()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{mesh_8h_source_l00590}{oomph\+::\+Mesh\+::nelement()}}, \mbox{\hyperlink{tree_8h_source_l00129}{oomph\+::\+Tree\+::nsons()}}, \mbox{\hyperlink{tree_8h_source_l00088}{oomph\+::\+Tree\+::object\+\_\+pt()}}, \mbox{\hyperlink{tree_8h_source_l00141}{oomph\+::\+Tree\+::root\+\_\+pt()}}, \mbox{\hyperlink{tree_8h_source_l00241}{oomph\+::\+Tree\+::set\+\_\+father\+\_\+pt()}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, \mbox{\hyperlink{tree_8h_source_l00103}{oomph\+::\+Tree\+::son\+\_\+pt()}}, \mbox{\hyperlink{tree_8cc_source_l00277}{oomph\+::\+Tree\+::stick\+\_\+all\+\_\+tree\+\_\+nodes\+\_\+into\+\_\+vector()}}, and \mbox{\hyperlink{tree_8cc_source_l00405}{oomph\+::\+Tree\+Forest\+::stick\+\_\+all\+\_\+tree\+\_\+nodes\+\_\+into\+\_\+vector()}}.
+References \mbox{\hyperlink{mesh_8h_source_l00119}{oomph\+::\+Mesh\+::\+Comm\+\_\+pt}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00464}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{tree_8h_source_l00135}{oomph\+::\+Tree\+::flush\+\_\+sons()}}, \mbox{\hyperlink{tree_8h_source_l00472}{oomph\+::\+Tree\+Forest\+::flush\+\_\+trees()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00768}{oomph\+::\+Tree\+Based\+Refineable\+Mesh\+Base\+::\+Forest\+\_\+pt}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l00828}{oomph\+::\+Tree\+Based\+Refineable\+Mesh\+Base\+::get\+\_\+refinement\+\_\+levels()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{mesh_8h_source_l00598}{oomph\+::\+Mesh\+::nelement()}}, \mbox{\hyperlink{tree_8h_source_l00129}{oomph\+::\+Tree\+::nsons()}}, \mbox{\hyperlink{tree_8h_source_l00088}{oomph\+::\+Tree\+::object\+\_\+pt()}}, \mbox{\hyperlink{tree_8h_source_l00141}{oomph\+::\+Tree\+::root\+\_\+pt()}}, \mbox{\hyperlink{tree_8h_source_l00241}{oomph\+::\+Tree\+::set\+\_\+father\+\_\+pt()}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, \mbox{\hyperlink{tree_8h_source_l00103}{oomph\+::\+Tree\+::son\+\_\+pt()}}, \mbox{\hyperlink{tree_8cc_source_l00277}{oomph\+::\+Tree\+::stick\+\_\+all\+\_\+tree\+\_\+nodes\+\_\+into\+\_\+vector()}}, and \mbox{\hyperlink{tree_8cc_source_l00405}{oomph\+::\+Tree\+Forest\+::stick\+\_\+all\+\_\+tree\+\_\+nodes\+\_\+into\+\_\+vector()}}.
 
 
 
-Referenced by \mbox{\hyperlink{brick__from__tet__mesh_8template_8h_source_l00217}{oomph\+::\+Refineable\+Brick\+From\+Tet\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Brick\+From\+Tet\+Mesh()}}, \mbox{\hyperlink{brick__from__tet__mesh_8template_8h_source_l00231}{oomph\+::\+Refineable\+Brick\+From\+Tet\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Brick\+From\+Tet\+Mesh()}}, \mbox{\hyperlink{extruded__cube__mesh__from__quad__mesh__with__macro__elements_8template_8h_source_l00230}{oomph\+::\+Refineable\+Extruded\+Cube\+Mesh\+From\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Extruded\+Cube\+Mesh\+From\+Quad\+Mesh()}}, \mbox{\hyperlink{extruded__cube__mesh__from__quad__mesh__with__macro__elements_8template_8h_source_l00248}{oomph\+::\+Refineable\+Extruded\+Cube\+Mesh\+From\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Extruded\+Cube\+Mesh\+From\+Quad\+Mesh()}}, \mbox{\hyperlink{simple__cubic__mesh_8template_8h_source_l00174}{oomph\+::\+Refineable\+Simple\+Cubic\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Simple\+Cubic\+Mesh()}}, \mbox{\hyperlink{simple__cubic__mesh_8template_8h_source_l00193}{oomph\+::\+Refineable\+Simple\+Cubic\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Simple\+Cubic\+Mesh()}}, \mbox{\hyperlink{brick__from__tet__mesh_8template_8h_source_l00264}{oomph\+::\+Refineable\+Solid\+Brick\+From\+Tet\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Solid\+Brick\+From\+Tet\+Mesh()}}, \mbox{\hyperlink{brick__from__tet__mesh_8template_8h_source_l00283}{oomph\+::\+Refineable\+Solid\+Brick\+From\+Tet\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Solid\+Brick\+From\+Tet\+Mesh()}}, \mbox{\hyperlink{thin__layer__brick__on__tet__mesh_8template_8h_source_l00262}{oomph\+::\+Refineable\+Solid\+Thin\+Layer\+Brick\+On\+Tet\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Solid\+Thin\+Layer\+Brick\+On\+Tet\+Mesh()}}, \mbox{\hyperlink{thin__layer__brick__on__tet__mesh_8template_8h_source_l00150}{oomph\+::\+Refineable\+Thin\+Layer\+Brick\+On\+Tet\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Thin\+Layer\+Brick\+On\+Tet\+Mesh()}}, and \mbox{\hyperlink{refineable__brick__mesh_8h_source_l00082}{oomph\+::\+Refineable\+Brick\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+tree\+\_\+forest()}}.
+Referenced by \mbox{\hyperlink{brick__from__tet__mesh_8h_source_l00212}{oomph\+::\+Refineable\+Brick\+From\+Tet\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Brick\+From\+Tet\+Mesh()}}, \mbox{\hyperlink{brick__from__tet__mesh_8h_source_l00226}{oomph\+::\+Refineable\+Brick\+From\+Tet\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Brick\+From\+Tet\+Mesh()}}, \mbox{\hyperlink{extruded__cube__mesh__from__quad__mesh__with__macro__elements_8h_source_l00227}{oomph\+::\+Refineable\+Extruded\+Cube\+Mesh\+From\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Extruded\+Cube\+Mesh\+From\+Quad\+Mesh()}}, \mbox{\hyperlink{extruded__cube__mesh__from__quad__mesh__with__macro__elements_8h_source_l00245}{oomph\+::\+Refineable\+Extruded\+Cube\+Mesh\+From\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Extruded\+Cube\+Mesh\+From\+Quad\+Mesh()}}, \mbox{\hyperlink{simple__cubic__mesh_8h_source_l00172}{oomph\+::\+Refineable\+Simple\+Cubic\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Simple\+Cubic\+Mesh()}}, \mbox{\hyperlink{simple__cubic__mesh_8h_source_l00191}{oomph\+::\+Refineable\+Simple\+Cubic\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Simple\+Cubic\+Mesh()}}, \mbox{\hyperlink{brick__from__tet__mesh_8h_source_l00258}{oomph\+::\+Refineable\+Solid\+Brick\+From\+Tet\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Solid\+Brick\+From\+Tet\+Mesh()}}, \mbox{\hyperlink{brick__from__tet__mesh_8h_source_l00277}{oomph\+::\+Refineable\+Solid\+Brick\+From\+Tet\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Solid\+Brick\+From\+Tet\+Mesh()}}, \mbox{\hyperlink{thin__layer__brick__on__tet__mesh_8h_source_l00257}{oomph\+::\+Refineable\+Solid\+Thin\+Layer\+Brick\+On\+Tet\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Solid\+Thin\+Layer\+Brick\+On\+Tet\+Mesh()}}, \mbox{\hyperlink{thin__layer__brick__on__tet__mesh_8h_source_l00147}{oomph\+::\+Refineable\+Thin\+Layer\+Brick\+On\+Tet\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Thin\+Layer\+Brick\+On\+Tet\+Mesh()}}, and \mbox{\hyperlink{refineable__brick__mesh_8h_source_l00080}{oomph\+::\+Refineable\+Brick\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+tree\+\_\+forest()}}.
 
 \Hypertarget{classoomph_1_1RefineableBrickMesh_afdb7af23886c1088ce9dcc855028fb84}\label{classoomph_1_1RefineableBrickMesh_afdb7af23886c1088ce9dcc855028fb84} 
 \index{oomph::RefineableBrickMesh$<$ ELEMENT $>$@{oomph::RefineableBrickMesh$<$ ELEMENT $>$}!setup\_tree\_forest@{setup\_tree\_forest}}
@@ -780,11 +782,11 @@ Implements \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMeshBase_aab7cbaa68
 
 
 
-Definition at line \mbox{\hyperlink{refineable__brick__mesh_8h_source_l00082}{82}} of file \mbox{\hyperlink{refineable__brick__mesh_8h_source}{refineable\+\_\+brick\+\_\+mesh.\+h}}.
+Definition at line \mbox{\hyperlink{refineable__brick__mesh_8h_source_l00080}{80}} of file \mbox{\hyperlink{refineable__brick__mesh_8h_source}{refineable\+\_\+brick\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{refineable__brick__mesh_8h_source_l00088}{oomph\+::\+Refineable\+Brick\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+octree\+\_\+forest()}}.
+References \mbox{\hyperlink{refineable__brick__mesh_8h_source_l00086}{oomph\+::\+Refineable\+Brick\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+octree\+\_\+forest()}}.
 
 
 

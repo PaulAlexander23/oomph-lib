@@ -27,7 +27,7 @@ Detailed documentation to be written. Here\textquotesingle{}s the driver code...
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -318,7 +318,7 @@ Detailed documentation to be written. Here\textquotesingle{}s the driver code...
 \DoxyCodeLine{\ \textcolor{comment}{//Need\ high\ precision\ for\ large\ radii\ of\ curvature}}
 \DoxyCodeLine{\ \textcolor{comment}{//some\_file.precision(10);}}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ solution\ labelled\ by\ the\ Reynolds\ number}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\_Re\%g.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\_Re\%g.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceGlobal__Physical__Variables_ab814e627d2eb5bc50318879d19ab16b9}{Global\_Physical\_Variables::Re}});}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ mesh\_pt()-\/>output(some\_file,npts);}
@@ -329,9 +329,9 @@ Detailed documentation to be written. Here\textquotesingle{}s the driver code...
 \DoxyCodeLine{\ }
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{//=start\_of\_main=======================================================}\textcolor{comment}{}}
@@ -432,4 +432,4 @@ Detailed documentation to be written. Here\textquotesingle{}s the driver code...
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -115,28 +109,28 @@
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="overview"></a>
 Overview of the problem</h1>
-<p>We consider an open rectangular container of unit width containing a still viscous fluid of prescribed volume <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mathcal{V} $" src="form_0.png" width="10" height="11"/></picture> that meets the wall of the container at a contact angle <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \theta_{c} $" src="form_1.png" width="10" height="13"/></picture>. The external fluid is assumed to be inviscid and massless and acts only through an external pressure, <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ P_{\mbox{ext}} $" src="form_2.png" width="25" height="14"/></picture>, at the bounding (free) surface of the viscous fluid. In the absence of any body forces or external forcing, a static solution is obtained in which the velocity field is zero, the fluid pressure is a constant, <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ P_{\mbox{fluid}} $" src="form_3.png" width="33" height="15"/></picture>, and free surface is of constant curvature (an arc of a circle in two-dimensions), set by the contact angle and the geometry of the domain. From simple geometry, the mean curvature of the interface in the present problem is <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \kappa = 1/r = 2\cos\theta_{c} $" src="form_4.png" width="96" height="14"/></picture>, see the figure below. The pressure difference across the interface, <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \Delta P = P_{\mbox{ext}} -
- P_{\mbox{fluid}} $" src="form_5.png" width="110" height="15"/></picture>, then follows from the dynamic boundary condition.</p>
+<p>We consider an open rectangular container of unit width containing a still viscous fluid of prescribed volume <img class="formulaInl" alt="$ \mathcal{V} $" src="form_0.png" width="10" height="11"/> that meets the wall of the container at a contact angle <img class="formulaInl" alt="$ \theta_{c} $" src="form_1.png" width="10" height="13"/>. The external fluid is assumed to be inviscid and massless and acts only through an external pressure, <img class="formulaInl" alt="$ P_{\mbox{ext}} $" src="form_2.png" width="25" height="14"/>, at the bounding (free) surface of the viscous fluid. In the absence of any body forces or external forcing, a static solution is obtained in which the velocity field is zero, the fluid pressure is a constant, <img class="formulaInl" alt="$ P_{\mbox{fluid}} $" src="form_3.png" width="33" height="15"/>, and free surface is of constant curvature (an arc of a circle in two-dimensions), set by the contact angle and the geometry of the domain. From simple geometry, the mean curvature of the interface in the present problem is <img class="formulaInl" alt="$ \kappa = 1/r = 2\cos\theta_{c} $" src="form_4.png" width="96" height="14"/>, see the figure below. The pressure difference across the interface, <img class="formulaInl" alt="$ \Delta P = P_{\mbox{ext}} -
+ P_{\mbox{fluid}} $" src="form_5.png" width="110" height="15"/>, then follows from the dynamic boundary condition.</p>
 <div class="image">
 <img src="sketch.gif" alt=""/>
 <div class="caption">
 Sketch of the problem: the static interface curvature is set by the geometry </div></div>
  <p>The governing equations are the Navier&ndash;Stokes equations together with the free surface boundary conditions at the upper surface, see <a href="../../single_layer_free_surface/html/index.html">another tutorial </a> for further details. As in that tutorial, we also compute the deformation of the internal fluid mesh by using a pseudo-solid node-update strategy.</p>
-<p>For simplicity, we assume symmetry of the domain about the vertical centreline of the container, which we choose to be the <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_{2} $" src="form_6.png" width="13" height="9"/></picture>-axis; hence, the initial computational domain is <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_{1} \in [0,0.5],\ x_{2} \in [0,1] $" src="form_7.png" width="125" height="14"/></picture>. The fluid boundary conditions are no slip, <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ u_{i} = 0 $" src="form_8.png" width="35" height="11"/></picture>, on the container boundaries at <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_{2} =0 $" src="form_9.png" width="36" height="11"/></picture> and <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_{1} = 0.5; $" src="form_10.png" width="49" height="11"/></picture> and a symmetry condition at <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_{1} = 0 $" src="form_11.png" width="36" height="11"/></picture>. Under the standard non-dimensionalisation the pressure difference over the interface is <picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \Delta P = 2\cos\theta_{c}/Ca $" src="form_12.png" width="98" height="14"/></picture>, where <picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Ca $" src="form_13.png" width="16" height="10"/></picture> is the capillary number, also defined in the other tutorial. In the present (static) example, the capillary number is a simple multiplicative factor that sets the pressure scale.</p>
+<p>For simplicity, we assume symmetry of the domain about the vertical centreline of the container, which we choose to be the <img class="formulaInl" alt="$ x_{2} $" src="form_6.png" width="13" height="9"/>-axis; hence, the initial computational domain is <img class="formulaInl" alt="$ x_{1} \in [0,0.5],\ x_{2} \in [0,1] $" src="form_7.png" width="125" height="14"/>. The fluid boundary conditions are no slip, <img class="formulaInl" alt="$ u_{i} = 0 $" src="form_8.png" width="35" height="11"/>, on the container boundaries at <img class="formulaInl" alt="$ x_{2} =0 $" src="form_9.png" width="36" height="11"/> and <img class="formulaInl" alt="$ x_{1} = 0.5; $" src="form_10.png" width="49" height="11"/> and a symmetry condition at <img class="formulaInl" alt="$ x_{1} = 0 $" src="form_11.png" width="36" height="11"/>. Under the standard non-dimensionalisation the pressure difference over the interface is <img class="formulaInl" alt="$ \Delta P = 2\cos\theta_{c}/Ca $" src="form_12.png" width="98" height="14"/>, where <img class="formulaInl" alt="$ Ca $" src="form_13.png" width="16" height="10"/> is the capillary number, also defined in the other tutorial. In the present (static) example, the capillary number is a simple multiplicative factor that sets the pressure scale.</p>
 <p>There remain the two additional constraints that must be enforced:</p><ol type="1">
-<li>The fluid volume must be <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mathcal{V} $" src="form_0.png" width="10" height="11"/></picture>.</li>
-<li>The contact angle where the fluid meets the container wall at <picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_{1} = 0.5 $" src="form_14.png" width="46" height="11"/></picture> must be <picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \theta_{c}. $" src="form_15.png" width="14" height="13"/></picture></li>
+<li>The fluid volume must be <img class="formulaInl" alt="$ \mathcal{V} $" src="form_0.png" width="10" height="11"/>.</li>
+<li>The contact angle where the fluid meets the container wall at <img class="formulaInl" alt="$ x_{1} = 0.5 $" src="form_14.png" width="46" height="11"/> must be <img class="formulaInl" alt="$ \theta_{c}. $" src="form_15.png" width="14" height="13"/></li>
 </ol>
 <h1><a class="anchor" id="vol_const"></a>
 Enforcing the volume constraint</h1>
-<p>For capillary-static problems, the fluid velocity field is zero and the continuity equation <picture><source srcset="form_16_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mbox{\boldmath$\nabla\cdot
- u$} = \mbox{\boldmath$0$} $" src="form_16.png" width="54" height="11"/></picture> is trivially satisfied. Thus, conservation of mass is not guaranteed without an additional constraint. Mathematically speaking, the system is underdetermined and the equation associated with a pressure degree of freedom (either a fluid pressure or the external pressure) can be replaced by the additional volume constraint, specified by the equation:</p>
+<p>For capillary-static problems, the fluid velocity field is zero and the continuity equation <img class="formulaInl" alt="$ \mbox{\boldmath$\nabla\cdot
+ u$} = \mbox{\boldmath$0$} $" src="form_16.png" width="54" height="11"/> is trivially satisfied. Thus, conservation of mass is not guaranteed without an additional constraint. Mathematically speaking, the system is underdetermined and the equation associated with a pressure degree of freedom (either a fluid pressure or the external pressure) can be replaced by the additional volume constraint, specified by the equation:</p>
 <p class="formulaDsp">
-<picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[ \frac{1}{2} \oint \mbox{\boldmath$x\cdot n$} \mbox{d} s =
+<img class="formulaDsp" alt="\[ \frac{1}{2} \oint \mbox{\boldmath$x\cdot n$} \mbox{d} s =
  \frac{1}{2} \int \hspace{-0.25cm} \int 
 \mbox{\boldmath$\nabla\cdot x$} \mbox{d} A = 
 \int \hspace{-0.25cm} \int
- \mbox{d} A = \mathcal{V}. \]" src="form_17.png" width="241" height="29"/></picture>
+ \mbox{d} A = \mathcal{V}. \]" src="form_17.png" width="241" height="29"/>
 </p>
 <p>MATTHIAS, see also the droplet/bubble problems.</p>
 <p>Perhaps the most natural implementation in the present problem is to fix a reference pressure value within the fluid and then to treat the external pressure as a degree of freedom with the volume constraint as the associated equation. Alternatively, the external pressure can be fixed at a reference pressure and an internal fluid pressure degree of freedom is then associated with the volume constraint. We shall demonstrate both methods in the driver code below.</p>
@@ -145,34 +139,34 @@ Enforcing the volume constraint</h1>
 Enforcing the contact angle constraint</h1>
 <p>Here the `&lsquo;natural&rsquo;' contact-angle boundary condition arises from the weak form of the dynamic boundary condition after integration using the surface divergence theorem. This leads to a term of the form</p>
 <p class="formulaDsp">
-<picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[  
+<img class="formulaDsp" alt="\[  
  \frac{1}{Ca}
  \left[m_{i}\psi\right]_{\mbox{\boldmath$x$}_l}^{\mbox{\boldmath$x$}_{r}} 
- \]" src="form_18.png" width="64" height="26"/></picture>
+ \]" src="form_18.png" width="64" height="26"/>
 </p>
 <p><br  />
 </p>
-<p>in the momentum equations associated with the boundaries of the free surface, where <picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mbox{\boldmath$m$} $" src="form_19.png" width="14" height="6"/></picture> is a unit vector tangential to the free surface at those boundaries.</p>
-<p>At the (left-hand) symmetry boundary, <picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mbox{\boldmath$x$}_{l} $" src="form_20.png" width="13" height="9"/></picture>, we neglect this additional term in the momentum equation associated with the tangential direction, which ensures that the interface is (weakly) normal to the symmetry boundary. At the (right-hand) container boundary, <picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mbox{\boldmath$x$}_{r} $" src="form_21.png" width="14" height="9"/></picture>, the contact angle could be enforced by adding a boundary term with prescribed <picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$
- \mbox{\boldmath$m$} $" src="form_22.png" width="14" height="6"/></picture>. In general,  </p><p class="formulaDsp">
-<picture><source srcset="form_23_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[ \mbox{\boldmath$m$} = \cos\theta_{c} \mbox{\boldmath$n$}_{w} + 
- \sin\theta_{c} \mbox{\boldmath$t$}_{w}, \]" src="form_23.png" width="136" height="13"/></picture>
+<p>in the momentum equations associated with the boundaries of the free surface, where <img class="formulaInl" alt="$ \mbox{\boldmath$m$} $" src="form_19.png" width="14" height="6"/> is a unit vector tangential to the free surface at those boundaries.</p>
+<p>At the (left-hand) symmetry boundary, <img class="formulaInl" alt="$ \mbox{\boldmath$x$}_{l} $" src="form_20.png" width="13" height="9"/>, we neglect this additional term in the momentum equation associated with the tangential direction, which ensures that the interface is (weakly) normal to the symmetry boundary. At the (right-hand) container boundary, <img class="formulaInl" alt="$ \mbox{\boldmath$x$}_{r} $" src="form_21.png" width="14" height="9"/>, the contact angle could be enforced by adding a boundary term with prescribed <img class="formulaInl" alt="$
+ \mbox{\boldmath$m$} $" src="form_22.png" width="14" height="6"/>. In general,  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ \mbox{\boldmath$m$} = \cos\theta_{c} \mbox{\boldmath$n$}_{w} + 
+ \sin\theta_{c} \mbox{\boldmath$t$}_{w}, \]" src="form_23.png" width="136" height="13"/>
 </p>
-<p> where <picture><source srcset="form_24_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mbox{\boldmath$n$}_{w} $" src="form_24.png" width="18" height="9"/></picture> is the normal vector to the bounding wall directed out of the fluid and <picture><source srcset="form_25_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$
- \mbox{\boldmath$t$}_{w} $" src="form_25.png" width="14" height="11"/></picture> is the tangent vector to the wall. In the present example, <picture><source srcset="form_26_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mbox{\boldmath$n$}_{w} = (1,0) $" src="form_26.png" width="61" height="14"/></picture> and <picture><source srcset="form_27_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$
- \mbox{\boldmath$t$}_{w} = (0,1) $" src="form_27.png" width="58" height="14"/></picture>, which gives  <picture><source srcset="form_28_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mbox{\boldmath$m$} = 
- (\cos\theta_{c}, \sin\theta_{c}) $" src="form_28.png" width="103" height="14"/></picture>.</p>
+<p> where <img class="formulaInl" alt="$ \mbox{\boldmath$n$}_{w} $" src="form_24.png" width="18" height="9"/> is the normal vector to the bounding wall directed out of the fluid and <img class="formulaInl" alt="$
+ \mbox{\boldmath$t$}_{w} $" src="form_25.png" width="14" height="11"/> is the tangent vector to the wall. In the present example, <img class="formulaInl" alt="$ \mbox{\boldmath$n$}_{w} = (1,0) $" src="form_26.png" width="61" height="14"/> and <img class="formulaInl" alt="$
+ \mbox{\boldmath$t$}_{w} = (0,1) $" src="form_27.png" width="58" height="14"/>, which gives  <img class="formulaInl" alt="$ \mbox{\boldmath$m$} = 
+ (\cos\theta_{c}, \sin\theta_{c}) $" src="form_28.png" width="103" height="14"/>.</p>
 <p>Unfortunately, the no-slip boundary condition at the wall means that the momentum equation is not assembled at the interface boundaries. If we wanted to use this method of (weak) enforcement of the contact angle condition, the velocity degrees of freedom at the node on the right-hand end of the free surface must be unpinned, but the no-slip condition will then not be imposed. In fact, this problem is deeper than it might appear and is a manifestation of the failure of the continuum hypothesis to treat dynamic (moving) contact lines. The correct (mathematical) treatment of that problem is still unresolved, but in this static problem, there is an alternative treatment.</p>
 <p>Here, we can make use of the fact that the kinematic condition is also trivially satisfied because the velocity field is zero. Thus, we replace the kinematic condition associated with the right-most node on the interface by the (strong) condition that </p><p class="formulaDsp">
-<picture><source srcset="form_29_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[ \cos\theta_{c} = \mbox{\boldmath$n\cdot n$}_{w}, \]" src="form_29.png" width="86" height="13"/></picture>
+<img class="formulaDsp" alt="\[ \cos\theta_{c} = \mbox{\boldmath$n\cdot n$}_{w}, \]" src="form_29.png" width="86" height="13"/>
 </p>
-<p> where <picture><source srcset="form_30_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mbox{\boldmath$n$} $" src="form_30.png" width="10" height="6"/></picture> is the outer unit normal to the free surface and <picture><source srcset="form_24_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mbox{\boldmath$n$}_{w} $" src="form_24.png" width="18" height="9"/></picture> is the unit normal to the bounding wall directed out of the fluid, as before.</p>
+<p> where <img class="formulaInl" alt="$ \mbox{\boldmath$n$} $" src="form_30.png" width="10" height="6"/> is the outer unit normal to the free surface and <img class="formulaInl" alt="$ \mbox{\boldmath$n$}_{w} $" src="form_24.png" width="18" height="9"/> is the unit normal to the bounding wall directed out of the fluid, as before.</p>
 <p>The imposition of the contact angle condition is implemented within <code>FluidInterfaceBoundingElements</code> that are <code>FaceElements</code> of the <code>FluidInterfaceElements</code>; in other words, they are elements that are two spatial dimensions lower than the bulk elements. In two-dimensional problems, the <code>FluidInterfaceBoundingElement's</code> are <code>PointElements</code>.</p>
 <hr  />
  <hr  />
 <h1><a class="anchor" id="global"></a>
 Problem Parameters</h1>
-<p>We use a namespace to define the parameters for the pseudo-solid mesh constitutive law used in the problem and a function that defines the outer unit normal to the container boundary which is <picture><source srcset="form_31_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ (1,0) $" src="form_31.png" width="26" height="14"/></picture>. The other problem parameters: the contact angle, prescribed volume and capillary number, are specified as member data of the problem class, see below, so that they will be re-initialised when different instances of the class are constructed.</p>
+<p>We use a namespace to define the parameters for the pseudo-solid mesh constitutive law used in the problem and a function that defines the outer unit normal to the container boundary which is <img class="formulaInl" alt="$ (1,0) $" src="form_31.png" width="26" height="14"/>. The other problem parameters: the contact angle, prescribed volume and capillary number, are specified as member data of the problem class, see below, so that they will be re-initialised when different instances of the class are constructed.</p>
  <div class="fragment"><div class="line"><span class="comment">//====start_of_namespace=================================</span></div>
 <div class="line"><span class="comment">/// Namespace for phyical parameters</span></div>
 <div class="line"><span class="comment">//=======================================================</span></div>
@@ -229,8 +223,8 @@ The driver code</h1>
 </div><!-- fragment --><p> The elements are <code>Hijacked</code> <code>PseudoSolidNodeUpdate</code> <code>QCrouzeixRaviart</code> type elements, where the <code>Hijacked</code> actually required only in the case when an internal pressure degree of freedom is to be used to enforce the volume constraint, see below.</p>
 <h1><a class="anchor" id="problem"></a>
 The problem class</h1>
-<p>The problem class consists of a constructor that takes the aforementioned boolean flag to determine which pressure degree of freedom to use for the volume constraint; a destructor to clean up all memory allocated during the problem construction; a function that performs a parameter study, decreasing the contact angle from <picture><source srcset="form_32_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \theta_{c} =
-90^{\circ}  $" src="form_32.png" width="45" height="13"/></picture> in steps of <picture><source srcset="form_33_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ 5^{\circ} $" src="form_33.png" width="11" height="10"/></picture>; and a function that documents the solution.</p>
+<p>The problem class consists of a constructor that takes the aforementioned boolean flag to determine which pressure degree of freedom to use for the volume constraint; a destructor to clean up all memory allocated during the problem construction; a function that performs a parameter study, decreasing the contact angle from <img class="formulaInl" alt="$ \theta_{c} =
+90^{\circ}  $" src="form_32.png" width="45" height="13"/> in steps of <img class="formulaInl" alt="$ 5^{\circ} $" src="form_33.png" width="11" height="10"/>; and a function that documents the solution.</p>
  <div class="fragment"><div class="line"><span class="comment">//===========start_of_pseudo_elastic_class====================================</span></div>
 <div class="line"><span class="comment">/// A class that solves the Navier--Stokes equations</span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// to compute the shape of a static interface in a rectangular container</span></div>
@@ -315,7 +309,7 @@ The problem class</h1>
 <div class="line">}; <span class="comment">//end_of_pseudo_solid_problem_class</span></div>
 </div><!-- fragment --> <h1><a class="anchor" id="constructor"></a>
 The problem constructor</h1>
-<p>The constructor first initialises the member data and sets the outer unit normal to the wall to be <picture><source srcset="form_31_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ (1,0) $" src="form_31.png" width="26" height="14"/></picture>. The initial contact angle is set to be <picture><source srcset="form_34_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ 90^{\circ} $" src="form_34.png" width="19" height="10"/></picture>, so that the interface will be horizontal.</p>
+<p>The constructor first initialises the member data and sets the outer unit normal to the wall to be <img class="formulaInl" alt="$ (1,0) $" src="form_31.png" width="26" height="14"/>. The initial contact angle is set to be <img class="formulaInl" alt="$ 90^{\circ} $" src="form_34.png" width="19" height="10"/>, so that the interface will be horizontal.</p>
 <div class="fragment"><div class="line"><span class="comment">//============start_of_constructor=====================================</span></div>
 <div class="line"><span class="comment">/// Constructor: Pass boolean flag to indicate if the volume</span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// constraint is applied by hijacking an internal pressure</span></div>
@@ -333,7 +327,7 @@ The problem constructor</h1>
 <div class="line"> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#af3a3b98f9f5b354d01228884e49c5bf0">Global_Physical_Variables::Wall_normal</a>[0] = 1.0; </div>
 <div class="line"> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#af3a3b98f9f5b354d01228884e49c5bf0">Global_Physical_Variables::Wall_normal</a>[1] = 0.0;</div>
 <div class="ttc" id="aclassPseudoSolidCapProblem_html_a4ac05a07dd55950bb67f7f79cb9fbb77"><div class="ttname"><a href="classPseudoSolidCapProblem.html#a4ac05a07dd55950bb67f7f79cb9fbb77">PseudoSolidCapProblem::PseudoSolidCapProblem</a></div><div class="ttdeci">PseudoSolidCapProblem(const bool &amp;hijack_internal)</div><div class="ttdoc">Constructor: Boolean flag indicates if volume constraint is applied by hijacking internal or external...</div><div class="ttdef"><b>Definition</b> <a href="static__single__layer_8cc_source.html#l00584">static_single_layer.cc:584</a></div></div>
-</div><!-- fragment --><p> Next, a <picture><source srcset="form_35_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ 4 \times 4 $" src="form_35.png" width="29" height="9"/></picture> element rectangular mesh is constructed on the undeformed domain.</p>
+</div><!-- fragment --><p> Next, a <img class="formulaInl" alt="$ 4 \times 4 $" src="form_35.png" width="29" height="9"/> element rectangular mesh is constructed on the undeformed domain.</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"> <span class="comment">// Number of elements in the horizontal direction</span></div>
 <div class="line"> <span class="keywordtype">unsigned</span> nx=4;</div>
@@ -515,7 +509,7 @@ Volume constraint elements</h2>
 <div class="line">  <span class="keyword">new</span> VolumeConstraintElement(&amp;Volume,Traded_pressure_data_pt,0);</div>
 <div class="line"> Volume_constraint_mesh_pt-&gt;add_element_pt(vol_constraint_element);</div>
 <div class="ttc" id="aclassPseudoSolidCapProblem_html_a0289801610e2bc864c67d4d8557d56b1"><div class="ttname"><a href="classPseudoSolidCapProblem.html#a0289801610e2bc864c67d4d8557d56b1">PseudoSolidCapProblem::create_volume_constraint_elements</a></div><div class="ttdeci">void create_volume_constraint_elements()</div><div class="ttdoc">Create the volume constraint elements.</div><div class="ttdef"><b>Definition</b> <a href="static__single__layer_8cc_source.html#l00842">static_single_layer.cc:842</a></div></div>
-</div><!-- fragment --><p> We next build and attach <code>ElasticLineVolumeConstraintBoundingElements</code> to all the boundaries of the domain. These elements compute the contribution to the boundary integral with integrand <picture><source srcset="form_36_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mbox{\boldmath$x\cdot n$} $" src="form_36.png" width="29" height="6"/></picture>, described above. The sign convention is chosen so that these element will return a positive volume. The "master" <code>VolumeConstraintElement</code> must be passed to each <code>FaceElement</code> so that the <code>Data</code> traded for the volume constraint is consistent between all elements.</p>
+</div><!-- fragment --><p> We next build and attach <code>ElasticLineVolumeConstraintBoundingElements</code> to all the boundaries of the domain. These elements compute the contribution to the boundary integral with integrand <img class="formulaInl" alt="$ \mbox{\boldmath$x\cdot n$} $" src="form_36.png" width="29" height="6"/>, described above. The sign convention is chosen so that these element will return a positive volume. The "master" <code>VolumeConstraintElement</code> must be passed to each <code>FaceElement</code> so that the <code>Data</code> traded for the volume constraint is consistent between all elements.</p>
 <div class="fragment"><div class="line">  </div>
 <div class="line">  <span class="comment">//Now create the volume computation elements</span></div>
 <div class="line">  Volume_computation_mesh_pt = <span class="keyword">new</span> Mesh;</div>
@@ -605,7 +599,7 @@ The parameter study</h1>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Open trace file</span></div>
 <div class="line"> <span class="keywordtype">char</span> filename[100];   </div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/trace.dat&quot;</span>,doc_info.directory().c_str());</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/trace.dat&quot;</span>,doc_info.directory().c_str());</div>
 <div class="line"> Trace_file.open(filename);</div>
 </div><!-- fragment --><p> We then solve the problem six times, decreasing the contact angle between each solution and documenting the solution after each solve.</p>
 <div class="fragment"><div class="line"> <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> i=0;i&lt;6;i++)</div>
@@ -639,7 +633,7 @@ Post-processing</h1>
 <div class="line"> <span class="keywordtype">unsigned</span> npts=5; </div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">//Output domain</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> Bulk_mesh_pt-&gt;output(some_file,npts);</div>
@@ -715,7 +709,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -745,7 +739,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:14:35
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:40:45
         </div>
       </div>
     </footer>

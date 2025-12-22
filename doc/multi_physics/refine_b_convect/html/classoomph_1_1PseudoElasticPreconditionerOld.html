@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -125,7 +119,7 @@
 </div><!--header-->
 <div class="contents">
 
-<p>//////////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////////////  
+<p>A subsidiary preconditioner for the pseudo-elastic FSI preconditioner. Also a stand-alone preconditioner for the problem of non-linear elasticity subject to prescribed displacement by Lagrange multiplier.. <b>Enumeration</b> of Elastic DOF types in the Pseudo-Elastic Elements The method get_dof_types_for_unknowns() must be implemented such that DOFs subject be Lagrange multiplier and DOFs NOT subject to Lagrange multiplier have different labels. For example in a 3D problem there are 6 DOF types and the following labelling must be implemented: 0 - x displacement (without lagr mult traction) 1 - y displacement (without lagr mult traction) 2 - z displacement (without lagr mult traction) 4 - x displacement (with lagr mult traction) 5 - y displacement (with lagr mult traction) 6 - z displacement (with lagr mult traction)  
  <a href="classoomph_1_1PseudoElasticPreconditionerOld.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="pseudo__elastic__preconditioner_8h_source.html">pseudo_elastic_preconditioner.h</a>&gt;</code></p>
@@ -146,7 +140,7 @@ Public Types</h2></td></tr>
 <tr class="memdesc:a6748360e3e2fbd4766d837a520dadfd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The augmented elasticity system can be preconditioned in one of four ways. 0 - Exact preconditioner 1 - Block diagonal preconditioning 2 - Block upper triangular preconditioner 3 - Block lower triangular preconditioner We group together the different components of the displacement vector field for the block decomposition.  <a href="classoomph_1_1PseudoElasticPreconditionerOld.html#a6748360e3e2fbd4766d837a520dadfd0">More...</a><br /></td></tr>
 <tr class="separator:a6748360e3e2fbd4766d837a520dadfd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2dd13f5d942bfd1a6434c959e947fd87" id="r_a2dd13f5d942bfd1a6434c959e947fd87"><td class="memItemLeft" align="right" valign="top">typedef Preconditioner *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1PseudoElasticPreconditionerOld.html#a2dd13f5d942bfd1a6434c959e947fd87">SubsidiaryPreconditionerFctPt</a>) ()</td></tr>
-<tr class="memdesc:a2dd13f5d942bfd1a6434c959e947fd87"><td class="mdescLeft">&#160;</td><td class="mdescRight">This preconditioner includes the option to use subsidiary operators other than SuperLUPreconditioner for this problem. This is the typedef of a function that should return an instance of a subsidiary preconditioning operator. This preconditioner is responsible for the destruction of the subsidiary preconditioners.  <br /></td></tr>
+<tr class="memdesc:a2dd13f5d942bfd1a6434c959e947fd87"><td class="mdescLeft">&#160;</td><td class="mdescRight">This preconditioner includes the option to use subsidiary operators other than ExactPreconditioner for this problem. This is the typedef of a function that should return an instance of a subsidiary preconditioning operator. This preconditioner is responsible for the destruction of the subsidiary preconditioners.  <br /></td></tr>
 <tr class="separator:a2dd13f5d942bfd1a6434c959e947fd87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -179,10 +173,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a5b23f319564110f34c07fbaacd40e446"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call to use no scaling.  <br /></td></tr>
 <tr class="separator:a5b23f319564110f34c07fbaacd40e446"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0f5cd103d172fcb33be52c17bb741d3" id="r_ab0f5cd103d172fcb33be52c17bb741d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1PseudoElasticPreconditionerOld.html#ab0f5cd103d172fcb33be52c17bb741d3">set_lagrange_multiplier_subsidiary_preconditioner</a> (<a class="el" href="classoomph_1_1PseudoElasticPreconditionerOld.html#a2dd13f5d942bfd1a6434c959e947fd87">SubsidiaryPreconditionerFctPt</a> prec_fn)</td></tr>
-<tr class="memdesc:ab0f5cd103d172fcb33be52c17bb741d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">By default the Lagrange multiplier subsidiary systems are preconditioner with SuperLUPreconditioner. For a different preconditioner, pass a function to this method returning a different subsidiary operator.  <br /></td></tr>
+<tr class="memdesc:ab0f5cd103d172fcb33be52c17bb741d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">By default the Lagrange multiplier subsidiary systems are preconditioner with ExactPreconditioner. For a different preconditioner, pass a function to this method returning a different subsidiary operator.  <br /></td></tr>
 <tr class="separator:ab0f5cd103d172fcb33be52c17bb741d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aae1c5f984fee69fca7cd9719ed2222a4" id="r_aae1c5f984fee69fca7cd9719ed2222a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1PseudoElasticPreconditionerOld.html#aae1c5f984fee69fca7cd9719ed2222a4">set_elastic_subsidiary_preconditioner</a> (<a class="el" href="classoomph_1_1PseudoElasticPreconditionerOld.html#a2dd13f5d942bfd1a6434c959e947fd87">SubsidiaryPreconditionerFctPt</a> prec_fn)</td></tr>
-<tr class="memdesc:aae1c5f984fee69fca7cd9719ed2222a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">By default the elastic subsidiary systems are preconditioner with SuperLUPreconditioner. For a different preconditioner, pass a function to this method returning a different subsidiary operator.  <br /></td></tr>
+<tr class="memdesc:aae1c5f984fee69fca7cd9719ed2222a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">By default the elastic subsidiary systems are preconditioner with ExactPreconditioner. For a different preconditioner, pass a function to this method returning a different subsidiary operator.  <br /></td></tr>
 <tr class="separator:aae1c5f984fee69fca7cd9719ed2222a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c99befe6e08b46c35a325e971f9b917" id="r_a7c99befe6e08b46c35a325e971f9b917"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1PseudoElasticPreconditionerOld.html#a6748360e3e2fbd4766d837a520dadfd0">Elastic_preconditioner_type</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1PseudoElasticPreconditionerOld.html#a7c99befe6e08b46c35a325e971f9b917">elastic_preconditioner_type</a> ()</td></tr>
 <tr class="memdesc:a7c99befe6e08b46c35a325e971f9b917"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the type of preconditioner applied to the elastic: 0 - Exact preconditioner 1 - Block diagonal preconditioning 2 - Block upper triangular preconditioner 3 - Block lower triangular preconditioner We group together the different components of the displacement vector field for the block decomposition.  <br /></td></tr>
@@ -240,8 +234,7 @@ Friends</h2></td></tr>
 <tr class="separator:aaaea2b4795566f81945597254305249d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>//////////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////////// </p>
-<p>A subsidiary preconditioner for the pseudo-elastic FSI preconditioner. Also a stand-alone preconditioner for the problem of non-linear elasticity subject to prescribed displacement by Lagrange multiplier.. <b>Enumeration</b> of Elastic DOF types in the Pseudo-Elastic Elements The method get_dof_types_for_unknowns() must be implemented such that DOFs subject be Lagrange multiplier and DOFs NOT subject to Lagrange multiplier have different labels. For example in a 3D problem there are 6 DOF types and the following labelling must be implemented: 0 - x displacement (without lagr mult traction) 1 - y displacement (without lagr mult traction) 2 - z displacement (without lagr mult traction) 4 - x displacement (with lagr mult traction) 5 - y displacement (with lagr mult traction) 6 - z displacement (with lagr mult traction) </p>
+<div class="textblock"><p>A subsidiary preconditioner for the pseudo-elastic FSI preconditioner. Also a stand-alone preconditioner for the problem of non-linear elasticity subject to prescribed displacement by Lagrange multiplier.. <b>Enumeration</b> of Elastic DOF types in the Pseudo-Elastic Elements The method get_dof_types_for_unknowns() must be implemented such that DOFs subject be Lagrange multiplier and DOFs NOT subject to Lagrange multiplier have different labels. For example in a 3D problem there are 6 DOF types and the following labelling must be implemented: 0 - x displacement (without lagr mult traction) 1 - y displacement (without lagr mult traction) 2 - z displacement (without lagr mult traction) 4 - x displacement (with lagr mult traction) 5 - y displacement (with lagr mult traction) 6 - z displacement (with lagr mult traction) </p>
 
 <p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00301">301</a> of file <a class="el" href="pseudo__elastic__preconditioner_8h_source.html">pseudo_elastic_preconditioner.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
@@ -257,7 +250,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>This preconditioner includes the option to use subsidiary operators other than SuperLUPreconditioner for this problem. This is the typedef of a function that should return an instance of a subsidiary preconditioning operator. This preconditioner is responsible for the destruction of the subsidiary preconditioners. </p>
+<p>This preconditioner includes the option to use subsidiary operators other than ExactPreconditioner for this problem. This is the typedef of a function that should return an instance of a subsidiary preconditioning operator. This preconditioner is responsible for the destruction of the subsidiary preconditioners. </p>
 
 <p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00314">314</a> of file <a class="el" href="pseudo__elastic__preconditioner_8h_source.html">pseudo_elastic_preconditioner.h</a>.</p>
 
@@ -347,7 +340,7 @@ Friends</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00350">350</a> of file <a class="el" href="pseudo__elastic__preconditioner_8h_source.html">pseudo_elastic_preconditioner.h</a>.</p>
 
-<p class="reference">References <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00786">clean_up_memory()</a>.</p>
+<p class="reference">References <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00788">clean_up_memory()</a>.</p>
 
 </div>
 </div>
@@ -397,11 +390,11 @@ Friends</h2></td></tr>
 
 <p>Clears the memory. </p>
 
-<p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00786">786</a> of file <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html">pseudo_elastic_preconditioner.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00788">788</a> of file <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html">pseudo_elastic_preconditioner.cc</a>.</p>
 
 <p class="reference">References <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00458">Elastic_preconditioner_pt</a>, and <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00461">Lagrange_multiplier_preconditioner_pt</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00552">setup()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00350">~PseudoElasticPreconditionerOld()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00553">setup()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00350">~PseudoElasticPreconditionerOld()</a>.</p>
 
 </div>
 </div>
@@ -472,7 +465,7 @@ Friends</h2></td></tr>
 
 <p>Apply the elastic subsidiary preconditioner. </p>
 
-<p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00751">751</a> of file <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html">pseudo_elastic_preconditioner.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00753">753</a> of file <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html">pseudo_elastic_preconditioner.cc</a>.</p>
 
 <p class="reference">References <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00458">Elastic_preconditioner_pt</a>.</p>
 
@@ -578,7 +571,7 @@ Friends</h2></td></tr>
 
 <p>Apply the lagrange multiplier subsidiary preconditioner. </p>
 
-<p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00762">762</a> of file <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html">pseudo_elastic_preconditioner.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00764">764</a> of file <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html">pseudo_elastic_preconditioner.cc</a>.</p>
 
 <p class="reference">References <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00455">Dim</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00461">Lagrange_multiplier_preconditioner_pt</a>, and <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00444">Scaling</a>.</p>
 
@@ -624,7 +617,7 @@ Friends</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00368">368</a> of file <a class="el" href="pseudo__elastic__preconditioner_8h_source.html">pseudo_elastic_preconditioner.h</a>.</p>
 
-<p class="reference">References <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00751">elastic_preconditioner_solve()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00762">lagrange_multiplier_preconditioner_solve()</a>.</p>
+<p class="reference">References <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00753">elastic_preconditioner_solve()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00764">lagrange_multiplier_preconditioner_solve()</a>.</p>
 
 </div>
 </div>
@@ -684,7 +677,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>By default the elastic subsidiary systems are preconditioner with SuperLUPreconditioner. For a different preconditioner, pass a function to this method returning a different subsidiary operator. </p>
+<p>By default the elastic subsidiary systems are preconditioner with ExactPreconditioner. For a different preconditioner, pass a function to this method returning a different subsidiary operator. </p>
 
 <p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00414">414</a> of file <a class="el" href="pseudo__elastic__preconditioner_8h_source.html">pseudo_elastic_preconditioner.h</a>.</p>
 
@@ -748,7 +741,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>By default the Lagrange multiplier subsidiary systems are preconditioner with SuperLUPreconditioner. For a different preconditioner, pass a function to this method returning a different subsidiary operator. </p>
+<p>By default the Lagrange multiplier subsidiary systems are preconditioner with ExactPreconditioner. For a different preconditioner, pass a function to this method returning a different subsidiary operator. </p>
 
 <p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00404">404</a> of file <a class="el" href="pseudo__elastic__preconditioner_8h_source.html">pseudo_elastic_preconditioner.h</a>.</p>
 
@@ -772,12 +765,11 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Broken assignment operator. </p>
-<p>//////////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////////////</p>
-<p>Setup method for the <a class="el" href="classoomph_1_1PseudoElasticPreconditionerOld.html" title="//////////////////////////////////////////////////////////////////////////// ////////////////////////...">PseudoElasticPreconditionerOld</a>. </p>
+<p>Setup method for the <a class="el" href="classoomph_1_1PseudoElasticPreconditionerOld.html" title="A subsidiary preconditioner for the pseudo-elastic FSI preconditioner. Also a stand-alone preconditio...">PseudoElasticPreconditionerOld</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00552">552</a> of file <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html">pseudo_elastic_preconditioner.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00553">553</a> of file <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html">pseudo_elastic_preconditioner.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00327">Block_diagonal_preconditioner</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00328">Block_lower_triangular_preconditioner</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00329">Block_upper_triangular_preconditioner</a>, <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00786">clean_up_memory()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00455">Dim</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00452">E_preconditioner_type</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00471">Elastic_mesh_pt</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00458">Elastic_preconditioner_pt</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00468">Elastic_subsidiary_preconditioner_function_pt</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00326">Exact_block_preconditioner</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00474">Lagrange_multiplier_mesh_pt</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00461">Lagrange_multiplier_preconditioner_pt</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00465">Lagrange_multiplier_subsidiary_preconditioner_function_pt</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00755">oomph::PseudoElasticPreconditionerScalingHelperOld::s_inf_norm()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00444">Scaling</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00536">oomph::PseudoElasticPreconditionerSubsidiaryPreconditionerOld::scaling()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00661">oomph::PseudoElasticPreconditionerSubsidiaryBlockPreconditionerOld::scaling()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00542">oomph::PseudoElasticPreconditionerSubsidiaryPreconditionerOld::set_subsidiary_preconditioner_function()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00635">oomph::PseudoElasticPreconditionerSubsidiaryBlockPreconditionerOld::set_subsidiary_preconditioner_function()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00642">oomph::PseudoElasticPreconditionerSubsidiaryBlockPreconditionerOld::use_block_diagonal_approximation()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00448">Use_inf_norm_of_s_scaling</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00654">oomph::PseudoElasticPreconditionerSubsidiaryBlockPreconditionerOld::use_lower_triangular_approximation()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00648">oomph::PseudoElasticPreconditionerSubsidiaryBlockPreconditionerOld::use_upper_triangular_approximation()</a>.</p>
+<p class="reference">References <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00327">Block_diagonal_preconditioner</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00328">Block_lower_triangular_preconditioner</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00329">Block_upper_triangular_preconditioner</a>, <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00788">clean_up_memory()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00455">Dim</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00452">E_preconditioner_type</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00471">Elastic_mesh_pt</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00458">Elastic_preconditioner_pt</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00468">Elastic_subsidiary_preconditioner_function_pt</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00326">Exact_block_preconditioner</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00474">Lagrange_multiplier_mesh_pt</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00461">Lagrange_multiplier_preconditioner_pt</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00465">Lagrange_multiplier_subsidiary_preconditioner_function_pt</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00755">oomph::PseudoElasticPreconditionerScalingHelperOld::s_inf_norm()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00444">Scaling</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00536">oomph::PseudoElasticPreconditionerSubsidiaryPreconditionerOld::scaling()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00661">oomph::PseudoElasticPreconditionerSubsidiaryBlockPreconditionerOld::scaling()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00542">oomph::PseudoElasticPreconditionerSubsidiaryPreconditionerOld::set_subsidiary_preconditioner_function()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00635">oomph::PseudoElasticPreconditionerSubsidiaryBlockPreconditionerOld::set_subsidiary_preconditioner_function()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00642">oomph::PseudoElasticPreconditionerSubsidiaryBlockPreconditionerOld::use_block_diagonal_approximation()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00448">Use_inf_norm_of_s_scaling</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00654">oomph::PseudoElasticPreconditionerSubsidiaryBlockPreconditionerOld::use_lower_triangular_approximation()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00648">oomph::PseudoElasticPreconditionerSubsidiaryBlockPreconditionerOld::use_upper_triangular_approximation()</a>.</p>
 
 </div>
 </div>
@@ -833,7 +825,7 @@ Friends</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00455">455</a> of file <a class="el" href="pseudo__elastic__preconditioner_8h_source.html">pseudo_elastic_preconditioner.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00762">lagrange_multiplier_preconditioner_solve()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00552">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00764">lagrange_multiplier_preconditioner_solve()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00553">setup()</a>.</p>
 
 </div>
 </div>
@@ -861,7 +853,7 @@ Friends</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00452">452</a> of file <a class="el" href="pseudo__elastic__preconditioner_8h_source.html">pseudo_elastic_preconditioner.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00427">elastic_preconditioner_type()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00333">PseudoElasticPreconditionerOld()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00552">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00427">elastic_preconditioner_type()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00333">PseudoElasticPreconditionerOld()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00553">setup()</a>.</p>
 
 </div>
 </div>
@@ -889,7 +881,7 @@ Friends</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00471">471</a> of file <a class="el" href="pseudo__elastic__preconditioner_8h_source.html">pseudo_elastic_preconditioner.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00333">PseudoElasticPreconditionerOld()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00376">set_elastic_mesh()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00552">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00333">PseudoElasticPreconditionerOld()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00376">set_elastic_mesh()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00553">setup()</a>.</p>
 
 </div>
 </div>
@@ -917,7 +909,7 @@ Friends</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00458">458</a> of file <a class="el" href="pseudo__elastic__preconditioner_8h_source.html">pseudo_elastic_preconditioner.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00786">clean_up_memory()</a>, <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00751">elastic_preconditioner_solve()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00333">PseudoElasticPreconditionerOld()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00552">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00788">clean_up_memory()</a>, <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00753">elastic_preconditioner_solve()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00333">PseudoElasticPreconditionerOld()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00553">setup()</a>.</p>
 
 </div>
 </div>
@@ -945,7 +937,7 @@ Friends</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00468">468</a> of file <a class="el" href="pseudo__elastic__preconditioner_8h_source.html">pseudo_elastic_preconditioner.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00333">PseudoElasticPreconditionerOld()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00414">set_elastic_subsidiary_preconditioner()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00552">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00333">PseudoElasticPreconditionerOld()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00414">set_elastic_subsidiary_preconditioner()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00553">setup()</a>.</p>
 
 </div>
 </div>
@@ -973,7 +965,7 @@ Friends</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00474">474</a> of file <a class="el" href="pseudo__elastic__preconditioner_8h_source.html">pseudo_elastic_preconditioner.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00333">PseudoElasticPreconditionerOld()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00383">set_lagrange_multiplier_mesh()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00552">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00333">PseudoElasticPreconditionerOld()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00383">set_lagrange_multiplier_mesh()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00553">setup()</a>.</p>
 
 </div>
 </div>
@@ -1001,7 +993,7 @@ Friends</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00461">461</a> of file <a class="el" href="pseudo__elastic__preconditioner_8h_source.html">pseudo_elastic_preconditioner.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00786">clean_up_memory()</a>, <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00762">lagrange_multiplier_preconditioner_solve()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00552">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00788">clean_up_memory()</a>, <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00764">lagrange_multiplier_preconditioner_solve()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00553">setup()</a>.</p>
 
 </div>
 </div>
@@ -1029,7 +1021,7 @@ Friends</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00465">465</a> of file <a class="el" href="pseudo__elastic__preconditioner_8h_source.html">pseudo_elastic_preconditioner.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00333">PseudoElasticPreconditionerOld()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00404">set_lagrange_multiplier_subsidiary_preconditioner()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00552">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00333">PseudoElasticPreconditionerOld()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00404">set_lagrange_multiplier_subsidiary_preconditioner()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00553">setup()</a>.</p>
 
 </div>
 </div>
@@ -1057,7 +1049,7 @@ Friends</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00444">444</a> of file <a class="el" href="pseudo__elastic__preconditioner_8h_source.html">pseudo_elastic_preconditioner.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00762">lagrange_multiplier_preconditioner_solve()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00552">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00764">lagrange_multiplier_preconditioner_solve()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00553">setup()</a>.</p>
 
 </div>
 </div>
@@ -1085,7 +1077,7 @@ Friends</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00448">448</a> of file <a class="el" href="pseudo__elastic__preconditioner_8h_source.html">pseudo_elastic_preconditioner.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00395">disable_inf_norm_of_s_scaling()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00389">enable_inf_norm_of_s_scaling()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00333">PseudoElasticPreconditionerOld()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00552">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00395">disable_inf_norm_of_s_scaling()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00389">enable_inf_norm_of_s_scaling()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00333">PseudoElasticPreconditionerOld()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00553">setup()</a>.</p>
 
 </div>
 </div>
@@ -1121,7 +1113,7 @@ Friends</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:30:20
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:39:10
         </div>
       </div>
     </footer>

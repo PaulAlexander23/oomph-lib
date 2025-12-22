@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -179,9 +173,9 @@
 </div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment"></span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">/// ///////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">/// ///////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">/// ///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">//////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">//////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">//////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment"></span> </div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment">//==start_of_problem_class================================================</span><span class="comment"></span></div>
@@ -466,7 +460,7 @@
 <div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span> <span class="keyword">const</span> <span class="keywordtype">unsigned</span> npts = 5;</div>
 <div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span> </div>
 <div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span> <span class="comment">// Open solution output file</span></div>
-<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,</div>
 <div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>         doc_info.directory().c_str(),doc_info.number());</div>
 <div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span> some_file.open(filename);</div>
 <div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span> </div>
@@ -555,9 +549,9 @@
 </div>
 <div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span> </div>
 <div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span><span class="comment"></span> </div>
-<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span><span class="comment">/// ///////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span><span class="comment">/// ///////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span><span class="comment">/// ///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span><span class="comment">//////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span><span class="comment">//////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span><span class="comment">//////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span><span class="comment"></span> </div>
 <div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span> </div>
 <div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span><span class="comment">//==start_of_main=========================================================</span><span class="comment"></span></div>
@@ -628,7 +622,7 @@
 <div class="line"><a id="l00487" name="l00487"></a><span class="lineno">  487</span> </div>
 <div class="line"><a id="l00488" name="l00488"></a><span class="lineno">  488</span> </div>
 <div class="line"><a id="l00489" name="l00489"></a><span class="lineno">  489</span> </div>
-<div class="ttc" id="aclassRotatingCylinderProblem_html"><div class="ttname"><a href="classRotatingCylinderProblem.html">RotatingCylinderProblem</a></div><div class="ttdoc">/////////////////////////////////////////////////////////////////////// /////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="spin__up_8cc_source.html#l00071">spin_up.cc:72</a></div></div>
+<div class="ttc" id="aclassRotatingCylinderProblem_html"><div class="ttname"><a href="classRotatingCylinderProblem.html">RotatingCylinderProblem</a></div><div class="ttdoc">Refineable rotating cylinder problem in a rectangular axisymmetric domain.</div><div class="ttdef"><b>Definition</b> <a href="spin__up_8cc_source.html#l00071">spin_up.cc:72</a></div></div>
 <div class="ttc" id="aclassRotatingCylinderProblem_html_a06a4c2a32a64bb6c0e6cf7a9e3bba157"><div class="ttname"><a href="classRotatingCylinderProblem.html#a06a4c2a32a64bb6c0e6cf7a9e3bba157">RotatingCylinderProblem::fix_pressure</a></div><div class="ttdeci">void fix_pressure(const unsigned &amp;e, const unsigned &amp;pdof, const double &amp;pvalue)</div><div class="ttdoc">Fix pressure in element e at pressure dof pdof and set to pvalue.</div><div class="ttdef"><b>Definition</b> <a href="spin__up_8cc_source.html#l00131">spin_up.cc:131</a></div></div>
 <div class="ttc" id="aclassRotatingCylinderProblem_html_a22f82fba41d68b9748642f9a29a12592"><div class="ttname"><a href="classRotatingCylinderProblem.html#a22f82fba41d68b9748642f9a29a12592">RotatingCylinderProblem::doc_solution</a></div><div class="ttdeci">void doc_solution(DocInfo &amp;doc_info)</div><div class="ttdoc">Document the solution.</div><div class="ttdef"><b>Definition</b> <a href="spin__up_8cc_source.html#l00319">spin_up.cc:320</a></div></div>
 <div class="ttc" id="aclassRotatingCylinderProblem_html_a2cac6acd0607a98fd1b5f2c155335dbd"><div class="ttname"><a href="classRotatingCylinderProblem.html#a2cac6acd0607a98fd1b5f2c155335dbd">RotatingCylinderProblem::actions_after_newton_solve</a></div><div class="ttdeci">void actions_after_newton_solve()</div><div class="ttdoc">No actions required after solve step.</div><div class="ttdef"><b>Definition</b> <a href="spin__up_8cc_source.html#l00111">spin_up.cc:111</a></div></div>
@@ -643,7 +637,7 @@
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">Namespace for physical parameters.</div><div class="ttdef"><b>Definition</b> <a href="spin__up_8cc_source.html#l00049">spin_up.cc:50</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a085ee4bf968ffdd01a41b8c41864f907"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a085ee4bf968ffdd01a41b8c41864f907">Global_Physical_Variables::ReSt</a></div><div class="ttdeci">double ReSt</div><div class="ttdoc">Womersley number.</div><div class="ttdef"><b>Definition</b> <a href="spin__up_8cc_source.html#l00056">spin_up.cc:56</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_ab814e627d2eb5bc50318879d19ab16b9"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#ab814e627d2eb5bc50318879d19ab16b9">Global_Physical_Variables::Re</a></div><div class="ttdeci">double Re</div><div class="ttdoc">Reynolds number.</div><div class="ttdef"><b>Definition</b> <a href="spin__up_8cc_source.html#l00053">spin_up.cc:53</a></div></div>
-<div class="ttc" id="aspin__up_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="spin__up_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">/////////////////////////////////////////////////////////////////////// /////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="spin__up_8cc_source.html#l00427">spin_up.cc:427</a></div></div>
+<div class="ttc" id="aspin__up_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="spin__up_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">Driver code for axisymmetric spin-up problem.</div><div class="ttdef"><b>Definition</b> <a href="spin__up_8cc_source.html#l00427">spin_up.cc:427</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 
     <!-- jQuery for Bootstrap and Doxygen -->
@@ -672,7 +666,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:19:05
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:32:35
         </div>
       </div>
     </footer>

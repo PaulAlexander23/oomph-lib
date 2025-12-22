@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -121,41 +115,41 @@
  <hr  />
 <h1><a class="anchor" id="the_problem"></a>
 The Problem</h1>
-<p>The figure below shows a sketch of the problem: A 2D channel of height <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ H^*_{tot}$" src="form_0.png" width="23" height="14"/></picture> and length <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ L^*_{left} + L^*_{right} $" src="form_1.png" width="74" height="16"/></picture> is partially occluded by a thin-walled elastic leaflet of height <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ H^*_{leaflet} $" src="form_2.png" width="41" height="16"/></picture>. (As usual, we use asterisks to distinguish dimensional quantities from their non-dimensional equivalents to be introduced later.) We assume that the leaflet is sufficiently thin so that, as far as the boundary conditions for the fluid are concerned, the leaflet can be assumed to be infinitely thin. This allows us to parametrise its shape by a single Lagrangian coordinate <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \xi^* $" src="form_3.png" width="11" height="13"/></picture>. Hence we write the position vector to a material point on the leaflet as <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf R}^*_w(\xi^*,t^*) $" src="form_4.png" width="56" height="14"/></picture>. A pulsatile Poiseuille flow whose mean velocity fluctuates between <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ U^* $" src="form_5.png" width="15" height="10"/></picture> and <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ 2 U^* $" src="form_6.png" width="21" height="10"/></picture> is imposed at the upstream end of the channel. The outflow is assumed to be parallel and axially traction-free.</p>
+<p>The figure below shows a sketch of the problem: A 2D channel of height <img class="formulaInl" alt="$ H^*_{tot}$" src="form_0.png" width="23" height="14"/> and length <img class="formulaInl" alt="$ L^*_{left} + L^*_{right} $" src="form_1.png" width="74" height="16"/> is partially occluded by a thin-walled elastic leaflet of height <img class="formulaInl" alt="$ H^*_{leaflet} $" src="form_2.png" width="41" height="16"/>. (As usual, we use asterisks to distinguish dimensional quantities from their non-dimensional equivalents to be introduced later.) We assume that the leaflet is sufficiently thin so that, as far as the boundary conditions for the fluid are concerned, the leaflet can be assumed to be infinitely thin. This allows us to parametrise its shape by a single Lagrangian coordinate <img class="formulaInl" alt="$ \xi^* $" src="form_3.png" width="11" height="13"/>. Hence we write the position vector to a material point on the leaflet as <img class="formulaInl" alt="$ {\bf R}^*_w(\xi^*,t^*) $" src="form_4.png" width="56" height="14"/>. A pulsatile Poiseuille flow whose mean velocity fluctuates between <img class="formulaInl" alt="$ U^* $" src="form_5.png" width="15" height="10"/> and <img class="formulaInl" alt="$ 2 U^* $" src="form_6.png" width="21" height="10"/> is imposed at the upstream end of the channel. The outflow is assumed to be parallel and axially traction-free.</p>
 <div class="image">
 <img src="fsi_channel_with_leaflet_dim.gif" alt=""/>
 <div class="caption">
 Sketch of the problem. </div></div>
- <p>We non-dimensionalise all length and coordinates on the channel width, <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ H^*_{tot} $" src="form_7.png" width="23" height="14"/></picture> , time on the natural timescale of the flow, <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ H^*_{tot}/U^* $" src="form_8.png" width="44" height="14"/></picture>, the velocities on the (minimum) mean velocity, <br  />
- <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ U^* $" src="form_5.png" width="15" height="10"/></picture>, and the pressure on the viscous scale.</p>
+ <p>We non-dimensionalise all length and coordinates on the channel width, <img class="formulaInl" alt="$ H^*_{tot} $" src="form_7.png" width="23" height="14"/> , time on the natural timescale of the flow, <img class="formulaInl" alt="$ H^*_{tot}/U^* $" src="form_8.png" width="44" height="14"/>, the velocities on the (minimum) mean velocity, <br  />
+ <img class="formulaInl" alt="$ U^* $" src="form_5.png" width="15" height="10"/>, and the pressure on the viscous scale.</p>
 <p>The fluid flow is then governed by the non-dimensional Navier-Stokes equations  </p><p class="formulaDsp">
-<picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 Re \left( St \frac{\partial u_i}{\partial t} + 
 u_j \frac{\partial u_i}{\partial x_j} \right) =
 - \frac{\partial p}{\partial x_i}  +
 \frac{\partial }{\partial x_j} \left[ \left(
 \frac{\partial u_i}{\partial x_j} +  
 \frac{\partial u_j}{\partial x_i} \right) \right],
-\]" src="form_9.png" width="306" height="31"/></picture>
+\]" src="form_9.png" width="306" height="31"/>
 </p>
-<p> where <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re = \rho U^* H_0^* / \mu $" src="form_10.png" width="85" height="14"/></picture> and <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ St = 1 $" src="form_11.png" width="35" height="10"/></picture>, and </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> where <img class="formulaInl" alt="$ Re = \rho U^* H_0^* / \mu $" src="form_10.png" width="85" height="14"/> and <img class="formulaInl" alt="$ St = 1 $" src="form_11.png" width="35" height="10"/>, and </p><center>  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \frac{\partial u_i}{\partial x_i} = 0,
-\]" src="form_12.png" width="48" height="29"/></picture>
+\]" src="form_12.png" width="48" height="29"/>
 </p>
- </center><p> subject to a time-periodic, parabolic inflow with non-dimensional period <picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ T $" src="form_13.png" width="10" height="9"/></picture>, </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ </center><p> subject to a time-periodic, parabolic inflow with non-dimensional period <img class="formulaInl" alt="$ T $" src="form_13.png" width="10" height="9"/>, </p><center>  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 {\bf u} = 6 x_2 (1-x_2) \left( 1 + \frac{1}{2} (1-\cos(2 \pi t/T)) \right) 
 {\bf e}_1
-\]" src="form_14.png" width="243" height="31"/></picture>
+\]" src="form_14.png" width="243" height="31"/>
 </p>
- </center><p> in the inflow cross-section; parallel, axially-traction-free outflow at the outlet; and no-slip on the stationary channel walls, <picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf u} = {\bf 0} $" src="form_15.png" width="31" height="9"/></picture>. The no-slip condition on the leaflet is </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_16_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ </center><p> in the inflow cross-section; parallel, axially-traction-free outflow at the outlet; and no-slip on the stationary channel walls, <img class="formulaInl" alt="$ {\bf u} = {\bf 0} $" src="form_15.png" width="31" height="9"/>. The no-slip condition on the leaflet is </p><center>  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 {\bf u} = \frac{\partial {\bf R}_w(\xi,t)}{\partial t}.
-\]" src="form_16.png" width="83" height="29"/></picture>
+\]" src="form_16.png" width="83" height="29"/>
 </p>
- </center><p>We model the leaflet as a thin-walled, massless, elastic Kirchhoff-Love beam of wall thickness <picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ h^* $" src="form_17.png" width="11" height="10"/></picture>. The beam's effective (1D) elastic modulus is given by <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ E_{eff} = E/(1-\nu^2), $" src="form_18.png" width="105" height="15"/></picture> where <picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ E $" src="form_19.png" width="10" height="10"/></picture> and <picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \nu $" src="form_20.png" width="6" height="6"/></picture> are its 3D Young's modulus and Poisson's ratio, respectively. The beam's deformation is governed by the principle of virtual displacements, discussed in detail <a href="../../../beam/tensioned_string/html/index.html">in another tutorial.</a> As in the Navier-Stokes equations, we scale all lengths in the beam problem on the channel's width, <picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ H^*_{tot}. $" src="form_21.png" width="26" height="14"/></picture> The non-dimensional position vector <picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf r}_w(\xi) $" src="form_22.png" width="30" height="14"/></picture> to the undeformed wall is then given by  </p><p class="formulaDsp">
-<picture><source srcset="form_23_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ </center><p>We model the leaflet as a thin-walled, massless, elastic Kirchhoff-Love beam of wall thickness <img class="formulaInl" alt="$ h^* $" src="form_17.png" width="11" height="10"/>. The beam's effective (1D) elastic modulus is given by <img class="formulaInl" alt="$ E_{eff} = E/(1-\nu^2), $" src="form_18.png" width="105" height="15"/> where <img class="formulaInl" alt="$ E $" src="form_19.png" width="10" height="10"/> and <img class="formulaInl" alt="$ \nu $" src="form_20.png" width="6" height="6"/> are its 3D Young's modulus and Poisson's ratio, respectively. The beam's deformation is governed by the principle of virtual displacements, discussed in detail <a href="../../../beam/tensioned_string/html/index.html">in another tutorial.</a> As in the Navier-Stokes equations, we scale all lengths in the beam problem on the channel's width, <img class="formulaInl" alt="$ H^*_{tot}. $" src="form_21.png" width="26" height="14"/> The non-dimensional position vector <img class="formulaInl" alt="$ {\bf r}_w(\xi) $" src="form_22.png" width="30" height="14"/> to the undeformed wall is then given by  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 {\bf r}_w(\xi) = 
 {\bf R}_w(\xi,t=0) = 
 \left(
@@ -164,10 +158,10 @@ X_0  \\
 \xi
 \end{array}
 \right) \ \ \ \ \ \ \mbox{where $\xi \in [0,H_{leaflet}].$}
-\]" src="form_23.png" width="325" height="31"/></picture>
+\]" src="form_23.png" width="325" height="31"/>
 </p>
-<p> Our non-dimensionalisation of the principle of virtual displacements requires all stresses and tractions to be non-dimensionalised on the beam's (effective 1D) elastic modulus, <picture><source srcset="form_24_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ E_{eff} $" src="form_24.png" width="25" height="14"/></picture>. The non-dimensional load vector <picture><source srcset="form_25_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf f} = {\bf f}^{*}/E_{eff} $" src="form_25.png" width="66" height="14"/></picture> that acts on the leaflet (combining the fluid tractions acting on its front and back faces) is then given by  </p><p class="formulaDsp">
-<picture><source srcset="form_26_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> Our non-dimensionalisation of the principle of virtual displacements requires all stresses and tractions to be non-dimensionalised on the beam's (effective 1D) elastic modulus, <img class="formulaInl" alt="$ E_{eff} $" src="form_24.png" width="25" height="14"/>. The non-dimensional load vector <img class="formulaInl" alt="$ {\bf f} = {\bf f}^{*}/E_{eff} $" src="form_25.png" width="66" height="14"/> that acts on the leaflet (combining the fluid tractions acting on its front and back faces) is then given by  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 f_i = Q \bigg\{ 
 \left( p\big|_{front} \ N_i^{[front]} -
 \left(
@@ -175,10 +169,10 @@ f_i = Q \bigg\{
 \frac{\partial u_j}{\partial x_i} 
 \right)\bigg|_{front} N_j^{[front]} \right)
 +
-\]" src="form_26.png" width="334" height="39"/></picture>
+\]" src="form_26.png" width="334" height="39"/>
 </p>
   <p class="formulaDsp">
-<picture><source srcset="form_27_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 . \hspace{3cm} + \left( p\big|_{back} \ N_i^{[back]} -
 \left(
 \frac{\partial u_i}{\partial x_j} +
@@ -186,15 +180,15 @@ f_i = Q \bigg\{
 \right)\bigg|_{back} N_j^{[back]} \right) 
 \bigg\}
 \ \ \ \ \ \ \mbox{for $i=1,2,$}
-\]" src="form_27.png" width="458" height="33"/></picture>
+\]" src="form_27.png" width="458" height="33"/>
 </p>
 <p> where  </p><p class="formulaDsp">
-<picture><source srcset="form_28_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 Q = \frac{\mu U}{E_{eff} H_{tot}^*}
-\]" src="form_28.png" width="79" height="30"/></picture>
+\]" src="form_28.png" width="79" height="30"/>
 </p>
-<p> is the ratio of the fluid pressure scale, <picture><source srcset="form_29_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mu U/H_{tot}^* $" src="form_29.png" width="46" height="14"/></picture> , used to non-dimensionalise the Navier-Stokes equations, to the beam's effective elastic modulus, <picture><source srcset="form_24_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ E_{eff} $" src="form_24.png" width="25" height="14"/></picture>. The parameter <picture><source srcset="form_30_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Q
-$" src="form_30.png" width="10" height="13"/></picture> therefore indicates the strength of the fluid-structure interaction. In particular, if <picture><source srcset="form_31_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Q=0 $" src="form_31.png" width="33" height="13"/></picture> the leaflet does not "feel" the fluid traction. <picture><source srcset="form_32_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf N}_{front} $" src="form_32.png" width="38" height="14"/></picture> and <picture><source srcset="form_33_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf N}_{back} $" src="form_33.png" width="33" height="13"/></picture> are the outer unit normals on the "front" and "back" faces of the deformed leaflet, as shown in this sketch of the non-dimensional version of the problem:</p>
+<p> is the ratio of the fluid pressure scale, <img class="formulaInl" alt="$ \mu U/H_{tot}^* $" src="form_29.png" width="46" height="14"/> , used to non-dimensionalise the Navier-Stokes equations, to the beam's effective elastic modulus, <img class="formulaInl" alt="$ E_{eff} $" src="form_24.png" width="25" height="14"/>. The parameter <img class="formulaInl" alt="$ Q
+$" src="form_30.png" width="10" height="13"/> therefore indicates the strength of the fluid-structure interaction. In particular, if <img class="formulaInl" alt="$ Q=0 $" src="form_31.png" width="33" height="13"/> the leaflet does not "feel" the fluid traction. <img class="formulaInl" alt="$ {\bf N}_{front} $" src="form_32.png" width="38" height="14"/> and <img class="formulaInl" alt="$ {\bf N}_{back} $" src="form_33.png" width="33" height="13"/> are the outer unit normals on the "front" and "back" faces of the deformed leaflet, as shown in this sketch of the non-dimensional version of the problem:</p>
 <div class="image">
 <img src="fsi_channel_with_leaflet.gif" alt=""/>
 <div class="caption">
@@ -204,8 +198,8 @@ Sketch of the problem in dimensionless variables. </div></div>
 <h1><a class="anchor" id="results"></a>
 Results</h1>
 <p>The figure below shows (a) a snapshot of the flow field <br  />
- (pressure contours and instantaneous streamlines) and (b) the time-trace of the horizontal position of the leaflet's tip for a Reynolds number of <picture><source srcset="form_34_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re = 200 $" src="form_34.png" width="50" height="10"/></picture>, a non-dimensional period of <picture><source srcset="form_35_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ T=2 $" src="form_35.png" width="33" height="9"/></picture>, and an interaction parameter of <picture><source srcset="form_36_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Q = 10^{-6}
-$" src="form_36.png" width="51" height="14"/></picture>. Following the decay of initial transients the leaflet performs periodic large-amplitude oscillations with the period of the pulsating inflow. Large velocity gradients develop at the front of the leaflet and in the shear layer that emanates from its tip and separates the recirculating flow region behind the leaflet from the main flow. Fig. (c) illustrates the non-uniform mesh refinement and shows the improved resolution in the high-shear regions, particularly near the leaflet's tip where the pressure is singular. The mesh was continuously adapted throughout the simulation and contained an average of about 32,000 degrees of freedom. This is a fraction of the 1,324,343 degrees of freedom that would be required to achieve the same local resolution via uniform mesh refinement.</p>
+ (pressure contours and instantaneous streamlines) and (b) the time-trace of the horizontal position of the leaflet's tip for a Reynolds number of <img class="formulaInl" alt="$ Re = 200 $" src="form_34.png" width="50" height="10"/>, a non-dimensional period of <img class="formulaInl" alt="$ T=2 $" src="form_35.png" width="33" height="9"/>, and an interaction parameter of <img class="formulaInl" alt="$ Q = 10^{-6}
+$" src="form_36.png" width="51" height="14"/>. Following the decay of initial transients the leaflet performs periodic large-amplitude oscillations with the period of the pulsating inflow. Large velocity gradients develop at the front of the leaflet and in the shear layer that emanates from its tip and separates the recirculating flow region behind the leaflet from the main flow. Fig. (c) illustrates the non-uniform mesh refinement and shows the improved resolution in the high-shear regions, particularly near the leaflet's tip where the pressure is singular. The mesh was continuously adapted throughout the simulation and contained an average of about 32,000 degrees of freedom. This is a fraction of the 1,324,343 degrees of freedom that would be required to achieve the same local resolution via uniform mesh refinement.</p>
 <div class="image">
 <img src="flow_from_paper.gif" alt=""/>
 <div class="caption">
@@ -229,8 +223,8 @@ The global parameters</h1>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">Global parameters.</div><div class="ttdef"><b>Definition</b> <a href="fsi__channel__with__leaflet_8cc_source.html#l00046">fsi_channel_with_leaflet.cc:47</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a085ee4bf968ffdd01a41b8c41864f907"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a085ee4bf968ffdd01a41b8c41864f907">Global_Physical_Variables::ReSt</a></div><div class="ttdeci">double ReSt</div><div class="ttdoc">Womersley number: Product of Reynolds and Strouhal numbers.</div><div class="ttdef"><b>Definition</b> <a href="fsi__channel__with__leaflet_8cc_source.html#l00052">fsi_channel_with_leaflet.cc:52</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_ab814e627d2eb5bc50318879d19ab16b9"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#ab814e627d2eb5bc50318879d19ab16b9">Global_Physical_Variables::Re</a></div><div class="ttdeci">double Re</div><div class="ttdoc">Reynolds number.</div><div class="ttdef"><b>Definition</b> <a href="fsi__channel__with__leaflet_8cc_source.html#l00049">fsi_channel_with_leaflet.cc:49</a></div></div>
-</div><!-- fragment --><p> the leaflet's non-dimensional wall thickness, <picture><source srcset="form_37_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ h = h^*/H^*_{tot}
-$" src="form_37.png" width="66" height="14"/></picture>, and the FSI parameter,</p>
+</div><!-- fragment --><p> the leaflet's non-dimensional wall thickness, <img class="formulaInl" alt="$ h = h^*/H^*_{tot}
+$" src="form_37.png" width="66" height="14"/>, and the FSI parameter,</p>
 <div class="fragment"><div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Non-dimensional wall thickness.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> H=0.05;</div>
@@ -330,7 +324,7 @@ The undeformed leaflet</h1>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="classUndeformedLeaflet.html#aa89fc695af9e53aa38894c9d875afd36">X0</a>;</div>
 <div class="line"> </div>
 <div class="line">}; <span class="comment">//end_of_undeformed_wall</span></div>
-<div class="ttc" id="aclassUndeformedLeaflet_html"><div class="ttname"><a href="classUndeformedLeaflet.html">UndeformedLeaflet</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="fsi__channel__with__leaflet_8cc_source.html#l00090">fsi_channel_with_leaflet.cc:91</a></div></div>
+<div class="ttc" id="aclassUndeformedLeaflet_html"><div class="ttname"><a href="classUndeformedLeaflet.html">UndeformedLeaflet</a></div><div class="ttdoc">GeomObject: Undeformed straight, vertical leaflet.</div><div class="ttdef"><b>Definition</b> <a href="fsi__channel__with__leaflet_8cc_source.html#l00090">fsi_channel_with_leaflet.cc:91</a></div></div>
 <div class="ttc" id="aclassUndeformedLeaflet_html_a47d674756ce22e00a44ca0bd030a99da"><div class="ttname"><a href="classUndeformedLeaflet.html#a47d674756ce22e00a44ca0bd030a99da">UndeformedLeaflet::d2position</a></div><div class="ttdeci">void d2position(const Vector&lt; double &gt; &amp;zeta, Vector&lt; double &gt; &amp;r, DenseMatrix&lt; double &gt; &amp;drdzeta, RankThreeTensor&lt; double &gt; &amp;ddrdzeta) const</div><div class="ttdoc">Posn vector and its 1st &amp; 2nd derivatives w.r.t. to coordinates:  = drdzeta(alpha,...</div><div class="ttdef"><b>Definition</b> <a href="fsi__channel__with__leaflet_8cc_source.html#l00126">fsi_channel_with_leaflet.cc:126</a></div></div>
 <div class="ttc" id="aclassUndeformedLeaflet_html_a56153a1d117dd41657183655de094d3e"><div class="ttname"><a href="classUndeformedLeaflet.html#a56153a1d117dd41657183655de094d3e">UndeformedLeaflet::ngeom_data</a></div><div class="ttdeci">unsigned ngeom_data() const</div><div class="ttdoc">Number of geometric Data in GeomObject: None.</div><div class="ttdef"><b>Definition</b> <a href="fsi__channel__with__leaflet_8cc_source.html#l00145">fsi_channel_with_leaflet.cc:145</a></div></div>
 <div class="ttc" id="aclassUndeformedLeaflet_html_a8e9b79702eb9a38e19886b84aeb47918"><div class="ttname"><a href="classUndeformedLeaflet.html#a8e9b79702eb9a38e19886b84aeb47918">UndeformedLeaflet::position</a></div><div class="ttdeci">void position(const Vector&lt; double &gt; &amp;zeta, Vector&lt; double &gt; &amp;r) const</div><div class="ttdoc">Position vector at Lagrangian coordinate zeta.</div><div class="ttdef"><b>Definition</b> <a href="fsi__channel__with__leaflet_8cc_source.html#l00102">fsi_channel_with_leaflet.cc:102</a></div></div>
@@ -372,7 +366,7 @@ The driver code</h1>
 <div class="line">  AlgebraicElement&lt;RefineableQTaylorHoodElement&lt;2&gt; &gt; &gt;</div>
 <div class="line">  problem(lleft,lright,hleaflet,</div>
 <div class="line">          htot,nleft,nright,ny1,ny2,x_0); </div>
-<div class="ttc" id="aclassFSIChannelWithLeafletProblem_html"><div class="ttname"><a href="classFSIChannelWithLeafletProblem.html">FSIChannelWithLeafletProblem</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="fsi__channel__with__leaflet_8cc_source.html#l00164">fsi_channel_with_leaflet.cc:165</a></div></div>
+<div class="ttc" id="aclassFSIChannelWithLeafletProblem_html"><div class="ttname"><a href="classFSIChannelWithLeafletProblem.html">FSIChannelWithLeafletProblem</a></div><div class="ttdoc">FSI leaflet in channel.</div><div class="ttdef"><b>Definition</b> <a href="fsi__channel__with__leaflet_8cc_source.html#l00164">fsi_channel_with_leaflet.cc:165</a></div></div>
 </div><!-- fragment --><p> We prepare a <code>DocInfo</code> object and open a trace file to document the system's evolution.</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"> <span class="comment">// Set up doc info</span></div>
@@ -382,7 +376,7 @@ The driver code</h1>
 <div class="line"> <span class="comment">// Trace file</span></div>
 <div class="line"> ofstream trace;</div>
 <div class="line"> <span class="keywordtype">char</span> filename[100];</div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/trace.dat&quot;</span>,doc_info.directory().c_str());</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/trace.dat&quot;</span>,doc_info.directory().c_str());</div>
 <div class="line"> trace.open(filename);</div>
 </div><!-- fragment --><p> Next we assign the timestepping parameters (using fewer timesteps if the code is run during a self-test) and document the system's initial state which provides the initial guess for the Newton iteration in the subsequent steady solve.</p>
 <div class="fragment"><div class="line"> </div>
@@ -403,8 +397,8 @@ The driver code</h1>
 <div class="line"> <span class="comment">// Doc initial guess for steady solve</span></div>
 <div class="line"> problem.doc_solution(doc_info,trace);</div>
 <div class="line"> doc_info.number()++; </div>
-</div><!-- fragment --><p> We wish to start the time-dependent simulation from an initial condition that corresponds to the steady solution of the problem with unit influx (i.e. the steady solution obtained if the time-dependent boundary condition that is applied at the inlet is held fixed at its value for <picture><source srcset="form_38_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ t= 0 $" src="form_38.png" width="29" height="9"/></picture>). For the required Reynolds number of <picture><source srcset="form_39_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re=200 $" src="form_39.png" width="50" height="10"/></picture>, the currently assigned initial guess (zero velocity and pressure, with the wall <br  />
- in its undeformed position) is "too far" from the actual solution and the Newton method would diverge (try it!). Therefore we generate the initial steady solution in a preliminary sequence of steady computations in which we first compute the solution for a Reynolds number of <picture><source srcset="form_40_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re=50 $" src="form_40.png" width="44" height="10"/></picture> (for this value the Newton method does converge). This solution is then used as the initial guess for the computation at <picture><source srcset="form_41_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re=100 $" src="form_41.png" width="50" height="10"/></picture>, etc. We allow for up to 3 mesh adaptations for each Reynolds number to allow the mesh to adapt itself to the flow conditions before starting the time-dependent run.</p>
+</div><!-- fragment --><p> We wish to start the time-dependent simulation from an initial condition that corresponds to the steady solution of the problem with unit influx (i.e. the steady solution obtained if the time-dependent boundary condition that is applied at the inlet is held fixed at its value for <img class="formulaInl" alt="$ t= 0 $" src="form_38.png" width="29" height="9"/>). For the required Reynolds number of <img class="formulaInl" alt="$ Re=200 $" src="form_39.png" width="50" height="10"/>, the currently assigned initial guess (zero velocity and pressure, with the wall <br  />
+ in its undeformed position) is "too far" from the actual solution and the Newton method would diverge (try it!). Therefore we generate the initial steady solution in a preliminary sequence of steady computations in which we first compute the solution for a Reynolds number of <img class="formulaInl" alt="$ Re=50 $" src="form_40.png" width="44" height="10"/> (for this value the Newton method does converge). This solution is then used as the initial guess for the computation at <img class="formulaInl" alt="$ Re=100 $" src="form_41.png" width="50" height="10"/>, etc. We allow for up to 3 mesh adaptations for each Reynolds number to allow the mesh to adapt itself to the flow conditions before starting the time-dependent run.</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Initial loop to increment the Reynolds number in sequence of steady solves</span></div>
@@ -605,7 +599,7 @@ The problem constructor</h1>
 <div class="line"> Steady&lt;2&gt;* wall_time_stepper_pt=<span class="keyword">new</span> Steady&lt;2&gt;;</div>
 <div class="line"> add_time_stepper_pt(wall_time_stepper_pt);</div>
 <div class="ttc" id="aclassFSIChannelWithLeafletProblem_html_aaa0a455e91c4fb2dd9696607b802d01b"><div class="ttname"><a href="classFSIChannelWithLeafletProblem.html#aaa0a455e91c4fb2dd9696607b802d01b">FSIChannelWithLeafletProblem::FSIChannelWithLeafletProblem</a></div><div class="ttdeci">FSIChannelWithLeafletProblem(const double &amp;lleft, const double &amp;lright, const double &amp;hleaflet, const double &amp;htot, const unsigned &amp;nleft, const unsigned &amp;nright, const unsigned &amp;ny1, const unsigned &amp;ny2, const double &amp;x_0)</div><div class="ttdoc">Constructor: Pass the lenght of the domain at the left of the leaflet lleft,the lenght of the domain ...</div><div class="ttdef"><b>Definition</b> <a href="fsi__channel__with__leaflet_8cc_source.html#l00265">fsi_channel_with_leaflet.cc:265</a></div></div>
-</div><!-- fragment --><p> Next we create the mesh of 1D Hermite beam elements that represents the leaflet, passing a pointer to an instance of the <code><a class="el" href="classUndeformedLeaflet.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////...">UndeformedLeaflet</a></code> to its constructor.</p>
+</div><!-- fragment --><p> Next we create the mesh of 1D Hermite beam elements that represents the leaflet, passing a pointer to an instance of the <code><a class="el" href="classUndeformedLeaflet.html" title="GeomObject: Undeformed straight, vertical leaflet.">UndeformedLeaflet</a></code> to its constructor.</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Discretise leaflet</span></div>
@@ -695,7 +689,7 @@ The problem constructor</h1>
 <div class="line">   Fluid_mesh_pt-&gt;boundary_node_pt(ibound,inod)-&gt;set_value(0,uy);</div>
 <div class="line">   Fluid_mesh_pt-&gt;boundary_node_pt(ibound,inod)-&gt;set_value(1,0.0);    </div>
 <div class="line">  }<span class="comment">// end of setup boundary condition</span></div>
-</div><!-- fragment --><p> The leaflet is clamped at its lower end so we pin its <picture><source srcset="form_42_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$x_1$" src="form_42.png" width="13" height="9"/></picture>- and <picture><source srcset="form_43_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$x_2$" src="form_43.png" width="13" height="9"/></picture>-positions, and impose a vertical slope by setting <picture><source srcset="form_44_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ dx_1/ds = 0 $" src="form_44.png" width="60" height="14"/></picture> (where s is the local coordinate along the element; see the discussion of the boundary conditions for beam elements in <a href="../../../beam/tensioned_string/html/index.html">another tutorial</a> for details).</p>
+</div><!-- fragment --><p> The leaflet is clamped at its lower end so we pin its <img class="formulaInl" alt="$x_1$" src="form_42.png" width="13" height="9"/>- and <img class="formulaInl" alt="$x_2$" src="form_43.png" width="13" height="9"/>-positions, and impose a vertical slope by setting <img class="formulaInl" alt="$ dx_1/ds = 0 $" src="form_44.png" width="60" height="14"/> (where s is the local coordinate along the element; see the discussion of the boundary conditions for beam elements in <a href="../../../beam/tensioned_string/html/index.html">another tutorial</a> for details).</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"> </div>
 <div class="line"> </div>
@@ -896,14 +890,14 @@ Post Processing</h1>
 <div class="line"> npts=5; </div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output fluid solution </span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> Fluid_mesh_pt-&gt;output(some_file,npts);</div>
 <div class="line"> some_file.close();</div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output wall solution </span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/wall_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/wall_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> Wall_mesh_pt-&gt;output(some_file,npts);</div>
@@ -934,7 +928,7 @@ Post Processing</h1>
 <div class="line"> <span class="comment">// Output fluid elements on fluid mesh boundary 4 (associated with</span></div>
 <div class="line"> <span class="comment">// the &quot;front&quot;)</span></div>
 <div class="line"> <span class="keywordtype">unsigned</span> bound=4;</div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/fluid_boundary_elements_front_%i.dat&quot;</span>,</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/fluid_boundary_elements_front_%i.dat&quot;</span>,</div>
 <div class="line">         doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
@@ -950,7 +944,7 @@ Post Processing</h1>
 <div class="line"> <span class="comment">// Output fluid elements on fluid mesh boundary 5 (associated with</span></div>
 <div class="line"> <span class="comment">// the &quot;back&quot;)</span></div>
 <div class="line"> bound=5;</div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/fluid_boundary_elements_back_%i.dat&quot;</span>,</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/fluid_boundary_elements_back_%i.dat&quot;</span>,</div>
 <div class="line">         doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
@@ -964,7 +958,7 @@ Post Processing</h1>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output normal vector on wall elements</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/wall_normal_%i.dat&quot;</span>,</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/wall_normal_%i.dat&quot;</span>,</div>
 <div class="line">         doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
@@ -1103,7 +1097,7 @@ demo_drivers/interaction/fsi_channel_with_leaflet/fsi_channel_with_leaflet.cc
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -1133,7 +1127,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:28:29
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:35:31
         </div>
       </div>
     </footer>

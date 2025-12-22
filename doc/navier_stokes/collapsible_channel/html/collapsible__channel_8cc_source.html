@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -676,7 +670,7 @@
 <div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span> npts=5; </div>
 <div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span> </div>
 <div class="line"><a id="l00553" name="l00553"></a><span class="lineno">  553</span> <span class="comment">// Output solution </span></div>
-<div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00555" name="l00555"></a><span class="lineno">  555</span>         doc_info.number());</div>
 <div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span> some_file.open(filename);</div>
 <div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span> bulk_mesh_pt()-&gt;output(some_file,npts);</div>
@@ -697,7 +691,7 @@
 <div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span>            &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span> </div>
 <div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span> <span class="comment">// Output wall shape</span></div>
-<div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span> sprintf(filename,<span class="stringliteral">&quot;%s/wall%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/wall%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span>         doc_info.number());</div>
 <div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span> some_file.open(filename);</div>
 <div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span> <span class="keywordtype">unsigned</span> nplot=100; </div>
@@ -937,7 +931,7 @@
 <div class="line"><a id="l00812" name="l00812"></a><span class="lineno">  812</span> <span class="comment">// Open a trace file </span></div>
 <div class="line"><a id="l00813" name="l00813"></a><span class="lineno">  813</span> ofstream trace_file;</div>
 <div class="line"><a id="l00814" name="l00814"></a><span class="lineno">  814</span> <span class="keywordtype">char</span> filename[100];   </div>
-<div class="line"><a id="l00815" name="l00815"></a><span class="lineno">  815</span> sprintf(filename,<span class="stringliteral">&quot;%s/trace.dat&quot;</span>,doc_info.directory().c_str());</div>
+<div class="line"><a id="l00815" name="l00815"></a><span class="lineno">  815</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/trace.dat&quot;</span>,doc_info.directory().c_str());</div>
 <div class="line"><a id="l00816" name="l00816"></a><span class="lineno">  816</span> trace_file.open(filename);</div>
 <div class="line"><a id="l00817" name="l00817"></a><span class="lineno">  817</span> </div>
 <div class="line"><a id="l00818" name="l00818"></a><span class="lineno">  818</span> <span class="comment">// Build the problem with Crouzeix Raviart Elements</span></div>
@@ -1037,7 +1031,7 @@
 <div class="ttc" id="anamespaceBL__Squash_html_a0fdaf7661591150041b7102dbe578cdc"><div class="ttname"><a href="namespaceBL__Squash.html#a0fdaf7661591150041b7102dbe578cdc">BL_Squash::squash_fct</a></div><div class="ttdeci">double squash_fct(const double &amp;s)</div><div class="ttdoc">Mapping [0,1] -&gt; [0,1] that re-distributes nodal points across the channel width.</div><div class="ttdef"><b>Definition</b> <a href="collapsible__channel_8cc_source.html#l00056">collapsible_channel.cc:56</a></div></div>
 <div class="ttc" id="anamespaceBL__Squash_html_a3c4183891049bca81f3a011db24fc579"><div class="ttname"><a href="namespaceBL__Squash.html#a3c4183891049bca81f3a011db24fc579">BL_Squash::Delta</a></div><div class="ttdeci">double Delta</div><div class="ttdoc">Boundary layer width.</div><div class="ttdef"><b>Definition</b> <a href="collapsible__channel_8cc_source.html#l00049">collapsible_channel.cc:49</a></div></div>
 <div class="ttc" id="anamespaceBL__Squash_html_af84bda39008884cd2b01e630957573df"><div class="ttname"><a href="namespaceBL__Squash.html#af84bda39008884cd2b01e630957573df">BL_Squash::Fract_in_BL</a></div><div class="ttdeci">double Fract_in_BL</div><div class="ttdoc">Fraction of points in boundary layer.</div><div class="ttdef"><b>Definition</b> <a href="collapsible__channel_8cc_source.html#l00052">collapsible_channel.cc:52</a></div></div>
-<div class="ttc" id="anamespaceoomph_html"><div class="ttname"><a href="namespaceoomph.html">oomph</a></div><div class="ttdoc">///////////////////////////////////////////////////////////////// ///////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="my__alg__channel__mesh_8h_source.html#l00040">my_alg_channel_mesh.h:41</a></div></div>
+<div class="ttc" id="anamespaceoomph_html"><div class="ttname"><a href="namespaceoomph.html">oomph</a></div><div class="ttdef"><b>Definition</b> <a href="my__alg__channel__mesh_8h_source.html#l00040">my_alg_channel_mesh.h:41</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 
     <!-- jQuery for Bootstrap and Doxygen -->
@@ -1066,7 +1060,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:15:58
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:41:23
         </div>
       </div>
     </footer>

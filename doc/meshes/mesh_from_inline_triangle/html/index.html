@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -135,7 +129,7 @@ Overview of mesh generation procedures</h1>
 <h2><a class="anchor" id="polygonal"></a>
 Meshes with polygonal boundaries</h2>
 <p>If the domain has polygonal outer (and possibly internal) boundaries, the mesh generation process follows a similar pattern to that required in the external use of <a href="http://www.cs.cmu.edu/~quake/triangle.html"><code>Triangle</code> </a>, but using <code>oomph-lib</code> classes to represent the required data. We define the polygonal boundaries using <code>TriangleMeshPolyLines</code>, which represent distinct mesh boundaries and are defined by a series of vertex coordinates. Multiple <code>TriangleMeshPolyLines</code> can be combined to define (closed) <code>TriangleMeshPolygons</code>. These are then used to create an unstructured mesh with a pre-determined target area for all elements, via an interface to <a href="http://www.cs.cmu.edu/~quake/triangle.html"><code>Triangle</code> </a>.</p>
-<p>One particular feature of <code>oomph-lib's</code> interface to <a href="http://www.cs.cmu.edu/~quake/triangle.html"><code>Triangle</code> </a> is that each closed <code>TriangleMeshPolygon</code> must contain at least two distinct <code>TriangleMeshPolyLines</code>, each with its own boundary ID. This is because every <code>Node</code> can only have a single-valued boundary coordinate but if the boundary is closed there would be a discontinuity in the coordinate value. (For example, a standard representation would have <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \zeta = [0,2\pi] $" src="form_0.png" width="54" height="14"/></picture> , but the node at <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\zeta=0$" src="form_1.png" width="29" height="13"/></picture> should also have <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \zeta=2\pi $" src="form_2.png" width="36" height="13"/></picture> and this is not possible.) The sketch below shows a representative domain as well as two legal and one illegal representations of the domain boundaries. Note that the boundaries can be enumerated in an arbitrary fashion.</p>
+<p>One particular feature of <code>oomph-lib's</code> interface to <a href="http://www.cs.cmu.edu/~quake/triangle.html"><code>Triangle</code> </a> is that each closed <code>TriangleMeshPolygon</code> must contain at least two distinct <code>TriangleMeshPolyLines</code>, each with its own boundary ID. This is because every <code>Node</code> can only have a single-valued boundary coordinate but if the boundary is closed there would be a discontinuity in the coordinate value. (For example, a standard representation would have <img class="formulaInl" alt="$ \zeta = [0,2\pi] $" src="form_0.png" width="54" height="14"/> , but the node at <img class="formulaInl" alt="$\zeta=0$" src="form_1.png" width="29" height="13"/> should also have <img class="formulaInl" alt="$ \zeta=2\pi $" src="form_2.png" width="36" height="13"/> and this is not possible.) The sketch below shows a representative domain as well as two legal and one illegal representations of the domain boundaries. Note that the boundaries can be enumerated in an arbitrary fashion.</p>
 <div class="image">
 <img src="polygonal_mesh.gif" alt=""/>
 <div class="caption">
@@ -143,8 +137,8 @@ Sketch of a polygonal domain (top) and two legal (bottom left and middle) and on
  <hr  />
 <h2><a class="anchor" id="curvilinear"></a>
 Meshes with curvilinear boundaries</h2>
-<p>It is also possible to discretise domains with curvilinear boundaries as shown in the sketch below. Assuming that each curvilinear boundary is represented by a <code>GeomObject</code> that specifies the position vector <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf R}(\zeta) $" src="form_3.png" width="28" height="14"/></picture> to a point on the curvilinear boundary as a function of some surface coordinate <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \zeta $" src="form_4.png" width="6" height="13"/></picture>, we split each closed boundary into (at least) two distinct <code>TriangleMeshCurviLines</code> &ndash; the curvilinear equivalents of <code>TriangleMeshPolyLines</code>. Each <code>TriangleMeshCurviLine</code> is constructed from a pointer to the <code>GeomObject</code> and the start and end values of the boundary coordinate <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$
-\zeta $" src="form_5.png" width="6" height="13"/></picture> along the relevant part of the curvilinear boundary. The <code>TriangleMeshCurviLines</code> are then combined to a <code>TriangleMeshClosedCurve</code> &ndash; the general closed curve.</p>
+<p>It is also possible to discretise domains with curvilinear boundaries as shown in the sketch below. Assuming that each curvilinear boundary is represented by a <code>GeomObject</code> that specifies the position vector <img class="formulaInl" alt="$ {\bf R}(\zeta) $" src="form_3.png" width="28" height="14"/> to a point on the curvilinear boundary as a function of some surface coordinate <img class="formulaInl" alt="$ \zeta $" src="form_4.png" width="6" height="13"/>, we split each closed boundary into (at least) two distinct <code>TriangleMeshCurviLines</code> &ndash; the curvilinear equivalents of <code>TriangleMeshPolyLines</code>. Each <code>TriangleMeshCurviLine</code> is constructed from a pointer to the <code>GeomObject</code> and the start and end values of the boundary coordinate <img class="formulaInl" alt="$
+\zeta $" src="form_5.png" width="6" height="13"/> along the relevant part of the curvilinear boundary. The <code>TriangleMeshCurviLines</code> are then combined to a <code>TriangleMeshClosedCurve</code> &ndash; the general closed curve.</p>
 <div class="image">
 <img src="curvilinear_mesh.gif" alt=""/>
 <div class="caption">
@@ -190,16 +184,16 @@ Overview of mesh adaptation methodology</h1>
 <h1><a class="anchor" id="example"></a>
 An example: The adaptive solution of Poisson's equations on an unstructured mesh</h1>
 <p>As an example we consider the adaptive solution of Poisson's equation  </p><p class="formulaDsp">
-<picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \frac{\partial^2 u}{\partial x_i^2} = f(x_1,x_2)
-\]" src="form_6.png" width="86" height="33"/></picture>
+\]" src="form_6.png" width="86" height="33"/>
 </p>
-<p> in a circular domain that contains an elliptical and a polygonal hole. As in many previous examples, we apply Dirichlet boundary conditions on all domain boundaries and choose the boundary values and the source function <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ f(x_1,x_2) $" src="form_7.png" width="48" height="14"/></picture> such that the exact solution of the problem is given by  </p><p class="formulaDsp">
-<picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> in a circular domain that contains an elliptical and a polygonal hole. As in many previous examples, we apply Dirichlet boundary conditions on all domain boundaries and choose the boundary values and the source function <img class="formulaInl" alt="$ f(x_1,x_2) $" src="form_7.png" width="48" height="14"/> such that the exact solution of the problem is given by  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 u(x_1,x_2) = \tanh(1-\alpha(x_1 \tan\Phi - x_2)),
-\]" src="form_8.png" width="214" height="14"/></picture>
+\]" src="form_8.png" width="214" height="14"/>
 </p>
-<p> which approaches a step function, oriented at an angle <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \Phi $" src="form_9.png" width="9" height="10"/></picture> within the <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ (x_1,x_2) $" src="form_10.png" width="40" height="14"/></picture> plane, as <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \alpha $" src="form_11.png" width="8" height="6"/></picture> becomes large. The figure below shows contour plots of the solution for <picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \alpha = 5 $" src="form_12.png" width="30" height="9"/></picture> for various angles <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \Phi $" src="form_9.png" width="9" height="10"/></picture>. It illustrates how the mesh adaptation adjusts the mesh such the smallest elements are located in the region where the solution undergoes rapid change.</p>
+<p> which approaches a step function, oriented at an angle <img class="formulaInl" alt="$ \Phi $" src="form_9.png" width="9" height="10"/> within the <img class="formulaInl" alt="$ (x_1,x_2) $" src="form_10.png" width="40" height="14"/> plane, as <img class="formulaInl" alt="$ \alpha $" src="form_11.png" width="8" height="6"/> becomes large. The figure below shows contour plots of the solution for <img class="formulaInl" alt="$ \alpha = 5 $" src="form_12.png" width="30" height="9"/> for various angles <img class="formulaInl" alt="$ \Phi $" src="form_9.png" width="9" height="10"/>. It illustrates how the mesh adaptation adjusts the mesh such the smallest elements are located in the region where the solution undergoes rapid change.</p>
 <div class="image">
 <img src="solution.gif" alt=""/>
 <div class="caption">
@@ -278,7 +272,7 @@ The driver code</h1>
 <div class="line"> <span class="comment">// Create problem</span></div>
 <div class="line"> <a class="code hl_class" href="classUnstructuredPoissonProblem.html">UnstructuredPoissonProblem&lt;ProjectablePoissonElement&lt;TPoissonElement&lt;2,3&gt;</a> &gt; &gt;</div>
 <div class="line">  problem;</div>
-<div class="ttc" id="aclassUnstructuredPoissonProblem_html"><div class="ttname"><a href="classUnstructuredPoissonProblem.html">UnstructuredPoissonProblem</a></div><div class="ttdoc">//////////////////////////////////////////////////////// ////////////////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="mesh__from__inline__triangle_8cc_source.html#l00090">mesh_from_inline_triangle.cc:91</a></div></div>
+<div class="ttc" id="aclassUnstructuredPoissonProblem_html"><div class="ttname"><a href="classUnstructuredPoissonProblem.html">UnstructuredPoissonProblem</a></div><div class="ttdoc">Class definition.</div><div class="ttdef"><b>Definition</b> <a href="mesh__from__inline__triangle_8cc_source.html#l00090">mesh_from_inline_triangle.cc:91</a></div></div>
 <div class="ttc" id="amesh__from__inline__triangle_8cc_html_a3c04138a5bfe5d72780bb7e82a18e627"><div class="ttname"><a href="mesh__from__inline__triangle_8cc.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a></div><div class="ttdeci">int main(int argc, char **argv)</div><div class="ttdoc">Driver code for demo of inline triangle mesh generation.</div><div class="ttdef"><b>Definition</b> <a href="mesh__from__inline__triangle_8cc_source.html#l00595">mesh_from_inline_triangle.cc:595</a></div></div>
 </div><!-- fragment --><p>We then perform a parameter study, solving the problem for various orientations of the "step" and allowing a certain number of spatial adaptations per solve. (If the code is run in self-test mode, we perform fewer steps and allow for less adaptation to speed up the computation.)</p>
 <div class="fragment"><div class="line"> <span class="comment">// Loop over orientation of step</span></div>
@@ -455,7 +449,7 @@ The Problem constructor</h1>
 <div class="fragment"><div class="line"> <span class="comment">// Now build the holes</span></div>
 <div class="line"> <span class="comment">//====================</span></div>
 <div class="line"> Vector&lt;TriangleMeshClosedCurve*&gt; hole_pt(2);</div>
-</div><!-- fragment --><p> The first hole is a polygon whose 12 vertices we distribute along a circle of radius <picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ 0.1 $" src="form_13.png" width="16" height="9"/></picture> , centred at <picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ (x_1,x_2)=(0,0.5). $" src="form_14.png" width="98" height="14"/></picture> As above, we break the closed boundary into two distinct sub-boundaries &ndash; this time represented by <code>TriangleMeshPolyLines:</code> </p>
+</div><!-- fragment --><p> The first hole is a polygon whose 12 vertices we distribute along a circle of radius <img class="formulaInl" alt="$ 0.1 $" src="form_13.png" width="16" height="9"/> , centred at <img class="formulaInl" alt="$ (x_1,x_2)=(0,0.5). $" src="form_14.png" width="98" height="14"/> As above, we break the closed boundary into two distinct sub-boundaries &ndash; this time represented by <code>TriangleMeshPolyLines:</code> </p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"> <span class="comment">// Build polygonal hole</span></div>
 <div class="line"> <span class="comment">//=====================</span></div>
@@ -617,7 +611,7 @@ Construct the mesh</h2>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Open trace file</span></div>
 <div class="line"> <span class="keywordtype">char</span> filename[100];</div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;RESLT/trace.dat&quot;</span>);</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;RESLT/trace.dat&quot;</span>);</div>
 <div class="line"> Trace_file.open(filename);</div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Setup equation numbering scheme</span></div>
@@ -729,7 +723,7 @@ Post-processing</h1>
 <div class="line"> <span class="keywordtype">unsigned</span> npts;</div>
 <div class="line"> npts=5; </div>
 <div class="line"> </div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;RESLT/soln%i.dat&quot;</span>,Doc_info.number());</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;RESLT/soln%i.dat&quot;</span>,Doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> this-&gt;My_mesh_pt-&gt;output(some_file,npts); </div>
 <div class="line"> some_file &lt;&lt; <span class="stringliteral">&quot;TEXT X = 22, Y = 92, CS=FRAME T = \&quot;&quot;</span> </div>
@@ -738,14 +732,14 @@ Post-processing</h1>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output exact solution </span></div>
 <div class="line"> <span class="comment">//----------------------</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;RESLT/exact_soln%i.dat&quot;</span>,Doc_info.number());</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;RESLT/exact_soln%i.dat&quot;</span>,Doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> My_mesh_pt-&gt;output_fct(some_file,npts,<a class="code hl_function" href="namespaceTanhSolnForPoisson.html#af7896e9c18ce6438c73ae2a875e8b7de">TanhSolnForPoisson::get_exact_u</a>); </div>
 <div class="line"> some_file.close();</div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output boundaries</span></div>
 <div class="line"> <span class="comment">//------------------</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;RESLT/boundaries%i.dat&quot;</span>,Doc_info.number());</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;RESLT/boundaries%i.dat&quot;</span>,Doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> My_mesh_pt-&gt;output_boundaries(some_file);</div>
 <div class="line"> some_file.close();</div>
@@ -754,7 +748,7 @@ Post-processing</h1>
 <div class="line"> <span class="comment">// Doc error and return of the square of the L2 error</span></div>
 <div class="line"> <span class="comment">//---------------------------------------------------</span></div>
 <div class="line"> <span class="keywordtype">double</span> error,norm,dummy_error,zero_norm;</div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;RESLT/error%i.dat&quot;</span>,Doc_info.number());</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;RESLT/error%i.dat&quot;</span>,Doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> My_mesh_pt-&gt;compute_error(some_file,<a class="code hl_function" href="namespaceTanhSolnForPoisson.html#af7896e9c18ce6438c73ae2a875e8b7de">TanhSolnForPoisson::get_exact_u</a>,</div>
 <div class="line">                           error,norm); </div>
@@ -836,7 +830,7 @@ The hierarchy of the <code>TriangleMesh</code> objects. </div></div>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -866,7 +860,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 13:58:55
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:37:10
         </div>
       </div>
     </footer>

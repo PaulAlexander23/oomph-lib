@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -118,8 +112,8 @@
  <hr  />
 <h1><a class="anchor" id="equation"></a>
 The Navier-Stokes equations</h1>
-<p>In dimensional form the 2D [3D] Navier-Stokes equations (in cartesian coordinates <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_i^*; \ i=1,2 [,3] $" src="form_0.png" width="80" height="14"/></picture>) are given by the momentum equations </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p>In dimensional form the 2D [3D] Navier-Stokes equations (in cartesian coordinates <img class="formulaInl" alt="$ x_i^*; \ i=1,2 [,3] $" src="form_0.png" width="80" height="14"/>) are given by the momentum equations </p><center>  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \rho\left(\frac{\partial u_i^*}{\partial t^*} + 
 u_j^*\frac{\partial u_i^*}{\partial x_j^*}\right) 
 =
@@ -128,34 +122,34 @@ B_i^*(x_j^*,t^*) + \rho \, G^*_i +
 \frac{\partial }{\partial x_j^*} \left[ \mu\left(
 \frac{\partial u_i^*}{\partial x_j^*} +  
 \frac{\partial u_j^*}{\partial x_i^*} \right) \right],
-\]" src="form_1.png" width="411" height="39"/></picture>
+\]" src="form_1.png" width="411" height="39"/>
 </p>
  </center><p> and the continuity equation </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \frac{\partial u_i^*}{\partial x_i^*} = Q^*,
-\]" src="form_2.png" width="58" height="31"/></picture>
+\]" src="form_2.png" width="58" height="31"/>
 </p>
  </center><p> where we have used index notation and the summation convention.</p>
-<p>Here, the velocity components are denoted by <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ u_i^* $" src="form_3.png" width="13" height="14"/></picture>, the pressure by <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p^* $" src="form_4.png" width="13" height="13"/></picture>, and time by <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ t^* $" src="form_5.png" width="10" height="10"/></picture>, and we have split the body force into two components: A constant vector <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \rho \, G_i^* $" src="form_6.png" width="24" height="14"/></picture> which typically represents gravitational forces; and a variable body force, <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ B_i^*(x^*_j,t^*) $" src="form_7.png" width="54" height="15"/></picture>. <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Q^*(x^*_j,t^*) $" src="form_8.png" width="53" height="15"/></picture> is a volumetric source term for the continuity equation and is typically equal to zero.</p>
-<p>We non-dimensionalise the equations, using problem-specific reference quantities for the velocity, <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\cal U},$" src="form_9.png" width="13" height="13"/></picture> length, <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$
-{\cal L}, $" src="form_10.png" width="13" height="13"/></picture> and time, <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="${\cal T},$" src="form_11.png" width="14" height="13"/></picture> and scale the constant body force vector on the gravitational acceleration, <picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$g, $" src="form_12.png" width="10" height="9"/></picture> so that </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p>Here, the velocity components are denoted by <img class="formulaInl" alt="$ u_i^* $" src="form_3.png" width="13" height="14"/>, the pressure by <img class="formulaInl" alt="$ p^* $" src="form_4.png" width="13" height="13"/>, and time by <img class="formulaInl" alt="$ t^* $" src="form_5.png" width="10" height="10"/>, and we have split the body force into two components: A constant vector <img class="formulaInl" alt="$ \rho \, G_i^* $" src="form_6.png" width="24" height="14"/> which typically represents gravitational forces; and a variable body force, <img class="formulaInl" alt="$ B_i^*(x^*_j,t^*) $" src="form_7.png" width="54" height="15"/>. <img class="formulaInl" alt="$ Q^*(x^*_j,t^*) $" src="form_8.png" width="53" height="15"/> is a volumetric source term for the continuity equation and is typically equal to zero.</p>
+<p>We non-dimensionalise the equations, using problem-specific reference quantities for the velocity, <img class="formulaInl" alt="$ {\cal U},$" src="form_9.png" width="13" height="13"/> length, <img class="formulaInl" alt="$
+{\cal L}, $" src="form_10.png" width="13" height="13"/> and time, <img class="formulaInl" alt="${\cal T},$" src="form_11.png" width="14" height="13"/> and scale the constant body force vector on the gravitational acceleration, <img class="formulaInl" alt="$g, $" src="form_12.png" width="10" height="9"/> so that </p><center>  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 u_i^* = {\cal U} \, u_i, \qquad        
 x_i^* = {\cal L}\, x_i, \qquad        
 t^* = {\cal T}\, t,     \qquad
 G_i^* = g \, G_i,
-\]" src="form_13.png" width="296" height="14"/></picture>
+\]" src="form_13.png" width="296" height="14"/>
 </p>
   <p class="formulaDsp">
-<picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 p^* = \frac{\mu_{ref} {\cal U}}{{\cal L}} \, p, \qquad
 B_i^* = \frac{{\cal U}\mu_{ref}}{{\cal L}^2} \, B_i, \qquad 
  Q^* = \frac{{\cal U}}{{\cal L}}\, Q, \qquad
-\]" src="form_14.png" width="278" height="28"/></picture>
+\]" src="form_14.png" width="278" height="28"/>
 </p>
- </center><p> where we note that the pressure and the variable body force have been non-dimensionalised on the viscous scale. <picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mu_{ref} $" src="form_15.png" width="24" height="10"/></picture> and <picture><source srcset="form_16_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \rho_{ref} $" src="form_16.png" width="23" height="10"/></picture> (used below) are reference values for the fluid viscosity and density, respectively. In single-fluid problems, they are identical to the viscosity <picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mu $" src="form_17.png" width="9" height="9"/></picture> and density <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \rho $" src="form_18.png" width="8" height="9"/></picture> of the (one and only) fluid in the problem.</p>
+ </center><p> where we note that the pressure and the variable body force have been non-dimensionalised on the viscous scale. <img class="formulaInl" alt="$ \mu_{ref} $" src="form_15.png" width="24" height="10"/> and <img class="formulaInl" alt="$ \rho_{ref} $" src="form_16.png" width="23" height="10"/> (used below) are reference values for the fluid viscosity and density, respectively. In single-fluid problems, they are identical to the viscosity <img class="formulaInl" alt="$ \mu $" src="form_17.png" width="9" height="9"/> and density <img class="formulaInl" alt="$ \rho $" src="form_18.png" width="8" height="9"/> of the (one and only) fluid in the problem.</p>
 <p>The non-dimensional form of the Navier-Stokes equations is then given by </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 R_\rho Re \left( St \frac{\partial u_i}{\partial t} + 
 u_j \frac{\partial u_i}{\partial x_j} \right) =
 - \frac{\partial p}{\partial x_i}  + B_i(x_j,t) +
@@ -163,24 +157,24 @@ R_\rho \frac{Re}{Fr} G_i +
 \frac{\partial }{\partial x_j} \left[  R_\mu \left(
 \frac{\partial u_i}{\partial x_j} +  
 \frac{\partial u_j}{\partial x_i} \right) \right],
-\]" src="form_19.png" width="446" height="31"/></picture>
+\]" src="form_19.png" width="446" height="31"/>
 </p>
  </center><p> and </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \frac{\partial u_i}{\partial x_i} = Q,
-\]" src="form_20.png" width="50" height="29"/></picture>
+\]" src="form_20.png" width="50" height="29"/>
 </p>
  </center><p> where the dimensionless parameters </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 Re = \frac{{\cal U}{\cal L}\rho_{ref}}{\mu_{ref}}, \qquad 
 St = \frac{{\cal L}}{{\cal U}{\cal T}}, \qquad 
 Fr = \frac{{\cal U}^2}{g{\cal L}},
-\]" src="form_21.png" width="241" height="33"/></picture>
+\]" src="form_21.png" width="241" height="33"/>
 </p>
- </center><p> are the Reynolds number, Strouhal number and Froude number respectively. <picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ R_\rho=\rho/\rho_{ref} $" src="form_22.png" width="66" height="14"/></picture> and <picture><source srcset="form_23_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ R_\mu =\mu/\mu_{ref}$" src="form_23.png" width="69" height="14"/></picture> represent the ratios of the fluid's density and its dynamic viscosity, relative to the density and viscosity values used to form the non-dimensional parameters (By default, <picture><source srcset="form_24_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ R_\rho  = R_\mu = 1 $" src="form_24.png" width="70" height="14"/></picture>; other values tend to be used in problems involving multiple fluids).</p>
-<p>The above equations are typically augmented by Dirichlet boundary conditions for (some of) the velocity components. On boundaries where no velocity boundary conditions are applied, the flow satisfies the "traction free" natural boundary condition  <picture><source srcset="form_25_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ t_i = -p \, n_i + R_\mu (\partial u_i/\partial x_j + 
-\partial u_j/\partial x_i ) \, n_j = 0. $" src="form_25.png" width="241" height="14"/></picture> (We refer to <a href="../../rayleigh_traction_channel/html/index.html">another example </a> for an illustration of how to apply traction boundary conditions for the Navier-Stokes equations.)</p>
-<p>If the velocity is prescribed along the entire domain boundary, the fluid pressure <picture><source srcset="form_26_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p $" src="form_26.png" width="8" height="9"/></picture> is only determined up to an arbitrary constant. This indeterminacy may be overcome by prescribing the value of the pressure at a single point in the domain (see <a href="#exercises">exercise</a>). </p><hr  />
+ </center><p> are the Reynolds number, Strouhal number and Froude number respectively. <img class="formulaInl" alt="$ R_\rho=\rho/\rho_{ref} $" src="form_22.png" width="66" height="14"/> and <img class="formulaInl" alt="$ R_\mu =\mu/\mu_{ref}$" src="form_23.png" width="69" height="14"/> represent the ratios of the fluid's density and its dynamic viscosity, relative to the density and viscosity values used to form the non-dimensional parameters (By default, <img class="formulaInl" alt="$ R_\rho  = R_\mu = 1 $" src="form_24.png" width="70" height="14"/>; other values tend to be used in problems involving multiple fluids).</p>
+<p>The above equations are typically augmented by Dirichlet boundary conditions for (some of) the velocity components. On boundaries where no velocity boundary conditions are applied, the flow satisfies the "traction free" natural boundary condition  <img class="formulaInl" alt="$ t_i = -p \, n_i + R_\mu (\partial u_i/\partial x_j + 
+\partial u_j/\partial x_i ) \, n_j = 0. $" src="form_25.png" width="241" height="14"/> (We refer to <a href="../../rayleigh_traction_channel/html/index.html">another example </a> for an illustration of how to apply traction boundary conditions for the Navier-Stokes equations.)</p>
+<p>If the velocity is prescribed along the entire domain boundary, the fluid pressure <img class="formulaInl" alt="$ p $" src="form_26.png" width="8" height="9"/> is only determined up to an arbitrary constant. This indeterminacy may be overcome by prescribing the value of the pressure at a single point in the domain (see <a href="#exercises">exercise</a>). </p><hr  />
  <hr  />
 <h1><a class="anchor" id="element_types"></a>
 Implementation</h1>
@@ -188,19 +182,19 @@ Implementation</h1>
 <h2><a class="anchor" id="el"></a>
 The elements</h2>
 <p><code>oomph-lib</code> provides two LBB-stable isoparametric Navier-Stokes elements that are based on the <code>QElement&lt;DIM,3&gt;</code> family of geometric finite elements. They are nine-node quadrilateral (for <code>DIM=2</code>), and 27-node brick (for <code>DIM=3</code>) elements in which the mapping between local and global (Eulerian) coordinates is given by </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_27_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 x_i = \sum_{j=1}^{N^{(E)}} X^{(E)}_{ij} \, \psi_j, \qquad
 i=1,2\quad [\mbox{and }3].
-\]" src="form_27.png" width="219" height="43"/></picture>
+\]" src="form_27.png" width="219" height="43"/>
 </p>
- </center><p> Here <picture><source srcset="form_28_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ N^{(E)} = 3^{DIM}$" src="form_28.png" width="74" height="13"/></picture> is the number of nodes in the element, <picture><source srcset="form_29_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ X^{(E)}_{ij} $" src="form_29.png" width="28" height="20"/></picture> is the <picture><source srcset="form_30_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ i $" src="form_30.png" width="5" height="9"/></picture>-th global (Eulerian) coordinate of the <picture><source srcset="form_31_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ j $" src="form_31.png" width="6" height="11"/></picture>-th <code>Node</code> in the element, and the <picture><source srcset="form_32_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \psi_j $" src="form_32.png" width="14" height="14"/></picture> are the element's geometric shape functions, defined in the <code>QElement&lt;DIM,3&gt;</code> class.</p>
-<p>In both elements the velocity components <picture><source srcset="form_33_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ u_1, $" src="form_33.png" width="16" height="9"/></picture> <picture><source srcset="form_34_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ u_2, $" src="form_34.png" width="16" height="9"/></picture> [and <picture><source srcset="form_35_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ u_3 $" src="form_35.png" width="14" height="9"/></picture>] are stored as nodal values and the geometric shape functions are used to interpolate the velocities inside the element, </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_36_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ </center><p> Here <img class="formulaInl" alt="$ N^{(E)} = 3^{DIM}$" src="form_28.png" width="74" height="13"/> is the number of nodes in the element, <img class="formulaInl" alt="$ X^{(E)}_{ij} $" src="form_29.png" width="28" height="20"/> is the <img class="formulaInl" alt="$ i $" src="form_30.png" width="5" height="9"/>-th global (Eulerian) coordinate of the <img class="formulaInl" alt="$ j $" src="form_31.png" width="6" height="11"/>-th <code>Node</code> in the element, and the <img class="formulaInl" alt="$ \psi_j $" src="form_32.png" width="14" height="14"/> are the element's geometric shape functions, defined in the <code>QElement&lt;DIM,3&gt;</code> class.</p>
+<p>In both elements the velocity components <img class="formulaInl" alt="$ u_1, $" src="form_33.png" width="16" height="9"/> <img class="formulaInl" alt="$ u_2, $" src="form_34.png" width="16" height="9"/> [and <img class="formulaInl" alt="$ u_3 $" src="form_35.png" width="14" height="9"/>] are stored as nodal values and the geometric shape functions are used to interpolate the velocities inside the element, </p><center>  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 u_i = \sum_{j=1}^{N^{(E)}} U^{(E)}_{ij} \, \psi_j, \qquad 
 i=1,2\quad [\mbox{and }3],
-\]" src="form_36.png" width="216" height="43"/></picture>
+\]" src="form_36.png" width="216" height="43"/>
 </p>
- </center><p> where <picture><source srcset="form_37_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$  U^{(E)}_{ij} $" src="form_37.png" width="25" height="20"/></picture> is the <picture><source srcset="form_30_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ i $" src="form_30.png" width="5" height="9"/></picture>-th velocity component at <picture><source srcset="form_31_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ j $" src="form_31.png" width="6" height="11"/></picture>-th <code>Node</code> in the element. Nodal values of the velocity components are accessible via the access function</p>
+ </center><p> where <img class="formulaInl" alt="$  U^{(E)}_{ij} $" src="form_37.png" width="25" height="20"/> is the <img class="formulaInl" alt="$ i $" src="form_30.png" width="5" height="9"/>-th velocity component at <img class="formulaInl" alt="$ j $" src="form_31.png" width="6" height="11"/>-th <code>Node</code> in the element. Nodal values of the velocity components are accessible via the access function</p>
 <div class="fragment"><div class="line">NavierStokesEquations&lt;DIM&gt;::u(i,j)</div>
 </div><!-- fragment --><p>which returns the <code>i-th</code> velocity component stored at the element's <code>j-th</code> <code>Node</code>.</p>
 <p>The two elements differ in the way in which the pressure is represented:</p>
@@ -208,12 +202,12 @@ i=1,2\quad [\mbox{and }3],
 <h3><a class="anchor" id="CR"></a>
 Crouzeix-Raviart elements</h3>
 <p>In <code>oomph-lib's</code> <code>QCrouzeixRaviartElements</code> the pressure is represented by, </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_38_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 p = P_0^{(E)} + P_1^{(E)} \, s_1 + P_2^{(E)} \, s_2 
 \quad \left[+ P_3^{(E)}  \, s_3\right],
-\]" src="form_38.png" width="240" height="24"/></picture>
+\]" src="form_38.png" width="240" height="24"/>
 </p>
- </center><p> where the <picture><source srcset="form_39_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ s_i \in [-1,1]$" src="form_39.png" width="59" height="14"/></picture> are the element's local coordinates. This provides a discontinuous, piecewise bi-[tri-]linear representation of the pressure in terms of 3 [4] pressure degrees of freedom per element. Crouzeix-Raviart elements ensure that the continuity equation is satisfied within each element.</p>
+ </center><p> where the <img class="formulaInl" alt="$ s_i \in [-1,1]$" src="form_39.png" width="59" height="14"/> are the element's local coordinates. This provides a discontinuous, piecewise bi-[tri-]linear representation of the pressure in terms of 3 [4] pressure degrees of freedom per element. Crouzeix-Raviart elements ensure that the continuity equation is satisfied within each element.</p>
 <p>The pressure degrees of freedom are local to the element and are stored in the element's internal <code>Data</code>. They are accessible via the member function</p>
 <div class="fragment"><div class="line">QCrouzeixRaviartElement&lt;DIM&gt;::p(j)</div>
 </div><!-- fragment --><p>which returns the value of the <code>j-th</code> pressure degree of freedom in this element.</p>
@@ -221,70 +215,70 @@ p = P_0^{(E)} + P_1^{(E)} \, s_1 + P_2^{(E)} \, s_2
 <hr  />
 <h3><a class="anchor" id="TH"></a>
 Taylor-Hood elements</h3>
-<p>In <code>oomph-lib's</code> <code>QTaylorHoodElements</code> the pressure is represented by a globally-continuous, piecewise bi-[tri-]linear interpolation between the pressure values <picture><source srcset="form_40_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ P_j^{(E)} $" src="form_40.png" width="25" height="20"/></picture> that are stored at the elements' <picture><source srcset="form_41_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ N_p^{(E)} = 2^{DIM}$" src="form_41.png" width="74" height="18"/></picture> corner/vertex nodes, </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_42_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p>In <code>oomph-lib's</code> <code>QTaylorHoodElements</code> the pressure is represented by a globally-continuous, piecewise bi-[tri-]linear interpolation between the pressure values <img class="formulaInl" alt="$ P_j^{(E)} $" src="form_40.png" width="25" height="20"/> that are stored at the elements' <img class="formulaInl" alt="$ N_p^{(E)} = 2^{DIM}$" src="form_41.png" width="74" height="18"/> corner/vertex nodes, </p><center>  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 p = \sum_{j=1}^{N_p^{(E)}} P_j^{(E)} \, \psi_j^{(p)},
-\]" src="form_42.png" width="103" height="45"/></picture>
+\]" src="form_42.png" width="103" height="45"/>
 </p>
- </center><p> where the <picture><source srcset="form_43_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\psi_j^{(p)}$" src="form_43.png" width="23" height="20"/></picture> are the bi-[tri-]linear pressure shape functions.</p>
+ </center><p> where the <img class="formulaInl" alt="$\psi_j^{(p)}$" src="form_43.png" width="23" height="20"/> are the bi-[tri-]linear pressure shape functions.</p>
 <p>The first 2 [3] values of each <code>Node</code> in a 2D [3D] Taylor-Hood element store the two [three] velocity components at that <code>Node</code>. The corner [vertex] nodes store an additional value which represents the pressure at that <code>Node</code>. The access function </p><div class="fragment"><div class="line">QTaylorHoodElement&lt;DIM&gt;::p(j)</div>
 </div><!-- fragment --><p> returns the nodal pressure value at the element's <code>j-th</code> corner [vertex] <code>Node</code>.</p>
 <p>In sufficiently fine meshes, Taylor-Hood elements generate a much smaller number of pressure degrees of freedom than the corresponding Crouzeix-Raviart elements. However, Taylor-Hood elements do not conserve mass locally.</p>
 <hr  />
 <h1><a class="anchor" id="params"></a>
 Non-dimensional parameters and their default values</h1>
-<p>The Reynolds number, Strouhal number, inverse-Froude number, density ratio and viscosity ratio are assumed to be constant within each element. Their values are accessed via pointers which are accessible via the member functions <code>re_pt()</code> for <picture><source srcset="form_44_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re, $" src="form_44.png" width="19" height="13"/></picture> <code>re_st_pt()</code> for <picture><source srcset="form_45_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re \ St, $" src="form_45.png" width="35" height="13"/></picture> <code>re_invfr_pt()</code> for <picture><source srcset="form_46_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re/Fr, $" src="form_46.png" width="40" height="14"/></picture> <code>density_ratio_pt()</code> for <picture><source srcset="form_47_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ R_\rho $" src="form_47.png" width="15" height="14"/></picture> and <code>viscosity_ratio_pt()</code> for <picture><source srcset="form_48_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ R_\mu $" src="form_48.png" width="15" height="14"/></picture>.</p>
+<p>The Reynolds number, Strouhal number, inverse-Froude number, density ratio and viscosity ratio are assumed to be constant within each element. Their values are accessed via pointers which are accessible via the member functions <code>re_pt()</code> for <img class="formulaInl" alt="$ Re, $" src="form_44.png" width="19" height="13"/> <code>re_st_pt()</code> for <img class="formulaInl" alt="$ Re \ St, $" src="form_45.png" width="35" height="13"/> <code>re_invfr_pt()</code> for <img class="formulaInl" alt="$ Re/Fr, $" src="form_46.png" width="40" height="14"/> <code>density_ratio_pt()</code> for <img class="formulaInl" alt="$ R_\rho $" src="form_47.png" width="15" height="14"/> and <code>viscosity_ratio_pt()</code> for <img class="formulaInl" alt="$ R_\mu $" src="form_48.png" width="15" height="14"/>.</p>
 <p>By default the pointers point to default values (implemented as static member data in the <code>NavierStokesEquations</code> class), therefore they only need to be over-written if the default values are not appropriate. The default values are:</p><ul>
 <li>Default Reynolds number:  <p class="formulaDsp">
-<picture><source srcset="form_49_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 Re = 0 \mbox{\ \ \ \ (Stokes flow)}
-\]" src="form_49.png" width="125" height="14"/></picture>
+\]" src="form_49.png" width="125" height="14"/>
 </p>
 </li>
 <li>Default Womersley number (product of Reynolds and Strouhal number):  <p class="formulaDsp">
-<picture><source srcset="form_50_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 Re St = 0 \mbox{\ \ \ \ (steady flow)}
-\]" src="form_50.png" width="138" height="14"/></picture>
+\]" src="form_50.png" width="138" height="14"/>
 </p>
 </li>
 <li>Default product of Reynolds and inverse Froude number (a measure of gravity on the viscous scale)  <p class="formulaDsp">
-<picture><source srcset="form_51_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 Re/Fr = 0 \mbox{\ \ \ \ (no gravity)}
-\]" src="form_51.png" width="141" height="14"/></picture>
+\]" src="form_51.png" width="141" height="14"/>
 </p>
 </li>
 <li>Default viscosity ratio:  <p class="formulaDsp">
-<picture><source srcset="form_52_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 R_\mu = 1 \mbox{\ \ \ \ (viscosity = viscosity used in the definition
 of $Re$)}
-\]" src="form_52.png" width="329" height="14"/></picture>
+\]" src="form_52.png" width="329" height="14"/>
 </p>
 </li>
 <li>Default density ratio:  <p class="formulaDsp">
-<picture><source srcset="form_53_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 R_\rho = 1 \mbox{\ \ \ \ (density = density used in the definition
 of $Re$)}
-\]" src="form_53.png" width="314" height="14"/></picture>
+\]" src="form_53.png" width="314" height="14"/>
 </p>
 </li>
 </ul>
-<p>We use the same approach for the specification of the body force vector <picture><source srcset="form_54_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ G_i $" src="form_54.png" width="13" height="13"/></picture>, accessible via the function <code>g_pt</code> (), the variable body force <picture><source srcset="form_55_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ B_i $" src="form_55.png" width="13" height="13"/></picture>, accessible via the function pointer <code>body_force_fct_pt()</code>, and the volumetric source function <picture><source srcset="form_56_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Q $" src="form_56.png" width="10" height="13"/></picture>, accessible via the function pointer <code>source_fct_pt(time,x)</code>. By default the (function) pointers are set such that</p><ul>
+<p>We use the same approach for the specification of the body force vector <img class="formulaInl" alt="$ G_i $" src="form_54.png" width="13" height="13"/>, accessible via the function <code>g_pt</code> (), the variable body force <img class="formulaInl" alt="$ B_i $" src="form_55.png" width="13" height="13"/>, accessible via the function pointer <code>body_force_fct_pt()</code>, and the volumetric source function <img class="formulaInl" alt="$ Q $" src="form_56.png" width="10" height="13"/>, accessible via the function pointer <code>source_fct_pt(time,x)</code>. By default the (function) pointers are set such that</p><ul>
 <li>Default gravity vector:  <p class="formulaDsp">
-<picture><source srcset="form_57_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 G_i = 0 \mbox{\ \ \ \ (no gravity)}
-\]" src="form_57.png" width="119" height="14"/></picture>
+\]" src="form_57.png" width="119" height="14"/>
 </p>
 </li>
 <li>Default body force function:  <p class="formulaDsp">
-<picture><source srcset="form_58_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 B_i(x_j,t) = 0 \mbox{\ \ \ \ (no body force)}
-\]" src="form_58.png" width="169" height="14"/></picture>
+\]" src="form_58.png" width="169" height="14"/>
 </p>
 </li>
 <li>Default volumetric source function  <p class="formulaDsp">
-<picture><source srcset="form_59_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 Q(x_j,t) = 0 \mbox{\ \ \ \ (flow is divergence free)}
-\]" src="form_59.png" width="210" height="14"/></picture>
+\]" src="form_59.png" width="210" height="14"/>
 </p>
 </li>
 </ul>
@@ -296,33 +290,33 @@ The example problem</h1>
 <center> <table class="doxtable">
 <tr>
 <td><center> <b>The 2D steady driven-cavity problem in a square domain.</b> </center> Solve  <p class="formulaDsp">
-<picture><source srcset="form_60_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 Re\phantom{i}u_j\frac{\partial u_i}{\partial x_j} =
 - \frac{\partial p}{\partial x_i} +
 \frac{\partial }{\partial x_j} \left(
 \frac{\partial u_i}{\partial x_j} +  
 \frac{\partial u_j}{\partial x_i} \right),
  \ \ \ \ \ \ \ \ \ \ (1)
-\]" src="form_60.png" width="286" height="31"/></picture>
+\]" src="form_60.png" width="286" height="31"/>
 </p>
  and  <p class="formulaDsp">
-<picture><source srcset="form_61_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \frac{\partial u_i}{\partial x_i} = 0,
-\]" src="form_61.png" width="48" height="29"/></picture>
+\]" src="form_61.png" width="48" height="29"/>
 </p>
- in the square domain <picture><source srcset="form_62_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ D = \{x_i \in [0,1]; i=1,2 \} $" src="form_62.png" width="135" height="14"/></picture>, subject to the Dirichlet boundary conditions:  <p class="formulaDsp">
-<picture><source srcset="form_63_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ in the square domain <img class="formulaInl" alt="$ D = \{x_i \in [0,1]; i=1,2 \} $" src="form_62.png" width="135" height="14"/>, subject to the Dirichlet boundary conditions:  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \left. \mathbf{u}\right|_{\partial D}=(0,0),
 \ \ \ \ \ \ \ \ \ \ (2)
-\]" src="form_63.png" width="133" height="14"/></picture>
+\]" src="form_63.png" width="133" height="14"/>
 </p>
  on the right, top and left boundaries and  <p class="formulaDsp">
-<picture><source srcset="form_64_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \left. \mathbf{u}\right|_{\partial D}=(1,0),
 \ \ \ \ \ \ \ \ \ \ (3)
-\]" src="form_64.png" width="133" height="14"/></picture>
+\]" src="form_64.png" width="133" height="14"/>
 </p>
- on the bottom boundary, <picture><source srcset="form_65_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_2=0.$" src="form_65.png" width="40" height="11"/></picture>   </td></tr>
+ on the bottom boundary, <img class="formulaInl" alt="$ x_2=0.$" src="form_65.png" width="40" height="11"/>   </td></tr>
 </table>
 <br  />
  </center><hr  />
@@ -331,8 +325,8 @@ Re\phantom{i}u_j\frac{\partial u_i}{\partial x_j} =
 Results</h1>
 <h2><a class="anchor" id="results_CR"></a>
 Crouzeix-Raviart elements</h2>
-<p>The figure below shows "carpet plots" of the velocity and pressure fields as well as a contour plot of the pressure distribution with superimposed streamlines. The velocity vanishes along the entire domain boundary, apart from the bottom boundary <picture><source srcset="form_66_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ (x_2=0) $" src="form_66.png" width="44" height="14"/></picture> where the moving "lid" imposes a unit tangential velocity which drives a large vortex, centred at <picture><source srcset="form_67_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ (x_1,x_2) \approx (0.62,0.26)$" src="form_67.png" width="116" height="14"/></picture>. The discontinuity in the velocity boundary conditions creates pressure singularities at <picture><source srcset="form_68_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ (x_1,x_2) = (0,0)$" src="form_68.png" width="84" height="14"/></picture> and <picture><source srcset="form_69_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ (x_1,x_2) =
-(1,0)$" src="form_69.png" width="84" height="14"/></picture>. The rapidly varying pressure in the vicinity of these points clearly shows the discontinuous pressure interpolation employed by the Crouzeix-Raviart elements.</p>
+<p>The figure below shows "carpet plots" of the velocity and pressure fields as well as a contour plot of the pressure distribution with superimposed streamlines. The velocity vanishes along the entire domain boundary, apart from the bottom boundary <img class="formulaInl" alt="$ (x_2=0) $" src="form_66.png" width="44" height="14"/> where the moving "lid" imposes a unit tangential velocity which drives a large vortex, centred at <img class="formulaInl" alt="$ (x_1,x_2) \approx (0.62,0.26)$" src="form_67.png" width="116" height="14"/>. The discontinuity in the velocity boundary conditions creates pressure singularities at <img class="formulaInl" alt="$ (x_1,x_2) = (0,0)$" src="form_68.png" width="84" height="14"/> and <img class="formulaInl" alt="$ (x_1,x_2) =
+(1,0)$" src="form_69.png" width="84" height="14"/>. The rapidly varying pressure in the vicinity of these points clearly shows the discontinuous pressure interpolation employed by the Crouzeix-Raviart elements.</p>
 <div class="image">
 <img src="CrouzeixRaviart.gif" alt=""/>
 <div class="caption">
@@ -385,7 +379,7 @@ The driver code</h1>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Step number</span></div>
 <div class="line"> doc_info.number()=0;</div>
-<div class="ttc" id="adriven__cavity_8cc_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="driven__cavity_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdoc">///////////////////////////////////////////////////////////////////// ///////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="driven__cavity_8cc_source.html#l00242">driven_cavity.cc:242</a></div></div>
+<div class="ttc" id="adriven__cavity_8cc_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="driven__cavity_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdoc">Driver for RectangularDrivenCavity test problem – test drive with two different types of element.</div><div class="ttdef"><b>Definition</b> <a href="driven__cavity_8cc_source.html#l00242">driven_cavity.cc:242</a></div></div>
 </div><!-- fragment --><p> We build the problem using <code>QCrouzeixRaviartElements</code>, solve using the <code>Problem::newton_solve()</code> function, and document the result before incrementing the label for the output files.</p>
 <div class="fragment"><div class="line"> <span class="comment">// Doing QCrouzeixRaviartElements</span></div>
 <div class="line"> {</div>
@@ -404,7 +398,7 @@ The driver code</h1>
 <div class="line">  doc_info.number()++;</div>
 <div class="line"> </div>
 <div class="line"> } <span class="comment">// end of QCrouzeixRaviartElements</span></div>
-<div class="ttc" id="aclassRectangularDrivenCavityProblem_html"><div class="ttname"><a href="classRectangularDrivenCavityProblem.html">RectangularDrivenCavityProblem</a></div><div class="ttdoc">///////////////////////////////////////////////////////////////////// ///////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="driven__cavity_8cc_source.html#l00063">driven_cavity.cc:64</a></div></div>
+<div class="ttc" id="aclassRectangularDrivenCavityProblem_html"><div class="ttname"><a href="classRectangularDrivenCavityProblem.html">RectangularDrivenCavityProblem</a></div><div class="ttdoc">Driven cavity problem in rectangular domain.</div><div class="ttdef"><b>Definition</b> <a href="driven__cavity_8cc_source.html#l00063">driven_cavity.cc:64</a></div></div>
 <div class="ttc" id="aclassRectangularDrivenCavityProblem_html_ab9540b4f539b7d62a1165cc42b4190ea"><div class="ttname"><a href="classRectangularDrivenCavityProblem.html#ab9540b4f539b7d62a1165cc42b4190ea">RectangularDrivenCavityProblem::doc_solution</a></div><div class="ttdeci">void doc_solution(DocInfo &amp;doc_info)</div><div class="ttdoc">Doc the solution.</div><div class="ttdef"><b>Definition</b> <a href="driven__cavity_8cc_source.html#l00207">driven_cavity.cc:207</a></div></div>
 </div><!-- fragment --><p> Finally, we repeat the process with <code>QTaylorHoodElements</code>.</p>
 <div class="fragment"><div class="line"> <span class="comment">// Doing QTaylorHoodElements</span></div>
@@ -598,7 +592,7 @@ Post-processing</h1>
 <div class="line"> npts=5; </div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output solution </span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> mesh_pt()-&gt;output(some_file,npts);</div>
@@ -611,7 +605,7 @@ Comments and Exercises</h1>
 <h2><a class="anchor" id="stress_divergence"></a>
 The stress-divergence form</h2>
 <p>As discussed in the introduction, by default <code>oomph-lib's</code> Navier-Stokes elements use the stress-divergence form of the momentum equations, </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_70_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 R_\rho Re \left( St \frac{\partial u_i}{\partial t} + 
 u_j \frac{\partial u_i}{\partial x_j} \right) =
 - \frac{\partial p}{\partial x_i}  +  B_i(x_j) +
@@ -619,20 +613,20 @@ R_\rho \frac{Re}{Fr} G_i +
 \frac{\partial }{\partial x_j} \left[  R_\mu \left(
 \frac{\partial u_i}{\partial x_j} +  
 \frac{\partial u_j}{\partial x_i} \right) \right],
-\]" src="form_70.png" width="436" height="31"/></picture>
+\]" src="form_70.png" width="436" height="31"/>
 </p>
  </center><p> as this form is required in problems with free surfaces or problems in which traction boundary conditions are applied.</p>
-<p>If the flow is divergence free ( <picture><source srcset="form_71_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Q = 0 \Longrightarrow \partial
-u_i/\partial x_i =0$" src="form_71.png" width="126" height="14"/></picture>), the viscous term may be simplified to </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_72_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p>If the flow is divergence free ( <img class="formulaInl" alt="$ Q = 0 \Longrightarrow \partial
+u_i/\partial x_i =0$" src="form_71.png" width="126" height="14"/>), the viscous term may be simplified to </p><center>  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 R_\rho Re \left( St \frac{\partial u_i}{\partial t} + 
 u_j \frac{\partial u_i}{\partial x_j} \right) =
 - \frac{\partial p}{\partial x_i}  +  B_i(x_j) +
 R_\rho \frac{Re}{Fr} G_i +  R_\mu
 \frac{\partial^2 u_i }{\partial x_j^2},
-\]" src="form_72.png" width="359" height="34"/></picture>
+\]" src="form_72.png" width="359" height="34"/>
 </p>
- </center><p> assuming that the viscosity ratio <picture><source srcset="form_48_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ R_\mu $" src="form_48.png" width="15" height="14"/></picture> remains constant</p>
+ </center><p> assuming that the viscosity ratio <img class="formulaInl" alt="$ R_\mu $" src="form_48.png" width="15" height="14"/> remains constant</p>
 <p>This simpler form of the equations can be used to solve problems that do not incorporate traction boundaries or free surfaces. We illustrate the use of these equations in <a href="../../circular_driven_cavity/html/index.html">another example.</a></p>
 <h2><a class="anchor" id="exercises"></a>
 Exercises</h2>
@@ -654,7 +648,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -684,7 +678,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:11:16
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:40:12
         </div>
       </div>
     </footer>

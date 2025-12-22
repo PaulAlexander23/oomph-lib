@@ -9,7 +9,7 @@ Detailed documentation to be written. Here\textquotesingle{}s the already fairly
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -40,16 +40,16 @@ Detailed documentation to be written. Here\textquotesingle{}s the already fairly
 \DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}solid.h"{}}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{//\ The\ mesh\ }}
-\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}meshes/simple\_cubic\_mesh.template.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}meshes/simple\_cubic\_mesh.h"{}}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }std;}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }oomph;}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{//=========================================================================}\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{///\ Simple\ cubic\ mesh\ upgraded\ to\ become\ a\ solid\ mesh}}
@@ -79,9 +79,9 @@ Detailed documentation to be written. Here\textquotesingle{}s the already fairly
 \DoxyCodeLine{}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{}
 \DoxyCodeLine{}
@@ -121,9 +121,9 @@ Detailed documentation to be written. Here\textquotesingle{}s the already fairly
 \DoxyCodeLine{\}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{}
 \DoxyCodeLine{}
@@ -242,8 +242,8 @@ Detailed documentation to be written. Here\textquotesingle{}s the already fairly
 \DoxyCodeLine{\ \textcolor{comment}{//PVDEquationsBase<2>::pin\_redundant\_nodal\_solid\_pressures(}}
 \DoxyCodeLine{\ \textcolor{comment}{//\ mesh\_pt()-\/>element\_pt());}}
 \DoxyCodeLine{}
-\DoxyCodeLine{\ \textcolor{comment}{//Attach\ the\ boundary\ conditions\ to\ the\ mesh}}
-\DoxyCodeLine{\ cout\ <<\ assign\_eqn\_numbers()\ <<\ std::endl;\ }
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ Attach\ the\ boundary\ conditions\ to\ the\ mesh}}
+\DoxyCodeLine{\ \ oomph\_info\ <<\ \textcolor{stringliteral}{"{}Number\ of\ equations:\ "{}}\ <<\ assign\_eqn\_numbers()\ <<\ std::endl;}
 \DoxyCodeLine{\}\ }
 \DoxyCodeLine{}
 \DoxyCodeLine{}
@@ -261,13 +261,13 @@ Detailed documentation to be written. Here\textquotesingle{}s the already fairly
 \DoxyCodeLine{\ \textcolor{keywordtype}{unsigned}\ npts\ =\ 5;\ }
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ shape\ of\ deformed\ body}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ mesh\_pt()-\/>output(some\_file,npts);}
 \DoxyCodeLine{\ some\_file.close();}
 \DoxyCodeLine{\ }
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/stress\%i.dat"{}},\ doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/stress\%i.dat"{}},\ doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ \textcolor{comment}{//Output\ the\ appropriate\ stress\ at\ the\ centre\ of\ each\ element}}
@@ -438,4 +438,4 @@ Detailed documentation to be written. Here\textquotesingle{}s the already fairly
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

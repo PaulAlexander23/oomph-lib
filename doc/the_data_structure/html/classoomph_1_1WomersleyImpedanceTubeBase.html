@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -135,7 +129,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>///////////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////  
+<p>Base class for Womersley impedance tube. Allows the computation of the inlet pressure p_in into a uniform tube of specified length that is assumed to convey fully-developed, but time-dependent flow with a presribed instantaneous flow rate, q. Also computes the derivative dp_in/dq required when this is used to determine impedance-type outlet boundary conditions in a Navier-Stokes computation.  
  <a href="classoomph_1_1WomersleyImpedanceTubeBase.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="womersley__elements_8h_source.html">womersley_elements.h</a>&gt;</code></p>
@@ -147,8 +141,8 @@ $(function() {
  <div class="center">
   <img src="classoomph_1_1WomersleyImpedanceTubeBase.png" usemap="#oomph::WomersleyImpedanceTubeBase_3C_20ELEMENT_2C_20DIM_20_3E_map" alt=""/>
   <map id="oomph::WomersleyImpedanceTubeBase_3C_20ELEMENT_2C_20DIM_20_3E_map" name="oomph::WomersleyImpedanceTubeBase_3C_20ELEMENT_2C_20DIM_20_3E_map">
-<area href="classoomph_1_1TemplateFreeWomersleyImpedanceTubeBase.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////..." alt="oomph::TemplateFreeWomersleyImpedanceTubeBase" shape="rect" coords="0,0,363,24"/>
-<area href="classoomph_1_1WomersleyOutflowImpedanceTube.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////..." alt="oomph::WomersleyOutflowImpedanceTube&lt; ELEMENT, DIM &gt;" shape="rect" coords="0,112,363,136"/>
+<area href="classoomph_1_1TemplateFreeWomersleyImpedanceTubeBase.html" title="Template-free base class for Impedance Tube – to faciliate interactions between the Womersley element..." alt="oomph::TemplateFreeWomersleyImpedanceTubeBase" shape="rect" coords="0,0,363,24"/>
+<area href="classoomph_1_1WomersleyOutflowImpedanceTube.html" title="WomersleyImpedanceTube that attaches itself to the outflow of a Navier-Stokes mesh." alt="oomph::WomersleyOutflowImpedanceTube&lt; ELEMENT, DIM &gt;" shape="rect" coords="0,112,363,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -173,7 +167,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a746f8fe8de207bff29af109dc486e828"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pure virtual function in which the user of a derived class must create the mesh of WomersleyElements (of the type specified by the class's template argument) and apply the boundary conditions. The Womersley elements use the timestepper specified as the input argument.  <br /></td></tr>
 <tr class="separator:a746f8fe8de207bff29af109dc486e828"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8524aff02e221d6fd8d9cfe58c2ef596" id="r_a8524aff02e221d6fd8d9cfe58c2ef596"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1WomersleyImpedanceTubeBase.html#a8524aff02e221d6fd8d9cfe58c2ef596">setup</a> ()</td></tr>
-<tr class="memdesc:a8524aff02e221d6fd8d9cfe58c2ef596"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set up the Womersley tubes so that a subsequent call to get_response(...) computes the inlet pressure for the currently prescribed instantaneous flow rate. <a class="el" href="classoomph_1_1Steady.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////...">Steady</a> version!  <br /></td></tr>
+<tr class="memdesc:a8524aff02e221d6fd8d9cfe58c2ef596"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set up the Womersley tubes so that a subsequent call to get_response(...) computes the inlet pressure for the currently prescribed instantaneous flow rate. <a class="el" href="classoomph_1_1Steady.html" title="Faux time-stepper for steady problems. Allows storage for NSTEPS previous values.">Steady</a> version!  <br /></td></tr>
 <tr class="separator:a8524aff02e221d6fd8d9cfe58c2ef596"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a912ef51e8ac9c44e80566126da7d591f" id="r_a912ef51e8ac9c44e80566126da7d591f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1WomersleyImpedanceTubeBase.html#a912ef51e8ac9c44e80566126da7d591f">setup</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> *re_st_pt, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;dt, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">q_initial</a>, <a class="el" href="classoomph_1_1TimeStepper.html">TimeStepper</a> *time_stepper_pt=0)</td></tr>
 <tr class="memdesc:a912ef51e8ac9c44e80566126da7d591f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set up the Womersley tubes so that a subsequent call to get_response(...) computes the inlet pressure for the currently prescribed instantaneous flow rate, assuming that at all previous times the tube conveyed steady, fully-developed flow with flowrate q_initial. dt specifies the timestep for the subsequent time integration. Specify: Womersley number, (constant) timestep, the initial volume flux (from which the subsequent impulsive start is performed) and, optionally the pointer to the timestepper to be used in the Womersley elements (defaults to BDF&lt;2&gt;).  <br /></td></tr>
@@ -201,7 +195,7 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a64f2f3eeb09a5637b32661baab3ac1e4" id="r_a64f2f3eeb09a5637b32661baab3ac1e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1WomersleyImpedanceTubeBase.html#a64f2f3eeb09a5637b32661baab3ac1e4">precompute_aux_integrals</a> ()</td></tr>
-<tr class="memdesc:a64f2f3eeb09a5637b32661baab3ac1e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Precompute auxiliary integrals required for the computation of the Jacobian in the <a class="el" href="classoomph_1_1NavierStokesImpedanceTractionElement.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">NavierStokesImpedanceTractionElement</a>. Also pass the pointer to the pre-computed integrals to the elements in the Navier_stokes_outflow_mesh_pt so they can refer to it.  <br /></td></tr>
+<tr class="memdesc:a64f2f3eeb09a5637b32661baab3ac1e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Precompute auxiliary integrals required for the computation of the Jacobian in the <a class="el" href="classoomph_1_1NavierStokesImpedanceTractionElement.html" title="A class for elements that allow the imposition of an impedance type traction boundary condition to th...">NavierStokesImpedanceTractionElement</a>. Also pass the pointer to the pre-computed integrals to the elements in the Navier_stokes_outflow_mesh_pt so they can refer to it.  <br /></td></tr>
 <tr class="separator:a64f2f3eeb09a5637b32661baab3ac1e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
@@ -245,8 +239,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">class</a> ELEMENT, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> DIM&gt;<br />
-class oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;</div><p>///////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////// </p>
-<p>Base class for Womersley impedance tube. Allows the computation of the inlet pressure p_in into a uniform tube of specified length that is assumed to convey fully-developed, but time-dependent flow with a presribed instantaneous flow rate, q. Also computes the derivative dp_in/dq required when this is used to determine impedance-type outlet boundary conditions in a Navier-Stokes computation. </p>
+class oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;</div><p>Base class for Womersley impedance tube. Allows the computation of the inlet pressure p_in into a uniform tube of specified length that is assumed to convey fully-developed, but time-dependent flow with a presribed instantaneous flow rate, q. Also computes the derivative dp_in/dq required when this is used to determine impedance-type outlet boundary conditions in a Navier-Stokes computation. </p>
 
 <p class="definition">Definition at line <a class="el" href="womersley__elements_8h_source.html#l01069">1069</a> of file <a class="el" href="womersley__elements_8h_source.html">womersley_elements.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
@@ -355,7 +348,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p class="definition">Definition at line <a class="el" href="womersley__elements_8h_source.html#l01103">1103</a> of file <a class="el" href="womersley__elements_8h_source.html">womersley_elements.h</a>.</p>
 
-<p class="reference">References <a class="el" href="womersley__elements_8h_source.html#l01462">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Aux_integral_pt</a>, <a class="el" href="womersley__elements_8h_source.html#l01441">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Current_volume_flux_pt</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00448">oomph::Mesh::element_pt()</a>, <a class="el" href="mesh_8h_source.html#l00590">oomph::Mesh::nelement()</a>, and <a class="el" href="womersley__elements_8h_source.html#l01467">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Using_flux_control_elements</a>.</p>
+<p class="reference">References <a class="el" href="womersley__elements_8h_source.html#l01462">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Aux_integral_pt</a>, <a class="el" href="womersley__elements_8h_source.html#l01441">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Current_volume_flux_pt</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00452">oomph::Mesh::element_pt()</a>, <a class="el" href="mesh_8h_source.html#l00598">oomph::Mesh::nelement()</a>, and <a class="el" href="womersley__elements_8h_source.html#l01467">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Using_flux_control_elements</a>.</p>
 
 </div>
 </div>
@@ -498,11 +491,11 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 </table>
 </div><div class="memdoc">
 
-<p>Precompute auxiliary integrals required for the computation of the Jacobian in the <a class="el" href="classoomph_1_1NavierStokesImpedanceTractionElement.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">NavierStokesImpedanceTractionElement</a>. Also pass the pointer to the pre-computed integrals to the elements in the Navier_stokes_outflow_mesh_pt so they can refer to it. </p>
+<p>Precompute auxiliary integrals required for the computation of the Jacobian in the <a class="el" href="classoomph_1_1NavierStokesImpedanceTractionElement.html" title="A class for elements that allow the imposition of an impedance type traction boundary condition to th...">NavierStokesImpedanceTractionElement</a>. Also pass the pointer to the pre-computed integrals to the elements in the Navier_stokes_outflow_mesh_pt so they can refer to it. </p>
 
 <p class="definition">Definition at line <a class="el" href="womersley__elements_8h_source.html#l01400">1400</a> of file <a class="el" href="womersley__elements_8h_source.html">womersley_elements.h</a>.</p>
 
-<p class="reference">References <a class="el" href="womersley__elements_8h_source.html#l01462">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Aux_integral_pt</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00448">oomph::Mesh::element_pt()</a>, <a class="el" href="womersley__elements_8h_source.html#l01456">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Navier_stokes_outflow_mesh_pt</a>, and <a class="el" href="mesh_8h_source.html#l00590">oomph::Mesh::nelement()</a>.</p>
+<p class="reference">References <a class="el" href="womersley__elements_8h_source.html#l01462">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Aux_integral_pt</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00452">oomph::Mesh::element_pt()</a>, <a class="el" href="womersley__elements_8h_source.html#l01456">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Navier_stokes_outflow_mesh_pt</a>, and <a class="el" href="mesh_8h_source.html#l00598">oomph::Mesh::nelement()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="womersley__elements_8h_source.html#l01207">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::setup()</a>.</p>
 
@@ -533,7 +526,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 </table>
 </div><div class="memdoc">
 
-<p>Set up the Womersley tubes so that a subsequent call to get_response(...) computes the inlet pressure for the currently prescribed instantaneous flow rate. <a class="el" href="classoomph_1_1Steady.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////...">Steady</a> version! </p>
+<p>Set up the Womersley tubes so that a subsequent call to get_response(...) computes the inlet pressure for the currently prescribed instantaneous flow rate. <a class="el" href="classoomph_1_1Steady.html" title="Faux time-stepper for steady problems. Allows storage for NSTEPS previous values.">Steady</a> version! </p>
 
 <p class="definition">Definition at line <a class="el" href="womersley__elements_8h_source.html#l01187">1187</a> of file <a class="el" href="womersley__elements_8h_source.html">womersley_elements.h</a>.</p>
 
@@ -596,7 +589,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p class="definition">Definition at line <a class="el" href="womersley__elements_8h_source.html#l01207">1207</a> of file <a class="el" href="womersley__elements_8h_source.html">womersley_elements.h</a>.</p>
 
-<p class="reference">References <a class="el" href="classoomph_1_1WomersleyImpedanceTubeBase.html#a746f8fe8de207bff29af109dc486e828">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::build_mesh_and_apply_boundary_conditions()</a>, <a class="el" href="womersley__elements_8h_source.html#l01441">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Current_volume_flux_pt</a>, <a class="el" href="womersley__elements_8h_source.html#l01435">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Dp_in_dq</a>, <a class="el" href="elements_8h_source.html#l00708">oomph::GeneralisedElement::eqn_number()</a>, <a class="el" href="womersley__elements_8h_source.html#l01431">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Length</a>, <a class="el" href="womersley__elements_8h_source.html#l01456">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Navier_stokes_outflow_mesh_pt</a>, <a class="el" href="elements_8h_source.html#l00839">oomph::GeneralisedElement::ndof()</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00319">oomph::oomph_info</a>, <a class="el" href="womersley__elements_8h_source.html#l01400">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::precompute_aux_integrals()</a>, <a class="el" href="womersley__elements_8h_source.html#l01467">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Using_flux_control_elements</a>, and <a class="el" href="womersley__elements_8h_source.html#l01445">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Womersley_problem_pt</a>.</p>
+<p class="reference">References <a class="el" href="classoomph_1_1WomersleyImpedanceTubeBase.html#a746f8fe8de207bff29af109dc486e828">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::build_mesh_and_apply_boundary_conditions()</a>, <a class="el" href="womersley__elements_8h_source.html#l01441">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Current_volume_flux_pt</a>, <a class="el" href="womersley__elements_8h_source.html#l01435">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Dp_in_dq</a>, <a class="el" href="elements_8h_source.html#l00691">oomph::GeneralisedElement::eqn_number()</a>, <a class="el" href="womersley__elements_8h_source.html#l01431">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Length</a>, <a class="el" href="womersley__elements_8h_source.html#l01456">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Navier_stokes_outflow_mesh_pt</a>, <a class="el" href="elements_8h_source.html#l00822">oomph::GeneralisedElement::ndof()</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00326">oomph::oomph_info</a>, <a class="el" href="womersley__elements_8h_source.html#l01400">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::precompute_aux_integrals()</a>, <a class="el" href="womersley__elements_8h_source.html#l01467">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Using_flux_control_elements</a>, and <a class="el" href="womersley__elements_8h_source.html#l01445">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Womersley_problem_pt</a>.</p>
 
 </div>
 </div>
@@ -663,7 +656,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p class="definition">Definition at line <a class="el" href="womersley__elements_8h_source.html#l01336">1336</a> of file <a class="el" href="womersley__elements_8h_source.html">womersley_elements.h</a>.</p>
 
-<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00448">oomph::Mesh::element_pt()</a>, <a class="el" href="womersley__elements_8h_source.html#l01456">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Navier_stokes_outflow_mesh_pt</a>, <a class="el" href="mesh_8h_source.html#l00590">oomph::Mesh::nelement()</a>, <a class="el" href="womersley__elements_8h_source.html#l01451">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Prescribed_volume_flux_fct_pt</a>, <a class="el" href="womersley__elements_8h_source.html#l01467">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Using_flux_control_elements</a>, and <a class="el" href="womersley__elements_8h_source.html#l01445">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Womersley_problem_pt</a>.</p>
+<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00452">oomph::Mesh::element_pt()</a>, <a class="el" href="womersley__elements_8h_source.html#l01456">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Navier_stokes_outflow_mesh_pt</a>, <a class="el" href="mesh_8h_source.html#l00598">oomph::Mesh::nelement()</a>, <a class="el" href="womersley__elements_8h_source.html#l01451">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Prescribed_volume_flux_fct_pt</a>, <a class="el" href="womersley__elements_8h_source.html#l01467">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Using_flux_control_elements</a>, and <a class="el" href="womersley__elements_8h_source.html#l01445">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::Womersley_problem_pt</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="womersley__elements_8h_source.html#l01375">oomph::WomersleyImpedanceTubeBase&lt; ELEMENT, DIM &gt;::get_response()</a>.</p>
 
@@ -1002,7 +995,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:06:00
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:43:47
         </div>
       </div>
     </footer>

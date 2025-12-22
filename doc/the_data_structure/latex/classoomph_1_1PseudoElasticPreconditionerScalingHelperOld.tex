@@ -2,7 +2,7 @@
 \hypertarget{classoomph_1_1PseudoElasticPreconditionerScalingHelperOld}{}\label{classoomph_1_1PseudoElasticPreconditionerScalingHelperOld}\index{oomph::PseudoElasticPreconditionerScalingHelperOld@{oomph::PseudoElasticPreconditionerScalingHelperOld}}
 
 
-//////////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////////////  
+A helper class for \doxylink{classoomph_1_1PseudoElasticPreconditioner}{Pseudo\+Elastic\+Preconditioner}. Note that this is NOT actually a functioning preconditioner. We simply derive from this class to get access to the blocks.  
 
 
 
@@ -198,7 +198,7 @@ Inheritance diagram for oomph\+::Pseudo\+Elastic\+Preconditioner\+Scaling\+Helpe
 \begin{DoxyCompactList}\small\item\em Destructor (empty) \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_a1e469ffc87f31f6f2eebbe5ccf03d78b}{preconditioner\+\_\+solve\+\_\+transpose}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{r}}, \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&z)
 \begin{DoxyCompactList}\small\item\em Apply the preconditioner. Pure virtual generic interface function. This method should apply the preconditioner operator to the vector r and return the vector z. (broken virtual) \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_a0b95e7159585b5151f9e5dc1d1713655}{setup}} (\mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1Preconditioner_a08e0582b77c6cbfaf85b80a4ac5c11f3}{matrix\+\_\+pt}})
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_ac2c0f7f39eccd814e72cc5813ec864e0}{setup}} (\mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1Preconditioner_a08e0582b77c6cbfaf85b80a4ac5c11f3}{matrix\+\_\+pt}})
 \begin{DoxyCompactList}\small\item\em Setup the preconditioner\+: store the matrix pointer and the communicator pointer then call preconditioner specific \doxylink{classoomph_1_1Preconditioner_af4886f4efe510e5c9b0eb19422943588}{setup()} function. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_a783fae97e4b898f8de72b504a4f4bec6}{setup}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Problem}{Problem}} \texorpdfstring{$\ast$}{*}problem\+\_\+pt, \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1Preconditioner_a08e0582b77c6cbfaf85b80a4ac5c11f3}{matrix\+\_\+pt}})
 \begin{DoxyCompactList}\small\item\em Compatability layer for old preconditioners where problem pointers were needed. The problem pointer is only used to get a communicator pointer. \end{DoxyCompactList}\item 
@@ -323,8 +323,6 @@ std\+::ostream \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classoomph_1_1Precond
 
 
 \doxysubsection{Detailed Description}
-//////////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////////// 
-
 A helper class for \doxylink{classoomph_1_1PseudoElasticPreconditioner}{Pseudo\+Elastic\+Preconditioner}. Note that this is NOT actually a functioning preconditioner. We simply derive from this class to get access to the blocks. 
 
 Definition at line \mbox{\hyperlink{pseudo__elastic__preconditioner_8h_source_l00700}{700}} of file \mbox{\hyperlink{pseudo__elastic__preconditioner_8h_source}{pseudo\+\_\+elastic\+\_\+preconditioner.\+h}}.
@@ -354,7 +352,7 @@ Definition at line \mbox{\hyperlink{pseudo__elastic__preconditioner_8h_source_l0
 
 
 
-References \mbox{\hyperlink{block__preconditioner_8cc_source_l02483}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::block\+\_\+setup()}}, \mbox{\hyperlink{block__preconditioner_8h_source_l00520}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::matrix\+\_\+pt()}}, \mbox{\hyperlink{preconditioner_8h_source_l00193}{oomph\+::\+Preconditioner\+::set\+\_\+comm\+\_\+pt()}}, \mbox{\hyperlink{preconditioner_8h_source_l00165}{oomph\+::\+Preconditioner\+::set\+\_\+matrix\+\_\+pt()}}, \mbox{\hyperlink{block__preconditioner_8h_source_l02866}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::set\+\_\+mesh()}}, \mbox{\hyperlink{block__preconditioner_8h_source_l02851}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::set\+\_\+nmesh()}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, and \mbox{\hyperlink{block__preconditioner_8cc_source_l02376}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::turn\+\_\+into\+\_\+subsidiary\+\_\+block\+\_\+preconditioner()}}.
+References \mbox{\hyperlink{block__preconditioner_8cc_source_l02482}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::block\+\_\+setup()}}, \mbox{\hyperlink{block__preconditioner_8h_source_l00520}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::matrix\+\_\+pt()}}, \mbox{\hyperlink{preconditioner_8h_source_l00193}{oomph\+::\+Preconditioner\+::set\+\_\+comm\+\_\+pt()}}, \mbox{\hyperlink{preconditioner_8h_source_l00165}{oomph\+::\+Preconditioner\+::set\+\_\+matrix\+\_\+pt()}}, \mbox{\hyperlink{block__preconditioner_8h_source_l02866}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::set\+\_\+mesh()}}, \mbox{\hyperlink{block__preconditioner_8h_source_l02851}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::set\+\_\+nmesh()}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, and \mbox{\hyperlink{block__preconditioner_8cc_source_l02375}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::turn\+\_\+into\+\_\+subsidiary\+\_\+block\+\_\+preconditioner()}}.
 
 \Hypertarget{classoomph_1_1PseudoElasticPreconditionerScalingHelperOld_a330a6acc2a56bf439f0b3d603d392cf8}\label{classoomph_1_1PseudoElasticPreconditionerScalingHelperOld_a330a6acc2a56bf439f0b3d603d392cf8} 
 \index{oomph::PseudoElasticPreconditionerScalingHelperOld@{oomph::PseudoElasticPreconditionerScalingHelperOld}!````~PseudoElasticPreconditionerScalingHelperOld@{\texorpdfstring{$\sim$}{\string~}PseudoElasticPreconditionerScalingHelperOld}}

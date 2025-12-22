@@ -2,7 +2,7 @@
 \hypertarget{classoomph_1_1TCrouzeixRaviartElement}{}\label{classoomph_1_1TCrouzeixRaviartElement}\index{oomph::TCrouzeixRaviartElement$<$ DIM $>$@{oomph::TCrouzeixRaviartElement$<$ DIM $>$}}
 
 
-///////////////////////////////////////////////////////////////////////////  
+TCrouzeix\+\_\+\+Raviart elements are Navier--Stokes elements with quadratic interpolation for velocities and positions enriched by a single cubic bubble function, but a discontinuous linear pressure interpolation.  
 
 
 
@@ -265,7 +265,7 @@ std\+::string \mbox{\hyperlink{classoomph_1_1NavierStokesEquations_afa71f5c316eb
 \begin{DoxyCompactList}\small\item\em Return FE interpolated pressure at local coordinate s at time level t. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} \mbox{\hyperlink{classoomph_1_1NavierStokesEquations_a3fa34303035c253c66c0f69752e5949e}{interpolated\+\_\+dudx\+\_\+nst}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{j}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return FE interpolated derivatives of velocity component u\mbox{[}i\mbox{]} w.\+r.\+t spatial global coordinate direction x\mbox{[}j\mbox{]} at local coordinate s. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1NavierStokesEquations_afd6f8376bf83a87164cd3c490270798e}{point\+\_\+output\+\_\+data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{data}})
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1NavierStokesEquations_afd6f8376bf83a87164cd3c490270798e}{point\+\_\+output\+\_\+data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&data)
 \begin{DoxyCompactList}\small\item\em Output solution in data vector at local cordinates s\+: x,y \mbox{[},z\mbox{]}, u,v,\mbox{[}w\mbox{]}, p. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1NavierStokesEquations_aeef855e50fd8d35798a723cdb6a0c74d}{get\+\_\+vorticity}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{vorticity}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Compute 2D vorticity vector at local coordinate s (return in one and only component of vorticity vector. \end{DoxyCompactList}\item 
@@ -544,8 +544,10 @@ std\+::string \mbox{\hyperlink{classoomph_1_1NavierStokesEquations_afa71f5c316eb
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{oomph\+::\+Generalised\+Element}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}}() \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a76c506edf49c5bbfe94f424ec94191ab}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
-\begin{DoxyCompactList}\small\item\em Constructor\+: Initialise all pointers and all values to zero. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a6a34bffcef1bbbc5271630042afe7ca9}{\texorpdfstring{$\sim$}{\string~}\+Generalised\+Element}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor to clean up any memory allocated by the object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1GeneralisedElement_a4e4a9177fdb093fc85c890bb86bdf655}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
+\begin{DoxyCompactList}\small\item\em Broken copy constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a180b550ae69f8bcbaae3f37f38c475ff}{operator=}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
 \begin{DoxyCompactList}\small\item\em Broken assignment operator. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Data}{Data}} \texorpdfstring{$\ast$}{*}\& \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a3b83389f2c80788013421c6d59604f0b}{internal\+\_\+data\+\_\+pt}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
@@ -990,9 +992,7 @@ template$<$$>$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} DIM$>$\newline
 class oomph\+::\+TCrouzeix\+Raviart\+Element$<$ DIM $>$}
-/////////////////////////////////////////////////////////////////////////// 
-
-/////////////////////////////////////////////////////////////////////////// TCrouzeix\+\_\+\+Raviart elements are Navier--Stokes elements with quadratic interpolation for velocities and positions enriched by a single cubic bubble function, but a discontinuous linear pressure interpolation 
+TCrouzeix\+\_\+\+Raviart elements are Navier--Stokes elements with quadratic interpolation for velocities and positions enriched by a single cubic bubble function, but a discontinuous linear pressure interpolation. 
 
 Definition at line \mbox{\hyperlink{Tnavier__stokes__elements_8h_source_l00060}{60}} of file \mbox{\hyperlink{Tnavier__stokes__elements_8h_source}{Tnavier\+\_\+stokes\+\_\+elements.\+h}}.
 
@@ -1202,7 +1202,7 @@ Definition at line \mbox{\hyperlink{Tnavier__stokes__elements_8h_source_l00180}{
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l00622}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l00385}{oomph\+::\+Data\+::pin()}}, and \mbox{\hyperlink{nodes_8h_source_l00271}{oomph\+::\+Data\+::set\+\_\+value()}}.
+References \mbox{\hyperlink{elements_8h_source_l00605}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l00385}{oomph\+::\+Data\+::pin()}}, and \mbox{\hyperlink{nodes_8h_source_l00271}{oomph\+::\+Data\+::set\+\_\+value()}}.
 
 \Hypertarget{classoomph_1_1TCrouzeixRaviartElement_afeab02f9b7a31b3befcdf67d40ac495e}\label{classoomph_1_1TCrouzeixRaviartElement_afeab02f9b7a31b3befcdf67d40ac495e} 
 \index{oomph::TCrouzeixRaviartElement$<$ DIM $>$@{oomph::TCrouzeixRaviartElement$<$ DIM $>$}!full\_output@{full\_output}}
@@ -1263,7 +1263,7 @@ Definition at line \mbox{\hyperlink{Tnavier__stokes__elements_8h_source_l00663}{
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l00708}{oomph\+::\+Generalised\+Element\+::eqn\+\_\+number()}}, \mbox{\hyperlink{elements_8h_source_l00730}{oomph\+::\+Generalised\+Element\+::local\+\_\+eqn\+\_\+number()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l01436}{oomph\+::\+Finite\+Element\+::nodal\+\_\+local\+\_\+eqn()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l00483}{oomph\+::\+Data\+::nvalue()}}, and \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}.
+References \mbox{\hyperlink{elements_8h_source_l00691}{oomph\+::\+Generalised\+Element\+::eqn\+\_\+number()}}, \mbox{\hyperlink{elements_8h_source_l00713}{oomph\+::\+Generalised\+Element\+::local\+\_\+eqn\+\_\+number()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l01436}{oomph\+::\+Finite\+Element\+::nodal\+\_\+local\+\_\+eqn()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l00483}{oomph\+::\+Data\+::nvalue()}}, and \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}.
 
 \Hypertarget{classoomph_1_1TCrouzeixRaviartElement_a7710fd1d14ecd50ee389cac1c57871b6}\label{classoomph_1_1TCrouzeixRaviartElement_a7710fd1d14ecd50ee389cac1c57871b6} 
 \index{oomph::TCrouzeixRaviartElement$<$ DIM $>$@{oomph::TCrouzeixRaviartElement$<$ DIM $>$}!get\_Z2\_flux@{get\_Z2\_flux}}
@@ -1350,7 +1350,7 @@ Definition at line \mbox{\hyperlink{Tnavier__stokes__elements_8cc_source_l00101}
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l00622}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{elements_8h_source_l00827}{oomph\+::\+Generalised\+Element\+::ninternal\+\_\+data()}}, \mbox{\hyperlink{nodes_8h_source_l00483}{oomph\+::\+Data\+::nvalue()}}, and \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}.
+References \mbox{\hyperlink{elements_8h_source_l00605}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{elements_8h_source_l00810}{oomph\+::\+Generalised\+Element\+::ninternal\+\_\+data()}}, \mbox{\hyperlink{nodes_8h_source_l00483}{oomph\+::\+Data\+::nvalue()}}, and \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}.
 
 \Hypertarget{classoomph_1_1TCrouzeixRaviartElement_af9e4fcbc56441522e6111962438a3b4a}\label{classoomph_1_1TCrouzeixRaviartElement_af9e4fcbc56441522e6111962438a3b4a} 
 \index{oomph::TCrouzeixRaviartElement$<$ DIM $>$@{oomph::TCrouzeixRaviartElement$<$ DIM $>$}!ndof\_types@{ndof\_types}}
@@ -1583,7 +1583,7 @@ Definition at line \mbox{\hyperlink{Tnavier__stokes__elements_8h_source_l00160}{
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l00622}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, and \mbox{\hyperlink{nodes_8h_source_l00293}{oomph\+::\+Data\+::value()}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l00605}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, and \mbox{\hyperlink{nodes_8h_source_l00293}{oomph\+::\+Data\+::value()}}.
 
 \Hypertarget{classoomph_1_1TCrouzeixRaviartElement_adc29dd0f602b9958c5e3f34518ba35ae}\label{classoomph_1_1TCrouzeixRaviartElement_adc29dd0f602b9958c5e3f34518ba35ae} 
 \index{oomph::TCrouzeixRaviartElement$<$ DIM $>$@{oomph::TCrouzeixRaviartElement$<$ DIM $>$}!p\_nst@{p\_nst}}
@@ -1606,7 +1606,7 @@ Definition at line \mbox{\hyperlink{Tnavier__stokes__elements_8h_source_l00168}{
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l00622}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{t}}, and \mbox{\hyperlink{nodes_8h_source_l00293}{oomph\+::\+Data\+::value()}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l00605}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{t}}, and \mbox{\hyperlink{nodes_8h_source_l00293}{oomph\+::\+Data\+::value()}}.
 
 \Hypertarget{classoomph_1_1TCrouzeixRaviartElement_aed5a8e922aff987b4edcad608732be2b}\label{classoomph_1_1TCrouzeixRaviartElement_aed5a8e922aff987b4edcad608732be2b} 
 \index{oomph::TCrouzeixRaviartElement$<$ DIM $>$@{oomph::TCrouzeixRaviartElement$<$ DIM $>$}!pshape\_nst@{pshape\_nst}}
@@ -1756,15 +1756,13 @@ Definition at line \mbox{\hyperlink{Tnavier__stokes__elements_8h_source_l00151}{
 
 Unpin all internal pressure dofs. 
 
-/////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////
 
-Unpin all internal pressure dofs. 
 
 Definition at line \mbox{\hyperlink{Tnavier__stokes__elements_8cc_source_l00042}{42}} of file \mbox{\hyperlink{Tnavier__stokes__elements_8cc_source}{Tnavier\+\_\+stokes\+\_\+elements.\+cc}}.
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l00622}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}, and \mbox{\hyperlink{nodes_8h_source_l00391}{oomph\+::\+Data\+::unpin()}}.
+References \mbox{\hyperlink{elements_8h_source_l00605}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}, and \mbox{\hyperlink{nodes_8h_source_l00391}{oomph\+::\+Data\+::unpin()}}.
 
 \Hypertarget{classoomph_1_1TCrouzeixRaviartElement_a471c22235687be8fb0d5e3b0b571440d}\label{classoomph_1_1TCrouzeixRaviartElement_a471c22235687be8fb0d5e3b0b571440d} 
 \index{oomph::TCrouzeixRaviartElement$<$ DIM $>$@{oomph::TCrouzeixRaviartElement$<$ DIM $>$}!vertex\_node\_pt@{vertex\_node\_pt}}

@@ -11,13 +11,15 @@ This Git\+Hub repository was preceded by two subversion-\/based repositories and
 ~\newline
 
 \item The file \href{../final_svn_log.txt}{\texttt{ final\+\_\+svn\+\_\+log.\+txt}} contains the complete log of our private svn repository (revisions 1 to 207) which preceded its public counterpart.
-\end{DoxyItemize}
-
-The remainder of this document covers the following issues\+:
+\end{DoxyItemize}The remainder of this document covers the following issues\+:
 
 
 \begin{DoxyItemize}
 \item \doxysectlink{index_interface_changes}{Policy on interface changes}{1}
+\item \doxysectlink{index_two_point_zero_to_three_point_zero}{Changes between version 2.\+0 and 3.\+0.\texorpdfstring{$\ast$}{*}}{2}
+\begin{DoxyItemize}
+\item \doxysectlink{index_new_functionality_three_point_zero}{Major new functionality/changes}{3}
+\end{DoxyItemize}
 \item \doxysectlink{index_one_point_zero_to_two_point_zero}{Changes between version 1.\+0 and 2.\+0.\texorpdfstring{$\ast$}{*}}{2}
 \begin{DoxyItemize}
 \item \doxysectlink{index_new_functionality_two_point_zero}{Major new functionality/changes}{3}
@@ -116,7 +118,24 @@ Here is an example of a function in which the order of the two unsigned argument
 Obviously, you should only compile the library with {\ttfamily WARN\+\_\+\+ABOUT\+\_\+\+SUBTLY\+\_\+\+CHANGED\+\_\+\+OOMPH\+\_\+\+INTERFACES} if you encounter problems after upgrading to a new version.
 
 \DoxyHorRuler{0}
-\hypertarget{index_one_point_zero_to_two_point_zero}{}\doxysubsection{\texorpdfstring{Changes between version 1.\+0 and 2.\+0.\texorpdfstring{$\ast$}{*}}{Changes between version 1.0 and 2.0.*}}\label{index_one_point_zero_to_two_point_zero}
+\hypertarget{index_two_point_zero_to_three_point_zero}{}\doxysubsection{\texorpdfstring{Changes between version 2.\+0 and 3.\+0.\texorpdfstring{$\ast$}{*}}{Changes between version 2.0 and 3.0.*}}\label{index_two_point_zero_to_three_point_zero}
+\hypertarget{index_new_functionality_three_point_zero}{}\doxysubsubsection{\texorpdfstring{Major new functionality/changes}{Major new functionality/changes}}\label{index_new_functionality_three_point_zero}
+
+\begin{DoxyItemize}
+\item Moved to C++17 standard ~\newline
+~\newline
+
+\item Completely re-\/implemented the build machinery which is now based on CMake.
+\begin{DoxyItemize}
+\item the equivalent of the old {\ttfamily autogen.\+sh} script is {\ttfamily oomph\+\_\+build.\+py}
+\item renamed the {\ttfamily bin} directory {\ttfamily scripts}
+\item moved the {\ttfamily self\+\_\+test} directory into {\ttfamily demo\+\_\+drivers}
+\item changed the way the template instantiation in the {\ttfamily meshes} directory is done\+: {\ttfamily \texorpdfstring{$\ast$}{*}.template.\+h} becomes {\ttfamily \texorpdfstring{$\ast$}{*}.h}.
+\item third-\/party libraries are now pulled in from their Git\+Hub repositories.
+\end{DoxyItemize}
+\end{DoxyItemize}~\newline
+~\newline
+ \hypertarget{index_one_point_zero_to_two_point_zero}{}\doxysubsection{\texorpdfstring{Changes between version 1.\+0 and 2.\+0.\texorpdfstring{$\ast$}{*}}{Changes between version 1.0 and 2.0.*}}\label{index_one_point_zero_to_two_point_zero}
 \hypertarget{index_new_functionality_two_point_zero}{}\doxysubsubsection{\texorpdfstring{Major new functionality/changes}{Major new functionality/changes}}\label{index_new_functionality_two_point_zero}
 
 \begin{DoxyItemize}
@@ -206,10 +225,10 @@ Obviously, you should only compile the library with {\ttfamily WARN\+\_\+\+ABOUT
 ~\newline
 
 \begin{DoxyItemize}
-\item How to use \textbackslash{}t oomph-\/lib in parallel and how to (optionally) distribute problems over multiple processors and to perform load balancing when performing spatially-\/adaptive, distributed simulations. ~\newline
+\item How to use {\ttfamily oomph-\/lib} in parallel and how to (optionally) distribute problems over multiple processors and to perform load balancing when performing spatially-\/adaptive, distributed simulations. ~\newline
 ~\newline
 
-\item How to use oomph-\/lib\textquotesingle{}s block preconditioning framework. ~\newline
+\item How to use {\ttfamily oomph-\/lib\textquotesingle{}s} block preconditioning framework. ~\newline
 ~\newline
 
 \item How to solve large-\/displacement fluid-\/structure interaction problems, based the coupling of full nonlinear 2D/3D elasticity and the Navier-\/\+Stokes equations, incl. the use of preconditioners and spatial adaptivity. ~\newline
@@ -286,7 +305,7 @@ Obviously, you should only compile the library with {\ttfamily WARN\+\_\+\+ABOUT
 \item Provided a new mechanism that allows multiple {\ttfamily Face\+Elements} to be attached to same node, while providing the ability to distinguish between different Lagrange multipliers stored at the same node. This is discussed in a \href{../../interaction/vmtk_fsi/html/index.html}{\texttt{ separate tutorial.}} ~\newline
 ~\newline
 
-\item Significantly extended oomph-\/lib\textquotesingle{}s bifurcation tracking routines (no tutorials yet, though). ~\newline
+\item Significantly extended {\ttfamily oomph-\/lib\textquotesingle{}s} bifurcation tracking routines (no tutorials yet, though). ~\newline
 ~\newline
 
 \item Provided general framework and driver codes for discontinuous Galerkin methods and explicit timesteppers (no tutorials yet, though). ~\newline
@@ -594,4 +613,4 @@ Obviously, you should only compile the library with {\ttfamily WARN\+\_\+\+ABOUT
 \end{DoxyItemize}\DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

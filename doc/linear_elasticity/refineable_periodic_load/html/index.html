@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -126,28 +120,28 @@ The example problem</h1>
 <div class="caption">
 Infinitely long strip loaded by a periodic traction. </div></div>
   Solve  <p class="formulaDsp">
-<picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \frac{\partial \tau_{ij}}{\partial x_j} + F_i=0,
  \ \ \ \ \ \ \ \ \ \ (1)
-\]" src="form_0.png" width="136" height="31"/></picture>
+\]" src="form_0.png" width="136" height="31"/>
 </p>
- in the domain <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ D = \{x_1 \in [-\infty,+\infty], x_2 \in [0,L_y]\} $" src="form_1.png" width="190" height="14"/></picture>, subject to the Dirichlet boundary conditions  <p class="formulaDsp">
-<picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ in the domain <img class="formulaInl" alt="$ D = \{x_1 \in [-\infty,+\infty], x_2 \in [0,L_y]\} $" src="form_1.png" width="190" height="14"/>, subject to the Dirichlet boundary conditions  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \left. \mathbf{u}\right|_{x_2 = 0}=(0,0),
 \ \ \ \ \ \ \ \ \ \ (2)
-\]" src="form_2.png" width="143" height="15"/></picture>
+\]" src="form_2.png" width="143" height="15"/>
 </p>
  on the bottom boundary, the Neumann (traction) boundary conditions  <p class="formulaDsp">
-<picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \left. \mathbf{t}\right|_{x_2 = L_y}=\left(-A \cos{\left(\frac{2 \pi x_1}{L_x}\right)}, -A \sin{\left(\frac{2 \pi x_1}{L_x}\right)}\right),
 \ \ \ \ \ \ \ \ \ \ (3)
-\]" src="form_3.png" width="320" height="31"/></picture>
+\]" src="form_3.png" width="320" height="31"/>
 </p>
- on the top boundary, and symmetry conditions at <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_1 = 0 $" src="form_4.png" width="36" height="11"/></picture> and <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_1 = L_x$" src="form_5.png" width="45" height="13"/></picture>,  <p class="formulaDsp">
-<picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ on the top boundary, and symmetry conditions at <img class="formulaInl" alt="$ x_1 = 0 $" src="form_4.png" width="36" height="11"/> and <img class="formulaInl" alt="$ x_1 = L_x$" src="form_5.png" width="45" height="13"/>,  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \left. {\bf u}\right|_{x_1=0} = \left.{\bf u}\right|_{x_1=L_x}.
 \ \ \ \ \ \ \ \ \ \ (4)
-\]" src="form_6.png" width="158" height="15"/></picture>
+\]" src="form_6.png" width="158" height="15"/>
 </p>
    </td></tr>
 </table>
@@ -356,7 +350,7 @@ The relevant code is for the latter task is, in fact, already implemented in the
 <div class="line"> <span class="comment">// This creates a hanging node on the periodic boundary</span></div>
 <div class="line"> Vector&lt;unsigned&gt; refine_pattern(1,0);</div>
 <div class="line"> Bulk_mesh_pt-&gt;refine_selected_elements(refine_pattern);</div>
-</div><!-- fragment --> <b>Note:</b> To facilitate the visualisation of the discontinuity it is helpful to perform this test with the bilinear <code>RefineableQLinearElasticityElement&lt;2,2&gt;</code>, with a shallower domain (e.g. <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ L_y = 0.5 $" src="form_7.png" width="46" height="14"/></picture> ), and without any further spatial refinement (set <code>max_adapt=0</code> in <code><a class="el" href="periodic__load_8cc.html#a0ddf1224851353fc92bfbff6f499fa97" title="Driver code for PeriodicLoad linearly elastic problem.">main()</a></code> ).</li>
+</div><!-- fragment --> <b>Note:</b> To facilitate the visualisation of the discontinuity it is helpful to perform this test with the bilinear <code>RefineableQLinearElasticityElement&lt;2,2&gt;</code>, with a shallower domain (e.g. <img class="formulaInl" alt="$ L_y = 0.5 $" src="form_7.png" width="46" height="14"/> ), and without any further spatial refinement (set <code>max_adapt=0</code> in <code><a class="el" href="periodic__load_8cc.html#a0ddf1224851353fc92bfbff6f499fa97" title="Driver code for PeriodicLoad linearly elastic problem.">main()</a></code> ).</li>
 </ol>
 <hr  />
  <hr  />
@@ -370,7 +364,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -400,7 +394,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:37:50
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:35:53
         </div>
       </div>
     </footer>

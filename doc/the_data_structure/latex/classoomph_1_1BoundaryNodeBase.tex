@@ -226,7 +226,7 @@ Return the vector of the k-\/th generalised boundary coordinates on mesh boundar
 
 Given the mesh boundary b, return the k-\/th generalised boundary coordinates of the node in the vector boundary\+\_\+zeta. 
 
-Definition at line \mbox{\hyperlink{nodes_8cc_source_l03165}{3165}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
+Definition at line \mbox{\hyperlink{nodes_8cc_source_l03166}{3166}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
@@ -332,7 +332,7 @@ References \mbox{\hyperlink{nodes_8h_source_l02008}{Boundaries\+\_\+pt}}.
 
 
 
-Referenced by \mbox{\hyperlink{nodes_8cc_source_l03165}{get\+\_\+coordinates\+\_\+on\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8h_source_l02532}{oomph\+::\+Boundary\+Node$<$ NODE\+\_\+\+TYPE $>$\+::is\+\_\+on\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8h_source_l02539}{oomph\+::\+Boundary\+Node$<$ NODE\+\_\+\+TYPE $>$\+::is\+\_\+on\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8cc_source_l03119}{ncoordinates\+\_\+on\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8cc_source_l03062}{remove\+\_\+from\+\_\+boundary()}}, and \mbox{\hyperlink{nodes_8cc_source_l03236}{set\+\_\+coordinates\+\_\+on\+\_\+boundary()}}.
+Referenced by \mbox{\hyperlink{nodes_8cc_source_l03166}{get\+\_\+coordinates\+\_\+on\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8h_source_l02532}{oomph\+::\+Boundary\+Node$<$ NODE\+\_\+\+TYPE $>$\+::is\+\_\+on\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8h_source_l02539}{oomph\+::\+Boundary\+Node$<$ NODE\+\_\+\+TYPE $>$\+::is\+\_\+on\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8cc_source_l03119}{ncoordinates\+\_\+on\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8cc_source_l03062}{remove\+\_\+from\+\_\+boundary()}}, and \mbox{\hyperlink{nodes_8cc_source_l03238}{set\+\_\+coordinates\+\_\+on\+\_\+boundary()}}.
 
 \Hypertarget{classoomph_1_1BoundaryNodeBase_a90a976e520409d6c6fb0b1948c618294}\label{classoomph_1_1BoundaryNodeBase_a90a976e520409d6c6fb0b1948c618294} 
 \index{oomph::BoundaryNodeBase@{oomph::BoundaryNodeBase}!is\_on\_boundary@{is\_on\_boundary}}
@@ -378,15 +378,13 @@ Referenced by \mbox{\hyperlink{nodes_8cc_source_l02951}{make\+\_\+node\+\_\+peri
 \index{oomph::BoundaryNodeBase@{oomph::BoundaryNodeBase}!make\_nodes\_periodic@{make\_nodes\_periodic}}
 \index{make\_nodes\_periodic@{make\_nodes\_periodic}!oomph::BoundaryNodeBase@{oomph::BoundaryNodeBase}}
 \doxysubsubsection{\texorpdfstring{make\_nodes\_periodic()}{make\_nodes\_periodic()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} oomph\+::\+Boundary\+Node\+Base\+::make\+\_\+nodes\+\_\+periodic (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \&}]{copied\+\_\+node\+\_\+pt,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \&}]{periodic\+\_\+copies\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} oomph\+::\+Boundary\+Node\+Base\+::make\+\_\+nodes\+\_\+periodic (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \&}]{node\+\_\+pt,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \&}]{periodic\+\_\+copies\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
 Helper function that is used to turn Boundary\+Nodes into periodic boundary nodes by setting the data values of the nodes in the vector periodic\+\_\+copies\+\_\+pt to be the same as those in node\+\_\+pt. 
 
-//////////////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////// Helper function that is used to turn Boundary\+Nodes into periodic boundary nodes by setting the data values of the nodes in the vector periodic\+\_\+copies\+\_\+pt to be the same as those in copied\+\_\+node\+\_\+pt. This function should be used when making doubly periodic sets of nodes. 
+Helper function that is used to turn Boundary\+Nodes into periodic boundary nodes by setting the data values of the nodes in the vector periodic\+\_\+copies\+\_\+pt to be the same as those in copied\+\_\+node\+\_\+pt. This function should be used when making doubly periodic sets of nodes. 
 
 Definition at line \mbox{\hyperlink{nodes_8cc_source_l02896}{2896}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
@@ -478,7 +476,7 @@ Set the vector of the k-\/th generalised boundary coordinates on mesh boundary b
 
 Given the mesh boundary b, set the k-\/th generalised boundary coordinates of the node from the vector boundary\+\_\+zeta. 
 
-Definition at line \mbox{\hyperlink{nodes_8cc_source_l03236}{3236}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
+Definition at line \mbox{\hyperlink{nodes_8cc_source_l03238}{3238}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
@@ -525,7 +523,7 @@ Definition at line \mbox{\hyperlink{nodes_8h_source_l02008}{2008}} of file \mbox
 
 
 
-Referenced by \mbox{\hyperlink{nodes_8cc_source_l03028}{add\+\_\+to\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8h_source_l02177}{get\+\_\+boundaries\+\_\+pt()}}, \mbox{\hyperlink{nodes_8cc_source_l03165}{get\+\_\+coordinates\+\_\+on\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8h_source_l02189}{is\+\_\+on\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8cc_source_l03099}{is\+\_\+on\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8cc_source_l03119}{ncoordinates\+\_\+on\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8cc_source_l03062}{remove\+\_\+from\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8cc_source_l03236}{set\+\_\+coordinates\+\_\+on\+\_\+boundary()}}, and \mbox{\hyperlink{nodes_8cc_source_l02993}{\texorpdfstring{$\sim$}{\string~}\+Boundary\+Node\+Base()}}.
+Referenced by \mbox{\hyperlink{nodes_8cc_source_l03028}{add\+\_\+to\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8h_source_l02177}{get\+\_\+boundaries\+\_\+pt()}}, \mbox{\hyperlink{nodes_8cc_source_l03166}{get\+\_\+coordinates\+\_\+on\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8h_source_l02189}{is\+\_\+on\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8cc_source_l03099}{is\+\_\+on\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8cc_source_l03119}{ncoordinates\+\_\+on\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8cc_source_l03062}{remove\+\_\+from\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8cc_source_l03238}{set\+\_\+coordinates\+\_\+on\+\_\+boundary()}}, and \mbox{\hyperlink{nodes_8cc_source_l02993}{\texorpdfstring{$\sim$}{\string~}\+Boundary\+Node\+Base()}}.
 
 \Hypertarget{classoomph_1_1BoundaryNodeBase_a732b1ffccbcd7b79097a1779a94e9497}\label{classoomph_1_1BoundaryNodeBase_a732b1ffccbcd7b79097a1779a94e9497} 
 \index{oomph::BoundaryNodeBase@{oomph::BoundaryNodeBase}!Boundary\_coordinates\_pt@{Boundary\_coordinates\_pt}}
@@ -543,7 +541,7 @@ Definition at line \mbox{\hyperlink{nodes_8h_source_l02004}{2004}} of file \mbox
 
 
 
-Referenced by \mbox{\hyperlink{nodes_8h_source_l02170}{boundary\+\_\+coordinates\+\_\+have\+\_\+been\+\_\+set\+\_\+up()}}, \mbox{\hyperlink{nodes_8cc_source_l03165}{get\+\_\+coordinates\+\_\+on\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8cc_source_l03119}{ncoordinates\+\_\+on\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8cc_source_l03062}{remove\+\_\+from\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8cc_source_l03236}{set\+\_\+coordinates\+\_\+on\+\_\+boundary()}}, and \mbox{\hyperlink{nodes_8cc_source_l02993}{\texorpdfstring{$\sim$}{\string~}\+Boundary\+Node\+Base()}}.
+Referenced by \mbox{\hyperlink{nodes_8h_source_l02170}{boundary\+\_\+coordinates\+\_\+have\+\_\+been\+\_\+set\+\_\+up()}}, \mbox{\hyperlink{nodes_8cc_source_l03166}{get\+\_\+coordinates\+\_\+on\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8cc_source_l03119}{ncoordinates\+\_\+on\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8cc_source_l03062}{remove\+\_\+from\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8cc_source_l03238}{set\+\_\+coordinates\+\_\+on\+\_\+boundary()}}, and \mbox{\hyperlink{nodes_8cc_source_l02993}{\texorpdfstring{$\sim$}{\string~}\+Boundary\+Node\+Base()}}.
 
 \Hypertarget{classoomph_1_1BoundaryNodeBase_a4afcc250ee4d601a60f06d0d39ebaca0}\label{classoomph_1_1BoundaryNodeBase_a4afcc250ee4d601a60f06d0d39ebaca0} 
 \index{oomph::BoundaryNodeBase@{oomph::BoundaryNodeBase}!Copied\_node\_pt@{Copied\_node\_pt}}

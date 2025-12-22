@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{two__d__poisson__flux__bc_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{two__d__poisson__flux__bc_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{two__d__poisson__flux__bc_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{two__d__poisson__flux__bc_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{two__d__poisson__flux__bc_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{two__d__poisson__flux__bc_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{two__d__poisson__flux__bc_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{two__d__poisson__flux__bc_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -309,7 +309,7 @@
 \DoxyCodeLine{\Hypertarget{two__d__poisson__flux__bc_8cc_source_l00305}00305\ }
 \DoxyCodeLine{\Hypertarget{two__d__poisson__flux__bc_8cc_source_l00306}00306\ \ \textcolor{comment}{//\ Output\ solution\ }}
 \DoxyCodeLine{\Hypertarget{two__d__poisson__flux__bc_8cc_source_l00307}00307\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{two__d__poisson__flux__bc_8cc_source_l00308}00308\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{two__d__poisson__flux__bc_8cc_source_l00308}00308\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{two__d__poisson__flux__bc_8cc_source_l00309}00309\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{two__d__poisson__flux__bc_8cc_source_l00310}00310\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{two__d__poisson__flux__bc_8cc_source_l00311}00311\ \ mesh\_pt()-\/>output(some\_file,npts);}
@@ -317,7 +317,7 @@
 \DoxyCodeLine{\Hypertarget{two__d__poisson__flux__bc_8cc_source_l00313}00313\ }
 \DoxyCodeLine{\Hypertarget{two__d__poisson__flux__bc_8cc_source_l00314}00314\ \ \textcolor{comment}{//\ Output\ exact\ solution\ }}
 \DoxyCodeLine{\Hypertarget{two__d__poisson__flux__bc_8cc_source_l00315}00315\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{two__d__poisson__flux__bc_8cc_source_l00316}00316\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{two__d__poisson__flux__bc_8cc_source_l00316}00316\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{two__d__poisson__flux__bc_8cc_source_l00317}00317\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{two__d__poisson__flux__bc_8cc_source_l00318}00318\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{two__d__poisson__flux__bc_8cc_source_l00319}00319\ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned}\ e=0;e<Npoisson\_elements;e++)}

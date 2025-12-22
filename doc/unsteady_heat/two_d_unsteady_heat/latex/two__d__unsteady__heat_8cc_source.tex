@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -45,9 +45,9 @@
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00041}00041\ \textcolor{keyword}{using\ namespace\ }MathematicalConstants;}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00042}00042\ }
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00043}00043\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00044}00044\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////\ }}
-\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00045}00045\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00046}00046\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////\ }}
+\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00044}00044\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////\ }}
+\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00045}00045\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00046}00046\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////\ }}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00047}00047\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00048}00048\ \textcolor{comment}{//======start\_of\_ExactSolnForUnsteadyHeat=====================}\textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00049}00049\ \textcolor{comment}{///\ Namespace\ for\ unforced\ exact\ solution\ for\ UnsteadyHeat\ equation\ }}
@@ -84,9 +84,9 @@
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00080}00080\ }
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00081}00081\ \}\ \textcolor{comment}{//\ end\ of\ ExactSolnForUnsteadyHeat}}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00082}00082\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00083}00083\ \textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00084}00084\ \textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00085}00085\ \textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00083}00083\ \textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00084}00084\ \textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00085}00085\ \textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00086}00086\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00087}00087\ \textcolor{comment}{//=====start\_of\_problem\_class=========================================}\textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00088}00088\ \textcolor{comment}{///\ UnsteadyHeat\ problem\ }}
@@ -346,7 +346,7 @@
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00342}00342\ }
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00343}00343\ \ \textcolor{comment}{//\ Output\ solution\ }}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00344}00344\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00345}00345\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00345}00345\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00346}00346\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00347}00347\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00348}00348\ \ mesh\_pt()-\/>output(some\_file,npts);}
@@ -366,7 +366,7 @@
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00362}00362\ }
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00363}00363\ \ \textcolor{comment}{//\ Output\ exact\ solution\ }}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00364}00364\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00365}00365\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00365}00365\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00366}00366\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00367}00367\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00368}00368\ \ mesh\_pt()-\/>output\_fct(some\_file,npts,time\_pt()-\/>time(),}
@@ -376,7 +376,7 @@
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00372}00372\ \ \textcolor{comment}{//\ Doc\ error}}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00373}00373\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00374}00374\ \ \textcolor{keywordtype}{double}\ error,norm;}
-\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00375}00375\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/error\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00375}00375\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/error\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00376}00376\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00377}00377\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00378}00378\ \ mesh\_pt()-\/>compute\_error(some\_file,}
@@ -406,9 +406,9 @@
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00402}00402\ }
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00403}00403\ }
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00404}00404\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00405}00405\ \textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00406}00406\ \textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00407}00407\ \textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00405}00405\ \textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00406}00406\ \textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00407}00407\ \textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00408}00408\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00409}00409\ }
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00410}00410\ }
@@ -434,7 +434,7 @@
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00430}00430\ \ \textcolor{comment}{//\ Open\ a\ trace\ file}}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00431}00431\ \ ofstream\ trace\_file;}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00432}00432\ \ \textcolor{keywordtype}{char}\ filename[100];\ \ \ }
-\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00433}00433\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00433}00433\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00434}00434\ \ trace\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00435}00435\ \ trace\_file\ <<\ \textcolor{stringliteral}{"{}VARIABLES=\(\backslash\)"{}time\(\backslash\)"{},\(\backslash\)"{}u<SUB>FE</SUB>\(\backslash\)"{},"{}}}
 \DoxyCodeLine{\Hypertarget{two__d__unsteady__heat_8cc_source_l00436}00436\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}u<SUB>exact</SUB>\(\backslash\)"{},\(\backslash\)"{}norm\ of\ error\(\backslash\)"{},\(\backslash\)"{}norm\ of\ solution\(\backslash\)"{}"{}}}

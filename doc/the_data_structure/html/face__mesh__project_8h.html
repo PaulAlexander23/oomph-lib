@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -136,16 +130,16 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1GenericLagrangeInterpolatedProjectableElement.html">oomph::GenericLagrangeInterpolatedProjectableElement&lt; ELEMENT &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">/////////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////////  <a href="classoomph_1_1GenericLagrangeInterpolatedProjectableElement.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class that makes the finite element specified as template argument projectable &ndash; on the assumption that all fields are interpolated by isoparametric Lagrange interpolation between the nodes.  <a href="classoomph_1_1GenericLagrangeInterpolatedProjectableElement.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BackupMeshForProjection.html">oomph::BackupMeshForProjection&lt; GEOMETRIC_ELEMENT &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">//////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////  <a href="classoomph_1_1BackupMeshForProjection.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class that makes backup (via a deep copy) of a mesh, keeping alive enough information to allow the solution that is currently stored on the mesh to be projected onto another mesh sometime in the future (when the original mesh may already have been deleted). This is mainly useful for the projection of additional nodal values (such as Lagrange multipliers) created by FaceElements. ASSUMPTION: All fields in the element are represented by isoparametric Lagrange interpolation between the nodal values. Any fields that do not fall into this category will not be copied across correctly and if you're unlucky the code may die...).  <a href="classoomph_1_1BackupMeshForProjection.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespaceoomph" id="r_namespaceoomph"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceoomph.html">oomph</a></td></tr>
-<tr class="memdesc:namespaceoomph"><td class="mdescLeft">&#160;</td><td class="mdescRight">//////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////// <br /></td></tr>
+<tr class="memdesc:namespaceoomph"><td class="mdescLeft">&#160;</td><td class="mdescRight">DRAIG: Change all instances of (SPATIAL_DIM) to (DIM-1). <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
@@ -176,7 +170,7 @@ Namespaces</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:03:12
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:36:34
         </div>
       </div>
     </footer>

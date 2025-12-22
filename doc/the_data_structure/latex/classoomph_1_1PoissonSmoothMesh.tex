@@ -2,7 +2,8 @@
 \hypertarget{classoomph_1_1PoissonSmoothMesh}{}\label{classoomph_1_1PoissonSmoothMesh}\index{oomph::PoissonSmoothMesh$<$ POISSON\_ELEMENT $>$@{oomph::PoissonSmoothMesh$<$ POISSON\_ELEMENT $>$}}
 
 
-///////////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////  
+Functor to smooth a \doxylink{classoomph_1_1SolidMesh}{Solid\+Mesh} by adjusting the internal nodal positions by solving a Poisson problem for the nodal displacements in the interior. The displacements of the specified pinned nodes (usually located on boundaries) remain fixed (their displacements are computed from the difference between their Lagrangian and Eulerian coordinates). The assumptions is that the Lagrangian coordinates in the \doxylink{classoomph_1_1SolidMesh}{Solid\+Mesh} still reflect the original nodal positions before the boundary nodes were moved. ~\newline
+The template parameter specifies the Poisson element that must have the same shape (geometric element type) as the elements contained in the mesh that\textquotesingle{}s to be smoothed. So, e.\+g. for the ten-\/noded three-\/dimensional tetrahedral TTaylor\+Hood\+Element$<$3$>$, it would be a TPoisson\+Element$<$3,3$>$, etc.  
 
 
 
@@ -727,8 +728,6 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{class}} POISSON\+\_\+\+ELEMENT$>$\newline
 class oomph\+::\+Poisson\+Smooth\+Mesh$<$ POISSON\+\_\+\+ELEMENT $>$}
-///////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////// 
-
 Functor to smooth a \doxylink{classoomph_1_1SolidMesh}{Solid\+Mesh} by adjusting the internal nodal positions by solving a Poisson problem for the nodal displacements in the interior. The displacements of the specified pinned nodes (usually located on boundaries) remain fixed (their displacements are computed from the difference between their Lagrangian and Eulerian coordinates). The assumptions is that the Lagrangian coordinates in the \doxylink{classoomph_1_1SolidMesh}{Solid\+Mesh} still reflect the original nodal positions before the boundary nodes were moved. ~\newline
 The template parameter specifies the Poisson element that must have the same shape (geometric element type) as the elements contained in the mesh that\textquotesingle{}s to be smoothed. So, e.\+g. for the ten-\/noded three-\/dimensional tetrahedral TTaylor\+Hood\+Element$<$3$>$, it would be a TPoisson\+Element$<$3,3$>$, etc. 
 
@@ -754,7 +753,7 @@ Definition at line \mbox{\hyperlink{mesh__smooth_8h_source_l00664}{664}} of file
 
 
 
-References \mbox{\hyperlink{mesh_8h_source_l00617}{oomph\+::\+Mesh\+::add\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00611}{oomph\+::\+Mesh\+::add\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{problem_8cc_source_l02076}{oomph\+::\+Problem\+::assign\+\_\+eqn\+\_\+numbers()}}, \mbox{\hyperlink{elements_8h_source_l02513}{oomph\+::\+Finite\+Element\+::construct\+\_\+node()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00473}{oomph\+::\+Mesh\+::finite\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{problem_8h_source_l01300}{oomph\+::\+Problem\+::mesh\+\_\+pt()}}, \mbox{\hyperlink{geom__objects_8h_source_l00177}{oomph\+::\+Geom\+Object\+::ndim()}}, \mbox{\hyperlink{nodes_8h_source_l01054}{oomph\+::\+Node\+::ndim()}}, \mbox{\hyperlink{problem_8cc_source_l08803}{oomph\+::\+Problem\+::newton\+\_\+solve()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, and \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}.
+References \mbox{\hyperlink{mesh_8h_source_l00625}{oomph\+::\+Mesh\+::add\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00619}{oomph\+::\+Mesh\+::add\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{problem_8cc_source_l02085}{oomph\+::\+Problem\+::assign\+\_\+eqn\+\_\+numbers()}}, \mbox{\hyperlink{elements_8h_source_l02513}{oomph\+::\+Finite\+Element\+::construct\+\_\+node()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00477}{oomph\+::\+Mesh\+::finite\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{problem_8h_source_l01300}{oomph\+::\+Problem\+::mesh\+\_\+pt()}}, \mbox{\hyperlink{geom__objects_8h_source_l00177}{oomph\+::\+Geom\+Object\+::ndim()}}, \mbox{\hyperlink{nodes_8h_source_l01054}{oomph\+::\+Node\+::ndim()}}, \mbox{\hyperlink{problem_8cc_source_l08816}{oomph\+::\+Problem\+::newton\+\_\+solve()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, and \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}.
 
 
 

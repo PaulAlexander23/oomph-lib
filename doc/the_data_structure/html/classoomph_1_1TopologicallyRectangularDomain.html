@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -335,7 +329,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Topologically Rectangular <a class="el" href="classoomph_1_1Domain.html" title="Base class for Domains with curvilinear and/or time-dependent boundaries. Domain boundaries are typic...">Domain</a> - a domain dexcribing a topologically rectangular problem - primarily contains functions to access the position of the global boundary relative to the macro element boundary, as well as first and second derivates of the global boundary wrt the macro element boundary NOTE : suitable for HermiteElementQuadMesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00050">50</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00047">47</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a8b2e24f5500d86c93aef509c5410e7cc" name="a8b2e24f5500d86c93aef509c5410e7cc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8b2e24f5500d86c93aef509c5410e7cc">&#9670;&#160;</a></span>BoundaryFctPt</h2>
@@ -351,7 +345,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>boundary function pointer - for a given boundary takes the macro element coordinate position on that boundary and for that position returns the global coordinates (x) coordinates, or derivatives - dx_i/dm_t or second derivatives d2x_i/dm_t^2 </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00057">57</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00054">54</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
 </div>
 </div>
@@ -361,6 +355,9 @@ Additional Inherited Members</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">oomph::TopologicallyRectangularDomain::TopologicallyRectangularDomain </td>
@@ -392,13 +389,18 @@ Additional Inherited Members</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Constructor - domain boundaries are described with four boundary function pointers describing the topology of the north, east, south, and west boundaries. </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00036">36</a> of file <a class="el" href="topologically__rectangular__domain_8cc_source.html">topologically_rectangular_domain.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00275">275</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00196">d2East_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00191">d2North_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00201">d2South_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00206">d2West_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00177">dEast_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00173">dNorth_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00181">dSouth_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00185">dWest_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00160">East_boundary_fn_pt</a>, <a class="el" href="domain_8h_source.html#l00301">oomph::Domain::Macro_element_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00156">North_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00164">South_boundary_fn_pt</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00168">West_boundary_fn_pt</a>.</p>
+<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00188">d2East_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00183">d2North_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00193">d2South_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00198">d2West_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00169">dEast_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00165">dNorth_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00173">dSouth_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00177">dWest_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00152">East_boundary_fn_pt</a>, <a class="el" href="domain_8h_source.html#l00301">oomph::Domain::Macro_element_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00148">North_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00156">South_boundary_fn_pt</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00160">West_boundary_fn_pt</a>.</p>
 
 </div>
 </div>
@@ -407,6 +409,9 @@ Additional Inherited Members</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">oomph::TopologicallyRectangularDomain::TopologicallyRectangularDomain </td>
@@ -426,13 +431,18 @@ Additional Inherited Members</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Constructor - takes length of domain in x and y direction as arguements. Assumes domain is rectangular, and the south west (lower left) corner is at 0,0. </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00152">152</a> of file <a class="el" href="topologically__rectangular__domain_8cc_source.html">topologically_rectangular_domain.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00391">391</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00196">d2East_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00191">d2North_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00201">d2South_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00206">d2West_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00177">dEast_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00173">dNorth_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00181">dSouth_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00185">dWest_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00160">East_boundary_fn_pt</a>, <a class="el" href="domain_8h_source.html#l00301">oomph::Domain::Macro_element_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00156">North_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00164">South_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00168">West_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00215">x_north_east</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00211">x_south_west</a>.</p>
+<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00188">d2East_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00183">d2North_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00193">d2South_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00198">d2West_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00169">dEast_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00165">dNorth_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00173">dSouth_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00177">dWest_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00152">East_boundary_fn_pt</a>, <a class="el" href="domain_8h_source.html#l00301">oomph::Domain::Macro_element_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00148">North_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00156">South_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00160">West_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00207">x_north_east</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00203">x_south_west</a>.</p>
 
 </div>
 </div>
@@ -441,6 +451,9 @@ Additional Inherited Members</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">oomph::TopologicallyRectangularDomain::TopologicallyRectangularDomain </td>
@@ -472,13 +485,18 @@ Additional Inherited Members</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Constructor - takes the minimum and maximum coordinates of the of an assumed rectanguler domain in the x and y direction. </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00196">196</a> of file <a class="el" href="topologically__rectangular__domain_8cc_source.html">topologically_rectangular_domain.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00435">435</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00196">d2East_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00191">d2North_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00201">d2South_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00206">d2West_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00177">dEast_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00173">dNorth_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00181">dSouth_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00185">dWest_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00160">East_boundary_fn_pt</a>, <a class="el" href="domain_8h_source.html#l00301">oomph::Domain::Macro_element_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00156">North_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00164">South_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00168">West_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00215">x_north_east</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00211">x_south_west</a>.</p>
+<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00188">d2East_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00183">d2North_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00193">d2South_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00198">d2West_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00169">dEast_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00165">dNorth_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00173">dSouth_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00177">dWest_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00152">East_boundary_fn_pt</a>, <a class="el" href="domain_8h_source.html#l00301">oomph::Domain::Macro_element_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00148">North_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00156">South_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00160">West_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00207">x_north_east</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00203">x_south_west</a>.</p>
 
 </div>
 </div>
@@ -535,7 +553,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Destructor - empty; clean up done in base class. </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00091">91</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00087">87</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
 </div>
 </div>
@@ -587,7 +605,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -596,9 +614,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classoomph_1_1Domain.html#afeeb40f9179abe710f14effbe4db42a1">oomph::Domain</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00364">364</a> of file <a class="el" href="topologically__rectangular__domain_8cc_source.html">topologically_rectangular_domain.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00601">601</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">References <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00675">d2r_E()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00622">d2r_N()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00728">d2r_S()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00781">d2r_W()</a>, and <a class="el" href="cfortran_8h_source.html#l00568">s</a>.</p>
+<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00911">d2r_E()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00858">d2r_N()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00964">d2r_S()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l01017">d2r_W()</a>, and <a class="el" href="cfortran_8h_source.html#l00568">s</a>.</p>
 
 </div>
 </div>
@@ -631,18 +649,18 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>takes the macro element coordinate position along the east boundary and returns the second derivates of the global coordinates with respect to the boundary </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00675">675</a> of file <a class="el" href="topologically__rectangular__domain_8cc_source.html">topologically_rectangular_domain.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00911">911</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00196">d2East_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00177">dEast_boundary_fn_pt</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00160">East_boundary_fn_pt</a>, and <a class="el" href="cfortran_8h_source.html#l00568">s</a>.</p>
+<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00188">d2East_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00169">dEast_boundary_fn_pt</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00152">East_boundary_fn_pt</a>, and <a class="el" href="cfortran_8h_source.html#l00568">s</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00364">d2macro_element_boundary()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8h_source.html#l00601">d2macro_element_boundary()</a>.</p>
 
 </div>
 </div>
@@ -675,18 +693,18 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>takes the macro element coordinate position along the north boundary and returns the second derivates of the global coordinates with respect to the boundary </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00622">622</a> of file <a class="el" href="topologically__rectangular__domain_8cc_source.html">topologically_rectangular_domain.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00858">858</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00191">d2North_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00173">dNorth_boundary_fn_pt</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00156">North_boundary_fn_pt</a>, and <a class="el" href="cfortran_8h_source.html#l00568">s</a>.</p>
+<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00183">d2North_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00165">dNorth_boundary_fn_pt</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00148">North_boundary_fn_pt</a>, and <a class="el" href="cfortran_8h_source.html#l00568">s</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00364">d2macro_element_boundary()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8h_source.html#l00601">d2macro_element_boundary()</a>.</p>
 
 </div>
 </div>
@@ -719,18 +737,18 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>takes the macro element coordinate position along the south boundary and returns the second derivates of the global coordinates with respect to the boundary </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00728">728</a> of file <a class="el" href="topologically__rectangular__domain_8cc_source.html">topologically_rectangular_domain.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00964">964</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00201">d2South_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00181">dSouth_boundary_fn_pt</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="cfortran_8h_source.html#l00568">s</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00164">South_boundary_fn_pt</a>.</p>
+<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00193">d2South_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00173">dSouth_boundary_fn_pt</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="cfortran_8h_source.html#l00568">s</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00156">South_boundary_fn_pt</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00364">d2macro_element_boundary()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8h_source.html#l00601">d2macro_element_boundary()</a>.</p>
 
 </div>
 </div>
@@ -763,18 +781,18 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>takes the macro element coordinate position along the west boundary and returns the second derivates of the global coordinates with respect to the boundary </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00781">781</a> of file <a class="el" href="topologically__rectangular__domain_8cc_source.html">topologically_rectangular_domain.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l01017">1017</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00206">d2West_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00185">dWest_boundary_fn_pt</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="cfortran_8h_source.html#l00568">s</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00168">West_boundary_fn_pt</a>.</p>
+<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00198">d2West_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00177">dWest_boundary_fn_pt</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="cfortran_8h_source.html#l00568">s</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00160">West_boundary_fn_pt</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00364">d2macro_element_boundary()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8h_source.html#l00601">d2macro_element_boundary()</a>.</p>
 
 </div>
 </div>
@@ -825,7 +843,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -834,9 +852,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classoomph_1_1Domain.html#ae573c54363a8e9d33951e59208a9bc39">oomph::Domain</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00328">328</a> of file <a class="el" href="topologically__rectangular__domain_8cc_source.html">topologically_rectangular_domain.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00565">565</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">References <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00514">dr_E()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00478">dr_N()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00550">dr_S()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00586">dr_W()</a>, and <a class="el" href="cfortran_8h_source.html#l00568">s</a>.</p>
+<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00750">dr_E()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00714">dr_N()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00786">dr_S()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00822">dr_W()</a>, and <a class="el" href="cfortran_8h_source.html#l00568">s</a>.</p>
 
 </div>
 </div>
@@ -869,18 +887,18 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>takes the macro element coordinate position along the E boundary and returns the derivates of the global coordinates with respect to the boundary </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00514">514</a> of file <a class="el" href="topologically__rectangular__domain_8cc_source.html">topologically_rectangular_domain.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00750">750</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00177">dEast_boundary_fn_pt</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00160">East_boundary_fn_pt</a>, <a class="el" href="cfortran_8h_source.html#l00568">s</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00215">x_north_east</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00211">x_south_west</a>.</p>
+<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00169">dEast_boundary_fn_pt</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00152">East_boundary_fn_pt</a>, <a class="el" href="cfortran_8h_source.html#l00568">s</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00207">x_north_east</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00203">x_south_west</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00328">dmacro_element_boundary()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8h_source.html#l00565">dmacro_element_boundary()</a>.</p>
 
 </div>
 </div>
@@ -913,18 +931,18 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>takes the macro element coordinate position along the north boundary and returns the derivates of the global coordinates with respect to the boundary </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00478">478</a> of file <a class="el" href="topologically__rectangular__domain_8cc_source.html">topologically_rectangular_domain.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00714">714</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00173">dNorth_boundary_fn_pt</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00156">North_boundary_fn_pt</a>, <a class="el" href="cfortran_8h_source.html#l00568">s</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00215">x_north_east</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00211">x_south_west</a>.</p>
+<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00165">dNorth_boundary_fn_pt</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00148">North_boundary_fn_pt</a>, <a class="el" href="cfortran_8h_source.html#l00568">s</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00207">x_north_east</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00203">x_south_west</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00328">dmacro_element_boundary()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8h_source.html#l00565">dmacro_element_boundary()</a>.</p>
 
 </div>
 </div>
@@ -957,18 +975,18 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>takes the macro element coordinate position along the south boundary and returns the derivates of the global coordinates with respect to the boundary </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00550">550</a> of file <a class="el" href="topologically__rectangular__domain_8cc_source.html">topologically_rectangular_domain.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00786">786</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00181">dSouth_boundary_fn_pt</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="cfortran_8h_source.html#l00568">s</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00164">South_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00215">x_north_east</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00211">x_south_west</a>.</p>
+<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00173">dSouth_boundary_fn_pt</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="cfortran_8h_source.html#l00568">s</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00156">South_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00207">x_north_east</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00203">x_south_west</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00328">dmacro_element_boundary()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8h_source.html#l00565">dmacro_element_boundary()</a>.</p>
 
 </div>
 </div>
@@ -1001,18 +1019,18 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>takes the macro element coordinate position along the W boundary and returns the derivates of the global coordinates with respect to the boundary </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00586">586</a> of file <a class="el" href="topologically__rectangular__domain_8cc_source.html">topologically_rectangular_domain.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00822">822</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00185">dWest_boundary_fn_pt</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="cfortran_8h_source.html#l00568">s</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00168">West_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00215">x_north_east</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00211">x_south_west</a>.</p>
+<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00177">dWest_boundary_fn_pt</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="cfortran_8h_source.html#l00568">s</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00160">West_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00207">x_north_east</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00203">x_south_west</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00328">dmacro_element_boundary()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8h_source.html#l00565">dmacro_element_boundary()</a>.</p>
 
 </div>
 </div>
@@ -1063,7 +1081,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -1072,9 +1090,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classoomph_1_1Domain.html#a95f3e00d28ea37e6c4d3027bfac91096">oomph::Domain</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00292">292</a> of file <a class="el" href="topologically__rectangular__domain_8cc_source.html">topologically_rectangular_domain.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00529">529</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">References <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00419">r_E()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00400">r_N()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00438">r_S()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00458">r_W()</a>, and <a class="el" href="cfortran_8h_source.html#l00568">s</a>.</p>
+<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00655">r_E()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00636">r_N()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00674">r_S()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00694">r_W()</a>, and <a class="el" href="cfortran_8h_source.html#l00568">s</a>.</p>
 
 </div>
 </div>
@@ -1135,18 +1153,18 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>takes the macro element coordinate position along the east boundary and returns the global coordinate position along that boundary </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00419">419</a> of file <a class="el" href="topologically__rectangular__domain_8cc_source.html">topologically_rectangular_domain.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00655">655</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00160">East_boundary_fn_pt</a>, <a class="el" href="cfortran_8h_source.html#l00568">s</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00215">x_north_east</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00211">x_south_west</a>.</p>
+<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00152">East_boundary_fn_pt</a>, <a class="el" href="cfortran_8h_source.html#l00568">s</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00207">x_north_east</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00203">x_south_west</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00292">macro_element_boundary()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8h_source.html#l00529">macro_element_boundary()</a>.</p>
 
 </div>
 </div>
@@ -1179,18 +1197,18 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>takes the macro element coordinate position along the north boundary and returns the global coordinate position along that boundary </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00400">400</a> of file <a class="el" href="topologically__rectangular__domain_8cc_source.html">topologically_rectangular_domain.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00636">636</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00156">North_boundary_fn_pt</a>, <a class="el" href="cfortran_8h_source.html#l00568">s</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00215">x_north_east</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00211">x_south_west</a>.</p>
+<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00148">North_boundary_fn_pt</a>, <a class="el" href="cfortran_8h_source.html#l00568">s</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00207">x_north_east</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00203">x_south_west</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00292">macro_element_boundary()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8h_source.html#l00529">macro_element_boundary()</a>.</p>
 
 </div>
 </div>
@@ -1223,18 +1241,18 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>takes the macro element coordinate position along the south boundary and returns the global coordinate position along that boundary </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00438">438</a> of file <a class="el" href="topologically__rectangular__domain_8cc_source.html">topologically_rectangular_domain.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00674">674</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00568">s</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00164">South_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00215">x_north_east</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00211">x_south_west</a>.</p>
+<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00568">s</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00156">South_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00207">x_north_east</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00203">x_south_west</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00292">macro_element_boundary()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8h_source.html#l00529">macro_element_boundary()</a>.</p>
 
 </div>
 </div>
@@ -1267,18 +1285,18 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>takes the macro element coordinate position along the west boundary and returns the global coordinate position along that boundary access down boundary function pointer </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00458">458</a> of file <a class="el" href="topologically__rectangular__domain_8cc_source.html">topologically_rectangular_domain.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00694">694</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00568">s</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00168">West_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00215">x_north_east</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00211">x_south_west</a>.</p>
+<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00568">s</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00160">West_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00207">x_north_east</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00203">x_south_west</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00292">macro_element_boundary()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8h_source.html#l00529">macro_element_boundary()</a>.</p>
 
 </div>
 </div>
@@ -1287,6 +1305,9 @@ Additional Inherited Members</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a> oomph::TopologicallyRectangularDomain::set_boundary_derivative_functions </td>
@@ -1318,13 +1339,18 @@ Additional Inherited Members</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>allows the boundary derivate function pointers to be set. To compute the derivatives of the problem domain global coordinates (x_i) wrt the macro element coordinates (m_i), dx_i/dm_t is required along the domain boundaries (where dm_t is the macro element coordinate tangential to the domain boundary). The derivatives dx_i/dm_t can either be prescribed with function pointers, or if the function pointers are not provided then dx_i/dm_t is computed with finite differencing. Note - these functions are only required for domains contructed with boundary function pointers </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00248">248</a> of file <a class="el" href="topologically__rectangular__domain_8cc_source.html">topologically_rectangular_domain.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00487">487</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00177">dEast_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00173">dNorth_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00181">dSouth_boundary_fn_pt</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00185">dWest_boundary_fn_pt</a>.</p>
+<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00169">dEast_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00165">dNorth_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00173">dSouth_boundary_fn_pt</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00177">dWest_boundary_fn_pt</a>.</p>
 
 </div>
 </div>
@@ -1333,6 +1359,9 @@ Additional Inherited Members</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a> oomph::TopologicallyRectangularDomain::set_boundary_second_derivative_functions </td>
@@ -1364,13 +1393,18 @@ Additional Inherited Members</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>allows the boundary second derivate function pointers to be set. To compute the second derivatives of the problem domain global coordinates (x_i) wrt the macro element coordinates (m_i), d2x_i/dm_t^2 is required along the domain boundaries (where dm_t is the macro element coordinate tangential to the domain boundary). The derivatives d2x_i/dm_t^2 can either be prescribed with function pointers, or if the function pointers are not provided then dx_i/dm_t is computed with finite differencing. Note - these functions are only required for domains contructed with boundary function pointers </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00274">274</a> of file <a class="el" href="topologically__rectangular__domain_8cc_source.html">topologically_rectangular_domain.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00512">512</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00196">d2East_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00191">d2North_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00201">d2South_boundary_fn_pt</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00206">d2West_boundary_fn_pt</a>.</p>
+<p class="reference">References <a class="el" href="topologically__rectangular__domain_8h_source.html#l00188">d2East_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00183">d2North_boundary_fn_pt</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00193">d2South_boundary_fn_pt</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00198">d2West_boundary_fn_pt</a>.</p>
 
 </div>
 </div>
@@ -1397,9 +1431,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Function pointer to prescribe the second derivates of global coordinates wrt to the macro element coordinate tangential to the east boundary. </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00196">196</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00188">188</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00675">d2r_E()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00274">set_boundary_second_derivative_functions()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00036">TopologicallyRectangularDomain()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00152">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00196">TopologicallyRectangularDomain()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8h_source.html#l00911">d2r_E()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00513">set_boundary_second_derivative_functions()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00275">TopologicallyRectangularDomain()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00391">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00435">TopologicallyRectangularDomain()</a>.</p>
 
 </div>
 </div>
@@ -1425,9 +1459,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Function pointer to prescribe the second derivates of global coordinates wrt to the macro element coordinate tangential to the north boundary. </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00191">191</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00183">183</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00622">d2r_N()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00274">set_boundary_second_derivative_functions()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00036">TopologicallyRectangularDomain()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00152">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00196">TopologicallyRectangularDomain()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8h_source.html#l00858">d2r_N()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00513">set_boundary_second_derivative_functions()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00275">TopologicallyRectangularDomain()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00391">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00435">TopologicallyRectangularDomain()</a>.</p>
 
 </div>
 </div>
@@ -1453,9 +1487,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Function pointer to prescribe the second derivates of global coordinates wrt to the macro element coordinate tangential to the south boundary. </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00201">201</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00193">193</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00728">d2r_S()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00274">set_boundary_second_derivative_functions()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00036">TopologicallyRectangularDomain()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00152">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00196">TopologicallyRectangularDomain()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8h_source.html#l00964">d2r_S()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00513">set_boundary_second_derivative_functions()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00275">TopologicallyRectangularDomain()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00391">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00435">TopologicallyRectangularDomain()</a>.</p>
 
 </div>
 </div>
@@ -1481,9 +1515,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Function pointer to prescribe the second derivates of global coordinates wrt to the macro element coordinate tangential to the west boundary. </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00206">206</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00198">198</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00781">d2r_W()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00274">set_boundary_second_derivative_functions()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00036">TopologicallyRectangularDomain()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00152">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00196">TopologicallyRectangularDomain()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8h_source.html#l01017">d2r_W()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00513">set_boundary_second_derivative_functions()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00275">TopologicallyRectangularDomain()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00391">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00435">TopologicallyRectangularDomain()</a>.</p>
 
 </div>
 </div>
@@ -1509,9 +1543,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Function pointer to prescribe the derivates of global coordinates wrt to the macro element coordinate tangential to the east boundary. </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00177">177</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00169">169</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00675">d2r_E()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00514">dr_E()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00248">set_boundary_derivative_functions()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00036">TopologicallyRectangularDomain()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00152">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00196">TopologicallyRectangularDomain()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8h_source.html#l00911">d2r_E()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00750">dr_E()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00487">set_boundary_derivative_functions()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00275">TopologicallyRectangularDomain()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00391">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00435">TopologicallyRectangularDomain()</a>.</p>
 
 </div>
 </div>
@@ -1537,9 +1571,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Function pointer to prescribe the derivates of global coordinates wrt to the macro element coordinate tangential to the north boundary. </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00173">173</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00165">165</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00622">d2r_N()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00478">dr_N()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00248">set_boundary_derivative_functions()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00036">TopologicallyRectangularDomain()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00152">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00196">TopologicallyRectangularDomain()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8h_source.html#l00858">d2r_N()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00714">dr_N()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00487">set_boundary_derivative_functions()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00275">TopologicallyRectangularDomain()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00391">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00435">TopologicallyRectangularDomain()</a>.</p>
 
 </div>
 </div>
@@ -1565,9 +1599,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Function pointer to prescribe the derivates of global coordinates wrt to the macro element coordinate tangential to the south boundary. </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00181">181</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00173">173</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00728">d2r_S()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00550">dr_S()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00248">set_boundary_derivative_functions()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00036">TopologicallyRectangularDomain()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00152">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00196">TopologicallyRectangularDomain()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8h_source.html#l00964">d2r_S()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00786">dr_S()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00487">set_boundary_derivative_functions()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00275">TopologicallyRectangularDomain()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00391">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00435">TopologicallyRectangularDomain()</a>.</p>
 
 </div>
 </div>
@@ -1593,9 +1627,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Function pointer to prescribe the derivates of global coordinates wrt to the macro element coordinate tangential to the west boundary. </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00185">185</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00177">177</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00781">d2r_W()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00586">dr_W()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00248">set_boundary_derivative_functions()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00036">TopologicallyRectangularDomain()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00152">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00196">TopologicallyRectangularDomain()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8h_source.html#l01017">d2r_W()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00822">dr_W()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00487">set_boundary_derivative_functions()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00275">TopologicallyRectangularDomain()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00391">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00435">TopologicallyRectangularDomain()</a>.</p>
 
 </div>
 </div>
@@ -1621,9 +1655,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Function pointer to prescribe the east boundary of this topologically rectangular domain. </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00160">160</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00152">152</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00675">d2r_E()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00514">dr_E()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00419">r_E()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00036">TopologicallyRectangularDomain()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00152">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00196">TopologicallyRectangularDomain()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8h_source.html#l00911">d2r_E()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00750">dr_E()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00655">r_E()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00275">TopologicallyRectangularDomain()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00391">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00435">TopologicallyRectangularDomain()</a>.</p>
 
 </div>
 </div>
@@ -1649,9 +1683,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Function pointer to prescribe the north boundary of this topologically rectangular domain. </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00156">156</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00148">148</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00622">d2r_N()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00478">dr_N()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00400">r_N()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00036">TopologicallyRectangularDomain()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00152">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00196">TopologicallyRectangularDomain()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8h_source.html#l00858">d2r_N()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00714">dr_N()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00636">r_N()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00275">TopologicallyRectangularDomain()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00391">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00435">TopologicallyRectangularDomain()</a>.</p>
 
 </div>
 </div>
@@ -1677,9 +1711,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Function pointer to prescribe the north boundary of this topologically rectangular domain. </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00164">164</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00156">156</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00728">d2r_S()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00550">dr_S()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00438">r_S()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00036">TopologicallyRectangularDomain()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00152">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00196">TopologicallyRectangularDomain()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8h_source.html#l00964">d2r_S()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00786">dr_S()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00674">r_S()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00275">TopologicallyRectangularDomain()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00391">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00435">TopologicallyRectangularDomain()</a>.</p>
 
 </div>
 </div>
@@ -1705,9 +1739,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Function pointer to prescribe the west boundary of this topologically rectangular domain. </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00168">168</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00160">160</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00781">d2r_W()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00586">dr_W()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00458">r_W()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00036">TopologicallyRectangularDomain()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00152">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00196">TopologicallyRectangularDomain()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8h_source.html#l01017">d2r_W()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00822">dr_W()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00694">r_W()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00275">TopologicallyRectangularDomain()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00391">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00435">TopologicallyRectangularDomain()</a>.</p>
 
 </div>
 </div>
@@ -1733,9 +1767,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>coordinate position of north east corner of domain (only used if boundary functions are not used) </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00215">215</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00207">207</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00514">dr_E()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00478">dr_N()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00550">dr_S()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00586">dr_W()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00419">r_E()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00400">r_N()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00438">r_S()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00458">r_W()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00152">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00196">TopologicallyRectangularDomain()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8h_source.html#l00750">dr_E()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00714">dr_N()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00786">dr_S()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00822">dr_W()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00655">r_E()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00636">r_N()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00674">r_S()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00694">r_W()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00391">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00435">TopologicallyRectangularDomain()</a>.</p>
 
 </div>
 </div>
@@ -1761,15 +1795,14 @@ Additional Inherited Members</h2></td></tr>
 
 <p>coordinate position of south west corner of domain (only used if boundary functions are not used) </p>
 
-<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00211">211</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="topologically__rectangular__domain_8h_source.html#l00203">203</a> of file <a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00514">dr_E()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00478">dr_N()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00550">dr_S()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00586">dr_W()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00419">r_E()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00400">r_N()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00438">r_S()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00458">r_W()</a>, <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00152">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8cc_source.html#l00196">TopologicallyRectangularDomain()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="topologically__rectangular__domain_8h_source.html#l00750">dr_E()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00714">dr_N()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00786">dr_S()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00822">dr_W()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00655">r_E()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00636">r_N()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00674">r_S()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00694">r_W()</a>, <a class="el" href="topologically__rectangular__domain_8h_source.html#l00391">TopologicallyRectangularDomain()</a>, and <a class="el" href="topologically__rectangular__domain_8h_source.html#l00435">TopologicallyRectangularDomain()</a>.</p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="topologically__rectangular__domain_8h_source.html">topologically_rectangular_domain.h</a></li>
-<li><a class="el" href="topologically__rectangular__domain_8cc_source.html">topologically_rectangular_domain.cc</a></li>
 </ul>
 </div><!-- contents -->
 
@@ -1799,7 +1832,7 @@ Additional Inherited Members</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:05:53
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:43:29
         </div>
       </div>
     </footer>

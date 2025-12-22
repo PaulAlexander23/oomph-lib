@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -126,7 +120,7 @@
 <p>Two-layer spine mesh class derived from standard 2D mesh. The mesh contains two layers of spinified fluid elements (of type ELEMENT; e.g SpineElement&lt;QCrouzeixRaviartElement&lt;2&gt;).  
  <a href="classoomph_1_1TwoLayerSpineMesh.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;:</div>
 <div class="dyncontent">
@@ -307,7 +301,7 @@ class oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;</div><p>Two-layer spine mesh cla
 |                                     |</h2>
 <p>0 Update information for the nodes in response to changes in spine length is given, but additional equations must be specified in order to completely specify the problem. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00059">59</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00058">58</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a0c41a93e9ccaaa34956215e64611be2a" name="a0c41a93e9ccaaa34956215e64611be2a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0c41a93e9ccaaa34956215e64611be2a">&#9670;&#160;</a></span>TwoLayerSpineMesh() <span class="overload">[1/3]</span></h2>
@@ -371,9 +365,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 <p>Constuctor for spine 2D mesh: Pass number of elements in x-direction, number of elements in y-direction in bottom and top layer, respectively, axial length and height of top and bottom layers, and pointer to timestepper (defaults to Static timestepper).</p>
 <p>The mesh contains two layers of elements (of type ELEMENT; e.g SpineElement&lt;QCrouzeixRaviartElement&lt;2&gt;) and an interfacial layer of corresponding Spine interface elements of type INTERFACE_ELEMENT, e.g. SpineLineFluidInterfaceElement&lt;ELEMENT&gt; for 2D planar problems. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00049">49</a> of file <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html">two_layer_spine_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00051">51</a> of file <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html">two_layer_spine_mesh.template.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00267">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::build_two_layer_mesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00207">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::H1</a>, <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00210">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::H2</a>, <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00201">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Ny1</a>, and <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00204">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Ny2</a>.</p>
+<p class="reference">References <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00266">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::build_two_layer_mesh()</a>, <a class="el" href="two__layer__spine__mesh_8h_source.html#l00205">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::H1</a>, <a class="el" href="two__layer__spine__mesh_8h_source.html#l00208">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::H2</a>, <a class="el" href="two__layer__spine__mesh_8h_source.html#l00199">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Ny1</a>, and <a class="el" href="two__layer__spine__mesh_8h_source.html#l00202">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Ny2</a>.</p>
 
 </div>
 </div>
@@ -445,9 +439,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 <p>Constuctor for spine 2D mesh: Pass number of elements in x-direction, number of elements in y-direction in bottom and top layer, respectively, axial length and height of top and bottom layers, a boolean flag to make the mesh periodic in the x-direction, and pointer to timestepper (defaults to Static timestepper).</p>
 <p>The mesh contains two layers of elements (of type ELEMENT; e.g SpineElement&lt;QCrouzeixRaviartElement&lt;2&gt;) and an interfacial layer of corresponding Spine interface elements of type INTERFACE_ELEMENT, e.g. SpineLineFluidInterfaceElement&lt;ELEMENT&gt; for 2D planar problems. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00098">98</a> of file <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html">two_layer_spine_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00099">99</a> of file <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html">two_layer_spine_mesh.template.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00267">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::build_two_layer_mesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00207">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::H1</a>, <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00210">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::H2</a>, <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00201">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Ny1</a>, and <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00204">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Ny2</a>.</p>
+<p class="reference">References <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00266">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::build_two_layer_mesh()</a>, <a class="el" href="two__layer__spine__mesh_8h_source.html#l00205">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::H1</a>, <a class="el" href="two__layer__spine__mesh_8h_source.html#l00208">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::H2</a>, <a class="el" href="two__layer__spine__mesh_8h_source.html#l00199">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Ny1</a>, and <a class="el" href="two__layer__spine__mesh_8h_source.html#l00202">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Ny2</a>.</p>
 
 </div>
 </div>
@@ -527,7 +521,7 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00156">156</a> of file <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html">two_layer_spine_mesh.template.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="rectangular__quadmesh_8template_8cc_source.html#l00043">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::build_mesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00267">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::build_two_layer_mesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00207">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::H1</a>, <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00210">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::H2</a>, <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00201">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Ny1</a>, and <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00204">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Ny2</a>.</p>
+<p class="reference">References <a class="el" href="rectangular__quadmesh_8template_8cc_source.html#l00044">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::build_mesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00266">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::build_two_layer_mesh()</a>, <a class="el" href="two__layer__spine__mesh_8h_source.html#l00205">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::H1</a>, <a class="el" href="two__layer__spine__mesh_8h_source.html#l00208">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::H2</a>, <a class="el" href="two__layer__spine__mesh_8h_source.html#l00199">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Ny1</a>, and <a class="el" href="two__layer__spine__mesh_8h_source.html#l00202">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Ny2</a>.</p>
 
 </div>
 </div>
@@ -561,11 +555,11 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 <p>Helper function to actually build the two-layer spine mesh (called from various constructors) </p>
 <p>Helper function that actually builds the two-layer spine mesh based on the parameters set in the various constructors. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00267">267</a> of file <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html">two_layer_spine_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00266">266</a> of file <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html">two_layer_spine_mesh.template.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="rectangular__quadmesh_8template_8cc_source.html#l00043">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::build_mesh()</a>.</p>
+<p class="reference">References <a class="el" href="rectangular__quadmesh_8template_8cc_source.html#l00044">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::build_mesh()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00156">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00098">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00049">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00156">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00099">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00051">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>.</p>
 
 </div>
 </div>
@@ -597,9 +591,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Access functions for pointers to elements in bottom layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00141">141</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00140">140</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00220">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Interface_lower_boundary_element_pt</a>.</p>
+<p class="reference">References <a class="el" href="two__layer__spine__mesh_8h_source.html#l00218">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Interface_lower_boundary_element_pt</a>.</p>
 
 </div>
 </div>
@@ -631,7 +625,7 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Index of the face of the elements next to the interface in the lower region (always 2) </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00167">167</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00166">166</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -663,9 +657,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Access functions for pointers to elements in upper layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00135">135</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00134">134</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00224">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Interface_upper_boundary_element_pt</a>.</p>
+<p class="reference">References <a class="el" href="two__layer__spine__mesh_8h_source.html#l00222">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Interface_upper_boundary_element_pt</a>.</p>
 
 </div>
 </div>
@@ -697,7 +691,7 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Index of the face of the elements next to the interface in the upper region (always -2) </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00160">160</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00159">159</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -729,9 +723,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Access functions for pointers to elements in bottom layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00117">117</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00116">116</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00213">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Lower_layer_element_pt</a>.</p>
+<p class="reference">References <a class="el" href="two__layer__spine__mesh_8h_source.html#l00211">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Lower_layer_element_pt</a>.</p>
 
 </div>
 </div>
@@ -762,9 +756,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Number of elements in top layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00153">153</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00152">152</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00220">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Interface_lower_boundary_element_pt</a>.</p>
+<p class="reference">References <a class="el" href="two__layer__spine__mesh_8h_source.html#l00218">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Interface_lower_boundary_element_pt</a>.</p>
 
 </div>
 </div>
@@ -795,9 +789,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Number of elements in upper layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00147">147</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00146">146</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00224">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Interface_upper_boundary_element_pt</a>.</p>
+<p class="reference">References <a class="el" href="two__layer__spine__mesh_8h_source.html#l00222">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Interface_upper_boundary_element_pt</a>.</p>
 
 </div>
 </div>
@@ -828,9 +822,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Number of elements in top layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00129">129</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00128">128</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00213">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Lower_layer_element_pt</a>.</p>
+<p class="reference">References <a class="el" href="two__layer__spine__mesh_8h_source.html#l00211">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Lower_layer_element_pt</a>.</p>
 
 </div>
 </div>
@@ -861,9 +855,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Number of elements in upper layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00123">123</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00122">122</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00216">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Upper_layer_element_pt</a>.</p>
+<p class="reference">References <a class="el" href="two__layer__spine__mesh_8h_source.html#l00214">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Upper_layer_element_pt</a>.</p>
 
 </div>
 </div>
@@ -895,9 +889,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>General node update function implements pure virtual function defined in SpineMesh base class and performs specific update actions, depending on the node update fct id stored for each node. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00175">175</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00174">174</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00242">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::spine_node_update_lower()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00254">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::spine_node_update_upper()</a>.</p>
+<p class="reference">References <a class="el" href="two__layer__spine__mesh_8h_source.html#l00240">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::spine_node_update_lower()</a>, and <a class="el" href="two__layer__spine__mesh_8h_source.html#l00252">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::spine_node_update_upper()</a>.</p>
 
 </div>
 </div>
@@ -929,11 +923,11 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Update function for the lower part of the domain. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00242">242</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00240">240</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="rectangular__quadmesh_8template_8h_source.html#l00075">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::Ymin</a>.</p>
+<p class="reference">References <a class="el" href="rectangular__quadmesh_8h_source.html#l00075">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::Ymin</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00175">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::spine_node_update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8h_source.html#l00174">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::spine_node_update()</a>.</p>
 
 </div>
 </div>
@@ -965,11 +959,11 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Update function for the upper part of the domain. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00254">254</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00252">252</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="rectangular__quadmesh_8template_8h_source.html#l00077">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::Ymax</a>, and <a class="el" href="rectangular__quadmesh_8template_8h_source.html#l00075">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::Ymin</a>.</p>
+<p class="reference">References <a class="el" href="rectangular__quadmesh_8h_source.html#l00077">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::Ymax</a>, and <a class="el" href="rectangular__quadmesh_8h_source.html#l00075">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::Ymin</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00175">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::spine_node_update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8h_source.html#l00174">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::spine_node_update()</a>.</p>
 
 </div>
 </div>
@@ -1001,9 +995,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Access functions for pointers to elements in upper layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00111">111</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00110">110</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00216">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Upper_layer_element_pt</a>.</p>
+<p class="reference">References <a class="el" href="two__layer__spine__mesh_8h_source.html#l00214">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Upper_layer_element_pt</a>.</p>
 
 </div>
 </div>
@@ -1060,7 +1054,7 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Reimplemented from <a class="el" href="classoomph_1_1RectangularQuadMesh.html#ad4c2f349cf201cb3107f0a4e5447c16f">oomph::RectangularQuadMesh&lt; ELEMENT &gt;</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00211">211</a> of file <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html">two_layer_spine_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00210">210</a> of file <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html">two_layer_spine_mesh.template.cc</a>.</p>
 
 </div>
 </div>
@@ -1117,7 +1111,7 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Reimplemented from <a class="el" href="classoomph_1_1RectangularQuadMesh.html#ae78204de1f176cdf2e819673bd34e78a">oomph::RectangularQuadMesh&lt; ELEMENT &gt;</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00227">227</a> of file <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html">two_layer_spine_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00226">226</a> of file <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html">two_layer_spine_mesh.template.cc</a>.</p>
 
 </div>
 </div>
@@ -1146,9 +1140,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Height of the lower layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00207">207</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00205">205</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00156">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00098">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00049">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00156">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00099">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00051">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>.</p>
 
 </div>
 </div>
@@ -1176,9 +1170,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Height of the upper layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00210">210</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00208">208</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00156">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00098">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00049">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00156">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00099">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00051">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>.</p>
 
 </div>
 </div>
@@ -1206,9 +1200,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Vector of pointers to the elements adjacent to the interface on the lower layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00220">220</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00218">218</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00141">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::interface_lower_boundary_element_pt()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00153">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::ninterface_lower()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8h_source.html#l00140">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::interface_lower_boundary_element_pt()</a>, and <a class="el" href="two__layer__spine__mesh_8h_source.html#l00152">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::ninterface_lower()</a>.</p>
 
 </div>
 </div>
@@ -1236,9 +1230,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Vector of pointers to the element adjacent to the interface on the upper layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00224">224</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00222">222</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00135">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::interface_upper_boundary_element_pt()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00147">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::ninterface_upper()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8h_source.html#l00134">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::interface_upper_boundary_element_pt()</a>, and <a class="el" href="two__layer__spine__mesh_8h_source.html#l00146">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::ninterface_upper()</a>.</p>
 
 </div>
 </div>
@@ -1266,9 +1260,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Vector of pointers to element in the upper layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00213">213</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00211">211</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00117">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::lower_layer_element_pt()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00129">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::nlower()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8h_source.html#l00116">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::lower_layer_element_pt()</a>, and <a class="el" href="two__layer__spine__mesh_8h_source.html#l00128">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::nlower()</a>.</p>
 
 </div>
 </div>
@@ -1296,9 +1290,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Number of elements in lower layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00201">201</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00199">199</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00156">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00098">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00049">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00156">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00099">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00051">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>.</p>
 
 </div>
 </div>
@@ -1326,9 +1320,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Number of elements in upper layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00204">204</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00202">202</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00156">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00098">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00049">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00156">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00099">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00051">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>.</p>
 
 </div>
 </div>
@@ -1356,14 +1350,14 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Vector of pointers to element in the lower layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00216">216</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00214">214</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00123">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::nupper()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00111">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::upper_layer_element_pt()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8h_source.html#l00122">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::nupper()</a>, and <a class="el" href="two__layer__spine__mesh_8h_source.html#l00110">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::upper_layer_element_pt()</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a></li>
+<li><a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a></li>
 <li><a class="el" href="two__layer__spine__mesh_8template_8cc_source.html">two_layer_spine_mesh.template.cc</a></li>
 </ul>
 </div><!-- contents -->
@@ -1394,7 +1388,7 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 13:58:30
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:36:49
         </div>
       </div>
     </footer>

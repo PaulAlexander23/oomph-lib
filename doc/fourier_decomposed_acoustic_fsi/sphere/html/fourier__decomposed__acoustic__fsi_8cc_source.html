@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -168,9 +162,9 @@
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword">using namespace </span>std;</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment"></span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment">/// ///////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment">/// ///////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="comment">/// ///////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment">//////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment">//////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="comment">//////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment"></span> </div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="comment">//=======start_of_namespace==========================================</span><span class="comment"></span></div>
@@ -534,7 +528,7 @@
 <div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span> </div>
 <div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span> <span class="comment">// Open trace file</span></div>
 <div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span> <span class="keywordtype">char</span> filename[100];</div>
-<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span> sprintf(filename,<span class="stringliteral">&quot;%s/trace.dat&quot;</span>,<a class="code hl_variable" href="namespaceGlobal__Parameters.html#a301ab922df72030c660b21328d6caf76">Global_Parameters::Directory</a>.c_str());</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/trace.dat&quot;</span>,<a class="code hl_variable" href="namespaceGlobal__Parameters.html#a301ab922df72030c660b21328d6caf76">Global_Parameters::Directory</a>.c_str());</div>
 <div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span> Trace_file.open(filename);</div>
 <div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>  </div>
 <div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span> <span class="comment">// Setup equation numbering scheme</span></div>
@@ -755,7 +749,7 @@
 <div class="line"><a id="l00615" name="l00615"></a><span class="lineno">  615</span> </div>
 <div class="line"><a id="l00616" name="l00616"></a><span class="lineno">  616</span> <span class="comment">// Compute/output the radiated power</span></div>
 <div class="line"><a id="l00617" name="l00617"></a><span class="lineno">  617</span> <span class="comment">//----------------------------------</span></div>
-<div class="line"><a id="l00618" name="l00618"></a><span class="lineno">  618</span> sprintf(filename,<span class="stringliteral">&quot;%s/power%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00618" name="l00618"></a><span class="lineno">  618</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/power%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00619" name="l00619"></a><span class="lineno">  619</span>         doc_info.number());</div>
 <div class="line"><a id="l00620" name="l00620"></a><span class="lineno">  620</span> some_file.open(filename);</div>
 <div class="line"><a id="l00621" name="l00621"></a><span class="lineno">  621</span> </div>
@@ -774,7 +768,7 @@
 <div class="line"><a id="l00634" name="l00634"></a><span class="lineno">  634</span> </div>
 <div class="line"><a id="l00635" name="l00635"></a><span class="lineno">  635</span> <span class="comment">// Output displacement field</span></div>
 <div class="line"><a id="l00636" name="l00636"></a><span class="lineno">  636</span> <span class="comment">//--------------------------</span></div>
-<div class="line"><a id="l00637" name="l00637"></a><span class="lineno">  637</span> sprintf(filename,<span class="stringliteral">&quot;%s/elast_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00637" name="l00637"></a><span class="lineno">  637</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/elast_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00638" name="l00638"></a><span class="lineno">  638</span>         doc_info.number());</div>
 <div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span> some_file.open(filename);</div>
 <div class="line"><a id="l00640" name="l00640"></a><span class="lineno">  640</span> Solid_mesh_pt-&gt;output(some_file,n_plot);</div>
@@ -782,7 +776,7 @@
 <div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span> </div>
 <div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span> <span class="comment">// Output Helmholtz</span></div>
 <div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span> <span class="comment">//-----------------</span></div>
-<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span> sprintf(filename,<span class="stringliteral">&quot;%s/helmholtz_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/helmholtz_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span>         doc_info.number());</div>
 <div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span> some_file.open(filename);</div>
 <div class="line"><a id="l00648" name="l00648"></a><span class="lineno">  648</span> Helmholtz_mesh_pt-&gt;output(some_file,n_plot);</div>
@@ -791,7 +785,7 @@
 <div class="line"><a id="l00651" name="l00651"></a><span class="lineno">  651</span> </div>
 <div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span> <span class="comment">// Output fsi traction elements</span></div>
 <div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span> <span class="comment">//----------------------------- </span></div>
-<div class="line"><a id="l00654" name="l00654"></a><span class="lineno">  654</span> sprintf(filename,<span class="stringliteral">&quot;%s/fsi_traction_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00654" name="l00654"></a><span class="lineno">  654</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/fsi_traction_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00655" name="l00655"></a><span class="lineno">  655</span>         doc_info.number());</div>
 <div class="line"><a id="l00656" name="l00656"></a><span class="lineno">  656</span> some_file.open(filename);</div>
 <div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span> FSI_traction_mesh_pt-&gt;output(some_file,n_plot);</div>
@@ -800,7 +794,7 @@
 <div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span> </div>
 <div class="line"><a id="l00661" name="l00661"></a><span class="lineno">  661</span> <span class="comment">// Output Helmholtz fsi flux elements</span></div>
 <div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span> <span class="comment">//----------------------------------- </span></div>
-<div class="line"><a id="l00663" name="l00663"></a><span class="lineno">  663</span> sprintf(filename,<span class="stringliteral">&quot;%s/fsi_flux_bc_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00663" name="l00663"></a><span class="lineno">  663</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/fsi_flux_bc_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00664" name="l00664"></a><span class="lineno">  664</span>         doc_info.number());</div>
 <div class="line"><a id="l00665" name="l00665"></a><span class="lineno">  665</span> some_file.open(filename);</div>
 <div class="line"><a id="l00666" name="l00666"></a><span class="lineno">  666</span> Helmholtz_fsi_flux_mesh_pt-&gt;output(some_file,n_plot);</div>
@@ -925,7 +919,7 @@
 <div class="ttc" id="aclassCoatedSphereProblem_html_aeea43c892871a6c65df992aedc3b3547"><div class="ttname"><a href="classCoatedSphereProblem.html#aeea43c892871a6c65df992aedc3b3547">CoatedSphereProblem::setup_interaction</a></div><div class="ttdeci">void setup_interaction()</div><div class="ttdoc">Setup interaction.</div><div class="ttdef"><b>Definition</b> <a href="fourier__decomposed__acoustic__fsi_8cc_source.html#l00462">fourier_decomposed_acoustic_fsi.cc:463</a></div></div>
 <div class="ttc" id="aclassCoatedSphereProblem_html_aef75017cfe8c77449e00f8f70aa4dcef"><div class="ttname"><a href="classCoatedSphereProblem.html#aef75017cfe8c77449e00f8f70aa4dcef">CoatedSphereProblem::Helmholtz_fsi_flux_mesh_pt</a></div><div class="ttdeci">Mesh * Helmholtz_fsi_flux_mesh_pt</div><div class="ttdoc">Pointer to mesh of Helmholtz FSI flux elements.</div><div class="ttdef"><b>Definition</b> <a href="fourier__decomposed__acoustic__fsi_8cc_source.html#l00173">fourier_decomposed_acoustic_fsi.cc:173</a></div></div>
 <div class="ttc" id="afourier__decomposed__acoustic__fsi_8cc_html_a3c04138a5bfe5d72780bb7e82a18e627"><div class="ttname"><a href="fourier__decomposed__acoustic__fsi_8cc.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a></div><div class="ttdeci">int main(int argc, char **argv)</div><div class="ttdoc">Driver for coated sphere loaded by lineared fluid loading.</div><div class="ttdef"><b>Definition</b> <a href="fourier__decomposed__acoustic__fsi_8cc_source.html#l00687">fourier_decomposed_acoustic_fsi.cc:687</a></div></div>
-<div class="ttc" id="anamespaceGlobal__Parameters_html"><div class="ttname"><a href="namespaceGlobal__Parameters.html">Global_Parameters</a></div><div class="ttdoc">/////////////////////////////////////////////////////////////////// /////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="fourier__decomposed__acoustic__fsi_8cc_source.html#l00060">fourier_decomposed_acoustic_fsi.cc:61</a></div></div>
+<div class="ttc" id="anamespaceGlobal__Parameters_html"><div class="ttname"><a href="namespaceGlobal__Parameters.html">Global_Parameters</a></div><div class="ttdoc">Global variables.</div><div class="ttdef"><b>Definition</b> <a href="fourier__decomposed__acoustic__fsi_8cc_source.html#l00060">fourier_decomposed_acoustic_fsi.cc:61</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Parameters_html_a301ab922df72030c660b21328d6caf76"><div class="ttname"><a href="namespaceGlobal__Parameters.html#a301ab922df72030c660b21328d6caf76">Global_Parameters::Directory</a></div><div class="ttdeci">string Directory</div><div class="ttdoc">Output directory.</div><div class="ttdef"><b>Definition</b> <a href="fourier__decomposed__acoustic__fsi_8cc_source.html#l00113">fourier_decomposed_acoustic_fsi.cc:113</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Parameters_html_a35d5d2ecfff0cec6150a5dc79e5c1ad1"><div class="ttname"><a href="namespaceGlobal__Parameters.html#a35d5d2ecfff0cec6150a5dc79e5c1ad1">Global_Parameters::El_multiplier</a></div><div class="ttdeci">unsigned El_multiplier</div><div class="ttdoc">Multiplier for number of elements.</div><div class="ttdef"><b>Definition</b> <a href="fourier__decomposed__acoustic__fsi_8cc_source.html#l00116">fourier_decomposed_acoustic_fsi.cc:116</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Parameters_html_a373950a959cd784c8f8028099807c2fb"><div class="ttname"><a href="namespaceGlobal__Parameters.html#a373950a959cd784c8f8028099807c2fb">Global_Parameters::Nu</a></div><div class="ttdeci">std::complex&lt; double &gt; Nu(std::complex&lt; double &gt;(0.3, 0.0))</div><div class="ttdoc">Poisson's ratio Nu.</div></div>
@@ -967,7 +961,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:42:58
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:34:07
         </div>
       </div>
     </footer>

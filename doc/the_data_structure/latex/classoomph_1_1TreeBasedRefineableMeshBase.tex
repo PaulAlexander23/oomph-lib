@@ -2,7 +2,7 @@
 \hypertarget{classoomph_1_1TreeBasedRefineableMeshBase}{}\label{classoomph_1_1TreeBasedRefineableMeshBase}\index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}}
 
 
-///////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////  
+Base class for tree-\/based refineable meshes.  
 
 
 
@@ -227,6 +227,10 @@ struct \mbox{\hyperlink{structoomph_1_1TreeBasedRefineableMeshBase_1_1HangHelper
 \begin{DoxyCompactList}\small\item\em Replace existing boundary node lookup schemes with new schemes created using the boundary data stored in the nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1Mesh_ad1b124a959628aba00162b89617b3a62}{boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Indicate whether the i-\/th boundary has an intrinsic coordinate. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_ab137d0c0debf5ba0d6ea6990103e620c}{set\+\_\+boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be existing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_a3b9d63e0057ed721190b109f48f7c92e}{set\+\_\+boundary\+\_\+coordinate\+\_\+does\+\_\+not\+\_\+exist}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be non-\/existing. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_af01dfefb66c15579b540be62999d93ee}{nelement}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return number of elements in the mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
@@ -619,9 +623,7 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_aca12acfe655a4d5c4a4eab4a7b970812}{Element\+\_\+pt}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a412a5051be9e81f0ba61bf85e5abc4a6}{Boundary\+\_\+coordinate\+\_\+exists}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of boolean data that indicates whether the boundary coordinates have been set for the boundary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Public Types inherited from \mbox{\hyperlink{classoomph_1_1Mesh}{oomph\+::\+Mesh}}}
 \begin{DoxyCompactItemize}
@@ -645,8 +647,6 @@ std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionEleme
 
 
 \doxysubsection{Detailed Description}
-///////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////// 
-
 Base class for tree-\/based refineable meshes. 
 
 Definition at line \mbox{\hyperlink{refineable__mesh_8h_source_l00375}{375}} of file \mbox{\hyperlink{refineable__mesh_8h_source}{refineable\+\_\+mesh.\+h}}.
@@ -729,15 +729,15 @@ Implements \mbox{\hyperlink{classoomph_1_1RefineableMeshBase_aabe38fc56f2f12e91f
 
 
 
-Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l00307}{307}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
+Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l00305}{305}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
 
 
 
-References \mbox{\hyperlink{refineable__mesh_8h_source_l00517}{adapt\+\_\+mesh()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00635}{classify\+\_\+halo\+\_\+and\+\_\+haloed\+\_\+nodes()}}, \mbox{\hyperlink{mesh_8h_source_l00119}{oomph\+::\+Mesh\+::\+Comm\+\_\+pt}}, \mbox{\hyperlink{mesh_8cc_source_l09190}{oomph\+::\+Mesh\+::delete\+\_\+all\+\_\+external\+\_\+storage()}}, \mbox{\hyperlink{refineable__elements_8h_source_l00326}{oomph\+::\+Refineable\+Element\+::deselect\+\_\+for\+\_\+refinement()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00542}{oomph\+::\+Doc\+Info\+::disable\+\_\+doc()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00243}{oomph\+::\+Refineable\+Mesh\+Base\+::doc\+\_\+info()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00183}{oomph\+::\+Refineable\+Mesh\+Base\+::doc\+\_\+info\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00460}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l01740}{oomph\+::\+Mesh\+::halo\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l01779}{oomph\+::\+Mesh\+::haloed\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00548}{oomph\+::\+Doc\+Info\+::is\+\_\+doc\+\_\+enabled()}}, \mbox{\hyperlink{mesh_8h_source_l01588}{oomph\+::\+Mesh\+::is\+\_\+mesh\+\_\+distributed()}}, \mbox{\hyperlink{octree_8h_source_l00049}{oomph\+::\+Oc\+Tree\+Names\+::\+LDB}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00123}{oomph\+::\+Refineable\+Mesh\+Base\+::max\+\_\+keep\+\_\+unrefined()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00163}{oomph\+::\+Refineable\+Mesh\+Base\+::max\+\_\+permitted\+\_\+error()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00486}{max\+\_\+refinement\+\_\+level()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00156}{oomph\+::\+Refineable\+Mesh\+Base\+::min\+\_\+permitted\+\_\+error()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00492}{min\+\_\+refinement\+\_\+level()}}, \mbox{\hyperlink{mesh_8h_source_l00590}{oomph\+::\+Mesh\+::nelement()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00338}{oomph\+::\+Refineable\+Mesh\+Base\+::\+Nrefined}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00114}{oomph\+::\+Refineable\+Mesh\+Base\+::nrefinement\+\_\+overruled()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00341}{oomph\+::\+Refineable\+Mesh\+Base\+::\+Nunrefined}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{mesh_8cc_source_l00508}{oomph\+::\+Mesh\+::reorder\+\_\+nodes()}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, \mbox{\hyperlink{tree_8h_source_l00214}{oomph\+::\+Tree\+::son\+\_\+type()}}, and \mbox{\hyperlink{refineable__elements_8h_source_l00211}{oomph\+::\+Refineable\+Element\+::tree\+\_\+pt()}}.
+References \mbox{\hyperlink{refineable__mesh_8h_source_l00517}{adapt\+\_\+mesh()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00635}{classify\+\_\+halo\+\_\+and\+\_\+haloed\+\_\+nodes()}}, \mbox{\hyperlink{mesh_8h_source_l00119}{oomph\+::\+Mesh\+::\+Comm\+\_\+pt}}, \mbox{\hyperlink{mesh_8cc_source_l09190}{oomph\+::\+Mesh\+::delete\+\_\+all\+\_\+external\+\_\+storage()}}, \mbox{\hyperlink{refineable__elements_8h_source_l00326}{oomph\+::\+Refineable\+Element\+::deselect\+\_\+for\+\_\+refinement()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00552}{oomph\+::\+Doc\+Info\+::disable\+\_\+doc()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00243}{oomph\+::\+Refineable\+Mesh\+Base\+::doc\+\_\+info()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00183}{oomph\+::\+Refineable\+Mesh\+Base\+::doc\+\_\+info\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00464}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l01748}{oomph\+::\+Mesh\+::halo\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l01787}{oomph\+::\+Mesh\+::haloed\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00558}{oomph\+::\+Doc\+Info\+::is\+\_\+doc\+\_\+enabled()}}, \mbox{\hyperlink{mesh_8h_source_l01596}{oomph\+::\+Mesh\+::is\+\_\+mesh\+\_\+distributed()}}, \mbox{\hyperlink{octree_8h_source_l00049}{oomph\+::\+Oc\+Tree\+Names\+::\+LDB}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00123}{oomph\+::\+Refineable\+Mesh\+Base\+::max\+\_\+keep\+\_\+unrefined()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00163}{oomph\+::\+Refineable\+Mesh\+Base\+::max\+\_\+permitted\+\_\+error()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00486}{max\+\_\+refinement\+\_\+level()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00156}{oomph\+::\+Refineable\+Mesh\+Base\+::min\+\_\+permitted\+\_\+error()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00492}{min\+\_\+refinement\+\_\+level()}}, \mbox{\hyperlink{mesh_8h_source_l00598}{oomph\+::\+Mesh\+::nelement()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00338}{oomph\+::\+Refineable\+Mesh\+Base\+::\+Nrefined}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00114}{oomph\+::\+Refineable\+Mesh\+Base\+::nrefinement\+\_\+overruled()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00341}{oomph\+::\+Refineable\+Mesh\+Base\+::\+Nunrefined}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{mesh_8cc_source_l00508}{oomph\+::\+Mesh\+::reorder\+\_\+nodes()}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, \mbox{\hyperlink{tree_8h_source_l00214}{oomph\+::\+Tree\+::son\+\_\+type()}}, and \mbox{\hyperlink{refineable__elements_8h_source_l00211}{oomph\+::\+Refineable\+Element\+::tree\+\_\+pt()}}.
 
 
 
-Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8template_8cc_source_l01032}{oomph\+::\+Refineable\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::adapt()}}, and \mbox{\hyperlink{refineable__mesh_8cc_source_l02150}{unrefine\+\_\+uniformly()}}.
+Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8template_8cc_source_l01019}{oomph\+::\+Refineable\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::adapt()}}, and \mbox{\hyperlink{refineable__mesh_8cc_source_l02148}{unrefine\+\_\+uniformly()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_a64608ddedb7eb56e11bee2805aa01360}\label{classoomph_1_1TreeBasedRefineableMeshBase_a64608ddedb7eb56e11bee2805aa01360} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!adapt\_mesh@{adapt\_mesh}}
@@ -755,11 +755,11 @@ Definition at line \mbox{\hyperlink{refineable__mesh_8h_source_l00517}{517}} of 
 
 
 
-References \mbox{\hyperlink{refineable__mesh_8h_source_l00517}{adapt\+\_\+mesh()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00524}{oomph\+::\+Doc\+Info\+::directory()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00542}{oomph\+::\+Doc\+Info\+::disable\+\_\+doc()}}, and \mbox{\hyperlink{refineable__mesh_8h_source_l00243}{oomph\+::\+Refineable\+Mesh\+Base\+::doc\+\_\+info()}}.
+References \mbox{\hyperlink{refineable__mesh_8h_source_l00517}{adapt\+\_\+mesh()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00534}{oomph\+::\+Doc\+Info\+::directory()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00552}{oomph\+::\+Doc\+Info\+::disable\+\_\+doc()}}, and \mbox{\hyperlink{refineable__mesh_8h_source_l00243}{oomph\+::\+Refineable\+Mesh\+Base\+::doc\+\_\+info()}}.
 
 
 
-Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l00307}{adapt()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00517}{adapt\+\_\+mesh()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l00137}{refine\+\_\+base\+\_\+mesh()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l01852}{refine\+\_\+selected\+\_\+elements()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l01816}{refine\+\_\+selected\+\_\+elements()}}, and \mbox{\hyperlink{refineable__mesh_8cc_source_l01772}{refine\+\_\+uniformly()}}.
+Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l00305}{adapt()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00517}{adapt\+\_\+mesh()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l00135}{refine\+\_\+base\+\_\+mesh()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l01850}{refine\+\_\+selected\+\_\+elements()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l01814}{refine\+\_\+selected\+\_\+elements()}}, and \mbox{\hyperlink{refineable__mesh_8cc_source_l01770}{refine\+\_\+uniformly()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_acef8ac2f0f2cffe938031db1499c598b}\label{classoomph_1_1TreeBasedRefineableMeshBase_acef8ac2f0f2cffe938031db1499c598b} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!adapt\_mesh@{adapt\_mesh}}
@@ -827,11 +827,11 @@ If refinement process is being documented, the following information is document
 \end{DoxyItemize}
 \end{DoxyItemize}Update the boundary element info -- this can be a costly procedure and for this reason the mesh writer might have decided not to set up this scheme. If so, we won\textquotesingle{}t change this and suppress its creation...
 
-Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l00926}{926}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
+Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l00924}{924}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
 
 
 
-References \mbox{\hyperlink{mesh_8h_source_l00840}{oomph\+::\+Mesh\+::boundary\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{classoomph_1_1TreeForest_a0e6a7f821d9f14374c6d23d8766c7679}{oomph\+::\+Tree\+Forest\+::check\+\_\+all\+\_\+neighbours()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00635}{classify\+\_\+halo\+\_\+and\+\_\+haloed\+\_\+nodes()}}, \mbox{\hyperlink{tree_8cc_source_l00432}{oomph\+::\+Tree\+Forest\+::close\+\_\+hanging\+\_\+node\+\_\+files()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l02271}{complete\+\_\+hanging\+\_\+nodes()}}, \mbox{\hyperlink{tree_8cc_source_l00341}{oomph\+::\+Tree\+::deactivate\+\_\+object()}}, \mbox{\hyperlink{mesh_8cc_source_l09190}{oomph\+::\+Mesh\+::delete\+\_\+all\+\_\+external\+\_\+storage()}}, \mbox{\hyperlink{elements_8h_source_l02615}{oomph\+::\+Finite\+Element\+::dim()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00524}{oomph\+::\+Doc\+Info\+::directory()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00049}{oomph\+::\+Global\+\_\+timings\+::\+Doc\+\_\+comprehensive\+\_\+timings}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00243}{oomph\+::\+Refineable\+Mesh\+Base\+::doc\+\_\+info()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00186}{oomph\+::\+Mesh\+::\+Element\+\_\+pt}}, \mbox{\hyperlink{mesh_8h_source_l00473}{oomph\+::\+Mesh\+::finite\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00768}{Forest\+\_\+pt}}, \mbox{\hyperlink{elements_8h_source_l01889}{oomph\+::\+Finite\+Element\+::get\+\_\+x()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00548}{oomph\+::\+Doc\+Info\+::is\+\_\+doc\+\_\+enabled()}}, \mbox{\hyperlink{mesh_8h_source_l01588}{oomph\+::\+Mesh\+::is\+\_\+mesh\+\_\+distributed()}}, \mbox{\hyperlink{elements_8h_source_l01846}{oomph\+::\+Finite\+Element\+::local\+\_\+coordinate\+\_\+of\+\_\+node()}}, \mbox{\hyperlink{mesh_8h_source_l00087}{oomph\+::\+Mesh\+::\+Lookup\+\_\+for\+\_\+elements\+\_\+next\+\_\+boundary\+\_\+is\+\_\+setup}}, \mbox{\hyperlink{elements_8h_source_l01882}{oomph\+::\+Finite\+Element\+::macro\+\_\+elem\+\_\+pt()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00177}{oomph\+::\+Refineable\+Mesh\+Base\+::max\+\_\+error()}}, \mbox{\hyperlink{refineable__elements_8h_source_l00495}{oomph\+::\+Refineable\+Element\+::max\+\_\+integrity\+\_\+tolerance()}}, \mbox{\hyperlink{tree_8cc_source_l00302}{oomph\+::\+Tree\+::merge\+\_\+sons\+\_\+if\+\_\+required()}}, \mbox{\hyperlink{mesh_8h_source_l00827}{oomph\+::\+Mesh\+::nboundary()}}, \mbox{\hyperlink{mesh_8h_source_l00878}{oomph\+::\+Mesh\+::nboundary\+\_\+element()}}, \mbox{\hyperlink{geom__objects_8h_source_l00177}{oomph\+::\+Geom\+Object\+::ndim()}}, \mbox{\hyperlink{mesh_8h_source_l00590}{oomph\+::\+Mesh\+::nelement()}}, \mbox{\hyperlink{geom__objects_8h_source_l00171}{oomph\+::\+Geom\+Object\+::nlagrangian()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{mesh_8h_source_l00596}{oomph\+::\+Mesh\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00436}{oomph\+::\+Mesh\+::node\+\_\+pt()}}, \mbox{\hyperlink{elements_8cc_source_l05102}{oomph\+::\+Finite\+Element\+::node\+\_\+update()}}, \mbox{\hyperlink{tree_8h_source_l00460}{oomph\+::\+Tree\+Forest\+::ntree()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00554}{oomph\+::\+Doc\+Info\+::number()}}, \mbox{\hyperlink{nodes_8h_source_l00483}{oomph\+::\+Data\+::nvalue()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{classoomph_1_1TreeForest_a635443274eaa2fb1afa889e4e748608f}{oomph\+::\+Tree\+Forest\+::open\+\_\+hanging\+\_\+node\+\_\+files()}}, \mbox{\hyperlink{elements_8h_source_l02680}{oomph\+::\+Finite\+Element\+::position()}}, \mbox{\hyperlink{mesh_8cc_source_l00966}{oomph\+::\+Mesh\+::prune\+\_\+dead\+\_\+nodes()}}, \mbox{\hyperlink{mesh_8cc_source_l00508}{oomph\+::\+Mesh\+::reorder\+\_\+nodes()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{nodes_8h_source_l01442}{oomph\+::\+Node\+::set\+\_\+non\+\_\+obsolete()}}, \mbox{\hyperlink{mesh_8h_source_l00275}{oomph\+::\+Mesh\+::setup\+\_\+boundary\+\_\+element\+\_\+info()}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMeshBase_a86dace1f78991fb9b401a31215df89ef}{split\+\_\+elements\+\_\+if\+\_\+required()}}, \mbox{\hyperlink{tree_8cc_source_l00405}{oomph\+::\+Tree\+Forest\+::stick\+\_\+all\+\_\+tree\+\_\+nodes\+\_\+into\+\_\+vector()}}, \mbox{\hyperlink{tree_8cc_source_l00379}{oomph\+::\+Tree\+Forest\+::stick\+\_\+leaves\+\_\+into\+\_\+vector()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{t}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01295}{oomph\+::\+Timing\+Helpers\+::timer()}}, \mbox{\hyperlink{tree_8cc_source_l00145}{oomph\+::\+Tree\+::traverse\+\_\+all()}}, \mbox{\hyperlink{tree_8cc_source_l00184}{oomph\+::\+Tree\+::traverse\+\_\+all\+\_\+but\+\_\+leaves()}}, \mbox{\hyperlink{tree_8h_source_l00466}{oomph\+::\+Tree\+Forest\+::tree\+\_\+pt()}}, and \mbox{\hyperlink{nodes_8h_source_l01060}{oomph\+::\+Node\+::x()}}.
+References \mbox{\hyperlink{mesh_8h_source_l00848}{oomph\+::\+Mesh\+::boundary\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{classoomph_1_1TreeForest_a0e6a7f821d9f14374c6d23d8766c7679}{oomph\+::\+Tree\+Forest\+::check\+\_\+all\+\_\+neighbours()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00635}{classify\+\_\+halo\+\_\+and\+\_\+haloed\+\_\+nodes()}}, \mbox{\hyperlink{tree_8cc_source_l00432}{oomph\+::\+Tree\+Forest\+::close\+\_\+hanging\+\_\+node\+\_\+files()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l02269}{complete\+\_\+hanging\+\_\+nodes()}}, \mbox{\hyperlink{tree_8cc_source_l00341}{oomph\+::\+Tree\+::deactivate\+\_\+object()}}, \mbox{\hyperlink{mesh_8cc_source_l09190}{oomph\+::\+Mesh\+::delete\+\_\+all\+\_\+external\+\_\+storage()}}, \mbox{\hyperlink{elements_8h_source_l02615}{oomph\+::\+Finite\+Element\+::dim()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00534}{oomph\+::\+Doc\+Info\+::directory()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00049}{oomph\+::\+Global\+\_\+timings\+::\+Doc\+\_\+comprehensive\+\_\+timings}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00243}{oomph\+::\+Refineable\+Mesh\+Base\+::doc\+\_\+info()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00186}{oomph\+::\+Mesh\+::\+Element\+\_\+pt}}, \mbox{\hyperlink{mesh_8h_source_l00477}{oomph\+::\+Mesh\+::finite\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00768}{Forest\+\_\+pt}}, \mbox{\hyperlink{elements_8h_source_l01889}{oomph\+::\+Finite\+Element\+::get\+\_\+x()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00558}{oomph\+::\+Doc\+Info\+::is\+\_\+doc\+\_\+enabled()}}, \mbox{\hyperlink{mesh_8h_source_l01596}{oomph\+::\+Mesh\+::is\+\_\+mesh\+\_\+distributed()}}, \mbox{\hyperlink{elements_8h_source_l01846}{oomph\+::\+Finite\+Element\+::local\+\_\+coordinate\+\_\+of\+\_\+node()}}, \mbox{\hyperlink{mesh_8h_source_l00087}{oomph\+::\+Mesh\+::\+Lookup\+\_\+for\+\_\+elements\+\_\+next\+\_\+boundary\+\_\+is\+\_\+setup}}, \mbox{\hyperlink{elements_8h_source_l01882}{oomph\+::\+Finite\+Element\+::macro\+\_\+elem\+\_\+pt()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00177}{oomph\+::\+Refineable\+Mesh\+Base\+::max\+\_\+error()}}, \mbox{\hyperlink{refineable__elements_8h_source_l00495}{oomph\+::\+Refineable\+Element\+::max\+\_\+integrity\+\_\+tolerance()}}, \mbox{\hyperlink{tree_8cc_source_l00302}{oomph\+::\+Tree\+::merge\+\_\+sons\+\_\+if\+\_\+required()}}, \mbox{\hyperlink{mesh_8h_source_l00835}{oomph\+::\+Mesh\+::nboundary()}}, \mbox{\hyperlink{mesh_8h_source_l00886}{oomph\+::\+Mesh\+::nboundary\+\_\+element()}}, \mbox{\hyperlink{geom__objects_8h_source_l00177}{oomph\+::\+Geom\+Object\+::ndim()}}, \mbox{\hyperlink{mesh_8h_source_l00598}{oomph\+::\+Mesh\+::nelement()}}, \mbox{\hyperlink{geom__objects_8h_source_l00171}{oomph\+::\+Geom\+Object\+::nlagrangian()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{mesh_8h_source_l00604}{oomph\+::\+Mesh\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00440}{oomph\+::\+Mesh\+::node\+\_\+pt()}}, \mbox{\hyperlink{elements_8cc_source_l05102}{oomph\+::\+Finite\+Element\+::node\+\_\+update()}}, \mbox{\hyperlink{tree_8h_source_l00460}{oomph\+::\+Tree\+Forest\+::ntree()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00564}{oomph\+::\+Doc\+Info\+::number()}}, \mbox{\hyperlink{nodes_8h_source_l00483}{oomph\+::\+Data\+::nvalue()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{classoomph_1_1TreeForest_a635443274eaa2fb1afa889e4e748608f}{oomph\+::\+Tree\+Forest\+::open\+\_\+hanging\+\_\+node\+\_\+files()}}, \mbox{\hyperlink{elements_8h_source_l02680}{oomph\+::\+Finite\+Element\+::position()}}, \mbox{\hyperlink{mesh_8cc_source_l00966}{oomph\+::\+Mesh\+::prune\+\_\+dead\+\_\+nodes()}}, \mbox{\hyperlink{mesh_8cc_source_l00508}{oomph\+::\+Mesh\+::reorder\+\_\+nodes()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{nodes_8h_source_l01442}{oomph\+::\+Node\+::set\+\_\+non\+\_\+obsolete()}}, \mbox{\hyperlink{mesh_8h_source_l00279}{oomph\+::\+Mesh\+::setup\+\_\+boundary\+\_\+element\+\_\+info()}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMeshBase_a86dace1f78991fb9b401a31215df89ef}{split\+\_\+elements\+\_\+if\+\_\+required()}}, \mbox{\hyperlink{tree_8cc_source_l00405}{oomph\+::\+Tree\+Forest\+::stick\+\_\+all\+\_\+tree\+\_\+nodes\+\_\+into\+\_\+vector()}}, \mbox{\hyperlink{tree_8cc_source_l00379}{oomph\+::\+Tree\+Forest\+::stick\+\_\+leaves\+\_\+into\+\_\+vector()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{t}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01303}{oomph\+::\+Timing\+Helpers\+::timer()}}, \mbox{\hyperlink{tree_8cc_source_l00145}{oomph\+::\+Tree\+::traverse\+\_\+all()}}, \mbox{\hyperlink{tree_8cc_source_l00184}{oomph\+::\+Tree\+::traverse\+\_\+all\+\_\+but\+\_\+leaves()}}, \mbox{\hyperlink{tree_8h_source_l00466}{oomph\+::\+Tree\+Forest\+::tree\+\_\+pt()}}, and \mbox{\hyperlink{nodes_8h_source_l01060}{oomph\+::\+Node\+::x()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_a59d0404f8e5ebd7199f25c794c5c715c}\label{classoomph_1_1TreeBasedRefineableMeshBase_a59d0404f8e5ebd7199f25c794c5c715c} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!additional\_synchronise\_hanging\_nodes@{additional\_synchronise\_hanging\_nodes}}
@@ -849,7 +849,7 @@ Implemented in \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMesh_a1af8d6a53
 
 
 
-Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l02375}{synchronise\+\_\+hanging\+\_\+nodes()}}.
+Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l02373}{synchronise\+\_\+hanging\+\_\+nodes()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_a0f155de75a38d3356fb925629c3ae7ad}\label{classoomph_1_1TreeBasedRefineableMeshBase_a0f155de75a38d3356fb925629c3ae7ad} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!classify\_halo\_and\_haloed\_nodes@{classify\_halo\_and\_haloed\_nodes}}
@@ -871,7 +871,7 @@ Definition at line \mbox{\hyperlink{refineable__mesh_8h_source_l00699}{699}} of 
 
 
 
-References \mbox{\hyperlink{refineable__mesh_8h_source_l00635}{classify\+\_\+halo\+\_\+and\+\_\+haloed\+\_\+nodes()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00542}{oomph\+::\+Doc\+Info\+::disable\+\_\+doc()}}, and \mbox{\hyperlink{refineable__mesh_8h_source_l00243}{oomph\+::\+Refineable\+Mesh\+Base\+::doc\+\_\+info()}}.
+References \mbox{\hyperlink{refineable__mesh_8h_source_l00635}{classify\+\_\+halo\+\_\+and\+\_\+haloed\+\_\+nodes()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00552}{oomph\+::\+Doc\+Info\+::disable\+\_\+doc()}}, and \mbox{\hyperlink{refineable__mesh_8h_source_l00243}{oomph\+::\+Refineable\+Mesh\+Base\+::doc\+\_\+info()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_aec7c6fc41272ec883c589ee56d1b01e6}\label{classoomph_1_1TreeBasedRefineableMeshBase_aec7c6fc41272ec883c589ee56d1b01e6} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!classify\_halo\_and\_haloed\_nodes@{classify\_halo\_and\_haloed\_nodes}}
@@ -893,11 +893,11 @@ Definition at line \mbox{\hyperlink{refineable__mesh_8h_source_l00635}{635}} of 
 
 
 
-References \mbox{\hyperlink{mesh_8cc_source_l03262}{oomph\+::\+Mesh\+::classify\+\_\+halo\+\_\+and\+\_\+haloed\+\_\+nodes()}}, \mbox{\hyperlink{mesh_8h_source_l00119}{oomph\+::\+Mesh\+::\+Comm\+\_\+pt}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00049}{oomph\+::\+Global\+\_\+timings\+::\+Doc\+\_\+comprehensive\+\_\+timings}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00243}{oomph\+::\+Refineable\+Mesh\+Base\+::doc\+\_\+info()}}, \mbox{\hyperlink{mesh_8h_source_l00460}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00590}{oomph\+::\+Mesh\+::nelement()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{mesh_8cc_source_l04426}{oomph\+::\+Mesh\+::resize\+\_\+halo\+\_\+nodes()}}, \mbox{\hyperlink{mesh_8h_source_l00144}{oomph\+::\+Mesh\+::\+Resize\+\_\+halo\+\_\+nodes\+\_\+not\+\_\+required}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l02375}{synchronise\+\_\+hanging\+\_\+nodes()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l03650}{synchronise\+\_\+nonhanging\+\_\+nodes()}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01295}{oomph\+::\+Timing\+Helpers\+::timer()}}.
+References \mbox{\hyperlink{mesh_8cc_source_l03262}{oomph\+::\+Mesh\+::classify\+\_\+halo\+\_\+and\+\_\+haloed\+\_\+nodes()}}, \mbox{\hyperlink{mesh_8h_source_l00119}{oomph\+::\+Mesh\+::\+Comm\+\_\+pt}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00049}{oomph\+::\+Global\+\_\+timings\+::\+Doc\+\_\+comprehensive\+\_\+timings}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00243}{oomph\+::\+Refineable\+Mesh\+Base\+::doc\+\_\+info()}}, \mbox{\hyperlink{mesh_8h_source_l00464}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00598}{oomph\+::\+Mesh\+::nelement()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{mesh_8cc_source_l04426}{oomph\+::\+Mesh\+::resize\+\_\+halo\+\_\+nodes()}}, \mbox{\hyperlink{mesh_8h_source_l00144}{oomph\+::\+Mesh\+::\+Resize\+\_\+halo\+\_\+nodes\+\_\+not\+\_\+required}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l02373}{synchronise\+\_\+hanging\+\_\+nodes()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l03648}{synchronise\+\_\+nonhanging\+\_\+nodes()}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01303}{oomph\+::\+Timing\+Helpers\+::timer()}}.
 
 
 
-Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l00307}{adapt()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l00926}{adapt\+\_\+mesh()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00699}{classify\+\_\+halo\+\_\+and\+\_\+haloed\+\_\+nodes()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l03951}{p\+\_\+adapt()}}, and \mbox{\hyperlink{refineable__mesh_8cc_source_l04433}{p\+\_\+adapt\+\_\+mesh()}}.
+Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l00305}{adapt()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l00924}{adapt\+\_\+mesh()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00699}{classify\+\_\+halo\+\_\+and\+\_\+haloed\+\_\+nodes()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l03949}{p\+\_\+adapt()}}, and \mbox{\hyperlink{refineable__mesh_8cc_source_l04435}{p\+\_\+adapt\+\_\+mesh()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_aab6f14b0933edc819231a88b1d555f62}\label{classoomph_1_1TreeBasedRefineableMeshBase_aab6f14b0933edc819231a88b1d555f62} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!complete\_hanging\_nodes@{complete\_hanging\_nodes}}
@@ -911,15 +911,15 @@ Complete the hanging node scheme recursively.
 
 Complete the hanging node scheme recursively. After the initial markup scheme, hanging nodes can depend on other hanging nodes ---\texorpdfstring{$>$}{>} AAAAAAAAARGH! Need to translate this into a scheme where all hanging nodes only depend on non-\/hanging nodes... 
 
-Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l02271}{2271}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
+Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l02269}{2269}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
 
 
 
-References \mbox{\hyperlink{refineable__mesh_8cc_source_l02214}{complete\+\_\+hanging\+\_\+nodes\+\_\+recursively()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{mesh_8h_source_l00596}{oomph\+::\+Mesh\+::nnode()}}, \mbox{\hyperlink{mesh_8h_source_l00436}{oomph\+::\+Mesh\+::node\+\_\+pt()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, and \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}.
+References \mbox{\hyperlink{refineable__mesh_8cc_source_l02212}{complete\+\_\+hanging\+\_\+nodes\+\_\+recursively()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{mesh_8h_source_l00604}{oomph\+::\+Mesh\+::nnode()}}, \mbox{\hyperlink{mesh_8h_source_l00440}{oomph\+::\+Mesh\+::node\+\_\+pt()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, and \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}.
 
 
 
-Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l00926}{adapt\+\_\+mesh()}}, and \mbox{\hyperlink{refineable__mesh_8cc_source_l04433}{p\+\_\+adapt\+\_\+mesh()}}.
+Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l00924}{adapt\+\_\+mesh()}}, and \mbox{\hyperlink{refineable__mesh_8cc_source_l04435}{p\+\_\+adapt\+\_\+mesh()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_a6dd9c95ee6c2ffcd687ad0ed736c5ba3}\label{classoomph_1_1TreeBasedRefineableMeshBase_a6dd9c95ee6c2ffcd687ad0ed736c5ba3} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!complete\_hanging\_nodes\_recursively@{complete\_hanging\_nodes\_recursively}}
@@ -933,15 +933,15 @@ Auxiliary routine for recursive hanging node completion.
 
 Given a node, return a vector of pointers to master nodes and a vector of the associated weights. This is done recursively, so if a node is not hanging, the node is regarded as its own master node which has weight 1.\+0. 
 
-Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l02214}{2214}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
+Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l02212}{2212}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
 
 
 
-References \mbox{\hyperlink{refineable__mesh_8cc_source_l02214}{complete\+\_\+hanging\+\_\+nodes\+\_\+recursively()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}.
+References \mbox{\hyperlink{refineable__mesh_8cc_source_l02212}{complete\+\_\+hanging\+\_\+nodes\+\_\+recursively()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}.
 
 
 
-Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l02271}{complete\+\_\+hanging\+\_\+nodes()}}, and \mbox{\hyperlink{refineable__mesh_8cc_source_l02214}{complete\+\_\+hanging\+\_\+nodes\+\_\+recursively()}}.
+Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l02269}{complete\+\_\+hanging\+\_\+nodes()}}, and \mbox{\hyperlink{refineable__mesh_8cc_source_l02212}{complete\+\_\+hanging\+\_\+nodes\+\_\+recursively()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_a885171376e32cff058ab2fa4df6ca3c6}\label{classoomph_1_1TreeBasedRefineableMeshBase_a885171376e32cff058ab2fa4df6ca3c6} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!doc\_adaptivity\_targets@{doc\_adaptivity\_targets}}
@@ -977,11 +977,11 @@ Dump refinement pattern to allow for rebuild.
 
 
 
-Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l00218}{218}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
+Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l00216}{216}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
 
 
 
-References \mbox{\hyperlink{refineable__mesh_8cc_source_l00050}{get\+\_\+refinement\+\_\+pattern()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}.
+References \mbox{\hyperlink{refineable__mesh_8cc_source_l00048}{get\+\_\+refinement\+\_\+pattern()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_a0819e694e4fa30a78502aff0fbab5acd}\label{classoomph_1_1TreeBasedRefineableMeshBase_a0819e694e4fa30a78502aff0fbab5acd} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!forest\_pt@{forest\_pt}}
@@ -1003,7 +1003,7 @@ References \mbox{\hyperlink{refineable__mesh_8h_source_l00768}{Forest\+\_\+pt}}.
 
 
 
-Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l00113}{get\+\_\+elements\+\_\+at\+\_\+refinement\+\_\+level()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l00050}{get\+\_\+refinement\+\_\+pattern()}}, and \mbox{\hyperlink{refineable__mesh_8cc_source_l04433}{p\+\_\+adapt\+\_\+mesh()}}.
+Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l00111}{get\+\_\+elements\+\_\+at\+\_\+refinement\+\_\+level()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l00048}{get\+\_\+refinement\+\_\+pattern()}}, and \mbox{\hyperlink{refineable__mesh_8cc_source_l04435}{p\+\_\+adapt\+\_\+mesh()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_a0d5d1cfce0db7953c21eef213049c433}\label{classoomph_1_1TreeBasedRefineableMeshBase_a0d5d1cfce0db7953c21eef213049c433} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!get\_elements\_at\_refinement\_level@{get\_elements\_at\_refinement\_level}}
@@ -1017,7 +1017,7 @@ Extract the elements at a particular refinement level in the refinement pattern 
 
 Extract the elements at a particular refinement level in the refinement pattern (used in Mesh\+::redistribute or whatever it\textquotesingle{}s going to be called (Refineable\+Mesh\+Base\+::reduce\+\_\+halo\+\_\+layers or something) 
 
-Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l00113}{113}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
+Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l00111}{111}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
 
 
 
@@ -1035,15 +1035,15 @@ Get max/min refinement levels in mesh.
 
 Get max/min refinement level. 
 
-Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l00830}{830}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
+Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l00828}{828}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00460}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00486}{max\+\_\+refinement\+\_\+level()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00492}{min\+\_\+refinement\+\_\+level()}}, and \mbox{\hyperlink{mesh_8h_source_l00590}{oomph\+::\+Mesh\+::nelement()}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00464}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00486}{max\+\_\+refinement\+\_\+level()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00492}{min\+\_\+refinement\+\_\+level()}}, and \mbox{\hyperlink{mesh_8h_source_l00598}{oomph\+::\+Mesh\+::nelement()}}.
 
 
 
-Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l01947}{refine\+\_\+as\+\_\+in\+\_\+reference\+\_\+mesh()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l00137}{refine\+\_\+base\+\_\+mesh()}}, \mbox{\hyperlink{refineable__brick__mesh_8h_source_l00088}{oomph\+::\+Refineable\+Brick\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+octree\+\_\+forest()}}, and \mbox{\hyperlink{refineable__quad__mesh_8h_source_l00088}{oomph\+::\+Refineable\+Quad\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+quadtree\+\_\+forest()}}.
+Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l01945}{refine\+\_\+as\+\_\+in\+\_\+reference\+\_\+mesh()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l00135}{refine\+\_\+base\+\_\+mesh()}}, \mbox{\hyperlink{refineable__brick__mesh_8h_source_l00086}{oomph\+::\+Refineable\+Brick\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+octree\+\_\+forest()}}, and \mbox{\hyperlink{refineable__quad__mesh_8h_source_l00086}{oomph\+::\+Refineable\+Quad\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+quadtree\+\_\+forest()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_a6dba989c0d0735d8fe34ceb231425401}\label{classoomph_1_1TreeBasedRefineableMeshBase_a6dba989c0d0735d8fe34ceb231425401} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!get\_refinement\_pattern@{get\_refinement\_pattern}}
@@ -1057,7 +1057,7 @@ Extract refinement pattern\+: Consider the hypothetical mesh obtained by truncat
 
 Get refinement pattern of mesh\+: Consider the hypothetical mesh obtained by truncating the refinement of the current mesh to a given level (where {\ttfamily level=0} is the un-\/refined base mesh). To advance to the next refinement level, we need to refine (split) the {\ttfamily to\+\_\+be\+\_\+refined}\mbox{[}level\mbox{]}.size() elements identified by the element numbers contained in {\ttfamily vector} to\+\_\+be\+\_\+refined\mbox{[}level\mbox{]}\mbox{[}...\mbox{]}. 
 
-Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l00050}{50}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
+Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l00048}{48}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
 
 
 
@@ -1065,7 +1065,7 @@ References \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{ref
 
 
 
-Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l00218}{dump\+\_\+refinement()}}.
+Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l00216}{dump\+\_\+refinement()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_a192404f29acbc21ebd8626f277538671}\label{classoomph_1_1TreeBasedRefineableMeshBase_a192404f29acbc21ebd8626f277538671} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!max\_p\_refinement\_level@{max\_p\_refinement\_level}}
@@ -1087,7 +1087,7 @@ References \mbox{\hyperlink{refineable__mesh_8h_source_l00762}{Max\+\_\+p\+\_\+r
 
 
 
-Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l03951}{p\+\_\+adapt()}}.
+Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l03949}{p\+\_\+adapt()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_a6fc73b3052bd60ffd39e0a07ae6e6ab3}\label{classoomph_1_1TreeBasedRefineableMeshBase_a6fc73b3052bd60ffd39e0a07ae6e6ab3} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!max\_refinement\_level@{max\_refinement\_level}}
@@ -1109,7 +1109,7 @@ References \mbox{\hyperlink{refineable__mesh_8h_source_l00756}{Max\+\_\+refineme
 
 
 
-Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l00307}{adapt()}}, and \mbox{\hyperlink{refineable__mesh_8cc_source_l00830}{get\+\_\+refinement\+\_\+levels()}}.
+Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l00305}{adapt()}}, and \mbox{\hyperlink{refineable__mesh_8cc_source_l00828}{get\+\_\+refinement\+\_\+levels()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_a86368b27bc89989795e5eae956058204}\label{classoomph_1_1TreeBasedRefineableMeshBase_a86368b27bc89989795e5eae956058204} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!min\_p\_refinement\_level@{min\_p\_refinement\_level}}
@@ -1149,7 +1149,7 @@ References \mbox{\hyperlink{refineable__mesh_8h_source_l00759}{Min\+\_\+refineme
 
 
 
-Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l00307}{adapt()}}, and \mbox{\hyperlink{refineable__mesh_8cc_source_l00830}{get\+\_\+refinement\+\_\+levels()}}.
+Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l00305}{adapt()}}, and \mbox{\hyperlink{refineable__mesh_8cc_source_l00828}{get\+\_\+refinement\+\_\+levels()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_a82f482d65edc9de7a1b4ec6788c9596a}\label{classoomph_1_1TreeBasedRefineableMeshBase_a82f482d65edc9de7a1b4ec6788c9596a} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!operator=@{operator=}}
@@ -1171,9 +1171,9 @@ Broken assignment operator.
 
 p-\/adapt mesh\+: Refine elements whose error is lager than err\+\_\+max and (try to) unrefine those whose error is smaller than err\+\_\+min 
 
-///////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////
-
 Do adaptive p-\/refinement for mesh.
+
+
 \begin{DoxyItemize}
 \item Pass \doxylink{classoomph_1_1Vector}{Vector} of error estimates for all elements.
 \item p-\/refine those whose errors exceeds the threshold
@@ -1184,11 +1184,11 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1RefineableMeshBase_a03222065e7
 
 
 
-Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l03951}{3951}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
+Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l03949}{3949}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
 
 
 
-References \mbox{\hyperlink{refineable__mesh_8h_source_l00635}{classify\+\_\+halo\+\_\+and\+\_\+haloed\+\_\+nodes()}}, \mbox{\hyperlink{mesh_8h_source_l00119}{oomph\+::\+Mesh\+::\+Comm\+\_\+pt}}, \mbox{\hyperlink{mesh_8cc_source_l09190}{oomph\+::\+Mesh\+::delete\+\_\+all\+\_\+external\+\_\+storage()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00542}{oomph\+::\+Doc\+Info\+::disable\+\_\+doc()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00243}{oomph\+::\+Refineable\+Mesh\+Base\+::doc\+\_\+info()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00183}{oomph\+::\+Refineable\+Mesh\+Base\+::doc\+\_\+info\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00460}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l01740}{oomph\+::\+Mesh\+::halo\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l01779}{oomph\+::\+Mesh\+::haloed\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00548}{oomph\+::\+Doc\+Info\+::is\+\_\+doc\+\_\+enabled()}}, \mbox{\hyperlink{mesh_8h_source_l01588}{oomph\+::\+Mesh\+::is\+\_\+mesh\+\_\+distributed()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00123}{oomph\+::\+Refineable\+Mesh\+Base\+::max\+\_\+keep\+\_\+unrefined()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00499}{max\+\_\+p\+\_\+refinement\+\_\+level()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00163}{oomph\+::\+Refineable\+Mesh\+Base\+::max\+\_\+permitted\+\_\+error()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00156}{oomph\+::\+Refineable\+Mesh\+Base\+::min\+\_\+permitted\+\_\+error()}}, \mbox{\hyperlink{mesh_8h_source_l00590}{oomph\+::\+Mesh\+::nelement()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00338}{oomph\+::\+Refineable\+Mesh\+Base\+::\+Nrefined}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00114}{oomph\+::\+Refineable\+Mesh\+Base\+::nrefinement\+\_\+overruled()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00341}{oomph\+::\+Refineable\+Mesh\+Base\+::\+Nunrefined}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00533}{p\+\_\+adapt\+\_\+mesh()}}, \mbox{\hyperlink{mesh_8cc_source_l00508}{oomph\+::\+Mesh\+::reorder\+\_\+nodes()}}, \mbox{\hyperlink{refineable__elements_8h_source_l00725}{oomph\+::\+PRefineable\+Element\+::select\+\_\+for\+\_\+p\+\_\+refinement()}}, and \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}.
+References \mbox{\hyperlink{refineable__mesh_8h_source_l00635}{classify\+\_\+halo\+\_\+and\+\_\+haloed\+\_\+nodes()}}, \mbox{\hyperlink{mesh_8h_source_l00119}{oomph\+::\+Mesh\+::\+Comm\+\_\+pt}}, \mbox{\hyperlink{mesh_8cc_source_l09190}{oomph\+::\+Mesh\+::delete\+\_\+all\+\_\+external\+\_\+storage()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00552}{oomph\+::\+Doc\+Info\+::disable\+\_\+doc()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00243}{oomph\+::\+Refineable\+Mesh\+Base\+::doc\+\_\+info()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00183}{oomph\+::\+Refineable\+Mesh\+Base\+::doc\+\_\+info\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00464}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l01748}{oomph\+::\+Mesh\+::halo\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l01787}{oomph\+::\+Mesh\+::haloed\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00558}{oomph\+::\+Doc\+Info\+::is\+\_\+doc\+\_\+enabled()}}, \mbox{\hyperlink{mesh_8h_source_l01596}{oomph\+::\+Mesh\+::is\+\_\+mesh\+\_\+distributed()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00123}{oomph\+::\+Refineable\+Mesh\+Base\+::max\+\_\+keep\+\_\+unrefined()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00499}{max\+\_\+p\+\_\+refinement\+\_\+level()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00163}{oomph\+::\+Refineable\+Mesh\+Base\+::max\+\_\+permitted\+\_\+error()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00156}{oomph\+::\+Refineable\+Mesh\+Base\+::min\+\_\+permitted\+\_\+error()}}, \mbox{\hyperlink{mesh_8h_source_l00598}{oomph\+::\+Mesh\+::nelement()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00338}{oomph\+::\+Refineable\+Mesh\+Base\+::\+Nrefined}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00114}{oomph\+::\+Refineable\+Mesh\+Base\+::nrefinement\+\_\+overruled()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00341}{oomph\+::\+Refineable\+Mesh\+Base\+::\+Nunrefined}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00533}{p\+\_\+adapt\+\_\+mesh()}}, \mbox{\hyperlink{mesh_8cc_source_l00508}{oomph\+::\+Mesh\+::reorder\+\_\+nodes()}}, \mbox{\hyperlink{refineable__elements_8h_source_l00725}{oomph\+::\+PRefineable\+Element\+::select\+\_\+for\+\_\+p\+\_\+refinement()}}, and \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_ae36ab5e807acc10ccc31a7886ffc040a}\label{classoomph_1_1TreeBasedRefineableMeshBase_ae36ab5e807acc10ccc31a7886ffc040a} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!p\_adapt\_mesh@{p\_adapt\_mesh}}
@@ -1206,11 +1206,11 @@ Definition at line \mbox{\hyperlink{refineable__mesh_8h_source_l00533}{533}} of 
 
 
 
-References \mbox{\hyperlink{oomph__utilities_8h_source_l00524}{oomph\+::\+Doc\+Info\+::directory()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00542}{oomph\+::\+Doc\+Info\+::disable\+\_\+doc()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00243}{oomph\+::\+Refineable\+Mesh\+Base\+::doc\+\_\+info()}}, and \mbox{\hyperlink{refineable__mesh_8h_source_l00533}{p\+\_\+adapt\+\_\+mesh()}}.
+References \mbox{\hyperlink{oomph__utilities_8h_source_l00534}{oomph\+::\+Doc\+Info\+::directory()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00552}{oomph\+::\+Doc\+Info\+::disable\+\_\+doc()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00243}{oomph\+::\+Refineable\+Mesh\+Base\+::doc\+\_\+info()}}, and \mbox{\hyperlink{refineable__mesh_8h_source_l00533}{p\+\_\+adapt\+\_\+mesh()}}.
 
 
 
-Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l03951}{p\+\_\+adapt()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00533}{p\+\_\+adapt\+\_\+mesh()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l05304}{p\+\_\+refine\+\_\+selected\+\_\+elements()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l05264}{p\+\_\+refine\+\_\+selected\+\_\+elements()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l01790}{p\+\_\+refine\+\_\+uniformly()}}, and \mbox{\hyperlink{refineable__mesh_8cc_source_l05240}{p\+\_\+unrefine\+\_\+uniformly()}}.
+Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l03949}{p\+\_\+adapt()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00533}{p\+\_\+adapt\+\_\+mesh()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l05306}{p\+\_\+refine\+\_\+selected\+\_\+elements()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l05266}{p\+\_\+refine\+\_\+selected\+\_\+elements()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l01788}{p\+\_\+refine\+\_\+uniformly()}}, and \mbox{\hyperlink{refineable__mesh_8cc_source_l05242}{p\+\_\+unrefine\+\_\+uniformly()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_a5d714967dc71ba477c2ca807bbf6d6bd}\label{classoomph_1_1TreeBasedRefineableMeshBase_a5d714967dc71ba477c2ca807bbf6d6bd} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!p\_adapt\_mesh@{p\_adapt\_mesh}}
@@ -1276,11 +1276,11 @@ If refinement process is being documented, the following information is document
 
 /\+BENFLAG\+: Check that all the nodes belong to their update elements
 
-Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l04433}{4433}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
+Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l04435}{4435}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
 
 
 
-References \mbox{\hyperlink{mesh_8h_source_l00840}{oomph\+::\+Mesh\+::boundary\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{classoomph_1_1TreeForest_a0e6a7f821d9f14374c6d23d8766c7679}{oomph\+::\+Tree\+Forest\+::check\+\_\+all\+\_\+neighbours()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00635}{classify\+\_\+halo\+\_\+and\+\_\+haloed\+\_\+nodes()}}, \mbox{\hyperlink{tree_8cc_source_l00432}{oomph\+::\+Tree\+Forest\+::close\+\_\+hanging\+\_\+node\+\_\+files()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l02271}{complete\+\_\+hanging\+\_\+nodes()}}, \mbox{\hyperlink{tree_8cc_source_l00341}{oomph\+::\+Tree\+::deactivate\+\_\+object()}}, \mbox{\hyperlink{mesh_8cc_source_l09190}{oomph\+::\+Mesh\+::delete\+\_\+all\+\_\+external\+\_\+storage()}}, \mbox{\hyperlink{refineable__elements_8h_source_l00731}{oomph\+::\+PRefineable\+Element\+::deselect\+\_\+for\+\_\+p\+\_\+refinement()}}, \mbox{\hyperlink{elements_8h_source_l02615}{oomph\+::\+Finite\+Element\+::dim()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00524}{oomph\+::\+Doc\+Info\+::directory()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00049}{oomph\+::\+Global\+\_\+timings\+::\+Doc\+\_\+comprehensive\+\_\+timings}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00243}{oomph\+::\+Refineable\+Mesh\+Base\+::doc\+\_\+info()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00460}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00473}{oomph\+::\+Mesh\+::finite\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00460}{forest\+\_\+pt()}}, \mbox{\hyperlink{elements_8h_source_l01889}{oomph\+::\+Finite\+Element\+::get\+\_\+x()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00548}{oomph\+::\+Doc\+Info\+::is\+\_\+doc\+\_\+enabled()}}, \mbox{\hyperlink{mesh_8h_source_l01588}{oomph\+::\+Mesh\+::is\+\_\+mesh\+\_\+distributed()}}, \mbox{\hyperlink{elements_8h_source_l01846}{oomph\+::\+Finite\+Element\+::local\+\_\+coordinate\+\_\+of\+\_\+node()}}, \mbox{\hyperlink{mesh_8h_source_l00087}{oomph\+::\+Mesh\+::\+Lookup\+\_\+for\+\_\+elements\+\_\+next\+\_\+boundary\+\_\+is\+\_\+setup}}, \mbox{\hyperlink{elements_8h_source_l01882}{oomph\+::\+Finite\+Element\+::macro\+\_\+elem\+\_\+pt()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00177}{oomph\+::\+Refineable\+Mesh\+Base\+::max\+\_\+error()}}, \mbox{\hyperlink{refineable__elements_8h_source_l00495}{oomph\+::\+Refineable\+Element\+::max\+\_\+integrity\+\_\+tolerance()}}, \mbox{\hyperlink{mesh_8h_source_l00827}{oomph\+::\+Mesh\+::nboundary()}}, \mbox{\hyperlink{mesh_8h_source_l00878}{oomph\+::\+Mesh\+::nboundary\+\_\+element()}}, \mbox{\hyperlink{geom__objects_8h_source_l00177}{oomph\+::\+Geom\+Object\+::ndim()}}, \mbox{\hyperlink{mesh_8h_source_l00590}{oomph\+::\+Mesh\+::nelement()}}, \mbox{\hyperlink{geom__objects_8h_source_l00171}{oomph\+::\+Geom\+Object\+::nlagrangian()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{mesh_8h_source_l00596}{oomph\+::\+Mesh\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00436}{oomph\+::\+Mesh\+::node\+\_\+pt()}}, \mbox{\hyperlink{elements_8cc_source_l05102}{oomph\+::\+Finite\+Element\+::node\+\_\+update()}}, \mbox{\hyperlink{tree_8h_source_l00460}{oomph\+::\+Tree\+Forest\+::ntree()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00554}{oomph\+::\+Doc\+Info\+::number()}}, \mbox{\hyperlink{nodes_8h_source_l00483}{oomph\+::\+Data\+::nvalue()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{classoomph_1_1TreeForest_a635443274eaa2fb1afa889e4e748608f}{oomph\+::\+Tree\+Forest\+::open\+\_\+hanging\+\_\+node\+\_\+files()}}, \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMeshBase_a9a2f26f447d6386505bdbdd0ac518321}{p\+\_\+refine\+\_\+elements\+\_\+if\+\_\+required()}}, \mbox{\hyperlink{elements_8h_source_l02680}{oomph\+::\+Finite\+Element\+::position()}}, \mbox{\hyperlink{mesh_8cc_source_l00966}{oomph\+::\+Mesh\+::prune\+\_\+dead\+\_\+nodes()}}, \mbox{\hyperlink{mesh_8cc_source_l00508}{oomph\+::\+Mesh\+::reorder\+\_\+nodes()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{nodes_8h_source_l01442}{oomph\+::\+Node\+::set\+\_\+non\+\_\+obsolete()}}, \mbox{\hyperlink{mesh_8h_source_l00275}{oomph\+::\+Mesh\+::setup\+\_\+boundary\+\_\+element\+\_\+info()}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, \mbox{\hyperlink{tree_8cc_source_l00405}{oomph\+::\+Tree\+Forest\+::stick\+\_\+all\+\_\+tree\+\_\+nodes\+\_\+into\+\_\+vector()}}, \mbox{\hyperlink{tree_8cc_source_l00379}{oomph\+::\+Tree\+Forest\+::stick\+\_\+leaves\+\_\+into\+\_\+vector()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{t}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01295}{oomph\+::\+Timing\+Helpers\+::timer()}}, \mbox{\hyperlink{tree_8cc_source_l00145}{oomph\+::\+Tree\+::traverse\+\_\+all()}}, \mbox{\hyperlink{tree_8h_source_l00466}{oomph\+::\+Tree\+Forest\+::tree\+\_\+pt()}}, and \mbox{\hyperlink{nodes_8h_source_l01060}{oomph\+::\+Node\+::x()}}.
+References \mbox{\hyperlink{mesh_8h_source_l00848}{oomph\+::\+Mesh\+::boundary\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{classoomph_1_1TreeForest_a0e6a7f821d9f14374c6d23d8766c7679}{oomph\+::\+Tree\+Forest\+::check\+\_\+all\+\_\+neighbours()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00635}{classify\+\_\+halo\+\_\+and\+\_\+haloed\+\_\+nodes()}}, \mbox{\hyperlink{tree_8cc_source_l00432}{oomph\+::\+Tree\+Forest\+::close\+\_\+hanging\+\_\+node\+\_\+files()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l02269}{complete\+\_\+hanging\+\_\+nodes()}}, \mbox{\hyperlink{tree_8cc_source_l00341}{oomph\+::\+Tree\+::deactivate\+\_\+object()}}, \mbox{\hyperlink{mesh_8cc_source_l09190}{oomph\+::\+Mesh\+::delete\+\_\+all\+\_\+external\+\_\+storage()}}, \mbox{\hyperlink{refineable__elements_8h_source_l00731}{oomph\+::\+PRefineable\+Element\+::deselect\+\_\+for\+\_\+p\+\_\+refinement()}}, \mbox{\hyperlink{elements_8h_source_l02615}{oomph\+::\+Finite\+Element\+::dim()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00534}{oomph\+::\+Doc\+Info\+::directory()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00049}{oomph\+::\+Global\+\_\+timings\+::\+Doc\+\_\+comprehensive\+\_\+timings}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00243}{oomph\+::\+Refineable\+Mesh\+Base\+::doc\+\_\+info()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00464}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00477}{oomph\+::\+Mesh\+::finite\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00460}{forest\+\_\+pt()}}, \mbox{\hyperlink{elements_8h_source_l01889}{oomph\+::\+Finite\+Element\+::get\+\_\+x()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00558}{oomph\+::\+Doc\+Info\+::is\+\_\+doc\+\_\+enabled()}}, \mbox{\hyperlink{mesh_8h_source_l01596}{oomph\+::\+Mesh\+::is\+\_\+mesh\+\_\+distributed()}}, \mbox{\hyperlink{elements_8h_source_l01846}{oomph\+::\+Finite\+Element\+::local\+\_\+coordinate\+\_\+of\+\_\+node()}}, \mbox{\hyperlink{mesh_8h_source_l00087}{oomph\+::\+Mesh\+::\+Lookup\+\_\+for\+\_\+elements\+\_\+next\+\_\+boundary\+\_\+is\+\_\+setup}}, \mbox{\hyperlink{elements_8h_source_l01882}{oomph\+::\+Finite\+Element\+::macro\+\_\+elem\+\_\+pt()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00177}{oomph\+::\+Refineable\+Mesh\+Base\+::max\+\_\+error()}}, \mbox{\hyperlink{refineable__elements_8h_source_l00495}{oomph\+::\+Refineable\+Element\+::max\+\_\+integrity\+\_\+tolerance()}}, \mbox{\hyperlink{mesh_8h_source_l00835}{oomph\+::\+Mesh\+::nboundary()}}, \mbox{\hyperlink{mesh_8h_source_l00886}{oomph\+::\+Mesh\+::nboundary\+\_\+element()}}, \mbox{\hyperlink{geom__objects_8h_source_l00177}{oomph\+::\+Geom\+Object\+::ndim()}}, \mbox{\hyperlink{mesh_8h_source_l00598}{oomph\+::\+Mesh\+::nelement()}}, \mbox{\hyperlink{geom__objects_8h_source_l00171}{oomph\+::\+Geom\+Object\+::nlagrangian()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{mesh_8h_source_l00604}{oomph\+::\+Mesh\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00440}{oomph\+::\+Mesh\+::node\+\_\+pt()}}, \mbox{\hyperlink{elements_8cc_source_l05102}{oomph\+::\+Finite\+Element\+::node\+\_\+update()}}, \mbox{\hyperlink{tree_8h_source_l00460}{oomph\+::\+Tree\+Forest\+::ntree()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00564}{oomph\+::\+Doc\+Info\+::number()}}, \mbox{\hyperlink{nodes_8h_source_l00483}{oomph\+::\+Data\+::nvalue()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{classoomph_1_1TreeForest_a635443274eaa2fb1afa889e4e748608f}{oomph\+::\+Tree\+Forest\+::open\+\_\+hanging\+\_\+node\+\_\+files()}}, \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMeshBase_a9a2f26f447d6386505bdbdd0ac518321}{p\+\_\+refine\+\_\+elements\+\_\+if\+\_\+required()}}, \mbox{\hyperlink{elements_8h_source_l02680}{oomph\+::\+Finite\+Element\+::position()}}, \mbox{\hyperlink{mesh_8cc_source_l00966}{oomph\+::\+Mesh\+::prune\+\_\+dead\+\_\+nodes()}}, \mbox{\hyperlink{mesh_8cc_source_l00508}{oomph\+::\+Mesh\+::reorder\+\_\+nodes()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{nodes_8h_source_l01442}{oomph\+::\+Node\+::set\+\_\+non\+\_\+obsolete()}}, \mbox{\hyperlink{mesh_8h_source_l00279}{oomph\+::\+Mesh\+::setup\+\_\+boundary\+\_\+element\+\_\+info()}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, \mbox{\hyperlink{tree_8cc_source_l00405}{oomph\+::\+Tree\+Forest\+::stick\+\_\+all\+\_\+tree\+\_\+nodes\+\_\+into\+\_\+vector()}}, \mbox{\hyperlink{tree_8cc_source_l00379}{oomph\+::\+Tree\+Forest\+::stick\+\_\+leaves\+\_\+into\+\_\+vector()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{t}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01303}{oomph\+::\+Timing\+Helpers\+::timer()}}, \mbox{\hyperlink{tree_8cc_source_l00145}{oomph\+::\+Tree\+::traverse\+\_\+all()}}, \mbox{\hyperlink{tree_8h_source_l00466}{oomph\+::\+Tree\+Forest\+::tree\+\_\+pt()}}, and \mbox{\hyperlink{nodes_8h_source_l01060}{oomph\+::\+Node\+::x()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_a9a2f26f447d6386505bdbdd0ac518321}\label{classoomph_1_1TreeBasedRefineableMeshBase_a9a2f26f447d6386505bdbdd0ac518321} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!p\_refine\_elements\_if\_required@{p\_refine\_elements\_if\_required}}
@@ -1298,7 +1298,7 @@ Implemented in \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMesh_aa47363e77
 
 
 
-Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l04433}{p\+\_\+adapt\+\_\+mesh()}}.
+Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l04435}{p\+\_\+adapt\+\_\+mesh()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_a178431e8c17ca9784f6fdc2501404471}\label{classoomph_1_1TreeBasedRefineableMeshBase_a178431e8c17ca9784f6fdc2501404471} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!p\_refine\_selected\_elements@{p\_refine\_selected\_elements}}
@@ -1312,11 +1312,11 @@ p-\/refine mesh by refining the elements identified by their pointers.
 
 
 
-Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l05304}{5304}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
+Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l05306}{5306}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l01588}{oomph\+::\+Mesh\+::is\+\_\+mesh\+\_\+distributed()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00533}{p\+\_\+adapt\+\_\+mesh()}}, and \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l01596}{oomph\+::\+Mesh\+::is\+\_\+mesh\+\_\+distributed()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00533}{p\+\_\+adapt\+\_\+mesh()}}, and \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_a8596076849247d63cadfe579fdc17d60}\label{classoomph_1_1TreeBasedRefineableMeshBase_a8596076849247d63cadfe579fdc17d60} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!p\_refine\_selected\_elements@{p\_refine\_selected\_elements}}
@@ -1330,11 +1330,11 @@ p-\/refine mesh by refining the elements identified by their numbers.
 
 
 
-Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l05264}{5264}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
+Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l05266}{5266}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00460}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l01588}{oomph\+::\+Mesh\+::is\+\_\+mesh\+\_\+distributed()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00533}{p\+\_\+adapt\+\_\+mesh()}}, and \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00464}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l01596}{oomph\+::\+Mesh\+::is\+\_\+mesh\+\_\+distributed()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00533}{p\+\_\+adapt\+\_\+mesh()}}, and \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_ae922698aeb358f174c37dac5101c5369}\label{classoomph_1_1TreeBasedRefineableMeshBase_ae922698aeb358f174c37dac5101c5369} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!p\_refine\_uniformly@{p\_refine\_uniformly}}
@@ -1374,11 +1374,11 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1RefineableMeshBase_a443bfce758
 
 
 
-Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l01790}{1790}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
+Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l01788}{1788}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
 
 
 
-References \mbox{\hyperlink{refineable__mesh_8h_source_l00243}{oomph\+::\+Refineable\+Mesh\+Base\+::doc\+\_\+info()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00460}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00590}{oomph\+::\+Mesh\+::nelement()}}, and \mbox{\hyperlink{refineable__mesh_8h_source_l00533}{p\+\_\+adapt\+\_\+mesh()}}.
+References \mbox{\hyperlink{refineable__mesh_8h_source_l00243}{oomph\+::\+Refineable\+Mesh\+Base\+::doc\+\_\+info()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00464}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00598}{oomph\+::\+Mesh\+::nelement()}}, and \mbox{\hyperlink{refineable__mesh_8h_source_l00533}{p\+\_\+adapt\+\_\+mesh()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_a937e4097d480ed921b86ec4a7e885df6}\label{classoomph_1_1TreeBasedRefineableMeshBase_a937e4097d480ed921b86ec4a7e885df6} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!p\_unrefine\_uniformly@{p\_unrefine\_uniformly}}
@@ -1392,11 +1392,11 @@ p-\/unrefine mesh uniformly
 
 p-\/unrefine mesh uniformly Unlike in h-\/refinement, we can simply p-\/unrefine each element in the mesh 
 
-Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l05240}{5240}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
+Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l05242}{5242}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
 
 
 
-References \mbox{\hyperlink{refineable__mesh_8h_source_l00243}{oomph\+::\+Refineable\+Mesh\+Base\+::doc\+\_\+info()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00460}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00590}{oomph\+::\+Mesh\+::nelement()}}, and \mbox{\hyperlink{refineable__mesh_8h_source_l00533}{p\+\_\+adapt\+\_\+mesh()}}.
+References \mbox{\hyperlink{refineable__mesh_8h_source_l00243}{oomph\+::\+Refineable\+Mesh\+Base\+::doc\+\_\+info()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00464}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00598}{oomph\+::\+Mesh\+::nelement()}}, and \mbox{\hyperlink{refineable__mesh_8h_source_l00533}{p\+\_\+adapt\+\_\+mesh()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_a0c601c4e58e2d7dcfe587739f17e44e9}\label{classoomph_1_1TreeBasedRefineableMeshBase_a0c601c4e58e2d7dcfe587739f17e44e9} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!read\_refinement@{read\_refinement}}
@@ -1410,7 +1410,7 @@ Read refinement pattern to allow for rebuild.
 
 
 
-Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l00251}{251}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
+Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l00249}{249}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
 
 
 
@@ -1418,7 +1418,7 @@ References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}.
 
 
 
-Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l00201}{refine()}}.
+Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l00199}{refine()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_a5753ea33897c77342d00644bef86ba74}\label{classoomph_1_1TreeBasedRefineableMeshBase_a5753ea33897c77342d00644bef86ba74} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!refine@{refine}}
@@ -1432,11 +1432,11 @@ Refine mesh according to refinement pattern in restart file.
 
 Refine base mesh according to refinement pattern in restart file. 
 
-Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l00201}{201}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
+Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l00199}{199}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
 
 
 
-References \mbox{\hyperlink{refineable__mesh_8cc_source_l00251}{read\+\_\+refinement()}}, and \mbox{\hyperlink{refineable__mesh_8cc_source_l00137}{refine\+\_\+base\+\_\+mesh()}}.
+References \mbox{\hyperlink{refineable__mesh_8cc_source_l00249}{read\+\_\+refinement()}}, and \mbox{\hyperlink{refineable__mesh_8cc_source_l00135}{refine\+\_\+base\+\_\+mesh()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_a7451ff312a3ac482b2f62ded020630c3}\label{classoomph_1_1TreeBasedRefineableMeshBase_a7451ff312a3ac482b2f62ded020630c3} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!refine\_as\_in\_reference\_mesh@{refine\_as\_in\_reference\_mesh}}
@@ -1450,11 +1450,11 @@ Refine mesh once so that its topology etc becomes that of the (finer!) reference
 
 
 
-Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l01947}{1947}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
+Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l01945}{1945}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00473}{oomph\+::\+Mesh\+::finite\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l00830}{get\+\_\+refinement\+\_\+levels()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{tree_8h_source_l00220}{oomph\+::\+Tree\+::is\+\_\+leaf()}}, \mbox{\hyperlink{nodes_8h_source_l01054}{oomph\+::\+Node\+::ndim()}}, \mbox{\hyperlink{mesh_8h_source_l00590}{oomph\+::\+Mesh\+::nelement()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00436}{oomph\+::\+Mesh\+::node\+\_\+pt()}}, \mbox{\hyperlink{tree_8h_source_l00129}{oomph\+::\+Tree\+::nsons()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00096}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::output()}}, \mbox{\hyperlink{mesh_8cc_source_l02027}{oomph\+::\+Mesh\+::output()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01265}{oomph\+::pause()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l01816}{refine\+\_\+selected\+\_\+elements()}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, \mbox{\hyperlink{tree_8h_source_l00103}{oomph\+::\+Tree\+::son\+\_\+pt()}}, and \mbox{\hyperlink{nodes_8h_source_l01060}{oomph\+::\+Node\+::x()}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00477}{oomph\+::\+Mesh\+::finite\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l00828}{get\+\_\+refinement\+\_\+levels()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{tree_8h_source_l00220}{oomph\+::\+Tree\+::is\+\_\+leaf()}}, \mbox{\hyperlink{nodes_8h_source_l01054}{oomph\+::\+Node\+::ndim()}}, \mbox{\hyperlink{mesh_8h_source_l00598}{oomph\+::\+Mesh\+::nelement()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00440}{oomph\+::\+Mesh\+::node\+\_\+pt()}}, \mbox{\hyperlink{tree_8h_source_l00129}{oomph\+::\+Tree\+::nsons()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00096}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::output()}}, \mbox{\hyperlink{mesh_8cc_source_l02027}{oomph\+::\+Mesh\+::output()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01273}{oomph\+::pause()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l01814}{refine\+\_\+selected\+\_\+elements()}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, \mbox{\hyperlink{tree_8h_source_l00103}{oomph\+::\+Tree\+::son\+\_\+pt()}}, and \mbox{\hyperlink{nodes_8h_source_l01060}{oomph\+::\+Node\+::x()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_a77c2eb2c650ba34c79cf3b156204ee3b}\label{classoomph_1_1TreeBasedRefineableMeshBase_a77c2eb2c650ba34c79cf3b156204ee3b} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!refine\_base\_mesh@{refine\_base\_mesh}}
@@ -1468,15 +1468,15 @@ Refine base mesh according to specified refinement pattern.
 
 Refine original, unrefined mesh according to specified refinement pattern (relative to original, unrefined mesh). 
 
-Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l00137}{137}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
+Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l00135}{135}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
 
 
 
-References \mbox{\hyperlink{refineable__mesh_8h_source_l00517}{adapt\+\_\+mesh()}}, \mbox{\hyperlink{mesh_8h_source_l00119}{oomph\+::\+Mesh\+::\+Comm\+\_\+pt}}, \mbox{\hyperlink{mesh_8h_source_l00460}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l00830}{get\+\_\+refinement\+\_\+levels()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{mesh_8h_source_l01588}{oomph\+::\+Mesh\+::is\+\_\+mesh\+\_\+distributed()}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, and \mbox{\hyperlink{refineable__mesh_8cc_source_l02150}{unrefine\+\_\+uniformly()}}.
+References \mbox{\hyperlink{refineable__mesh_8h_source_l00517}{adapt\+\_\+mesh()}}, \mbox{\hyperlink{mesh_8h_source_l00119}{oomph\+::\+Mesh\+::\+Comm\+\_\+pt}}, \mbox{\hyperlink{mesh_8h_source_l00464}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l00828}{get\+\_\+refinement\+\_\+levels()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{mesh_8h_source_l01596}{oomph\+::\+Mesh\+::is\+\_\+mesh\+\_\+distributed()}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, and \mbox{\hyperlink{refineable__mesh_8cc_source_l02148}{unrefine\+\_\+uniformly()}}.
 
 
 
-Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l00201}{refine()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l01885}{refine\+\_\+base\+\_\+mesh\+\_\+as\+\_\+in\+\_\+reference\+\_\+mesh()}}, and \mbox{\hyperlink{refineable__mesh_8cc_source_l01907}{refine\+\_\+base\+\_\+mesh\+\_\+as\+\_\+in\+\_\+reference\+\_\+mesh\+\_\+minus\+\_\+one()}}.
+Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l00199}{refine()}}, \mbox{\hyperlink{refineable__mesh_8cc_source_l01883}{refine\+\_\+base\+\_\+mesh\+\_\+as\+\_\+in\+\_\+reference\+\_\+mesh()}}, and \mbox{\hyperlink{refineable__mesh_8cc_source_l01905}{refine\+\_\+base\+\_\+mesh\+\_\+as\+\_\+in\+\_\+reference\+\_\+mesh\+\_\+minus\+\_\+one()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_a6a69f5485eb426f6f60ed5a92db383a3}\label{classoomph_1_1TreeBasedRefineableMeshBase_a6a69f5485eb426f6f60ed5a92db383a3} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!refine\_base\_mesh\_as\_in\_reference\_mesh@{refine\_base\_mesh\_as\_in\_reference\_mesh}}
@@ -1490,11 +1490,11 @@ Refine base mesh to same degree as reference mesh (relative to original unrefine
 
 Refine to same degree as the reference mesh. 
 
-Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l01885}{1885}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
+Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l01883}{1883}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
 
 
 
-References \mbox{\hyperlink{refineable__mesh_8cc_source_l00137}{refine\+\_\+base\+\_\+mesh()}}.
+References \mbox{\hyperlink{refineable__mesh_8cc_source_l00135}{refine\+\_\+base\+\_\+mesh()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_ae6fc7cc7acf368423cc49cc10ab276bc}\label{classoomph_1_1TreeBasedRefineableMeshBase_ae6fc7cc7acf368423cc49cc10ab276bc} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!refine\_base\_mesh\_as\_in\_reference\_mesh\_minus\_one@{refine\_base\_mesh\_as\_in\_reference\_mesh\_minus\_one}}
@@ -1508,11 +1508,11 @@ Refine base mesh to same degree as reference mesh minus one level of refinement 
 
 Refine to same degree as the reference mesh minus one. Useful function for multigrid solvers; allows the easy copy of a mesh to the level of refinement just below the current one. Returns a boolean variable which indicates if the reference mesh has not been refined at all. 
 
-Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l01906}{1906}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
+Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l01904}{1904}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
 
 
 
-References \mbox{\hyperlink{refineable__mesh_8cc_source_l00137}{refine\+\_\+base\+\_\+mesh()}}, and \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}.
+References \mbox{\hyperlink{refineable__mesh_8cc_source_l00135}{refine\+\_\+base\+\_\+mesh()}}, and \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_a6d88d6365af7f92bf766b73b115bcf3f}\label{classoomph_1_1TreeBasedRefineableMeshBase_a6d88d6365af7f92bf766b73b115bcf3f} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!refine\_selected\_elements@{refine\_selected\_elements}}
@@ -1526,11 +1526,11 @@ Refine mesh by splitting the elements identified by their pointers.
 
 
 
-Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l01852}{1852}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
+Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l01850}{1850}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
 
 
 
-References \mbox{\hyperlink{refineable__mesh_8h_source_l00517}{adapt\+\_\+mesh()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l01588}{oomph\+::\+Mesh\+::is\+\_\+mesh\+\_\+distributed()}}, and \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}.
+References \mbox{\hyperlink{refineable__mesh_8h_source_l00517}{adapt\+\_\+mesh()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l01596}{oomph\+::\+Mesh\+::is\+\_\+mesh\+\_\+distributed()}}, and \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_a171be4c171cc60de5831f6a2ffaf278e}\label{classoomph_1_1TreeBasedRefineableMeshBase_a171be4c171cc60de5831f6a2ffaf278e} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!refine\_selected\_elements@{refine\_selected\_elements}}
@@ -1544,15 +1544,15 @@ Refine mesh by splitting the elements identified by their numbers.
 
 
 
-Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l01816}{1816}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
+Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l01814}{1814}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
 
 
 
-References \mbox{\hyperlink{refineable__mesh_8h_source_l00517}{adapt\+\_\+mesh()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00460}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l01588}{oomph\+::\+Mesh\+::is\+\_\+mesh\+\_\+distributed()}}, and \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}.
+References \mbox{\hyperlink{refineable__mesh_8h_source_l00517}{adapt\+\_\+mesh()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00464}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l01596}{oomph\+::\+Mesh\+::is\+\_\+mesh\+\_\+distributed()}}, and \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}.
 
 
 
-Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l01947}{refine\+\_\+as\+\_\+in\+\_\+reference\+\_\+mesh()}}.
+Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l01945}{refine\+\_\+as\+\_\+in\+\_\+reference\+\_\+mesh()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_a8e67b50fecb03fe1ac93dcb81e4ac6e9}\label{classoomph_1_1TreeBasedRefineableMeshBase_a8e67b50fecb03fe1ac93dcb81e4ac6e9} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!refine\_uniformly@{refine\_uniformly}}
@@ -1592,11 +1592,11 @@ Implements \mbox{\hyperlink{classoomph_1_1RefineableMeshBase_afe5810e718ce1939f3
 
 
 
-Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l01772}{1772}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
+Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l01770}{1770}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
 
 
 
-References \mbox{\hyperlink{refineable__mesh_8h_source_l00517}{adapt\+\_\+mesh()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00243}{oomph\+::\+Refineable\+Mesh\+Base\+::doc\+\_\+info()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00460}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, and \mbox{\hyperlink{mesh_8h_source_l00590}{oomph\+::\+Mesh\+::nelement()}}.
+References \mbox{\hyperlink{refineable__mesh_8h_source_l00517}{adapt\+\_\+mesh()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00243}{oomph\+::\+Refineable\+Mesh\+Base\+::doc\+\_\+info()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00464}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, and \mbox{\hyperlink{mesh_8h_source_l00598}{oomph\+::\+Mesh\+::nelement()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_aab7cbaa680b2258f2b1eea5de6bbe605}\label{classoomph_1_1TreeBasedRefineableMeshBase_aab7cbaa680b2258f2b1eea5de6bbe605} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!setup\_tree\_forest@{setup\_tree\_forest}}
@@ -1628,7 +1628,7 @@ Implemented in \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMesh_a43f134cb9
 
 
 
-Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l00926}{adapt\+\_\+mesh()}}.
+Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l00924}{adapt\+\_\+mesh()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_a0ba902eb4b63aaa8c4da1aadcf25709a}\label{classoomph_1_1TreeBasedRefineableMeshBase_a0ba902eb4b63aaa8c4da1aadcf25709a} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!synchronise\_hanging\_nodes@{synchronise\_hanging\_nodes}}
@@ -1642,11 +1642,11 @@ Synchronise the hanging nodes if the mesh is distributed.
 
 Deal with nodes that are hanging on one process but not another (i.\+e. the hanging status of the haloed and halo layers disagrees) 
 
-Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l02375}{2375}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
+Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l02373}{2373}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
 
 
 
-References \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMeshBase_a59d0404f8e5ebd7199f25c794c5c715c}{additional\+\_\+synchronise\+\_\+hanging\+\_\+nodes()}}, \mbox{\hyperlink{mesh_8h_source_l00119}{oomph\+::\+Mesh\+::\+Comm\+\_\+pt}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00049}{oomph\+::\+Global\+\_\+timings\+::\+Doc\+\_\+comprehensive\+\_\+timings}}, \mbox{\hyperlink{mesh_8h_source_l01914}{oomph\+::\+Mesh\+::halo\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l02014}{oomph\+::\+Mesh\+::haloed\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{mesh_8h_source_l01878}{oomph\+::\+Mesh\+::nhalo\+\_\+node()}}, \mbox{\hyperlink{mesh_8h_source_l01985}{oomph\+::\+Mesh\+::nhaloed\+\_\+node()}}, \mbox{\hyperlink{elements_8h_source_l01323}{oomph\+::\+Finite\+Element\+::\+Node\+\_\+pt}}, \mbox{\hyperlink{elements_8h_source_l01174}{oomph\+::\+Generalised\+Element\+::non\+\_\+halo\+\_\+proc\+\_\+\+ID()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{nodes_8cc_source_l02068}{oomph\+::\+Node\+::set\+\_\+hanging\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00116}{oomph\+::\+Mesh\+::\+Shared\+\_\+node\+\_\+pt}}, \mbox{\hyperlink{mesh_8h_source_l02110}{oomph\+::\+Mesh\+::shared\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01295}{oomph\+::\+Timing\+Helpers\+::timer()}}.
+References \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMeshBase_a59d0404f8e5ebd7199f25c794c5c715c}{additional\+\_\+synchronise\+\_\+hanging\+\_\+nodes()}}, \mbox{\hyperlink{mesh_8h_source_l00119}{oomph\+::\+Mesh\+::\+Comm\+\_\+pt}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00049}{oomph\+::\+Global\+\_\+timings\+::\+Doc\+\_\+comprehensive\+\_\+timings}}, \mbox{\hyperlink{mesh_8h_source_l01922}{oomph\+::\+Mesh\+::halo\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l02022}{oomph\+::\+Mesh\+::haloed\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{mesh_8h_source_l01886}{oomph\+::\+Mesh\+::nhalo\+\_\+node()}}, \mbox{\hyperlink{mesh_8h_source_l01993}{oomph\+::\+Mesh\+::nhaloed\+\_\+node()}}, \mbox{\hyperlink{elements_8h_source_l01323}{oomph\+::\+Finite\+Element\+::\+Node\+\_\+pt}}, \mbox{\hyperlink{elements_8h_source_l01157}{oomph\+::\+Generalised\+Element\+::non\+\_\+halo\+\_\+proc\+\_\+\+ID()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{nodes_8cc_source_l02068}{oomph\+::\+Node\+::set\+\_\+hanging\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00116}{oomph\+::\+Mesh\+::\+Shared\+\_\+node\+\_\+pt}}, \mbox{\hyperlink{mesh_8h_source_l02118}{oomph\+::\+Mesh\+::shared\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01303}{oomph\+::\+Timing\+Helpers\+::timer()}}.
 
 
 
@@ -1664,11 +1664,11 @@ Synchronise the positions of non-\/hanging nodes that depend on non-\/existent n
 
 
 
-Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l03650}{3650}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
+Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l03648}{3648}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
 
 
 
-References \mbox{\hyperlink{mesh_8h_source_l00119}{oomph\+::\+Mesh\+::\+Comm\+\_\+pt}}, \mbox{\hyperlink{elements_8h_source_l02615}{oomph\+::\+Finite\+Element\+::dim()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00049}{oomph\+::\+Global\+\_\+timings\+::\+Doc\+\_\+comprehensive\+\_\+timings}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{elements_8h_source_l01889}{oomph\+::\+Finite\+Element\+::get\+\_\+x()}}, \mbox{\hyperlink{mesh_8h_source_l01740}{oomph\+::\+Mesh\+::halo\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l01779}{oomph\+::\+Mesh\+::haloed\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{elements_8h_source_l01846}{oomph\+::\+Finite\+Element\+::local\+\_\+coordinate\+\_\+of\+\_\+node()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{t}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01295}{oomph\+::\+Timing\+Helpers\+::timer()}}.
+References \mbox{\hyperlink{mesh_8h_source_l00119}{oomph\+::\+Mesh\+::\+Comm\+\_\+pt}}, \mbox{\hyperlink{elements_8h_source_l02615}{oomph\+::\+Finite\+Element\+::dim()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00049}{oomph\+::\+Global\+\_\+timings\+::\+Doc\+\_\+comprehensive\+\_\+timings}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{elements_8h_source_l01889}{oomph\+::\+Finite\+Element\+::get\+\_\+x()}}, \mbox{\hyperlink{mesh_8h_source_l01748}{oomph\+::\+Mesh\+::halo\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l01787}{oomph\+::\+Mesh\+::haloed\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{elements_8h_source_l01846}{oomph\+::\+Finite\+Element\+::local\+\_\+coordinate\+\_\+of\+\_\+node()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{t}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01303}{oomph\+::\+Timing\+Helpers\+::timer()}}.
 
 
 
@@ -1726,15 +1726,15 @@ Implements \mbox{\hyperlink{classoomph_1_1RefineableMeshBase_a5bbd5c85e7c5c9e75c
 
 
 
-Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l02150}{2150}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
+Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l02148}{2148}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
 
 
 
-References \mbox{\hyperlink{refineable__mesh_8cc_source_l00307}{adapt()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00123}{oomph\+::\+Refineable\+Mesh\+Base\+::max\+\_\+keep\+\_\+unrefined()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00163}{oomph\+::\+Refineable\+Mesh\+Base\+::max\+\_\+permitted\+\_\+error()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00156}{oomph\+::\+Refineable\+Mesh\+Base\+::min\+\_\+permitted\+\_\+error()}}, and \mbox{\hyperlink{mesh_8h_source_l00590}{oomph\+::\+Mesh\+::nelement()}}.
+References \mbox{\hyperlink{refineable__mesh_8cc_source_l00305}{adapt()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00123}{oomph\+::\+Refineable\+Mesh\+Base\+::max\+\_\+keep\+\_\+unrefined()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00163}{oomph\+::\+Refineable\+Mesh\+Base\+::max\+\_\+permitted\+\_\+error()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00156}{oomph\+::\+Refineable\+Mesh\+Base\+::min\+\_\+permitted\+\_\+error()}}, and \mbox{\hyperlink{mesh_8h_source_l00598}{oomph\+::\+Mesh\+::nelement()}}.
 
 
 
-Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l00137}{refine\+\_\+base\+\_\+mesh()}}.
+Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l00135}{refine\+\_\+base\+\_\+mesh()}}.
 
 
 
@@ -1755,7 +1755,7 @@ Definition at line \mbox{\hyperlink{refineable__mesh_8h_source_l00768}{768}} of 
 
 
 
-Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l00926}{adapt\+\_\+mesh()}}, \mbox{\hyperlink{quarter__pipe__mesh_8template_8h_source_l00218}{oomph\+::\+Elastic\+Refineable\+Quarter\+Pipe\+Mesh$<$ ELEMENT $>$\+::\+Elastic\+Refineable\+Quarter\+Pipe\+Mesh()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00460}{forest\+\_\+pt()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00830}{oomph\+::\+Tree\+Based\+Refineable\+Mesh$<$ ELEMENT $>$\+::p\+\_\+refine\+\_\+elements\+\_\+if\+\_\+required()}}, \mbox{\hyperlink{eighth__sphere__mesh_8template_8h_source_l00095}{oomph\+::\+Refineable\+Eighth\+Sphere\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Eighth\+Sphere\+Mesh()}}, \mbox{\hyperlink{full__circle__mesh_8template_8h_source_l00124}{oomph\+::\+Refineable\+Full\+Circle\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Full\+Circle\+Mesh()}}, \mbox{\hyperlink{quarter__pipe__mesh_8template_8h_source_l00124}{oomph\+::\+Refineable\+Quarter\+Pipe\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Quarter\+Pipe\+Mesh()}}, \mbox{\hyperlink{quarter__tube__mesh_8template_8h_source_l00171}{oomph\+::\+Refineable\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Quarter\+Tube\+Mesh()}}, \mbox{\hyperlink{tube__mesh_8template_8h_source_l00137}{oomph\+::\+Refineable\+Tube\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Tube\+Mesh()}}, \mbox{\hyperlink{refineable__line__mesh_8h_source_l00078}{oomph\+::\+Refineable\+Line\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+binary\+\_\+tree\+\_\+forest()}}, \mbox{\hyperlink{refineable__brick__mesh_8h_source_l00088}{oomph\+::\+Refineable\+Brick\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+octree\+\_\+forest()}}, \mbox{\hyperlink{refineable__quad__mesh_8h_source_l00088}{oomph\+::\+Refineable\+Quad\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+quadtree\+\_\+forest()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00814}{oomph\+::\+Tree\+Based\+Refineable\+Mesh$<$ ELEMENT $>$\+::split\+\_\+elements\+\_\+if\+\_\+required()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00379}{Tree\+Based\+Refineable\+Mesh\+Base()}}, \mbox{\hyperlink{quarter__pipe__mesh_8template_8h_source_l00153}{oomph\+::\+Refineable\+Quarter\+Pipe\+Mesh$<$ ELEMENT $>$\+::\texorpdfstring{$\sim$}{\string~}\+Refineable\+Quarter\+Pipe\+Mesh()}}, and \mbox{\hyperlink{refineable__mesh_8h_source_l00412}{\texorpdfstring{$\sim$}{\string~}\+Tree\+Based\+Refineable\+Mesh\+Base()}}.
+Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l00924}{adapt\+\_\+mesh()}}, \mbox{\hyperlink{quarter__pipe__mesh_8h_source_l00211}{oomph\+::\+Elastic\+Refineable\+Quarter\+Pipe\+Mesh$<$ ELEMENT $>$\+::\+Elastic\+Refineable\+Quarter\+Pipe\+Mesh()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00460}{forest\+\_\+pt()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00830}{oomph\+::\+Tree\+Based\+Refineable\+Mesh$<$ ELEMENT $>$\+::p\+\_\+refine\+\_\+elements\+\_\+if\+\_\+required()}}, \mbox{\hyperlink{eighth__sphere__mesh_8h_source_l00093}{oomph\+::\+Refineable\+Eighth\+Sphere\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Eighth\+Sphere\+Mesh()}}, \mbox{\hyperlink{full__circle__mesh_8h_source_l00123}{oomph\+::\+Refineable\+Full\+Circle\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Full\+Circle\+Mesh()}}, \mbox{\hyperlink{quarter__pipe__mesh_8h_source_l00120}{oomph\+::\+Refineable\+Quarter\+Pipe\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Quarter\+Pipe\+Mesh()}}, \mbox{\hyperlink{quarter__tube__mesh_8h_source_l00169}{oomph\+::\+Refineable\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Quarter\+Tube\+Mesh()}}, \mbox{\hyperlink{tube__mesh_8h_source_l00135}{oomph\+::\+Refineable\+Tube\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Tube\+Mesh()}}, \mbox{\hyperlink{refineable__line__mesh_8h_source_l00076}{oomph\+::\+Refineable\+Line\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+binary\+\_\+tree\+\_\+forest()}}, \mbox{\hyperlink{refineable__brick__mesh_8h_source_l00086}{oomph\+::\+Refineable\+Brick\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+octree\+\_\+forest()}}, \mbox{\hyperlink{refineable__quad__mesh_8h_source_l00086}{oomph\+::\+Refineable\+Quad\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+quadtree\+\_\+forest()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00814}{oomph\+::\+Tree\+Based\+Refineable\+Mesh$<$ ELEMENT $>$\+::split\+\_\+elements\+\_\+if\+\_\+required()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00379}{Tree\+Based\+Refineable\+Mesh\+Base()}}, \mbox{\hyperlink{quarter__pipe__mesh_8h_source_l00148}{oomph\+::\+Refineable\+Quarter\+Pipe\+Mesh$<$ ELEMENT $>$\+::\texorpdfstring{$\sim$}{\string~}\+Refineable\+Quarter\+Pipe\+Mesh()}}, and \mbox{\hyperlink{refineable__mesh_8h_source_l00412}{\texorpdfstring{$\sim$}{\string~}\+Tree\+Based\+Refineable\+Mesh\+Base()}}.
 
 \Hypertarget{classoomph_1_1TreeBasedRefineableMeshBase_a39ab498ac06506e1500f9f03e8cecf72}\label{classoomph_1_1TreeBasedRefineableMeshBase_a39ab498ac06506e1500f9f03e8cecf72} 
 \index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}!Max\_p\_refinement\_level@{Max\_p\_refinement\_level}}

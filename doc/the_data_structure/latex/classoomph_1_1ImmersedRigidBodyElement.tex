@@ -126,8 +126,10 @@ Inheritance diagram for oomph\+::Immersed\+Rigid\+Body\+Element\+:\begin{figure}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{oomph\+::\+Generalised\+Element}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}}() \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a76c506edf49c5bbfe94f424ec94191ab}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
-\begin{DoxyCompactList}\small\item\em Constructor\+: Initialise all pointers and all values to zero. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a6a34bffcef1bbbc5271630042afe7ca9}{\texorpdfstring{$\sim$}{\string~}\+Generalised\+Element}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor to clean up any memory allocated by the object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1GeneralisedElement_a4e4a9177fdb093fc85c890bb86bdf655}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
+\begin{DoxyCompactList}\small\item\em Broken copy constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a180b550ae69f8bcbaae3f37f38c475ff}{operator=}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
 \begin{DoxyCompactList}\small\item\em Broken assignment operator. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Data}{Data}} \texorpdfstring{$\ast$}{*}\& \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a3b83389f2c80788013421c6d59604f0b}{internal\+\_\+data\+\_\+pt}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
@@ -527,7 +529,7 @@ Definition at line \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l0
 
 
 
-References \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00592}{Centre\+\_\+displacement\+\_\+data\+\_\+pt}}, \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00639}{Displacement\+\_\+data\+\_\+is\+\_\+internal}}, and \mbox{\hyperlink{elements_8h_source_l00622}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}.
+References \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00592}{Centre\+\_\+displacement\+\_\+data\+\_\+pt}}, \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00639}{Displacement\+\_\+data\+\_\+is\+\_\+internal}}, and \mbox{\hyperlink{elements_8h_source_l00605}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}.
 
 
 
@@ -682,7 +684,7 @@ Definition at line \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l0
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l00659}{oomph\+::\+Generalised\+Element\+::external\+\_\+data\+\_\+pt()}}, and \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00559}{List\+\_\+of\+\_\+external\+\_\+hijacked\+\_\+data}}.
+References \mbox{\hyperlink{elements_8h_source_l00642}{oomph\+::\+Generalised\+Element\+::external\+\_\+data\+\_\+pt()}}, and \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00559}{List\+\_\+of\+\_\+external\+\_\+hijacked\+\_\+data}}.
 
 
 
@@ -948,7 +950,7 @@ Definition at line \mbox{\hyperlink{immersed__rigid__body__elements_8cc_source_l
 
 
 
-References \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00608}{Drag\+\_\+mesh\+\_\+pt}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00448}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00600}{External\+\_\+force\+\_\+fct\+\_\+pt}}, \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00604}{External\+\_\+torque\+\_\+fct\+\_\+pt}}, and \mbox{\hyperlink{mesh_8h_source_l00590}{oomph\+::\+Mesh\+::nelement()}}.
+References \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00608}{Drag\+\_\+mesh\+\_\+pt}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00452}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00600}{External\+\_\+force\+\_\+fct\+\_\+pt}}, \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00604}{External\+\_\+torque\+\_\+fct\+\_\+pt}}, and \mbox{\hyperlink{mesh_8h_source_l00598}{oomph\+::\+Mesh\+::nelement()}}.
 
 
 
@@ -1122,7 +1124,7 @@ Definition at line \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l0
 
 
 
-References \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00608}{Drag\+\_\+mesh\+\_\+pt}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00448}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00590}{oomph\+::\+Mesh\+::nelement()}}, and \mbox{\hyperlink{elements_8cc_source_l05102}{oomph\+::\+Finite\+Element\+::node\+\_\+update()}}.
+References \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00608}{Drag\+\_\+mesh\+\_\+pt}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00452}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00598}{oomph\+::\+Mesh\+::nelement()}}, and \mbox{\hyperlink{elements_8cc_source_l05102}{oomph\+::\+Finite\+Element\+::node\+\_\+update()}}.
 
 
 
@@ -1414,7 +1416,7 @@ Definition at line \mbox{\hyperlink{immersed__rigid__body__elements_8cc_source_l
 
 
 
-References \mbox{\hyperlink{elements_8cc_source_l00312}{oomph\+::\+Generalised\+Element\+::add\+\_\+external\+\_\+data()}}, \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00562}{delete\+\_\+external\+\_\+hijacked\+\_\+data()}}, \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00400}{drag\+\_\+mesh\+\_\+pt()}}, \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00608}{Drag\+\_\+mesh\+\_\+pt}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00448}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{elements_8cc_source_l00392}{oomph\+::\+Generalised\+Element\+::flush\+\_\+external\+\_\+data()}}, \mbox{\hyperlink{elements_8h_source_l02793}{oomph\+::\+Finite\+Element\+::identify\+\_\+geometric\+\_\+data()}}, \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00559}{List\+\_\+of\+\_\+external\+\_\+hijacked\+\_\+data}}, and \mbox{\hyperlink{mesh_8h_source_l00590}{oomph\+::\+Mesh\+::nelement()}}.
+References \mbox{\hyperlink{elements_8cc_source_l00312}{oomph\+::\+Generalised\+Element\+::add\+\_\+external\+\_\+data()}}, \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00562}{delete\+\_\+external\+\_\+hijacked\+\_\+data()}}, \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00400}{drag\+\_\+mesh\+\_\+pt()}}, \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00608}{Drag\+\_\+mesh\+\_\+pt}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00452}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{elements_8cc_source_l00392}{oomph\+::\+Generalised\+Element\+::flush\+\_\+external\+\_\+data()}}, \mbox{\hyperlink{elements_8h_source_l02793}{oomph\+::\+Finite\+Element\+::identify\+\_\+geometric\+\_\+data()}}, \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00559}{List\+\_\+of\+\_\+external\+\_\+hijacked\+\_\+data}}, and \mbox{\hyperlink{mesh_8h_source_l00598}{oomph\+::\+Mesh\+::nelement()}}.
 
 \Hypertarget{classoomph_1_1ImmersedRigidBodyElement_afbc443daa2200a53b96dc3295e821461}\label{classoomph_1_1ImmersedRigidBodyElement_afbc443daa2200a53b96dc3295e821461} 
 \index{oomph::ImmersedRigidBodyElement@{oomph::ImmersedRigidBodyElement}!set\_geometric\_rotation@{set\_geometric\_rotation}}

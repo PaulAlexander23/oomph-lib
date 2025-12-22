@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -38,9 +38,9 @@
 \DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00034}00034\ \textcolor{keyword}{using\ namespace\ }oomph;}
 \DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00035}00035\ }
 \DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00036}00036\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00037}00037\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00038}00038\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00039}00039\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00037}00037\ \textcolor{comment}{//////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00038}00038\ \textcolor{comment}{//////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00039}00039\ \textcolor{comment}{//////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00040}00040\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00041}00041\ }
 \DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00042}00042\ \textcolor{comment}{//=======start\_namespace==========================================}\textcolor{comment}{}}
@@ -409,7 +409,7 @@
 \DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00405}00405\ \ \ }
 \DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00406}00406\ \ }
 \DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00407}00407\ \ \textcolor{comment}{//\ Output\ fluid\ solution}}
-\DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00408}00408\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/fluid\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00408}00408\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/fluid\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00409}00409\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00410}00410\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{vmtk__fluid_8cc_source_l00411}00411\ \ Fluid\_mesh\_pt-\/>output(some\_file,npts);}

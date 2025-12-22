@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -118,23 +112,23 @@
 <p><code>oomph-lib's</code> Navier-Stokes elements are based on the Arbitrary Lagrangian Eulerian (ALE) form of the Navier-Stokes equations and can therefore be used in moving domain problems. In this example we illustrate their use in <code>Domain</code> - based meshes (first discussed in the example demonstrating the solution of the <a href="../../../unsteady_heat/two_d_unsteady_heat_ALE/html/index.html">unsteady heat equation in a moving domain</a>) in which <code>MacroElements</code> are used to update the nodal positions in response to changes in the domain boundary. In subsequent examples, we will discuss alternative, sparse mesh update techniques that are useful in problems with free boundaries and in fluid-structure interaction problems.</p>
 <center> <table class="doxtable">
 <tr>
-<td><center> <b>Finite-Reynolds-number-flow driven by an oscillating ellipse</b> </center><p class="intertd">We consider the unsteady 2D flow of a Newtonian fluid that is contained in an oscillating elliptical ring whose wall shape is parametrised by the Lagrangian coordinate <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \xi $" src="form_0.png" width="8" height="13"/></picture> as  </p><p class="formulaDsp">
-<picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<td><center> <b>Finite-Reynolds-number-flow driven by an oscillating ellipse</b> </center><p class="intertd">We consider the unsteady 2D flow of a Newtonian fluid that is contained in an oscillating elliptical ring whose wall shape is parametrised by the Lagrangian coordinate <img class="formulaInl" alt="$ \xi $" src="form_0.png" width="8" height="13"/> as  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 {\bf R}_w(\xi) = \left( 
 \begin{array}{l}
 a(t) \cos(\xi) \\
 a^{-1}(t) \sin(\xi)
 \end{array}
 \right)
-\]" src="form_1.png" width="148" height="31"/></picture>
+\]" src="form_1.png" width="148" height="31"/>
 </p>
 <p> where  </p><p class="formulaDsp">
-<picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 a(t) = A + \widehat{A} \cos\left(\frac{2\pi t}{T}\right).
-\]" src="form_2.png" width="136" height="31"/></picture>
+\]" src="form_2.png" width="136" height="31"/>
 </p>
-<p> <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ A $" src="form_3.png" width="10" height="10"/></picture> represents the average half-axis of the elliptical ring in the <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_1 $" src="form_4.png" width="13" height="9"/></picture>-direction, and <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \widehat{A} $" src="form_5.png" width="11" height="14"/></picture> is the amplitude of its periodic variation. The ring has constant cross-sectional area &ndash; consistent with the incompressibility of the fluid whose motion is governed by the ALE form of the Navier-Stokes equations,  </p><p class="formulaDsp">
-<picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> <img class="formulaInl" alt="$ A $" src="form_3.png" width="10" height="10"/> represents the average half-axis of the elliptical ring in the <img class="formulaInl" alt="$ x_1 $" src="form_4.png" width="13" height="9"/>-direction, and <img class="formulaInl" alt="$ \widehat{A} $" src="form_5.png" width="11" height="14"/> is the amplitude of its periodic variation. The ring has constant cross-sectional area &ndash; consistent with the incompressibility of the fluid whose motion is governed by the ALE form of the Navier-Stokes equations,  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 Re\left(St\frac{\partial u_i}{\partial t} + 
 \left(u_j-u_j^M\right)\frac{\partial u_i}{\partial x_j}\right) =
 - \frac{\partial p}{\partial x_i} +
@@ -142,41 +136,41 @@ Re\left(St\frac{\partial u_i}{\partial t} +
 \frac{\partial u_i}{\partial x_j} +  
 \frac{\partial u_j}{\partial x_i} \right),
  \ \ \ \ \ \ \ \ \ \ (1)
-\]" src="form_6.png" width="399" height="31"/></picture>
+\]" src="form_6.png" width="399" height="31"/>
 </p>
 <p> and the continuity equation  </p><p class="formulaDsp">
-<picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \frac{\partial u_i}{\partial x_i} = 0,
-\]" src="form_7.png" width="48" height="29"/></picture>
+\]" src="form_7.png" width="48" height="29"/>
 </p>
-<p> where <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ u_j^M $" src="form_8.png" width="19" height="16"/></picture> is the mesh velocity. We exploit the symmetry of the problem and solve the equations in the quarter domain  </p><p class="formulaDsp">
-<picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> where <img class="formulaInl" alt="$ u_j^M $" src="form_8.png" width="19" height="16"/> is the mesh velocity. We exploit the symmetry of the problem and solve the equations in the quarter domain  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 D = \left\{(x_1,x_2) \, \bigg| \, 
 x_1\geq0, \, x_2\geq0,\,  \left(\frac{x_1}{a(t)}\right)^2 + 
 \big(x_2 \, a(t)\big)^2 \leq 1\right\},
-\]" src="form_9.png" width="326" height="39"/></picture>
+\]" src="form_9.png" width="326" height="39"/>
 </p>
-<p> shown in this sketch (for <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ A=1, \ \widehat{A}=1 $" src="form_10.png" width="75" height="16"/></picture> and <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$T=1$" src="form_11.png" width="33" height="9"/></picture>), </p><div class="image">
+<p> shown in this sketch (for <img class="formulaInl" alt="$ A=1, \ \widehat{A}=1 $" src="form_10.png" width="75" height="16"/> and <img class="formulaInl" alt="$T=1$" src="form_11.png" width="33" height="9"/>), </p><div class="image">
 <img src="wall.gif" alt=""/>
 <div class="caption">
 Sketch of the computational domain. </div></div>
  <p class="endtd">The fluid is subject to no-slip boundary conditions on the curved wall,  </p><p class="formulaDsp">
-<picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \left. {\bf u} \right|_{\partial D_{ellipse}} = \frac{\partial {\bf
 R}_w(\xi, t)}{\partial t} 
-\]" src="form_12.png" width="124" height="29"/></picture>
+\]" src="form_12.png" width="124" height="29"/>
 </p>
 <p> and symmetry conditions on the symmetry boundaries,  </p><p class="formulaDsp">
-<picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \left.u_1\right|_{x_2=0}=0, \qquad \left.u_2\right|_{x_1=0}=0.
-\]" src="form_13.png" width="160" height="15"/></picture>
+\]" src="form_13.png" width="160" height="15"/>
 </p>
 <p> The initial conditions for the velocity are given by  </p><p class="formulaDsp">
-<picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 {\bf u}(x_1,x_2,t=0) = {\bf u}_{IC}(x_1,x_2),
-\]" src="form_14.png" width="164" height="14"/></picture>
+\]" src="form_14.png" width="164" height="14"/>
 </p>
-<p> where <picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$  {\bf u}_{IC}(x_1,x_2) $" src="form_15.png" width="61" height="14"/></picture> is a given, divergence-free velocity field that satisfies the velocity boundary conditions at <picture><source srcset="form_16_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ t=0 $" src="form_16.png" width="29" height="9"/></picture>. No initial conditions are required for the pressure.   </p>
+<p> where <img class="formulaInl" alt="$  {\bf u}_{IC}(x_1,x_2) $" src="form_15.png" width="61" height="14"/> is a given, divergence-free velocity field that satisfies the velocity boundary conditions at <img class="formulaInl" alt="$ t=0 $" src="form_16.png" width="29" height="9"/>. No initial conditions are required for the pressure.   </p>
 </td></tr>
 </table>
 <br  />
@@ -184,7 +178,7 @@ R}_w(\xi, t)}{\partial t}
 <h1><a class="anchor" id="solution"></a>
 An exact solution</h1>
 <p>It is easy to show (by inspection) that the unsteady stagnation point flow  </p><p class="formulaDsp">
-<picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 u_1(x_1,x_2,t) = \frac{1}{a}\frac{da}{dt}\, x_1 = 
 -\frac{2\pi\widehat{A}\sin\left(\frac{2\pi t}{T}\right)}
       {T\left(A+\widehat{A}\cos\left(\frac{2\pi
@@ -194,10 +188,10 @@ u_2(x_1,x_2,t) = -\frac{1}{a}\frac{da}{dt} \, x_2 =
 -\frac{2\pi\widehat{A}\sin\left(\frac{2\pi t}{T}\right)}
       {T\left(A+\widehat{A}\cos\left(\frac{2\pi
       t}{T}\right)\right)} \, x_2, 
-\]" src="form_17.png" width="598" height="44"/></picture>
+\]" src="form_17.png" width="598" height="44"/>
 </p>
 <p> is an exact solution of the above problem as it satisfies the Navier-Stokes equations and the velocity boundary conditions. The pressure is given by  </p><p class="formulaDsp">
-<picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 p =
 \frac{2\pi\widehat{A}\, Re\, \left(x_1^2\, St\, 
       \cos\left(\frac{2\pi t}{T}\right)A + x_1^2\, St\, \widehat{A} -
@@ -209,13 +203,13 @@ p =
       x_2^2\widehat{A}\cos^2\left(\frac{2\pi t}{T}\right)\right)}
      {T^2\left(A^2 + 2A\widehat{A}\cos\left(\frac{2\pi t}{T}\right) +
       \widehat{A}^2\cos^2\left(\frac{2\pi t}{T}\right)\right)}.
-\]" src="form_18.png" width="599" height="50"/></picture>
+\]" src="form_18.png" width="599" height="50"/>
 </p>
 <hr  />
 <h1><a class="anchor" id="results"></a>
 Results</h1>
-<p>The two figures below show two snapshots of the solution for <picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re=Re \
-St=100 $" src="form_19.png" width="100" height="10"/></picture> , extracted from an animations of the results computed with <a href="../figures/TH.avi">Taylor-Hood</a> and <a href="../figures/CR.avi">Crouzeix-Raviart elements</a>. In both cases, the exact solution was used as the initial condition for the velocities. The figures show "carpet plots" of the two velocity components and the pressure, respectively, and a contour plot of the pressure, superimposed on the moving mesh. The carpet plot of the velocities clearly shows that the flow is of stagnation-point type as the horizontal velocity, <picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$u_1$" src="form_20.png" width="13" height="9"/></picture> , is a linear function of <picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$x_1$" src="form_21.png" width="13" height="9"/></picture> while the vertical velocity, <picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$u_2$" src="form_22.png" width="13" height="9"/></picture> , is a linear function of <picture><source srcset="form_23_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ - x_2$" src="form_23.png" width="21" height="9"/></picture>.</p>
+<p>The two figures below show two snapshots of the solution for <img class="formulaInl" alt="$ Re=Re \
+St=100 $" src="form_19.png" width="100" height="10"/> , extracted from an animations of the results computed with <a href="../figures/TH.avi">Taylor-Hood</a> and <a href="../figures/CR.avi">Crouzeix-Raviart elements</a>. In both cases, the exact solution was used as the initial condition for the velocities. The figures show "carpet plots" of the two velocity components and the pressure, respectively, and a contour plot of the pressure, superimposed on the moving mesh. The carpet plot of the velocities clearly shows that the flow is of stagnation-point type as the horizontal velocity, <img class="formulaInl" alt="$u_1$" src="form_20.png" width="13" height="9"/> , is a linear function of <img class="formulaInl" alt="$x_1$" src="form_21.png" width="13" height="9"/> while the vertical velocity, <img class="formulaInl" alt="$u_2$" src="form_22.png" width="13" height="9"/> , is a linear function of <img class="formulaInl" alt="$ - x_2$" src="form_23.png" width="21" height="9"/>.</p>
 <div class="image">
 <img src="CR.gif" alt=""/>
 <div class="caption">
@@ -228,7 +222,7 @@ Plot of the velocity and pressure fields computed with 2D Taylor-Hood elements, 
  <hr  />
 <h1><a class="anchor" id="wall"></a>
 The moving wall</h1>
-<p>As usual, we represent the moving wall as a <code>GeomObject</code> and define its shape by implementing the pure virtual function <code>GeomObject::position(...)</code>. The arguments to the constructor specify the mean half-axis of the ellipse, <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ A $" src="form_3.png" width="10" height="10"/></picture>, the amplitude of its variations, <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \widehat{A} $" src="form_5.png" width="11" height="14"/></picture>, and the period of the oscillation, <picture><source srcset="form_24_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ T $" src="form_24.png" width="10" height="9"/></picture> . We also pass the pointer to a <code>Time</code> object to the constructor and store it in a private data member, to allow the <code>position(...)</code> functions to access the current value of the continuous time.</p>
+<p>As usual, we represent the moving wall as a <code>GeomObject</code> and define its shape by implementing the pure virtual function <code>GeomObject::position(...)</code>. The arguments to the constructor specify the mean half-axis of the ellipse, <img class="formulaInl" alt="$ A $" src="form_3.png" width="10" height="10"/>, the amplitude of its variations, <img class="formulaInl" alt="$ \widehat{A} $" src="form_5.png" width="11" height="14"/>, and the period of the oscillation, <img class="formulaInl" alt="$ T $" src="form_24.png" width="10" height="9"/> . We also pass the pointer to a <code>Time</code> object to the constructor and store it in a private data member, to allow the <code>position(...)</code> functions to access the current value of the continuous time.</p>
  <div class="fragment"><div class="line"><span class="comment">//============start_of_MyEllipse===========================================</span></div>
 <div class="line"><span class="comment">/// Oscillating ellipse</span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// \f[ x = (A + \widehat{A} \cos(2\pi t/T)) \cos(\xi)  \f]</span></div>
@@ -315,7 +309,7 @@ The global parameters</h1>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Womersley = Reynolds times Strouhal</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a085ee4bf968ffdd01a41b8c41864f907">ReSt</a>=100.0;</div>
-<div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="osc__quarter__ellipse_8cc_source.html#l00116">osc_quarter_ellipse.cc:117</a></div></div>
+<div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">Namepspace for global parameters.</div><div class="ttdef"><b>Definition</b> <a href="osc__quarter__ellipse_8cc_source.html#l00116">osc_quarter_ellipse.cc:117</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a085ee4bf968ffdd01a41b8c41864f907"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a085ee4bf968ffdd01a41b8c41864f907">Global_Physical_Variables::ReSt</a></div><div class="ttdeci">double ReSt</div><div class="ttdoc">Womersley = Reynolds times Strouhal.</div><div class="ttdef"><b>Definition</b> <a href="osc__quarter__ellipse_8cc_source.html#l00123">osc_quarter_ellipse.cc:123</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_ab814e627d2eb5bc50318879d19ab16b9"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#ab814e627d2eb5bc50318879d19ab16b9">Global_Physical_Variables::Re</a></div><div class="ttdeci">double Re</div><div class="ttdoc">Reynolds number.</div><div class="ttdef"><b>Definition</b> <a href="osc__quarter__ellipse_8cc_source.html#l00120">osc_quarter_ellipse.cc:120</a></div></div>
 </div><!-- fragment --><p> We also define and initialise the parameters that specify the motion of the domain boundary and specify the exact solution.</p>
@@ -374,7 +368,7 @@ The driver code</h1>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Store command line arguments</span></div>
 <div class="line"> CommandLineArgs::setup(argc,argv);</div>
-<div class="ttc" id="aosc__quarter__ellipse_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="osc__quarter__ellipse_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">/////////////////////////////////////////////////////////////////////</div><div class="ttdef"><b>Definition</b> <a href="osc__quarter__ellipse_8cc_source.html#l00624">osc_quarter_ellipse.cc:624</a></div></div>
+<div class="ttc" id="aosc__quarter__ellipse_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="osc__quarter__ellipse_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">Driver code for unsteady Navier-Stokes flow, driven by oscillating ellipse. If the code is executed w...</div><div class="ttdef"><b>Definition</b> <a href="osc__quarter__ellipse_8cc_source.html#l00624">osc_quarter_ellipse.cc:624</a></div></div>
 </div><!-- fragment --><p> We create a <code>DocInfo</code> object to specify the output directory, build the problem with adaptive Crouzeix-Raviart elements and the <code>BDF&lt;2&gt;</code> timestepper and perform the unsteady simulation.</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"> </div>
@@ -390,7 +384,7 @@ The driver code</h1>
 <div class="line">  <span class="comment">// Run the unsteady simulation</span></div>
 <div class="line">  problem.<a class="code hl_function" href="classOscEllipseProblem.html#ad0d879edbbd8b09b61e802ab66ef98a3">unsteady_run</a>(doc_info);</div>
 <div class="line"> }</div>
-<div class="ttc" id="aclassOscEllipseProblem_html"><div class="ttname"><a href="classOscEllipseProblem.html">OscEllipseProblem</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="osc__quarter__ellipse_8cc_source.html#l00178">osc_quarter_ellipse.cc:179</a></div></div>
+<div class="ttc" id="aclassOscEllipseProblem_html"><div class="ttname"><a href="classOscEllipseProblem.html">OscEllipseProblem</a></div><div class="ttdoc">Navier-Stokes problem in an oscillating ellipse domain.</div><div class="ttdef"><b>Definition</b> <a href="osc__quarter__ellipse_8cc_source.html#l00178">osc_quarter_ellipse.cc:179</a></div></div>
 <div class="ttc" id="aclassOscEllipseProblem_html_ad0d879edbbd8b09b61e802ab66ef98a3"><div class="ttname"><a href="classOscEllipseProblem.html#ad0d879edbbd8b09b61e802ab66ef98a3">OscEllipseProblem::unsteady_run</a></div><div class="ttdeci">void unsteady_run(DocInfo &amp;doc_info)</div><div class="ttdoc">Timestepping loop.</div><div class="ttdef"><b>Definition</b> <a href="osc__quarter__ellipse_8cc_source.html#l00558">osc_quarter_ellipse.cc:558</a></div></div>
 </div><!-- fragment --><p> Then we repeat this process for adaptive Taylor-Hood elements.</p>
 <div class="fragment"><div class="line"> </div>
@@ -464,10 +458,10 @@ The problem class</h1>
 <li>all nodal positions</li>
 <li>the prescribed velocities on the moving wall via the no-slip condition.</li>
 </ol>
-<p>before every timestep. Since the nodal positions of the <code>QuarterCircleSectorMesh</code> are determined via its <code>MacroElement</code> / <code>Domain</code> representation (which updates the nodal position in response to changes in the geometry of the <code>GeomObjects</code> that define its boundaries), the former task may be accomplished by executing the <code>Mesh::node_update()</code> function; the update of the no-slip condition may be performed by calling the function <code>FSI_functions::apply_no_slip_on_moving_wall(Node* node_pt)</code>, a helper function, defined in the namespace <code>FSI_functions</code>, which updates the velocity components <picture><source srcset="form_25_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ u_1, u_2 [, u_3] $" src="form_25.png" width="56" height="14"/></picture> according to the no-slip boundary condition  </p><p class="formulaDsp">
-<picture><source srcset="form_26_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p>before every timestep. Since the nodal positions of the <code>QuarterCircleSectorMesh</code> are determined via its <code>MacroElement</code> / <code>Domain</code> representation (which updates the nodal position in response to changes in the geometry of the <code>GeomObjects</code> that define its boundaries), the former task may be accomplished by executing the <code>Mesh::node_update()</code> function; the update of the no-slip condition may be performed by calling the function <code>FSI_functions::apply_no_slip_on_moving_wall(Node* node_pt)</code>, a helper function, defined in the namespace <code>FSI_functions</code>, which updates the velocity components <img class="formulaInl" alt="$ u_1, u_2 [, u_3] $" src="form_25.png" width="56" height="14"/> according to the no-slip boundary condition  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 {\bf u}_{Node} = \frac{\partial {\bf x}_{Node}}{\partial t}
-\]" src="form_26.png" width="90" height="28"/></picture>
+\]" src="form_26.png" width="90" height="28"/>
 </p>
 <p> where the time-derivative of the nodal positions is evaluated by the <code>Node's</code> positional timestepper. [<b>Note:</b> The function <code>FSI_functions::apply_no_slip_on_moving_wall(...)</code> assumes that the velocity components are stored in the <code>Node's</code> first 2 [3] values. This is consistent with the storage of the velocity component in all existing Navier-Stokes elements. If you develop your own Navier-Stokes elements and use a different storage scheme you use this function at your own risk.]</p>
 <p>Here is the implementation of these tasks:</p>
@@ -623,7 +617,7 @@ The problem constructor</h1>
 <div class="line">    }</div>
 <div class="line">   }</div>
 <div class="line"> } <span class="comment">// end boundary 2</span></div>
-</div><!-- fragment --><p> Finally, we pass the pointers to <picture><source srcset="form_27_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re $" src="form_27.png" width="15" height="10"/></picture>, <picture><source srcset="form_28_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re \ St $" src="form_28.png" width="33" height="10"/></picture> and the global <code>Time</code> object (automatically created by the <code>Problem</code> when the timestepper was passed to it at the beginning of the constructor) to the elements, pin the redundant nodal pressure degrees of freedom (see the discussion of the <a href="../../../navier_stokes/adaptive_driven_cavity/html/index.html">adaptive driven-cavity problem</a> for more details), pin one pressure degree of freedom, and set up the equation numbering scheme.</p>
+</div><!-- fragment --><p> Finally, we pass the pointers to <img class="formulaInl" alt="$ Re $" src="form_27.png" width="15" height="10"/>, <img class="formulaInl" alt="$ Re \ St $" src="form_28.png" width="33" height="10"/> and the global <code>Time</code> object (automatically created by the <code>Problem</code> when the timestepper was passed to it at the beginning of the constructor) to the elements, pin the redundant nodal pressure degrees of freedom (see the discussion of the <a href="../../../navier_stokes/adaptive_driven_cavity/html/index.html">adaptive driven-cavity problem</a> for more details), pin one pressure degree of freedom, and set up the equation numbering scheme.</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Complete the build of all elements so they are fully functional</span></div>
@@ -754,7 +748,7 @@ Post processing</h1>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output solution </span></div>
 <div class="line"> <span class="comment">//-----------------</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> mesh_pt()-&gt;output(some_file,npts);</div>
@@ -783,7 +777,7 @@ Post processing</h1>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output exact solution </span></div>
 <div class="line"> <span class="comment">//----------------------</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> mesh_pt()-&gt;output_fct(some_file,npts,time_pt()-&gt;time(),</div>
@@ -793,7 +787,7 @@ Post processing</h1>
 <div class="line"> <span class="comment">// Doc error</span></div>
 <div class="line"> <span class="comment">//----------</span></div>
 <div class="line"> <span class="keywordtype">double</span> error,norm;</div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/error%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/error%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> mesh_pt()-&gt;compute_error(some_file,</div>
@@ -811,7 +805,7 @@ Post processing</h1>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Plot wall posn</span></div>
 <div class="line"> <span class="comment">//---------------</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/Wall%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/Wall%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> </div>
@@ -903,7 +897,7 @@ The timestepping loop</h1>
 <h1><a class="anchor" id="comments"></a>
 Comments and Exercises</h1>
 <ol type="1">
-<li>Compare the results of the numerical simulation in which <picture><source srcset="form_29_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf u}_{IC} $" src="form_29.png" width="21" height="9"/></picture> is given by the exact solution (an unsteady stagnation point flow) to that obtained from an "impulsive start" where <picture><source srcset="form_30_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf u}_{IC} = {\bf 0}. $" src="form_30.png" width="48" height="11"/></picture> (This is most easily implemented by replacing the call to <code>set_initial_condition()</code> with a call to <code>Problem::assign_initial_values_impulsive()</code>. <br  />
+<li>Compare the results of the numerical simulation in which <img class="formulaInl" alt="$ {\bf u}_{IC} $" src="form_29.png" width="21" height="9"/> is given by the exact solution (an unsteady stagnation point flow) to that obtained from an "impulsive start" where <img class="formulaInl" alt="$ {\bf u}_{IC} = {\bf 0}. $" src="form_30.png" width="48" height="11"/> (This is most easily implemented by replacing the call to <code>set_initial_condition()</code> with a call to <code>Problem::assign_initial_values_impulsive()</code>. <br  />
  <br  />
  Why do we obtain the same velocity with both initial conditions and why does the pressure take a few timesteps (How many exactly? Compare simulations with <code>BDF&lt;4&gt;</code> and <code>BDF&lt;2&gt;</code> timesteppers.) to "catch up" with the exact solution? [Hint: The unsteady stagnation point flow is a potential flow, therefore the viscous terms in the Navier-Stokes equations disappear. See also chapter 3.19 in Volume 2 of Gresho &amp; Sani's wonderful book "Incompressible Flow and the Finite Element Method".]</li>
 </ol>
@@ -919,7 +913,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -949,7 +943,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:12:25
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:40:22
         </div>
       </div>
     </footer>

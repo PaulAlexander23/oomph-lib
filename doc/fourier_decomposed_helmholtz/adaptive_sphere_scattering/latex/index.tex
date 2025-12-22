@@ -56,7 +56,7 @@ Here\textquotesingle{}s a listing of the complete driver code\+:
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -97,9 +97,9 @@ Here\textquotesingle{}s a listing of the complete driver code\+:
 \DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }std;}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{///\ //////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{///\ //////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{///\ //////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{/////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{/////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{/////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{//=====\ start\_of\_namespace\_planar\_wave=================================}\textcolor{comment}{}}
@@ -212,9 +212,9 @@ Here\textquotesingle{}s a listing of the complete driver code\+:
 \DoxyCodeLine{\}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{///\ //////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{///\ //////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{///\ //////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{/////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{/////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{/////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{//=====\ start\_of\_namespace=============================================}\textcolor{comment}{}}
@@ -365,9 +365,9 @@ Here\textquotesingle{}s a listing of the complete driver code\+:
 \DoxyCodeLine{}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{///\ //////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{///\ //////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{///\ //////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{/////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{/////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{/////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{//=========\ start\_of\_problem\_class=====================================}\textcolor{comment}{}}
@@ -736,7 +736,7 @@ Here\textquotesingle{}s a listing of the complete driver code\+:
 \DoxyCodeLine{\ \mbox{\hyperlink{classAnnularQuadMesh}{ofstream}}\ \mbox{\hyperlink{classAnnularQuadMesh}{some\_file}};}
 \DoxyCodeLine{\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classAnnularQuadMesh}{filename}}[100];}
 \DoxyCodeLine{}
-\DoxyCodeLine{\ \mbox{\hyperlink{classAnnularQuadMesh}{sprintf}}(\mbox{\hyperlink{classAnnularQuadMesh}{filename}},\textcolor{stringliteral}{"{}\%s/gamma\_test\%i.dat"{}},\mbox{\hyperlink{classAnnularQuadMesh}{doc\_info}}.directory().c\_str(),}
+\DoxyCodeLine{\ \mbox{\hyperlink{classAnnularQuadMesh}{snprintf}}(\mbox{\hyperlink{classAnnularQuadMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classAnnularQuadMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/gamma\_test\%i.dat"{}},\mbox{\hyperlink{classAnnularQuadMesh}{doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAnnularQuadMesh}{doc\_info}}.number());}
 \DoxyCodeLine{\ \mbox{\hyperlink{classAnnularQuadMesh}{some\_file}}.open(\mbox{\hyperlink{classAnnularQuadMesh}{filename}});}
 \DoxyCodeLine{\ \ }
@@ -806,7 +806,7 @@ Here\textquotesingle{}s a listing of the complete driver code\+:
 \DoxyCodeLine{\ \ }
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ solution\ }}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\ \mbox{\hyperlink{classAnnularQuadMesh}{sprintf}}(\mbox{\hyperlink{classAnnularQuadMesh}{filename}},\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},\mbox{\hyperlink{classAnnularQuadMesh}{doc\_info}}.directory().c\_str(),}
+\DoxyCodeLine{\ \mbox{\hyperlink{classAnnularQuadMesh}{snprintf}}(\mbox{\hyperlink{classAnnularQuadMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classAnnularQuadMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},\mbox{\hyperlink{classAnnularQuadMesh}{doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAnnularQuadMesh}{doc\_info}}.number());}
 \DoxyCodeLine{\ \mbox{\hyperlink{classAnnularQuadMesh}{some\_file}}.open(\mbox{\hyperlink{classAnnularQuadMesh}{filename}});}
 \DoxyCodeLine{\ Bulk\_mesh\_pt-\/>output(\mbox{\hyperlink{classAnnularQuadMesh}{some\_file}},\mbox{\hyperlink{classAnnularQuadMesh}{npts}});}
@@ -815,7 +815,7 @@ Here\textquotesingle{}s a listing of the complete driver code\+:
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ exact\ solution\ }}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\ \mbox{\hyperlink{classAnnularQuadMesh}{sprintf}}(\mbox{\hyperlink{classAnnularQuadMesh}{filename}},\textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},\mbox{\hyperlink{classAnnularQuadMesh}{doc\_info}}.directory().c\_str(),}
+\DoxyCodeLine{\ \mbox{\hyperlink{classAnnularQuadMesh}{snprintf}}(\mbox{\hyperlink{classAnnularQuadMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classAnnularQuadMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},\mbox{\hyperlink{classAnnularQuadMesh}{doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAnnularQuadMesh}{doc\_info}}.number());}
 \DoxyCodeLine{\ \mbox{\hyperlink{classAnnularQuadMesh}{some\_file}}.open(\mbox{\hyperlink{classAnnularQuadMesh}{filename}});}
 \DoxyCodeLine{\ Bulk\_mesh\_pt-\/>output\_fct(\mbox{\hyperlink{classAnnularQuadMesh}{some\_file}},\mbox{\hyperlink{classAnnularQuadMesh}{npts}},\mbox{\hyperlink{namespaceProblemParameters_af750b29069b29bd38b5220ecf534e7f7}{ProblemParameters::get\_exact\_u}});\ }
@@ -825,7 +825,7 @@ Here\textquotesingle{}s a listing of the complete driver code\+:
 \DoxyCodeLine{\ \textcolor{comment}{//\ Doc\ error\ and\ return\ of\ the\ square\ of\ the\ L2\ error}}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classAnnularQuadMesh}{error}},\mbox{\hyperlink{classAnnularQuadMesh}{norm}};}
-\DoxyCodeLine{\ \mbox{\hyperlink{classAnnularQuadMesh}{sprintf}}(\mbox{\hyperlink{classAnnularQuadMesh}{filename}},\textcolor{stringliteral}{"{}\%s/error\%i.dat"{}},\mbox{\hyperlink{classAnnularQuadMesh}{doc\_info}}.directory().c\_str(),}
+\DoxyCodeLine{\ \mbox{\hyperlink{classAnnularQuadMesh}{snprintf}}(\mbox{\hyperlink{classAnnularQuadMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classAnnularQuadMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/error\%i.dat"{}},\mbox{\hyperlink{classAnnularQuadMesh}{doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classAnnularQuadMesh}{doc\_info}}.number());}
 \DoxyCodeLine{\ \mbox{\hyperlink{classAnnularQuadMesh}{some\_file}}.open(\mbox{\hyperlink{classAnnularQuadMesh}{filename}});}
 \DoxyCodeLine{\ Bulk\_mesh\_pt-\/>compute\_error(\mbox{\hyperlink{classAnnularQuadMesh}{some\_file}},\mbox{\hyperlink{namespaceProblemParameters_af750b29069b29bd38b5220ecf534e7f7}{ProblemParameters::get\_exact\_u}},}
@@ -1133,4 +1133,4 @@ Here\textquotesingle{}s a listing of the complete driver code\+:
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

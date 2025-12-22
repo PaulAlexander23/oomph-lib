@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -120,20 +114,20 @@
 The problem</h1>
 <center> <table class="doxtable">
 <tr>
-<td><center> <b>Flow in a 2D collapsible channel </b> </center><p class="intertd">The figure below shows a sketch of the problem: Flow is driven by a prescribed Poiseuille flow <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$U^{*}_{p}$" src="form_0.png" width="15" height="15"/></picture> through a 2D channel of width <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ H^* $" src="form_1.png" width="16" height="10"/></picture> and total length <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ L^*_{total} = L^*_{up} + L^*_{collapsible} + L^*_{down}. $" src="form_2.png" width="189" height="15"/></picture> The upstream and downstream lengths of the channel are rigid, whereas the upper wall in the central section is an elastic membrane whose shape is parametrised by a Lagrangian coordinate, <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \xi^* $" src="form_3.png" width="11" height="13"/></picture> , so that the position vector to the moving wall is given by <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf R}_w^*(\xi^*,t^*) $" src="form_4.png" width="56" height="14"/></picture> . The wall is loaded by the external pressure <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p_{ext}^* $" src="form_5.png" width="21" height="14"/></picture> and by the traction that the viscous fluid exerts on it.</p>
+<td><center> <b>Flow in a 2D collapsible channel </b> </center><p class="intertd">The figure below shows a sketch of the problem: Flow is driven by a prescribed Poiseuille flow <img class="formulaInl" alt="$U^{*}_{p}$" src="form_0.png" width="15" height="15"/> through a 2D channel of width <img class="formulaInl" alt="$ H^* $" src="form_1.png" width="16" height="10"/> and total length <img class="formulaInl" alt="$ L^*_{total} = L^*_{up} + L^*_{collapsible} + L^*_{down}. $" src="form_2.png" width="189" height="15"/> The upstream and downstream lengths of the channel are rigid, whereas the upper wall in the central section is an elastic membrane whose shape is parametrised by a Lagrangian coordinate, <img class="formulaInl" alt="$ \xi^* $" src="form_3.png" width="11" height="13"/> , so that the position vector to the moving wall is given by <img class="formulaInl" alt="$ {\bf R}_w^*(\xi^*,t^*) $" src="form_4.png" width="56" height="14"/> . The wall is loaded by the external pressure <img class="formulaInl" alt="$ p_{ext}^* $" src="form_5.png" width="21" height="14"/> and by the traction that the viscous fluid exerts on it.</p>
 <div class="image">
 <img src="collapsible_channel_sketch.gif" alt=""/>
 <div class="caption">
 Sketch of the problem. </div></div>
  <p class="intertd">The non-dimensionalisation and governing equations have already been discussed in the <a href="../../fsi_collapsible_channel/html/index.html">previous (monolithic) example. </a> The problem is not quite the same, however, because the upstream boundary condition is now one of prescribed flow, rather than prescribed pressure:</p><ul>
 <li>Prescribed inflow,  <p class="formulaDsp">
-<picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
   {\bf u}(x_1,x_2) = {\bf u}_{p}(x_1,x_2) =   
   6 \ x_2 \  (1-x_2) \ {\bf e}_1.
   \ \ \ \ \ \ \ \ \ \ (1)
-  \]" src="form_6.png" width="284" height="14"/></picture>
+  \]" src="form_6.png" width="284" height="14"/>
 </p>
- at <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_{1}=0$" src="form_7.png" width="36" height="11"/></picture>.</li>
+ at <img class="formulaInl" alt="$ x_{1}=0$" src="form_7.png" width="36" height="11"/>.</li>
 </ul>
 <p>All other boundary conditions remain the same.</p>
 <p class="endtd"></p>
@@ -144,8 +138,8 @@ Sketch of the problem. </div></div>
  <hr  />
 <h1><a class="anchor" id="reslt"></a>
 Results</h1>
-<p>The behaviour of the system under the prescribed-inflow boundary conditions is somewhat different to its behaviour when the pressure drop is prescribed. In the first instance, we consider steady states, in which all time-derivatives are neglected. The figure below shows steady flows at a Reynolds number of <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re=500 $" src="form_8.png" width="50" height="10"/></picture> and two values of the fluid-structure-interaction parameter, <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Q =
-10^{-4} $" src="form_9.png" width="51" height="14"/></picture> (upper) and <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Q = 10^{-2}$" src="form_10.png" width="51" height="14"/></picture> (lower). For low values of <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$Q$" src="form_11.png" width="10" height="13"/></picture>, corresponding to weak fluid-structure interaction, the deformation of the wall is approximately symmetric, being dominated by the external pressure. As <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$Q$" src="form_11.png" width="10" height="13"/></picture> increases, the influence of fluid traction can been seen in the asymmetric deformation of the elastic wall. The viscous pressure drop along the tube leads to higher pressure upstream (causing an outward deformation) and lower pressures downstream (causing an inward deflection).</p>
+<p>The behaviour of the system under the prescribed-inflow boundary conditions is somewhat different to its behaviour when the pressure drop is prescribed. In the first instance, we consider steady states, in which all time-derivatives are neglected. The figure below shows steady flows at a Reynolds number of <img class="formulaInl" alt="$ Re=500 $" src="form_8.png" width="50" height="10"/> and two values of the fluid-structure-interaction parameter, <img class="formulaInl" alt="$ Q =
+10^{-4} $" src="form_9.png" width="51" height="14"/> (upper) and <img class="formulaInl" alt="$ Q = 10^{-2}$" src="form_10.png" width="51" height="14"/> (lower). For low values of <img class="formulaInl" alt="$Q$" src="form_11.png" width="10" height="13"/>, corresponding to weak fluid-structure interaction, the deformation of the wall is approximately symmetric, being dominated by the external pressure. As <img class="formulaInl" alt="$Q$" src="form_11.png" width="10" height="13"/> increases, the influence of fluid traction can been seen in the asymmetric deformation of the elastic wall. The viscous pressure drop along the tube leads to higher pressure upstream (causing an outward deformation) and lower pressures downstream (causing an inward deflection).</p>
 <div class="image">
 <img src="steady_flows.gif" alt=""/>
 <div class="caption">
@@ -155,8 +149,8 @@ Steady flows at Re=500 and Q=10e-4 (upper), Q=10e-2 (lower). </div></div>
 <img src="steady_trace.gif" alt=""/>
 <div class="caption">
 Load-displacement curve: the vertical position of a control point on the elastic wall (located at 50, 50, 60 and 70 percent of its length for Q = 0, 10e-4, 10e-3 and 10e-2, respectively) as a function of the external pressure. </div></div>
- <p>At low <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$Q$" src="form_11.png" width="10" height="13"/></picture>, the displacement is directly proportional to the external pressure. As <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$Q$" src="form_11.png" width="10" height="13"/></picture> increases the curves shift to the right because a large external pressure is required to keep the wall in its undeformed position; <br  />
- a consequence of the increased viscous pressure drop <em>and</em> the boundary condition that <picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$p=0$" src="form_12.png" width="30" height="11"/></picture> at the outlet. A second consequence of increasing <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$Q$" src="form_11.png" width="10" height="13"/></picture> is that (at finite Reynolds number) a smaller increase in external pressure is required to achieve a given degree of collapse. This is because the Bernoulli effect reduces the fluid pressure in the region that is most strongly collapsed and therefore increases the compressive load on the wall. For <picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$Q = 10^{-2}$" src="form_13.png" width="51" height="14"/></picture> two limit points develop on the load-displacement curve, indicating that the wall "snaps through" into a collapsed buckled configuration when <picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$p_{ext}$" src="form_14.png" width="21" height="9"/></picture> becomes sufficiently large. The appearance of the limit points means that it is no longer possible to perform the steady parameter study by slowly increasing <picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$p_{ext}: $" src="form_15.png" width="29" height="9"/></picture> At sufficiently large values of <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$Q$" src="form_11.png" width="10" height="13"/></picture> the displacement of the control point is not a single-valued function of the external pressure <picture><source srcset="form_16_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p_{ext}$" src="form_16.png" width="21" height="9"/></picture>. However, the application of "displacement control", described in the tutorial discussing the <a href="../../../beam/steady_ring/html/index.html">large-displacement post-buckling of an elastic ring</a> is sufficient to circumvent this difficulty: We treat the external pressure as an unknown and control the channel's collapse by prescribing the vertical position of the control point, <picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_2^{[ctrl]}.$" src="form_17.png" width="34" height="18"/></picture> This resolves the problem because the curve <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p_{ext}(x_2^{[ctrl]})$" src="form_18.png" width="61" height="18"/></picture> is single-valued, allowing us to perform the parameter study by slowly increasing the wall collapse by reducing <picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_2^{[ctrl]}$" src="form_19.png" width="29" height="18"/></picture>, computing the pressure required to achieve this deformation as part of the solution.</p>
+ <p>At low <img class="formulaInl" alt="$Q$" src="form_11.png" width="10" height="13"/>, the displacement is directly proportional to the external pressure. As <img class="formulaInl" alt="$Q$" src="form_11.png" width="10" height="13"/> increases the curves shift to the right because a large external pressure is required to keep the wall in its undeformed position; <br  />
+ a consequence of the increased viscous pressure drop <em>and</em> the boundary condition that <img class="formulaInl" alt="$p=0$" src="form_12.png" width="30" height="11"/> at the outlet. A second consequence of increasing <img class="formulaInl" alt="$Q$" src="form_11.png" width="10" height="13"/> is that (at finite Reynolds number) a smaller increase in external pressure is required to achieve a given degree of collapse. This is because the Bernoulli effect reduces the fluid pressure in the region that is most strongly collapsed and therefore increases the compressive load on the wall. For <img class="formulaInl" alt="$Q = 10^{-2}$" src="form_13.png" width="51" height="14"/> two limit points develop on the load-displacement curve, indicating that the wall "snaps through" into a collapsed buckled configuration when <img class="formulaInl" alt="$p_{ext}$" src="form_14.png" width="21" height="9"/> becomes sufficiently large. The appearance of the limit points means that it is no longer possible to perform the steady parameter study by slowly increasing <img class="formulaInl" alt="$p_{ext}: $" src="form_15.png" width="29" height="9"/> At sufficiently large values of <img class="formulaInl" alt="$Q$" src="form_11.png" width="10" height="13"/> the displacement of the control point is not a single-valued function of the external pressure <img class="formulaInl" alt="$ p_{ext}$" src="form_16.png" width="21" height="9"/>. However, the application of "displacement control", described in the tutorial discussing the <a href="../../../beam/steady_ring/html/index.html">large-displacement post-buckling of an elastic ring</a> is sufficient to circumvent this difficulty: We treat the external pressure as an unknown and control the channel's collapse by prescribing the vertical position of the control point, <img class="formulaInl" alt="$ x_2^{[ctrl]}.$" src="form_17.png" width="34" height="18"/> This resolves the problem because the curve <img class="formulaInl" alt="$ p_{ext}(x_2^{[ctrl]})$" src="form_18.png" width="61" height="18"/> is single-valued, allowing us to perform the parameter study by slowly increasing the wall collapse by reducing <img class="formulaInl" alt="$ x_2^{[ctrl]}$" src="form_19.png" width="29" height="18"/>, computing the pressure required to achieve this deformation as part of the solution.</p>
 <hr  />
  <hr  />
 <h1><a class="anchor" id="overview"></a>
@@ -214,19 +208,19 @@ The SegregatableFSIProblem</h2>
 <div class="line"><span class="comment">//the optional under-relaxation parameter. The default of 1.0 </span></div>
 <div class="line"><span class="comment">//corresponds to no under-relaxation.</span></div>
 <div class="line"><span class="keywordtype">void</span> use_under_relaxation (<span class="keyword">const</span> <span class="keywordtype">double</span> &amp;omega=1.0)</div>
-</div><!-- fragment --> If this function is called, under-relaxation is performed after the solid sub-solve, i.e. each solid degree of freedom, <picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ s $" src="form_20.png" width="5" height="6"/></picture>, say is updated via  <p class="formulaDsp">
-<picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+</div><!-- fragment --> If this function is called, under-relaxation is performed after the solid sub-solve, i.e. each solid degree of freedom, <img class="formulaInl" alt="$ s $" src="form_20.png" width="5" height="6"/>, say is updated via  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
     s = s_{new} + (1-\omega) (s_{old} - s_{new})
-    \]" src="form_21.png" width="171" height="14"/></picture>
+    \]" src="form_21.png" width="171" height="14"/>
 </p>
- where <picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ s_{new} $" src="form_22.png" width="24" height="9"/></picture> is the new value computed by the Newton solver and <picture><source srcset="form_23_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ s_{old} $" src="form_23.png" width="19" height="9"/></picture> is its previous value.</li>
+ where <img class="formulaInl" alt="$ s_{new} $" src="form_22.png" width="24" height="9"/> is the new value computed by the Newton solver and <img class="formulaInl" alt="$ s_{old} $" src="form_23.png" width="19" height="9"/> is its previous value.</li>
 <li><b>Adaptive under-relaxation:</b> <br  />
 <br  />
  <div class="fragment"><div class="line"><span class="comment">//Boolean flag that controls whether Irons &amp; Tuck extrapolation</span></div>
 <div class="line"><span class="comment">//is used to dynamically modify the under-relaxation parameter for</span></div>
 <div class="line"><span class="comment">//the under-relaxation of the solid degrees of freedom.</span></div>
 <div class="line"><span class="keywordtype">void</span> enable_irons_and_tuck_extrapolation ()</div>
-</div><!-- fragment --> If this function is called (and if under-relaxation is enabled) the under-relaxation parameter <picture><source srcset="form_24_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \omega $" src="form_24.png" width="9" height="6"/></picture> is adjusted throughout the fixed-point iteration, using Irons &amp; Tucks convergence acceleration procedure; see Irons, B.M. &amp; Tuck, R.C. "A version of the Aitken accelerator for computer iteration". International Journal of Numerical Methods in Engineering <b>1</b>, 275-277 (1969).</li>
+</div><!-- fragment --> If this function is called (and if under-relaxation is enabled) the under-relaxation parameter <img class="formulaInl" alt="$ \omega $" src="form_24.png" width="9" height="6"/> is adjusted throughout the fixed-point iteration, using Irons &amp; Tucks convergence acceleration procedure; see Irons, B.M. &amp; Tuck, R.C. "A version of the Aitken accelerator for computer iteration". International Journal of Numerical Methods in Engineering <b>1</b>, 275-277 (1969).</li>
 <li><b>Pointwise Aitken-acceleration:</b> <br  />
 <br  />
  <div class="fragment"><div class="line"><span class="comment">//Set a boolean flag that controls whether pointwise Aitken</span></div>
@@ -240,8 +234,8 @@ The SegregatableFSIProblem</h2>
  <hr  />
 <h1><a class="anchor" id="channel_seg_problem"></a>
 The SegregatedFSICollapsibleChannelProblem</h1>
-<p>We shall now briefly discuss the application of the segregated solver for the collapsible channel problem. The <code><a class="el" href="classSegregatedFSICollapsibleChannelProblem.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////...">SegregatedFSICollapsibleChannelProblem</a></code> is defined in the driver code <code><a href="../../../../demo_drivers/interaction/fsi_channel_seg_and_precond/simple_segregated_driver.cc">simple_segregated_driver.cc</a> </code> and inherits from the "monolithic" <code><a class="el" href="classFSICollapsibleChannelProblem.html" title="Problem class.">FSICollapsibleChannelProblem</a></code> and also from the <a href="../../../the_data_structure/html/classoomph_1_1SegregatableFSIProblem.html"><code>SegregatableFSIProblem</code> </a> class. The code <code> <a href="../../../../demo_drivers/interaction/fsi_channel_seg_and_precond/simple_segregated_driver.cc">simple_segregated_driver.cc</a> </code> is specifically designed for ease of exposition and does not contain any timing statements or documentation of convergence histories. The alternative driver code <code> <a href="../../../../demo_drivers/interaction/fsi_channel_seg_and_precond/fsi_chan_seg_driver.cc">fsi_chan_seg_driver.cc</a></code> contains complete timing and documentation statements and is the code that was used by <a href="http://www.springerlink.com/content/m3r6318701g338g4/">Heil, Hazel &amp; Boyle (2008). </a></p>
-<p>The simplified <code><a class="el" href="classSegregatedFSICollapsibleChannelProblem.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////...">SegregatedFSICollapsibleChannelProblem</a></code> class contains six member functions</p><ul>
+<p>We shall now briefly discuss the application of the segregated solver for the collapsible channel problem. The <code><a class="el" href="classSegregatedFSICollapsibleChannelProblem.html" title="Problem class – add segregated solver capability to an existing problem.">SegregatedFSICollapsibleChannelProblem</a></code> is defined in the driver code <code><a href="../../../../demo_drivers/interaction/fsi_channel_seg_and_precond/simple_segregated_driver.cc">simple_segregated_driver.cc</a> </code> and inherits from the "monolithic" <code><a class="el" href="classFSICollapsibleChannelProblem.html" title="Problem class.">FSICollapsibleChannelProblem</a></code> and also from the <a href="../../../the_data_structure/html/classoomph_1_1SegregatableFSIProblem.html"><code>SegregatableFSIProblem</code> </a> class. The code <code> <a href="../../../../demo_drivers/interaction/fsi_channel_seg_and_precond/simple_segregated_driver.cc">simple_segregated_driver.cc</a> </code> is specifically designed for ease of exposition and does not contain any timing statements or documentation of convergence histories. The alternative driver code <code> <a href="../../../../demo_drivers/interaction/fsi_channel_seg_and_precond/fsi_chan_seg_driver.cc">fsi_chan_seg_driver.cc</a></code> contains complete timing and documentation statements and is the code that was used by <a href="http://www.springerlink.com/content/m3r6318701g338g4/">Heil, Hazel &amp; Boyle (2008). </a></p>
+<p>The simplified <code><a class="el" href="classSegregatedFSICollapsibleChannelProblem.html" title="Problem class – add segregated solver capability to an existing problem.">SegregatedFSICollapsibleChannelProblem</a></code> class contains six member functions</p><ul>
 <li>The constructor</li>
 <li>The destructor</li>
 <li><code>void</code> <code>identify_fluid_and_solid_dofs(...)</code> </li>
@@ -516,7 +510,7 @@ Solving a steady problem</h2>
  <hr  />
 <h1><a class="anchor" id="main"></a>
 The driver code</h1>
-<p>Having written our <code><a class="el" href="classSegregatedFSICollapsibleChannelProblem.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////...">SegregatedFSICollapsibleChannelProblem</a></code>, the driver code is extremely simple. We specify number of elements and dimensions of our computational domain, construct the problem and perform a steady parameter study.</p>
+<p>Having written our <code><a class="el" href="classSegregatedFSICollapsibleChannelProblem.html" title="Problem class – add segregated solver capability to an existing problem.">SegregatedFSICollapsibleChannelProblem</a></code>, the driver code is extremely simple. We specify number of elements and dimensions of our computational domain, construct the problem and perform a steady parameter study.</p>
  <div class="fragment"><div class="line"><span class="comment">//============start_of_main====================================================</span></div>
 <div class="line"><span class="comment">/// Driver code for a segregated collapsible channel problem with FSI.</span></div>
 <div class="line"><span class="comment">//=============================================================================</span></div>
@@ -551,7 +545,7 @@ The driver code</h1>
 <div class="line"> problem.steady_run();</div>
 <div class="line"> </div>
 <div class="line">}<span class="comment">//end of main</span></div>
-<div class="ttc" id="aclassSegregatedFSICollapsibleChannelProblem_html"><div class="ttname"><a href="classSegregatedFSICollapsibleChannelProblem.html">SegregatedFSICollapsibleChannelProblem</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="simple__segregated__driver_8cc_source.html#l00086">simple_segregated_driver.cc:89</a></div></div>
+<div class="ttc" id="aclassSegregatedFSICollapsibleChannelProblem_html"><div class="ttname"><a href="classSegregatedFSICollapsibleChannelProblem.html">SegregatedFSICollapsibleChannelProblem</a></div><div class="ttdoc">Problem class – add segregated solver capability to an existing problem.</div><div class="ttdef"><b>Definition</b> <a href="simple__segregated__driver_8cc_source.html#l00086">simple_segregated_driver.cc:89</a></div></div>
 <div class="ttc" id="anamespaceFlags_html_a7c2437aa0b6a4f27df951f1cbcef7337"><div class="ttname"><a href="namespaceFlags.html#a7c2437aa0b6a4f27df951f1cbcef7337">Flags::Resolution_factor</a></div><div class="ttdeci">unsigned Resolution_factor</div><div class="ttdoc">Resolution factor (multiplier for number of elements across channel)</div><div class="ttdef"><b>Definition</b> <a href="fsi__chan__problem_8h_source.html#l00236">fsi_chan_problem.h:236</a></div></div>
 <div class="ttc" id="asimple__segregated__driver_8cc_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="simple__segregated__driver_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdoc">Driver code for a segregated collapsible channel problem with FSI.</div><div class="ttdef"><b>Definition</b> <a href="simple__segregated__driver_8cc_source.html#l00445">simple_segregated_driver.cc:445</a></div></div>
 </div><!-- fragment --> <hr  />
@@ -608,7 +602,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -638,7 +632,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:27:39
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:34:33
         </div>
       </div>
     </footer>

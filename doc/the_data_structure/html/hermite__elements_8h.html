@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -136,16 +130,16 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1QHermiteElementBase.html">oomph::QHermiteElementBase</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty base class for QHermiteElements (created so that we can use dynamic_cast&lt;&gt;() to figure out if a an element is a <a class="el" href="classoomph_1_1QHermiteElement.html" title="/////////////////////////////////////////////////////////////////// /////////////////////////////////...">QHermiteElement</a>).  <a href="classoomph_1_1QHermiteElementBase.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty base class for QHermiteElements (created so that we can use dynamic_cast&lt;&gt;() to figure out if a an element is a <a class="el" href="classoomph_1_1QHermiteElement.html" title="General QHermiteElement class. Local coordinates are not assumed to be aligned with the global coordi...">QHermiteElement</a>).  <a href="classoomph_1_1QHermiteElementBase.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1QHermiteElement.html">oomph::QHermiteElement&lt; DIM &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">/////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////  <a href="classoomph_1_1QHermiteElement.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">General <a class="el" href="classoomph_1_1QHermiteElement.html" title="General QHermiteElement class. Local coordinates are not assumed to be aligned with the global coordi...">QHermiteElement</a> class. Local coordinates are not assumed to be aligned with the global coordinates so the Jacobian of the mapping between local and global coordinates is a full matrix. For cases where the coordinates are aligned, you should use the derived class, <a class="el" href="classoomph_1_1DiagQHermiteElement.html" title="These elements are exactly the same as QHermiteElements, but they employ the simplifying assumption t...">DiagQHermiteElement</a>, which uses a simplified mapping that makes the evaluation of derivatives of the shape functions much cheaper.  <a href="classoomph_1_1QHermiteElement.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DiagQHermiteElement.html">oomph::DiagQHermiteElement&lt; DIM &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">These elements are exactly the same as QHermiteElements, but they employ the simplifying assumption that the local and global coordinates are aligned. This makes the evaluation of the derivatives of the shape functions much cheaper.  <a href="classoomph_1_1DiagQHermiteElement.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SolidQHermiteElement.html">oomph::SolidQHermiteElement&lt; DIM &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">////////////////////////////////////////////////////////////////////  <a href="classoomph_1_1SolidQHermiteElement.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classoomph_1_1SolidQHermiteElement.html" title="SolidQHermiteElement elements are Hermite elements whose Jacobian matrices include derivatives w....">SolidQHermiteElement</a> elements are Hermite elements whose Jacobian matrices include derivatives w.r.t. the Eulerian positions of their nodes. They are the basis for elasticity elements. No assumptions are made about alignment of local and global coordinates.  <a href="classoomph_1_1SolidQHermiteElement.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SolidDiagQHermiteElement.html">oomph::SolidDiagQHermiteElement&lt; DIM &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">SolidQHermiteElements in which we assume the local and global coordinates to be aligned so that the Jacobian of the mapping betwteen local and global coordinates is diagonal. This makes the evaluation of the derivatives of the shape functions much cheaper.  <a href="classoomph_1_1SolidDiagQHermiteElement.html#details">More...</a><br /></td></tr>
@@ -154,7 +148,7 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespaceoomph" id="r_namespaceoomph"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceoomph.html">oomph</a></td></tr>
-<tr class="memdesc:namespaceoomph"><td class="mdescLeft">&#160;</td><td class="mdescRight">//////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////// <br /></td></tr>
+<tr class="memdesc:namespaceoomph"><td class="mdescLeft">&#160;</td><td class="mdescRight">DRAIG: Change all instances of (SPATIAL_DIM) to (DIM-1). <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
@@ -185,7 +179,7 @@ Namespaces</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:03:12
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:36:34
         </div>
       </div>
     </footer>

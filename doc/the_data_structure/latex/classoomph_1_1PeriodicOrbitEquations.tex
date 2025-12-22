@@ -246,7 +246,7 @@ Inheritance diagram for oomph\+::Periodic\+Orbit\+Equations\+:\begin{figure}[H]
 \begin{DoxyCompactList}\small\item\em Calculate the size of the element (length, area, volume,...) in Eulerian computational coordinates. Use suitably overloaded \doxylink{classoomph_1_1FiniteElement_a782a540035dc31cb6ef548d9d930d8b8}{compute\+\_\+physical\+\_\+size()} function to compute the actual size (taking into account factors such as 2pi or radii the integrand) -- such function can only be implemented on an equation-\/by-\/equation basis. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} \mbox{\hyperlink{classoomph_1_1FiniteElement_a782a540035dc31cb6ef548d9d930d8b8}{compute\+\_\+physical\+\_\+size}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Broken virtual function to compute the actual size (taking into account factors such as 2pi or radii the integrand) -- such function can only be implemented on an equation-\/by-\/equation basis. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1FiniteElement_a8bf3f75b55d4e67b644df3e22c192596}{point\+\_\+output\+\_\+data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{data}})
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1FiniteElement_a8bf3f75b55d4e67b644df3e22c192596}{point\+\_\+output\+\_\+data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&data)
 \begin{DoxyCompactList}\small\item\em Virtual function to write the double precision numbers that appear in a single line of output into the data vector. Empty virtual, can be overloaded for specific elements; used e.\+g. by \doxylink{classoomph_1_1LineVisualiser}{Line\+Visualiser}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1FiniteElement_a57e514bf089797717b80a61725aad622}{point\+\_\+output}} (std\+::ostream \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{outfile}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}})
 \begin{DoxyCompactList}\small\item\em Output solution (as defined by \doxylink{classoomph_1_1FiniteElement_a8bf3f75b55d4e67b644df3e22c192596}{point\+\_\+output\+\_\+data()}) at local cordinates s. \end{DoxyCompactList}\item 
@@ -339,8 +339,10 @@ Inheritance diagram for oomph\+::Periodic\+Orbit\+Equations\+:\begin{figure}[H]
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{oomph\+::\+Generalised\+Element}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}}() \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a76c506edf49c5bbfe94f424ec94191ab}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
-\begin{DoxyCompactList}\small\item\em Constructor\+: Initialise all pointers and all values to zero. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a6a34bffcef1bbbc5271630042afe7ca9}{\texorpdfstring{$\sim$}{\string~}\+Generalised\+Element}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor to clean up any memory allocated by the object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1GeneralisedElement_a4e4a9177fdb093fc85c890bb86bdf655}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
+\begin{DoxyCompactList}\small\item\em Broken copy constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a180b550ae69f8bcbaae3f37f38c475ff}{operator=}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
 \begin{DoxyCompactList}\small\item\em Broken assignment operator. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Data}{Data}} \texorpdfstring{$\ast$}{*}\& \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a3b83389f2c80788013421c6d59604f0b}{internal\+\_\+data\+\_\+pt}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
@@ -712,7 +714,7 @@ template$<$$>$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement
 \doxysubsection{Detailed Description}
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00169}{169}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00168}{168}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 
 
@@ -725,7 +727,7 @@ Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00169}{1
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00182}{182}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00181}{181}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 \Hypertarget{classoomph_1_1PeriodicOrbitEquations_affdf4ee299c2ad43a1dddb039250f32a}\label{classoomph_1_1PeriodicOrbitEquations_affdf4ee299c2ad43a1dddb039250f32a} 
 \index{oomph::PeriodicOrbitEquations@{oomph::PeriodicOrbitEquations}!PeriodicOrbitEquations@{PeriodicOrbitEquations}}
@@ -784,7 +786,7 @@ Add the element\textquotesingle{}s contribution to its residual vector and eleme
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00257}{257}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00256}{256}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 
 
@@ -802,7 +804,7 @@ Add the element\textquotesingle{}s contribution to its residual vector (wrapper)
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00240}{240}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00239}{239}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 
 
@@ -824,11 +826,11 @@ Definition at line \mbox{\hyperlink{periodic__orbit__handler_8cc_source_l00077}{
 
 
 
-References \mbox{\hyperlink{classoomph_1_1PeriodicOrbitEquations_a2bf0f39d52d1416242a7f618c2ece5ca}{dshape\+\_\+and\+\_\+dtest\+\_\+eulerian\+\_\+at\+\_\+knot\+\_\+orbit()}}, \mbox{\hyperlink{elements_8h_source_l00708}{oomph\+::\+Generalised\+Element\+::eqn\+\_\+number()}}, \mbox{\hyperlink{classoomph_1_1PeriodicOrbitAssemblyHandlerBase_a48968325ba57e969f64298c5b2dfb8f8}{oomph\+::\+Periodic\+Orbit\+Assembly\+Handler\+Base\+::get\+\_\+dofs\+\_\+for\+\_\+element()}}, \mbox{\hyperlink{elements_8h_source_l01020}{oomph\+::\+Generalised\+Element\+::get\+\_\+jacobian\+\_\+and\+\_\+mass\+\_\+matrix()}}, \mbox{\hyperlink{classoomph_1_1PeriodicOrbitAssemblyHandlerBase_a680c82526671e8213d317367f3f7a7e1}{oomph\+::\+Periodic\+Orbit\+Assembly\+Handler\+Base\+::get\+\_\+previous\+\_\+dofs\+\_\+for\+\_\+element()}}, \mbox{\hyperlink{elements_8h_source_l00984}{oomph\+::\+Generalised\+Element\+::get\+\_\+residuals()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l01967}{oomph\+::\+Finite\+Element\+::integral\+\_\+pt()}}, \mbox{\hyperlink{elements_8h_source_l00839}{oomph\+::\+Generalised\+Element\+::ndof()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l01436}{oomph\+::\+Finite\+Element\+::nodal\+\_\+local\+\_\+eqn()}}, \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00172}{Ntstorage}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a270de9d99a1fcf1d25a6c1017f65fa}{oomph\+::\+Integral\+::nweight()}}, \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00202}{omega()}}, \mbox{\hyperlink{elements_8cc_source_l01714}{oomph\+::\+Finite\+Element\+::raw\+\_\+nodal\+\_\+position()}}, \mbox{\hyperlink{classoomph_1_1PeriodicOrbitAssemblyHandlerBase_a09d7c31dec8b9688cec82f8b24558b9b}{oomph\+::\+Periodic\+Orbit\+Assembly\+Handler\+Base\+::set\+\_\+dofs\+\_\+for\+\_\+element()}}, \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00284}{set\+\_\+timestepper\+\_\+weights()}}, \mbox{\hyperlink{timesteppers_8h_source_l00123}{oomph\+::\+Time\+::time()}}, \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00214}{time\+\_\+pt()}}, and \mbox{\hyperlink{classoomph_1_1Integral_ac65335e2aab120b285b3d6c294507b06}{oomph\+::\+Integral\+::weight()}}.
+References \mbox{\hyperlink{classoomph_1_1PeriodicOrbitEquations_a2bf0f39d52d1416242a7f618c2ece5ca}{dshape\+\_\+and\+\_\+dtest\+\_\+eulerian\+\_\+at\+\_\+knot\+\_\+orbit()}}, \mbox{\hyperlink{elements_8h_source_l00691}{oomph\+::\+Generalised\+Element\+::eqn\+\_\+number()}}, \mbox{\hyperlink{classoomph_1_1PeriodicOrbitAssemblyHandlerBase_a48968325ba57e969f64298c5b2dfb8f8}{oomph\+::\+Periodic\+Orbit\+Assembly\+Handler\+Base\+::get\+\_\+dofs\+\_\+for\+\_\+element()}}, \mbox{\hyperlink{elements_8h_source_l01003}{oomph\+::\+Generalised\+Element\+::get\+\_\+jacobian\+\_\+and\+\_\+mass\+\_\+matrix()}}, \mbox{\hyperlink{classoomph_1_1PeriodicOrbitAssemblyHandlerBase_a680c82526671e8213d317367f3f7a7e1}{oomph\+::\+Periodic\+Orbit\+Assembly\+Handler\+Base\+::get\+\_\+previous\+\_\+dofs\+\_\+for\+\_\+element()}}, \mbox{\hyperlink{elements_8h_source_l00967}{oomph\+::\+Generalised\+Element\+::get\+\_\+residuals()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l01967}{oomph\+::\+Finite\+Element\+::integral\+\_\+pt()}}, \mbox{\hyperlink{elements_8h_source_l00822}{oomph\+::\+Generalised\+Element\+::ndof()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l01436}{oomph\+::\+Finite\+Element\+::nodal\+\_\+local\+\_\+eqn()}}, \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00171}{Ntstorage}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a270de9d99a1fcf1d25a6c1017f65fa}{oomph\+::\+Integral\+::nweight()}}, \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00201}{omega()}}, \mbox{\hyperlink{elements_8cc_source_l01714}{oomph\+::\+Finite\+Element\+::raw\+\_\+nodal\+\_\+position()}}, \mbox{\hyperlink{classoomph_1_1PeriodicOrbitAssemblyHandlerBase_a09d7c31dec8b9688cec82f8b24558b9b}{oomph\+::\+Periodic\+Orbit\+Assembly\+Handler\+Base\+::set\+\_\+dofs\+\_\+for\+\_\+element()}}, \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00283}{set\+\_\+timestepper\+\_\+weights()}}, \mbox{\hyperlink{timesteppers_8h_source_l00123}{oomph\+::\+Time\+::time()}}, \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00213}{time\+\_\+pt()}}, and \mbox{\hyperlink{classoomph_1_1Integral_ac65335e2aab120b285b3d6c294507b06}{oomph\+::\+Integral\+::weight()}}.
 
 
 
-Referenced by \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00257}{fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+integrated\+\_\+jacobian()}}, and \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00240}{fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+integrated\+\_\+residuals()}}.
+Referenced by \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00256}{fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+integrated\+\_\+jacobian()}}, and \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00239}{fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+integrated\+\_\+residuals()}}.
 
 \Hypertarget{classoomph_1_1PeriodicOrbitEquations_ae301cd215d5c6aff365fd077ff8055de}\label{classoomph_1_1PeriodicOrbitEquations_ae301cd215d5c6aff365fd077ff8055de} 
 \index{oomph::PeriodicOrbitEquations@{oomph::PeriodicOrbitEquations}!omega@{omega}}
@@ -842,15 +844,15 @@ Return the frequency.
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00202}{202}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00201}{201}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 
 
-References \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00175}{Omega\+\_\+pt}}.
+References \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00174}{Omega\+\_\+pt}}.
 
 
 
-Referenced by \mbox{\hyperlink{periodic__orbit__handler_8cc_source_l00077}{fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+orbit()}}, \mbox{\hyperlink{periodic__orbit__handler_8cc_source_l00030}{orbit\+\_\+output()}}, and \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00284}{set\+\_\+timestepper\+\_\+weights()}}.
+Referenced by \mbox{\hyperlink{periodic__orbit__handler_8cc_source_l00077}{fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+orbit()}}, \mbox{\hyperlink{periodic__orbit__handler_8cc_source_l00030}{orbit\+\_\+output()}}, and \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00283}{set\+\_\+timestepper\+\_\+weights()}}.
 
 \Hypertarget{classoomph_1_1PeriodicOrbitEquations_a1a38e53f54ff93ce26898b4ab33db69f}\label{classoomph_1_1PeriodicOrbitEquations_a1a38e53f54ff93ce26898b4ab33db69f} 
 \index{oomph::PeriodicOrbitEquations@{oomph::PeriodicOrbitEquations}!omega\_pt@{omega\_pt}}
@@ -864,11 +866,11 @@ Broken assignment operator.
 
 Set the pointer to the frequency 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00196}{196}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00195}{195}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 
 
-References \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00175}{Omega\+\_\+pt}}.
+References \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00174}{Omega\+\_\+pt}}.
 
 \Hypertarget{classoomph_1_1PeriodicOrbitEquations_a117883e07ed35569cd396deb2c5bba97}\label{classoomph_1_1PeriodicOrbitEquations_a117883e07ed35569cd396deb2c5bba97} 
 \index{oomph::PeriodicOrbitEquations@{oomph::PeriodicOrbitEquations}!orbit\_output@{orbit\_output}}
@@ -882,7 +884,7 @@ Definition at line \mbox{\hyperlink{periodic__orbit__handler_8cc_source_l00030}{
 
 
 
-References \mbox{\hyperlink{elements_8cc_source_l03328}{oomph\+::\+Finite\+Element\+::dshape\+\_\+eulerian()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00202}{omega()}}, \mbox{\hyperlink{elements_8cc_source_l01714}{oomph\+::\+Finite\+Element\+::raw\+\_\+nodal\+\_\+position()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00284}{set\+\_\+timestepper\+\_\+weights()}}, \mbox{\hyperlink{timesteppers_8h_source_l00123}{oomph\+::\+Time\+::time()}}, and \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00214}{time\+\_\+pt()}}.
+References \mbox{\hyperlink{elements_8cc_source_l03328}{oomph\+::\+Finite\+Element\+::dshape\+\_\+eulerian()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00201}{omega()}}, \mbox{\hyperlink{elements_8cc_source_l01714}{oomph\+::\+Finite\+Element\+::raw\+\_\+nodal\+\_\+position()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00283}{set\+\_\+timestepper\+\_\+weights()}}, \mbox{\hyperlink{timesteppers_8h_source_l00123}{oomph\+::\+Time\+::time()}}, and \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00213}{time\+\_\+pt()}}.
 
 \Hypertarget{classoomph_1_1PeriodicOrbitEquations_aaed37b9539f2f77d642a18fdd1e13e88}\label{classoomph_1_1PeriodicOrbitEquations_aaed37b9539f2f77d642a18fdd1e13e88} 
 \index{oomph::PeriodicOrbitEquations@{oomph::PeriodicOrbitEquations}!set\_ntstorage@{set\_ntstorage}}
@@ -896,11 +898,11 @@ Set the total number of time storage values.
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00208}{208}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00207}{207}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 
 
-References \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00172}{Ntstorage}}.
+References \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00171}{Ntstorage}}.
 
 \Hypertarget{classoomph_1_1PeriodicOrbitEquations_a253f5b0748b61c8f68d030b861ccd025}\label{classoomph_1_1PeriodicOrbitEquations_a253f5b0748b61c8f68d030b861ccd025} 
 \index{oomph::PeriodicOrbitEquations@{oomph::PeriodicOrbitEquations}!set\_timestepper\_weights@{set\_timestepper\_weights}}
@@ -914,11 +916,11 @@ Set the timestepper weights.
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00284}{284}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00283}{283}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l00708}{oomph\+::\+Generalised\+Element\+::eqn\+\_\+number()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l01436}{oomph\+::\+Finite\+Element\+::nodal\+\_\+local\+\_\+eqn()}}, \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00202}{omega()}}, and \mbox{\hyperlink{geom__objects_8h_source_l00192}{oomph\+::\+Geom\+Object\+::time\+\_\+stepper\+\_\+pt()}}.
+References \mbox{\hyperlink{elements_8h_source_l00691}{oomph\+::\+Generalised\+Element\+::eqn\+\_\+number()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l01436}{oomph\+::\+Finite\+Element\+::nodal\+\_\+local\+\_\+eqn()}}, \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00201}{omega()}}, and \mbox{\hyperlink{geom__objects_8h_source_l00192}{oomph\+::\+Geom\+Object\+::time\+\_\+stepper\+\_\+pt()}}.
 
 
 
@@ -936,11 +938,11 @@ Return the global time, accessed via the time pointer.
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00226}{226}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00225}{225}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 
 
-References \mbox{\hyperlink{timesteppers_8h_source_l00123}{oomph\+::\+Time\+::time()}}, and \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00178}{Time\+\_\+pt}}.
+References \mbox{\hyperlink{timesteppers_8h_source_l00123}{oomph\+::\+Time\+::time()}}, and \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00177}{Time\+\_\+pt}}.
 
 \Hypertarget{classoomph_1_1PeriodicOrbitEquations_a19d51057fd6ac9d1c152616c9ed2fd65}\label{classoomph_1_1PeriodicOrbitEquations_a19d51057fd6ac9d1c152616c9ed2fd65} 
 \index{oomph::PeriodicOrbitEquations@{oomph::PeriodicOrbitEquations}!time\_pt@{time\_pt}}
@@ -954,11 +956,11 @@ Retun the pointer to the global time.
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00214}{214}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00213}{213}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 
 
-References \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00178}{Time\+\_\+pt}}.
+References \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00177}{Time\+\_\+pt}}.
 
 
 
@@ -976,11 +978,11 @@ Return the pointer to the global time (const version)
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00220}{220}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00219}{219}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 
 
-References \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00178}{Time\+\_\+pt}}.
+References \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00177}{Time\+\_\+pt}}.
 
 
 
@@ -993,11 +995,11 @@ References \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00178}{Time\+\_\
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00172}{172}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00171}{171}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{periodic__orbit__handler_8cc_source_l00077}{fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+orbit()}}, and \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00208}{set\+\_\+ntstorage()}}.
+Referenced by \mbox{\hyperlink{periodic__orbit__handler_8cc_source_l00077}{fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+orbit()}}, and \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00207}{set\+\_\+ntstorage()}}.
 
 \Hypertarget{classoomph_1_1PeriodicOrbitEquations_a045a3ed37f016aeb55348c0703eacdbc}\label{classoomph_1_1PeriodicOrbitEquations_a045a3ed37f016aeb55348c0703eacdbc} 
 \index{oomph::PeriodicOrbitEquations@{oomph::PeriodicOrbitEquations}!Omega\_pt@{Omega\_pt}}
@@ -1007,11 +1009,11 @@ Referenced by \mbox{\hyperlink{periodic__orbit__handler_8cc_source_l00077}{fill\
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00175}{175}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00174}{174}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00202}{omega()}}, and \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00196}{omega\+\_\+pt()}}.
+Referenced by \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00201}{omega()}}, and \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00195}{omega\+\_\+pt()}}.
 
 \Hypertarget{classoomph_1_1PeriodicOrbitEquations_a015c732c43b83babe169d1ea3342fd66}\label{classoomph_1_1PeriodicOrbitEquations_a015c732c43b83babe169d1ea3342fd66} 
 \index{oomph::PeriodicOrbitEquations@{oomph::PeriodicOrbitEquations}!Time\_pt@{Time\_pt}}
@@ -1025,11 +1027,11 @@ Pointer to global time.
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00178}{178}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00177}{177}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00226}{time()}}, \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00214}{time\+\_\+pt()}}, and \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00220}{time\+\_\+pt()}}.
+Referenced by \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00225}{time()}}, \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00213}{time\+\_\+pt()}}, and \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00219}{time\+\_\+pt()}}.
 
 
 

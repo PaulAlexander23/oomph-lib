@@ -204,7 +204,7 @@ master\+\_\+prec\+\_\+pt is the pointer to the master \doxylink{classoomph_1_1Bi
 \begin{DoxyCompactList}\small\item\em Destructor (empty) \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_a1e469ffc87f31f6f2eebbe5ccf03d78b}{preconditioner\+\_\+solve\+\_\+transpose}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{r}}, \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&z)
 \begin{DoxyCompactList}\small\item\em Apply the preconditioner. Pure virtual generic interface function. This method should apply the preconditioner operator to the vector r and return the vector z. (broken virtual) \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_a0b95e7159585b5151f9e5dc1d1713655}{setup}} (\mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1Preconditioner_a08e0582b77c6cbfaf85b80a4ac5c11f3}{matrix\+\_\+pt}})
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_ac2c0f7f39eccd814e72cc5813ec864e0}{setup}} (\mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1Preconditioner_a08e0582b77c6cbfaf85b80a4ac5c11f3}{matrix\+\_\+pt}})
 \begin{DoxyCompactList}\small\item\em Setup the preconditioner\+: store the matrix pointer and the communicator pointer then call preconditioner specific \doxylink{classoomph_1_1Preconditioner_af4886f4efe510e5c9b0eb19422943588}{setup()} function. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_a783fae97e4b898f8de72b504a4f4bec6}{setup}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Problem}{Problem}} \texorpdfstring{$\ast$}{*}problem\+\_\+pt, \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1Preconditioner_a08e0582b77c6cbfaf85b80a4ac5c11f3}{matrix\+\_\+pt}})
 \begin{DoxyCompactList}\small\item\em Compatability layer for old preconditioners where problem pointers were needed. The problem pointer is only used to get a communicator pointer. \end{DoxyCompactList}\item 
@@ -367,7 +367,7 @@ Definition at line \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00259}
 
 
 
-References \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00342}{Lumped\+\_\+\+J\+\_\+11\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00346}{Lumped\+\_\+\+J\+\_\+22\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00338}{S\+\_\+00\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{block__preconditioner_8cc_source_l02376}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::turn\+\_\+into\+\_\+subsidiary\+\_\+block\+\_\+preconditioner()}}, and \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00356}{Use\+\_\+amg}}.
+References \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00342}{Lumped\+\_\+\+J\+\_\+11\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00346}{Lumped\+\_\+\+J\+\_\+22\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00338}{S\+\_\+00\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{block__preconditioner_8cc_source_l02375}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::turn\+\_\+into\+\_\+subsidiary\+\_\+block\+\_\+preconditioner()}}, and \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00356}{Use\+\_\+amg}}.
 
 \Hypertarget{classoomph_1_1InexactSubBiharmonicPreconditioner_a9c2031d51b753695f23b4ffb3bb41ecf}\label{classoomph_1_1InexactSubBiharmonicPreconditioner_a9c2031d51b753695f23b4ffb3bb41ecf} 
 \index{oomph::InexactSubBiharmonicPreconditioner@{oomph::InexactSubBiharmonicPreconditioner}!````~InexactSubBiharmonicPreconditioner@{\texorpdfstring{$\sim$}{\string~}InexactSubBiharmonicPreconditioner}}
@@ -424,7 +424,7 @@ References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{bih
 
 
 
-Referenced by \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00356}{setup()}}, and \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00282}{\texorpdfstring{$\sim$}{\string~}\+Inexact\+Sub\+Biharmonic\+Preconditioner()}}.
+Referenced by \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00357}{setup()}}, and \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00282}{\texorpdfstring{$\sim$}{\string~}\+Inexact\+Sub\+Biharmonic\+Preconditioner()}}.
 
 \Hypertarget{classoomph_1_1InexactSubBiharmonicPreconditioner_a0ccbc50db6a0f30fb872d60a490cee64}\label{classoomph_1_1InexactSubBiharmonicPreconditioner_a0ccbc50db6a0f30fb872d60a490cee64} 
 \index{oomph::InexactSubBiharmonicPreconditioner@{oomph::InexactSubBiharmonicPreconditioner}!compute\_inexact\_schur\_complement@{compute\_inexact\_schur\_complement}}
@@ -438,7 +438,7 @@ Computes the inexact schur complement of the block J\+\_\+00 using lumping as an
 
 computes the schur complement for the inexact sub biharmonic preconditioner 
 
-Definition at line \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00446}{446}} of file \mbox{\hyperlink{biharmonic__preconditioner_8cc_source}{biharmonic\+\_\+preconditioner.\+cc}}.
+Definition at line \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00448}{448}} of file \mbox{\hyperlink{biharmonic__preconditioner_8cc_source}{biharmonic\+\_\+preconditioner.\+cc}}.
 
 
 
@@ -446,7 +446,7 @@ References \mbox{\hyperlink{block__preconditioner_8h_source_l01903}{oomph\+::\+B
 
 
 
-Referenced by \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00356}{setup()}}.
+Referenced by \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00357}{setup()}}.
 
 \Hypertarget{classoomph_1_1InexactSubBiharmonicPreconditioner_aa716a94379dadd3197158fd3abb08af0}\label{classoomph_1_1InexactSubBiharmonicPreconditioner_aa716a94379dadd3197158fd3abb08af0} 
 \index{oomph::InexactSubBiharmonicPreconditioner@{oomph::InexactSubBiharmonicPreconditioner}!operator=@{operator=}}
@@ -474,11 +474,11 @@ Implements \mbox{\hyperlink{classoomph_1_1Preconditioner_ace1199369e4465cd2b9a34
 
 
 
-Definition at line \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00657}{657}} of file \mbox{\hyperlink{biharmonic__preconditioner_8cc_source}{biharmonic\+\_\+preconditioner.\+cc}}.
+Definition at line \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00659}{659}} of file \mbox{\hyperlink{biharmonic__preconditioner_8cc_source}{biharmonic\+\_\+preconditioner.\+cc}}.
 
 
 
-References \mbox{\hyperlink{block__preconditioner_8cc_source_l02939}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::get\+\_\+block\+\_\+vectors()}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00342}{Lumped\+\_\+\+J\+\_\+11\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00346}{Lumped\+\_\+\+J\+\_\+22\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00349}{Matrix\+\_\+of\+\_\+block\+\_\+pointers}}, \mbox{\hyperlink{classoomph_1_1Preconditioner_ace1199369e4465cd2b9a34884bb64ec8}{oomph\+::\+Preconditioner\+::preconditioner\+\_\+solve()}}, \mbox{\hyperlink{block__preconditioner_8cc_source_l04489}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::return\+\_\+block\+\_\+vector()}}, and \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00338}{S\+\_\+00\+\_\+preconditioner\+\_\+pt}}.
+References \mbox{\hyperlink{block__preconditioner_8cc_source_l02938}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::get\+\_\+block\+\_\+vectors()}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00342}{Lumped\+\_\+\+J\+\_\+11\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00346}{Lumped\+\_\+\+J\+\_\+22\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00349}{Matrix\+\_\+of\+\_\+block\+\_\+pointers}}, \mbox{\hyperlink{classoomph_1_1Preconditioner_ace1199369e4465cd2b9a34884bb64ec8}{oomph\+::\+Preconditioner\+::preconditioner\+\_\+solve()}}, \mbox{\hyperlink{block__preconditioner_8cc_source_l04488}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::return\+\_\+block\+\_\+vector()}}, and \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00338}{S\+\_\+00\+\_\+preconditioner\+\_\+pt}}.
 
 \Hypertarget{classoomph_1_1InexactSubBiharmonicPreconditioner_aedc32eecdba45ee74777d340665ebdee}\label{classoomph_1_1InexactSubBiharmonicPreconditioner_aedc32eecdba45ee74777d340665ebdee} 
 \index{oomph::InexactSubBiharmonicPreconditioner@{oomph::InexactSubBiharmonicPreconditioner}!setup@{setup}}
@@ -496,11 +496,11 @@ Implements \mbox{\hyperlink{classoomph_1_1Preconditioner_af4886f4efe510e5c9b0eb1
 
 
 
-Definition at line \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00356}{356}} of file \mbox{\hyperlink{biharmonic__preconditioner_8cc_source}{biharmonic\+\_\+preconditioner.\+cc}}.
+Definition at line \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00357}{357}} of file \mbox{\hyperlink{biharmonic__preconditioner_8cc_source}{biharmonic\+\_\+preconditioner.\+cc}}.
 
 
 
-References \mbox{\hyperlink{block__preconditioner_8cc_source_l02483}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::block\+\_\+setup()}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00288}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00446}{compute\+\_\+inexact\+\_\+schur\+\_\+complement()}}, \mbox{\hyperlink{block__preconditioner_8cc_source_l02537}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::get\+\_\+blocks()}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00342}{Lumped\+\_\+\+J\+\_\+11\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00346}{Lumped\+\_\+\+J\+\_\+22\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00349}{Matrix\+\_\+of\+\_\+block\+\_\+pointers}}, \mbox{\hyperlink{block__preconditioner_8h_source_l01670}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::nblock\+\_\+types()}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00338}{S\+\_\+00\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00352}{S\+\_\+00\+\_\+pt}}, \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00066}{oomph\+::\+Biharmonic\+\_\+schur\+\_\+complement\+\_\+\+Hypre\+\_\+defaults\+::set\+\_\+defaults()}}, \mbox{\hyperlink{preconditioner_8h_source_l00094}{oomph\+::\+Preconditioner\+::setup()}}, and \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00356}{Use\+\_\+amg}}.
+References \mbox{\hyperlink{block__preconditioner_8cc_source_l02482}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::block\+\_\+setup()}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00288}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00448}{compute\+\_\+inexact\+\_\+schur\+\_\+complement()}}, \mbox{\hyperlink{linear__solver_8cc_source_l02819}{oomph\+::\+Exact\+Preconditioner\+Factory\+::create\+\_\+exact\+\_\+preconditioner()}}, \mbox{\hyperlink{block__preconditioner_8cc_source_l02536}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::get\+\_\+blocks()}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00342}{Lumped\+\_\+\+J\+\_\+11\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00346}{Lumped\+\_\+\+J\+\_\+22\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00349}{Matrix\+\_\+of\+\_\+block\+\_\+pointers}}, \mbox{\hyperlink{block__preconditioner_8h_source_l01670}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::nblock\+\_\+types()}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00338}{S\+\_\+00\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00352}{S\+\_\+00\+\_\+pt}}, \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00066}{oomph\+::\+Biharmonic\+\_\+schur\+\_\+complement\+\_\+\+Hypre\+\_\+defaults\+::set\+\_\+defaults()}}, \mbox{\hyperlink{preconditioner_8h_source_l00094}{oomph\+::\+Preconditioner\+::setup()}}, and \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00356}{Use\+\_\+amg}}.
 
 
 
@@ -521,7 +521,7 @@ Definition at line \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00342}
 
 
 
-Referenced by \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00288}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00446}{compute\+\_\+inexact\+\_\+schur\+\_\+complement()}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00259}{Inexact\+Sub\+Biharmonic\+Preconditioner()}}, \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00657}{preconditioner\+\_\+solve()}}, and \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00356}{setup()}}.
+Referenced by \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00288}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00448}{compute\+\_\+inexact\+\_\+schur\+\_\+complement()}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00259}{Inexact\+Sub\+Biharmonic\+Preconditioner()}}, \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00659}{preconditioner\+\_\+solve()}}, and \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00357}{setup()}}.
 
 \Hypertarget{classoomph_1_1InexactSubBiharmonicPreconditioner_aad7004d5c092f9f196caecceb3d68a04}\label{classoomph_1_1InexactSubBiharmonicPreconditioner_aad7004d5c092f9f196caecceb3d68a04} 
 \index{oomph::InexactSubBiharmonicPreconditioner@{oomph::InexactSubBiharmonicPreconditioner}!Lumped\_J\_22\_preconditioner\_pt@{Lumped\_J\_22\_preconditioner\_pt}}
@@ -539,7 +539,7 @@ Definition at line \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00346}
 
 
 
-Referenced by \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00288}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00446}{compute\+\_\+inexact\+\_\+schur\+\_\+complement()}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00259}{Inexact\+Sub\+Biharmonic\+Preconditioner()}}, \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00657}{preconditioner\+\_\+solve()}}, and \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00356}{setup()}}.
+Referenced by \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00288}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00448}{compute\+\_\+inexact\+\_\+schur\+\_\+complement()}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00259}{Inexact\+Sub\+Biharmonic\+Preconditioner()}}, \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00659}{preconditioner\+\_\+solve()}}, and \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00357}{setup()}}.
 
 \Hypertarget{classoomph_1_1InexactSubBiharmonicPreconditioner_a016b56f4fcbc65db776174167f2a0111}\label{classoomph_1_1InexactSubBiharmonicPreconditioner_a016b56f4fcbc65db776174167f2a0111} 
 \index{oomph::InexactSubBiharmonicPreconditioner@{oomph::InexactSubBiharmonicPreconditioner}!Matrix\_of\_block\_pointers@{Matrix\_of\_block\_pointers}}
@@ -553,7 +553,7 @@ Definition at line \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00349}
 
 
 
-Referenced by \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00288}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00446}{compute\+\_\+inexact\+\_\+schur\+\_\+complement()}}, \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00657}{preconditioner\+\_\+solve()}}, and \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00356}{setup()}}.
+Referenced by \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00288}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00448}{compute\+\_\+inexact\+\_\+schur\+\_\+complement()}}, \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00659}{preconditioner\+\_\+solve()}}, and \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00357}{setup()}}.
 
 \Hypertarget{classoomph_1_1InexactSubBiharmonicPreconditioner_a0ebc16dae9af3e7aa032ebe5b4cc12a3}\label{classoomph_1_1InexactSubBiharmonicPreconditioner_a0ebc16dae9af3e7aa032ebe5b4cc12a3} 
 \index{oomph::InexactSubBiharmonicPreconditioner@{oomph::InexactSubBiharmonicPreconditioner}!S\_00\_preconditioner\_pt@{S\_00\_preconditioner\_pt}}
@@ -571,7 +571,7 @@ Definition at line \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00338}
 
 
 
-Referenced by \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00288}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00259}{Inexact\+Sub\+Biharmonic\+Preconditioner()}}, \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00657}{preconditioner\+\_\+solve()}}, and \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00356}{setup()}}.
+Referenced by \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00288}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00259}{Inexact\+Sub\+Biharmonic\+Preconditioner()}}, \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00659}{preconditioner\+\_\+solve()}}, and \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00357}{setup()}}.
 
 \Hypertarget{classoomph_1_1InexactSubBiharmonicPreconditioner_ad9c783c3402ddaab0a56b9efcf7a8ec3}\label{classoomph_1_1InexactSubBiharmonicPreconditioner_ad9c783c3402ddaab0a56b9efcf7a8ec3} 
 \index{oomph::InexactSubBiharmonicPreconditioner@{oomph::InexactSubBiharmonicPreconditioner}!S\_00\_pt@{S\_00\_pt}}
@@ -585,7 +585,7 @@ Definition at line \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00352}
 
 
 
-Referenced by \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00446}{compute\+\_\+inexact\+\_\+schur\+\_\+complement()}}, and \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00356}{setup()}}.
+Referenced by \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00448}{compute\+\_\+inexact\+\_\+schur\+\_\+complement()}}, and \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00357}{setup()}}.
 
 \Hypertarget{classoomph_1_1InexactSubBiharmonicPreconditioner_a31f83c027a5423b221a12f5b86649394}\label{classoomph_1_1InexactSubBiharmonicPreconditioner_a31f83c027a5423b221a12f5b86649394} 
 \index{oomph::InexactSubBiharmonicPreconditioner@{oomph::InexactSubBiharmonicPreconditioner}!Use\_amg@{Use\_amg}}
@@ -603,7 +603,7 @@ Definition at line \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00356}
 
 
 
-Referenced by \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00259}{Inexact\+Sub\+Biharmonic\+Preconditioner()}}, and \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00356}{setup()}}.
+Referenced by \mbox{\hyperlink{biharmonic__preconditioner_8h_source_l00259}{Inexact\+Sub\+Biharmonic\+Preconditioner()}}, and \mbox{\hyperlink{biharmonic__preconditioner_8cc_source_l00357}{setup()}}.
 
 
 

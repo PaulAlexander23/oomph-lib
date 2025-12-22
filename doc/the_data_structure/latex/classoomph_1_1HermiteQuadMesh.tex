@@ -7,7 +7,7 @@ A two dimensional Hermite bicubic element quadrilateral mesh for a topologically
 
 
 
-{\ttfamily \#include $<$hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+template.\+h$>$}
+{\ttfamily \#include $<$hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+h$>$}
 
 Inheritance diagram for oomph\+::Hermite\+Quad\+Mesh\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
 \begin{center}
@@ -99,6 +99,10 @@ Inheritance diagram for oomph\+::Hermite\+Quad\+Mesh\texorpdfstring{$<$}{<} ELEM
 \begin{DoxyCompactList}\small\item\em Replace existing boundary node lookup schemes with new schemes created using the boundary data stored in the nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1Mesh_ad1b124a959628aba00162b89617b3a62}{boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Indicate whether the i-\/th boundary has an intrinsic coordinate. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_ab137d0c0debf5ba0d6ea6990103e620c}{set\+\_\+boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be existing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_a3b9d63e0057ed721190b109f48f7c92e}{set\+\_\+boundary\+\_\+coordinate\+\_\+does\+\_\+not\+\_\+exist}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be non-\/existing. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_af01dfefb66c15579b540be62999d93ee}{nelement}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return number of elements in the mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
@@ -475,9 +479,7 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_aca12acfe655a4d5c4a4eab4a7b970812}{Element\+\_\+pt}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a412a5051be9e81f0ba61bf85e5abc4a6}{Boundary\+\_\+coordinate\+\_\+exists}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of boolean data that indicates whether the boundary coordinates have been set for the boundary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -485,7 +487,7 @@ std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionEleme
 class oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$}
 A two dimensional Hermite bicubic element quadrilateral mesh for a topologically rectangular domain. The geometry of the problem must be prescribed using the \doxylink{classoomph_1_1TopologicallyRectangularDomain}{Topologically\+Rectangular\+Domain}. Non uniform node spacing can be prescribed using a function pointer. 
 
-Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00052}{52}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00053}{53}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8h_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+h}}.
 
 
 
@@ -503,7 +505,7 @@ Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_so
 
 
 
-Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00059}{59}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00060}{60}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8h_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+h}}.
 
 
 
@@ -521,11 +523,11 @@ Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_so
 
 
 
-Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00073}{73}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00074}{74}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8h_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{hermite__element__quad__mesh_8template_8cc_source_l00603}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::build\+\_\+mesh()}}, \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00241}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Domain\+\_\+pt}}, \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00233}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Nelement}}, \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00244}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Node\+\_\+spacing\+\_\+fn}}, and \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00237}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Xperiodic}}.
+References \mbox{\hyperlink{hermite__element__quad__mesh_8template_8cc_source_l00599}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::build\+\_\+mesh()}}, \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00238}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Domain\+\_\+pt}}, \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00230}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Nelement}}, \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00241}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Node\+\_\+spacing\+\_\+fn}}, and \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00234}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Xperiodic}}.
 
 \Hypertarget{classoomph_1_1HermiteQuadMesh_ae28d471336aebafc5fe5e9f303ab0ad8}\label{classoomph_1_1HermiteQuadMesh_ae28d471336aebafc5fe5e9f303ab0ad8} 
 \index{oomph::HermiteQuadMesh$<$ ELEMENT $>$@{oomph::HermiteQuadMesh$<$ ELEMENT $>$}!HermiteQuadMesh@{HermiteQuadMesh}}
@@ -540,11 +542,11 @@ References \mbox{\hyperlink{hermite__element__quad__mesh_8template_8cc_source_l0
 
 build the mesh
 
-Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00114}{114}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00115}{115}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8h_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{hermite__element__quad__mesh_8template_8cc_source_l00603}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::build\+\_\+mesh()}}, \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00241}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Domain\+\_\+pt}}, \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00233}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Nelement}}, \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00244}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Node\+\_\+spacing\+\_\+fn}}, and \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00237}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Xperiodic}}.
+References \mbox{\hyperlink{hermite__element__quad__mesh_8template_8cc_source_l00599}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::build\+\_\+mesh()}}, \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00238}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Domain\+\_\+pt}}, \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00230}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Nelement}}, \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00241}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Node\+\_\+spacing\+\_\+fn}}, and \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00234}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Xperiodic}}.
 
 \Hypertarget{classoomph_1_1HermiteQuadMesh_a81f14d729df268911cd3943efc125492}\label{classoomph_1_1HermiteQuadMesh_a81f14d729df268911cd3943efc125492} 
 \index{oomph::HermiteQuadMesh$<$ ELEMENT $>$@{oomph::HermiteQuadMesh$<$ ELEMENT $>$}!````~HermiteQuadMesh@{\texorpdfstring{$\sim$}{\string~}HermiteQuadMesh}}
@@ -559,7 +561,7 @@ Destructor -\/ does nothing -\/ handled in mesh base class.
 
 
 
-Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00144}{144}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00144}{144}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8h_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+h}}.
 
 
 
@@ -577,7 +579,7 @@ Generic mesh construction function to build the mesh.
 
 
 
-Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8template_8cc_source_l00603}{603}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8template_8cc_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+template.\+cc}}.
+Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8template_8cc_source_l00599}{599}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8template_8cc_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+template.\+cc}}.
 
 
 
@@ -585,7 +587,7 @@ References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{ele
 
 
 
-Referenced by \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00073}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Hermite\+Quad\+Mesh()}}, and \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00114}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Hermite\+Quad\+Mesh()}}.
+Referenced by \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00074}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Hermite\+Quad\+Mesh()}}, and \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00115}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Hermite\+Quad\+Mesh()}}.
 
 \Hypertarget{classoomph_1_1HermiteQuadMesh_a17d8992ae7fa8b46b568d156306d3c89}\label{classoomph_1_1HermiteQuadMesh_a17d8992ae7fa8b46b568d156306d3c89} 
 \index{oomph::HermiteQuadMesh$<$ ELEMENT $>$@{oomph::HermiteQuadMesh$<$ ELEMENT $>$}!generalised\_macro\_element\_position\_of\_node@{generalised\_macro\_element\_position\_of\_node}}
@@ -600,7 +602,7 @@ computes the generalised position of the node at position (node\+\_\+num\+\_\+x,
 
 
 
-Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8template_8cc_source_l00200}{200}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8template_8cc_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+template.\+cc}}.
+Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8template_8cc_source_l00197}{197}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8template_8cc_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+template.\+cc}}.
 
 
 
@@ -619,11 +621,11 @@ returns the macro element position of the node that is the x-\/th node along fro
 
 
 
-Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00157}{157}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00155}{155}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8h_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00233}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Nelement}}, and \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00244}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Node\+\_\+spacing\+\_\+fn}}.
+References \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00230}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Nelement}}, and \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00241}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Node\+\_\+spacing\+\_\+fn}}.
 
 \Hypertarget{classoomph_1_1HermiteQuadMesh_a433b92da06ab05477a823c7724e1ca8b}\label{classoomph_1_1HermiteQuadMesh_a433b92da06ab05477a823c7724e1ca8b} 
 \index{oomph::HermiteQuadMesh$<$ ELEMENT $>$@{oomph::HermiteQuadMesh$<$ ELEMENT $>$}!nelement\_in\_dim@{nelement\_in\_dim}}
@@ -638,11 +640,11 @@ Access function for number of elements in mesh in each dimension.
 
 
 
-Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00148}{148}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00147}{147}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8h_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00233}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Nelement}}.
+References \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00230}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Nelement}}.
 
 \Hypertarget{classoomph_1_1HermiteQuadMesh_a735fd20f847ac98c5bd5db5196ff3ea4}\label{classoomph_1_1HermiteQuadMesh_a735fd20f847ac98c5bd5db5196ff3ea4} 
 \index{oomph::HermiteQuadMesh$<$ ELEMENT $>$@{oomph::HermiteQuadMesh$<$ ELEMENT $>$}!set\_position\_of\_boundary\_node@{set\_position\_of\_boundary\_node}}
@@ -657,7 +659,7 @@ sets the generalised position of the node (i.\+e. -\/ x\+\_\+i, dx\+\_\+i/ds\+\_
 
 
 
-Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8template_8cc_source_l00116}{116}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8template_8cc_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+template.\+cc}}.
+Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8template_8cc_source_l00115}{115}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8template_8cc_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+template.\+cc}}.
 
 
 
@@ -676,7 +678,7 @@ sets the generalised position of the node (i.\+e. -\/ x\+\_\+i, dx\+\_\+i/ds\+\_
 
 
 
-Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8template_8cc_source_l00048}{48}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8template_8cc_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+template.\+cc}}.
+Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8template_8cc_source_l00049}{49}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8template_8cc_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+template.\+cc}}.
 
 
 
@@ -699,15 +701,15 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1Mesh_a6cc8bcd6b41209f0e9295cc9
 
 
 
-Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00215}{215}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00212}{212}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8h_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00215}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+boundary\+\_\+element\+\_\+info()}}.
+References \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00212}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+boundary\+\_\+element\+\_\+info()}}.
 
 
 
-Referenced by \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00215}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+boundary\+\_\+element\+\_\+info()}}.
+Referenced by \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00212}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+boundary\+\_\+element\+\_\+info()}}.
 
 \Hypertarget{classoomph_1_1HermiteQuadMesh_a0e4cd3df0828e87a762c61b09121e1c0}\label{classoomph_1_1HermiteQuadMesh_a0e4cd3df0828e87a762c61b09121e1c0} 
 \index{oomph::HermiteQuadMesh$<$ ELEMENT $>$@{oomph::HermiteQuadMesh$<$ ELEMENT $>$}!setup\_boundary\_element\_info@{setup\_boundary\_element\_info}}
@@ -726,7 +728,7 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1Mesh_a413cbcbea4fb1111703da9ee
 
 
 
-Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8template_8cc_source_l01271}{1271}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8template_8cc_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+template.\+cc}}.
+Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8template_8cc_source_l01250}{1250}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8template_8cc_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+template.\+cc}}.
 
 
 
@@ -748,11 +750,11 @@ Pointer to the topologically rectangular domain which prescribes the problem dom
 
 
 
-Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00241}{241}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00238}{238}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8h_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00073}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Hermite\+Quad\+Mesh()}}, and \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00114}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Hermite\+Quad\+Mesh()}}.
+Referenced by \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00074}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Hermite\+Quad\+Mesh()}}, and \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00115}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Hermite\+Quad\+Mesh()}}.
 
 \Hypertarget{classoomph_1_1HermiteQuadMesh_a0d02ca1a2769955ce57f09616195bd27}\label{classoomph_1_1HermiteQuadMesh_a0d02ca1a2769955ce57f09616195bd27} 
 \index{oomph::HermiteQuadMesh$<$ ELEMENT $>$@{oomph::HermiteQuadMesh$<$ ELEMENT $>$}!Nelement@{Nelement}}
@@ -767,11 +769,11 @@ number of elements in each coordinate direction
 
 
 
-Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00233}{233}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00230}{230}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8h_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00073}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Hermite\+Quad\+Mesh()}}, \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00114}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Hermite\+Quad\+Mesh()}}, \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00157}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::macro\+\_\+coordinate\+\_\+position()}}, and \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00148}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::nelement\+\_\+in\+\_\+dim()}}.
+Referenced by \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00074}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Hermite\+Quad\+Mesh()}}, \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00115}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Hermite\+Quad\+Mesh()}}, \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00155}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::macro\+\_\+coordinate\+\_\+position()}}, and \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00147}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::nelement\+\_\+in\+\_\+dim()}}.
 
 \Hypertarget{classoomph_1_1HermiteQuadMesh_a3b3cc55576538fc29e6975def870536f}\label{classoomph_1_1HermiteQuadMesh_a3b3cc55576538fc29e6975def870536f} 
 \index{oomph::HermiteQuadMesh$<$ ELEMENT $>$@{oomph::HermiteQuadMesh$<$ ELEMENT $>$}!Node\_spacing\_fn@{Node\_spacing\_fn}}
@@ -786,11 +788,11 @@ non uniform mesh spacing function pointer
 
 
 
-Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00244}{244}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00241}{241}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8h_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00073}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Hermite\+Quad\+Mesh()}}, \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00114}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Hermite\+Quad\+Mesh()}}, and \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00157}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::macro\+\_\+coordinate\+\_\+position()}}.
+Referenced by \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00074}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Hermite\+Quad\+Mesh()}}, \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00115}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Hermite\+Quad\+Mesh()}}, and \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00155}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::macro\+\_\+coordinate\+\_\+position()}}.
 
 \Hypertarget{classoomph_1_1HermiteQuadMesh_af1c2c974dc0d2e599b6bbe3921c5bb77}\label{classoomph_1_1HermiteQuadMesh_af1c2c974dc0d2e599b6bbe3921c5bb77} 
 \index{oomph::HermiteQuadMesh$<$ ELEMENT $>$@{oomph::HermiteQuadMesh$<$ ELEMENT $>$}!Xperiodic@{Xperiodic}}
@@ -805,15 +807,15 @@ boolean variable to determine whether the mesh is periodic in the x-\/direction
 
 
 
-Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00237}{237}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00234}{234}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8h_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00073}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Hermite\+Quad\+Mesh()}}, and \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00114}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Hermite\+Quad\+Mesh()}}.
+Referenced by \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00074}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Hermite\+Quad\+Mesh()}}, and \mbox{\hyperlink{hermite__element__quad__mesh_8h_source_l00115}{oomph\+::\+Hermite\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Hermite\+Quad\+Mesh()}}.
 
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{hermite__element__quad__mesh_8template_8h}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+template.\+h}}\item 
+\mbox{\hyperlink{hermite__element__quad__mesh_8h}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+h}}\item 
 \mbox{\hyperlink{hermite__element__quad__mesh_8template_8cc}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+template.\+cc}}\end{DoxyCompactItemize}

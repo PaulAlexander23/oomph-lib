@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -66,9 +66,9 @@
 \DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00062}00062\ \ \ }
 \DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00063}00063\ \}\ \textcolor{comment}{//\ end\_of\_namespace}}
 \DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00064}00064\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00065}00065\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00066}00066\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00067}00067\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00065}00065\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00066}00066\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00067}00067\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00068}00068\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00069}00069\ \textcolor{comment}{//======\ start\_of\_problem\_class=======================================}\textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00070}00070\ \textcolor{comment}{///\ 2D\ Convection\ \ problem\ on\ two\ rectangular\ domains,\ discretised\ }}
@@ -398,14 +398,14 @@
 \DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00394}00394\ \ \textcolor{keywordtype}{unsigned}\ npts=5;}
 \DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00395}00395\ }
 \DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00396}00396\ \ \textcolor{comment}{//\ Output\ Navier-\/Stokes\ solution}}
-\DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00397}00397\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/fluid\_soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00397}00397\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/fluid\_soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00398}00398\ \ \ \ \ \ \ \ \ \ Doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00399}00399\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00400}00400\ \ nst\_mesh\_pt()-\/>output(some\_file,npts);}
 \DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00401}00401\ \ some\_file.close();}
 \DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00402}00402\ }
 \DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00403}00403\ \ \textcolor{comment}{//\ Output\ advection\ diffusion\ solution}}
-\DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00404}00404\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/temperature\_soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00404}00404\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/temperature\_soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00405}00405\ \ \ \ \ \ \ \ \ \ Doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00406}00406\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{multi__domain__boussinesq__convection_8cc_source_l00407}00407\ \ adv\_diff\_mesh\_pt()-\/>output(some\_file,npts);}

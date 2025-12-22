@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -44,9 +44,9 @@
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00040}00040\ \textcolor{keyword}{using\ namespace\ }oomph;}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00041}00041\ }
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00042}00042\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00043}00043\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00044}00044\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00045}00045\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00043}00043\ \textcolor{comment}{//////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00044}00044\ \textcolor{comment}{//////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00045}00045\ \textcolor{comment}{//////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00046}00046\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00047}00047\ }
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00048}00048\ \textcolor{comment}{//=======start\_namespace==========================================}\textcolor{comment}{}}
@@ -397,7 +397,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00393}00393\ \ \ }
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00394}00394\ \ }
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00395}00395\ \ \textcolor{comment}{//\ Output\ fluid\ solution}}
-\DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00396}00396\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/fluid\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00396}00396\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/fluid\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00397}00397\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00398}00398\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fluid_8cc_source_l00399}00399\ \ Fluid\_mesh\_pt-\/>output(some\_file,npts);}

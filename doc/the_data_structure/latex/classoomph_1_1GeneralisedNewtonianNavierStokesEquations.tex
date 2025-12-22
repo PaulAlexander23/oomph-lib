@@ -2,7 +2,7 @@
 \hypertarget{classoomph_1_1GeneralisedNewtonianNavierStokesEquations}{}\label{classoomph_1_1GeneralisedNewtonianNavierStokesEquations}\index{oomph::GeneralisedNewtonianNavierStokesEquations$<$ DIM $>$@{oomph::GeneralisedNewtonianNavierStokesEquations$<$ DIM $>$}}
 
 
-//////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////  
+A class for elements that solve the cartesian Navier--Stokes equations, templated by the dimension DIM. This contains the generic maths -- any concrete implementation must be derived from this.  
 
 
 
@@ -190,7 +190,7 @@ std\+::string \mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianNavierStokesEqu
 \begin{DoxyCompactList}\small\item\em Return FE interpolated pressure at local coordinate s. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} \mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianNavierStokesEquations_a864e9249bdc2f1c200c2d550126796ec}{interpolated\+\_\+p\+\_\+nst}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return FE interpolated pressure at local coordinate s at time level t. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianNavierStokesEquations_a85cfe5eddc8339b7788100f00769ee46}{point\+\_\+output\+\_\+data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{data}})
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianNavierStokesEquations_a85cfe5eddc8339b7788100f00769ee46}{point\+\_\+output\+\_\+data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&data)
 \begin{DoxyCompactList}\small\item\em Output solution in data vector at local cordinates s\+: x,y \mbox{[},z\mbox{]}, u,v,\mbox{[}w\mbox{]}, p. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianNavierStokesEquations_a24435c6d620b786c7bb6ebc9fdcf6e26}{get\+\_\+vorticity}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{vorticity}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Compute 2D vorticity vector at local coordinate s (return in one and only component of vorticity vector. \end{DoxyCompactList}\item 
@@ -483,8 +483,10 @@ std\+::string \mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianNavierStokesEqu
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{oomph\+::\+Generalised\+Element}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}}() \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a76c506edf49c5bbfe94f424ec94191ab}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
-\begin{DoxyCompactList}\small\item\em Constructor\+: Initialise all pointers and all values to zero. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a6a34bffcef1bbbc5271630042afe7ca9}{\texorpdfstring{$\sim$}{\string~}\+Generalised\+Element}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor to clean up any memory allocated by the object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1GeneralisedElement_a4e4a9177fdb093fc85c890bb86bdf655}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
+\begin{DoxyCompactList}\small\item\em Broken copy constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a180b550ae69f8bcbaae3f37f38c475ff}{operator=}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
 \begin{DoxyCompactList}\small\item\em Broken assignment operator. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Data}{Data}} \texorpdfstring{$\ast$}{*}\& \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a3b83389f2c80788013421c6d59604f0b}{internal\+\_\+data\+\_\+pt}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
@@ -905,9 +907,7 @@ template$<$$>$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} DIM$>$\newline
 class oomph\+::\+Generalised\+Newtonian\+Navier\+Stokes\+Equations$<$ DIM $>$}
-//////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////// 
-
-A class for elements that solve the cartesian Navier--Stokes equations, templated by the dimension DIM. This contains the generic maths -- any concrete implementation must be derived from this.
+A class for elements that solve the cartesian Navier--Stokes equations, templated by the dimension DIM. This contains the generic maths -- any concrete implementation must be derived from this. 
 
 We\textquotesingle{}re solving\+:
 
@@ -1579,7 +1579,7 @@ Definition at line \mbox{\hyperlink{generalised__newtonian__navier__stokes__elem
 
 
 
-References \mbox{\hyperlink{advection__diffusion__reaction__elements_8h_source_l00642}{oomph\+::\+Advection\+Diffusion\+Reaction\+Equations$<$ NREAGENT, DIM $>$\+::\+ALE\+\_\+is\+\_\+disabled}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l01967}{oomph\+::\+Finite\+Element\+::integral\+\_\+pt()}}, \mbox{\hyperlink{elements_8cc_source_l03992}{oomph\+::\+Finite\+Element\+::interpolated\+\_\+x()}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a2122f99a87c18649bafdd9ed739758}{oomph\+::\+Integral\+::knot()}}, \mbox{\hyperlink{elements_8h_source_l00839}{oomph\+::\+Generalised\+Element\+::ndof()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l01436}{oomph\+::\+Finite\+Element\+::nodal\+\_\+local\+\_\+eqn()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a270de9d99a1fcf1d25a6c1017f65fa}{oomph\+::\+Integral\+::nweight()}}, \mbox{\hyperlink{elements_8h_source_l02260}{oomph\+::\+Finite\+Element\+::raw\+\_\+dnodal\+\_\+position\+\_\+dt()}}, \mbox{\hyperlink{elements_8cc_source_l01714}{oomph\+::\+Finite\+Element\+::raw\+\_\+nodal\+\_\+position()}}, \mbox{\hyperlink{elements_8h_source_l02580}{oomph\+::\+Finite\+Element\+::raw\+\_\+nodal\+\_\+value()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l00163}{oomph\+::\+Second\+Invariant\+Helper\+::second\+\_\+invariant()}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}, \mbox{\hyperlink{timesteppers_8h_source_l00123}{oomph\+::\+Time\+::time()}}, \mbox{\hyperlink{timesteppers_8h_source_l00572}{oomph\+::\+Time\+Stepper\+::time\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l00238}{oomph\+::\+Data\+::time\+\_\+stepper\+\_\+pt()}}, \mbox{\hyperlink{classoomph_1_1Integral_ac65335e2aab120b285b3d6c294507b06}{oomph\+::\+Integral\+::weight()}}, and \mbox{\hyperlink{timesteppers_8h_source_l00594}{oomph\+::\+Time\+Stepper\+::weight()}}.
+References \mbox{\hyperlink{advection__diffusion__reaction__elements_8h_source_l00642}{oomph\+::\+Advection\+Diffusion\+Reaction\+Equations$<$ NREAGENT, DIM $>$\+::\+ALE\+\_\+is\+\_\+disabled}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l01967}{oomph\+::\+Finite\+Element\+::integral\+\_\+pt()}}, \mbox{\hyperlink{elements_8cc_source_l03992}{oomph\+::\+Finite\+Element\+::interpolated\+\_\+x()}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a2122f99a87c18649bafdd9ed739758}{oomph\+::\+Integral\+::knot()}}, \mbox{\hyperlink{elements_8h_source_l00822}{oomph\+::\+Generalised\+Element\+::ndof()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l01436}{oomph\+::\+Finite\+Element\+::nodal\+\_\+local\+\_\+eqn()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a270de9d99a1fcf1d25a6c1017f65fa}{oomph\+::\+Integral\+::nweight()}}, \mbox{\hyperlink{elements_8h_source_l02260}{oomph\+::\+Finite\+Element\+::raw\+\_\+dnodal\+\_\+position\+\_\+dt()}}, \mbox{\hyperlink{elements_8cc_source_l01714}{oomph\+::\+Finite\+Element\+::raw\+\_\+nodal\+\_\+position()}}, \mbox{\hyperlink{elements_8h_source_l02580}{oomph\+::\+Finite\+Element\+::raw\+\_\+nodal\+\_\+value()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l00171}{oomph\+::\+Second\+Invariant\+Helper\+::second\+\_\+invariant()}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}, \mbox{\hyperlink{timesteppers_8h_source_l00123}{oomph\+::\+Time\+::time()}}, \mbox{\hyperlink{timesteppers_8h_source_l00572}{oomph\+::\+Time\+Stepper\+::time\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l00238}{oomph\+::\+Data\+::time\+\_\+stepper\+\_\+pt()}}, \mbox{\hyperlink{classoomph_1_1Integral_ac65335e2aab120b285b3d6c294507b06}{oomph\+::\+Integral\+::weight()}}, and \mbox{\hyperlink{timesteppers_8h_source_l00594}{oomph\+::\+Time\+Stepper\+::weight()}}.
 
 
 
@@ -1697,7 +1697,7 @@ Definition at line \mbox{\hyperlink{generalised__newtonian__navier__stokes__elem
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l01202}{oomph\+::\+Generalised\+Element\+::\+Default\+\_\+fd\+\_\+jacobian\+\_\+step}}, \mbox{\hyperlink{generalised__newtonian__navier__stokes__elements_8h_source_l00250}{oomph\+::\+Generalised\+Newtonian\+Navier\+Stokes\+Equations$<$ DIM $>$\+::get\+\_\+body\+\_\+force\+\_\+nst()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}.
+References \mbox{\hyperlink{elements_8h_source_l01185}{oomph\+::\+Generalised\+Element\+::\+Default\+\_\+fd\+\_\+jacobian\+\_\+step}}, \mbox{\hyperlink{generalised__newtonian__navier__stokes__elements_8h_source_l00250}{oomph\+::\+Generalised\+Newtonian\+Navier\+Stokes\+Equations$<$ DIM $>$\+::get\+\_\+body\+\_\+force\+\_\+nst()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}.
 
 \Hypertarget{classoomph_1_1GeneralisedNewtonianNavierStokesEquations_a1cb7e8f48bfc9cd81f63405fb2fd1795}\label{classoomph_1_1GeneralisedNewtonianNavierStokesEquations_a1cb7e8f48bfc9cd81f63405fb2fd1795} 
 \index{oomph::GeneralisedNewtonianNavierStokesEquations$<$ DIM $>$@{oomph::GeneralisedNewtonianNavierStokesEquations$<$ DIM $>$}!get\_body\_force\_nst@{get\_body\_force\_nst}}
@@ -1747,7 +1747,7 @@ Definition at line \mbox{\hyperlink{generalised__newtonian__navier__stokes__elem
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l01202}{oomph\+::\+Generalised\+Element\+::\+Default\+\_\+fd\+\_\+jacobian\+\_\+step}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{geom__objects_8h_source_l00192}{oomph\+::\+Geom\+Object\+::time\+\_\+stepper\+\_\+pt()}}, and \mbox{\hyperlink{timesteppers_8h_source_l00594}{oomph\+::\+Time\+Stepper\+::weight()}}.
+References \mbox{\hyperlink{elements_8h_source_l01185}{oomph\+::\+Generalised\+Element\+::\+Default\+\_\+fd\+\_\+jacobian\+\_\+step}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{geom__objects_8h_source_l00192}{oomph\+::\+Geom\+Object\+::time\+\_\+stepper\+\_\+pt()}}, and \mbox{\hyperlink{timesteppers_8h_source_l00594}{oomph\+::\+Time\+Stepper\+::weight()}}.
 
 \Hypertarget{classoomph_1_1GeneralisedNewtonianNavierStokesEquations_ad69fe16e07deef80069fb1b27c19caa1}\label{classoomph_1_1GeneralisedNewtonianNavierStokesEquations_ad69fe16e07deef80069fb1b27c19caa1} 
 \index{oomph::GeneralisedNewtonianNavierStokesEquations$<$ DIM $>$@{oomph::GeneralisedNewtonianNavierStokesEquations$<$ DIM $>$}!get\_load@{get\_load}}
@@ -1797,7 +1797,7 @@ Definition at line \mbox{\hyperlink{generalised__newtonian__navier__stokes__elem
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l02615}{oomph\+::\+Finite\+Element\+::dim()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l01967}{oomph\+::\+Finite\+Element\+::integral\+\_\+pt()}}, \mbox{\hyperlink{elements_8cc_source_l04198}{oomph\+::\+Finite\+Element\+::\+J\+\_\+eulerian\+\_\+at\+\_\+knot()}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a2122f99a87c18649bafdd9ed739758}{oomph\+::\+Integral\+::knot()}}, \mbox{\hyperlink{elements_8h_source_l00839}{oomph\+::\+Generalised\+Element\+::ndof()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l01436}{oomph\+::\+Finite\+Element\+::nodal\+\_\+local\+\_\+eqn()}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a270de9d99a1fcf1d25a6c1017f65fa}{oomph\+::\+Integral\+::nweight()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{elements_8cc_source_l03250}{oomph\+::\+Finite\+Element\+::shape\+\_\+at\+\_\+knot()}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}, and \mbox{\hyperlink{classoomph_1_1Integral_ac65335e2aab120b285b3d6c294507b06}{oomph\+::\+Integral\+::weight()}}.
+References \mbox{\hyperlink{elements_8h_source_l02615}{oomph\+::\+Finite\+Element\+::dim()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l01967}{oomph\+::\+Finite\+Element\+::integral\+\_\+pt()}}, \mbox{\hyperlink{elements_8cc_source_l04198}{oomph\+::\+Finite\+Element\+::\+J\+\_\+eulerian\+\_\+at\+\_\+knot()}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a2122f99a87c18649bafdd9ed739758}{oomph\+::\+Integral\+::knot()}}, \mbox{\hyperlink{elements_8h_source_l00822}{oomph\+::\+Generalised\+Element\+::ndof()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l01436}{oomph\+::\+Finite\+Element\+::nodal\+\_\+local\+\_\+eqn()}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a270de9d99a1fcf1d25a6c1017f65fa}{oomph\+::\+Integral\+::nweight()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{elements_8cc_source_l03250}{oomph\+::\+Finite\+Element\+::shape\+\_\+at\+\_\+knot()}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}, and \mbox{\hyperlink{classoomph_1_1Integral_ac65335e2aab120b285b3d6c294507b06}{oomph\+::\+Integral\+::weight()}}.
 
 \Hypertarget{classoomph_1_1GeneralisedNewtonianNavierStokesEquations_ac3e66e5ca9d23b4ef96a32064bae84b9}\label{classoomph_1_1GeneralisedNewtonianNavierStokesEquations_ac3e66e5ca9d23b4ef96a32064bae84b9} 
 \index{oomph::GeneralisedNewtonianNavierStokesEquations$<$ DIM $>$@{oomph::GeneralisedNewtonianNavierStokesEquations$<$ DIM $>$}!get\_source\_gradient\_nst@{get\_source\_gradient\_nst}}
@@ -1816,7 +1816,7 @@ Definition at line \mbox{\hyperlink{generalised__newtonian__navier__stokes__elem
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l01202}{oomph\+::\+Generalised\+Element\+::\+Default\+\_\+fd\+\_\+jacobian\+\_\+step}}, \mbox{\hyperlink{generalised__newtonian__navier__stokes__elements_8h_source_l00318}{oomph\+::\+Generalised\+Newtonian\+Navier\+Stokes\+Equations$<$ DIM $>$\+::get\+\_\+source\+\_\+nst()}}, and \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}.
+References \mbox{\hyperlink{elements_8h_source_l01185}{oomph\+::\+Generalised\+Element\+::\+Default\+\_\+fd\+\_\+jacobian\+\_\+step}}, \mbox{\hyperlink{generalised__newtonian__navier__stokes__elements_8h_source_l00318}{oomph\+::\+Generalised\+Newtonian\+Navier\+Stokes\+Equations$<$ DIM $>$\+::get\+\_\+source\+\_\+nst()}}, and \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}.
 
 \Hypertarget{classoomph_1_1GeneralisedNewtonianNavierStokesEquations_a0c3463fa41028b3acebcdca1a1ca2d55}\label{classoomph_1_1GeneralisedNewtonianNavierStokesEquations_a0c3463fa41028b3acebcdca1a1ca2d55} 
 \index{oomph::GeneralisedNewtonianNavierStokesEquations$<$ DIM $>$@{oomph::GeneralisedNewtonianNavierStokesEquations$<$ DIM $>$}!get\_source\_nst@{get\_source\_nst}}
@@ -1858,7 +1858,7 @@ Definition at line \mbox{\hyperlink{generalised__newtonian__navier__stokes__elem
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l00163}{oomph\+::\+Second\+Invariant\+Helper\+::second\+\_\+invariant()}}, and \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l00171}{oomph\+::\+Second\+Invariant\+Helper\+::second\+\_\+invariant()}}, and \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}.
 
 
 
@@ -1881,7 +1881,7 @@ Definition at line \mbox{\hyperlink{generalised__newtonian__navier__stokes__elem
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l00163}{oomph\+::\+Second\+Invariant\+Helper\+::second\+\_\+invariant()}}, and \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l00171}{oomph\+::\+Second\+Invariant\+Helper\+::second\+\_\+invariant()}}, and \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}.
 
 \Hypertarget{classoomph_1_1GeneralisedNewtonianNavierStokesEquations_a24435c6d620b786c7bb6ebc9fdcf6e26}\label{classoomph_1_1GeneralisedNewtonianNavierStokesEquations_a24435c6d620b786c7bb6ebc9fdcf6e26} 
 \index{oomph::GeneralisedNewtonianNavierStokesEquations$<$ DIM $>$@{oomph::GeneralisedNewtonianNavierStokesEquations$<$ DIM $>$}!get\_vorticity@{get\_vorticity}}
@@ -2069,7 +2069,7 @@ Definition at line \mbox{\hyperlink{generalised__newtonian__navier__stokes__elem
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l00163}{oomph\+::\+Second\+Invariant\+Helper\+::second\+\_\+invariant()}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l00171}{oomph\+::\+Second\+Invariant\+Helper\+::second\+\_\+invariant()}}.
 
 \Hypertarget{classoomph_1_1GeneralisedNewtonianNavierStokesEquations_a11f3a8c7d6fb7b9d1b915241c0ad1884}\label{classoomph_1_1GeneralisedNewtonianNavierStokesEquations_a11f3a8c7d6fb7b9d1b915241c0ad1884} 
 \index{oomph::GeneralisedNewtonianNavierStokesEquations$<$ DIM $>$@{oomph::GeneralisedNewtonianNavierStokesEquations$<$ DIM $>$}!n\_u\_nst@{n\_u\_nst}}
@@ -2406,7 +2406,7 @@ Definition at line \mbox{\hyperlink{generalised__newtonian__navier__stokes__elem
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l00708}{oomph\+::\+Generalised\+Element\+::eqn\+\_\+number()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l00622}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{elements_8h_source_l00827}{oomph\+::\+Generalised\+Element\+::ninternal\+\_\+data()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{generalised__newtonian__navier__stokes__elements_8h_source_l00650}{oomph\+::\+Generalised\+Newtonian\+Navier\+Stokes\+Equations$<$ DIM $>$\+::p\+\_\+nodal\+\_\+index\+\_\+nst()}}, and \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}.
+References \mbox{\hyperlink{elements_8h_source_l00691}{oomph\+::\+Generalised\+Element\+::eqn\+\_\+number()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l00605}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{elements_8h_source_l00810}{oomph\+::\+Generalised\+Element\+::ninternal\+\_\+data()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{generalised__newtonian__navier__stokes__elements_8h_source_l00650}{oomph\+::\+Generalised\+Newtonian\+Navier\+Stokes\+Equations$<$ DIM $>$\+::p\+\_\+nodal\+\_\+index\+\_\+nst()}}, and \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}.
 
 \Hypertarget{classoomph_1_1GeneralisedNewtonianNavierStokesEquations_a85cfe5eddc8339b7788100f00769ee46}\label{classoomph_1_1GeneralisedNewtonianNavierStokesEquations_a85cfe5eddc8339b7788100f00769ee46} 
 \index{oomph::GeneralisedNewtonianNavierStokesEquations$<$ DIM $>$@{oomph::GeneralisedNewtonianNavierStokesEquations$<$ DIM $>$}!point\_output\_data@{point\_output\_data}}
@@ -2619,7 +2619,7 @@ Definition at line \mbox{\hyperlink{generalised__newtonian__navier__stokes__elem
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink{oomph__utilities_8h_source_l00189}{oomph\+::\+String\+Conversion\+::to\+\_\+string()}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink{oomph__utilities_8h_source_l00199}{oomph\+::\+String\+Conversion\+::to\+\_\+string()}}.
 
 \Hypertarget{classoomph_1_1GeneralisedNewtonianNavierStokesEquations_a9f5f96dc41437cb571865588c98ef80e}\label{classoomph_1_1GeneralisedNewtonianNavierStokesEquations_a9f5f96dc41437cb571865588c98ef80e} 
 \index{oomph::GeneralisedNewtonianNavierStokesEquations$<$ DIM $>$@{oomph::GeneralisedNewtonianNavierStokesEquations$<$ DIM $>$}!scalar\_value\_paraview@{scalar\_value\_paraview}}
@@ -3027,9 +3027,7 @@ Referenced by \mbox{\hyperlink{generalised__newtonian__refineable__navier__stoke
 
 \doxylink{classoomph_1_1Vector}{Vector} to decide whether the stress-\/divergence form is used or not. 
 
-////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////
-
-Navier--Stokes equations static data 
+Navier--Stokes equations static data. 
 
 Definition at line \mbox{\hyperlink{generalised__newtonian__navier__stokes__elements_8h_source_l00425}{425}} of file \mbox{\hyperlink{generalised__newtonian__navier__stokes__elements_8h_source}{generalised\+\_\+newtonian\+\_\+navier\+\_\+stokes\+\_\+elements.\+h}}.
 

@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -77,9 +77,9 @@
 \DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00073}00073\ \};}
 \DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00074}00074\ }
 \DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00075}00075\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00076}00076\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00077}00077\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00078}00078\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00076}00076\ \textcolor{comment}{//////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00077}00077\ \textcolor{comment}{//////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00078}00078\ \textcolor{comment}{//////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00079}00079\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00080}00080\ }
 \DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00081}00081\ \textcolor{comment}{//=======start\_namespace==========================================}\textcolor{comment}{}}
@@ -361,7 +361,7 @@
 \DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00357}00357\ }
 \DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00358}00358\ \ \textcolor{comment}{//\ Output\ solid\ solution}}
 \DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00359}00359\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00360}00360\ \ \mbox{\hyperlink{classMySolidTetgenMesh}{sprintf}}(\mbox{\hyperlink{classMySolidTetgenMesh}{filename}},\textcolor{stringliteral}{"{}\%s/solid\_soln\%i.dat"{}},\mbox{\hyperlink{classMySolidTetgenMesh}{doc\_info}}.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00360}00360\ \ \mbox{\hyperlink{classMySolidTetgenMesh}{snprintf}}(\mbox{\hyperlink{classMySolidTetgenMesh}{filename}},\textcolor{keyword}{sizeof}(\mbox{\hyperlink{classMySolidTetgenMesh}{filename}}),\textcolor{stringliteral}{"{}\%s/solid\_soln\%i.dat"{}},\mbox{\hyperlink{classMySolidTetgenMesh}{doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00361}00361\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMySolidTetgenMesh}{doc\_info}}.number());}
 \DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00362}00362\ \ \mbox{\hyperlink{classMySolidTetgenMesh}{some\_file}}.open(\mbox{\hyperlink{classMySolidTetgenMesh}{filename}});}
 \DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00363}00363\ \ Solid\_mesh\_pt-\/>output(\mbox{\hyperlink{classMySolidTetgenMesh}{some\_file}},\mbox{\hyperlink{classMySolidTetgenMesh}{npts}});}
@@ -370,7 +370,7 @@
 \DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00366}00366\ \ \ \ \ }
 \DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00367}00367\ \ \textcolor{comment}{//\ Output\ traction}}
 \DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00368}00368\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00369}00369\ \ \mbox{\hyperlink{classMySolidTetgenMesh}{sprintf}}(\mbox{\hyperlink{classMySolidTetgenMesh}{filename}},\textcolor{stringliteral}{"{}\%s/traction\%i.dat"{}},\mbox{\hyperlink{classMySolidTetgenMesh}{doc\_info}}.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00369}00369\ \ \mbox{\hyperlink{classMySolidTetgenMesh}{snprintf}}(\mbox{\hyperlink{classMySolidTetgenMesh}{filename}},\textcolor{keyword}{sizeof}(\mbox{\hyperlink{classMySolidTetgenMesh}{filename}}),\textcolor{stringliteral}{"{}\%s/traction\%i.dat"{}},\mbox{\hyperlink{classMySolidTetgenMesh}{doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classMySolidTetgenMesh}{doc\_info}}.number());}
 \DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00371}00371\ \ \mbox{\hyperlink{classMySolidTetgenMesh}{some\_file}}.open(\mbox{\hyperlink{classMySolidTetgenMesh}{filename}});}
 \DoxyCodeLine{\Hypertarget{vmtk__solid_8cc_source_l00372}00372\ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classMySolidTetgenMesh}{n}}=Solid\_traction\_boundary\_id.size();}

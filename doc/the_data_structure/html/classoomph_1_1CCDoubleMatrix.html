@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -132,7 +126,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>//////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////  
+<p>A class for compressed column matrices that store doubles.  
  <a href="classoomph_1_1CCDoubleMatrix.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="matrices_8h_source.html">matrices.h</a>&gt;</code></p>
@@ -146,7 +140,7 @@ $(function() {
   <map id="oomph::CCDoubleMatrix_map" name="oomph::CCDoubleMatrix_map">
 <area href="classoomph_1_1DoubleMatrixBase.html" title="Abstract base class for matrices of doubles – adds abstract interfaces for solving,..." alt="oomph::DoubleMatrixBase" shape="rect" coords="0,112,316,136"/>
 <area href="classoomph_1_1CCMatrix.html" alt="oomph::CCMatrix&lt; double &gt;" shape="rect" coords="326,112,642,136"/>
-<area href="classoomph_1_1SparseMatrix.html" title="//////////////////////////////////////////////////////////////// ////////////////////////////////////..." alt="oomph::SparseMatrix&lt; T, MATRIX_TYPE &gt;" shape="rect" coords="326,56,642,80"/>
+<area href="classoomph_1_1SparseMatrix.html" title="Class for sparse matrices, that store only the non-zero values in a linear array in memory...." alt="oomph::SparseMatrix&lt; T, MATRIX_TYPE &gt;" shape="rect" coords="326,56,642,80"/>
 <area href="classoomph_1_1Matrix.html" title="Abstract base class for matrices, templated by the type of object that is stored in them and the type..." alt="oomph::Matrix&lt; T, MATRIX_TYPE &gt;" shape="rect" coords="326,0,642,24"/>
   </map>
 </div></div>
@@ -190,7 +184,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a582352912b0a7e097f9ac31c5054beed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiply the transposed matrix by the vector x: soln=A^T x.  <br /></td></tr>
 <tr class="separator:a582352912b0a7e097f9ac31c5054beed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6834fcfc28dca27243ec53ea48d34be" id="r_ae6834fcfc28dca27243ec53ea48d34be"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1CCDoubleMatrix.html#ae6834fcfc28dca27243ec53ea48d34be">multiply</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1CCDoubleMatrix.html">CCDoubleMatrix</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">matrix_in</a>, <a class="el" href="classoomph_1_1CCDoubleMatrix.html">CCDoubleMatrix</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">result</a>)</td></tr>
-<tr class="memdesc:ae6834fcfc28dca27243ec53ea48d34be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to multiply this matrix by the <a class="el" href="classoomph_1_1CCDoubleMatrix.html" title="//////////////////////////////////////////////////////////////// ////////////////////////////////////...">CCDoubleMatrix</a> matrix_in The multiplication method used can be selected using the flag Matrix_matrix_multiply_method. By default Method 2 is used. Method 1: First runs through this matrix and matrix_in to find the storage requirements for result - arrays of the correct size are then allocated before performing the calculation. Minimises memory requirements but more costly. Method 2: Grows storage for values and column indices of result 'on the fly' using an array of maps. Faster but more memory intensive. Method 3: Grows storage for values and column indices of result 'on the fly' using a vector of vectors. Not particularly impressive on the platforms we tried...  <br /></td></tr>
+<tr class="memdesc:ae6834fcfc28dca27243ec53ea48d34be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to multiply this matrix by the <a class="el" href="classoomph_1_1CCDoubleMatrix.html" title="A class for compressed column matrices that store doubles.">CCDoubleMatrix</a> matrix_in The multiplication method used can be selected using the flag Matrix_matrix_multiply_method. By default Method 2 is used. Method 1: First runs through this matrix and matrix_in to find the storage requirements for result - arrays of the correct size are then allocated before performing the calculation. Minimises memory requirements but more costly. Method 2: Grows storage for values and column indices of result 'on the fly' using an array of maps. Faster but more memory intensive. Method 3: Grows storage for values and column indices of result 'on the fly' using a vector of vectors. Not particularly impressive on the platforms we tried...  <br /></td></tr>
 <tr class="separator:ae6834fcfc28dca27243ec53ea48d34be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a600a58c92baf401a534598cedcfd3415" id="r_a600a58c92baf401a534598cedcfd3415"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1CCDoubleMatrix.html#a600a58c92baf401a534598cedcfd3415">matrix_reduction</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;alpha, <a class="el" href="classoomph_1_1CCDoubleMatrix.html">CCDoubleMatrix</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">reduced_matrix</a>)</td></tr>
 <tr class="memdesc:a600a58c92baf401a534598cedcfd3415"><td class="mdescLeft">&#160;</td><td class="mdescRight">For every row, find the maximum absolute value of the entries in this row. Set all values that are less than alpha times this maximum to zero and return the resulting matrix in reduced_matrix. Note: Diagonal entries are retained regardless of their size.  <br /></td></tr>
@@ -384,8 +378,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a71a5ae159c26f93c314c839f4db6eaaf inherit pro_static_attribs_classoomph_1_1SparseMatrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>//////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////// </p>
-<p>A class for compressed column matrices that store doubles </p>
+<div class="textblock"><p>A class for compressed column matrices that store doubles. </p>
 
 <p class="definition">Definition at line <a class="el" href="matrices_8h_source.html#l02790">2790</a> of file <a class="el" href="matrices_8h_source.html">matrices.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -405,7 +398,6 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Default constructor. </p>
-<p>//////////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////////////</p>
 <p>Default constructor, set the default linear solver and matrix-matrix multiplication method. </p>
 
 <p class="definition">Definition at line <a class="el" href="matrices_8cc_source.html#l00572">572</a> of file <a class="el" href="matrices_8cc_source.html">matrices.cc</a>.</p>
@@ -683,7 +675,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Function to multiply this matrix by the <a class="el" href="classoomph_1_1CCDoubleMatrix.html" title="//////////////////////////////////////////////////////////////// ////////////////////////////////////...">CCDoubleMatrix</a> matrix_in The multiplication method used can be selected using the flag Matrix_matrix_multiply_method. By default Method 2 is used. Method 1: First runs through this matrix and matrix_in to find the storage requirements for result - arrays of the correct size are then allocated before performing the calculation. Minimises memory requirements but more costly. Method 2: Grows storage for values and column indices of result 'on the fly' using an array of maps. Faster but more memory intensive. Method 3: Grows storage for values and column indices of result 'on the fly' using a vector of vectors. Not particularly impressive on the platforms we tried... </p>
+<p>Function to multiply this matrix by the <a class="el" href="classoomph_1_1CCDoubleMatrix.html" title="A class for compressed column matrices that store doubles.">CCDoubleMatrix</a> matrix_in The multiplication method used can be selected using the flag Matrix_matrix_multiply_method. By default Method 2 is used. Method 1: First runs through this matrix and matrix_in to find the storage requirements for result - arrays of the correct size are then allocated before performing the calculation. Minimises memory requirements but more costly. Method 2: Grows storage for values and column indices of result 'on the fly' using an array of maps. Faster but more memory intensive. Method 3: Grows storage for values and column indices of result 'on the fly' using a vector of vectors. Not particularly impressive on the platforms we tried... </p>
 
 <p class="definition">Definition at line <a class="el" href="matrices_8cc_source.html#l00821">821</a> of file <a class="el" href="matrices_8cc_source.html">matrices.cc</a>.</p>
 
@@ -983,7 +975,7 @@ Additional Inherited Members</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:03:27
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:37:13
         </div>
       </div>
     </footer>

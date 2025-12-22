@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -350,9 +350,9 @@
 \DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l00346}00346\ }
 \DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l00347}00347\ }
 \DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l00348}00348\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l00349}00349\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l00350}00350\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l00351}00351\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l00349}00349\ \textcolor{comment}{///////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l00350}00350\ \textcolor{comment}{///////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l00351}00351\ \textcolor{comment}{///////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l00352}00352\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l00353}00353\ }
 \DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l00354}00354\ \textcolor{comment}{//==start\_of\_namespace==============================}\textcolor{comment}{}}
@@ -1200,7 +1200,7 @@
 \DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l01196}01196\ \ }
 \DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l01197}01197\ \ ofstream\ some\_file;}
 \DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l01198}01198\ \ \textcolor{keywordtype}{char}\ filename[100];}
-\DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l01199}01199\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},}
+\DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l01199}01199\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},}
 \DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l01200}01200\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceProblem__Parameter_a1dd3c6bcf97360c8fe0d288ca7610351}{Problem\_Parameter::Doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l01201}01201\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceProblem__Parameter_a1dd3c6bcf97360c8fe0d288ca7610351}{Problem\_Parameter::Doc\_info}}.number());}
 \DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l01202}01202\ }
@@ -1235,7 +1235,7 @@
 \DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l01231}01231\ \ some\_file.close();}
 \DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l01232}01232\ \ }
 \DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l01233}01233\ \ \textcolor{comment}{//\ Output\ boundaries}}
-\DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l01234}01234\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/boundaries\%i.dat"{}},}
+\DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l01234}01234\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/boundaries\%i.dat"{}},}
 \DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l01235}01235\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceProblem__Parameter_a1dd3c6bcf97360c8fe0d288ca7610351}{Problem\_Parameter::Doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l01236}01236\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceProblem__Parameter_a1dd3c6bcf97360c8fe0d288ca7610351}{Problem\_Parameter::Doc\_info}}.number());}
 \DoxyCodeLine{\Hypertarget{adaptive__drop__in__channel_8cc_source_l01237}01237\ \ some\_file.open(filename);}

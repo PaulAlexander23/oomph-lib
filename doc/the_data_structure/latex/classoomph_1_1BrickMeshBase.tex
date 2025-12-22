@@ -2,7 +2,7 @@
 \hypertarget{classoomph_1_1BrickMeshBase}{}\label{classoomph_1_1BrickMeshBase}\index{oomph::BrickMeshBase@{oomph::BrickMeshBase}}
 
 
-//////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////////  
+Base class for brick meshes (meshes made of 3D brick elements).  
 
 
 
@@ -89,6 +89,10 @@ Inheritance diagram for oomph\+::Brick\+Mesh\+Base\+:\begin{figure}[H]
 \begin{DoxyCompactList}\small\item\em Replace existing boundary node lookup schemes with new schemes created using the boundary data stored in the nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1Mesh_ad1b124a959628aba00162b89617b3a62}{boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Indicate whether the i-\/th boundary has an intrinsic coordinate. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_ab137d0c0debf5ba0d6ea6990103e620c}{set\+\_\+boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be existing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_a3b9d63e0057ed721190b109f48f7c92e}{set\+\_\+boundary\+\_\+coordinate\+\_\+does\+\_\+not\+\_\+exist}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be non-\/existing. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_af01dfefb66c15579b540be62999d93ee}{nelement}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return number of elements in the mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
@@ -444,14 +448,10 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_aca12acfe655a4d5c4a4eab4a7b970812}{Element\+\_\+pt}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a412a5051be9e81f0ba61bf85e5abc4a6}{Boundary\+\_\+coordinate\+\_\+exists}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of boolean data that indicates whether the boundary coordinates have been set for the boundary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-//////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////// 
-
 Base class for brick meshes (meshes made of 3D brick elements). 
 
 Definition at line \mbox{\hyperlink{brick__mesh_8h_source_l00177}{177}} of file \mbox{\hyperlink{brick__mesh_8h_source}{brick\+\_\+mesh.\+h}}.
@@ -524,7 +524,7 @@ References \mbox{\hyperlink{brick__mesh_8h_source_l00195}{setup\+\_\+boundary\+\
 
 
 
-Referenced by \mbox{\hyperlink{eighth__sphere__mesh_8template_8cc_source_l00039}{oomph\+::\+Eighth\+Sphere\+Mesh$<$ ELEMENT $>$\+::\+Eighth\+Sphere\+Mesh()}}, \mbox{\hyperlink{quarter__tube__mesh_8template_8cc_source_l00044}{oomph\+::\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::\+Quarter\+Tube\+Mesh()}}, \mbox{\hyperlink{brick__mesh_8h_source_l00195}{setup\+\_\+boundary\+\_\+element\+\_\+info()}}, and \mbox{\hyperlink{tube__mesh_8template_8cc_source_l00040}{oomph\+::\+Tube\+Mesh$<$ ELEMENT $>$\+::\+Tube\+Mesh()}}.
+Referenced by \mbox{\hyperlink{eighth__sphere__mesh_8template_8cc_source_l00040}{oomph\+::\+Eighth\+Sphere\+Mesh$<$ ELEMENT $>$\+::\+Eighth\+Sphere\+Mesh()}}, \mbox{\hyperlink{quarter__tube__mesh_8template_8cc_source_l00045}{oomph\+::\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::\+Quarter\+Tube\+Mesh()}}, \mbox{\hyperlink{brick__mesh_8h_source_l00195}{setup\+\_\+boundary\+\_\+element\+\_\+info()}}, and \mbox{\hyperlink{tube__mesh_8template_8cc_source_l00041}{oomph\+::\+Tube\+Mesh$<$ ELEMENT $>$\+::\+Tube\+Mesh()}}.
 
 \Hypertarget{classoomph_1_1BrickMeshBase_a26aa6ff19735538e598bee956ad3d957}\label{classoomph_1_1BrickMeshBase_a26aa6ff19735538e598bee956ad3d957} 
 \index{oomph::BrickMeshBase@{oomph::BrickMeshBase}!setup\_boundary\_element\_info@{setup\_boundary\_element\_info}}
@@ -536,8 +536,6 @@ Referenced by \mbox{\hyperlink{eighth__sphere__mesh_8template_8cc_source_l00039}
 
 Setup lookup schemes which establish whic elements are located next to mesh\textquotesingle{}s boundaries. Doc in outfile (if it\textquotesingle{}s open). 
 
-//////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////////
-
 Setup lookup schemes which establish which elements are located next to which boundaries (Doc to outfile if it\textquotesingle{}s open). 
 
 Reimplemented from \mbox{\hyperlink{classoomph_1_1Mesh_a413cbcbea4fb1111703da9ee97429640}{oomph\+::\+Mesh}}.
@@ -548,7 +546,7 @@ Definition at line \mbox{\hyperlink{brick__mesh_8cc_source_l00051}{51}} of file 
 
 
 
-References \mbox{\hyperlink{mesh_8h_source_l00091}{oomph\+::\+Mesh\+::\+Boundary\+\_\+element\+\_\+pt}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00095}{oomph\+::\+Mesh\+::\+Face\+\_\+index\+\_\+at\+\_\+boundary}}, \mbox{\hyperlink{mesh_8h_source_l00473}{oomph\+::\+Mesh\+::finite\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l01365}{oomph\+::\+Node\+::get\+\_\+boundaries\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{mesh_8h_source_l00087}{oomph\+::\+Mesh\+::\+Lookup\+\_\+for\+\_\+elements\+\_\+next\+\_\+boundary\+\_\+is\+\_\+setup}}, \mbox{\hyperlink{mesh_8h_source_l00827}{oomph\+::\+Mesh\+::nboundary()}}, \mbox{\hyperlink{mesh_8h_source_l00590}{oomph\+::\+Mesh\+::nelement()}}, \mbox{\hyperlink{elements_8h_source_l02222}{oomph\+::\+Finite\+Element\+::nnode\+\_\+1d()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, and \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}.
+References \mbox{\hyperlink{mesh_8h_source_l00091}{oomph\+::\+Mesh\+::\+Boundary\+\_\+element\+\_\+pt}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00095}{oomph\+::\+Mesh\+::\+Face\+\_\+index\+\_\+at\+\_\+boundary}}, \mbox{\hyperlink{mesh_8h_source_l00477}{oomph\+::\+Mesh\+::finite\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l01365}{oomph\+::\+Node\+::get\+\_\+boundaries\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{mesh_8h_source_l00087}{oomph\+::\+Mesh\+::\+Lookup\+\_\+for\+\_\+elements\+\_\+next\+\_\+boundary\+\_\+is\+\_\+setup}}, \mbox{\hyperlink{mesh_8h_source_l00835}{oomph\+::\+Mesh\+::nboundary()}}, \mbox{\hyperlink{mesh_8h_source_l00598}{oomph\+::\+Mesh\+::nelement()}}, \mbox{\hyperlink{elements_8h_source_l02222}{oomph\+::\+Finite\+Element\+::nnode\+\_\+1d()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, and \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}.
 
 
 

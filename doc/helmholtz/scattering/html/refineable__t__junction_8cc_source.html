@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -577,7 +571,7 @@
 <div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span> ofstream some_file;</div>
 <div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span> <span class="keywordtype">char</span> filename[100];</div>
 <div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span> <span class="comment">//YoungLaplaceEquations::Output_meniscus_and_spines=false;</span></div>
-<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span>         doc_info.number());</div>
 <div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span> some_file.open(filename);</div>
 <div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span> Bulk_mesh_pt-&gt;output(some_file,npts);</div>
@@ -587,20 +581,20 @@
 <div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span> <span class="comment">//---------------------</span></div>
 <div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span> </div>
 <div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span> ofstream tangent_file;</div>
-<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span> sprintf(filename,<span class="stringliteral">&quot;%s/tangent_to_contact_line%i.dat&quot;</span>,</div>
+<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/tangent_to_contact_line%i.dat&quot;</span>,</div>
 <div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span>         doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span>         doc_info.number());</div>
 <div class="line"><a id="l00461" name="l00461"></a><span class="lineno">  461</span> tangent_file.open(filename);</div>
 <div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span> </div>
 <div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span> ofstream normal_file;</div>
-<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span> sprintf(filename,<span class="stringliteral">&quot;%s/normal_to_contact_line%i.dat&quot;</span>,</div>
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/normal_to_contact_line%i.dat&quot;</span>,</div>
 <div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span>         doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span>         doc_info.number());</div>
 <div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span> normal_file.open(filename);</div>
 <div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span> </div>
 <div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span> </div>
 <div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span> ofstream contact_angle_file;</div>
-<div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span> sprintf(filename,<span class="stringliteral">&quot;%s/contact_angle%i.dat&quot;</span>,</div>
+<div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/contact_angle%i.dat&quot;</span>,</div>
 <div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span>         doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00473" name="l00473"></a><span class="lineno">  473</span>         doc_info.number());</div>
 <div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span> contact_angle_file.open(filename);</div>
@@ -688,7 +682,7 @@
 <div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span> </div>
 <div class="line"><a id="l00555" name="l00555"></a><span class="lineno">  555</span> <span class="comment">// Open a trace file</span></div>
 <div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span> <span class="keywordtype">char</span> filename[100];</div>
-<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span> sprintf(filename,<span class="stringliteral">&quot;%s/trace.dat&quot;</span>,doc_info.directory().c_str());</div>
+<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/trace.dat&quot;</span>,doc_info.directory().c_str());</div>
 <div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span> trace_file.open(filename);</div>
 <div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span> </div>
 <div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span> <span class="comment">// Tecplot header for trace file: kappa and height value</span></div>
@@ -757,13 +751,13 @@
 <div class="ttc" id="aclassRefineableYoungLaplaceProblem_html_af14d838e5d4a1b9df2595bb08fa5e99d"><div class="ttname"><a href="classRefineableYoungLaplaceProblem.html#af14d838e5d4a1b9df2595bb08fa5e99d">RefineableYoungLaplaceProblem::Control_node_pt</a></div><div class="ttdeci">Node * Control_node_pt</div><div class="ttdoc">Node at which the height (displacement along spine) is controlled/doced.</div><div class="ttdef"><b>Definition</b> <a href="refineable__t__junction_8cc_source.html#l00214">refineable_t_junction.cc:214</a></div></div>
 <div class="ttc" id="anamespaceGlobalParameters_html"><div class="ttname"><a href="namespaceGlobalParameters.html">GlobalParameters</a></div><div class="ttdoc">Namespace for &quot;global&quot; problem parameters.</div><div class="ttdef"><b>Definition</b> <a href="barrel_8cc_source.html#l00044">barrel.cc:45</a></div></div>
 <div class="ttc" id="anamespaceGlobalParameters_html_a19d04a02b0b5ef5c72e9c30d822e4dc7"><div class="ttname"><a href="namespaceGlobalParameters.html#a19d04a02b0b5ef5c72e9c30d822e4dc7">GlobalParameters::Alpha_max</a></div><div class="ttdeci">double Alpha_max</div><div class="ttdoc">Max. spine angle against horizontal plane.</div><div class="ttdef"><b>Definition</b> <a href="barrel_8cc_source.html#l00099">barrel.cc:99</a></div></div>
-<div class="ttc" id="anamespaceGlobalParameters_html_a36ebf514fdd1e78fff69907b39e25af6"><div class="ttname"><a href="namespaceGlobalParameters.html#a36ebf514fdd1e78fff69907b39e25af6">GlobalParameters::L_x</a></div><div class="ttdeci">double L_x</div><div class="ttdoc">Length and width of the domain.</div><div class="ttdef"><b>Definition</b> <a href="common__young__laplace__stuff_8h_source.html#l00096">common_young_laplace_stuff.h:96</a></div></div>
+<div class="ttc" id="anamespaceGlobalParameters_html_a36ebf514fdd1e78fff69907b39e25af6"><div class="ttname"><a href="namespaceGlobalParameters.html#a36ebf514fdd1e78fff69907b39e25af6">GlobalParameters::L_x</a></div><div class="ttdeci">double L_x</div><div class="ttdoc">Length and width of the domain.</div><div class="ttdef"><b>Definition</b> <a href="common__young__laplace__stuff_8h_source.html#l00097">common_young_laplace_stuff.h:97</a></div></div>
 <div class="ttc" id="anamespaceGlobalParameters_html_a3731f24a02ce4f306d65a9a488f85c96"><div class="ttname"><a href="namespaceGlobalParameters.html#a3731f24a02ce4f306d65a9a488f85c96">GlobalParameters::Controlled_height</a></div><div class="ttdeci">double Controlled_height</div><div class="ttdoc">Height control value.</div><div class="ttdef"><b>Definition</b> <a href="barrel_8cc_source.html#l00051">barrel.cc:51</a></div></div>
 <div class="ttc" id="anamespaceGlobalParameters_html_a82df8c67f58e78a236fb6a0cc8bf8284"><div class="ttname"><a href="namespaceGlobalParameters.html#a82df8c67f58e78a236fb6a0cc8bf8284">GlobalParameters::spine_function</a></div><div class="ttdeci">void spine_function(const Vector&lt; double &gt; &amp;x, Vector&lt; double &gt; &amp;spine, Vector&lt; Vector&lt; double &gt; &gt; &amp;dspine)</div><div class="ttdoc">Spine: The spine vector field as a function of the two coordinates x_1 and x_2, and its derivatives w...</div><div class="ttdef"><b>Definition</b> <a href="barrel_8cc_source.html#l00104">barrel.cc:104</a></div></div>
 <div class="ttc" id="anamespaceGlobalParameters_html_ac81daf87f8d3f075d9fd108427e70c4f"><div class="ttname"><a href="namespaceGlobalParameters.html#ac81daf87f8d3f075d9fd108427e70c4f">GlobalParameters::spine_base_function</a></div><div class="ttdeci">void spine_base_function(const Vector&lt; double &gt; &amp;x, Vector&lt; double &gt; &amp;spine_B, Vector&lt; Vector&lt; double &gt; &gt; &amp;dspine_B)</div><div class="ttdoc">Spine basis: The position vector to the basis of the spine as a function of the two coordinates x_1 a...</div><div class="ttdef"><b>Definition</b> <a href="barrel_8cc_source.html#l00072">barrel.cc:72</a></div></div>
-<div class="ttc" id="anamespaceGlobalParameters_html_ac8774b3418c4551091d64ec72c169b2e"><div class="ttname"><a href="namespaceGlobalParameters.html#ac8774b3418c4551091d64ec72c169b2e">GlobalParameters::L_y</a></div><div class="ttdeci">double L_y</div><div class="ttdoc">Width of domain.</div><div class="ttdef"><b>Definition</b> <a href="common__young__laplace__stuff_8h_source.html#l00097">common_young_laplace_stuff.h:97</a></div></div>
+<div class="ttc" id="anamespaceGlobalParameters_html_ac8774b3418c4551091d64ec72c169b2e"><div class="ttname"><a href="namespaceGlobalParameters.html#ac8774b3418c4551091d64ec72c169b2e">GlobalParameters::L_y</a></div><div class="ttdeci">double L_y</div><div class="ttdoc">Width of domain.</div><div class="ttdef"><b>Definition</b> <a href="common__young__laplace__stuff_8h_source.html#l00098">common_young_laplace_stuff.h:98</a></div></div>
 <div class="ttc" id="anamespaceGlobalParameters_html_ae8fa7610a34b7a2a8223eade99a5c22f"><div class="ttname"><a href="namespaceGlobalParameters.html#ae8fa7610a34b7a2a8223eade99a5c22f">GlobalParameters::Alpha_min</a></div><div class="ttdeci">double Alpha_min</div><div class="ttdoc">Min. spine angle against horizontal plane.</div><div class="ttdef"><b>Definition</b> <a href="barrel_8cc_source.html#l00096">barrel.cc:96</a></div></div>
-<div class="ttc" id="anamespaceGlobalParameters_html_ae982fcb894e82c683d07d3c2fbbead3d"><div class="ttname"><a href="namespaceGlobalParameters.html#ae982fcb894e82c683d07d3c2fbbead3d">GlobalParameters::Cos_gamma</a></div><div class="ttdeci">double Cos_gamma</div><div class="ttdoc">Cos of contact angle.</div><div class="ttdef"><b>Definition</b> <a href="common__young__laplace__stuff_8h_source.html#l00061">common_young_laplace_stuff.h:61</a></div></div>
+<div class="ttc" id="anamespaceGlobalParameters_html_ae982fcb894e82c683d07d3c2fbbead3d"><div class="ttname"><a href="namespaceGlobalParameters.html#ae982fcb894e82c683d07d3c2fbbead3d">GlobalParameters::Cos_gamma</a></div><div class="ttdeci">double Cos_gamma</div><div class="ttdoc">Cos of contact angle.</div><div class="ttdef"><b>Definition</b> <a href="common__young__laplace__stuff_8h_source.html#l00062">common_young_laplace_stuff.h:62</a></div></div>
 <div class="ttc" id="arefineable__t__junction_8cc_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="refineable__t__junction_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdoc">Drive code.</div><div class="ttdef"><b>Definition</b> <a href="refineable__t__junction_8cc_source.html#l00543">refineable_t_junction.cc:543</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 
@@ -793,7 +787,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:10:10
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:33:48
         </div>
       </div>
     </footer>

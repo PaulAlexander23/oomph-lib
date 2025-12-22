@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -479,9 +473,9 @@
 <div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span> </div>
 <div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span> </div>
 <div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span><span class="comment"></span> </div>
-<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span><span class="comment">/// ////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span><span class="comment">/// ////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span><span class="comment">/// ////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span><span class="comment">///////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span><span class="comment">///////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span><span class="comment">///////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span><span class="comment"></span> </div>
 <div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span> </div>
 <div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span><span class="comment">//==start_of_namespace==============================</span><span class="comment"></span></div>
@@ -1354,7 +1348,7 @@
 <div class="line"><a id="l01196" name="l01196"></a><span class="lineno"> 1196</span> </div>
 <div class="line"><a id="l01197" name="l01197"></a><span class="lineno"> 1197</span> ofstream some_file;</div>
 <div class="line"><a id="l01198" name="l01198"></a><span class="lineno"> 1198</span> <span class="keywordtype">char</span> filename[100];</div>
-<div class="line"><a id="l01199" name="l01199"></a><span class="lineno"> 1199</span> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,</div>
+<div class="line"><a id="l01199" name="l01199"></a><span class="lineno"> 1199</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,</div>
 <div class="line"><a id="l01200" name="l01200"></a><span class="lineno"> 1200</span>         <a class="code hl_variable" href="namespaceProblem__Parameter.html#a1dd3c6bcf97360c8fe0d288ca7610351">Problem_Parameter::Doc_info</a>.directory().c_str(),</div>
 <div class="line"><a id="l01201" name="l01201"></a><span class="lineno"> 1201</span>         <a class="code hl_variable" href="namespaceProblem__Parameter.html#a1dd3c6bcf97360c8fe0d288ca7610351">Problem_Parameter::Doc_info</a>.number());</div>
 <div class="line"><a id="l01202" name="l01202"></a><span class="lineno"> 1202</span> </div>
@@ -1389,7 +1383,7 @@
 <div class="line"><a id="l01231" name="l01231"></a><span class="lineno"> 1231</span> some_file.close();</div>
 <div class="line"><a id="l01232" name="l01232"></a><span class="lineno"> 1232</span> </div>
 <div class="line"><a id="l01233" name="l01233"></a><span class="lineno"> 1233</span> <span class="comment">// Output boundaries</span></div>
-<div class="line"><a id="l01234" name="l01234"></a><span class="lineno"> 1234</span> sprintf(filename,<span class="stringliteral">&quot;%s/boundaries%i.dat&quot;</span>,</div>
+<div class="line"><a id="l01234" name="l01234"></a><span class="lineno"> 1234</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/boundaries%i.dat&quot;</span>,</div>
 <div class="line"><a id="l01235" name="l01235"></a><span class="lineno"> 1235</span>         <a class="code hl_variable" href="namespaceProblem__Parameter.html#a1dd3c6bcf97360c8fe0d288ca7610351">Problem_Parameter::Doc_info</a>.directory().c_str(),</div>
 <div class="line"><a id="l01236" name="l01236"></a><span class="lineno"> 1236</span>         <a class="code hl_variable" href="namespaceProblem__Parameter.html#a1dd3c6bcf97360c8fe0d288ca7610351">Problem_Parameter::Doc_info</a>.number());</div>
 <div class="line"><a id="l01237" name="l01237"></a><span class="lineno"> 1237</span> some_file.open(filename);</div>
@@ -1623,7 +1617,7 @@
 <div class="ttc" id="aclassoomph_1_1MyCrouzeixRaviartElement_html_aac525f961951f5d621f141b4fcdda357"><div class="ttname"><a href="classoomph_1_1MyCrouzeixRaviartElement.html#aac525f961951f5d621f141b4fcdda357">oomph::MyCrouzeixRaviartElement::Error</a></div><div class="ttdeci">double Error</div><div class="ttdoc">Storage for elemental error estimate – used for post-processing.</div><div class="ttdef"><b>Definition</b> <a href="adaptive__drop__in__channel_8cc_source.html#l00059">adaptive_drop_in_channel.cc:59</a></div></div>
 <div class="ttc" id="aclassoomph_1_1MyCrouzeixRaviartElement_html_ad1ea7115e6cb090d687ac421e56f4d16"><div class="ttname"><a href="classoomph_1_1MyCrouzeixRaviartElement.html#ad1ea7115e6cb090d687ac421e56f4d16">oomph::MyCrouzeixRaviartElement::output</a></div><div class="ttdeci">void output(std::ostream &amp;outfile, const unsigned &amp;nplot)</div><div class="ttdoc">Overload output function.</div><div class="ttdef"><b>Definition</b> <a href="adaptive__drop__in__channel_8cc_source.html#l00102">adaptive_drop_in_channel.cc:102</a></div></div>
 <div class="ttc" id="aclassoomph_1_1MyCrouzeixRaviartElement_html_afbec727a48f104b945cc54f798cbd1d3"><div class="ttname"><a href="classoomph_1_1MyCrouzeixRaviartElement.html#afbec727a48f104b945cc54f798cbd1d3">oomph::MyCrouzeixRaviartElement::variable_identifier</a></div><div class="ttdeci">std::string variable_identifier()</div><div class="ttdoc">Return variable identifier.</div><div class="ttdef"><b>Definition</b> <a href="adaptive__drop__in__channel_8cc_source.html#l00074">adaptive_drop_in_channel.cc:74</a></div></div>
-<div class="ttc" id="anamespaceProblem__Parameter_html"><div class="ttname"><a href="namespaceProblem__Parameter.html">Problem_Parameter</a></div><div class="ttdoc">////////////////////////////////////////////////////////////// //////////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="adaptive__bubble__in__channel_8cc_source.html#l00369">adaptive_bubble_in_channel.cc:370</a></div></div>
+<div class="ttc" id="anamespaceProblem__Parameter_html"><div class="ttname"><a href="namespaceProblem__Parameter.html">Problem_Parameter</a></div><div class="ttdoc">Namespace for Problem Parameter.</div><div class="ttdef"><b>Definition</b> <a href="adaptive__bubble__in__channel_8cc_source.html#l00369">adaptive_bubble_in_channel.cc:370</a></div></div>
 <div class="ttc" id="anamespaceProblem__Parameter_html_a1dd3c6bcf97360c8fe0d288ca7610351"><div class="ttname"><a href="namespaceProblem__Parameter.html#a1dd3c6bcf97360c8fe0d288ca7610351">Problem_Parameter::Doc_info</a></div><div class="ttdeci">DocInfo Doc_info</div><div class="ttdoc">Doc info object.</div><div class="ttdef"><b>Definition</b> <a href="adaptive__bubble__in__channel_8cc_source.html#l00372">adaptive_bubble_in_channel.cc:372</a></div></div>
 <div class="ttc" id="anamespaceProblem__Parameter_html_a388e06a5e637b21378ab1832e5564bec"><div class="ttname"><a href="namespaceProblem__Parameter.html#a388e06a5e637b21378ab1832e5564bec">Problem_Parameter::Norm_file</a></div><div class="ttdeci">ofstream Norm_file</div><div class="ttdoc">File to document the norm of the solution (for validation purposes – triangle doesn't give fully repr...</div><div class="ttdef"><b>Definition</b> <a href="adaptive__bubble__in__channel_8cc_source.html#l00407">adaptive_bubble_in_channel.cc:407</a></div></div>
 <div class="ttc" id="anamespaceProblem__Parameter_html_a55310be5f2dfcb5fcfe35d71f9c16e06"><div class="ttname"><a href="namespaceProblem__Parameter.html#a55310be5f2dfcb5fcfe35d71f9c16e06">Problem_Parameter::Trace_file</a></div><div class="ttdeci">ofstream Trace_file</div><div class="ttdoc">Trace file.</div><div class="ttdef"><b>Definition</b> <a href="adaptive__bubble__in__channel_8cc_source.html#l00401">adaptive_bubble_in_channel.cc:401</a></div></div>
@@ -1665,7 +1659,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:10:46
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:39:31
         </div>
       </div>
     </footer>

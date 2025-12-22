@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -154,7 +148,7 @@
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &quot;poisson.h&quot;</span></div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">// The mesh</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &quot;meshes/geompack_mesh.h&quot;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &quot;<a class="code" href="geompack__mesh_8h.html">meshes/geompack_mesh.h</a>&quot;</span></div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">using namespace </span>std;</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
@@ -364,7 +358,7 @@
 <div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span> </div>
 <div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> <span class="comment">// Output boundaries</span></div>
 <div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> <span class="comment">//------------------</span></div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> <a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">sprintf</a>(<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">filename</a>,<span class="stringliteral">&quot;%s/boundaries.dat&quot;</span>,<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">doc_info</a>.directory().c_str());</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> <a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">snprintf</a>(<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">filename</a>), <span class="stringliteral">&quot;%s/boundaries.dat&quot;</span>,<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">doc_info</a>.directory().c_str());</div>
 <div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> <a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">some_file</a>.open(<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">filename</a>);</div>
 <div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> mesh_pt()-&gt;output_boundaries(<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">some_file</a>);</div>
 <div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> <a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">some_file</a>.close();</div>
@@ -372,7 +366,7 @@
 <div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
 <div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> <span class="comment">// Output solution</span></div>
 <div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> <span class="comment">//----------------</span></div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> <a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">sprintf</a>(<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">filename</a>,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">doc_info</a>.directory().c_str(),</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> <a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">snprintf</a>(<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">filename</a>), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">doc_info</a>.directory().c_str(),</div>
 <div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>         <a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">doc_info</a>.number());</div>
 <div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> <a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">some_file</a>.open(<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">filename</a>);</div>
 <div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> mesh_pt()-&gt;output(<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">some_file</a>,<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">npts</a>);</div>
@@ -381,7 +375,7 @@
 <div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span> </div>
 <div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span> <span class="comment">// Output exact solution </span></div>
 <div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span> <span class="comment">//----------------------</span></div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> <a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">sprintf</a>(<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">filename</a>,<span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">doc_info</a>.directory().c_str(),</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> <a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">snprintf</a>(<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">filename</a>), <span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">doc_info</a>.directory().c_str(),</div>
 <div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>         <a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">doc_info</a>.number());</div>
 <div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span> <a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">some_file</a>.open(<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">filename</a>);</div>
 <div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> mesh_pt()-&gt;output_fct(<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">some_file</a>,<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">npts</a>,<a class="code hl_function" href="namespaceTanhSolnForPoisson.html#af7896e9c18ce6438c73ae2a875e8b7de">TanhSolnForPoisson::get_exact_u</a>); </div>
@@ -391,7 +385,7 @@
 <div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span><span class="comment">// Doc error</span></div>
 <div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> <span class="comment">//----------</span></div>
 <div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span> <span class="keywordtype">double</span> <a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">error</a>,<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">norm</a>;</div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> <a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">sprintf</a>(<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">filename</a>,<span class="stringliteral">&quot;%s/error%i.dat&quot;</span>,<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">doc_info</a>.directory().c_str(),</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> <a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">snprintf</a>(<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">filename</a>), <span class="stringliteral">&quot;%s/error%i.dat&quot;</span>,<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">doc_info</a>.directory().c_str(),</div>
 <div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>         <a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">doc_info</a>.number());</div>
 <div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span> <a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">some_file</a>.open(<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">filename</a>);</div>
 <div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> mesh_pt()-&gt;compute_error(<a class="code hl_class" href="classoomph_1_1GeompackQuadMesh.html">some_file</a>,<a class="code hl_function" href="namespaceTanhSolnForPoisson.html#af7896e9c18ce6438c73ae2a875e8b7de">TanhSolnForPoisson::get_exact_u</a>,</div>
@@ -410,9 +404,9 @@
 <div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span> </div>
 <div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span> </div>
 <div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span><span class="comment"></span> </div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span><span class="comment"></span> </div>
 <div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span> </div>
 <div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
@@ -474,14 +468,15 @@
 <div class="ttc" id="aclassPoissonProblem_html_a7a9478d8e1e5c7d3a886b00ab7d50bbd"><div class="ttname"><a href="classPoissonProblem.html#a7a9478d8e1e5c7d3a886b00ab7d50bbd">PoissonProblem::actions_after_newton_solve</a></div><div class="ttdeci">void actions_after_newton_solve()</div><div class="ttdoc">Update the problem specs before solve (empty)</div><div class="ttdef"><b>Definition</b> <a href="mesh__from__geompack__poisson_8cc_source.html#l00130">mesh_from_geompack_poisson.cc:130</a></div></div>
 <div class="ttc" id="aclassPoissonProblem_html_aab6f503fa242f687bb8452527bb7688f"><div class="ttname"><a href="classPoissonProblem.html#aab6f503fa242f687bb8452527bb7688f">PoissonProblem::doc_solution</a></div><div class="ttdeci">void doc_solution(DocInfo &amp;doc_info)</div><div class="ttdoc">Doc the solution.</div><div class="ttdef"><b>Definition</b> <a href="mesh__from__geompack__poisson_8cc_source.html#l00215">mesh_from_geompack_poisson.cc:215</a></div></div>
 <div class="ttc" id="aclassPoissonProblem_html_ac247e42d2d292200617f4b9db7ed1ab8"><div class="ttname"><a href="classPoissonProblem.html#ac247e42d2d292200617f4b9db7ed1ab8">PoissonProblem::~PoissonProblem</a></div><div class="ttdeci">~PoissonProblem()</div><div class="ttdoc">Destructor (empty)</div><div class="ttdef"><b>Definition</b> <a href="mesh__from__geompack__poisson_8cc_source.html#l00105">mesh_from_geompack_poisson.cc:105</a></div></div>
-<div class="ttc" id="aclassoomph_1_1GeompackQuadMesh_html"><div class="ttname"><a href="classoomph_1_1GeompackQuadMesh.html">oomph::GeompackQuadMesh</a></div><div class="ttdoc">Quadrilateral mesh generator; Uses input from Geompack++. See: http://members.shaw....</div><div class="ttdef"><b>Definition</b> <a href="geompack__mesh_8template_8h_source.html#l00041">geompack_mesh.template.h:42</a></div></div>
+<div class="ttc" id="aclassoomph_1_1GeompackQuadMesh_html"><div class="ttname"><a href="classoomph_1_1GeompackQuadMesh.html">oomph::GeompackQuadMesh</a></div><div class="ttdoc">Quadrilateral mesh generator; Uses input from Geompack++. See: http://members.shaw....</div><div class="ttdef"><b>Definition</b> <a href="geompack__mesh_8h_source.html#l00041">geompack_mesh.h:42</a></div></div>
 <div class="ttc" id="aconvert__geom__file_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="convert__geom__file_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdef"><b>Definition</b> <a href="convert__geom__file_8cc_source.html#l00036">convert_geom_file.cc:36</a></div></div>
+<div class="ttc" id="ageompack__mesh_8h_html"><div class="ttname"><a href="geompack__mesh_8h.html">geompack_mesh.h</a></div></div>
 <div class="ttc" id="anamespaceTanhSolnForPoisson_html"><div class="ttname"><a href="namespaceTanhSolnForPoisson.html">TanhSolnForPoisson</a></div><div class="ttdoc">Namespace for exact solution for Poisson equation with sharp step.</div><div class="ttdef"><b>Definition</b> <a href="mesh__from__geompack__poisson_8cc_source.html#l00048">mesh_from_geompack_poisson.cc:49</a></div></div>
 <div class="ttc" id="anamespaceTanhSolnForPoisson_html_ae07364a1d73b28e5e250bda6c8954f01"><div class="ttname"><a href="namespaceTanhSolnForPoisson.html#ae07364a1d73b28e5e250bda6c8954f01">TanhSolnForPoisson::Beta</a></div><div class="ttdeci">double Beta</div><div class="ttdoc">Parameter for angle of step.</div><div class="ttdef"><b>Definition</b> <a href="mesh__from__geompack__poisson_8cc_source.html#l00055">mesh_from_geompack_poisson.cc:55</a></div></div>
 <div class="ttc" id="anamespaceTanhSolnForPoisson_html_ae1b9d6789ff301e3d63a4e292213036c"><div class="ttname"><a href="namespaceTanhSolnForPoisson.html#ae1b9d6789ff301e3d63a4e292213036c">TanhSolnForPoisson::get_source</a></div><div class="ttdeci">void get_source(const Vector&lt; double &gt; &amp;x, double &amp;source)</div><div class="ttdoc">Source function to make it an exact solution.</div><div class="ttdef"><b>Definition</b> <a href="mesh__from__geompack__poisson_8cc_source.html#l00073">mesh_from_geompack_poisson.cc:73</a></div></div>
 <div class="ttc" id="anamespaceTanhSolnForPoisson_html_ae676ccd186d5df119cce811596d949c1"><div class="ttname"><a href="namespaceTanhSolnForPoisson.html#ae676ccd186d5df119cce811596d949c1">TanhSolnForPoisson::Alpha</a></div><div class="ttdeci">double Alpha</div><div class="ttdoc">Parameter for steepness of step.</div><div class="ttdef"><b>Definition</b> <a href="mesh__from__geompack__poisson_8cc_source.html#l00052">mesh_from_geompack_poisson.cc:52</a></div></div>
 <div class="ttc" id="anamespaceTanhSolnForPoisson_html_af7896e9c18ce6438c73ae2a875e8b7de"><div class="ttname"><a href="namespaceTanhSolnForPoisson.html#af7896e9c18ce6438c73ae2a875e8b7de">TanhSolnForPoisson::get_exact_u</a></div><div class="ttdeci">void get_exact_u(const Vector&lt; double &gt; &amp;x, Vector&lt; double &gt; &amp;u)</div><div class="ttdoc">Exact solution as a Vector.</div><div class="ttdef"><b>Definition</b> <a href="mesh__from__geompack__poisson_8cc_source.html#l00059">mesh_from_geompack_poisson.cc:59</a></div></div>
-<div class="ttc" id="anamespaceoomph_html"><div class="ttname"><a href="namespaceoomph.html">oomph</a></div><div class="ttdoc">////////////////////////////////////////////////////////////////////// //////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="annular__domain_8h_source.html#l00034">annular_domain.h:35</a></div></div>
+<div class="ttc" id="anamespaceoomph_html"><div class="ttname"><a href="namespaceoomph.html">oomph</a></div><div class="ttdef"><b>Definition</b> <a href="annular__domain_8h_source.html#l00034">annular_domain.h:35</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 
     <!-- jQuery for Bootstrap and Doxygen -->
@@ -510,7 +505,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:00:28
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:37:30
         </div>
       </div>
     </footer>

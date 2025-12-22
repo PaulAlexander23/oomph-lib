@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -120,19 +114,19 @@
 <h1><a class="anchor" id="scattering"></a>
 A specific example</h1>
 <p>We will solve the azimuthally Fourier-decomposed Helmholtz equation  </p><p class="formulaDsp">
-<picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \nabla^2 {u_{N}}(r,z) + \left(k^2-\frac{N^2}{r^2}\right) u_N(r,z) = 0,
  \ \ \ \ \ \ \ \ \ \ \ \ (1)
-\]" src="form_0.png" width="280" height="33"/></picture>
+\]" src="form_0.png" width="280" height="33"/>
 </p>
-<p> where <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ N $" src="form_1.png" width="11" height="10"/></picture> is the azimuthal wavenumber, in the finite domain <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ 1 &lt; \sqrt{r^2 + z^2} &lt; 3 $" src="form_2.png" width="95" height="14"/></picture>. We impose the Sommerfeld radiation condition at the outer boundary of the computational domain at <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \sqrt{r^2 + z^2} = 3$" src="form_3.png" width="71" height="14"/></picture>, using a Dirichlet-to-Neumann mapping, and apply flux boundary condition on the surface of the unit-sphere (where <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \sqrt{r^2 + z^2} = 1 $" src="form_4.png" width="71" height="14"/></picture>) such that the exact solution is given by  </p><p class="formulaDsp">
-<picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> where <img class="formulaInl" alt="$ N $" src="form_1.png" width="11" height="10"/> is the azimuthal wavenumber, in the finite domain <img class="formulaInl" alt="$ 1 &lt; \sqrt{r^2 + z^2} &lt; 3 $" src="form_2.png" width="95" height="14"/>. We impose the Sommerfeld radiation condition at the outer boundary of the computational domain at <img class="formulaInl" alt="$ \sqrt{r^2 + z^2} = 3$" src="form_3.png" width="71" height="14"/>, using a Dirichlet-to-Neumann mapping, and apply flux boundary condition on the surface of the unit-sphere (where <img class="formulaInl" alt="$ \sqrt{r^2 + z^2} = 1 $" src="form_4.png" width="71" height="14"/>) such that the exact solution is given by  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 u_N(r,z)=u_N^{[exact]}(r,z)=\sum_{l=N}^{N_{\rm terms}} 
 h_{l}^{(1)}(k\sqrt{r^2+z^2}) \ P_{l}^{N}\left(\frac{z}{\sqrt{r^2+z^2}}\right).
-\]" src="form_5.png" width="361" height="39"/></picture>
+\]" src="form_5.png" width="361" height="39"/>
 </p>
 <p> This solution corresponds to the superposition of several outgoing waves that emerge from the unit sphere.</p>
-<p>The two plots below show a comparison between the exact and computed solutions for <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ N_{\rm terms}=6 $" src="form_6.png" width="58" height="13"/></picture> , a Fourier wavenumber of <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ N=1 $" src="form_7.png" width="34" height="10"/></picture> , and a (squared) Helmholtz wavenumber of <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ k^2 = 10 $" src="form_8.png" width="41" height="11"/></picture>.</p>
+<p>The two plots below show a comparison between the exact and computed solutions for <img class="formulaInl" alt="$ N_{\rm terms}=6 $" src="form_6.png" width="58" height="13"/> , a Fourier wavenumber of <img class="formulaInl" alt="$ N=1 $" src="form_7.png" width="34" height="10"/> , and a (squared) Helmholtz wavenumber of <img class="formulaInl" alt="$ k^2 = 10 $" src="form_8.png" width="41" height="11"/>.</p>
 <div class="image">
 <img src="re.gif" alt=""/>
 <div class="caption">
@@ -163,7 +157,7 @@ Code listing</h1>
 <div class="line"><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><span class="comment">//LIC// </span></div>
-<div class="line"><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><span class="comment">//LIC// </span></div>
 <div class="line"><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -204,9 +198,9 @@ Code listing</h1>
 <div class="line"><span class="keyword">using namespace </span>std;</div>
 <div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">/// //////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><span class="comment">/// //////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><span class="comment">/// //////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">/////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">/////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">/////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"> </div>
 <div class="line"><span class="comment">//===== start_of_namespace_planar_wave=================================</span><span class="comment"></span></div>
@@ -319,9 +313,9 @@ Code listing</h1>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">/// //////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><span class="comment">/// //////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><span class="comment">/// //////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">/////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">/////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">/////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"> </div>
 <div class="line"><span class="comment">//===== start_of_namespace=============================================</span><span class="comment"></span></div>
@@ -472,9 +466,9 @@ Code listing</h1>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">/// //////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><span class="comment">/// //////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><span class="comment">/// //////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">/////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">/////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">/////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"> </div>
 <div class="line"><span class="comment">//========= start_of_problem_class=====================================</span><span class="comment"></span></div>
@@ -843,7 +837,7 @@ Code listing</h1>
 <div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">ofstream</a> <a class="code hl_class" href="classAnnularQuadMesh.html">some_file</a>;</div>
 <div class="line"> <span class="keywordtype">char</span> <a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>[100];</div>
 <div class="line"> </div>
-<div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">sprintf</a>(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>,<span class="stringliteral">&quot;%s/gamma_test%i.dat&quot;</span>,<a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>.directory().c_str(),</div>
+<div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">snprintf</a>(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>), <span class="stringliteral">&quot;%s/gamma_test%i.dat&quot;</span>,<a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>.directory().c_str(),</div>
 <div class="line">         <a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>.number());</div>
 <div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">some_file</a>.open(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>);</div>
 <div class="line">  </div>
@@ -913,7 +907,7 @@ Code listing</h1>
 <div class="line">  </div>
 <div class="line"> <span class="comment">// Output solution </span></div>
 <div class="line"> <span class="comment">//-----------------</span></div>
-<div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">sprintf</a>(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,<a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>.directory().c_str(),</div>
+<div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">snprintf</a>(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,<a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>.directory().c_str(),</div>
 <div class="line">         <a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>.number());</div>
 <div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">some_file</a>.open(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>);</div>
 <div class="line"> Bulk_mesh_pt-&gt;output(<a class="code hl_class" href="classAnnularQuadMesh.html">some_file</a>,<a class="code hl_class" href="classAnnularQuadMesh.html">npts</a>);</div>
@@ -922,7 +916,7 @@ Code listing</h1>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output exact solution </span></div>
 <div class="line"> <span class="comment">//----------------------</span></div>
-<div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">sprintf</a>(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>,<span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,<a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>.directory().c_str(),</div>
+<div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">snprintf</a>(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>), <span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,<a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>.directory().c_str(),</div>
 <div class="line">         <a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>.number());</div>
 <div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">some_file</a>.open(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>);</div>
 <div class="line"> Bulk_mesh_pt-&gt;output_fct(<a class="code hl_class" href="classAnnularQuadMesh.html">some_file</a>,<a class="code hl_class" href="classAnnularQuadMesh.html">npts</a>,<a class="code hl_function" href="namespaceProblemParameters.html#af750b29069b29bd38b5220ecf534e7f7">ProblemParameters::get_exact_u</a>); </div>
@@ -932,7 +926,7 @@ Code listing</h1>
 <div class="line"> <span class="comment">// Doc error and return of the square of the L2 error</span></div>
 <div class="line"> <span class="comment">//---------------------------------------------------</span></div>
 <div class="line"> <span class="keywordtype">double</span> <a class="code hl_class" href="classAnnularQuadMesh.html">error</a>,<a class="code hl_class" href="classAnnularQuadMesh.html">norm</a>;</div>
-<div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">sprintf</a>(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>,<span class="stringliteral">&quot;%s/error%i.dat&quot;</span>,<a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>.directory().c_str(),</div>
+<div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">snprintf</a>(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>), <span class="stringliteral">&quot;%s/error%i.dat&quot;</span>,<a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>.directory().c_str(),</div>
 <div class="line">         <a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>.number());</div>
 <div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">some_file</a>.open(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>);</div>
 <div class="line"> Bulk_mesh_pt-&gt;compute_error(<a class="code hl_class" href="classAnnularQuadMesh.html">some_file</a>,<a class="code hl_function" href="namespaceProblemParameters.html#af750b29069b29bd38b5220ecf534e7f7">ProblemParameters::get_exact_u</a>,</div>
@@ -1219,9 +1213,9 @@ Code listing</h1>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"> </div>
-<div class="ttc" id="aclassAnnularQuadMesh_html"><div class="ttname"><a href="classAnnularQuadMesh.html">AnnularQuadMesh</a></div><div class="ttdoc">////////////////////////////////////////////////////////////////// //////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="sphere__scattering_8cc_source.html#l00055">sphere_scattering.cc:56</a></div></div>
+<div class="ttc" id="aclassAnnularQuadMesh_html"><div class="ttname"><a href="classAnnularQuadMesh.html">AnnularQuadMesh</a></div><div class="ttdef"><b>Definition</b> <a href="sphere__scattering_8cc_source.html#l00055">sphere_scattering.cc:56</a></div></div>
 <div class="ttc" id="aclassAnnularQuadMesh_html_acf01203e48fdee730b6c194bf538177c"><div class="ttname"><a href="classAnnularQuadMesh.html#acf01203e48fdee730b6c194bf538177c">AnnularQuadMesh::AnnularQuadMesh</a></div><div class="ttdeci">AnnularQuadMesh(const unsigned &amp;n_r, const unsigned &amp;n_phi, const double &amp;r_min, const double &amp;r_max, const double &amp;phi_min, const double &amp;phi_max)</div><div class="ttdef"><b>Definition</b> <a href="sphere__scattering_8cc_source.html#l00065">sphere_scattering.cc:65</a></div></div>
-<div class="ttc" id="aclassFourierDecomposedHelmholtzProblem_html"><div class="ttname"><a href="classFourierDecomposedHelmholtzProblem.html">FourierDecomposedHelmholtzProblem</a></div><div class="ttdoc">////////////////////////////////////////////////////////////////// //////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="sphere__scattering_8cc_source.html#l00379">sphere_scattering.cc:380</a></div></div>
+<div class="ttc" id="aclassFourierDecomposedHelmholtzProblem_html"><div class="ttname"><a href="classFourierDecomposedHelmholtzProblem.html">FourierDecomposedHelmholtzProblem</a></div><div class="ttdoc">Problem class.</div><div class="ttdef"><b>Definition</b> <a href="sphere__scattering_8cc_source.html#l00379">sphere_scattering.cc:380</a></div></div>
 <div class="ttc" id="aclassFourierDecomposedHelmholtzProblem_html_a03174fa5a35b7c38f08f91bcd2a80c20"><div class="ttname"><a href="classFourierDecomposedHelmholtzProblem.html#a03174fa5a35b7c38f08f91bcd2a80c20">FourierDecomposedHelmholtzProblem::~FourierDecomposedHelmholtzProblem</a></div><div class="ttdeci">~FourierDecomposedHelmholtzProblem()</div><div class="ttdoc">Destructor (empty)</div><div class="ttdef"><b>Definition</b> <a href="sphere__scattering_8cc_source.html#l00388">sphere_scattering.cc:388</a></div></div>
 <div class="ttc" id="aclassFourierDecomposedHelmholtzProblem_html_a3258e3817d8747aac0409eca1a24d14b"><div class="ttname"><a href="classFourierDecomposedHelmholtzProblem.html#a3258e3817d8747aac0409eca1a24d14b">FourierDecomposedHelmholtzProblem::actions_after_adapt</a></div><div class="ttdeci">void actions_after_adapt()</div><div class="ttdoc">Actions after adapt: Rebuild the mesh of prescribed flux elements.</div><div class="ttdef"><b>Definition</b> <a href="unstructured__sphere__scattering_8cc_source.html#l00437">unstructured_sphere_scattering.cc:437</a></div></div>
 <div class="ttc" id="aclassFourierDecomposedHelmholtzProblem_html_a359d402bb4aed7d83973248d82085efb"><div class="ttname"><a href="classFourierDecomposedHelmholtzProblem.html#a359d402bb4aed7d83973248d82085efb">FourierDecomposedHelmholtzProblem::create_outer_bc_elements</a></div><div class="ttdeci">void create_outer_bc_elements()</div><div class="ttdoc">Create BC elements on outer boundary.</div><div class="ttdef"><b>Definition</b> <a href="sphere__scattering_8cc_source.html#l00658">sphere_scattering.cc:658</a></div></div>
@@ -1244,7 +1238,7 @@ Code listing</h1>
 <div class="ttc" id="anamespacePlanarWave_html_a541691caf71477c8c389062797c0fdab"><div class="ttname"><a href="namespacePlanarWave.html#a541691caf71477c8c389062797c0fdab">PlanarWave::I</a></div><div class="ttdeci">std::complex&lt; double &gt; I(0.0, 1.0)</div><div class="ttdoc">Imaginary unit.</div></div>
 <div class="ttc" id="anamespacePlanarWave_html_a56abdb2474ccaffd88346ee3607d8672"><div class="ttname"><a href="namespacePlanarWave.html#a56abdb2474ccaffd88346ee3607d8672">PlanarWave::N_terms</a></div><div class="ttdeci">unsigned N_terms</div><div class="ttdoc">Number of terms in series.</div><div class="ttdef"><b>Definition</b> <a href="sphere__scattering_8cc_source.html#l00112">sphere_scattering.cc:112</a></div></div>
 <div class="ttc" id="anamespacePlanarWave_html_afe1e9812d1b1dc40a89f7a1f18d1165f"><div class="ttname"><a href="namespacePlanarWave.html#afe1e9812d1b1dc40a89f7a1f18d1165f">PlanarWave::plot</a></div><div class="ttdeci">void plot()</div><div class="ttdoc">Plot.</div><div class="ttdef"><b>Definition</b> <a href="sphere__scattering_8cc_source.html#l00180">sphere_scattering.cc:180</a></div></div>
-<div class="ttc" id="anamespaceProblemParameters_html"><div class="ttname"><a href="namespaceProblemParameters.html">ProblemParameters</a></div><div class="ttdoc">////////////////////////////////////////////////////////////////// //////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="sphere__scattering_8cc_source.html#l00222">sphere_scattering.cc:223</a></div></div>
+<div class="ttc" id="anamespaceProblemParameters_html"><div class="ttname"><a href="namespaceProblemParameters.html">ProblemParameters</a></div><div class="ttdoc">Namespace for the Fourier decomposed Helmholtz problem parameters.</div><div class="ttdef"><b>Definition</b> <a href="sphere__scattering_8cc_source.html#l00222">sphere_scattering.cc:223</a></div></div>
 <div class="ttc" id="anamespaceProblemParameters_html_a6361f0f1c4a120e62d28db64baa84b40"><div class="ttname"><a href="namespaceProblemParameters.html#a6361f0f1c4a120e62d28db64baa84b40">ProblemParameters::N_terms</a></div><div class="ttdeci">unsigned N_terms</div><div class="ttdoc">Number of terms in the exact solution.</div><div class="ttdef"><b>Definition</b> <a href="sphere__scattering_8cc_source.html#l00234">sphere_scattering.cc:234</a></div></div>
 <div class="ttc" id="anamespaceProblemParameters_html_aa529b33b7feb959e0c044447bf0f6c6f"><div class="ttname"><a href="namespaceProblemParameters.html#aa529b33b7feb959e0c044447bf0f6c6f">ProblemParameters::Nterms_for_DtN</a></div><div class="ttdeci">unsigned Nterms_for_DtN</div><div class="ttdoc">Number of terms in computation of DtN boundary condition.</div><div class="ttdef"><b>Definition</b> <a href="sphere__scattering_8cc_source.html#l00231">sphere_scattering.cc:231</a></div></div>
 <div class="ttc" id="anamespaceProblemParameters_html_aa5362de1af9e257fde4317c367158a93"><div class="ttname"><a href="namespaceProblemParameters.html#aa5362de1af9e257fde4317c367158a93">ProblemParameters::K_squared</a></div><div class="ttdeci">double K_squared</div><div class="ttdoc">Square of the wavenumber.</div><div class="ttdef"><b>Definition</b> <a href="sphere__scattering_8cc_source.html#l00225">sphere_scattering.cc:225</a></div></div>
@@ -1271,7 +1265,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -1301,7 +1295,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:38:59
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:33:29
         </div>
       </div>
     </footer>

@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -245,9 +239,9 @@
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="comment"></span> </div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="comment"></span> </div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
@@ -416,7 +410,7 @@
 <div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
 <div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> <span class="comment">// Output solution </span></div>
 <div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span> <span class="comment">//-----------------</span></div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>         doc_info.number());</div>
 <div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> some_file.open(filename);</div>
 <div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span> mesh_pt()-&gt;output(some_file,npts);</div>
@@ -425,7 +419,7 @@
 <div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
 <div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> <span class="comment">// Output exact solution </span></div>
 <div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span> <span class="comment">//----------------------</span></div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span> sprintf(filename,<span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>         doc_info.number());</div>
 <div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span> some_file.open(filename);</div>
 <div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span> mesh_pt()-&gt;output_fct(some_file,npts,<a class="code hl_function" href="namespaceTanhSolnForPoisson.html#af7896e9c18ce6438c73ae2a875e8b7de">TanhSolnForPoisson::get_exact_u</a>); </div>
@@ -435,7 +429,7 @@
 <div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span> <span class="comment">// Doc error</span></div>
 <div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> <span class="comment">//----------</span></div>
 <div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span> <span class="keywordtype">double</span> error,norm;</div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span> sprintf(filename,<span class="stringliteral">&quot;%s/error%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/error%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>         doc_info.number());</div>
 <div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> some_file.open(filename);</div>
 <div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> mesh_pt()-&gt;compute_error(some_file,<a class="code hl_function" href="namespaceTanhSolnForPoisson.html#af7896e9c18ce6438c73ae2a875e8b7de">TanhSolnForPoisson::get_exact_u</a>,</div>
@@ -448,9 +442,9 @@
 </div>
 <div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span> </div>
 <div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span><span class="comment"></span> </div>
-<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span><span class="comment"></span> </div>
 <div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span> </div>
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span> </div>
@@ -545,7 +539,7 @@
 <div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span> </div>
 <div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span> </div>
 <div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span> </div>
-<div class="ttc" id="aclassEighthSpherePoissonProblem_html"><div class="ttname"><a href="classEighthSpherePoissonProblem.html">EighthSpherePoissonProblem</a></div><div class="ttdoc">///////////////////////////////////////////////////////////////////// ///////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="eighth__sphere__poisson_8cc_source.html#l00131">eighth_sphere_poisson.cc:132</a></div></div>
+<div class="ttc" id="aclassEighthSpherePoissonProblem_html"><div class="ttname"><a href="classEighthSpherePoissonProblem.html">EighthSpherePoissonProblem</a></div><div class="ttdoc">Poisson problem in refineable eighth of a sphere mesh.</div><div class="ttdef"><b>Definition</b> <a href="eighth__sphere__poisson_8cc_source.html#l00131">eighth_sphere_poisson.cc:132</a></div></div>
 <div class="ttc" id="aclassEighthSpherePoissonProblem_html_a043c7aa08c939fdc019870ad2c2270cc"><div class="ttname"><a href="classEighthSpherePoissonProblem.html#a043c7aa08c939fdc019870ad2c2270cc">EighthSpherePoissonProblem::~EighthSpherePoissonProblem</a></div><div class="ttdeci">~EighthSpherePoissonProblem()</div><div class="ttdoc">Destructor: Empty.</div><div class="ttdef"><b>Definition</b> <a href="eighth__sphere__poisson_8cc_source.html#l00141">eighth_sphere_poisson.cc:141</a></div></div>
 <div class="ttc" id="aclassEighthSpherePoissonProblem_html_a480189fe5d2f42fe3ff6062d5f151ea3"><div class="ttname"><a href="classEighthSpherePoissonProblem.html#a480189fe5d2f42fe3ff6062d5f151ea3">EighthSpherePoissonProblem::actions_after_newton_solve</a></div><div class="ttdeci">void actions_after_newton_solve()</div><div class="ttdoc">Update the problem specs after solve (empty)</div><div class="ttdef"><b>Definition</b> <a href="eighth__sphere__poisson_8cc_source.html#l00151">eighth_sphere_poisson.cc:151</a></div></div>
 <div class="ttc" id="aclassEighthSpherePoissonProblem_html_a6264a1973b4779b4ffc8fcc1b584b775"><div class="ttname"><a href="classEighthSpherePoissonProblem.html#a6264a1973b4779b4ffc8fcc1b584b775">EighthSpherePoissonProblem::mesh_pt</a></div><div class="ttdeci">RefineableEighthSphereMesh&lt; ELEMENT &gt; * mesh_pt()</div><div class="ttdoc">Overload generic access function by one that returns a pointer to the specific mesh.</div><div class="ttdef"><b>Definition</b> <a href="eighth__sphere__poisson_8cc_source.html#l00145">eighth_sphere_poisson.cc:145</a></div></div>
@@ -553,7 +547,7 @@
 <div class="ttc" id="aclassEighthSpherePoissonProblem_html_ae51db2c3e80f0d5628e4d81eb1c11db4"><div class="ttname"><a href="classEighthSpherePoissonProblem.html#ae51db2c3e80f0d5628e4d81eb1c11db4">EighthSpherePoissonProblem::EighthSpherePoissonProblem</a></div><div class="ttdeci">EighthSpherePoissonProblem(PoissonEquations&lt; 3 &gt;::PoissonSourceFctPt source_fct_pt)</div><div class="ttdoc">Constructor: Pass pointer to source function.</div><div class="ttdef"><b>Definition</b> <a href="eighth__sphere__poisson_8cc_source.html#l00195">eighth_sphere_poisson.cc:195</a></div></div>
 <div class="ttc" id="aclassEighthSpherePoissonProblem_html_af41ed0ce372d5932c64b3cd4fe69f312"><div class="ttname"><a href="classEighthSpherePoissonProblem.html#af41ed0ce372d5932c64b3cd4fe69f312">EighthSpherePoissonProblem::Source_fct_pt</a></div><div class="ttdeci">PoissonEquations&lt; 3 &gt;::PoissonSourceFctPt Source_fct_pt</div><div class="ttdoc">Pointer to source function.</div><div class="ttdef"><b>Definition</b> <a href="eighth__sphere__poisson_8cc_source.html#l00183">eighth_sphere_poisson.cc:183</a></div></div>
 <div class="ttc" id="aclassEighthSpherePoissonProblem_html_af82dd7abdf631950a68c997af314be5d"><div class="ttname"><a href="classEighthSpherePoissonProblem.html#af82dd7abdf631950a68c997af314be5d">EighthSpherePoissonProblem::actions_before_newton_solve</a></div><div class="ttdeci">void actions_before_newton_solve()</div><div class="ttdoc">Update the problem specs before solve: Set Dirchlet boundary conditions from exact solution.</div><div class="ttdef"><b>Definition</b> <a href="eighth__sphere__poisson_8cc_source.html#l00155">eighth_sphere_poisson.cc:155</a></div></div>
-<div class="ttc" id="aeighth__sphere__poisson_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="eighth__sphere__poisson_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">///////////////////////////////////////////////////////////////////// ///////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="eighth__sphere__poisson_8cc_source.html#l00326">eighth_sphere_poisson.cc:326</a></div></div>
+<div class="ttc" id="aeighth__sphere__poisson_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="eighth__sphere__poisson_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">Driver for 3D Poisson problem in eighth of a sphere. Solution has a sharp step. If there are any comm...</div><div class="ttdef"><b>Definition</b> <a href="eighth__sphere__poisson_8cc_source.html#l00326">eighth_sphere_poisson.cc:326</a></div></div>
 <div class="ttc" id="anamespaceTanhSolnForPoisson_html"><div class="ttname"><a href="namespaceTanhSolnForPoisson.html">TanhSolnForPoisson</a></div><div class="ttdoc">Namespace for exact solution for Poisson equation with sharp step.</div><div class="ttdef"><b>Definition</b> <a href="eighth__sphere__poisson_8cc_source.html#l00044">eighth_sphere_poisson.cc:45</a></div></div>
 <div class="ttc" id="anamespaceTanhSolnForPoisson_html_a482d668ef91071985d1f4ce7cf29a926"><div class="ttname"><a href="namespaceTanhSolnForPoisson.html#a482d668ef91071985d1f4ce7cf29a926">TanhSolnForPoisson::N_y</a></div><div class="ttdeci">double N_y</div><div class="ttdoc">Orientation (non-normalised y-component of unit vector in direction of step plane)</div><div class="ttdef"><b>Definition</b> <a href="eighth__sphere__poisson_8cc_source.html#l00056">eighth_sphere_poisson.cc:56</a></div></div>
 <div class="ttc" id="anamespaceTanhSolnForPoisson_html_abf4856ed1855c34c2b2ea57fd6783644"><div class="ttname"><a href="namespaceTanhSolnForPoisson.html#abf4856ed1855c34c2b2ea57fd6783644">TanhSolnForPoisson::Z_0</a></div><div class="ttdeci">double Z_0</div><div class="ttdoc">Orientation (z-coordinate of step plane)</div><div class="ttdef"><b>Definition</b> <a href="eighth__sphere__poisson_8cc_source.html#l00070">eighth_sphere_poisson.cc:70</a></div></div>
@@ -592,7 +586,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:07:53
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:43:18
         </div>
       </div>
     </footer>

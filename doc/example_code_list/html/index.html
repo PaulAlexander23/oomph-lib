@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,8 @@
 </ul>
 <center> <table class="oomph-table">
 <tr>
-<td class="panel panel-default"><center class="panel-heading"> <b>Work in progress</b> </center><div class="panel-body"> We're still working on the detailed documentation for many of the demo problems listed below. The fully-documented demo problems are accessible via the links. If you are particularly interested in a specific problem for which the detailed documentation is incomplete, let us know &ndash; we might be able to give it a slightly higher priority. We are happy to let you have driver codes before the documentation is complete. Such codes usually need a bit of tidying to make them acceptable for "general release", but they are fully functional. In fact, they are run on a regular basis as part of <code> oomph-lib's </code> self-test routines (activated by typing <code> make check </code> in the top-level directory). </div>   </td></tr>
+<td class="panel panel-default"><center class="panel-heading"> <b>Work in progress</b> </center><div class="panel-body"> We're still working on the detailed documentation for many of the demo problems listed below. The fully-documented demo problems are accessible via the links. If you are particularly interested in a specific problem for which the detailed documentation is incomplete, let us know &ndash; we might be able to give it a slightly higher priority. We are happy to let you have driver codes before the documentation is complete. Such codes usually need a bit of tidying to make them acceptable for "general release", but they are fully functional. In fact, they are run on a regular basis as part of <code> oomph-lib's </code> self-test routines, activated with "&lt;code&gt;cd demo_drivers; cmake -G Ninja -B build;
+cd build; ctest&lt;/code&gt;" . </div>   </td></tr>
 </table>
 </center><h1 name="overview">Overview:</h1>
 <ol type="1">
@@ -811,6 +806,15 @@
 <li>Open flow boundary conditions. </li>
 </ul>
 <p class="intertd"></p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><p class="starttd"><a href="../../navier_stokes/adaptive_interface/html/index.html"><b>A steadily-rotating cylinder below a free surface in a finite box.</b> </a></p>
+<p class="endtd">Compute the free surface position and fluid velocity and pressure fields about a fixed, steadily-rotating cylinder immersed in a viscous fluid in a finite box. Uses a pseudo-elastic remesh strategy and spatial adaptivity in a non-trivial free surface problem.  </p>
+</td><td><ul>
+<li>A validation code.</li>
+<li><span style="color:red">Note: this driver code is currently undocumented.</span>  </li>
+</ul>
 <p class="endtd"></p>
 </td></tr>
 </table>
@@ -1549,7 +1553,7 @@
 <p class="endtd"></p>
 </td></tr>
 <tr>
-<td><p class="starttd"><b> <a class="anchor" id="third_party_meshes"></a> <a href="../../meshes/third_party_meshes/html/index.html">Unstructured meshes generated via input from third-party mesh generators </a>  </b></p>
+<td><p class="starttd"><b> <a class="anchor" id="third_party_meshes2"></a> <a href="../../meshes/third_party_meshes/html/index.html">Unstructured meshes generated via input from third-party mesh generators </a>  </b></p>
 <p class="endtd">We describe <code>oomph-lib's</code> wrappers to third-party (unstructured) mesh generators.  </p>
 </td><td><ul>
 <li><a href="../../meshes/mesh_from_triangle/html/index.html"><b> TriangleMesh&lt;ELEMENT&gt;:</b></a> A Mesh based on the output from <a href="http://www.cs.cmu.edu/~jrs">J.R.Shewchuk's</a> Delaunay mesh generator <br  />
@@ -1790,7 +1794,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:01:19
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:46:33
         </div>
       </div>
     </footer>

@@ -10,9 +10,16 @@ class \mbox{\hyperlink{classoomph_1_1DenseLU}{oomph\+::\+Dense\+LU}}
 class \mbox{\hyperlink{classoomph_1_1FD__LU}{oomph\+::\+FD\+\_\+\+LU}}
 \begin{DoxyCompactList}\small\item\em Dense LU decomposition-\/based solve of linear system assembled via finite differencing of the residuals \doxylink{classoomph_1_1Vector}{Vector}. Even more inefficient than \doxylink{classoomph_1_1DenseLU}{Dense\+LU} but excellent sanity check! \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classoomph_1_1SuperLUSolver}{oomph\+::\+Super\+LUSolver}}
-\begin{DoxyCompactList}\small\item\em //////////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////////// \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Super\+LU Project Solver class. This is a combined wrapper for both Super\+LU and Super\+LU Dist. See \href{http://crd.lbl.gov/~xiaoye/SuperLU/}{\texttt{ http\+://crd.\+lbl.\+gov/\texorpdfstring{$\sim$}{\string~}xiaoye/\+Super\+LU/}} Default Behaviour\+: If this solver is distributed over more than one processor then Super\+LU Dist is used. Member data naming convention\+: member data associated with the Super\+LU Dist solver begins Dist\+\_\+... and member data associated with the serial Super\+LU solver begins Serial\+\_\+... . \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
 namespace \mbox{\hyperlink{namespaceoomph}{oomph}}
-\begin{DoxyCompactList}\small\item\em //////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////// \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em DRAIG\+: Change all instances of (SPATIAL\+\_\+\+DIM) to (DIM-\/1). \end{DoxyCompactList}\item 
+namespace \mbox{\hyperlink{namespaceoomph_1_1ExactPreconditionerFactory}{oomph\+::\+Exact\+Preconditioner\+Factory}}
+\begin{DoxyCompactList}\small\item\em Namespace containing functions required to create exact preconditioner. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classoomph_1_1Preconditioner}{Preconditioner}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespaceoomph_1_1ExactPreconditionerFactory_a0716f90f38753dbb0c2307f2da0376ca}{oomph\+::\+Exact\+Preconditioner\+Factory\+::create\+\_\+exact\+\_\+preconditioner}} ()
+\begin{DoxyCompactList}\small\item\em Factory function to create suitable exact preconditioner. \end{DoxyCompactList}\end{DoxyCompactItemize}

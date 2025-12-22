@@ -394,7 +394,7 @@ The constructor builds the bulk mesh (the standard {\ttfamily Refineable\+Rectan
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\ \textcolor{keywordtype}{char}\ filename[100];\ \ \ }
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},Doc\_info.directory().c\_str());}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},Doc\_info.directory().c\_str());}
 \DoxyCodeLine{\ Trace\_file.open(filename);}
 \DoxyCodeLine{\ }
 \DoxyCodeLine{}
@@ -581,7 +581,7 @@ The post-\/processing function {\ttfamily doc\+\_\+solution()} outputs the finit
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ shape\ of\ and\ stress\ in\ deformed\ body}}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ Doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ solid\_mesh\_pt()-\/>output(some\_file,n\_plot);}
@@ -596,7 +596,7 @@ The post-\/processing function {\ttfamily doc\+\_\+solution()} outputs the finit
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ St.\ Venant\ solution}}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ Doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{}
@@ -692,7 +692,7 @@ The post-\/processing function {\ttfamily doc\+\_\+solution()} outputs the finit
 
 \item Repeat the computation without adaptivity, by using the non-\/refineable versions of the various solid mechanics elements discussed above, namely the {\ttfamily QPVDElement$<$2$>$}, {\ttfamily QPVDElement\+With\+Pressure$<$2$>$} and {\ttfamily QPVDElement\+With\+Continuous\+Pressure$<$2$>$}. This will require various changes to the code\+:
 \begin{DoxyEnumerate}
-\item You will have to create a solid mechanics version of the (non-\/refineable) {\ttfamily Rectangular\+Quad\+Mesh}. This is necessary because non-\/refineable elements cannot be used with refineable meshes. Try it to find out why! \mbox{[}Note\+: You could, of course, use the existing driver code with its refineable mesh and the refineable elements and simply not use the adaptive capabilities by omitting the {\ttfamily max\+\_\+adapt} argument when calling the Newton solver. However, the main point of this exercise is to force you to understand how to upgrade an existing {\ttfamily Mesh} to a {\ttfamily Solid\+Mesh}. It\textquotesingle{}s easy\+: Simply follow the steps used to create a refineable {\ttfamily Solid\+Mesh} from the {\ttfamily Refineable\+Rectangular\+Quad\+Mesh}, in \href{../../../../src/meshes/rectangular_quadmesh.template.h}{\texttt{ src/meshes/rectangular\+\_\+quadmesh.\+template.\+h}}. Instead of inheriting the mesh from the {\ttfamily Refineable\+Rectangular\+Quad\+Mesh} and the {\ttfamily Solid\+Mesh} classes, inherit from the non-\/refineable {\ttfamily Rectangular\+Quad\+Mesh} and the {\ttfamily Solid\+Mesh}.\mbox{]}
+\item You will have to create a solid mechanics version of the (non-\/refineable) {\ttfamily Rectangular\+Quad\+Mesh}. This is necessary because non-\/refineable elements cannot be used with refineable meshes. Try it to find out why! \mbox{[}Note\+: You could, of course, use the existing driver code with its refineable mesh and the refineable elements and simply not use the adaptive capabilities by omitting the {\ttfamily max\+\_\+adapt} argument when calling the Newton solver. However, the main point of this exercise is to force you to understand how to upgrade an existing {\ttfamily Mesh} to a {\ttfamily Solid\+Mesh}. It\textquotesingle{}s easy\+: Simply follow the steps used to create a refineable {\ttfamily Solid\+Mesh} from the {\ttfamily Refineable\+Rectangular\+Quad\+Mesh}, in \href{../../../../src/meshes/rectangular_quadmesh.h}{\texttt{ src/meshes/rectangular\+\_\+quadmesh.\+h}}. Instead of inheriting the mesh from the {\ttfamily Refineable\+Rectangular\+Quad\+Mesh} and the {\ttfamily Solid\+Mesh} classes, inherit from the non-\/refineable {\ttfamily Rectangular\+Quad\+Mesh} and the {\ttfamily Solid\+Mesh}.\mbox{]}
 \item You must not pass the pointer to the error estimator to the non-\/refineable mesh -- it has no use for it.
 \item You cannot call the adaptive Newton solver.
 \end{DoxyEnumerate}
@@ -829,4 +829,4 @@ demo_drivers/solid/airy_cantilever/airy_cantilever.cc
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

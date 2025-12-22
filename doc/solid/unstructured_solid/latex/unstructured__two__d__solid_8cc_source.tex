@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -100,9 +100,9 @@
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00096}00096\ }
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00097}00097\ \};}
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00098}00098\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00099}00099\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00100}00100\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00101}00101\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00099}00099\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00100}00100\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00101}00101\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00102}00102\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00103}00103\ }
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00104}00104\ }
@@ -299,7 +299,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00295}00295\ }
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00296}00296\ \ \textcolor{comment}{//\ Output\ solution}}
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00297}00297\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00298}00298\ \ \mbox{\hyperlink{classElasticTetMesh}{sprintf}}(\mbox{\hyperlink{classElasticTetMesh}{filename}},\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},\mbox{\hyperlink{classElasticTetMesh}{doc\_info}}.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00298}00298\ \ \mbox{\hyperlink{classElasticTetMesh}{snprintf}}(\mbox{\hyperlink{classElasticTetMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticTetMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},\mbox{\hyperlink{classElasticTetMesh}{doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classElasticTetMesh}{doc\_info}}.number());}
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00300}00300\ \ \mbox{\hyperlink{classElasticTetMesh}{some\_file}}.open(\mbox{\hyperlink{classElasticTetMesh}{filename}});}
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00301}00301\ \ Solid\_mesh\_pt-\/>output(\mbox{\hyperlink{classElasticTetMesh}{some\_file}},\mbox{\hyperlink{classElasticTetMesh}{npts}});}
@@ -307,7 +307,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00303}00303\ }
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00304}00304\ \ \textcolor{comment}{//\ Output\ traction}}
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00305}00305\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00306}00306\ \ \mbox{\hyperlink{classElasticTetMesh}{sprintf}}(\mbox{\hyperlink{classElasticTetMesh}{filename}},\textcolor{stringliteral}{"{}\%s/traction\%i.dat"{}},\mbox{\hyperlink{classElasticTetMesh}{doc\_info}}.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00306}00306\ \ \mbox{\hyperlink{classElasticTetMesh}{snprintf}}(\mbox{\hyperlink{classElasticTetMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticTetMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/traction\%i.dat"{}},\mbox{\hyperlink{classElasticTetMesh}{doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00307}00307\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classElasticTetMesh}{doc\_info}}.number());}
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00308}00308\ \ \mbox{\hyperlink{classElasticTetMesh}{some\_file}}.open(\mbox{\hyperlink{classElasticTetMesh}{filename}});}
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00309}00309\ \ Traction\_mesh\_pt-\/>output(\mbox{\hyperlink{classElasticTetMesh}{some\_file}},\mbox{\hyperlink{classElasticTetMesh}{npts}});}
@@ -315,7 +315,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00311}00311\ }
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00312}00312\ \ \textcolor{comment}{//\ Output\ boundaries}}
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00313}00313\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00314}00314\ \ \mbox{\hyperlink{classElasticTetMesh}{sprintf}}(\mbox{\hyperlink{classElasticTetMesh}{filename}},\textcolor{stringliteral}{"{}\%s/boundaries.dat"{}},\mbox{\hyperlink{classElasticTetMesh}{doc\_info}}.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00314}00314\ \ \mbox{\hyperlink{classElasticTetMesh}{snprintf}}(\mbox{\hyperlink{classElasticTetMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticTetMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/boundaries.dat"{}},\mbox{\hyperlink{classElasticTetMesh}{doc\_info}}.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00315}00315\ \ \mbox{\hyperlink{classElasticTetMesh}{some\_file}}.open(\mbox{\hyperlink{classElasticTetMesh}{filename}});}
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00316}00316\ \ Solid\_mesh\_pt-\/>output\_boundaries(\mbox{\hyperlink{classElasticTetMesh}{some\_file}});}
 \DoxyCodeLine{\Hypertarget{unstructured__two__d__solid_8cc_source_l00317}00317\ \ \mbox{\hyperlink{classElasticTetMesh}{some\_file}}.close();}

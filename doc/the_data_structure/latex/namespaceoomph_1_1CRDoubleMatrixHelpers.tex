@@ -48,7 +48,7 @@ Definition at line \mbox{\hyperlink{matrices_8cc_source_l04349}{4349}} of file \
 
 
 
-References \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01295}{oomph\+::\+Timing\+Helpers\+::timer()}}.
+References \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01303}{oomph\+::\+Timing\+Helpers\+::timer()}}.
 
 
 
@@ -90,7 +90,7 @@ If one wishes to preserve the block structure of the sub matrices in the result 
 
 The matrix manipulation functions CRDouble\+Matrix\+Helpers\+::concatenate(...) and CRDouble\+Matrix\+Helpers\+::concatenate\+\_\+without\+\_\+communication(...) are analogous to the \doxylink{classoomph_1_1Vector}{Vector} manipulation functions Double\+Vector\+Helpers\+::concatenate(...) and Double\+Vector\+Helpers\+::concatenate\+\_\+without\+\_\+communication(...). Please look at the \doxylink{classoomph_1_1DoubleVector}{Double\+Vector} functions for an illustration of the differences between concatenate(...) and concatenate\+\_\+without\+\_\+communication(...).
 
-Distribution of the result matrix\+: If the result matrix does not have a distribution built, then it will be given a distribution built from the concatenation of the distributions from row\+\_\+distribution\+\_\+pt, see Linear\+Algebra\+Distribution\+Helpers\+::concatenate(...) for more detail. Otherwise we use the existing distribution. If there is an existing distribution then it must be the same as the distribution from the concatenation of row distributions as described above. Why don\textquotesingle{}t we always compute the distribution "{}on the fly"{}? Because a non-\/uniform distribution requires communication. All block preconditioner distributions are concatenations of the distributions of the individual blocks. /////////////// END OF PARANOID TESTS
+Distribution of the result matrix\+: If the result matrix does not have a distribution built, then it will be given a distribution built from the concatenation of the distributions from row\+\_\+distribution\+\_\+pt, see Linear\+Algebra\+Distribution\+Helpers\+::concatenate(...) for more detail. Otherwise we use the existing distribution. If there is an existing distribution then it must be the same as the distribution from the concatenation of row distributions as described above. Why don\textquotesingle{}t we always compute the distribution "{}on the fly"{}? Because a non-\/uniform distribution requires communication. All block preconditioner distributions are concatenations of the distributions of the individual blocks. 
 
 Definition at line \mbox{\hyperlink{matrices_8cc_source_l05223}{5223}} of file \mbox{\hyperlink{matrices_8cc_source}{matrices.\+cc}}.
 
@@ -100,7 +100,7 @@ References \mbox{\hyperlink{linear__algebra__distribution_8cc_source_l00367}{oom
 
 
 
-Referenced by \mbox{\hyperlink{matrices_8cc_source_l05885}{concatenate\+\_\+without\+\_\+communication()}}, \mbox{\hyperlink{block__preconditioner_8h_source_l00673}{oomph\+::\+Block\+Preconditioner$<$ MATRIX $>$\+::get\+\_\+block()}}, \mbox{\hyperlink{block__preconditioner_8h_source_l01134}{oomph\+::\+Block\+Preconditioner$<$ MATRIX $>$\+::get\+\_\+concatenated\+\_\+block()}}, and \mbox{\hyperlink{block__preconditioner_8cc_source_l05671}{oomph\+::\+Block\+Preconditioner$<$ MATRIX $>$\+::get\+\_\+dof\+\_\+level\+\_\+block()}}.
+Referenced by \mbox{\hyperlink{matrices_8cc_source_l05885}{concatenate\+\_\+without\+\_\+communication()}}, \mbox{\hyperlink{block__preconditioner_8h_source_l00673}{oomph\+::\+Block\+Preconditioner$<$ MATRIX $>$\+::get\+\_\+block()}}, \mbox{\hyperlink{block__preconditioner_8h_source_l01134}{oomph\+::\+Block\+Preconditioner$<$ MATRIX $>$\+::get\+\_\+concatenated\+\_\+block()}}, and \mbox{\hyperlink{block__preconditioner_8cc_source_l05670}{oomph\+::\+Block\+Preconditioner$<$ MATRIX $>$\+::get\+\_\+dof\+\_\+level\+\_\+block()}}.
 
 \Hypertarget{namespaceoomph_1_1CRDoubleMatrixHelpers_ae3c10e59d5857457c7e34be8e9262035}\label{namespaceoomph_1_1CRDoubleMatrixHelpers_ae3c10e59d5857457c7e34be8e9262035} 
 \index{oomph::CRDoubleMatrixHelpers@{oomph::CRDoubleMatrixHelpers}!create\_uniformly\_distributed\_matrix@{create\_uniformly\_distributed\_matrix}}
@@ -132,7 +132,7 @@ Definition at line \mbox{\hyperlink{matrices_8h_source_l03490}{3490}} of file \m
 
 
 
-Referenced by \mbox{\hyperlink{block__preconditioner_8h_source_l00673}{oomph\+::\+Block\+Preconditioner$<$ MATRIX $>$\+::get\+\_\+block()}}, and \mbox{\hyperlink{block__preconditioner_8cc_source_l05671}{oomph\+::\+Block\+Preconditioner$<$ MATRIX $>$\+::get\+\_\+dof\+\_\+level\+\_\+block()}}.
+Referenced by \mbox{\hyperlink{block__preconditioner_8h_source_l00673}{oomph\+::\+Block\+Preconditioner$<$ MATRIX $>$\+::get\+\_\+block()}}, and \mbox{\hyperlink{block__preconditioner_8cc_source_l05670}{oomph\+::\+Block\+Preconditioner$<$ MATRIX $>$\+::get\+\_\+dof\+\_\+level\+\_\+block()}}.
 
 \Hypertarget{namespaceoomph_1_1CRDoubleMatrixHelpers_a02b5962dbe2bbfb93f54b668100afffc}\label{namespaceoomph_1_1CRDoubleMatrixHelpers_a02b5962dbe2bbfb93f54b668100afffc} 
 \index{oomph::CRDoubleMatrixHelpers@{oomph::CRDoubleMatrixHelpers}!gershgorin\_eigenvalue\_estimate@{gershgorin\_eigenvalue\_estimate}}

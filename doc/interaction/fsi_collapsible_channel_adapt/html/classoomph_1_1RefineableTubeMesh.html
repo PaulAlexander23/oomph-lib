@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -121,10 +115,10 @@
 </div><!--header-->
 <div class="contents">
 
-<p>///////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////  
+<p>Adaptative version of the <a class="el" href="classoomph_1_1TubeMesh.html" title="3D tube mesh class. The domain is specified by the GeomObject that identifies the entire volume....">TubeMesh</a> base mesh. The domain is specified by the GeomObject that identifies the entire volume.  
  <a href="classoomph_1_1RefineableTubeMesh.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="tube__mesh_8template_8h_source.html">tube_mesh.template.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="tube__mesh_8h_source.html">tube_mesh.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for oomph::RefineableTubeMesh&lt; ELEMENT &gt;:</div>
 <div class="dyncontent">
@@ -172,15 +166,14 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleChannelMesh.html">class</a> <a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleChannelMesh.html">ELEMENT</a>&gt;<br />
-class oomph::RefineableTubeMesh&lt; ELEMENT &gt;</div><p>///////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////// </p>
-<p>Adaptative version of the <a class="el" href="classoomph_1_1TubeMesh.html" title="3D tube mesh class. The domain is specified by the GeomObject that identifies the entire volume....">TubeMesh</a> base mesh. The domain is specified by the GeomObject that identifies the entire volume</p>
+class oomph::RefineableTubeMesh&lt; ELEMENT &gt;</div><p>Adaptative version of the <a class="el" href="classoomph_1_1TubeMesh.html" title="3D tube mesh class. The domain is specified by the GeomObject that identifies the entire volume....">TubeMesh</a> base mesh. The domain is specified by the GeomObject that identifies the entire volume. </p>
 <p>The mesh boundaries are numbered as follows:</p><ul>
-<li>Boundary 0: "Inflow" cross section; located along the line parametrised by <picture><source srcset="form_34_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \xi_0 =  \xi_0^{lo} $" src="form_34.png" width="43" height="15"/></picture>.</li>
-<li>Boundary 1: The outer wall, represetned by <picture><source srcset="form_37_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\xi_2 = 1$" src="form_37.png" width="35" height="13"/></picture>.</li>
-<li>Boundary 2: The out flow, represented by <picture><source srcset="form_38_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\xi_0 = \xi_0^{hi}$" src="form_38.png" width="44" height="15"/></picture>. </li>
+<li>Boundary 0: "Inflow" cross section; located along the line parametrised by <img class="formulaInl" alt="$ \xi_0 =  \xi_0^{lo} $" src="form_34.png" width="43" height="15"/>.</li>
+<li>Boundary 1: The outer wall, represetned by <img class="formulaInl" alt="$\xi_2 = 1$" src="form_37.png" width="35" height="13"/>.</li>
+<li>Boundary 2: The out flow, represented by <img class="formulaInl" alt="$\xi_0 = \xi_0^{hi}$" src="form_38.png" width="44" height="15"/>. </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="tube__mesh_8template_8h_source.html#l00124">124</a> of file <a class="el" href="tube__mesh_8template_8h_source.html">tube_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tube__mesh_8h_source.html#l00122">122</a> of file <a class="el" href="tube__mesh_8h_source.html">tube_mesh.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a0b8e2307c2d4594196f78a6278d9bbf7" name="a0b8e2307c2d4594196f78a6278d9bbf7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0b8e2307c2d4594196f78a6278d9bbf7">&#9670;&#160;</a></span>RefineableTubeMesh()</h2>
@@ -244,9 +237,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Constructor for adaptive deformable quarter tube mesh class. Pass pointer to geometric object that specifies the volume, start and end coordinates for the centreline on the geometric object. Values of theta at which dividing lines are to be placed, fractions of the radius for the central box at the dividing lines, the number of layers and the timestepper. Timestepper defaults to Steady dummy timestepper. </p>
 
-<p class="definition">Definition at line <a class="el" href="tube__mesh_8template_8h_source.html#l00137">137</a> of file <a class="el" href="tube__mesh_8template_8h_source.html">tube_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tube__mesh_8h_source.html#l00135">135</a> of file <a class="el" href="tube__mesh_8h_source.html">tube_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="tube__mesh_8template_8h_source.html#l00099">oomph::TubeMesh&lt; ELEMENT &gt;::Domain_pt</a>.</p>
+<p class="reference">References <a class="el" href="tube__mesh_8h_source.html#l00098">oomph::TubeMesh&lt; ELEMENT &gt;::Domain_pt</a>.</p>
 
 </div>
 </div>
@@ -277,12 +270,12 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Destructor: empty. </p>
 
-<p class="definition">Definition at line <a class="el" href="tube__mesh_8template_8h_source.html#l00190">190</a> of file <a class="el" href="tube__mesh_8template_8h_source.html">tube_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tube__mesh_8h_source.html#l00187">187</a> of file <a class="el" href="tube__mesh_8h_source.html">tube_mesh.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li><a class="el" href="tube__mesh_8template_8h_source.html">tube_mesh.template.h</a></li>
+<li><a class="el" href="tube__mesh_8h_source.html">tube_mesh.h</a></li>
 </ul>
 </div><!-- contents -->
 
@@ -312,7 +305,7 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:27:19
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:34:46
         </div>
       </div>
     </footer>

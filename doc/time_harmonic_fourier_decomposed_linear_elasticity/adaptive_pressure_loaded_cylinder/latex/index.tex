@@ -48,7 +48,7 @@ Here\textquotesingle{}s a listing of the complete driver code\+:
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -467,14 +467,14 @@ Here\textquotesingle{}s a listing of the complete driver code\+:
 \DoxyCodeLine{\ \textcolor{keywordtype}{unsigned}\ npts=5;\ }
 \DoxyCodeLine{\ }
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ solution\ }}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ Bulk\_mesh\_pt-\/>output(some\_file,npts);}
 \DoxyCodeLine{\ some\_file.close();}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ norm\ of\ solution\ (to\ allow\ validation\ of\ solution\ even}}
 \DoxyCodeLine{\ \textcolor{comment}{//\ if\ triangle\ generates\ a\ slightly\ different\ mesh)}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/norm.dat"{}},doc\_info.directory().c\_str());\ \ \ }
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/norm.dat"{}},doc\_info.directory().c\_str());\ \ \ }
 \DoxyCodeLine{\ some\_file.open(filename);\ \ \ }
 \DoxyCodeLine{\ \textcolor{keywordtype}{double}\ norm=0.0;}
 \DoxyCodeLine{\ \textcolor{keywordtype}{unsigned}\ nel=Bulk\_mesh\_pt-\/>nelement();}
@@ -553,4 +553,4 @@ Here\textquotesingle{}s a listing of the complete driver code\+:
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

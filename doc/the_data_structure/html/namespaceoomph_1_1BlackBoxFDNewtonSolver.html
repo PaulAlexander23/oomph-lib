@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -174,7 +168,6 @@ Variables</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Namespace for black-box FD Newton solver. </p>
-<p>/////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////// </p>
 </div><h2 class="groupheader">Typedef Documentation</h2>
 <a id="a6a8995752628445edff43f942b4d3e88" name="a6a8995752628445edff43f942b4d3e88"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6a8995752628445edff43f942b4d3e88">&#9670;&#160;</a></span>JacobianFctPt</h2>
@@ -249,13 +242,13 @@ Variables</h2></td></tr>
 
 <p>Black-box FD Newton solver: Calling sequence for residual function is. </p>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">residual_fct</a>(<a class="code hl_class" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">parameters</a>,<a class="code hl_class" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unknowns</a>,<a class="code hl_class" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">residuals</a>) </div>
-<div class="ttc" id="aclassoomph_1_1TAdvectionDiffusionReactionElement_html"><div class="ttname"><a href="classoomph_1_1TAdvectionDiffusionReactionElement.html">oomph::TAdvectionDiffusionReactionElement</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////////</div><div class="ttdef"><b>Definition</b> <a href="Tadvection__diffusion__reaction__elements_8h_source.html#l00062">Tadvection_diffusion_reaction_elements.h:66</a></div></div>
+<div class="ttc" id="aclassoomph_1_1TAdvectionDiffusionReactionElement_html"><div class="ttname"><a href="classoomph_1_1TAdvectionDiffusionReactionElement.html">oomph::TAdvectionDiffusionReactionElement</a></div><div class="ttdoc">TAdvectionDiffusionReactionElement&lt;NREAGENT,DIM,NNODE_1D&gt; elements are isoparametric triangular DIM-d...</div><div class="ttdef"><b>Definition</b> <a href="Tadvection__diffusion__reaction__elements_8h_source.html#l00062">Tadvection_diffusion_reaction_elements.h:66</a></div></div>
 </div><!-- fragment --><p> where all arguments are double Vectors. unknowns.size() = residuals.size() </p>
 <p>Reset number of Newton iterations taken in most recent invocation</p>
 
 <p class="definition">Definition at line <a class="el" href="black__box__newton__solver_8cc_source.html#l00067">67</a> of file <a class="el" href="black__box__newton__solver_8cc_source.html">black_box_newton_solver.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="black__box__newton__solver_8cc_source.html#l00051">Doc_Progress</a>, <a class="el" href="black__box__newton__solver_8cc_source.html#l00054">FD_step</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="black__box__newton__solver_8cc_source.html#l00233">line_search()</a>, <a class="el" href="black__box__newton__solver_8cc_source.html#l00044">Max_iter</a>, <a class="el" href="black__box__newton__solver_8cc_source.html#l00047">N_iter_taken</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00319">oomph::oomph_info</a>, <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>, <a class="el" href="matrices_8cc_source.html#l00050">oomph::DoubleMatrixBase::solve()</a>, <a class="el" href="matrices_8h_source.html#l00182">oomph::Matrix&lt; T, MATRIX_TYPE &gt;::sparse_indexed_output()</a>, <a class="el" href="oomph__definitions_8h_source.html#l00464">oomph::OomphInfo::stream_pt()</a>, <a class="el" href="black__box__newton__solver_8cc_source.html#l00057">Tol</a>, and <a class="el" href="black__box__newton__solver_8cc_source.html#l00060">Use_step_length_control</a>.</p>
+<p class="reference">References <a class="el" href="black__box__newton__solver_8cc_source.html#l00051">Doc_Progress</a>, <a class="el" href="black__box__newton__solver_8cc_source.html#l00054">FD_step</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="black__box__newton__solver_8cc_source.html#l00233">line_search()</a>, <a class="el" href="black__box__newton__solver_8cc_source.html#l00044">Max_iter</a>, <a class="el" href="black__box__newton__solver_8cc_source.html#l00047">N_iter_taken</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00326">oomph::oomph_info</a>, <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>, <a class="el" href="matrices_8cc_source.html#l00050">oomph::DoubleMatrixBase::solve()</a>, <a class="el" href="matrices_8h_source.html#l00182">oomph::Matrix&lt; T, MATRIX_TYPE &gt;::sparse_indexed_output()</a>, <a class="el" href="oomph__definitions_8h_source.html#l00471">oomph::OomphInfo::stream_pt()</a>, <a class="el" href="black__box__newton__solver_8cc_source.html#l00057">Tol</a>, and <a class="el" href="black__box__newton__solver_8cc_source.html#l00060">Use_step_length_control</a>.</p>
 
 </div>
 </div>
@@ -486,7 +479,7 @@ Variables</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:06:00
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:43:49
         </div>
       </div>
     </footer>

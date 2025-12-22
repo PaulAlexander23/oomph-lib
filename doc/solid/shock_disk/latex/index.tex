@@ -9,7 +9,7 @@ Detailed documentation to be written. Here\textquotesingle{}s the already fairly
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -47,9 +47,9 @@ Detailed documentation to be written. Here\textquotesingle{}s the already fairly
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }oomph;}
 \DoxyCodeLine{\ \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{//================================================================}\textcolor{comment}{}}
@@ -84,9 +84,9 @@ Detailed documentation to be written. Here\textquotesingle{}s the already fairly
 \DoxyCodeLine{}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{}
 \DoxyCodeLine{}
@@ -199,9 +199,9 @@ Detailed documentation to be written. Here\textquotesingle{}s the already fairly
 \DoxyCodeLine{}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{///\ //////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{///\ //////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{///\ //////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{/////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{/////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{/////////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{}
 \DoxyCodeLine{}
@@ -486,7 +486,7 @@ Detailed documentation to be written. Here\textquotesingle{}s the already fairly
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ shape\ of\ deformed\ body}}
 \DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{ofstream}}\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{some\_file}};}
 \DoxyCodeLine{\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}}[100];}
-\DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{sprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{snprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ Doc\_info.number());}
 \DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{some\_file}}.open(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}});}
 \DoxyCodeLine{\ solid\_mesh\_pt()-\/>output(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{some\_file}},\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{npts}});}
@@ -495,7 +495,7 @@ Detailed documentation to be written. Here\textquotesingle{}s the already fairly
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ traction}}
 \DoxyCodeLine{\ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{nel}}=traction\_mesh\_pt()-\/>nelement();}
-\DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{sprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\textcolor{stringliteral}{"{}\%s/traction\%i.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{snprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/traction\%i.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ Doc\_info.number());}
 \DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{some\_file}}.open(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}});}
 \DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{Vector<double>}}\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{unit\_normal}}(2);}
@@ -532,7 +532,7 @@ Detailed documentation to be written. Here\textquotesingle{}s the already fairly
 \DoxyCodeLine{\ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{nelem}}=solid\_mesh\_pt()-\/>nboundary\_element(0);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \textcolor{comment}{//\ Open\ files}}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{sprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\textcolor{stringliteral}{"{}\%s/displ\%i.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{snprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/displ\%i.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ Doc\_info.number());}
 \DoxyCodeLine{\ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{some\_file}}.open(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}});}
 \DoxyCodeLine{\ \ }
@@ -590,7 +590,7 @@ Detailed documentation to be written. Here\textquotesingle{}s the already fairly
 \DoxyCodeLine{\ \textcolor{comment}{//\ SolidHelpers::doc\_2D\_principal\_stress<ELEMENT>(Doc\_info,solid\_mesh\_pt());}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{//\ \ //\ Write\ restart\ file}}
-\DoxyCodeLine{\textcolor{comment}{//\ \ sprintf(filename,"{}\%s/restart\%i.dat"{},Doc\_info.directory().c\_str(),}}
+\DoxyCodeLine{\textcolor{comment}{//\ \ snprintf(filename,\ sizeof(filename),\ "{}\%s/restart\%i.dat"{},Doc\_info.directory().c\_str(),}}
 \DoxyCodeLine{\textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ Doc\_info.number());}}
 \DoxyCodeLine{\textcolor{comment}{//\ \ some\_file.open(filename);}}
 \DoxyCodeLine{\textcolor{comment}{//\ \ dump\_it(some\_file);}}
@@ -630,17 +630,17 @@ Detailed documentation to be written. Here\textquotesingle{}s the already fairly
 \DoxyCodeLine{\ \textcolor{comment}{//\ Open\ file}}
 \DoxyCodeLine{\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{stage}}==-\/1)}
 \DoxyCodeLine{\ \ \{}
-\DoxyCodeLine{\ \ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{sprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\textcolor{stringliteral}{"{}\%s/displ\_and\_veloc\_before\%i.dat"{}},}
+\DoxyCodeLine{\ \ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{snprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/displ\_and\_veloc\_before\%i.dat"{}},}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ Doc\_info.directory().c\_str(),Doc\_info.number());}
 \DoxyCodeLine{\ \ \}}
 \DoxyCodeLine{\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{stage}}==1)}
 \DoxyCodeLine{\ \ \{}
-\DoxyCodeLine{\ \ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{sprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\textcolor{stringliteral}{"{}\%s/displ\_and\_veloc\_after\%i.dat"{}},}
+\DoxyCodeLine{\ \ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{snprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/displ\_and\_veloc\_after\%i.dat"{}},}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ Doc\_info.directory().c\_str(),Doc\_info.number());}
 \DoxyCodeLine{\ \ \}}
 \DoxyCodeLine{\ \textcolor{keywordflow}{else}\ }
 \DoxyCodeLine{\ \ \{}
-\DoxyCodeLine{\ \ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{sprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\textcolor{stringliteral}{"{}\%s/displ\_and\_veloc\%i.dat"{}},}
+\DoxyCodeLine{\ \ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{snprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/displ\_and\_veloc\%i.dat"{}},}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ Doc\_info.directory().c\_str(),Doc\_info.number());}
 \DoxyCodeLine{\ \ \}}
 \DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{some\_file}}.open(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}});}
@@ -731,7 +731,7 @@ Detailed documentation to be written. Here\textquotesingle{}s the already fairly
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Define\ output\ directory}}
 \DoxyCodeLine{\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{dirname}}[100];}
-\DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{sprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{dirname}},\textcolor{stringliteral}{"{}RESLT\%i"{}},\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{case\_number}});}
+\DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{snprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{dirname}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{dirname}}),\ \textcolor{stringliteral}{"{}RESLT\%i"{}},\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{case\_number}});}
 \DoxyCodeLine{\ Doc\_info.set\_directory(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{dirname}});}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Step\ number}}
@@ -739,7 +739,7 @@ Detailed documentation to be written. Here\textquotesingle{}s the already fairly
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}}[100];\ \ \ }
-\DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{sprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\textcolor{stringliteral}{"{}\%s/trace.dat"{}},Doc\_info.directory().c\_str());}
+\DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{snprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},Doc\_info.directory().c\_str());}
 \DoxyCodeLine{\ Trace\_file.open(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}});}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Set\ up\ trace\ nodes\ as\ the\ nodes\ on\ boundary\ 1\ (=curved\ boundary)\ in\ }}
@@ -911,4 +911,4 @@ Detailed documentation to be written. Here\textquotesingle{}s the already fairly
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

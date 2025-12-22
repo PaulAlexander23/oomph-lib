@@ -563,7 +563,7 @@ In the loop, we increment the external pressure $ P_{ext} $, solve the problem, 
 \DoxyCodeLine{\ \ \ \ \}\ }
 \DoxyCodeLine{\ \ \ }
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ Document\ the\ solution}}
-\DoxyCodeLine{\ \ \ sprintf(filename,\textcolor{stringliteral}{"{}RESLT/beam\%i.dat"{}},i);}
+\DoxyCodeLine{\ \ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}RESLT/beam\%i.dat"{}},i);}
 \DoxyCodeLine{\ \ \ file.open(filename);}
 \DoxyCodeLine{\ \ \ \mbox{\hyperlink{classElasticBeamProblem_a884541822d7272d343971d2b2e79a7c4}{mesh\_pt}}()-\/>output(file,5);}
 \DoxyCodeLine{\ \ \ file.close();}
@@ -627,4 +627,4 @@ demo_drivers/beam/tensioned_string/tensioned_string.cc
 \end{DoxyItemize}\DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

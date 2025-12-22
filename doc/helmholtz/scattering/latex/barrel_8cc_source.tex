@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{barrel_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{barrel_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{barrel_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{barrel_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{barrel_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{barrel_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{barrel_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{barrel_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -310,7 +310,7 @@
 \DoxyCodeLine{\Hypertarget{barrel_8cc_source_l00306}00306\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{\Hypertarget{barrel_8cc_source_l00307}00307\ \ ofstream\ some\_file;}
 \DoxyCodeLine{\Hypertarget{barrel_8cc_source_l00308}00308\ \ \textcolor{keywordtype}{char}\ filename[100];}
-\DoxyCodeLine{\Hypertarget{barrel_8cc_source_l00309}00309\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{barrel_8cc_source_l00309}00309\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{barrel_8cc_source_l00310}00310\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{barrel_8cc_source_l00311}00311\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{barrel_8cc_source_l00312}00312\ \ mesh\_pt()-\/>output(some\_file,npts);}
@@ -334,7 +334,7 @@
 \DoxyCodeLine{\Hypertarget{barrel_8cc_source_l00330}00330\ \ \textcolor{comment}{//Open\ a\ trace\ file}}
 \DoxyCodeLine{\Hypertarget{barrel_8cc_source_l00331}00331\ \ ofstream\ trace\_file;}
 \DoxyCodeLine{\Hypertarget{barrel_8cc_source_l00332}00332\ \ \textcolor{keywordtype}{char}\ filename[100];}
-\DoxyCodeLine{\Hypertarget{barrel_8cc_source_l00333}00333\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{barrel_8cc_source_l00333}00333\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{barrel_8cc_source_l00334}00334\ \ trace\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{barrel_8cc_source_l00335}00335\ \ }
 \DoxyCodeLine{\Hypertarget{barrel_8cc_source_l00336}00336\ \ \textcolor{comment}{//\ Write\ kappa,\ exact\ kappa\ and\ height\ values}}

@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -130,24 +124,24 @@
 The problem</h1>
 <center> <table class="doxtable">
 <tr>
-<td><center> <b>Flow in a 2D collapsible channel </b> </center><p class="intertd">The figure below shows a sketch of the problem: Flow is driven by a prescribed pressure drop through a 2D channel of width <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ H^* $" src="form_0.png" width="16" height="10"/></picture> and total length <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ L^*_{total} = L^*_{up} + L^*_{collapsible} + L^*_{down}. $" src="form_1.png" width="189" height="15"/></picture> The upstream and downstream lengths of the channel are rigid, whereas the upper wall in the central section is an elastic membrane whose shape is parametrised by a Lagrangian coordinate, <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \xi^* $" src="form_2.png" width="11" height="13"/></picture> , so that the position vector to the moving wall is given by <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf R}_w^*(\xi^*,t^*) $" src="form_3.png" width="56" height="14"/></picture> . The wall is loaded by the external pressure <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p_{ext}^* $" src="form_4.png" width="21" height="14"/></picture> and by the traction that the viscous fluid exerts on it. The components of the load vector <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf f}^* $" src="form_5.png" width="11" height="10"/></picture> that acts on the wall are therefore given by  </p><p class="formulaDsp">
-<picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[  
+<td><center> <b>Flow in a 2D collapsible channel </b> </center><p class="intertd">The figure below shows a sketch of the problem: Flow is driven by a prescribed pressure drop through a 2D channel of width <img class="formulaInl" alt="$ H^* $" src="form_0.png" width="16" height="10"/> and total length <img class="formulaInl" alt="$ L^*_{total} = L^*_{up} + L^*_{collapsible} + L^*_{down}. $" src="form_1.png" width="189" height="15"/> The upstream and downstream lengths of the channel are rigid, whereas the upper wall in the central section is an elastic membrane whose shape is parametrised by a Lagrangian coordinate, <img class="formulaInl" alt="$ \xi^* $" src="form_2.png" width="11" height="13"/> , so that the position vector to the moving wall is given by <img class="formulaInl" alt="$ {\bf R}_w^*(\xi^*,t^*) $" src="form_3.png" width="56" height="14"/> . The wall is loaded by the external pressure <img class="formulaInl" alt="$ p_{ext}^* $" src="form_4.png" width="21" height="14"/> and by the traction that the viscous fluid exerts on it. The components of the load vector <img class="formulaInl" alt="$ {\bf f}^* $" src="form_5.png" width="11" height="10"/> that acts on the wall are therefore given by  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[  
 f^*_{i} = (p^* - p^*_{ext}) N_i -
 \mu \left(
 \frac{\partial u^*_i}{\partial x^*_j} +
 \frac{\partial u^*_j}{\partial x^*_i} 
 \right)
 N_j \ \ \ \ \ \ \mbox{for $i=1,2$,}
-\]" src="form_6.png" width="311" height="39"/></picture>
+\]" src="form_6.png" width="311" height="39"/>
 </p>
-<p> where <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ N_i \ (\mbox{\ for \ } i=1,2) $" src="form_7.png" width="94" height="14"/></picture> are the components of the outer unit normal on the fluid domain.</p>
+<p> where <img class="formulaInl" alt="$ N_i \ (\mbox{\ for \ } i=1,2) $" src="form_7.png" width="94" height="14"/> are the components of the outer unit normal on the fluid domain.</p>
 <div class="image">
 <img src="collapsible_channel_sketch.gif" alt=""/>
 <div class="caption">
 Sketch of the problem. </div></div>
- <p class="intertd">We scale all lengths on the channel width, <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ H^* $" src="form_0.png" width="16" height="10"/></picture> , use the average velocity through the undeformed channel, <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ U =P^*_{up} H^{*2}/(12 \mu L^*_{total}) $" src="form_8.png" width="134" height="16"/></picture> , to scale the velocities, and use <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ H^{*}/U $" src="form_9.png" width="33" height="14"/></picture> to non-dimensionalise time. Finally, the fluid pressure is non-dimensionalised on the viscous scale <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p^{*} = p \mu U/H^{*}$" src="form_10.png" width="75" height="14"/></picture>. (As usual, asterisks distinguish dimensional parameters from their non-dimensional equivalents.)</p>
+ <p class="intertd">We scale all lengths on the channel width, <img class="formulaInl" alt="$ H^* $" src="form_0.png" width="16" height="10"/> , use the average velocity through the undeformed channel, <img class="formulaInl" alt="$ U =P^*_{up} H^{*2}/(12 \mu L^*_{total}) $" src="form_8.png" width="134" height="16"/> , to scale the velocities, and use <img class="formulaInl" alt="$ H^{*}/U $" src="form_9.png" width="33" height="14"/> to non-dimensionalise time. Finally, the fluid pressure is non-dimensionalised on the viscous scale <img class="formulaInl" alt="$ p^{*} = p \mu U/H^{*}$" src="form_10.png" width="75" height="14"/>. (As usual, asterisks distinguish dimensional parameters from their non-dimensional equivalents.)</p>
 <p class="intertd">With this non-dimensionalisation, the Navier-Stokes equations have the same form as in the <a href="../../../navier_stokes/collapsible_channel/html/index.html">earlier example with prescribed wall motion:</a>  </p><p class="formulaDsp">
-<picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 Re\left(St\frac{\partial u_i}{\partial t} +  
 u_j\frac{\partial u_i}{\partial x_j}\right) =
 - \frac{\partial p}{\partial x_i} +
@@ -155,39 +149,39 @@ u_j\frac{\partial u_i}{\partial x_j}\right) =
 \frac{\partial u_i}{\partial x_j} +  
 \frac{\partial u_j}{\partial x_i} \right)
  \ \ \ \ \ \ \ \ \ \ (1)
-\]" src="form_11.png" width="346" height="31"/></picture>
+\]" src="form_11.png" width="346" height="31"/>
 </p>
 <p> and  </p><p class="formulaDsp">
-<picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \frac{\partial u_i}{\partial x_i} = 0,
  \ \ \ \ \ \ \ \ \ \ (2)
-\]" src="form_12.png" width="106" height="29"/></picture>
+\]" src="form_12.png" width="106" height="29"/>
 </p>
-<p> with <picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ St=1 $" src="form_13.png" width="35" height="10"/></picture>. As <a href="../../../navier_stokes/collapsible_channel/html/index.html">before</a>, the flow is subject to the following boundary and initial conditions:</p><ul>
+<p> with <img class="formulaInl" alt="$ St=1 $" src="form_13.png" width="35" height="10"/>. As <a href="../../../navier_stokes/collapsible_channel/html/index.html">before</a>, the flow is subject to the following boundary and initial conditions:</p><ul>
 <li>Initial condition: Poiseuille flow, <a class="el" href="classElasticCollapsibleChannelMesh.html#aa8a158f7f3d3e40dc29bdaa756546771" title="Constructor: Build mesh and copy Eulerian coords to Lagrangian ones so that the initial configuration...">i.e</a>.  <p class="formulaDsp">
-<picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
   {\bf u}(x_1,x_2,t=0) = {\bf u}_{Poiseuille}(x_1,x_2) =   
   6 \ x_2 \  (1-x_2) \ {\bf e}_1.
   \ \ \ \ \ \ \ \ \ \ (3)
-  \]" src="form_14.png" width="358" height="14"/></picture>
+  \]" src="form_14.png" width="358" height="14"/>
 </p>
 </li>
-<li>Parallel inflow, <picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf u} \cdot {\bf e}_2 = {\bf 0}, $" src="form_15.png" width="56" height="11"/></picture> and an applied axial traction of <picture><source srcset="form_16_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf t} \cdot {\bf e}_1 = 
-  p_{up} = 12 \ L_{total} $" src="form_16.png" width="125" height="14"/></picture> at the upstream end, <picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_1=0$" src="form_17.png" width="36" height="11"/></picture>.</li>
-<li>Parallel, axially traction-free outflow at the downstream end, <a class="el" href="classElasticCollapsibleChannelMesh.html#aa8a158f7f3d3e40dc29bdaa756546771" title="Constructor: Build mesh and copy Eulerian coords to Lagrangian ones so that the initial configuration...">i.e</a>. <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf u} \cdot {\bf e}_2 = {\bf 0} $" src="form_18.png" width="53" height="11"/></picture> and <br  />
- <picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf t} \cdot {\bf e}_1 = p_{down} = 0  $" src="form_19.png" width="98" height="11"/></picture> at <picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$
-  x_1=L_{total}. $" src="form_20.png" width="64" height="13"/></picture></li>
-<li>No slip on all channel walls, <a class="el" href="classElasticCollapsibleChannelMesh.html#aa8a158f7f3d3e40dc29bdaa756546771" title="Constructor: Build mesh and copy Eulerian coords to Lagrangian ones so that the initial configuration...">i.e</a>. <picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf u} = {\bf 0} $" src="form_21.png" width="31" height="9"/></picture> on the rigid walls and  <p class="formulaDsp">
-<picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<li>Parallel inflow, <img class="formulaInl" alt="$ {\bf u} \cdot {\bf e}_2 = {\bf 0}, $" src="form_15.png" width="56" height="11"/> and an applied axial traction of <img class="formulaInl" alt="$ {\bf t} \cdot {\bf e}_1 = 
+  p_{up} = 12 \ L_{total} $" src="form_16.png" width="125" height="14"/> at the upstream end, <img class="formulaInl" alt="$ x_1=0$" src="form_17.png" width="36" height="11"/>.</li>
+<li>Parallel, axially traction-free outflow at the downstream end, <a class="el" href="classElasticCollapsibleChannelMesh.html#aa8a158f7f3d3e40dc29bdaa756546771" title="Constructor: Build mesh and copy Eulerian coords to Lagrangian ones so that the initial configuration...">i.e</a>. <img class="formulaInl" alt="$ {\bf u} \cdot {\bf e}_2 = {\bf 0} $" src="form_18.png" width="53" height="11"/> and <br  />
+ <img class="formulaInl" alt="$ {\bf t} \cdot {\bf e}_1 = p_{down} = 0  $" src="form_19.png" width="98" height="11"/> at <img class="formulaInl" alt="$
+  x_1=L_{total}. $" src="form_20.png" width="64" height="13"/></li>
+<li>No slip on all channel walls, <a class="el" href="classElasticCollapsibleChannelMesh.html#aa8a158f7f3d3e40dc29bdaa756546771" title="Constructor: Build mesh and copy Eulerian coords to Lagrangian ones so that the initial configuration...">i.e</a>. <img class="formulaInl" alt="$ {\bf u} = {\bf 0} $" src="form_21.png" width="31" height="9"/> on the rigid walls and  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
   {\bf u} = \frac{\partial {\bf R}_w}{\partial t}
   \mbox{\ \ \ \ on the moving wall,}
   \ \ \ \ \ \ \ \ \ \ (4)
-  \]" src="form_22.png" width="235" height="28"/></picture>
+  \]" src="form_22.png" width="235" height="28"/>
 </p>
- These boundary conditions are identical to those in the problem with prescribed wall motion, apart from the fact that in the present problem the wall motion, described by <picture><source srcset="form_23_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf R}_w(\xi, t), $" src="form_23.png" width="49" height="14"/></picture> has to be determined as part of the solution.</li>
+ These boundary conditions are identical to those in the problem with prescribed wall motion, apart from the fact that in the present problem the wall motion, described by <img class="formulaInl" alt="$ {\bf R}_w(\xi, t), $" src="form_23.png" width="49" height="14"/> has to be determined as part of the solution.</li>
 </ul>
-<p class="endtd">We model the elastic membrane as a thin-walled elastic Kirchhoff-Love beam of wall thickness <picture><source srcset="form_24_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ h^* $" src="form_24.png" width="11" height="10"/></picture> , subject to an axial (2nd Piola-Kirchhoff) pre-stress <picture><source srcset="form_25_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \sigma^*_0. $" src="form_25.png" width="16" height="14"/></picture> The beam' effective (1D) elastic modulus is given by <picture><source srcset="form_26_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ E_{eff} = E/(1-\nu^2), $" src="form_26.png" width="105" height="15"/></picture> where <picture><source srcset="form_27_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ E $" src="form_27.png" width="10" height="10"/></picture> and <picture><source srcset="form_28_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \nu $" src="form_28.png" width="6" height="6"/></picture> are its 3D Young's modulus and Poisson's ratio, respectively. The beam's deformation is governed by the principle of virtual displacements, discussed in detail <a href="../../../beam/tensioned_string/html/index.html">elsewhere.</a> As in the Navier-Stokes equations, we scale all lengths in the beam problem on the channel's width, <picture><source srcset="form_29_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ H^*. $" src="form_29.png" width="20" height="10"/></picture> The non-dimensional position vector <picture><source srcset="form_30_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf r}_w(\xi) $" src="form_30.png" width="30" height="14"/></picture> to the undeformed wall is then given by  </p><p class="formulaDsp">
-<picture><source srcset="form_31_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p class="endtd">We model the elastic membrane as a thin-walled elastic Kirchhoff-Love beam of wall thickness <img class="formulaInl" alt="$ h^* $" src="form_24.png" width="11" height="10"/> , subject to an axial (2nd Piola-Kirchhoff) pre-stress <img class="formulaInl" alt="$ \sigma^*_0. $" src="form_25.png" width="16" height="14"/> The beam' effective (1D) elastic modulus is given by <img class="formulaInl" alt="$ E_{eff} = E/(1-\nu^2), $" src="form_26.png" width="105" height="15"/> where <img class="formulaInl" alt="$ E $" src="form_27.png" width="10" height="10"/> and <img class="formulaInl" alt="$ \nu $" src="form_28.png" width="6" height="6"/> are its 3D Young's modulus and Poisson's ratio, respectively. The beam's deformation is governed by the principle of virtual displacements, discussed in detail <a href="../../../beam/tensioned_string/html/index.html">elsewhere.</a> As in the Navier-Stokes equations, we scale all lengths in the beam problem on the channel's width, <img class="formulaInl" alt="$ H^*. $" src="form_29.png" width="20" height="10"/> The non-dimensional position vector <img class="formulaInl" alt="$ {\bf r}_w(\xi) $" src="form_30.png" width="30" height="14"/> to the undeformed wall is then given by  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 {\bf r}_w(\xi) = 
 \left(
 \begin{array}{c}
@@ -196,25 +190,25 @@ L_{up} + \xi  \\
 \end{array}
 \right) \ \ \ \ \ \ \mbox{where $\xi \in [0,L_{collapsible}].$}
  \ \ \ \ \ \ \ \ \ \ (5)
-\]" src="form_31.png" width="338" height="31"/></picture>
+\]" src="form_31.png" width="338" height="31"/>
 </p>
-<p> Our non-dimensionalisation of the principle of virtual displacements requires all stresses and tractions to be non-dimensionalised on the beam's (effective 1D) elastic modulus, <picture><source srcset="form_32_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ E_{eff} $" src="form_32.png" width="25" height="14"/></picture> , therefore we define the non-dimensional external pressure as <picture><source srcset="form_33_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p_{ext} = p_{ext}^{*}/E_{eff}. $" src="form_33.png" width="95" height="14"/></picture> The non-dimensional load vector <picture><source srcset="form_34_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf f} = {\bf f}^{*}/E_{eff} $" src="form_34.png" width="66" height="14"/></picture> that acts on the wall is then given by  </p><p class="formulaDsp">
-<picture><source srcset="form_35_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> Our non-dimensionalisation of the principle of virtual displacements requires all stresses and tractions to be non-dimensionalised on the beam's (effective 1D) elastic modulus, <img class="formulaInl" alt="$ E_{eff} $" src="form_32.png" width="25" height="14"/> , therefore we define the non-dimensional external pressure as <img class="formulaInl" alt="$ p_{ext} = p_{ext}^{*}/E_{eff}. $" src="form_33.png" width="95" height="14"/> The non-dimensional load vector <img class="formulaInl" alt="$ {\bf f} = {\bf f}^{*}/E_{eff} $" src="form_34.png" width="66" height="14"/> that acts on the wall is then given by  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 f_i = - p_{ext} N_i  + Q \left( p N_i -
 \left(
 \frac{\partial u_i}{\partial x_j} +
 \frac{\partial u_j}{\partial x_i} 
 \right) N_j \right) 
 \ \ \ \ \ \ \mbox{for $i=1,2,$}
-\]" src="form_35.png" width="338" height="31"/></picture>
+\]" src="form_35.png" width="338" height="31"/>
 </p>
 <p> where  </p><p class="formulaDsp">
-<picture><source srcset="form_36_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 Q = \frac{\mu U^*}{E_{eff} H^*_{tot}}
-\]" src="form_36.png" width="79" height="31"/></picture>
+\]" src="form_36.png" width="79" height="31"/>
 </p>
-<p> is the ratio of the fluid pressure scale, <picture><source srcset="form_37_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mu U/H^* $" src="form_37.png" width="40" height="14"/></picture> , used to non-dimensionalise the Navier-Stokes equations, to the beam's effective elastic modulus, <picture><source srcset="form_32_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ E_{eff} $" src="form_32.png" width="25" height="14"/></picture>. The parameter <picture><source srcset="form_38_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Q
-$" src="form_38.png" width="10" height="13"/></picture> therefore indicates the strength of the fluid-structure interaction. In particular, if <picture><source srcset="form_39_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Q=0 $" src="form_39.png" width="33" height="13"/></picture> the wall deformation is not affected by the fluid flow.   </p>
+<p> is the ratio of the fluid pressure scale, <img class="formulaInl" alt="$ \mu U/H^* $" src="form_37.png" width="40" height="14"/> , used to non-dimensionalise the Navier-Stokes equations, to the beam's effective elastic modulus, <img class="formulaInl" alt="$ E_{eff} $" src="form_32.png" width="25" height="14"/>. The parameter <img class="formulaInl" alt="$ Q
+$" src="form_38.png" width="10" height="13"/> therefore indicates the strength of the fluid-structure interaction. In particular, if <img class="formulaInl" alt="$ Q=0 $" src="form_39.png" width="33" height="13"/> the wall deformation is not affected by the fluid flow.   </p>
 </td></tr>
 </table>
 <br  />
@@ -222,7 +216,7 @@ $" src="form_38.png" width="10" height="13"/></picture> therefore indicates the 
  <hr  />
 <h1><a class="anchor" id="reslt"></a>
 Results</h1>
-<p>The figure below shows a snapshot of the flow field, taken from <a href="../figures/fsi_taylor_hood_flow8.avi">the animation of the computational results</a>. The first four figures show (from top left to bottom right) "carpet plots" of the axial and transverse velocities, the axial component of the perturbation velocity <picture><source srcset="form_40_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf u} - {\bf u}_{Poiseuille} $" src="form_40.png" width="76" height="9"/></picture> , and the pressure distribution. The 2D contour plot at the bottom of the figure shows a contour plot of the pressure and a few instantaneous streamlines.</p>
+<p>The figure below shows a snapshot of the flow field, taken from <a href="../figures/fsi_taylor_hood_flow8.avi">the animation of the computational results</a>. The first four figures show (from top left to bottom right) "carpet plots" of the axial and transverse velocities, the axial component of the perturbation velocity <img class="formulaInl" alt="$ {\bf u} - {\bf u}_{Poiseuille} $" src="form_40.png" width="76" height="9"/> , and the pressure distribution. The 2D contour plot at the bottom of the figure shows a contour plot of the pressure and a few instantaneous streamlines.</p>
 <p>The overall structure of the flow field is very similar to that observed in the corresponding <br  />
  <a href="../../../navier_stokes/collapsible_channel/html/index.html">problem with prescribed wall motion:</a> The wall oscillation generates a large-amplitude sloshing flow that is superimposed on the pressure-driven Poiseuille flow. At the instant shown in this figure, the wall is moving inwards. Consequently, the sloshing flow generated in the upstream (downstream) rigid sections is directed against (in the same) <br  />
  direction as that of the pressure-driven mean flow.</p>
@@ -280,32 +274,32 @@ Representing the wall mesh as a GeomObject</h3>
 <div class="line"> <span class="comment">// from the wall mesh</span></div>
 <div class="line"> <a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">MeshAsGeomObject</a>* <a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">wall_geom_object_pt</a>=</div>
 <div class="line">  <span class="keyword">new</span> <a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">MeshAsGeomObject</a>(Wall_mesh_pt); </div>
-</div><!-- fragment --><p> creates a <code>GeomObject</code> representation of the wall mesh that allows us to obtain the position of a material point on the wall (parametrised by its Lagrangian coordinate <picture><source srcset="form_41_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\xi $" src="form_41.png" width="8" height="13"/></picture>) from the <code>GeomObject::position(...)</code> function. For instance, the following code computes the position vector <picture><source srcset="form_42_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf r} $" src="form_42.png" width="8" height="6"/></picture> to the material point on the deformed wall, located at <picture><source srcset="form_43_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \xi=0.5. $" src="form_43.png" width="43" height="13"/></picture> </p><div class="fragment"><div class="line"><a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">Vector&lt;double&gt;</a> <a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">xi</a>(1);</div>
+</div><!-- fragment --><p> creates a <code>GeomObject</code> representation of the wall mesh that allows us to obtain the position of a material point on the wall (parametrised by its Lagrangian coordinate <img class="formulaInl" alt="$\xi $" src="form_41.png" width="8" height="13"/>) from the <code>GeomObject::position(...)</code> function. For instance, the following code computes the position vector <img class="formulaInl" alt="$ {\bf r} $" src="form_42.png" width="8" height="6"/> to the material point on the deformed wall, located at <img class="formulaInl" alt="$ \xi=0.5. $" src="form_43.png" width="43" height="13"/> </p><div class="fragment"><div class="line"><a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">Vector&lt;double&gt;</a> <a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">xi</a>(1);</div>
 <div class="line"><a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">xi</a>[0]=0.5;</div>
 <div class="line"><a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">Vector&lt;double&gt;</a> <a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">r</a>(2);</div>
 <div class="line"><a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">wall_geom_object</a>-&gt;position(<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">xi</a>,<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">r</a>);</div>
 </div><!-- fragment --><p>Here is a graphical illustration of the various representations of the domain boundary:</p>
 <p><b>1. A "normal" GeomObject</b></p>
-<p>In single-physics problems with prescribed boundary motion the domain boundary may be represented by a <code>GeomObject</code>. The <code>GeomObject</code> provides a parametrisation of its shape in terms of an intrinsic coordinate, <picture><source srcset="form_44_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \zeta $" src="form_44.png" width="6" height="13"/></picture> , as shown in this sketch:</p>
+<p>In single-physics problems with prescribed boundary motion the domain boundary may be represented by a <code>GeomObject</code>. The <code>GeomObject</code> provides a parametrisation of its shape in terms of an intrinsic coordinate, <img class="formulaInl" alt="$ \zeta $" src="form_44.png" width="6" height="13"/> , as shown in this sketch:</p>
 <div class="image">
 <img src="wall_mesh_geometry_sketch1.gif" alt=""/>
 <div class="caption">
 A geometric object parametrised by an intrinsic coordinate. </div></div>
  <p>The function <code>GeomObject::position(zeta,r)</code> computes the position vector <code>r</code> to a point on the <code>GeomObject</code>, as identified by its intrinsic coordinate <code>zeta</code>.</p>
 <p><b>2. A beam/shell structure</b></p>
-<p>In beam/shell problems, the shape of the deformed structure is parametrised by its Lagrangian coordinate , <picture><source srcset="form_45_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\xi. $" src="form_45.png" width="10" height="13"/></picture></p>
+<p>In beam/shell problems, the shape of the deformed structure is parametrised by its Lagrangian coordinate , <img class="formulaInl" alt="$\xi. $" src="form_45.png" width="10" height="13"/></p>
 <div class="image">
 <img src="wall_mesh_geometry_sketch2.gif" alt=""/>
 <div class="caption">
 A (continuous) beam structure, parametrised by a Lagrangian coordinate. </div></div>
- <p>Beam/shell structures may therefore act as <code>GeomObjects</code> if we interpret their Lagrangian coordinate, <picture><source srcset="form_46_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \xi $" src="form_46.png" width="8" height="13"/></picture> , as the <code>GeomObject's</code> intrinsic coordinate, <picture><source srcset="form_44_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \zeta $" src="form_44.png" width="6" height="13"/></picture>.</p>
+ <p>Beam/shell structures may therefore act as <code>GeomObjects</code> if we interpret their Lagrangian coordinate, <img class="formulaInl" alt="$ \xi $" src="form_46.png" width="8" height="13"/> , as the <code>GeomObject's</code> intrinsic coordinate, <img class="formulaInl" alt="$ \zeta $" src="form_44.png" width="6" height="13"/>.</p>
 <p><b>3. A discretised beam/shell structure</b></p>
 <p>In an <code>oomph-lib</code> computation, the beam/shell structure will, of course, have been discretised by a number of <code>SolidFiniteElements</code>. The <code>MeshAsGeomObject</code> discussed above, is therefore a "compound" <code>GeomObject</code> that contains a number of sub-objects &ndash; the mesh's constituent <code>SolidFiniteElements</code>. Within the "compound" <code>GeomObject</code> each sub-object acts as a <code>GeomObject</code> in its own right &ndash; the shape of a <code>SolidFiniteElement</code> is parametrised by its local coordinate <code>s</code>.</p>
 <div class="image">
 <img src="wall_mesh_geometry_sketch3.gif" alt=""/>
 <div class="caption">
 A discretised beam structure. </div></div>
- <p>The <code>MeshAsGeomObject::position(...)</code> function therefore determines the position vector to the point labelled by the Lagrangian coordinate <picture><source srcset="form_46_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \xi $" src="form_46.png" width="8" height="13"/></picture> (<a class="el" href="classElasticCollapsibleChannelMesh.html#aa8a158f7f3d3e40dc29bdaa756546771" title="Constructor: Build mesh and copy Eulerian coords to Lagrangian ones so that the initial configuration...">i.e</a>. the <code>GeomObject's</code> intrinsic coordinate, <picture><source srcset="form_44_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \zeta $" src="form_44.png" width="6" height="13"/></picture>) in a two-stage process: First it determines which of its constituent <code>SolidFiniteElements</code> "contains" the relevant material point (This is possible because the function <code>SolidFiniteElement::interpolated_xi(...)</code> provides access to the Lagrangian coordinate inside the element) and then uses the <code>SolidFiniteElement::interpolated_x(...)</code> function to determine the Eulerian coordinates of that point.</p>
+ <p>The <code>MeshAsGeomObject::position(...)</code> function therefore determines the position vector to the point labelled by the Lagrangian coordinate <img class="formulaInl" alt="$ \xi $" src="form_46.png" width="8" height="13"/> (<a class="el" href="classElasticCollapsibleChannelMesh.html#aa8a158f7f3d3e40dc29bdaa756546771" title="Constructor: Build mesh and copy Eulerian coords to Lagrangian ones so that the initial configuration...">i.e</a>. the <code>GeomObject's</code> intrinsic coordinate, <img class="formulaInl" alt="$ \zeta $" src="form_44.png" width="6" height="13"/>) in a two-stage process: First it determines which of its constituent <code>SolidFiniteElements</code> "contains" the relevant material point (This is possible because the function <code>SolidFiniteElement::interpolated_xi(...)</code> provides access to the Lagrangian coordinate inside the element) and then uses the <code>SolidFiniteElement::interpolated_x(...)</code> function to determine the Eulerian coordinates of that point.</p>
 <hr  />
 <h2><a class="anchor" id="fsi_wall_elements"></a>
 Applying the fluid-traction to the wall elements: FSIWallElements</h2>
@@ -323,7 +317,7 @@ Applying the fluid-traction to the wall elements: FSIWallElements</h2>
 <div class="line">     <a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">Mesh</a>* <span class="keyword">const</span>&amp; <a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">solid_mesh_pt</a>);</div>
 <div class="ttc" id="aclassElasticCollapsibleChannelMesh_html_aa8a158f7f3d3e40dc29bdaa756546771"><div class="ttname"><a href="classElasticCollapsibleChannelMesh.html#aa8a158f7f3d3e40dc29bdaa756546771">ElasticCollapsibleChannelMesh::ElasticCollapsibleChannelMesh</a></div><div class="ttdeci">ElasticCollapsibleChannelMesh(const unsigned &amp;nup, const unsigned &amp;ncollapsible, const unsigned &amp;ndown, const unsigned &amp;ny, const double &amp;lup, const double &amp;lcollapsible, const double &amp;ldown, const double &amp;ly, GeomObject *wall_pt, TimeStepper *time_stepper_pt=&amp;Mesh::Default_TimeStepper)</div><div class="ttdoc">Constructor: Build mesh and copy Eulerian coords to Lagrangian ones so that the initial configuration...</div><div class="ttdef"><b>Definition</b> <a href="fsi__pseudo__solid__collapsible__channel_8cc_source.html#l01017">fsi_pseudo_solid_collapsible_channel.cc:59</a></div></div>
 </div><!-- fragment --><p>which is defined in the namespace <code>FSI_functions</code>. The template parameters <code>FLUID_ELEMENT</code> and <code>DIM_FLUID</code> specify the type of the fluid element and its spatial (Eulerian) dimension, respectively. The arguments are the pointer to the problem, the number of the boundary in the fluid mesh adjacent to the elastic wall, and the pointers to the fluid and wall meshes. The function assumes that boundary coordinates have been set for the fluid nodes on the mesh boundary specified by the argument <code>boundary_in_fluid_mesh</code>, and that these boundary coordinates are consistent with the parametrisation of the wall mesh by its Lagrangian coordinate. (See <a href="../../../poisson/fish_poisson2/html/index.html#boundary_coords">the discussion of the mesh generation procedures for domains with curvilinear boundaries</a> for a more detailed discussion of boundary coordinates for nodes.)</p>
-<p>The <code>FSIWallElement</code> provides the protected member function <code>FSIWallElement::fluid_load_vector(...)</code> which may be used in a specific <code>FSIWallElement</code> (such as the <code>FSIHermiteBeamElement</code>) to compute the fluid traction (on the solid mechanics stress scale), and to add it to any external load that may already be acting on the element. The conversion from the fluid to the solid non-dimensionalisation of the traction is performed automatically by multiplying the traction vector (on the fluid stress scale) obtained from the "adjacent" <code>FSIFluidElement</code> by the stress ratio <picture><source srcset="form_47_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Q $" src="form_47.png" width="10" height="13"/></picture> which has a default value of <picture><source srcset="form_48_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Q=1. $" src="form_48.png" width="35" height="13"/></picture> This default assignment may be overwritten by setting a pointer to a variable that specifies <picture><source srcset="form_47_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Q $" src="form_47.png" width="10" height="13"/></picture> by using the function <code><a class="el" href="classElasticCollapsibleChannelMesh.html#aa8a158f7f3d3e40dc29bdaa756546771" title="Constructor: Build mesh and copy Eulerian coords to Lagrangian ones so that the initial configuration...">FSIWallElement::q_pt()</a></code>.</p>
+<p>The <code>FSIWallElement</code> provides the protected member function <code>FSIWallElement::fluid_load_vector(...)</code> which may be used in a specific <code>FSIWallElement</code> (such as the <code>FSIHermiteBeamElement</code>) to compute the fluid traction (on the solid mechanics stress scale), and to add it to any external load that may already be acting on the element. The conversion from the fluid to the solid non-dimensionalisation of the traction is performed automatically by multiplying the traction vector (on the fluid stress scale) obtained from the "adjacent" <code>FSIFluidElement</code> by the stress ratio <img class="formulaInl" alt="$ Q $" src="form_47.png" width="10" height="13"/> which has a default value of <img class="formulaInl" alt="$ Q=1. $" src="form_48.png" width="35" height="13"/> This default assignment may be overwritten by setting a pointer to a variable that specifies <img class="formulaInl" alt="$ Q $" src="form_47.png" width="10" height="13"/> by using the function <code><a class="el" href="classElasticCollapsibleChannelMesh.html#aa8a158f7f3d3e40dc29bdaa756546771" title="Constructor: Build mesh and copy Eulerian coords to Lagrangian ones so that the initial configuration...">FSIWallElement::q_pt()</a></code>.</p>
 <p>The class also overloads the <code>SolidFiniteElement::fill_in_contribution_to_jacobian(...)</code> function so that the derivatives of the residuals with respect to those unknowns that affect the fluid traction on the wall are included when computing the element's Jacobian matrix.</p>
 <p>In the driver code, discussed below, we will discretise the wall with <code>FSHermiteBeamElements</code>, a class that is composed (by multiple inheritance) from the single-physics <code>HermiteBeamElement</code> and the <code>FSIWallElement</code> base class:</p>
 <div class="fragment"><div class="line"><span class="keyword">class </span><a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">FSIHermiteBeamElement</a> : <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">HermiteBeamElement</a>, </div>
@@ -403,7 +397,7 @@ Namespace for the global physical variables</h1>
 <div class="line">    load[<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">i</a>] = -P_ext*<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">N</a>[<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">i</a>];</div>
 <div class="line">   }</div>
 <div class="line"> } <span class="comment">//end of load</span></div>
-</div><!-- fragment --><p> Finally, we define the interaction parameter <picture><source srcset="form_47_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Q $" src="form_47.png" width="10" height="13"/></picture> and give it a default value.</p>
+</div><!-- fragment --><p> Finally, we define the interaction parameter <img class="formulaInl" alt="$ Q $" src="form_47.png" width="10" height="13"/> and give it a default value.</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Fluid structure interaction parameter: Ratio of stresses used for</span></div>
@@ -416,7 +410,7 @@ Namespace for the global physical variables</h1>
  <hr  />
 <h1><a class="anchor" id="undeformed"></a>
 The undeformed wall</h1>
-<p>We represent the undeformed geometry of the elastic wall, defined by equation (5), as a <code>GeomObject</code>, specifying the <picture><source srcset="form_49_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x $" src="form_49.png" width="8" height="6"/></picture>-coordinate of its left end and its (constant) <picture><source srcset="form_50_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ y $" src="form_50.png" width="8" height="9"/></picture>-coordinate as arguments to the constructor:</p>
+<p>We represent the undeformed geometry of the elastic wall, defined by equation (5), as a <code>GeomObject</code>, specifying the <img class="formulaInl" alt="$ x $" src="form_49.png" width="8" height="6"/>-coordinate of its left end and its (constant) <img class="formulaInl" alt="$ y $" src="form_50.png" width="8" height="9"/>-coordinate as arguments to the constructor:</p>
  <div class="fragment"><div class="line"><span class="comment">//====start_of_underformed_wall============================================</span></div>
 <div class="line"><span class="comment">/// Undeformed wall is a steady, straight 1D line in 2D space </span><span class="comment"></span></div>
 <div class="line"><span class="comment">///  \f[ x = X_0 + \zeta \f]</span></div>
@@ -434,7 +428,7 @@ The undeformed wall</h1>
 <div class="line">   <a class="code hl_variable" href="classUndeformedWall.html#a7ab875c46fef905df33eb47e0336581b">X0</a>=<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">x0</a>;</div>
 <div class="line">   <a class="code hl_variable" href="classUndeformedWall.html#a4525dbe0b5d2108ee51f16bee9af88ef">H</a>=<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">h</a>;</div>
 <div class="line">  }</div>
-<div class="ttc" id="aclassUndeformedWall_html"><div class="ttname"><a href="classUndeformedWall.html">UndeformedWall</a></div><div class="ttdoc">/////////////////////////////////////////////////////////////////////// /////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="fsi__collapsible__channel_8cc_source.html#l00096">fsi_collapsible_channel.cc:97</a></div></div>
+<div class="ttc" id="aclassUndeformedWall_html"><div class="ttname"><a href="classUndeformedWall.html">UndeformedWall</a></div><div class="ttdoc">Undeformed wall is a steady, straight 1D line in 2D space.</div><div class="ttdef"><b>Definition</b> <a href="fsi__collapsible__channel_8cc_source.html#l00096">fsi_collapsible_channel.cc:97</a></div></div>
 <div class="ttc" id="aclassUndeformedWall_html_a4525dbe0b5d2108ee51f16bee9af88ef"><div class="ttname"><a href="classUndeformedWall.html#a4525dbe0b5d2108ee51f16bee9af88ef">UndeformedWall::H</a></div><div class="ttdeci">double H</div><div class="ttdoc">Height of the undeformed wall above y=0.</div><div class="ttdef"><b>Definition</b> <a href="fsi__collapsible__channel_8cc_source.html#l00161">fsi_collapsible_channel.cc:161</a></div></div>
 <div class="ttc" id="aclassUndeformedWall_html_a7ab875c46fef905df33eb47e0336581b"><div class="ttname"><a href="classUndeformedWall.html#a7ab875c46fef905df33eb47e0336581b">UndeformedWall::X0</a></div><div class="ttdeci">double X0</div><div class="ttdoc">x position of the undeformed beam's left end.</div><div class="ttdef"><b>Definition</b> <a href="fsi__collapsible__channel_8cc_source.html#l00158">fsi_collapsible_channel.cc:158</a></div></div>
 </div><!-- fragment --><p> The two versions of the <code>position(...)</code> function are straightforward:</p>
@@ -575,7 +569,7 @@ derivatives" (the derivatives of the fluid residuals with respect to the solid m
 <div class="line"> <span class="comment">// Open a trace file </span></div>
 <div class="line"> <a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">ofstream</a> <a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">trace_file</a>;</div>
 <div class="line"> <span class="keywordtype">char</span> <a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">filename</a>[100];   </div>
-<div class="line"> <a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">sprintf</a>(<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">filename</a>,<span class="stringliteral">&quot;%s/trace.dat&quot;</span>,<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">doc_info</a>.directory().c_str());</div>
+<div class="line"> <a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">snprintf</a>(<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">filename</a>), <span class="stringliteral">&quot;%s/trace.dat&quot;</span>,<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">doc_info</a>.directory().c_str());</div>
 <div class="line"> <a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">trace_file</a>.open(<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">filename</a>);</div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output the initial solution</span></div>
@@ -1058,14 +1052,14 @@ Post processing</h1>
 <div class="line"> <a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">npts</a>=5; </div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output fluid solution </span></div>
-<div class="line"> <a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">sprintf</a>(<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">filename</a>,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">doc_info</a>.directory().c_str(),</div>
+<div class="line"> <a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">snprintf</a>(<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">filename</a>), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">doc_info</a>.directory().c_str(),</div>
 <div class="line">         <a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">doc_info</a>.number());</div>
 <div class="line"> <a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">some_file</a>.open(<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">filename</a>);</div>
 <div class="line"> bulk_mesh_pt()-&gt;output(<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">some_file</a>,<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">npts</a>);</div>
 <div class="line"> <a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">some_file</a>.close();</div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Document the wall shape</span></div>
-<div class="line"> <a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">sprintf</a>(<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">filename</a>,<span class="stringliteral">&quot;%s/beam%i.dat&quot;</span>,<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">doc_info</a>.directory().c_str(),</div>
+<div class="line"> <a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">snprintf</a>(<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">filename</a>), <span class="stringliteral">&quot;%s/beam%i.dat&quot;</span>,<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">doc_info</a>.directory().c_str(),</div>
 <div class="line">         <a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">doc_info</a>.number());</div>
 <div class="line"> <a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">some_file</a>.open(<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">filename</a>);</div>
 <div class="line"> wall_mesh_pt()-&gt;output(<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">some_file</a>,<a class="code hl_class" href="classElasticCollapsibleChannelMesh.html">npts</a>);</div>
@@ -1101,13 +1095,13 @@ Comments</h2>
 <li><p class="startli"><b>Variables that affect the fluid traction are not just velocities and pressures!</b> <br  />
 <br  />
  In the section <a class="el" href="index.html#fsi_wall_elements">Applying the fluid-traction to the wall elements: FSIWallElements</a> we briefly discussed how the function <code>FSI_functions::setup_fluid_load_info_for_solid_elements(...)</code> determines the variables that affect the fluid traction onto the <code>FSIWallElements</code>. For a Newtonian fluid, the components of the fluid traction vector (on the viscous scale) onto the wall is given by  </p><p class="formulaDsp">
-<picture><source srcset="form_51_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
   t_i = -p N_i + \left(\frac{\partial u_i}{\partial x_j} + 
                        \frac{\partial u_j}{\partial x_i} \right) N_j
   \mbox{ \ \ \ for $i=1,2[,3]$} 
-  \]" src="form_51.png" width="260" height="31"/></picture>
+  \]" src="form_51.png" width="260" height="31"/>
 </p>
-<p> where <picture><source srcset="form_52_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ N_i \ (\mbox{for } i=1,2[,3]) $" src="form_52.png" width="104" height="14"/></picture> are the components of the normal to the fluid domain, pointing into the fluid. This equation shows that the fluid traction is primarily affected by the velocity and pressure degrees of freedom in the fluid elements that are "adjacent" to a given <code>FSIWallElement</code>. <br  />
+<p> where <img class="formulaInl" alt="$ N_i \ (\mbox{for } i=1,2[,3]) $" src="form_52.png" width="104" height="14"/> are the components of the normal to the fluid domain, pointing into the fluid. This equation shows that the fluid traction is primarily affected by the velocity and pressure degrees of freedom in the fluid elements that are "adjacent" to a given <code>FSIWallElement</code>. <br  />
 <br  />
  However, since the traction involves derivatives of the velocity, the traction is also affected by changes to the <br  />
  geometry of the fluid element. Therefore, the list of variables that affect the fluid traction must (and indeed does) include all those <code>Data</code> objects that are involved in the adjacent fluid elements' node update operations. <br  />
@@ -1143,7 +1137,7 @@ Animation of the Data values that affect the node update of the fluid nodes. </d
 <br  />
  The animations shown above illustrate very graphically that the implementation of the fluid-structure interaction via <code>MacroElement/Domain</code> - based node updates does not lead to a particularly efficient algorithm. The current approach suffers from two main problems:<ol type="1">
 <li>The fluid-node update is not sparse: Since we cannot distinguish between the various sub-objects in the "compound" <code>GeomObject</code>, we can do no better than assuming the worst-case scenario, namely that <em>all</em> positional degrees of freedom of <em>all</em> <code>SolidNodes</code> in the wall mesh potentially affect the nodal position in the fluid elements adjacent to the wall. Consequently, each <code>FSIHermiteBeamElement</code> in the wall mesh depends on all solid mechanics degrees of freedom in the wall mesh. As a result, the wall discretisation completely loses its sparsity!</li>
-<li>When updating the position of the fluid nodes via the fluid element's <code>Domain/MacroElement</code> representation, we obtain the wall shape from the <code>GeomObject::position(...)</code> function of the "compound" <code>GeomObject</code>, using the wall's Lagrangian coordinate <picture><source srcset="form_46_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \xi $" src="form_46.png" width="8" height="13"/></picture> as the "compound" <code>GeomObject's</code> intrinsic coordinate. As discussed in the section <a class="el" href="index.html#wall_geom_object">Representing the wall mesh as a GeomObject</a>, this is a very costly operation, since we first have to determine which of the constituent <code>FSIHermiteBeamElements</code> "contains" the required Lagrangian coordinate, and then evaluate the Eulerian position of the relevant point in the element.</li>
+<li>When updating the position of the fluid nodes via the fluid element's <code>Domain/MacroElement</code> representation, we obtain the wall shape from the <code>GeomObject::position(...)</code> function of the "compound" <code>GeomObject</code>, using the wall's Lagrangian coordinate <img class="formulaInl" alt="$ \xi $" src="form_46.png" width="8" height="13"/> as the "compound" <code>GeomObject's</code> intrinsic coordinate. As discussed in the section <a class="el" href="index.html#wall_geom_object">Representing the wall mesh as a GeomObject</a>, this is a very costly operation, since we first have to determine which of the constituent <code>FSIHermiteBeamElements</code> "contains" the required Lagrangian coordinate, and then evaluate the Eulerian position of the relevant point in the element.</li>
 </ol>
 In <a href="../../../interaction/fsi_collapsible_channel_algebraic/html/index.html">the next example</a> we will demonstrate how the use of the algebraic node update procedure, described in <a href="../../../navier_stokes/algebraic_collapsible_channel/html/index.html">an earlier example</a>, allows us to avoid both problems, resulting in a much more efficient code.</li>
 </ul>
@@ -1152,10 +1146,10 @@ In <a href="../../../interaction/fsi_collapsible_channel_algebraic/html/index.ht
 <h2><a class="anchor" id="ex"></a>
 Exercises</h2>
 <ol type="1">
-<li>Use the function <code>FSIHermiteBeamElement::get_normal(...)</code> to plot the unit normal vector to the wall and thus confirm that the value for <code><a class="el" href="classElasticCollapsibleChannelMesh.html#aa8a158f7f3d3e40dc29bdaa756546771" title="Constructor: Build mesh and copy Eulerian coords to Lagrangian ones so that the initial configuration...">FSIHermiteBeamElement::normal_points_into_fluid()</a></code> is correct. [<b>Hint:</b> Another way to sanity-check that the correct value for this flag has been set is to change the velocity boundary conditions at the upstream end to a pure Dirichlet condition by prescribing the axial velocity profile. With Dirichlet conditions everywhere, one fluid pressure degree of freedom, <picture><source srcset="form_53_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p_{fix} $" src="form_53.png" width="23" height="10"/></picture> , say, can (indeed must!) then be assigned arbitrarily. Now set the inflow velocity to zero and increase the value of <picture><source srcset="form_53_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p_{fix} $" src="form_53.png" width="23" height="10"/></picture> from zero, say. If the wall collapses inwards as <picture><source srcset="form_53_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p_{fix} $" src="form_53.png" width="23" height="10"/></picture> is increased the direction of normal was chosen wrongly!]</li>
+<li>Use the function <code>FSIHermiteBeamElement::get_normal(...)</code> to plot the unit normal vector to the wall and thus confirm that the value for <code><a class="el" href="classElasticCollapsibleChannelMesh.html#aa8a158f7f3d3e40dc29bdaa756546771" title="Constructor: Build mesh and copy Eulerian coords to Lagrangian ones so that the initial configuration...">FSIHermiteBeamElement::normal_points_into_fluid()</a></code> is correct. [<b>Hint:</b> Another way to sanity-check that the correct value for this flag has been set is to change the velocity boundary conditions at the upstream end to a pure Dirichlet condition by prescribing the axial velocity profile. With Dirichlet conditions everywhere, one fluid pressure degree of freedom, <img class="formulaInl" alt="$ p_{fix} $" src="form_53.png" width="23" height="10"/> , say, can (indeed must!) then be assigned arbitrarily. Now set the inflow velocity to zero and increase the value of <img class="formulaInl" alt="$ p_{fix} $" src="form_53.png" width="23" height="10"/> from zero, say. If the wall collapses inwards as <img class="formulaInl" alt="$ p_{fix} $" src="form_53.png" width="23" height="10"/> is increased the direction of normal was chosen wrongly!]</li>
 <li>In section <a class="el" href="index.html#fsi_wall_elements">Applying the fluid-traction to the wall elements: FSIWallElements</a> we mentioned that the function <code>FSI_functions::setup_fluid_load_info_for_solid_elements(...)</code> assumes that the fluid nodes on the FSI boundary store the boundary coordinate. Investigate what happens if this step is omitted, <a class="el" href="classElasticCollapsibleChannelMesh.html#aa8a158f7f3d3e40dc29bdaa756546771" title="Constructor: Build mesh and copy Eulerian coords to Lagrangian ones so that the initial configuration...">e.g</a>. by commenting out the assignment of boundary coordinates with <code>Node::set_coordinates_on_boundary(...)</code> in <a href="../../../../src/meshes/collapsible_channel_mesh.template.cc">collapsible_channel_mesh.template.cc</a>.</li>
 <li>In section <a class="el" href="index.html#undeformed">The undeformed wall</a> we mentioned that the function <code>GeomObject::d2position(...)</code> must be implemented for all <code>GeomObjects</code> that specify the undeformed shape of a beam element. Check what happens if this function is not implemented, <a class="el" href="classElasticCollapsibleChannelMesh.html#aa8a158f7f3d3e40dc29bdaa756546771" title="Constructor: Build mesh and copy Eulerian coords to Lagrangian ones so that the initial configuration...">e.g</a>. by <br  />
- commenting out its definition in the <code><a class="el" href="classUndeformedWall.html" title="/////////////////////////////////////////////////////////////////////// /////////////////////////////...">UndeformedWall</a></code> class.</li>
+ commenting out its definition in the <code><a class="el" href="classUndeformedWall.html" title="Undeformed wall is a steady, straight 1D line in 2D space.">UndeformedWall</a></code> class.</li>
 <li>In section <a class="el" href="index.html#problemcontr">The problem constructor</a> we commented that <code>oomph-lib</code> does not require the discretisations of the fluid and solid meshes to match along the common boundary. Confirm this, <a class="el" href="classElasticCollapsibleChannelMesh.html#aa8a158f7f3d3e40dc29bdaa756546771" title="Constructor: Build mesh and copy Eulerian coords to Lagrangian ones so that the initial configuration...">e.g</a>., by increasing the number of elements in the wall mesh. . <br  />
 </li>
 </ol>
@@ -1171,7 +1165,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -1201,7 +1195,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:26:14
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:34:42
         </div>
       </div>
     </footer>

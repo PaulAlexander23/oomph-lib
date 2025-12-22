@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -484,9 +478,9 @@
 <div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span> </div>
 <div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span> </div>
 <div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span><span class="comment"></span> </div>
-<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span><span class="comment"></span> </div>
 <div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span> </div>
 <div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span> </div>
@@ -1168,14 +1162,14 @@
 <div class="line"><a id="l01022" name="l01022"></a><span class="lineno"> 1022</span> <span class="keywordtype">unsigned</span> n_plot = 5; </div>
 <div class="line"><a id="l01023" name="l01023"></a><span class="lineno"> 1023</span> </div>
 <div class="line"><a id="l01024" name="l01024"></a><span class="lineno"> 1024</span> <span class="comment">// Output solid solution</span></div>
-<div class="line"><a id="l01025" name="l01025"></a><span class="lineno"> 1025</span> sprintf(filename,<span class="stringliteral">&quot;%s/solid_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l01025" name="l01025"></a><span class="lineno"> 1025</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/solid_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l01026" name="l01026"></a><span class="lineno"> 1026</span>         doc_info.number());</div>
 <div class="line"><a id="l01027" name="l01027"></a><span class="lineno"> 1027</span> some_file.open(filename);</div>
 <div class="line"><a id="l01028" name="l01028"></a><span class="lineno"> 1028</span> solid_mesh_pt()-&gt;output(some_file,n_plot);</div>
 <div class="line"><a id="l01029" name="l01029"></a><span class="lineno"> 1029</span> some_file.close();</div>
 <div class="line"><a id="l01030" name="l01030"></a><span class="lineno"> 1030</span> </div>
 <div class="line"><a id="l01031" name="l01031"></a><span class="lineno"> 1031</span> <span class="comment">// Output fluid solution</span></div>
-<div class="line"><a id="l01032" name="l01032"></a><span class="lineno"> 1032</span> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l01032" name="l01032"></a><span class="lineno"> 1032</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l01033" name="l01033"></a><span class="lineno"> 1033</span>         doc_info.number());</div>
 <div class="line"><a id="l01034" name="l01034"></a><span class="lineno"> 1034</span> some_file.open(filename);</div>
 <div class="line"><a id="l01035" name="l01035"></a><span class="lineno"> 1035</span> fluid_mesh_pt()-&gt;output(some_file,n_plot);</div>
@@ -1183,7 +1177,7 @@
 <div class="line"><a id="l01037" name="l01037"></a><span class="lineno"> 1037</span> </div>
 <div class="line"><a id="l01038" name="l01038"></a><span class="lineno"> 1038</span> </div>
 <div class="line"><a id="l01039" name="l01039"></a><span class="lineno"> 1039</span><span class="comment">//Output the traction</span></div>
-<div class="line"><a id="l01040" name="l01040"></a><span class="lineno"> 1040</span> sprintf(filename,<span class="stringliteral">&quot;%s/traction%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l01040" name="l01040"></a><span class="lineno"> 1040</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/traction%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l01041" name="l01041"></a><span class="lineno"> 1041</span>         doc_info.number());</div>
 <div class="line"><a id="l01042" name="l01042"></a><span class="lineno"> 1042</span> some_file.open(filename);</div>
 <div class="line"><a id="l01043" name="l01043"></a><span class="lineno"> 1043</span><span class="comment">// Loop over the traction meshes</span></div>
@@ -1327,7 +1321,7 @@
 <div class="line"><a id="l01178" name="l01178"></a><span class="lineno"> 1178</span> </div>
 <div class="line"><a id="l01179" name="l01179"></a><span class="lineno"> 1179</span> </div>
 <div class="line"><a id="l01180" name="l01180"></a><span class="lineno"> 1180</span> </div>
-<div class="ttc" id="aclassTurekProblem_html"><div class="ttname"><a href="classTurekProblem.html">TurekProblem</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="turek__flag_8cc_source.html#l00370">turek_flag.cc:371</a></div></div>
+<div class="ttc" id="aclassTurekProblem_html"><div class="ttname"><a href="classTurekProblem.html">TurekProblem</a></div><div class="ttdoc">Problem class.</div><div class="ttdef"><b>Definition</b> <a href="turek__flag_8cc_source.html#l00370">turek_flag.cc:371</a></div></div>
 <div class="ttc" id="aclassTurekProblem_html_a0b8588d0f133ffb9a281c5747786f95f"><div class="ttname"><a href="classTurekProblem.html#a0b8588d0f133ffb9a281c5747786f95f">TurekProblem::Traction_mesh_pt</a></div><div class="ttdeci">Vector&lt; SolidMesh * &gt; Traction_mesh_pt</div><div class="ttdoc">Vector of pointers to mesh of FSI traction elements.</div><div class="ttdef"><b>Definition</b> <a href="turek__flag_8cc_source.html#l00422">turek_flag.cc:422</a></div></div>
 <div class="ttc" id="aclassTurekProblem_html_a18a0daace5dc50db4b93879e4a600e6a"><div class="ttname"><a href="classTurekProblem.html#a18a0daace5dc50db4b93879e4a600e6a">TurekProblem::Fluid_mesh_pt</a></div><div class="ttdeci">RefineableAlgebraicCylinderWithFlagMesh&lt; FLUID_ELEMENT &gt; * Fluid_mesh_pt</div><div class="ttdoc">Pointer to fluid mesh.</div><div class="ttdef"><b>Definition</b> <a href="turek__flag_8cc_source.html#l00419">turek_flag.cc:419</a></div></div>
 <div class="ttc" id="aclassTurekProblem_html_a1a449088ae3cc96ade1c58979294afed"><div class="ttname"><a href="classTurekProblem.html#a1a449088ae3cc96ade1c58979294afed">TurekProblem::Solid_mesh_pt</a></div><div class="ttdeci">ElasticRefineableRectangularQuadMesh&lt; SOLID_ELEMENT &gt; * Solid_mesh_pt</div><div class="ttdoc">Pointer to solid mesh.</div><div class="ttdef"><b>Definition</b> <a href="turek__flag_8cc_source.html#l00416">turek_flag.cc:416</a></div></div>
@@ -1400,7 +1394,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:28:02
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:35:07
         </div>
       </div>
     </footer>

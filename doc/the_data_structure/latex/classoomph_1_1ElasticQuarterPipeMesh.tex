@@ -2,12 +2,12 @@
 \hypertarget{classoomph_1_1ElasticQuarterPipeMesh}{}\label{classoomph_1_1ElasticQuarterPipeMesh}\index{oomph::ElasticQuarterPipeMesh$<$ ELEMENT $>$@{oomph::ElasticQuarterPipeMesh$<$ ELEMENT $>$}}
 
 
-/////////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////////  
+Non refineable elastic quarter pipe mesh class setup lagrangian coordinates for solid mechanics problems.  
 
 
 
 
-{\ttfamily \#include $<$quarter\+\_\+pipe\+\_\+mesh.\+template.\+h$>$}
+{\ttfamily \#include $<$quarter\+\_\+pipe\+\_\+mesh.\+h$>$}
 
 Inheritance diagram for oomph\+::Elastic\+Quarter\+Pipe\+Mesh\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
 \begin{center}
@@ -116,6 +116,10 @@ Inheritance diagram for oomph\+::Elastic\+Quarter\+Pipe\+Mesh\texorpdfstring{$<$
 \begin{DoxyCompactList}\small\item\em Replace existing boundary node lookup schemes with new schemes created using the boundary data stored in the nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1Mesh_ad1b124a959628aba00162b89617b3a62}{boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Indicate whether the i-\/th boundary has an intrinsic coordinate. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_ab137d0c0debf5ba0d6ea6990103e620c}{set\+\_\+boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be existing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_a3b9d63e0057ed721190b109f48f7c92e}{set\+\_\+boundary\+\_\+coordinate\+\_\+does\+\_\+not\+\_\+exist}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be non-\/existing. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_af01dfefb66c15579b540be62999d93ee}{nelement}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return number of elements in the mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
@@ -540,19 +544,15 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_aca12acfe655a4d5c4a4eab4a7b970812}{Element\+\_\+pt}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a412a5051be9e81f0ba61bf85e5abc4a6}{Boundary\+\_\+coordinate\+\_\+exists}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of boolean data that indicates whether the boundary coordinates have been set for the boundary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{class}} ELEMENT$>$\newline
 class oomph\+::\+Elastic\+Quarter\+Pipe\+Mesh$<$ ELEMENT $>$}
-/////////////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////// 
+Non refineable elastic quarter pipe mesh class setup lagrangian coordinates for solid mechanics problems. 
 
-Non refineable elastic quarter pipe mesh class setup lagrangian coordinates for solid mechanics problems 
-
-Definition at line \mbox{\hyperlink{quarter__pipe__mesh_8template_8h_source_l00171}{171}} of file \mbox{\hyperlink{quarter__pipe__mesh_8template_8h_source}{quarter\+\_\+pipe\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{quarter__pipe__mesh_8h_source_l00165}{165}} of file \mbox{\hyperlink{quarter__pipe__mesh_8h_source}{quarter\+\_\+pipe\+\_\+mesh.\+h}}.
 
 
 
@@ -570,7 +570,7 @@ Constructor\+: Pass number of elements in various directions, the inner and oute
 
 Make the current configuration the undeformed one by setting the nodal Lagrangian coordinates to their current Eulerian ones
 
-Definition at line \mbox{\hyperlink{quarter__pipe__mesh_8template_8h_source_l00179}{179}} of file \mbox{\hyperlink{quarter__pipe__mesh_8template_8h_source}{quarter\+\_\+pipe\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{quarter__pipe__mesh_8h_source_l00173}{173}} of file \mbox{\hyperlink{quarter__pipe__mesh_8h_source}{quarter\+\_\+pipe\+\_\+mesh.\+h}}.
 
 
 
@@ -580,4 +580,4 @@ References \mbox{\hyperlink{mesh_8cc_source_l09564}{oomph\+::\+Solid\+Mesh\+::se
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{quarter__pipe__mesh_8template_8h}{quarter\+\_\+pipe\+\_\+mesh.\+template.\+h}}\end{DoxyCompactItemize}
+\mbox{\hyperlink{quarter__pipe__mesh_8h}{quarter\+\_\+pipe\+\_\+mesh.\+h}}\end{DoxyCompactItemize}

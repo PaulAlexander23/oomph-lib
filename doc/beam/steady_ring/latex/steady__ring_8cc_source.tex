@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -88,9 +88,9 @@
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00084}00084\ }
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00085}00085\ }
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00086}00086\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00087}00087\ \textcolor{comment}{///\ //////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00088}00088\ \textcolor{comment}{///\ //////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00089}00089\ \textcolor{comment}{///\ //////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00087}00087\ \textcolor{comment}{/////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00088}00088\ \textcolor{comment}{/////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00089}00089\ \textcolor{comment}{/////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00090}00090\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00091}00091\ }
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00092}00092\ }
@@ -305,7 +305,7 @@
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00301}00301\ \ \textcolor{keywordtype}{unsigned}\ npts=5;}
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00302}00302\ \ }
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00303}00303\ \ \textcolor{comment}{//\ Output\ solution\ }}
-\DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00304}00304\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/ring\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00304}00304\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/ring\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00305}00305\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00306}00306\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00307}00307\ \ mesh\_pt()-\/>output(some\_file,npts);}
@@ -343,7 +343,7 @@
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00339}00339\ }
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00340}00340\ \ \textcolor{comment}{//Open\ a\ trace\ file}}
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00341}00341\ \ \textcolor{keywordtype}{char}\ filename[100];}
-\DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00342}00342\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00342}00342\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00343}00343\ \ ofstream\ trace\_file(filename);}
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00344}00344\ \ trace\_file\ <<\ \textcolor{stringliteral}{"{}VARIABLES=\(\backslash\)"{}p\_e\_x\_t\(\backslash\)"{},\(\backslash\)"{}R\_1\(\backslash\)"{},\(\backslash\)"{}R\_2\(\backslash\)"{}"{}}\ <<\ std::endl;}
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00345}00345\ \ trace\_file\ <<\ \textcolor{stringliteral}{"{}ZONE"{}}\ <<\ std::endl;}
@@ -449,9 +449,9 @@
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00445}00445\ }
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00446}00446\ }
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00447}00447\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00448}00448\ \textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00449}00449\ \textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00450}00450\ \textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00448}00448\ \textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00449}00449\ \textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00450}00450\ \textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00451}00451\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00452}00452\ }
 \DoxyCodeLine{\Hypertarget{steady__ring_8cc_source_l00453}00453\ \textcolor{comment}{//=======start\_of\_main=================================================}\textcolor{comment}{}}

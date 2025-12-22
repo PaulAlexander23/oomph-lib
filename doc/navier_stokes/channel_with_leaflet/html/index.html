@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -118,38 +112,38 @@
  <hr  />
 <h1><a class="anchor" id="the_problem"></a>
 The Problem</h1>
-<p>The figure below shows a sketch of the problem: A 2D channel of height <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ H^*_{tot}$" src="form_0.png" width="23" height="14"/></picture> and length <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ L^*_{left} + L^*_{right} $" src="form_1.png" width="74" height="16"/></picture> is partially occluded by a (zero-thickness) leaflet of height <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ H^*_{leaflet} $" src="form_2.png" width="41" height="16"/></picture>. The leaflet is parametrised by a Lagrangian coordinate <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \xi^* $" src="form_3.png" width="11" height="13"/></picture> so that the position vector to a material point on the leaflet is given by <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf R}^*_w(\xi^*,t^*) $" src="form_4.png" width="56" height="14"/></picture>, and we assume that the leaflet performs time-periodic oscillations with period <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ T^*. $" src="form_5.png" width="19" height="10"/></picture> Steady Poiseuille flow with average velocity <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ U^* $" src="form_6.png" width="15" height="10"/></picture> is imposed at the left end of the channel while we assume that the outflow is parallel and axially traction-free.</p>
+<p>The figure below shows a sketch of the problem: A 2D channel of height <img class="formulaInl" alt="$ H^*_{tot}$" src="form_0.png" width="23" height="14"/> and length <img class="formulaInl" alt="$ L^*_{left} + L^*_{right} $" src="form_1.png" width="74" height="16"/> is partially occluded by a (zero-thickness) leaflet of height <img class="formulaInl" alt="$ H^*_{leaflet} $" src="form_2.png" width="41" height="16"/>. The leaflet is parametrised by a Lagrangian coordinate <img class="formulaInl" alt="$ \xi^* $" src="form_3.png" width="11" height="13"/> so that the position vector to a material point on the leaflet is given by <img class="formulaInl" alt="$ {\bf R}^*_w(\xi^*,t^*) $" src="form_4.png" width="56" height="14"/>, and we assume that the leaflet performs time-periodic oscillations with period <img class="formulaInl" alt="$ T^*. $" src="form_5.png" width="19" height="10"/> Steady Poiseuille flow with average velocity <img class="formulaInl" alt="$ U^* $" src="form_6.png" width="15" height="10"/> is imposed at the left end of the channel while we assume that the outflow is parallel and axially traction-free.</p>
 <div class="image">
 <img src="channel_with_leaflet_dim.gif" alt=""/>
 <div class="caption">
 Sketch of the problem in dimensional </div></div>
- <p>We non-dimensionalise all length and coordinates on the channel width, <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ H^*_{tot}
-$" src="form_7.png" width="23" height="14"/></picture> , time on the natural timescale of the flow, <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ H^*_{tot}/U^* $" src="form_8.png" width="44" height="14"/></picture>, the velocities on the mean velocity, <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ U^* $" src="form_6.png" width="15" height="10"/></picture>, and the pressure on the viscous scale. The problem is then governed by the non-dimensional Navier-Stokes equations  </p><p class="formulaDsp">
-<picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ <p>We non-dimensionalise all length and coordinates on the channel width, <img class="formulaInl" alt="$ H^*_{tot}
+$" src="form_7.png" width="23" height="14"/> , time on the natural timescale of the flow, <img class="formulaInl" alt="$ H^*_{tot}/U^* $" src="form_8.png" width="44" height="14"/>, the velocities on the mean velocity, <img class="formulaInl" alt="$ U^* $" src="form_6.png" width="15" height="10"/>, and the pressure on the viscous scale. The problem is then governed by the non-dimensional Navier-Stokes equations  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 Re \left( St \frac{\partial u_i}{\partial t} + 
 u_j \frac{\partial u_i}{\partial x_j} \right) =
 - \frac{\partial p}{\partial x_i}  +
 \frac{\partial }{\partial x_j} \left[ \left(
 \frac{\partial u_i}{\partial x_j} +  
 \frac{\partial u_j}{\partial x_i} \right) \right],
-\]" src="form_9.png" width="306" height="31"/></picture>
+\]" src="form_9.png" width="306" height="31"/>
 </p>
-<p> where <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re = \rho U^* H_0^* / \mu $" src="form_10.png" width="85" height="14"/></picture> and <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ St = 1 $" src="form_11.png" width="35" height="10"/></picture>, and </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> where <img class="formulaInl" alt="$ Re = \rho U^* H_0^* / \mu $" src="form_10.png" width="85" height="14"/> and <img class="formulaInl" alt="$ St = 1 $" src="form_11.png" width="35" height="10"/>, and </p><center>  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \frac{\partial u_i}{\partial x_i} = 0,
-\]" src="form_12.png" width="48" height="29"/></picture>
+\]" src="form_12.png" width="48" height="29"/>
 </p>
  </center><p> subject to parabolic inflow </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 {\bf u} = 6 x_2 (1-x_2) {\bf e}_1
-\]" src="form_13.png" width="99" height="14"/></picture>
+\]" src="form_13.png" width="99" height="14"/>
 </p>
- </center><p> at the inflow cross-section; parallel, axially-traction-free outflow at the outlet; and no-slip on the stationary channel walls, <picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf u} = {\bf 0} $" src="form_14.png" width="31" height="9"/></picture>. The no-slip condition on the leaflet is </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ </center><p> at the inflow cross-section; parallel, axially-traction-free outflow at the outlet; and no-slip on the stationary channel walls, <img class="formulaInl" alt="$ {\bf u} = {\bf 0} $" src="form_14.png" width="31" height="9"/>. The no-slip condition on the leaflet is </p><center>  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 {\bf u} = \frac{\partial {\bf R}_w(\xi,t)}{\partial t}
-\]" src="form_15.png" width="79" height="29"/></picture>
+\]" src="form_15.png" width="79" height="29"/>
 </p>
- </center><p> and the leaflet performs oscillations with non-dimensional period <picture><source srcset="form_16_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ T = T^* U^* / H^*_{tot} $" src="form_16.png" width="86" height="14"/></picture>. Here is a sketch of the non-dimensional version of the problem:</p>
+ </center><p> and the leaflet performs oscillations with non-dimensional period <img class="formulaInl" alt="$ T = T^* U^* / H^*_{tot} $" src="form_16.png" width="86" height="14"/>. Here is a sketch of the non-dimensional version of the problem:</p>
 <div class="image">
 <img src="channel_with_leaflet.gif" alt=""/>
 <div class="caption">
@@ -160,7 +154,7 @@ Sketch of the problem in dimensionless variables. </div></div>
 <h1><a class="anchor" id="results"></a>
 Results</h1>
 <p>The figure below shows a snapshot of the flow field <br  />
- (pressure contours and instantaneous streamlines) for a Reynolds number of <picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re=20 $" src="form_17.png" width="44" height="10"/></picture> and an oscillation period of <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ T=20 $" src="form_18.png" width="39" height="9"/></picture>, as well as the corresponding fluid mesh. Note how <code>oomph-lib's</code> automatic mesh adaptation has refined the mesh near the tip of the leaflet where the pressure has a singularity.</p>
+ (pressure contours and instantaneous streamlines) for a Reynolds number of <img class="formulaInl" alt="$ Re=20 $" src="form_17.png" width="44" height="10"/> and an oscillation period of <img class="formulaInl" alt="$ T=20 $" src="form_18.png" width="39" height="9"/>, as well as the corresponding fluid mesh. Note how <code>oomph-lib's</code> automatic mesh adaptation has refined the mesh near the tip of the leaflet where the pressure has a singularity.</p>
 <div class="image">
 <img src="channel_with_leaflet_flow_cropped.gif" alt=""/>
 <div class="caption">
@@ -181,13 +175,13 @@ The global parameters</h1>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#ab814e627d2eb5bc50318879d19ab16b9">Re</a>=20.0;</div>
 <div class="line"> </div>
 <div class="line">} <span class="comment">// end_of_namespace</span></div>
-<div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="channel__with__leaflet_8cc_source.html#l00128">channel_with_leaflet.cc:129</a></div></div>
+<div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">Global parameters.</div><div class="ttdef"><b>Definition</b> <a href="channel__with__leaflet_8cc_source.html#l00128">channel_with_leaflet.cc:129</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_ab814e627d2eb5bc50318879d19ab16b9"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#ab814e627d2eb5bc50318879d19ab16b9">Global_Physical_Variables::Re</a></div><div class="ttdeci">double Re</div><div class="ttdoc">Reynolds number.</div><div class="ttdef"><b>Definition</b> <a href="channel__with__leaflet_8cc_source.html#l00132">channel_with_leaflet.cc:132</a></div></div>
 </div><!-- fragment --> <hr  />
  <hr  />
 <h1><a class="anchor" id="leaflet"></a>
 Specification of the leaflet geometry</h1>
-<p>We specify the leaflet geometry and its time-dependent motion by representing it as a <code>GeomObject</code>. The <code>GeomObject</code> has one Lagrangian and two Eulerian coordinates, and its geometry is characterised by its length, the x-coordinate of its origin, <picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ X_0 $" src="form_19.png" width="16" height="13"/></picture>, and the period and amplitude of the horizontal and vertical tip deflection.</p>
+<p>We specify the leaflet geometry and its time-dependent motion by representing it as a <code>GeomObject</code>. The <code>GeomObject</code> has one Lagrangian and two Eulerian coordinates, and its geometry is characterised by its length, the x-coordinate of its origin, <img class="formulaInl" alt="$ X_0 $" src="form_19.png" width="16" height="13"/>, and the period and amplitude of the horizontal and vertical tip deflection.</p>
  <div class="fragment"><div class="line"><span class="comment">//===start_of_leaflet_class===========================================</span></div>
 <div class="line"><span class="comment">/// GeomObject representing a vertical leaflet that performs</span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// bending and stretching oscillations. </span></div>
@@ -333,7 +327,7 @@ The driver code</h1>
 <div class="line"> <span class="keywordtype">unsigned</span> nright=12;</div>
 <div class="line"> <span class="keywordtype">unsigned</span> ny1=2;</div>
 <div class="line"> <span class="keywordtype">unsigned</span> ny2=2; </div>
-<div class="ttc" id="achannel__with__leaflet_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="channel__with__leaflet_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="channel__with__leaflet_8cc_source.html#l00386">channel_with_leaflet.cc:386</a></div></div>
+<div class="ttc" id="achannel__with__leaflet_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="channel__with__leaflet_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">Driver code – pass a command line argument if you want to run the code in validation mode where it on...</div><div class="ttdef"><b>Definition</b> <a href="channel__with__leaflet_8cc_source.html#l00386">channel_with_leaflet.cc:386</a></div></div>
 </div><!-- fragment --><p> Next we build the problem and assign the time-stepping parameters (as usual, fewer timesteps are used during a validation run which is identified by a non-zero number of command line arguments):</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"> <span class="comment">//Build the problem</span></div>
@@ -362,7 +356,7 @@ The driver code</h1>
 <div class="line"> <span class="comment"></span></div>
 <div class="line"><span class="comment"> /// Initialise timestep </span></div>
 <div class="line"><span class="comment"></span> problem.initialise_dt(dt);</div>
-<div class="ttc" id="aclassChannelWithLeafletProblem_html"><div class="ttname"><a href="classChannelWithLeafletProblem.html">ChannelWithLeafletProblem</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="channel__with__leaflet_8cc_source.html#l00147">channel_with_leaflet.cc:148</a></div></div>
+<div class="ttc" id="aclassChannelWithLeafletProblem_html"><div class="ttname"><a href="classChannelWithLeafletProblem.html">ChannelWithLeafletProblem</a></div><div class="ttdoc">Problem class.</div><div class="ttdef"><b>Definition</b> <a href="channel__with__leaflet_8cc_source.html#l00147">channel_with_leaflet.cc:148</a></div></div>
 </div><!-- fragment --><p>We start the simulation with a steady solve, allowing up to five levels of adaptive refinement (fewer if we are performing a validation run):</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
@@ -652,14 +646,14 @@ Post-processing</h1>
 <div class="line"> npts=5; </div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output solution </span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> mesh_pt()-&gt;output(some_file,npts);</div>
 <div class="line"> some_file.close();</div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output boundaries</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/boundaries%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/boundaries%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> mesh_pt()-&gt;output_boundaries(some_file);</div>
@@ -678,7 +672,7 @@ Further comments: The algebraic node update procedure</h2>
 <div class="caption">
 Sketch illustrating the algebraic node update procedure. </div></div>
  <p>The implementation of the node update functions is straightforward and can be found in the source files </p><center> <a href="
-../../../../src/meshes/channel_with_leaflet_mesh.template.h">src/meshes/channel_with_leaflet_mesh.template.h </a> </center><p><br  />
+../../../../src/meshes/channel_with_leaflet_mesh.h">src/meshes/channel_with_leaflet_mesh.h </a> </center><p><br  />
 and </p><center> <a href="
 ../../../../src/meshes/channel_with_leaflet_mesh.template.cc">src/meshes/channel_with_leaflet_mesh.template.cc </a> </center><p><br  />
 which also illustrate how the mesh is constructed by inheritance from the <code>SimpleRectangularQuadMesh</code> (the main task being the creation of additional nodes in the interior to "cut open" the mesh along the position of the leaflet). The source files also contain other versions of the mesh in which the node update is performed with Domain/MacroElements, using the technique described in <a href="../../../poisson/fish_poisson2/html/index.html">another tutorial</a>.</p>
@@ -720,7 +714,7 @@ demo_drivers/navier_stokes/channel_with_leaflet/channel_with_leaflet.cc
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -750,7 +744,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:16:32
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:41:23
         </div>
       </div>
     </footer>

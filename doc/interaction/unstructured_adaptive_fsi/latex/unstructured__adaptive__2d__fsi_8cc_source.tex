@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -72,9 +72,9 @@
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00068}00068\ \textcolor{keyword}{using\ namespace\ }std;}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00069}00069\ \textcolor{keyword}{using\ namespace\ }oomph;}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00070}00070\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00071}00071\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00072}00072\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00073}00073\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00071}00071\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00072}00072\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00073}00073\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00074}00074\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00075}00075\ }
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00076}00076\ }
@@ -901,14 +901,14 @@
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00897}00897\ }
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00898}00898\ \ \textcolor{comment}{//\ Output\ solution}}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00899}00899\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00900}00900\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/solid\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00900}00900\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/solid\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00901}00901\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00902}00902\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00903}00903\ \ Solid\_mesh\_pt-\/>output(some\_file,npts);}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00904}00904\ \ some\_file.close();}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00905}00905\ }
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00906}00906\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00907}00907\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/fluid\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00907}00907\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/fluid\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00908}00908\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00909}00909\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__2d__fsi_8cc_source_l00910}00910\ \ Fluid\_mesh\_pt-\/>output(some\_file,npts);}

@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -120,7 +114,7 @@
   history values".</li>
 <li>Optionally: (Re-)implementing the empty virtual functions <code>Problem::actions_before_implicit_timestep()</code> and <code>Problem::actions_after_implicit_timestep()</code>, e.g. to update time-dependent boundary conditions before each timestep.</li>
 </ul>
-<p>Once these steps have been performed, <code>oomph-lib's</code> unsteady Newton solver, <code>Problem::unsteady_newton_solve(...)</code>, may be called to advance the solution from its state at time <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ t $" src="form_0.png" width="5" height="9"/></picture> to its new state at <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ t \ + $" src="form_1.png" width="19" height="10"/></picture> <code>dt</code>.</p>
+<p>Once these steps have been performed, <code>oomph-lib's</code> unsteady Newton solver, <code>Problem::unsteady_newton_solve(...)</code>, may be called to advance the solution from its state at time <img class="formulaInl" alt="$ t $" src="form_0.png" width="5" height="9"/> to its new state at <img class="formulaInl" alt="$ t \ + $" src="form_1.png" width="19" height="10"/> <code>dt</code>.</p>
 <hr  />
  <hr  />
 <h1><a class="anchor" id="example"></a>
@@ -129,36 +123,36 @@ The example problem</h1>
 <center> <table class="doxtable">
 <tr>
 <td><center> <b>The two-dimensional unsteady heat equation in a square domain.</b> </center> Solve  <p class="formulaDsp">
-<picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \sum_{i=1}^2\frac{\partial^2 u}{\partial x_i^2} 
 = \frac{\partial u}{\partial t} + f\left(x_1,x_2,t\right),
  \ \ \ \ \ \ \ \ \ \ (1)
-\]" src="form_2.png" width="216" height="38"/></picture>
+\]" src="form_2.png" width="216" height="38"/>
 </p>
- in the square domain <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ D = \{x_i \in [0,1]; i=1,2 \} $" src="form_3.png" width="135" height="14"/></picture>, subject to the Dirichlet boundary conditions  <p class="formulaDsp">
-<picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ in the square domain <img class="formulaInl" alt="$ D = \{x_i \in [0,1]; i=1,2 \} $" src="form_3.png" width="135" height="14"/>, subject to the Dirichlet boundary conditions  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \left. u\right|_{\partial D}=g_0
 \ \ \ \ \ \ \ \ \ \ (2)
-\]" src="form_4.png" width="110" height="14"/></picture>
+\]" src="form_4.png" width="110" height="14"/>
 </p>
  and initial conditions  <p class="formulaDsp">
-<picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 u(x_1,x_2,t=0)=h_0(x_1,x_2),
 \ \ \ \ \ \ \ \ \ \ (3)
-\]" src="form_5.png" width="214" height="14"/></picture>
+\]" src="form_5.png" width="214" height="14"/>
 </p>
- where the functions <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ g_0 $" src="form_6.png" width="13" height="9"/></picture> and <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ h_0 $" src="form_7.png" width="13" height="13"/></picture> are given.   </td></tr>
+ where the functions <img class="formulaInl" alt="$ g_0 $" src="form_6.png" width="13" height="9"/> and <img class="formulaInl" alt="$ h_0 $" src="form_7.png" width="13" height="13"/> are given.   </td></tr>
 </table>
 <br  />
- </center><p>Here we consider the unforced case, <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ f=0 $" src="form_8.png" width="30" height="13"/></picture>, and choose boundary and initial conditions that are consistent with the exact solution  </p><p class="formulaDsp">
-<picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ </center><p>Here we consider the unforced case, <img class="formulaInl" alt="$ f=0 $" src="form_8.png" width="30" height="13"/>, and choose boundary and initial conditions that are consistent with the exact solution  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 u_0(x_1,x_2,t) = e^{-Kt}\sin\left( \sqrt{K} \left( x_1 \cos \Phi + x_2 \sin
 \Phi\right)\right),
  \ \ \ \ \ \ \ \ \ \ (4)
-\]" src="form_9.png" width="339" height="24"/></picture>
+\]" src="form_9.png" width="339" height="24"/>
 </p>
-<p> where <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ K $" src="form_10.png" width="11" height="10"/></picture> and <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \Phi $" src="form_11.png" width="9" height="10"/></picture> are constants, controlling the decay rate of the solution and its spatial orientation, respectively.</p>
-<p>The figure below shows a plot of computed and exact solutions at time <picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ t = 0.01 $" src="form_12.png" width="44" height="9"/></picture> (for an animation <br  />
+<p> where <img class="formulaInl" alt="$ K $" src="form_10.png" width="11" height="10"/> and <img class="formulaInl" alt="$ \Phi $" src="form_11.png" width="9" height="10"/> are constants, controlling the decay rate of the solution and its spatial orientation, respectively.</p>
+<p>The figure below shows a plot of computed and exact solutions at time <img class="formulaInl" alt="$ t = 0.01 $" src="form_12.png" width="44" height="9"/> (for an animation <br  />
  <a href="../figures/unsteady_heat_soln.avi">click here</a>).</p>
 <div class="image">
 <img src="unsteady_heat_soln.gif" alt=""/>
@@ -207,7 +201,7 @@ Global parameters and functions</h1>
 <div class="line"> }</div>
 <div class="line"> </div>
 <div class="line">} <span class="comment">// end of ExactSolnForUnsteadyHeat</span></div>
-<div class="ttc" id="anamespaceExactSolnForUnsteadyHeat_html"><div class="ttname"><a href="namespaceExactSolnForUnsteadyHeat.html">ExactSolnForUnsteadyHeat</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="two__d__unsteady__heat_8cc_source.html#l00051">two_d_unsteady_heat.cc:52</a></div></div>
+<div class="ttc" id="anamespaceExactSolnForUnsteadyHeat_html"><div class="ttname"><a href="namespaceExactSolnForUnsteadyHeat.html">ExactSolnForUnsteadyHeat</a></div><div class="ttdoc">Namespace for unforced exact solution for UnsteadyHeat equation.</div><div class="ttdef"><b>Definition</b> <a href="two__d__unsteady__heat_8cc_source.html#l00051">two_d_unsteady_heat.cc:52</a></div></div>
 <div class="ttc" id="anamespaceExactSolnForUnsteadyHeat_html_a1d5b22857bd2a7825397daf1cf9c89eb"><div class="ttname"><a href="namespaceExactSolnForUnsteadyHeat.html#a1d5b22857bd2a7825397daf1cf9c89eb">ExactSolnForUnsteadyHeat::get_exact_u</a></div><div class="ttdeci">void get_exact_u(const double &amp;time, const Vector&lt; double &gt; &amp;x, Vector&lt; double &gt; &amp;u)</div><div class="ttdoc">Exact solution as a Vector.</div><div class="ttdef"><b>Definition</b> <a href="two__d__unsteady__heat_8cc_source.html#l00061">two_d_unsteady_heat.cc:61</a></div></div>
 <div class="ttc" id="anamespaceExactSolnForUnsteadyHeat_html_a20d04bcf14546becd4bcdf45446be756"><div class="ttname"><a href="namespaceExactSolnForUnsteadyHeat.html#a20d04bcf14546becd4bcdf45446be756">ExactSolnForUnsteadyHeat::K</a></div><div class="ttdeci">double K</div><div class="ttdoc">Decay factor.</div><div class="ttdef"><b>Definition</b> <a href="two__d__unsteady__heat_8cc_source.html#l00055">two_d_unsteady_heat.cc:55</a></div></div>
 <div class="ttc" id="anamespaceExactSolnForUnsteadyHeat_html_a630f9e8d892cfcc41cdaef25bfc87ca1"><div class="ttname"><a href="namespaceExactSolnForUnsteadyHeat.html#a630f9e8d892cfcc41cdaef25bfc87ca1">ExactSolnForUnsteadyHeat::Phi</a></div><div class="ttdeci">double Phi</div><div class="ttdoc">Angle of bump.</div><div class="ttdef"><b>Definition</b> <a href="two__d__unsteady__heat_8cc_source.html#l00058">two_d_unsteady_heat.cc:58</a></div></div>
@@ -239,7 +233,7 @@ The driver code</h1>
 <div class="line"> <span class="comment">// Open a trace file</span></div>
 <div class="line"> ofstream trace_file;</div>
 <div class="line"> <span class="keywordtype">char</span> filename[100];   </div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/trace.dat&quot;</span>,doc_info.directory().c_str());</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/trace.dat&quot;</span>,doc_info.directory().c_str());</div>
 <div class="line"> trace_file.open(filename);</div>
 <div class="line"> trace_file &lt;&lt; <span class="stringliteral">&quot;VARIABLES=\&quot;time\&quot;,\&quot;u&lt;SUB&gt;FE&lt;/SUB&gt;\&quot;,&quot;</span></div>
 <div class="line">            &lt;&lt; <span class="stringliteral">&quot;\&quot;u&lt;SUB&gt;exact&lt;/SUB&gt;\&quot;,\&quot;norm of error\&quot;,\&quot;norm of solution\&quot;&quot;</span></div>
@@ -248,8 +242,8 @@ The driver code</h1>
 <div class="line"> <span class="comment">// Choose simulation interval and timestep</span></div>
 <div class="line"> <span class="keywordtype">double</span> t_max=0.5;</div>
 <div class="line"> <span class="keywordtype">double</span> dt=0.01;</div>
-<div class="ttc" id="aclassUnsteadyHeatProblem_html"><div class="ttname"><a href="classUnsteadyHeatProblem.html">UnsteadyHeatProblem</a></div><div class="ttdoc">///////////////////////////////////////////////////////////////////// ///////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="two__d__unsteady__heat_8cc_source.html#l00091">two_d_unsteady_heat.cc:92</a></div></div>
-<div class="ttc" id="atwo__d__unsteady__heat_8cc_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="two__d__unsteady__heat_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdoc">///////////////////////////////////////////////////////////////////// ///////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="two__d__unsteady__heat_8cc_source.html#l00414">two_d_unsteady_heat.cc:414</a></div></div>
+<div class="ttc" id="aclassUnsteadyHeatProblem_html"><div class="ttname"><a href="classUnsteadyHeatProblem.html">UnsteadyHeatProblem</a></div><div class="ttdoc">UnsteadyHeat problem.</div><div class="ttdef"><b>Definition</b> <a href="two__d__unsteady__heat_8cc_source.html#l00091">two_d_unsteady_heat.cc:92</a></div></div>
+<div class="ttc" id="atwo__d__unsteady__heat_8cc_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="two__d__unsteady__heat_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdoc">Driver code for unsteady heat equation.</div><div class="ttdef"><b>Definition</b> <a href="two__d__unsteady__heat_8cc_source.html#l00414">two_d_unsteady_heat.cc:414</a></div></div>
 </div><!-- fragment --><p> Before using any of <code>oomph-lib's</code> timestepping functions, the timestep <code>dt</code> <b>must</b> be passed to the <code>Problem's</code> timestepping routines by calling the function <code>Problem::initialise_dt(...)</code> which sets the weights for all timesteppers in the problem.</p>
 <p>Next we assign the initial conditions by calling <code>set_initial_condition()</code>, to be discussed in more detail below, and document the initial conditions.</p>
 <div class="fragment"><div class="line"> <span class="comment">// Initialise timestep -- also sets the weights for all timesteppers</span></div>
@@ -288,7 +282,7 @@ The driver code</h1>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line">}; <span class="comment">// end of main</span></div>
-</div><!-- fragment --><p> In this loop, each call to the unsteady Newton solver, <code>Problem::unsteady_newton_solve(...)</code>, advances the solution from its current state, at time <picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ t = $" src="form_13.png" width="19" height="9"/></picture> <code>Problem::time_pt()-&gt;time()</code>, to <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ t \ + $" src="form_1.png" width="19" height="10"/></picture> <code>dt</code>. The unsteady Newton solver automatically "shifts" the history values "backwards" and advances the value of the continuous time.</p>
+</div><!-- fragment --><p> In this loop, each call to the unsteady Newton solver, <code>Problem::unsteady_newton_solve(...)</code>, advances the solution from its current state, at time <img class="formulaInl" alt="$ t = $" src="form_13.png" width="19" height="9"/> <code>Problem::time_pt()-&gt;time()</code>, to <img class="formulaInl" alt="$ t \ + $" src="form_1.png" width="19" height="10"/> <code>dt</code>. The unsteady Newton solver automatically "shifts" the history values "backwards" and advances the value of the continuous time.</p>
 <hr  />
  <hr  />
 <h1><a class="anchor" id="problem"></a>
@@ -622,7 +616,7 @@ Post-processing</h1>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output solution </span></div>
 <div class="line"> <span class="comment">//-----------------</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> mesh_pt()-&gt;output(some_file,npts);</div>
@@ -642,7 +636,7 @@ Post-processing</h1>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output exact solution </span></div>
 <div class="line"> <span class="comment">//----------------------</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> mesh_pt()-&gt;output_fct(some_file,npts,time_pt()-&gt;time(),</div>
@@ -652,7 +646,7 @@ Post-processing</h1>
 <div class="line"> <span class="comment">// Doc error</span></div>
 <div class="line"> <span class="comment">//----------</span></div>
 <div class="line"> <span class="keywordtype">double</span> error,norm;</div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/error%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/error%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> mesh_pt()-&gt;compute_error(some_file,</div>
@@ -685,8 +679,8 @@ Post-processing</h1>
 Comments and Exercises</h1>
 <p>The current example only illustrates the most basic timestepping procedures. In subsequent examples we will demonstrate <code>oomph-lib's</code> <br  />
  <a href="../../two_d_unsteady_heat2/html/index.html">dump and restart functions,</a> <a href="../../two_d_unsteady_heat_t_adapt/html/index.html">the use of adaptive timestepping,</a> <a href="../../two_d_unsteady_heat_adapt/html/index.html">the use of spatial adaptivity,</a> <a href="../../two_d_unsteady_heat_ALE/html/index.html">computations in moving domains,</a> and <a href="../../two_d_unsteady_heat_2adapt/html/index.html">the combination of temporal and spatial adaptivity</a>.</p>
-<p>We stress that setting the initial conditions in a "real" problem often presents a delicate step, especially if higher-order timesteppers from the BDF family are used. This is because in the absence of a known exact solution, the initial condition (3) only provides enough information to determine a single "history value" at each node &ndash; the value at the initial time. <code>oomph-lib's</code> timestepping procedures provide several functions that allow the simulation to be initiated with an "impulsive start", corresponding to a past history in which the boundary condition (3) describes the system's state for all <picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ t \le 0$" src="form_14.png" width="29" height="11"/></picture> rather than only <em>at\iline</em>  455 <picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ t =
-0$" src="form_15.png" width="29" height="9"/></picture> . For instance, the top-level function <code>Problem::assign_initial_values_impulsive()</code> sets the "history values" of all <code>Data</code> objects and the <code>Nodes'</code> "positional history values" to values that are appropriate for an impulsive start from the currently assigned nodal values and positions. The following exercises aim to explore this functionality.</p>
+<p>We stress that setting the initial conditions in a "real" problem often presents a delicate step, especially if higher-order timesteppers from the BDF family are used. This is because in the absence of a known exact solution, the initial condition (3) only provides enough information to determine a single "history value" at each node &ndash; the value at the initial time. <code>oomph-lib's</code> timestepping procedures provide several functions that allow the simulation to be initiated with an "impulsive start", corresponding to a past history in which the boundary condition (3) describes the system's state for all <img class="formulaInl" alt="$ t \le 0$" src="form_14.png" width="29" height="11"/> rather than only at <img class="formulaInl" alt="$ t =
+0$" src="form_15.png" width="29" height="9"/> . For instance, the top-level function <code>Problem::assign_initial_values_impulsive()</code> sets the "history values" of all <code>Data</code> objects and the <code>Nodes'</code> "positional history values" to values that are appropriate for an impulsive start from the currently assigned nodal values and positions. The following exercises aim to explore this functionality.</p>
 <h2><a class="anchor" id="exercises"></a>
 Exercises</h2>
 <ol type="1">
@@ -717,7 +711,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -747,7 +741,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:08:16
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:45:15
         </div>
       </div>
     </footer>

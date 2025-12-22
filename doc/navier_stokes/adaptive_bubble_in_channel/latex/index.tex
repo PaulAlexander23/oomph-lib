@@ -1085,7 +1085,7 @@ This member function documents the computed solution after every Newton solve.
 \DoxyCodeLine{\ }
 \DoxyCodeLine{\ ofstream\ some\_file;}
 \DoxyCodeLine{\ \textcolor{keywordtype}{char}\ filename[100];}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceProblem__Parameter_a1dd3c6bcf97360c8fe0d288ca7610351}{Problem\_Parameter::Doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceProblem__Parameter_a1dd3c6bcf97360c8fe0d288ca7610351}{Problem\_Parameter::Doc\_info}}.number());}
 \DoxyCodeLine{}
@@ -1122,7 +1122,7 @@ This member function documents the computed solution after every Newton solve.
 \DoxyCodeLine{}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ boundaries}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/boundaries\%i.dat"{}},}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/boundaries\%i.dat"{}},}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceProblem__Parameter_a1dd3c6bcf97360c8fe0d288ca7610351}{Problem\_Parameter::Doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceProblem__Parameter_a1dd3c6bcf97360c8fe0d288ca7610351}{Problem\_Parameter::Doc\_info}}.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
@@ -1298,4 +1298,4 @@ Note that the redistribution of segments is not possible/sensible for {\ttfamily
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

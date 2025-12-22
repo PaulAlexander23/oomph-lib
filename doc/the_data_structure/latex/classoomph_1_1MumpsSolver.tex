@@ -74,6 +74,10 @@ Inheritance diagram for oomph\+::Mumps\+Solver\+:\begin{figure}[H]
 \item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1MumpsSolver_a25cd4ab6089d1532100ff61d5863c6fd}{use\+\_\+metis\+\_\+ordering}} ()
 \item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1MumpsSolver_a7f1be2e67797276aaed32de190df0ff1}{use\+\_\+parmetis\+\_\+ordering}} ()
+\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1MumpsSolver_ad80d03ad4dac6676b11247d3f5e78000}{use\+\_\+ptscotch\+\_\+ordering}} ()
+\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1MumpsSolver_a34fecff46bfab62a67f7200a745efeea}{use\+\_\+scotch\+\_\+ordering}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classoomph_1_1LinearSolver}{oomph\+::\+Linear\+Solver}}}
@@ -165,11 +169,20 @@ enum \mbox{\hyperlink{classoomph_1_1MumpsSolver_aeffb9b19a97ee7ba86336b694a57d83
 , \mbox{\hyperlink{classoomph_1_1MumpsSolver_aeffb9b19a97ee7ba86336b694a57d836ac37b58b1aad1705a3986aad20494e1c0}{Symmetric}} = 2
  \}
 \begin{DoxyCompactList}\small\item\em values of the SYM variable used by the MUMPS solver which dictates the symmetry properties of the Jacobian matrix; magic numbers as defined by MUMPS documentation \end{DoxyCompactList}\item 
-enum \mbox{\hyperlink{classoomph_1_1MumpsSolver_a5e380357c515b4f280cf6bdf7273ed4b}{Mumps\+Jacobian\+Ordering\+Flags}} \{ \mbox{\hyperlink{classoomph_1_1MumpsSolver_a5e380357c515b4f280cf6bdf7273ed4ba8484bf86594bef6f3509ca968e65eb1d}{Scotch\+\_\+ordering}} = 3
+enum \mbox{\hyperlink{classoomph_1_1MumpsSolver_a5e380357c515b4f280cf6bdf7273ed4b}{Mumps\+Jacobian\+Ordering\+Flags}} \{ \newline
+\mbox{\hyperlink{classoomph_1_1MumpsSolver_a5e380357c515b4f280cf6bdf7273ed4ba1fe27821e464333f73325dee0b3d9a51}{Ptscotch\+\_\+ordering}} = 1
+, \mbox{\hyperlink{classoomph_1_1MumpsSolver_a5e380357c515b4f280cf6bdf7273ed4ba1068dd1549caba5ff828d561ee1e1294}{Parmetis\+\_\+ordering}} = 2
+, \mbox{\hyperlink{classoomph_1_1MumpsSolver_a5e380357c515b4f280cf6bdf7273ed4ba8484bf86594bef6f3509ca968e65eb1d}{Scotch\+\_\+ordering}} = 3
 , \mbox{\hyperlink{classoomph_1_1MumpsSolver_a5e380357c515b4f280cf6bdf7273ed4ba13393a6ca320fac921fdc389ef247f10}{Pord\+\_\+ordering}} = 4
-, \mbox{\hyperlink{classoomph_1_1MumpsSolver_a5e380357c515b4f280cf6bdf7273ed4ba3f76be5ac72cb29a86f05019e0b7f496}{Metis\+\_\+ordering}} = 5
+, \newline
+\mbox{\hyperlink{classoomph_1_1MumpsSolver_a5e380357c515b4f280cf6bdf7273ed4ba3f76be5ac72cb29a86f05019e0b7f496}{Metis\+\_\+ordering}} = 5
  \}
-\begin{DoxyCompactList}\small\item\em ordering library to use for serial analysis; magic numbers as defined by MUMPS documentation \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em ordering library to use for serial analysis; magic numbers as defined by MUMPS documentation \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{classoomph_1_1MumpsSolver_ad0fce5d4442647434eeab7b68eb64b58}{Mumps\+Error\+Codes}} \{ \mbox{\hyperlink{classoomph_1_1MumpsSolver_ad0fce5d4442647434eeab7b68eb64b58abf5814743ab0232029d127a11d891a11}{Structurally\+\_\+singular\+\_\+jacobian}} = -\/6
+, \mbox{\hyperlink{classoomph_1_1MumpsSolver_ad0fce5d4442647434eeab7b68eb64b58a6a99bc01bc65caee8a8d699d0e5ecadb}{Numerically\+\_\+singular\+\_\+jacobian}} = -\/10
+, \mbox{\hyperlink{classoomph_1_1MumpsSolver_ad0fce5d4442647434eeab7b68eb64b58ad5b292632246218c9ff9bb414ecc5538}{Workspace\+\_\+too\+\_\+small}} = -\/19
+ \}
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -239,6 +252,30 @@ Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00061}{61}} of file
 
 
 \doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classoomph_1_1MumpsSolver_ad0fce5d4442647434eeab7b68eb64b58}\label{classoomph_1_1MumpsSolver_ad0fce5d4442647434eeab7b68eb64b58} 
+\index{oomph::MumpsSolver@{oomph::MumpsSolver}!MumpsErrorCodes@{MumpsErrorCodes}}
+\index{MumpsErrorCodes@{MumpsErrorCodes}!oomph::MumpsSolver@{oomph::MumpsSolver}}
+\doxysubsubsection{\texorpdfstring{MumpsErrorCodes}{MumpsErrorCodes}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{enum}} \mbox{\hyperlink{classoomph_1_1MumpsSolver_ad0fce5d4442647434eeab7b68eb64b58}{oomph\+::\+Mumps\+Solver\+::\+Mumps\+Error\+Codes}}\hspace{0.3cm}{\ttfamily [private]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Structurally\_singular\_jacobian@{Structurally\_singular\_jacobian}!oomph::MumpsSolver@{oomph::MumpsSolver}}\index{oomph::MumpsSolver@{oomph::MumpsSolver}!Structurally\_singular\_jacobian@{Structurally\_singular\_jacobian}}}\Hypertarget{classoomph_1_1MumpsSolver_ad0fce5d4442647434eeab7b68eb64b58abf5814743ab0232029d127a11d891a11}\label{classoomph_1_1MumpsSolver_ad0fce5d4442647434eeab7b68eb64b58abf5814743ab0232029d127a11d891a11} 
+Structurally\+\_\+singular\+\_\+jacobian&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Numerically\_singular\_jacobian@{Numerically\_singular\_jacobian}!oomph::MumpsSolver@{oomph::MumpsSolver}}\index{oomph::MumpsSolver@{oomph::MumpsSolver}!Numerically\_singular\_jacobian@{Numerically\_singular\_jacobian}}}\Hypertarget{classoomph_1_1MumpsSolver_ad0fce5d4442647434eeab7b68eb64b58a6a99bc01bc65caee8a8d699d0e5ecadb}\label{classoomph_1_1MumpsSolver_ad0fce5d4442647434eeab7b68eb64b58a6a99bc01bc65caee8a8d699d0e5ecadb} 
+Numerically\+\_\+singular\+\_\+jacobian&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Workspace\_too\_small@{Workspace\_too\_small}!oomph::MumpsSolver@{oomph::MumpsSolver}}\index{oomph::MumpsSolver@{oomph::MumpsSolver}!Workspace\_too\_small@{Workspace\_too\_small}}}\Hypertarget{classoomph_1_1MumpsSolver_ad0fce5d4442647434eeab7b68eb64b58ad5b292632246218c9ff9bb414ecc5538}\label{classoomph_1_1MumpsSolver_ad0fce5d4442647434eeab7b68eb64b58ad5b292632246218c9ff9bb414ecc5538} 
+Workspace\+\_\+too\+\_\+small&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00332}{332}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
+
 \Hypertarget{classoomph_1_1MumpsSolver_a5e380357c515b4f280cf6bdf7273ed4b}\label{classoomph_1_1MumpsSolver_a5e380357c515b4f280cf6bdf7273ed4b} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!MumpsJacobianOrderingFlags@{MumpsJacobianOrderingFlags}}
 \index{MumpsJacobianOrderingFlags@{MumpsJacobianOrderingFlags}!oomph::MumpsSolver@{oomph::MumpsSolver}}
@@ -250,6 +287,14 @@ Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00061}{61}} of file
 ordering library to use for serial analysis; magic numbers as defined by MUMPS documentation 
 
 \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Ptscotch\_ordering@{Ptscotch\_ordering}!oomph::MumpsSolver@{oomph::MumpsSolver}}\index{oomph::MumpsSolver@{oomph::MumpsSolver}!Ptscotch\_ordering@{Ptscotch\_ordering}}}\Hypertarget{classoomph_1_1MumpsSolver_a5e380357c515b4f280cf6bdf7273ed4ba1fe27821e464333f73325dee0b3d9a51}\label{classoomph_1_1MumpsSolver_a5e380357c515b4f280cf6bdf7273ed4ba1fe27821e464333f73325dee0b3d9a51} 
+Ptscotch\+\_\+ordering&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Parmetis\_ordering@{Parmetis\_ordering}!oomph::MumpsSolver@{oomph::MumpsSolver}}\index{oomph::MumpsSolver@{oomph::MumpsSolver}!Parmetis\_ordering@{Parmetis\_ordering}}}\Hypertarget{classoomph_1_1MumpsSolver_a5e380357c515b4f280cf6bdf7273ed4ba1068dd1549caba5ff828d561ee1e1294}\label{classoomph_1_1MumpsSolver_a5e380357c515b4f280cf6bdf7273ed4ba1068dd1549caba5ff828d561ee1e1294} 
+Parmetis\+\_\+ordering&\\
+\hline
+
 \raisebox{\heightof{T}}[0pt][0pt]{\index{Scotch\_ordering@{Scotch\_ordering}!oomph::MumpsSolver@{oomph::MumpsSolver}}\index{oomph::MumpsSolver@{oomph::MumpsSolver}!Scotch\_ordering@{Scotch\_ordering}}}\Hypertarget{classoomph_1_1MumpsSolver_a5e380357c515b4f280cf6bdf7273ed4ba8484bf86594bef6f3509ca968e65eb1d}\label{classoomph_1_1MumpsSolver_a5e380357c515b4f280cf6bdf7273ed4ba8484bf86594bef6f3509ca968e65eb1d} 
 Scotch\+\_\+ordering&\\
 \hline
@@ -265,7 +310,7 @@ Metis\+\_\+ordering&\\
 \end{DoxyEnumFields}
 
 
-Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00311}{311}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00323}{323}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_aeffb9b19a97ee7ba86336b694a57d836}\label{classoomph_1_1MumpsSolver_aeffb9b19a97ee7ba86336b694a57d836} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!MumpsJacobianSymmetryFlags@{MumpsJacobianSymmetryFlags}}
@@ -293,7 +338,7 @@ Symmetric&\\
 \end{DoxyEnumFields}
 
 
-Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00302}{302}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00314}{314}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
 
 
 
@@ -334,11 +379,11 @@ Destructor\+: Cleanup.
 
 Destructor\+: Shutdown mumps. 
 
-Definition at line \mbox{\hyperlink{mumps__solver_8cc_source_l00168}{168}} of file \mbox{\hyperlink{mumps__solver_8cc_source}{mumps\+\_\+solver.\+cc}}.
+Definition at line \mbox{\hyperlink{mumps__solver_8cc_source_l00189}{189}} of file \mbox{\hyperlink{mumps__solver_8cc_source}{mumps\+\_\+solver.\+cc}}.
 
 
 
-References \mbox{\hyperlink{mumps__solver_8cc_source_l00141}{shutdown\+\_\+mumps()}}.
+References \mbox{\hyperlink{mumps__solver_8cc_source_l00162}{shutdown\+\_\+mumps()}}.
 
 
 
@@ -355,15 +400,15 @@ Do the backsubstitution for mumps solver Note\+: returns the global result \doxy
 
 Do the backsubstitution for mumps solver. This does not make any assumption about the distribution of the vectors. 
 
-Definition at line \mbox{\hyperlink{mumps__solver_8cc_source_l00526}{526}} of file \mbox{\hyperlink{mumps__solver_8cc_source}{mumps\+\_\+solver.\+cc}}.
+Definition at line \mbox{\hyperlink{mumps__solver_8cc_source_l00604}{604}} of file \mbox{\hyperlink{mumps__solver_8cc_source}{mumps\+\_\+solver.\+cc}}.
 
 
 
-References \mbox{\hyperlink{oomph__utilities_8cc_source_l01316}{oomph\+::\+Timing\+Helpers\+::convert\+\_\+secs\+\_\+to\+\_\+formatted\+\_\+string()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00457}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::distribution\+\_\+pt()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00264}{Doc\+\_\+stats}}, \mbox{\hyperlink{linear__solver_8h_source_l00077}{oomph\+::\+Linear\+Solver\+::\+Doc\+\_\+time}}, \mbox{\hyperlink{mumps__solver_8h_source_l00274}{Mumps\+\_\+is\+\_\+initialised}}, \mbox{\hyperlink{mumps__solver_8h_source_l00297}{Mumps\+\_\+struc\+\_\+pt}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00186}{oomph\+::\+Linear\+Algebra\+Distribution\+::nrow()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{mumps__solver_8h_source_l00066}{Suppress\+\_\+incorrect\+\_\+rhs\+\_\+distribution\+\_\+warning\+\_\+in\+\_\+resolve}}, \mbox{\hyperlink{mumps__solver_8h_source_l00268}{Suppress\+\_\+warning\+\_\+about\+\_\+\+MPI\+\_\+\+COMM\+\_\+\+WORLD}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01295}{oomph\+::\+Timing\+Helpers\+::timer()}}.
+References \mbox{\hyperlink{oomph__utilities_8cc_source_l01324}{oomph\+::\+Timing\+Helpers\+::convert\+\_\+secs\+\_\+to\+\_\+formatted\+\_\+string()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00457}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::distribution\+\_\+pt()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00276}{Doc\+\_\+stats}}, \mbox{\hyperlink{linear__solver_8h_source_l00079}{oomph\+::\+Linear\+Solver\+::\+Doc\+\_\+time}}, \mbox{\hyperlink{mumps__solver_8h_source_l00286}{Mumps\+\_\+is\+\_\+initialised}}, \mbox{\hyperlink{mumps__solver_8h_source_l00309}{Mumps\+\_\+struc\+\_\+pt}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00186}{oomph\+::\+Linear\+Algebra\+Distribution\+::nrow()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{mumps__solver_8h_source_l00066}{Suppress\+\_\+incorrect\+\_\+rhs\+\_\+distribution\+\_\+warning\+\_\+in\+\_\+resolve}}, \mbox{\hyperlink{mumps__solver_8h_source_l00280}{Suppress\+\_\+warning\+\_\+about\+\_\+\+MPI\+\_\+\+COMM\+\_\+\+WORLD}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01303}{oomph\+::\+Timing\+Helpers\+::timer()}}.
 
 
 
-Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l01005}{resolve()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00724}{solve()}}.
+Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l01091}{resolve()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00806}{solve()}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_adc1541e4a9cbbe9c641f988380618713}\label{classoomph_1_1MumpsSolver_adc1541e4a9cbbe9c641f988380618713} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!clean\_up\_memory@{clean\_up\_memory}}
@@ -381,15 +426,15 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1LinearSolver_a9d66f3262e80ca06
 
 
 
-Definition at line \mbox{\hyperlink{mumps__solver_8cc_source_l00710}{710}} of file \mbox{\hyperlink{mumps__solver_8cc_source}{mumps\+\_\+solver.\+cc}}.
+Definition at line \mbox{\hyperlink{mumps__solver_8cc_source_l00792}{792}} of file \mbox{\hyperlink{mumps__solver_8cc_source}{mumps\+\_\+solver.\+cc}}.
 
 
 
-References \mbox{\hyperlink{mumps__solver_8cc_source_l00141}{shutdown\+\_\+mumps()}}.
+References \mbox{\hyperlink{mumps__solver_8cc_source_l00162}{shutdown\+\_\+mumps()}}.
 
 
 
-Referenced by \mbox{\hyperlink{mumps__solver_8h_source_l00391}{oomph\+::\+New\+Mumps\+Preconditioner\+::clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00081}{disable\+\_\+resolve()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00724}{solve()}}.
+Referenced by \mbox{\hyperlink{mumps__solver_8h_source_l00416}{oomph\+::\+Mumps\+Preconditioner\+::clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00081}{disable\+\_\+resolve()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00806}{solve()}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_a752f8f023f3b6c1b7021ad6683853850}\label{classoomph_1_1MumpsSolver_a752f8f023f3b6c1b7021ad6683853850} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!declare\_jacobian\_is\_symmetric@{declare\_jacobian\_is\_symmetric}}
@@ -407,7 +452,7 @@ Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00218}{218}} of fil
 
 
 
-References \mbox{\hyperlink{mumps__solver_8h_source_l00320}{Jacobian\+\_\+symmetry\+\_\+flag}}, and \mbox{\hyperlink{mumps__solver_8h_source_l00306}{Symmetric}}.
+References \mbox{\hyperlink{mumps__solver_8h_source_l00341}{Jacobian\+\_\+symmetry\+\_\+flag}}, and \mbox{\hyperlink{mumps__solver_8h_source_l00318}{Symmetric}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_aee53c09d398f6a982de5dc5fa9c02df7}\label{classoomph_1_1MumpsSolver_aee53c09d398f6a982de5dc5fa9c02df7} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!declare\_jacobian\_is\_symmetric\_positive\_definite@{declare\_jacobian\_is\_symmetric\_positive\_definite}}
@@ -425,7 +470,7 @@ Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00224}{224}} of fil
 
 
 
-References \mbox{\hyperlink{mumps__solver_8h_source_l00320}{Jacobian\+\_\+symmetry\+\_\+flag}}, and \mbox{\hyperlink{mumps__solver_8h_source_l00305}{Symmetric\+\_\+positive\+\_\+definite}}.
+References \mbox{\hyperlink{mumps__solver_8h_source_l00341}{Jacobian\+\_\+symmetry\+\_\+flag}}, and \mbox{\hyperlink{mumps__solver_8h_source_l00317}{Symmetric\+\_\+positive\+\_\+definite}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_af6bceea5ab29bbc30322b092b227ac03}\label{classoomph_1_1MumpsSolver_af6bceea5ab29bbc30322b092b227ac03} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!declare\_jacobian\_is\_unsymmetric@{declare\_jacobian\_is\_unsymmetric}}
@@ -443,7 +488,7 @@ Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00212}{212}} of fil
 
 
 
-References \mbox{\hyperlink{mumps__solver_8h_source_l00320}{Jacobian\+\_\+symmetry\+\_\+flag}}, and \mbox{\hyperlink{mumps__solver_8h_source_l00304}{Unsymmetric}}.
+References \mbox{\hyperlink{mumps__solver_8h_source_l00341}{Jacobian\+\_\+symmetry\+\_\+flag}}, and \mbox{\hyperlink{mumps__solver_8h_source_l00316}{Unsymmetric}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_a52b3fbf9407cb8284f1c80600b11869f}\label{classoomph_1_1MumpsSolver_a52b3fbf9407cb8284f1c80600b11869f} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!disable\_delete\_matrix\_data@{disable\_delete\_matrix\_data}}
@@ -461,7 +506,7 @@ Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00190}{190}} of fil
 
 
 
-References \mbox{\hyperlink{mumps__solver_8h_source_l00285}{Delete\+\_\+matrix\+\_\+data}}.
+References \mbox{\hyperlink{mumps__solver_8h_source_l00297}{Delete\+\_\+matrix\+\_\+data}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_a8f64fcf52cb7cbf89b75da1d794dee5f}\label{classoomph_1_1MumpsSolver_a8f64fcf52cb7cbf89b75da1d794dee5f} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!disable\_doc\_stats@{disable\_doc\_stats}}
@@ -479,7 +524,11 @@ Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00139}{139}} of fil
 
 
 
-References \mbox{\hyperlink{mumps__solver_8h_source_l00264}{Doc\+\_\+stats}}.
+References \mbox{\hyperlink{mumps__solver_8h_source_l00276}{Doc\+\_\+stats}}.
+
+
+
+Referenced by \mbox{\hyperlink{mumps__solver_8h_source_l00362}{oomph\+::\+Mumps\+Preconditioner\+::\+Mumps\+Preconditioner()}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_aba2b1c844e190da45c8adbd6dfc0f344}\label{classoomph_1_1MumpsSolver_aba2b1c844e190da45c8adbd6dfc0f344} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!disable\_resolve@{disable\_resolve}}
@@ -501,7 +550,7 @@ Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00081}{81}} of file
 
 
 
-References \mbox{\hyperlink{mumps__solver_8cc_source_l00710}{clean\+\_\+up\+\_\+memory()}}, and \mbox{\hyperlink{linear__solver_8h_source_l00144}{oomph\+::\+Linear\+Solver\+::disable\+\_\+resolve()}}.
+References \mbox{\hyperlink{mumps__solver_8cc_source_l00792}{clean\+\_\+up\+\_\+memory()}}, and \mbox{\hyperlink{linear__solver_8h_source_l00146}{oomph\+::\+Linear\+Solver\+::disable\+\_\+resolve()}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_ad75c9ff36be18867a88e0a68fac68f7c}\label{classoomph_1_1MumpsSolver_ad75c9ff36be18867a88e0a68fac68f7c} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!disable\_suppress\_mumps\_info\_during\_solve@{disable\_suppress\_mumps\_info\_during\_solve}}
@@ -519,7 +568,7 @@ Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00108}{108}} of fil
 
 
 
-References \mbox{\hyperlink{mumps__solver_8h_source_l00271}{Suppress\+\_\+mumps\+\_\+info\+\_\+during\+\_\+solve}}.
+References \mbox{\hyperlink{mumps__solver_8h_source_l00283}{Suppress\+\_\+mumps\+\_\+info\+\_\+during\+\_\+solve}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_a34346022a010acc09dc0ab1ce59d90a7}\label{classoomph_1_1MumpsSolver_a34346022a010acc09dc0ab1ce59d90a7} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!disable\_suppress\_solve@{disable\_suppress\_solve}}
@@ -537,7 +586,7 @@ Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00168}{168}} of fil
 
 
 
-References \mbox{\hyperlink{mumps__solver_8h_source_l00261}{Suppress\+\_\+solve}}.
+References \mbox{\hyperlink{mumps__solver_8h_source_l00273}{Suppress\+\_\+solve}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_ade6f5dff6fddd0eeef6ef051ab5dfbc1}\label{classoomph_1_1MumpsSolver_ade6f5dff6fddd0eeef6ef051ab5dfbc1} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!disable\_suppress\_warning\_about\_MPI\_COMM\_WORLD@{disable\_suppress\_warning\_about\_MPI\_COMM\_WORLD}}
@@ -555,7 +604,7 @@ Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00095}{95}} of file
 
 
 
-References \mbox{\hyperlink{mumps__solver_8h_source_l00268}{Suppress\+\_\+warning\+\_\+about\+\_\+\+MPI\+\_\+\+COMM\+\_\+\+WORLD}}.
+References \mbox{\hyperlink{mumps__solver_8h_source_l00280}{Suppress\+\_\+warning\+\_\+about\+\_\+\+MPI\+\_\+\+COMM\+\_\+\+WORLD}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_afbab47dbf3effebd34f3d3ba1634f7d3}\label{classoomph_1_1MumpsSolver_afbab47dbf3effebd34f3d3ba1634f7d3} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!enable\_delete\_matrix\_data@{enable\_delete\_matrix\_data}}
@@ -573,7 +622,7 @@ Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00179}{179}} of fil
 
 
 
-References \mbox{\hyperlink{mumps__solver_8h_source_l00285}{Delete\+\_\+matrix\+\_\+data}}.
+References \mbox{\hyperlink{mumps__solver_8h_source_l00297}{Delete\+\_\+matrix\+\_\+data}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_a25426798eb831cf552bdc17c0307ff25}\label{classoomph_1_1MumpsSolver_a25426798eb831cf552bdc17c0307ff25} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!enable\_doc\_stats@{enable\_doc\_stats}}
@@ -591,7 +640,7 @@ Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00133}{133}} of fil
 
 
 
-References \mbox{\hyperlink{mumps__solver_8h_source_l00264}{Doc\+\_\+stats}}.
+References \mbox{\hyperlink{mumps__solver_8h_source_l00276}{Doc\+\_\+stats}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_a9be151628e1d8b488441ce2455f888e1}\label{classoomph_1_1MumpsSolver_a9be151628e1d8b488441ce2455f888e1} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!enable\_suppress\_mumps\_info\_during\_solve@{enable\_suppress\_mumps\_info\_during\_solve}}
@@ -609,7 +658,7 @@ Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00102}{102}} of fil
 
 
 
-References \mbox{\hyperlink{mumps__solver_8h_source_l00271}{Suppress\+\_\+mumps\+\_\+info\+\_\+during\+\_\+solve}}.
+References \mbox{\hyperlink{mumps__solver_8h_source_l00283}{Suppress\+\_\+mumps\+\_\+info\+\_\+during\+\_\+solve}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_ab5d49803e13ef6e6026e470a9933613e}\label{classoomph_1_1MumpsSolver_ab5d49803e13ef6e6026e470a9933613e} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!enable\_suppress\_solve@{enable\_suppress\_solve}}
@@ -627,7 +676,7 @@ Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00161}{161}} of fil
 
 
 
-References \mbox{\hyperlink{mumps__solver_8h_source_l00261}{Suppress\+\_\+solve}}.
+References \mbox{\hyperlink{mumps__solver_8h_source_l00273}{Suppress\+\_\+solve}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_a0f7ea8c453b2ff106ce42a11c8182cf5}\label{classoomph_1_1MumpsSolver_a0f7ea8c453b2ff106ce42a11c8182cf5} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!enable\_suppress\_warning\_about\_MPI\_COMM\_WORLD@{enable\_suppress\_warning\_about\_MPI\_COMM\_WORLD}}
@@ -645,7 +694,7 @@ Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00089}{89}} of file
 
 
 
-References \mbox{\hyperlink{mumps__solver_8h_source_l00268}{Suppress\+\_\+warning\+\_\+about\+\_\+\+MPI\+\_\+\+COMM\+\_\+\+WORLD}}.
+References \mbox{\hyperlink{mumps__solver_8h_source_l00280}{Suppress\+\_\+warning\+\_\+about\+\_\+\+MPI\+\_\+\+COMM\+\_\+\+WORLD}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_aeab520bd25edb0f4e88feaedec689333}\label{classoomph_1_1MumpsSolver_aeab520bd25edb0f4e88feaedec689333} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!factorise@{factorise}}
@@ -659,15 +708,15 @@ Do the factorisation stage Note\+: if Delete\+\_\+matrix\+\_\+data is true the f
 
 LU decompose the matrix addressed by matrix\+\_\+pt using mumps. The resulting matrix factors are stored internally. Note\+: if Delete\+\_\+matrix\+\_\+data is true the function matrix\+\_\+pt-\/\texorpdfstring{$>$}{>}\doxylink{classoomph_1_1MumpsSolver_adc1541e4a9cbbe9c641f988380618713}{clean\+\_\+up\+\_\+memory()} will be used to wipe the matrix data. 
 
-Definition at line \mbox{\hyperlink{mumps__solver_8cc_source_l00180}{180}} of file \mbox{\hyperlink{mumps__solver_8cc_source}{mumps\+\_\+solver.\+cc}}.
+Definition at line \mbox{\hyperlink{mumps__solver_8cc_source_l00201}{201}} of file \mbox{\hyperlink{mumps__solver_8cc_source}{mumps\+\_\+solver.\+cc}}.
 
 
 
-References \mbox{\hyperlink{mumps__solver_8h_source_l00294}{A\+\_\+loc}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00507}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::build\+\_\+distribution()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00335}{oomph\+::\+Linear\+Algebra\+Distribution\+::communicator\+\_\+pt()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01316}{oomph\+::\+Timing\+Helpers\+::convert\+\_\+secs\+\_\+to\+\_\+formatted\+\_\+string()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00285}{Delete\+\_\+matrix\+\_\+data}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00457}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::distribution\+\_\+pt()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00264}{Doc\+\_\+stats}}, \mbox{\hyperlink{linear__solver_8h_source_l00077}{oomph\+::\+Linear\+Solver\+::\+Doc\+\_\+time}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00481}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::first\+\_\+row()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00086}{initialise\+\_\+mumps()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00288}{Irn\+\_\+loc}}, \mbox{\hyperlink{mumps__solver_8h_source_l00291}{Jcn\+\_\+loc}}, \mbox{\hyperlink{mumps__solver_8h_source_l00315}{Metis\+\_\+ordering}}, \mbox{\hyperlink{mumps__solver_8h_source_l00274}{Mumps\+\_\+is\+\_\+initialised}}, \mbox{\hyperlink{mumps__solver_8h_source_l00297}{Mumps\+\_\+struc\+\_\+pt}}, \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase_a253feffbf1db1976cdd86c6134c50abe}{oomph\+::\+Double\+Matrix\+Base\+::ncol()}}, \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase_acdcd6e1ea2bf2380f1a2fa32c7829cb5}{oomph\+::\+Double\+Matrix\+Base\+::nrow()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{mumps__solver_8h_source_l00314}{Pord\+\_\+ordering}}, \mbox{\hyperlink{mumps__solver_8h_source_l00313}{Scotch\+\_\+ordering}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00141}{shutdown\+\_\+mumps()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00271}{Suppress\+\_\+mumps\+\_\+info\+\_\+during\+\_\+solve}}, \mbox{\hyperlink{mumps__solver_8h_source_l00268}{Suppress\+\_\+warning\+\_\+about\+\_\+\+MPI\+\_\+\+COMM\+\_\+\+WORLD}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01295}{oomph\+::\+Timing\+Helpers\+::timer()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00304}{Unsymmetric}}, and \mbox{\hyperlink{mumps__solver_8h_source_l00277}{Workspace\+\_\+scaling\+\_\+factor}}.
+References \mbox{\hyperlink{mumps__solver_8h_source_l00306}{A\+\_\+loc}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00507}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::build\+\_\+distribution()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00335}{oomph\+::\+Linear\+Algebra\+Distribution\+::communicator\+\_\+pt()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01324}{oomph\+::\+Timing\+Helpers\+::convert\+\_\+secs\+\_\+to\+\_\+formatted\+\_\+string()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00297}{Delete\+\_\+matrix\+\_\+data}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00457}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::distribution\+\_\+pt()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00276}{Doc\+\_\+stats}}, \mbox{\hyperlink{linear__solver_8h_source_l00079}{oomph\+::\+Linear\+Solver\+::\+Doc\+\_\+time}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00481}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::first\+\_\+row()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00086}{initialise\+\_\+mumps()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00300}{Irn\+\_\+loc}}, \mbox{\hyperlink{mumps__solver_8h_source_l00303}{Jcn\+\_\+loc}}, \mbox{\hyperlink{mumps__solver_8h_source_l00329}{Metis\+\_\+ordering}}, \mbox{\hyperlink{mumps__solver_8h_source_l00286}{Mumps\+\_\+is\+\_\+initialised}}, \mbox{\hyperlink{mumps__solver_8h_source_l00309}{Mumps\+\_\+struc\+\_\+pt}}, \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase_a253feffbf1db1976cdd86c6134c50abe}{oomph\+::\+Double\+Matrix\+Base\+::ncol()}}, \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase_acdcd6e1ea2bf2380f1a2fa32c7829cb5}{oomph\+::\+Double\+Matrix\+Base\+::nrow()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00335}{Numerically\+\_\+singular\+\_\+jacobian}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{mumps__solver_8h_source_l00326}{Parmetis\+\_\+ordering}}, \mbox{\hyperlink{mumps__solver_8h_source_l00328}{Pord\+\_\+ordering}}, \mbox{\hyperlink{mumps__solver_8h_source_l00325}{Ptscotch\+\_\+ordering}}, \mbox{\hyperlink{mumps__solver_8h_source_l00327}{Scotch\+\_\+ordering}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00162}{shutdown\+\_\+mumps()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00334}{Structurally\+\_\+singular\+\_\+jacobian}}, \mbox{\hyperlink{mumps__solver_8h_source_l00283}{Suppress\+\_\+mumps\+\_\+info\+\_\+during\+\_\+solve}}, \mbox{\hyperlink{mumps__solver_8h_source_l00280}{Suppress\+\_\+warning\+\_\+about\+\_\+\+MPI\+\_\+\+COMM\+\_\+\+WORLD}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01303}{oomph\+::\+Timing\+Helpers\+::timer()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00316}{Unsymmetric}}, \mbox{\hyperlink{mumps__solver_8h_source_l00289}{Workspace\+\_\+scaling\+\_\+factor}}, and \mbox{\hyperlink{mumps__solver_8h_source_l00336}{Workspace\+\_\+too\+\_\+small}}.
 
 
 
-Referenced by \mbox{\hyperlink{mumps__solver_8h_source_l00357}{oomph\+::\+New\+Mumps\+Preconditioner\+::setup()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00724}{solve()}}.
+Referenced by \mbox{\hyperlink{mumps__solver_8h_source_l00382}{oomph\+::\+Mumps\+Preconditioner\+::setup()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00806}{solve()}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_ae5e186152100c7d5f045d3df2a115c72}\label{classoomph_1_1MumpsSolver_ae5e186152100c7d5f045d3df2a115c72} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!initialise\_mumps@{initialise\_mumps}}
@@ -685,11 +734,11 @@ Definition at line \mbox{\hyperlink{mumps__solver_8cc_source_l00086}{86}} of fil
 
 
 
-References \mbox{\hyperlink{mumps__solver_8h_source_l00325}{Jacobian\+\_\+ordering\+\_\+flag}}, \mbox{\hyperlink{mumps__solver_8h_source_l00320}{Jacobian\+\_\+symmetry\+\_\+flag}}, \mbox{\hyperlink{mumps__solver_8h_source_l00274}{Mumps\+\_\+is\+\_\+initialised}}, and \mbox{\hyperlink{mumps__solver_8h_source_l00297}{Mumps\+\_\+struc\+\_\+pt}}.
+References \mbox{\hyperlink{mumps__solver_8h_source_l00346}{Jacobian\+\_\+ordering\+\_\+flag}}, \mbox{\hyperlink{mumps__solver_8h_source_l00341}{Jacobian\+\_\+symmetry\+\_\+flag}}, \mbox{\hyperlink{mumps__solver_8h_source_l00286}{Mumps\+\_\+is\+\_\+initialised}}, \mbox{\hyperlink{mumps__solver_8h_source_l00309}{Mumps\+\_\+struc\+\_\+pt}}, \mbox{\hyperlink{mumps__solver_8h_source_l00326}{Parmetis\+\_\+ordering}}, and \mbox{\hyperlink{mumps__solver_8h_source_l00325}{Ptscotch\+\_\+ordering}}.
 
 
 
-Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00180}{factorise()}}.
+Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00201}{factorise()}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_aea9e3eead627f8f8963f7b5c70b669f7}\label{classoomph_1_1MumpsSolver_aea9e3eead627f8f8963f7b5c70b669f7} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!jacobian\_setup\_time@{jacobian\_setup\_time}}
@@ -707,7 +756,7 @@ Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00146}{146}} of fil
 
 
 
-References \mbox{\hyperlink{mumps__solver_8h_source_l00255}{Jacobian\+\_\+setup\+\_\+time}}.
+References \mbox{\hyperlink{mumps__solver_8h_source_l00267}{Jacobian\+\_\+setup\+\_\+time}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_a52e765662a0e2cbd81dc5dc280905604}\label{classoomph_1_1MumpsSolver_a52e765662a0e2cbd81dc5dc280905604} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!linear\_solver\_solution\_time@{linear\_solver\_solution\_time}}
@@ -725,7 +774,7 @@ Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00153}{153}} of fil
 
 
 
-References \mbox{\hyperlink{mumps__solver_8h_source_l00258}{Solution\+\_\+time}}.
+References \mbox{\hyperlink{mumps__solver_8h_source_l00270}{Solution\+\_\+time}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_a8d5ca953c8e042da066d0598b1941112}\label{classoomph_1_1MumpsSolver_a8d5ca953c8e042da066d0598b1941112} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!operator=@{operator=}}
@@ -753,15 +802,15 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1LinearSolver_a3b310d08333033ed
 
 
 
-Definition at line \mbox{\hyperlink{mumps__solver_8cc_source_l01005}{1005}} of file \mbox{\hyperlink{mumps__solver_8cc_source}{mumps\+\_\+solver.\+cc}}.
+Definition at line \mbox{\hyperlink{mumps__solver_8cc_source_l01091}{1091}} of file \mbox{\hyperlink{mumps__solver_8cc_source}{mumps\+\_\+solver.\+cc}}.
 
 
 
-References \mbox{\hyperlink{mumps__solver_8cc_source_l00526}{backsub()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01316}{oomph\+::\+Timing\+Helpers\+::convert\+\_\+secs\+\_\+to\+\_\+formatted\+\_\+string()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00457}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::distribution\+\_\+pt()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00264}{Doc\+\_\+stats}}, \mbox{\hyperlink{linear__solver_8h_source_l00077}{oomph\+::\+Linear\+Solver\+::\+Doc\+\_\+time}}, \mbox{\hyperlink{mumps__solver_8h_source_l00297}{Mumps\+\_\+struc\+\_\+pt}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{mumps__solver_8h_source_l00258}{Solution\+\_\+time}}, \mbox{\hyperlink{mumps__solver_8h_source_l00268}{Suppress\+\_\+warning\+\_\+about\+\_\+\+MPI\+\_\+\+COMM\+\_\+\+WORLD}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01295}{oomph\+::\+Timing\+Helpers\+::timer()}}.
+References \mbox{\hyperlink{mumps__solver_8cc_source_l00604}{backsub()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01324}{oomph\+::\+Timing\+Helpers\+::convert\+\_\+secs\+\_\+to\+\_\+formatted\+\_\+string()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00457}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::distribution\+\_\+pt()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00276}{Doc\+\_\+stats}}, \mbox{\hyperlink{linear__solver_8h_source_l00079}{oomph\+::\+Linear\+Solver\+::\+Doc\+\_\+time}}, \mbox{\hyperlink{mumps__solver_8h_source_l00309}{Mumps\+\_\+struc\+\_\+pt}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{mumps__solver_8h_source_l00270}{Solution\+\_\+time}}, \mbox{\hyperlink{mumps__solver_8h_source_l00280}{Suppress\+\_\+warning\+\_\+about\+\_\+\+MPI\+\_\+\+COMM\+\_\+\+WORLD}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01303}{oomph\+::\+Timing\+Helpers\+::timer()}}.
 
 
 
-Referenced by \mbox{\hyperlink{mumps__solver_8h_source_l00383}{oomph\+::\+New\+Mumps\+Preconditioner\+::preconditioner\+\_\+solve()}}.
+Referenced by \mbox{\hyperlink{mumps__solver_8h_source_l00408}{oomph\+::\+Mumps\+Preconditioner\+::preconditioner\+\_\+solve()}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_a5cf1f5e02e905d39e1b324dc921568f6}\label{classoomph_1_1MumpsSolver_a5cf1f5e02e905d39e1b324dc921568f6} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!shutdown\_mumps@{shutdown\_mumps}}
@@ -775,15 +824,15 @@ Shutdown mumps.
 
 
 
-Definition at line \mbox{\hyperlink{mumps__solver_8cc_source_l00141}{141}} of file \mbox{\hyperlink{mumps__solver_8cc_source}{mumps\+\_\+solver.\+cc}}.
+Definition at line \mbox{\hyperlink{mumps__solver_8cc_source_l00162}{162}} of file \mbox{\hyperlink{mumps__solver_8cc_source}{mumps\+\_\+solver.\+cc}}.
 
 
 
-References \mbox{\hyperlink{mumps__solver_8h_source_l00294}{A\+\_\+loc}}, \mbox{\hyperlink{mumps__solver_8h_source_l00288}{Irn\+\_\+loc}}, \mbox{\hyperlink{mumps__solver_8h_source_l00291}{Jcn\+\_\+loc}}, \mbox{\hyperlink{mumps__solver_8h_source_l00274}{Mumps\+\_\+is\+\_\+initialised}}, and \mbox{\hyperlink{mumps__solver_8h_source_l00297}{Mumps\+\_\+struc\+\_\+pt}}.
+References \mbox{\hyperlink{mumps__solver_8h_source_l00306}{A\+\_\+loc}}, \mbox{\hyperlink{mumps__solver_8h_source_l00300}{Irn\+\_\+loc}}, \mbox{\hyperlink{mumps__solver_8h_source_l00303}{Jcn\+\_\+loc}}, \mbox{\hyperlink{mumps__solver_8h_source_l00286}{Mumps\+\_\+is\+\_\+initialised}}, and \mbox{\hyperlink{mumps__solver_8h_source_l00309}{Mumps\+\_\+struc\+\_\+pt}}.
 
 
 
-Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00710}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00180}{factorise()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00168}{\texorpdfstring{$\sim$}{\string~}\+Mumps\+Solver()}}.
+Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00792}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00201}{factorise()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00189}{\texorpdfstring{$\sim$}{\string~}\+Mumps\+Solver()}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_a3995dcf46675fc443b4d373d348a0fdf}\label{classoomph_1_1MumpsSolver_a3995dcf46675fc443b4d373d348a0fdf} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!solve@{solve}}
@@ -801,11 +850,11 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1LinearSolver_a546c09822d18191d
 
 
 
-Definition at line \mbox{\hyperlink{mumps__solver_8cc_source_l00724}{724}} of file \mbox{\hyperlink{mumps__solver_8cc_source}{mumps\+\_\+solver.\+cc}}.
+Definition at line \mbox{\hyperlink{mumps__solver_8cc_source_l00806}{806}} of file \mbox{\hyperlink{mumps__solver_8cc_source}{mumps\+\_\+solver.\+cc}}.
 
 
 
-References \mbox{\hyperlink{mumps__solver_8cc_source_l00526}{backsub()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00507}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::build\+\_\+distribution()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00710}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01316}{oomph\+::\+Timing\+Helpers\+::convert\+\_\+secs\+\_\+to\+\_\+formatted\+\_\+string()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00457}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::distribution\+\_\+pt()}}, \mbox{\hyperlink{linear__solver_8h_source_l00077}{oomph\+::\+Linear\+Solver\+::\+Doc\+\_\+time}}, \mbox{\hyperlink{linear__solver_8h_source_l00073}{oomph\+::\+Linear\+Solver\+::\+Enable\+\_\+resolve}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00180}{factorise()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00297}{Mumps\+\_\+struc\+\_\+pt}}, \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase_a253feffbf1db1976cdd86c6134c50abe}{oomph\+::\+Double\+Matrix\+Base\+::ncol()}}, \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase_acdcd6e1ea2bf2380f1a2fa32c7829cb5}{oomph\+::\+Double\+Matrix\+Base\+::nrow()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{mumps__solver_8h_source_l00258}{Solution\+\_\+time}}, \mbox{\hyperlink{mumps__solver_8h_source_l00268}{Suppress\+\_\+warning\+\_\+about\+\_\+\+MPI\+\_\+\+COMM\+\_\+\+WORLD}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01295}{oomph\+::\+Timing\+Helpers\+::timer()}}.
+References \mbox{\hyperlink{mumps__solver_8cc_source_l00604}{backsub()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00507}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::build\+\_\+distribution()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00792}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01324}{oomph\+::\+Timing\+Helpers\+::convert\+\_\+secs\+\_\+to\+\_\+formatted\+\_\+string()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00457}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::distribution\+\_\+pt()}}, \mbox{\hyperlink{linear__solver_8h_source_l00079}{oomph\+::\+Linear\+Solver\+::\+Doc\+\_\+time}}, \mbox{\hyperlink{linear__solver_8h_source_l00075}{oomph\+::\+Linear\+Solver\+::\+Enable\+\_\+resolve}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00201}{factorise()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00309}{Mumps\+\_\+struc\+\_\+pt}}, \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase_a253feffbf1db1976cdd86c6134c50abe}{oomph\+::\+Double\+Matrix\+Base\+::ncol()}}, \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase_acdcd6e1ea2bf2380f1a2fa32c7829cb5}{oomph\+::\+Double\+Matrix\+Base\+::nrow()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{mumps__solver_8h_source_l00270}{Solution\+\_\+time}}, \mbox{\hyperlink{mumps__solver_8h_source_l00280}{Suppress\+\_\+warning\+\_\+about\+\_\+\+MPI\+\_\+\+COMM\+\_\+\+WORLD}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01303}{oomph\+::\+Timing\+Helpers\+::timer()}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_ae0346a464f3ed74bfcca4063bdeed3ad}\label{classoomph_1_1MumpsSolver_ae0346a464f3ed74bfcca4063bdeed3ad} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!solve@{solve}}
@@ -823,15 +872,15 @@ Implements \mbox{\hyperlink{classoomph_1_1LinearSolver_a15ce22542b74ed1826ea485e
 
 
 
-Definition at line \mbox{\hyperlink{mumps__solver_8cc_source_l00894}{894}} of file \mbox{\hyperlink{mumps__solver_8cc_source}{mumps\+\_\+solver.\+cc}}.
+Definition at line \mbox{\hyperlink{mumps__solver_8cc_source_l00978}{978}} of file \mbox{\hyperlink{mumps__solver_8cc_source}{mumps\+\_\+solver.\+cc}}.
 
 
 
-References \mbox{\hyperlink{linear__algebra__distribution_8cc_source_l00035}{oomph\+::\+Linear\+Algebra\+Distribution\+::build()}}, \mbox{\hyperlink{problem_8h_source_l01266}{oomph\+::\+Problem\+::communicator\+\_\+pt()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00335}{oomph\+::\+Linear\+Algebra\+Distribution\+::communicator\+\_\+pt()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01316}{oomph\+::\+Timing\+Helpers\+::convert\+\_\+secs\+\_\+to\+\_\+formatted\+\_\+string()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00285}{Delete\+\_\+matrix\+\_\+data}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00457}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::distribution\+\_\+pt()}}, \mbox{\hyperlink{linear__solver_8h_source_l00077}{oomph\+::\+Linear\+Solver\+::\+Doc\+\_\+time}}, \mbox{\hyperlink{problem_8cc_source_l03922}{oomph\+::\+Problem\+::get\+\_\+jacobian()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00255}{Jacobian\+\_\+setup\+\_\+time}}, \mbox{\hyperlink{problem_8h_source_l01704}{oomph\+::\+Problem\+::ndof()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00894}{solve()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00261}{Suppress\+\_\+solve}}, \mbox{\hyperlink{mumps__solver_8h_source_l00268}{Suppress\+\_\+warning\+\_\+about\+\_\+\+MPI\+\_\+\+COMM\+\_\+\+WORLD}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01295}{oomph\+::\+Timing\+Helpers\+::timer()}}.
+References \mbox{\hyperlink{linear__algebra__distribution_8cc_source_l00035}{oomph\+::\+Linear\+Algebra\+Distribution\+::build()}}, \mbox{\hyperlink{problem_8h_source_l01266}{oomph\+::\+Problem\+::communicator\+\_\+pt()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00335}{oomph\+::\+Linear\+Algebra\+Distribution\+::communicator\+\_\+pt()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01324}{oomph\+::\+Timing\+Helpers\+::convert\+\_\+secs\+\_\+to\+\_\+formatted\+\_\+string()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00297}{Delete\+\_\+matrix\+\_\+data}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00457}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::distribution\+\_\+pt()}}, \mbox{\hyperlink{linear__solver_8h_source_l00079}{oomph\+::\+Linear\+Solver\+::\+Doc\+\_\+time}}, \mbox{\hyperlink{problem_8cc_source_l03935}{oomph\+::\+Problem\+::get\+\_\+jacobian()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00267}{Jacobian\+\_\+setup\+\_\+time}}, \mbox{\hyperlink{problem_8h_source_l01704}{oomph\+::\+Problem\+::ndof()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00978}{solve()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00273}{Suppress\+\_\+solve}}, \mbox{\hyperlink{mumps__solver_8h_source_l00280}{Suppress\+\_\+warning\+\_\+about\+\_\+\+MPI\+\_\+\+COMM\+\_\+\+WORLD}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01303}{oomph\+::\+Timing\+Helpers\+::timer()}}.
 
 
 
-Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00894}{solve()}}.
+Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00978}{solve()}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_a25cd4ab6089d1532100ff61d5863c6fd}\label{classoomph_1_1MumpsSolver_a25cd4ab6089d1532100ff61d5863c6fd} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!use\_metis\_ordering@{use\_metis\_ordering}}
@@ -845,7 +894,21 @@ Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00236}{236}} of fil
 
 
 
-References \mbox{\hyperlink{mumps__solver_8h_source_l00325}{Jacobian\+\_\+ordering\+\_\+flag}}, and \mbox{\hyperlink{mumps__solver_8h_source_l00315}{Metis\+\_\+ordering}}.
+References \mbox{\hyperlink{mumps__solver_8h_source_l00346}{Jacobian\+\_\+ordering\+\_\+flag}}, and \mbox{\hyperlink{mumps__solver_8h_source_l00329}{Metis\+\_\+ordering}}.
+
+\Hypertarget{classoomph_1_1MumpsSolver_a7f1be2e67797276aaed32de190df0ff1}\label{classoomph_1_1MumpsSolver_a7f1be2e67797276aaed32de190df0ff1} 
+\index{oomph::MumpsSolver@{oomph::MumpsSolver}!use\_parmetis\_ordering@{use\_parmetis\_ordering}}
+\index{use\_parmetis\_ordering@{use\_parmetis\_ordering}!oomph::MumpsSolver@{oomph::MumpsSolver}}
+\doxysubsubsection{\texorpdfstring{use\_parmetis\_ordering()}{use\_parmetis\_ordering()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} oomph\+::\+Mumps\+Solver\+::use\+\_\+parmetis\+\_\+ordering (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00242}{242}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
+
+
+
+References \mbox{\hyperlink{mumps__solver_8h_source_l00346}{Jacobian\+\_\+ordering\+\_\+flag}}, and \mbox{\hyperlink{mumps__solver_8h_source_l00326}{Parmetis\+\_\+ordering}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_a576cb1f983353144e063aa63c50757bc}\label{classoomph_1_1MumpsSolver_a576cb1f983353144e063aa63c50757bc} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!use\_pord\_ordering@{use\_pord\_ordering}}
@@ -859,7 +922,21 @@ Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00230}{230}} of fil
 
 
 
-References \mbox{\hyperlink{mumps__solver_8h_source_l00325}{Jacobian\+\_\+ordering\+\_\+flag}}, and \mbox{\hyperlink{mumps__solver_8h_source_l00314}{Pord\+\_\+ordering}}.
+References \mbox{\hyperlink{mumps__solver_8h_source_l00346}{Jacobian\+\_\+ordering\+\_\+flag}}, and \mbox{\hyperlink{mumps__solver_8h_source_l00328}{Pord\+\_\+ordering}}.
+
+\Hypertarget{classoomph_1_1MumpsSolver_ad80d03ad4dac6676b11247d3f5e78000}\label{classoomph_1_1MumpsSolver_ad80d03ad4dac6676b11247d3f5e78000} 
+\index{oomph::MumpsSolver@{oomph::MumpsSolver}!use\_ptscotch\_ordering@{use\_ptscotch\_ordering}}
+\index{use\_ptscotch\_ordering@{use\_ptscotch\_ordering}!oomph::MumpsSolver@{oomph::MumpsSolver}}
+\doxysubsubsection{\texorpdfstring{use\_ptscotch\_ordering()}{use\_ptscotch\_ordering()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} oomph\+::\+Mumps\+Solver\+::use\+\_\+ptscotch\+\_\+ordering (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00248}{248}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
+
+
+
+References \mbox{\hyperlink{mumps__solver_8h_source_l00346}{Jacobian\+\_\+ordering\+\_\+flag}}, and \mbox{\hyperlink{mumps__solver_8h_source_l00325}{Ptscotch\+\_\+ordering}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_a34fecff46bfab62a67f7200a745efeea}\label{classoomph_1_1MumpsSolver_a34fecff46bfab62a67f7200a745efeea} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!use\_scotch\_ordering@{use\_scotch\_ordering}}
@@ -869,11 +946,11 @@ References \mbox{\hyperlink{mumps__solver_8h_source_l00325}{Jacobian\+\_\+orderi
 
 
 
-Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00242}{242}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00254}{254}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
 
 
 
-References \mbox{\hyperlink{mumps__solver_8h_source_l00325}{Jacobian\+\_\+ordering\+\_\+flag}}, and \mbox{\hyperlink{mumps__solver_8h_source_l00313}{Scotch\+\_\+ordering}}.
+References \mbox{\hyperlink{mumps__solver_8h_source_l00346}{Jacobian\+\_\+ordering\+\_\+flag}}, and \mbox{\hyperlink{mumps__solver_8h_source_l00327}{Scotch\+\_\+ordering}}.
 
 
 
@@ -886,11 +963,11 @@ References \mbox{\hyperlink{mumps__solver_8h_source_l00325}{Jacobian\+\_\+orderi
 
 
 
-Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00294}{294}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00306}{306}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00180}{factorise()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00141}{shutdown\+\_\+mumps()}}.
+Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00201}{factorise()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00162}{shutdown\+\_\+mumps()}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_ad6bd1660c9c62b039b9cdd8074169a25}\label{classoomph_1_1MumpsSolver_ad6bd1660c9c62b039b9cdd8074169a25} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!Default\_workspace\_scaling\_factor@{Default\_workspace\_scaling\_factor}}
@@ -902,9 +979,7 @@ Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00180}{factorise()}}, a
 
 Default factor for workspace -- static so it can be overwritten globally. 
 
-/////////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////////
 
-Default factor for workspace -- static so it can be overwritten globally. 
 
 Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00209}{209}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
 
@@ -920,11 +995,11 @@ Delete\+\_\+matrix\+\_\+data flag. \doxylink{classoomph_1_1MumpsSolver}{Mumps\+S
 
 
 
-Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00285}{285}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00297}{297}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{mumps__solver_8h_source_l00190}{disable\+\_\+delete\+\_\+matrix\+\_\+data()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00179}{enable\+\_\+delete\+\_\+matrix\+\_\+data()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00180}{factorise()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00894}{solve()}}.
+Referenced by \mbox{\hyperlink{mumps__solver_8h_source_l00190}{disable\+\_\+delete\+\_\+matrix\+\_\+data()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00179}{enable\+\_\+delete\+\_\+matrix\+\_\+data()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00201}{factorise()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00978}{solve()}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_a8dc51b4b7e2b121773aea1ed7820ea16}\label{classoomph_1_1MumpsSolver_a8dc51b4b7e2b121773aea1ed7820ea16} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!Doc\_stats@{Doc\_stats}}
@@ -938,11 +1013,11 @@ Set to true for \doxylink{classoomph_1_1MumpsSolver}{Mumps\+Solver} to output st
 
 
 
-Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00264}{264}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00276}{276}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00526}{backsub()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00139}{disable\+\_\+doc\+\_\+stats()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00133}{enable\+\_\+doc\+\_\+stats()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00180}{factorise()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l01005}{resolve()}}.
+Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00604}{backsub()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00139}{disable\+\_\+doc\+\_\+stats()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00133}{enable\+\_\+doc\+\_\+stats()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00201}{factorise()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l01091}{resolve()}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_a969c7e01bcce31a946e01f03953e0745}\label{classoomph_1_1MumpsSolver_a969c7e01bcce31a946e01f03953e0745} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!Irn\_loc@{Irn\_loc}}
@@ -956,11 +1031,11 @@ Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00526}{backsub()}}, \mb
 
 
 
-Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00288}{288}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00300}{300}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00180}{factorise()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00141}{shutdown\+\_\+mumps()}}.
+Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00201}{factorise()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00162}{shutdown\+\_\+mumps()}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_a3358fea674f17424aac41152aeb7f990}\label{classoomph_1_1MumpsSolver_a3358fea674f17424aac41152aeb7f990} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!Jacobian\_ordering\_flag@{Jacobian\_ordering\_flag}}
@@ -974,11 +1049,11 @@ stores an integer from the public enum which specifies which package (PORD, Meti
 
 
 
-Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00325}{325}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00346}{346}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00086}{initialise\+\_\+mumps()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00236}{use\+\_\+metis\+\_\+ordering()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00230}{use\+\_\+pord\+\_\+ordering()}}, and \mbox{\hyperlink{mumps__solver_8h_source_l00242}{use\+\_\+scotch\+\_\+ordering()}}.
+Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00086}{initialise\+\_\+mumps()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00236}{use\+\_\+metis\+\_\+ordering()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00242}{use\+\_\+parmetis\+\_\+ordering()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00230}{use\+\_\+pord\+\_\+ordering()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00248}{use\+\_\+ptscotch\+\_\+ordering()}}, and \mbox{\hyperlink{mumps__solver_8h_source_l00254}{use\+\_\+scotch\+\_\+ordering()}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_a0608ee6d4a166c35a5d2d3756f119780}\label{classoomph_1_1MumpsSolver_a0608ee6d4a166c35a5d2d3756f119780} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!Jacobian\_setup\_time@{Jacobian\_setup\_time}}
@@ -992,11 +1067,11 @@ Jacobian setup time.
 
 
 
-Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00255}{255}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00267}{267}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{mumps__solver_8h_source_l00146}{jacobian\+\_\+setup\+\_\+time()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00894}{solve()}}.
+Referenced by \mbox{\hyperlink{mumps__solver_8h_source_l00146}{jacobian\+\_\+setup\+\_\+time()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00978}{solve()}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_ab816409c94736fea48814096af0bd14b}\label{classoomph_1_1MumpsSolver_ab816409c94736fea48814096af0bd14b} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!Jacobian\_symmetry\_flag@{Jacobian\_symmetry\_flag}}
@@ -1010,7 +1085,7 @@ symmetry of the Jacobian matrix we\textquotesingle{}re solving; takes one of the
 
 
 
-Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00320}{320}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00341}{341}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
 
 
 
@@ -1024,11 +1099,11 @@ Referenced by \mbox{\hyperlink{mumps__solver_8h_source_l00218}{declare\+\_\+jaco
 
 
 
-Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00291}{291}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00303}{303}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00180}{factorise()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00141}{shutdown\+\_\+mumps()}}.
+Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00201}{factorise()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00162}{shutdown\+\_\+mumps()}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_a3512c04b1bfcf11064c0da453ba34806}\label{classoomph_1_1MumpsSolver_a3512c04b1bfcf11064c0da453ba34806} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!Mumps\_is\_initialised@{Mumps\_is\_initialised}}
@@ -1042,11 +1117,11 @@ Has mumps been initialised?
 
 
 
-Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00274}{274}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00286}{286}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00526}{backsub()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00180}{factorise()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00086}{initialise\+\_\+mumps()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00141}{shutdown\+\_\+mumps()}}.
+Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00604}{backsub()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00201}{factorise()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00086}{initialise\+\_\+mumps()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00162}{shutdown\+\_\+mumps()}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_a0cf148106cf3cc86e238ae4f289be0f8}\label{classoomph_1_1MumpsSolver_a0cf148106cf3cc86e238ae4f289be0f8} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!Mumps\_struc\_pt@{Mumps\_struc\_pt}}
@@ -1060,11 +1135,11 @@ Pointer to MUMPS struct that contains the solver data.
 
 
 
-Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00297}{297}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00309}{309}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00526}{backsub()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00180}{factorise()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00086}{initialise\+\_\+mumps()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l01005}{resolve()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00141}{shutdown\+\_\+mumps()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00724}{solve()}}.
+Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00604}{backsub()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00201}{factorise()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00086}{initialise\+\_\+mumps()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l01091}{resolve()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00162}{shutdown\+\_\+mumps()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00806}{solve()}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_a6a5a305985a4215cc3456df54f531900}\label{classoomph_1_1MumpsSolver_a6a5a305985a4215cc3456df54f531900} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!Solution\_time@{Solution\_time}}
@@ -1078,11 +1153,11 @@ Solution time.
 
 
 
-Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00258}{258}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00270}{270}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{mumps__solver_8h_source_l00153}{linear\+\_\+solver\+\_\+solution\+\_\+time()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l01005}{resolve()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00724}{solve()}}.
+Referenced by \mbox{\hyperlink{mumps__solver_8h_source_l00153}{linear\+\_\+solver\+\_\+solution\+\_\+time()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l01091}{resolve()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00806}{solve()}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_ab0656b67b21335203eb7fbce8c7c7535}\label{classoomph_1_1MumpsSolver_ab0656b67b21335203eb7fbce8c7c7535} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!Suppress\_incorrect\_rhs\_distribution\_warning\_in\_resolve@{Suppress\_incorrect\_rhs\_distribution\_warning\_in\_resolve}}
@@ -1106,7 +1181,7 @@ Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00066}{66}} of file
 
 
 
-Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00526}{backsub()}}.
+Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00604}{backsub()}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_acfc51e1ed214d9d2dc5a83b04a08d1f7}\label{classoomph_1_1MumpsSolver_acfc51e1ed214d9d2dc5a83b04a08d1f7} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!Suppress\_mumps\_info\_during\_solve@{Suppress\_mumps\_info\_during\_solve}}
@@ -1120,11 +1195,11 @@ Boolean to suppress info being printed to screen during MUMPS solve.
 
 
 
-Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00271}{271}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00283}{283}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{mumps__solver_8h_source_l00108}{disable\+\_\+suppress\+\_\+mumps\+\_\+info\+\_\+during\+\_\+solve()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00102}{enable\+\_\+suppress\+\_\+mumps\+\_\+info\+\_\+during\+\_\+solve()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00180}{factorise()}}.
+Referenced by \mbox{\hyperlink{mumps__solver_8h_source_l00108}{disable\+\_\+suppress\+\_\+mumps\+\_\+info\+\_\+during\+\_\+solve()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00102}{enable\+\_\+suppress\+\_\+mumps\+\_\+info\+\_\+during\+\_\+solve()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00201}{factorise()}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_a851b95821f3adce5545e7abe238b3cce}\label{classoomph_1_1MumpsSolver_a851b95821f3adce5545e7abe238b3cce} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!Suppress\_solve@{Suppress\_solve}}
@@ -1138,11 +1213,11 @@ Suppress solve?
 
 
 
-Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00261}{261}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00273}{273}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{mumps__solver_8h_source_l00168}{disable\+\_\+suppress\+\_\+solve()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00161}{enable\+\_\+suppress\+\_\+solve()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00894}{solve()}}.
+Referenced by \mbox{\hyperlink{mumps__solver_8h_source_l00168}{disable\+\_\+suppress\+\_\+solve()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00161}{enable\+\_\+suppress\+\_\+solve()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00978}{solve()}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_a4a770886867c62d2eff6afe4b091fabd}\label{classoomph_1_1MumpsSolver_a4a770886867c62d2eff6afe4b091fabd} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!Suppress\_warning\_about\_MPI\_COMM\_WORLD@{Suppress\_warning\_about\_MPI\_COMM\_WORLD}}
@@ -1156,11 +1231,11 @@ Boolean to suppress warning about communicator not equal to MPI\+\_\+\+COMM\+\_\
 
 
 
-Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00268}{268}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00280}{280}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00526}{backsub()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00095}{disable\+\_\+suppress\+\_\+warning\+\_\+about\+\_\+\+MPI\+\_\+\+COMM\+\_\+\+WORLD()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00089}{enable\+\_\+suppress\+\_\+warning\+\_\+about\+\_\+\+MPI\+\_\+\+COMM\+\_\+\+WORLD()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00180}{factorise()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l01005}{resolve()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00724}{solve()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00894}{solve()}}.
+Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00604}{backsub()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00095}{disable\+\_\+suppress\+\_\+warning\+\_\+about\+\_\+\+MPI\+\_\+\+COMM\+\_\+\+WORLD()}}, \mbox{\hyperlink{mumps__solver_8h_source_l00089}{enable\+\_\+suppress\+\_\+warning\+\_\+about\+\_\+\+MPI\+\_\+\+COMM\+\_\+\+WORLD()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00201}{factorise()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l01091}{resolve()}}, \mbox{\hyperlink{mumps__solver_8cc_source_l00806}{solve()}}, and \mbox{\hyperlink{mumps__solver_8cc_source_l00978}{solve()}}.
 
 \Hypertarget{classoomph_1_1MumpsSolver_a78d0283ea0263a5b31b7662d7abdfcb8}\label{classoomph_1_1MumpsSolver_a78d0283ea0263a5b31b7662d7abdfcb8} 
 \index{oomph::MumpsSolver@{oomph::MumpsSolver}!Workspace\_scaling\_factor@{Workspace\_scaling\_factor}}
@@ -1170,11 +1245,11 @@ Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00526}{backsub()}}, \mb
 
 
 
-Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00277}{277}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00289}{289}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00180}{factorise()}}.
+Referenced by \mbox{\hyperlink{mumps__solver_8cc_source_l00201}{factorise()}}.
 
 
 

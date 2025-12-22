@@ -7,7 +7,7 @@ Backward step mesh.
 
 
 
-{\ttfamily \#include $<$backward\+\_\+step\+\_\+mesh.\+template.\+h$>$}
+{\ttfamily \#include $<$backward\+\_\+step\+\_\+mesh.\+h$>$}
 
 Inheritance diagram for oomph\+::Backward\+Step\+Quad\+Mesh\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
 \begin{center}
@@ -127,6 +127,10 @@ Inheritance diagram for oomph\+::Backward\+Step\+Quad\+Mesh\texorpdfstring{$<$}{
 \begin{DoxyCompactList}\small\item\em Replace existing boundary node lookup schemes with new schemes created using the boundary data stored in the nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1Mesh_ad1b124a959628aba00162b89617b3a62}{boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Indicate whether the i-\/th boundary has an intrinsic coordinate. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_ab137d0c0debf5ba0d6ea6990103e620c}{set\+\_\+boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be existing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_a3b9d63e0057ed721190b109f48f7c92e}{set\+\_\+boundary\+\_\+coordinate\+\_\+does\+\_\+not\+\_\+exist}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be non-\/existing. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_af01dfefb66c15579b540be62999d93ee}{nelement}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return number of elements in the mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
@@ -513,9 +517,7 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_aca12acfe655a4d5c4a4eab4a7b970812}{Element\+\_\+pt}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a412a5051be9e81f0ba61bf85e5abc4a6}{Boundary\+\_\+coordinate\+\_\+exists}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of boolean data that indicates whether the boundary coordinates have been set for the boundary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -523,7 +525,7 @@ std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionEleme
 class oomph\+::\+Backward\+Step\+Quad\+Mesh$<$ ELEMENT $>$}
 Backward step mesh. 
 
-Definition at line \mbox{\hyperlink{backward__step__mesh_8template_8h_source_l00045}{45}} of file \mbox{\hyperlink{backward__step__mesh_8template_8h_source}{backward\+\_\+step\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{backward__step__mesh_8h_source_l00045}{45}} of file \mbox{\hyperlink{backward__step__mesh_8h_source}{backward\+\_\+step\+\_\+mesh.\+h}}.
 
 
 
@@ -541,11 +543,11 @@ Pass overall number of elements in the horizontal and vertical directions, nx an
 
 
 
-Definition at line \mbox{\hyperlink{backward__step__mesh_8template_8h_source_l00054}{54}} of file \mbox{\hyperlink{backward__step__mesh_8template_8h_source}{backward\+\_\+step\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{backward__step__mesh_8h_source_l00054}{54}} of file \mbox{\hyperlink{backward__step__mesh_8h_source}{backward\+\_\+step\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{backward__step__mesh_8template_8cc_source_l00044}{oomph\+::\+Backward\+Step\+Quad\+Mesh$<$ ELEMENT $>$\+::build\+\_\+mesh()}}, \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source_l00224}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::nx()}}, and \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source_l00231}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::ny()}}.
+References \mbox{\hyperlink{backward__step__mesh_8template_8cc_source_l00047}{oomph\+::\+Backward\+Step\+Quad\+Mesh$<$ ELEMENT $>$\+::build\+\_\+mesh()}}, \mbox{\hyperlink{rectangular__quadmesh_8h_source_l00224}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::nx()}}, and \mbox{\hyperlink{rectangular__quadmesh_8h_source_l00231}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::ny()}}.
 
 \Hypertarget{classoomph_1_1BackwardStepQuadMesh_aec4e05ad80d83327050653ebabce9564}\label{classoomph_1_1BackwardStepQuadMesh_aec4e05ad80d83327050653ebabce9564} 
 \index{oomph::BackwardStepQuadMesh$<$ ELEMENT $>$@{oomph::BackwardStepQuadMesh$<$ ELEMENT $>$}!````~BackwardStepQuadMesh@{\texorpdfstring{$\sim$}{\string~}BackwardStepQuadMesh}}
@@ -560,7 +562,7 @@ Destructor\+: Empty.
 
 
 
-Definition at line \mbox{\hyperlink{backward__step__mesh_8template_8h_source_l00069}{69}} of file \mbox{\hyperlink{backward__step__mesh_8template_8h_source}{backward\+\_\+step\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{backward__step__mesh_8h_source_l00069}{69}} of file \mbox{\hyperlink{backward__step__mesh_8h_source}{backward\+\_\+step\+\_\+mesh.\+h}}.
 
 
 
@@ -578,7 +580,7 @@ Actual build function.
 
 Actual build function. Pass overall number of elements in the horizontal and vertical directions, nx and ny, and the corresponding dimensions, lx and ly. nx\+\_\+cut\+\_\+out and ny\+\_\+cut\+\_\+out elements are cut out from the lower right corner to create the (reversed) backward step geometry. Timestepper defaults to \doxylink{classoomph_1_1Steady}{Steady}. 
 
-Definition at line \mbox{\hyperlink{backward__step__mesh_8template_8cc_source_l00044}{44}} of file \mbox{\hyperlink{backward__step__mesh_8template_8cc_source}{backward\+\_\+step\+\_\+mesh.\+template.\+cc}}.
+Definition at line \mbox{\hyperlink{backward__step__mesh_8template_8cc_source_l00047}{47}} of file \mbox{\hyperlink{backward__step__mesh_8template_8cc_source}{backward\+\_\+step\+\_\+mesh.\+template.\+cc}}.
 
 
 
@@ -586,11 +588,11 @@ References \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{nod
 
 
 
-Referenced by \mbox{\hyperlink{backward__step__mesh_8template_8h_source_l00054}{oomph\+::\+Backward\+Step\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Backward\+Step\+Quad\+Mesh()}}.
+Referenced by \mbox{\hyperlink{backward__step__mesh_8h_source_l00054}{oomph\+::\+Backward\+Step\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Backward\+Step\+Quad\+Mesh()}}.
 
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{backward__step__mesh_8template_8h}{backward\+\_\+step\+\_\+mesh.\+template.\+h}}\item 
+\mbox{\hyperlink{backward__step__mesh_8h}{backward\+\_\+step\+\_\+mesh.\+h}}\item 
 \mbox{\hyperlink{backward__step__mesh_8template_8cc}{backward\+\_\+step\+\_\+mesh.\+template.\+cc}}\end{DoxyCompactItemize}

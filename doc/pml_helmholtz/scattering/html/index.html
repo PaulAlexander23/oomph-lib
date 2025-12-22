@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -121,34 +115,34 @@
 </center><h1><a class="anchor" id="theory"></a>
 Theory: The Helmholtz equation for time-harmonic scattering problems</h1>
 <p>The Helmholtz equation governs time-harmonic solutions of problems governed by the linear wave equation  </p><p class="formulaDsp">
-<picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \nabla( c^2 \nabla U(x,y,t)) = \frac{\partial^2 U(x,y,t)}{\partial t^2},
  \ \ \ \ \ \ \ \ \ \ \ \ (1)
-\]" src="form_0.png" width="243" height="29"/></picture>
+\]" src="form_0.png" width="243" height="29"/>
 </p>
-<p> where <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ c $" src="form_1.png" width="5" height="6"/></picture> is the wavespeed. Assuming that <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ U(x,y,t) $" src="form_2.png" width="48" height="14"/></picture> is time-harmonic, with frequency <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \omega $" src="form_3.png" width="9" height="6"/></picture>, we write the real function <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ U(x,y,t) $" src="form_2.png" width="48" height="14"/></picture> as  </p><p class="formulaDsp">
-<picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> where <img class="formulaInl" alt="$ c $" src="form_1.png" width="5" height="6"/> is the wavespeed. Assuming that <img class="formulaInl" alt="$ U(x,y,t) $" src="form_2.png" width="48" height="14"/> is time-harmonic, with frequency <img class="formulaInl" alt="$ \omega $" src="form_3.png" width="9" height="6"/>, we write the real function <img class="formulaInl" alt="$ U(x,y,t) $" src="form_2.png" width="48" height="14"/> as  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 U(x,y,t) =Re (u(x,y) \ e^{-i \omega t})
-\]" src="form_4.png" width="159" height="16"/></picture>
+\]" src="form_4.png" width="159" height="16"/>
 </p>
-<p> where <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ u(x,y) $" src="form_5.png" width="36" height="14"/></picture> is complex-valued. If the wavespeed is constant this transforms (1) into the <a href="../../../helmholtz/scattering/html/index.html">standard form of the Helmholtz equation</a>  </p><p class="formulaDsp">
-<picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> where <img class="formulaInl" alt="$ u(x,y) $" src="form_5.png" width="36" height="14"/> is complex-valued. If the wavespeed is constant this transforms (1) into the <a href="../../../helmholtz/scattering/html/index.html">standard form of the Helmholtz equation</a>  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \nabla^2 u(x,y) + k^2 u(x,y) = 0
  \ \ \ \ \ \ \ \ \ \ \ \ (2)
-\]" src="form_6.png" width="204" height="16"/></picture>
+\]" src="form_6.png" width="204" height="16"/>
 </p>
 <p> where  </p><p class="formulaDsp">
-<picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 k = \frac{\omega}{c}
  \ \ \ \ \ \ \ \ \ \ \ \ (3)
-\]" src="form_7.png" width="100" height="24"/></picture>
+\]" src="form_7.png" width="100" height="24"/>
 </p>
 <p> is the wave number. Like other elliptic PDEs the Helmholtz equation admits Dirichlet, Neumann (flux) and Robin boundary conditions.</p>
 <p>If the equation is solved in an infinite domain (e.g. in scattering problems) the solution must satisfy the so-called <a href="http://en.wikipedia.org/wiki/Sommerfeld_radiation_condition">Sommerfeld radiation condition</a> which in 2D has the form  </p><p class="formulaDsp">
-<picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \lim_{r\to \infty} \sqrt{r} \left(\frac{\partial u}{\partial r} - iku
 \right) =0. 
-\]" src="form_8.png" width="141" height="31"/></picture>
+\]" src="form_8.png" width="141" height="31"/>
 </p>
 <p> Mathematically, this condition is required to ensure the uniqueness of the solution (and hence the well-posedness of the problem). In a physical context, such as a scattering problem, the condition ensures that scattering of an incoming wave only produces outgoing not incoming waves from infinity.</p>
 <h1><a class="anchor" id="discr"></a>
@@ -161,11 +155,11 @@ Discretisation by finite elements</h1>
 <p>The imposition of the Sommerfeld radiation condition for problems in infinite domains is slightly more complicated. <a href="../../../helmholtz/scattering/html/index.html">Another tutorial</a> shows how to impose this condition by means of absorbing/approximate boundary conditions or DtN maps. In the next section we will discuss an alternative approach to this problem by means of perfectly matched layers.</p>
 <h2><a class="anchor" id="pml"></a>
 Perfectly matched layers</h2>
-<p>The idea behind perfectly matched layers is illustrated in the figure below. The actual physical/mathematical problem has to be solved in the infinite domain <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ D $" src="form_9.png" width="10" height="10"/></picture> (shown on the left), with the Sommerfeld radiation condition ensuring the suitable decay of the solution at large distances from the region of interest (the vicinity of the scatterer, say).</p>
-<p>If computations are performed in a finite computational domain, <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$
-D_c $" src="form_10.png" width="15" height="13"/></picture> , (shown in the middle), spurious wave reflections are likely to be generated at the artificial boundary <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$
-\partial D_c $" src="form_11.png" width="23" height="13"/></picture> of the computational domain.</p>
-<p>The idea behind PML methods is to surround the actual computational domain <picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ D_c $" src="form_12.png" width="15" height="13"/></picture> with a layer of "absorbing" material whose properties are chosen such that the outgoing waves are absorbed within it, without creating any artificial reflected waves at the interface between the PML layer and the computational domain.</p>
+<p>The idea behind perfectly matched layers is illustrated in the figure below. The actual physical/mathematical problem has to be solved in the infinite domain <img class="formulaInl" alt="$ D $" src="form_9.png" width="10" height="10"/> (shown on the left), with the Sommerfeld radiation condition ensuring the suitable decay of the solution at large distances from the region of interest (the vicinity of the scatterer, say).</p>
+<p>If computations are performed in a finite computational domain, <img class="formulaInl" alt="$
+D_c $" src="form_10.png" width="15" height="13"/> , (shown in the middle), spurious wave reflections are likely to be generated at the artificial boundary <img class="formulaInl" alt="$
+\partial D_c $" src="form_11.png" width="23" height="13"/> of the computational domain.</p>
+<p>The idea behind PML methods is to surround the actual computational domain <img class="formulaInl" alt="$ D_c $" src="form_12.png" width="15" height="13"/> with a layer of "absorbing" material whose properties are chosen such that the outgoing waves are absorbed within it, without creating any artificial reflected waves at the interface between the PML layer and the computational domain.</p>
 <div class="image">
 <img src="pml.gif" alt=""/>
 <div class="caption">
@@ -173,90 +167,90 @@ Sketch illustrating the idea behind perfectly matched layers. </div></div>
  <p>Our implementation of the perfectly matched layers follows the development in <a href="http://www.sciencedirect.com/science/article/pii/S0021999106004487">A. Bermudez, L. Hervella-Nieto, A. Prieto, and R. Rodriguez "An optimal perfectly matched layer with unbounded 
 absorbing function for time-harmonic acoustic scattering problems" Journal of Computational Physics <b>223</b> 469-488 (2007)</a> and we assume the boundaries of the computational domain to be aligned with the coordinate axes, as shown in the sketch above.</p>
 <p>The method requires a slight further generalisation of the equations, achieved by introducing the complex coordinate mapping  </p><p class="formulaDsp">
-<picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \frac{\partial}{\partial x_j} \to \frac{1}{\gamma_j} \frac{\partial}{\partial x_j} 
  \ \ \ \ \ \ \ \ \ \ \ \ (4)
-\]" src="form_13.png" width="144" height="31"/></picture>
+\]" src="form_13.png" width="144" height="31"/>
 </p>
 <p> within the perfectly matched layers. This makes the problem anisotropic and in 2D we have  </p><p class="formulaDsp">
-<picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
  \nabla ^ 2 u = 
 \frac{1}{\gamma_x}\frac{\partial}{\partial x} \left( 
 \frac{1}{\gamma_x}\frac{\partial u}{\partial x} \right) + 
 \frac{1}{\gamma_y}\frac{\partial}{\partial y}\left( 
 \frac{1}{\gamma_y}\frac{\partial u}{\partial y}\right)
  \ \ \ \ \ \ \ \ \ \ \ \ (5)
-\]" src="form_14.png" width="294" height="31"/></picture>
+\]" src="form_14.png" width="294" height="31"/>
 </p>
-<p>The choice of <picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \gamma_x $" src="form_15.png" width="13" height="9"/></picture> and <picture><source srcset="form_16_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \gamma_y $" src="form_16.png" width="13" height="10"/></picture> depends on the orientation of the PML layer. Since we are restricting ourselves to axis-aligned mesh boundaries we need to distinguish three different cases, as shown in the sketch below:</p>
+<p>The choice of <img class="formulaInl" alt="$ \gamma_x $" src="form_15.png" width="13" height="9"/> and <img class="formulaInl" alt="$ \gamma_y $" src="form_16.png" width="13" height="10"/> depends on the orientation of the PML layer. Since we are restricting ourselves to axis-aligned mesh boundaries we need to distinguish three different cases, as shown in the sketch below:</p>
 <div class="image">
 <img src="pml_meshes.gif" alt=""/>
 <div class="caption">
 Sketch illustrating the geometry of the perfectly matched layers. </div></div>
  <ul>
 <li>For layers that are aligned with the y axis (such as the left and right PML layers in the sketch) we set  <p class="formulaDsp">
-<picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
   \gamma_{x}(x)  = 
   1 +\frac{i}{k}\ \sigma_{x}(x) 
   \ \ \ \ \ \ \ \mbox{ \ \ \ with \ \ \ }
   \sigma_{x}(x)  =  \frac{1}{|X_{PML}-x|}, \ \ \ \ \ 
   (6)
-  \]" src="form_17.png" width="355" height="30"/></picture>
+  \]" src="form_17.png" width="355" height="30"/>
 </p>
- where <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ X_{PML} $" src="form_18.png" width="36" height="13"/></picture> is the x-coordinate of the outer boundary of the PML layer, and  <p class="formulaDsp">
-<picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ where <img class="formulaInl" alt="$ X_{PML} $" src="form_18.png" width="36" height="13"/> is the x-coordinate of the outer boundary of the PML layer, and  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
    \gamma_y = 1.
-  \]" src="form_19.png" width="39" height="13"/></picture>
+  \]" src="form_19.png" width="39" height="13"/>
 </p>
 </li>
 <li>For layers that are aligned with the x axis (such as the top and bottom PML layers in the sketch) we set  <p class="formulaDsp">
-<picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[ 
+<img class="formulaDsp" alt="\[ 
   \gamma_x = 1,
-  \]" src="form_20.png" width="39" height="11"/></picture>
+  \]" src="form_20.png" width="39" height="11"/>
 </p>
  and  <p class="formulaDsp">
-<picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
   \gamma_{y}(y) = 
   1+\frac{i}{k} \ \sigma_{y}(y) 
   \ \ \ \ \ \ \ \mbox{ \ \ \ with \ \ \ }
   \sigma_{y}(y)  =  \frac{1}{|Y_{PML}-y|}, \ \ \ \ \ 
   (7)
-  \]" src="form_21.png" width="349" height="30"/></picture>
+  \]" src="form_21.png" width="349" height="30"/>
 </p>
- where <picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Y_{PML} $" src="form_22.png" width="33" height="13"/></picture> is the y-coordinate of the outer boundary of the PML layer.</li>
-<li>In corner regions that are bounded by two axis-aligned PML layers (with outer coordinates <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ X_{PML} $" src="form_18.png" width="36" height="13"/></picture> and <br  />
- <picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Y_{PML} $" src="form_22.png" width="33" height="13"/></picture>) we set  <p class="formulaDsp">
-<picture><source srcset="form_23_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ where <img class="formulaInl" alt="$ Y_{PML} $" src="form_22.png" width="33" height="13"/> is the y-coordinate of the outer boundary of the PML layer.</li>
+<li>In corner regions that are bounded by two axis-aligned PML layers (with outer coordinates <img class="formulaInl" alt="$ X_{PML} $" src="form_18.png" width="36" height="13"/> and <br  />
+ <img class="formulaInl" alt="$ Y_{PML} $" src="form_22.png" width="33" height="13"/>) we set  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
   \gamma_{x}(x)  = 
   1 +\frac{i}{k}\ \sigma_{x}(x) 
   \ \ \ \ \ \ \ \mbox{ \ \ \ with \ \ \ }
   \sigma_{x}(x)  =  \frac{1}{|X_{PML}-x|} \ \ \ \ \ 
   (8)
-  \]" src="form_23.png" width="350" height="30"/></picture>
+  \]" src="form_23.png" width="350" height="30"/>
 </p>
  and  <p class="formulaDsp">
-<picture><source srcset="form_24_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
   \gamma_{y}(y) = 
   1+\frac{i}{k} \ \sigma_{y}(y) 
   \ \ \ \ \ \ \ \mbox{ \ \ \ with \ \ \ }
   \sigma_{y}(y)  =  \frac{1}{|Y_{PML}-y|}. \ \ \ \ \ 
   (9)
-  \]" src="form_24.png" width="348" height="30"/></picture>
+  \]" src="form_24.png" width="348" height="30"/>
 </p>
 </li>
 <li>Finally, in the actual computational domain (outside the PML layers) we set  <p class="formulaDsp">
-<picture><source srcset="form_25_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
   \gamma_{x}(x) =   \gamma_{y}(y) = 1.
-  \]" src="form_25.png" width="101" height="14"/></picture>
+  \]" src="form_25.png" width="101" height="14"/>
 </p>
 </li>
 </ul>
 <h2><a class="anchor" id="impl"></a>
 Implementation of the perfectly matched layers within oomph-lib</h2>
-<p>The finite-element-discretised equations (2) (modified by the PML terms discussed above) are implemented in the <code>PMLHelmholtzEquations&lt;DIM&gt;</code> class which is templated by the spatial dimension, <code>DIM</code>. As usual, we provide fully functional elements by combining these with geometric finite elements (from the Q and T families &ndash; corresponding (in 2D) to triangles and quad elements). By default, the PML modifications are disabled, i.e. <picture><source srcset="form_26_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \gamma_{x}(x) $" src="form_26.png" width="30" height="14"/></picture> and <picture><source srcset="form_27_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \gamma_{y}(y) $" src="form_27.png" width="29" height="14"/></picture> are both set to 1.</p>
+<p>The finite-element-discretised equations (2) (modified by the PML terms discussed above) are implemented in the <code>PMLHelmholtzEquations&lt;DIM&gt;</code> class which is templated by the spatial dimension, <code>DIM</code>. As usual, we provide fully functional elements by combining these with geometric finite elements (from the Q and T families &ndash; corresponding (in 2D) to triangles and quad elements). By default, the PML modifications are disabled, i.e. <img class="formulaInl" alt="$ \gamma_{x}(x) $" src="form_26.png" width="30" height="14"/> and <img class="formulaInl" alt="$ \gamma_{y}(y) $" src="form_27.png" width="29" height="14"/> are both set to 1.</p>
 <p>The generation of suitable 2D PML meshes along the axis-aligned boundaries of a given bulk mesh is facilitated by helper functions which automatically erect layers of (quadrilateral) PML elements. The layers are built from <code>QPMLHelmholtzElement&lt;2,NNODE_1D&gt;</code> elements and the parameter <code>NNODE_1D</code> is automatically chosen to match that of the elements in the bulk mesh. The bulk mesh can contain quads or triangles (as shown in the specific example presented below).</p>
 <p>For instance, to erect a PML layer (of width <code>width</code>, with <code>n_pml</code> elements across the width of the layer) on the "right" boundary (with boundary ID <code>b_bulk</code>) of the bulk mesh pointed to by <code>bulk_mesh_pt</code>, a call to </p><div class="fragment"><div class="line">PMLHelper::create_right_pml_mesh(bulk_mesh_pt, b_bulk, n_pml, width);</div>
-</div><!-- fragment --><p> returns a pointer to a newly-created mesh that contains the PML elements which are automatically attached to the boundary of the bulk mesh (i.e. the <code>Nodes</code> on the outer boundary of the bulk mesh are shared (pointed to), rather than duplicated, by the elements in the PML mesh). The PML-ness of the elements is automatically enabled, i.e. the functions <picture><source srcset="form_28_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \gamma_x(x) $" src="form_28.png" width="30" height="14"/></picture> and <picture><source srcset="form_29_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \gamma_y(y) $" src="form_29.png" width="29" height="14"/></picture> are set as described above. Finally, zero Dirichlet boundary conditions are applied to the real and imaginary parts of the solution on the outer boundary of the PML layer.</p>
+</div><!-- fragment --><p> returns a pointer to a newly-created mesh that contains the PML elements which are automatically attached to the boundary of the bulk mesh (i.e. the <code>Nodes</code> on the outer boundary of the bulk mesh are shared (pointed to), rather than duplicated, by the elements in the PML mesh). The PML-ness of the elements is automatically enabled, i.e. the functions <img class="formulaInl" alt="$ \gamma_x(x) $" src="form_28.png" width="30" height="14"/> and <img class="formulaInl" alt="$ \gamma_y(y) $" src="form_29.png" width="29" height="14"/> are set as described above. Finally, zero Dirichlet boundary conditions are applied to the real and imaginary parts of the solution on the outer boundary of the PML layer.</p>
 <p>Similar helper functions exist for PML layers on other axis-aligned boundaries, and for corner PML meshes; see the code listings provided below. Currently, we only provide this functionality for convex 2D computational domains, but the generalisation to non-convex boundaries and 3D is straightforward (if tedious) to implement (Any volunteers?).</p>
 <h1><a class="anchor" id="scattering"></a>
 A specific example: Outward propagation of acoustic waves from the surface of a cylindrical object</h1>
@@ -268,11 +262,11 @@ A specific example: Outward propagation of acoustic waves from the surface of a 
 The computational domain used in the example problem. </div></div>
  <h1><a class="anchor" id="results"></a>
 Results</h1>
-<p>The figures below show the real part of the solution <picture><source srcset="form_30_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re(u(x,y,t)) $" src="form_30.png" width="70" height="14"/></picture> radiating from a circular disk with a radius of <picture><source srcset="form_31_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ r=0.1 $" src="form_31.png" width="39" height="9"/></picture> for the case when the non-zero Dirichlet boundary conditions are imposed only on the real part of <picture><source srcset="form_32_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ u $" src="form_32.png" width="9" height="6"/></picture> by setting  </p><p class="formulaDsp">
-<picture><source srcset="form_33_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p>The figures below show the real part of the solution <img class="formulaInl" alt="$ Re(u(x,y,t)) $" src="form_30.png" width="70" height="14"/> radiating from a circular disk with a radius of <img class="formulaInl" alt="$ r=0.1 $" src="form_31.png" width="39" height="9"/> for the case when the non-zero Dirichlet boundary conditions are imposed only on the real part of <img class="formulaInl" alt="$ u $" src="form_32.png" width="9" height="6"/> by setting  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 Re(u(x,y))\bigg|_{\partial D} = 0.1 \ \ \ \ \ and  \ \ \ \ 
 Im(u(x,y))\bigg|_{\partial D} = 0.
-\]" src="form_33.png" width="279" height="33"/></picture>
+\]" src="form_33.png" width="279" height="33"/>
 </p>
 <div class="image">
 <img src="Soln2D.gif" alt=""/>
@@ -296,7 +290,7 @@ The solution with zero flux boundary conditions -- height view. </div></div>
 The numerical solution</h1>
 <h2><a class="anchor" id="namespace"></a>
 The global namespace</h2>
-<p>As usual, we define the problem parameters in a global namespace. After non-dimensionalisation, the only parameter is wavenumber, <picture><source srcset="form_34_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ k $" src="form_34.png" width="6" height="10"/></picture>.</p>
+<p>As usual, we define the problem parameters in a global namespace. After non-dimensionalisation, the only parameter is wavenumber, <img class="formulaInl" alt="$ k $" src="form_34.png" width="6" height="10"/>.</p>
  <div class="fragment"><div class="line"><span class="comment">//===== start_of_namespace=============================================</span></div>
 <div class="line"><span class="comment">/// Namespace for the Helmholtz problem parameters</span></div>
 <div class="line"><span class="comment">//=====================================================================</span></div>
@@ -310,7 +304,7 @@ The global namespace</h2>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceGlobalParameters.html#aae73cb63b27d51a87845c3392cd944eb">K_squared</a> = <a class="code hl_variable" href="namespaceGlobalParameters.html#a571b847702904d4cf646ac7ff17a7d2c">Wavenumber</a> * <a class="code hl_variable" href="namespaceGlobalParameters.html#a571b847702904d4cf646ac7ff17a7d2c">Wavenumber</a>;</div>
 <div class="line"> </div>
 <div class="line">} <span class="comment">// end of namespace</span></div>
-<div class="ttc" id="anamespaceGlobalParameters_html"><div class="ttname"><a href="namespaceGlobalParameters.html">GlobalParameters</a></div><div class="ttdoc">////////////////////////////////////////////////////////////////// //////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="unstructured__two__d__helmholtz_8cc_source.html#l00054">unstructured_two_d_helmholtz.cc:55</a></div></div>
+<div class="ttc" id="anamespaceGlobalParameters_html"><div class="ttname"><a href="namespaceGlobalParameters.html">GlobalParameters</a></div><div class="ttdoc">Namespace for the Helmholtz problem parameters.</div><div class="ttdef"><b>Definition</b> <a href="unstructured__two__d__helmholtz_8cc_source.html#l00054">unstructured_two_d_helmholtz.cc:55</a></div></div>
 <div class="ttc" id="anamespaceGlobalParameters_html_a571b847702904d4cf646ac7ff17a7d2c"><div class="ttname"><a href="namespaceGlobalParameters.html#a571b847702904d4cf646ac7ff17a7d2c">GlobalParameters::Wavenumber</a></div><div class="ttdeci">double Wavenumber</div><div class="ttdoc">Wavenumber (also known as k), k=omega/c.</div><div class="ttdef"><b>Definition</b> <a href="unstructured__two__d__helmholtz_8cc_source.html#l00058">unstructured_two_d_helmholtz.cc:58</a></div></div>
 <div class="ttc" id="anamespaceGlobalParameters_html_aae73cb63b27d51a87845c3392cd944eb"><div class="ttname"><a href="namespaceGlobalParameters.html#aae73cb63b27d51a87845c3392cd944eb">GlobalParameters::K_squared</a></div><div class="ttdeci">double K_squared</div><div class="ttdoc">Square of the wavenumber (also known as k^2)</div><div class="ttdef"><b>Definition</b> <a href="unstructured__two__d__helmholtz_8cc_source.html#l00061">unstructured_two_d_helmholtz.cc:61</a></div></div>
 </div><!-- fragment --><h2><a class="anchor" id="main"></a>
@@ -325,7 +319,7 @@ The driver code</h2>
 <div class="line"> <span class="comment">// Set up the problem with 2D six-node elements from the</span></div>
 <div class="line"> <span class="comment">// TPMLHelmholtzElement family.</span></div>
 <div class="line"> <a class="code hl_class" href="classPMLProblem.html">PMLProblem&lt;TPMLHelmholtzElement&lt;2,3&gt;</a> &gt;  problem;</div>
-<div class="ttc" id="aclassPMLProblem_html"><div class="ttname"><a href="classPMLProblem.html">PMLProblem</a></div><div class="ttdoc">////////////////////////////////////////////////////////////////// //////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="unstructured__two__d__helmholtz_8cc_source.html#l00075">unstructured_two_d_helmholtz.cc:76</a></div></div>
+<div class="ttc" id="aclassPMLProblem_html"><div class="ttname"><a href="classPMLProblem.html">PMLProblem</a></div><div class="ttdoc">Problem class to demonstrate use of perfectly matched layers for Helmholtz problems.</div><div class="ttdef"><b>Definition</b> <a href="unstructured__two__d__helmholtz_8cc_source.html#l00075">unstructured_two_d_helmholtz.cc:76</a></div></div>
 </div><!-- fragment --><p> Next we define the output directory.</p>
 <div class="fragment"><div class="line"> <span class="comment">// Create label for output</span></div>
 <div class="line"> <span class="comment">//------------------------</span></div>
@@ -556,7 +550,7 @@ The problem constructor</h2>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Build the entire mesh from its submeshes</span></div>
 <div class="line"> build_global_mesh();</div>
-</div><!-- fragment --><p> Next we pass the problem parameters to all elements (remember that even the elements in the PML layers need to be told about these since they adjust the <picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \gamma_x $" src="form_15.png" width="13" height="9"/></picture> and <picture><source srcset="form_16_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \gamma_y $" src="form_16.png" width="13" height="10"/></picture> functions in terms of these parameters), apply the boundary conditions and assign the equation numbers:</p>
+</div><!-- fragment --><p> Next we pass the problem parameters to all elements (remember that even the elements in the PML layers need to be told about these since they adjust the <img class="formulaInl" alt="$ \gamma_x $" src="form_15.png" width="13" height="9"/> and <img class="formulaInl" alt="$ \gamma_y $" src="form_16.png" width="13" height="10"/> functions in terms of these parameters), apply the boundary conditions and assign the equation numbers:</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"> <span class="comment">// Let&#39;s have a look where the boundaries are</span></div>
 <div class="line"> this-&gt;mesh_pt()-&gt;output(<span class="stringliteral">&quot;global_mesh.dat&quot;</span>);</div>
@@ -633,7 +627,7 @@ Post-processing</h2>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output solution</span></div>
 <div class="line"> <span class="comment">//-----------------</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> Bulk_mesh_pt-&gt;output(some_file,npts);</div>
@@ -664,7 +658,7 @@ Linear and cubic finite elements</h3>
 <p>The driver code also contains (commented out) modifications that allow the simulation to be performed with three-node (linear) and ten-node (cubic) triangles. Explore the performance of these elements and confirm that the helper functions correctly create matching (four-node and sixteen-node) quad elements in the PML layers.</p>
 <h3><a class="anchor" id="default"></a>
 Default values for problem parameters</h3>
-<p>Following our usual convention, we provide default values for problem parameters where this is sensible. For instance, the PML mapping function defaults to the one proposed by Bermudez et al. as this appears to be optimal. Some parameters, such as the wavenumber squared <picture><source srcset="form_35_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ k^2 $" src="form_35.png" width="11" height="11"/></picture> do need to be set since there are no obvious defaults. If <code>oomph-lib</code> is compiled in <code>PARANOID</code> mode, an error is thrown if the relevant pointers haven't been set. Without paranoia, you get a segmentation fault...</p>
+<p>Following our usual convention, we provide default values for problem parameters where this is sensible. For instance, the PML mapping function defaults to the one proposed by Bermudez et al. as this appears to be optimal. Some parameters, such as the wavenumber squared <img class="formulaInl" alt="$ k^2 $" src="form_35.png" width="11" height="11"/> do need to be set since there are no obvious defaults. If <code>oomph-lib</code> is compiled in <code>PARANOID</code> mode, an error is thrown if the relevant pointers haven't been set. Without paranoia, you get a segmentation fault...</p>
 <p>Confirm that this is the case by commenting out the relevant assignments.</p>
 <h3><a class="anchor" id="non_convex"></a>
 Non-convex PML boundaries</h3>
@@ -682,7 +676,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -712,7 +706,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:40:38
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:42:33
         </div>
       </div>
     </footer>

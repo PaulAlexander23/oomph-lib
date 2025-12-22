@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -82,9 +82,9 @@
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00078}00078\ }
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00079}00079\ }
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00080}00080\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00081}00081\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00082}00082\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00083}00083\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00081}00081\ \textcolor{comment}{///////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00082}00082\ \textcolor{comment}{///////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00083}00083\ \textcolor{comment}{///////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00084}00084\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00085}00085\ }
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00086}00086\ \textcolor{comment}{//==start\_of\_problem\_class============================================}\textcolor{comment}{}}
@@ -442,7 +442,7 @@
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00438}00438\ }
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00439}00439\ \ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00440}00440\ \ \textcolor{keywordtype}{char}\ filename[100];}
-\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00441}00441\ \ sprintf(filename,\textcolor{stringliteral}{"{}RESLT/trace.dat"{}});}
+\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00441}00441\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}RESLT/trace.dat"{}});}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00442}00442\ \ Trace\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00443}00443\ }
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00444}00444\ \ \textcolor{comment}{//\ Setup\ equation\ numbering\ scheme}}
@@ -547,7 +547,7 @@
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00543}00543\ \ \textcolor{keywordtype}{unsigned}\ npts;}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00544}00544\ \ npts=5;\ }
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00545}00545\ \ }
-\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00546}00546\ \ sprintf(filename,\textcolor{stringliteral}{"{}RESLT/soln\%i.dat"{}},Doc\_info.number());}
+\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00546}00546\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}RESLT/soln\%i.dat"{}},Doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00547}00547\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00548}00548\ \ this-\/>My\_mesh\_pt-\/>output(some\_file,npts);\ }
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00549}00549\ \ some\_file\ <<\ \textcolor{stringliteral}{"{}TEXT\ X\ =\ 22,\ Y\ =\ 92,\ CS=FRAME\ T\ =\ \(\backslash\)"{}"{}}\ }
@@ -556,14 +556,14 @@
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00552}00552\ \ }
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00553}00553\ \ \textcolor{comment}{//\ Output\ exact\ solution\ }}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00554}00554\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00555}00555\ \ sprintf(filename,\textcolor{stringliteral}{"{}RESLT/exact\_soln\%i.dat"{}},Doc\_info.number());}
+\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00555}00555\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}RESLT/exact\_soln\%i.dat"{}},Doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00556}00556\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00557}00557\ \ My\_mesh\_pt-\/>output\_fct(some\_file,npts,\mbox{\hyperlink{namespaceTanhSolnForPoisson_af7896e9c18ce6438c73ae2a875e8b7de}{TanhSolnForPoisson::get\_exact\_u}});\ }
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00558}00558\ \ some\_file.close();}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00559}00559\ \ }
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00560}00560\ \ \textcolor{comment}{//\ Output\ boundaries}}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00561}00561\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00562}00562\ \ sprintf(filename,\textcolor{stringliteral}{"{}RESLT/boundaries\%i.dat"{}},Doc\_info.number());}
+\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00562}00562\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}RESLT/boundaries\%i.dat"{}},Doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00563}00563\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00564}00564\ \ My\_mesh\_pt-\/>output\_boundaries(some\_file);}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00565}00565\ \ some\_file.close();}
@@ -572,7 +572,7 @@
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00568}00568\ \ \textcolor{comment}{//\ Doc\ error\ and\ return\ of\ the\ square\ of\ the\ L2\ error}}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00569}00569\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00570}00570\ \ \textcolor{keywordtype}{double}\ error,norm,dummy\_error,zero\_norm;}
-\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00571}00571\ \ sprintf(filename,\textcolor{stringliteral}{"{}RESLT/error\%i.dat"{}},Doc\_info.number());}
+\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00571}00571\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}RESLT/error\%i.dat"{}},Doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00572}00572\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00573}00573\ \ My\_mesh\_pt-\/>compute\_error(some\_file,\mbox{\hyperlink{namespaceTanhSolnForPoisson_af7896e9c18ce6438c73ae2a875e8b7de}{TanhSolnForPoisson::get\_exact\_u}},}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle_8cc_source_l00574}00574\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ error,norm);\ }

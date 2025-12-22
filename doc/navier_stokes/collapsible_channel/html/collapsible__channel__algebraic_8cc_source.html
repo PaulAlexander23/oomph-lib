@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -702,7 +696,7 @@
 <div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span> <a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">npts</a>=5; </div>
 <div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span> </div>
 <div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span> <span class="comment">// Output solution </span></div>
-<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span> <a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">sprintf</a>(<a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">filename</a>,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,<a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">doc_info</a>.directory().c_str(),</div>
+<div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span> <a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">snprintf</a>(<a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">filename</a>), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,<a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">doc_info</a>.directory().c_str(),</div>
 <div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span>         <a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">doc_info</a>.number());</div>
 <div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span> <a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">some_file</a>.open(<a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">filename</a>);</div>
 <div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span> <a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">bulk_mesh_pt</a>()-&gt;output(<a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">some_file</a>,<a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">npts</a>);</div>
@@ -723,7 +717,7 @@
 <div class="line"><a id="l00602" name="l00602"></a><span class="lineno">  602</span>            &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00603" name="l00603"></a><span class="lineno">  603</span> </div>
 <div class="line"><a id="l00604" name="l00604"></a><span class="lineno">  604</span> <span class="comment">// Output wall shape</span></div>
-<div class="line"><a id="l00605" name="l00605"></a><span class="lineno">  605</span> <a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">sprintf</a>(<a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">filename</a>,<span class="stringliteral">&quot;%s/wall%i.dat&quot;</span>,<a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">doc_info</a>.directory().c_str(),</div>
+<div class="line"><a id="l00605" name="l00605"></a><span class="lineno">  605</span> <a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">snprintf</a>(<a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">filename</a>), <span class="stringliteral">&quot;%s/wall%i.dat&quot;</span>,<a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">doc_info</a>.directory().c_str(),</div>
 <div class="line"><a id="l00606" name="l00606"></a><span class="lineno">  606</span>         <a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">doc_info</a>.number());</div>
 <div class="line"><a id="l00607" name="l00607"></a><span class="lineno">  607</span> <a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">some_file</a>.open(<a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">filename</a>);</div>
 <div class="line"><a id="l00608" name="l00608"></a><span class="lineno">  608</span> <span class="keywordtype">unsigned</span> <a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">nplot</a>=100; </div>
@@ -965,7 +959,7 @@
 <div class="line"><a id="l00844" name="l00844"></a><span class="lineno">  844</span> <span class="comment">// Open a trace file </span></div>
 <div class="line"><a id="l00845" name="l00845"></a><span class="lineno">  845</span> <a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">ofstream</a> <a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">trace_file</a>;</div>
 <div class="line"><a id="l00846" name="l00846"></a><span class="lineno">  846</span> <span class="keywordtype">char</span> <a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">filename</a>[100];   </div>
-<div class="line"><a id="l00847" name="l00847"></a><span class="lineno">  847</span> <a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">sprintf</a>(<a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">filename</a>,<span class="stringliteral">&quot;%s/trace.dat&quot;</span>,<a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">doc_info</a>.directory().c_str());</div>
+<div class="line"><a id="l00847" name="l00847"></a><span class="lineno">  847</span> <a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">snprintf</a>(<a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">filename</a>), <span class="stringliteral">&quot;%s/trace.dat&quot;</span>,<a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">doc_info</a>.directory().c_str());</div>
 <div class="line"><a id="l00848" name="l00848"></a><span class="lineno">  848</span> <a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">trace_file</a>.open(<a class="code hl_class" href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">filename</a>);</div>
 <div class="line"><a id="l00849" name="l00849"></a><span class="lineno">  849</span> </div>
 <div class="line"><a id="l00850" name="l00850"></a><span class="lineno">  850</span> </div>
@@ -1094,13 +1088,13 @@
 <div class="line"><a id="l00973" name="l00973"></a><span class="lineno">  973</span><span class="comment">//   pause(&quot;done&quot;);</span></div>
 <div class="line"><a id="l00974" name="l00974"></a><span class="lineno">  974</span><span class="comment">//  }</span></div>
 <div class="ttc" id="aclassoomph_1_1MyAlgebraicCollapsibleChannelMesh_html"><div class="ttname"><a href="classoomph_1_1MyAlgebraicCollapsibleChannelMesh.html">oomph::MyAlgebraicCollapsibleChannelMesh</a></div><div class="ttdoc">Collapsible channel mesh with algebraic node update.</div><div class="ttdef"><b>Definition</b> <a href="my__alg__channel__mesh_8h_source.html#l00048">my_alg_channel_mesh.h:51</a></div></div>
-<div class="ttc" id="aclassoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh_html"><div class="ttname"><a href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">oomph::MyRefineableAlgebraicCollapsibleChannelMesh</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////////// ////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="my__alg__channel__mesh_8h_source.html#l00180">my_alg_channel_mesh.h:183</a></div></div>
+<div class="ttc" id="aclassoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh_html"><div class="ttname"><a href="classoomph_1_1MyRefineableAlgebraicCollapsibleChannelMesh.html">oomph::MyRefineableAlgebraicCollapsibleChannelMesh</a></div><div class="ttdoc">Refineable version of the CollapsibleChannel mesh with algebraic node update.</div><div class="ttdef"><b>Definition</b> <a href="my__alg__channel__mesh_8h_source.html#l00180">my_alg_channel_mesh.h:183</a></div></div>
 <div class="ttc" id="amy__alg__channel__mesh_8h_html"><div class="ttname"><a href="my__alg__channel__mesh_8h.html">my_alg_channel_mesh.h</a></div></div>
 <div class="ttc" id="anamespaceBL__Squash_html"><div class="ttname"><a href="namespaceBL__Squash.html">BL_Squash</a></div><div class="ttdoc">Namespace to define the mapping [0,1] -&gt; [0,1] that re-distributes nodal points across the channel wi...</div><div class="ttdef"><b>Definition</b> <a href="collapsible__channel_8cc_source.html#l00045">collapsible_channel.cc:46</a></div></div>
 <div class="ttc" id="anamespaceBL__Squash_html_a0fdaf7661591150041b7102dbe578cdc"><div class="ttname"><a href="namespaceBL__Squash.html#a0fdaf7661591150041b7102dbe578cdc">BL_Squash::squash_fct</a></div><div class="ttdeci">double squash_fct(const double &amp;s)</div><div class="ttdoc">Mapping [0,1] -&gt; [0,1] that re-distributes nodal points across the channel width.</div><div class="ttdef"><b>Definition</b> <a href="collapsible__channel_8cc_source.html#l00056">collapsible_channel.cc:56</a></div></div>
 <div class="ttc" id="anamespaceBL__Squash_html_a3c4183891049bca81f3a011db24fc579"><div class="ttname"><a href="namespaceBL__Squash.html#a3c4183891049bca81f3a011db24fc579">BL_Squash::Delta</a></div><div class="ttdeci">double Delta</div><div class="ttdoc">Boundary layer width.</div><div class="ttdef"><b>Definition</b> <a href="collapsible__channel_8cc_source.html#l00049">collapsible_channel.cc:49</a></div></div>
 <div class="ttc" id="anamespaceBL__Squash_html_af84bda39008884cd2b01e630957573df"><div class="ttname"><a href="namespaceBL__Squash.html#af84bda39008884cd2b01e630957573df">BL_Squash::Fract_in_BL</a></div><div class="ttdeci">double Fract_in_BL</div><div class="ttdoc">Fraction of points in boundary layer.</div><div class="ttdef"><b>Definition</b> <a href="collapsible__channel_8cc_source.html#l00052">collapsible_channel.cc:52</a></div></div>
-<div class="ttc" id="anamespaceoomph_html"><div class="ttname"><a href="namespaceoomph.html">oomph</a></div><div class="ttdoc">///////////////////////////////////////////////////////////////// ///////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="my__alg__channel__mesh_8h_source.html#l00040">my_alg_channel_mesh.h:41</a></div></div>
+<div class="ttc" id="anamespaceoomph_html"><div class="ttname"><a href="namespaceoomph.html">oomph</a></div><div class="ttdef"><b>Definition</b> <a href="my__alg__channel__mesh_8h_source.html#l00040">my_alg_channel_mesh.h:41</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 
     <!-- jQuery for Bootstrap and Doxygen -->
@@ -1129,7 +1123,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:15:58
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:41:23
         </div>
       </div>
     </footer>

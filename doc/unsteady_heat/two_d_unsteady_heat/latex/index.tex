@@ -126,7 +126,7 @@ We start by building the {\ttfamily Problem} object, create a {\ttfamily Doc\+In
 \DoxyCodeLine{\ \textcolor{comment}{//\ Open\ a\ trace\ file}}
 \DoxyCodeLine{\ ofstream\ trace\_file;}
 \DoxyCodeLine{\ \textcolor{keywordtype}{char}\ filename[100];\ \ \ }
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\ trace\_file.open(filename);}
 \DoxyCodeLine{\ trace\_file\ <<\ \textcolor{stringliteral}{"{}VARIABLES=\(\backslash\)"{}time\(\backslash\)"{},\(\backslash\)"{}u<SUB>FE</SUB>\(\backslash\)"{},"{}}}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}u<SUB>exact</SUB>\(\backslash\)"{},\(\backslash\)"{}norm\ of\ error\(\backslash\)"{},\(\backslash\)"{}norm\ of\ solution\(\backslash\)"{}"{}}}
@@ -588,7 +588,7 @@ As in many previous examples, this member function outputs the computed solution
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ solution\ }}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ mesh\_pt()-\/>output(some\_file,npts);}
@@ -608,7 +608,7 @@ As in many previous examples, this member function outputs the computed solution
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ exact\ solution\ }}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ mesh\_pt()-\/>output\_fct(some\_file,npts,time\_pt()-\/>time(),}
@@ -618,7 +618,7 @@ As in many previous examples, this member function outputs the computed solution
 \DoxyCodeLine{\ \textcolor{comment}{//\ Doc\ error}}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{\ \textcolor{keywordtype}{double}\ error,norm;}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/error\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/error\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ mesh\_pt()-\/>compute\_error(some\_file,}
@@ -653,7 +653,7 @@ As in many previous examples, this member function outputs the computed solution
 The current example only illustrates the most basic timestepping procedures. In subsequent examples we will demonstrate {\ttfamily oomph-\/lib\textquotesingle{}s} ~\newline
  \href{../../two_d_unsteady_heat2/html/index.html}{\texttt{ dump and restart functions,}} \href{../../two_d_unsteady_heat_t_adapt/html/index.html}{\texttt{ the use of adaptive timestepping,}} \href{../../two_d_unsteady_heat_adapt/html/index.html}{\texttt{ the use of spatial adaptivity,}} \href{../../two_d_unsteady_heat_ALE/html/index.html}{\texttt{ computations in moving domains,}} and \href{../../two_d_unsteady_heat_2adapt/html/index.html}{\texttt{ the combination of temporal and spatial adaptivity}}.
 
-We stress that setting the initial conditions in a "{}real"{} problem often presents a delicate step, especially if higher-\/order timesteppers from the BDF family are used. This is because in the absence of a known exact solution, the initial condition (3) only provides enough information to determine a single "{}history value"{} at each node -- the value at the initial time. {\ttfamily oomph-\/lib\textquotesingle{}s} timestepping procedures provide several functions that allow the simulation to be initiated with an "{}impulsive start"{}, corresponding to a past history in which the boundary condition (3) describes the system\textquotesingle{}s state for all $ t \le 0$ rather than only {\itshape at\textbackslash{}iline}  455 $ t =
+We stress that setting the initial conditions in a "{}real"{} problem often presents a delicate step, especially if higher-\/order timesteppers from the BDF family are used. This is because in the absence of a known exact solution, the initial condition (3) only provides enough information to determine a single "{}history value"{} at each node -- the value at the initial time. {\ttfamily oomph-\/lib\textquotesingle{}s} timestepping procedures provide several functions that allow the simulation to be initiated with an "{}impulsive start"{}, corresponding to a past history in which the boundary condition (3) describes the system\textquotesingle{}s state for all $ t \le 0$ rather than only at $ t =
 0$ . For instance, the top-\/level function {\ttfamily Problem\+::assign\+\_\+initial\+\_\+values\+\_\+impulsive()} sets the "{}history values"{} of all {\ttfamily Data} objects and the {\ttfamily Nodes\textquotesingle{}} "{}positional history values"{} to values that are appropriate for an impulsive start from the currently assigned nodal values and positions. The following exercises aim to explore this functionality.\hypertarget{index_exercises}{}\doxysubsection{\texorpdfstring{Exercises}{Exercises}}\label{index_exercises}
 
 \begin{DoxyEnumerate}
@@ -693,4 +693,4 @@ We stress that setting the initial conditions in a "{}real"{} problem often pres
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

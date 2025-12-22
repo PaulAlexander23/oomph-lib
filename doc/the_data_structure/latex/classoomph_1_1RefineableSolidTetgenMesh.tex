@@ -2,12 +2,7 @@
 \hypertarget{classoomph_1_1RefineableSolidTetgenMesh}{}\label{classoomph_1_1RefineableSolidTetgenMesh}\index{oomph::RefineableSolidTetgenMesh$<$ ELEMENT $>$@{oomph::RefineableSolidTetgenMesh$<$ ELEMENT $>$}}
 
 
-////////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////////  
-
-
-
-
-{\ttfamily \#include $<$refineable\+\_\+tetgen\+\_\+mesh.\+template.\+h$>$}
+{\ttfamily \#include $<$refineable\+\_\+tetgen\+\_\+mesh.\+h$>$}
 
 Inheritance diagram for oomph\+::Refineable\+Solid\+Tetgen\+Mesh\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
 \begin{center}
@@ -99,6 +94,10 @@ Inheritance diagram for oomph\+::Refineable\+Solid\+Tetgen\+Mesh\texorpdfstring{
 \begin{DoxyCompactList}\small\item\em Return pointer to the e-\/th element adjacent to boundary b in region r. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{int}} \mbox{\hyperlink{classoomph_1_1TetMeshBase_a1efd6c45576e53e0f8c0ccc9c388800c}{face\+\_\+index\+\_\+at\+\_\+boundary\+\_\+in\+\_\+region}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&b, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{r}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_a37cd013acc76697829c324bdd8562d82}{e}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return face index of the e-\/th element adjacent to boundary b in region r. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1TetMeshBase_ab740b7f7e7bd7672d40ae57e2172c12d}{add\+\_\+element\+\_\+in\+\_\+region\+\_\+pt}} (\mbox{\hyperlink{classoomph_1_1FiniteElement}{Finite\+Element}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{elem\+\_\+pt}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{region\+\_\+id}})
+\begin{DoxyCompactList}\small\item\em Add an element to a particular region; this helper checks if the specified element and region ID already exist, so can be used to move an existing element to an existing region, to add an existing element to a new region, or to add a new element to a new region. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1TetMeshBase_ad4b7631fb804a634726484f5f2fbec9d}{regenerate\+\_\+region\+\_\+boundary\+\_\+lookups}} ()
+\begin{DoxyCompactList}\small\item\em Clear and regenerate the lookup schemes for bulk elements and their corresponding face indices which are adjacent to mesh boundaries. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TetMeshBase_a3d4d45ac64c6ee59cadf3a08d62a76f2}{nregion}} ()
 \begin{DoxyCompactList}\small\item\em Return the number of regions specified by attributes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TetMeshBase_afe7b2d58a656feafd5ae725139aeb517}{nregion\+\_\+element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{r}})
@@ -178,6 +177,10 @@ Inheritance diagram for oomph\+::Refineable\+Solid\+Tetgen\+Mesh\texorpdfstring{
 \begin{DoxyCompactList}\small\item\em Replace existing boundary node lookup schemes with new schemes created using the boundary data stored in the nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1Mesh_ad1b124a959628aba00162b89617b3a62}{boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Indicate whether the i-\/th boundary has an intrinsic coordinate. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_ab137d0c0debf5ba0d6ea6990103e620c}{set\+\_\+boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be existing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_a3b9d63e0057ed721190b109f48f7c92e}{set\+\_\+boundary\+\_\+coordinate\+\_\+does\+\_\+not\+\_\+exist}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be non-\/existing. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_af01dfefb66c15579b540be62999d93ee}{nelement}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return number of elements in the mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
@@ -710,9 +713,7 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_aca12acfe655a4d5c4a4eab4a7b970812}{Element\+\_\+pt}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a412a5051be9e81f0ba61bf85e5abc4a6}{Boundary\+\_\+coordinate\+\_\+exists}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of boolean data that indicates whether the boundary coordinates have been set for the boundary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classoomph_1_1RefineableMeshBase}{oomph\+::\+Refineable\+Mesh\+Base}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -747,9 +748,9 @@ std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionEleme
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{class}} ELEMENT$>$\newline
 class oomph\+::\+Refineable\+Solid\+Tetgen\+Mesh$<$ ELEMENT $>$}
-////////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////////// 
 
-Definition at line \mbox{\hyperlink{refineable__tetgen__mesh_8template_8h_source_l00272}{272}} of file \mbox{\hyperlink{refineable__tetgen__mesh_8template_8h_source}{refineable\+\_\+tetgen\+\_\+mesh.\+template.\+h}}.
+
+Definition at line \mbox{\hyperlink{refineable__tetgen__mesh_8h_source_l00315}{315}} of file \mbox{\hyperlink{refineable__tetgen__mesh_8h_source}{refineable\+\_\+tetgen\+\_\+mesh.\+h}}.
 
 
 
@@ -767,7 +768,7 @@ Build mesh, based on closed curve that specifies the outer boundary of the domai
 
 
 
-Definition at line \mbox{\hyperlink{refineable__tetgen__mesh_8template_8h_source_l00280}{280}} of file \mbox{\hyperlink{refineable__tetgen__mesh_8template_8h_source}{refineable\+\_\+tetgen\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{refineable__tetgen__mesh_8h_source_l00323}{323}} of file \mbox{\hyperlink{refineable__tetgen__mesh_8h_source}{refineable\+\_\+tetgen\+\_\+mesh.\+h}}.
 
 \Hypertarget{classoomph_1_1RefineableSolidTetgenMesh_a316eeacca5760fb6517732ff93072a3f}\label{classoomph_1_1RefineableSolidTetgenMesh_a316eeacca5760fb6517732ff93072a3f} 
 \index{oomph::RefineableSolidTetgenMesh$<$ ELEMENT $>$@{oomph::RefineableSolidTetgenMesh$<$ ELEMENT $>$}!RefineableSolidTetgenMesh@{RefineableSolidTetgenMesh}}
@@ -782,7 +783,7 @@ Build mesh from specified triangulation and associated target areas for elements
 
 
 
-Definition at line \mbox{\hyperlink{refineable__tetgen__mesh_8template_8h_source_l00308}{308}} of file \mbox{\hyperlink{refineable__tetgen__mesh_8template_8h_source}{refineable\+\_\+tetgen\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{refineable__tetgen__mesh_8h_source_l00351}{351}} of file \mbox{\hyperlink{refineable__tetgen__mesh_8h_source}{refineable\+\_\+tetgen\+\_\+mesh.\+h}}.
 
 \Hypertarget{classoomph_1_1RefineableSolidTetgenMesh_a8386e0befb5c197208918f7f43265974}\label{classoomph_1_1RefineableSolidTetgenMesh_a8386e0befb5c197208918f7f43265974} 
 \index{oomph::RefineableSolidTetgenMesh$<$ ELEMENT $>$@{oomph::RefineableSolidTetgenMesh$<$ ELEMENT $>$}!````~RefineableSolidTetgenMesh@{\texorpdfstring{$\sim$}{\string~}RefineableSolidTetgenMesh}}
@@ -797,10 +798,10 @@ Empty Destructor.
 
 
 
-Definition at line \mbox{\hyperlink{refineable__tetgen__mesh_8template_8h_source_l00328}{328}} of file \mbox{\hyperlink{refineable__tetgen__mesh_8template_8h_source}{refineable\+\_\+tetgen\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{refineable__tetgen__mesh_8h_source_l00371}{371}} of file \mbox{\hyperlink{refineable__tetgen__mesh_8h_source}{refineable\+\_\+tetgen\+\_\+mesh.\+h}}.
 
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{refineable__tetgen__mesh_8template_8h}{refineable\+\_\+tetgen\+\_\+mesh.\+template.\+h}}\end{DoxyCompactItemize}
+\mbox{\hyperlink{refineable__tetgen__mesh_8h}{refineable\+\_\+tetgen\+\_\+mesh.\+h}}\end{DoxyCompactItemize}

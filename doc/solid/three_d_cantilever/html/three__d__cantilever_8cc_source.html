@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -152,7 +146,7 @@
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &quot;constitutive.h&quot;</span></div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">// The mesh </span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &quot;meshes/simple_cubic_mesh.template.h&quot;</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &quot;meshes/simple_cubic_mesh.h&quot;</span></div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment">// The mesh</span></div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#include &quot;meshes/quarter_tube_mesh.h&quot;</span></div>
@@ -161,9 +155,9 @@
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">using namespace </span>oomph;</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment"></span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment"></span> </div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">//======================start_mesh=========================================</span><span class="comment"></span></div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">/// Simple quarter tube mesh upgraded to become a solid mesh</span></div>
@@ -202,9 +196,9 @@
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>};</div>
 </div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="comment"></span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="comment"></span> </div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="comment">//=========================================================================</span><span class="comment"></span></div>
@@ -241,9 +235,9 @@
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>};</div>
 </div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="comment"></span> </div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="comment"></span> </div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="comment">//=======start_namespace==========================================</span><span class="comment"></span></div>
@@ -505,7 +499,7 @@
 <div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span> <span class="keywordtype">unsigned</span> <a class="code hl_class" href="classRefineableElasticQuarterTubeMesh.html">n_plot</a> = 5; </div>
 <div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span> </div>
 <div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span> <span class="comment">// Output shape of deformed body</span></div>
-<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span> <a class="code hl_class" href="classRefineableElasticQuarterTubeMesh.html">sprintf</a>(<a class="code hl_class" href="classRefineableElasticQuarterTubeMesh.html">filename</a>,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span> <a class="code hl_class" href="classRefineableElasticQuarterTubeMesh.html">snprintf</a>(<a class="code hl_class" href="classRefineableElasticQuarterTubeMesh.html">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classRefineableElasticQuarterTubeMesh.html">filename</a>), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>         Doc_info.number());</div>
 <div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span> <a class="code hl_class" href="classRefineableElasticQuarterTubeMesh.html">some_file</a>.open(<a class="code hl_class" href="classRefineableElasticQuarterTubeMesh.html">filename</a>);</div>
 <div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span> mesh_pt()-&gt;output(<a class="code hl_class" href="classRefineableElasticQuarterTubeMesh.html">some_file</a>,<a class="code hl_class" href="classRefineableElasticQuarterTubeMesh.html">n_plot</a>);</div>
@@ -534,9 +528,9 @@
 <div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span> <span class="keywordtype">char</span> <a class="code hl_class" href="classRefineableElasticQuarterTubeMesh.html">dirname</a>[100];   </div>
 <div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span> </div>
 <div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span><span class="preprocessor">#ifdef REFINE</span></div>
-<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span> <a class="code hl_class" href="classRefineableElasticQuarterTubeMesh.html">sprintf</a>(<a class="code hl_class" href="classRefineableElasticQuarterTubeMesh.html">dirname</a>,<span class="stringliteral">&quot;RESLT_refine%i&quot;</span>,<a class="code hl_class" href="classRefineableElasticQuarterTubeMesh.html">i_case</a>);</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span> <a class="code hl_class" href="classRefineableElasticQuarterTubeMesh.html">snprintf</a>(<a class="code hl_class" href="classRefineableElasticQuarterTubeMesh.html">dirname</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classRefineableElasticQuarterTubeMesh.html">dirname</a>), <span class="stringliteral">&quot;RESLT_refine%i&quot;</span>,<a class="code hl_class" href="classRefineableElasticQuarterTubeMesh.html">i_case</a>);</div>
 <div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span> <a class="code hl_class" href="classRefineableElasticQuarterTubeMesh.html">sprintf</a>(<a class="code hl_class" href="classRefineableElasticQuarterTubeMesh.html">dirname</a>,<span class="stringliteral">&quot;RESLT_norefine%i&quot;</span>,<a class="code hl_class" href="classRefineableElasticQuarterTubeMesh.html">i_case</a>);</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span> <a class="code hl_class" href="classRefineableElasticQuarterTubeMesh.html">snprintf</a>(<a class="code hl_class" href="classRefineableElasticQuarterTubeMesh.html">dirname</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classRefineableElasticQuarterTubeMesh.html">dirname</a>), <span class="stringliteral">&quot;RESLT_norefine%i&quot;</span>,<a class="code hl_class" href="classRefineableElasticQuarterTubeMesh.html">i_case</a>);</div>
 <div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span> </div>
 <div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span> <span class="comment">// Prepare output</span></div>
@@ -822,13 +816,13 @@
 <div class="ttc" id="aclassCantileverProblem_html_af4d135ace3eac657b38de362e1644c75"><div class="ttname"><a href="classCantileverProblem.html#af4d135ace3eac657b38de362e1644c75">CantileverProblem::actions_after_adapt</a></div><div class="ttdeci">void actions_after_adapt()</div><div class="ttdoc">Actions after adapt.</div><div class="ttdef"><b>Definition</b> <a href="three__d__cantilever_8cc_source.html#l00200">three_d_cantilever.cc:200</a></div></div>
 <div class="ttc" id="aclassCantileverProblem_html_afae2bac330172d85ab316bb94a27c822"><div class="ttname"><a href="classCantileverProblem.html#afae2bac330172d85ab316bb94a27c822">CantileverProblem::mesh_pt</a></div><div class="ttdeci">RefineableElasticQuarterTubeMesh&lt; ELEMENT &gt; * mesh_pt()</div><div class="ttdoc">Access function for the mesh.</div><div class="ttdef"><b>Definition</b> <a href="three__d__cantilever_8cc_source.html#l00213">three_d_cantilever.cc:213</a></div></div>
 <div class="ttc" id="aclassCantileverProblem_html_aff6fdf1e52813bf62e2b4514dbda7f00"><div class="ttname"><a href="classCantileverProblem.html#aff6fdf1e52813bf62e2b4514dbda7f00">CantileverProblem::run_tests</a></div><div class="ttdeci">void run_tests(const unsigned &amp;i_case, const bool &amp;incompress, const bool &amp;use_fd)</div><div class="ttdoc">Run extended tests – doc in RESLTi_case.</div><div class="ttdef"><b>Definition</b> <a href="three__d__cantilever_8cc_source.html#l00384">three_d_cantilever.cc:384</a></div></div>
-<div class="ttc" id="aclassElasticQuarterTubeMesh_html"><div class="ttname"><a href="classElasticQuarterTubeMesh.html">ElasticQuarterTubeMesh</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="three__d__cantilever_8cc_source.html#l00091">three_d_cantilever.cc:93</a></div></div>
+<div class="ttc" id="aclassElasticQuarterTubeMesh_html"><div class="ttname"><a href="classElasticQuarterTubeMesh.html">ElasticQuarterTubeMesh</a></div><div class="ttdoc">Simple quarter tube mesh upgraded to become a solid mesh.</div><div class="ttdef"><b>Definition</b> <a href="three__d__cantilever_8cc_source.html#l00091">three_d_cantilever.cc:93</a></div></div>
 <div class="ttc" id="aclassElasticQuarterTubeMesh_html_a9ad9db1a8cb86650b505c73fe81eb73c"><div class="ttname"><a href="classElasticQuarterTubeMesh.html#a9ad9db1a8cb86650b505c73fe81eb73c">ElasticQuarterTubeMesh::~ElasticQuarterTubeMesh</a></div><div class="ttdeci">virtual ~ElasticQuarterTubeMesh()</div><div class="ttdoc">Empty Destructor.</div><div class="ttdef"><b>Definition</b> <a href="three__d__cantilever_8cc_source.html#l00113">three_d_cantilever.cc:113</a></div></div>
 <div class="ttc" id="aclassElasticQuarterTubeMesh_html_abb82781bc4c1dc04bdfae437baf49830"><div class="ttname"><a href="classElasticQuarterTubeMesh.html#abb82781bc4c1dc04bdfae437baf49830">ElasticQuarterTubeMesh::ElasticQuarterTubeMesh</a></div><div class="ttdeci">ElasticQuarterTubeMesh(GeomObject *wall_pt, const Vector&lt; double &gt; &amp;xi_lo, const double &amp;fract_mid, const Vector&lt; double &gt; &amp;xi_hi, const unsigned &amp;nlayer, TimeStepper *time_stepper_pt=&amp;Mesh::Default_TimeStepper)</div><div class="ttdoc">Constructor:</div><div class="ttdef"><b>Definition</b> <a href="three__d__cantilever_8cc_source.html#l00098">three_d_cantilever.cc:98</a></div></div>
-<div class="ttc" id="aclassRefineableElasticQuarterTubeMesh_html"><div class="ttname"><a href="classRefineableElasticQuarterTubeMesh.html">RefineableElasticQuarterTubeMesh</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="three__d__cantilever_8cc_source.html#l00053">three_d_cantilever.cc:56</a></div></div>
+<div class="ttc" id="aclassRefineableElasticQuarterTubeMesh_html"><div class="ttname"><a href="classRefineableElasticQuarterTubeMesh.html">RefineableElasticQuarterTubeMesh</a></div><div class="ttdoc">Simple quarter tube mesh upgraded to become a solid mesh.</div><div class="ttdef"><b>Definition</b> <a href="three__d__cantilever_8cc_source.html#l00053">three_d_cantilever.cc:56</a></div></div>
 <div class="ttc" id="aclassRefineableElasticQuarterTubeMesh_html_a157397dff3fb4ab8b1daea787bc9f97c"><div class="ttname"><a href="classRefineableElasticQuarterTubeMesh.html#a157397dff3fb4ab8b1daea787bc9f97c">RefineableElasticQuarterTubeMesh::~RefineableElasticQuarterTubeMesh</a></div><div class="ttdeci">virtual ~RefineableElasticQuarterTubeMesh()</div><div class="ttdoc">Empty Destructor.</div><div class="ttdef"><b>Definition</b> <a href="three__d__cantilever_8cc_source.html#l00078">three_d_cantilever.cc:78</a></div></div>
 <div class="ttc" id="aclassRefineableElasticQuarterTubeMesh_html_a97c25a8845b2d8ab2a4aef1c0407bacd"><div class="ttname"><a href="classRefineableElasticQuarterTubeMesh.html#a97c25a8845b2d8ab2a4aef1c0407bacd">RefineableElasticQuarterTubeMesh::RefineableElasticQuarterTubeMesh</a></div><div class="ttdeci">RefineableElasticQuarterTubeMesh(GeomObject *wall_pt, const Vector&lt; double &gt; &amp;xi_lo, const double &amp;fract_mid, const Vector&lt; double &gt; &amp;xi_hi, const unsigned &amp;nlayer, TimeStepper *time_stepper_pt=&amp;Mesh::Default_TimeStepper)</div><div class="ttdoc">Constructor:</div><div class="ttdef"><b>Definition</b> <a href="three__d__cantilever_8cc_source.html#l00061">three_d_cantilever.cc:61</a></div></div>
-<div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="three__d__cantilever_8cc_source.html#l00125">three_d_cantilever.cc:126</a></div></div>
+<div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">Global variables.</div><div class="ttdef"><b>Definition</b> <a href="three__d__cantilever_8cc_source.html#l00125">three_d_cantilever.cc:126</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a0777aef63372db7f91ad894c38159681"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a0777aef63372db7f91ad894c38159681">Global_Physical_Variables::gravity</a></div><div class="ttdeci">void gravity(const double &amp;time, const Vector&lt; double &gt; &amp;xi, Vector&lt; double &gt; &amp;b)</div><div class="ttdoc">Non-dimensional gravity as body force.</div><div class="ttdef"><b>Definition</b> <a href="three__d__cantilever_8cc_source.html#l00147">three_d_cantilever.cc:147</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a09a019474b7405b35da2437f7779bc7e"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a09a019474b7405b35da2437f7779bc7e">Global_Physical_Variables::E</a></div><div class="ttdeci">double E</div><div class="ttdoc">Elastic modulus.</div><div class="ttdef"><b>Definition</b> <a href="three__d__cantilever_8cc_source.html#l00169">three_d_cantilever.cc:169</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a1b8bfc451f6b7ac89eca18f04338f47f"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a1b8bfc451f6b7ac89eca18f04338f47f">Global_Physical_Variables::L</a></div><div class="ttdeci">double L</div><div class="ttdoc">Length of beam.</div><div class="ttdef"><b>Definition</b> <a href="three__d__cantilever_8cc_source.html#l00129">three_d_cantilever.cc:129</a></div></div>
@@ -867,7 +861,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:24:04
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:44:21
         </div>
       </div>
     </footer>

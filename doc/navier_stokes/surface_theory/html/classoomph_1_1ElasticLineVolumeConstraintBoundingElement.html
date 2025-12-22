@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -121,7 +115,7 @@
 </div><!--header-->
 <div class="contents">
 
-<p>/////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////  
+<p>The one-dimensional interface elements that allow imposition of a volume constraint specialised for the case when the nodal positions of the bulk elements are treated as solid degrees of freedom. To enforce that a fluid volume has a certain volume, attach these elements to all faces of the (2D cartesian) bulk fluid elements (of type ELEMENT) that bound that region and then specify the "pressure" value that is traded for the constraint.  
  <a href="classoomph_1_1ElasticLineVolumeConstraintBoundingElement.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="constrained__volume__elements_8h_source.html">constrained_volume_elements.h</a>&gt;</code></p>
@@ -131,8 +125,8 @@ Inheritance diagram for oomph::ElasticLineVolumeConstraintBoundingElement&lt; EL
  <div class="center">
   <img src="classoomph_1_1ElasticLineVolumeConstraintBoundingElement.png" usemap="#oomph::ElasticLineVolumeConstraintBoundingElement_3C_20ELEMENT_20_3E_map" alt=""/>
   <map id="oomph::ElasticLineVolumeConstraintBoundingElement_3C_20ELEMENT_20_3E_map" name="oomph::ElasticLineVolumeConstraintBoundingElement_3C_20ELEMENT_20_3E_map">
-<area href="classoomph_1_1LineVolumeConstraintBoundingElement.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////..." alt="oomph::LineVolumeConstraintBoundingElement" shape="rect" coords="0,112,394,136"/>
-<area href="classoomph_1_1VolumeConstraintBoundingElement.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////..." alt="oomph::VolumeConstraintBoundingElement" shape="rect" coords="0,56,394,80"/>
+<area href="classoomph_1_1LineVolumeConstraintBoundingElement.html" title="One-dimensional interface elements that allow the application of a volume constraint on the region bo..." alt="oomph::LineVolumeConstraintBoundingElement" shape="rect" coords="0,112,394,136"/>
+<area href="classoomph_1_1VolumeConstraintBoundingElement.html" title="Base class for interface elements that allow the application of a volume constraint on the region bou..." alt="oomph::VolumeConstraintBoundingElement" shape="rect" coords="0,56,394,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -194,8 +188,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classoomph_1_1FluidInterfaceAdditionalValues.html">class</a> <a class="el" href="classoomph_1_1FluidInterfaceAdditionalValues.html">ELEMENT</a>&gt;<br />
-class oomph::ElasticLineVolumeConstraintBoundingElement&lt; ELEMENT &gt;</div><p>/////////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////// </p>
-<p>The one-dimensional interface elements that allow imposition of a volume constraint specialised for the case when the nodal positions of the bulk elements are treated as solid degrees of freedom. To enforce that a fluid volume has a certain volume, attach these elements to all faces of the (2D cartesian) bulk fluid elements (of type ELEMENT) that bound that region and then specify the "pressure" value that is traded for the constraint. </p>
+class oomph::ElasticLineVolumeConstraintBoundingElement&lt; ELEMENT &gt;</div><p>The one-dimensional interface elements that allow imposition of a volume constraint specialised for the case when the nodal positions of the bulk elements are treated as solid degrees of freedom. To enforce that a fluid volume has a certain volume, attach these elements to all faces of the (2D cartesian) bulk fluid elements (of type ELEMENT) that bound that region and then specify the "pressure" value that is traded for the constraint. </p>
 
 <p class="definition">Definition at line <a class="el" href="constrained__volume__elements_8h_source.html#l00369">369</a> of file <a class="el" href="constrained__volume__elements_8h_source.html">constrained_volume_elements.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -365,7 +358,7 @@ template&lt;<a class="el" href="classoomph_1_1FluidInterfaceAdditionalValues.htm
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:18:30
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:42:32
         </div>
       </div>
     </footer>

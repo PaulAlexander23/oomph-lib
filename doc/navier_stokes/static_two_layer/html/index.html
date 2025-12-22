@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -115,8 +109,8 @@
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="overview"></a>
 Overview of the problem</h1>
-<p>We consider a closed rectangular container of unit width that contains two immiscible fluids at rest. The lower fluid is of a prescribed volume <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mathcal{V} $" src="form_0.png" width="10" height="11"/></picture> and the interface between the two fluids meets the wall of the container at a contact angle <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$
-\theta_{c} $" src="form_1.png" width="10" height="13"/></picture>. In the absence of any body forces or external forces, a static solution is obtained in which the velocity field is zero, the fluid pressure in each layer is constant, and free surface is of constant curvature (an arc of a circle in two-dimensions), set by the contact angle and the geometry of the domain. From simple geometry, the mean curvature of the interface in the present problem is <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \kappa = 1/r = 2\cos\theta_{c} $" src="form_2.png" width="96" height="14"/></picture>.</p>
+<p>We consider a closed rectangular container of unit width that contains two immiscible fluids at rest. The lower fluid is of a prescribed volume <img class="formulaInl" alt="$ \mathcal{V} $" src="form_0.png" width="10" height="11"/> and the interface between the two fluids meets the wall of the container at a contact angle <img class="formulaInl" alt="$
+\theta_{c} $" src="form_1.png" width="10" height="13"/>. In the absence of any body forces or external forces, a static solution is obtained in which the velocity field is zero, the fluid pressure in each layer is constant, and free surface is of constant curvature (an arc of a circle in two-dimensions), set by the contact angle and the geometry of the domain. From simple geometry, the mean curvature of the interface in the present problem is <img class="formulaInl" alt="$ \kappa = 1/r = 2\cos\theta_{c} $" src="form_2.png" width="96" height="14"/>.</p>
 <p>We shall be rather brief in our discussion of this problem because it is extremely similar to the <a href="../../static_single_layer/html/index.html">static free surface bounding a single layer of viscous fluid. </a> In fact, the main difference is that the region of upper fluid is no longer treated as a single external pressure, but must be meshed so that the Navier&ndash;Stokes equations can be solved within it. In fact, the most significant difference between the two problems is that we need to <a href="#mesh">construct a two-layer mesh. </a> Dynamic two-fluid problems are introduced in <a href="../../two_layer_interface/html/index.html">another tutorial, </a> but the static problem discussed here is again complicated by the need to enforce a constant volume constraint.</p>
 <h1><a class="anchor" id="vol_const"></a>
 Enforcing the volume constraint</h1>
@@ -224,7 +218,7 @@ Constructing the Two-Layer Elastic Mesh</h1>
 <div class="line">   <span class="comment">//Add the nodes on the interface to the boundary 6</span></div>
 <div class="line">   <span class="comment">//Storage for boundary coordinates (x-coordinate)</span></div>
 <div class="line">   b_coord.resize(1);</div>
-<div class="line">   this-&gt;Boundary_coordinate_exists[6];</div>
+<div class="line">   this-&gt;set_boundary_coordinate_exists(6);</div>
 <div class="line">   <span class="comment">//Starting index of the nodes</span></div>
 <div class="line">   <span class="keywordtype">unsigned</span> n_start=0;</div>
 <div class="line">   <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> e=0;e&lt;nx;e++)</div>
@@ -294,7 +288,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -324,7 +318,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:14:39
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:40:31
         </div>
       </div>
     </footer>

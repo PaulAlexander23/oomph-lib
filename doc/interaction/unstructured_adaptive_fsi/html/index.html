@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -124,13 +118,13 @@ The problem</h1>
 <img src="fsi_sketch.gif" alt=""/>
 <div class="caption">
 Sketch of the problem showing fluid and solid boundary </div></div>
- <p>The non-dimension formulation is the same as described in <a href="../../unstructured_fsi/html/index.html">the related non-adaptive problem. </a> The fluid structure interaction parameter <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$Q $" src="form_0.png" width="10" height="13"/></picture> is the ratio of viscous fluid stress to the reference stress (Young's modulus) of the solid. <br  />
+ <p>The non-dimension formulation is the same as described in <a href="../../unstructured_fsi/html/index.html">the related non-adaptive problem. </a> The fluid structure interaction parameter <img class="formulaInl" alt="$Q $" src="form_0.png" width="10" height="13"/> is the ratio of viscous fluid stress to the reference stress (Young's modulus) of the solid. <br  />
 </p>
 <hr  />
  <hr  />
 <h1><a class="anchor" id="results"></a>
 Results</h1>
-<p>The figure below shows streamlines and pressure contours for the steady solution when <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$Q = 3\times 10^{-4} $" src="form_1.png" width="74" height="14"/></picture> and <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re = 0 $" src="form_2.png" width="38" height="10"/></picture></p>
+<p>The figure below shows streamlines and pressure contours for the steady solution when <img class="formulaInl" alt="$Q = 3\times 10^{-4} $" src="form_1.png" width="74" height="14"/> and <img class="formulaInl" alt="$ Re = 0 $" src="form_2.png" width="38" height="10"/></p>
 <div class="image">
 <img src="res.gif" alt=""/>
 <div class="caption">
@@ -145,7 +139,7 @@ Overview of the implementation</h1>
  <hr  />
 <h1><a class="anchor" id="namespace"></a>
 Problem Parameters</h1>
-<p>The various problem parameters are defined in a global namespace. We define the Reynolds number, <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re $" src="form_3.png" width="15" height="10"/></picture>, and the FSI interaction parameter <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Q $" src="form_4.png" width="10" height="13"/></picture>.</p>
+<p>The various problem parameters are defined in a global namespace. We define the Reynolds number, <img class="formulaInl" alt="$ Re $" src="form_3.png" width="15" height="10"/>, and the FSI interaction parameter <img class="formulaInl" alt="$ Q $" src="form_4.png" width="10" height="13"/>.</p>
  <div class="fragment"><div class="line"><span class="comment">//=======start_namespace==========================================</span></div>
 <div class="line"><span class="comment">/// Global variables</span></div>
 <div class="line"><span class="comment">//================================================================</span></div>
@@ -156,7 +150,7 @@ Problem Parameters</h1>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// FSI parameter</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a66cb7ecda9ba0cd72367dd697f154545">Q</a> = 0.0;</div>
-<div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="unstructured__adaptive__2d__fsi_8cc_source.html#l00080">unstructured_adaptive_2d_fsi.cc:81</a></div></div>
+<div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">Global variables.</div><div class="ttdef"><b>Definition</b> <a href="unstructured__adaptive__2d__fsi_8cc_source.html#l00080">unstructured_adaptive_2d_fsi.cc:81</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a66cb7ecda9ba0cd72367dd697f154545"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a66cb7ecda9ba0cd72367dd697f154545">Global_Physical_Variables::Q</a></div><div class="ttdeci">double Q</div><div class="ttdoc">FSI parameter.</div><div class="ttdef"><b>Definition</b> <a href="unstructured__adaptive__2d__fsi_8cc_source.html#l00086">unstructured_adaptive_2d_fsi.cc:86</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_ab814e627d2eb5bc50318879d19ab16b9"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#ab814e627d2eb5bc50318879d19ab16b9">Global_Physical_Variables::Re</a></div><div class="ttdeci">double Re</div><div class="ttdoc">Reynolds number.</div><div class="ttdef"><b>Definition</b> <a href="unstructured__adaptive__2d__fsi_8cc_source.html#l00083">unstructured_adaptive_2d_fsi.cc:83</a></div></div>
 </div><!-- fragment --><p> We specify the Poisson ratio of the solid and provide a pointer to the constitutive equation for the solid.</p>
@@ -212,7 +206,7 @@ The driver code</h1>
 <div class="line">doc_info.number()++;</div>
 <div class="ttc" id="aclassUnstructuredFSIProblem_html"><div class="ttname"><a href="classUnstructuredFSIProblem.html">UnstructuredFSIProblem</a></div><div class="ttdoc">Unstructured FSI problem.</div><div class="ttdef"><b>Definition</b> <a href="unstructured__adaptive__2d__fsi_8cc_source.html#l00108">unstructured_adaptive_2d_fsi.cc:109</a></div></div>
 <div class="ttc" id="aclassUnstructuredFSIProblem_html_a15f581318b505de07f50bd570da8c8d0"><div class="ttname"><a href="classUnstructuredFSIProblem.html#a15f581318b505de07f50bd570da8c8d0">UnstructuredFSIProblem::doc_solution</a></div><div class="ttdeci">void doc_solution(DocInfo &amp;doc_info)</div><div class="ttdoc">Doc the solution.</div><div class="ttdef"><b>Definition</b> <a href="unstructured__adaptive__2d__fsi_8cc_source.html#l00887">unstructured_adaptive_2d_fsi.cc:888</a></div></div>
-</div><!-- fragment --><p> Initially <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Q=0 $" src="form_5.png" width="33" height="13"/></picture> and <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re=0 $" src="form_6.png" width="38" height="10"/></picture>, so the solid should remain undeformed and the fluid problem is linear. We expect to obtain the solution in one Newton iteration and so we perform one steady solve with the default mesh and output the result. We also output the strain energy of the solid and dissipation of the fluid as global measures of the solution that can be used for validation. (The unstructured meshes generated are not guaranteed to be exactly the same on different computers.)</p>
+</div><!-- fragment --><p> Initially <img class="formulaInl" alt="$ Q=0 $" src="form_5.png" width="33" height="13"/> and <img class="formulaInl" alt="$ Re=0 $" src="form_6.png" width="38" height="10"/>, so the solid should remain undeformed and the fluid problem is linear. We expect to obtain the solution in one Newton iteration and so we perform one steady solve with the default mesh and output the result. We also output the strain energy of the solid and dissipation of the fluid as global measures of the solution that can be used for validation. (The unstructured meshes generated are not guaranteed to be exactly the same on different computers.)</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"><span class="comment">// Solve the problem</span></div>
 <div class="line">problem.newton_solve();</div>
@@ -224,7 +218,7 @@ The driver code</h1>
 <div class="line"><span class="comment">//Calculate the strain energy of the solid and dissipation in the</span></div>
 <div class="line"><span class="comment">//fluid as global output measures of the solution for validation purposes</span></div>
 <div class="line">problem.output_strain_and_dissipation(trace);</div>
-</div><!-- fragment --><p>Finally, we perform a parameter study by increasing <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Q $" src="form_4.png" width="10" height="13"/></picture>, computing the result with one round of adaptivity and then writing the results to output files.</p>
+</div><!-- fragment --><p>Finally, we perform a parameter study by increasing <img class="formulaInl" alt="$ Q $" src="form_4.png" width="10" height="13"/>, computing the result with one round of adaptivity and then writing the results to output files.</p>
 <div class="fragment"><div class="line"><span class="comment">//Now Crank up interaction</span></div>
 <div class="line"><span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> i=0;i&lt;n_step;i++)</div>
 <div class="line"> {</div>
@@ -856,7 +850,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -886,7 +880,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:29:41
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:35:29
         </div>
       </div>
     </footer>

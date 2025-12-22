@@ -70,7 +70,7 @@ Epetra\+\_\+\+Operator \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classoomph_1_
 \begin{DoxyCompactList}\small\item\em Destructor (empty) \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_a1e469ffc87f31f6f2eebbe5ccf03d78b}{preconditioner\+\_\+solve\+\_\+transpose}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{r}}, \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&z)
 \begin{DoxyCompactList}\small\item\em Apply the preconditioner. Pure virtual generic interface function. This method should apply the preconditioner operator to the vector r and return the vector z. (broken virtual) \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_a0b95e7159585b5151f9e5dc1d1713655}{setup}} (\mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1Preconditioner_a08e0582b77c6cbfaf85b80a4ac5c11f3}{matrix\+\_\+pt}})
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_ac2c0f7f39eccd814e72cc5813ec864e0}{setup}} (\mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1Preconditioner_a08e0582b77c6cbfaf85b80a4ac5c11f3}{matrix\+\_\+pt}})
 \begin{DoxyCompactList}\small\item\em Setup the preconditioner\+: store the matrix pointer and the communicator pointer then call preconditioner specific \doxylink{classoomph_1_1Preconditioner_af4886f4efe510e5c9b0eb19422943588}{setup()} function. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_a783fae97e4b898f8de72b504a4f4bec6}{setup}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Problem}{Problem}} \texorpdfstring{$\ast$}{*}problem\+\_\+pt, \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1Preconditioner_a08e0582b77c6cbfaf85b80a4ac5c11f3}{matrix\+\_\+pt}})
 \begin{DoxyCompactList}\small\item\em Compatability layer for old preconditioners where problem pointers were needed. The problem pointer is only used to get a communicator pointer. \end{DoxyCompactList}\item 
@@ -136,7 +136,7 @@ Epetra\+\_\+\+Operator \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classoomph_1_
 \doxysubsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-string \mbox{\hyperlink{classoomph_1_1TrilinosIFPACKPreconditioner_a807a638ddbc59652317930ad534025a6}{Preconditioner\+\_\+type}}
+std\+::string \mbox{\hyperlink{classoomph_1_1TrilinosIFPACKPreconditioner_a0efdf9a6884eb30b345ba99527d5da62}{Preconditioner\+\_\+type}}
 \begin{DoxyCompactList}\small\item\em Type of ILU preconditioner. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{int}} \mbox{\hyperlink{classoomph_1_1TrilinosIFPACKPreconditioner_a83ef805357717dc6cceaf898accde484}{ILU\+\_\+fill\+\_\+level}}
 \begin{DoxyCompactList}\small\item\em Level of fill for "{}\+ILU"{}. \end{DoxyCompactList}\item 
@@ -341,7 +341,7 @@ References \mbox{\hyperlink{trilinos__preconditioners_8h_source_l00333}{Precondi
 
 Function to set up an IFPACK preconditioner. It is assumed Trilinos\+\_\+matrix\+\_\+pt points to a suitable matrix. 
 
-//////////////////////////////////////////////////////////////////////////// 
+
 
 Implements \mbox{\hyperlink{classoomph_1_1TrilinosPreconditionerBase_aeb2b1cee61617fd68a8beb911ddc4a62}{oomph\+::\+Trilinos\+Preconditioner\+Base}}.
 
@@ -428,11 +428,11 @@ Definition at line \mbox{\hyperlink{trilinos__preconditioners_8h_source_l00342}{
 
 Referenced by \mbox{\hyperlink{trilinos__preconditioners_8cc_source_l00237}{setup\+\_\+trilinos\+\_\+preconditioner()}}, and \mbox{\hyperlink{trilinos__preconditioners_8h_source_l00271}{Trilinos\+IFPACKPreconditioner()}}.
 
-\Hypertarget{classoomph_1_1TrilinosIFPACKPreconditioner_a807a638ddbc59652317930ad534025a6}\label{classoomph_1_1TrilinosIFPACKPreconditioner_a807a638ddbc59652317930ad534025a6} 
+\Hypertarget{classoomph_1_1TrilinosIFPACKPreconditioner_a0efdf9a6884eb30b345ba99527d5da62}\label{classoomph_1_1TrilinosIFPACKPreconditioner_a0efdf9a6884eb30b345ba99527d5da62} 
 \index{oomph::TrilinosIFPACKPreconditioner@{oomph::TrilinosIFPACKPreconditioner}!Preconditioner\_type@{Preconditioner\_type}}
 \index{Preconditioner\_type@{Preconditioner\_type}!oomph::TrilinosIFPACKPreconditioner@{oomph::TrilinosIFPACKPreconditioner}}
 \doxysubsubsection{\texorpdfstring{Preconditioner\_type}{Preconditioner\_type}}
-{\footnotesize\ttfamily string oomph\+::\+Trilinos\+IFPACKPreconditioner\+::\+Preconditioner\+\_\+type\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily std\+::string oomph\+::\+Trilinos\+IFPACKPreconditioner\+::\+Preconditioner\+\_\+type\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 

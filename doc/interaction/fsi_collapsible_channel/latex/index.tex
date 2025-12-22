@@ -564,7 +564,7 @@ Next we specify the output directory, open a trace file and document the initial
 \DoxyCodeLine{\ \textcolor{comment}{//\ Open\ a\ trace\ file\ }}
 \DoxyCodeLine{\ \mbox{\hyperlink{classElasticCollapsibleChannelMesh}{ofstream}}\ \mbox{\hyperlink{classElasticCollapsibleChannelMesh}{trace\_file}};}
 \DoxyCodeLine{\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classElasticCollapsibleChannelMesh}{filename}}[100];\ \ \ }
-\DoxyCodeLine{\ \mbox{\hyperlink{classElasticCollapsibleChannelMesh}{sprintf}}(\mbox{\hyperlink{classElasticCollapsibleChannelMesh}{filename}},\textcolor{stringliteral}{"{}\%s/trace.dat"{}},\mbox{\hyperlink{classElasticCollapsibleChannelMesh}{doc\_info}}.directory().c\_str());}
+\DoxyCodeLine{\ \mbox{\hyperlink{classElasticCollapsibleChannelMesh}{snprintf}}(\mbox{\hyperlink{classElasticCollapsibleChannelMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticCollapsibleChannelMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},\mbox{\hyperlink{classElasticCollapsibleChannelMesh}{doc\_info}}.directory().c\_str());}
 \DoxyCodeLine{\ \mbox{\hyperlink{classElasticCollapsibleChannelMesh}{trace\_file}}.open(\mbox{\hyperlink{classElasticCollapsibleChannelMesh}{filename}});}
 \DoxyCodeLine{\ }
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ the\ initial\ solution}}
@@ -1198,14 +1198,14 @@ The function {\ttfamily doc\+\_\+solution(...)} outputs the velocity and wall di
 \DoxyCodeLine{\ \mbox{\hyperlink{classElasticCollapsibleChannelMesh}{npts}}=5;\ }
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ fluid\ solution\ }}
-\DoxyCodeLine{\ \mbox{\hyperlink{classElasticCollapsibleChannelMesh}{sprintf}}(\mbox{\hyperlink{classElasticCollapsibleChannelMesh}{filename}},\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},\mbox{\hyperlink{classElasticCollapsibleChannelMesh}{doc\_info}}.directory().c\_str(),}
+\DoxyCodeLine{\ \mbox{\hyperlink{classElasticCollapsibleChannelMesh}{snprintf}}(\mbox{\hyperlink{classElasticCollapsibleChannelMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticCollapsibleChannelMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},\mbox{\hyperlink{classElasticCollapsibleChannelMesh}{doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classElasticCollapsibleChannelMesh}{doc\_info}}.number());}
 \DoxyCodeLine{\ \mbox{\hyperlink{classElasticCollapsibleChannelMesh}{some\_file}}.open(\mbox{\hyperlink{classElasticCollapsibleChannelMesh}{filename}});}
 \DoxyCodeLine{\ bulk\_mesh\_pt()-\/>output(\mbox{\hyperlink{classElasticCollapsibleChannelMesh}{some\_file}},\mbox{\hyperlink{classElasticCollapsibleChannelMesh}{npts}});}
 \DoxyCodeLine{\ \mbox{\hyperlink{classElasticCollapsibleChannelMesh}{some\_file}}.close();}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Document\ the\ wall\ shape}}
-\DoxyCodeLine{\ \mbox{\hyperlink{classElasticCollapsibleChannelMesh}{sprintf}}(\mbox{\hyperlink{classElasticCollapsibleChannelMesh}{filename}},\textcolor{stringliteral}{"{}\%s/beam\%i.dat"{}},\mbox{\hyperlink{classElasticCollapsibleChannelMesh}{doc\_info}}.directory().c\_str(),}
+\DoxyCodeLine{\ \mbox{\hyperlink{classElasticCollapsibleChannelMesh}{snprintf}}(\mbox{\hyperlink{classElasticCollapsibleChannelMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticCollapsibleChannelMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/beam\%i.dat"{}},\mbox{\hyperlink{classElasticCollapsibleChannelMesh}{doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classElasticCollapsibleChannelMesh}{doc\_info}}.number());}
 \DoxyCodeLine{\ \mbox{\hyperlink{classElasticCollapsibleChannelMesh}{some\_file}}.open(\mbox{\hyperlink{classElasticCollapsibleChannelMesh}{filename}});}
 \DoxyCodeLine{\ wall\_mesh\_pt()-\/>output(\mbox{\hyperlink{classElasticCollapsibleChannelMesh}{some\_file}},\mbox{\hyperlink{classElasticCollapsibleChannelMesh}{npts}});}
@@ -1321,4 +1321,4 @@ Finally, here is an animation that shows the (wall) degrees of freedom that affe
 \end{DoxyItemize}\DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

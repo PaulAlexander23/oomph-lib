@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -145,10 +139,10 @@ $(function() {
  <div class="center">
   <img src="classoomph_1_1OomphLibError.png" usemap="#oomph::OomphLibError_map" alt=""/>
   <map id="oomph::OomphLibError_map" name="oomph::OomphLibError_map">
-<area href="classoomph_1_1OomphLibException.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////..." alt="oomph::OomphLibException" shape="rect" coords="314,56,618,80"/>
-<area href="classoomph_1_1InvertedElementError.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////..." alt="oomph::InvertedElementError" shape="rect" coords="0,168,304,192"/>
+<area href="classoomph_1_1OomphLibException.html" title="===================================================================== A Base class for oomph-lib run-..." alt="oomph::OomphLibException" shape="rect" coords="314,56,618,80"/>
+<area href="classoomph_1_1InvertedElementError.html" title="A class to specify when the error is caused by an inverted element." alt="oomph::InvertedElementError" shape="rect" coords="0,168,304,192"/>
 <area href="classoomph_1_1NewtonSolverError.html" title="A class to handle errors in the Newton solver." alt="oomph::NewtonSolverError" shape="rect" coords="314,168,618,192"/>
-<area href="classoomph_1_1SegregatedSolverError.html" title="////////////////////////////////////////////////////////////////// //////////////////////////////////..." alt="oomph::SegregatedSolverError" shape="rect" coords="628,168,932,192"/>
+<area href="classoomph_1_1SegregatedSolverError.html" title="A class to handle errors in the Segregated solver." alt="oomph::SegregatedSolverError" shape="rect" coords="628,168,932,192"/>
 <area href="classoomph_1_1RanOutOfIterationsInSegregatedSolverError.html" title="////////////////////////////////////////////////////////////////// //////////////////////////////////..." alt="oomph::RanOutOfIterationsInSegregatedSolverError" shape="rect" coords="628,224,932,248"/>
   </map>
 </div></div>
@@ -204,7 +198,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An <a class="el" href="classoomph_1_1OomphLibError.html" title="An OomphLibError object which should be thrown when an run-time error is encountered....">OomphLibError</a> object which should be thrown when an run-time error is encountered. The error stream and stream width can be specified. The default is cerr with a width of 70 characters. </p>
 
-<p class="definition">Definition at line <a class="el" href="oomph__definitions_8h_source.html#l00221">221</a> of file <a class="el" href="oomph__definitions_8h_source.html">oomph_definitions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="oomph__definitions_8h_source.html#l00228">228</a> of file <a class="el" href="oomph__definitions_8h_source.html">oomph_definitions.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2706846fffe8d60e13918daec455e780" name="a2706846fffe8d60e13918daec455e780"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2706846fffe8d60e13918daec455e780">&#9670;&#160;</a></span>OomphLibError()</h2>
@@ -248,7 +242,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Constructor requires the error description and the function in which the error occured and the location provided by the OOMPH_EXCEPTION_LOCATION macro. </p>
 
-<p class="definition">Definition at line <a class="el" href="oomph__definitions_8h_source.html#l00233">233</a> of file <a class="el" href="oomph__definitions_8h_source.html">oomph_definitions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="oomph__definitions_8h_source.html#l00240">240</a> of file <a class="el" href="oomph__definitions_8h_source.html">oomph_definitions.h</a>.</p>
 
 </div>
 </div>
@@ -279,7 +273,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Static member function used to specify the width (in characters) of the error stream. </p>
 
-<p class="definition">Definition at line <a class="el" href="oomph__definitions_8h_source.html#l00255">255</a> of file <a class="el" href="oomph__definitions_8h_source.html">oomph_definitions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="oomph__definitions_8h_source.html#l00262">262</a> of file <a class="el" href="oomph__definitions_8h_source.html">oomph_definitions.h</a>.</p>
 
 </div>
 </div>
@@ -309,7 +303,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Static member function used to specify the error stream, which must be passed as a pointer because streams cannot be copied. </p>
 
-<p class="definition">Definition at line <a class="el" href="oomph__definitions_8h_source.html#l00248">248</a> of file <a class="el" href="oomph__definitions_8h_source.html">oomph_definitions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="oomph__definitions_8h_source.html#l00255">255</a> of file <a class="el" href="oomph__definitions_8h_source.html">oomph_definitions.h</a>.</p>
 
 </div>
 </div>
@@ -337,7 +331,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Width in characters of the output report. </p>
 <p>Default output width for OomphLibErrors (70) </p>
 
-<p class="definition">Definition at line <a class="el" href="oomph__definitions_8h_source.html#l00227">227</a> of file <a class="el" href="oomph__definitions_8h_source.html">oomph_definitions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="oomph__definitions_8h_source.html#l00234">234</a> of file <a class="el" href="oomph__definitions_8h_source.html">oomph_definitions.h</a>.</p>
 
 </div>
 </div>
@@ -364,7 +358,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Output stream that is used to write the errors. </p>
 <p>Default output stream for OomphLibErorrs (cerr) </p>
 
-<p class="definition">Definition at line <a class="el" href="oomph__definitions_8h_source.html#l00224">224</a> of file <a class="el" href="oomph__definitions_8h_source.html">oomph_definitions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="oomph__definitions_8h_source.html#l00231">231</a> of file <a class="el" href="oomph__definitions_8h_source.html">oomph_definitions.h</a>.</p>
 
 </div>
 </div>
@@ -400,7 +394,7 @@ Additional Inherited Members</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:04:48
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:40:41
         </div>
       </div>
     </footer>

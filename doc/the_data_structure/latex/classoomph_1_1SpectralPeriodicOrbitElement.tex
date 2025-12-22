@@ -261,7 +261,7 @@ std\+::string \mbox{\hyperlink{classoomph_1_1QSpectralElement_3_011_00_01NNODE__
 \begin{DoxyCompactList}\small\item\em Calculate the size of the element (length, area, volume,...) in Eulerian computational coordinates. Use suitably overloaded \doxylink{classoomph_1_1FiniteElement_a782a540035dc31cb6ef548d9d930d8b8}{compute\+\_\+physical\+\_\+size()} function to compute the actual size (taking into account factors such as 2pi or radii the integrand) -- such function can only be implemented on an equation-\/by-\/equation basis. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} \mbox{\hyperlink{classoomph_1_1FiniteElement_a782a540035dc31cb6ef548d9d930d8b8}{compute\+\_\+physical\+\_\+size}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Broken virtual function to compute the actual size (taking into account factors such as 2pi or radii the integrand) -- such function can only be implemented on an equation-\/by-\/equation basis. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1FiniteElement_a8bf3f75b55d4e67b644df3e22c192596}{point\+\_\+output\+\_\+data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{data}})
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1FiniteElement_a8bf3f75b55d4e67b644df3e22c192596}{point\+\_\+output\+\_\+data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&data)
 \begin{DoxyCompactList}\small\item\em Virtual function to write the double precision numbers that appear in a single line of output into the data vector. Empty virtual, can be overloaded for specific elements; used e.\+g. by \doxylink{classoomph_1_1LineVisualiser}{Line\+Visualiser}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1FiniteElement_a57e514bf089797717b80a61725aad622}{point\+\_\+output}} (std\+::ostream \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{outfile}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}})
 \begin{DoxyCompactList}\small\item\em Output solution (as defined by \doxylink{classoomph_1_1FiniteElement_a8bf3f75b55d4e67b644df3e22c192596}{point\+\_\+output\+\_\+data()}) at local cordinates s. \end{DoxyCompactList}\item 
@@ -336,8 +336,10 @@ std\+::string \mbox{\hyperlink{classoomph_1_1QSpectralElement_3_011_00_01NNODE__
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{oomph\+::\+Generalised\+Element}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}}() \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a76c506edf49c5bbfe94f424ec94191ab}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
-\begin{DoxyCompactList}\small\item\em Constructor\+: Initialise all pointers and all values to zero. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a6a34bffcef1bbbc5271630042afe7ca9}{\texorpdfstring{$\sim$}{\string~}\+Generalised\+Element}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor to clean up any memory allocated by the object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1GeneralisedElement_a4e4a9177fdb093fc85c890bb86bdf655}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
+\begin{DoxyCompactList}\small\item\em Broken copy constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a180b550ae69f8bcbaae3f37f38c475ff}{operator=}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
 \begin{DoxyCompactList}\small\item\em Broken assignment operator. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Data}{Data}} \texorpdfstring{$\ast$}{*}\& \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a3b83389f2c80788013421c6d59604f0b}{internal\+\_\+data\+\_\+pt}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
@@ -978,7 +980,7 @@ template$<$$>$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement
 class oomph\+::\+Spectral\+Periodic\+Orbit\+Element$<$ NNODE\+\_\+1\+D $>$}
 \doxylink{classoomph_1_1QPoissonElement}{QPoisson\+Element} elements are linear/quadrilateral/brick-\/shaped Poisson elements with isoparametric interpolation for the function. 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00348}{348}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00347}{347}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 
 
@@ -996,7 +998,7 @@ Constructor\+: Call constructors for \doxylink{classoomph_1_1QElement}{QElement}
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00357}{357}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00356}{356}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 \Hypertarget{classoomph_1_1SpectralPeriodicOrbitElement_ae0469b27ed97bcfa65e7893e5d9d2bf4}\label{classoomph_1_1SpectralPeriodicOrbitElement_ae0469b27ed97bcfa65e7893e5d9d2bf4} 
 \index{oomph::SpectralPeriodicOrbitElement$<$ NNODE\_1D $>$@{oomph::SpectralPeriodicOrbitElement$<$ NNODE\_1D $>$}!SpectralPeriodicOrbitElement@{SpectralPeriodicOrbitElement}}
@@ -1031,7 +1033,7 @@ Implements \mbox{\hyperlink{classoomph_1_1PeriodicOrbitEquations_a2bf0f39d52d141
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00563}{563}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00562}{562}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 \Hypertarget{classoomph_1_1SpectralPeriodicOrbitElement_a09b5fc5cee00d470952242dfea75de69}\label{classoomph_1_1SpectralPeriodicOrbitElement_a09b5fc5cee00d470952242dfea75de69} 
 \index{oomph::SpectralPeriodicOrbitElement$<$ NNODE\_1D $>$@{oomph::SpectralPeriodicOrbitElement$<$ NNODE\_1D $>$}!dshape\_and\_dtest\_eulerian\_orbit@{dshape\_and\_dtest\_eulerian\_orbit}}
@@ -1052,7 +1054,7 @@ Implements \mbox{\hyperlink{classoomph_1_1PeriodicOrbitEquations_a745c25bf4dc333
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00537}{537}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00536}{536}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 
 
@@ -1075,7 +1077,7 @@ Implements \mbox{\hyperlink{classoomph_1_1RefineableElement_ada6f0efe831ffefb1d2
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00394}{394}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00393}{393}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 
 
@@ -1098,15 +1100,15 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1RefineableElement_ad9a4f928806
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00388}{388}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00387}{387}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 
 
-References \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00388}{oomph\+::\+Spectral\+Periodic\+Orbit\+Element$<$ NNODE\+\_\+1\+D $>$\+::get\+\_\+interpolated\+\_\+values()}}.
+References \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00387}{oomph\+::\+Spectral\+Periodic\+Orbit\+Element$<$ NNODE\+\_\+1\+D $>$\+::get\+\_\+interpolated\+\_\+values()}}.
 
 
 
-Referenced by \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00388}{oomph\+::\+Spectral\+Periodic\+Orbit\+Element$<$ NNODE\+\_\+1\+D $>$\+::get\+\_\+interpolated\+\_\+values()}}.
+Referenced by \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00387}{oomph\+::\+Spectral\+Periodic\+Orbit\+Element$<$ NNODE\+\_\+1\+D $>$\+::get\+\_\+interpolated\+\_\+values()}}.
 
 \Hypertarget{classoomph_1_1SpectralPeriodicOrbitElement_aee2d7222e52f4d59692b8f1ac3964b17}\label{classoomph_1_1SpectralPeriodicOrbitElement_aee2d7222e52f4d59692b8f1ac3964b17} 
 \index{oomph::SpectralPeriodicOrbitElement$<$ NNODE\_1D $>$@{oomph::SpectralPeriodicOrbitElement$<$ NNODE\_1D $>$}!get\_Z2\_flux@{get\_Z2\_flux}}
@@ -1125,7 +1127,7 @@ Implements \mbox{\hyperlink{classoomph_1_1ElementWithZ2ErrorEstimator_a5688ff5f5
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00425}{425}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00424}{424}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 
 
@@ -1148,7 +1150,7 @@ Implements \mbox{\hyperlink{classoomph_1_1RefineableElement_a53e171a18c9f43f1db9
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00382}{382}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00381}{381}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 \Hypertarget{classoomph_1_1SpectralPeriodicOrbitElement_a38c80629b1befeb65014659c7e14ab09}\label{classoomph_1_1SpectralPeriodicOrbitElement_a38c80629b1befeb65014659c7e14ab09} 
 \index{oomph::SpectralPeriodicOrbitElement$<$ NNODE\_1D $>$@{oomph::SpectralPeriodicOrbitElement$<$ NNODE\_1D $>$}!nrecovery\_order@{nrecovery\_order}}
@@ -1167,7 +1169,7 @@ Implements \mbox{\hyperlink{classoomph_1_1ElementWithZ2ErrorEstimator_af39480835
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00412}{412}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00411}{411}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 \Hypertarget{classoomph_1_1SpectralPeriodicOrbitElement_a625465ff6702c623efd252d758832445}\label{classoomph_1_1SpectralPeriodicOrbitElement_a625465ff6702c623efd252d758832445} 
 \index{oomph::SpectralPeriodicOrbitElement$<$ NNODE\_1D $>$@{oomph::SpectralPeriodicOrbitElement$<$ NNODE\_1D $>$}!num\_Z2\_flux\_terms@{num\_Z2\_flux\_terms}}
@@ -1186,7 +1188,7 @@ Implements \mbox{\hyperlink{classoomph_1_1ElementWithZ2ErrorEstimator_ae82c57289
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00419}{419}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00418}{418}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 
 
@@ -1209,7 +1211,7 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1QSpectralElement_3_011_00_01NN
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00458}{458}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00457}{457}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 \Hypertarget{classoomph_1_1SpectralPeriodicOrbitElement_a2a16805778b8497d7b394f3cbd010fc0}\label{classoomph_1_1SpectralPeriodicOrbitElement_a2a16805778b8497d7b394f3cbd010fc0} 
 \index{oomph::SpectralPeriodicOrbitElement$<$ NNODE\_1D $>$@{oomph::SpectralPeriodicOrbitElement$<$ NNODE\_1D $>$}!output@{output}}
@@ -1228,7 +1230,7 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1QSpectralElement_3_011_00_01NN
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00491}{491}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00490}{490}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 
 
@@ -1251,7 +1253,7 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1QSpectralElement_3_011_00_01NN
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00499}{499}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00498}{498}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 
 
@@ -1274,7 +1276,7 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1QSpectralElement_3_011_00_01NN
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00475}{475}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00474}{474}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 
 
@@ -1297,7 +1299,7 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1QSpectralElement_3_011_00_01NN
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00483}{483}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00482}{482}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 
 
@@ -1320,7 +1322,7 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_a56610c60d5bc2d7
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00376}{376}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00375}{375}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 \Hypertarget{classoomph_1_1SpectralPeriodicOrbitElement_a79b6100a126d1a8b743790c1bf9c48de}\label{classoomph_1_1SpectralPeriodicOrbitElement_a79b6100a126d1a8b743790c1bf9c48de} 
 \index{oomph::SpectralPeriodicOrbitElement$<$ NNODE\_1D $>$@{oomph::SpectralPeriodicOrbitElement$<$ NNODE\_1D $>$}!vertex\_node\_pt@{vertex\_node\_pt}}
@@ -1339,7 +1341,7 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1QSpectralElement_3_011_00_01NN
 
 
 
-Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00464}{464}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
+Definition at line \mbox{\hyperlink{periodic__orbit__handler_8h_source_l00463}{463}} of file \mbox{\hyperlink{periodic__orbit__handler_8h_source}{periodic\+\_\+orbit\+\_\+handler.\+h}}.
 
 
 

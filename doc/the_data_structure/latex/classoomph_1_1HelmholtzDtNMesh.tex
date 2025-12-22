@@ -2,7 +2,7 @@
 \hypertarget{classoomph_1_1HelmholtzDtNMesh}{}\label{classoomph_1_1HelmholtzDtNMesh}\index{oomph::HelmholtzDtNMesh$<$ ELEMENT $>$@{oomph::HelmholtzDtNMesh$<$ ELEMENT $>$}}
 
 
-/////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////  
+================================================================= \doxylink{classoomph_1_1Mesh}{Mesh} for DtN boundary condition elements -- provides functionality to apply Sommerfeld radiation condtion  
 
 
 
@@ -97,6 +97,10 @@ Inheritance diagram for oomph\+::Helmholtz\+Dt\+NMesh\texorpdfstring{$<$}{<} ELE
 \begin{DoxyCompactList}\small\item\em Replace existing boundary node lookup schemes with new schemes created using the boundary data stored in the nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1Mesh_ad1b124a959628aba00162b89617b3a62}{boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Indicate whether the i-\/th boundary has an intrinsic coordinate. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_ab137d0c0debf5ba0d6ea6990103e620c}{set\+\_\+boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be existing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_a3b9d63e0057ed721190b109f48f7c92e}{set\+\_\+boundary\+\_\+coordinate\+\_\+does\+\_\+not\+\_\+exist}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be non-\/existing. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_af01dfefb66c15579b540be62999d93ee}{nelement}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return number of elements in the mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
@@ -463,17 +467,15 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_aca12acfe655a4d5c4a4eab4a7b970812}{Element\+\_\+pt}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a412a5051be9e81f0ba61bf85e5abc4a6}{Boundary\+\_\+coordinate\+\_\+exists}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of boolean data that indicates whether the boundary coordinates have been set for the boundary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{class}} ELEMENT$>$\newline
 class oomph\+::\+Helmholtz\+Dt\+NMesh$<$ ELEMENT $>$}
-/////////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////// 
+================================================================= \doxylink{classoomph_1_1Mesh}{Mesh} for DtN boundary condition elements -- provides functionality to apply Sommerfeld radiation condtion 
 
-================================================================= \doxylink{classoomph_1_1Mesh}{Mesh} for DtN boundary condition elements -- provides functionality to apply Sommerfeld radiation condtion \hypertarget{classoomph_1_1HelmholtzDtNMesh_autotoc_md8}{}\doxysubsection{\texorpdfstring{via Dt\+N BC}{via DtN BC}}\label{classoomph_1_1HelmholtzDtNMesh_autotoc_md8}
+\hypertarget{classoomph_1_1HelmholtzDtNMesh_autotoc_md8}{}\doxysubsection{\texorpdfstring{via Dt\+N BC}{via DtN BC}}\label{classoomph_1_1HelmholtzDtNMesh_autotoc_md8}
 
 
 Definition at line \mbox{\hyperlink{helmholtz__bc__elements_8h_source_l00561}{561}} of file \mbox{\hyperlink{helmholtz__bc__elements_8h_source}{helmholtz\+\_\+bc\+\_\+elements.\+h}}.
@@ -510,9 +512,7 @@ Definition at line \mbox{\hyperlink{helmholtz__bc__elements_8h_source_l00566}{56
 
 Compute Fourier components of the solution -- length of vector indicates number of terms to be computed. 
 
-////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////
-
-================================================================ Compute Fourier components of the solution -- length of \hypertarget{classoomph_1_1HelmholtzDtNMesh_autotoc_md9}{}\doxysubsection{\texorpdfstring{vector indicates number of terms to be computed.}{vector indicates number of terms to be computed.}}\label{classoomph_1_1HelmholtzDtNMesh_autotoc_md9}
+================================================================ Compute Fourier components of the solution -- length of\hypertarget{classoomph_1_1HelmholtzDtNMesh_autotoc_md9}{}\doxysubsection{\texorpdfstring{vector indicates number of terms to be computed.}{vector indicates number of terms to be computed.}}\label{classoomph_1_1HelmholtzDtNMesh_autotoc_md9}
 
 
 Definition at line \mbox{\hyperlink{helmholtz__bc__elements_8h_source_l01621}{1621}} of file \mbox{\hyperlink{helmholtz__bc__elements_8h_source}{helmholtz\+\_\+bc\+\_\+elements.\+h}}.
@@ -616,7 +616,7 @@ Definition at line \mbox{\hyperlink{helmholtz__bc__elements_8h_source_l01674}{16
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l02615}{oomph\+::\+Finite\+Element\+::dim()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{elements_8h_source_l00708}{oomph\+::\+Generalised\+Element\+::eqn\+\_\+number()}}, \mbox{\hyperlink{helmholtz__bc__elements_8h_source_l00062}{oomph\+::\+Hankel\+\_\+functions\+\_\+for\+\_\+helmholtz\+\_\+problem\+::\+Hankel\+\_\+first()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l01967}{oomph\+::\+Finite\+Element\+::integral\+\_\+pt()}}, \mbox{\hyperlink{elements_8cc_source_l03992}{oomph\+::\+Finite\+Element\+::interpolated\+\_\+x()}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a2122f99a87c18649bafdd9ed739758}{oomph\+::\+Integral\+::knot()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l01436}{oomph\+::\+Finite\+Element\+::nodal\+\_\+local\+\_\+eqn()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a270de9d99a1fcf1d25a6c1017f65fa}{oomph\+::\+Integral\+::nweight()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00157}{oomph\+::\+Mathematical\+Constants\+::\+Pi}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}, and \mbox{\hyperlink{helmholtz__bc__elements_8h_source_l01607}{oomph\+::\+Tolerance\+For\+Helmholtz\+Outer\+Boundary\+::\+Tol}}.
+References \mbox{\hyperlink{elements_8h_source_l02615}{oomph\+::\+Finite\+Element\+::dim()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{elements_8h_source_l00691}{oomph\+::\+Generalised\+Element\+::eqn\+\_\+number()}}, \mbox{\hyperlink{helmholtz__bc__elements_8h_source_l00062}{oomph\+::\+Hankel\+\_\+functions\+\_\+for\+\_\+helmholtz\+\_\+problem\+::\+Hankel\+\_\+first()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l01967}{oomph\+::\+Finite\+Element\+::integral\+\_\+pt()}}, \mbox{\hyperlink{elements_8cc_source_l03992}{oomph\+::\+Finite\+Element\+::interpolated\+\_\+x()}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a2122f99a87c18649bafdd9ed739758}{oomph\+::\+Integral\+::knot()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l01436}{oomph\+::\+Finite\+Element\+::nodal\+\_\+local\+\_\+eqn()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a270de9d99a1fcf1d25a6c1017f65fa}{oomph\+::\+Integral\+::nweight()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00167}{oomph\+::\+Mathematical\+Constants\+::\+Pi}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}, and \mbox{\hyperlink{helmholtz__bc__elements_8h_source_l01607}{oomph\+::\+Tolerance\+For\+Helmholtz\+Outer\+Boundary\+::\+Tol}}.
 
 
 

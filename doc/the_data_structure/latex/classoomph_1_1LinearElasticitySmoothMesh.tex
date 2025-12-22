@@ -2,7 +2,7 @@
 \hypertarget{classoomph_1_1LinearElasticitySmoothMesh}{}\label{classoomph_1_1LinearElasticitySmoothMesh}\index{oomph::LinearElasticitySmoothMesh$<$ LINEAR\_ELASTICITY\_ELEMENT $>$@{oomph::LinearElasticitySmoothMesh$<$ LINEAR\_ELASTICITY\_ELEMENT $>$}}
 
 
-/////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////  
+Auxiliary \doxylink{classoomph_1_1Problem}{Problem} to smooth a \doxylink{classoomph_1_1SolidMesh}{Solid\+Mesh} by adjusting the internal nodal positions by solving a LINEAR solid mechanics problem for the nodal displacements between the specified displacements of certain pinned nodes (usually located on boundaries). The template parameter specifies the linear elasticity element that must have the same shape (geometric element type) as the elements contained in the mesh that\textquotesingle{}s to be smoothed. So, e.\+g. for the ten-\/noded three-\/dimensional tetrahedral TTaylor\+Hood\+Element$<$3$>$, it would be a TLinear\+Elasticity\+Element$<$3,3$>$, etc. {\bfseries{Important}} {\bfseries{assumptions\+:}}  
 
 
 
@@ -729,9 +729,9 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{class}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{LINEAR\+\_\+\+ELASTICITY\+\_\+\+ELEMENT}}$>$\newline
 class oomph\+::\+Linear\+Elasticity\+Smooth\+Mesh$<$ LINEAR\+\_\+\+ELASTICITY\+\_\+\+ELEMENT $>$}
-/////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////// 
-
 Auxiliary \doxylink{classoomph_1_1Problem}{Problem} to smooth a \doxylink{classoomph_1_1SolidMesh}{Solid\+Mesh} by adjusting the internal nodal positions by solving a LINEAR solid mechanics problem for the nodal displacements between the specified displacements of certain pinned nodes (usually located on boundaries). The template parameter specifies the linear elasticity element that must have the same shape (geometric element type) as the elements contained in the mesh that\textquotesingle{}s to be smoothed. So, e.\+g. for the ten-\/noded three-\/dimensional tetrahedral TTaylor\+Hood\+Element$<$3$>$, it would be a TLinear\+Elasticity\+Element$<$3,3$>$, etc. {\bfseries{Important}} {\bfseries{assumptions\+:}} 
+
+
 \begin{DoxyItemize}
 \item It is important that the Lagrangian coordinates of all nodes still indicate their original position, i.\+e. their position before (some of) them were moved to their new position.
 \item It is assumed that in its original state, the mesh does not contain any inverted elements.
@@ -777,7 +777,7 @@ Definition at line \mbox{\hyperlink{mesh__smooth_8h_source_l00529}{529}} of file
 
 
 
-References \mbox{\hyperlink{mesh_8h_source_l00617}{oomph\+::\+Mesh\+::add\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00611}{oomph\+::\+Mesh\+::add\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{problem_8cc_source_l02076}{oomph\+::\+Problem\+::assign\+\_\+eqn\+\_\+numbers()}}, \mbox{\hyperlink{elements_8h_source_l02513}{oomph\+::\+Finite\+Element\+::construct\+\_\+node()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00473}{oomph\+::\+Mesh\+::finite\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{namespaceoomph_1_1Helper__namespace__for__mesh__smoothing_abfbf54a4e1228fd633c57ada920d28cc}{oomph\+::\+Helper\+\_\+namespace\+\_\+for\+\_\+mesh\+\_\+smoothing\+::\+Isotropic\+\_\+elasticity\+\_\+tensor()}}, \mbox{\hyperlink{problem_8h_source_l01300}{oomph\+::\+Problem\+::mesh\+\_\+pt()}}, \mbox{\hyperlink{geom__objects_8h_source_l00177}{oomph\+::\+Geom\+Object\+::ndim()}}, \mbox{\hyperlink{problem_8cc_source_l08803}{oomph\+::\+Problem\+::newton\+\_\+solve()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{nodes_8h_source_l01060}{oomph\+::\+Node\+::x()}}, and \mbox{\hyperlink{nodes_8h_source_l01883}{oomph\+::\+Solid\+Node\+::xi()}}.
+References \mbox{\hyperlink{mesh_8h_source_l00625}{oomph\+::\+Mesh\+::add\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00619}{oomph\+::\+Mesh\+::add\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{problem_8cc_source_l02085}{oomph\+::\+Problem\+::assign\+\_\+eqn\+\_\+numbers()}}, \mbox{\hyperlink{elements_8h_source_l02513}{oomph\+::\+Finite\+Element\+::construct\+\_\+node()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00477}{oomph\+::\+Mesh\+::finite\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{namespaceoomph_1_1Helper__namespace__for__mesh__smoothing_abfbf54a4e1228fd633c57ada920d28cc}{oomph\+::\+Helper\+\_\+namespace\+\_\+for\+\_\+mesh\+\_\+smoothing\+::\+Isotropic\+\_\+elasticity\+\_\+tensor()}}, \mbox{\hyperlink{problem_8h_source_l01300}{oomph\+::\+Problem\+::mesh\+\_\+pt()}}, \mbox{\hyperlink{geom__objects_8h_source_l00177}{oomph\+::\+Geom\+Object\+::ndim()}}, \mbox{\hyperlink{problem_8cc_source_l08816}{oomph\+::\+Problem\+::newton\+\_\+solve()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{nodes_8h_source_l01060}{oomph\+::\+Node\+::x()}}, and \mbox{\hyperlink{nodes_8h_source_l01883}{oomph\+::\+Solid\+Node\+::xi()}}.
 
 
 

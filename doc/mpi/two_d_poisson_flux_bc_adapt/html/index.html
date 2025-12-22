@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -175,7 +169,7 @@ The doc_solution() function</h1>
 <div class="line"> <span class="comment">// Output solution with halo elements </span></div>
 <div class="line"> <span class="comment">//-----------------------------------</span></div>
 <div class="line"> Bulk_mesh_pt-&gt;enable_output_of_halo_elements();</div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/soln_with_halo%i_on_proc%i.dat&quot;</span>,</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln_with_halo%i_on_proc%i.dat&quot;</span>,</div>
 <div class="line">         doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number(),this-&gt;communicator_pt()-&gt;my_rank());</div>
 <div class="line"> some_file.open(filename);</div>
@@ -186,7 +180,7 @@ The doc_solution() function</h1>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output solution </span></div>
 <div class="line"> <span class="comment">//-----------------</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i_on_proc%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i_on_proc%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number(),this-&gt;communicator_pt()-&gt;my_rank());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> Bulk_mesh_pt-&gt;output(some_file,npts);</div>
@@ -194,7 +188,7 @@ The doc_solution() function</h1>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output exact solution </span></div>
 <div class="line"> <span class="comment">//----------------------</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/exact_soln%i_on_proc%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/exact_soln%i_on_proc%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number(),this-&gt;communicator_pt()-&gt;my_rank());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> Bulk_mesh_pt-&gt;output_fct(some_file,npts,TanhSolnForPoisson::get_exact_u); </div>
@@ -204,7 +198,7 @@ The doc_solution() function</h1>
 <div class="line"> <span class="comment">// Doc error and return of the square of the L2 error</span></div>
 <div class="line"> <span class="comment">//---------------------------------------------------</span></div>
 <div class="line"> <span class="keywordtype">double</span> error,norm;</div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/error%i_on_proc%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/error%i_on_proc%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number(),this-&gt;communicator_pt()-&gt;my_rank());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> Bulk_mesh_pt-&gt;compute_error(some_file,TanhSolnForPoisson::get_exact_u,</div>
@@ -236,7 +230,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -266,7 +260,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:36:34
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:38:20
         </div>
       </div>
     </footer>

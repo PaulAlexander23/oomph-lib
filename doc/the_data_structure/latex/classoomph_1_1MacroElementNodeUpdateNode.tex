@@ -2,7 +2,7 @@
 \hypertarget{classoomph_1_1MacroElementNodeUpdateNode}{}\label{classoomph_1_1MacroElementNodeUpdateNode}\index{oomph::MacroElementNodeUpdateNode@{oomph::MacroElementNodeUpdateNode}}
 
 
-////////////////////////////////////////////////////////////////////  
+Macro\+Element\+Node\+Update nodes are nodes with a positional update function, based on their element\textquotesingle{}s \doxylink{classoomph_1_1MacroElement}{Macro\+Element} representation.  
 
 
 
@@ -230,7 +230,7 @@ Inheritance diagram for oomph\+::Macro\+Element\+Node\+Update\+Node\+:\begin{fig
 \begin{DoxyCompactList}\small\item\em Default constructor for steady problems\+: assign memory for initial\+\_\+n\+\_\+value values. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Data_afe56d22d0dba308e33191e922993c5ee}{Data}} (\mbox{\hyperlink{classoomph_1_1TimeStepper}{Time\+Stepper}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \&\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\+\_\+stepper\+\_\+pt}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{initial\+\_\+n\+\_\+value}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{allocate\+\_\+storage}}=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{true}})
 \begin{DoxyCompactList}\small\item\em Constructor for unsteady problems\+: assign memory for initial\+\_\+n\+\_\+value values and any memory required by the Timestepper for the storage of history values. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1Data_ab35d30d1817db503265d59956a4ee02b}{Data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Data}{Data}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{data}})=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
+\mbox{\hyperlink{classoomph_1_1Data_ab35d30d1817db503265d59956a4ee02b}{Data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Data}{Data}} \&data)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
 \begin{DoxyCompactList}\small\item\em Broken copy constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Data_aeff1a35c9b9a48753a63b52c1d9959e2}{operator=}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Data}{Data}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
 \begin{DoxyCompactList}\small\item\em Broken assignment operator. \end{DoxyCompactList}\item 
@@ -395,9 +395,7 @@ Inheritance diagram for oomph\+::Macro\+Element\+Node\+Update\+Node\+:\begin{fig
 
 
 \doxysubsection{Detailed Description}
-//////////////////////////////////////////////////////////////////// 
-
-//////////////////////////////////////////////////////////////////// Macro\+Element\+Node\+Update nodes are nodes with a positional update function, based on their element\textquotesingle{}s \doxylink{classoomph_1_1MacroElement}{Macro\+Element} representation. 
+Macro\+Element\+Node\+Update nodes are nodes with a positional update function, based on their element\textquotesingle{}s \doxylink{classoomph_1_1MacroElement}{Macro\+Element} representation. 
 
 Definition at line \mbox{\hyperlink{macro__element__node__update__element_8h_source_l00048}{48}} of file \mbox{\hyperlink{macro__element__node__update__element_8h_source}{macro\+\_\+element\+\_\+node\+\_\+update\+\_\+element.\+h}}.
 
@@ -553,9 +551,7 @@ References \mbox{\hyperlink{macro__element__node__update__element_8h_source_l001
 
 Update the current nodal position. If required, perform the auxiliary update of nodal values. If update\+\_\+all\+\_\+time\+\_\+levels\+\_\+for\+\_\+new\+\_\+node==true, previous positions are also updated -- as indicated by the name of this flag, this should only be done for newly created nodes, when this function is called from Macro\+Element\+Node\+Update\+Element\+Base\+::build\+\_\+macro\+\_\+element\+\_\+node\+\_\+update\+\_\+node(...) 
 
-////////////////////////////////////////////////////////////////////
-
-//////////////////////////////////////////////////////////////////// Excute the update function\+: Update the current (and if update\+\_\+all\+\_\+time\+\_\+levels\+\_\+for\+\_\+new\+\_\+node==true also the previous) nodal position. Also update the current nodal values if an auxiliary update function is defined. Note\+: Updating of previous positions is only required (and should only be performed for) newly created Macro\+Element\+Node\+Update\+Nodes i.\+e. when this function is called from... If a node is hanging, its position is determined via its hanging node constraints after updating the position of its master nodes. 
+Excute the update function\+: Update the current (and if update\+\_\+all\+\_\+time\+\_\+levels\+\_\+for\+\_\+new\+\_\+node==true also the previous) nodal position. Also update the current nodal values if an auxiliary update function is defined. Note\+: Updating of previous positions is only required (and should only be performed for) newly created Macro\+Element\+Node\+Update\+Nodes i.\+e. when this function is called from... If a node is hanging, its position is determined via its hanging node constraints after updating the position of its master nodes. 
 
 Reimplemented from \mbox{\hyperlink{classoomph_1_1Node_aecf8c979266300d3609de2b4ddfa3cc8}{oomph\+::\+Node}}.
 

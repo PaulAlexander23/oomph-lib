@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -193,7 +187,7 @@
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>   <span class="keywordtype">unsigned</span> nb=this-&gt;nboundary();</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> b=0;b&lt;nb;b++)</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    {</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>     sprintf(filename,<span class="stringliteral">&quot;RESLT/solid_boundary_test%i.dat&quot;</span>,b);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>     snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;RESLT/solid_boundary_test%i.dat&quot;</span>,b);</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>     some_file.open(filename);</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>     this-&gt;<span class="keyword">template</span> setup_boundary_coordinates&lt;ELEMENT&gt;(b,some_file);</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>     some_file.close();</div>
@@ -208,9 +202,9 @@
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>};</div>
 </div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="comment"></span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment"></span> </div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
@@ -256,7 +250,7 @@
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>   <span class="keywordtype">unsigned</span> nb=this-&gt;nboundary();</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> b=0;b&lt;nb;b++) </div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    {</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>     sprintf(filename,<span class="stringliteral">&quot;RESLT/fluid_boundary_test%i.dat&quot;</span>,b);</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>     snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;RESLT/fluid_boundary_test%i.dat&quot;</span>,b);</div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>     some_file.open(filename);</div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>     this-&gt;<span class="keyword">template</span> setup_boundary_coordinates&lt;ELEMENT&gt;(b,switch_normal,some_file);</div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>     some_file.close();</div>
@@ -272,9 +266,9 @@
 </div>
 <div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="comment"></span> </div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="comment">/// ///////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="comment">/// ///////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="comment">/// ///////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="comment">//////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="comment">//////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="comment">//////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="comment"></span> </div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="comment">//=======start_of_namespace==========================================</span><span class="comment"></span></div>
@@ -827,7 +821,7 @@
 <div class="line"><a id="l00679" name="l00679"></a><span class="lineno">  679</span>   </div>
 <div class="line"><a id="l00680" name="l00680"></a><span class="lineno">  680</span>   <span class="comment">//Doc boundary coordinates in fluid</span></div>
 <div class="line"><a id="l00681" name="l00681"></a><span class="lineno">  681</span>   <span class="keywordtype">char</span> filename[100];</div>
-<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span>   sprintf(filename,<span class="stringliteral">&quot;RESLT/fluid_boundary_coordinates%i.dat&quot;</span>,i);</div>
+<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span>   snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;RESLT/fluid_boundary_coordinates%i.dat&quot;</span>,i);</div>
 <div class="line"><a id="l00683" name="l00683"></a><span class="lineno">  683</span>   Multi_domain_functions::Doc_boundary_coordinate_file.open(filename);</div>
 <div class="line"><a id="l00684" name="l00684"></a><span class="lineno">  684</span>   </div>
 <div class="line"><a id="l00685" name="l00685"></a><span class="lineno">  685</span>   <span class="comment">// Setup FSI: Pass ID of fluid FSI boundary and associated</span></div>
@@ -1036,7 +1030,7 @@
 <div class="line"><a id="l00880" name="l00880"></a><span class="lineno">  880</span> </div>
 <div class="line"><a id="l00881" name="l00881"></a><span class="lineno">  881</span> <span class="comment">//Doc boundary coordinates in fluid</span></div>
 <div class="line"><a id="l00882" name="l00882"></a><span class="lineno">  882</span> <span class="keywordtype">char</span> filename[100];</div>
-<div class="line"><a id="l00883" name="l00883"></a><span class="lineno">  883</span> sprintf(filename,<span class="stringliteral">&quot;RESLT/solid_boundary_coordinates%i.dat&quot;</span>,i);</div>
+<div class="line"><a id="l00883" name="l00883"></a><span class="lineno">  883</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;RESLT/solid_boundary_coordinates%i.dat&quot;</span>,i);</div>
 <div class="line"><a id="l00884" name="l00884"></a><span class="lineno">  884</span> std::ofstream the_file(filename);</div>
 <div class="line"><a id="l00885" name="l00885"></a><span class="lineno">  885</span> </div>
 <div class="line"><a id="l00886" name="l00886"></a><span class="lineno">  886</span> <span class="comment">// Loop over traction elements</span></div>
@@ -1102,7 +1096,7 @@
 <div class="line"><a id="l00944" name="l00944"></a><span class="lineno">  944</span> </div>
 <div class="line"><a id="l00945" name="l00945"></a><span class="lineno">  945</span> <span class="comment">// Output solid boundaries</span></div>
 <div class="line"><a id="l00946" name="l00946"></a><span class="lineno">  946</span> <span class="comment">//------------------------</span></div>
-<div class="line"><a id="l00947" name="l00947"></a><span class="lineno">  947</span> sprintf(filename,<span class="stringliteral">&quot;%s/solid_boundaries%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00947" name="l00947"></a><span class="lineno">  947</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/solid_boundaries%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00948" name="l00948"></a><span class="lineno">  948</span>         doc_info.number());</div>
 <div class="line"><a id="l00949" name="l00949"></a><span class="lineno">  949</span> some_file.open(filename);</div>
 <div class="line"><a id="l00950" name="l00950"></a><span class="lineno">  950</span> Solid_mesh_pt-&gt;output_boundaries(some_file);</div>
@@ -1111,7 +1105,7 @@
 <div class="line"><a id="l00953" name="l00953"></a><span class="lineno">  953</span> </div>
 <div class="line"><a id="l00954" name="l00954"></a><span class="lineno">  954</span> <span class="comment">// Output solid solution</span></div>
 <div class="line"><a id="l00955" name="l00955"></a><span class="lineno">  955</span> <span class="comment">//-----------------------</span></div>
-<div class="line"><a id="l00956" name="l00956"></a><span class="lineno">  956</span> sprintf(filename,<span class="stringliteral">&quot;%s/solid_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00956" name="l00956"></a><span class="lineno">  956</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/solid_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00957" name="l00957"></a><span class="lineno">  957</span>         doc_info.number());</div>
 <div class="line"><a id="l00958" name="l00958"></a><span class="lineno">  958</span> some_file.open(filename);</div>
 <div class="line"><a id="l00959" name="l00959"></a><span class="lineno">  959</span> Solid_mesh_pt-&gt;output(some_file,npts);</div>
@@ -1120,7 +1114,7 @@
 <div class="line"><a id="l00962" name="l00962"></a><span class="lineno">  962</span> </div>
 <div class="line"><a id="l00963" name="l00963"></a><span class="lineno">  963</span> <span class="comment">// Output fluid boundaries</span></div>
 <div class="line"><a id="l00964" name="l00964"></a><span class="lineno">  964</span> <span class="comment">//------------------------</span></div>
-<div class="line"><a id="l00965" name="l00965"></a><span class="lineno">  965</span> sprintf(filename,<span class="stringliteral">&quot;%s/fluid_boundaries%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00965" name="l00965"></a><span class="lineno">  965</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/fluid_boundaries%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00966" name="l00966"></a><span class="lineno">  966</span>         doc_info.number());</div>
 <div class="line"><a id="l00967" name="l00967"></a><span class="lineno">  967</span> some_file.open(filename);</div>
 <div class="line"><a id="l00968" name="l00968"></a><span class="lineno">  968</span> Fluid_mesh_pt-&gt;output_boundaries(some_file);</div>
@@ -1129,7 +1123,7 @@
 <div class="line"><a id="l00971" name="l00971"></a><span class="lineno">  971</span> </div>
 <div class="line"><a id="l00972" name="l00972"></a><span class="lineno">  972</span> <span class="comment">// Output fluid solution</span></div>
 <div class="line"><a id="l00973" name="l00973"></a><span class="lineno">  973</span> <span class="comment">//-----------------------</span></div>
-<div class="line"><a id="l00974" name="l00974"></a><span class="lineno">  974</span> sprintf(filename,<span class="stringliteral">&quot;%s/fluid_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00974" name="l00974"></a><span class="lineno">  974</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/fluid_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00975" name="l00975"></a><span class="lineno">  975</span>         doc_info.number());</div>
 <div class="line"><a id="l00976" name="l00976"></a><span class="lineno">  976</span> some_file.open(filename);</div>
 <div class="line"><a id="l00977" name="l00977"></a><span class="lineno">  977</span> Fluid_mesh_pt-&gt;output(some_file,npts);</div>
@@ -1138,7 +1132,7 @@
 <div class="line"><a id="l00980" name="l00980"></a><span class="lineno">  980</span>   </div>
 <div class="line"><a id="l00981" name="l00981"></a><span class="lineno">  981</span> <span class="comment">// Output fsi traction</span></div>
 <div class="line"><a id="l00982" name="l00982"></a><span class="lineno">  982</span> <span class="comment">//--------------------</span></div>
-<div class="line"><a id="l00983" name="l00983"></a><span class="lineno">  983</span> sprintf(filename,<span class="stringliteral">&quot;%s/fsi_traction%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00983" name="l00983"></a><span class="lineno">  983</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/fsi_traction%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00984" name="l00984"></a><span class="lineno">  984</span>         doc_info.number());</div>
 <div class="line"><a id="l00985" name="l00985"></a><span class="lineno">  985</span> some_file.open(filename);</div>
 <div class="line"><a id="l00986" name="l00986"></a><span class="lineno">  986</span> <span class="keywordtype">unsigned</span> n=nsolid_fsi_boundary();</div>
@@ -1201,7 +1195,7 @@
 <div class="line"><a id="l01041" name="l01041"></a><span class="lineno"> 1041</span> </div>
 <div class="line"><a id="l01042" name="l01042"></a><span class="lineno"> 1042</span>} <span class="comment">// end_of_main</span></div>
 </div>
-<div class="ttc" id="aclassFluidTetMesh_html"><div class="ttname"><a href="classFluidTetMesh.html">FluidTetMesh</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="unstructured__three__d__fsi_8cc_source.html#l00098">unstructured_three_d_fsi.cc:100</a></div></div>
+<div class="ttc" id="aclassFluidTetMesh_html"><div class="ttname"><a href="classFluidTetMesh.html">FluidTetMesh</a></div><div class="ttdoc">Tetgen-based mesh upgraded to become a (pseudo-) solid mesh.</div><div class="ttdef"><b>Definition</b> <a href="unstructured__three__d__fsi_8cc_source.html#l00098">unstructured_three_d_fsi.cc:100</a></div></div>
 <div class="ttc" id="aclassFluidTetMesh_html_a5f8ea145d68623198abc97209a0491a6"><div class="ttname"><a href="classFluidTetMesh.html#a5f8ea145d68623198abc97209a0491a6">FluidTetMesh::FluidTetMesh</a></div><div class="ttdeci">FluidTetMesh(const std::string &amp;node_file_name, const std::string &amp;element_file_name, const std::string &amp;face_file_name, const bool &amp;split_corner_elements, TimeStepper *time_stepper_pt=&amp;Mesh::Default_TimeStepper)</div><div class="ttdoc">Constructor:</div><div class="ttdef"><b>Definition</b> <a href="unstructured__three__d__fsi_8cc_source.html#l00105">unstructured_three_d_fsi.cc:105</a></div></div>
 <div class="ttc" id="aclassFluidTetMesh_html_ae3f6cdb8d95cfe46c8f1fc15dd438b42"><div class="ttname"><a href="classFluidTetMesh.html#ae3f6cdb8d95cfe46c8f1fc15dd438b42">FluidTetMesh::~FluidTetMesh</a></div><div class="ttdeci">virtual ~FluidTetMesh()</div><div class="ttdoc">Empty Destructor.</div><div class="ttdef"><b>Definition</b> <a href="unstructured__three__d__fsi_8cc_source.html#l00143">unstructured_three_d_fsi.cc:143</a></div></div>
 <div class="ttc" id="aclassMySolidTetgenMesh_html"><div class="ttname"><a href="classMySolidTetgenMesh.html">MySolidTetgenMesh</a></div><div class="ttdoc">Tetgen-based mesh upgraded to become a solid mesh.</div><div class="ttdef"><b>Definition</b> <a href="unstructured__three__d__fsi_8cc_source.html#l00048">unstructured_three_d_fsi.cc:50</a></div></div>
@@ -1232,7 +1226,7 @@
 <div class="ttc" id="aclassUnstructuredFSIProblem_html_ab3ca6da48fb75f5b56cd2f0b581a2da0"><div class="ttname"><a href="classUnstructuredFSIProblem.html#ab3ca6da48fb75f5b56cd2f0b581a2da0">UnstructuredFSIProblem::Outflow_boundary_id</a></div><div class="ttdeci">Vector&lt; unsigned &gt; Outflow_boundary_id</div><div class="ttdoc">IDs of fluid mesh boundaries along which inflow boundary conditions are applied.</div><div class="ttdef"><b>Definition</b> <a href="unstructured__three__d__fsi_8cc_source.html#l00305">unstructured_three_d_fsi.cc:305</a></div></div>
 <div class="ttc" id="aclassUnstructuredFSIProblem_html_acc6f2d0f03a9bc1af96e85b54824a16b"><div class="ttname"><a href="classUnstructuredFSIProblem.html#acc6f2d0f03a9bc1af96e85b54824a16b">UnstructuredFSIProblem::nfluid_outflow_traction_boundary</a></div><div class="ttdeci">unsigned nfluid_outflow_traction_boundary()</div><div class="ttdoc">Return total number of mesh boundaries that make up the outflow boundary.</div><div class="ttdef"><b>Definition</b> <a href="unstructured__three__d__fsi_8cc_source.html#l00249">unstructured_three_d_fsi.cc:249</a></div></div>
 <div class="ttc" id="aclassUnstructuredFSIProblem_html_af766e3bbc8963a286678cb1d277909f5"><div class="ttname"><a href="classUnstructuredFSIProblem.html#af766e3bbc8963a286678cb1d277909f5">UnstructuredFSIProblem::create_fluid_traction_elements</a></div><div class="ttdeci">void create_fluid_traction_elements()</div><div class="ttdoc">Create fluid traction elements at inflow.</div><div class="ttdef"><b>Definition</b> <a href="unstructured__three__d__fsi_8cc_source.html#l00805">unstructured_three_d_fsi.cc:806</a></div></div>
-<div class="ttc" id="anamespaceGlobal__Parameters_html"><div class="ttname"><a href="namespaceGlobal__Parameters.html">Global_Parameters</a></div><div class="ttdoc">/////////////////////////////////////////////////////////////// /////////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="unstructured__three__d__fsi_8cc_source.html#l00156">unstructured_three_d_fsi.cc:157</a></div></div>
+<div class="ttc" id="anamespaceGlobal__Parameters_html"><div class="ttname"><a href="namespaceGlobal__Parameters.html">Global_Parameters</a></div><div class="ttdoc">Global variables.</div><div class="ttdef"><b>Definition</b> <a href="unstructured__three__d__fsi_8cc_source.html#l00156">unstructured_three_d_fsi.cc:157</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Parameters_html_a05b26d00935600b5e0149872844f224c"><div class="ttname"><a href="namespaceGlobal__Parameters.html#a05b26d00935600b5e0149872844f224c">Global_Parameters::P_in</a></div><div class="ttdeci">double P_in</div><div class="ttdoc">Fluid pressure on inflow boundary.</div><div class="ttdef"><b>Definition</b> <a href="unstructured__three__d__fsi_8cc_source.html#l00172">unstructured_three_d_fsi.cc:172</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Parameters_html_a20fccdcfa2c15ad8b951b9ada3bb1661"><div class="ttname"><a href="namespaceGlobal__Parameters.html#a20fccdcfa2c15ad8b951b9ada3bb1661">Global_Parameters::Nu</a></div><div class="ttdeci">double Nu</div><div class="ttdoc">Poisson's ratio for generalised Hookean constitutive equation.</div><div class="ttdef"><b>Definition</b> <a href="unstructured__three__d__fsi_8cc_source.html#l00169">unstructured_three_d_fsi.cc:169</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Parameters_html_a7814fddf663e56168174a42d2cd6b4c1"><div class="ttname"><a href="namespaceGlobal__Parameters.html#a7814fddf663e56168174a42d2cd6b4c1">Global_Parameters::Q</a></div><div class="ttdeci">double Q</div><div class="ttdoc">Default FSI parameter.</div><div class="ttdef"><b>Definition</b> <a href="unstructured__three__d__fsi_8cc_source.html#l00163">unstructured_three_d_fsi.cc:163</a></div></div>
@@ -1270,7 +1264,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:29:13
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:35:32
         </div>
       </div>
     </footer>

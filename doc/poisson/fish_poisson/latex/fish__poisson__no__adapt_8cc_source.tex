@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -169,21 +169,21 @@
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00165}00165\ }
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00166}00166\ }
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00167}00167\ \ \textcolor{comment}{//\ Output\ solution\ }}
-\DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00168}00168\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00168}00168\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00169}00169\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00170}00170\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00171}00171\ \ mesh\_pt()-\/>output(some\_file,npts);}
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00172}00172\ \ some\_file.close();}
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00173}00173\ }
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00174}00174\ \ \textcolor{comment}{//\ Output\ solution\ }}
-\DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00175}00175\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\_nodes\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00175}00175\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\_nodes\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00176}00176\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00177}00177\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00178}00178\ \ mesh\_pt()-\/>output(some\_file,4);}
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00179}00179\ \ some\_file.close();}
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00180}00180\ }
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00181}00181\ \ \textcolor{comment}{//\ Output\ solution\ }}
-\DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00182}00182\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\_fine\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00182}00182\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\_fine\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00183}00183\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00184}00184\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00185}00185\ \ mesh\_pt()-\/>output(some\_file,20*npts);}
@@ -191,7 +191,7 @@
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00187}00187\ }
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00188}00188\ }
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00189}00189\ \ \textcolor{comment}{//\ Output\ boundaries}}
-\DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00190}00190\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/boundaries\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00190}00190\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/boundaries\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00191}00191\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00192}00192\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{fish__poisson__no__adapt_8cc_source_l00193}00193\ \ mesh\_pt()-\/>output\_boundaries(some\_file);}

@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -595,9 +589,9 @@
 <div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span>}</div>
 </div>
 <div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span><span class="comment"></span> </div>
-<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span><span class="comment">/// //////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span><span class="comment">/// //////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span><span class="comment">/// //////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span><span class="comment">/////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span><span class="comment">/////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span><span class="comment">/////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span><span class="comment"></span> </div>
 <div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span> </div>
 <div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span><span class="comment">//======================================================================</span><span class="comment"></span></div>
@@ -944,7 +938,7 @@
 <div class="line"><a id="l00790" name="l00790"></a><span class="lineno">  790</span> </div>
 <div class="line"><a id="l00791" name="l00791"></a><span class="lineno">  791</span> </div>
 <div class="line"><a id="l00792" name="l00792"></a><span class="lineno">  792</span> <span class="comment">// Output solution </span></div>
-<div class="line"><a id="l00793" name="l00793"></a><span class="lineno">  793</span> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00793" name="l00793"></a><span class="lineno">  793</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00794" name="l00794"></a><span class="lineno">  794</span>         doc_info.number());</div>
 <div class="line"><a id="l00795" name="l00795"></a><span class="lineno">  795</span> some_file.open(filename);</div>
 <div class="line"><a id="l00796" name="l00796"></a><span class="lineno">  796</span> Bulk_mesh_pt-&gt;output(some_file,npts);</div>
@@ -952,7 +946,7 @@
 <div class="line"><a id="l00798" name="l00798"></a><span class="lineno">  798</span> </div>
 <div class="line"><a id="l00799" name="l00799"></a><span class="lineno">  799</span> </div>
 <div class="line"><a id="l00800" name="l00800"></a><span class="lineno">  800</span> <span class="comment">// Output boundaries</span></div>
-<div class="line"><a id="l00801" name="l00801"></a><span class="lineno">  801</span> sprintf(filename,<span class="stringliteral">&quot;%s/boundaries%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00801" name="l00801"></a><span class="lineno">  801</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/boundaries%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00802" name="l00802"></a><span class="lineno">  802</span>         doc_info.number());</div>
 <div class="line"><a id="l00803" name="l00803"></a><span class="lineno">  803</span> some_file.open(filename);</div>
 <div class="line"><a id="l00804" name="l00804"></a><span class="lineno">  804</span> Bulk_mesh_pt-&gt;output_boundaries(some_file);</div>
@@ -973,7 +967,7 @@
 <div class="line"><a id="l00817" name="l00817"></a><span class="lineno">  817</span>{</div>
 <div class="line"><a id="l00818" name="l00818"></a><span class="lineno">  818</span> </div>
 <div class="line"><a id="l00819" name="l00819"></a><span class="lineno">  819</span> <span class="comment">// Increase maximum residual</span></div>
-<div class="line"><a id="l00820" name="l00820"></a><span class="lineno">  820</span> Problem::Max_residuals=100.0;</div>
+<div class="line"><a id="l00820" name="l00820"></a><span class="lineno">  820</span> Problem::Max_residuals=500.0;</div>
 <div class="line"><a id="l00821" name="l00821"></a><span class="lineno">  821</span> </div>
 <div class="line"><a id="l00822" name="l00822"></a><span class="lineno">  822</span> <span class="comment">// Set output directory</span></div>
 <div class="line"><a id="l00823" name="l00823"></a><span class="lineno">  823</span> DocInfo doc_info;</div>
@@ -983,7 +977,7 @@
 <div class="line"><a id="l00827" name="l00827"></a><span class="lineno">  827</span> </div>
 <div class="line"><a id="l00828" name="l00828"></a><span class="lineno">  828</span> <span class="comment">// Open trace file</span></div>
 <div class="line"><a id="l00829" name="l00829"></a><span class="lineno">  829</span> <span class="keywordtype">char</span> filename[100];   </div>
-<div class="line"><a id="l00830" name="l00830"></a><span class="lineno">  830</span> sprintf(filename,<span class="stringliteral">&quot;%s/trace.dat&quot;</span>,doc_info.directory().c_str());</div>
+<div class="line"><a id="l00830" name="l00830"></a><span class="lineno">  830</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/trace.dat&quot;</span>,doc_info.directory().c_str());</div>
 <div class="line"><a id="l00831" name="l00831"></a><span class="lineno">  831</span> Trace_file.open(filename);</div>
 <div class="line"><a id="l00832" name="l00832"></a><span class="lineno">  832</span> </div>
 <div class="line"><a id="l00833" name="l00833"></a><span class="lineno">  833</span> Trace_file &lt;&lt; <span class="stringliteral">&quot;VARIABLES=\&quot;Ca\&quot;,&quot;</span>;</div>
@@ -1010,7 +1004,7 @@
 <div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span>   <span class="comment">// a certain tolerance: This is cheaper to check than restarting</span></div>
 <div class="line"><a id="l00855" name="l00855"></a><span class="lineno">  855</span>   <span class="comment">// the Newton method after divergence (we&#39;d also need to back up</span></div>
 <div class="line"><a id="l00856" name="l00856"></a><span class="lineno">  856</span>   <span class="comment">// the previous solution)</span></div>
-<div class="line"><a id="l00857" name="l00857"></a><span class="lineno">  857</span>   <span class="keywordtype">double</span> maxres=100.0;</div>
+<div class="line"><a id="l00857" name="l00857"></a><span class="lineno">  857</span>   <span class="keywordtype">double</span> maxres = Problem::Max_residuals;</div>
 <div class="line"><a id="l00858" name="l00858"></a><span class="lineno">  858</span>   <span class="keywordflow">while</span> (<span class="keyword">true</span>)</div>
 <div class="line"><a id="l00859" name="l00859"></a><span class="lineno">  859</span>    {</div>
 <div class="line"><a id="l00860" name="l00860"></a><span class="lineno">  860</span>     cout &lt;&lt; <span class="stringliteral">&quot;Checking max. res for Ca = &quot;</span> </div>
@@ -1131,7 +1125,7 @@
 <div class="ttc" id="aclassBrethertonElement_html_ab0bc00d862b2c888703ed38c74f18b77"><div class="ttname"><a href="classBrethertonElement.html#ab0bc00d862b2c888703ed38c74f18b77">BrethertonElement::get_jacobian</a></div><div class="ttdeci">void get_jacobian(Vector&lt; double &gt; &amp;residuals, DenseMatrix&lt; double &gt; &amp;jacobian)</div><div class="ttdoc">Overloaded Jacobian computation: Computes the Jacobian of the underlying element and then adds the FD...</div><div class="ttdef"><b>Definition</b> <a href="bretherton_8cc_source.html#l00261">bretherton.cc:261</a></div></div>
 <div class="ttc" id="aclassBrethertonElement_html_acbc668eed3ea683a67b6b822d6e59974"><div class="ttname"><a href="classBrethertonElement.html#acbc668eed3ea683a67b6b822d6e59974">BrethertonElement::BrethertonElement</a></div><div class="ttdeci">BrethertonElement()</div><div class="ttdoc">Constructor: Call the constructor of the underlying element.</div><div class="ttdef"><b>Definition</b> <a href="bretherton_8cc_source.html#l00163">bretherton.cc:163</a></div></div>
 <div class="ttc" id="aclassBrethertonElement_html_ad1ddf8c7a6fd590bf7156d13640303d1"><div class="ttname"><a href="classBrethertonElement.html#ad1ddf8c7a6fd590bf7156d13640303d1">BrethertonElement::Inflow_ext_data_eqn</a></div><div class="ttdeci">DenseMatrix&lt; int &gt; Inflow_ext_data_eqn</div><div class="ttdoc">Storage for the local equation numbers associated the Data values that affect the inflow.</div><div class="ttdef"><b>Definition</b> <a href="bretherton_8cc_source.html#l00387">bretherton.cc:387</a></div></div>
-<div class="ttc" id="aclassBrethertonProblem_html"><div class="ttname"><a href="classBrethertonProblem.html">BrethertonProblem</a></div><div class="ttdoc">////////////////////////////////////////////////////////////////// //////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="bretherton_8cc_source.html#l00464">bretherton.cc:465</a></div></div>
+<div class="ttc" id="aclassBrethertonProblem_html"><div class="ttname"><a href="classBrethertonProblem.html">BrethertonProblem</a></div><div class="ttdoc">Bretherton problem.</div><div class="ttdef"><b>Definition</b> <a href="bretherton_8cc_source.html#l00464">bretherton.cc:465</a></div></div>
 <div class="ttc" id="aclassBrethertonProblem_html_a04257edfb80f2ff3bf865442d9eb01fb"><div class="ttname"><a href="classBrethertonProblem.html#a04257edfb80f2ff3bf865442d9eb01fb">BrethertonProblem::activate_inflow_dependency</a></div><div class="ttdeci">void activate_inflow_dependency()</div><div class="ttdoc">Activate the dependency of the inflow velocity on the spine heights at the outflow.</div><div class="ttdef"><b>Definition</b> <a href="bretherton_8cc_source.html#l00726">bretherton.cc:726</a></div></div>
 <div class="ttc" id="aclassBrethertonProblem_html_a207cdfe4cf60e83257e759b1ac15e5eb"><div class="ttname"><a href="classBrethertonProblem.html#a207cdfe4cf60e83257e759b1ac15e5eb">BrethertonProblem::BrethertonProblem</a></div><div class="ttdeci">BrethertonProblem()</div><div class="ttdoc">Constructor:</div><div class="ttdef"><b>Definition</b> <a href="bretherton_8cc_source.html#l00551">bretherton.cc:551</a></div></div>
 <div class="ttc" id="aclassBrethertonProblem_html_a2e84e3ce784b0f0de5eeefe1175d48ff"><div class="ttname"><a href="classBrethertonProblem.html#a2e84e3ce784b0f0de5eeefe1175d48ff">BrethertonProblem::actions_after_newton_solve</a></div><div class="ttdeci">void actions_after_newton_solve()</div><div class="ttdoc">Update after solve can remain empty, because the update is performed automatically after every Newton...</div><div class="ttdef"><b>Definition</b> <a href="bretherton_8cc_source.html#l00509">bretherton.cc:509</a></div></div>
@@ -1187,7 +1181,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:12:37
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:40:13
         </div>
       </div>
     </footer>

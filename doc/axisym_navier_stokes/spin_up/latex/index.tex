@@ -711,7 +711,7 @@ As expected, this member function documents the computed solution. We first prin
 \DoxyCodeLine{\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ npts\ =\ 5;}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Open\ solution\ output\ file}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.directory().c\_str(),doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{}
@@ -849,4 +849,4 @@ Following the convergence of the Newton solver, the history values will therefor
 \end{DoxyItemize}\DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

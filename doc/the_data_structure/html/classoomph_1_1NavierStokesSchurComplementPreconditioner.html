@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -133,7 +127,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>///////////////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////////  
+<p>The least-squares commutator (LSC; formerly BFBT) Navier Stokes preconditioner. It uses blocks corresponding to the velocity and pressure unknowns, i.e. there are a total of 2x2 blocks, and all velocity components are treated as a single block of unknowns.  
  <a href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>&gt;</code></p>
@@ -168,10 +162,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aab92188d3bdcec3b07ac87f51934079b" id="r_aab92188d3bdcec3b07ac87f51934079b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1Problem.html">Problem</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#aab92188d3bdcec3b07ac87f51934079b">problem_pt</a> () <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a></td></tr>
 <tr class="separator:aab92188d3bdcec3b07ac87f51934079b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af406a2d6632c95f7d8b70baba1b912ee" id="r_af406a2d6632c95f7d8b70baba1b912ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#af406a2d6632c95f7d8b70baba1b912ee">enable_accept_non_NavierStokesElementWithDiagonalMassMatrices_elements</a> ()</td></tr>
-<tr class="memdesc:af406a2d6632c95f7d8b70baba1b912ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accept presence of elements that are not of type <a class="el" href="classoomph_1_1NavierStokesElementWithDiagonalMassMatrices.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////...">NavierStokesElementWithDiagonalMassMatrices</a> without issuing a warning.  <br /></td></tr>
+<tr class="memdesc:af406a2d6632c95f7d8b70baba1b912ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accept presence of elements that are not of type <a class="el" href="classoomph_1_1NavierStokesElementWithDiagonalMassMatrices.html" title="Pure virtual base class for elements that can be used with Navier-Stokes Schur complement preconditio...">NavierStokesElementWithDiagonalMassMatrices</a> without issuing a warning.  <br /></td></tr>
 <tr class="separator:af406a2d6632c95f7d8b70baba1b912ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a483c96d41a5032f90b8027d6ef2c0c5a" id="r_a483c96d41a5032f90b8027d6ef2c0c5a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#a483c96d41a5032f90b8027d6ef2c0c5a">disable_accept_non_NavierStokesElementWithDiagonalMassMatrices_elements</a> ()</td></tr>
-<tr class="memdesc:a483c96d41a5032f90b8027d6ef2c0c5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Do not accept presence of elements that are not of type <a class="el" href="classoomph_1_1NavierStokesElementWithDiagonalMassMatrices.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////...">NavierStokesElementWithDiagonalMassMatrices</a> without issuing a warning.  <br /></td></tr>
+<tr class="memdesc:a483c96d41a5032f90b8027d6ef2c0c5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Do not accept presence of elements that are not of type <a class="el" href="classoomph_1_1NavierStokesElementWithDiagonalMassMatrices.html" title="Pure virtual base class for elements that can be used with Navier-Stokes Schur complement preconditio...">NavierStokesElementWithDiagonalMassMatrices</a> without issuing a warning.  <br /></td></tr>
 <tr class="separator:a483c96d41a5032f90b8027d6ef2c0c5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03cbfa527081ea03c910aadc281615d7" id="r_a03cbfa527081ea03c910aadc281615d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#a03cbfa527081ea03c910aadc281615d7">setup</a> ()</td></tr>
 <tr class="memdesc:a03cbfa527081ea03c910aadc281615d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup the preconditioner.  <br /></td></tr>
@@ -185,9 +179,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a48f0d5e878eccab6e7f080c92d4bc6f5" id="r_a48f0d5e878eccab6e7f080c92d4bc6f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#a48f0d5e878eccab6e7f080c92d4bc6f5">set_p_preconditioner</a> (<a class="el" href="classoomph_1_1Preconditioner.html">Preconditioner</a> *<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">new_p_preconditioner_pt</a>)</td></tr>
 <tr class="memdesc:a48f0d5e878eccab6e7f080c92d4bc6f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to set a new pressure matrix preconditioner (inexact solver)  <br /></td></tr>
 <tr class="separator:a48f0d5e878eccab6e7f080c92d4bc6f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05bac2703d9570c15bf0676cbbe7ce03" id="r_a05bac2703d9570c15bf0676cbbe7ce03"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#a05bac2703d9570c15bf0676cbbe7ce03">set_p_superlu_preconditioner</a> ()</td></tr>
-<tr class="memdesc:a05bac2703d9570c15bf0676cbbe7ce03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to (re-)set pressure matrix preconditioner (inexact solver) to SuperLU.  <br /></td></tr>
-<tr class="separator:a05bac2703d9570c15bf0676cbbe7ce03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65baf4bdb06e0087d9d716701fe5cf67" id="r_a65baf4bdb06e0087d9d716701fe5cf67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#a65baf4bdb06e0087d9d716701fe5cf67">set_p_exact_preconditioner</a> ()</td></tr>
+<tr class="memdesc:a65baf4bdb06e0087d9d716701fe5cf67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to (re-)set pressure matrix preconditioner (inexact solver) to exact preconditioner.  <br /></td></tr>
+<tr class="separator:a65baf4bdb06e0087d9d716701fe5cf67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2f387b87192dd2f7b6725cfe3aae44e" id="r_ab2f387b87192dd2f7b6725cfe3aae44e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#ab2f387b87192dd2f7b6725cfe3aae44e">set_f_preconditioner</a> (<a class="el" href="classoomph_1_1Preconditioner.html">Preconditioner</a> *<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">new_f_preconditioner_pt</a>)</td></tr>
 <tr class="memdesc:ab2f387b87192dd2f7b6725cfe3aae44e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to set a new momentum matrix preconditioner (inexact solver)  <br /></td></tr>
 <tr class="separator:ab2f387b87192dd2f7b6725cfe3aae44e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -197,9 +191,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1f77731b78f270044f09f761719a88b0" id="r_a1f77731b78f270044f09f761719a88b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#a1f77731b78f270044f09f761719a88b0">use_fp</a> ()</td></tr>
 <tr class="memdesc:a1f77731b78f270044f09f761719a88b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use Fp version of the preconditioner.  <br /></td></tr>
 <tr class="separator:a1f77731b78f270044f09f761719a88b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af29abc6e2b9fd92ae3a31a4f9d56f6b8" id="r_af29abc6e2b9fd92ae3a31a4f9d56f6b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#af29abc6e2b9fd92ae3a31a4f9d56f6b8">set_f_superlu_preconditioner</a> ()</td></tr>
-<tr class="memdesc:af29abc6e2b9fd92ae3a31a4f9d56f6b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to (re-)set momentum matrix preconditioner (inexact solver) to SuperLU.  <br /></td></tr>
-<tr class="separator:af29abc6e2b9fd92ae3a31a4f9d56f6b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76635a756dcf5efbf0e4040ded9f6789" id="r_a76635a756dcf5efbf0e4040ded9f6789"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#a76635a756dcf5efbf0e4040ded9f6789">set_f_exact_preconditioner</a> ()</td></tr>
+<tr class="memdesc:a76635a756dcf5efbf0e4040ded9f6789"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to (re-)set momentum matrix preconditioner (inexact solver) to exact preconditioner.  <br /></td></tr>
+<tr class="separator:a76635a756dcf5efbf0e4040ded9f6789"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1a6030468c5795b3ace7a58bcb6b4f1" id="r_af1a6030468c5795b3ace7a58bcb6b4f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#af1a6030468c5795b3ace7a58bcb6b4f1">enable_doc_time</a> ()</td></tr>
 <tr class="memdesc:af1a6030468c5795b3ace7a58bcb6b4f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable documentation of time.  <br /></td></tr>
 <tr class="separator:af1a6030468c5795b3ace7a58bcb6b4f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -234,9 +228,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af1c121b668b1961a68010f984166947c" id="r_af1c121b668b1961a68010f984166947c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#af1c121b668b1961a68010f984166947c">reset_pin_status</a> ()</td></tr>
 <tr class="memdesc:af1c121b668b1961a68010f984166947c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset pin status of all values.  <br /></td></tr>
 <tr class="separator:af1c121b668b1961a68010f984166947c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b95e7159585b5151f9e5dc1d1713655" id="r_a0b95e7159585b5151f9e5dc1d1713655"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#a0b95e7159585b5151f9e5dc1d1713655">setup</a> (<a class="el" href="classoomph_1_1DoubleMatrixBase.html">DoubleMatrixBase</a> *<a class="el" href="classoomph_1_1BlockPreconditioner.html#aec1a6eda2d78d1e3b41ced805534d72d">matrix_pt</a>)</td></tr>
-<tr class="memdesc:a0b95e7159585b5151f9e5dc1d1713655"><td class="mdescLeft">&#160;</td><td class="mdescRight">for some reason we have to remind the compiler that there is a <a class="el" href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#a03cbfa527081ea03c910aadc281615d7" title="Setup the preconditioner.">setup()</a> function in <a class="el" href="classoomph_1_1Preconditioner.html" title="Preconditioner base class. Gives an interface to call all other preconditioners through and stores th...">Preconditioner</a> base class.  <br /></td></tr>
-<tr class="separator:a0b95e7159585b5151f9e5dc1d1713655"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2c0f7f39eccd814e72cc5813ec864e0" id="r_ac2c0f7f39eccd814e72cc5813ec864e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">virtual</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#ac2c0f7f39eccd814e72cc5813ec864e0">setup</a> (<a class="el" href="classoomph_1_1DoubleMatrixBase.html">DoubleMatrixBase</a> *<a class="el" href="classoomph_1_1BlockPreconditioner.html#aec1a6eda2d78d1e3b41ced805534d72d">matrix_pt</a>)</td></tr>
+<tr class="memdesc:ac2c0f7f39eccd814e72cc5813ec864e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">for some reason we have to remind the compiler that there is a <a class="el" href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#a03cbfa527081ea03c910aadc281615d7" title="Setup the preconditioner.">setup()</a> function in <a class="el" href="classoomph_1_1Preconditioner.html" title="Preconditioner base class. Gives an interface to call all other preconditioners through and stores th...">Preconditioner</a> base class.  <br /></td></tr>
+<tr class="separator:ac2c0f7f39eccd814e72cc5813ec864e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a783fae97e4b898f8de72b504a4f4bec6" id="r_a783fae97e4b898f8de72b504a4f4bec6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#a783fae97e4b898f8de72b504a4f4bec6">setup</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1Problem.html">Problem</a> *<a class="el" href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#aab92188d3bdcec3b07ac87f51934079b">problem_pt</a>, <a class="el" href="classoomph_1_1DoubleMatrixBase.html">DoubleMatrixBase</a> *<a class="el" href="classoomph_1_1BlockPreconditioner.html#aec1a6eda2d78d1e3b41ced805534d72d">matrix_pt</a>)</td></tr>
 <tr class="memdesc:a783fae97e4b898f8de72b504a4f4bec6"><td class="mdescLeft">&#160;</td><td class="mdescRight">for some reason we have to remind the compiler that there is a <a class="el" href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#a03cbfa527081ea03c910aadc281615d7" title="Setup the preconditioner.">setup()</a> function in <a class="el" href="classoomph_1_1Preconditioner.html" title="Preconditioner base class. Gives an interface to call all other preconditioners through and stores th...">Preconditioner</a> base class.  <br /></td></tr>
 <tr class="separator:a783fae97e4b898f8de72b504a4f4bec6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -488,9 +482,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1e469ffc87f31f6f2eebbe5ccf03d78b inherit pub_methods_classoomph_1_1Preconditioner" id="r_a1e469ffc87f31f6f2eebbe5ccf03d78b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">virtual</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Preconditioner.html#a1e469ffc87f31f6f2eebbe5ccf03d78b">preconditioner_solve_transpose</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">r</a>, <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;z)</td></tr>
 <tr class="memdesc:a1e469ffc87f31f6f2eebbe5ccf03d78b inherit pub_methods_classoomph_1_1Preconditioner"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply the preconditioner. Pure virtual generic interface function. This method should apply the preconditioner operator to the vector r and return the vector z. (broken virtual)  <br /></td></tr>
 <tr class="separator:a1e469ffc87f31f6f2eebbe5ccf03d78b inherit pub_methods_classoomph_1_1Preconditioner"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b95e7159585b5151f9e5dc1d1713655 inherit pub_methods_classoomph_1_1Preconditioner" id="r_a0b95e7159585b5151f9e5dc1d1713655"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Preconditioner.html#a0b95e7159585b5151f9e5dc1d1713655">setup</a> (<a class="el" href="classoomph_1_1DoubleMatrixBase.html">DoubleMatrixBase</a> *<a class="el" href="classoomph_1_1Preconditioner.html#a08e0582b77c6cbfaf85b80a4ac5c11f3">matrix_pt</a>)</td></tr>
-<tr class="memdesc:a0b95e7159585b5151f9e5dc1d1713655 inherit pub_methods_classoomph_1_1Preconditioner"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup the preconditioner: store the matrix pointer and the communicator pointer then call preconditioner specific <a class="el" href="classoomph_1_1Preconditioner.html#af4886f4efe510e5c9b0eb19422943588" title="Setup the preconditioner. Pure virtual generic interface function.">setup()</a> function.  <br /></td></tr>
-<tr class="separator:a0b95e7159585b5151f9e5dc1d1713655 inherit pub_methods_classoomph_1_1Preconditioner"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a783fae97e4b898f8de72b504a4f4bec6 inherit pub_methods_classoomph_1_1Preconditioner" id="r_a783fae97e4b898f8de72b504a4f4bec6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Preconditioner.html#a783fae97e4b898f8de72b504a4f4bec6">setup</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1Problem.html">Problem</a> *problem_pt, <a class="el" href="classoomph_1_1DoubleMatrixBase.html">DoubleMatrixBase</a> *<a class="el" href="classoomph_1_1Preconditioner.html#a08e0582b77c6cbfaf85b80a4ac5c11f3">matrix_pt</a>)</td></tr>
 <tr class="memdesc:a783fae97e4b898f8de72b504a4f4bec6 inherit pub_methods_classoomph_1_1Preconditioner"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compatability layer for old preconditioners where problem pointers were needed. The problem pointer is only used to get a communicator pointer.  <br /></td></tr>
 <tr class="separator:a783fae97e4b898f8de72b504a4f4bec6 inherit pub_methods_classoomph_1_1Preconditioner"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -586,7 +577,7 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a3584d8bd088fad5ccce394899e167ca3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Control flag is true if the preconditioner has been setup (used so we can wipe the data when the preconditioner is called again)  <br /></td></tr>
 <tr class="separator:a3584d8bd088fad5ccce394899e167ca3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31a0119eae85695e267b2b0e6d58cfe6" id="r_a31a0119eae85695e267b2b0e6d58cfe6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#a31a0119eae85695e267b2b0e6d58cfe6">Accept_non_NavierStokesElementWithDiagonalMassMatrices_elements</a></td></tr>
-<tr class="memdesc:a31a0119eae85695e267b2b0e6d58cfe6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean to indicate that presence of elements that are not of type <a class="el" href="classoomph_1_1NavierStokesElementWithDiagonalMassMatrices.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////...">NavierStokesElementWithDiagonalMassMatrices</a> is acceptable (suppresses warning that issued otherwise).  <br /></td></tr>
+<tr class="memdesc:a31a0119eae85695e267b2b0e6d58cfe6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean to indicate that presence of elements that are not of type <a class="el" href="classoomph_1_1NavierStokesElementWithDiagonalMassMatrices.html" title="Pure virtual base class for elements that can be used with Navier-Stokes Schur complement preconditio...">NavierStokesElementWithDiagonalMassMatrices</a> is acceptable (suppresses warning that issued otherwise).  <br /></td></tr>
 <tr class="separator:a31a0119eae85695e267b2b0e6d58cfe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3e3b6635c1524d8413a75642e4bc4e1" id="r_ad3e3b6635c1524d8413a75642e4bc4e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#ad3e3b6635c1524d8413a75642e4bc4e1">F_preconditioner_is_block_preconditioner</a></td></tr>
 <tr class="memdesc:ad3e3b6635c1524d8413a75642e4bc4e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean indicating whether the momentum system preconditioner is a block preconditioner.  <br /></td></tr>
@@ -721,43 +712,42 @@ dist_b2).  <br /></td></tr>
 <tr class="separator:a2a6b2f6cd34495167ea766b47f055a7d inherit pro_attribs_classoomph_1_1Preconditioner"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>///////////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////////// </p>
-<p>The least-squares commutator (LSC; formerly BFBT) Navier Stokes preconditioner. It uses blocks corresponding to the velocity and pressure unknowns, i.e. there are a total of 2x2 blocks, and all velocity components are treated as a single block of unknowns.</p>
+<div class="textblock"><p>The least-squares commutator (LSC; formerly BFBT) Navier Stokes preconditioner. It uses blocks corresponding to the velocity and pressure unknowns, i.e. there are a total of 2x2 blocks, and all velocity components are treated as a single block of unknowns. </p>
 <p>Here are the details: An "ideal" Navier-Stokes preconditioner would solve the system </p><p class="formulaDsp">
-<img class="formulaDsp" alt="\[ \left( \begin{array}{cc} {\bf F} &amp; {\bf G} \\ {\bf D} &amp; {\bf 0} \end{array} \right) \left( \begin{array}{c} {\bf z}_u \\ {\bf z}_p \end{array} \right) = \left( \begin{array}{c} {\bf r}_u \\ {\bf r}_p \end{array} \right) \]" src="form_397.png" width="166" height="31"/>
+<img class="formulaDsp" alt="\[ \left( \begin{array}{cc} {\bf F} &amp; {\bf G} \\ {\bf D} &amp; {\bf 0} \end{array} \right) \left( \begin{array}{c} {\bf z}_u \\ {\bf z}_p \end{array} \right) = \left( \begin{array}{c} {\bf r}_u \\ {\bf r}_p \end{array} \right) \]" src="form_405.png" width="166" height="31"/>
 </p>
-<p> where <img class="formulaInl" alt="$ {\bf F}$" src="form_398.png" width="10" height="10"/> is the momentum block, <img class="formulaInl" alt="$ {\bf G} $" src="form_399.png" width="11" height="10"/> the discrete gradient operator, and <img class="formulaInl" alt="$ {\bf D}$" src="form_400.png" width="11" height="10"/> the discrete divergence operator. (For unstabilised elements, we have <img class="formulaInl" alt="$ {\bf D} = {\bf G}^T $" src="form_401.png" width="48" height="11"/> and in much of the literature the divergence matrix is denoted by <img class="formulaInl" alt="$ {\bf B} $" src="form_402.png" width="11" height="10"/> .) The use of this preconditioner would ensure the convergence of any iterative linear solver in a single iteration but its application is, of course, exactly as expensive as a direct solve. The LSC/BFBT preconditioner replaces the exact Jacobian by a block-triangular approximation </p><p class="formulaDsp">
-<img class="formulaDsp" alt="\[ \left( \begin{array}{cc} {\bf F} &amp; {\bf G} \\ {\bf 0} &amp; -{\bf M}_s \end{array} \right) \left( \begin{array}{c} {\bf z}_u \\ {\bf z}_p \end{array} \right) = \left( \begin{array}{c} {\bf r}_u \\ {\bf r}_p \end{array} \right), \]" src="form_403.png" width="190" height="31"/>
+<p> where <img class="formulaInl" alt="$ {\bf F}$" src="form_406.png" width="10" height="10"/> is the momentum block, <img class="formulaInl" alt="$ {\bf G} $" src="form_407.png" width="11" height="10"/> the discrete gradient operator, and <img class="formulaInl" alt="$ {\bf D}$" src="form_408.png" width="11" height="10"/> the discrete divergence operator. (For unstabilised elements, we have <img class="formulaInl" alt="$ {\bf D} = {\bf G}^T $" src="form_409.png" width="48" height="11"/> and in much of the literature the divergence matrix is denoted by <img class="formulaInl" alt="$ {\bf B} $" src="form_410.png" width="11" height="10"/> .) The use of this preconditioner would ensure the convergence of any iterative linear solver in a single iteration but its application is, of course, exactly as expensive as a direct solve. The LSC/BFBT preconditioner replaces the exact Jacobian by a block-triangular approximation </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ \left( \begin{array}{cc} {\bf F} &amp; {\bf G} \\ {\bf 0} &amp; -{\bf M}_s \end{array} \right) \left( \begin{array}{c} {\bf z}_u \\ {\bf z}_p \end{array} \right) = \left( \begin{array}{c} {\bf r}_u \\ {\bf r}_p \end{array} \right), \]" src="form_411.png" width="190" height="31"/>
 </p>
-<p> where <img class="formulaInl" alt="${\bf M}_s$" src="form_404.png" width="19" height="13"/> is an approximation to the pressure Schur-complement <img class="formulaInl" alt="$ {\bf S} = {\bf D} {\bf F}^{-1}{\bf G}. $" src="form_405.png" width="71" height="11"/> This system can be solved in two steps:</p><ol type="1">
-<li><p class="startli">Solve the second row for <img class="formulaInl" alt="$ {\bf z}_p$" src="form_406.png" width="13" height="10"/> via</p>
+<p> where <img class="formulaInl" alt="${\bf M}_s$" src="form_412.png" width="19" height="13"/> is an approximation to the pressure Schur-complement <img class="formulaInl" alt="$ {\bf S} = {\bf D} {\bf F}^{-1}{\bf G}. $" src="form_413.png" width="71" height="11"/> This system can be solved in two steps:</p><ol type="1">
+<li><p class="startli">Solve the second row for <img class="formulaInl" alt="$ {\bf z}_p$" src="form_414.png" width="13" height="10"/> via</p>
 <p class="formulaDsp">
-<img class="formulaDsp" alt="\[ {\bf z}_p = - {\bf M}_s^{-1} {\bf r}_p \]" src="form_407.png" width="76" height="16"/>
+<img class="formulaDsp" alt="\[ {\bf z}_p = - {\bf M}_s^{-1} {\bf r}_p \]" src="form_415.png" width="76" height="16"/>
 </p>
 </li>
-<li><p class="startli">Given <img class="formulaInl" alt="$ {\bf z}_p $" src="form_408.png" width="13" height="10"/> , solve the first row for <img class="formulaInl" alt="$ {\bf z}_u$" src="form_409.png" width="14" height="9"/> via</p>
+<li><p class="startli">Given <img class="formulaInl" alt="$ {\bf z}_p $" src="form_416.png" width="13" height="10"/> , solve the first row for <img class="formulaInl" alt="$ {\bf z}_u$" src="form_417.png" width="14" height="9"/> via</p>
 <p class="formulaDsp">
-<img class="formulaDsp" alt="\[ {\bf z}_u = {\bf F}^{-1} \big( {\bf r}_u - {\bf G} {\bf z}_p \big) \]" src="form_410.png" width="113" height="18"/>
+<img class="formulaDsp" alt="\[ {\bf z}_u = {\bf F}^{-1} \big( {\bf r}_u - {\bf G} {\bf z}_p \big) \]" src="form_418.png" width="113" height="18"/>
 </p>
 </li>
 </ol>
 <p>In the LSC/BFBT preconditioner, the action of the inverse pressure Schur complement </p><p class="formulaDsp">
-<img class="formulaDsp" alt="\[ {\bf z}_p = - {\bf M}_s^{-1} {\bf r}_p \]" src="form_407.png" width="76" height="16"/>
+<img class="formulaDsp" alt="\[ {\bf z}_p = - {\bf M}_s^{-1} {\bf r}_p \]" src="form_415.png" width="76" height="16"/>
 </p>
 <p> is approximated by </p><p class="formulaDsp">
-<img class="formulaDsp" alt="\[ {\bf z}_p = - \big({\bf D} \widehat{\bf Q}^{-1}{\bf G} \big)^{-1} \big({\bf D} \widehat{\bf Q}^{-1}{\bf F} \widehat{\bf Q}^{-1}{\bf G}\big) \big({\bf D} \widehat{\bf Q}^{-1}{\bf G} \big)^{-1} {\bf r}_p, \]" src="form_411.png" width="286" height="19"/>
+<img class="formulaDsp" alt="\[ {\bf z}_p = - \big({\bf D} \widehat{\bf Q}^{-1}{\bf G} \big)^{-1} \big({\bf D} \widehat{\bf Q}^{-1}{\bf F} \widehat{\bf Q}^{-1}{\bf G}\big) \big({\bf D} \widehat{\bf Q}^{-1}{\bf G} \big)^{-1} {\bf r}_p, \]" src="form_419.png" width="286" height="19"/>
 </p>
-<p> where <img class="formulaInl" alt="$ \widehat{\bf Q} $" src="form_412.png" width="10" height="16"/> is the diagonal of the velocity mass matrix. The evaluation of this expression involves two linear solves involving the matrix </p><p class="formulaDsp">
-<img class="formulaDsp" alt="\[ {\bf P} = \big({\bf D} \widehat{\bf Q}^{-1}{\bf G} \big) \]" src="form_413.png" width="83" height="19"/>
+<p> where <img class="formulaInl" alt="$ \widehat{\bf Q} $" src="form_420.png" width="10" height="16"/> is the diagonal of the velocity mass matrix. The evaluation of this expression involves two linear solves involving the matrix </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ {\bf P} = \big({\bf D} \widehat{\bf Q}^{-1}{\bf G} \big) \]" src="form_421.png" width="83" height="19"/>
 </p>
 <p> which has the character of a matrix arising from the discretisation of a Poisson problem on the pressure space. We also have to evaluate matrix-vector products with the matrix </p><p class="formulaDsp">
-<img class="formulaDsp" alt="\[ {\bf E}={\bf D}\widehat{\bf Q}^{-1}{\bf F}\widehat{\bf Q}^{-1}{\bf G} \]" src="form_414.png" width="106" height="16"/>
+<img class="formulaDsp" alt="\[ {\bf E}={\bf D}\widehat{\bf Q}^{-1}{\bf F}\widehat{\bf Q}^{-1}{\bf G} \]" src="form_422.png" width="106" height="16"/>
 </p>
 <p> Details of the theory can be found in "Finite Elements and
 Fast Iterative Solvers with Applications in Incompressible Fluid
 Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, published by Oxford University Press, 2006.</p>
 <p>In our implementation of the preconditioner, the linear systems can either be solved "exactly", using SuperLU (in its incarnation as an exact preconditioner; this is the default) or by any other <a class="el" href="classoomph_1_1Preconditioner.html" title="Preconditioner base class. Gives an interface to call all other preconditioners through and stores th...">Preconditioner</a> (inexact solver) specified via the access functions </p><div class="fragment"><div class="line"><a class="code hl_function" href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#ab2f387b87192dd2f7b6725cfe3aae44e">NavierStokesSchurComplementPreconditioner::set_f_preconditioner</a>(...)</div>
-<div class="ttc" id="aclassoomph_1_1NavierStokesSchurComplementPreconditioner_html_ab2f387b87192dd2f7b6725cfe3aae44e"><div class="ttname"><a href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#ab2f387b87192dd2f7b6725cfe3aae44e">oomph::NavierStokesSchurComplementPreconditioner::set_f_preconditioner</a></div><div class="ttdeci">void set_f_preconditioner(Preconditioner *new_f_preconditioner_pt)</div><div class="ttdoc">Function to set a new momentum matrix preconditioner (inexact solver)</div><div class="ttdef"><b>Definition</b> <a href="navier__stokes__preconditioners_8h_source.html#l00769">navier_stokes_preconditioners.h:769</a></div></div>
+<div class="ttc" id="aclassoomph_1_1NavierStokesSchurComplementPreconditioner_html_ab2f387b87192dd2f7b6725cfe3aae44e"><div class="ttname"><a href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#ab2f387b87192dd2f7b6725cfe3aae44e">oomph::NavierStokesSchurComplementPreconditioner::set_f_preconditioner</a></div><div class="ttdeci">void set_f_preconditioner(Preconditioner *new_f_preconditioner_pt)</div><div class="ttdoc">Function to set a new momentum matrix preconditioner (inexact solver)</div><div class="ttdef"><b>Definition</b> <a href="navier__stokes__preconditioners_8h_source.html#l00770">navier_stokes_preconditioners.h:770</a></div></div>
 </div><!-- fragment --><p> or </p><div class="fragment"><div class="line"><a class="code hl_function" href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#a48f0d5e878eccab6e7f080c92d4bc6f5">NavierStokesSchurComplementPreconditioner::set_p_preconditioner</a>(...)</div>
 <div class="ttc" id="aclassoomph_1_1NavierStokesSchurComplementPreconditioner_html_a48f0d5e878eccab6e7f080c92d4bc6f5"><div class="ttname"><a href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#a48f0d5e878eccab6e7f080c92d4bc6f5">oomph::NavierStokesSchurComplementPreconditioner::set_p_preconditioner</a></div><div class="ttdeci">void set_p_preconditioner(Preconditioner *new_p_preconditioner_pt)</div><div class="ttdoc">Function to set a new pressure matrix preconditioner (inexact solver)</div><div class="ttdef"><b>Definition</b> <a href="navier__stokes__preconditioners_8h_source.html#l00745">navier_stokes_preconditioners.h:745</a></div></div>
 </div><!-- fragment --> 
@@ -791,7 +781,7 @@ Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, publishe
 
 <p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">610</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01137">Accept_non_NavierStokesElementWithDiagonalMassMatrices_elements</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01175">Allow_multiple_element_type_in_navier_stokes_mesh</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01161">Bt_mat_vec_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01155">Doc_time</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01167">E_mat_vec_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01164">F_mat_vec_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01121">F_preconditioner_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01171">Navier_stokes_mesh_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01118">P_preconditioner_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01192">Pin_first_pressure_dof_in_press_adv_diff</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01132">Preconditioner_has_been_setup</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01158">QBt_mat_vec_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01178">Use_LSC</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01181">Use_robin_for_fp</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01124">Using_default_f_preconditioner</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01127">Using_default_p_preconditioner</a>.</p>
+<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01139">Accept_non_NavierStokesElementWithDiagonalMassMatrices_elements</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01177">Allow_multiple_element_type_in_navier_stokes_mesh</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01163">Bt_mat_vec_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01157">Doc_time</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01169">E_mat_vec_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01166">F_mat_vec_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01123">F_preconditioner_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01173">Navier_stokes_mesh_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01120">P_preconditioner_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01194">Pin_first_pressure_dof_in_press_adv_diff</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01134">Preconditioner_has_been_setup</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01160">QBt_mat_vec_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01180">Use_LSC</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01183">Use_robin_for_fp</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01126">Using_default_f_preconditioner</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01129">Using_default_p_preconditioner</a>.</p>
 
 </div>
 </div>
@@ -822,7 +812,7 @@ Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, publishe
 
 <p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00664">664</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l01672">clean_up_memory()</a>.</p>
+<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l01674">clean_up_memory()</a>.</p>
 
 </div>
 </div>
@@ -896,11 +886,11 @@ Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, publishe
 </div><div class="memdoc">
 
 <p>Helper function to assemble the inverse diagonals of the pressure and velocity mass matrices from the elemental contributions defined in NavierStokesEquations&lt;DIM&gt;. If do_both=true, both are computed, otherwise only the velocity mass matrix (the LSC version of the preconditioner only needs that one) </p>
-<p>Helper function to assemble the inverse diagonals of the pressure and velocity mass matrix from the elemental contributions defined in <a class="el" href="classoomph_1_1NavierStokesElementWithDiagonalMassMatrices.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////...">NavierStokesElementWithDiagonalMassMatrices</a>:: get_pressure_and_velocity_mass_matrix_diagonal(...) If do_both=true, both are computed, otherwise only the velocity mass matrix (the LSC version of the preconditioner only needs that one) </p>
+<p>Helper function to assemble the inverse diagonals of the pressure and velocity mass matrix from the elemental contributions defined in <a class="el" href="classoomph_1_1NavierStokesElementWithDiagonalMassMatrices.html" title="Pure virtual base class for elements that can be used with Navier-Stokes Schur complement preconditio...">NavierStokesElementWithDiagonalMassMatrices</a>:: get_pressure_and_velocity_mass_matrix_diagonal(...) If do_both=true, both are computed, otherwise only the velocity mass matrix (the LSC version of the preconditioner only needs that one) </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00845">845</a> of file <a class="el" href="navier__stokes__preconditioners_8cc_source.html">navier_stokes_preconditioners.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00847">847</a> of file <a class="el" href="navier__stokes__preconditioners_8cc_source.html">navier_stokes_preconditioners.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="block__preconditioner_8h_source.html#l01903">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::block_distribution_pt()</a>, <a class="el" href="block__preconditioner_8h_source.html#l01822">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::block_number()</a>, <a class="el" href="matrices_8cc_source.html#l01710">oomph::CRDoubleMatrix::build_without_copy()</a>, <a class="el" href="preconditioner_8h_source.html#l00171">oomph::Preconditioner::comm_pt()</a>, <a class="el" href="linear__algebra__distribution_8h_source.html#l00493">oomph::DistributableLinearAlgebraObject::distributed()</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00448">oomph::Mesh::element_pt()</a>, <a class="el" href="elements_8h_source.html#l00708">oomph::GeneralisedElement::eqn_number()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="block__preconditioner_8h_source.html#l01850">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::index_in_block()</a>, <a class="el" href="elements_8h_source.html#l01167">oomph::GeneralisedElement::is_halo()</a>, <a class="el" href="block__preconditioner_8h_source.html#l02017">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::master_distribution_pt()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01171">Navier_stokes_mesh_pt</a>, <a class="el" href="elements_8h_source.html#l00839">oomph::GeneralisedElement::ndof()</a>, <a class="el" href="mesh_8h_source.html#l00590">oomph::Mesh::nelement()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00689">problem_pt()</a>, <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01178">Use_LSC</a>.</p>
+<p class="reference">References <a class="el" href="block__preconditioner_8h_source.html#l01903">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::block_distribution_pt()</a>, <a class="el" href="block__preconditioner_8h_source.html#l01822">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::block_number()</a>, <a class="el" href="matrices_8cc_source.html#l01710">oomph::CRDoubleMatrix::build_without_copy()</a>, <a class="el" href="preconditioner_8h_source.html#l00171">oomph::Preconditioner::comm_pt()</a>, <a class="el" href="linear__algebra__distribution_8h_source.html#l00493">oomph::DistributableLinearAlgebraObject::distributed()</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00452">oomph::Mesh::element_pt()</a>, <a class="el" href="elements_8h_source.html#l00691">oomph::GeneralisedElement::eqn_number()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="block__preconditioner_8h_source.html#l01850">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::index_in_block()</a>, <a class="el" href="elements_8h_source.html#l01150">oomph::GeneralisedElement::is_halo()</a>, <a class="el" href="block__preconditioner_8h_source.html#l02017">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::master_distribution_pt()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01173">Navier_stokes_mesh_pt</a>, <a class="el" href="elements_8h_source.html#l00822">oomph::GeneralisedElement::ndof()</a>, <a class="el" href="mesh_8h_source.html#l00598">oomph::Mesh::nelement()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00689">problem_pt()</a>, <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01180">Use_LSC</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>.</p>
 
@@ -933,9 +923,9 @@ Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, publishe
 
 <p>Reimplemented from <a class="el" href="classoomph_1_1Preconditioner.html#a46c31c416829bedcd9db238431262027">oomph::Preconditioner</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l01672">1672</a> of file <a class="el" href="navier__stokes__preconditioners_8cc_source.html">navier_stokes_preconditioners.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l01674">1674</a> of file <a class="el" href="navier__stokes__preconditioners_8cc_source.html">navier_stokes_preconditioners.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01161">Bt_mat_vec_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01167">E_mat_vec_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01164">F_mat_vec_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01121">F_preconditioner_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01118">P_preconditioner_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01132">Preconditioner_has_been_setup</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01158">QBt_mat_vec_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01124">Using_default_f_preconditioner</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01127">Using_default_p_preconditioner</a>.</p>
+<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01163">Bt_mat_vec_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01169">E_mat_vec_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01166">F_mat_vec_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01123">F_preconditioner_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01120">P_preconditioner_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01134">Preconditioner_has_been_setup</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01160">QBt_mat_vec_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01126">Using_default_f_preconditioner</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01129">Using_default_p_preconditioner</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="pseudo__elastic__fsi__preconditioner_8cc_source.html#l00034">oomph::PseudoElasticFSIPreconditioner::clean_up_memory()</a>, <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00664">~NavierStokesSchurComplementPreconditioner()</a>.</p>
 
@@ -964,11 +954,11 @@ Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, publishe
 </table>
 </div><div class="memdoc">
 
-<p>Do not accept presence of elements that are not of type <a class="el" href="classoomph_1_1NavierStokesElementWithDiagonalMassMatrices.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////...">NavierStokesElementWithDiagonalMassMatrices</a> without issuing a warning. </p>
+<p>Do not accept presence of elements that are not of type <a class="el" href="classoomph_1_1NavierStokesElementWithDiagonalMassMatrices.html" title="Pure virtual base class for elements that can be used with Navier-Stokes Schur complement preconditio...">NavierStokesElementWithDiagonalMassMatrices</a> without issuing a warning. </p>
 
 <p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00713">713</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01137">Accept_non_NavierStokesElementWithDiagonalMassMatrices_elements</a>.</p>
+<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01139">Accept_non_NavierStokesElementWithDiagonalMassMatrices_elements</a>.</p>
 
 </div>
 </div>
@@ -997,9 +987,9 @@ Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, publishe
 
 <p>Disable documentation of time. </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00811">811</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00813">813</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01155">Doc_time</a>.</p>
+<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01157">Doc_time</a>.</p>
 
 </div>
 </div>
@@ -1028,9 +1018,9 @@ Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, publishe
 
 <p>Don't use Robin BC elements for the Fp preconditioenr. </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00826">826</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00828">828</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01181">Use_robin_for_fp</a>.</p>
+<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01183">Use_robin_for_fp</a>.</p>
 
 </div>
 </div>
@@ -1057,11 +1047,11 @@ Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, publishe
 </table>
 </div><div class="memdoc">
 
-<p>Accept presence of elements that are not of type <a class="el" href="classoomph_1_1NavierStokesElementWithDiagonalMassMatrices.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////...">NavierStokesElementWithDiagonalMassMatrices</a> without issuing a warning. </p>
+<p>Accept presence of elements that are not of type <a class="el" href="classoomph_1_1NavierStokesElementWithDiagonalMassMatrices.html" title="Pure virtual base class for elements that can be used with Navier-Stokes Schur complement preconditio...">NavierStokesElementWithDiagonalMassMatrices</a> without issuing a warning. </p>
 
 <p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00705">705</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01137">Accept_non_NavierStokesElementWithDiagonalMassMatrices_elements</a>.</p>
+<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01139">Accept_non_NavierStokesElementWithDiagonalMassMatrices_elements</a>.</p>
 
 </div>
 </div>
@@ -1090,9 +1080,9 @@ Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, publishe
 
 <p>Enable documentation of time. </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00805">805</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00807">807</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01155">Doc_time</a>.</p>
+<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01157">Doc_time</a>.</p>
 
 </div>
 </div>
@@ -1121,9 +1111,9 @@ Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, publishe
 
 <p>Use Robin BC elements for the Fp preconditioner. </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00820">820</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00822">822</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01181">Use_robin_for_fp</a>.</p>
+<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01183">Use_robin_for_fp</a>.</p>
 
 </div>
 </div>
@@ -1153,9 +1143,9 @@ Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, publishe
 
 <p>Get the pressure advection diffusion matrix. </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00880">880</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00882">882</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">References <a class="el" href="problem_8h_source.html#l01350">oomph::Problem::add_sub_mesh()</a>, <a class="el" href="problem_8h_source.html#l01590">oomph::Problem::assembly_handler_pt()</a>, <a class="el" href="mesh_8h_source.html#l00840">oomph::Mesh::boundary_element_pt()</a>, <a class="el" href="preconditioner_8h_source.html#l00171">oomph::Preconditioner::comm_pt()</a>, <a class="el" href="elements_8h_source.html#l02615">oomph::FiniteElement::dim()</a>, <a class="el" href="problem_8h_source.html#l00828">oomph::Problem::distributed()</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00448">oomph::Mesh::element_pt()</a>, <a class="el" href="elements_8h_source.html#l00708">oomph::GeneralisedElement::eqn_number()</a>, <a class="el" href="mesh_8h_source.html#l00896">oomph::Mesh::face_index_at_boundary()</a>, <a class="el" href="mesh_8h_source.html#l00473">oomph::Mesh::finite_element_pt()</a>, <a class="el" href="problem_8h_source.html#l01359">oomph::Problem::flush_sub_meshes()</a>, <a class="el" href="problem_8h_source.html#l01024">oomph::Problem::get_first_and_last_element_for_assembly()</a>, <a class="el" href="problem_8cc_source.html#l03922">oomph::Problem::get_jacobian()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="problem_8h_source.html#l01300">oomph::Problem::mesh_pt()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01171">Navier_stokes_mesh_pt</a>, <a class="el" href="mesh_8h_source.html#l00827">oomph::Mesh::nboundary()</a>, <a class="el" href="mesh_8h_source.html#l00878">oomph::Mesh::nboundary_element()</a>, <a class="el" href="mesh_8h_source.html#l00590">oomph::Mesh::nelement()</a>, <a class="el" href="problem_8h_source.html#l01343">oomph::Problem::nsub_mesh()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00862">pin_all_non_pressure_dofs()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01192">Pin_first_pressure_dof_in_press_adv_diff</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00689">problem_pt()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01060">reset_pin_status()</a>, <a class="el" href="problem_8cc_source.html#l01700">oomph::Problem::set_default_first_and_last_element_for_assembly()</a>, <a class="el" href="problem_8h_source.html#l01008">oomph::Problem::set_first_and_last_element_for_assembly()</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01181">Use_robin_for_fp</a>.</p>
+<p class="reference">References <a class="el" href="problem_8h_source.html#l01350">oomph::Problem::add_sub_mesh()</a>, <a class="el" href="problem_8h_source.html#l01590">oomph::Problem::assembly_handler_pt()</a>, <a class="el" href="mesh_8h_source.html#l00848">oomph::Mesh::boundary_element_pt()</a>, <a class="el" href="preconditioner_8h_source.html#l00171">oomph::Preconditioner::comm_pt()</a>, <a class="el" href="elements_8h_source.html#l02615">oomph::FiniteElement::dim()</a>, <a class="el" href="problem_8h_source.html#l00828">oomph::Problem::distributed()</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00452">oomph::Mesh::element_pt()</a>, <a class="el" href="elements_8h_source.html#l00691">oomph::GeneralisedElement::eqn_number()</a>, <a class="el" href="mesh_8h_source.html#l00904">oomph::Mesh::face_index_at_boundary()</a>, <a class="el" href="mesh_8h_source.html#l00477">oomph::Mesh::finite_element_pt()</a>, <a class="el" href="problem_8h_source.html#l01359">oomph::Problem::flush_sub_meshes()</a>, <a class="el" href="problem_8h_source.html#l01024">oomph::Problem::get_first_and_last_element_for_assembly()</a>, <a class="el" href="problem_8cc_source.html#l03935">oomph::Problem::get_jacobian()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="problem_8h_source.html#l01300">oomph::Problem::mesh_pt()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01173">Navier_stokes_mesh_pt</a>, <a class="el" href="mesh_8h_source.html#l00835">oomph::Mesh::nboundary()</a>, <a class="el" href="mesh_8h_source.html#l00886">oomph::Mesh::nboundary_element()</a>, <a class="el" href="mesh_8h_source.html#l00598">oomph::Mesh::nelement()</a>, <a class="el" href="problem_8h_source.html#l01343">oomph::Problem::nsub_mesh()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00864">pin_all_non_pressure_dofs()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01194">Pin_first_pressure_dof_in_press_adv_diff</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00689">problem_pt()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01062">reset_pin_status()</a>, <a class="el" href="problem_8cc_source.html#l01709">oomph::Problem::set_default_first_and_last_element_for_assembly()</a>, <a class="el" href="problem_8h_source.html#l01008">oomph::Problem::set_first_and_last_element_for_assembly()</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01183">Use_robin_for_fp</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>.</p>
 
@@ -1186,11 +1176,11 @@ Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, publishe
 
 <p>Pin all non-pressure dofs. </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00862">862</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00864">864</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00448">oomph::Mesh::element_pt()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01185">Eqn_number_backup</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01171">Navier_stokes_mesh_pt</a>, and <a class="el" href="mesh_8h_source.html#l00590">oomph::Mesh::nelement()</a>.</p>
+<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00452">oomph::Mesh::element_pt()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01187">Eqn_number_backup</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01173">Navier_stokes_mesh_pt</a>, and <a class="el" href="mesh_8h_source.html#l00598">oomph::Mesh::nelement()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00880">get_pressure_advection_diffusion_matrix()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00882">get_pressure_advection_diffusion_matrix()</a>.</p>
 
 </div>
 </div>
@@ -1219,9 +1209,9 @@ Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, publishe
 
 <p>Set boolean indicating that we want to pin first pressure dof in Navier Stokes mesh when assembling the pressure advection diffusion system for Fp preconditoner &ndash; needed at zero Reynolds number for non-enclosed flows but seems harmless in any case. </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00836">836</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00838">838</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01192">Pin_first_pressure_dof_in_press_adv_diff</a>.</p>
+<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01194">Pin_first_pressure_dof_in_press_adv_diff</a>.</p>
 
 </div>
 </div>
@@ -1264,11 +1254,11 @@ Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, publishe
 
 <p>Implements <a class="el" href="classoomph_1_1Preconditioner.html#ace1199369e4465cd2b9a34884bb64ec8">oomph::Preconditioner</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00658">658</a> of file <a class="el" href="navier__stokes__preconditioners_8cc_source.html">navier_stokes_preconditioners.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00660">660</a> of file <a class="el" href="navier__stokes__preconditioners_8cc_source.html">navier_stokes_preconditioners.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01161">Bt_mat_vec_pt</a>, <a class="el" href="double__vector_8cc_source.html#l00035">oomph::DoubleVector::build()</a>, <a class="el" href="double__vector_8h_source.html#l00154">oomph::DoubleVector::built()</a>, <a class="el" href="linear__algebra__distribution_8h_source.html#l00342">oomph::LinearAlgebraDistribution::built()</a>, <a class="el" href="linear__algebra__distribution_8h_source.html#l00457">oomph::DistributableLinearAlgebraObject::distribution_pt()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01167">E_mat_vec_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01164">F_mat_vec_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01152">F_preconditioner_is_block_preconditioner</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01121">F_preconditioner_pt</a>, <a class="el" href="block__preconditioner_8cc_source.html#l04186">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::get_block_vector()</a>, <a class="el" href="matrix__vector__product_8cc_source.html#l00108">oomph::MatrixVectorProduct::multiply()</a>, <a class="el" href="matrix__vector__product_8cc_source.html#l00177">oomph::MatrixVectorProduct::multiply_transpose()</a>, <a class="el" href="linear__algebra__distribution_8h_source.html#l00463">oomph::DistributableLinearAlgebraObject::nrow()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01118">P_preconditioner_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01132">Preconditioner_has_been_setup</a>, <a class="el" href="classoomph_1_1Preconditioner.html#ace1199369e4465cd2b9a34884bb64ec8">oomph::Preconditioner::preconditioner_solve()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01158">QBt_mat_vec_pt</a>, <a class="el" href="block__preconditioner_8cc_source.html#l04489">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::return_block_vector()</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01178">Use_LSC</a>.</p>
+<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01163">Bt_mat_vec_pt</a>, <a class="el" href="double__vector_8cc_source.html#l00035">oomph::DoubleVector::build()</a>, <a class="el" href="double__vector_8h_source.html#l00154">oomph::DoubleVector::built()</a>, <a class="el" href="linear__algebra__distribution_8h_source.html#l00342">oomph::LinearAlgebraDistribution::built()</a>, <a class="el" href="linear__algebra__distribution_8h_source.html#l00457">oomph::DistributableLinearAlgebraObject::distribution_pt()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01169">E_mat_vec_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01166">F_mat_vec_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01154">F_preconditioner_is_block_preconditioner</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01123">F_preconditioner_pt</a>, <a class="el" href="block__preconditioner_8cc_source.html#l04185">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::get_block_vector()</a>, <a class="el" href="matrix__vector__product_8cc_source.html#l00108">oomph::MatrixVectorProduct::multiply()</a>, <a class="el" href="matrix__vector__product_8cc_source.html#l00177">oomph::MatrixVectorProduct::multiply_transpose()</a>, <a class="el" href="linear__algebra__distribution_8h_source.html#l00463">oomph::DistributableLinearAlgebraObject::nrow()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01120">P_preconditioner_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01134">Preconditioner_has_been_setup</a>, <a class="el" href="classoomph_1_1Preconditioner.html#ace1199369e4465cd2b9a34884bb64ec8">oomph::Preconditioner::preconditioner_solve()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01160">QBt_mat_vec_pt</a>, <a class="el" href="block__preconditioner_8cc_source.html#l04488">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::return_block_vector()</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01180">Use_LSC</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="fsi__preconditioners_8h_source.html#l00373">oomph::FSIPreconditioner::preconditioner_solve()</a>, and <a class="el" href="pseudo__elastic__fsi__preconditioner_8cc_source.html#l00280">oomph::PseudoElasticFSIPreconditioner::preconditioner_solve()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="fsi__preconditioners_8h_source.html#l00374">oomph::FSIPreconditioner::preconditioner_solve()</a>, and <a class="el" href="pseudo__elastic__fsi__preconditioner_8cc_source.html#l00280">oomph::PseudoElasticFSIPreconditioner::preconditioner_solve()</a>.</p>
 
 </div>
 </div>
@@ -1297,9 +1287,9 @@ Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, publishe
 
 <p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00689">689</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01196">Problem_pt</a>.</p>
+<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01198">Problem_pt</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00846">assemble_inv_press_and_veloc_mass_matrix_diagonal()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00880">get_pressure_advection_diffusion_matrix()</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00684">set_problem_pt()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00848">assemble_inv_press_and_veloc_mass_matrix_diagonal()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00882">get_pressure_advection_diffusion_matrix()</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00684">set_problem_pt()</a>.</p>
 
 </div>
 </div>
@@ -1328,11 +1318,42 @@ Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, publishe
 
 <p>Reset pin status of all values. </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01060">1060</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01062">1062</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00448">oomph::Mesh::element_pt()</a>, <a class="el" href="elements_8h_source.html#l00708">oomph::GeneralisedElement::eqn_number()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01185">Eqn_number_backup</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="elements_8h_source.html#l00622">oomph::GeneralisedElement::internal_data_pt()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01171">Navier_stokes_mesh_pt</a>, <a class="el" href="mesh_8h_source.html#l00590">oomph::Mesh::nelement()</a>, <a class="el" href="elements_8h_source.html#l00827">oomph::GeneralisedElement::ninternal_data()</a>, <a class="el" href="mesh_8h_source.html#l00596">oomph::Mesh::nnode()</a>, and <a class="el" href="mesh_8h_source.html#l00436">oomph::Mesh::node_pt()</a>.</p>
+<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00452">oomph::Mesh::element_pt()</a>, <a class="el" href="elements_8h_source.html#l00691">oomph::GeneralisedElement::eqn_number()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01187">Eqn_number_backup</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="elements_8h_source.html#l00605">oomph::GeneralisedElement::internal_data_pt()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01173">Navier_stokes_mesh_pt</a>, <a class="el" href="mesh_8h_source.html#l00598">oomph::Mesh::nelement()</a>, <a class="el" href="elements_8h_source.html#l00810">oomph::GeneralisedElement::ninternal_data()</a>, <a class="el" href="mesh_8h_source.html#l00604">oomph::Mesh::nnode()</a>, and <a class="el" href="mesh_8h_source.html#l00440">oomph::Mesh::node_pt()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00880">get_pressure_advection_diffusion_matrix()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00882">get_pressure_advection_diffusion_matrix()</a>.</p>
+
+</div>
+</div>
+<a id="a76635a756dcf5efbf0e4040ded9f6789" name="a76635a756dcf5efbf0e4040ded9f6789"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76635a756dcf5efbf0e4040ded9f6789">&#9670;&#160;</a></span>set_f_exact_preconditioner()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a> oomph::NavierStokesSchurComplementPreconditioner::set_f_exact_preconditioner </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Function to (re-)set momentum matrix preconditioner (inexact solver) to exact preconditioner. </p>
+
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00796">796</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+
+<p class="reference">References <a class="el" href="linear__solver_8cc_source.html#l02819">oomph::ExactPreconditionerFactory::create_exact_preconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01123">F_preconditioner_pt</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01126">Using_default_f_preconditioner</a>.</p>
 
 </div>
 </div>
@@ -1362,40 +1383,9 @@ Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, publishe
 
 <p>Function to set a new momentum matrix preconditioner (inexact solver) </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00769">769</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00770">770</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01121">F_preconditioner_pt</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01124">Using_default_f_preconditioner</a>.</p>
-
-</div>
-</div>
-<a id="af29abc6e2b9fd92ae3a31a4f9d56f6b8" name="af29abc6e2b9fd92ae3a31a4f9d56f6b8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af29abc6e2b9fd92ae3a31a4f9d56f6b8">&#9670;&#160;</a></span>set_f_superlu_preconditioner()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a> oomph::NavierStokesSchurComplementPreconditioner::set_f_superlu_preconditioner </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to (re-)set momentum matrix preconditioner (inexact solver) to SuperLU. </p>
-
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00795">795</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
-
-<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01121">F_preconditioner_pt</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01124">Using_default_f_preconditioner</a>.</p>
+<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01123">F_preconditioner_pt</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01126">Using_default_f_preconditioner</a>.</p>
 
 </div>
 </div>
@@ -1437,9 +1427,40 @@ Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, publishe
 
 <p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00732">732</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01175">Allow_multiple_element_type_in_navier_stokes_mesh</a>, <a class="el" href="block__preconditioner_8h_source.html#l01782">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::mesh_pt()</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01171">Navier_stokes_mesh_pt</a>.</p>
+<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01177">Allow_multiple_element_type_in_navier_stokes_mesh</a>, <a class="el" href="block__preconditioner_8h_source.html#l01782">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::mesh_pt()</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01173">Navier_stokes_mesh_pt</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="fsi__preconditioners_8h_source.html#l00269">oomph::FSIPreconditioner::setup()</a>, and <a class="el" href="pseudo__elastic__fsi__preconditioner_8cc_source.html#l00052">oomph::PseudoElasticFSIPreconditioner::setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="fsi__preconditioners_8h_source.html#l00270">oomph::FSIPreconditioner::setup()</a>, and <a class="el" href="pseudo__elastic__fsi__preconditioner_8cc_source.html#l00052">oomph::PseudoElasticFSIPreconditioner::setup()</a>.</p>
+
+</div>
+</div>
+<a id="a65baf4bdb06e0087d9d716701fe5cf67" name="a65baf4bdb06e0087d9d716701fe5cf67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65baf4bdb06e0087d9d716701fe5cf67">&#9670;&#160;</a></span>set_p_exact_preconditioner()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a> oomph::NavierStokesSchurComplementPreconditioner::set_p_exact_preconditioner </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Function to (re-)set pressure matrix preconditioner (inexact solver) to exact preconditioner. </p>
+
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00759">759</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+
+<p class="reference">References <a class="el" href="linear__solver_8cc_source.html#l02819">oomph::ExactPreconditionerFactory::create_exact_preconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01120">P_preconditioner_pt</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01129">Using_default_p_preconditioner</a>.</p>
 
 </div>
 </div>
@@ -1471,38 +1492,7 @@ Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, publishe
 
 <p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00745">745</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01118">P_preconditioner_pt</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01127">Using_default_p_preconditioner</a>.</p>
-
-</div>
-</div>
-<a id="a05bac2703d9570c15bf0676cbbe7ce03" name="a05bac2703d9570c15bf0676cbbe7ce03"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a05bac2703d9570c15bf0676cbbe7ce03">&#9670;&#160;</a></span>set_p_superlu_preconditioner()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a> oomph::NavierStokesSchurComplementPreconditioner::set_p_superlu_preconditioner </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Function to (re-)set pressure matrix preconditioner (inexact solver) to SuperLU. </p>
-
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00759">759</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
-
-<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01118">P_preconditioner_pt</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01127">Using_default_p_preconditioner</a>.</p>
+<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01120">P_preconditioner_pt</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01129">Using_default_p_preconditioner</a>.</p>
 
 </div>
 </div>
@@ -1535,7 +1525,7 @@ Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, publishe
 
 <p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00684">684</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00689">problem_pt()</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01196">Problem_pt</a>.</p>
+<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00689">problem_pt()</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01198">Problem_pt</a>.</p>
 
 </div>
 </div>
@@ -1563,16 +1553,15 @@ Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, publishe
 </div><div class="memdoc">
 
 <p>Setup the preconditioner. </p>
-<p>///////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////</p>
 <p>Setup the least-squares commutator Navier Stokes preconditioner. This extracts blocks corresponding to the velocity and pressure unknowns, creates the matrices actually needed in the application of the preconditioner and deletes what can be deleted... Note that this preconditioner needs a <a class="el" href="classoomph_1_1CRDoubleMatrix.html" title="A class for compressed row matrices. This is a distributable object.">CRDoubleMatrix</a>. </p>
 
 <p>Implements <a class="el" href="classoomph_1_1Preconditioner.html#af4886f4efe510e5c9b0eb19422943588">oomph::Preconditioner</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">147</a> of file <a class="el" href="navier__stokes__preconditioners_8cc_source.html">navier_stokes_preconditioners.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01175">Allow_multiple_element_type_in_navier_stokes_mesh</a>, <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00846">assemble_inv_press_and_veloc_mass_matrix_diagonal()</a>, <a class="el" href="block__preconditioner_8cc_source.html#l02483">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::block_setup()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01161">Bt_mat_vec_pt</a>, <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l01672">clean_up_memory()</a>, <a class="el" href="preconditioner_8h_source.html#l00171">oomph::Preconditioner::comm_pt()</a>, <a class="el" href="elements_8h_source.html#l02615">oomph::FiniteElement::dim()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01155">Doc_time</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01167">E_mat_vec_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01164">F_mat_vec_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01152">F_preconditioner_is_block_preconditioner</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01121">F_preconditioner_pt</a>, <a class="el" href="mesh_8h_source.html#l00473">oomph::Mesh::finite_element_pt()</a>, <a class="el" href="block__preconditioner_8h_source.html#l00673">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::get_block()</a>, <a class="el" href="block__preconditioner_8h_source.html#l01012">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::get_block_other_matrix()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00880">get_pressure_advection_diffusion_matrix()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="block__preconditioner_8h_source.html#l02061">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::is_subsidiary_block_preconditioner()</a>, <a class="el" href="block__preconditioner_8h_source.html#l00520">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::matrix_pt()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01171">Navier_stokes_mesh_pt</a>, <a class="el" href="block__preconditioner_8h_source.html#l01694">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::ndof_types()</a>, <a class="el" href="block__preconditioner_8h_source.html#l02037">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::ndof_types_in_mesh()</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00319">oomph::oomph_info</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01118">P_preconditioner_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01132">Preconditioner_has_been_setup</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01158">QBt_mat_vec_pt</a>, <a class="el" href="block__preconditioner_8h_source.html#l02866">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::set_mesh()</a>, <a class="el" href="block__preconditioner_8h_source.html#l02851">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::set_nmesh()</a>, <a class="el" href="preconditioner_8h_source.html#l00094">oomph::Preconditioner::setup()</a>, <a class="el" href="block__preconditioner_8h_source.html#l02397">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::setup_matrix_vector_product()</a>, <a class="el" href="oomph__utilities_8cc_source.html#l01295">oomph::TimingHelpers::timer()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01178">Use_LSC</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01124">Using_default_f_preconditioner</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01127">Using_default_p_preconditioner</a>.</p>
+<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01177">Allow_multiple_element_type_in_navier_stokes_mesh</a>, <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00848">assemble_inv_press_and_veloc_mass_matrix_diagonal()</a>, <a class="el" href="block__preconditioner_8cc_source.html#l02482">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::block_setup()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01163">Bt_mat_vec_pt</a>, <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l01674">clean_up_memory()</a>, <a class="el" href="preconditioner_8h_source.html#l00171">oomph::Preconditioner::comm_pt()</a>, <a class="el" href="linear__solver_8cc_source.html#l02819">oomph::ExactPreconditionerFactory::create_exact_preconditioner()</a>, <a class="el" href="elements_8h_source.html#l02615">oomph::FiniteElement::dim()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01157">Doc_time</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01169">E_mat_vec_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01166">F_mat_vec_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01154">F_preconditioner_is_block_preconditioner</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01123">F_preconditioner_pt</a>, <a class="el" href="mesh_8h_source.html#l00477">oomph::Mesh::finite_element_pt()</a>, <a class="el" href="block__preconditioner_8h_source.html#l00673">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::get_block()</a>, <a class="el" href="block__preconditioner_8h_source.html#l01012">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::get_block_other_matrix()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00882">get_pressure_advection_diffusion_matrix()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="block__preconditioner_8h_source.html#l02061">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::is_subsidiary_block_preconditioner()</a>, <a class="el" href="block__preconditioner_8h_source.html#l00520">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::matrix_pt()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01173">Navier_stokes_mesh_pt</a>, <a class="el" href="block__preconditioner_8h_source.html#l01694">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::ndof_types()</a>, <a class="el" href="block__preconditioner_8h_source.html#l02037">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::ndof_types_in_mesh()</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00326">oomph::oomph_info</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01120">P_preconditioner_pt</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01134">Preconditioner_has_been_setup</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01160">QBt_mat_vec_pt</a>, <a class="el" href="block__preconditioner_8h_source.html#l02866">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::set_mesh()</a>, <a class="el" href="block__preconditioner_8h_source.html#l02851">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::set_nmesh()</a>, <a class="el" href="preconditioner_8h_source.html#l00094">oomph::Preconditioner::setup()</a>, <a class="el" href="block__preconditioner_8h_source.html#l02397">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::setup_matrix_vector_product()</a>, <a class="el" href="oomph__utilities_8cc_source.html#l01303">oomph::TimingHelpers::timer()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01180">Use_LSC</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01126">Using_default_f_preconditioner</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01129">Using_default_p_preconditioner</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="fsi__preconditioners_8h_source.html#l00269">oomph::FSIPreconditioner::setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="fsi__preconditioners_8h_source.html#l00270">oomph::FSIPreconditioner::setup()</a>.</p>
 
 </div>
 </div>
@@ -1645,8 +1634,8 @@ Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, publishe
 
 </div>
 </div>
-<a id="a0b95e7159585b5151f9e5dc1d1713655" name="a0b95e7159585b5151f9e5dc1d1713655"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0b95e7159585b5151f9e5dc1d1713655">&#9670;&#160;</a></span>setup() <span class="overload">[4/4]</span></h2>
+<a id="ac2c0f7f39eccd814e72cc5813ec864e0" name="ac2c0f7f39eccd814e72cc5813ec864e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2c0f7f39eccd814e72cc5813ec864e0">&#9670;&#160;</a></span>setup() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1655,7 +1644,7 @@ Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, publishe
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a> oomph::Preconditioner::setup </td>
+          <td class="memname"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">virtual</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a> oomph::Preconditioner::setup </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classoomph_1_1DoubleMatrixBase.html">DoubleMatrixBase</a> *&#160;</td>
           <td class="paramname"><em>matrix_pt</em></td><td>)</td>
@@ -1664,12 +1653,14 @@ Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, publishe
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>for some reason we have to remind the compiler that there is a <a class="el" href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#a03cbfa527081ea03c910aadc281615d7" title="Setup the preconditioner.">setup()</a> function in <a class="el" href="classoomph_1_1Preconditioner.html" title="Preconditioner base class. Gives an interface to call all other preconditioners through and stores th...">Preconditioner</a> base class. </p>
+
+<p>Reimplemented from <a class="el" href="classoomph_1_1Preconditioner.html#ac2c0f7f39eccd814e72cc5813ec864e0">oomph::Preconditioner</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="preconditioner_8h_source.html#l00094">94</a> of file <a class="el" href="preconditioner_8h_source.html">preconditioner.h</a>.</p>
 
@@ -1700,9 +1691,9 @@ Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, publishe
 
 <p>Set boolean indicating that we do not want to pin first pressure dof in Navier Stokes mesh when assembling the pressure advection diffusion system for Fp preconditoner &ndash; needed at zero Reynolds number for non-enclosed flows but seems harmless in any case. </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00846">846</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00848">848</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01192">Pin_first_pressure_dof_in_press_adv_diff</a>.</p>
+<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01194">Pin_first_pressure_dof_in_press_adv_diff</a>.</p>
 
 </div>
 </div>
@@ -1731,9 +1722,9 @@ Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, publishe
 
 <p>Use Fp version of the preconditioner. </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00788">788</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00789">789</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01178">Use_LSC</a>.</p>
+<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01180">Use_LSC</a>.</p>
 
 </div>
 </div>
@@ -1762,9 +1753,9 @@ Dynamics" by Howard C. Elman, David J. Silvester, and Andrew J. Wathen, publishe
 
 <p>Use LSC version of the preconditioner. </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00782">782</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00783">783</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01178">Use_LSC</a>.</p>
+<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01180">Use_LSC</a>.</p>
 
 </div>
 </div>
@@ -1806,9 +1797,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Validate auxiliary pressure advection diffusion problem in 2D. </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00854">854</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00856">856</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01171">Navier_stokes_mesh_pt</a>.</p>
+<p class="reference">References <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01173">Navier_stokes_mesh_pt</a>.</p>
 
 </div>
 </div>
@@ -1833,9 +1824,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 </table>
 </div><div class="memdoc">
 
-<p>Boolean to indicate that presence of elements that are not of type <a class="el" href="classoomph_1_1NavierStokesElementWithDiagonalMassMatrices.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////...">NavierStokesElementWithDiagonalMassMatrices</a> is acceptable (suppresses warning that issued otherwise). </p>
+<p>Boolean to indicate that presence of elements that are not of type <a class="el" href="classoomph_1_1NavierStokesElementWithDiagonalMassMatrices.html" title="Pure virtual base class for elements that can be used with Navier-Stokes Schur complement preconditio...">NavierStokesElementWithDiagonalMassMatrices</a> is acceptable (suppresses warning that issued otherwise). </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01137">1137</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01139">1139</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00713">disable_accept_non_NavierStokesElementWithDiagonalMassMatrices_elements()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00705">enable_accept_non_NavierStokesElementWithDiagonalMassMatrices_elements()</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>.</p>
 
@@ -1863,7 +1854,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Flag to indicate if there are multiple element types in the Navier-Stokes mesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01175">1175</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01177">1177</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00732">set_navier_stokes_mesh()</a>, and <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>.</p>
 
@@ -1891,9 +1882,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p><a class="el" href="classoomph_1_1MatrixVectorProduct.html" title="Matrix vector product helper class - primarily a wrapper to Trilinos&#39;s Epetra matrix vector product m...">MatrixVectorProduct</a> operator for Bt. </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01161">1161</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01163">1163</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l01672">clean_up_memory()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00658">preconditioner_solve()</a>, and <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l01674">clean_up_memory()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00660">preconditioner_solve()</a>, and <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>.</p>
 
 </div>
 </div>
@@ -1919,9 +1910,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Set Doc_time to true for outputting results of timings. </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01155">1155</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01157">1157</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00811">disable_doc_time()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00805">enable_doc_time()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>, and <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00813">disable_doc_time()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00807">enable_doc_time()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>, and <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>.</p>
 
 </div>
 </div>
@@ -1947,9 +1938,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p><a class="el" href="classoomph_1_1MatrixVectorProduct.html" title="Matrix vector product helper class - primarily a wrapper to Trilinos&#39;s Epetra matrix vector product m...">MatrixVectorProduct</a> operator for E = Fp Qp^{-1} (only for Fp variant) </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01167">1167</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01169">1169</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l01672">clean_up_memory()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00658">preconditioner_solve()</a>, and <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l01674">clean_up_memory()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00660">preconditioner_solve()</a>, and <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>.</p>
 
 </div>
 </div>
@@ -1975,9 +1966,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Map to store original eqn numbers of various <a class="el" href="classoomph_1_1Data.html" title="A class that represents a collection of data; each Data object may contain many different individual ...">Data</a> values when assembling pressure advection diffusion matrix. </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01185">1185</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01187">1187</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00862">pin_all_non_pressure_dofs()</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01060">reset_pin_status()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00864">pin_all_non_pressure_dofs()</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01062">reset_pin_status()</a>.</p>
 
 </div>
 </div>
@@ -2003,9 +1994,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p><a class="el" href="classoomph_1_1MatrixVectorProduct.html" title="Matrix vector product helper class - primarily a wrapper to Trilinos&#39;s Epetra matrix vector product m...">MatrixVectorProduct</a> operator for F. </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01164">1164</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01166">1166</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l01672">clean_up_memory()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00658">preconditioner_solve()</a>, and <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l01674">clean_up_memory()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00660">preconditioner_solve()</a>, and <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>.</p>
 
 </div>
 </div>
@@ -2031,9 +2022,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Boolean indicating whether the momentum system preconditioner is a block preconditioner. </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01152">1152</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01154">1154</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00658">preconditioner_solve()</a>, and <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00660">preconditioner_solve()</a>, and <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>.</p>
 
 </div>
 </div>
@@ -2059,9 +2050,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Pointer to the 'preconditioner' for the F matrix. </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01121">1121</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01123">1123</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l01672">clean_up_memory()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00658">preconditioner_solve()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00769">set_f_preconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00795">set_f_superlu_preconditioner()</a>, and <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l01674">clean_up_memory()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00660">preconditioner_solve()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00796">set_f_exact_preconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00770">set_f_preconditioner()</a>, and <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>.</p>
 
 </div>
 </div>
@@ -2087,9 +2078,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>the pointer to the mesh of block preconditionable Navier Stokes elements. </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01171">1171</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01173">1173</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00846">assemble_inv_press_and_veloc_mass_matrix_diagonal()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00880">get_pressure_advection_diffusion_matrix()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00862">pin_all_non_pressure_dofs()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01060">reset_pin_status()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00732">set_navier_stokes_mesh()</a>, <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00854">validate()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00848">assemble_inv_press_and_veloc_mass_matrix_diagonal()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00882">get_pressure_advection_diffusion_matrix()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00864">pin_all_non_pressure_dofs()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01062">reset_pin_status()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00732">set_navier_stokes_mesh()</a>, <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00856">validate()</a>.</p>
 
 </div>
 </div>
@@ -2115,9 +2106,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Pointer to the 'preconditioner' for the pressure matrix. </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01118">1118</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01120">1120</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l01672">clean_up_memory()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00658">preconditioner_solve()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00745">set_p_preconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00759">set_p_superlu_preconditioner()</a>, and <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l01674">clean_up_memory()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00660">preconditioner_solve()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00759">set_p_exact_preconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00745">set_p_preconditioner()</a>, and <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>.</p>
 
 </div>
 </div>
@@ -2143,9 +2134,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Boolean indicating if we want to pin first pressure dof in Navier Stokes mesh when assembling the pressure advection diffusion system for Fp preconditoner &ndash; needed at zero Reynolds number for non-enclosed flows but seems harmless in any case. </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01192">1192</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01194">1194</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00880">get_pressure_advection_diffusion_matrix()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00836">pin_first_pressure_dof_in_press_adv_diff()</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00846">unpin_first_pressure_dof_in_press_adv_diff()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00882">get_pressure_advection_diffusion_matrix()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00838">pin_first_pressure_dof_in_press_adv_diff()</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00848">unpin_first_pressure_dof_in_press_adv_diff()</a>.</p>
 
 </div>
 </div>
@@ -2171,9 +2162,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Control flag is true if the preconditioner has been setup (used so we can wipe the data when the preconditioner is called again) </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01132">1132</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01134">1134</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l01672">clean_up_memory()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00658">preconditioner_solve()</a>, and <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l01674">clean_up_memory()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00660">preconditioner_solve()</a>, and <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>.</p>
 
 </div>
 </div>
@@ -2199,7 +2190,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Storage for the (non-const!) problem pointer for use in <a class="el" href="classoomph_1_1NavierStokesSchurComplementPreconditioner.html#ac3f40f62d33d33616cdb4bed48aaccde" title="Get the pressure advection diffusion matrix.">get_pressure_advection_diffusion_matrix()</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01196">1196</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01198">1198</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00689">problem_pt()</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00684">set_problem_pt()</a>.</p>
 
@@ -2227,9 +2218,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p><a class="el" href="classoomph_1_1MatrixVectorProduct.html" title="Matrix vector product helper class - primarily a wrapper to Trilinos&#39;s Epetra matrix vector product m...">MatrixVectorProduct</a> operator for Qv^{-1} Bt. </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01158">1158</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01160">1160</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l01672">clean_up_memory()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00658">preconditioner_solve()</a>, and <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l01674">clean_up_memory()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00660">preconditioner_solve()</a>, and <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>.</p>
 
 </div>
 </div>
@@ -2255,9 +2246,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Boolean to indicate use of LSC (true) or Fp (false) variant. </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01178">1178</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01180">1180</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00846">assemble_inv_press_and_veloc_mass_matrix_diagonal()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00658">preconditioner_solve()</a>, <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00788">use_fp()</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00782">use_lsc()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00848">assemble_inv_press_and_veloc_mass_matrix_diagonal()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00660">preconditioner_solve()</a>, <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00789">use_fp()</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00783">use_lsc()</a>.</p>
 
 </div>
 </div>
@@ -2283,9 +2274,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Use Robin BC elements for Fp preconditoner? </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01181">1181</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01183">1183</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00826">disable_robin_for_fp()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00820">enable_robin_for_fp()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00880">get_pressure_advection_diffusion_matrix()</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00828">disable_robin_for_fp()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00822">enable_robin_for_fp()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00882">get_pressure_advection_diffusion_matrix()</a>, and <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>.</p>
 
 </div>
 </div>
@@ -2311,9 +2302,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>flag indicating whether the default F preconditioner is used </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01124">1124</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01126">1126</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l01672">clean_up_memory()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00769">set_f_preconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00795">set_f_superlu_preconditioner()</a>, and <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l01674">clean_up_memory()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00796">set_f_exact_preconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00770">set_f_preconditioner()</a>, and <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>.</p>
 
 </div>
 </div>
@@ -2339,9 +2330,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>flag indicating whether the default P preconditioner is used </p>
 
-<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01127">1127</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="navier__stokes__preconditioners_8h_source.html#l01129">1129</a> of file <a class="el" href="navier__stokes__preconditioners_8h_source.html">navier_stokes_preconditioners.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l01672">clean_up_memory()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00745">set_p_preconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00759">set_p_superlu_preconditioner()</a>, and <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l01674">clean_up_memory()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00610">NavierStokesSchurComplementPreconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00759">set_p_exact_preconditioner()</a>, <a class="el" href="navier__stokes__preconditioners_8h_source.html#l00745">set_p_preconditioner()</a>, and <a class="el" href="navier__stokes__preconditioners_8cc_source.html#l00147">setup()</a>.</p>
 
 </div>
 </div>
@@ -2377,7 +2368,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:04:44
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:40:33
         </div>
       </div>
     </footer>

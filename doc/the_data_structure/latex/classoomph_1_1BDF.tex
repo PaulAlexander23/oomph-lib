@@ -2,7 +2,7 @@
 \hypertarget{classoomph_1_1BDF}{}\label{classoomph_1_1BDF}\index{oomph::BDF$<$ NSTEPS $>$@{oomph::BDF$<$ NSTEPS $>$}}
 
 
-////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////  
+Templated class for BDF-\/type time-\/steppers with fixed or variable timestep. 1st time derivative recovered directly from the previous function values. Template parameter represents the number of previous timesteps stored, so that BDF$<$1$>$ is the classical first order backward \doxylink{classoomph_1_1Euler}{Euler} scheme. Need to reset weights after every change in timestep.  
 
 
 
@@ -60,7 +60,7 @@ Inheritance diagram for oomph\+::BDF\texorpdfstring{$<$}{<} NSTEPS \texorpdfstri
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} \mbox{\hyperlink{classoomph_1_1BDF_aab34e35252db11052c72ae7692825149}{temporal\+\_\+error\+\_\+in\+\_\+value}} (\mbox{\hyperlink{classoomph_1_1Data}{Data}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{data\+\_\+pt}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
 \begin{DoxyCompactList}\small\item\em Compute the error in the value i in a \doxylink{classoomph_1_1Data}{Data} structure. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1BDF_a9d247ea52d1cddbf74d4fa054110b2ca}{set\+\_\+weights}} ()
-\begin{DoxyCompactList}\small\item\em ///////////////////////////////////////////////////////////////////// \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Assign the values of the weights. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1BDF_a108f0a3b2228efe92763135f4603c925}{set\+\_\+predictor\+\_\+weights}} ()
 \begin{DoxyCompactList}\small\item\em Set the predictor weights (Gresho and Sani pg. 270) \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1BDF_a4ad578785017ea87429ad07f025abf3b}{calculate\+\_\+predicted\+\_\+values}} (\mbox{\hyperlink{classoomph_1_1Data}{Data}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{data\+\_\+pt}})
@@ -206,8 +206,6 @@ std\+::string \mbox{\hyperlink{classoomph_1_1TimeStepper_a39dfe6cf216263d547c430
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} NSTEPS$>$\newline
 class oomph\+::\+BDF$<$ NSTEPS $>$}
-////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////// 
-
 Templated class for BDF-\/type time-\/steppers with fixed or variable timestep. 1st time derivative recovered directly from the previous function values. Template parameter represents the number of previous timesteps stored, so that BDF$<$1$>$ is the classical first order backward \doxylink{classoomph_1_1Euler}{Euler} scheme. Need to reset weights after every change in timestep. 
 
 Definition at line \mbox{\hyperlink{timesteppers_8h_source_l01164}{1164}} of file \mbox{\hyperlink{timesteppers_8h_source}{timesteppers.\+h}}.
@@ -250,7 +248,7 @@ Definition at line \mbox{\hyperlink{timesteppers_8h_source_l01193}{1193}} of fil
 
 
 
-References \mbox{\hyperlink{timesteppers_8h_source_l00245}{oomph\+::\+Time\+Stepper\+::\+Adaptive\+\_\+\+Flag}}, \mbox{\hyperlink{timesteppers_8h_source_l00273}{oomph\+::\+Time\+Stepper\+::\+Predictor\+\_\+storage\+\_\+index}}, \mbox{\hyperlink{timesteppers_8h_source_l01186}{oomph\+::\+BDF$<$ NSTEPS $>$\+::\+Predictor\+\_\+weight}}, \mbox{\hyperlink{matrices_8h_source_l00498}{oomph\+::\+Dense\+Matrix$<$ T $>$\+::resize()}}, \mbox{\hyperlink{timesteppers_8h_source_l00241}{oomph\+::\+Time\+Stepper\+::\+Type}}, and \mbox{\hyperlink{timesteppers_8h_source_l00237}{oomph\+::\+Time\+Stepper\+::\+Weight}}.
+References \mbox{\hyperlink{timesteppers_8h_source_l00245}{oomph\+::\+Time\+Stepper\+::\+Adaptive\+\_\+\+Flag}}, \mbox{\hyperlink{timesteppers_8h_source_l00273}{oomph\+::\+Time\+Stepper\+::\+Predictor\+\_\+storage\+\_\+index}}, \mbox{\hyperlink{timesteppers_8h_source_l01186}{oomph\+::\+BDF$<$ NSTEPS $>$\+::\+Predictor\+\_\+weight}}, \mbox{\hyperlink{matrices_8h_source_l00498}{oomph\+::\+Dense\+Matrix$<$ T $>$\+::resize()}}, and \mbox{\hyperlink{timesteppers_8h_source_l00237}{oomph\+::\+Time\+Stepper\+::\+Weight}}.
 
 \Hypertarget{classoomph_1_1BDF_ab90066621c7160c9e8805d15f3ce6e3b}\label{classoomph_1_1BDF_ab90066621c7160c9e8805d15f3ce6e3b} 
 \index{oomph::BDF$<$ NSTEPS $>$@{oomph::BDF$<$ NSTEPS $>$}!BDF@{BDF}}
@@ -711,9 +709,9 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1TimeStepper_a2dfb949155ba43306
 
 
 
-///////////////////////////////////////////////////////////////////// 
+Assign the values of the weights. 
 
-///////////////////////////////////////////////////////////////////// Assign the values of the weights 
+
 
 Implements \mbox{\hyperlink{classoomph_1_1TimeStepper_a028fa3a8d3c6db6b0ddf580cb0468d55}{oomph\+::\+Time\+Stepper}}.
 

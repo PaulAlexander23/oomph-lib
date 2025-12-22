@@ -2,7 +2,7 @@
 \hypertarget{classoomph_1_1QTaylorHoodElement}{}\label{classoomph_1_1QTaylorHoodElement}\index{oomph::QTaylorHoodElement$<$ DIM $>$@{oomph::QTaylorHoodElement$<$ DIM $>$}}
 
 
-/////////////////////////////////////////////////////////////////////////  
+Taylor--Hood elements are Navier--Stokes elements with quadratic interpolation for velocities and positions and continuous linear pressure interpolation. They can be used within oomph-\/lib\textquotesingle{}s block-\/preconditioning framework.  
 
 
 
@@ -219,7 +219,7 @@ std\+::string \mbox{\hyperlink{classoomph_1_1NavierStokesEquations_afa71f5c316eb
 \begin{DoxyCompactList}\small\item\em Return FE interpolated pressure at local coordinate s at time level t. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} \mbox{\hyperlink{classoomph_1_1NavierStokesEquations_a3fa34303035c253c66c0f69752e5949e}{interpolated\+\_\+dudx\+\_\+nst}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{j}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return FE interpolated derivatives of velocity component u\mbox{[}i\mbox{]} w.\+r.\+t spatial global coordinate direction x\mbox{[}j\mbox{]} at local coordinate s. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1NavierStokesEquations_afd6f8376bf83a87164cd3c490270798e}{point\+\_\+output\+\_\+data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{data}})
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1NavierStokesEquations_afd6f8376bf83a87164cd3c490270798e}{point\+\_\+output\+\_\+data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&data)
 \begin{DoxyCompactList}\small\item\em Output solution in data vector at local cordinates s\+: x,y \mbox{[},z\mbox{]}, u,v,\mbox{[}w\mbox{]}, p. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1NavierStokesEquations_aeef855e50fd8d35798a723cdb6a0c74d}{get\+\_\+vorticity}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{vorticity}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Compute 2D vorticity vector at local coordinate s (return in one and only component of vorticity vector. \end{DoxyCompactList}\item 
@@ -502,8 +502,10 @@ std\+::string \mbox{\hyperlink{classoomph_1_1NavierStokesEquations_afa71f5c316eb
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{oomph\+::\+Generalised\+Element}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}}() \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a76c506edf49c5bbfe94f424ec94191ab}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
-\begin{DoxyCompactList}\small\item\em Constructor\+: Initialise all pointers and all values to zero. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a6a34bffcef1bbbc5271630042afe7ca9}{\texorpdfstring{$\sim$}{\string~}\+Generalised\+Element}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor to clean up any memory allocated by the object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1GeneralisedElement_a4e4a9177fdb093fc85c890bb86bdf655}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
+\begin{DoxyCompactList}\small\item\em Broken copy constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a180b550ae69f8bcbaae3f37f38c475ff}{operator=}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
 \begin{DoxyCompactList}\small\item\em Broken assignment operator. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Data}{Data}} \texorpdfstring{$\ast$}{*}\& \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a3b83389f2c80788013421c6d59604f0b}{internal\+\_\+data\+\_\+pt}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
@@ -842,7 +844,7 @@ template$<$$>$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1QTaylorHoodElement_ab3d269bd8d437f5cb93a309a9c64b038}{Initial\+\_\+\+Nvalue}} \mbox{[}9\mbox{]}
-\begin{DoxyCompactList}\small\item\em //////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////// \end{DoxyCompactList}\item 
+\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1QTaylorHoodElement_ad8f81289d883aa712b30503954c58e30}{Initial\+\_\+\+Nvalue}} \mbox{[}27\mbox{]}
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Static Private Attributes}
@@ -945,8 +947,6 @@ template$<$$>$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} DIM$>$\newline
 class oomph\+::\+QTaylor\+Hood\+Element$<$ DIM $>$}
-///////////////////////////////////////////////////////////////////////// 
-
 Taylor--Hood elements are Navier--Stokes elements with quadratic interpolation for velocities and positions and continuous linear pressure interpolation. They can be used within oomph-\/lib\textquotesingle{}s block-\/preconditioning framework. 
 
 Definition at line \mbox{\hyperlink{navier__stokes__elements_8h_source_l02306}{2306}} of file \mbox{\hyperlink{navier__stokes__elements_8h_source}{navier\+\_\+stokes\+\_\+elements.\+h}}.
@@ -1207,7 +1207,7 @@ Definition at line \mbox{\hyperlink{navier__stokes__elements_8cc_source_l02825}{
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l00708}{oomph\+::\+Generalised\+Element\+::eqn\+\_\+number()}}, \mbox{\hyperlink{elements_8h_source_l00730}{oomph\+::\+Generalised\+Element\+::local\+\_\+eqn\+\_\+number()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l01436}{oomph\+::\+Finite\+Element\+::nodal\+\_\+local\+\_\+eqn()}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00089}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::required\+\_\+nvalue()}}, and \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}.
+References \mbox{\hyperlink{elements_8h_source_l00691}{oomph\+::\+Generalised\+Element\+::eqn\+\_\+number()}}, \mbox{\hyperlink{elements_8h_source_l00713}{oomph\+::\+Generalised\+Element\+::local\+\_\+eqn\+\_\+number()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l01436}{oomph\+::\+Finite\+Element\+::nodal\+\_\+local\+\_\+eqn()}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00089}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::required\+\_\+nvalue()}}, and \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}.
 
 \Hypertarget{classoomph_1_1QTaylorHoodElement_af14ad75ea276ed120e620646f48dcc0c}\label{classoomph_1_1QTaylorHoodElement_af14ad75ea276ed120e620646f48dcc0c} 
 \index{oomph::QTaylorHoodElement$<$ DIM $>$@{oomph::QTaylorHoodElement$<$ DIM $>$}!identify\_load\_data@{identify\_load\_data}}
@@ -1288,10 +1288,6 @@ Definition at line \mbox{\hyperlink{navier__stokes__elements_8cc_source_l02744}{
 \index{Initial\_Nvalue@{Initial\_Nvalue}!oomph::QTaylorHoodElement$<$ DIM $>$@{oomph::QTaylorHoodElement$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{Initial\_Nvalue()}{Initial\_Nvalue()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1QTaylorHoodElement}{oomph\+::\+QTaylor\+Hood\+Element}}$<$ 2 $>$\+::\+Initial\+\_\+\+Nvalue\hspace{0.3cm}{\ttfamily [private]}}
-
-
-
-//////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////// 
 
 
 

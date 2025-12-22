@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -671,7 +665,7 @@
 <div class="line"><a id="l00535" name="l00535"></a><span class="lineno">  535</span> </div>
 <div class="line"><a id="l00536" name="l00536"></a><span class="lineno">  536</span>  <span class="comment">// Open trace file</span></div>
 <div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span>  <span class="keywordtype">char</span> filename[100];</div>
-<div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span>  sprintf(filename,<span class="stringliteral">&quot;RESLT/trace.dat&quot;</span>);</div>
+<div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span>  snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;RESLT/trace.dat&quot;</span>);</div>
 <div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span>  <a class="code hl_variable" href="classPoissonProblem.html#a97e7fec0921ca588c6701b56ccf68474">Trace_file</a>.open(filename);</div>
 <div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span> </div>
 <div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span>  <span class="comment">// Setup equation numbering scheme</span></div>
@@ -700,14 +694,14 @@
 <div class="line"><a id="l00562" name="l00562"></a><span class="lineno">  562</span> </div>
 <div class="line"><a id="l00563" name="l00563"></a><span class="lineno">  563</span>  <span class="comment">// Output boundaries</span></div>
 <div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span>  <span class="comment">//------------------</span></div>
-<div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span>  sprintf(filename,<span class="stringliteral">&quot;%s/boundaries.dat&quot;</span>,doc_info.directory().c_str());</div>
+<div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span>  snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/boundaries.dat&quot;</span>,doc_info.directory().c_str());</div>
 <div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span>  some_file.open(filename);</div>
 <div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span>  mesh_pt()-&gt;output_boundaries(some_file);</div>
 <div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span>  some_file.close();</div>
 <div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span> </div>
 <div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span>  <span class="comment">// Output solution</span></div>
 <div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span>  <span class="comment">//----------------</span></div>
-<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span>  sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span>  snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span>      doc_info.number());</div>
 <div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span>  some_file.open(filename);</div>
 <div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span>  mesh_pt()-&gt;output(some_file,npts);</div>
@@ -716,7 +710,7 @@
 <div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span> </div>
 <div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span>  <span class="comment">// Output exact solution</span></div>
 <div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span>  <span class="comment">//----------------------</span></div>
-<div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span>  sprintf(filename,<span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span>  snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span>      doc_info.number());</div>
 <div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span>  some_file.open(filename);</div>
 <div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span>  mesh_pt()-&gt;output_fct(some_file,npts,<a class="code hl_function" href="namespaceTanhSolnForPoisson.html#af7896e9c18ce6438c73ae2a875e8b7de">TanhSolnForPoisson::get_exact_u</a>);</div>
@@ -726,7 +720,7 @@
 <div class="line"><a id="l00588" name="l00588"></a><span class="lineno">  588</span>  <span class="comment">// Doc error</span></div>
 <div class="line"><a id="l00589" name="l00589"></a><span class="lineno">  589</span>  <span class="comment">//----------</span></div>
 <div class="line"><a id="l00590" name="l00590"></a><span class="lineno">  590</span>  <span class="keywordtype">double</span> error,norm;</div>
-<div class="line"><a id="l00591" name="l00591"></a><span class="lineno">  591</span>  sprintf(filename,<span class="stringliteral">&quot;%s/error%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00591" name="l00591"></a><span class="lineno">  591</span>  snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/error%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00592" name="l00592"></a><span class="lineno">  592</span>      doc_info.number());</div>
 <div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span>  some_file.open(filename);</div>
 <div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span>  mesh_pt()-&gt;compute_error(some_file,<a class="code hl_function" href="namespaceTanhSolnForPoisson.html#af7896e9c18ce6438c73ae2a875e8b7de">TanhSolnForPoisson::get_exact_u</a>,</div>
@@ -873,7 +867,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 13:59:02
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:37:00
         </div>
       </div>
     </footer>

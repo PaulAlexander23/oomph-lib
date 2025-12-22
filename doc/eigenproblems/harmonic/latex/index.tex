@@ -79,27 +79,25 @@ Once again, to avoid reinitialisation in multi-\/physics problems, the helper fu
 
 \end{DoxyCode}
  is used and this will be overloaded in our custom elements below.\hypertarget{index_equations}{}\doxysubsection{\texorpdfstring{Creating the elements}{Creating the elements}}\label{index_equations}
-For generality, we implement the mathematics to assemble contributions to the Jacobian and mass matrices defined in equations (6) in the class {\ttfamily Harmonic\+Equations} that inherits from {\ttfamily Finite\+Element}. This construction mirrors that in our standard equation classes and allows a clean separation between the equations and the choice of basis function.
+For generality, we implement the mathematics to assemble contributions to the Jacobian and mass matrices defined in equations (6) in the class {\ttfamily \doxylink{classHarmonicEquations}{Harmonic\+Equations}} that inherits from {\ttfamily Finite\+Element}. This construction mirrors that in our standard equation classes and allows a clean separation between the equations and the choice of basis function.
 
  
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{///\ A\ class\ for\ all\ elements\ that\ solve\ the\ simple\ one-\/dimensional}}
 \DoxyCodeLine{\textcolor{comment}{///\ eigenvalue\ problem}\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{///\ \(\backslash\)f[\ }}
-\DoxyCodeLine{\textcolor{comment}{///\ \(\backslash\)frac\{\(\backslash\)partial\string^2\ u\}\{\(\backslash\)partial\ x\_i\string^2\}\ \ +\ \(\backslash\)lambda\ u\ =\ 0}}
-\DoxyCodeLine{\textcolor{comment}{///\ \(\backslash\)f]\ }}
+\DoxyCodeLine{\textcolor{comment}{///\ \(\backslash\)f[\ \(\backslash\)frac\{\(\backslash\)partial\string^2\ u\}\{\(\backslash\)partial\ x\_i\string^2\}\ \ +\ \(\backslash\)lambda\ u\ =\ 0\ \(\backslash\)f]}}
 \DoxyCodeLine{\textcolor{comment}{///\ These\ elements\ are\ very\ closely\ related\ to\ the\ Poisson}}
 \DoxyCodeLine{\textcolor{comment}{///\ elements\ and\ could\ inherit\ from\ them.\ They\ are\ here\ developed}}
 \DoxyCodeLine{\textcolor{comment}{///\ from\ scratch\ for\ pedagogical\ purposes.}}
 \DoxyCodeLine{\textcolor{comment}{///\ This\ class\ \ contains\ the\ generic\ maths.\ Shape\ functions,\ geometric}}
 \DoxyCodeLine{\textcolor{comment}{///\ mapping\ etc.\ must\ get\ implemented\ in\ derived\ class.}}
 \DoxyCodeLine{\textcolor{comment}{}\textcolor{comment}{//================================================================}}
-\DoxyCodeLine{\textcolor{keyword}{class\ }HarmonicEquations\ :\ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ FiniteElement}
+\DoxyCodeLine{\textcolor{keyword}{class\ }\mbox{\hyperlink{classHarmonicEquations}{HarmonicEquations}}\ :\ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ FiniteElement}
 \DoxyCodeLine{\{}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keyword}{public}:\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{\ ///\ Empty\ Constructor}}
-\DoxyCodeLine{\textcolor{comment}{}\ HarmonicEquations()\ \{\}}
+\DoxyCodeLine{\textcolor{comment}{}\ \mbox{\hyperlink{classHarmonicEquations_a288d1c0777b2cf5360e1310d48f8c217}{HarmonicEquations}}()\ \{\}}
 
 \end{DoxyCodeInclude}
  The unknowns that represent the discretised eigenfunction are assumed to be stored at the nodes.
@@ -175,20 +173,20 @@ For generality, we implement the mathematics to assemble contributions to the Ja
 \end{DoxyCodeInclude}
 
 
-The shape functions are specified in the {\ttfamily \doxylink{classQHarmonicElement}{QHarmonic\+Element}} class that inherits from our standard one-\/dimensional Lagrange elements {\ttfamily QElement$<$1,\+NNODE\+\_\+1\+D$>$} as well as {\ttfamily Harmonic\+Equations}. The number of unknowns (one) is specified and the output functions and shape functions are overloaded as required\+: the output functions are specified in the {\ttfamily Harmonic\+Equations} class, whereas the shape functions are provided by the {\ttfamily QElement$<$1,\+NNODE\+\_\+1\+D$>$} class.
+The shape functions are specified in the {\ttfamily \doxylink{classQHarmonicElement}{QHarmonic\+Element}} class that inherits from our standard one-\/dimensional Lagrange elements {\ttfamily QElement$<$1,\+NNODE\+\_\+1\+D$>$} as well as {\ttfamily \doxylink{classHarmonicEquations}{Harmonic\+Equations}}. The number of unknowns (one) is specified and the output functions and shape functions are overloaded as required\+: the output functions are specified in the {\ttfamily \doxylink{classHarmonicEquations}{Harmonic\+Equations}} class, whereas the shape functions are provided by the {\ttfamily QElement$<$1,\+NNODE\+\_\+1\+D$>$} class.
 
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{keyword}{template}\ <\textcolor{keywordtype}{unsigned}\ NNODE\_1D>}
 \DoxyCodeLine{\textcolor{keyword}{class\ }\mbox{\hyperlink{classQHarmonicElement}{QHarmonicElement}}\ :\ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ QElement<1,NNODE\_1D>,\ }
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ HarmonicEquations}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classHarmonicEquations}{HarmonicEquations}}}
 \DoxyCodeLine{\{}
 \DoxyCodeLine{\ }
 \DoxyCodeLine{\ \ \textcolor{keyword}{public}:}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{\ ///\ Constructor:\ Call\ constructors\ for\ QElement\ and\ }}
 \DoxyCodeLine{\textcolor{comment}{\ ///\ Poisson\ equations}}
-\DoxyCodeLine{\textcolor{comment}{}\ \mbox{\hyperlink{classQHarmonicElement_a0e7480a0064b51e87ba197551bb10373}{QHarmonicElement}}()\ :\ QElement<1,NNODE\_1D>(),\ HarmonicEquations()\ \{\}}
+\DoxyCodeLine{\textcolor{comment}{}\ \mbox{\hyperlink{classQHarmonicElement_a0e7480a0064b51e87ba197551bb10373}{QHarmonicElement}}()\ :\ QElement<1,NNODE\_1D>(),\ \mbox{\hyperlink{classHarmonicEquations}{HarmonicEquations}}()\ \{\}}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{\ ///\ \ Required\ \ \#\ of\ \`{}values'\ (pinned\ or\ dofs)\ }}
 \DoxyCodeLine{\textcolor{comment}{\ ///\ at\ node\ n}}
@@ -196,11 +194,11 @@ The shape functions are specified in the {\ttfamily \doxylink{classQHarmonicElem
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{\ ///\ Output\ function\ overloaded\ from\ HarmonicEquations}}
 \DoxyCodeLine{\textcolor{comment}{}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classQHarmonicElement_a8b38012f3d62ef419c359f5e545e5f85}{output}}(ostream\ \&outfile)\ }
-\DoxyCodeLine{\ \ \{HarmonicEquations::output(outfile);\}}
+\DoxyCodeLine{\ \ \{\mbox{\hyperlink{classHarmonicEquations_abe34292042ce1394f8979618ee10f354}{HarmonicEquations::output}}(outfile);\}}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{\ ///\ \ Output\ function\ overloaded\ from\ HarmonicEquations}}
 \DoxyCodeLine{\textcolor{comment}{}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classQHarmonicElement_a8b38012f3d62ef419c359f5e545e5f85}{output}}(ostream\ \&outfile,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \&Nplot)\ }
-\DoxyCodeLine{\ \ \{HarmonicEquations::output(outfile,Nplot);\}}
+\DoxyCodeLine{\ \ \{\mbox{\hyperlink{classHarmonicEquations_abe34292042ce1394f8979618ee10f354}{HarmonicEquations::output}}(outfile,Nplot);\}}
 \DoxyCodeLine{}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keyword}{protected}:}
@@ -407,7 +405,7 @@ Finally, the sorted eigenvalues are reported and also saved to a file.
 \DoxyCodeLine{\ this-\/>\mbox{\hyperlink{classHarmonicProblem_a95e94f87cf4f63e332c09bd9f1bbae7c}{doc\_solution}}(label);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{keywordtype}{char}\ filename[100];}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}eigenvalues\%i.dat"{}},label);}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}eigenvalues\%i.dat"{}},label);}
 \DoxyCodeLine{\ }
 \DoxyCodeLine{\ \textcolor{comment}{//Open\ an\ output\ file\ for\ the\ sorted\ eigenvalues}}
 \DoxyCodeLine{\ ofstream\ evalues(filename);}
@@ -448,4 +446,4 @@ Finally, the sorted eigenvalues are reported and also saved to a file.
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

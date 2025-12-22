@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -350,13 +350,13 @@
 \DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00346}00346\ \ \textcolor{keywordtype}{unsigned}\ npts=5;\ }
 \DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00347}00347\ }
 \DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00348}00348\ \ \textcolor{comment}{//\ Output\ solution\ }}
-\DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00349}00349\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00349}00349\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00350}00350\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00351}00351\ \ Bulk\_mesh\_pt-\/>output(some\_file,npts);}
 \DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00352}00352\ \ some\_file.close();}
 \DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00353}00353\ }
 \DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00354}00354\ \ \textcolor{comment}{//\ Output\ exact\ solution\ }}
-\DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00355}00355\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/exact\_soln.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00355}00355\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/exact\_soln.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00356}00356\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00357}00357\ \ Bulk\_mesh\_pt-\/>output\_fct(some\_file,npts,}
 \DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00358}00358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceGlobal__Parameters_a6e53a9e4370e8719e9091eff6b6a0c01}{Global\_Parameters::exact\_solution}});\ }
@@ -365,7 +365,7 @@
 \DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00361}00361\ \ \textcolor{comment}{//\ Doc\ error}}
 \DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00362}00362\ \ \textcolor{keywordtype}{double}\ error=0.0;}
 \DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00363}00363\ \ \textcolor{keywordtype}{double}\ norm=0.0;}
-\DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00364}00364\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/error.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00364}00364\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/error.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00365}00365\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00366}00366\ \ Bulk\_mesh\_pt-\/>compute\_error(some\_file,}
 \DoxyCodeLine{\Hypertarget{refineable__periodic__load_8cc_source_l00367}00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceGlobal__Parameters_a6e53a9e4370e8719e9091eff6b6a0c01}{Global\_Parameters::exact\_solution}},\ }

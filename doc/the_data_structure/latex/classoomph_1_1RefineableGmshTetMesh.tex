@@ -2,12 +2,7 @@
 \hypertarget{classoomph_1_1RefineableGmshTetMesh}{}\label{classoomph_1_1RefineableGmshTetMesh}\index{oomph::RefineableGmshTetMesh$<$ ELEMENT $>$@{oomph::RefineableGmshTetMesh$<$ ELEMENT $>$}}
 
 
-/////////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////////  
-
-
-
-
-{\ttfamily \#include $<$gmsh\+\_\+tet\+\_\+mesh.\+template.\+h$>$}
+{\ttfamily \#include $<$gmsh\+\_\+tet\+\_\+mesh.\+h$>$}
 
 Inheritance diagram for oomph\+::Refineable\+Gmsh\+Tet\+Mesh\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
 \begin{center}
@@ -62,6 +57,10 @@ Inheritance diagram for oomph\+::Refineable\+Gmsh\+Tet\+Mesh\texorpdfstring{$<$}
 \begin{DoxyCompactList}\small\item\em Return pointer to the e-\/th element adjacent to boundary b in region r. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{int}} \mbox{\hyperlink{classoomph_1_1TetMeshBase_a1efd6c45576e53e0f8c0ccc9c388800c}{face\+\_\+index\+\_\+at\+\_\+boundary\+\_\+in\+\_\+region}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&b, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{r}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_a37cd013acc76697829c324bdd8562d82}{e}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return face index of the e-\/th element adjacent to boundary b in region r. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1TetMeshBase_ab740b7f7e7bd7672d40ae57e2172c12d}{add\+\_\+element\+\_\+in\+\_\+region\+\_\+pt}} (\mbox{\hyperlink{classoomph_1_1FiniteElement}{Finite\+Element}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{elem\+\_\+pt}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{region\+\_\+id}})
+\begin{DoxyCompactList}\small\item\em Add an element to a particular region; this helper checks if the specified element and region ID already exist, so can be used to move an existing element to an existing region, to add an existing element to a new region, or to add a new element to a new region. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1TetMeshBase_ad4b7631fb804a634726484f5f2fbec9d}{regenerate\+\_\+region\+\_\+boundary\+\_\+lookups}} ()
+\begin{DoxyCompactList}\small\item\em Clear and regenerate the lookup schemes for bulk elements and their corresponding face indices which are adjacent to mesh boundaries. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TetMeshBase_a3d4d45ac64c6ee59cadf3a08d62a76f2}{nregion}} ()
 \begin{DoxyCompactList}\small\item\em Return the number of regions specified by attributes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TetMeshBase_afe7b2d58a656feafd5ae725139aeb517}{nregion\+\_\+element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{r}})
@@ -143,6 +142,10 @@ Inheritance diagram for oomph\+::Refineable\+Gmsh\+Tet\+Mesh\texorpdfstring{$<$}
 \begin{DoxyCompactList}\small\item\em Replace existing boundary node lookup schemes with new schemes created using the boundary data stored in the nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1Mesh_ad1b124a959628aba00162b89617b3a62}{boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Indicate whether the i-\/th boundary has an intrinsic coordinate. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_ab137d0c0debf5ba0d6ea6990103e620c}{set\+\_\+boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be existing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_a3b9d63e0057ed721190b109f48f7c92e}{set\+\_\+boundary\+\_\+coordinate\+\_\+does\+\_\+not\+\_\+exist}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be non-\/existing. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_af01dfefb66c15579b540be62999d93ee}{nelement}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return number of elements in the mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
@@ -623,9 +626,7 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_aca12acfe655a4d5c4a4eab4a7b970812}{Element\+\_\+pt}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a412a5051be9e81f0ba61bf85e5abc4a6}{Boundary\+\_\+coordinate\+\_\+exists}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of boolean data that indicates whether the boundary coordinates have been set for the boundary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classoomph_1_1RefineableMeshBase}{oomph\+::\+Refineable\+Mesh\+Base}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -660,9 +661,9 @@ std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionEleme
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{class}} ELEMENT$>$\newline
 class oomph\+::\+Refineable\+Gmsh\+Tet\+Mesh$<$ ELEMENT $>$}
-/////////////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////// 
 
-Definition at line \mbox{\hyperlink{gmsh__tet__mesh_8template_8h_source_l02283}{2283}} of file \mbox{\hyperlink{gmsh__tet__mesh_8template_8h_source}{gmsh\+\_\+tet\+\_\+mesh.\+template.\+h}}.
+
+Definition at line \mbox{\hyperlink{gmsh__tet__mesh_8h_source_l02242}{2242}} of file \mbox{\hyperlink{gmsh__tet__mesh_8h_source}{gmsh\+\_\+tet\+\_\+mesh.\+h}}.
 
 
 
@@ -680,11 +681,11 @@ Constructor. If boolean is set to true, the target element sizes are read from f
 
 
 
-Definition at line \mbox{\hyperlink{gmsh__tet__mesh_8template_8h_source_l02290}{2290}} of file \mbox{\hyperlink{gmsh__tet__mesh_8template_8h_source}{gmsh\+\_\+tet\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{gmsh__tet__mesh_8h_source_l02249}{2249}} of file \mbox{\hyperlink{gmsh__tet__mesh_8h_source}{gmsh\+\_\+tet\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{gmsh__tet__mesh_8template_8h_source_l02337}{oomph\+::\+Refineable\+Gmsh\+Tet\+Mesh$<$ ELEMENT $>$\+::initialise\+\_\+adaptation\+\_\+data()}}.
+References \mbox{\hyperlink{gmsh__tet__mesh_8h_source_l02294}{oomph\+::\+Refineable\+Gmsh\+Tet\+Mesh$<$ ELEMENT $>$\+::initialise\+\_\+adaptation\+\_\+data()}}.
 
 \Hypertarget{classoomph_1_1RefineableGmshTetMesh_ac2e041133fd618679af2594465ee4758}\label{classoomph_1_1RefineableGmshTetMesh_ac2e041133fd618679af2594465ee4758} 
 \index{oomph::RefineableGmshTetMesh$<$ ELEMENT $>$@{oomph::RefineableGmshTetMesh$<$ ELEMENT $>$}!RefineableGmshTetMesh@{RefineableGmshTetMesh}}
@@ -699,11 +700,11 @@ Constructor.
 
 
 
-Definition at line \mbox{\hyperlink{gmsh__tet__mesh_8template_8h_source_l02301}{2301}} of file \mbox{\hyperlink{gmsh__tet__mesh_8template_8h_source}{gmsh\+\_\+tet\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{gmsh__tet__mesh_8h_source_l02260}{2260}} of file \mbox{\hyperlink{gmsh__tet__mesh_8h_source}{gmsh\+\_\+tet\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{gmsh__tet__mesh_8template_8h_source_l02337}{oomph\+::\+Refineable\+Gmsh\+Tet\+Mesh$<$ ELEMENT $>$\+::initialise\+\_\+adaptation\+\_\+data()}}.
+References \mbox{\hyperlink{gmsh__tet__mesh_8h_source_l02294}{oomph\+::\+Refineable\+Gmsh\+Tet\+Mesh$<$ ELEMENT $>$\+::initialise\+\_\+adaptation\+\_\+data()}}.
 
 
 
@@ -729,7 +730,7 @@ Definition at line \mbox{\hyperlink{gmsh__tet__mesh_8template_8cc_source_l00040}
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l01323}{oomph\+::\+Finite\+Element\+::\+Node\+\_\+pt}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{nodes_8cc_source_l02167}{oomph\+::\+Node\+::resize()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01295}{oomph\+::\+Timing\+Helpers\+::timer()}}, and \mbox{\hyperlink{oomph__utilities_8h_source_l00189}{oomph\+::\+String\+Conversion\+::to\+\_\+string()}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l01323}{oomph\+::\+Finite\+Element\+::\+Node\+\_\+pt}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{nodes_8cc_source_l02167}{oomph\+::\+Node\+::resize()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01303}{oomph\+::\+Timing\+Helpers\+::timer()}}, and \mbox{\hyperlink{oomph__utilities_8h_source_l00199}{oomph\+::\+String\+Conversion\+::to\+\_\+string()}}.
 
 \Hypertarget{classoomph_1_1RefineableGmshTetMesh_aea1e1c26bb8772231ce5b2b8d915f764}\label{classoomph_1_1RefineableGmshTetMesh_aea1e1c26bb8772231ce5b2b8d915f764} 
 \index{oomph::RefineableGmshTetMesh$<$ ELEMENT $>$@{oomph::RefineableGmshTetMesh$<$ ELEMENT $>$}!initialise\_adaptation\_data@{initialise\_adaptation\_data}}
@@ -744,15 +745,15 @@ Helper function to initialise data associated with adaptation.
 
 
 
-Definition at line \mbox{\hyperlink{gmsh__tet__mesh_8template_8h_source_l02337}{2337}} of file \mbox{\hyperlink{gmsh__tet__mesh_8template_8h_source}{gmsh\+\_\+tet\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{gmsh__tet__mesh_8h_source_l02294}{2294}} of file \mbox{\hyperlink{gmsh__tet__mesh_8h_source}{gmsh\+\_\+tet\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{gmsh__tet__mesh_8template_8h_source_l01787}{oomph\+::\+Gmsh\+Tet\+Mesh$<$ ELEMENT $>$\+::\+Gmsh\+\_\+parameters\+\_\+pt}}, \mbox{\hyperlink{refineable__mesh_8h_source_l01046}{oomph\+::\+Refineable\+Tet\+Mesh\+Base\+::\+Max\+\_\+element\+\_\+size}}, \mbox{\hyperlink{gmsh__tet__mesh_8template_8h_source_l00117}{oomph\+::\+Gmsh\+Parameters\+::max\+\_\+element\+\_\+size()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l01052}{oomph\+::\+Refineable\+Tet\+Mesh\+Base\+::\+Max\+\_\+permitted\+\_\+edge\+\_\+ratio}}, \mbox{\hyperlink{gmsh__tet__mesh_8template_8h_source_l00129}{oomph\+::\+Gmsh\+Parameters\+::max\+\_\+permitted\+\_\+edge\+\_\+ratio()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l01049}{oomph\+::\+Refineable\+Tet\+Mesh\+Base\+::\+Min\+\_\+element\+\_\+size}}, and \mbox{\hyperlink{gmsh__tet__mesh_8template_8h_source_l00123}{oomph\+::\+Gmsh\+Parameters\+::min\+\_\+element\+\_\+size()}}.
+References \mbox{\hyperlink{gmsh__tet__mesh_8h_source_l01751}{oomph\+::\+Gmsh\+Tet\+Mesh$<$ ELEMENT $>$\+::\+Gmsh\+\_\+parameters\+\_\+pt}}, \mbox{\hyperlink{refineable__mesh_8h_source_l01046}{oomph\+::\+Refineable\+Tet\+Mesh\+Base\+::\+Max\+\_\+element\+\_\+size}}, \mbox{\hyperlink{gmsh__tet__mesh_8h_source_l00116}{oomph\+::\+Gmsh\+Parameters\+::max\+\_\+element\+\_\+size()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l01052}{oomph\+::\+Refineable\+Tet\+Mesh\+Base\+::\+Max\+\_\+permitted\+\_\+edge\+\_\+ratio}}, \mbox{\hyperlink{gmsh__tet__mesh_8h_source_l00128}{oomph\+::\+Gmsh\+Parameters\+::max\+\_\+permitted\+\_\+edge\+\_\+ratio()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l01049}{oomph\+::\+Refineable\+Tet\+Mesh\+Base\+::\+Min\+\_\+element\+\_\+size}}, and \mbox{\hyperlink{gmsh__tet__mesh_8h_source_l00122}{oomph\+::\+Gmsh\+Parameters\+::min\+\_\+element\+\_\+size()}}.
 
 
 
-Referenced by \mbox{\hyperlink{gmsh__tet__mesh_8template_8h_source_l02290}{oomph\+::\+Refineable\+Gmsh\+Tet\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Gmsh\+Tet\+Mesh()}}, and \mbox{\hyperlink{gmsh__tet__mesh_8template_8h_source_l02301}{oomph\+::\+Refineable\+Gmsh\+Tet\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Gmsh\+Tet\+Mesh()}}.
+Referenced by \mbox{\hyperlink{gmsh__tet__mesh_8h_source_l02249}{oomph\+::\+Refineable\+Gmsh\+Tet\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Gmsh\+Tet\+Mesh()}}, and \mbox{\hyperlink{gmsh__tet__mesh_8h_source_l02260}{oomph\+::\+Refineable\+Gmsh\+Tet\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Gmsh\+Tet\+Mesh()}}.
 
 \Hypertarget{classoomph_1_1RefineableGmshTetMesh_a8d71e18a1181d79c475217cfab320674}\label{classoomph_1_1RefineableGmshTetMesh_a8d71e18a1181d79c475217cfab320674} 
 \index{oomph::RefineableGmshTetMesh$<$ ELEMENT $>$@{oomph::RefineableGmshTetMesh$<$ ELEMENT $>$}!refine\_uniformly@{refine\_uniformly}}
@@ -771,7 +772,7 @@ Implements \mbox{\hyperlink{classoomph_1_1RefineableMeshBase_afe5810e718ce1939f3
 
 
 
-Definition at line \mbox{\hyperlink{gmsh__tet__mesh_8template_8h_source_l02326}{2326}} of file \mbox{\hyperlink{gmsh__tet__mesh_8template_8h_source}{gmsh\+\_\+tet\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{gmsh__tet__mesh_8h_source_l02284}{2284}} of file \mbox{\hyperlink{gmsh__tet__mesh_8h_source}{gmsh\+\_\+tet\+\_\+mesh.\+h}}.
 
 \Hypertarget{classoomph_1_1RefineableGmshTetMesh_aa243fd14b5f168f541e5451766a9f68d}\label{classoomph_1_1RefineableGmshTetMesh_aa243fd14b5f168f541e5451766a9f68d} 
 \index{oomph::RefineableGmshTetMesh$<$ ELEMENT $>$@{oomph::RefineableGmshTetMesh$<$ ELEMENT $>$}!unrefine\_uniformly@{unrefine\_uniformly}}
@@ -790,11 +791,11 @@ Implements \mbox{\hyperlink{classoomph_1_1RefineableMeshBase_a5bbd5c85e7c5c9e75c
 
 
 
-Definition at line \mbox{\hyperlink{gmsh__tet__mesh_8template_8h_source_l02317}{2317}} of file \mbox{\hyperlink{gmsh__tet__mesh_8template_8h_source}{gmsh\+\_\+tet\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{gmsh__tet__mesh_8h_source_l02275}{2275}} of file \mbox{\hyperlink{gmsh__tet__mesh_8h_source}{gmsh\+\_\+tet\+\_\+mesh.\+h}}.
 
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{gmsh__tet__mesh_8template_8h}{gmsh\+\_\+tet\+\_\+mesh.\+template.\+h}}\item 
+\mbox{\hyperlink{gmsh__tet__mesh_8h}{gmsh\+\_\+tet\+\_\+mesh.\+h}}\item 
 \mbox{\hyperlink{gmsh__tet__mesh_8template_8cc}{gmsh\+\_\+tet\+\_\+mesh.\+template.\+cc}}\end{DoxyCompactItemize}

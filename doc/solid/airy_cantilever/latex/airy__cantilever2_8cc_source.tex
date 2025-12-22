@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -143,9 +143,9 @@
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00139}00139\ }
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00140}00140\ }
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00141}00141\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00142}00142\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00143}00143\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00144}00144\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00142}00142\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00143}00143\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00144}00144\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00145}00145\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00146}00146\ }
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00147}00147\ }
@@ -577,7 +577,7 @@
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00573}00573\ }
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00574}00574\ \ \textcolor{comment}{//\ Output\ shape\ of\ and\ stress\ in\ deformed\ body}}
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00575}00575\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00576}00576\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00576}00576\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00577}00577\ \ \ \ \ \ \ \ \ \ Doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00578}00578\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00579}00579\ \ solid\_mesh\_pt()-\/>output(some\_file,n\_plot);}
@@ -586,7 +586,7 @@
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00582}00582\ }
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00583}00583\ \ \textcolor{comment}{//\ Output\ St.\ Venant\ solution}}
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00584}00584\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00585}00585\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00585}00585\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00586}00586\ \ \ \ \ \ \ \ \ \ Doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00587}00587\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00588}00588\ }
@@ -684,16 +684,16 @@
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00680}00680\ \ \textcolor{keywordtype}{char}\ dirname[100];\ \ \ }
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00681}00681\ }
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00682}00682\ \textcolor{preprocessor}{\#ifdef\ REFINE}}
-\DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00683}00683\ \ sprintf(dirname,\textcolor{stringliteral}{"{}RESLT\_refine\%i"{}},i\_case);}
+\DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00683}00683\ \ snprintf(dirname,\ \textcolor{keyword}{sizeof}(dirname),\ \textcolor{stringliteral}{"{}RESLT\_refine\%i"{}},i\_case);}
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00684}00684\ \textcolor{preprocessor}{\#else}}
-\DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00685}00685\ \ sprintf(dirname,\textcolor{stringliteral}{"{}RESLT\_norefine\%i"{}},i\_case);}
+\DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00685}00685\ \ snprintf(dirname,\ \textcolor{keyword}{sizeof}(dirname),\ \textcolor{stringliteral}{"{}RESLT\_norefine\%i"{}},i\_case);}
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00686}00686\ \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00687}00687\ }
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00688}00688\ \ Doc\_info.set\_directory(dirname);}
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00689}00689\ }
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00690}00690\ \ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00691}00691\ \ \textcolor{keywordtype}{char}\ filename[100];\ \ \ }
-\DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00692}00692\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},Doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00692}00692\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},Doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00693}00693\ \ Trace\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00694}00694\ }
 \DoxyCodeLine{\Hypertarget{airy__cantilever2_8cc_source_l00695}00695\ }

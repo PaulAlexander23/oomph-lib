@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -133,7 +127,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>//////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////  
+<p>Class defining a closed polygon for the Triangle mesh generation.  
  <a href="classoomph_1_1TriangleMeshPolygon.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html">unstructured_two_d_mesh_geometry_base.h</a>&gt;</code></p>
@@ -145,8 +139,8 @@ $(function() {
  <div class="center">
   <img src="classoomph_1_1TriangleMeshPolygon.png" usemap="#oomph::TriangleMeshPolygon_map" alt=""/>
   <map id="oomph::TriangleMeshPolygon_map" name="oomph::TriangleMeshPolygon_map">
-<area href="classoomph_1_1TriangleMeshClosedCurve.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////..." alt="oomph::TriangleMeshClosedCurve" shape="rect" coords="0,56,288,80"/>
-<area href="classoomph_1_1TriangleMeshCurve.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////..." alt="oomph::TriangleMeshCurve" shape="rect" coords="0,0,288,24"/>
+<area href="classoomph_1_1TriangleMeshClosedCurve.html" title="Base class defining a closed curve for the Triangle mesh generation." alt="oomph::TriangleMeshClosedCurve" shape="rect" coords="0,56,288,80"/>
+<area href="classoomph_1_1TriangleMeshCurve.html" title="closed curves and open curves. All TriangleMeshCurves are composed of a Vector of TriangleMeshCurveSe..." alt="oomph::TriangleMeshCurve" shape="rect" coords="0,0,288,24"/>
 <area href="classoomph_1_1ImmersedRigidBodyTriangleMeshPolygon.html" title="Class upgrading a TriangleMeshPolygon to a &quot;hole&quot; for use during triangle mesh generation...." alt="oomph::ImmersedRigidBodyTriangleMeshPolygon" shape="rect" coords="0,168,288,192"/>
   </map>
 </div></div>
@@ -297,8 +291,7 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a7f79fb03756524e23c8cc717c7c66f75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>//////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////// </p>
-<p>Class defining a closed polygon for the Triangle mesh generation </p>
+<div class="textblock"><p>Class defining a closed polygon for the Triangle mesh generation. </p>
 
 <p class="definition">Definition at line <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html#l01450">1450</a> of file <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html">unstructured_two_d_mesh_geometry_base.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -335,8 +328,6 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constructor: Specify vector of pointers to <a class="el" href="classoomph_1_1TriangleMeshCurveSection.html" title="Base class for defining a triangle mesh boundary, this class has the methods that allow to connect th...">TriangleMeshCurveSection</a> that define the boundary of the segments of the polygon. Each <a class="el" href="classoomph_1_1TriangleMeshCurveSection.html" title="Base class for defining a triangle mesh boundary, this class has the methods that allow to connect th...">TriangleMeshCurveSection</a> has its own boundary ID and can contain multiple (straight-line) segments. For consistency across the various uses of this class, we insist that the closed boundary is represented by at least two separate <a class="el" href="classoomph_1_1TriangleMeshCurveSection.html" title="Base class for defining a triangle mesh boundary, this class has the methods that allow to connect th...">TriangleMeshCurveSection</a> whose joint vertices must be specified in both. (This is to allow the setup of unique boundary coordinate(s) around the polygon.) This may seem slightly annoying in cases where a polygon really only represents a single boundary, but... Note: The specified vector of pointers must consist of only <a class="el" href="classoomph_1_1TriangleMeshPolyLine.html" title="Class defining a polyline for use in Triangle Mesh generation.">TriangleMeshPolyLine</a> elements. There is a checking on the PARANOID mode for this constraint. </p>
-<p>////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////</p>
-<p>Constructor: Specify vector of pointers to <a class="el" href="classoomph_1_1TriangleMeshCurveSection.html" title="Base class for defining a triangle mesh boundary, this class has the methods that allow to connect th...">TriangleMeshCurveSection</a> that define the boundary of the segments of the polygon. Each <a class="el" href="classoomph_1_1TriangleMeshCurveSection.html" title="Base class for defining a triangle mesh boundary, this class has the methods that allow to connect th...">TriangleMeshCurveSection</a> has its own boundary ID and can contain multiple (straight-line) segments. For consistency across the various uses of this class, we insist that the closed boundary is represented by at least two separate <a class="el" href="classoomph_1_1TriangleMeshCurveSection.html" title="Base class for defining a triangle mesh boundary, this class has the methods that allow to connect th...">TriangleMeshCurveSection</a> whose joint vertices must be specified in both. (This is to allow the setup of unique boundary coordinate(s) around the polygon.) This may seem slightly annoying in cases where a polygon really only represents a single boundary, but... Note: The specified vector of pointers must consist of only <a class="el" href="classoomph_1_1TriangleMeshPolyLine.html" title="Class defining a polyline for use in Triangle Mesh generation.">TriangleMeshPolyLine</a> elements. There is a checking on the PARANOID mode for this constraint </p>
 
 <p class="definition">Definition at line <a class="el" href="unstructured__two__d__mesh__geometry__base_8cc_source.html#l01577">1577</a> of file <a class="el" href="unstructured__two__d__mesh__geometry__base_8cc_source.html">unstructured_two_d_mesh_geometry_base.cc</a>.</p>
 
@@ -904,7 +895,7 @@ Private Attributes</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:05:56
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:43:36
         </div>
       </div>
     </footer>

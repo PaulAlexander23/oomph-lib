@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -116,62 +110,62 @@
 <div class="textblock"><p>In this document, we demonstrate how to solve a 2D Poisson problem with Neumann boundary conditions, using existing objects from the <code>oomph-lib</code> library: </p><center> <table class="doxtable">
 <tr>
 <td><center> <b>Two-dimensional model Poisson problem with Neumann boundary conditions</b> </center> Solve  <p class="formulaDsp">
-<picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \sum_{i=1}^2 \frac{\partial^2u}{\partial x_i^2} = f(x_1,x_2),
  \ \ \ \ \ \ \ \ \ \ (1)
-\]" src="form_0.png" width="170" height="38"/></picture>
+\]" src="form_0.png" width="170" height="38"/>
 </p>
- in the rectangular domain <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ D = \left\{ (x_1,x_2) \in 
-[0,1] \times [0,2]\right\} $" src="form_1.png" width="160" height="14"/></picture>. The domain boundary <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial D = \partial D_{Neumann} \cup \partial D_{Dirichlet} $" src="form_2.png" width="173" height="13"/></picture>, where <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial D_{Neumann} 
-= \left\{ (x_1,x_2) | x_1=1, \ x_2\in [0,2] \right\} $" src="form_3.png" width="235" height="14"/></picture>. On <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial D_{Dirichlet} $" src="form_4.png" width="60" height="13"/></picture> we apply the Dirichlet boundary conditions  <p class="formulaDsp">
-<picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ in the rectangular domain <img class="formulaInl" alt="$ D = \left\{ (x_1,x_2) \in 
+[0,1] \times [0,2]\right\} $" src="form_1.png" width="160" height="14"/>. The domain boundary <img class="formulaInl" alt="$ \partial D = \partial D_{Neumann} \cup \partial D_{Dirichlet} $" src="form_2.png" width="173" height="13"/>, where <img class="formulaInl" alt="$ \partial D_{Neumann} 
+= \left\{ (x_1,x_2) | x_1=1, \ x_2\in [0,2] \right\} $" src="form_3.png" width="235" height="14"/>. On <img class="formulaInl" alt="$ \partial D_{Dirichlet} $" src="form_4.png" width="60" height="13"/> we apply the Dirichlet boundary conditions  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \left. u\right|_{\partial D_{Dirichlet}}=u_0,
 \ \ \ \ \ \ \ \ \ \ (2)
-\]" src="form_5.png" width="156" height="15"/></picture>
+\]" src="form_5.png" width="156" height="15"/>
 </p>
- where the function <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ u_0 $" src="form_6.png" width="14" height="9"/></picture> is given. On <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial D_{Neumann} $" src="form_7.png" width="64" height="13"/></picture> we apply the Neumann conditions  <p class="formulaDsp">
-<picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ where the function <img class="formulaInl" alt="$ u_0 $" src="form_6.png" width="14" height="9"/> is given. On <img class="formulaInl" alt="$ \partial D_{Neumann} $" src="form_7.png" width="64" height="13"/> we apply the Neumann conditions  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \left. \frac{\partial u}{\partial n}\right|_{\partial D_{Neumann}} = 
 \left. \frac{\partial u}{\partial x_1}\right|_{\partial D_{Neumann}}
 =g_0,
 \ \ \ \ \ \ \ \ \ \ (3)
-\]" src="form_8.png" width="269" height="34"/></picture>
+\]" src="form_8.png" width="269" height="34"/>
 </p>
- where the function <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ g_0 $" src="form_9.png" width="13" height="9"/></picture> is given.   </td></tr>
+ where the function <img class="formulaInl" alt="$ g_0 $" src="form_9.png" width="13" height="9"/> is given.   </td></tr>
 </table>
 <br  />
  </center><p> <br  />
 </p>
 <p>We provide a detailed discussion of the driver code <a href="../../../../demo_drivers/poisson/two_d_poisson_flux_bc/two_d_poisson_flux_bc.cc">two_d_poisson_flux_bc.cc</a> which solves the problem for  </p><p class="formulaDsp">
-<picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 u_0(x_1,x_2) = \tanh(1-\alpha(x_1 \tan\Phi - x_2)),
 \ \ \ \ \ \ \ \ \  (4)
-\]" src="form_10.png" width="274" height="14"/></picture>
+\]" src="form_10.png" width="274" height="14"/>
 </p>
   <p class="formulaDsp">
-<picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 f(x_1,x_2) = \sum_{i=1}^2 \frac{\partial^2 u_0}{\partial x_i^2},
 \ \ \ \ \ \ \ \ \  (5)
-\]" src="form_11.png" width="171" height="38"/></picture>
+\]" src="form_11.png" width="171" height="38"/>
 </p>
 <p> and  </p><p class="formulaDsp">
-<picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 g_0 = \left. \frac{\partial u_0}{\partial n} \right|_{x_1=1}
     = \left. \frac{\partial u_0}{\partial x_1} \right|_{x_1=1},
 \ \ \ \ \ \ \ \ \  (6)
-\]" src="form_12.png" width="210" height="34"/></picture>
+\]" src="form_12.png" width="210" height="34"/>
 </p>
-<p> so that <picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ u_0(x_1,x_2) $" src="form_13.png" width="54" height="14"/></picture> is the exact solution of the problem. For large values of <picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \alpha $" src="form_14.png" width="8" height="6"/></picture> the solution approaches a step function  </p><p class="formulaDsp">
-<picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> so that <img class="formulaInl" alt="$ u_0(x_1,x_2) $" src="form_13.png" width="54" height="14"/> is the exact solution of the problem. For large values of <img class="formulaInl" alt="$ \alpha $" src="form_14.png" width="8" height="6"/> the solution approaches a step function  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 u_{step}(x_1,x_2) = \left\{
 \begin{array}{rl}
 -1 &amp; \mbox {for $x_2 &lt; x_1 \ \tan\Phi$} \\
 1 &amp; \mbox {for $x_2 &gt; x_1 \ \tan\Phi$} 
 \end{array}
  \right.
-\]" src="form_15.png" width="224" height="31"/></picture>
+\]" src="form_15.png" width="224" height="31"/>
 </p>
-<p> and presents a serious challenge for any numerical method. The figure below compares the numerical and exact solutions for <picture><source srcset="form_16_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \alpha = 1 $" src="form_16.png" width="30" height="9"/></picture> and <picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \Phi = 45^o $" src="form_17.png" width="43" height="10"/></picture>.</p>
+<p> and presents a serious challenge for any numerical method. The figure below compares the numerical and exact solutions for <img class="formulaInl" alt="$ \alpha = 1 $" src="form_16.png" width="30" height="9"/> and <img class="formulaInl" alt="$ \Phi = 45^o $" src="form_17.png" width="43" height="10"/>.</p>
 <div class="image">
 <img src="soln.gif" alt=""/>
 <div class="caption">
@@ -182,8 +176,8 @@ Plot of the solution </div></div>
  </p><hr  />
 <h1><a class="anchor" id="global"></a>
 Global parameters and functions</h1>
-<p>As in the Dirichlet problem, we define the source function (5) and the exact solution (4), together with the problem parameters <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \tan \Phi $" src="form_18.png" width="30" height="10"/></picture> and <picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \alpha $" src="form_14.png" width="8" height="6"/></picture>, in a namespace <code><a class="el" href="namespaceTanhSolnForPoisson.html" title="Namespace for exact solution for Poisson equation with &quot;sharp step&quot;.">TanhSolnForPoisson</a></code>. We add the function <code>TanhSolnForPoisson::prescribed_flux_on_fixed_x_boundary(...)</code> which computes the prescribed flux <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ g_0 $" src="form_9.png" width="13" height="9"/></picture> required in the Neumann boundary condition (3). The function evaluates <picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial u_0 /\partial n = {\bf N} \cdot \nabla u_0 $" src="form_19.png" width="100" height="14"/></picture> for the normal direction specified by the vector <picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf N} =
-(1,0)^T. $" src="form_20.png" width="68" height="15"/></picture></p>
+<p>As in the Dirichlet problem, we define the source function (5) and the exact solution (4), together with the problem parameters <img class="formulaInl" alt="$ \tan \Phi $" src="form_18.png" width="30" height="10"/> and <img class="formulaInl" alt="$ \alpha $" src="form_14.png" width="8" height="6"/>, in a namespace <code><a class="el" href="namespaceTanhSolnForPoisson.html" title="Namespace for exact solution for Poisson equation with &quot;sharp step&quot;.">TanhSolnForPoisson</a></code>. We add the function <code>TanhSolnForPoisson::prescribed_flux_on_fixed_x_boundary(...)</code> which computes the prescribed flux <img class="formulaInl" alt="$ g_0 $" src="form_9.png" width="13" height="9"/> required in the Neumann boundary condition (3). The function evaluates <img class="formulaInl" alt="$ \partial u_0 /\partial n = {\bf N} \cdot \nabla u_0 $" src="form_19.png" width="100" height="14"/> for the normal direction specified by the vector <img class="formulaInl" alt="$ {\bf N} =
+(1,0)^T. $" src="form_20.png" width="68" height="15"/></p>
  <div class="fragment"><div class="line"><span class="comment">//===== start_of_namespace=============================================</span></div>
 <div class="line"><span class="comment">/// Namespace for exact solution for Poisson equation with &quot;sharp step&quot; </span></div>
 <div class="line"><span class="comment">//=====================================================================</span></div>
@@ -234,7 +228,7 @@ Global parameters and functions</h1>
  <hr  />
 <h1><a class="anchor" id="main"></a>
 The driver code</h1>
-<p>The driver code is very similar to that for the <a href="../../../poisson/two_d_poisson/html/index.html">pure Dirichlet problem:</a> We set up the problem, check its integrity and define the problem parameters. Following this, we solve the problem for a number of <picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \alpha $" src="form_14.png" width="8" height="6"/></picture> values and document the solution.</p>
+<p>The driver code is very similar to that for the <a href="../../../poisson/two_d_poisson/html/index.html">pure Dirichlet problem:</a> We set up the problem, check its integrity and define the problem parameters. Following this, we solve the problem for a number of <img class="formulaInl" alt="$ \alpha $" src="form_14.png" width="8" height="6"/> values and document the solution.</p>
  <div class="fragment"><div class="line"><span class="comment">//==========start_of_main=================================================</span></div>
 <div class="line"><span class="comment">/// Demonstrate how to solve 2D Poisson problem with flux boundary </span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// conditions</span></div>
@@ -399,7 +393,7 @@ The Problem constructor</h1>
 </div><!-- fragment --><p> Before continuing, we store the number of 2D "bulk" Poisson elements in the variable <code>FluxPoissonProblem::Npoisson_element:</code> </p>
 <div class="fragment"><div class="line"> <span class="comment">// Store number of Poisson bulk elements (= number of elements so far).</span></div>
 <div class="line"> Npoisson_elements=mesh_pt()-&gt;nelement();</div>
-</div><!-- fragment --><p> Now, we need to apply the prescribed-flux boundary condition along the Neumann boundary <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial D_{Neumann} $" src="form_7.png" width="64" height="13"/></picture>. The documentation for the <code>SimpleRectangularQuadMesh</code> shows that this boundary is mesh boundary 1. The necessary steps are performed by the function <code>create_flux_elements</code>(..), described in the section <a class="el" href="index.html#create_flux">Creating the flux elements</a> below.</p>
+</div><!-- fragment --><p> Now, we need to apply the prescribed-flux boundary condition along the Neumann boundary <img class="formulaInl" alt="$ \partial D_{Neumann} $" src="form_7.png" width="64" height="13"/>. The documentation for the <code>SimpleRectangularQuadMesh</code> shows that this boundary is mesh boundary 1. The necessary steps are performed by the function <code>create_flux_elements</code>(..), described in the section <a class="el" href="index.html#create_flux">Creating the flux elements</a> below.</p>
 <div class="fragment"><div class="line"> <span class="comment">// Create prescribed-flux elements from all elements that are </span></div>
 <div class="line"> <span class="comment">// adjacent to boundary 1 and add them to the (single) global mesh</span></div>
 <div class="line"> create_flux_elements(1);</div>
@@ -460,9 +454,9 @@ Creating the flux elements</h1>
 <p><code>oomph-lib</code> provides an element type <code>PoissonFluxElement</code>, which allows the application of Neumann (flux) boundary conditions along the "faces" of higher-dimensional "bulk" Poisson elements. <code>PoissonFluxElements</code> are templated by the type of the corresponding higher-dimensional "bulk" element, so that a <code>PoissonFluxElement&lt;QPoissonElement&lt;2,3&gt;</code> &gt; is a one-dimensional three-node element that applies Neumann boundary conditions along the one-dimensional edge of a nine-node quadrilateral Poisson element. Similarly, a <code>PoissonFluxElement&lt;QPoissonElement&lt;3,2&gt;</code> &gt; is a two-dimensional quadrilateral four-node element that applies Neumann boundary conditions along the two-dimensional face of a eight-node brick-shaped Poisson element; etc.</p>
 <p>The constructor of the <code>PoissonFluxElement</code> takes two arguments:</p><ul>
 <li>a pointer to the corresponding bulk element</li>
-<li>the index <code>face_index</code> of the face that is to be constructed. The convention for two-dimensional Q-type elements is that the face_index is <picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ -(i+1) $" src="form_21.png" width="44" height="14"/></picture> when the coordinate <picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ s_i $" src="form_22.png" width="9" height="9"/></picture> is fixed at its minimum value over the face and <picture><source srcset="form_23_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ +(i+1) $" src="form_23.png" width="44" height="14"/></picture> when <picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ s_i $" src="form_22.png" width="9" height="9"/></picture> is fixed at its maximum value over the face</li>
+<li>the index <code>face_index</code> of the face that is to be constructed. The convention for two-dimensional Q-type elements is that the face_index is <img class="formulaInl" alt="$ -(i+1) $" src="form_21.png" width="44" height="14"/> when the coordinate <img class="formulaInl" alt="$ s_i $" src="form_22.png" width="9" height="9"/> is fixed at its minimum value over the face and <img class="formulaInl" alt="$ +(i+1) $" src="form_23.png" width="44" height="14"/> when <img class="formulaInl" alt="$ s_i $" src="form_22.png" width="9" height="9"/> is fixed at its maximum value over the face</li>
 </ul>
-<p>The layout of the elements in the <code>SimpleRectangularQuadMesh</code> is sufficiently simple to allow the direct determination of the face index: Elements 3, 7, 11 and 15 are located next to mesh boundary 1 and along this boundary the element's local coordinate <picture><source srcset="form_24_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ s_0 $" src="form_24.png" width="10" height="9"/></picture> has a constant (maximum) value of +1.0. Hence we need to set <code>face_index=1</code> </p>
+<p>The layout of the elements in the <code>SimpleRectangularQuadMesh</code> is sufficiently simple to allow the direct determination of the face index: Elements 3, 7, 11 and 15 are located next to mesh boundary 1 and along this boundary the element's local coordinate <img class="formulaInl" alt="$ s_0 $" src="form_24.png" width="10" height="9"/> has a constant (maximum) value of +1.0. Hence we need to set <code>face_index=1</code> </p>
 <p>In more complicated meshes, the determination of the face index can be more difficult (or at least very tedious), especially if a <code>Mesh</code> has been refined non-uniformly. The generic <code>Mesh</code> class therefore provides helper functions to determine the required face index for all elements adjacent to a specified <code>Mesh</code> boundary. This allows the creation of the flux elements by the following, completely generic procedure: We use the function <code>Mesh::boundary_element_pt(...)</code> to determine the "bulk" elements that are adjacent to the Neumann boundary, and obtain <code>face_index</code> from the function <code>Mesh::face_index_at_boundary(...)</code>. We pass the parameters to the constructor of the <code>PoissonFluxElement</code> and add the (pointer to) the newly created element to the <code>Problem's</code> mesh.</p>
 <div class="fragment"><div class="line"><span class="comment">//============start_of_create_flux_elements==============================</span></div>
 <div class="line"><span class="comment">/// Create Poisson Flux Elements on the b-th boundary of the Mesh</span></div>
@@ -561,7 +555,7 @@ Post-processing</h1>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output solution </span></div>
 <div class="line"> <span class="comment">//-----------------</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> mesh_pt()-&gt;output(some_file,npts);</div>
@@ -569,7 +563,7 @@ Post-processing</h1>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output exact solution </span></div>
 <div class="line"> <span class="comment">//----------------------</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> e=0;e&lt;Npoisson_elements;e++)</div>
@@ -590,11 +584,11 @@ Post-processing</h1>
 <h1><a class="anchor" id="exercises"></a>
 Exercises and Comments</h1>
 <ol type="1">
-<li>What happens if you do not create the <code>PoissonFluxElements</code> but leave the nodes on the Neumann boundary un-pinned? Compare the computational result to those obtained when you set the prescribed flux to zero, <picture><source srcset="form_25_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ g_0 = 0 $" src="form_25.png" width="35" height="11"/></picture>. Does this make sense? [Hint: Remember the "natural" boundary conditions for Poisson's equation].</li>
+<li>What happens if you do not create the <code>PoissonFluxElements</code> but leave the nodes on the Neumann boundary un-pinned? Compare the computational result to those obtained when you set the prescribed flux to zero, <img class="formulaInl" alt="$ g_0 = 0 $" src="form_25.png" width="35" height="11"/>. Does this make sense? [Hint: Remember the "natural" boundary conditions for Poisson's equation].</li>
 <li>Try to compute the error of the computed solution by re-instating the global error checking procedure <div class="fragment"><div class="line"><span class="comment">// Doc error and return of the square of the L2 error</span></div>
 <div class="line"><span class="comment">//---------------------------------------------------</span></div>
 <div class="line"><span class="keywordtype">double</span> error,norm;</div>
-<div class="line">sprintf(filename,<span class="stringliteral">&quot;%s/error%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line">snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/error%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">        doc_info.number());</div>
 <div class="line">some_file.open(filename);</div>
 <div class="line">mesh_pt()-&gt;compute_error(some_file,<a class="code hl_function" href="namespaceTanhSolnForPoisson.html#af7896e9c18ce6438c73ae2a875e8b7de">TanhSolnForPoisson::get_exact_u</a>,</div>
@@ -627,7 +621,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -657,7 +651,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:06:59
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:43:09
         </div>
       </div>
     </footer>

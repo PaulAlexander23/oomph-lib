@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -347,7 +347,7 @@
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00343}00343\ }
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00344}00344\ \ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00345}00345\ \ \textcolor{keywordtype}{char}\ filename[100];\ \ \ }
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00346}00346\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00346}00346\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00347}00347\ \ Trace\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00348}00348\ \ Trace\_file\ <<\ \textcolor{stringliteral}{"{}VARIABLES=\(\backslash\)"{}<greek>a</greek><sub>prescribed</sub>\(\backslash\)"{},"{}};}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00349}00349\ \ Trace\_file\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}h<sub>left</sub>\(\backslash\)"{},\(\backslash\)"{}h<sub>right</sub>\(\backslash\)"{},"{}};}
@@ -400,7 +400,7 @@
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00396}00396\ }
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00397}00397\ }
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00398}00398\ \ \textcolor{comment}{//Output\ domain}}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00399}00399\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00399}00399\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00400}00400\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00401}00401\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00402}00402\ \ Bulk\_mesh\_pt-\/>output(some\_file,npts);}
@@ -538,8 +538,8 @@
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00534}00534\ \ \ \ \ \ \ \ \ nod\_pt-\/>get\_coordinates\_on\_boundary(3,b\_coord);}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00535}00535\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Indicate\ that\ the\ boundary\ coordinates\ are\ to\ be\ set\ on\ the\ }}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00536}00536\ \ \ \ \ \ \ \ \ \textcolor{comment}{//new\ boundaries}}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00537}00537\ \ \ \ \ \ \ \ \ this-\/>Boundary\_coordinate\_exists[4]=\textcolor{keyword}{true};}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00538}00538\ \ \ \ \ \ \ \ \ this-\/>Boundary\_coordinate\_exists[5]=\textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00537}00537\ \ \ \ \ \ \ \ \ this-\/>set\_boundary\_coordinate\_exists(4);}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00538}00538\ \ \ \ \ \ \ \ \ this-\/>set\_boundary\_coordinate\_exists(5);}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00539}00539\ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00540}00540\ \ \ \ \ \ \ }
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00541}00541\ \ \ \ \ \ \ \textcolor{comment}{//Now\ remove\ the\ node\ from\ the\ old\ boundary}}
@@ -552,7 +552,7 @@
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00548}00548\ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00549}00549\ \ \ \ \ \ \ \ \ this-\/>add\_boundary\_node(4,nod\_pt);}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00550}00550\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Add\ the\ boundary\ coordinate\ if\ it\ has\ been\ set\ up}}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00551}00551\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(this-\/>Boundary\_coordinate\_exists[4])}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00551}00551\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(this-\/>boundary\_coordinate\_exists(4))}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00552}00552\ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00553}00553\ \ \ \ \ \ \ \ \ \ \ nod\_pt-\/>set\_coordinates\_on\_boundary(4,b\_coord);}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00554}00554\ \ \ \ \ \ \ \ \ \ \}}
@@ -562,7 +562,7 @@
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00558}00558\ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00559}00559\ \ \ \ \ \ \ \ \ this-\/>add\_boundary\_node(5,nod\_pt);}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00560}00560\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Add\ the\ boundary\ coordinate\ if\ it\ has\ been\ set\ up}}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00561}00561\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(this-\/>Boundary\_coordinate\_exists[5])}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00561}00561\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(this-\/>boundary\_coordinate\_exists(5))}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00562}00562\ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00563}00563\ \ \ \ \ \ \ \ \ \ \ nod\_pt-\/>set\_coordinates\_on\_boundary(5,b\_coord);}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00564}00564\ \ \ \ \ \ \ \ \ \ \}}
@@ -585,14 +585,14 @@
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00581}00581\ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00582}00582\ \ \ \ \ \ \ \ \ b\_coord.resize(nod\_pt-\/>ncoordinates\_on\_boundary(2));}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00583}00583\ \ \ \ \ \ \ \ \ nod\_pt-\/>get\_coordinates\_on\_boundary(2,b\_coord);}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00584}00584\ \ \ \ \ \ \ \ \ this-\/>Boundary\_coordinate\_exists[3]=\textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00584}00584\ \ \ \ \ \ \ \ \ this-\/>set\_boundary\_coordinate\_exists(3);}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00585}00585\ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00586}00586\ \ \ \ \ \ \ }
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00587}00587\ \ \ \ \ \ \ \textcolor{comment}{//Now\ remove\ the\ node\ from\ the\ boundary\ 2}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00588}00588\ \ \ \ \ \ \ nod\_pt-\/>remove\_from\_boundary(2);}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00589}00589\ \ \ \ \ \ \ \textcolor{comment}{//and\ add\ to\ boundary\ 3}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00590}00590\ \ \ \ \ \ \ this-\/>add\_boundary\_node(3,nod\_pt);}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00591}00591\ \ \ \ \ \ \ \textcolor{keywordflow}{if}(this-\/>Boundary\_coordinate\_exists[3])}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00591}00591\ \ \ \ \ \ \ \textcolor{keywordflow}{if}(this-\/>boundary\_coordinate\_exists(3))}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00592}00592\ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00593}00593\ \ \ \ \ \ \ \ \ nod\_pt-\/>set\_coordinates\_on\_boundary(3,b\_coord);}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00594}00594\ \ \ \ \ \ \ \ \}}
@@ -622,7 +622,7 @@
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00618}00618\ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00619}00619\ \ \ \ \ \ \ \ \ \ \ b\_coord.resize(nod\_pt-\/>ncoordinates\_on\_boundary(1));}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00620}00620\ \ \ \ \ \ \ \ \ \ \ nod\_pt-\/>get\_coordinates\_on\_boundary(1,b\_coord);}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00621}00621\ \ \ \ \ \ \ \ \ \ \ this-\/>Boundary\_coordinate\_exists[2]=\textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00621}00621\ \ \ \ \ \ \ \ \ \ \ this-\/>set\_boundary\_coordinate\_exists(2);}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00622}00622\ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00623}00623\ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00624}00624\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Now\ remove\ the\ node\ from\ the\ boundary\ 1\ if\ above\ interace}}
@@ -633,7 +633,7 @@
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00629}00629\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Always\ add\ to\ boundary\ 2}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00630}00630\ \ \ \ \ \ \ \ \ this-\/>add\_boundary\_node(2,nod\_pt);}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00631}00631\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Add\ the\ boundary\ coordinate\ if\ it\ has\ been\ set\ up}}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00632}00632\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(this-\/>Boundary\_coordinate\_exists[2])}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00632}00632\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(this-\/>boundary\_coordinate\_exists(2))}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00633}00633\ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00634}00634\ \ \ \ \ \ \ \ \ \ \ nod\_pt-\/>set\_coordinates\_on\_boundary(2,b\_coord);}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00635}00635\ \ \ \ \ \ \ \ \ \ \}}
@@ -659,7 +659,7 @@
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00655}00655\ \ \ \ \textcolor{comment}{//Add\ the\ nodes\ on\ the\ interface\ to\ the\ boundary\ 6}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00656}00656\ \ \ \ \textcolor{comment}{//Storage\ for\ boundary\ coordinates\ (x-\/coordinate)}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00657}00657\ \ \ \ b\_coord.resize(1);}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00658}00658\ \ \ \ this-\/>Boundary\_coordinate\_exists[6];}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00658}00658\ \ \ \ this-\/>set\_boundary\_coordinate\_exists(6);}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00659}00659\ \ \ \ \textcolor{comment}{//Starting\ index\ of\ the\ nodes}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00660}00660\ \ \ \ \textcolor{keywordtype}{unsigned}\ n\_start=0;}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00661}00661\ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned}\ e=0;e<nx;e++)}
@@ -1145,7 +1145,7 @@
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l01141}01141\ }
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l01142}01142\ \ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l01143}01143\ \ \textcolor{keywordtype}{char}\ filename[100];\ \ \ }
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l01144}01144\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l01144}01144\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l01145}01145\ \ Trace\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l01146}01146\ \ Trace\_file\ <<\ \textcolor{stringliteral}{"{}VARIABLES=\(\backslash\)"{}<greek>a</greek><sub>prescribed</sub>\(\backslash\)"{},"{}};}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l01147}01147\ \ Trace\_file\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}h<sub>left</sub>\(\backslash\)"{},\(\backslash\)"{}h<sub>right</sub>\(\backslash\)"{},"{}};}
@@ -1194,7 +1194,7 @@
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l01190}01190\ \ \textcolor{keywordtype}{unsigned}\ npts=5;\ }
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l01191}01191\ }
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l01192}01192\ \ \textcolor{comment}{//Output\ domain}}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l01193}01193\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l01193}01193\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l01194}01194\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l01195}01195\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l01196}01196\ \ Bulk\_mesh\_pt-\/>output(some\_file,npts);}

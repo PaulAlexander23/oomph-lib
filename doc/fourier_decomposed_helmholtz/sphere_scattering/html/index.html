@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -123,67 +117,67 @@
 <h1><a class="anchor" id="theory"></a>
 Theory: The Fourier-decomposed Helmholtz equation</h1>
 <p>The Helmholtz equation governs time-harmonic solutions of problems governed by the linear wave equation  </p><p class="formulaDsp">
-<picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \nabla^2 U(x,y,z,t) = \frac{1}{c^2} \frac{\partial^2 U(x,y,z,t)}{\partial t^2},
  \ \ \ \ \ \ \ \ \ \ \ \ (1)
-\]" src="form_0.png" width="254" height="29"/></picture>
+\]" src="form_0.png" width="254" height="29"/>
 </p>
-<p> where <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ c $" src="form_1.png" width="5" height="6"/></picture> is the wavespeed. Assuming that <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ U(x,y,z,t) $" src="form_2.png" width="60" height="14"/></picture> is time-harmonic, with frequency <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \omega $" src="form_3.png" width="9" height="6"/></picture>, we write the real function <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ U(x,y,z,t) $" src="form_2.png" width="60" height="14"/></picture> as  </p><p class="formulaDsp">
-<picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> where <img class="formulaInl" alt="$ c $" src="form_1.png" width="5" height="6"/> is the wavespeed. Assuming that <img class="formulaInl" alt="$ U(x,y,z,t) $" src="form_2.png" width="60" height="14"/> is time-harmonic, with frequency <img class="formulaInl" alt="$ \omega $" src="form_3.png" width="9" height="6"/>, we write the real function <img class="formulaInl" alt="$ U(x,y,z,t) $" src="form_2.png" width="60" height="14"/> as  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 U(x,y,z,t) = Re ({\tt U}(x,y,z) \ e^{-i \omega t})
  \ \ \ \ \ \ \ \ \ \ \ \ (2)
-\]" src="form_4.png" width="246" height="16"/></picture>
+\]" src="form_4.png" width="246" height="16"/>
 </p>
-<p> where <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\tt U}(x,y,z) $" src="form_5.png" width="48" height="14"/></picture> is complex-valued. This transforms (1) into the Helmholtz equation  </p><p class="formulaDsp">
-<picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> where <img class="formulaInl" alt="$ {\tt U}(x,y,z) $" src="form_5.png" width="48" height="14"/> is complex-valued. This transforms (1) into the Helmholtz equation  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \nabla^2 {\tt U}(x,y,z) + k^2 {\tt U} = 0
  \ \ \ \ \ \ \ \ \ \ \ \ (3)
-\]" src="form_6.png" width="186" height="16"/></picture>
+\]" src="form_6.png" width="186" height="16"/>
 </p>
 <p> where  </p><p class="formulaDsp">
-<picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 k = \frac{\omega}{c}
  \ \ \ \ \ \ \ \ \ \ \ \ (4)
-\]" src="form_7.png" width="100" height="24"/></picture>
+\]" src="form_7.png" width="100" height="24"/>
 </p>
 <p> is the wave number. Like other elliptic PDEs the Helmholtz equation admits Dirichlet, Neumann (flux) and Robin boundary conditions.</p>
 <p>If the equation is solved in an infinite domain (<a class="el" href="classAnnularQuadMesh.html#acf01203e48fdee730b6c194bf538177c">e.g</a>. in scattering problems) the solution must satisfy the so-called <a href="http://en.wikipedia.org/wiki/Sommerfeld_radiation_condition">Sommerfeld radiation condition</a> which in 3D has the form  </p><p class="formulaDsp">
-<picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \lim_{r\to \infty} r \left(\frac{\partial {\tt U}}{\partial r} - ik{\tt U}
 \right) =0. 
-\]" src="form_8.png" width="129" height="31"/></picture>
+\]" src="form_8.png" width="129" height="31"/>
 </p>
 <p> Mathematically, this conditions is required to ensure the uniqueness of the solution (and hence the well-posedness of the problem). In a physical context, such as a scattering problem, the condition ensures that scattering of an incoming wave only produces outgoing not incoming waves from infinity.</p>
 <p>These equations can be solved using <code>oomph-lib's</code> cartesian Helmholtz elements, described in <br  />
- <a href="../../../helmholtz/scattering/html/index.html">another tutorial.</a> Here we consider an alternative approach in which we solve the equations in cylindrical polar coordinates <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ (r,\varphi,z)
-$" src="form_9.png" width="40" height="14"/></picture>, related to the cartesian coordinates <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ (x,y,z) $" src="form_10.png" width="40" height="14"/></picture> via  </p><p class="formulaDsp">
-<picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ <a href="../../../helmholtz/scattering/html/index.html">another tutorial.</a> Here we consider an alternative approach in which we solve the equations in cylindrical polar coordinates <img class="formulaInl" alt="$ (r,\varphi,z)
+$" src="form_9.png" width="40" height="14"/>, related to the cartesian coordinates <img class="formulaInl" alt="$ (x,y,z) $" src="form_10.png" width="40" height="14"/> via  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 x =  r \cos(\varphi),
-\]" src="form_11.png" width="70" height="14"/></picture>
+\]" src="form_11.png" width="70" height="14"/>
 </p>
   <p class="formulaDsp">
-<picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 y =  r \sin(\varphi),
-\]" src="form_12.png" width="68" height="14"/></picture>
+\]" src="form_12.png" width="68" height="14"/>
 </p>
   <p class="formulaDsp">
-<picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 z = z.
-\]" src="form_13.png" width="33" height="6"/></picture>
+\]" src="form_13.png" width="33" height="6"/>
 </p>
 <p> We then decompose the solution into its Fourier components by writing  </p><p class="formulaDsp">
-<picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 {\tt U}(r,\varphi,z) = \sum_{N=-\infty}^{\infty} u_N(r,z) \exp({\rm i}
 N \varphi).
-\]" src="form_14.png" width="200" height="36"/></picture>
+\]" src="form_14.png" width="200" height="36"/>
 </p>
-<p> Since the governing equations are linear we can compute each Fourier component <picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ u_N(r,z) $" src="form_15.png" width="44" height="14"/></picture> individually by solving  </p><p class="formulaDsp">
-<picture><source srcset="form_16_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> Since the governing equations are linear we can compute each Fourier component <img class="formulaInl" alt="$ u_N(r,z) $" src="form_15.png" width="44" height="14"/> individually by solving  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \nabla^2 {u_{N}}(r,z) + \left(k^2-\frac{N^2}{r^2}\right) u_N(r,z) = 0
  \ \ \ \ \ \ \ \ \ \ \ \ (5)
-\]" src="form_16.png" width="274" height="33"/></picture>
+\]" src="form_16.png" width="274" height="33"/>
 </p>
-<p> while specifying the Fourier wavenumber <picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ N $" src="form_17.png" width="11" height="10"/></picture> as a parameter.</p>
+<p> while specifying the Fourier wavenumber <img class="formulaInl" alt="$ N $" src="form_17.png" width="11" height="10"/> as a parameter.</p>
 <hr  />
  <hr  />
 <h1><a class="anchor" id="discr"></a>
@@ -193,8 +187,8 @@ Discretisation by finite elements</h1>
 <li>Dirichlet conditions are imposed by pinning the relevant nodal values and setting them to the appropriate prescribed values.</li>
 <li>Neumann (flux) boundary conditions are imposed via <code>FaceElements</code> (here the <code>FourierDecomposedHelmholtzFluxElements</code>). <a href="../../../poisson/two_d_poisson_flux_bc/html/index.html">As usual</a> we attach these to the faces of the "bulk" elements that are subject to the Neumann boundary conditions.</li>
 </ul>
-<p>The imposition of the Sommerfeld radiation condition for problems in infinite domains is slightly more complicated. In the following discussion we will assume that the infinite domain is truncated at a spherical artificial boundary <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \Gamma $" src="form_18.png" width="9" height="10"/></picture> of radius <picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ R. $" src="form_19.png" width="13" height="10"/></picture> [The methodology can easily be modified to deal with other geometries but this has not been done yet &ndash; any volunteers?]. All methods exploit the fact that the relevant solution of the Helmholtz equation can be written in spherical polar coordinates <picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ (\rho,\varphi,\theta) $" src="form_20.png" width="40" height="14"/></picture> as  </p><p class="formulaDsp">
-<picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p>The imposition of the Sommerfeld radiation condition for problems in infinite domains is slightly more complicated. In the following discussion we will assume that the infinite domain is truncated at a spherical artificial boundary <img class="formulaInl" alt="$ \Gamma $" src="form_18.png" width="9" height="10"/> of radius <img class="formulaInl" alt="$ R. $" src="form_19.png" width="13" height="10"/> [The methodology can easily be modified to deal with other geometries but this has not been done yet &ndash; any volunteers?]. All methods exploit the fact that the relevant solution of the Helmholtz equation can be written in spherical polar coordinates <img class="formulaInl" alt="$ (\rho,\varphi,\theta) $" src="form_20.png" width="40" height="14"/> as  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 {\tt U}(\rho,\theta,\varphi)=
 \sum_{l=0}^{+\infty}\sum_{n=-l}^{l}
 \left(
@@ -203,84 +197,84 @@ b_{ln} \ h_{l}^{(2)}(k\rho)
 \right)P_{l}^{n}
 (\cos\theta)\exp({\rm i} n \varphi).
  \ \ \ \ \ \ \ (6)
-\]" src="form_21.png" width="420" height="39"/></picture>
+\]" src="form_21.png" width="420" height="39"/>
 </p>
-<p> where the <picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$a_{ln}, b_{ln} $" src="form_22.png" width="36" height="13"/></picture> are arbitrary coefficients and the functions  </p><p class="formulaDsp">
-<picture><source srcset="form_23_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> where the <img class="formulaInl" alt="$a_{ln}, b_{ln} $" src="form_22.png" width="36" height="13"/> are arbitrary coefficients and the functions  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 h_{l}^{(1)}(x)=j_{l}(x)+{\rm i} y_{l}(x) \mbox{ \ \ \ \ and \ \ \ \ }
 h_{l}^{(2)}(x)=j_{l}(x)-{\rm i} y_{l}(x) 
-\]" src="form_23.png" width="311" height="18"/></picture>
+\]" src="form_23.png" width="311" height="18"/>
 </p>
 <p> are the spherical Hankel functions of first and second kind, respectively, expressed in terms the spherical Bessel functions  </p><p class="formulaDsp">
-<picture><source srcset="form_24_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 j_{l}(x)=\sqrt{\frac{\pi}{2x}}J_{l+1/2}(x) \mbox{ \ \ \ \ and \ \ \ \ }
 y_{l}(x)=\sqrt{\frac{\pi}{2x}}Y_{l+1/2}(x).
-\]" src="form_24.png" width="310" height="31"/></picture>
+\]" src="form_24.png" width="310" height="31"/>
 </p>
 <p> The functions  </p><p class="formulaDsp">
-<picture><source srcset="form_25_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 P_{l}^{m}(x)=(-1)^{m}(1-x^2)^{m/2}\frac{d^m}{dx^m}P_{l}(x)
-\]" src="form_25.png" width="205" height="28"/></picture>
+\]" src="form_25.png" width="205" height="28"/>
 </p>
 <p> are the associated Legendre functions, expressed in terms of the Legendre polynomials  </p><p class="formulaDsp">
-<picture><source srcset="form_26_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 P_{n}(x)=\frac{1}{2^{n} \, n!}\frac{d^n}{dx^n}[(x^2-1)^{n}].
-\]" src="form_26.png" width="161" height="28"/></picture>
+\]" src="form_26.png" width="161" height="28"/>
 </p>
-<p> This definition shows that <picture><source srcset="form_27_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ P_{l}^{m}(x)=0 $" src="form_27.png" width="59" height="14"/></picture> for <picture><source srcset="form_28_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ m&gt;l $" src="form_28.png" width="33" height="11"/></picture> which explains the limited range of summation indices in the second sum in (6).</p>
-<p>The relation between the cylindrical polar coordinates <picture><source srcset="form_29_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$
-(r,\varphi,z)$" src="form_29.png" width="40" height="14"/></picture> and spherical polar coordinates <picture><source srcset="form_30_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$
-(\rho,\theta,\varphi) $" src="form_30.png" width="40" height="14"/></picture> is given by  </p><p class="formulaDsp">
-<picture><source srcset="form_31_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> This definition shows that <img class="formulaInl" alt="$ P_{l}^{m}(x)=0 $" src="form_27.png" width="59" height="14"/> for <img class="formulaInl" alt="$ m&gt;l $" src="form_28.png" width="33" height="11"/> which explains the limited range of summation indices in the second sum in (6).</p>
+<p>The relation between the cylindrical polar coordinates <img class="formulaInl" alt="$
+(r,\varphi,z)$" src="form_29.png" width="40" height="14"/> and spherical polar coordinates <img class="formulaInl" alt="$
+(\rho,\theta,\varphi) $" src="form_30.png" width="40" height="14"/> is given by  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \rho = \sqrt{r^2 + z^2},
-\]" src="form_31.png" width="78" height="16"/></picture>
+\]" src="form_31.png" width="78" height="16"/>
 </p>
   <p class="formulaDsp">
-<picture><source srcset="form_32_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \theta = \arctan(r/z),
-\]" src="form_32.png" width="89" height="14"/></picture>
+\]" src="form_32.png" width="89" height="14"/>
 </p>
   <p class="formulaDsp">
-<picture><source srcset="form_33_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \varphi = \varphi,
-\]" src="form_33.png" width="36" height="9"/></picture>
+\]" src="form_33.png" width="36" height="9"/>
 </p>
-<p> so <picture><source srcset="form_34_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\varphi \in [0,2\pi] $" src="form_34.png" width="55" height="14"/></picture> remains unchanged, and <br  />
- <picture><source srcset="form_35_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\theta \in [0,\pi] $" src="form_35.png" width="46" height="14"/></picture> sweeps from the north pole ( <picture><source srcset="form_36_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \theta = 0 $" src="form_36.png" width="29" height="10"/></picture>), via the equator ( <picture><source srcset="form_37_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \theta = \pi/2 $" src="form_37.png" width="43" height="14"/></picture> ) to the south pole ( <picture><source srcset="form_38_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \theta = \pi $" src="form_38.png" width="30" height="10"/></picture>).</p>
+<p> so <img class="formulaInl" alt="$\varphi \in [0,2\pi] $" src="form_34.png" width="55" height="14"/> remains unchanged, and <br  />
+ <img class="formulaInl" alt="$\theta \in [0,\pi] $" src="form_35.png" width="46" height="14"/> sweeps from the north pole ( <img class="formulaInl" alt="$ \theta = 0 $" src="form_36.png" width="29" height="10"/>), via the equator ( <img class="formulaInl" alt="$ \theta = \pi/2 $" src="form_37.png" width="43" height="14"/> ) to the south pole ( <img class="formulaInl" alt="$ \theta = \pi $" src="form_38.png" width="30" height="10"/>).</p>
 <h2><a class="anchor" id="DtN"></a>
 The Dirichlet-to-Neumann mapping (DtN)</h2>
-<p>Assuming that the artificial outer boundary <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \Gamma $" src="form_18.png" width="9" height="10"/></picture>is sufficiently far from the region of interest, so that any near field effects associated with the scatterer have decayed, we have to ensure that the solution on <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \Gamma $" src="form_18.png" width="9" height="10"/></picture> contains only outgoing waves. For our choice of the time-dependence in (2), such waves are represented by the terms involving the spherical Hankel functions of the first kind, <picture><source srcset="form_39_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ h_l^{(1)} $" src="form_39.png" width="19" height="19"/></picture>, in (6).</p>
-<p>The solution on (and near) <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \Gamma $" src="form_18.png" width="9" height="10"/></picture> is therefore given by  </p><p class="formulaDsp">
-<picture><source srcset="form_40_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p>Assuming that the artificial outer boundary <img class="formulaInl" alt="$ \Gamma $" src="form_18.png" width="9" height="10"/>is sufficiently far from the region of interest, so that any near field effects associated with the scatterer have decayed, we have to ensure that the solution on <img class="formulaInl" alt="$ \Gamma $" src="form_18.png" width="9" height="10"/> contains only outgoing waves. For our choice of the time-dependence in (2), such waves are represented by the terms involving the spherical Hankel functions of the first kind, <img class="formulaInl" alt="$ h_l^{(1)} $" src="form_39.png" width="19" height="19"/>, in (6).</p>
+<p>The solution on (and near) <img class="formulaInl" alt="$ \Gamma $" src="form_18.png" width="9" height="10"/> is therefore given by  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 {\tt U}(\rho,\theta,\phi)=
 \sum_{l=0}^{+\infty}\sum_{n=-l}^{l} \ a_{ln}\ h_{l}^{(1)}(k\rho)
 \ P_{l}^{n}(\cos\theta) \ \exp({\rm i}n\varphi).
-\]" src="form_40.png" width="293" height="39"/></picture>
+\]" src="form_40.png" width="293" height="39"/>
 </p>
-<p> Restricting ourselves to the single azimuthal Fourier mode <picture><source srcset="form_41_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ n=N $" src="form_41.png" width="36" height="10"/></picture> to be determined by (5), we have  </p><p class="formulaDsp">
-<picture><source srcset="form_42_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> Restricting ourselves to the single azimuthal Fourier mode <img class="formulaInl" alt="$ n=N $" src="form_41.png" width="36" height="10"/> to be determined by (5), we have  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 u_N(\rho,\theta)=\sum_{l=N}^{+\infty}
 a_{l} \ h_{l}^{(1)}(k\rho)\ P_{l}^{N}(\cos\theta).
  \ \ \ \ \ \ \ (7)
-\]" src="form_42.png" width="248" height="38"/></picture>
+\]" src="form_42.png" width="248" height="38"/>
 </p>
-<p> We multiply this equation by <picture><source srcset="form_43_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ P_{n}^{N}(\cos\theta)
-\sin(\theta)$" src="form_43.png" width="86" height="15"/></picture>, integrate over <picture><source srcset="form_44_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \theta $" src="form_44.png" width="6" height="10"/></picture>, and exploit the orthogonality of the Legendre functions, to show that  </p><p class="formulaDsp">
-<picture><source srcset="form_45_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> We multiply this equation by <img class="formulaInl" alt="$ P_{n}^{N}(\cos\theta)
+\sin(\theta)$" src="form_43.png" width="86" height="15"/>, integrate over <img class="formulaInl" alt="$ \theta $" src="form_44.png" width="6" height="10"/>, and exploit the orthogonality of the Legendre functions, to show that  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 a_{l}=\frac{2l+1}{2 h_{l}^{(1)}(kR)}
 \frac{(l-N)!}{(l+N)!}\int_{0}^{\pi} u(R,\theta)\ P_{l}^{N}(\cos\theta)
 \ \sin(\theta) \ d\theta.
-\]" src="form_45.png" width="306" height="35"/></picture>
+\]" src="form_45.png" width="306" height="35"/>
 </p>
-<p> Using these coefficients, we can differentiate (7) to obtain the normal derivative of the solution on the (spherical) artificial outer boundary <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \Gamma $" src="form_18.png" width="9" height="10"/></picture> in terms of the solution itself:  </p><p class="formulaDsp">
-<picture><source srcset="form_46_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> Using these coefficients, we can differentiate (7) to obtain the normal derivative of the solution on the (spherical) artificial outer boundary <img class="formulaInl" alt="$ \Gamma $" src="form_18.png" width="9" height="10"/> in terms of the solution itself:  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \left. \frac{\partial u}{\partial n} \right|_{\rho=R} = 
 \left. \frac{\partial u}{\partial \rho} \right|_{\rho=R} = \gamma(u) = 
 k\sum_{n=N}^{\infty}a_{n} \ h_{n}^{(1)'}(kR)\ P_{n}^{N}(\cos \theta)
-\]" src="form_46.png" width="319" height="36"/></picture>
+\]" src="form_46.png" width="319" height="36"/>
 </p>
 <p> <a class="el" href="classAnnularQuadMesh.html#acf01203e48fdee730b6c194bf538177c">i.e</a>.  </p><p class="formulaDsp">
-<picture><source srcset="form_47_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \gamma(u(R,\theta))=
 k \sum_{n=N}^{\infty} h_{n}^{(1)'}(kR) \ 
 P_{n}^{N}(\cos \theta) \
@@ -289,26 +283,26 @@ P_{n}^{N}(\cos \theta) \
 P_{n}^{N}(\cos\overline{\theta}) \ \sin(\overline{\theta}) \;
 d\overline{\theta},
 \ \ \ \ \ \ \ \ \ \  (8)
-\]" src="form_47.png" width="540" height="36"/></picture>
+\]" src="form_47.png" width="540" height="36"/>
 </p>
 <p> a Dirichlet-to-Neumann mapping.</p>
-<p>Equation (8) provides a condition on the normal derivative of the solution along the artificial boundary and is implemented in the <code>FourierDecomposedHelmholtzDtNBoundaryElement</code> class. Since <picture><source srcset="form_48_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \gamma $" src="form_48.png" width="9" height="9"/></picture> depends on the solution everywhere along the artificial boundary, the application of the Sommerfeld radiation condition via (8) introduces a non-local coupling between all the degrees of freedom located on that boundary. This is handled by classifying the unknowns that affect <picture><source srcset="form_48_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \gamma $" src="form_48.png" width="9" height="9"/></picture> but are not associated with an element's own nodes as its external <code>Data</code>.</p>
-<p>To facilitate the setup of the interaction between the <code>FourierDecomposedHelmholtzDtNBoundaryElements</code>, <code>oomph-lib</code> provides the class <code>FourierDecomposedHelmholtzDtNMesh</code> which provides storage for (the pointers to) the <code>FourierDecomposedHelmholtzDtNBoundaryElements</code> that discretise the artificial boundary. The member function <code><a class="el" href="classAnnularQuadMesh.html#acf01203e48fdee730b6c194bf538177c">FourierDecomposedHelmholtzDtNMesh::setup_gamma()</a></code> pre-computes the <picture><source srcset="form_48_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \gamma $" src="form_48.png" width="9" height="9"/></picture> values required for the imposition of equation (8). The radius <picture><source srcset="form_49_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ R $" src="form_49.png" width="10" height="10"/></picture> of the artificial boundary and the (finite) upper limit for the sum in (8) are specified as arguments to the constructor of the <code>FourierDecomposedHelmholtzDtNMesh</code>.</p>
-<p><b>NOTE:</b> Since <picture><source srcset="form_48_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \gamma $" src="form_48.png" width="9" height="9"/></picture> depends on the solution, it must be recomputed whenever the unknowns are updated during the Newton iteration. This is best done by adding a call to <code><a class="el" href="classAnnularQuadMesh.html#acf01203e48fdee730b6c194bf538177c">FourierDecomposedHelmholtzDtNMesh::setup_gamma()</a></code> to <code>Problem::actions_before_newton_convergence_check()</code>. [If Helmholtz's equation is solved in isolation (or within a coupled, but linear problem), Newton's method will converge in one iteration. In such cases the unnecessary recomputation of <picture><source srcset="form_48_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \gamma $" src="form_48.png" width="9" height="9"/></picture> after the one-and-only Newton iteration can be suppressed by setting <code>Problem::Problem_is_nonlinear</code> to <code>false</code>.]</p>
+<p>Equation (8) provides a condition on the normal derivative of the solution along the artificial boundary and is implemented in the <code>FourierDecomposedHelmholtzDtNBoundaryElement</code> class. Since <img class="formulaInl" alt="$ \gamma $" src="form_48.png" width="9" height="9"/> depends on the solution everywhere along the artificial boundary, the application of the Sommerfeld radiation condition via (8) introduces a non-local coupling between all the degrees of freedom located on that boundary. This is handled by classifying the unknowns that affect <img class="formulaInl" alt="$ \gamma $" src="form_48.png" width="9" height="9"/> but are not associated with an element's own nodes as its external <code>Data</code>.</p>
+<p>To facilitate the setup of the interaction between the <code>FourierDecomposedHelmholtzDtNBoundaryElements</code>, <code>oomph-lib</code> provides the class <code>FourierDecomposedHelmholtzDtNMesh</code> which provides storage for (the pointers to) the <code>FourierDecomposedHelmholtzDtNBoundaryElements</code> that discretise the artificial boundary. The member function <code><a class="el" href="classAnnularQuadMesh.html#acf01203e48fdee730b6c194bf538177c">FourierDecomposedHelmholtzDtNMesh::setup_gamma()</a></code> pre-computes the <img class="formulaInl" alt="$ \gamma $" src="form_48.png" width="9" height="9"/> values required for the imposition of equation (8). The radius <img class="formulaInl" alt="$ R $" src="form_49.png" width="10" height="10"/> of the artificial boundary and the (finite) upper limit for the sum in (8) are specified as arguments to the constructor of the <code>FourierDecomposedHelmholtzDtNMesh</code>.</p>
+<p><b>NOTE:</b> Since <img class="formulaInl" alt="$ \gamma $" src="form_48.png" width="9" height="9"/> depends on the solution, it must be recomputed whenever the unknowns are updated during the Newton iteration. This is best done by adding a call to <code><a class="el" href="classAnnularQuadMesh.html#acf01203e48fdee730b6c194bf538177c">FourierDecomposedHelmholtzDtNMesh::setup_gamma()</a></code> to <code>Problem::actions_before_newton_convergence_check()</code>. [If Helmholtz's equation is solved in isolation (or within a coupled, but linear problem), Newton's method will converge in one iteration. In such cases the unnecessary recomputation of <img class="formulaInl" alt="$ \gamma $" src="form_48.png" width="9" height="9"/> after the one-and-only Newton iteration can be suppressed by setting <code>Problem::Problem_is_nonlinear</code> to <code>false</code>.]</p>
 <hr  />
  <hr  />
 <h1><a class="anchor" id="scattering"></a>
 A specific example</h1>
 <p>We will now demonstrate the methodology for a specific example for which the exact solution of (5) is given by  </p><p class="formulaDsp">
-<picture><source srcset="form_50_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 u_N(r,z)=u_N^{[exact]}(r,z)=\sum_{l=N}^{N_{\rm terms}} 
 h_{l}^{(1)}(k\sqrt{r^2+z^2}) \ P_{l}^{N}\left(\frac{z}{\sqrt{r^2+z^2}}\right).
-\]" src="form_50.png" width="361" height="39"/></picture>
+\]" src="form_50.png" width="361" height="39"/>
 </p>
-<p> This solution corresponds to the superposition of several outgoing waves of the form (7) with coefficients <picture><source srcset="form_51_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ a_l = 1 $" src="form_51.png" width="33" height="11"/></picture>. We solve the Helmholtz equation in the infinite region surrounding the unit sphere on whose surface we impose flux boundary conditions consistent with the derivative of the exact solution.</p>
-<p>To solve this problem numerically, we discretise the annular domain <picture><source srcset="form_52_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ 1 &lt; \sqrt{r^2 + z^2} &lt; 3 $" src="form_52.png" width="95" height="14"/></picture> with finite elements and apply the Sommerfeld radiation condition using a Dirichlet-to-Neumann mapping on the artificial outer boundary <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \Gamma $" src="form_18.png" width="9" height="10"/></picture> located at <picture><source srcset="form_53_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \sqrt{r^2 + z^2}
-= R = 3$" src="form_53.png" width="98" height="14"/></picture>.</p>
-<p>The two plots below show a comparison between the exact and computed solutions for <picture><source srcset="form_54_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ N_{\rm terms}=6 $" src="form_54.png" width="58" height="13"/></picture> , a Fourier wavenumber of <picture><source srcset="form_55_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ N=3 $" src="form_55.png" width="34" height="10"/></picture> , and a (squared) Helmholtz wavenumber of <picture><source srcset="form_56_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ k^2 = 10 $" src="form_56.png" width="41" height="11"/></picture>.</p>
+<p> This solution corresponds to the superposition of several outgoing waves of the form (7) with coefficients <img class="formulaInl" alt="$ a_l = 1 $" src="form_51.png" width="33" height="11"/>. We solve the Helmholtz equation in the infinite region surrounding the unit sphere on whose surface we impose flux boundary conditions consistent with the derivative of the exact solution.</p>
+<p>To solve this problem numerically, we discretise the annular domain <img class="formulaInl" alt="$ 1 &lt; \sqrt{r^2 + z^2} &lt; 3 $" src="form_52.png" width="95" height="14"/> with finite elements and apply the Sommerfeld radiation condition using a Dirichlet-to-Neumann mapping on the artificial outer boundary <img class="formulaInl" alt="$ \Gamma $" src="form_18.png" width="9" height="10"/> located at <img class="formulaInl" alt="$ \sqrt{r^2 + z^2}
+= R = 3$" src="form_53.png" width="98" height="14"/>.</p>
+<p>The two plots below show a comparison between the exact and computed solutions for <img class="formulaInl" alt="$ N_{\rm terms}=6 $" src="form_54.png" width="58" height="13"/> , a Fourier wavenumber of <img class="formulaInl" alt="$ N=3 $" src="form_55.png" width="34" height="10"/> , and a (squared) Helmholtz wavenumber of <img class="formulaInl" alt="$ k^2 = 10 $" src="form_56.png" width="41" height="11"/>.</p>
 <div class="image">
 <img src="real.gif" alt=""/>
 <div class="caption">
@@ -323,7 +317,7 @@ Plot of the exact (green) and computed (red) imaginary parts of the solution of 
 The numerical solution</h1>
 <h2><a class="anchor" id="namespace"></a>
 The global namespace</h2>
-<p>As usual, we define the problem parameters in a global namespace. The main parameter are the (square of the) Helmholtz wave number, <picture><source srcset="form_57_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ k^2 $" src="form_57.png" width="11" height="11"/></picture>, and the Fourier wavenumber, <picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ N $" src="form_17.png" width="11" height="10"/></picture>. The parameter <code>Nterms_for_DtN</code> determines how many terms are to be used in the computation of the <picture><source srcset="form_58_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \gamma  $" src="form_58.png" width="9" height="9"/></picture> integral in the Dirichlet-to-Neumann mapping (8); see <a class="el" href="index.html#acc">The accuracy of the boundary condition elements</a>.</p>
+<p>As usual, we define the problem parameters in a global namespace. The main parameter are the (square of the) Helmholtz wave number, <img class="formulaInl" alt="$ k^2 $" src="form_57.png" width="11" height="11"/>, and the Fourier wavenumber, <img class="formulaInl" alt="$ N $" src="form_17.png" width="11" height="10"/>. The parameter <code>Nterms_for_DtN</code> determines how many terms are to be used in the computation of the <img class="formulaInl" alt="$ \gamma  $" src="form_58.png" width="9" height="9"/> integral in the Dirichlet-to-Neumann mapping (8); see <a class="el" href="index.html#acc">The accuracy of the boundary condition elements</a>.</p>
  <div class="fragment"><div class="line"><span class="comment">//===== start_of_namespace=============================================</span></div>
 <div class="line"><span class="comment">/// Namespace for the Fourier decomposed Helmholtz problem parameters</span></div>
 <div class="line"><span class="comment">//=====================================================================</span></div>
@@ -337,7 +331,7 @@ The global namespace</h2>
 <div class="line"> <span class="comment"></span></div>
 <div class="line"><span class="comment"> /// Number of terms in computation of DtN boundary condition</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">unsigned</span> <a class="code hl_variable" href="namespaceProblemParameters.html#aa529b33b7feb959e0c044447bf0f6c6f">Nterms_for_DtN</a>=6;</div>
-<div class="ttc" id="anamespaceProblemParameters_html"><div class="ttname"><a href="namespaceProblemParameters.html">ProblemParameters</a></div><div class="ttdoc">////////////////////////////////////////////////////////////////// //////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="sphere__scattering_8cc_source.html#l00222">sphere_scattering.cc:223</a></div></div>
+<div class="ttc" id="anamespaceProblemParameters_html"><div class="ttname"><a href="namespaceProblemParameters.html">ProblemParameters</a></div><div class="ttdoc">Namespace for the Fourier decomposed Helmholtz problem parameters.</div><div class="ttdef"><b>Definition</b> <a href="sphere__scattering_8cc_source.html#l00222">sphere_scattering.cc:223</a></div></div>
 <div class="ttc" id="anamespaceProblemParameters_html_aa529b33b7feb959e0c044447bf0f6c6f"><div class="ttname"><a href="namespaceProblemParameters.html#aa529b33b7feb959e0c044447bf0f6c6f">ProblemParameters::Nterms_for_DtN</a></div><div class="ttdeci">unsigned Nterms_for_DtN</div><div class="ttdoc">Number of terms in computation of DtN boundary condition.</div><div class="ttdef"><b>Definition</b> <a href="sphere__scattering_8cc_source.html#l00231">sphere_scattering.cc:231</a></div></div>
 <div class="ttc" id="anamespaceProblemParameters_html_aa5362de1af9e257fde4317c367158a93"><div class="ttname"><a href="namespaceProblemParameters.html#aa5362de1af9e257fde4317c367158a93">ProblemParameters::K_squared</a></div><div class="ttdeci">double K_squared</div><div class="ttdoc">Square of the wavenumber.</div><div class="ttdef"><b>Definition</b> <a href="sphere__scattering_8cc_source.html#l00225">sphere_scattering.cc:225</a></div></div>
 <div class="ttc" id="anamespaceProblemParameters_html_aaa674958a1ca6ee0b99de3377288c93f"><div class="ttname"><a href="namespaceProblemParameters.html#aaa674958a1ca6ee0b99de3377288c93f">ProblemParameters::N_fourier</a></div><div class="ttdeci">int N_fourier</div><div class="ttdoc">Fourier wave number.</div><div class="ttdef"><b>Definition</b> <a href="sphere__scattering_8cc_source.html#l00228">sphere_scattering.cc:228</a></div></div>
@@ -351,7 +345,7 @@ The global namespace</h2>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Imaginary unit </span></div>
 <div class="line"><span class="comment"></span> std::complex&lt;double&gt; I(0.0,1.0); </div>
-<div class="ttc" id="aclassAnnularQuadMesh_html"><div class="ttname"><a href="classAnnularQuadMesh.html">AnnularQuadMesh</a></div><div class="ttdoc">////////////////////////////////////////////////////////////////// //////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="sphere__scattering_8cc_source.html#l00055">sphere_scattering.cc:56</a></div></div>
+<div class="ttc" id="aclassAnnularQuadMesh_html"><div class="ttname"><a href="classAnnularQuadMesh.html">AnnularQuadMesh</a></div><div class="ttdef"><b>Definition</b> <a href="sphere__scattering_8cc_source.html#l00055">sphere_scattering.cc:56</a></div></div>
 </div><!-- fragment --><p> required for the specification of the exact solution</p>
 <div class="fragment"><div class="line"><span class="comment"> /// Exact solution as a Vector of size 2, containing real and imag parts</span></div>
 <div class="line"> <span class="keywordtype">void</span> get_exact_u(<span class="keyword">const</span> <a class="code hl_class" href="classAnnularQuadMesh.html">Vector&lt;double&gt;</a>&amp; <a class="code hl_class" href="classAnnularQuadMesh.html">x</a>, <a class="code hl_class" href="classAnnularQuadMesh.html">Vector&lt;double&gt;</a>&amp; <a class="code hl_class" href="classAnnularQuadMesh.html">u</a>)</div>
@@ -405,7 +399,7 @@ The driver code</h2>
 <h2><a class="anchor" id="class"></a>
 The problem class</h2>
 <p>The problem class is very similar to that employed for the <a href="../../../poisson/two_d_poisson_flux_bc_adapt/html/index.html">solution of the 2D Poisson equation with flux boundary conditions</a> or, of course, the 2D cartesian Helmholtz problem discussed in <a href="../../../helmholtz/scattering/html/index.html">another tutorial.</a></p>
-<p>We provide two separate meshes of <code>FaceElements:</code> one for the inner boundary where the <code>FourierDecomposedHelmholtzFluxElements</code> apply the Neumann condition, and one for the outer boundary where we apply the (approximate) Sommerfeld radiation condition. As discussed in section <a class="el" href="index.html#DtN">The Dirichlet-to-Neumann mapping (DtN)</a> , we use the function <code>actions_before_newton_convergence_check()</code> to recompute the <picture><source srcset="form_48_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \gamma $" src="form_48.png" width="9" height="9"/></picture> integral whenever the unknowns are updated during the Newton iteration.</p>
+<p>We provide two separate meshes of <code>FaceElements:</code> one for the inner boundary where the <code>FourierDecomposedHelmholtzFluxElements</code> apply the Neumann condition, and one for the outer boundary where we apply the (approximate) Sommerfeld radiation condition. As discussed in section <a class="el" href="index.html#DtN">The Dirichlet-to-Neumann mapping (DtN)</a> , we use the function <code>actions_before_newton_convergence_check()</code> to recompute the <img class="formulaInl" alt="$ \gamma $" src="form_48.png" width="9" height="9"/> integral whenever the unknowns are updated during the Newton iteration.</p>
  <div class="fragment"><div class="line"><span class="comment">//========= start_of_problem_class=====================================</span></div>
 <div class="line"><span class="comment">/// Problem class </span></div>
 <div class="line"><span class="comment">//=====================================================================</span></div>
@@ -460,7 +454,7 @@ The problem class</h2>
 <div class="line"><span class="comment"></span> <a class="code hl_class" href="classAnnularQuadMesh.html">Mesh</a>* <a class="code hl_variable" href="classFourierDecomposedHelmholtzProblem.html#a3ecc5a3fc3407de8985ed9a61402f2f0">Helmholtz_inner_boundary_mesh_pt</a>;</div>
 <div class="line"> </div>
 <div class="line">}; <span class="comment">// end of problem class</span></div>
-<div class="ttc" id="aclassFourierDecomposedHelmholtzProblem_html"><div class="ttname"><a href="classFourierDecomposedHelmholtzProblem.html">FourierDecomposedHelmholtzProblem</a></div><div class="ttdoc">////////////////////////////////////////////////////////////////// //////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="sphere__scattering_8cc_source.html#l00379">sphere_scattering.cc:380</a></div></div>
+<div class="ttc" id="aclassFourierDecomposedHelmholtzProblem_html"><div class="ttname"><a href="classFourierDecomposedHelmholtzProblem.html">FourierDecomposedHelmholtzProblem</a></div><div class="ttdoc">Problem class.</div><div class="ttdef"><b>Definition</b> <a href="sphere__scattering_8cc_source.html#l00379">sphere_scattering.cc:380</a></div></div>
 <div class="ttc" id="aclassFourierDecomposedHelmholtzProblem_html_a03174fa5a35b7c38f08f91bcd2a80c20"><div class="ttname"><a href="classFourierDecomposedHelmholtzProblem.html#a03174fa5a35b7c38f08f91bcd2a80c20">FourierDecomposedHelmholtzProblem::~FourierDecomposedHelmholtzProblem</a></div><div class="ttdeci">~FourierDecomposedHelmholtzProblem()</div><div class="ttdoc">Destructor (empty)</div><div class="ttdef"><b>Definition</b> <a href="sphere__scattering_8cc_source.html#l00388">sphere_scattering.cc:388</a></div></div>
 <div class="ttc" id="aclassFourierDecomposedHelmholtzProblem_html_a359d402bb4aed7d83973248d82085efb"><div class="ttname"><a href="classFourierDecomposedHelmholtzProblem.html#a359d402bb4aed7d83973248d82085efb">FourierDecomposedHelmholtzProblem::create_outer_bc_elements</a></div><div class="ttdeci">void create_outer_bc_elements()</div><div class="ttdoc">Create BC elements on outer boundary.</div><div class="ttdef"><b>Definition</b> <a href="sphere__scattering_8cc_source.html#l00658">sphere_scattering.cc:658</a></div></div>
 <div class="ttc" id="aclassFourierDecomposedHelmholtzProblem_html_a3ecc5a3fc3407de8985ed9a61402f2f0"><div class="ttname"><a href="classFourierDecomposedHelmholtzProblem.html#a3ecc5a3fc3407de8985ed9a61402f2f0">FourierDecomposedHelmholtzProblem::Helmholtz_inner_boundary_mesh_pt</a></div><div class="ttdeci">Mesh * Helmholtz_inner_boundary_mesh_pt</div><div class="ttdoc">Mesh of face elements that apply the prescribed flux on the inner boundary.</div><div class="ttdef"><b>Definition</b> <a href="sphere__scattering_8cc_source.html#l00426">sphere_scattering.cc:426</a></div></div>
@@ -612,7 +606,7 @@ Post-processing</h2>
 <div class="line">  </div>
 <div class="line"> <span class="comment">// Output solution </span></div>
 <div class="line"> <span class="comment">//-----------------</span></div>
-<div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">sprintf</a>(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,<a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>.directory().c_str(),</div>
+<div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">snprintf</a>(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,<a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>.directory().c_str(),</div>
 <div class="line">         <a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>.number());</div>
 <div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">some_file</a>.open(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>);</div>
 <div class="line"> Bulk_mesh_pt-&gt;output(<a class="code hl_class" href="classAnnularQuadMesh.html">some_file</a>,<a class="code hl_class" href="classAnnularQuadMesh.html">npts</a>);</div>
@@ -621,7 +615,7 @@ Post-processing</h2>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output exact solution </span></div>
 <div class="line"> <span class="comment">//----------------------</span></div>
-<div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">sprintf</a>(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>,<span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,<a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>.directory().c_str(),</div>
+<div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">snprintf</a>(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>), <span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,<a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>.directory().c_str(),</div>
 <div class="line">         <a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>.number());</div>
 <div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">some_file</a>.open(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>);</div>
 <div class="line"> Bulk_mesh_pt-&gt;output_fct(<a class="code hl_class" href="classAnnularQuadMesh.html">some_file</a>,<a class="code hl_class" href="classAnnularQuadMesh.html">npts</a>,<a class="code hl_function" href="namespaceProblemParameters.html#af750b29069b29bd38b5220ecf534e7f7">ProblemParameters::get_exact_u</a>); </div>
@@ -631,7 +625,7 @@ Post-processing</h2>
 <div class="line"> <span class="comment">// Doc error and return of the square of the L2 error</span></div>
 <div class="line"> <span class="comment">//---------------------------------------------------</span></div>
 <div class="line"> <span class="keywordtype">double</span> <a class="code hl_class" href="classAnnularQuadMesh.html">error</a>,<a class="code hl_class" href="classAnnularQuadMesh.html">norm</a>;</div>
-<div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">sprintf</a>(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>,<span class="stringliteral">&quot;%s/error%i.dat&quot;</span>,<a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>.directory().c_str(),</div>
+<div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">snprintf</a>(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>), <span class="stringliteral">&quot;%s/error%i.dat&quot;</span>,<a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>.directory().c_str(),</div>
 <div class="line">         <a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>.number());</div>
 <div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">some_file</a>.open(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>);</div>
 <div class="line"> Bulk_mesh_pt-&gt;compute_error(<a class="code hl_class" href="classAnnularQuadMesh.html">some_file</a>,<a class="code hl_function" href="namespaceProblemParameters.html#af750b29069b29bd38b5220ecf534e7f7">ProblemParameters::get_exact_u</a>,</div>
@@ -642,28 +636,28 @@ Post-processing</h2>
 <div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">cout</a> &lt;&lt; <span class="stringliteral">&quot;\nNorm of error   : &quot;</span> &lt;&lt; <a class="code hl_class" href="classAnnularQuadMesh.html">sqrt</a>(<a class="code hl_class" href="classAnnularQuadMesh.html">error</a>) &lt;&lt; std::endl; </div>
 <div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">cout</a> &lt;&lt; <span class="stringliteral">&quot;Norm of solution: &quot;</span> &lt;&lt; <a class="code hl_class" href="classAnnularQuadMesh.html">sqrt</a>(<a class="code hl_class" href="classAnnularQuadMesh.html">norm</a>) &lt;&lt; std::endl &lt;&lt; std::endl;</div>
 <div class="ttc" id="anamespaceProblemParameters_html_af750b29069b29bd38b5220ecf534e7f7"><div class="ttname"><a href="namespaceProblemParameters.html#af750b29069b29bd38b5220ecf534e7f7">ProblemParameters::get_exact_u</a></div><div class="ttdeci">void get_exact_u(const Vector&lt; double &gt; &amp;x, Vector&lt; double &gt; &amp;u)</div><div class="ttdoc">Exact solution as a Vector of size 2, containing real and imag parts.</div><div class="ttdef"><b>Definition</b> <a href="sphere__scattering_8cc_source.html#l00243">sphere_scattering.cc:243</a></div></div>
-</div><!-- fragment --><p> The function <code>check_gamma(...)</code> is used to check the computation of the <picture><source srcset="form_48_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \gamma $" src="form_48.png" width="9" height="9"/></picture> integral. If computed correctly, its values (pre-computed at the Gauss points of the <code>FourierDecomposedHelmholtzFluxElement</code>) ought to agree (well) with the derivative of the exact solution. They do; see <a class="el" href="index.html#acc">The accuracy of the boundary condition elements</a>.</p>
+</div><!-- fragment --><p> The function <code>check_gamma(...)</code> is used to check the computation of the <img class="formulaInl" alt="$ \gamma $" src="form_48.png" width="9" height="9"/> integral. If computed correctly, its values (pre-computed at the Gauss points of the <code>FourierDecomposedHelmholtzFluxElement</code>) ought to agree (well) with the derivative of the exact solution. They do; see <a class="el" href="index.html#acc">The accuracy of the boundary condition elements</a>.</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"> <span class="comment">// Check gamma computation</span></div>
 <div class="line"> check_gamma(<a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>);</div>
 </div><!-- fragment --><p> Finally, we output the time-averaged power radiated over the outer boundary of the domain, defined as  </p><p class="formulaDsp">
-<picture><source srcset="form_59_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \overline{\cal P }_N =  \pi R^2 \int_0^\pi 
 \left.
 \bigg( Im \{\frac{\partial u_N}{\partial \rho} \} Re\{u_N \} -
        Re \{\frac{\partial u_N}{\partial \rho} \} Im\{u_N \} 
 \bigg)\right|_{\rho=R} \sin(\theta) \ d\theta.
-\]" src="form_59.png" width="398" height="34"/></picture>
+\]" src="form_59.png" width="398" height="34"/>
 </p>
 <p> We refer to <a href="../../../fourier_decomposed_acoustic_fsi/sphere/html/index.html#appendix">another tutorial</a> for the derivation which shows (in the context of an acoustic fluid-structure interaction problem) why this is a sensible definition of the radiated power.</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Compute/output the radiated power</span></div>
 <div class="line"> <span class="comment">//----------------------------------</span></div>
-<div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">sprintf</a>(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>,<span class="stringliteral">&quot;%s/power%i.dat&quot;</span>,<a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>.directory().c_str(),</div>
+<div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">snprintf</a>(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>), <span class="stringliteral">&quot;%s/power%i.dat&quot;</span>,<a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>.directory().c_str(),</div>
 <div class="line">         <a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>.number());</div>
 <div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">some_file</a>.open(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>);</div>
-<div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">sprintf</a>(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>,<span class="stringliteral">&quot;%s/total_power%i.dat&quot;</span>,<a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>.directory().c_str(),</div>
+<div class="line"> <a class="code hl_class" href="classAnnularQuadMesh.html">snprintf</a>(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classAnnularQuadMesh.html">filename</a>), <span class="stringliteral">&quot;%s/total_power%i.dat&quot;</span>,<a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>.directory().c_str(),</div>
 <div class="line">         <a class="code hl_class" href="classAnnularQuadMesh.html">doc_info</a>.number());</div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Accumulate contribution from elements</span></div>
@@ -711,13 +705,13 @@ The accuracy of the boundary condition elements</h3>
 Exercises</h2>
 <h3><a class="anchor" id="lin"></a>
 Exploiting linearity</h3>
-<p>Confirm that the (costly) re-computation of the <picture><source srcset="form_48_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \gamma $" src="form_48.png" width="9" height="9"/></picture> integral in <code>actions_before_newton_convergence_check()</code> after the first (and only) linear solve in the Newton iteration can be avoided by declaring the problem to be linear.</p>
+<p>Confirm that the (costly) re-computation of the <img class="formulaInl" alt="$ \gamma $" src="form_48.png" width="9" height="9"/> integral in <code>actions_before_newton_convergence_check()</code> after the first (and only) linear solve in the Newton iteration can be avoided by declaring the problem to be linear.</p>
 <h3><a class="anchor" id="acc_ex"></a>
 The accuracy of the boundary condition elements</h3>
 <ul>
 <li>Explore the accuracy (and computational cost) of the application of the DtN boundary condition by varying the number of terms included in the sum (8). Specifically, confirm that an obviously wrong result is obtained if we choose <code><a class="el" href="namespaceProblemParameters.html#aa529b33b7feb959e0c044447bf0f6c6f" title="Number of terms in computation of DtN boundary condition.">ProblemParameters::Nterms_for_DtN</a></code> &lt; <code>ProblemParameters::Nterms</code>. <br  />
 </li>
-<li>Explore the function <code>check_gamma()</code> and confirm that the computed value for the <picture><source srcset="form_48_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \gamma $" src="form_48.png" width="9" height="9"/></picture> integral provides a good approximation to the derivative of the exact solution. Here is a representative comparison obtained with the parameters used in the driver code listed above:</li>
+<li>Explore the function <code>check_gamma()</code> and confirm that the computed value for the <img class="formulaInl" alt="$ \gamma $" src="form_48.png" width="9" height="9"/> integral provides a good approximation to the derivative of the exact solution. Here is a representative comparison obtained with the parameters used in the driver code listed above:</li>
 </ul>
 <div class="image">
 <img src="compare_gamma.gif" alt=""/>
@@ -725,19 +719,19 @@ The accuracy of the boundary condition elements</h3>
 Plot of the exact (dashed) and computed (solid) gamma integral for N=3 and a wavenumber of k^2 = 10. </div></div>
  <h3><a class="anchor" id="sphere"></a>
 Scattering of a planar acoustic wave off a sound-hard sphere</h3>
-<p>Modify the driver code to compute the sound field created when a planar acoustic wave, propagating along the <picture><source srcset="form_60_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ z $" src="form_60.png" width="6" height="6"/></picture>-axis, impinges on a sound-hard sphere. The relevant theory is described in <a href="../../../helmholtz/scattering/html/index.html#scattering">another tutorial</a>; you can use the fact that in spherical polar coordinates a planar wave of the form  </p><p class="formulaDsp">
-<picture><source srcset="form_61_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p>Modify the driver code to compute the sound field created when a planar acoustic wave, propagating along the <img class="formulaInl" alt="$ z $" src="form_60.png" width="6" height="6"/>-axis, impinges on a sound-hard sphere. The relevant theory is described in <a href="../../../helmholtz/scattering/html/index.html#scattering">another tutorial</a>; you can use the fact that in spherical polar coordinates a planar wave of the form  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 {\tt U}(x,y,z) = \exp({\rm i}kz)
-\]" src="form_61.png" width="110" height="14"/></picture>
+\]" src="form_61.png" width="110" height="14"/>
 </p>
 <p> can be written as  </p><p class="formulaDsp">
-<picture><source srcset="form_62_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 {\tt U}(\rho,\theta) = \sum_{l=0}^{\infty}
 (2l+1) \ {\rm i}^l \ j_l(kr) \  P_l(\cos\theta),
-\]" src="form_62.png" width="213" height="36"/></picture>
+\]" src="form_62.png" width="213" height="36"/>
 </p>
-<p> <a class="el" href="classAnnularQuadMesh.html#acf01203e48fdee730b6c194bf538177c">i.e</a>. the wave comprises a single azimuthal Fourier component with <picture><source srcset="form_63_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$
-N=0$" src="form_63.png" width="34" height="10"/></picture>. Note that the <a href="../../../../demo_drivers/fourier_decomposed_helmholtz/sphere_scattering/sphere_scattering.cc">driver code</a> already contains a namespace <code><a class="el" href="namespacePlanarWave.html" title="Namespace to test representation of planar wave in spherical polars.">PlanarWave</a></code> with several (but not all!) functions required for this task.</p>
+<p> <a class="el" href="classAnnularQuadMesh.html#acf01203e48fdee730b6c194bf538177c">i.e</a>. the wave comprises a single azimuthal Fourier component with <img class="formulaInl" alt="$
+N=0$" src="form_63.png" width="34" height="10"/>. Note that the <a href="../../../../demo_drivers/fourier_decomposed_helmholtz/sphere_scattering/sphere_scattering.cc">driver code</a> already contains a namespace <code><a class="el" href="namespacePlanarWave.html" title="Namespace to test representation of planar wave in spherical polars.">PlanarWave</a></code> with several (but not all!) functions required for this task.</p>
 <hr  />
  <hr  />
 <h1><a class="anchor" id="sources"></a>
@@ -750,7 +744,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -780,7 +774,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:38:50
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:33:45
         </div>
       </div>
     </footer>

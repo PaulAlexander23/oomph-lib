@@ -2,7 +2,7 @@
 \hypertarget{classoomph_1_1PseudoBucklingRingElement}{}\label{classoomph_1_1PseudoBucklingRingElement}\index{oomph::PseudoBucklingRingElement@{oomph::PseudoBucklingRingElement}}
 
 
-////////////////////////////////////////////////////////////////////  
+Pseudo buckling ring\+: Circular ring deformed by the N-\/th buckling mode of a thin-\/wall elastic ring.  
 
 
 
@@ -41,8 +41,10 @@ Inheritance diagram for oomph\+::Pseudo\+Buckling\+Ring\+Element\+:\begin{figure
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{oomph\+::\+Generalised\+Element}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}}() \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a76c506edf49c5bbfe94f424ec94191ab}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
-\begin{DoxyCompactList}\small\item\em Constructor\+: Initialise all pointers and all values to zero. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a6a34bffcef1bbbc5271630042afe7ca9}{\texorpdfstring{$\sim$}{\string~}\+Generalised\+Element}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor to clean up any memory allocated by the object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1GeneralisedElement_a4e4a9177fdb093fc85c890bb86bdf655}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
+\begin{DoxyCompactList}\small\item\em Broken copy constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a180b550ae69f8bcbaae3f37f38c475ff}{operator=}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
 \begin{DoxyCompactList}\small\item\em Broken assignment operator. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Data}{Data}} \texorpdfstring{$\ast$}{*}\& \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a3b83389f2c80788013421c6d59604f0b}{internal\+\_\+data\+\_\+pt}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
@@ -366,9 +368,9 @@ Inheritance diagram for oomph\+::Pseudo\+Buckling\+Ring\+Element\+:\begin{figure
 
 
 \doxysubsection{Detailed Description}
-//////////////////////////////////////////////////////////////////// 
+Pseudo buckling ring\+: Circular ring deformed by the N-\/th buckling mode of a thin-\/wall elastic ring. 
 
-//////////////////////////////////////////////////////////////////// Pseudo buckling ring\+: Circular ring deformed by the N-\/th buckling mode of a thin-\/wall elastic ring. \[ x = R_0 \cos(\zeta) + \epsilon \left( \cos(N \zeta) \cos(\zeta) - A \sin(N \zeta) \sin(\zeta) \right) sin(2 \pi t/T) \] \[ y = R_0 \sin(\zeta) + \epsilon \left( \cos(N \zeta) \sin(\zeta) + A \sin(N \zeta) \cos(\zeta) \right) sin(2 \pi t/T) \] where A is the ratio of the aziumuthal to the radial buckling amplitude (A=-\/1/N for statically buckling rings) and epsilon is the buckling amplitude. Scale R\+\_\+0 is adjusted to ensure conservation of (computational) volume/area. This is implemented by a pseudo-\/elasticity approach\+: The governing equation for $ R_0 $ is\+: \[ p_{ref} = R_0 - 1.0 \] The pointer to the reference pressure needs to be set with \doxylink{classoomph_1_1PseudoBucklingRingElement_ad14fc54491c85b97fa67119eb2045434}{reference\+\_\+pressure\+\_\+pt()}. 
+\[ x = R_0 \cos(\zeta) + \epsilon \left( \cos(N \zeta) \cos(\zeta) - A \sin(N \zeta) \sin(\zeta) \right) sin(2 \pi t/T) \] \[ y = R_0 \sin(\zeta) + \epsilon \left( \cos(N \zeta) \sin(\zeta) + A \sin(N \zeta) \cos(\zeta) \right) sin(2 \pi t/T) \] where A is the ratio of the aziumuthal to the radial buckling amplitude (A=-\/1/N for statically buckling rings) and epsilon is the buckling amplitude. Scale R\+\_\+0 is adjusted to ensure conservation of (computational) volume/area. This is implemented by a pseudo-\/elasticity approach\+: The governing equation for $ R_0 $ is\+: \[ p_{ref} = R_0 - 1.0 \] The pointer to the reference pressure needs to be set with \doxylink{classoomph_1_1PseudoBucklingRingElement_ad14fc54491c85b97fa67119eb2045434}{reference\+\_\+pressure\+\_\+pt()}. 
 
 Definition at line \mbox{\hyperlink{pseudo__buckling__ring_8h_source_l00582}{582}} of file \mbox{\hyperlink{pseudo__buckling__ring_8h_source}{pseudo\+\_\+buckling\+\_\+ring.\+h}}.
 
@@ -600,7 +602,7 @@ Definition at line \mbox{\hyperlink{pseudo__buckling__ring_8h_source_l00712}{712
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l00659}{oomph\+::\+Generalised\+Element\+::external\+\_\+data\+\_\+pt()}}.
+References \mbox{\hyperlink{elements_8h_source_l00642}{oomph\+::\+Generalised\+Element\+::external\+\_\+data\+\_\+pt()}}.
 
 \Hypertarget{classoomph_1_1PseudoBucklingRingElement_a763b31017a3f39c0553182ad264a4057}\label{classoomph_1_1PseudoBucklingRingElement_a763b31017a3f39c0553182ad264a4057} 
 \index{oomph::PseudoBucklingRingElement@{oomph::PseudoBucklingRingElement}!set\_reference\_pressure\_pt@{set\_reference\_pressure\_pt}}

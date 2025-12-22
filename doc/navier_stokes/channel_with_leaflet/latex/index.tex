@@ -584,14 +584,14 @@ The function {\ttfamily doc\+\_\+solution(...)} documents the results.
 \DoxyCodeLine{\ npts=5;\ }
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ solution\ }}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ mesh\_pt()-\/>output(some\_file,npts);}
 \DoxyCodeLine{\ some\_file.close();}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ boundaries}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/boundaries\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/boundaries\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ mesh\_pt()-\/>output\_boundaries(some\_file);}
@@ -616,7 +616,7 @@ The figure below illustrates the algebraic node update procedure employed in the
 
 
 The implementation of the node update functions is straightforward and can be found in the source files \begin{center} \href{
-../../../../src/meshes/channel_with_leaflet_mesh.template.h}{\texttt{ src/meshes/channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+template.\+h }} \end{center} ~\newline
+../../../../src/meshes/channel_with_leaflet_mesh.h}{\texttt{ src/meshes/channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+h }} \end{center} ~\newline
 and \begin{center} \href{
 ../../../../src/meshes/channel_with_leaflet_mesh.template.cc}{\texttt{ src/meshes/channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+template.\+cc }} \end{center} ~\newline
 which also illustrate how the mesh is constructed by inheritance from the {\ttfamily Simple\+Rectangular\+Quad\+Mesh} (the main task being the creation of additional nodes in the interior to "{}cut open"{} the mesh along the position of the leaflet). The source files also contain other versions of the mesh in which the node update is performed with Domain/\+Macro\+Elements, using the technique described in \href{../../../poisson/fish_poisson2/html/index.html}{\texttt{ another tutorial}}.\hypertarget{index_ex}{}\doxysubsection{\texorpdfstring{Exercise}{Exercise}}\label{index_ex}
@@ -660,4 +660,4 @@ demo_drivers/navier_stokes/channel_with_leaflet/channel_with_leaflet.cc
 \end{DoxyItemize}\DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -124,97 +118,97 @@
 </p>
 <h1><a class="anchor" id="equation"></a>
 The governing equations</h1>
-<p>The figure below shows a sketch of a general elasticity problem. A linearly elastic solid body occupies the domain <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ V $" src="form_0.png"/></picture> and is loaded by a body force <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf F}^* $" src="form_1.png"/></picture> and by a surface traction <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf t}^* $" src="form_2.png"/></picture> which is applied along part of its boundary, <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ A_{\rm tract} $" src="form_3.png"/></picture>. The displacement is prescribed along the remainder of the boundary, <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ A_{\rm displ} $" src="form_4.png"/></picture>, where <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial V = A_{\rm tract} \cup  A_{\rm displ} $" src="form_5.png"/></picture>.</p>
+<p>The figure below shows a sketch of a general elasticity problem. A linearly elastic solid body occupies the domain <img class="formulaInl" alt="$ V $" src="form_0.png"/> and is loaded by a body force <img class="formulaInl" alt="$ {\bf F}^* $" src="form_1.png"/> and by a surface traction <img class="formulaInl" alt="$ {\bf t}^* $" src="form_2.png"/> which is applied along part of its boundary, <img class="formulaInl" alt="$ A_{\rm tract} $" src="form_3.png"/>. The displacement is prescribed along the remainder of the boundary, <img class="formulaInl" alt="$ A_{\rm displ} $" src="form_4.png"/>, where <img class="formulaInl" alt="$ \partial V = A_{\rm tract} \cup  A_{\rm displ} $" src="form_5.png"/>.</p>
 <div class="image">
 <img src="Solid_boundary_conds.gif" alt=""/>
 <div class="caption">
 Sketch of a general elasticity problem: A linearly elastic body is loaded by a body force and is exposed to a prescribed traction along part of its boundary while the displacement is prescribed along the remainder of the boundary. </div></div>
- <p>We adopt an Eulerian approach and describe the deformation in terms of the displacement field <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf u}^*\left( x_i^*,t^* \right) $" src="form_6.png"/></picture> where <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_i^* $" src="form_7.png"/></picture> and <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ t^* $" src="form_8.png"/></picture> are the spatial coordinates and time, respectively. Throughout this document we will use index notation and the summation convention, and use asterisks to distinguish dimensional quantities from their non-dimensional counterparts. <br  />
- Denoting the density of the body by <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \rho $" src="form_9.png"/></picture>, the deformation is governed by the Cauchy equations, </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ <p>We adopt an Eulerian approach and describe the deformation in terms of the displacement field <img class="formulaInl" alt="$ {\bf u}^*\left( x_i^*,t^* \right) $" src="form_6.png"/> where <img class="formulaInl" alt="$ x_i^* $" src="form_7.png"/> and <img class="formulaInl" alt="$ t^* $" src="form_8.png"/> are the spatial coordinates and time, respectively. Throughout this document we will use index notation and the summation convention, and use asterisks to distinguish dimensional quantities from their non-dimensional counterparts. <br  />
+ Denoting the density of the body by <img class="formulaInl" alt="$ \rho $" src="form_9.png"/>, the deformation is governed by the Cauchy equations, </p><center>  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \frac{\partial \tau_{ij}^*}{\partial x_j^*} + \rho F_i^*
 =
 \rho \frac{\partial^2 u_i^*}{\partial t^{2*}},
-\]" src="form_10.png"/></picture>
+\]" src="form_10.png"/>
 </p>
- </center><p> where <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \tau_{ij}^* $" src="form_11.png"/></picture> is the Cauchy stress tensor which, for a linearly elastic solid, is given by </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ </center><p> where <img class="formulaInl" alt="$ \tau_{ij}^* $" src="form_11.png"/> is the Cauchy stress tensor which, for a linearly elastic solid, is given by </p><center>  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \tau_{ij}^* = E_{ijkl}^* \ e_{kl},
-\]" src="form_12.png"/></picture>
+\]" src="form_12.png"/>
 </p>
- </center><p> where <picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ e_{kl} $" src="form_13.png"/></picture> is the strain tensor, </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ </center><p> where <img class="formulaInl" alt="$ e_{kl} $" src="form_13.png"/> is the strain tensor, </p><center>  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 e_{ij} = \frac{1}{2} 
 \left( \frac{\partial u_i^*}{\partial x_j^*}+
        \frac{\partial u_j^*}{\partial x_i^*}\right).
-\]" src="form_14.png"/></picture>
+\]" src="form_14.png"/>
 </p>
- </center><p> <picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ E_{ijkl} $" src="form_15.png"/></picture> is the 4th order elasticity tensor, which for a homogeneous and isotropic solid is </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_16_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ </center><p> <img class="formulaInl" alt="$ E_{ijkl} $" src="form_15.png"/> is the 4th order elasticity tensor, which for a homogeneous and isotropic solid is </p><center>  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 E_{ijkl}^* = \frac{E}{1+\nu} \left(\frac{\nu}{1-2\nu} \delta_{ij}
  \delta_{kl} + \delta_{ik} \delta_{jl} \right),
-\]" src="form_16.png"/></picture>
+\]" src="form_16.png"/>
 </p>
- </center><p> where <picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ E $" src="form_17.png"/></picture> is Young's modulus, <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \nu $" src="form_18.png"/></picture> is the Poisson ratio and <picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \delta_{ij} $" src="form_19.png"/></picture> is the Kronecker delta. Thus the Cauchy stress is given in terms of the displacement derivatives by </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ </center><p> where <img class="formulaInl" alt="$ E $" src="form_17.png"/> is Young's modulus, <img class="formulaInl" alt="$ \nu $" src="form_18.png"/> is the Poisson ratio and <img class="formulaInl" alt="$ \delta_{ij} $" src="form_19.png"/> is the Kronecker delta. Thus the Cauchy stress is given in terms of the displacement derivatives by </p><center>  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \tau_{ij}^* = \frac{E}{1+\nu} \left(\frac{\nu}{1-2\nu} \ 
 \delta_{ij} \ \frac{\partial u_k^*}{\partial x_k^*} + 
 \frac{1}{2}\left(\frac{\partial u_i^*}{\partial x_j^*}+
 \frac{\partial u_j^*}{\partial x_i^*} \right) \right).
-\]" src="form_20.png"/></picture>
+\]" src="form_20.png"/>
 </p>
- </center><p>We non-dimensionalise the equations, using a problem specific reference length, <picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\cal L} $" src="form_21.png"/></picture>, and a timescale <picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\cal T} $" src="form_22.png"/></picture>, and use Young's modulus to non-dimensionalise the body force and the stress, </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_23_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ </center><p>We non-dimensionalise the equations, using a problem specific reference length, <img class="formulaInl" alt="$ {\cal L} $" src="form_21.png"/>, and a timescale <img class="formulaInl" alt="$ {\cal T} $" src="form_22.png"/>, and use Young's modulus to non-dimensionalise the body force and the stress, </p><center>  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \tau_{ij}^* = E \, \tau_{ij}, \qquad
 x_i^* = {\cal L}\, x_i, \qquad
 u_i^* = {\cal L}\, u_i,
-\]" src="form_23.png"/></picture>
+\]" src="form_23.png"/>
 </p>
   <p class="formulaDsp">
-<picture><source srcset="form_24_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 t^* = {\cal T}\, t, \qquad
 F_i^* = \frac{E}{\rho \cal L} \, F_i. \qquad
-\]" src="form_24.png"/></picture>
+\]" src="form_24.png"/>
 </p>
  </center><p>The non-dimensional form of the Cauchy equations is then given by </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_25_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \frac{\partial \tau_{ij}}{\partial x_j} + F_i
 =
 \Lambda^2  \frac{\partial^2 u_i}{\partial t^2},
 \ \ \ \ \ \ \ \ \ \ (1)
-\]" src="form_25.png"/></picture>
+\]" src="form_25.png"/>
 </p>
  </center><p> where </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_26_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \tau_{ij} = \frac{1}{1+\nu} \left(\frac{\nu}{1-2\nu} \ 
 \delta_{ij} \ \frac{\partial u_k}{\partial x_k} + 
 \frac{1}{2} \left(\frac{\partial u_i}{\partial x_j}+
 \frac{\partial u_j}{\partial x_i} \right) \right).
 \ \ \ \ \ \ \ \ \ \ (2)
-\]" src="form_26.png"/></picture>
+\]" src="form_26.png"/>
 </p>
  </center><p> The parameter </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_27_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \Lambda = \frac{{\cal L} \sqrt{\frac{\rho}{E}} }{\cal T},
-\]" src="form_27.png"/></picture>
+\]" src="form_27.png"/>
 </p>
- </center><p> is the ratio of the elastic body's intrinsic timescale, <picture><source srcset="form_28_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\cal L} \sqrt{\frac{\rho}{E}} $" src="form_28.png"/></picture>, to the problem-specific timescale, <picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\cal T} $" src="form_22.png"/></picture>, that we used to non-dimensionalise time.</p>
+ </center><p> is the ratio of the elastic body's intrinsic timescale, <img class="formulaInl" alt="$ {\cal L} \sqrt{\frac{\rho}{E}} $" src="form_28.png"/>, to the problem-specific timescale, <img class="formulaInl" alt="$ {\cal T} $" src="form_22.png"/>, that we used to non-dimensionalise time.</p>
 <p>The displacement constraints provide a Dirichlet condition for the displacements,  </p><p class="formulaDsp">
-<picture><source srcset="form_29_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 u_i = u_i^{[\rm prescribed]} \ \ \ \ \ \ \mbox{on $A_{\mathrm{displ}}$},
 
-\]" src="form_29.png"/></picture>
+\]" src="form_29.png"/>
 </p>
 <p> while the traction boundary conditions require that  </p><p class="formulaDsp">
-<picture><source srcset="form_30_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 t_i = \tau_{ij} n_j \ \ \ \ \ \ \mbox{on $A_{\mathrm{tract}},$}
-\]" src="form_30.png"/></picture>
+\]" src="form_30.png"/>
 </p>
-<p> where the <picture><source srcset="form_31_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ n_j $" src="form_31.png"/></picture> are the components of the outer unit normal to the boundary.</p>
+<p> where the <img class="formulaInl" alt="$ n_j $" src="form_31.png"/> are the components of the outer unit normal to the boundary.</p>
 <p>In this tutorial we only consider steady problems for which the equations reduce to </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_32_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \frac{\partial \tau_{ij}}{\partial x_j} + F_i = 0.
-\]" src="form_32.png"/></picture>
+\]" src="form_32.png"/>
 </p>
  </center><hr  />
  <hr  />
@@ -224,22 +218,22 @@ Implementation</h1>
 <h2><a class="anchor" id="el"></a>
 The elements</h2>
 <p>Within <code>oomph-lib</code>, the non-dimensional version of the <code>DIM</code>-dimensional Cauchy equations (1) with the constitutive equations (2) are implemented in the <code>LinearElasticityEquations&lt;DIM&gt;</code> equations class. Following our usual approach, discussed in the <a href="../../../quick_guide/html/index.html">(Not-So-)Quick Guide,</a> this equation class is then combined with a geometric finite element to form a fully-functional finite element. For instance, the combination of the <code>LinearElasticityEquations&lt;2&gt;</code> class with the geometric finite element <code>QElement&lt;2,3&gt;</code> yields a nine-node quadrilateral linear elasticity element. As usual, the mapping between local and global (Eulerian) coordinates within an element is given by, </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_33_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 x_i = \sum_{j=1}^{N^{(E)}} X^{(E)}_{ij} \, \psi_j, \qquad
 i=1,2\quad [\mbox{and }3],
-\]" src="form_33.png"/></picture>
+\]" src="form_33.png"/>
 </p>
- </center><p> where <picture><source srcset="form_34_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ N^{(E)} $" src="form_34.png"/></picture> is the number of nodes in the element, <picture><source srcset="form_35_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ X^{(E)}_{ij} $" src="form_35.png"/></picture> is the <picture><source srcset="form_36_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ i $" src="form_36.png"/></picture>-th global (Eulerian) coordinate of the <picture><source srcset="form_37_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ j $" src="form_37.png"/></picture>-th <code>Node</code> in the element, and the <picture><source srcset="form_38_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \psi_j $" src="form_38.png"/></picture> are the element's shape functions, defined in the geometric finite element.</p>
-<p>The cartesian displacement components <picture><source srcset="form_39_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ u_1, $" src="form_39.png"/></picture> <picture><source srcset="form_40_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ u_2, $" src="form_40.png"/></picture> <br  />
- [and <picture><source srcset="form_41_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ u_3 $" src="form_41.png"/></picture>] are stored as nodal values, and the shape functions are used to interpolate the displacements as </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_42_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ </center><p> where <img class="formulaInl" alt="$ N^{(E)} $" src="form_34.png"/> is the number of nodes in the element, <img class="formulaInl" alt="$ X^{(E)}_{ij} $" src="form_35.png"/> is the <img class="formulaInl" alt="$ i $" src="form_36.png"/>-th global (Eulerian) coordinate of the <img class="formulaInl" alt="$ j $" src="form_37.png"/>-th <code>Node</code> in the element, and the <img class="formulaInl" alt="$ \psi_j $" src="form_38.png"/> are the element's shape functions, defined in the geometric finite element.</p>
+<p>The cartesian displacement components <img class="formulaInl" alt="$ u_1, $" src="form_39.png"/> <img class="formulaInl" alt="$ u_2, $" src="form_40.png"/> <br  />
+ [and <img class="formulaInl" alt="$ u_3 $" src="form_41.png"/>] are stored as nodal values, and the shape functions are used to interpolate the displacements as </p><center>  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 u_i = \sum_{j=1}^{N^{(E)}} U^{(E)}_{ij} \, \psi_j, \qquad 
 i=1,2\quad [\mbox{and }3],
-\]" src="form_42.png"/></picture>
+\]" src="form_42.png"/>
 </p>
- </center><p> where <picture><source srcset="form_43_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$  U^{(E)}_{ij} $" src="form_43.png"/></picture> is the <picture><source srcset="form_36_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ i $" src="form_36.png"/></picture>-th displacement component at the <picture><source srcset="form_37_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ j $" src="form_37.png"/></picture>-th <code>Node</code> in the element. Nodal values of the displacement components are accessible via the access function</p>
+ </center><p> where <img class="formulaInl" alt="$  U^{(E)}_{ij} $" src="form_43.png"/> is the <img class="formulaInl" alt="$ i $" src="form_36.png"/>-th displacement component at the <img class="formulaInl" alt="$ j $" src="form_37.png"/>-th <code>Node</code> in the element. Nodal values of the displacement components are accessible via the access function</p>
 <div class="fragment"><div class="line">LinearElasticityEquations&lt;DIM&gt;::u(i,j)</div>
-</div><!-- fragment --><p>which returns the <picture><source srcset="form_36_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ i $" src="form_36.png"/></picture>-th displacement component stored at the element's <picture><source srcset="form_37_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ j $" src="form_37.png"/></picture>-th <code>Node</code>.</p>
+</div><!-- fragment --><p>which returns the <img class="formulaInl" alt="$ i $" src="form_36.png"/>-th displacement component stored at the element's <img class="formulaInl" alt="$ j $" src="form_37.png"/>-th <code>Node</code>.</p>
 <hr  />
  <hr  />
 <h1><a class="anchor" id="example"></a>
@@ -252,48 +246,48 @@ The example problem</h1>
 <div class="caption">
 Infinitely long strip loaded by a periodic traction. </div></div>
   Solve  <p class="formulaDsp">
-<picture><source srcset="form_44_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \frac{\partial \tau_{ij}}{\partial x_j} + F_i=0,
  \ \ \ \ \ \ \ \ \ \ (3)
-\]" src="form_44.png"/></picture>
+\]" src="form_44.png"/>
 </p>
- in the domain <picture><source srcset="form_45_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ D = \{x_1 \in [-\infty,+\infty], x_2 \in [0,L_y]\} $" src="form_45.png"/></picture>, subject to the Dirichlet boundary conditions  <p class="formulaDsp">
-<picture><source srcset="form_46_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ in the domain <img class="formulaInl" alt="$ D = \{x_1 \in [-\infty,+\infty], x_2 \in [0,L_y]\} $" src="form_45.png"/>, subject to the Dirichlet boundary conditions  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \left. \mathbf{u}\right|_{x_2 = 0}=(0,0),
 \ \ \ \ \ \ \ \ \ \ (4)
-\]" src="form_46.png"/></picture>
+\]" src="form_46.png"/>
 </p>
  on the bottom boundary, the Neumann (traction) boundary conditions  <p class="formulaDsp">
-<picture><source srcset="form_47_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \left. \mathbf{t}\right|_{x_2 = L_y}=\left(-A \cos{\left(\frac{2 \pi x_1}{L_x}\right)}, -A \sin{\left(\frac{2 \pi x_1}{L_x}\right)}\right),
 \ \ \ \ \ \ \ \ \ \ (5)
-\]" src="form_47.png"/></picture>
+\]" src="form_47.png"/>
 </p>
- on the top boundary, and symmetry conditions at <picture><source srcset="form_48_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_1 = 0 $" src="form_48.png"/></picture> and <picture><source srcset="form_49_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_1 = L_x $" src="form_49.png"/></picture>,  <p class="formulaDsp">
-<picture><source srcset="form_50_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ on the top boundary, and symmetry conditions at <img class="formulaInl" alt="$ x_1 = 0 $" src="form_48.png"/> and <img class="formulaInl" alt="$ x_1 = L_x $" src="form_49.png"/>,  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \left. {\bf u}\right|_{x_1=0} = \left.{\bf u}\right|_{x_1=L_x}.
-\]" src="form_50.png"/></picture>
+\]" src="form_50.png"/>
 </p>
    </td></tr>
 </table>
 <br  />
- </center><p>We note that for <picture><source srcset="form_51_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ L_y \to \infty $" src="form_51.png"/></picture> the problem converges to the analytical solution.  </p><p class="formulaDsp">
-<picture><source srcset="form_52_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ </center><p>We note that for <img class="formulaInl" alt="$ L_y \to \infty $" src="form_51.png"/> the problem converges to the analytical solution.  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 u_1^{[exact]} = -\frac{A(1+\nu)}{2 \pi} 
 \cos{\left(\frac{2 \pi x_1}{L_x}\right)} \exp{\left(2 \pi (x_2-L_y)\right)},
-\]" src="form_52.png"/></picture>
+\]" src="form_52.png"/>
 </p>
   <p class="formulaDsp">
-<picture><source srcset="form_53_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 u_2^{[exact]} = -\frac{A(1+\nu)}{2 \pi} 
 \sin{\left(\frac{2 \pi x_1}{L_x}\right)} \exp{\left(2 \pi (x_2-L_y)\right)},
-\]" src="form_53.png"/></picture>
+\]" src="form_53.png"/>
 </p>
 <hr  />
  <hr  />
 <h1><a class="anchor" id="results"></a>
 Results</h1>
-<p>The figure below shows a vector plot of the displacement field near the upper domain boundary for <picture><source srcset="form_54_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ L_x = 1 $" src="form_54.png"/></picture> and <picture><source srcset="form_55_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ L_y=2 $" src="form_55.png"/></picture>. <br  />
+<p>The figure below shows a vector plot of the displacement field near the upper domain boundary for <img class="formulaInl" alt="$ L_x = 1 $" src="form_54.png"/> and <img class="formulaInl" alt="$ L_y=2 $" src="form_55.png"/>. <br  />
  Note that we only discretised the infinite strip over one period of the applied, spatially-periodic surface traction, and imposed symmetry conditions on the left and right mesh boundaries.</p>
 <p>The plot shows that the displacements decay rapidly with distance from the loaded surface &ndash; as suggested by the analytical solution for the infinite depth case. This suggests that the computation could greatly benefit from the use of spatial adaptivity. This is indeed the case and is explored in <a href="../../refineable_periodic_load/html/index.html">another tutorial.</a></p>
 <div class="image">
@@ -586,13 +580,13 @@ Post-processing</h1>
 <div class="line"> <span class="keywordtype">unsigned</span> npts=5; </div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output solution </span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/soln.dat&quot;</span>,doc_info.directory().c_str());</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln.dat&quot;</span>,doc_info.directory().c_str());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> Bulk_mesh_pt-&gt;output(some_file,npts);</div>
 <div class="line"> some_file.close();</div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output exact solution </span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/exact_soln.dat&quot;</span>,doc_info.directory().c_str());</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/exact_soln.dat&quot;</span>,doc_info.directory().c_str());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> Bulk_mesh_pt-&gt;output_fct(some_file,npts,</div>
 <div class="line">                          <a class="code hl_function" href="namespaceGlobal__Parameters.html#a6e53a9e4370e8719e9091eff6b6a0c01">Global_Parameters::exact_solution</a>); </div>
@@ -601,7 +595,7 @@ Post-processing</h1>
 <div class="line"> <span class="comment">// Doc error</span></div>
 <div class="line"> <span class="keywordtype">double</span> error=0.0;</div>
 <div class="line"> <span class="keywordtype">double</span> norm=0.0;</div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/error.dat&quot;</span>,doc_info.directory().c_str());</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/error.dat&quot;</span>,doc_info.directory().c_str());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> Bulk_mesh_pt-&gt;compute_error(some_file,</div>
 <div class="line">                             <a class="code hl_function" href="namespaceGlobal__Parameters.html#a6e53a9e4370e8719e9091eff6b6a0c01">Global_Parameters::exact_solution</a>, </div>
@@ -621,11 +615,11 @@ Post-processing</h1>
 Comments and Exercises</h1>
 <h2><a class="anchor" id="nondim"></a>
 Comments</h2>
-<p>As discussed in the introduction, the non-dimensional version of the steady Cauchy equations only contains a single non-dimensional parameter, the Poisson ratio <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \nu $" src="form_18.png"/></picture> which is passed to the constructor of the <code>IsotropicElasticityTensor</code>. If you inspect the relevant source code <a href="../../../../src/linear_elasticity/elasticity_tensor.h">src/linear_elasticity/elasticity_tensor.h</a> you will find that this constructor has a second argument which defaults to one. This argument plays the role of Young's modulus and is best interpreted as the ratio of the material's actual Young's modulus to the (nominal) Young's modulus used in the non-dimensionalisation of the equations. The ability to provide this ratio is important if different regions of the body contain materials with different material properties.</p>
+<p>As discussed in the introduction, the non-dimensional version of the steady Cauchy equations only contains a single non-dimensional parameter, the Poisson ratio <img class="formulaInl" alt="$ \nu $" src="form_18.png"/> which is passed to the constructor of the <code>IsotropicElasticityTensor</code>. If you inspect the relevant source code <a href="../../../../src/linear_elasticity/elasticity_tensor.h">src/linear_elasticity/elasticity_tensor.h</a> you will find that this constructor has a second argument which defaults to one. This argument plays the role of Young's modulus and is best interpreted as the ratio of the material's actual Young's modulus to the (nominal) Young's modulus used in the non-dimensionalisation of the equations. The ability to provide this ratio is important if different regions of the body contain materials with different material properties.</p>
 <h2><a class="anchor" id="exercises"></a>
 Exercises</h2>
 <ol type="1">
-<li>Fix the size of the domain and set the displacements along the bottom boundary to the exact solution for the infinite depth case, i.e. <picture><source srcset="form_56_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf u} = {\bf u}^{[\mathrm{exact}]} $" src="form_56.png"/></picture>, using the <code><a class="el" href="namespaceGlobal__Parameters.html#a3a5d4759509036a2650d5efde8e15d56" title="Specify problem to be solved (boundary conditons for finite or infinite domain).">Global_Parameters::Finite</a></code> flag. Then investigate how the solution converges to the exact solution for increasing numbers of elements.</li>
+<li>Fix the size of the domain and set the displacements along the bottom boundary to the exact solution for the infinite depth case, i.e. <img class="formulaInl" alt="$ {\bf u} = {\bf u}^{[\mathrm{exact}]} $" src="form_56.png"/>, using the <code><a class="el" href="namespaceGlobal__Parameters.html#a3a5d4759509036a2650d5efde8e15d56" title="Specify problem to be solved (boundary conditons for finite or infinite domain).">Global_Parameters::Finite</a></code> flag. Then investigate how the solution converges to the exact solution for increasing numbers of elements.</li>
 <li>Try varying the depth of the domain by changing <code><a class="el" href="namespaceGlobal__Parameters.html#a25a31b2de3f05ac457b62fc9fa999872" title="Length of domain in y direction.">Global_Parameters::Ly</a></code> while maintaining a constant spatial resolution (i.e. increasing the number of elements &ndash; this is already done in the driver code where we compute <code>ny</code> in terms of <code><a class="el" href="namespaceGlobal__Parameters.html#a25a31b2de3f05ac457b62fc9fa999872" title="Length of domain in y direction.">Global_Parameters::Ly</a></code> ) and compare how the solution converges to the exact solution of the infinite depth case.</li>
 </ol>
 <hr  />
@@ -640,7 +634,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -670,7 +664,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:37:43
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:35:44
         </div>
       </div>
     </footer>

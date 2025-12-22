@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00003}00003\ \textcolor{comment}{//\ LIC//\ multi-\/physics\ finite-\/element\ library,\ available}}
 \DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00004}00004\ \textcolor{comment}{//\ LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00005}00005\ \textcolor{comment}{//\ LIC//}}
-\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00006}00006\ \textcolor{comment}{//\ LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00006}00006\ \textcolor{comment}{//\ LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00007}00007\ \textcolor{comment}{//\ LIC//}}
 \DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00008}00008\ \textcolor{comment}{//\ LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00009}00009\ \textcolor{comment}{//\ LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -32,11 +32,11 @@
 \DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00028}00028\ }
 \DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00029}00029\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceoomph}{oomph}}}
 \DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00030}00030\ \{\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00031}00031\ \textcolor{comment}{\ \ ///\ ////////////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00032}00032\ \textcolor{comment}{\ \ ///\ ////////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00031}00031\ \textcolor{comment}{\ \ ///////////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00032}00032\ \textcolor{comment}{\ \ ///////////////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00033}00033\ \textcolor{comment}{}\ \ \textcolor{comment}{//\ functions\ for\ TrilinosAztecOOSolver\ class}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00034}00034\ \textcolor{comment}{\ \ ///\ ////////////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00035}00035\ \textcolor{comment}{\ \ ///\ ////////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00034}00034\ \textcolor{comment}{\ \ ///////////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00035}00035\ \textcolor{comment}{\ \ ///////////////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00036}00036\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00037}00037\ }
 \DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00038}00038\ \ \ \textcolor{comment}{//=============================================================================}\textcolor{comment}{}}
@@ -312,7 +312,7 @@
 \DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00308}00308\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ setup\ the\ preconditioner}}
 \DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00309}00309\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ start\ of\ prec\ setup}}
 \DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00310}00310\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{prec\_setup\_start\_t}}\ =\ \mbox{\hyperlink{namespaceoomph_1_1TimingHelpers_a9fb6ad7e2e01b0914e9f7072ef9ebfa6}{TimingHelpers::timer}}();}
-\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00311}00311\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1IterativeLinearSolver_a55111d8d76589944d81d13b5e15f7248}{Preconditioner\_pt}}-\/>\mbox{\hyperlink{classoomph_1_1Preconditioner_a0b95e7159585b5151f9e5dc1d1713655}{setup}}(matrix\_pt);}
+\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00311}00311\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1IterativeLinearSolver_a55111d8d76589944d81d13b5e15f7248}{Preconditioner\_pt}}-\/>\mbox{\hyperlink{classoomph_1_1Preconditioner_ac2c0f7f39eccd814e72cc5813ec864e0}{setup}}(matrix\_pt);}
 \DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00312}00312\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ start\ of\ prec\ setup}}
 \DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00313}00313\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{prec\_setup\_finish\_t}}\ =\ \mbox{\hyperlink{namespaceoomph_1_1TimingHelpers_a9fb6ad7e2e01b0914e9f7072ef9ebfa6}{TimingHelpers::timer}}();}
 \DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00314}00314\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classoomph_1_1LinearSolver_a536e41b50b3f3464ca9cb4a5776acc19}{Doc\_time}})}
@@ -599,17 +599,19 @@
 \DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00595}00595\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classoomph_1_1LinearSolver_a536e41b50b3f3464ca9cb4a5776acc19}{Doc\_time}})}
 \DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00596}00596\ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00597}00597\ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ norm\ =\ \mbox{\hyperlink{classoomph_1_1TrilinosAztecOOSolver_ad71b280c5af25e35e0f9da8cd68228cf}{AztecOO\_solver\_pt}}-\/>TrueResidual();}
-\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00598}00598\ \ \ \ \ \ \ \mbox{\hyperlink{namespaceoomph_aec474227917784dc0a255faf289cfc16}{oomph\_info}}\ <<\ \textcolor{stringliteral}{"{}Linear\ solver\ iterations\ \ \ \ :\ "{}}\ <<\ \mbox{\hyperlink{classoomph_1_1TrilinosAztecOOSolver_a26a9366d3ec0f11e7e907587c0439ea7}{Iterations}}\ <<\ std::endl;}
-\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00599}00599\ \ \ \ \ \ \ \mbox{\hyperlink{namespaceoomph_aec474227917784dc0a255faf289cfc16}{oomph\_info}}\ <<\ \textcolor{stringliteral}{"{}Final\ Relative\ Residual\ Norm:\ "{}}\ <<\ norm\ <<\ std::endl;}
-\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00600}00600\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00601}00601\ \ \ \}}
-\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00602}00602\ }
-\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00603}00603\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00604}00604\ \textcolor{comment}{\ \ ///\ ////////////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00605}00605\ \textcolor{comment}{\ \ ///\ ////////////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00606}00606\ \textcolor{comment}{\ \ ///\ ////////////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00607}00607\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00608}00608\ }
-\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00609}00609\ \}\ \textcolor{comment}{//\ namespace\ oomph}}
+\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00598}00598\ \ \ \ \ \ \ \mbox{\hyperlink{namespaceoomph_aec474227917784dc0a255faf289cfc16}{oomph\_info}}\ <<\ \textcolor{stringliteral}{"{}Number\ of\ iterations\ to\ convergence:\ "{}}\ <<\ \mbox{\hyperlink{classoomph_1_1TrilinosAztecOOSolver_a26a9366d3ec0f11e7e907587c0439ea7}{Iterations}}}
+\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00599}00599\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00600}00600\ \ \ \ \ \ \ \mbox{\hyperlink{namespaceoomph_aec474227917784dc0a255faf289cfc16}{oomph\_info}}\ <<\ \textcolor{stringliteral}{"{}Final\ relative\ residual\ norm\ \ \ \ \ \ \ :\ "{}}\ <<\ norm}
+\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00601}00601\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00602}00602\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00603}00603\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00604}00604\ }
+\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00605}00605\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00606}00606\ \textcolor{comment}{\ \ ///////////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00607}00607\ \textcolor{comment}{\ \ ///////////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00608}00608\ \textcolor{comment}{\ \ ///////////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00609}00609\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00610}00610\ }
+\DoxyCodeLine{\Hypertarget{trilinos__solver_8cc_source_l00611}00611\ \}\ \textcolor{comment}{//\ namespace\ oomph}}
 
 \end{DoxyCode}

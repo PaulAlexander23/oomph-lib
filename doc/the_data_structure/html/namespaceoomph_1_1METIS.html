@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -182,7 +176,7 @@ Variables</h2></td></tr>
 
 <p>Typedef for function pointer to to function that translates spatial error into weight for <a class="el" href="namespaceoomph_1_1METIS.html" title="Namespace for METIS graph partitioning routines.">METIS</a> partitioning. </p>
 
-<p class="definition">Definition at line <a class="el" href="partitioning_8h_source.html#l00083">83</a> of file <a class="el" href="partitioning_8h_source.html">partitioning.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="partitioning_8h_source.html#l00088">88</a> of file <a class="el" href="partitioning_8h_source.html">partitioning.h</a>.</p>
 
 </div>
 </div>
@@ -228,9 +222,9 @@ Variables</h2></td></tr>
 <p>Default function that translates spatial error into weight for <a class="el" href="namespaceoomph_1_1METIS.html" title="Namespace for METIS graph partitioning routines.">METIS</a> partitioning (unit weight regardless of input). </p>
 <p>Default function that translates spatial error into weight for <a class="el" href="namespaceoomph_1_1METIS.html" title="Namespace for METIS graph partitioning routines.">METIS</a> partitioning (unit weight regardless of input) </p>
 
-<p class="definition">Definition at line <a class="el" href="partitioning_8cc_source.html#l00053">53</a> of file <a class="el" href="partitioning_8cc_source.html">partitioning.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="partitioning_8cc_source.html#l00047">47</a> of file <a class="el" href="partitioning_8cc_source.html">partitioning.cc</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="partitioning_8cc_source.html#l00116">partition_mesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="partitioning_8cc_source.html#l00110">partition_mesh()</a>.</p>
 
 </div>
 </div>
@@ -293,11 +287,11 @@ Variables</h2></td></tr>
 </ul>
 <p>The partioning is based on the dof graph of the complete mesh by taking into account which global equation numbers are affected by each element and connecting elements which affect the same global equation number. Partitioning is done such that all elements associated with the same tree root move together. Non-refineable elements are treated as their own root elements. If the optional boolean flag is set to true (it defaults to false) each processor assigns a dumb-but-repeatable equidistribution of its non-halo elements over the domains and outputs the input that would have gone into <a class="el" href="namespaceoomph_1_1METIS.html" title="Namespace for METIS graph partitioning routines.">METIS</a> in the file metis_input_for_validation.dat </p>
 
-<p class="definition">Definition at line <a class="el" href="partitioning_8cc_source.html#l00589">589</a> of file <a class="el" href="partitioning_8cc_source.html">partitioning.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="partitioning_8cc_source.html#l00556">556</a> of file <a class="el" href="partitioning_8cc_source.html">partitioning.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="problem_8h_source.html#l01266">oomph::Problem::communicator_pt()</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00448">oomph::Mesh::element_pt()</a>, <a class="el" href="problem_8h_source.html#l00884">oomph::Problem::elemental_assembly_time()</a>, <a class="el" href="elements_8h_source.html#l00708">oomph::GeneralisedElement::eqn_number()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="elements_8h_source.html#l01167">oomph::GeneralisedElement::is_halo()</a>, <a class="el" href="problem_8h_source.html#l01300">oomph::Problem::mesh_pt()</a>, <a class="el" href="namespaceoomph.html#a86e73012a914a19df3d849e1c6f4b9a1">oomph::METIS_PartGraphKway()</a>, <a class="el" href="namespaceoomph.html#abf5fe3c38b4c12aad8fdfd89b05599bd">oomph::METIS_PartGraphVKway()</a>, <a class="el" href="elements_8h_source.html#l00839">oomph::GeneralisedElement::ndof()</a>, <a class="el" href="mesh_8h_source.html#l00590">oomph::Mesh::nelement()</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00319">oomph::oomph_info</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
+<p class="reference">References <a class="el" href="problem_8h_source.html#l01266">oomph::Problem::communicator_pt()</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00452">oomph::Mesh::element_pt()</a>, <a class="el" href="problem_8h_source.html#l00884">oomph::Problem::elemental_assembly_time()</a>, <a class="el" href="elements_8h_source.html#l00691">oomph::GeneralisedElement::eqn_number()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="elements_8h_source.html#l01150">oomph::GeneralisedElement::is_halo()</a>, <a class="el" href="problem_8h_source.html#l01300">oomph::Problem::mesh_pt()</a>, <a class="el" href="elements_8h_source.html#l00822">oomph::GeneralisedElement::ndof()</a>, <a class="el" href="mesh_8h_source.html#l00598">oomph::Mesh::nelement()</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00326">oomph::oomph_info</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="problem_8cc_source.html#l17253">oomph::Problem::load_balance()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="problem_8cc_source.html#l17268">oomph::Problem::load_balance()</a>.</p>
 
 </div>
 </div>
@@ -420,11 +414,11 @@ Variables</h2></td></tr>
 </ul>
 <p>Partioning is based on dual graph of mesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="partitioning_8cc_source.html#l00116">116</a> of file <a class="el" href="partitioning_8cc_source.html">partitioning.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="partitioning_8cc_source.html#l00110">110</a> of file <a class="el" href="partitioning_8cc_source.html">partitioning.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="problem_8h_source.html#l01266">oomph::Problem::communicator_pt()</a>, <a class="el" href="partitioning_8cc_source.html#l00053">default_error_to_weight_fct()</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00448">oomph::Mesh::element_pt()</a>, <a class="el" href="elements_8h_source.html#l00708">oomph::GeneralisedElement::eqn_number()</a>, <a class="el" href="partitioning_8cc_source.html#l00063">Error_to_weight_fct_pt</a>, <a class="el" href="problem_8h_source.html#l01300">oomph::Problem::mesh_pt()</a>, <a class="el" href="namespaceoomph.html#a86e73012a914a19df3d849e1c6f4b9a1">oomph::METIS_PartGraphKway()</a>, <a class="el" href="namespaceoomph.html#abf5fe3c38b4c12aad8fdfd89b05599bd">oomph::METIS_PartGraphVKway()</a>, <a class="el" href="elements_8h_source.html#l00839">oomph::GeneralisedElement::ndof()</a>, <a class="el" href="mesh_8h_source.html#l00590">oomph::Mesh::nelement()</a>, <a class="el" href="problem_8h_source.html#l01343">oomph::Problem::nsub_mesh()</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00319">oomph::oomph_info</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
+<p class="reference">References <a class="el" href="problem_8h_source.html#l01266">oomph::Problem::communicator_pt()</a>, <a class="el" href="partitioning_8cc_source.html#l00047">default_error_to_weight_fct()</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00452">oomph::Mesh::element_pt()</a>, <a class="el" href="elements_8h_source.html#l00691">oomph::GeneralisedElement::eqn_number()</a>, <a class="el" href="partitioning_8cc_source.html#l00057">Error_to_weight_fct_pt</a>, <a class="el" href="problem_8h_source.html#l01300">oomph::Problem::mesh_pt()</a>, <a class="el" href="elements_8h_source.html#l00822">oomph::GeneralisedElement::ndof()</a>, <a class="el" href="mesh_8h_source.html#l00598">oomph::Mesh::nelement()</a>, <a class="el" href="problem_8h_source.html#l01343">oomph::Problem::nsub_mesh()</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00326">oomph::oomph_info</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="problem_8cc_source.html#l00965">oomph::Problem::partition_global_mesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="problem_8cc_source.html#l00974">oomph::Problem::partition_global_mesh()</a>.</p>
 
 </div>
 </div>
@@ -470,9 +464,9 @@ Variables</h2></td></tr>
 
 <p>Partition mesh uniformly by dividing elements equally over the partitions, in the order in which they are returned by problem. On return, element_domain[ielem] contains the number of the domain [0,1,...,ndomain-1] to which element ielem has been assigned. </p>
 
-<p class="definition">Definition at line <a class="el" href="partitioning_8cc_source.html#l00076">76</a> of file <a class="el" href="partitioning_8cc_source.html">partitioning.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="partitioning_8cc_source.html#l00070">70</a> of file <a class="el" href="partitioning_8cc_source.html">partitioning.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="problem_8h_source.html#l01300">oomph::Problem::mesh_pt()</a>, <a class="el" href="mesh_8h_source.html#l00590">oomph::Mesh::nelement()</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
+<p class="reference">References <a class="el" href="problem_8h_source.html#l01300">oomph::Problem::mesh_pt()</a>, <a class="el" href="mesh_8h_source.html#l00598">oomph::Mesh::nelement()</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
 
 </div>
 </div>
@@ -491,9 +485,9 @@ Variables</h2></td></tr>
 
 <p>Function pointer to to function that translates spatial error into weight for <a class="el" href="namespaceoomph_1_1METIS.html" title="Namespace for METIS graph partitioning routines.">METIS</a> partitioning. </p>
 
-<p class="definition">Definition at line <a class="el" href="partitioning_8cc_source.html#l00063">63</a> of file <a class="el" href="partitioning_8cc_source.html">partitioning.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="partitioning_8cc_source.html#l00057">57</a> of file <a class="el" href="partitioning_8cc_source.html">partitioning.cc</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="partitioning_8cc_source.html#l00116">partition_mesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="partitioning_8cc_source.html#l00110">partition_mesh()</a>.</p>
 
 </div>
 </div>
@@ -525,7 +519,7 @@ Variables</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:06:00
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:43:49
         </div>
       </div>
     </footer>

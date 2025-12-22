@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -115,7 +109,7 @@
 <div class="contents">
 <div class="textblock"><p>In an <a href="../../fsi_collapsible_channel/html/index.html">earlier example,</a> we demonstrated how the <code>MacroElement/Domain</code> - based node-update procedure that we originally developed for problems with moving, curvilinear domain boundaries may also be used in fluid-structure interaction problems in which the position of the domain boundary has to be determined as part of the solution. We demonstrated that the driver code for the coupled multi-physics problem was a straightforward combination of the driver codes for the two constituent single-physics problems. The two key steps required to couple the two single-physics codes were:</p><ol type="1">
 <li>Recast the wall mesh to a <code>GeomObject</code>, using the <code>MeshAsGeomObject</code> class. This class turns an existing solid mechanics mesh into a "compound" <code>GeomObject</code> in which material points on the <br  />
- wall are identified by their Lagrangian coordinate, <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \xi $" src="form_0.png" width="8" height="13"/></picture> , which doubles as the <code>GeomObject's</code> intrinsic coordinate, <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \zeta $" src="form_1.png" width="6" height="13"/></picture> . <br  />
+ wall are identified by their Lagrangian coordinate, <img class="formulaInl" alt="$ \xi $" src="form_0.png" width="8" height="13"/> , which doubles as the <code>GeomObject's</code> intrinsic coordinate, <img class="formulaInl" alt="$ \zeta $" src="form_1.png" width="6" height="13"/> . <br  />
 <br  />
 </li>
 <li>Use the "compound" <code>GeomObject</code> to represent the moving boundary of the fluid mesh. "Upgrade" the fluid elements (of type <code>FLUID_ELEMENT</code>, say) to the "wrapped" version <code>MacroElementNodeUpdateElement&lt;FLUID_ELEMENT&gt;</code> to allow the the node-update to be performed node-by-node, and to automatically evaluate the "shape derivatives" &ndash; the derivatives of the fluid equations with respect to the (solid mechanics) degrees of freedom that determine their nodal positions. <br  />
@@ -126,8 +120,8 @@
 <h1><a class="anchor" id="alg_sparse"></a>
 Sparse algebraic node updates in FSI problems</h1>
 <p>To avoid this problem we need a node-update strategy in which the position of each fluid node is determined by only a small number of solid mechanics degrees of freedom. The algebraic node-update strategy discussed in the <a href="../../../navier_stokes/algebraic_collapsible_channel/html/index.html">non-FSI version of the collapsible channel problem,</a> provides an ideal framework for this, as it allows each node to update its own position, using a node-specific update function. Recall that in the <code>AlgebraicMesh</code> - version of the <code>CollapsibleChannelMesh</code>, each <code>AlgebraicNode</code> stored a pointer to the (single) <code>GeomObject</code> that represented the moving curvilinear boundary, and the Lagrangian coordinate of a reference point on this <code>GeomObject</code>. The node's node-update function then placed the node at a fixed vertical fraction on the line connecting the reference point on the "elastic" wall to a second reference point on the fixed lower channel wall. Furthermore, the "wrapped" element, <code>AlgebraicElement&lt;FLUID_ELEMENT&gt;</code>, automatically computes the "shape derivatives" by finite-differencing the fluid residuals with respect to the degrees of freedom stored in the <code>GeomObject's</code> geometric <code>Data</code>, just as in the case of the <code>MacroElement</code> - based node-update procedure.</p>
-<p>If used in the form discussed in the <a href="../../../navier_stokes/algebraic_collapsible_channel/html/index.html">earlier example,</a> this methodology does not (yet!) improve the sparsity of the node update: The geometric <code>Data</code> of the "compound" <code>GeomObject</code> that represents the wall still contains the positional degrees of freedom of <em>all</em> of the mesh's constituent <code>FSIHermiteBeamElements</code>. This is wasteful because the position of a material point on the (discretised) wall depends only on the positional degrees of freedom of the element that this point is located in. The (costly-to-compute) derivatives with respect to all other solid mechanics degree of freedom are zero. We will therefore modify the node-update procedure as follows: Each <code>AlgebraicNode</code> stores a pointer to the <code>FSIHermiteBeamElement</code> that its reference point is located in. This is possible because <code>FSIHermiteBeamElements</code> are derived from the <code>FiniteElement</code> class which, in turn, is derived from the <code>GeomObject</code> class. In other words, the sub-objects of the compound <code>MeshAsGeomObject</code> are <code>GeomObjects</code> themselves. Their shape is parametrised by the <code>FSIHermiteBeamElement's</code> local coordinate, <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ s $" src="form_2.png" width="5" height="6"/></picture> , which acts as the (sub-)<code>GeomObject's</code> intrinsic coordinate, <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \zeta $" src="form_1.png" width="6" height="13"/></picture> .</p>
-<p>Given a pointer to a compound <code>GeomObject</code>, <code>geom_obj_pt</code>, say, and the intrinsic coordinate <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \zeta_{compound} $" src="form_3.png" width="51" height="14"/></picture> = <code>zeta_compound</code> of a point in that <code>GeomObject</code>, the function <code>GeomObject::locate_zeta(...)</code> may be used to determine a pointer, <code>sub_obj_pt</code>, to the sub-object that this point is located in, and the vector of intrinsic coordinates <code>zeta_sub_obj</code> of the point in this sub-object. This procedure is illustrated in this code fragment:</p>
+<p>If used in the form discussed in the <a href="../../../navier_stokes/algebraic_collapsible_channel/html/index.html">earlier example,</a> this methodology does not (yet!) improve the sparsity of the node update: The geometric <code>Data</code> of the "compound" <code>GeomObject</code> that represents the wall still contains the positional degrees of freedom of <em>all</em> of the mesh's constituent <code>FSIHermiteBeamElements</code>. This is wasteful because the position of a material point on the (discretised) wall depends only on the positional degrees of freedom of the element that this point is located in. The (costly-to-compute) derivatives with respect to all other solid mechanics degree of freedom are zero. We will therefore modify the node-update procedure as follows: Each <code>AlgebraicNode</code> stores a pointer to the <code>FSIHermiteBeamElement</code> that its reference point is located in. This is possible because <code>FSIHermiteBeamElements</code> are derived from the <code>FiniteElement</code> class which, in turn, is derived from the <code>GeomObject</code> class. In other words, the sub-objects of the compound <code>MeshAsGeomObject</code> are <code>GeomObjects</code> themselves. Their shape is parametrised by the <code>FSIHermiteBeamElement's</code> local coordinate, <img class="formulaInl" alt="$ s $" src="form_2.png" width="5" height="6"/> , which acts as the (sub-)<code>GeomObject's</code> intrinsic coordinate, <img class="formulaInl" alt="$ \zeta $" src="form_1.png" width="6" height="13"/> .</p>
+<p>Given a pointer to a compound <code>GeomObject</code>, <code>geom_obj_pt</code>, say, and the intrinsic coordinate <img class="formulaInl" alt="$ \zeta_{compound} $" src="form_3.png" width="51" height="14"/> = <code>zeta_compound</code> of a point in that <code>GeomObject</code>, the function <code>GeomObject::locate_zeta(...)</code> may be used to determine a pointer, <code>sub_obj_pt</code>, to the sub-object that this point is located in, and the vector of intrinsic coordinates <code>zeta_sub_obj</code> of the point in this sub-object. This procedure is illustrated in this code fragment:</p>
 <div class="fragment"><div class="line"> [...] </div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Vector containing the (1D) intrinsic coordinate in the </span></div>
@@ -166,8 +160,8 @@ Sparse algebraic node updates in FSI problems</h1>
 <img src="locate_zeta.gif" alt=""/>
 <div class="caption">
 Sketch of the various coordinates and GeomObjects. The (continuous) beam is parametrised by its Lagrangian coordinate xi which doubles as the intrinsic coordinate zeta for its role as a GeomObject. The (discretised) beam is a compound GeomObject, parametrised by the Lagrangian coordinate xi; its constituent FSI beam elements are sub-GeomObjects that are parametrised by their local coordinates, s. </div></div>
- <p>We note that the <code>GeomObject</code> base class provides a default implementation for the <code>GeomObject::locate_zeta(...)</code> function as a virtual member function which returns the <code>GeomObject's</code> <code>"this"</code> pointer and sets <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \zeta_{compound} =
-\zeta_{sub} $" src="form_4.png" width="89" height="14"/></picture> . Unless the function is overloaded in a specific derived class, the <code>GeomObject</code> therefore acts as its own sub-object. This is a sensible default as it ensures that (<code>geom_obj_pt</code>, <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \zeta_{compound}$" src="form_5.png" width="51" height="14"/></picture> ) and (<code>sub_geom_obj_pt</code>, <code><picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \zeta_{sub}$" src="form_6.png" width="20" height="13"/></picture></code> ) always identify the same point, regardless of whether nor not the <code>GeomObject</code> pointed to by <code>geom_obj_pt</code> is a "compound" <code>GeomObject</code>.</p>
+ <p>We note that the <code>GeomObject</code> base class provides a default implementation for the <code>GeomObject::locate_zeta(...)</code> function as a virtual member function which returns the <code>GeomObject's</code> <code>"this"</code> pointer and sets <img class="formulaInl" alt="$ \zeta_{compound} =
+\zeta_{sub} $" src="form_4.png" width="89" height="14"/> . Unless the function is overloaded in a specific derived class, the <code>GeomObject</code> therefore acts as its own sub-object. This is a sensible default as it ensures that (<code>geom_obj_pt</code>, <img class="formulaInl" alt="$ \zeta_{compound}$" src="form_5.png" width="51" height="14"/> ) and (<code>sub_geom_obj_pt</code>, <code><img class="formulaInl" alt="$ \zeta_{sub}$" src="form_6.png" width="20" height="13"/></code> ) always identify the same point, regardless of whether nor not the <code>GeomObject</code> pointed to by <code>geom_obj_pt</code> is a "compound" <code>GeomObject</code>.</p>
 <hr  />
  <hr  />
 <h1><a class="anchor" id="impl"></a>
@@ -268,8 +262,8 @@ The AlgebraicCollapsibleChannelMesh</h2>
 <div class="line"> </div>
 <div class="line">      <span class="comment">// Check if it&#39;s in the collapsible part:</span></div>
 <div class="line">      <span class="keywordflow">if</span> ((x &gt;= l_up) &amp;&amp; (x &lt;= (l_up + l_collapsible)))</div>
-</div><!-- fragment --><p> Assuming that the wall is in its undeformed position (we'll check this in a second...), we determine the intrinsic coordinate of the reference point on the upper wall (taking the offset between <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x$" src="form_7.png" width="8" height="6"/></picture> and <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \zeta$" src="form_8.png" width="6" height="13"/></picture> into account: The left end of the elastic wall is located at <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \zeta=0$" src="form_9.png" width="29" height="13"/></picture> and at <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x = L_{up}
-$" src="form_10.png" width="45" height="14"/></picture> ), and identify the sub - <code>GeomObject</code> within which the reference point is located.</p>
+</div><!-- fragment --><p> Assuming that the wall is in its undeformed position (we'll check this in a second...), we determine the intrinsic coordinate of the reference point on the upper wall (taking the offset between <img class="formulaInl" alt="$ x$" src="form_7.png" width="8" height="6"/> and <img class="formulaInl" alt="$ \zeta$" src="form_8.png" width="6" height="13"/> into account: The left end of the elastic wall is located at <img class="formulaInl" alt="$ \zeta=0$" src="form_9.png" width="29" height="13"/> and at <img class="formulaInl" alt="$ x = L_{up}
+$" src="form_10.png" width="45" height="14"/> ), and identify the sub - <code>GeomObject</code> within which the reference point is located.</p>
 <div class="fragment"><div class="line">      {</div>
 <div class="line">        <span class="comment">// Get zeta coordinate on the undeformed wall</span></div>
 <div class="line">        Vector&lt;double&gt; zeta(1);</div>
@@ -312,7 +306,6 @@ $" src="form_10.png" width="45" height="14"/></picture> ), and identify the sub 
 <div class="line"><span class="preprocessor">#endif</span></div>
 </div><!-- fragment --><p> Now we can create the node update data for the present <code>AlgebraicNode</code>. The node update function involves a single <code>GeomObject:</code> The (sub-)<code>GeomObject</code> within which the reference point on the upper wall is located.</p>
 <div class="fragment"><div class="line"> </div>
-<div class="line"> </div>
 <div class="line">        <span class="comment">// One geometric object is involved in update operation</span></div>
 <div class="line">        Vector&lt;GeomObject*&gt; geom_object_pt(1);</div>
 <div class="line"> </div>
@@ -446,7 +439,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -476,7 +469,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:26:50
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:34:56
         </div>
       </div>
     </footer>

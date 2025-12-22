@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -434,7 +428,7 @@
 <div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span> <span class="comment">//Need high precision for large radii of curvature</span></div>
 <div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span> <span class="comment">//some_file.precision(10);</span></div>
 <div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span> <span class="comment">// Output solution labelled by the Reynolds number</span></div>
-<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span> sprintf(filename,<span class="stringliteral">&quot;%s/soln_Re%g.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln_Re%g.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>         <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#ab814e627d2eb5bc50318879d19ab16b9">Global_Physical_Variables::Re</a>);</div>
 <div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span> some_file.open(filename);</div>
 <div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> mesh_pt()-&gt;output(some_file,npts);</div>
@@ -446,9 +440,9 @@
 <div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> </div>
 <div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span> </div>
 <div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span><span class="comment"></span> </div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span><span class="comment"></span> </div>
 <div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span> </div>
 <div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span><span class="comment">//=start_of_main=======================================================</span><span class="comment"></span></div>
@@ -560,7 +554,7 @@
 <div class="ttc" id="aclassSteadyCurvedTubeProblem_html_a79b8c2c0e3945aa6a9b69dfd55e456e1"><div class="ttname"><a href="classSteadyCurvedTubeProblem.html#a79b8c2c0e3945aa6a9b69dfd55e456e1">SteadyCurvedTubeProblem::mesh_pt</a></div><div class="ttdeci">RefineableTubeMesh&lt; ELEMENT &gt; * mesh_pt()</div><div class="ttdoc">Overload generic access function by one that returns a pointer to the specific mesh.</div><div class="ttdef"><b>Definition</b> <a href="curved__pipe_8cc_source.html#l00127">curved_pipe.cc:127</a></div></div>
 <div class="ttc" id="aclassSteadyCurvedTubeProblem_html_a90f3197b2cd58a6d24d7064018db3bac"><div class="ttname"><a href="classSteadyCurvedTubeProblem.html#a90f3197b2cd58a6d24d7064018db3bac">SteadyCurvedTubeProblem::actions_before_newton_solve</a></div><div class="ttdeci">void actions_before_newton_solve()</div><div class="ttdoc">Update the problem specs before solve.</div><div class="ttdef"><b>Definition</b> <a href="curved__pipe_8cc_source.html#l00256">curved_pipe.cc:256</a></div></div>
 <div class="ttc" id="aclassSteadyCurvedTubeProblem_html_ac276276fa87e57ff486e3af24b72e38b"><div class="ttname"><a href="classSteadyCurvedTubeProblem.html#ac276276fa87e57ff486e3af24b72e38b">SteadyCurvedTubeProblem::SteadyCurvedTubeProblem</a></div><div class="ttdeci">SteadyCurvedTubeProblem(DocInfo &amp;doc_info, const double &amp;min_error_target, const double &amp;max_error_target)</div><div class="ttdoc">Constructor: Pass DocInfo object and target errors.</div><div class="ttdef"><b>Definition</b> <a href="curved__pipe_8cc_source.html#l00149">curved_pipe.cc:149</a></div></div>
-<div class="ttc" id="acurved__pipe_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="curved__pipe_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">///////////////////////////////////////////////////////////////////// ///////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="curved__pipe_8cc_source.html#l00318">curved_pipe.cc:318</a></div></div>
+<div class="ttc" id="acurved__pipe_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="curved__pipe_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">Driver for 3D entry flow into a curved tube. If there are any command line arguments,...</div><div class="ttdef"><b>Definition</b> <a href="curved__pipe_8cc_source.html#l00318">curved_pipe.cc:318</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">Namespace for physical parameters.</div><div class="ttdef"><b>Definition</b> <a href="curved__pipe_8cc_source.html#l00085">curved_pipe.cc:86</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_ab814e627d2eb5bc50318879d19ab16b9"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#ab814e627d2eb5bc50318879d19ab16b9">Global_Physical_Variables::Re</a></div><div class="ttdeci">double Re</div><div class="ttdoc">Reynolds number.</div><div class="ttdef"><b>Definition</b> <a href="curved__pipe_8cc_source.html#l00088">curved_pipe.cc:88</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_add290b9e4a9c0e4c18a13faa7e29d857"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#add290b9e4a9c0e4c18a13faa7e29d857">Global_Physical_Variables::Delta</a></div><div class="ttdeci">double Delta</div><div class="ttdoc">The desired curvature of the pipe.</div><div class="ttdef"><b>Definition</b> <a href="curved__pipe_8cc_source.html#l00091">curved_pipe.cc:91</a></div></div>
@@ -592,7 +586,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:12:09
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:39:59
         </div>
       </div>
     </footer>

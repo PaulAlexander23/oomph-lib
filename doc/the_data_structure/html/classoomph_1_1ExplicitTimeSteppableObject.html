@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -148,16 +142,16 @@ $(function() {
 <area href="classoomph_1_1WomersleyProblem.html" alt="oomph::WomersleyProblem&lt; WOMERSLEY_ELEMENT, DIM &gt;" shape="rect" coords="433,112,856,136"/>
 <area href="classoomph_1_1BiharmonicFluidProblem.html" title="Biharmonic Fluid Problem Class - describes stokes flow in 2D. Developed for the topologically rectang..." alt="oomph::BiharmonicFluidProblem&lt; DIM &gt;" shape="rect" coords="433,168,856,192"/>
 <area href="classoomph_1_1BiharmonicProblem.html" title="Biharmonic Plate Problem Class - for problems where the load can be assumed to be acting normal to th..." alt="oomph::BiharmonicProblem&lt; DIM &gt;" shape="rect" coords="433,224,856,248"/>
-<area href="classoomph_1_1FpPressureAdvectionDiffusionProblem.html" title="//////////////////////////////////////////////////////////////// ////////////////////////////////////..." alt="oomph::FpPressureAdvectionDiffusionProblem&lt; ELEMENT &gt;" shape="rect" coords="433,280,856,304"/>
+<area href="classoomph_1_1FpPressureAdvectionDiffusionProblem.html" title="Auxiliary Problem that can be used to assemble the pressure advection diffusion matrix needed by the ..." alt="oomph::FpPressureAdvectionDiffusionProblem&lt; ELEMENT &gt;" shape="rect" coords="433,280,856,304"/>
 <area href="classoomph_1_1HelmholtzMGProblem.html" title="HelmholtzMGProblem class; subclass of Problem." alt="oomph::HelmholtzMGProblem" shape="rect" coords="433,336,856,360"/>
-<area href="classoomph_1_1LinearElasticitySmoothMesh.html" title="/////////////////////////////////////////////////////////////// /////////////////////////////////////..." alt="oomph::LinearElasticitySmoothMesh&lt; LINEAR_ELASTICITY_ELEMENT &gt;" shape="rect" coords="433,392,856,416"/>
+<area href="classoomph_1_1LinearElasticitySmoothMesh.html" title="Auxiliary Problem to smooth a SolidMesh by adjusting the internal nodal positions by solving a LINEAR..." alt="oomph::LinearElasticitySmoothMesh&lt; LINEAR_ELASTICITY_ELEMENT &gt;" shape="rect" coords="433,392,856,416"/>
 <area href="classoomph_1_1MGProblem.html" title="MGProblem class; subclass of Problem." alt="oomph::MGProblem" shape="rect" coords="433,448,856,472"/>
-<area href="classoomph_1_1NonLinearElasticitySmoothMesh.html" title="/////////////////////////////////////////////////////////////// /////////////////////////////////////..." alt="oomph::NonLinearElasticitySmoothMesh&lt; ELEMENT &gt;" shape="rect" coords="433,504,856,528"/>
-<area href="classoomph_1_1PoissonSmoothMesh.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////..." alt="oomph::PoissonSmoothMesh&lt; POISSON_ELEMENT &gt;" shape="rect" coords="433,560,856,584"/>
+<area href="classoomph_1_1NonLinearElasticitySmoothMesh.html" title="Auxiliary Problem to smooth a SolidMesh by adjusting the internal nodal positions via the solution of..." alt="oomph::NonLinearElasticitySmoothMesh&lt; ELEMENT &gt;" shape="rect" coords="433,504,856,528"/>
+<area href="classoomph_1_1PoissonSmoothMesh.html" title="Functor to smooth a SolidMesh by adjusting the internal nodal positions by solving a Poisson problem ..." alt="oomph::PoissonSmoothMesh&lt; POISSON_ELEMENT &gt;" shape="rect" coords="433,560,856,584"/>
 <area href="classoomph_1_1ProjectionProblem.html" title="Projection problem. This is created during the adaptation of unstructured meshes and it is assumed th..." alt="oomph::ProjectionProblem&lt; PROJECTABLE_ELEMENT &gt;" shape="rect" coords="433,616,856,640"/>
-<area href="classoomph_1_1SegregatableFSIProblem.html" title="////////////////////////////////////////////////////////////////// //////////////////////////////////..." alt="oomph::SegregatableFSIProblem" shape="rect" coords="433,672,856,696"/>
-<area href="classoomph_1_1SolidICProblem.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////..." alt="oomph::SolidICProblem" shape="rect" coords="433,728,856,752"/>
-<area href="classoomph_1_1WomersleyProblem.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////..." alt="oomph::WomersleyProblem&lt; ELEMENT, DIM &gt;" shape="rect" coords="433,784,856,808"/>
+<area href="classoomph_1_1SegregatableFSIProblem.html" title="Base class for problems that can be solved by segregated FSI solver." alt="oomph::SegregatableFSIProblem" shape="rect" coords="433,672,856,696"/>
+<area href="classoomph_1_1SolidICProblem.html" title="IC problem for an elastic body discretised on a given (sub)-mesh. We switch the elements&#39; residuals a..." alt="oomph::SolidICProblem" shape="rect" coords="433,728,856,752"/>
+<area href="classoomph_1_1WomersleyProblem.html" title="Womersley problem." alt="oomph::WomersleyProblem&lt; ELEMENT, DIM &gt;" shape="rect" coords="433,784,856,808"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -787,7 +781,7 @@ Static Private Attributes</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:03:39
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:37:45
         </div>
       </div>
     </footer>

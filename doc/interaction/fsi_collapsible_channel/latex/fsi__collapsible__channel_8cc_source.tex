@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -87,9 +87,9 @@
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00083}00083\ }
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00084}00084\ }
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00085}00085\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00086}00086\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00087}00087\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00088}00088\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00086}00086\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00087}00087\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00088}00088\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00089}00089\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00090}00090\ }
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00091}00091\ \textcolor{comment}{//====start\_of\_underformed\_wall============================================}\textcolor{comment}{}}
@@ -700,14 +700,14 @@
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00696}00696\ \ npts=5;\ }
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00697}00697\ }
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00698}00698\ \ \textcolor{comment}{//\ Output\ fluid\ solution\ }}
-\DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00699}00699\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00699}00699\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00700}00700\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00701}00701\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00702}00702\ \ bulk\_mesh\_pt()-\/>output(some\_file,npts);}
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00703}00703\ \ some\_file.close();}
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00704}00704\ }
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00705}00705\ \ \textcolor{comment}{//\ Document\ the\ wall\ shape}}
-\DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00706}00706\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/beam\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00706}00706\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/beam\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00707}00707\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00708}00708\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00709}00709\ \ wall\_mesh\_pt()-\/>output(some\_file,npts);}
@@ -909,7 +909,7 @@
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00905}00905\ \ \textcolor{comment}{//\ Open\ a\ trace\ file\ }}
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00906}00906\ \ ofstream\ trace\_file;}
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00907}00907\ \ \textcolor{keywordtype}{char}\ filename[100];\ \ \ }
-\DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00908}00908\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00908}00908\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00909}00909\ \ trace\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00910}00910\ \ }
 \DoxyCodeLine{\Hypertarget{fsi__collapsible__channel_8cc_source_l00911}00911\ \ \textcolor{comment}{//\ Output\ the\ initial\ solution}}

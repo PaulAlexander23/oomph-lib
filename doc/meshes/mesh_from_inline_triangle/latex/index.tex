@@ -591,7 +591,7 @@ We can specify a target for the element sizes and pass it to the {\ttfamily Tria
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\ \textcolor{keywordtype}{char}\ filename[100];}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}RESLT/trace.dat"{}});}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}RESLT/trace.dat"{}});}
 \DoxyCodeLine{\ Trace\_file.open(filename);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Setup\ equation\ numbering\ scheme}}
@@ -729,7 +729,7 @@ We compare the computed solution against the exact solution\+:
 \DoxyCodeLine{\ \textcolor{keywordtype}{unsigned}\ npts;}
 \DoxyCodeLine{\ npts=5;\ }
 \DoxyCodeLine{\ }
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}RESLT/soln\%i.dat"{}},Doc\_info.number());}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}RESLT/soln\%i.dat"{}},Doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ this-\/>My\_mesh\_pt-\/>output(some\_file,npts);\ }
 \DoxyCodeLine{\ some\_file\ <<\ \textcolor{stringliteral}{"{}TEXT\ X\ =\ 22,\ Y\ =\ 92,\ CS=FRAME\ T\ =\ \(\backslash\)"{}"{}}\ }
@@ -738,14 +738,14 @@ We compare the computed solution against the exact solution\+:
 \DoxyCodeLine{\ }
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ exact\ solution\ }}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}RESLT/exact\_soln\%i.dat"{}},Doc\_info.number());}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}RESLT/exact\_soln\%i.dat"{}},Doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ My\_mesh\_pt-\/>output\_fct(some\_file,npts,\mbox{\hyperlink{namespaceTanhSolnForPoisson_af7896e9c18ce6438c73ae2a875e8b7de}{TanhSolnForPoisson::get\_exact\_u}});\ }
 \DoxyCodeLine{\ some\_file.close();}
 \DoxyCodeLine{\ }
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ boundaries}}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}RESLT/boundaries\%i.dat"{}},Doc\_info.number());}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}RESLT/boundaries\%i.dat"{}},Doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ My\_mesh\_pt-\/>output\_boundaries(some\_file);}
 \DoxyCodeLine{\ some\_file.close();}
@@ -754,7 +754,7 @@ We compare the computed solution against the exact solution\+:
 \DoxyCodeLine{\ \textcolor{comment}{//\ Doc\ error\ and\ return\ of\ the\ square\ of\ the\ L2\ error}}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{\ \textcolor{keywordtype}{double}\ error,norm,dummy\_error,zero\_norm;}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}RESLT/error\%i.dat"{}},Doc\_info.number());}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}RESLT/error\%i.dat"{}},Doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ My\_mesh\_pt-\/>compute\_error(some\_file,\mbox{\hyperlink{namespaceTanhSolnForPoisson_af7896e9c18ce6438c73ae2a875e8b7de}{TanhSolnForPoisson::get\_exact\_u}},}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ error,norm);\ }
@@ -849,4 +849,4 @@ Note the {\ttfamily Triangle\+Mesh\+Open\+Curve} object, which allows to define 
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

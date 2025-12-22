@@ -13,7 +13,7 @@ You may also wish to consult the following documents\+:
 \hline
 \begin{center} {\bfseries{Work in progress}} \end{center} 
 
- We\textquotesingle{}re still working on the detailed documentation for many of the demo problems listed below. The fully-\/documented demo problems are accessible via the links. If you are particularly interested in a specific problem for which the detailed documentation is incomplete, let us know -- we might be able to give it a slightly higher priority. We are happy to let you have driver codes before the documentation is complete. Such codes usually need a bit of tidying to make them acceptable for "{}general release"{}, but they are fully functional. In fact, they are run on a regular basis as part of {\ttfamily  oomph-\/lib\textquotesingle{}s } self-\/test routines (activated by typing {\ttfamily  make check } in the top-\/level directory).    \\\cline{1-1}
+ We\textquotesingle{}re still working on the detailed documentation for many of the demo problems listed below. The fully-\/documented demo problems are accessible via the links. If you are particularly interested in a specific problem for which the detailed documentation is incomplete, let us know -- we might be able to give it a slightly higher priority. We are happy to let you have driver codes before the documentation is complete. Such codes usually need a bit of tidying to make them acceptable for "{}general release"{}, but they are fully functional. In fact, they are run on a regular basis as part of {\ttfamily  oomph-\/lib\textquotesingle{}s } self-\/test routines, activated with "{}$<$code$>$cd demo\+\_\+drivers; cmake -\/\+G Ninja -\/\+B build; cd build; ctest$<$/code$>$"{} .    \\\cline{1-1}
 \end{longtabu}
 \end{center} 
 
@@ -751,6 +751,15 @@ A classical fluid mechanics problem\+: We study the flow of a film of fluid down
 \end{DoxyItemize}
 
 
+
+\\\cline{1-2}
+\href{../../navier_stokes/adaptive_interface/html/index.html}{\texttt{ {\bfseries{A steadily-\/rotating cylinder below a free surface in a finite box.}} }}
+
+Compute the free surface position and fluid velocity and pressure fields about a fixed, steadily-\/rotating cylinder immersed in a viscous fluid in a finite box. Uses a pseudo-\/elastic remesh strategy and spatial adaptivity in a non-\/trivial free surface problem.  &
+\begin{DoxyItemize}
+\item A validation code.
+\item Note\+: this driver code is currently undocumented.  
+\end{DoxyItemize}
 
 \\\cline{1-2}
 \end{longtabu}
@@ -1557,8 +1566,8 @@ We list {\ttfamily oomph-\/lib\textquotesingle{}s} existing structured meshes an
 \doxysubsection*{Unstructured meshes using input from third-\/party mesh generators}
 
 }\\\cline{1-2}
-{\bfseries{ \label{index_third_party_meshes}%
-\Hypertarget{index_third_party_meshes}%
+{\bfseries{ \label{index_third_party_meshes2}%
+\Hypertarget{index_third_party_meshes2}%
  \href{../../meshes/third_party_meshes/html/index.html}{\texttt{ Unstructured meshes generated via input from third-\/party mesh generators }}  }}
 
 We describe {\ttfamily oomph-\/lib\textquotesingle{}s} wrappers to third-\/party (unstructured) mesh generators.  &

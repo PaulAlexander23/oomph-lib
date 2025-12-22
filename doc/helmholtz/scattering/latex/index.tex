@@ -819,7 +819,7 @@ The post-\/processing function {\ttfamily doc\+\_\+solution(...)} computes and o
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Compute/output\ the\ radiated\ power}}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/power\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/power\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{}
@@ -838,7 +838,7 @@ The post-\/processing function {\ttfamily doc\+\_\+solution(...)} computes and o
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ solution\ }}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ Bulk\_mesh\_pt-\/>output(some\_file,npts);}
@@ -846,14 +846,14 @@ The post-\/processing function {\ttfamily doc\+\_\+solution(...)} computes and o
 \DoxyCodeLine{\ }
 \DoxyCodeLine{\ \ \textcolor{comment}{//\ Output\ exact\ solution\ }}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ Bulk\_mesh\_pt-\/>output\_fct(some\_file,npts,\mbox{\hyperlink{namespaceGlobalParameters_ae2320da6053f5527b2af5ebb362a8a07}{GlobalParameters::get\_exact\_u}});\ }
 \DoxyCodeLine{\ some\_file.close();}
 \DoxyCodeLine{\ }
 \DoxyCodeLine{\ \textcolor{keywordtype}{double}\ error,norm;}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/error\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/error\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ Bulk\_mesh\_pt-\/>compute\_error(some\_file,\mbox{\hyperlink{namespaceGlobalParameters_ae2320da6053f5527b2af5ebb362a8a07}{GlobalParameters::get\_exact\_u}},}
@@ -876,11 +876,11 @@ The post-\/processing function {\ttfamily doc\+\_\+solution(...)} computes and o
 \DoxyCodeLine{\ \textcolor{keywordtype}{unsigned}\ nstep=40;}
 \DoxyCodeLine{\ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ i=0;i<nstep;i++)}
 \DoxyCodeLine{\ \ \{}
-\DoxyCodeLine{\ \ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/helmholtz\_animation\%i\_frame\%i.dat"{}},}
+\DoxyCodeLine{\ \ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/helmholtz\_animation\%i\_frame\%i.dat"{}},}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ doc\_info.number(),i);}
 \DoxyCodeLine{\ \ \ some\_file.open(filename);}
-\DoxyCodeLine{\ \ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/exact\_helmholtz\_animation\%i\_frame\%i.dat"{}},}
+\DoxyCodeLine{\ \ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/exact\_helmholtz\_animation\%i\_frame\%i.dat"{}},}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ doc\_info.number(),i);}
 \DoxyCodeLine{\ \ \ some\_file2.open(filename);}
@@ -932,4 +932,4 @@ Explore the accuracy (and computational cost) of the various {\ttfamily Face\+El
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

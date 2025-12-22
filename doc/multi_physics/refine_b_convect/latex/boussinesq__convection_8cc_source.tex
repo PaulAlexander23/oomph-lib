@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -66,9 +66,9 @@
 \DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00062}00062\ \ \ }
 \DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00063}00063\ \}\ \textcolor{comment}{//\ end\_of\_namespace}}
 \DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00064}00064\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00065}00065\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00066}00066\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00067}00067\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00065}00065\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00066}00066\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00067}00067\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00068}00068\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00069}00069\ \textcolor{comment}{//======\ start\_of\_problem\_class=======================================}\textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00070}00070\ \textcolor{comment}{///\ 2D\ Convection\ \ problem\ on\ rectangular\ domain,\ discretised\ }}
@@ -302,7 +302,7 @@
 \DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00298}00298\ }
 \DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00299}00299\ \ \textcolor{comment}{//\ Output\ solution\ }}
 \DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00300}00300\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00301}00301\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00301}00301\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00302}00302\ \ \ \ \ \ \ \ \ \ Doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00303}00303\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{boussinesq__convection_8cc_source_l00304}00304\ \ mesh\_pt()-\/>output(some\_file,npts);}

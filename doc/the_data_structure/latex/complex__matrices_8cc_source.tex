@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00003}00003\ \textcolor{comment}{//\ LIC//\ multi-\/physics\ finite-\/element\ library,\ available}}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00004}00004\ \textcolor{comment}{//\ LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00005}00005\ \textcolor{comment}{//\ LIC//}}
-\DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00006}00006\ \textcolor{comment}{//\ LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00006}00006\ \textcolor{comment}{//\ LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00007}00007\ \textcolor{comment}{//\ LIC//}}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00008}00008\ \textcolor{comment}{//\ LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00009}00009\ \textcolor{comment}{//\ LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -311,11 +311,11 @@
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00307}00307\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{temp\_exp}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}]\ <\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{temp\_exp}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}\ +\ 1])}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00308}00308\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00309}00309\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ smaller\ term}}
-\DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00310}00310\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{lower}}\ =\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{temp\_exp}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}];}
+\DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00310}00310\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespaceoomph_a7ea62943887bf64e8d42559688c6db10}{lower}}\ =\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{temp\_exp}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}];}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00311}00311\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Loop\ over\ the\ difference\ in\ the\ exponents,}}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00312}00312\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ scaling\ down\ the\ mantissa\ each\ time}}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00313}00313\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{upper}}\ =\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{temp\_exp}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}\ +\ 1];}
-\DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00314}00314\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ index\ =\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{lower}};\ index\ <\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{upper}};\ ++index)}
+\DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00314}00314\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ index\ =\ \mbox{\hyperlink{namespaceoomph_a7ea62943887bf64e8d42559688c6db10}{lower}};\ index\ <\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{upper}};\ ++index)}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00315}00315\ \ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{temp\_mantissa}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}]\ /=\ 2.0;}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00317}00317\ \ \ \ \ \ \ \ \ \ \ \ \ ++\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{temp\_exp}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}];}
@@ -325,11 +325,11 @@
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00321}00321\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00322}00322\ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00323}00323\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ smaller\ term\ is\ the\ other}}
-\DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00324}00324\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{lower}}\ =\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{temp\_exp}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}\ +\ 1];}
+\DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00324}00324\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespaceoomph_a7ea62943887bf64e8d42559688c6db10}{lower}}\ =\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{temp\_exp}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}\ +\ 1];}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00325}00325\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Loop\ over\ the\ difference\ in\ the\ exponents,}}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00326}00326\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ scaling\ down\ the\ mantissa\ each\ time}}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00327}00327\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{upper}}\ =\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{temp\_exp}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}];}
-\DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ index\ =\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{lower}};\ index\ <\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{upper}};\ ++index)}
+\DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ index\ =\ \mbox{\hyperlink{namespaceoomph_a7ea62943887bf64e8d42559688c6db10}{lower}};\ index\ <\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{upper}};\ ++index)}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00329}00329\ \ \ \ \ \ \ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00330}00330\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{temp\_mantissa}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}\ +\ 1]\ /=\ 2.0;}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l00331}00331\ \ \ \ \ \ \ \ \ \ \ \ \ ++\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{temp\_exp}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}\ +\ 1];}
@@ -1119,9 +1119,9 @@
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l01115}01115\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l01116}01116\ \ \ \}}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l01117}01117\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l01118}01118\ \textcolor{comment}{\ \ ///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l01119}01119\ \textcolor{comment}{\ \ ///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l01120}01120\ \textcolor{comment}{\ \ ///\ /////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l01118}01118\ \textcolor{comment}{\ \ ////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l01119}01119\ \textcolor{comment}{\ \ ////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l01120}01120\ \textcolor{comment}{\ \ ////////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l01121}01121\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l01122}01122\ }
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l01123}01123\ \ \ \textcolor{comment}{//===================================================================}}
@@ -1475,9 +1475,9 @@
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l01471}01471\ \ \ \}}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l01472}01472\ }
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l01473}01473\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l01474}01474\ \textcolor{comment}{\ \ ///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l01475}01475\ \textcolor{comment}{\ \ ///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l01476}01476\ \textcolor{comment}{\ \ ///\ /////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l01474}01474\ \textcolor{comment}{\ \ ////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l01475}01475\ \textcolor{comment}{\ \ ////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l01476}01476\ \textcolor{comment}{\ \ ////////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l01477}01477\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l01478}01478\ }
 \DoxyCodeLine{\Hypertarget{complex__matrices_8cc_source_l01479}01479\ \ \ \textcolor{comment}{//===================================================================}\textcolor{comment}{}}

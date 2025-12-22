@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -118,37 +112,37 @@
  <hr  />
 <h1><a class="anchor" id="the_problem"></a>
 The Problem</h1>
-<p>The figure below shows a sketch of the problem: A 2D channel of height <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ H^*$" src="form_0.png" width="16" height="10"/></picture> and length <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ L^* $" src="form_1.png" width="13" height="10"/></picture> contains a cylinder of diameter <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ d^* $" src="form_2.png" width="11" height="10"/></picture>, centred at <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ (X^*_c, Y^*_c) $" src="form_3.png" width="48" height="14"/></picture> to which a "flag" of thickness <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ H^*_{flag}$" src="form_4.png" width="30" height="16"/></picture> and length <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ L^*_{flag} $" src="form_5.png" width="28" height="16"/></picture> is attached. We assume that the flag performs time-periodic oscillations with period <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ T^*. $" src="form_6.png" width="19" height="10"/></picture> Steady Poiseuille flow with average velocity <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ U^* $" src="form_7.png" width="15" height="10"/></picture> is imposed at the left end of the channel while we assume the outflow to be parallel and axially traction-free.</p>
+<p>The figure below shows a sketch of the problem: A 2D channel of height <img class="formulaInl" alt="$ H^*$" src="form_0.png" width="16" height="10"/> and length <img class="formulaInl" alt="$ L^* $" src="form_1.png" width="13" height="10"/> contains a cylinder of diameter <img class="formulaInl" alt="$ d^* $" src="form_2.png" width="11" height="10"/>, centred at <img class="formulaInl" alt="$ (X^*_c, Y^*_c) $" src="form_3.png" width="48" height="14"/> to which a "flag" of thickness <img class="formulaInl" alt="$ H^*_{flag}$" src="form_4.png" width="30" height="16"/> and length <img class="formulaInl" alt="$ L^*_{flag} $" src="form_5.png" width="28" height="16"/> is attached. We assume that the flag performs time-periodic oscillations with period <img class="formulaInl" alt="$ T^*. $" src="form_6.png" width="19" height="10"/> Steady Poiseuille flow with average velocity <img class="formulaInl" alt="$ U^* $" src="form_7.png" width="15" height="10"/> is imposed at the left end of the channel while we assume the outflow to be parallel and axially traction-free.</p>
 <div class="image">
 <img src="turek_flag_non_fsi_dim.gif" alt=""/>
 <div class="caption">
 Sketch of the problem in dimensional variables. </div></div>
- <p>We non-dimensionalise all length and coordinates on the diameter of the cylinder, <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ d^* $" src="form_2.png" width="11" height="10"/></picture>, time on the natural timescale of the flow, <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ d^*/U^* $" src="form_8.png" width="33" height="14"/></picture>, the velocities on the mean velocity, <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ U^* $" src="form_7.png" width="15" height="10"/></picture>, and the pressure on the viscous scale. The problem is then governed by the non-dimensional Navier-Stokes equations  </p><p class="formulaDsp">
-<picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ <p>We non-dimensionalise all length and coordinates on the diameter of the cylinder, <img class="formulaInl" alt="$ d^* $" src="form_2.png" width="11" height="10"/>, time on the natural timescale of the flow, <img class="formulaInl" alt="$ d^*/U^* $" src="form_8.png" width="33" height="14"/>, the velocities on the mean velocity, <img class="formulaInl" alt="$ U^* $" src="form_7.png" width="15" height="10"/>, and the pressure on the viscous scale. The problem is then governed by the non-dimensional Navier-Stokes equations  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 Re \left( St \frac{\partial u_i}{\partial t} + 
 u_j \frac{\partial u_i}{\partial x_j} \right) =
 - \frac{\partial p}{\partial x_i}  +
 \frac{\partial }{\partial x_j} \left[ \left(
 \frac{\partial u_i}{\partial x_j} +  
 \frac{\partial u_j}{\partial x_i} \right) \right],
-\]" src="form_9.png" width="306" height="31"/></picture>
+\]" src="form_9.png" width="306" height="31"/>
 </p>
-<p> where <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re = \rho U^* H_0^* / \mu $" src="form_10.png" width="85" height="14"/></picture> and <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ St = 1 $" src="form_11.png" width="35" height="10"/></picture>, and </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> where <img class="formulaInl" alt="$ Re = \rho U^* H_0^* / \mu $" src="form_10.png" width="85" height="14"/> and <img class="formulaInl" alt="$ St = 1 $" src="form_11.png" width="35" height="10"/>, and </p><center>  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \frac{\partial u_i}{\partial x_i} = 0,
-\]" src="form_12.png" width="48" height="29"/></picture>
+\]" src="form_12.png" width="48" height="29"/>
 </p>
  </center><p> subject to parabolic inflow </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 {\bf u} = 6 x_2 (1-x_2) {\bf e}_1
-\]" src="form_13.png" width="99" height="14"/></picture>
+\]" src="form_13.png" width="99" height="14"/>
 </p>
- </center><p> at the inflow cross-section; parallel, axially-traction-free outflow at the outlet; and no-slip on the stationary channel walls and the surface of the cylinder, <picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf u} = {\bf 0} $" src="form_14.png" width="31" height="9"/></picture>. The no-slip condition on the moving flag is </p><center>  <p class="formulaDsp">
-<picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ </center><p> at the inflow cross-section; parallel, axially-traction-free outflow at the outlet; and no-slip on the stationary channel walls and the surface of the cylinder, <img class="formulaInl" alt="$ {\bf u} = {\bf 0} $" src="form_14.png" width="31" height="9"/>. The no-slip condition on the moving flag is </p><center>  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 {\bf u} = \frac{\partial {\bf R}_w(\xi_{[top,tip,bottom]},t)}{\partial t}
-\]" src="form_15.png" width="148" height="29"/></picture>
+\]" src="form_15.png" width="148" height="29"/>
 </p>
- </center><p> where <picture><source srcset="form_16_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \xi_{[top,tip,bottom]} $" src="form_16.png" width="74" height="15"/></picture> are Lagrangian coordinates parametrising the three faces of the flag. The flag performs oscillations with non-dimensional period <picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ T = T^* U^* / H^*_{tot} $" src="form_17.png" width="86" height="14"/></picture>. Here is a sketch of the non-dimensional version of the problem:</p>
+ </center><p> where <img class="formulaInl" alt="$ \xi_{[top,tip,bottom]} $" src="form_16.png" width="74" height="15"/> are Lagrangian coordinates parametrising the three faces of the flag. The flag performs oscillations with non-dimensional period <img class="formulaInl" alt="$ T = T^* U^* / H^*_{tot} $" src="form_17.png" width="86" height="14"/>. Here is a sketch of the non-dimensional version of the problem:</p>
 <div class="image">
 <img src="turek_flag_non_fsi.gif" alt=""/>
 <div class="caption">
@@ -158,7 +152,7 @@ Sketch of the problem in dimensionless variables, showing the Lagrangian coordin
 <h1><a class="anchor" id="results"></a>
 Results</h1>
 <p>The figure below shows a snapshot of the flow field <br  />
- (pressure contours and instantaneous streamlines) for a Reynolds number of <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re=100 $" src="form_18.png" width="50" height="10"/></picture> and an oscillation period of <picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ T= 10 $" src="form_19.png" width="39" height="9"/></picture>, as well as the corresponding fluid mesh. Note how <code>oomph-lib's</code> automatic mesh adaptation has refined the mesh in the high-shear regions near the front of the cylinder and at the trailing edge of the flag.</p>
+ (pressure contours and instantaneous streamlines) for a Reynolds number of <img class="formulaInl" alt="$ Re=100 $" src="form_18.png" width="50" height="10"/> and an oscillation period of <img class="formulaInl" alt="$ T= 10 $" src="form_19.png" width="39" height="9"/>, as well as the corresponding fluid mesh. Note how <code>oomph-lib's</code> automatic mesh adaptation has refined the mesh in the high-shear regions near the front of the cylinder and at the trailing edge of the flag.</p>
 <div class="image">
 <img src="flow_cropped.gif" alt=""/>
 <div class="caption">
@@ -376,7 +370,7 @@ The driver code</h1>
 <div class="line"> <span class="comment">// Length and height of domain</span></div>
 <div class="line"> <span class="keywordtype">double</span> length=25.0;</div>
 <div class="line"> <span class="keywordtype">double</span> height=4.1;</div>
-<div class="ttc" id="aturek__flag__non__fsi_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="turek__flag__non__fsi_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="turek__flag__non__fsi_8cc_source.html#l00576">turek_flag_non_fsi.cc:576</a></div></div>
+<div class="ttc" id="aturek__flag__non__fsi_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="turek__flag__non__fsi_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">Driver code – pass a command line argument if you want to run the code in validation mode where it on...</div><div class="ttdef"><b>Definition</b> <a href="turek__flag__non__fsi_8cc_source.html#l00576">turek_flag_non_fsi.cc:576</a></div></div>
 </div><!-- fragment --><p> We build the problem using a mesh in which the node update is performed by the <code>AlgebraicMesh</code> class. (The driver code also provides the option to use a <code>Domain/MacroElement</code> - based node update &ndash; this option is chosen via suitable #ifdefs; see the <a href="
 ../../../../demo_drivers/navier_stokes/turek_flag_non_fsi/turek_flag_non_fsi.cc
 ">source code</a> for details).</p>
@@ -384,7 +378,7 @@ The driver code</h1>
 <div class="line"> <a class="code hl_class" href="classTurekNonFSIProblem.html">TurekNonFSIProblem</a></div>
 <div class="line">  &lt;AlgebraicElement&lt;RefineableQCrouzeixRaviartElement&lt;2&gt; &gt; &gt; </div>
 <div class="line">  problem(length, height);</div>
-<div class="ttc" id="aclassTurekNonFSIProblem_html"><div class="ttname"><a href="classTurekNonFSIProblem.html">TurekNonFSIProblem</a></div><div class="ttdoc">///////////////////////////////////////////////////////////////// ///////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="turek__flag__non__fsi_8cc_source.html#l00311">turek_flag_non_fsi.cc:312</a></div></div>
+<div class="ttc" id="aclassTurekNonFSIProblem_html"><div class="ttname"><a href="classTurekNonFSIProblem.html">TurekNonFSIProblem</a></div><div class="ttdoc">Flow around a cylinder with flag.</div><div class="ttdef"><b>Definition</b> <a href="turek__flag__non__fsi_8cc_source.html#l00311">turek_flag_non_fsi.cc:312</a></div></div>
 </div><!-- fragment --><p> Next we set up the time-stepping (as usual, fewer timesteps are performed during a validation run which is identified by a non-zero number of command line arguments):</p>
 <div class="fragment"><div class="line"><span class="comment">// Number of timesteps per period</span></div>
 <div class="line"> <span class="keywordtype">unsigned</span> nsteps_per_period=40;</div>
@@ -707,7 +701,7 @@ Post Processing</h1>
 <div class="line"> npts=5; </div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output solution </span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> mesh_pt()-&gt;output(some_file,npts);</div>
@@ -752,7 +746,7 @@ demo_drivers/navier_stokes/turek_flag_non_fsi/turek_flag_non_fsi.cc
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -782,7 +776,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:16:46
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:41:27
         </div>
       </div>
     </footer>

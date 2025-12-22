@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -51,9 +51,9 @@
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00047}00047\ }
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00048}00048\ }
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00049}00049\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00050}00050\ \textcolor{comment}{///\ //////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00051}00051\ \textcolor{comment}{///\ //////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00052}00052\ \textcolor{comment}{///\ //////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00050}00050\ \textcolor{comment}{/////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00051}00051\ \textcolor{comment}{/////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00052}00052\ \textcolor{comment}{/////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00053}00053\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00054}00054\ \textcolor{comment}{//=====\ start\_of\_namespace=============================================}\textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00055}00055\ \textcolor{comment}{///\ Namespace\ for\ the\ Helmholtz\ problem\ parameters}}
@@ -212,9 +212,9 @@
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00208}00208\ }
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00209}00209\ }
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00210}00210\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00211}00211\ \textcolor{comment}{///\ //////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00212}00212\ \textcolor{comment}{///\ //////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00213}00213\ \textcolor{comment}{///\ //////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00211}00211\ \textcolor{comment}{/////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00212}00212\ \textcolor{comment}{/////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00213}00213\ \textcolor{comment}{/////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00214}00214\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00215}00215\ }
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00216}00216\ }
@@ -629,7 +629,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00625}00625\ }
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00626}00626\ \ \textcolor{comment}{//\ Compute/output\ the\ radiated\ power}}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00627}00627\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00628}00628\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/power\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00628}00628\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/power\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00629}00629\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00630}00630\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00631}00631\ \ }
@@ -647,7 +647,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00643}00643\ }
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00644}00644\ \ \textcolor{comment}{//\ Output\ solution\ }}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00645}00645\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00646}00646\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00646}00646\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00647}00647\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00648}00648\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00649}00649\ \ Bulk\_mesh\_pt-\/>output(some\_file,npts);}
@@ -655,14 +655,14 @@
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00651}00651\ \ }
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00652}00652\ \ \ \textcolor{comment}{//\ Output\ exact\ solution\ }}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00653}00653\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00654}00654\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00654}00654\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00655}00655\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00656}00656\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00657}00657\ \ Bulk\_mesh\_pt-\/>output\_fct(some\_file,npts,\mbox{\hyperlink{namespaceGlobalParameters_ae2320da6053f5527b2af5ebb362a8a07}{GlobalParameters::get\_exact\_u}});\ }
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00658}00658\ \ some\_file.close();}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00659}00659\ \ }
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00660}00660\ \ \textcolor{keywordtype}{double}\ error,norm;}
-\DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00661}00661\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/error\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00661}00661\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/error\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00662}00662\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00663}00663\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00664}00664\ \ Bulk\_mesh\_pt-\/>compute\_error(some\_file,\mbox{\hyperlink{namespaceGlobalParameters_ae2320da6053f5527b2af5ebb362a8a07}{GlobalParameters::get\_exact\_u}},}
@@ -682,11 +682,11 @@
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00678}00678\ \ \textcolor{keywordtype}{unsigned}\ nstep=40;}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00679}00679\ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ i=0;i<nstep;i++)}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00680}00680\ \ \ \{}
-\DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00681}00681\ \ \ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/helmholtz\_animation\%i\_frame\%i.dat"{}},}
+\DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00681}00681\ \ \ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/helmholtz\_animation\%i\_frame\%i.dat"{}},}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00682}00682\ \ \ \ \ \ \ \ \ \ \ \ doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00683}00683\ \ \ \ \ \ \ \ \ \ \ \ doc\_info.number(),i);}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00684}00684\ \ \ \ some\_file.open(filename);}
-\DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00685}00685\ \ \ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/exact\_helmholtz\_animation\%i\_frame\%i.dat"{}},}
+\DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00685}00685\ \ \ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/exact\_helmholtz\_animation\%i\_frame\%i.dat"{}},}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00686}00686\ \ \ \ \ \ \ \ \ \ \ \ doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00687}00687\ \ \ \ \ \ \ \ \ \ \ \ doc\_info.number(),i);}
 \DoxyCodeLine{\Hypertarget{unstructured__scattering_8cc_source_l00688}00688\ \ \ \ some\_file2.open(filename);}

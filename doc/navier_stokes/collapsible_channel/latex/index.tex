@@ -383,7 +383,7 @@ After storing the command line arguments, we choose the number of elements in th
 \DoxyCodeLine{\ \textcolor{comment}{//\ Open\ a\ trace\ file\ }}
 \DoxyCodeLine{\ ofstream\ trace\_file;}
 \DoxyCodeLine{\ \textcolor{keywordtype}{char}\ filename[100];\ \ \ }
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\ trace\_file.open(filename);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Build\ the\ problem\ with\ Crouzeix\ Raviart\ Elements}}
@@ -903,7 +903,7 @@ The function {\ttfamily doc\+\_\+solution(...)} documents the results, and recor
 \DoxyCodeLine{\ npts=5;\ }
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ solution\ }}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ bulk\_mesh\_pt()-\/>output(some\_file,npts);}
@@ -924,7 +924,7 @@ The function {\ttfamily doc\+\_\+solution(...)} documents the results, and recor
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ <<\ std::endl;}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ wall\ shape}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/wall\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/wall\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ \textcolor{keywordtype}{unsigned}\ nplot=100;\ }
@@ -1117,7 +1117,7 @@ As discussed above, we delete the applied traction elements before performing an
 \end{DoxyCodeInclude}
  \DoxyHorRuler{0}
  \DoxyHorRuler{0}
-\hypertarget{index_beforeadapt}{}\doxysection{\texorpdfstring{Actions before the mesh adaptation}{Actions before the mesh adaptation}}\label{index_beforeadapt}
+\hypertarget{index_beforeadapt2}{}\doxysection{\texorpdfstring{Actions after the mesh adaptation}{Actions after the mesh adaptation}}\label{index_beforeadapt2}
 Once the mesh has been adapted, we (re-\/)create the prescribed traction elements and rebuild the global mesh. We also have to pass the pointers to prescribed traction function to the newly created traction elements.
 
 
@@ -1255,4 +1255,4 @@ Once the mesh has been adapted, we (re-\/)create the prescribed traction element
 \end{DoxyItemize}\DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

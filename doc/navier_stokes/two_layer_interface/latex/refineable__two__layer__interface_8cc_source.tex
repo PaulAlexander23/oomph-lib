@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -281,9 +281,9 @@
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l00277}00277\ }
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l00278}00278\ }
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l00279}00279\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l00280}00280\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l00281}00281\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l00282}00282\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l00280}00280\ \textcolor{comment}{///////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l00281}00281\ \textcolor{comment}{///////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l00282}00282\ \textcolor{comment}{///////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l00283}00283\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l00284}00284\ }
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l00285}00285\ \textcolor{comment}{//==start\_of\_namespace==============================}\textcolor{comment}{}}
@@ -1003,7 +1003,7 @@
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l00999}00999\ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{npts}}\ =\ 5;}
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l01000}01000\ \ }
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l01001}01001\ \ \textcolor{comment}{//\ Open\ solution\ output\ file}}
-\DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l01002}01002\ \ \mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{sprintf}}(\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{filename}},\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},}
+\DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l01002}01002\ \ \mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{snprintf}}(\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},}
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l01003}01003\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceProblem__Parameter_a1dd3c6bcf97360c8fe0d288ca7610351}{Problem\_Parameter::Doc\_info}}.\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{directory}}().\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{c\_str}}(),}
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l01004}01004\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceProblem__Parameter_a1dd3c6bcf97360c8fe0d288ca7610351}{Problem\_Parameter::Doc\_info}}.\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{number}}());}
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l01005}01005\ \ \mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{some\_file}}.open(\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{filename}});}
@@ -1015,7 +1015,7 @@
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l01011}01011\ \ \mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{some\_file}}.close();}
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l01012}01012\ }
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l01013}01013\ \ \textcolor{comment}{//\ Open\ interface\ solution\ output\ file}}
-\DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l01014}01014\ \ \mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{sprintf}}(\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{filename}},\textcolor{stringliteral}{"{}\%s/interface\_soln\%i.dat"{}},}
+\DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l01014}01014\ \ \mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{snprintf}}(\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/interface\_soln\%i.dat"{}},}
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l01015}01015\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceProblem__Parameter_a1dd3c6bcf97360c8fe0d288ca7610351}{Problem\_Parameter::Doc\_info}}.\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{directory}}().\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{c\_str}}(),}
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l01016}01016\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceProblem__Parameter_a1dd3c6bcf97360c8fe0d288ca7610351}{Problem\_Parameter::Doc\_info}}.\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{number}}());}
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l01017}01017\ \ \mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{some\_file}}.open(\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{filename}});}
@@ -1113,7 +1113,7 @@
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l01109}01109\ \ }
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l01110}01110\ \ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l01111}01111\ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{filename}}[100];\ \ \ }
-\DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l01112}01112\ \ \mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{sprintf}}(\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{filename}},\textcolor{stringliteral}{"{}\%s/trace.dat"{}},\mbox{\hyperlink{namespaceProblem__Parameter_a1dd3c6bcf97360c8fe0d288ca7610351}{Problem\_Parameter::Doc\_info}}.\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{directory}}().\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{c\_str}}());}
+\DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l01112}01112\ \ \mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{snprintf}}(\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},\mbox{\hyperlink{namespaceProblem__Parameter_a1dd3c6bcf97360c8fe0d288ca7610351}{Problem\_Parameter::Doc\_info}}.\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{directory}}().\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{c\_str}}());}
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l01113}01113\ \ \mbox{\hyperlink{namespaceProblem__Parameter_a55310be5f2dfcb5fcfe35d71f9c16e06}{Problem\_Parameter::Trace\_file}}.open(\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{filename}});}
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l01114}01114\ }
 \DoxyCodeLine{\Hypertarget{refineable__two__layer__interface_8cc_source_l01115}01115\ \ \textcolor{comment}{//\ Initialise\ trace\ file}}

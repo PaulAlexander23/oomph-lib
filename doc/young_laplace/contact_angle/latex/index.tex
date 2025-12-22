@@ -297,7 +297,7 @@ We start by defining the output directory and open a trace file to record the lo
 \DoxyCodeLine{\ }
 \DoxyCodeLine{\ \textcolor{comment}{//\ Open\ a\ trace\ file}}
 \DoxyCodeLine{\ \textcolor{keywordtype}{char}\ filename[100];}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\ trace\_file.open(filename);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Tecplot\ header\ for\ trace\ file:\ kappa\ and\ height\ value}}
@@ -770,7 +770,7 @@ We output the load-\/displacement data, the meniscus shape, and various contact 
 \DoxyCodeLine{\ ofstream\ some\_file;}
 \DoxyCodeLine{\ \textcolor{keywordtype}{char}\ filename[100];}
 \DoxyCodeLine{\ \textcolor{comment}{//YoungLaplaceEquations::Output\_meniscus\_and\_spines=false;}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ Bulk\_mesh\_pt-\/>output(some\_file,npts);}
@@ -780,20 +780,20 @@ We output the load-\/displacement data, the meniscus shape, and various contact 
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ ofstream\ tangent\_file;}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/tangent\_to\_contact\_line\%i.dat"{}},}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/tangent\_to\_contact\_line\%i.dat"{}},}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ tangent\_file.open(filename);}
 \DoxyCodeLine{\ }
 \DoxyCodeLine{\ ofstream\ normal\_file;}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/normal\_to\_contact\_line\%i.dat"{}},}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/normal\_to\_contact\_line\%i.dat"{}},}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ normal\_file.open(filename);}
 \DoxyCodeLine{\ }
 \DoxyCodeLine{\ }
 \DoxyCodeLine{\ ofstream\ contact\_angle\_file;}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/contact\_angle\%i.dat"{}},}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/contact\_angle\%i.dat"{}},}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ contact\_angle\_file.open(filename);}
@@ -918,4 +918,4 @@ Our problem formulation suffers from an additional, more fundamental problem\+: 
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

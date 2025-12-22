@@ -2,12 +2,12 @@
 \hypertarget{classoomph_1_1ElasticRefineableRectangularQuadMesh}{}\label{classoomph_1_1ElasticRefineableRectangularQuadMesh}\index{oomph::ElasticRefineableRectangularQuadMesh$<$ ELEMENT $>$@{oomph::ElasticRefineableRectangularQuadMesh$<$ ELEMENT $>$}}
 
 
-/////////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////////  
+Elastic refineable quad mesh with functionality to attach traction elements to the specified boundaries. We "{}upgrade"{} the \doxylink{classoomph_1_1RefineableRectangularQuadMesh}{Refineable\+Rectangular\+Quad\+Mesh} to become an \doxylink{classoomph_1_1SolidMesh}{Solid\+Mesh} and equate the Eulerian and Lagrangian coordinates, thus making the domain represented by the mesh the stress-\/free configuration. We also move the mesh "{}down"{} by half the the "{}height"{} so x=0 is located on the centreline -- appropriate for the beam-\/type problems for which this mesh was developed.  
 
 
 
 
-{\ttfamily \#include $<$rectangular\+\_\+quadmesh.\+template.\+h$>$}
+{\ttfamily \#include $<$rectangular\+\_\+quadmesh.\+h$>$}
 
 Inheritance diagram for oomph\+::Elastic\+Refineable\+Rectangular\+Quad\+Mesh\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
 \begin{center}
@@ -136,6 +136,10 @@ Inheritance diagram for oomph\+::Elastic\+Refineable\+Rectangular\+Quad\+Mesh\te
 \begin{DoxyCompactList}\small\item\em Replace existing boundary node lookup schemes with new schemes created using the boundary data stored in the nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1Mesh_ad1b124a959628aba00162b89617b3a62}{boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Indicate whether the i-\/th boundary has an intrinsic coordinate. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_ab137d0c0debf5ba0d6ea6990103e620c}{set\+\_\+boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be existing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_a3b9d63e0057ed721190b109f48f7c92e}{set\+\_\+boundary\+\_\+coordinate\+\_\+does\+\_\+not\+\_\+exist}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be non-\/existing. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_af01dfefb66c15579b540be62999d93ee}{nelement}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return number of elements in the mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
@@ -717,9 +721,7 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_aca12acfe655a4d5c4a4eab4a7b970812}{Element\+\_\+pt}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a412a5051be9e81f0ba61bf85e5abc4a6}{Boundary\+\_\+coordinate\+\_\+exists}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of boolean data that indicates whether the boundary coordinates have been set for the boundary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMeshBase}{oomph\+::\+Tree\+Based\+Refineable\+Mesh\+Base}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -769,11 +771,9 @@ std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionEleme
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{class}} ELEMENT$>$\newline
 class oomph\+::\+Elastic\+Refineable\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$}
-/////////////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////// 
-
 Elastic refineable quad mesh with functionality to attach traction elements to the specified boundaries. We "{}upgrade"{} the \doxylink{classoomph_1_1RefineableRectangularQuadMesh}{Refineable\+Rectangular\+Quad\+Mesh} to become an \doxylink{classoomph_1_1SolidMesh}{Solid\+Mesh} and equate the Eulerian and Lagrangian coordinates, thus making the domain represented by the mesh the stress-\/free configuration. We also move the mesh "{}down"{} by half the the "{}height"{} so x=0 is located on the centreline -- appropriate for the beam-\/type problems for which this mesh was developed. 
 
-Definition at line \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source_l00570}{570}} of file \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source}{rectangular\+\_\+quadmesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{rectangular__quadmesh_8h_source_l00566}{566}} of file \mbox{\hyperlink{rectangular__quadmesh_8h_source}{rectangular\+\_\+quadmesh.\+h}}.
 
 
 
@@ -791,11 +791,11 @@ Constructor\+: Build mesh and copy Eulerian coords to Lagrangian ones so that th
 
 
 
-Definition at line \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source_l00510}{510}} of file \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source}{rectangular\+\_\+quadmesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{rectangular__quadmesh_8h_source_l00508}{508}} of file \mbox{\hyperlink{rectangular__quadmesh_8h_source}{rectangular\+\_\+quadmesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{mesh_8h_source_l00190}{oomph\+::\+Mesh\+::\+Boundary\+\_\+coordinate\+\_\+exists}}, \mbox{\hyperlink{mesh_8h_source_l02612}{oomph\+::\+Solid\+Mesh\+::boundary\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{mesh_8h_source_l00833}{oomph\+::\+Mesh\+::nboundary\+\_\+node()}}, \mbox{\hyperlink{nodes_8cc_source_l02394}{oomph\+::\+Node\+::set\+\_\+coordinates\+\_\+on\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8h_source_l01883}{oomph\+::\+Solid\+Node\+::xi()}}, \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source_l00077}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Ymax}}, and \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source_l00075}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Ymin}}.
+References \mbox{\hyperlink{mesh_8h_source_l02620}{oomph\+::\+Solid\+Mesh\+::boundary\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{mesh_8h_source_l00841}{oomph\+::\+Mesh\+::nboundary\+\_\+node()}}, \mbox{\hyperlink{mesh_8h_source_l00584}{oomph\+::\+Mesh\+::set\+\_\+boundary\+\_\+coordinate\+\_\+exists()}}, \mbox{\hyperlink{nodes_8cc_source_l02394}{oomph\+::\+Node\+::set\+\_\+coordinates\+\_\+on\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8h_source_l01883}{oomph\+::\+Solid\+Node\+::xi()}}, \mbox{\hyperlink{rectangular__quadmesh_8h_source_l00077}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Ymax}}, and \mbox{\hyperlink{rectangular__quadmesh_8h_source_l00075}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Ymin}}.
 
 \Hypertarget{classoomph_1_1ElasticRefineableRectangularQuadMesh_a8925d6c0eb669afc420564a4610b34bd}\label{classoomph_1_1ElasticRefineableRectangularQuadMesh_a8925d6c0eb669afc420564a4610b34bd} 
 \index{oomph::ElasticRefineableRectangularQuadMesh$<$ ELEMENT $>$@{oomph::ElasticRefineableRectangularQuadMesh$<$ ELEMENT $>$}!ElasticRefineableRectangularQuadMesh@{ElasticRefineableRectangularQuadMesh}}
@@ -810,7 +810,7 @@ Constructor\+: Build mesh and copy Eulerian coords to Lagrangian ones so that th
 
 
 
-Definition at line \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source_l00510}{510}} of file \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source}{rectangular\+\_\+quadmesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{rectangular__quadmesh_8h_source_l00508}{508}} of file \mbox{\hyperlink{rectangular__quadmesh_8h_source}{rectangular\+\_\+quadmesh.\+h}}.
 
 \Hypertarget{classoomph_1_1ElasticRefineableRectangularQuadMesh_a1cea0e91f2d8687182a8f5de6737a511}\label{classoomph_1_1ElasticRefineableRectangularQuadMesh_a1cea0e91f2d8687182a8f5de6737a511} 
 \index{oomph::ElasticRefineableRectangularQuadMesh$<$ ELEMENT $>$@{oomph::ElasticRefineableRectangularQuadMesh$<$ ELEMENT $>$}!ElasticRefineableRectangularQuadMesh@{ElasticRefineableRectangularQuadMesh}}
@@ -825,10 +825,10 @@ Constructor\+: Build mesh and copy Eulerian coords to Lagrangian ones so that th
 
 
 
-Definition at line \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source_l00510}{510}} of file \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source}{rectangular\+\_\+quadmesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{rectangular__quadmesh_8h_source_l00508}{508}} of file \mbox{\hyperlink{rectangular__quadmesh_8h_source}{rectangular\+\_\+quadmesh.\+h}}.
 
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{rectangular__quadmesh_8template_8h}{rectangular\+\_\+quadmesh.\+template.\+h}}\end{DoxyCompactItemize}
+\mbox{\hyperlink{rectangular__quadmesh_8h}{rectangular\+\_\+quadmesh.\+h}}\end{DoxyCompactItemize}

@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -94,9 +94,9 @@
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00090}00090\ \}\ \textcolor{comment}{//\ end\ namespace}}
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00091}00091\ }
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00092}00092\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00093}00093\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00094}00094\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00095}00095\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00093}00093\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00094}00094\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00095}00095\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00096}00096\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00097}00097\ }
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00098}00098\ }
@@ -314,7 +314,7 @@
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00310}00310\ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{npts}}\ =\ 5;\ }
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00311}00311\ }
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00312}00312\ \ \textcolor{comment}{//\ Output\ shape\ of\ deformed\ body}}
-\DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00313}00313\ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{sprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{doc\_info}}.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00313}00313\ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{snprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00314}00314\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{doc\_info}}.number());}
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00315}00315\ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{some\_file}}.open(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}});}
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00316}00316\ \ Solid\_mesh\_pt-\/>output(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{some\_file}},\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{npts}});}
@@ -364,7 +364,7 @@
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00360}00360\ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{DocInfo}}\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{doc\_info}};}
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00361}00361\ }
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00362}00362\ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{dirname}}[100];}
-\DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00363}00363\ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{sprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{dirname}},\textcolor{stringliteral}{"{}RESLT\%i"{}},\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{case\_number}});}
+\DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00363}00363\ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{snprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{dirname}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{dirname}}),\ \textcolor{stringliteral}{"{}RESLT\%i"{}},\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{case\_number}});}
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00364}00364\ }
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00365}00365\ \ \textcolor{comment}{//\ Set\ output\ directory}}
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00366}00366\ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{doc\_info}}.set\_directory(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{dirname}});}
@@ -374,7 +374,7 @@
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00370}00370\ }
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00371}00371\ \ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00372}00372\ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}}[100];\ \ \ }
-\DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00373}00373\ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{sprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\textcolor{stringliteral}{"{}\%s/trace.dat"{}},\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{doc\_info}}.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00373}00373\ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{snprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{doc\_info}}.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00374}00374\ \ Trace\_file.open(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}});}
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00375}00375\ \ }
 \DoxyCodeLine{\Hypertarget{disk__compression_8cc_source_l00376}00376\ \ \textcolor{comment}{//Parameter\ incrementation}}

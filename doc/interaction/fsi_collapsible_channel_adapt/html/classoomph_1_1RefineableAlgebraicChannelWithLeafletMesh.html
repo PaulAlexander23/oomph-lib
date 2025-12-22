@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -121,17 +115,17 @@
 </div><!--header-->
 <div class="contents">
 
-<p>//////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////////  
+<p>Refineable version of algebraic <a class="el" href="classoomph_1_1ChannelWithLeafletMesh.html" title="Channel with leaflet mesh.">ChannelWithLeafletMesh</a>.  
  <a href="classoomph_1_1RefineableAlgebraicChannelWithLeafletMesh.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="channel__with__leaflet__mesh_8template_8h_source.html">channel_with_leaflet_mesh.template.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="channel__with__leaflet__mesh_8h_source.html">channel_with_leaflet_mesh.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for oomph::RefineableAlgebraicChannelWithLeafletMesh&lt; ELEMENT &gt;:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="classoomph_1_1RefineableAlgebraicChannelWithLeafletMesh.png" usemap="#oomph::RefineableAlgebraicChannelWithLeafletMesh_3C_20ELEMENT_20_3E_map" alt=""/>
   <map id="oomph::RefineableAlgebraicChannelWithLeafletMesh_3C_20ELEMENT_20_3E_map" name="oomph::RefineableAlgebraicChannelWithLeafletMesh_3C_20ELEMENT_20_3E_map">
-<area href="classoomph_1_1AlgebraicChannelWithLeafletMesh.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////..." alt="oomph::AlgebraicChannelWithLeafletMesh&lt; ELEMENT &gt;" shape="rect" coords="402,168,794,192"/>
+<area href="classoomph_1_1AlgebraicChannelWithLeafletMesh.html" title="Algebraic version of ChannelWithLeafletMesh. Leaflet is assumed to be in its undeformed (straight ver..." alt="oomph::AlgebraicChannelWithLeafletMesh&lt; ELEMENT &gt;" shape="rect" coords="402,168,794,192"/>
 <area href="classoomph_1_1ChannelWithLeafletMesh.html" title="Channel with leaflet mesh." alt="oomph::ChannelWithLeafletMesh&lt; ELEMENT &gt;" shape="rect" coords="603,112,995,136"/>
 <area href="classoomph_1_1SimpleRectangularQuadMesh.html" title="Simple rectangular 2D Quad mesh class. Nx : number of elements in the x direction." alt="oomph::SimpleRectangularQuadMesh&lt; ELEMENT &gt;" shape="rect" coords="603,56,995,80"/>
   </map>
@@ -217,10 +211,9 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleChannelMesh.html">class</a> <a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleChannelMesh.html">ELEMENT</a>&gt;<br />
-class oomph::RefineableAlgebraicChannelWithLeafletMesh&lt; ELEMENT &gt;</div><p>//////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////// </p>
-<p>Refineable version of algebraic <a class="el" href="classoomph_1_1ChannelWithLeafletMesh.html" title="Channel with leaflet mesh.">ChannelWithLeafletMesh</a> </p>
+class oomph::RefineableAlgebraicChannelWithLeafletMesh&lt; ELEMENT &gt;</div><p>Refineable version of algebraic <a class="el" href="classoomph_1_1ChannelWithLeafletMesh.html" title="Channel with leaflet mesh.">ChannelWithLeafletMesh</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__with__leaflet__mesh_8template_8h_source.html#l00469">469</a> of file <a class="el" href="channel__with__leaflet__mesh_8template_8h_source.html">channel_with_leaflet_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__with__leaflet__mesh_8h_source.html#l00462">462</a> of file <a class="el" href="channel__with__leaflet__mesh_8h_source.html">channel_with_leaflet_mesh.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a6f67c948b27ed9350e57b2c92b573610" name="a6f67c948b27ed9350e57b2c92b573610"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6f67c948b27ed9350e57b2c92b573610">&#9670;&#160;</a></span>RefineableAlgebraicChannelWithLeafletMesh()</h2>
@@ -308,7 +301,7 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Constructor: Pass pointer to GeomObject that represents the leaflet, the length of the domain to left and right of the leaflet, the height of the leaflet and the overall height of the channel, the number of element columns to the left and right of the leaflet, the number of rows of elements from the bottom of the channel to the end of the leaflet, the number of rows of elements above the end of the leaflet. Timestepper defaults to Steady default Timestepper defined in the Mesh base class. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__with__leaflet__mesh_8template_8h_source.html#l00483">483</a> of file <a class="el" href="channel__with__leaflet__mesh_8template_8h_source.html">channel_with_leaflet_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__with__leaflet__mesh_8h_source.html#l00476">476</a> of file <a class="el" href="channel__with__leaflet__mesh_8h_source.html">channel_with_leaflet_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -332,15 +325,14 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 </div><div class="memdoc">
 
 <p>Update the node update data for specified node following any mesh adapation. </p>
-<p>//////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////////</p>
-<p>Update the node update functions </p>
+<p>Update the node update functions. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__with__leaflet__mesh_8template_8cc_source.html#l00639">639</a> of file <a class="el" href="channel__with__leaflet__mesh_8template_8cc_source.html">channel_with_leaflet_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__with__leaflet__mesh_8template_8cc_source.html#l00626">626</a> of file <a class="el" href="channel__with__leaflet__mesh_8template_8cc_source.html">channel_with_leaflet_mesh.template.cc</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="channel__with__leaflet__mesh_8template_8h_source.html">channel_with_leaflet_mesh.template.h</a></li>
+<li><a class="el" href="channel__with__leaflet__mesh_8h_source.html">channel_with_leaflet_mesh.h</a></li>
 <li><a class="el" href="channel__with__leaflet__mesh_8template_8cc_source.html">channel_with_leaflet_mesh.template.cc</a></li>
 </ul>
 </div><!-- contents -->
@@ -371,7 +363,7 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:27:15
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:34:38
         </div>
       </div>
     </footer>

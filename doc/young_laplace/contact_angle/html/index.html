@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -124,7 +118,7 @@
  <hr  />
 <h1><a class="anchor" id="model"></a>
 A model problem</h1>
-<p>The figure below shows a sketch of a T-junction in a microchannel with a rectangular cross-section. (The front wall has been removed for clarity). Fluid is being pushed quasi-steadily along the (vertical) main channel and is in the process of entering the T-junction. We assume that the air-liquid interface (shown in red) remains pinned at the two sharp edges (at <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ y=const.$" src="form_0.png" width="56" height="11"/></picture>) where the channels meet, while the meniscus forms a quasi-static contact angle, <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \gamma $" src="form_1.png" width="9" height="9"/></picture>, with the smooth front and back walls.</p>
+<p>The figure below shows a sketch of a T-junction in a microchannel with a rectangular cross-section. (The front wall has been removed for clarity). Fluid is being pushed quasi-steadily along the (vertical) main channel and is in the process of entering the T-junction. We assume that the air-liquid interface (shown in red) remains pinned at the two sharp edges (at <img class="formulaInl" alt="$ y=const.$" src="form_0.png" width="56" height="11"/>) where the channels meet, while the meniscus forms a quasi-static contact angle, <img class="formulaInl" alt="$ \gamma $" src="form_1.png" width="9" height="9"/>, with the smooth front and back walls.</p>
 <div class="image">
 <img src="t_junction_contact_angle_sketch.gif" alt=""/>
 <div class="caption">
@@ -136,147 +130,147 @@ A typical problem: Fluid propagates quasi-steadily through a T-junction that con
 Theory and implementation</h1>
 <h2><a class="anchor" id="spine"></a>
 Spine-based representation of the meniscus</h2>
-<p><a href="../../young_laplace/html/index.html">Recall</a> that we parametrised the meniscus by two intrinsic coordinates as <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf R}(\zeta_1,\zeta_2) \in {R}^3 $" src="form_2.png" width="79" height="15"/></picture>, where <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$(\zeta_1,\zeta_2) \in D \in {R}^2$" src="form_3.png" width="93" height="15"/></picture>. Furthermore, we parametrised the domain boundary, <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\partial D$" src="form_4.png" width="18" height="10"/></picture>, by a scalar coordinate <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\xi$" src="form_5.png" width="8" height="13"/></picture> so that,  </p><p class="formulaDsp">
-<picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p><a href="../../young_laplace/html/index.html">Recall</a> that we parametrised the meniscus by two intrinsic coordinates as <img class="formulaInl" alt="$ {\bf R}(\zeta_1,\zeta_2) \in {R}^3 $" src="form_2.png" width="79" height="15"/>, where <img class="formulaInl" alt="$(\zeta_1,\zeta_2) \in D \in {R}^2$" src="form_3.png" width="93" height="15"/>. Furthermore, we parametrised the domain boundary, <img class="formulaInl" alt="$\partial D$" src="form_4.png" width="18" height="10"/>, by a scalar coordinate <img class="formulaInl" alt="$\xi$" src="form_5.png" width="8" height="13"/> so that,  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 {\partial D} =  \bigg\{ (\zeta_1,\zeta_2) \ \bigg| \ (\zeta_1,\zeta_2) =
 \left( \zeta_1^{[\partial D]}(\xi), \ 
 \zeta_2^{[\partial D]}(\xi) \right) \bigg\}.
-\]" src="form_6.png" width="271" height="31"/></picture>
+\]" src="form_6.png" width="271" height="31"/>
 </p>
 <p> The normal to the meniscus is then given by  </p><p class="formulaDsp">
-<picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 {\bf N} = \frac{{\bf R}_{,1} \times {\bf R}_{,2} }
 {|{\bf R}_{,1} \times {\bf R}_{,2}|},
-\]" src="form_7.png" width="95" height="30"/></picture>
+\]" src="form_7.png" width="95" height="30"/>
 </p>
-<p> where a comma denotes partial differentiation with respect to one of the intrinsic coordinates, <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ (\zeta_1, \zeta_2). $" src="form_8.png" width="40" height="14"/></picture></p>
-<p>Along the contact line we define two unit vectors, <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="${\bf T}_t$" src="form_9.png" width="15" height="11"/></picture> and <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="${\bf T}_n$" src="form_10.png" width="18" height="11"/></picture>, that are tangential to the meniscus. <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="${\bf T}_t$" src="form_9.png" width="15" height="11"/></picture> is tangent to the contact line while <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="${\bf T}_n$" src="form_10.png" width="18" height="11"/></picture> is normal to it and points away from the meniscus, as shown in the sketch below.</p>
-<p>We split the domain boundary <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial D $" src="form_11.png" width="18" height="10"/></picture> so that <picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial D = 
-\partial D_{\rm pinned} \cup \partial D_{\rm angle} $" src="form_12.png" width="136" height="14"/></picture> and assume that along <picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\partial D_{\rm pinned}$" src="form_13.png" width="48" height="14"/></picture> the meniscus is pinned,  </p><p class="formulaDsp">
-<picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> where a comma denotes partial differentiation with respect to one of the intrinsic coordinates, <img class="formulaInl" alt="$ (\zeta_1, \zeta_2). $" src="form_8.png" width="40" height="14"/></p>
+<p>Along the contact line we define two unit vectors, <img class="formulaInl" alt="${\bf T}_t$" src="form_9.png" width="15" height="11"/> and <img class="formulaInl" alt="${\bf T}_n$" src="form_10.png" width="18" height="11"/>, that are tangential to the meniscus. <img class="formulaInl" alt="${\bf T}_t$" src="form_9.png" width="15" height="11"/> is tangent to the contact line while <img class="formulaInl" alt="${\bf T}_n$" src="form_10.png" width="18" height="11"/> is normal to it and points away from the meniscus, as shown in the sketch below.</p>
+<p>We split the domain boundary <img class="formulaInl" alt="$ \partial D $" src="form_11.png" width="18" height="10"/> so that <img class="formulaInl" alt="$ \partial D = 
+\partial D_{\rm pinned} \cup \partial D_{\rm angle} $" src="form_12.png" width="136" height="14"/> and assume that along <img class="formulaInl" alt="$\partial D_{\rm pinned}$" src="form_13.png" width="48" height="14"/> the meniscus is pinned,  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \left. {\bf R} \right|_{\partial D_{\rm pinned}} = {\bf R}_{\rm pinned}(\xi),
-\]" src="form_14.png" width="130" height="16"/></picture>
+\]" src="form_14.png" width="130" height="16"/>
 </p>
-<p> where <picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="${\bf R}_{\rm pinned}(\xi) $" src="form_15.png" width="56" height="14"/></picture> is given. On <picture><source srcset="form_16_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\partial D_{\rm  angle}$" src="form_16.png" width="40" height="14"/></picture> the meniscus meets the wall at a prescribed contact angle <picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\gamma$" src="form_17.png" width="9" height="9"/></picture> so that  </p><p class="formulaDsp">
-<picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> where <img class="formulaInl" alt="${\bf R}_{\rm pinned}(\xi) $" src="form_15.png" width="56" height="14"/> is given. On <img class="formulaInl" alt="$\partial D_{\rm  angle}$" src="form_16.png" width="40" height="14"/> the meniscus meets the wall at a prescribed contact angle <img class="formulaInl" alt="$\gamma$" src="form_17.png" width="9" height="9"/> so that  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \left. \left( ({\bf T}_t \times {\bf N}_{\rm wall}) \cdot {\bf T}_n\right) 
 \right|_{\partial D_{angle}} = \cos \gamma,
 \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1)
-\]" src="form_18.png" width="299" height="16"/></picture>
+\]" src="form_18.png" width="299" height="16"/>
 </p>
-<p> where <picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="${\bf N}_{\rm wall}$" src="form_19.png" width="30" height="13"/></picture> is the outer unit normal to the wall as shown in this sketch:</p>
+<p> where <img class="formulaInl" alt="${\bf N}_{\rm wall}$" src="form_19.png" width="30" height="13"/> is the outer unit normal to the wall as shown in this sketch:</p>
 <div class="image">
 <img src="contact_angle_sketch.gif" alt=""/>
 <div class="caption">
 Sketch of the meniscus, the contact line along which it meets the wall, and the spine-based representation of the meniscus. </div></div>
  <p>The figure also illustrates the spine-based representation of the meniscus in the form  </p><p class="formulaDsp">
-<picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 {\bf R}(\zeta_1,\zeta_2) = 
 {\bf B}(\zeta_1,\zeta_2) +
 u(\zeta_1,\zeta_2) \ {\bf S}(\zeta_1,\zeta_2)
 \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (2)
-\]" src="form_20.png" width="328" height="14"/></picture>
+\]" src="form_20.png" width="328" height="14"/>
 </p>
-<p> where the spine basis <picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="${\bf R}(\zeta_1,\zeta_2)$" src="form_21.png" width="49" height="14"/></picture> and spines <picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="${\bf S}(\zeta_1,\zeta_2)$" src="form_22.png" width="44" height="14"/></picture> are pre-determined vector fields, chosen such that <br  />
+<p> where the spine basis <img class="formulaInl" alt="${\bf R}(\zeta_1,\zeta_2)$" src="form_21.png" width="49" height="14"/> and spines <img class="formulaInl" alt="${\bf S}(\zeta_1,\zeta_2)$" src="form_22.png" width="44" height="14"/> are pre-determined vector fields, chosen such that <br  />
 </p><ul>
-<li>The mapping from <picture><source srcset="form_23_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$(\zeta_1,\zeta_2)$" src="form_23.png" width="36" height="14"/></picture> to <picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="${\bf R}(\zeta_1,\zeta_2)$" src="form_21.png" width="49" height="14"/></picture> <br  />
+<li>The mapping from <img class="formulaInl" alt="$(\zeta_1,\zeta_2)$" src="form_23.png" width="36" height="14"/> to <img class="formulaInl" alt="${\bf R}(\zeta_1,\zeta_2)$" src="form_21.png" width="49" height="14"/> <br  />
  is one-to-one, at least for the meniscus shapes of interest. <br  />
 <br  />
 </li>
 <li>Along the parts of the boundary where the contact line is pinned we have  <p class="formulaDsp">
-<picture><source srcset="form_24_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
   \left. {\bf B}\right|_{\partial D_{\rm pinned}} = {\bf R}_{\rm pinned}
-  \]" src="form_24.png" width="111" height="16"/></picture>
+  \]" src="form_24.png" width="111" height="16"/>
 </p>
- so that the pinned boundary condition may be enforced by setting <picture><source srcset="form_25_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ u|_{\partial D_{\rm pinned}} = 0.$" src="form_25.png" width="78" height="15"/></picture> <br  />
+ so that the pinned boundary condition may be enforced by setting <img class="formulaInl" alt="$ u|_{\partial D_{\rm pinned}} = 0.$" src="form_25.png" width="78" height="15"/> <br  />
 <br  />
 </li>
 </ul>
 <h2><a class="anchor" id="contact_angle_term"></a>
 Computation of the contact-angle term in the variational principle</h2>
 <p><a href="../../young_laplace/html/index.html">Recall</a> that the variational principle that determines the shape of the meniscus contained the line term  </p><p class="formulaDsp">
-<picture><source srcset="form_26_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \delta \Pi_{\rm contact \ line} = 
 \oint_{\partial D } {\bf T}_n \cdot \delta {\bf R} 
 \left| \frac{\partial {\bf R}} {\partial \xi}\right| \ d\xi.
-\]" src="form_26.png" width="204" height="31"/></picture>
+\]" src="form_26.png" width="204" height="31"/>
 </p>
-<p> Along <picture><source srcset="form_27_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial D_{pinned} $" src="form_27.png" width="49" height="14"/></picture> the line integral vanishes because <picture><source srcset="form_28_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \delta {\bf R}\big|_{ \partial D_{pinned} } ={\bf 0} $" src="form_28.png" width="88" height="19"/></picture>. The line integral can therefore be written as  </p><p class="formulaDsp">
-<picture><source srcset="form_29_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> Along <img class="formulaInl" alt="$ \partial D_{pinned} $" src="form_27.png" width="49" height="14"/> the line integral vanishes because <img class="formulaInl" alt="$ \delta {\bf R}\big|_{ \partial D_{pinned} } ={\bf 0} $" src="form_28.png" width="88" height="19"/>. The line integral can therefore be written as  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \delta \Pi_{\rm contact \ line} = 
 \int_{\partial D_{\rm angle}} {\bf T}_n \cdot \delta {\bf R} 
 \left| \frac{\partial {\bf R}}{\partial \xi}\right| \ d\xi,
-\]" src="form_29.png" width="224" height="34"/></picture>
+\]" src="form_29.png" width="224" height="34"/>
 </p>
 <p> or, using the spine-based representation of the meniscus, (2),  </p><p class="formulaDsp">
-<picture><source srcset="form_30_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \delta \Pi_{\rm contact\ line} = 
 \int_{\partial D_{\rm angle}} {\bf T}_n \cdot  {\bf S} \ \delta u 
 \left| \frac{\partial {\bf R}}{\partial \xi}\right| \ d\xi.
-\]" src="form_30.png" width="231" height="34"/></picture>
+\]" src="form_30.png" width="231" height="34"/>
 </p>
 <p>We shall now demonstrate that the integrand in this expression can be expressed in terms of the contact angle boundary condition (1). We start with several observations:</p><ol type="1">
-<li><picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="${\bf T}_t$" src="form_9.png" width="15" height="11"/></picture> is tangential to the wall. <br  />
+<li><img class="formulaInl" alt="${\bf T}_t$" src="form_9.png" width="15" height="11"/> is tangential to the wall. <br  />
 <br  />
 </li>
-<li>Since <picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="${\bf N}_{\rm wall}$" src="form_19.png" width="30" height="13"/></picture> is normal to the wall, <picture><source srcset="form_31_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="${\bf T}_t \times {\bf N}_{\rm wall}$" src="form_31.png" width="59" height="13"/></picture> is tangential to the wall and orthogonal to <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="${\bf T}_t$" src="form_9.png" width="15" height="11"/></picture>. <br  />
+<li>Since <img class="formulaInl" alt="${\bf N}_{\rm wall}$" src="form_19.png" width="30" height="13"/> is normal to the wall, <img class="formulaInl" alt="${\bf T}_t \times {\bf N}_{\rm wall}$" src="form_31.png" width="59" height="13"/> is tangential to the wall and orthogonal to <img class="formulaInl" alt="${\bf T}_t$" src="form_9.png" width="15" height="11"/>. <br  />
 <br  />
 </li>
-<li><picture><source srcset="form_32_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="${\bf S}$" src="form_32.png" width="8" height="10"/></picture> is tangential to the wall and can therefore be decomposed into its components parallel to <picture><source srcset="form_33_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf T}_t $" src="form_33.png" width="15" height="11"/></picture> and <picture><source srcset="form_34_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="${\bf T}_t \times {\bf N}_{\rm wall} $" src="form_34.png" width="59" height="13"/></picture> as  <p class="formulaDsp">
-<picture><source srcset="form_35_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<li><img class="formulaInl" alt="${\bf S}$" src="form_32.png" width="8" height="10"/> is tangential to the wall and can therefore be decomposed into its components parallel to <img class="formulaInl" alt="$ {\bf T}_t $" src="form_33.png" width="15" height="11"/> and <img class="formulaInl" alt="${\bf T}_t \times {\bf N}_{\rm wall} $" src="form_34.png" width="59" height="13"/> as  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
    {\bf S} = \alpha {\bf T}_t + \beta ( {\bf T}_t \times {\bf N}_{\rm
    wall} )
    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \   (3)
-   \]" src="form_35.png" width="236" height="14"/></picture>
+   \]" src="form_35.png" width="236" height="14"/>
 </p>
- for some values of <picture><source srcset="form_36_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\alpha$" src="form_36.png" width="8" height="6"/></picture> and <picture><source srcset="form_37_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\beta$" src="form_37.png" width="9" height="13"/></picture>. In fact,  <p class="formulaDsp">
-<picture><source srcset="form_38_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ for some values of <img class="formulaInl" alt="$\alpha$" src="form_36.png" width="8" height="6"/> and <img class="formulaInl" alt="$\beta$" src="form_37.png" width="9" height="13"/>. In fact,  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
    \beta = {\bf S}
    \cdot ( {\bf T}_t \times {\bf N}_{\rm wall} )
-   \]" src="form_38.png" width="110" height="14"/></picture>
+   \]" src="form_38.png" width="110" height="14"/>
 </p>
 </li>
-<li>During the computation it is most convenient to perform all calculations in terms of quantities that are easily obtained from the parametrisation of the meniscus as this avoids having to specify <picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="${\bf N}_{\rm wall}$" src="form_19.png" width="30" height="13"/></picture> explicitly. For this purpose we exploit that <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="${\bf T}_t$" src="form_9.png" width="15" height="11"/></picture> and <picture><source srcset="form_32_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="${\bf S}$" src="form_32.png" width="8" height="10"/></picture> are tangential to the wall and not parallel to each other (unless the parametrisation of the meniscus by (2) is no longer one-to-one). Therefore <picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="${\bf N}_{\rm wall}$" src="form_19.png" width="30" height="13"/></picture> can be obtained from quantities that are intrinsic to the meniscus representation via <br  />
+<li>During the computation it is most convenient to perform all calculations in terms of quantities that are easily obtained from the parametrisation of the meniscus as this avoids having to specify <img class="formulaInl" alt="${\bf N}_{\rm wall}$" src="form_19.png" width="30" height="13"/> explicitly. For this purpose we exploit that <img class="formulaInl" alt="${\bf T}_t$" src="form_9.png" width="15" height="11"/> and <img class="formulaInl" alt="${\bf S}$" src="form_32.png" width="8" height="10"/> are tangential to the wall and not parallel to each other (unless the parametrisation of the meniscus by (2) is no longer one-to-one). Therefore <img class="formulaInl" alt="${\bf N}_{\rm wall}$" src="form_19.png" width="30" height="13"/> can be obtained from quantities that are intrinsic to the meniscus representation via <br  />
 <br  />
  <p class="formulaDsp">
-<picture><source srcset="form_39_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
    {\bf N}_{\rm wall} = \frac{ {\bf S} \times {\bf T}_t } 
    {|{\bf S} \times {\bf T}_t|}
-   \]" src="form_39.png" width="93" height="30"/></picture>
+   \]" src="form_39.png" width="93" height="30"/>
 </p>
  and thus  <p class="formulaDsp">
-<picture><source srcset="form_40_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
    \beta = {\bf S}
    \cdot \left( {\bf T}_t \times  
    \frac{ {\bf S} \times {\bf T}_t } 
    {|{\bf S} \times {\bf T}_t|} \right)
    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (4)
-   \]" src="form_40.png" width="245" height="31"/></picture>
+   \]" src="form_40.png" width="245" height="31"/>
 </p>
 </li>
-<li>Given (3) and the fact that <picture><source srcset="form_41_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="${\bf T}_t \cdot {\bf
-   T}_n =0$" src="form_41.png" width="64" height="11"/></picture>, we have <br  />
+<li>Given (3) and the fact that <img class="formulaInl" alt="${\bf T}_t \cdot {\bf
+   T}_n =0$" src="form_41.png" width="64" height="11"/>, we have <br  />
 <br  />
  <p class="formulaDsp">
-<picture><source srcset="form_42_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
    {\bf S} \cdot {\bf T}_n =  \beta ( {\bf T}_t \times {\bf N}_{\rm wall}
    ) \cdot {\bf T}_n
-   \]" src="form_42.png" width="151" height="14"/></picture>
+   \]" src="form_42.png" width="151" height="14"/>
 </p>
  and with (1):  <p class="formulaDsp">
-<picture><source srcset="form_43_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
    {\bf S} \cdot {\bf T}_n =  \beta \cos \gamma.
-   \]" src="form_43.png" width="89" height="13"/></picture>
+   \]" src="form_43.png" width="89" height="13"/>
 </p>
  Hence, the line integral may be written as  <p class="formulaDsp">
-<picture><source srcset="form_44_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
    \delta \Pi_{\rm contact\ line} = 
    \int_{\partial D_{\rm angle}} \beta \cos \gamma \ \delta u 
    \left| \frac{\partial {\bf R}}{\partial \xi}\right| \ d\xi,
    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (5)
-   \]" src="form_44.png" width="319" height="34"/></picture>
+   \]" src="form_44.png" width="319" height="34"/>
 </p>
- where <picture><source srcset="form_45_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \beta $" src="form_45.png" width="9" height="13"/></picture> is given by (4).</li>
+ where <img class="formulaInl" alt="$ \beta $" src="form_45.png" width="9" height="13"/> is given by (4).</li>
 </ol>
 <p>Equation (5) is easily discretised by finite elements. Within <code>oomph-lib</code>, the line integral is decomposed into <code>FaceElements</code> that are attached to the "bulk" Young-Laplace elements that are adjacent to the contact line. The imposition of the contact angle boundary condition for the Young Laplace equation is therefore as easy as the application of Neumann boundary conditions for a Poisson equation, say.</p>
 <hr  />
@@ -288,7 +282,7 @@ Results</h1>
 <img src="t_junction_meniscus.gif" alt=""/>
 <div class="caption">
 Animation of the meniscus shapes. </div></div>
- <p>The computation was performed with full spatial adaptivity. The plot below illustrates how the automatic mesh adaptation has strongly refined the mesh towards the corners of the domain where the meniscus shape has a singularity. (The singularity develops because in the corners of the domain the contact angle boundary condition along the side walls is inconsistent with the <picture><source srcset="form_46_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ 90^o $" src="form_46.png" width="19" height="9"/></picture> contact angle enforced by the pinned boundary condition along the sharp edges.)</p>
+ <p>The computation was performed with full spatial adaptivity. The plot below illustrates how the automatic mesh adaptation has strongly refined the mesh towards the corners of the domain where the meniscus shape has a singularity. (The singularity develops because in the corners of the domain the contact angle boundary condition along the side walls is inconsistent with the <img class="formulaInl" alt="$ 90^o $" src="form_46.png" width="19" height="9"/> contact angle enforced by the pinned boundary condition along the sharp edges.)</p>
 <div class="image">
 <img src="t_junction_meniscus_adapt.gif" alt=""/>
 <div class="caption">
@@ -321,8 +315,8 @@ The global namespace</h2>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceGlobalParameters.html#a3731f24a02ce4f306d65a9a488f85c96">Controlled_height</a> = 0.0;</div>
 <div class="ttc" id="anamespaceGlobalParameters_html"><div class="ttname"><a href="namespaceGlobalParameters.html">GlobalParameters</a></div><div class="ttdoc">Namespace for &quot;global&quot; problem parameters.</div><div class="ttdef"><b>Definition</b> <a href="barrel_8cc_source.html#l00044">barrel.cc:45</a></div></div>
 <div class="ttc" id="anamespaceGlobalParameters_html_a3731f24a02ce4f306d65a9a488f85c96"><div class="ttname"><a href="namespaceGlobalParameters.html#a3731f24a02ce4f306d65a9a488f85c96">GlobalParameters::Controlled_height</a></div><div class="ttdeci">double Controlled_height</div><div class="ttdoc">Height control value.</div><div class="ttdef"><b>Definition</b> <a href="barrel_8cc_source.html#l00051">barrel.cc:51</a></div></div>
-<div class="ttc" id="anamespaceGlobalParameters_html_ae982fcb894e82c683d07d3c2fbbead3d"><div class="ttname"><a href="namespaceGlobalParameters.html#ae982fcb894e82c683d07d3c2fbbead3d">GlobalParameters::Cos_gamma</a></div><div class="ttdeci">double Cos_gamma</div><div class="ttdoc">Cos of contact angle.</div><div class="ttdef"><b>Definition</b> <a href="common__young__laplace__stuff_8h_source.html#l00061">common_young_laplace_stuff.h:61</a></div></div>
-</div><!-- fragment --><p> <a href="../../young_laplace/html/index.html">As before</a>, we use the spine basis <picture><source srcset="form_47_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf B}(\zeta_1,\zeta_2)=(\zeta_1,\zeta_2,0)^T, $" src="form_47.png" width="125" height="15"/></picture> to establish a reference configuration in which the flat meniscus is located in the plane <picture><source srcset="form_48_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ z=0 $" src="form_48.png" width="29" height="9"/></picture> and occupies the domain <picture><source srcset="form_49_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ (x,y) \in [0,L_x] \times [0,L_y]. $" src="form_49.png" width="129" height="14"/></picture></p>
+<div class="ttc" id="anamespaceGlobalParameters_html_ae982fcb894e82c683d07d3c2fbbead3d"><div class="ttname"><a href="namespaceGlobalParameters.html#ae982fcb894e82c683d07d3c2fbbead3d">GlobalParameters::Cos_gamma</a></div><div class="ttdeci">double Cos_gamma</div><div class="ttdoc">Cos of contact angle.</div><div class="ttdef"><b>Definition</b> <a href="common__young__laplace__stuff_8h_source.html#l00062">common_young_laplace_stuff.h:62</a></div></div>
+</div><!-- fragment --><p> <a href="../../young_laplace/html/index.html">As before</a>, we use the spine basis <img class="formulaInl" alt="$ {\bf B}(\zeta_1,\zeta_2)=(\zeta_1,\zeta_2,0)^T, $" src="form_47.png" width="125" height="15"/> to establish a reference configuration in which the flat meniscus is located in the plane <img class="formulaInl" alt="$ z=0 $" src="form_48.png" width="29" height="9"/> and occupies the domain <img class="formulaInl" alt="$ (x,y) \in [0,L_x] \times [0,L_y]. $" src="form_49.png" width="129" height="14"/></p>
 <div class="fragment"><div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Length of domain</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> L_x = 1.0; </div>
@@ -355,7 +349,7 @@ The global namespace</h2>
 <div class="line">  dspine_B[1][2] = 0.0 ;</div>
 <div class="line">  </div>
 <div class="line"> } <span class="comment">// End of bspine functions</span></div>
-</div><!-- fragment --><p>As in the <a href="../../young_laplace/html/index.html">previous example</a>, we rotate the spines in the <picture><source srcset="form_50_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ y $" src="form_50.png" width="8" height="9"/></picture> -direction to allow the representation of meniscus shapes that cannot be projected onto the <picture><source srcset="form_51_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ (x,y) $" src="form_51.png" width="28" height="14"/></picture> -plane.</p>
+</div><!-- fragment --><p>As in the <a href="../../young_laplace/html/index.html">previous example</a>, we rotate the spines in the <img class="formulaInl" alt="$ y $" src="form_50.png" width="8" height="9"/> -direction to allow the representation of meniscus shapes that cannot be projected onto the <img class="formulaInl" alt="$ (x,y) $" src="form_51.png" width="28" height="14"/> -plane.</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"> </div>
 <div class="line"> </div>
@@ -418,7 +412,7 @@ The driver code</h2>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Open a trace file</span></div>
 <div class="line"> <span class="keywordtype">char</span> filename[100];</div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/trace.dat&quot;</span>,doc_info.directory().c_str());</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/trace.dat&quot;</span>,doc_info.directory().c_str());</div>
 <div class="line"> trace_file.open(filename);</div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Tecplot header for trace file: kappa and height value</span></div>
@@ -611,8 +605,8 @@ The problem constructor</h2>
 <div class="line"> <span class="comment">// Set targets for spatial adaptivity</span></div>
 <div class="line"> Bulk_mesh_pt-&gt;max_permitted_error()=1.0e-4;</div>
 <div class="line"> Bulk_mesh_pt-&gt;min_permitted_error()=1.0e-6;</div>
-<div class="ttc" id="anamespaceGlobalParameters_html_a36ebf514fdd1e78fff69907b39e25af6"><div class="ttname"><a href="namespaceGlobalParameters.html#a36ebf514fdd1e78fff69907b39e25af6">GlobalParameters::L_x</a></div><div class="ttdeci">double L_x</div><div class="ttdoc">Length and width of the domain.</div><div class="ttdef"><b>Definition</b> <a href="common__young__laplace__stuff_8h_source.html#l00096">common_young_laplace_stuff.h:96</a></div></div>
-<div class="ttc" id="anamespaceGlobalParameters_html_ac8774b3418c4551091d64ec72c169b2e"><div class="ttname"><a href="namespaceGlobalParameters.html#ac8774b3418c4551091d64ec72c169b2e">GlobalParameters::L_y</a></div><div class="ttdeci">double L_y</div><div class="ttdoc">Width of domain.</div><div class="ttdef"><b>Definition</b> <a href="common__young__laplace__stuff_8h_source.html#l00097">common_young_laplace_stuff.h:97</a></div></div>
+<div class="ttc" id="anamespaceGlobalParameters_html_a36ebf514fdd1e78fff69907b39e25af6"><div class="ttname"><a href="namespaceGlobalParameters.html#a36ebf514fdd1e78fff69907b39e25af6">GlobalParameters::L_x</a></div><div class="ttdeci">double L_x</div><div class="ttdoc">Length and width of the domain.</div><div class="ttdef"><b>Definition</b> <a href="common__young__laplace__stuff_8h_source.html#l00097">common_young_laplace_stuff.h:97</a></div></div>
+<div class="ttc" id="anamespaceGlobalParameters_html_ac8774b3418c4551091d64ec72c169b2e"><div class="ttname"><a href="namespaceGlobalParameters.html#ac8774b3418c4551091d64ec72c169b2e">GlobalParameters::L_y</a></div><div class="ttdeci">double L_y</div><div class="ttdoc">Width of domain.</div><div class="ttdef"><b>Definition</b> <a href="common__young__laplace__stuff_8h_source.html#l00098">common_young_laplace_stuff.h:98</a></div></div>
 </div><!-- fragment --><p> We identify the node (in the centre of the mesh) at which we apply displacement control. We pass a pointer to this node to the constructor of the displacement control element and store that element in its own mesh.</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"> <span class="comment">// Check that we&#39;ve got an even number of elements otherwise</span></div>
@@ -825,7 +819,7 @@ Post-processing</h2>
 <div class="line"> ofstream some_file;</div>
 <div class="line"> <span class="keywordtype">char</span> filename[100];</div>
 <div class="line"> <span class="comment">//YoungLaplaceEquations::Output_meniscus_and_spines=false;</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> Bulk_mesh_pt-&gt;output(some_file,npts);</div>
@@ -835,20 +829,20 @@ Post-processing</h2>
 <div class="line"> <span class="comment">//---------------------</span></div>
 <div class="line"> </div>
 <div class="line"> ofstream tangent_file;</div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/tangent_to_contact_line%i.dat&quot;</span>,</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/tangent_to_contact_line%i.dat&quot;</span>,</div>
 <div class="line">         doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> tangent_file.open(filename);</div>
 <div class="line"> </div>
 <div class="line"> ofstream normal_file;</div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/normal_to_contact_line%i.dat&quot;</span>,</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/normal_to_contact_line%i.dat&quot;</span>,</div>
 <div class="line">         doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> normal_file.open(filename);</div>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"> ofstream contact_angle_file;</div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/contact_angle%i.dat&quot;</span>,</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/contact_angle%i.dat&quot;</span>,</div>
 <div class="line">         doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> contact_angle_file.open(filename);</div>
@@ -923,7 +917,7 @@ How to generate a good initial guess for the solution</h2>
 <p>We already commented on the need to provide a "good" initial guess for the solution in order to ensure the convergence of the Newton iteration. In the <a href="../../young_laplace/html/index.html">previous example</a> this was easy because the flat meniscus (clearly a solution of the Young-Laplace equations for zero curvature) also satisfied the boundary conditions. In the present example, and in many others, this is not the case. In such problems it may be difficult to generate initial guesses for the meniscus shape that are sufficiently close to actual solution.</p>
 <p>In such cases it may be necessary to compute the initial solution to the problem whose behaviour we wish to investigate during the actual parameter study via a preliminary auxiliary continuation procedure that transforms an easier-solve-problem (for which a good initial guess can be found) into the actual problem.</p>
 <p>Explore this approach in the present problem by implementing the following steps:</p><ol type="1">
-<li>Set the contact angle to <picture><source srcset="form_46_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ 90^o $" src="form_46.png" width="19" height="9"/></picture> and solve the problem, using the "flat" meniscus as the initial guess. The "flat" meniscus is, of course, the exact solution for zero control displacement and/or zero curvature. <br  />
+<li>Set the contact angle to <img class="formulaInl" alt="$ 90^o $" src="form_46.png" width="19" height="9"/> and solve the problem, using the "flat" meniscus as the initial guess. The "flat" meniscus is, of course, the exact solution for zero control displacement and/or zero curvature. <br  />
 <br  />
 </li>
 <li>Now start a preliminary continuation procedure in which the contact angle is adjusted in small steps until it reaches the desired value. Keep the prescribed control displacement (or the meniscus curvature) constant during this procedure. <br  />
@@ -933,39 +927,39 @@ How to generate a good initial guess for the solution</h2>
 </ol>
 <h2><a class="anchor" id="lim"></a>
 Limitations of the current approach – suggestions for improvement</h2>
-<p>One of the main disadvantages of the approach adopted here is that the spine vector fields <picture><source srcset="form_52_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf B} $" src="form_52.png" width="11" height="10"/></picture> and <picture><source srcset="form_53_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf S} $" src="form_53.png" width="8" height="10"/></picture> must be specified <em>a priori</em>. For sufficiently complicated meniscus shapes (or for menisci that undergo large changes in shape as their curvature is varied) the choice of suitable spines may be very difficult. <br  />
+<p>One of the main disadvantages of the approach adopted here is that the spine vector fields <img class="formulaInl" alt="$ {\bf B} $" src="form_52.png" width="11" height="10"/> and <img class="formulaInl" alt="$ {\bf S} $" src="form_53.png" width="8" height="10"/> must be specified <em>a priori</em>. For sufficiently complicated meniscus shapes (or for menisci that undergo large changes in shape as their curvature is varied) the choice of suitable spines may be very difficult. <br  />
 <br  />
 One (possible) solution to this problem could be (we haven't tried it!) to occasionally update the spine representation. For instance, assume that we have computed a meniscus shape in the form <br  />
 <br  />
  </p><p class="formulaDsp">
-<picture><source srcset="form_54_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \widehat{\bf R} = {\bf R}(\zeta_1,\zeta_2) = 
 {\bf B}(\zeta_1,\zeta_2) +
 u(\zeta_1,\zeta_2) \ {\bf S}(\zeta_1,\zeta_2)
-\]" src="form_54.png" width="249" height="18"/></picture>
+\]" src="form_54.png" width="249" height="18"/>
 </p>
-<p> with an associated normal vector <picture><source srcset="form_55_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \widehat{\bf N} $" src="form_55.png" width="13" height="14"/></picture>. We can reparametrise this shape by setting  </p><p class="formulaDsp">
-<picture><source srcset="form_56_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> with an associated normal vector <img class="formulaInl" alt="$ \widehat{\bf N} $" src="form_55.png" width="13" height="14"/>. We can reparametrise this shape by setting  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 {\bf B} :=  \widehat{\bf R},
-\]" src="form_56.png" width="44" height="16"/></picture>
+\]" src="form_56.png" width="44" height="16"/>
 </p>
   <p class="formulaDsp">
-<picture><source srcset="form_57_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 {\bf S} :=  \widehat{\bf N},
-\]" src="form_57.png" width="41" height="16"/></picture>
+\]" src="form_57.png" width="41" height="16"/>
 </p>
 <p> and <br  />
   </p><p class="formulaDsp">
-<picture><source srcset="form_58_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 u := 0
-\]" src="form_58.png" width="34" height="9"/></picture>
+\]" src="form_58.png" width="34" height="9"/>
 </p>
-<p> before continuing the computation. Provided this is done sufficiently frequently, i.e. long before the displacement along the spines has become so large that the mapping from <picture><source srcset="form_59_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ (\zeta_1,\zeta_2) $" src="form_59.png" width="36" height="14"/></picture> to <picture><source srcset="form_60_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf R}(\zeta_1,\zeta_2)$" src="form_60.png" width="49" height="14"/></picture> is about to become non-one-to-one, this should allow the computation of arbitrarily large meniscus deflections. Try it out and let us know how it works! <br  />
+<p> before continuing the computation. Provided this is done sufficiently frequently, i.e. long before the displacement along the spines has become so large that the mapping from <img class="formulaInl" alt="$ (\zeta_1,\zeta_2) $" src="form_59.png" width="36" height="14"/> to <img class="formulaInl" alt="$ {\bf R}(\zeta_1,\zeta_2)$" src="form_60.png" width="49" height="14"/> is about to become non-one-to-one, this should allow the computation of arbitrarily large meniscus deflections. Try it out and let us know how it works! <br  />
 <br  />
  </p>
 <h2><a class="anchor" id="zero"></a>
 Zero contact angles</h2>
-<p>Our problem formulation suffers from an additional, more fundamental problem: it cannot be used to solve problems with zero contact angle. This is because for zero contact angles the equilibrium solution is no longer a minimiser of the variational principle: given a solution at which the meniscus meets the wall at zero contact angle, it is always possible to extend the meniscus with an arbitrary-length "collar" along the wall without changing the overall energy of the system. As a result, the position of the contact line becomes increasingly ill-defined as the contact angle <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \gamma $" src="form_1.png" width="9" height="9"/></picture> is reduced, causing the Newton method to converge very slowly (and ultimately not at all) as <picture><source srcset="form_61_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \gamma \to 0. $" src="form_61.png" width="36" height="11"/></picture></p>
+<p>Our problem formulation suffers from an additional, more fundamental problem: it cannot be used to solve problems with zero contact angle. This is because for zero contact angles the equilibrium solution is no longer a minimiser of the variational principle: given a solution at which the meniscus meets the wall at zero contact angle, it is always possible to extend the meniscus with an arbitrary-length "collar" along the wall without changing the overall energy of the system. As a result, the position of the contact line becomes increasingly ill-defined as the contact angle <img class="formulaInl" alt="$ \gamma $" src="form_1.png" width="9" height="9"/> is reduced, causing the Newton method to converge very slowly (and ultimately not at all) as <img class="formulaInl" alt="$ \gamma \to 0. $" src="form_61.png" width="36" height="11"/></p>
 <hr  />
  <hr  />
 <h1><a class="anchor" id="sources"></a>
@@ -983,7 +977,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -1013,7 +1007,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:36:00
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:46:56
         </div>
       </div>
     </footer>

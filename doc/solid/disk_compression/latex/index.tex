@@ -613,7 +613,7 @@ The post-\/processing function outputs the shape of the deformed disk. We use th
 \DoxyCodeLine{\ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{npts}}\ =\ 5;\ }
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ shape\ of\ deformed\ body}}
-\DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{sprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{doc\_info}}.directory().c\_str(),}
+\DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{snprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{doc\_info}}.number());}
 \DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{some\_file}}.open(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}});}
 \DoxyCodeLine{\ Solid\_mesh\_pt-\/>output(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{some\_file}},\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{npts}});}
@@ -672,7 +672,7 @@ The function {\ttfamily parameter\+\_\+study(...)} computes the disk\textquotesi
 \DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{DocInfo}}\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{doc\_info}};}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{dirname}}[100];}
-\DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{sprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{dirname}},\textcolor{stringliteral}{"{}RESLT\%i"{}},\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{case\_number}});}
+\DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{snprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{dirname}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{dirname}}),\ \textcolor{stringliteral}{"{}RESLT\%i"{}},\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{case\_number}});}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Set\ output\ directory}}
 \DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{doc\_info}}.set\_directory(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{dirname}});}
@@ -682,7 +682,7 @@ The function {\ttfamily parameter\+\_\+study(...)} computes the disk\textquotesi
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}}[100];\ \ \ }
-\DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{sprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\textcolor{stringliteral}{"{}\%s/trace.dat"{}},\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{doc\_info}}.directory().c\_str());}
+\DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{snprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{doc\_info}}.directory().c\_str());}
 \DoxyCodeLine{\ Trace\_file.open(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}});}
 \DoxyCodeLine{\ }
 \DoxyCodeLine{\ \textcolor{comment}{//Parameter\ incrementation}}
@@ -740,4 +740,4 @@ This strategy is adapted slightly for solid mechanics problems\+:
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

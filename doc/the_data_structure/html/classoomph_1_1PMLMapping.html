@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -154,7 +148,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a9642a52ea6b195a6da7d732b58030467"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor (empty)  <br /></td></tr>
 <tr class="separator:a9642a52ea6b195a6da7d732b58030467"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a748bcc76abc77d6df3ea83a174ebfb65" id="r_a748bcc76abc77d6df3ea83a174ebfb65"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">virtual</a> std::complex&lt; <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1PMLMapping.html#a748bcc76abc77d6df3ea83a174ebfb65">gamma</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">nu_i</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">pml_width_i</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">wavenumber_squared</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;alpha_shift=0.0)=0</td></tr>
-<tr class="memdesc:a748bcc76abc77d6df3ea83a174ebfb65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pure virtual to return Pml mapping gamma, where gamma is the <img class="formulaInl" alt="$d\tilde x / d x$" src="form_345.png" width="34" height="14"/> as function of <img class="formulaInl" alt="$\nu$" src="form_346.png" width="6" height="6"/> where <img class="formulaInl" alt="$\nu = x - h$" src="form_347.png" width="53" height="10"/> where h is the vector from the origin to the start of the Pml.  <br /></td></tr>
+<tr class="memdesc:a748bcc76abc77d6df3ea83a174ebfb65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pure virtual to return Pml mapping gamma, where gamma is the <img class="formulaInl" alt="$d\tilde x / d x$" src="form_353.png" width="34" height="14"/> as function of <img class="formulaInl" alt="$\nu$" src="form_354.png" width="6" height="6"/> where <img class="formulaInl" alt="$\nu = x - h$" src="form_355.png" width="53" height="10"/> where h is the vector from the origin to the start of the Pml.  <br /></td></tr>
 <tr class="separator:a748bcc76abc77d6df3ea83a174ebfb65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -238,7 +232,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Pure virtual to return Pml mapping gamma, where gamma is the <img class="formulaInl" alt="$d\tilde x / d x$" src="form_345.png" width="34" height="14"/> as function of <img class="formulaInl" alt="$\nu$" src="form_346.png" width="6" height="6"/> where <img class="formulaInl" alt="$\nu = x - h$" src="form_347.png" width="53" height="10"/> where h is the vector from the origin to the start of the Pml. </p>
+<p>Pure virtual to return Pml mapping gamma, where gamma is the <img class="formulaInl" alt="$d\tilde x / d x$" src="form_353.png" width="34" height="14"/> as function of <img class="formulaInl" alt="$\nu$" src="form_354.png" width="6" height="6"/> where <img class="formulaInl" alt="$\nu = x - h$" src="form_355.png" width="53" height="10"/> where h is the vector from the origin to the start of the Pml. </p>
 
 <p>Implemented in <a class="el" href="classoomph_1_1BermudezPMLMapping.html#aa25c88beeed8d1ebf47d1f84cb91b2ba">oomph::BermudezPMLMapping</a>, and <a class="el" href="classoomph_1_1ContinuousBermudezPMLMapping.html#a46c5e7d168dc1557697f08c49d5b63ea">oomph::ContinuousBermudezPMLMapping</a>.</p>
 
@@ -277,7 +271,7 @@ Public Member Functions</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:04:52
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:40:51
         </div>
       </div>
     </footer>

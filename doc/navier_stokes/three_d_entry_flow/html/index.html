@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -121,60 +115,60 @@ The example problem</h1>
 <center> <table class="doxtable">
 <tr>
 <td><center> <b>The 3D developing pipe flow in a quarter-tube domain.</b> </center> Solve the steady Navier-Stokes equations:  <p class="formulaDsp">
-<picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 Re\phantom{i}u_j\frac{\partial u_i}{\partial x_j} =
 - \frac{\partial p}{\partial x_i} +
 \frac{\partial }{\partial x_j} \left(
 \frac{\partial u_i}{\partial x_j} +  
 \frac{\partial u_j}{\partial x_i} \right),
  \ \ \ \ \ \ \ \ \ \ (1)
-\]" src="form_0.png" width="286" height="31"/></picture>
+\]" src="form_0.png" width="286" height="31"/>
 </p>
  and  <p class="formulaDsp">
-<picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \frac{\partial u_i}{\partial x_i} = 0,
-\]" src="form_1.png" width="48" height="29"/></picture>
+\]" src="form_1.png" width="48" height="29"/>
 </p>
- in the quarter-tube domain <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$
+ in the quarter-tube domain <img class="formulaInl" alt="$
 D = \left\{x_1 \geq 0, x_2 \geq 0, x_1^2+x_2^2 \leq 1, x_3 \in [0,L]
-\right\}$" src="form_2.png" width="248" height="16"/></picture>, subject to the Dirichlet boundary conditions:  <p class="formulaDsp">
-<picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+\right\}$" src="form_2.png" width="248" height="16"/>, subject to the Dirichlet boundary conditions:  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \left. \mathbf{u}\right|_{\partial D_{wall}}=(0,0,0),
 \ \ \ \ \ \ \ \ \ \ (2)
-\]" src="form_3.png" width="163" height="15"/></picture>
+\]" src="form_3.png" width="163" height="15"/>
 </p>
- on the curved wall <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial D_{wall} = \{(x_1,x_2,x_3) \ | \ x_1^2+x_2^2=1\}, $" src="form_4.png" width="204" height="15"/></picture>  <p class="formulaDsp">
-<picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ on the curved wall <img class="formulaInl" alt="$ \partial D_{wall} = \{(x_1,x_2,x_3) \ | \ x_1^2+x_2^2=1\}, $" src="form_4.png" width="204" height="15"/>  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \left. \mathbf{u}\cdot\mathbf{n}\right|_{\partial D_{sym[1,2]}}=0,
 \ \ \ \ \ \ \ \ \ \ (3)
-\]" src="form_5.png" width="163" height="18"/></picture>
+\]" src="form_5.png" width="163" height="18"/>
 </p>
- (where <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mathbf{n} $" src="form_6.png" width="8" height="6"/></picture> is the outer unit normal vector) on the symmetry boundaries <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial D_{sym[1]} = \{(x_1,x_2,x_3) \ | \ x_1=0\} $" src="form_7.png" width="183" height="15"/></picture> and <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial D_{sym[2]} = \{(x_1,x_2,x_3) \ | \ x_2=0\}, $" src="form_8.png" width="186" height="15"/></picture>  <p class="formulaDsp">
-<picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ (where <img class="formulaInl" alt="$ \mathbf{n} $" src="form_6.png" width="8" height="6"/> is the outer unit normal vector) on the symmetry boundaries <img class="formulaInl" alt="$ \partial D_{sym[1]} = \{(x_1,x_2,x_3) \ | \ x_1=0\} $" src="form_7.png" width="183" height="15"/> and <img class="formulaInl" alt="$ \partial D_{sym[2]} = \{(x_1,x_2,x_3) \ | \ x_2=0\}, $" src="form_8.png" width="186" height="15"/>  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \left. \mathbf{u}\right|_{\partial D}=(0,0,1-(x_1^2+x^2)^\alpha),
 \ \ \ \ \ \ \ \ \ \ (4)
-\]" src="form_9.png" width="218" height="16"/></picture>
+\]" src="form_9.png" width="218" height="16"/>
 </p>
- on the inflow boundary, <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial D_{inflow} = \{(x_1,x_2,x_3) \ | \ x_3=0\}, $" src="form_10.png" width="188" height="14"/></picture> and finally  <p class="formulaDsp">
-<picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ on the inflow boundary, <img class="formulaInl" alt="$ \partial D_{inflow} = \{(x_1,x_2,x_3) \ | \ x_3=0\}, $" src="form_10.png" width="188" height="14"/> and finally  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \left. u_1\right|_{\partial D_{outflow}}= 
 \left. u_2\right|_{\partial D_{outflow}}=0,
 \ \ \ \ \ \ \ \ \ \ (5)
-\]" src="form_11.png" width="230" height="16"/></picture>
+\]" src="form_11.png" width="230" height="16"/>
 </p>
- (parallel flow) on the outflow boundary <picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial D_{outflow} = 
-\{(x_1,x_2,x_3) \ | \ x_3=L\}.$" src="form_12.png" width="195" height="14"/></picture> Note that the axial velocity component, <picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$u_3$" src="form_13.png" width="14" height="9"/></picture>, is not constrained at the outflow. Implicitly, we are therefore setting the axial component of traction on the fluid to zero,  <p class="formulaDsp">
-<picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[ 
+ (parallel flow) on the outflow boundary <img class="formulaInl" alt="$ \partial D_{outflow} = 
+\{(x_1,x_2,x_3) \ | \ x_3=L\}.$" src="form_12.png" width="195" height="14"/> Note that the axial velocity component, <img class="formulaInl" alt="$u_3$" src="form_13.png" width="14" height="9"/>, is not constrained at the outflow. Implicitly, we are therefore setting the axial component of traction on the fluid to zero,  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[ 
 t_3|_{\partial D_{outflow}} = \left. \left(-p +  2 \, 
 \frac{\partial u_3}{\partial x_3}\right)
 \right|_{\partial D_{outflow}} = 0.
-\]" src="form_14.png" width="238" height="35"/></picture>
+\]" src="form_14.png" width="238" height="35"/>
 </p>
- Since <picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial u_1 / \partial x_1 = \partial u_2
-/\partial x_2 = 0$" src="form_15.png" width="131" height="14"/></picture> in the outflow cross-section [see (5], and the flow is incompressible, this is equivalent to (weakly) setting the pressure at the outflow to zero,  <p class="formulaDsp">
-<picture><source srcset="form_16_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ Since <img class="formulaInl" alt="$ \partial u_1 / \partial x_1 = \partial u_2
+/\partial x_2 = 0$" src="form_15.png" width="131" height="14"/> in the outflow cross-section [see (5], and the flow is incompressible, this is equivalent to (weakly) setting the pressure at the outflow to zero,  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 p|_{\partial D_{outflow}}=0.
-\]" src="form_16.png" width="85" height="15"/></picture>
+\]" src="form_16.png" width="85" height="15"/>
 </p>
    </td></tr>
 </table>
@@ -183,7 +177,7 @@ p|_{\partial D_{outflow}}=0.
  <hr  />
 <h2><a class="anchor" id="results"></a>
 Results for Taylor-Hood elements</h2>
-<p>The figure below shows the results computed with <code>oomph-lib's</code> 3x3x3-node 3D adaptive Taylor-Hood elements for the parameters <picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \alpha=20$" src="form_17.png" width="36" height="9"/></picture>, <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ L=7$" src="form_18.png" width="31" height="10"/></picture> and <picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$Re=100 $" src="form_19.png" width="50" height="10"/></picture>. The large exponent <picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \alpha=20$" src="form_17.png" width="36" height="9"/></picture> imposes a very blunt inflow profile, which creates a thin boundary layer near the wall. Diffusion of vorticity into the centre of the tube smooths the velocity profile which ultimately approaches a parabolic Poiseuille profile. If you are viewing these results online you will be able to see how successive mesh adaptations refine the mesh &ndash; predominantly near the entry region where the large velocity gradients in the boundary layer require a fine spatial discretisation. Note also that on the coarsest mesh, even the (imposed) inflow profile is represented very poorly.</p>
+<p>The figure below shows the results computed with <code>oomph-lib's</code> 3x3x3-node 3D adaptive Taylor-Hood elements for the parameters <img class="formulaInl" alt="$ \alpha=20$" src="form_17.png" width="36" height="9"/>, <img class="formulaInl" alt="$ L=7$" src="form_18.png" width="31" height="10"/> and <img class="formulaInl" alt="$Re=100 $" src="form_19.png" width="50" height="10"/>. The large exponent <img class="formulaInl" alt="$ \alpha=20$" src="form_17.png" width="36" height="9"/> imposes a very blunt inflow profile, which creates a thin boundary layer near the wall. Diffusion of vorticity into the centre of the tube smooths the velocity profile which ultimately approaches a parabolic Poiseuille profile. If you are viewing these results online you will be able to see how successive mesh adaptations refine the mesh &ndash; predominantly near the entry region where the large velocity gradients in the boundary layer require a fine spatial discretisation. Note also that on the coarsest mesh, even the (imposed) inflow profile is represented very poorly.</p>
 <div class="image">
 <img src="axial_veloc.gif" alt=""/>
 <div class="caption">
@@ -258,7 +252,7 @@ The driver code</h1>
 <div class="line">   min_error_target=0.002;</div>
 <div class="line">  }</div>
 <div class="line"> <span class="comment">// end max_adapt setup</span></div>
-<div class="ttc" id="afull__tube_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="full__tube_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">///////////////////////////////////////////////////////////////////// ///////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="full__tube_8cc_source.html#l00310">full_tube.cc:310</a></div></div>
+<div class="ttc" id="afull__tube_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="full__tube_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">Driver for 3D entry flow into a straight tube.</div><div class="ttdef"><b>Definition</b> <a href="full__tube_8cc_source.html#l00310">full_tube.cc:310</a></div></div>
 </div><!-- fragment --><p> We then create a <code>DocInfo</code> object to specify the labels for the output files, and solve the problem, first with Taylor-Hood and then with Crouzeix-Raviart elements, writing the results from the two discretisations to different directories:</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"> </div>
@@ -379,7 +373,7 @@ The problem class</h1>
  <hr  />
 <h1><a class="anchor" id="constructor"></a>
 The constructor</h1>
-<p>We start by building the adaptive mesh for the quarter tube domain. As for most meshes with curvilinear boundaries, the <code>RefineablequarterTubeMesh</code> expects the curved boundary to be represented by a <code>GeomObject</code>. We therefore create an <code>EllipticalTube</code> with unit half axes, i.e. a unit cylinder and a pass a pointer to the <code>GeomObject</code> to the mesh constructor. The "ends" of the curvilinear boundary (in terms of the maximum and minimum values of the Lagrangian coordinates that parametrise the shape of the <code>GeomObject</code>) are such that it represents a quarter of a cylindrical tube of length <picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$L=7$" src="form_20.png" width="31" height="10"/></picture>.</p>
+<p>We start by building the adaptive mesh for the quarter tube domain. As for most meshes with curvilinear boundaries, the <code>RefineablequarterTubeMesh</code> expects the curved boundary to be represented by a <code>GeomObject</code>. We therefore create an <code>EllipticalTube</code> with unit half axes, i.e. a unit cylinder and a pass a pointer to the <code>GeomObject</code> to the mesh constructor. The "ends" of the curvilinear boundary (in terms of the maximum and minimum values of the Lagrangian coordinates that parametrise the shape of the <code>GeomObject</code>) are such that it represents a quarter of a cylindrical tube of length <img class="formulaInl" alt="$L=7$" src="form_20.png" width="31" height="10"/>.</p>
 <div class="fragment"><div class="line"><span class="comment">//=start_of_constructor===================================================</span></div>
 <div class="line"><span class="comment">/// Constructor: Pass DocInfo object and error targets</span></div>
 <div class="line"><span class="comment">//========================================================================</span></div>
@@ -437,28 +431,28 @@ The constructor</h1>
 <div class="line"> <span class="comment">//Doc the boundaries</span></div>
 <div class="line"> ofstream some_file;</div>
 <div class="line"> <span class="keywordtype">char</span> filename[100];</div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;boundaries.dat&quot;</span>);</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;boundaries.dat&quot;</span>);</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> mesh_pt()-&gt;output_boundaries(some_file);</div>
 <div class="line"> some_file.close();</div>
-</div><!-- fragment --><p> If the mesh has N boundaries, the output file will contain N different zones, each containing the <picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$(x,y,z)$" src="form_21.png" width="40" height="14"/></picture> coordinates of the nodes on the boundary.]</p>
+</div><!-- fragment --><p> If the mesh has N boundaries, the output file will contain N different zones, each containing the <img class="formulaInl" alt="$(x,y,z)$" src="form_21.png" width="40" height="14"/> coordinates of the nodes on the boundary.]</p>
 <p>For the <code>RefineableQuarterTubeMesh</code>, the boundaries are numbered as follows:</p><ul>
-<li>Boundary 0: "Inflow" cross section; located along the line parametrised by <picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_3=\xi_0 = \xi_0^{lo} $" src="form_22.png" width="73" height="15"/></picture> on the <code>GeomObject</code> that specifies the wall.</li>
-<li>Boundary 1: Plane <picture><source srcset="form_23_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_1=0 $" src="form_23.png" width="36" height="11"/></picture></li>
-<li>Boundary 2: Plane <picture><source srcset="form_24_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_2=0 $" src="form_24.png" width="36" height="11"/></picture></li>
+<li>Boundary 0: "Inflow" cross section; located along the line parametrised by <img class="formulaInl" alt="$ x_3=\xi_0 = \xi_0^{lo} $" src="form_22.png" width="73" height="15"/> on the <code>GeomObject</code> that specifies the wall.</li>
+<li>Boundary 1: Plane <img class="formulaInl" alt="$ x_1=0 $" src="form_23.png" width="36" height="11"/></li>
+<li>Boundary 2: Plane <img class="formulaInl" alt="$ x_2=0 $" src="form_24.png" width="36" height="11"/></li>
 <li>Boundary 3: The curved wall</li>
-<li>Boundary 4: "Outflow" cross section; located along the line parametrised by <picture><source srcset="form_25_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_3=\xi_0 = \xi_0^{hi} $" src="form_25.png" width="74" height="15"/></picture> on the <code>GeomObject</code> that specifies the wall.</li>
+<li>Boundary 4: "Outflow" cross section; located along the line parametrised by <img class="formulaInl" alt="$ x_3=\xi_0 = \xi_0^{hi} $" src="form_25.png" width="74" height="15"/> on the <code>GeomObject</code> that specifies the wall.</li>
 </ul>
 <div class="image">
 <img src="boundaries.gif" alt=""/>
 <div class="caption">
 Plot of the mesh boundaries. </div></div>
  <p>We apply the following boundary conditions:</p><ul>
-<li>Boundary 0: ( <picture><source srcset="form_26_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_3=0$" src="form_26.png" width="36" height="11"/></picture>) pin all three velocities.</li>
-<li>Boundary 1: ( <picture><source srcset="form_27_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_1=0$" src="form_27.png" width="36" height="11"/></picture>) pin <picture><source srcset="form_28_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ u_1$" src="form_28.png" width="13" height="9"/></picture>.</li>
-<li>Boundary 2: ( <picture><source srcset="form_29_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_2=0$" src="form_29.png" width="36" height="11"/></picture>) pin <picture><source srcset="form_30_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ u_2$" src="form_30.png" width="13" height="9"/></picture>.</li>
-<li>Boundary 3: ( <picture><source srcset="form_31_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_1^2+x_2^2=1$" src="form_31.png" width="64" height="15"/></picture>) pin all three velocities.</li>
-<li>Boundary 4: ( <picture><source srcset="form_32_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_3=L$" src="form_32.png" width="39" height="13"/></picture>) pin <picture><source srcset="form_33_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ u_1 $" src="form_33.png" width="13" height="9"/></picture> and <picture><source srcset="form_34_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ u_2 $" src="form_34.png" width="13" height="9"/></picture>.</li>
+<li>Boundary 0: ( <img class="formulaInl" alt="$ x_3=0$" src="form_26.png" width="36" height="11"/>) pin all three velocities.</li>
+<li>Boundary 1: ( <img class="formulaInl" alt="$ x_1=0$" src="form_27.png" width="36" height="11"/>) pin <img class="formulaInl" alt="$ u_1$" src="form_28.png" width="13" height="9"/>.</li>
+<li>Boundary 2: ( <img class="formulaInl" alt="$ x_2=0$" src="form_29.png" width="36" height="11"/>) pin <img class="formulaInl" alt="$ u_2$" src="form_30.png" width="13" height="9"/>.</li>
+<li>Boundary 3: ( <img class="formulaInl" alt="$ x_1^2+x_2^2=1$" src="form_31.png" width="64" height="15"/>) pin all three velocities.</li>
+<li>Boundary 4: ( <img class="formulaInl" alt="$ x_3=L$" src="form_32.png" width="39" height="13"/>) pin <img class="formulaInl" alt="$ u_1 $" src="form_33.png" width="13" height="9"/> and <img class="formulaInl" alt="$ u_2 $" src="form_34.png" width="13" height="9"/>.</li>
 </ul>
 <div class="fragment"><div class="line"> </div>
 <div class="line"> </div>
@@ -583,7 +577,7 @@ Post processing</h1>
 <div class="line"> npts=5; </div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output solution </span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line">         Doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> mesh_pt()-&gt;output(some_file,npts);</div>
@@ -611,7 +605,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -641,7 +635,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:12:06
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:40:14
         </div>
       </div>
     </footer>

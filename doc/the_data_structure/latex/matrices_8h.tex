@@ -8,9 +8,9 @@ class \mbox{\hyperlink{classoomph_1_1Matrix}{oomph\+::\+Matrix$<$ T, MATRIX\+\_\
 class \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{oomph\+::\+Double\+Matrix\+Base}}
 \begin{DoxyCompactList}\small\item\em Abstract base class for matrices of doubles -- adds abstract interfaces for solving, LU decomposition and multiplication by vectors. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classoomph_1_1DenseMatrix}{oomph\+::\+Dense\+Matrix$<$ T $>$}}
-\begin{DoxyCompactList}\small\item\em //////////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////////// \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Class for dense matrices, storing all the values of the matrix as a pointer to a pointer with assorted output functions inherited from Matrix$<$\+T$>$. The curious recursive template pattern is used here to pass the specific class to the base class so that round bracket access can be inlined. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classoomph_1_1SparseMatrix}{oomph\+::\+Sparse\+Matrix$<$ T, MATRIX\+\_\+\+TYPE $>$}}
-\begin{DoxyCompactList}\small\item\em //////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////// \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Class for sparse matrices, that store only the non-\/zero values in a linear array in memory. The details of the array indexing vary depending on the storage scheme used. The MATRIX\+\_\+\+TYPE template parameter for use in the curious recursive template pattern is included and passed directly to the base \doxylink{classoomph_1_1Matrix}{Matrix} class. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classoomph_1_1CRMatrix}{oomph\+::\+CRMatrix$<$ T $>$}}
 \begin{DoxyCompactList}\small\item\em A class for compressed row matrices, a sparse storage format Once again the recursive template trick is used to inform that base class that is should use the access functions provided in the \doxylink{classoomph_1_1CRMatrix}{CRMatrix} class. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classoomph_1_1CRDoubleMatrix}{oomph\+::\+CRDouble\+Matrix}}
@@ -20,20 +20,20 @@ struct \mbox{\hyperlink{structoomph_1_1CRDoubleMatrix_1_1CRDoubleMatrixCompariso
 class \mbox{\hyperlink{classoomph_1_1DenseDoubleMatrix}{oomph\+::\+Dense\+Double\+Matrix}}
 \begin{DoxyCompactList}\small\item\em Class of matrices containing doubles, and stored as a \doxylink{classoomph_1_1DenseMatrix}{Dense\+Matrix$<$double$>$}, but with solving functionality inherited from the abstract Double\+Matrix class. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classoomph_1_1RankThreeTensor}{oomph\+::\+Rank\+Three\+Tensor$<$ T $>$}}
-\begin{DoxyCompactList}\small\item\em ////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////// \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em A Rank 3 Tensor class. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classoomph_1_1RankFourTensor}{oomph\+::\+Rank\+Four\+Tensor$<$ T $>$}}
-\begin{DoxyCompactList}\small\item\em ////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////// \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em A Rank 4 Tensor class. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classoomph_1_1RankFiveTensor}{oomph\+::\+Rank\+Five\+Tensor$<$ T $>$}}
-\begin{DoxyCompactList}\small\item\em /////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////// \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em A Rank 5 Tensor class. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classoomph_1_1CCMatrix}{oomph\+::\+CCMatrix$<$ T $>$}}
-\begin{DoxyCompactList}\small\item\em /////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////// \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em A class for compressed column matrices\+: a sparse matrix format The class is passed as the MATRIX\+\_\+\+TYPE paramater so that the base class can use the specific access functions in the round-\/bracket operator. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classoomph_1_1CCDoubleMatrix}{oomph\+::\+CCDouble\+Matrix}}
-\begin{DoxyCompactList}\small\item\em //////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////// \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em A class for compressed column matrices that store doubles. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
 namespace \mbox{\hyperlink{namespaceoomph}{oomph}}
-\begin{DoxyCompactList}\small\item\em //////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////// \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em DRAIG\+: Change all instances of (SPATIAL\+\_\+\+DIM) to (DIM-\/1). \end{DoxyCompactList}\item 
 namespace \mbox{\hyperlink{namespaceoomph_1_1RRR}{oomph\+::\+RRR}}
 \item 
 namespace \mbox{\hyperlink{namespaceoomph_1_1CRDoubleMatrixHelpers}{oomph\+::\+CRDouble\+Matrix\+Helpers}}

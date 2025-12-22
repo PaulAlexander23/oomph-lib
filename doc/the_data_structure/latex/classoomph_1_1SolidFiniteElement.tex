@@ -2,7 +2,7 @@
 \hypertarget{classoomph_1_1SolidFiniteElement}{}\label{classoomph_1_1SolidFiniteElement}\index{oomph::SolidFiniteElement@{oomph::SolidFiniteElement}}
 
 
-////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////  
+\doxylink{classoomph_1_1SolidFiniteElement}{Solid\+Finite\+Element} class.  
 
 
 
@@ -311,7 +311,7 @@ Inheritance diagram for oomph\+::Solid\+Finite\+Element\+:\begin{figure}[H]
 \begin{DoxyCompactList}\small\item\em Calculate the size of the element (length, area, volume,...) in Eulerian computational coordinates. Use suitably overloaded \doxylink{classoomph_1_1FiniteElement_a782a540035dc31cb6ef548d9d930d8b8}{compute\+\_\+physical\+\_\+size()} function to compute the actual size (taking into account factors such as 2pi or radii the integrand) -- such function can only be implemented on an equation-\/by-\/equation basis. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} \mbox{\hyperlink{classoomph_1_1FiniteElement_a782a540035dc31cb6ef548d9d930d8b8}{compute\+\_\+physical\+\_\+size}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Broken virtual function to compute the actual size (taking into account factors such as 2pi or radii the integrand) -- such function can only be implemented on an equation-\/by-\/equation basis. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1FiniteElement_a8bf3f75b55d4e67b644df3e22c192596}{point\+\_\+output\+\_\+data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{data}})
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1FiniteElement_a8bf3f75b55d4e67b644df3e22c192596}{point\+\_\+output\+\_\+data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&data)
 \begin{DoxyCompactList}\small\item\em Virtual function to write the double precision numbers that appear in a single line of output into the data vector. Empty virtual, can be overloaded for specific elements; used e.\+g. by \doxylink{classoomph_1_1LineVisualiser}{Line\+Visualiser}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1FiniteElement_a57e514bf089797717b80a61725aad622}{point\+\_\+output}} (std\+::ostream \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{outfile}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}})
 \begin{DoxyCompactList}\small\item\em Output solution (as defined by \doxylink{classoomph_1_1FiniteElement_a8bf3f75b55d4e67b644df3e22c192596}{point\+\_\+output\+\_\+data()}) at local cordinates s. \end{DoxyCompactList}\item 
@@ -404,8 +404,10 @@ Inheritance diagram for oomph\+::Solid\+Finite\+Element\+:\begin{figure}[H]
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{oomph\+::\+Generalised\+Element}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}}() \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a76c506edf49c5bbfe94f424ec94191ab}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
-\begin{DoxyCompactList}\small\item\em Constructor\+: Initialise all pointers and all values to zero. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a6a34bffcef1bbbc5271630042afe7ca9}{\texorpdfstring{$\sim$}{\string~}\+Generalised\+Element}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor to clean up any memory allocated by the object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1GeneralisedElement_a4e4a9177fdb093fc85c890bb86bdf655}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
+\begin{DoxyCompactList}\small\item\em Broken copy constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a180b550ae69f8bcbaae3f37f38c475ff}{operator=}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
 \begin{DoxyCompactList}\small\item\em Broken assignment operator. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Data}{Data}} \texorpdfstring{$\ast$}{*}\& \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a3b83389f2c80788013421c6d59604f0b}{internal\+\_\+data\+\_\+pt}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
@@ -804,9 +806,7 @@ template$<$$>$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement
 
 
 \doxysubsection{Detailed Description}
-////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////// 
-
-\doxylink{classoomph_1_1SolidFiniteElement}{Solid\+Finite\+Element} class.
+\doxylink{classoomph_1_1SolidFiniteElement}{Solid\+Finite\+Element} class. 
 
 Solid elements are elements whose nodal positions are unknowns in the problem -- their nodes are Solid\+Nodes. In such elements, the nodes not only have a variable (Eulerian) but also a fixed (Lagrangian) position. The positional variables have their own local equation numbering scheme which is set up with 
 \begin{DoxyCode}{0}
@@ -865,7 +865,7 @@ Destructor to clean up any allocated memory.
 
 Destructor for \doxylink{classoomph_1_1SolidFiniteElement}{Solid\+Finite\+Element}\+: 
 
-Definition at line \mbox{\hyperlink{elements_8cc_source_l06659}{6659}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
+Definition at line \mbox{\hyperlink{elements_8cc_source_l06660}{6660}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
 
 
 
@@ -900,7 +900,7 @@ Reimplemented in \mbox{\hyperlink{classoomph_1_1RefineableSolidElement_ae0d5a2fc
 
 
 
-Definition at line \mbox{\hyperlink{elements_8cc_source_l06558}{6558}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
+Definition at line \mbox{\hyperlink{elements_8cc_source_l06559}{6559}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
 
 
 
@@ -926,7 +926,7 @@ Reimplemented in \mbox{\hyperlink{classoomph_1_1RefineableSolidElement_a5843ecc4
 
 
 
-Definition at line \mbox{\hyperlink{elements_8cc_source_l06616}{6616}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
+Definition at line \mbox{\hyperlink{elements_8cc_source_l06617}{6617}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
 
 
 
@@ -934,7 +934,7 @@ References \mbox{\hyperlink{elements_8h_source_l02615}{oomph\+::\+Finite\+Elemen
 
 
 
-Referenced by \mbox{\hyperlink{elements_8cc_source_l06811}{d2shape\+\_\+lagrangian()}}, and \mbox{\hyperlink{elements_8cc_source_l06862}{d2shape\+\_\+lagrangian\+\_\+at\+\_\+knot()}}.
+Referenced by \mbox{\hyperlink{elements_8cc_source_l06812}{d2shape\+\_\+lagrangian()}}, and \mbox{\hyperlink{elements_8cc_source_l06863}{d2shape\+\_\+lagrangian\+\_\+at\+\_\+knot()}}.
 
 \Hypertarget{classoomph_1_1SolidFiniteElement_ab48f9adb99fd89669434984733579a26}\label{classoomph_1_1SolidFiniteElement_ab48f9adb99fd89669434984733579a26} 
 \index{oomph::SolidFiniteElement@{oomph::SolidFiniteElement}!assign\_all\_generic\_local\_eqn\_numbers@{assign\_all\_generic\_local\_eqn\_numbers}}
@@ -956,7 +956,7 @@ Definition at line \mbox{\hyperlink{elements_8h_source_l03871}{3871}} of file \m
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l02168}{oomph\+::\+Finite\+Element\+::assign\+\_\+all\+\_\+generic\+\_\+local\+\_\+eqn\+\_\+numbers()}}, and \mbox{\hyperlink{elements_8cc_source_l06928}{assign\+\_\+solid\+\_\+local\+\_\+eqn\+\_\+numbers()}}.
+References \mbox{\hyperlink{elements_8h_source_l02168}{oomph\+::\+Finite\+Element\+::assign\+\_\+all\+\_\+generic\+\_\+local\+\_\+eqn\+\_\+numbers()}}, and \mbox{\hyperlink{elements_8cc_source_l06929}{assign\+\_\+solid\+\_\+local\+\_\+eqn\+\_\+numbers()}}.
 
 \Hypertarget{classoomph_1_1SolidFiniteElement_a3c7ad30f234e87649ed34cea94f65ea3}\label{classoomph_1_1SolidFiniteElement_a3c7ad30f234e87649ed34cea94f65ea3} 
 \index{oomph::SolidFiniteElement@{oomph::SolidFiniteElement}!assign\_solid\_local\_eqn\_numbers@{assign\_solid\_local\_eqn\_numbers}}
@@ -976,11 +976,11 @@ Reimplemented in \mbox{\hyperlink{classoomph_1_1RefineableSolidElement_a7718105c
 
 
 
-Definition at line \mbox{\hyperlink{elements_8cc_source_l06928}{6928}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
+Definition at line \mbox{\hyperlink{elements_8cc_source_l06929}{6929}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
 
 
 
-References \mbox{\hyperlink{elements_8cc_source_l00161}{oomph\+::\+Generalised\+Element\+::add\+\_\+global\+\_\+eqn\+\_\+numbers()}}, \mbox{\hyperlink{elements_8h_source_l00231}{oomph\+::\+Generalised\+Element\+::\+Dof\+\_\+pt\+\_\+deque}}, \mbox{\hyperlink{elements_8h_source_l00708}{oomph\+::\+Generalised\+Element\+::eqn\+\_\+number()}}, \mbox{\hyperlink{nodes_8h_source_l00183}{oomph\+::\+Data\+::\+Is\+\_\+pinned}}, \mbox{\hyperlink{elements_8h_source_l00730}{oomph\+::\+Generalised\+Element\+::local\+\_\+eqn\+\_\+number()}}, \mbox{\hyperlink{elements_8h_source_l00839}{oomph\+::\+Generalised\+Element\+::ndof()}}, \mbox{\hyperlink{elements_8h_source_l02467}{oomph\+::\+Finite\+Element\+::nnodal\+\_\+position\+\_\+type()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02488}{oomph\+::\+Finite\+Element\+::nodal\+\_\+dimension()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, and \mbox{\hyperlink{elements_8h_source_l04285}{Position\+\_\+local\+\_\+eqn}}.
+References \mbox{\hyperlink{elements_8cc_source_l00161}{oomph\+::\+Generalised\+Element\+::add\+\_\+global\+\_\+eqn\+\_\+numbers()}}, \mbox{\hyperlink{elements_8h_source_l00231}{oomph\+::\+Generalised\+Element\+::\+Dof\+\_\+pt\+\_\+deque}}, \mbox{\hyperlink{elements_8h_source_l00691}{oomph\+::\+Generalised\+Element\+::eqn\+\_\+number()}}, \mbox{\hyperlink{nodes_8h_source_l00183}{oomph\+::\+Data\+::\+Is\+\_\+pinned}}, \mbox{\hyperlink{elements_8h_source_l00713}{oomph\+::\+Generalised\+Element\+::local\+\_\+eqn\+\_\+number()}}, \mbox{\hyperlink{elements_8h_source_l00822}{oomph\+::\+Generalised\+Element\+::ndof()}}, \mbox{\hyperlink{elements_8h_source_l02467}{oomph\+::\+Finite\+Element\+::nnodal\+\_\+position\+\_\+type()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02488}{oomph\+::\+Finite\+Element\+::nodal\+\_\+dimension()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, and \mbox{\hyperlink{elements_8h_source_l04285}{Position\+\_\+local\+\_\+eqn}}.
 
 
 
@@ -996,19 +996,17 @@ Referenced by \mbox{\hyperlink{elements_8h_source_l03871}{assign\+\_\+all\+\_\+g
 
 Calculate the L2 norm of the displacement u=R-\/r to overload the compute\+\_\+norm function in the \doxylink{classoomph_1_1GeneralisedElement}{Generalised\+Element} base class. 
 
-////////////////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////////////// Calculate the L2 norm of the displacement u=R-\/r to overload the compute\+\_\+norm function in the \doxylink{classoomph_1_1GeneralisedElement}{Generalised\+Element} base class 
 
 Reimplemented from \mbox{\hyperlink{classoomph_1_1GeneralisedElement_af2025a472df6752a946739da58e7fb37}{oomph\+::\+Generalised\+Element}}.
 
 
 
-Definition at line \mbox{\hyperlink{elements_8cc_source_l06472}{6472}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
+Definition at line \mbox{\hyperlink{elements_8cc_source_l06473}{6473}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l02615}{oomph\+::\+Finite\+Element\+::dim()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l01967}{oomph\+::\+Finite\+Element\+::integral\+\_\+pt()}}, \mbox{\hyperlink{elements_8cc_source_l03992}{oomph\+::\+Finite\+Element\+::interpolated\+\_\+x()}}, \mbox{\hyperlink{elements_8cc_source_l07134}{interpolated\+\_\+xi()}}, \mbox{\hyperlink{elements_8cc_source_l04133}{oomph\+::\+Finite\+Element\+::\+J\+\_\+eulerian()}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a2122f99a87c18649bafdd9ed739758}{oomph\+::\+Integral\+::knot()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a270de9d99a1fcf1d25a6c1017f65fa}{oomph\+::\+Integral\+::nweight()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, and \mbox{\hyperlink{classoomph_1_1Integral_ac65335e2aab120b285b3d6c294507b06}{oomph\+::\+Integral\+::weight()}}.
+References \mbox{\hyperlink{elements_8h_source_l02615}{oomph\+::\+Finite\+Element\+::dim()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l01967}{oomph\+::\+Finite\+Element\+::integral\+\_\+pt()}}, \mbox{\hyperlink{elements_8cc_source_l03992}{oomph\+::\+Finite\+Element\+::interpolated\+\_\+x()}}, \mbox{\hyperlink{elements_8cc_source_l07135}{interpolated\+\_\+xi()}}, \mbox{\hyperlink{elements_8cc_source_l04133}{oomph\+::\+Finite\+Element\+::\+J\+\_\+eulerian()}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a2122f99a87c18649bafdd9ed739758}{oomph\+::\+Integral\+::knot()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a270de9d99a1fcf1d25a6c1017f65fa}{oomph\+::\+Integral\+::nweight()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, and \mbox{\hyperlink{classoomph_1_1Integral_ac65335e2aab120b285b3d6c294507b06}{oomph\+::\+Integral\+::weight()}}.
 
 \Hypertarget{classoomph_1_1SolidFiniteElement_a262ee54542524b5794b3f383fcbfcde4}\label{classoomph_1_1SolidFiniteElement_a262ee54542524b5794b3f383fcbfcde4} 
 \index{oomph::SolidFiniteElement@{oomph::SolidFiniteElement}!construct\_boundary\_node@{construct\_boundary\_node}}
@@ -1110,11 +1108,11 @@ Compute the geometric shape functions and also first and second derivatives w.\+
 
 
 
-Definition at line \mbox{\hyperlink{elements_8cc_source_l06811}{6811}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
+Definition at line \mbox{\hyperlink{elements_8cc_source_l06812}{6812}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
 
 
 
-References \mbox{\hyperlink{elements_8cc_source_l06616}{assemble\+\_\+local\+\_\+to\+\_\+lagrangian\+\_\+jacobian2()}}, \mbox{\hyperlink{elements_8h_source_l02020}{oomph\+::\+Finite\+Element\+::d2shape\+\_\+local()}}, \mbox{\hyperlink{elements_8h_source_l02615}{oomph\+::\+Finite\+Element\+::dim()}}, \mbox{\hyperlink{elements_8h_source_l04086}{local\+\_\+to\+\_\+lagrangian\+\_\+mapping()}}, \mbox{\hyperlink{elements_8h_source_l01487}{oomph\+::\+Finite\+Element\+::\+N2deriv}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, and \mbox{\hyperlink{elements_8cc_source_l03155}{oomph\+::\+Finite\+Element\+::transform\+\_\+second\+\_\+derivatives()}}.
+References \mbox{\hyperlink{elements_8cc_source_l06617}{assemble\+\_\+local\+\_\+to\+\_\+lagrangian\+\_\+jacobian2()}}, \mbox{\hyperlink{elements_8h_source_l02020}{oomph\+::\+Finite\+Element\+::d2shape\+\_\+local()}}, \mbox{\hyperlink{elements_8h_source_l02615}{oomph\+::\+Finite\+Element\+::dim()}}, \mbox{\hyperlink{elements_8h_source_l04086}{local\+\_\+to\+\_\+lagrangian\+\_\+mapping()}}, \mbox{\hyperlink{elements_8h_source_l01487}{oomph\+::\+Finite\+Element\+::\+N2deriv}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, and \mbox{\hyperlink{elements_8cc_source_l03155}{oomph\+::\+Finite\+Element\+::transform\+\_\+second\+\_\+derivatives()}}.
 
 
 
@@ -1136,11 +1134,11 @@ Reimplemented in \mbox{\hyperlink{classoomph_1_1StorableShapeSolidElementBase_a5
 
 
 
-Definition at line \mbox{\hyperlink{elements_8cc_source_l06862}{6862}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
+Definition at line \mbox{\hyperlink{elements_8cc_source_l06863}{6863}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
 
 
 
-References \mbox{\hyperlink{elements_8cc_source_l06616}{assemble\+\_\+local\+\_\+to\+\_\+lagrangian\+\_\+jacobian2()}}, \mbox{\hyperlink{elements_8cc_source_l03304}{oomph\+::\+Finite\+Element\+::d2shape\+\_\+local\+\_\+at\+\_\+knot()}}, \mbox{\hyperlink{elements_8h_source_l02615}{oomph\+::\+Finite\+Element\+::dim()}}, \mbox{\hyperlink{elements_8h_source_l04086}{local\+\_\+to\+\_\+lagrangian\+\_\+mapping()}}, \mbox{\hyperlink{elements_8h_source_l01487}{oomph\+::\+Finite\+Element\+::\+N2deriv}}, and \mbox{\hyperlink{elements_8cc_source_l03155}{oomph\+::\+Finite\+Element\+::transform\+\_\+second\+\_\+derivatives()}}.
+References \mbox{\hyperlink{elements_8cc_source_l06617}{assemble\+\_\+local\+\_\+to\+\_\+lagrangian\+\_\+jacobian2()}}, \mbox{\hyperlink{elements_8cc_source_l03304}{oomph\+::\+Finite\+Element\+::d2shape\+\_\+local\+\_\+at\+\_\+knot()}}, \mbox{\hyperlink{elements_8h_source_l02615}{oomph\+::\+Finite\+Element\+::dim()}}, \mbox{\hyperlink{elements_8h_source_l04086}{local\+\_\+to\+\_\+lagrangian\+\_\+mapping()}}, \mbox{\hyperlink{elements_8h_source_l01487}{oomph\+::\+Finite\+Element\+::\+N2deriv}}, and \mbox{\hyperlink{elements_8cc_source_l03155}{oomph\+::\+Finite\+Element\+::transform\+\_\+second\+\_\+derivatives()}}.
 
 
 
@@ -1166,11 +1164,11 @@ Reimplemented in \mbox{\hyperlink{classoomph_1_1TPVDElement_ad0eb4d88aa6e0d32560
 
 
 
-Definition at line \mbox{\hyperlink{elements_8cc_source_l06544}{6544}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
+Definition at line \mbox{\hyperlink{elements_8cc_source_l06545}{6545}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
 
 
 
-References \mbox{\hyperlink{elements_8cc_source_l01737}{oomph\+::\+Finite\+Element\+::describe\+\_\+local\+\_\+dofs()}}, and \mbox{\hyperlink{elements_8cc_source_l06904}{describe\+\_\+solid\+\_\+local\+\_\+dofs()}}.
+References \mbox{\hyperlink{elements_8cc_source_l01737}{oomph\+::\+Finite\+Element\+::describe\+\_\+local\+\_\+dofs()}}, and \mbox{\hyperlink{elements_8cc_source_l06905}{describe\+\_\+solid\+\_\+local\+\_\+dofs()}}.
 
 \Hypertarget{classoomph_1_1SolidFiniteElement_a1892091d7e876725a70b34cd5d91b861}\label{classoomph_1_1SolidFiniteElement_a1892091d7e876725a70b34cd5d91b861} 
 \index{oomph::SolidFiniteElement@{oomph::SolidFiniteElement}!describe\_solid\_local\_dofs@{describe\_solid\_local\_dofs}}
@@ -1184,7 +1182,7 @@ Classifies dofs locally for solid specific aspects.
 
 Function to describe the local dofs of the element. The ostream specifies the output stream to which the description is written; the string stores the currently assembled output that is ultimately written to the output stream by Data\+::describe\+\_\+dofs(...); it is typically built up incrementally as we descend through the call hierarchy of this function when called from Problem\+::describe\+\_\+dofs(...) 
 
-Definition at line \mbox{\hyperlink{elements_8cc_source_l06904}{6904}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
+Definition at line \mbox{\hyperlink{elements_8cc_source_l06905}{6905}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
 
 
 
@@ -1192,7 +1190,7 @@ References \mbox{\hyperlink{elements_8cc_source_l00556}{oomph\+::\+Generalised\+
 
 
 
-Referenced by \mbox{\hyperlink{elements_8cc_source_l06544}{describe\+\_\+local\+\_\+dofs()}}, and \mbox{\hyperlink{fsi_8cc_source_l00078}{oomph\+::\+FSIWall\+Element\+::describe\+\_\+local\+\_\+dofs()}}.
+Referenced by \mbox{\hyperlink{elements_8cc_source_l06545}{describe\+\_\+local\+\_\+dofs()}}, and \mbox{\hyperlink{fsi_8cc_source_l00078}{oomph\+::\+FSIWall\+Element\+::describe\+\_\+local\+\_\+dofs()}}.
 
 \Hypertarget{classoomph_1_1SolidFiniteElement_a17063c77624a707896631a69c0fe4316}\label{classoomph_1_1SolidFiniteElement_a17063c77624a707896631a69c0fe4316} 
 \index{oomph::SolidFiniteElement@{oomph::SolidFiniteElement}!disable\_solve\_for\_consistent\_newmark\_accel@{disable\_solve\_for\_consistent\_newmark\_accel}}
@@ -1224,7 +1222,7 @@ Calculate shape functions and derivatives w.\+r.\+t. Lagrangian coordinates at l
 
 Calculate shape functions and derivatives w.\+r.\+t. Lagrangian coordinates at local coordinate s. Returns the Jacobian of the mapping from Lagrangian to local coordinates. General case, may be overloaded. 
 
-Definition at line \mbox{\hyperlink{elements_8cc_source_l06740}{6740}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
+Definition at line \mbox{\hyperlink{elements_8cc_source_l06741}{6741}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
 
 
 
@@ -1232,7 +1230,7 @@ References \mbox{\hyperlink{elements_8h_source_l02615}{oomph\+::\+Finite\+Elemen
 
 
 
-Referenced by \mbox{\hyperlink{beam__elements_8cc_source_l01199}{oomph\+::\+FSIHermite\+Beam\+Element\+::dposition\+\_\+dlagrangian\+\_\+at\+\_\+local\+\_\+coordinate()}}, \mbox{\hyperlink{shell__elements_8cc_source_l01332}{oomph\+::\+FSIDiag\+Hermite\+Shell\+Element\+::dposition\+\_\+dlagrangian\+\_\+at\+\_\+local\+\_\+coordinate()}}, \mbox{\hyperlink{elements_8cc_source_l07257}{fill\+\_\+in\+\_\+jacobian\+\_\+for\+\_\+newmark\+\_\+accel()}}, \mbox{\hyperlink{shell__elements_8cc_source_l00072}{oomph\+::\+Kirchhoff\+Love\+Shell\+Equations\+::get\+\_\+normal()}}, \mbox{\hyperlink{beam__elements_8cc_source_l00077}{oomph\+::\+Kirchhoff\+Love\+Beam\+Equations\+::get\+\_\+normal()}}, and \mbox{\hyperlink{shell__elements_8cc_source_l01080}{oomph\+::\+Kirchhoff\+Love\+Shell\+Equations\+::load\+\_\+rate\+\_\+of\+\_\+work()}}.
+Referenced by \mbox{\hyperlink{beam__elements_8cc_source_l01199}{oomph\+::\+FSIHermite\+Beam\+Element\+::dposition\+\_\+dlagrangian\+\_\+at\+\_\+local\+\_\+coordinate()}}, \mbox{\hyperlink{shell__elements_8cc_source_l01332}{oomph\+::\+FSIDiag\+Hermite\+Shell\+Element\+::dposition\+\_\+dlagrangian\+\_\+at\+\_\+local\+\_\+coordinate()}}, \mbox{\hyperlink{elements_8cc_source_l07258}{fill\+\_\+in\+\_\+jacobian\+\_\+for\+\_\+newmark\+\_\+accel()}}, \mbox{\hyperlink{shell__elements_8cc_source_l00072}{oomph\+::\+Kirchhoff\+Love\+Shell\+Equations\+::get\+\_\+normal()}}, \mbox{\hyperlink{beam__elements_8cc_source_l00077}{oomph\+::\+Kirchhoff\+Love\+Beam\+Equations\+::get\+\_\+normal()}}, and \mbox{\hyperlink{shell__elements_8cc_source_l01080}{oomph\+::\+Kirchhoff\+Love\+Shell\+Equations\+::load\+\_\+rate\+\_\+of\+\_\+work()}}.
 
 \Hypertarget{classoomph_1_1SolidFiniteElement_aa48b4880f69bb28d267ff27e7b1967e7}\label{classoomph_1_1SolidFiniteElement_aa48b4880f69bb28d267ff27e7b1967e7} 
 \index{oomph::SolidFiniteElement@{oomph::SolidFiniteElement}!dshape\_lagrangian\_at\_knot@{dshape\_lagrangian\_at\_knot}}
@@ -1250,7 +1248,7 @@ Reimplemented in \mbox{\hyperlink{classoomph_1_1StorableShapeSolidElementBase_a6
 
 
 
-Definition at line \mbox{\hyperlink{elements_8cc_source_l06767}{6767}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
+Definition at line \mbox{\hyperlink{elements_8cc_source_l06768}{6768}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
 
 
 
@@ -1302,7 +1300,7 @@ Definition at line \mbox{\hyperlink{elements_8h_source_l04189}{4189}} of file \m
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l00357}{oomph\+::\+Generalised\+Element\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals()}}, \mbox{\hyperlink{elements_8cc_source_l07257}{fill\+\_\+in\+\_\+jacobian\+\_\+for\+\_\+newmark\+\_\+accel()}}, \mbox{\hyperlink{elements_8cc_source_l01227}{oomph\+::\+Generalised\+Element\+::fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+external\+\_\+by\+\_\+fd()}}, \mbox{\hyperlink{elements_8cc_source_l01130}{oomph\+::\+Generalised\+Element\+::fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+internal\+\_\+by\+\_\+fd()}}, \mbox{\hyperlink{elements_8cc_source_l03690}{oomph\+::\+Finite\+Element\+::fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+nodal\+\_\+by\+\_\+fd()}}, \mbox{\hyperlink{elements_8cc_source_l07015}{fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+solid\+\_\+position\+\_\+by\+\_\+fd()}}, \mbox{\hyperlink{elements_8h_source_l00984}{oomph\+::\+Generalised\+Element\+::get\+\_\+residuals()}}, \mbox{\hyperlink{elements_8h_source_l00839}{oomph\+::\+Generalised\+Element\+::ndof()}}, and \mbox{\hyperlink{elements_8h_source_l04306}{Solve\+\_\+for\+\_\+consistent\+\_\+newmark\+\_\+accel\+\_\+flag}}.
+References \mbox{\hyperlink{elements_8h_source_l00357}{oomph\+::\+Generalised\+Element\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals()}}, \mbox{\hyperlink{elements_8cc_source_l07258}{fill\+\_\+in\+\_\+jacobian\+\_\+for\+\_\+newmark\+\_\+accel()}}, \mbox{\hyperlink{elements_8cc_source_l01227}{oomph\+::\+Generalised\+Element\+::fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+external\+\_\+by\+\_\+fd()}}, \mbox{\hyperlink{elements_8cc_source_l01130}{oomph\+::\+Generalised\+Element\+::fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+internal\+\_\+by\+\_\+fd()}}, \mbox{\hyperlink{elements_8cc_source_l03690}{oomph\+::\+Finite\+Element\+::fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+nodal\+\_\+by\+\_\+fd()}}, \mbox{\hyperlink{elements_8cc_source_l07016}{fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+solid\+\_\+position\+\_\+by\+\_\+fd()}}, \mbox{\hyperlink{elements_8h_source_l00967}{oomph\+::\+Generalised\+Element\+::get\+\_\+residuals()}}, \mbox{\hyperlink{elements_8h_source_l00822}{oomph\+::\+Generalised\+Element\+::ndof()}}, and \mbox{\hyperlink{elements_8h_source_l04306}{Solve\+\_\+for\+\_\+consistent\+\_\+newmark\+\_\+accel\+\_\+flag}}.
 
 \Hypertarget{classoomph_1_1SolidFiniteElement_a6baa515639dc04784c9bcd3b691f4f8c}\label{classoomph_1_1SolidFiniteElement_a6baa515639dc04784c9bcd3b691f4f8c} 
 \index{oomph::SolidFiniteElement@{oomph::SolidFiniteElement}!fill\_in\_generic\_jacobian\_for\_solid\_ic@{fill\_in\_generic\_jacobian\_for\_solid\_ic}}
@@ -1316,11 +1314,11 @@ Helper function to fill in the residuals and (if flag==1) the Jacobian for the s
 
 \[ 0 = \int \left( \sum_{j=1}^N \sum_{k=1}^K X_{ijk} \psi_{jk}(\xi_n) - \frac{\partial^D R^{(IC)}_i(\xi_n)}{\partial t^D} \right) \psi_{lm}(\xi_n) \ dv \mbox{ \ \ \ \ for \ \ \ $l=1,...,N, \ \ m=1,...,K$} \] where $ N $ is the number of nodes in the mesh and $ K $ the number of generalised nodal coordinates. The initial shape of the solid body, $ {\bf R}^{(IC)},$ and its time-\/derivatives are specified via the {\ttfamily \doxylink{classoomph_1_1GeomObject}{Geom\+Object}} that is stored in the {\ttfamily Solid\+Finite\+Element\+::\+Solid\+Initial\+Condition} object. The latter also stores the order of the time-\/derivative $ D $ to be assigned. 
 
-Definition at line \mbox{\hyperlink{elements_8cc_source_l07406}{7406}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
+Definition at line \mbox{\hyperlink{elements_8cc_source_l07407}{7407}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l02615}{oomph\+::\+Finite\+Element\+::dim()}}, \mbox{\hyperlink{geom__objects_8h_source_l00292}{oomph\+::\+Geom\+Object\+::dposition\+\_\+dt()}}, \mbox{\hyperlink{elements_8h_source_l03515}{oomph\+::\+Solid\+Initial\+Condition\+::geom\+\_\+object\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l03521}{oomph\+::\+Solid\+Initial\+Condition\+::ic\+\_\+time\+\_\+deriv()}}, \mbox{\hyperlink{elements_8h_source_l01967}{oomph\+::\+Finite\+Element\+::integral\+\_\+pt()}}, \mbox{\hyperlink{elements_8cc_source_l03992}{oomph\+::\+Finite\+Element\+::interpolated\+\_\+x()}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a2122f99a87c18649bafdd9ed739758}{oomph\+::\+Integral\+::knot()}}, \mbox{\hyperlink{elements_8h_source_l03916}{lagrangian\+\_\+position\+\_\+gen()}}, \mbox{\hyperlink{elements_8h_source_l03789}{nnodal\+\_\+lagrangian\+\_\+type()}}, \mbox{\hyperlink{elements_8h_source_l02467}{oomph\+::\+Finite\+Element\+::nnodal\+\_\+position\+\_\+type()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02488}{oomph\+::\+Finite\+Element\+::nodal\+\_\+dimension()}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a270de9d99a1fcf1d25a6c1017f65fa}{oomph\+::\+Integral\+::nweight()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{elements_8h_source_l04141}{position\+\_\+local\+\_\+eqn()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{classoomph_1_1FiniteElement_a58a25b6859ddd43b7bfe64a19fee5023}{oomph\+::\+Finite\+Element\+::shape()}}, \mbox{\hyperlink{elements_8h_source_l04135}{Solid\+\_\+ic\+\_\+pt}}, and \mbox{\hyperlink{classoomph_1_1Integral_ac65335e2aab120b285b3d6c294507b06}{oomph\+::\+Integral\+::weight()}}.
+References \mbox{\hyperlink{elements_8h_source_l02615}{oomph\+::\+Finite\+Element\+::dim()}}, \mbox{\hyperlink{geom__objects_8h_source_l00292}{oomph\+::\+Geom\+Object\+::dposition\+\_\+dt()}}, \mbox{\hyperlink{elements_8h_source_l03515}{oomph\+::\+Solid\+Initial\+Condition\+::geom\+\_\+object\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l03521}{oomph\+::\+Solid\+Initial\+Condition\+::ic\+\_\+time\+\_\+deriv()}}, \mbox{\hyperlink{elements_8h_source_l01967}{oomph\+::\+Finite\+Element\+::integral\+\_\+pt()}}, \mbox{\hyperlink{elements_8cc_source_l03992}{oomph\+::\+Finite\+Element\+::interpolated\+\_\+x()}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a2122f99a87c18649bafdd9ed739758}{oomph\+::\+Integral\+::knot()}}, \mbox{\hyperlink{elements_8h_source_l03916}{lagrangian\+\_\+position\+\_\+gen()}}, \mbox{\hyperlink{elements_8h_source_l03789}{nnodal\+\_\+lagrangian\+\_\+type()}}, \mbox{\hyperlink{elements_8h_source_l02467}{oomph\+::\+Finite\+Element\+::nnodal\+\_\+position\+\_\+type()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02488}{oomph\+::\+Finite\+Element\+::nodal\+\_\+dimension()}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a270de9d99a1fcf1d25a6c1017f65fa}{oomph\+::\+Integral\+::nweight()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{elements_8h_source_l04141}{position\+\_\+local\+\_\+eqn()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{classoomph_1_1FiniteElement_a58a25b6859ddd43b7bfe64a19fee5023}{oomph\+::\+Finite\+Element\+::shape()}}, \mbox{\hyperlink{elements_8h_source_l04135}{Solid\+\_\+ic\+\_\+pt}}, and \mbox{\hyperlink{classoomph_1_1Integral_ac65335e2aab120b285b3d6c294507b06}{oomph\+::\+Integral\+::weight()}}.
 
 
 
@@ -1338,11 +1336,11 @@ Fill in the contributions of the Jacobian matrix for the consistent assignment o
 
 Add jacobian and residuals for consistent assignment of initial "{}accelerations"{} in \doxylink{classoomph_1_1Newmark}{Newmark} scheme. Jacobian is the mass matrix. 
 
-Definition at line \mbox{\hyperlink{elements_8cc_source_l07257}{7257}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
+Definition at line \mbox{\hyperlink{elements_8cc_source_l07258}{7258}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l02615}{oomph\+::\+Finite\+Element\+::dim()}}, \mbox{\hyperlink{elements_8cc_source_l06740}{dshape\+\_\+lagrangian()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l01967}{oomph\+::\+Finite\+Element\+::integral\+\_\+pt()}}, \mbox{\hyperlink{elements_8cc_source_l07134}{interpolated\+\_\+xi()}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a2122f99a87c18649bafdd9ed739758}{oomph\+::\+Integral\+::knot()}}, \mbox{\hyperlink{elements_8h_source_l04312}{multiplier()}}, \mbox{\hyperlink{elements_8h_source_l02467}{oomph\+::\+Finite\+Element\+::nnodal\+\_\+position\+\_\+type()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02488}{oomph\+::\+Finite\+Element\+::nodal\+\_\+dimension()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a270de9d99a1fcf1d25a6c1017f65fa}{oomph\+::\+Integral\+::nweight()}}, \mbox{\hyperlink{elements_8h_source_l04141}{position\+\_\+local\+\_\+eqn()}}, \mbox{\hyperlink{nodes_8h_source_l01022}{oomph\+::\+Node\+::position\+\_\+time\+\_\+stepper\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{elements_8h_source_l04135}{Solid\+\_\+ic\+\_\+pt}}, \mbox{\hyperlink{elements_8h_source_l04306}{Solve\+\_\+for\+\_\+consistent\+\_\+newmark\+\_\+accel\+\_\+flag}}, and \mbox{\hyperlink{classoomph_1_1Integral_ac65335e2aab120b285b3d6c294507b06}{oomph\+::\+Integral\+::weight()}}.
+References \mbox{\hyperlink{elements_8h_source_l02615}{oomph\+::\+Finite\+Element\+::dim()}}, \mbox{\hyperlink{elements_8cc_source_l06741}{dshape\+\_\+lagrangian()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l01967}{oomph\+::\+Finite\+Element\+::integral\+\_\+pt()}}, \mbox{\hyperlink{elements_8cc_source_l07135}{interpolated\+\_\+xi()}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a2122f99a87c18649bafdd9ed739758}{oomph\+::\+Integral\+::knot()}}, \mbox{\hyperlink{elements_8h_source_l04312}{multiplier()}}, \mbox{\hyperlink{elements_8h_source_l02467}{oomph\+::\+Finite\+Element\+::nnodal\+\_\+position\+\_\+type()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02488}{oomph\+::\+Finite\+Element\+::nodal\+\_\+dimension()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a270de9d99a1fcf1d25a6c1017f65fa}{oomph\+::\+Integral\+::nweight()}}, \mbox{\hyperlink{elements_8h_source_l04141}{position\+\_\+local\+\_\+eqn()}}, \mbox{\hyperlink{nodes_8h_source_l01022}{oomph\+::\+Node\+::position\+\_\+time\+\_\+stepper\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{elements_8h_source_l04135}{Solid\+\_\+ic\+\_\+pt}}, \mbox{\hyperlink{elements_8h_source_l04306}{Solve\+\_\+for\+\_\+consistent\+\_\+newmark\+\_\+accel\+\_\+flag}}, and \mbox{\hyperlink{classoomph_1_1Integral_ac65335e2aab120b285b3d6c294507b06}{oomph\+::\+Integral\+::weight()}}.
 
 
 
@@ -1364,7 +1362,7 @@ Definition at line \mbox{\hyperlink{elements_8h_source_l04039}{4039}} of file \m
 
 
 
-References \mbox{\hyperlink{elements_8cc_source_l07406}{fill\+\_\+in\+\_\+generic\+\_\+jacobian\+\_\+for\+\_\+solid\+\_\+ic()}}.
+References \mbox{\hyperlink{elements_8cc_source_l07407}{fill\+\_\+in\+\_\+generic\+\_\+jacobian\+\_\+for\+\_\+solid\+\_\+ic()}}.
 
 
 
@@ -1386,7 +1384,7 @@ Definition at line \mbox{\hyperlink{elements_8h_source_l04229}{4229}} of file \m
 
 
 
-References \mbox{\hyperlink{elements_8cc_source_l07015}{fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+solid\+\_\+position\+\_\+by\+\_\+fd()}}, \mbox{\hyperlink{elements_8h_source_l00984}{oomph\+::\+Generalised\+Element\+::get\+\_\+residuals()}}, and \mbox{\hyperlink{elements_8h_source_l00839}{oomph\+::\+Generalised\+Element\+::ndof()}}.
+References \mbox{\hyperlink{elements_8cc_source_l07016}{fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+solid\+\_\+position\+\_\+by\+\_\+fd()}}, \mbox{\hyperlink{elements_8h_source_l00967}{oomph\+::\+Generalised\+Element\+::get\+\_\+residuals()}}, and \mbox{\hyperlink{elements_8h_source_l00822}{oomph\+::\+Generalised\+Element\+::ndof()}}.
 
 \Hypertarget{classoomph_1_1SolidFiniteElement_aa4d7dab326ceb0167da34ad4c535fa0d}\label{classoomph_1_1SolidFiniteElement_aa4d7dab326ceb0167da34ad4c535fa0d} 
 \index{oomph::SolidFiniteElement@{oomph::SolidFiniteElement}!fill\_in\_jacobian\_from\_solid\_position\_by\_fd@{fill\_in\_jacobian\_from\_solid\_position\_by\_fd}}
@@ -1404,11 +1402,11 @@ Reimplemented in \mbox{\hyperlink{classoomph_1_1RefineableSolidElement_a97f911c4
 
 
 
-Definition at line \mbox{\hyperlink{elements_8cc_source_l07015}{7015}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
+Definition at line \mbox{\hyperlink{elements_8cc_source_l07016}{7016}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l01202}{oomph\+::\+Generalised\+Element\+::\+Default\+\_\+fd\+\_\+jacobian\+\_\+step}}, \mbox{\hyperlink{elements_8h_source_l00984}{oomph\+::\+Generalised\+Element\+::get\+\_\+residuals()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l00839}{oomph\+::\+Generalised\+Element\+::ndof()}}, \mbox{\hyperlink{elements_8h_source_l02467}{oomph\+::\+Finite\+Element\+::nnodal\+\_\+position\+\_\+type()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02488}{oomph\+::\+Finite\+Element\+::nodal\+\_\+dimension()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l01615}{oomph\+::\+Node\+::perform\+\_\+auxiliary\+\_\+node\+\_\+update\+\_\+fct()}}, \mbox{\hyperlink{elements_8h_source_l04141}{position\+\_\+local\+\_\+eqn()}}, \mbox{\hyperlink{elements_8h_source_l04249}{reset\+\_\+after\+\_\+solid\+\_\+position\+\_\+fd()}}, \mbox{\hyperlink{elements_8h_source_l04259}{reset\+\_\+in\+\_\+solid\+\_\+position\+\_\+fd()}}, \mbox{\hyperlink{elements_8h_source_l04244}{update\+\_\+before\+\_\+solid\+\_\+position\+\_\+fd()}}, \mbox{\hyperlink{elements_8h_source_l04254}{update\+\_\+in\+\_\+solid\+\_\+position\+\_\+fd()}}, and \mbox{\hyperlink{nodes_8h_source_l01126}{oomph\+::\+Node\+::x\+\_\+gen()}}.
+References \mbox{\hyperlink{elements_8h_source_l01185}{oomph\+::\+Generalised\+Element\+::\+Default\+\_\+fd\+\_\+jacobian\+\_\+step}}, \mbox{\hyperlink{elements_8h_source_l00967}{oomph\+::\+Generalised\+Element\+::get\+\_\+residuals()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l00822}{oomph\+::\+Generalised\+Element\+::ndof()}}, \mbox{\hyperlink{elements_8h_source_l02467}{oomph\+::\+Finite\+Element\+::nnodal\+\_\+position\+\_\+type()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02488}{oomph\+::\+Finite\+Element\+::nodal\+\_\+dimension()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l01615}{oomph\+::\+Node\+::perform\+\_\+auxiliary\+\_\+node\+\_\+update\+\_\+fct()}}, \mbox{\hyperlink{elements_8h_source_l04141}{position\+\_\+local\+\_\+eqn()}}, \mbox{\hyperlink{elements_8h_source_l04249}{reset\+\_\+after\+\_\+solid\+\_\+position\+\_\+fd()}}, \mbox{\hyperlink{elements_8h_source_l04259}{reset\+\_\+in\+\_\+solid\+\_\+position\+\_\+fd()}}, \mbox{\hyperlink{elements_8h_source_l04244}{update\+\_\+before\+\_\+solid\+\_\+position\+\_\+fd()}}, \mbox{\hyperlink{elements_8h_source_l04254}{update\+\_\+in\+\_\+solid\+\_\+position\+\_\+fd()}}, and \mbox{\hyperlink{nodes_8h_source_l01126}{oomph\+::\+Node\+::x\+\_\+gen()}}.
 
 
 
@@ -1430,7 +1428,7 @@ Definition at line \mbox{\hyperlink{elements_8h_source_l04022}{4022}} of file \m
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l00227}{oomph\+::\+Generalised\+Element\+::\+Dummy\+\_\+matrix}}, and \mbox{\hyperlink{elements_8cc_source_l07406}{fill\+\_\+in\+\_\+generic\+\_\+jacobian\+\_\+for\+\_\+solid\+\_\+ic()}}.
+References \mbox{\hyperlink{elements_8h_source_l00227}{oomph\+::\+Generalised\+Element\+::\+Dummy\+\_\+matrix}}, and \mbox{\hyperlink{elements_8cc_source_l07407}{fill\+\_\+in\+\_\+generic\+\_\+jacobian\+\_\+for\+\_\+solid\+\_\+ic()}}.
 
 
 
@@ -1550,7 +1548,7 @@ Compute derivatives of FE-\/interpolated Lagrangian coordinates xi with respect 
 
 
 
-Definition at line \mbox{\hyperlink{elements_8cc_source_l07210}{7210}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
+Definition at line \mbox{\hyperlink{elements_8cc_source_l07211}{7211}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
 
 
 
@@ -1572,15 +1570,15 @@ Reimplemented in \mbox{\hyperlink{classoomph_1_1SolidFaceElement_ace3eb64ce511c8
 
 
 
-Definition at line \mbox{\hyperlink{elements_8cc_source_l07134}{7134}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
+Definition at line \mbox{\hyperlink{elements_8cc_source_l07135}{7135}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8cc_source_l07134}{interpolated\+\_\+xi()}}, \mbox{\hyperlink{elements_8h_source_l03916}{lagrangian\+\_\+position\+\_\+gen()}}, \mbox{\hyperlink{elements_8h_source_l03789}{nnodal\+\_\+lagrangian\+\_\+type()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, and \mbox{\hyperlink{classoomph_1_1FiniteElement_a58a25b6859ddd43b7bfe64a19fee5023}{oomph\+::\+Finite\+Element\+::shape()}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8cc_source_l07135}{interpolated\+\_\+xi()}}, \mbox{\hyperlink{elements_8h_source_l03916}{lagrangian\+\_\+position\+\_\+gen()}}, \mbox{\hyperlink{elements_8h_source_l03789}{nnodal\+\_\+lagrangian\+\_\+type()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, and \mbox{\hyperlink{classoomph_1_1FiniteElement_a58a25b6859ddd43b7bfe64a19fee5023}{oomph\+::\+Finite\+Element\+::shape()}}.
 
 
 
-Referenced by \mbox{\hyperlink{elements_8cc_source_l06472}{compute\+\_\+norm()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l00284}{oomph\+::\+Axisymmetric\+PVDEquations\+::compute\+\_\+physical\+\_\+size()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l01132}{oomph\+::\+Axisymmetric\+PVDEquations\+With\+Pressure\+::compute\+\_\+physical\+\_\+size()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l00094}{oomph\+::\+Axisymmetric\+PVDEquations\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+axisym\+\_\+pvd()}}, \mbox{\hyperlink{beam__elements_8cc_source_l00275}{oomph\+::\+Kirchhoff\+Love\+Beam\+Equations\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+beam()}}, \mbox{\hyperlink{shell__elements_8cc_source_l00357}{oomph\+::\+Kirchhoff\+Love\+Shell\+Equations\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+shell()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l00792}{oomph\+::\+Axisymmetric\+PVDEquations\+With\+Pressure\+::fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+axisym\+\_\+pvd\+\_\+with\+\_\+pressure()}}, \mbox{\hyperlink{elements_8cc_source_l07257}{fill\+\_\+in\+\_\+jacobian\+\_\+for\+\_\+newmark\+\_\+accel()}}, \mbox{\hyperlink{shell__elements_8cc_source_l00777}{oomph\+::\+Kirchhoff\+Love\+Shell\+Equations\+::get\+\_\+energy()}}, \mbox{\hyperlink{beam__elements_8cc_source_l00588}{oomph\+::\+Kirchhoff\+Love\+Beam\+Equations\+::get\+\_\+energy()}}, \mbox{\hyperlink{shell__elements_8cc_source_l00154}{oomph\+::\+Kirchhoff\+Love\+Shell\+Equations\+::get\+\_\+strain\+\_\+and\+\_\+bend()}}, \mbox{\hyperlink{Qelements_8h_source_l00379}{oomph\+::\+QSolid\+Element\+Base\+::get\+\_\+x\+\_\+and\+\_\+xi()}}, \mbox{\hyperlink{elements_8cc_source_l07134}{interpolated\+\_\+xi()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l00455}{oomph\+::\+Axisymmetric\+PVDEquations\+::output()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l00603}{oomph\+::\+Axisym\+Diag\+Hermite\+PVDElement\+::output()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l01305}{oomph\+::\+Axisymmetric\+PVDEquations\+With\+Pressure\+::output()}}, \mbox{\hyperlink{beam__elements_8cc_source_l00982}{oomph\+::\+Hermite\+Beam\+Element\+::output()}}, \mbox{\hyperlink{shell__elements_8cc_source_l01298}{oomph\+::\+Hermite\+Shell\+Element\+::output()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l00413}{oomph\+::\+Axisymmetric\+PVDEquations\+::output()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l00561}{oomph\+::\+Axisym\+Diag\+Hermite\+PVDElement\+::output()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l01263}{oomph\+::\+Axisymmetric\+PVDEquations\+With\+Pressure\+::output()}}, \mbox{\hyperlink{beam__elements_8cc_source_l00825}{oomph\+::\+Hermite\+Beam\+Element\+::output()}}, and \mbox{\hyperlink{shell__elements_8cc_source_l01267}{oomph\+::\+Hermite\+Shell\+Element\+::output()}}.
+Referenced by \mbox{\hyperlink{elements_8cc_source_l06473}{compute\+\_\+norm()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l00284}{oomph\+::\+Axisymmetric\+PVDEquations\+::compute\+\_\+physical\+\_\+size()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l01132}{oomph\+::\+Axisymmetric\+PVDEquations\+With\+Pressure\+::compute\+\_\+physical\+\_\+size()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l00094}{oomph\+::\+Axisymmetric\+PVDEquations\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+axisym\+\_\+pvd()}}, \mbox{\hyperlink{beam__elements_8cc_source_l00275}{oomph\+::\+Kirchhoff\+Love\+Beam\+Equations\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+beam()}}, \mbox{\hyperlink{shell__elements_8cc_source_l00357}{oomph\+::\+Kirchhoff\+Love\+Shell\+Equations\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+shell()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l00792}{oomph\+::\+Axisymmetric\+PVDEquations\+With\+Pressure\+::fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+axisym\+\_\+pvd\+\_\+with\+\_\+pressure()}}, \mbox{\hyperlink{elements_8cc_source_l07258}{fill\+\_\+in\+\_\+jacobian\+\_\+for\+\_\+newmark\+\_\+accel()}}, \mbox{\hyperlink{shell__elements_8cc_source_l00777}{oomph\+::\+Kirchhoff\+Love\+Shell\+Equations\+::get\+\_\+energy()}}, \mbox{\hyperlink{beam__elements_8cc_source_l00588}{oomph\+::\+Kirchhoff\+Love\+Beam\+Equations\+::get\+\_\+energy()}}, \mbox{\hyperlink{shell__elements_8cc_source_l00154}{oomph\+::\+Kirchhoff\+Love\+Shell\+Equations\+::get\+\_\+strain\+\_\+and\+\_\+bend()}}, \mbox{\hyperlink{Qelements_8h_source_l00379}{oomph\+::\+QSolid\+Element\+Base\+::get\+\_\+x\+\_\+and\+\_\+xi()}}, \mbox{\hyperlink{elements_8cc_source_l07135}{interpolated\+\_\+xi()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l00455}{oomph\+::\+Axisymmetric\+PVDEquations\+::output()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l00603}{oomph\+::\+Axisym\+Diag\+Hermite\+PVDElement\+::output()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l01305}{oomph\+::\+Axisymmetric\+PVDEquations\+With\+Pressure\+::output()}}, \mbox{\hyperlink{beam__elements_8cc_source_l00982}{oomph\+::\+Hermite\+Beam\+Element\+::output()}}, \mbox{\hyperlink{shell__elements_8cc_source_l01298}{oomph\+::\+Hermite\+Shell\+Element\+::output()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l00413}{oomph\+::\+Axisymmetric\+PVDEquations\+::output()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l00561}{oomph\+::\+Axisym\+Diag\+Hermite\+PVDElement\+::output()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l01263}{oomph\+::\+Axisymmetric\+PVDEquations\+With\+Pressure\+::output()}}, \mbox{\hyperlink{beam__elements_8cc_source_l00825}{oomph\+::\+Hermite\+Beam\+Element\+::output()}}, and \mbox{\hyperlink{shell__elements_8cc_source_l01267}{oomph\+::\+Hermite\+Shell\+Element\+::output()}}.
 
 \Hypertarget{classoomph_1_1SolidFiniteElement_ae7a83078da76450db70b82b97f70bc2d}\label{classoomph_1_1SolidFiniteElement_ae7a83078da76450db70b82b97f70bc2d} 
 \index{oomph::SolidFiniteElement@{oomph::SolidFiniteElement}!interpolated\_xi@{interpolated\_xi}}
@@ -1598,7 +1596,7 @@ Reimplemented in \mbox{\hyperlink{classoomph_1_1SolidFaceElement_ae1c414e42a48c7
 
 
 
-Definition at line \mbox{\hyperlink{elements_8cc_source_l07169}{7169}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
+Definition at line \mbox{\hyperlink{elements_8cc_source_l07170}{7170}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
 
 
 
@@ -1652,7 +1650,7 @@ References \mbox{\hyperlink{elements_8h_source_l04289}{Lagrangian\+\_\+dimension
 
 
 
-Referenced by \mbox{\hyperlink{elements_8h_source_l03831}{construct\+\_\+boundary\+\_\+node()}}, \mbox{\hyperlink{elements_8h_source_l03850}{construct\+\_\+boundary\+\_\+node()}}, \mbox{\hyperlink{elements_8h_source_l03795}{construct\+\_\+node()}}, \mbox{\hyperlink{elements_8h_source_l03813}{construct\+\_\+node()}}, \mbox{\hyperlink{elements_8cc_source_l07210}{interpolated\+\_\+dxids()}}, \mbox{\hyperlink{elements_8cc_source_l07169}{interpolated\+\_\+xi()}}, and \mbox{\hyperlink{elements_8h_source_l03569}{set\+\_\+lagrangian\+\_\+dimension()}}.
+Referenced by \mbox{\hyperlink{elements_8h_source_l03831}{construct\+\_\+boundary\+\_\+node()}}, \mbox{\hyperlink{elements_8h_source_l03850}{construct\+\_\+boundary\+\_\+node()}}, \mbox{\hyperlink{elements_8h_source_l03795}{construct\+\_\+node()}}, \mbox{\hyperlink{elements_8h_source_l03813}{construct\+\_\+node()}}, \mbox{\hyperlink{elements_8cc_source_l07211}{interpolated\+\_\+dxids()}}, \mbox{\hyperlink{elements_8cc_source_l07170}{interpolated\+\_\+xi()}}, and \mbox{\hyperlink{elements_8h_source_l03569}{set\+\_\+lagrangian\+\_\+dimension()}}.
 
 \Hypertarget{classoomph_1_1SolidFiniteElement_a0e74669899fe8b0ce322c0daf4ad1691}\label{classoomph_1_1SolidFiniteElement_a0e74669899fe8b0ce322c0daf4ad1691} 
 \index{oomph::SolidFiniteElement@{oomph::SolidFiniteElement}!lagrangian\_position@{lagrangian\_position}}
@@ -1696,7 +1694,7 @@ References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{ele
 
 
 
-Referenced by \mbox{\hyperlink{refineable__elements_8cc_source_l00855}{oomph\+::\+Refineable\+Solid\+Element\+::assemble\+\_\+local\+\_\+to\+\_\+lagrangian\+\_\+jacobian()}}, \mbox{\hyperlink{refineable__elements_8cc_source_l00894}{oomph\+::\+Refineable\+Solid\+Element\+::assemble\+\_\+local\+\_\+to\+\_\+lagrangian\+\_\+jacobian2()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l00284}{oomph\+::\+Axisymmetric\+PVDEquations\+::compute\+\_\+physical\+\_\+size()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l01132}{oomph\+::\+Axisymmetric\+PVDEquations\+With\+Pressure\+::compute\+\_\+physical\+\_\+size()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l00094}{oomph\+::\+Axisymmetric\+PVDEquations\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+axisym\+\_\+pvd()}}, \mbox{\hyperlink{elements_8cc_source_l07406}{fill\+\_\+in\+\_\+generic\+\_\+jacobian\+\_\+for\+\_\+solid\+\_\+ic()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l00792}{oomph\+::\+Axisymmetric\+PVDEquations\+With\+Pressure\+::fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+axisym\+\_\+pvd\+\_\+with\+\_\+pressure()}}, \mbox{\hyperlink{shell__elements_8cc_source_l00777}{oomph\+::\+Kirchhoff\+Love\+Shell\+Equations\+::get\+\_\+energy()}}, \mbox{\hyperlink{elements_8cc_source_l07210}{interpolated\+\_\+dxids()}}, \mbox{\hyperlink{elements_8cc_source_l07134}{interpolated\+\_\+xi()}}, \mbox{\hyperlink{elements_8cc_source_l07169}{interpolated\+\_\+xi()}}, \mbox{\hyperlink{elements_8h_source_l03916}{lagrangian\+\_\+position\+\_\+gen()}}, \mbox{\hyperlink{shell__elements_8cc_source_l01080}{oomph\+::\+Kirchhoff\+Love\+Shell\+Equations\+::load\+\_\+rate\+\_\+of\+\_\+work()}}, \mbox{\hyperlink{refineable__elements_8cc_source_l00938}{oomph\+::\+Refineable\+Solid\+Element\+::local\+\_\+to\+\_\+lagrangian\+\_\+mapping\+\_\+diagonal()}}, and \mbox{\hyperlink{elements_8h_source_l03646}{zeta\+\_\+nodal()}}.
+Referenced by \mbox{\hyperlink{refineable__elements_8cc_source_l00855}{oomph\+::\+Refineable\+Solid\+Element\+::assemble\+\_\+local\+\_\+to\+\_\+lagrangian\+\_\+jacobian()}}, \mbox{\hyperlink{refineable__elements_8cc_source_l00894}{oomph\+::\+Refineable\+Solid\+Element\+::assemble\+\_\+local\+\_\+to\+\_\+lagrangian\+\_\+jacobian2()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l00284}{oomph\+::\+Axisymmetric\+PVDEquations\+::compute\+\_\+physical\+\_\+size()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l01132}{oomph\+::\+Axisymmetric\+PVDEquations\+With\+Pressure\+::compute\+\_\+physical\+\_\+size()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l00094}{oomph\+::\+Axisymmetric\+PVDEquations\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+axisym\+\_\+pvd()}}, \mbox{\hyperlink{elements_8cc_source_l07407}{fill\+\_\+in\+\_\+generic\+\_\+jacobian\+\_\+for\+\_\+solid\+\_\+ic()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l00792}{oomph\+::\+Axisymmetric\+PVDEquations\+With\+Pressure\+::fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+axisym\+\_\+pvd\+\_\+with\+\_\+pressure()}}, \mbox{\hyperlink{shell__elements_8cc_source_l00777}{oomph\+::\+Kirchhoff\+Love\+Shell\+Equations\+::get\+\_\+energy()}}, \mbox{\hyperlink{elements_8cc_source_l07211}{interpolated\+\_\+dxids()}}, \mbox{\hyperlink{elements_8cc_source_l07135}{interpolated\+\_\+xi()}}, \mbox{\hyperlink{elements_8cc_source_l07170}{interpolated\+\_\+xi()}}, \mbox{\hyperlink{elements_8h_source_l03916}{lagrangian\+\_\+position\+\_\+gen()}}, \mbox{\hyperlink{shell__elements_8cc_source_l01080}{oomph\+::\+Kirchhoff\+Love\+Shell\+Equations\+::load\+\_\+rate\+\_\+of\+\_\+work()}}, \mbox{\hyperlink{refineable__elements_8cc_source_l00938}{oomph\+::\+Refineable\+Solid\+Element\+::local\+\_\+to\+\_\+lagrangian\+\_\+mapping\+\_\+diagonal()}}, and \mbox{\hyperlink{elements_8h_source_l03646}{zeta\+\_\+nodal()}}.
 
 \Hypertarget{classoomph_1_1SolidFiniteElement_afa4031c891a8a86fa27e2339ff923ebc}\label{classoomph_1_1SolidFiniteElement_afa4031c891a8a86fa27e2339ff923ebc} 
 \index{oomph::SolidFiniteElement@{oomph::SolidFiniteElement}!local\_to\_lagrangian\_mapping@{local\_to\_lagrangian\_mapping}}
@@ -1736,11 +1734,11 @@ Definition at line \mbox{\hyperlink{elements_8h_source_l04086}{4086}} of file \m
 
 
 
-References \mbox{\hyperlink{elements_8cc_source_l06558}{assemble\+\_\+local\+\_\+to\+\_\+lagrangian\+\_\+jacobian()}}, and \mbox{\hyperlink{elements_8cc_source_l02196}{oomph\+::\+Finite\+Element\+::invert\+\_\+jacobian\+\_\+mapping()}}.
+References \mbox{\hyperlink{elements_8cc_source_l06559}{assemble\+\_\+local\+\_\+to\+\_\+lagrangian\+\_\+jacobian()}}, and \mbox{\hyperlink{elements_8cc_source_l02196}{oomph\+::\+Finite\+Element\+::invert\+\_\+jacobian\+\_\+mapping()}}.
 
 
 
-Referenced by \mbox{\hyperlink{elements_8cc_source_l06811}{d2shape\+\_\+lagrangian()}}, \mbox{\hyperlink{elements_8cc_source_l06862}{d2shape\+\_\+lagrangian\+\_\+at\+\_\+knot()}}, \mbox{\hyperlink{elements_8cc_source_l06740}{dshape\+\_\+lagrangian()}}, \mbox{\hyperlink{elements_8cc_source_l06767}{dshape\+\_\+lagrangian\+\_\+at\+\_\+knot()}}, and \mbox{\hyperlink{elements_8h_source_l04101}{local\+\_\+to\+\_\+lagrangian\+\_\+mapping()}}.
+Referenced by \mbox{\hyperlink{elements_8cc_source_l06812}{d2shape\+\_\+lagrangian()}}, \mbox{\hyperlink{elements_8cc_source_l06863}{d2shape\+\_\+lagrangian\+\_\+at\+\_\+knot()}}, \mbox{\hyperlink{elements_8cc_source_l06741}{dshape\+\_\+lagrangian()}}, \mbox{\hyperlink{elements_8cc_source_l06768}{dshape\+\_\+lagrangian\+\_\+at\+\_\+knot()}}, and \mbox{\hyperlink{elements_8h_source_l04101}{local\+\_\+to\+\_\+lagrangian\+\_\+mapping()}}.
 
 \Hypertarget{classoomph_1_1SolidFiniteElement_a811c926ab4ec81ecb374030302ef28ca}\label{classoomph_1_1SolidFiniteElement_a811c926ab4ec81ecb374030302ef28ca} 
 \index{oomph::SolidFiniteElement@{oomph::SolidFiniteElement}!local\_to\_lagrangian\_mapping\_diagonal@{local\_to\_lagrangian\_mapping\_diagonal}}
@@ -1758,7 +1756,7 @@ Reimplemented in \mbox{\hyperlink{classoomph_1_1RefineableSolidElement_a492846d9
 
 
 
-Definition at line \mbox{\hyperlink{elements_8cc_source_l06673}{6673}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
+Definition at line \mbox{\hyperlink{elements_8cc_source_l06674}{6674}} of file \mbox{\hyperlink{elements_8cc_source}{elements.\+cc}}.
 
 
 
@@ -1788,7 +1786,7 @@ References \mbox{\hyperlink{elements_8h_source_l04280}{Multiplier\+\_\+fct\+\_\+
 
 
 
-Referenced by \mbox{\hyperlink{elements_8cc_source_l07257}{fill\+\_\+in\+\_\+jacobian\+\_\+for\+\_\+newmark\+\_\+accel()}}.
+Referenced by \mbox{\hyperlink{elements_8cc_source_l07258}{fill\+\_\+in\+\_\+jacobian\+\_\+for\+\_\+newmark\+\_\+accel()}}.
 
 \Hypertarget{classoomph_1_1SolidFiniteElement_a534614520db1182b54e4f9cdb7741f2d}\label{classoomph_1_1SolidFiniteElement_a534614520db1182b54e4f9cdb7741f2d} 
 \index{oomph::SolidFiniteElement@{oomph::SolidFiniteElement}!multiplier\_fct\_pt@{multiplier\_fct\_pt}}
@@ -1868,7 +1866,7 @@ References \mbox{\hyperlink{elements_8h_source_l04297}{Nnodal\+\_\+lagrangian\+\
 
 
 
-Referenced by \mbox{\hyperlink{elements_8cc_source_l06558}{assemble\+\_\+local\+\_\+to\+\_\+lagrangian\+\_\+jacobian()}}, \mbox{\hyperlink{refineable__elements_8cc_source_l00855}{oomph\+::\+Refineable\+Solid\+Element\+::assemble\+\_\+local\+\_\+to\+\_\+lagrangian\+\_\+jacobian()}}, \mbox{\hyperlink{elements_8cc_source_l06616}{assemble\+\_\+local\+\_\+to\+\_\+lagrangian\+\_\+jacobian2()}}, \mbox{\hyperlink{refineable__elements_8cc_source_l00894}{oomph\+::\+Refineable\+Solid\+Element\+::assemble\+\_\+local\+\_\+to\+\_\+lagrangian\+\_\+jacobian2()}}, \mbox{\hyperlink{elements_8h_source_l03831}{construct\+\_\+boundary\+\_\+node()}}, \mbox{\hyperlink{elements_8h_source_l03850}{construct\+\_\+boundary\+\_\+node()}}, \mbox{\hyperlink{elements_8h_source_l03795}{construct\+\_\+node()}}, \mbox{\hyperlink{elements_8h_source_l03813}{construct\+\_\+node()}}, \mbox{\hyperlink{elements_8cc_source_l07406}{fill\+\_\+in\+\_\+generic\+\_\+jacobian\+\_\+for\+\_\+solid\+\_\+ic()}}, \mbox{\hyperlink{elements_8cc_source_l07210}{interpolated\+\_\+dxids()}}, \mbox{\hyperlink{elements_8cc_source_l07134}{interpolated\+\_\+xi()}}, \mbox{\hyperlink{elements_8cc_source_l07169}{interpolated\+\_\+xi()}}, \mbox{\hyperlink{elements_8cc_source_l06673}{local\+\_\+to\+\_\+lagrangian\+\_\+mapping\+\_\+diagonal()}}, and \mbox{\hyperlink{refineable__elements_8cc_source_l00938}{oomph\+::\+Refineable\+Solid\+Element\+::local\+\_\+to\+\_\+lagrangian\+\_\+mapping\+\_\+diagonal()}}.
+Referenced by \mbox{\hyperlink{elements_8cc_source_l06559}{assemble\+\_\+local\+\_\+to\+\_\+lagrangian\+\_\+jacobian()}}, \mbox{\hyperlink{refineable__elements_8cc_source_l00855}{oomph\+::\+Refineable\+Solid\+Element\+::assemble\+\_\+local\+\_\+to\+\_\+lagrangian\+\_\+jacobian()}}, \mbox{\hyperlink{elements_8cc_source_l06617}{assemble\+\_\+local\+\_\+to\+\_\+lagrangian\+\_\+jacobian2()}}, \mbox{\hyperlink{refineable__elements_8cc_source_l00894}{oomph\+::\+Refineable\+Solid\+Element\+::assemble\+\_\+local\+\_\+to\+\_\+lagrangian\+\_\+jacobian2()}}, \mbox{\hyperlink{elements_8h_source_l03831}{construct\+\_\+boundary\+\_\+node()}}, \mbox{\hyperlink{elements_8h_source_l03850}{construct\+\_\+boundary\+\_\+node()}}, \mbox{\hyperlink{elements_8h_source_l03795}{construct\+\_\+node()}}, \mbox{\hyperlink{elements_8h_source_l03813}{construct\+\_\+node()}}, \mbox{\hyperlink{elements_8cc_source_l07407}{fill\+\_\+in\+\_\+generic\+\_\+jacobian\+\_\+for\+\_\+solid\+\_\+ic()}}, \mbox{\hyperlink{elements_8cc_source_l07211}{interpolated\+\_\+dxids()}}, \mbox{\hyperlink{elements_8cc_source_l07135}{interpolated\+\_\+xi()}}, \mbox{\hyperlink{elements_8cc_source_l07170}{interpolated\+\_\+xi()}}, \mbox{\hyperlink{elements_8cc_source_l06674}{local\+\_\+to\+\_\+lagrangian\+\_\+mapping\+\_\+diagonal()}}, and \mbox{\hyperlink{refineable__elements_8cc_source_l00938}{oomph\+::\+Refineable\+Solid\+Element\+::local\+\_\+to\+\_\+lagrangian\+\_\+mapping\+\_\+diagonal()}}.
 
 \Hypertarget{classoomph_1_1SolidFiniteElement_a8632178393e76ffcd88888ab96616b1a}\label{classoomph_1_1SolidFiniteElement_a8632178393e76ffcd88888ab96616b1a} 
 \index{oomph::SolidFiniteElement@{oomph::SolidFiniteElement}!position\_local\_eqn@{position\_local\_eqn}}
@@ -1890,7 +1888,7 @@ References \mbox{\hyperlink{elements_8h_source_l02467}{oomph\+::\+Finite\+Elemen
 
 
 
-Referenced by \mbox{\hyperlink{refineable__elements_8cc_source_l01178}{oomph\+::\+Refineable\+Solid\+Element\+::assign\+\_\+solid\+\_\+hanging\+\_\+local\+\_\+eqn\+\_\+numbers()}}, \mbox{\hyperlink{beam__elements_8cc_source_l01357}{oomph\+::\+Clamped\+Sliding\+Hermite\+Beam\+Boundary\+Condition\+Element\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals()}}, \mbox{\hyperlink{shell__elements_8cc_source_l01520}{oomph\+::\+Clamped\+Hermite\+Shell\+Boundary\+Condition\+Element\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l00094}{oomph\+::\+Axisymmetric\+PVDEquations\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+axisym\+\_\+pvd()}}, \mbox{\hyperlink{beam__elements_8cc_source_l00275}{oomph\+::\+Kirchhoff\+Love\+Beam\+Equations\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+beam()}}, \mbox{\hyperlink{shell__elements_8cc_source_l00357}{oomph\+::\+Kirchhoff\+Love\+Shell\+Equations\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+shell()}}, \mbox{\hyperlink{solid__traction__elements_8h_source_l01676}{oomph\+::\+Impose\+Displacement\+By\+Lagrange\+Multiplier\+Element$<$ ELEMENT $>$\+::fill\+\_\+in\+\_\+generic\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+displ\+\_\+lagr\+\_\+multiplier()}}, \mbox{\hyperlink{solid__traction__elements_8h_source_l02780}{oomph\+::\+FSIImpose\+Displacement\+By\+Lagrange\+Multiplier\+Element$<$ ELEMENT $>$\+::fill\+\_\+in\+\_\+generic\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+fsi\+\_\+displ\+\_\+lagr\+\_\+multiplier()}}, \mbox{\hyperlink{elements_8cc_source_l07406}{fill\+\_\+in\+\_\+generic\+\_\+jacobian\+\_\+for\+\_\+solid\+\_\+ic()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l00792}{oomph\+::\+Axisymmetric\+PVDEquations\+With\+Pressure\+::fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+axisym\+\_\+pvd\+\_\+with\+\_\+pressure()}}, \mbox{\hyperlink{elements_8cc_source_l07257}{fill\+\_\+in\+\_\+jacobian\+\_\+for\+\_\+newmark\+\_\+accel()}}, \mbox{\hyperlink{elements_8cc_source_l07015}{fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+solid\+\_\+position\+\_\+by\+\_\+fd()}}, \mbox{\hyperlink{refineable__elements_8cc_source_l01335}{oomph\+::\+Refineable\+Solid\+Element\+::fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+solid\+\_\+position\+\_\+by\+\_\+fd()}}, \mbox{\hyperlink{beam__elements_8cc_source_l01261}{oomph\+::\+FSIHermite\+Beam\+Element\+::get\+\_\+dof\+\_\+numbers\+\_\+for\+\_\+unknowns()}}, \mbox{\hyperlink{shell__elements_8cc_source_l01398}{oomph\+::\+FSIDiag\+Hermite\+Shell\+Element\+::get\+\_\+dof\+\_\+numbers\+\_\+for\+\_\+unknowns()}}, \mbox{\hyperlink{shell__elements_8cc_source_l01789}{oomph\+::\+Clamped\+Hermite\+Shell\+Boundary\+Condition\+Element\+::get\+\_\+dof\+\_\+numbers\+\_\+for\+\_\+unknowns()}}, \mbox{\hyperlink{solid__elements_8h_source_l00329}{oomph\+::\+PVDEquations\+Base$<$ DIM $>$\+::get\+\_\+dof\+\_\+numbers\+\_\+for\+\_\+unknowns()}}, \mbox{\hyperlink{solid__elements_8h_source_l01077}{oomph\+::\+PVDEquations\+With\+Pressure$<$ DIM $>$\+::get\+\_\+dof\+\_\+numbers\+\_\+for\+\_\+unknowns()}}, \mbox{\hyperlink{solid__traction__elements_8h_source_l02063}{oomph\+::\+Refineable\+Impose\+Displacement\+By\+Lagrange\+Multiplier\+Element$<$ ELEMENT $>$\+::refineable\+\_\+fill\+\_\+in\+\_\+generic\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+displ\+\_\+lagr\+\_\+multiplier()}}, and \mbox{\hyperlink{solid__traction__elements_8h_source_l03133}{oomph\+::\+Refineable\+FSIImpose\+Displacement\+By\+Lagrange\+Multiplier\+Element$<$ ELEMENT $>$\+::refineable\+\_\+fill\+\_\+in\+\_\+generic\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+fsi\+\_\+displ\+\_\+lagr\+\_\+multiplier()}}.
+Referenced by \mbox{\hyperlink{refineable__elements_8cc_source_l01178}{oomph\+::\+Refineable\+Solid\+Element\+::assign\+\_\+solid\+\_\+hanging\+\_\+local\+\_\+eqn\+\_\+numbers()}}, \mbox{\hyperlink{beam__elements_8cc_source_l01357}{oomph\+::\+Clamped\+Sliding\+Hermite\+Beam\+Boundary\+Condition\+Element\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals()}}, \mbox{\hyperlink{shell__elements_8cc_source_l01520}{oomph\+::\+Clamped\+Hermite\+Shell\+Boundary\+Condition\+Element\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l00094}{oomph\+::\+Axisymmetric\+PVDEquations\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+axisym\+\_\+pvd()}}, \mbox{\hyperlink{beam__elements_8cc_source_l00275}{oomph\+::\+Kirchhoff\+Love\+Beam\+Equations\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+beam()}}, \mbox{\hyperlink{shell__elements_8cc_source_l00357}{oomph\+::\+Kirchhoff\+Love\+Shell\+Equations\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+shell()}}, \mbox{\hyperlink{solid__traction__elements_8h_source_l01676}{oomph\+::\+Impose\+Displacement\+By\+Lagrange\+Multiplier\+Element$<$ ELEMENT $>$\+::fill\+\_\+in\+\_\+generic\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+displ\+\_\+lagr\+\_\+multiplier()}}, \mbox{\hyperlink{solid__traction__elements_8h_source_l02780}{oomph\+::\+FSIImpose\+Displacement\+By\+Lagrange\+Multiplier\+Element$<$ ELEMENT $>$\+::fill\+\_\+in\+\_\+generic\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+fsi\+\_\+displ\+\_\+lagr\+\_\+multiplier()}}, \mbox{\hyperlink{elements_8cc_source_l07407}{fill\+\_\+in\+\_\+generic\+\_\+jacobian\+\_\+for\+\_\+solid\+\_\+ic()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l00792}{oomph\+::\+Axisymmetric\+PVDEquations\+With\+Pressure\+::fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+axisym\+\_\+pvd\+\_\+with\+\_\+pressure()}}, \mbox{\hyperlink{elements_8cc_source_l07258}{fill\+\_\+in\+\_\+jacobian\+\_\+for\+\_\+newmark\+\_\+accel()}}, \mbox{\hyperlink{elements_8cc_source_l07016}{fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+solid\+\_\+position\+\_\+by\+\_\+fd()}}, \mbox{\hyperlink{refineable__elements_8cc_source_l01335}{oomph\+::\+Refineable\+Solid\+Element\+::fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+solid\+\_\+position\+\_\+by\+\_\+fd()}}, \mbox{\hyperlink{beam__elements_8cc_source_l01261}{oomph\+::\+FSIHermite\+Beam\+Element\+::get\+\_\+dof\+\_\+numbers\+\_\+for\+\_\+unknowns()}}, \mbox{\hyperlink{shell__elements_8cc_source_l01398}{oomph\+::\+FSIDiag\+Hermite\+Shell\+Element\+::get\+\_\+dof\+\_\+numbers\+\_\+for\+\_\+unknowns()}}, \mbox{\hyperlink{shell__elements_8cc_source_l01789}{oomph\+::\+Clamped\+Hermite\+Shell\+Boundary\+Condition\+Element\+::get\+\_\+dof\+\_\+numbers\+\_\+for\+\_\+unknowns()}}, \mbox{\hyperlink{solid__elements_8h_source_l00329}{oomph\+::\+PVDEquations\+Base$<$ DIM $>$\+::get\+\_\+dof\+\_\+numbers\+\_\+for\+\_\+unknowns()}}, \mbox{\hyperlink{solid__elements_8h_source_l01077}{oomph\+::\+PVDEquations\+With\+Pressure$<$ DIM $>$\+::get\+\_\+dof\+\_\+numbers\+\_\+for\+\_\+unknowns()}}, \mbox{\hyperlink{solid__traction__elements_8h_source_l02063}{oomph\+::\+Refineable\+Impose\+Displacement\+By\+Lagrange\+Multiplier\+Element$<$ ELEMENT $>$\+::refineable\+\_\+fill\+\_\+in\+\_\+generic\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+displ\+\_\+lagr\+\_\+multiplier()}}, and \mbox{\hyperlink{solid__traction__elements_8h_source_l03133}{oomph\+::\+Refineable\+FSIImpose\+Displacement\+By\+Lagrange\+Multiplier\+Element$<$ ELEMENT $>$\+::refineable\+\_\+fill\+\_\+in\+\_\+generic\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+fsi\+\_\+displ\+\_\+lagr\+\_\+multiplier()}}.
 
 \Hypertarget{classoomph_1_1SolidFiniteElement_a41a77b7103970bbc6ca0aecaf81747b1}\label{classoomph_1_1SolidFiniteElement_a41a77b7103970bbc6ca0aecaf81747b1} 
 \index{oomph::SolidFiniteElement@{oomph::SolidFiniteElement}!raw\_lagrangian\_position@{raw\_lagrangian\_position}}
@@ -1934,7 +1932,7 @@ References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink
 
 
 
-Referenced by \mbox{\hyperlink{elements_8cc_source_l06558}{assemble\+\_\+local\+\_\+to\+\_\+lagrangian\+\_\+jacobian()}}, \mbox{\hyperlink{elements_8cc_source_l06616}{assemble\+\_\+local\+\_\+to\+\_\+lagrangian\+\_\+jacobian2()}}, \mbox{\hyperlink{beam__elements_8cc_source_l00275}{oomph\+::\+Kirchhoff\+Love\+Beam\+Equations\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+beam()}}, \mbox{\hyperlink{shell__elements_8cc_source_l00357}{oomph\+::\+Kirchhoff\+Love\+Shell\+Equations\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+shell()}}, \mbox{\hyperlink{beam__elements_8cc_source_l00588}{oomph\+::\+Kirchhoff\+Love\+Beam\+Equations\+::get\+\_\+energy()}}, \mbox{\hyperlink{shell__elements_8cc_source_l00154}{oomph\+::\+Kirchhoff\+Love\+Shell\+Equations\+::get\+\_\+strain\+\_\+and\+\_\+bend()}}, \mbox{\hyperlink{elements_8cc_source_l06673}{local\+\_\+to\+\_\+lagrangian\+\_\+mapping\+\_\+diagonal()}}, \mbox{\hyperlink{beam__elements_8cc_source_l00982}{oomph\+::\+Hermite\+Beam\+Element\+::output()}}, and \mbox{\hyperlink{beam__elements_8cc_source_l00825}{oomph\+::\+Hermite\+Beam\+Element\+::output()}}.
+Referenced by \mbox{\hyperlink{elements_8cc_source_l06559}{assemble\+\_\+local\+\_\+to\+\_\+lagrangian\+\_\+jacobian()}}, \mbox{\hyperlink{elements_8cc_source_l06617}{assemble\+\_\+local\+\_\+to\+\_\+lagrangian\+\_\+jacobian2()}}, \mbox{\hyperlink{beam__elements_8cc_source_l00275}{oomph\+::\+Kirchhoff\+Love\+Beam\+Equations\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+beam()}}, \mbox{\hyperlink{shell__elements_8cc_source_l00357}{oomph\+::\+Kirchhoff\+Love\+Shell\+Equations\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+shell()}}, \mbox{\hyperlink{beam__elements_8cc_source_l00588}{oomph\+::\+Kirchhoff\+Love\+Beam\+Equations\+::get\+\_\+energy()}}, \mbox{\hyperlink{shell__elements_8cc_source_l00154}{oomph\+::\+Kirchhoff\+Love\+Shell\+Equations\+::get\+\_\+strain\+\_\+and\+\_\+bend()}}, \mbox{\hyperlink{elements_8cc_source_l06674}{local\+\_\+to\+\_\+lagrangian\+\_\+mapping\+\_\+diagonal()}}, \mbox{\hyperlink{beam__elements_8cc_source_l00982}{oomph\+::\+Hermite\+Beam\+Element\+::output()}}, and \mbox{\hyperlink{beam__elements_8cc_source_l00825}{oomph\+::\+Hermite\+Beam\+Element\+::output()}}.
 
 \Hypertarget{classoomph_1_1SolidFiniteElement_afab2124e079912fe9bf39bf9df8a42c2}\label{classoomph_1_1SolidFiniteElement_afab2124e079912fe9bf39bf9df8a42c2} 
 \index{oomph::SolidFiniteElement@{oomph::SolidFiniteElement}!reset\_after\_solid\_position\_fd@{reset\_after\_solid\_position\_fd}}
@@ -1956,7 +1954,7 @@ Definition at line \mbox{\hyperlink{elements_8h_source_l04249}{4249}} of file \m
 
 
 
-Referenced by \mbox{\hyperlink{elements_8cc_source_l07015}{fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+solid\+\_\+position\+\_\+by\+\_\+fd()}}, and \mbox{\hyperlink{refineable__elements_8cc_source_l01335}{oomph\+::\+Refineable\+Solid\+Element\+::fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+solid\+\_\+position\+\_\+by\+\_\+fd()}}.
+Referenced by \mbox{\hyperlink{elements_8cc_source_l07016}{fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+solid\+\_\+position\+\_\+by\+\_\+fd()}}, and \mbox{\hyperlink{refineable__elements_8cc_source_l01335}{oomph\+::\+Refineable\+Solid\+Element\+::fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+solid\+\_\+position\+\_\+by\+\_\+fd()}}.
 
 \Hypertarget{classoomph_1_1SolidFiniteElement_a99e4613b1ac5f202c837c0e556f7b917}\label{classoomph_1_1SolidFiniteElement_a99e4613b1ac5f202c837c0e556f7b917} 
 \index{oomph::SolidFiniteElement@{oomph::SolidFiniteElement}!reset\_in\_solid\_position\_fd@{reset\_in\_solid\_position\_fd}}
@@ -1982,7 +1980,7 @@ References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink
 
 
 
-Referenced by \mbox{\hyperlink{elements_8cc_source_l07015}{fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+solid\+\_\+position\+\_\+by\+\_\+fd()}}, and \mbox{\hyperlink{refineable__elements_8cc_source_l01335}{oomph\+::\+Refineable\+Solid\+Element\+::fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+solid\+\_\+position\+\_\+by\+\_\+fd()}}.
+Referenced by \mbox{\hyperlink{elements_8cc_source_l07016}{fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+solid\+\_\+position\+\_\+by\+\_\+fd()}}, and \mbox{\hyperlink{refineable__elements_8cc_source_l01335}{oomph\+::\+Refineable\+Solid\+Element\+::fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+solid\+\_\+position\+\_\+by\+\_\+fd()}}.
 
 \Hypertarget{classoomph_1_1SolidFiniteElement_afae461c6679212165a47829662d0274d}\label{classoomph_1_1SolidFiniteElement_afae461c6679212165a47829662d0274d} 
 \index{oomph::SolidFiniteElement@{oomph::SolidFiniteElement}!set\_lagrangian\_dimension@{set\_lagrangian\_dimension}}
@@ -2154,7 +2152,7 @@ Definition at line \mbox{\hyperlink{elements_8h_source_l04244}{4244}} of file \m
 
 
 
-Referenced by \mbox{\hyperlink{elements_8cc_source_l07015}{fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+solid\+\_\+position\+\_\+by\+\_\+fd()}}, and \mbox{\hyperlink{refineable__elements_8cc_source_l01335}{oomph\+::\+Refineable\+Solid\+Element\+::fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+solid\+\_\+position\+\_\+by\+\_\+fd()}}.
+Referenced by \mbox{\hyperlink{elements_8cc_source_l07016}{fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+solid\+\_\+position\+\_\+by\+\_\+fd()}}, and \mbox{\hyperlink{refineable__elements_8cc_source_l01335}{oomph\+::\+Refineable\+Solid\+Element\+::fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+solid\+\_\+position\+\_\+by\+\_\+fd()}}.
 
 \Hypertarget{classoomph_1_1SolidFiniteElement_a84d5c177b27570c35dd7693b913c00a5}\label{classoomph_1_1SolidFiniteElement_a84d5c177b27570c35dd7693b913c00a5} 
 \index{oomph::SolidFiniteElement@{oomph::SolidFiniteElement}!update\_in\_solid\_position\_fd@{update\_in\_solid\_position\_fd}}
@@ -2176,7 +2174,7 @@ Definition at line \mbox{\hyperlink{elements_8h_source_l04254}{4254}} of file \m
 
 
 
-Referenced by \mbox{\hyperlink{elements_8cc_source_l07015}{fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+solid\+\_\+position\+\_\+by\+\_\+fd()}}, \mbox{\hyperlink{refineable__elements_8cc_source_l01335}{oomph\+::\+Refineable\+Solid\+Element\+::fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+solid\+\_\+position\+\_\+by\+\_\+fd()}}, and \mbox{\hyperlink{elements_8h_source_l04259}{reset\+\_\+in\+\_\+solid\+\_\+position\+\_\+fd()}}.
+Referenced by \mbox{\hyperlink{elements_8cc_source_l07016}{fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+solid\+\_\+position\+\_\+by\+\_\+fd()}}, \mbox{\hyperlink{refineable__elements_8cc_source_l01335}{oomph\+::\+Refineable\+Solid\+Element\+::fill\+\_\+in\+\_\+jacobian\+\_\+from\+\_\+solid\+\_\+position\+\_\+by\+\_\+fd()}}, and \mbox{\hyperlink{elements_8h_source_l04259}{reset\+\_\+in\+\_\+solid\+\_\+position\+\_\+fd()}}.
 
 \Hypertarget{classoomph_1_1SolidFiniteElement_a4a377d7acaa7fbe444a65ed3d4a79bed}\label{classoomph_1_1SolidFiniteElement_a4a377d7acaa7fbe444a65ed3d4a79bed} 
 \index{oomph::SolidFiniteElement@{oomph::SolidFiniteElement}!zeta\_nodal@{zeta\_nodal}}
@@ -2219,7 +2217,7 @@ Definition at line \mbox{\hyperlink{elements_8h_source_l04289}{4289}} of file \m
 
 
 
-Referenced by \mbox{\hyperlink{elements_8cc_source_l06558}{assemble\+\_\+local\+\_\+to\+\_\+lagrangian\+\_\+jacobian()}}, \mbox{\hyperlink{elements_8h_source_l03778}{lagrangian\+\_\+dimension()}}, and \mbox{\hyperlink{elements_8h_source_l03569}{set\+\_\+lagrangian\+\_\+dimension()}}.
+Referenced by \mbox{\hyperlink{elements_8cc_source_l06559}{assemble\+\_\+local\+\_\+to\+\_\+lagrangian\+\_\+jacobian()}}, \mbox{\hyperlink{elements_8h_source_l03778}{lagrangian\+\_\+dimension()}}, and \mbox{\hyperlink{elements_8h_source_l03569}{set\+\_\+lagrangian\+\_\+dimension()}}.
 
 \Hypertarget{classoomph_1_1SolidFiniteElement_ad93b1496c6d963fd7f7b28d0e78bcbff}\label{classoomph_1_1SolidFiniteElement_ad93b1496c6d963fd7f7b28d0e78bcbff} 
 \index{oomph::SolidFiniteElement@{oomph::SolidFiniteElement}!Multiplier\_fct\_pt@{Multiplier\_fct\_pt}}
@@ -2273,7 +2271,7 @@ Definition at line \mbox{\hyperlink{elements_8h_source_l04285}{4285}} of file \m
 
 
 
-Referenced by \mbox{\hyperlink{elements_8cc_source_l06928}{assign\+\_\+solid\+\_\+local\+\_\+eqn\+\_\+numbers()}}, \mbox{\hyperlink{elements_8h_source_l04141}{position\+\_\+local\+\_\+eqn()}}, and \mbox{\hyperlink{elements_8cc_source_l06659}{\texorpdfstring{$\sim$}{\string~}\+Solid\+Finite\+Element()}}.
+Referenced by \mbox{\hyperlink{elements_8cc_source_l06929}{assign\+\_\+solid\+\_\+local\+\_\+eqn\+\_\+numbers()}}, \mbox{\hyperlink{elements_8h_source_l04141}{position\+\_\+local\+\_\+eqn()}}, and \mbox{\hyperlink{elements_8cc_source_l06660}{\texorpdfstring{$\sim$}{\string~}\+Solid\+Finite\+Element()}}.
 
 \Hypertarget{classoomph_1_1SolidFiniteElement_a65f789b537979bc3e1948ce529f1dabe}\label{classoomph_1_1SolidFiniteElement_a65f789b537979bc3e1948ce529f1dabe} 
 \index{oomph::SolidFiniteElement@{oomph::SolidFiniteElement}!Solid\_ic\_pt@{Solid\_ic\_pt}}
@@ -2291,7 +2289,7 @@ Definition at line \mbox{\hyperlink{elements_8h_source_l04135}{4135}} of file \m
 
 
 
-Referenced by \mbox{\hyperlink{solid__elements_8h_source_l00459}{oomph\+::\+PVDEquations$<$ DIM $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian()}}, \mbox{\hyperlink{solid__elements_8h_source_l00914}{oomph\+::\+PVDEquations\+With\+Pressure$<$ DIM $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian()}}, \mbox{\hyperlink{solid__elements_8h_source_l00958}{oomph\+::\+PVDEquations\+With\+Pressure$<$ DIM $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian\+\_\+and\+\_\+mass\+\_\+matrix()}}, \mbox{\hyperlink{beam__elements_8cc_source_l00275}{oomph\+::\+Kirchhoff\+Love\+Beam\+Equations\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+beam()}}, \mbox{\hyperlink{elements_8cc_source_l07406}{fill\+\_\+in\+\_\+generic\+\_\+jacobian\+\_\+for\+\_\+solid\+\_\+ic()}}, \mbox{\hyperlink{elements_8cc_source_l07257}{fill\+\_\+in\+\_\+jacobian\+\_\+for\+\_\+newmark\+\_\+accel()}}, and \mbox{\hyperlink{elements_8h_source_l03959}{solid\+\_\+ic\+\_\+pt()}}.
+Referenced by \mbox{\hyperlink{solid__elements_8h_source_l00459}{oomph\+::\+PVDEquations$<$ DIM $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian()}}, \mbox{\hyperlink{solid__elements_8h_source_l00914}{oomph\+::\+PVDEquations\+With\+Pressure$<$ DIM $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian()}}, \mbox{\hyperlink{solid__elements_8h_source_l00958}{oomph\+::\+PVDEquations\+With\+Pressure$<$ DIM $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian\+\_\+and\+\_\+mass\+\_\+matrix()}}, \mbox{\hyperlink{beam__elements_8cc_source_l00275}{oomph\+::\+Kirchhoff\+Love\+Beam\+Equations\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals\+\_\+beam()}}, \mbox{\hyperlink{elements_8cc_source_l07407}{fill\+\_\+in\+\_\+generic\+\_\+jacobian\+\_\+for\+\_\+solid\+\_\+ic()}}, \mbox{\hyperlink{elements_8cc_source_l07258}{fill\+\_\+in\+\_\+jacobian\+\_\+for\+\_\+newmark\+\_\+accel()}}, and \mbox{\hyperlink{elements_8h_source_l03959}{solid\+\_\+ic\+\_\+pt()}}.
 
 \Hypertarget{classoomph_1_1SolidFiniteElement_a52ba6cbb89b5edfe7592a49171aeb436}\label{classoomph_1_1SolidFiniteElement_a52ba6cbb89b5edfe7592a49171aeb436} 
 \index{oomph::SolidFiniteElement@{oomph::SolidFiniteElement}!Solve\_for\_consistent\_newmark\_accel\_flag@{Solve\_for\_consistent\_newmark\_accel\_flag}}
@@ -2309,7 +2307,7 @@ Definition at line \mbox{\hyperlink{elements_8h_source_l04306}{4306}} of file \m
 
 
 
-Referenced by \mbox{\hyperlink{elements_8h_source_l03976}{disable\+\_\+solve\+\_\+for\+\_\+consistent\+\_\+newmark\+\_\+accel()}}, \mbox{\hyperlink{elements_8h_source_l03970}{enable\+\_\+solve\+\_\+for\+\_\+consistent\+\_\+newmark\+\_\+accel()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l00388}{oomph\+::\+Axisymmetric\+PVDEquations\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian()}}, \mbox{\hyperlink{beam__elements_8cc_source_l00534}{oomph\+::\+Kirchhoff\+Love\+Beam\+Equations\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian()}}, \mbox{\hyperlink{elements_8h_source_l04189}{fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian()}}, \mbox{\hyperlink{fsi_8h_source_l00323}{oomph\+::\+FSIWall\+Element\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian()}}, \mbox{\hyperlink{shell__elements_8cc_source_l00744}{oomph\+::\+Kirchhoff\+Love\+Shell\+Equations\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian()}}, \mbox{\hyperlink{solid__elements_8h_source_l00459}{oomph\+::\+PVDEquations$<$ DIM $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian()}}, \mbox{\hyperlink{solid__elements_8h_source_l00914}{oomph\+::\+PVDEquations\+With\+Pressure$<$ DIM $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian()}}, \mbox{\hyperlink{solid__elements_8h_source_l00958}{oomph\+::\+PVDEquations\+With\+Pressure$<$ DIM $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian\+\_\+and\+\_\+mass\+\_\+matrix()}}, and \mbox{\hyperlink{elements_8cc_source_l07257}{fill\+\_\+in\+\_\+jacobian\+\_\+for\+\_\+newmark\+\_\+accel()}}.
+Referenced by \mbox{\hyperlink{elements_8h_source_l03976}{disable\+\_\+solve\+\_\+for\+\_\+consistent\+\_\+newmark\+\_\+accel()}}, \mbox{\hyperlink{elements_8h_source_l03970}{enable\+\_\+solve\+\_\+for\+\_\+consistent\+\_\+newmark\+\_\+accel()}}, \mbox{\hyperlink{axisym__solid__elements_8h_source_l00388}{oomph\+::\+Axisymmetric\+PVDEquations\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian()}}, \mbox{\hyperlink{beam__elements_8cc_source_l00534}{oomph\+::\+Kirchhoff\+Love\+Beam\+Equations\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian()}}, \mbox{\hyperlink{elements_8h_source_l04189}{fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian()}}, \mbox{\hyperlink{fsi_8h_source_l00323}{oomph\+::\+FSIWall\+Element\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian()}}, \mbox{\hyperlink{shell__elements_8cc_source_l00744}{oomph\+::\+Kirchhoff\+Love\+Shell\+Equations\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian()}}, \mbox{\hyperlink{solid__elements_8h_source_l00459}{oomph\+::\+PVDEquations$<$ DIM $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian()}}, \mbox{\hyperlink{solid__elements_8h_source_l00914}{oomph\+::\+PVDEquations\+With\+Pressure$<$ DIM $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian()}}, \mbox{\hyperlink{solid__elements_8h_source_l00958}{oomph\+::\+PVDEquations\+With\+Pressure$<$ DIM $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian\+\_\+and\+\_\+mass\+\_\+matrix()}}, and \mbox{\hyperlink{elements_8cc_source_l07258}{fill\+\_\+in\+\_\+jacobian\+\_\+for\+\_\+newmark\+\_\+accel()}}.
 
 \Hypertarget{classoomph_1_1SolidFiniteElement_a582281cb3abb1b0d120a2f3310e051f3}\label{classoomph_1_1SolidFiniteElement_a582281cb3abb1b0d120a2f3310e051f3} 
 \index{oomph::SolidFiniteElement@{oomph::SolidFiniteElement}!Undeformed\_macro\_elem\_pt@{Undeformed\_macro\_elem\_pt}}

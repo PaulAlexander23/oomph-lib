@@ -419,7 +419,7 @@ The problem constructor combines the constructors of the \href{../../../poisson/
 \DoxyCodeLine{\ }
 \DoxyCodeLine{\ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\ \textcolor{keywordtype}{char}\ filename[100];\ \ \ }
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},Doc\_info.directory().c\_str());}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},Doc\_info.directory().c\_str());}
 \DoxyCodeLine{\ Trace\_file.open(filename);}
 \DoxyCodeLine{\ }
 \DoxyCodeLine{\ Trace\_file\ <<\ \textcolor{stringliteral}{"{}VARIABLES=\(\backslash\)"{}time\ t\(\backslash\)"{},\(\backslash\)"{}u<SUB>FE</SUB>\(\backslash\)"{},\(\backslash\)"{}u<SUB>exact</SUB>\(\backslash\)"{},"{}}}
@@ -675,4 +675,4 @@ demo_drivers/unsteady_heat/two_d_unsteady_heat_adapt/two_d_unsteady_heat_adapt.c
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

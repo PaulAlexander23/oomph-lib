@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -1117,7 +1117,7 @@
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01113}01113\ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{npts}}\ =\ 5;}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01114}01114\ }
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01115}01115\ \ \textcolor{comment}{//\ Open\ solution\ output\ file}}
-\DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01116}01116\ \ \textcolor{comment}{//sprintf(filename,"{}\%s/soln\%i.dat"{},doc\_info.directory().c\_str(),}}
+\DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01116}01116\ \ \textcolor{comment}{//snprintf(filename,\ sizeof(filename),\ "{}\%s/soln\%i.dat"{},doc\_info.directory().c\_str(),}}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01117}01117\ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ doc\_info.number());}}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01118}01118\ \ \textcolor{comment}{//some\_file.open(filename);}}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01119}01119\ }
@@ -1125,7 +1125,7 @@
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01121}01121\ \ \textcolor{comment}{//Bulk\_mesh\_pt-\/>output(some\_file,npts);}}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01122}01122\ \ \textcolor{comment}{//some\_file.close();}}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01123}01123\ \ \textcolor{comment}{//Put\ interface\ in\ separate\ file}}
-\DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01124}01124\ \ \mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{sprintf}}(\mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{filename}},\textcolor{stringliteral}{"{}\%s/int\%i.dat"{}},\mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{doc\_info}}.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01124}01124\ \ \mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{snprintf}}(\mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/int\%i.dat"{}},\mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01125}01125\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{doc\_info}}.number());}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01126}01126\ \ \mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{some\_file}}.open(\mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{filename}});}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01127}01127\ \ Interface\_mesh\_pt-\/>output(\mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{some\_file}},\mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{npts}});}
@@ -1146,7 +1146,7 @@
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01142}01142\ \textcolor{comment}{//\ some\_file.close();}}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01143}01143\ }
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01144}01144\ \ \textcolor{comment}{//\ Output\ solution\ to\ file\ in\ paraview\ format}}
-\DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01145}01145\ \ \textcolor{comment}{//sprintf(filename,"{}\%s/soln\%i.vtu"{},doc\_info.directory().c\_str(),}}
+\DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01145}01145\ \ \textcolor{comment}{//snprintf(filename,\ sizeof(filename),\ "{}\%s/soln\%i.vtu"{},doc\_info.directory().c\_str(),}}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01146}01146\ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ doc\_info.number());}}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01147}01147\ \ \textcolor{comment}{//some\_file.open(filename);}}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01148}01148\ \ \textcolor{comment}{//Bulk\_mesh\_pt-\/>output\_paraview(some\_file,npts);}}
@@ -1187,7 +1187,7 @@
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01183}01183\ \ }
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01184}01184\ \ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01185}01185\ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{filename}}[100];\ \ \ }
-\DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01186}01186\ \ \mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{sprintf}}(\mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{filename}},\textcolor{stringliteral}{"{}\%s/trace.dat"{}},\mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{doc\_info}}.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01186}01186\ \ \mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{snprintf}}(\mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},\mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{doc\_info}}.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01187}01187\ \ Trace\_file.open(\mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{filename}});}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01188}01188\ }
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01189}01189\ \ \textcolor{comment}{//\ Initialise\ trace\ file}}
@@ -1208,7 +1208,7 @@
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01204}01204\ \ \textcolor{comment}{//\ Open\ pvd\ file\ -\/-\/\ a\ wrapper\ for\ all\ the\ different}}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01205}01205\ \ \textcolor{comment}{//\ vtu\ output\ files\ plus\ information\ about\ continuous\ time}}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01206}01206\ \ \textcolor{comment}{//\ to\ facilitate\ animations\ in\ paraview}}
-\DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01207}01207\ \ \mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{sprintf}}(\mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{filename}},\textcolor{stringliteral}{"{}\%s/soln.pvd"{}},\mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{doc\_info}}.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01207}01207\ \ \mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{snprintf}}(\mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/soln.pvd"{}},\mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{doc\_info}}.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01208}01208\ \ \mbox{\hyperlink{namespaceGlobal__Physical__Variables_a4f2fe790aa186202e4e2d5f6ee21d7f4}{Global\_Physical\_Variables::Pvd\_file}}.open(\mbox{\hyperlink{classoomph_1_1AnnularSpineMesh}{filename}});}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01209}01209\ \ ParaviewHelper::write\_pvd\_header(\mbox{\hyperlink{namespaceGlobal__Physical__Variables_a4f2fe790aa186202e4e2d5f6ee21d7f4}{Global\_Physical\_Variables::Pvd\_file}});}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01210}01210\ }
@@ -1248,9 +1248,9 @@
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01244}01244\ \}\ \textcolor{comment}{//\ End\ of\ unsteady\_run}}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01245}01245\ }
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01246}01246\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01247}01247\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01248}01248\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01249}01249\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01247}01247\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01248}01248\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01249}01249\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01250}01250\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01251}01251\ }
 \DoxyCodeLine{\Hypertarget{rayleigh__instability__insoluble__surfactant_8cc_source_l01252}01252\ \textcolor{comment}{//==start\_of\_main=========================================================}\textcolor{comment}{}}

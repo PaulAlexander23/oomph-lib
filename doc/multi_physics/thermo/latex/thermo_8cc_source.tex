@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -241,9 +241,9 @@
 \DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00237}00237\ }
 \DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00238}00238\ \}\ \textcolor{comment}{//\ end\_of\_namespace}}
 \DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00239}00239\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00240}00240\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00241}00241\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00242}00242\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00240}00240\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00241}00241\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00242}00242\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00243}00243\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00244}00244\ \textcolor{comment}{//======\ start\_of\_problem\_class=======================================}\textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00245}00245\ \textcolor{comment}{///\ 2D\ Thermoelasticity\ problem\ on\ rectangular\ domain,\ discretised\ }}
@@ -394,7 +394,7 @@
 \DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00390}00390\ }
 \DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00391}00391\ \ \textcolor{comment}{//\ Output\ solution\ }}
 \DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00392}00392\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00393}00393\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00393}00393\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00394}00394\ \ \ \ \ \ \ \ \ \ Doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00395}00395\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{thermo_8cc_source_l00396}00396\ \ mesh\_pt()-\/>output(some\_file,npts);}

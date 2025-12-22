@@ -7,7 +7,7 @@ Single-\/layer spine mesh class derived from standard 2D mesh. The mesh contains
 
 
 
-{\ttfamily \#include $<$single\+\_\+layer\+\_\+spine\+\_\+mesh.\+template.\+h$>$}
+{\ttfamily \#include $<$single\+\_\+layer\+\_\+spine\+\_\+mesh.\+h$>$}
 
 Inheritance diagram for oomph\+::Single\+Layer\+Spine\+Mesh\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
 \begin{center}
@@ -129,6 +129,10 @@ Inheritance diagram for oomph\+::Single\+Layer\+Spine\+Mesh\texorpdfstring{$<$}{
 \begin{DoxyCompactList}\small\item\em Replace existing boundary node lookup schemes with new schemes created using the boundary data stored in the nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1Mesh_ad1b124a959628aba00162b89617b3a62}{boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Indicate whether the i-\/th boundary has an intrinsic coordinate. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_ab137d0c0debf5ba0d6ea6990103e620c}{set\+\_\+boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be existing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_a3b9d63e0057ed721190b109f48f7c92e}{set\+\_\+boundary\+\_\+coordinate\+\_\+does\+\_\+not\+\_\+exist}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be non-\/existing. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_af01dfefb66c15579b540be62999d93ee}{nelement}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return number of elements in the mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
@@ -420,7 +424,7 @@ std\+::set$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \begin{DoxyCompactList}\small\item\em Return a pointer to the n-\/th global \doxylink{classoomph_1_1SpineNode}{Spine\+Node}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1SpineNode}{Spine\+Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classoomph_1_1SpineMesh_adc29c3a91cc31401c7ba5922a600284c}{element\+\_\+node\+\_\+pt}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \&\mbox{\hyperlink{cfortran_8h_a37cd013acc76697829c324bdd8562d82}{e}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{n}})
 \begin{DoxyCompactList}\small\item\em Return the n-\/th local \doxylink{classoomph_1_1SpineNode}{Spine\+Node} in element e. This is required to cast the nodes in a spine mesh to be Spine\+Nodes and therefore allow access to the extra \doxylink{classoomph_1_1SpineNode}{Spine\+Node} data. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1SpineMesh_ad969000be2d963bb4427bbde89ac47c2}{assign\+\_\+global\+\_\+spine\+\_\+eqn\+\_\+numbers}} (\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} \texorpdfstring{$\ast$}{*} $>$ \&Dof\+\_\+pt)
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1SpineMesh_ad969000be2d963bb4427bbde89ac47c2}{assign\+\_\+global\+\_\+spine\+\_\+eqn\+\_\+numbers}} (\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} \texorpdfstring{$\ast$}{*} $>$ \&Dof\+\_\+pt)
 \begin{DoxyCompactList}\small\item\em Assign spines to Spine\+\_\+pt vector of element. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1SpineMesh_a94766043ec96db8388476b62556bad16}{describe\+\_\+spine\+\_\+dofs}} (std\+::ostream \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{out}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} std\+::string \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{current\+\_\+string}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Function to describe the dofs of the \doxylink{classoomph_1_1Spine}{Spine}. The ostream specifies the output stream to which the description is written; the string stores the currently assembled output that is ultimately written to the output stream by Data\+::describe\+\_\+dofs(...); it is typically built up incrementally as we descend through the call hierarchy of this function when called from Problem\+::describe\+\_\+dofs(...) \end{DoxyCompactList}\item 
@@ -544,9 +548,7 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_aca12acfe655a4d5c4a4eab4a7b970812}{Element\+\_\+pt}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a412a5051be9e81f0ba61bf85e5abc4a6}{Boundary\+\_\+coordinate\+\_\+exists}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of boolean data that indicates whether the boundary coordinates have been set for the boundary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classoomph_1_1SpineMesh}{oomph\+::\+Spine\+Mesh}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -559,7 +561,7 @@ std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionEleme
 class oomph\+::\+Single\+Layer\+Spine\+Mesh$<$ ELEMENT $>$}
 Single-\/layer spine mesh class derived from standard 2D mesh. The mesh contains a layer of spinified fluid elements (of type ELEMENT; e.\+g \doxylink{classoomph_1_1SpineElement}{Spine\+Element}\texorpdfstring{$<$}{<}QCrouzeix\+Raviart\+Element$<$2$>$). It constructs the spines and contains the information on how to update the nodal positions within the mesh as a function of the spine lengths. Equations that determine the spine heights (even if they are pinned) must be specified externally or else there will be problems. 
 
-Definition at line \mbox{\hyperlink{single__layer__spine__mesh_8template_8h_source_l00045}{45}} of file \mbox{\hyperlink{single__layer__spine__mesh_8template_8h_source}{single\+\_\+layer\+\_\+spine\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{single__layer__spine__mesh_8h_source_l00045}{45}} of file \mbox{\hyperlink{single__layer__spine__mesh_8h_source}{single\+\_\+layer\+\_\+spine\+\_\+mesh.\+h}}.
 
 
 
@@ -579,11 +581,11 @@ Constructor for spine 2D mesh\+: Pass number of elements in x-\/direction, numbe
 
 The mesh must be called with spinified elements and it constructs the spines and contains the information on how to update the nodal positions within the mesh as a function of the spine lengths. Equations that determine the spine heights (even if they are pinned) must be specified externally or else there will be problems. 
 
-Definition at line \mbox{\hyperlink{single__layer__spine__mesh_8template_8cc_source_l00048}{48}} of file \mbox{\hyperlink{single__layer__spine__mesh_8template_8cc_source}{single\+\_\+layer\+\_\+spine\+\_\+mesh.\+template.\+cc}}.
+Definition at line \mbox{\hyperlink{single__layer__spine__mesh_8template_8cc_source_l00050}{50}} of file \mbox{\hyperlink{single__layer__spine__mesh_8template_8cc_source}{single\+\_\+layer\+\_\+spine\+\_\+mesh.\+template.\+cc}}.
 
 
 
-References \mbox{\hyperlink{single__layer__spine__mesh_8template_8cc_source_l00114}{oomph\+::\+Single\+Layer\+Spine\+Mesh$<$ ELEMENT $>$\+::build\+\_\+single\+\_\+layer\+\_\+mesh()}}.
+References \mbox{\hyperlink{single__layer__spine__mesh_8template_8cc_source_l00113}{oomph\+::\+Single\+Layer\+Spine\+Mesh$<$ ELEMENT $>$\+::build\+\_\+single\+\_\+layer\+\_\+mesh()}}.
 
 \Hypertarget{classoomph_1_1SingleLayerSpineMesh_afb908e31d988eaa930e949a54eeea37f}\label{classoomph_1_1SingleLayerSpineMesh_afb908e31d988eaa930e949a54eeea37f} 
 \index{oomph::SingleLayerSpineMesh$<$ ELEMENT $>$@{oomph::SingleLayerSpineMesh$<$ ELEMENT $>$}!SingleLayerSpineMesh@{SingleLayerSpineMesh}}
@@ -600,11 +602,11 @@ Constuctor for spine 2D mesh\+: Pass number of elements in x-\/direction, number
 
 The mesh must be called with spinified elements and it constructs the spines and contains the information on how to update the nodal positions within the mesh as a function of the spine lengths. Equations that determine the spine heights (even if they are pinned) must be specified externally or else there will be problems. 
 
-Definition at line \mbox{\hyperlink{single__layer__spine__mesh_8template_8cc_source_l00084}{84}} of file \mbox{\hyperlink{single__layer__spine__mesh_8template_8cc_source}{single\+\_\+layer\+\_\+spine\+\_\+mesh.\+template.\+cc}}.
+Definition at line \mbox{\hyperlink{single__layer__spine__mesh_8template_8cc_source_l00085}{85}} of file \mbox{\hyperlink{single__layer__spine__mesh_8template_8cc_source}{single\+\_\+layer\+\_\+spine\+\_\+mesh.\+template.\+cc}}.
 
 
 
-References \mbox{\hyperlink{single__layer__spine__mesh_8template_8cc_source_l00114}{oomph\+::\+Single\+Layer\+Spine\+Mesh$<$ ELEMENT $>$\+::build\+\_\+single\+\_\+layer\+\_\+mesh()}}.
+References \mbox{\hyperlink{single__layer__spine__mesh_8template_8cc_source_l00113}{oomph\+::\+Single\+Layer\+Spine\+Mesh$<$ ELEMENT $>$\+::build\+\_\+single\+\_\+layer\+\_\+mesh()}}.
 
 
 
@@ -622,15 +624,15 @@ Helper function to actually build the single-\/layer spine mesh (called from var
 
 Helper function that actually builds the single-\/layer spine mesh based on the parameters set in the various constructors. 
 
-Definition at line \mbox{\hyperlink{single__layer__spine__mesh_8template_8cc_source_l00114}{114}} of file \mbox{\hyperlink{single__layer__spine__mesh_8template_8cc_source}{single\+\_\+layer\+\_\+spine\+\_\+mesh.\+template.\+cc}}.
+Definition at line \mbox{\hyperlink{single__layer__spine__mesh_8template_8cc_source_l00113}{113}} of file \mbox{\hyperlink{single__layer__spine__mesh_8template_8cc_source}{single\+\_\+layer\+\_\+spine\+\_\+mesh.\+template.\+cc}}.
 
 
 
-References \mbox{\hyperlink{rectangular__quadmesh_8template_8cc_source_l00043}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::build\+\_\+mesh()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l02222}{oomph\+::\+Finite\+Element\+::nnode\+\_\+1d()}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}, and \mbox{\hyperlink{geom__objects_8h_source_l00192}{oomph\+::\+Geom\+Object\+::time\+\_\+stepper\+\_\+pt()}}.
+References \mbox{\hyperlink{rectangular__quadmesh_8template_8cc_source_l00044}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::build\+\_\+mesh()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l02222}{oomph\+::\+Finite\+Element\+::nnode\+\_\+1d()}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}, and \mbox{\hyperlink{geom__objects_8h_source_l00192}{oomph\+::\+Geom\+Object\+::time\+\_\+stepper\+\_\+pt()}}.
 
 
 
-Referenced by \mbox{\hyperlink{single__layer__spine__mesh_8template_8cc_source_l00084}{oomph\+::\+Single\+Layer\+Spine\+Mesh$<$ ELEMENT $>$\+::\+Single\+Layer\+Spine\+Mesh()}}, and \mbox{\hyperlink{single__layer__spine__mesh_8template_8cc_source_l00048}{oomph\+::\+Single\+Layer\+Spine\+Mesh$<$ ELEMENT $>$\+::\+Single\+Layer\+Spine\+Mesh()}}.
+Referenced by \mbox{\hyperlink{single__layer__spine__mesh_8template_8cc_source_l00085}{oomph\+::\+Single\+Layer\+Spine\+Mesh$<$ ELEMENT $>$\+::\+Single\+Layer\+Spine\+Mesh()}}, and \mbox{\hyperlink{single__layer__spine__mesh_8template_8cc_source_l00050}{oomph\+::\+Single\+Layer\+Spine\+Mesh$<$ ELEMENT $>$\+::\+Single\+Layer\+Spine\+Mesh()}}.
 
 \Hypertarget{classoomph_1_1SingleLayerSpineMesh_a364648c15ab29c0c8d1cf7c2bc4cb792}\label{classoomph_1_1SingleLayerSpineMesh_a364648c15ab29c0c8d1cf7c2bc4cb792} 
 \index{oomph::SingleLayerSpineMesh$<$ ELEMENT $>$@{oomph::SingleLayerSpineMesh$<$ ELEMENT $>$}!spine\_node\_update@{spine\_node\_update}}
@@ -653,15 +655,15 @@ Reimplemented in \mbox{\hyperlink{classoomph_1_1BrethertonSpineMesh_a981301706d4
 
 
 
-Definition at line \mbox{\hyperlink{single__layer__spine__mesh_8template_8h_source_l00075}{75}} of file \mbox{\hyperlink{single__layer__spine__mesh_8template_8h_source}{single\+\_\+layer\+\_\+spine\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{single__layer__spine__mesh_8h_source_l00075}{75}} of file \mbox{\hyperlink{single__layer__spine__mesh_8h_source}{single\+\_\+layer\+\_\+spine\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source_l00075}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Ymin}}.
+References \mbox{\hyperlink{rectangular__quadmesh_8h_source_l00075}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Ymin}}.
 
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{single__layer__spine__mesh_8template_8h}{single\+\_\+layer\+\_\+spine\+\_\+mesh.\+template.\+h}}\item 
+\mbox{\hyperlink{single__layer__spine__mesh_8h}{single\+\_\+layer\+\_\+spine\+\_\+mesh.\+h}}\item 
 \mbox{\hyperlink{single__layer__spine__mesh_8template_8cc}{single\+\_\+layer\+\_\+spine\+\_\+mesh.\+template.\+cc}}\end{DoxyCompactItemize}

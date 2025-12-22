@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -147,17 +141,16 @@ $(function() {
   <map id="oomph::IterativeLinearSolver_map" name="oomph::IterativeLinearSolver_map">
 <area href="classoomph_1_1LinearSolver.html" title="Base class for all linear solvers. This merely defines standard interfaces for linear solvers,..." alt="oomph::LinearSolver" shape="rect" coords="0,56,244,80"/>
 <area href="classoomph_1_1DistributableLinearAlgebraObject.html" title="Base class for any linear algebra object that is distributable. Just contains storage for the LinearA..." alt="oomph::DistributableLinearAlgebraObject" shape="rect" coords="0,0,244,24"/>
-<area href="classoomph_1_1AugmentedProblemGMRES.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////..." alt="oomph::AugmentedProblemGMRES" shape="rect" coords="254,168,498,192"/>
-<area href="classoomph_1_1BiCGStab.html" title="//////////////////////////////////////////////////////////////////////////// ////////////////////////..." alt="oomph::BiCGStab&lt; MATRIX &gt;" shape="rect" coords="254,224,498,248"/>
-<area href="classoomph_1_1CG.html" title="//////////////////////////////////////////////////////////////////////////// ////////////////////////..." alt="oomph::CG&lt; MATRIX &gt;" shape="rect" coords="254,280,498,304"/>
-<area href="classoomph_1_1GMRES.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////..." alt="oomph::GMRES&lt; MATRIX &gt;" shape="rect" coords="254,336,498,360"/>
+<area href="classoomph_1_1AugmentedProblemGMRES.html" title="The GMRES method." alt="oomph::AugmentedProblemGMRES" shape="rect" coords="254,168,498,192"/>
+<area href="classoomph_1_1BiCGStab.html" title="The conjugate gradient method." alt="oomph::BiCGStab&lt; MATRIX &gt;" shape="rect" coords="254,224,498,248"/>
+<area href="classoomph_1_1CG.html" title="The conjugate gradient method." alt="oomph::CG&lt; MATRIX &gt;" shape="rect" coords="254,280,498,304"/>
+<area href="classoomph_1_1GMRES.html" title="The GMRES method." alt="oomph::GMRES&lt; MATRIX &gt;" shape="rect" coords="254,336,498,360"/>
 <area href="classoomph_1_1GMRESBlockPreconditioner.html" title="The block preconditioner form of GMRES. This version extracts the blocks from the global systems and ..." alt="oomph::GMRESBlockPreconditioner" shape="rect" coords="254,392,498,416"/>
-<area href="classoomph_1_1GMRESBlockPreconditioner.html" title="The block preconditioner form of GMRES. This version extracts the blocks from the global systems and ..." alt="oomph::GMRESBlockPreconditioner" shape="rect" coords="254,448,498,472"/>
-<area href="classoomph_1_1HelmholtzGMRESMG.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////..." alt="oomph::HelmholtzGMRESMG&lt; MATRIX &gt;" shape="rect" coords="254,504,498,528"/>
-<area href="classoomph_1_1HelmholtzSmoother.html" title="Helmholtz smoother class: The smoother class is designed for the Helmholtz equation to be used in con..." alt="oomph::HelmholtzSmoother" shape="rect" coords="254,560,498,584"/>
-<area href="classoomph_1_1MGSolver.html" title="/////////////////////////////////////////////////////// /////////////////////////////////////////////..." alt="oomph::MGSolver&lt; DIM &gt;" shape="rect" coords="254,616,498,640"/>
-<area href="classoomph_1_1Smoother.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////..." alt="oomph::Smoother" shape="rect" coords="254,672,498,696"/>
-<area href="classoomph_1_1TrilinosAztecOOSolver.html" title="An interface to the Trilinos AztecOO classes allowing it to be used as an Oomph-lib LinearSolver...." alt="oomph::TrilinosAztecOOSolver" shape="rect" coords="254,728,498,752"/>
+<area href="classoomph_1_1HelmholtzGMRESMG.html" title="The GMRES method for the Helmholtz solver." alt="oomph::HelmholtzGMRESMG&lt; MATRIX &gt;" shape="rect" coords="254,448,498,472"/>
+<area href="classoomph_1_1HelmholtzSmoother.html" title="Helmholtz smoother class: The smoother class is designed for the Helmholtz equation to be used in con..." alt="oomph::HelmholtzSmoother" shape="rect" coords="254,504,498,528"/>
+<area href="classoomph_1_1MGSolver.html" alt="oomph::MGSolver&lt; DIM &gt;" shape="rect" coords="254,560,498,584"/>
+<area href="classoomph_1_1Smoother.html" title="Smoother class: The smoother class is designed for to be used in conjunction with multigrid...." alt="oomph::Smoother" shape="rect" coords="254,616,498,640"/>
+<area href="classoomph_1_1TrilinosAztecOOSolver.html" title="An interface to the Trilinos AztecOO classes allowing it to be used as an Oomph-lib LinearSolver...." alt="oomph::TrilinosAztecOOSolver" shape="rect" coords="254,672,498,696"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -809,7 +802,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Number of iterations taken. </p>
 
-<p>Implemented in <a class="el" href="classoomph_1_1MGSolver.html#ace1b91d44c67c990259807ee746a6363">oomph::MGSolver&lt; DIM &gt;</a>, <a class="el" href="classoomph_1_1CG.html#a17db796814dc11cb67eac960df85d5f7">oomph::CG&lt; MATRIX &gt;</a>, <a class="el" href="classoomph_1_1BiCGStab.html#a2550adba752e02423254dc0a6c592f7f">oomph::BiCGStab&lt; MATRIX &gt;</a>, <a class="el" href="classoomph_1_1GS.html#ad182a2d91cb9d629cb516102f9a3c649">oomph::GS&lt; MATRIX &gt;</a>, <a class="el" href="classoomph_1_1GS_3_01CRDoubleMatrix_01_4.html#a0fe8a3e90df149b2ad6a247afe1adf2a">oomph::GS&lt; CRDoubleMatrix &gt;</a>, <a class="el" href="classoomph_1_1DampedJacobi.html#aa72fe9dcf19728a8b5a75f0cadb36013">oomph::DampedJacobi&lt; MATRIX &gt;</a>, <a class="el" href="classoomph_1_1GMRES.html#a879927e08b79ad4744a10b360ccd5ff3">oomph::GMRES&lt; MATRIX &gt;</a>, <a class="el" href="classoomph_1_1AugmentedProblemGMRES.html#a0e6fb26306985fc6bde851d372b78708">oomph::AugmentedProblemGMRES</a>, <a class="el" href="classoomph_1_1TrilinosAztecOOSolver.html#aaa90619b05f448d7bd610f474a9f750d">oomph::TrilinosAztecOOSolver</a>, <a class="el" href="classoomph_1_1ComplexDampedJacobi.html#a34e565b3536b286b5544f5e30935b9e9">oomph::ComplexDampedJacobi&lt; MATRIX &gt;</a>, <a class="el" href="classoomph_1_1ComplexGMRES.html#a10760c61c62771773e2adc57055717aa">oomph::ComplexGMRES&lt; MATRIX &gt;</a>, <a class="el" href="classoomph_1_1HelmholtzGMRESMG.html#ad2ae5c641eae7da8c7556b646fe38d36">oomph::HelmholtzGMRESMG&lt; MATRIX &gt;</a>, <a class="el" href="classoomph_1_1GMRESBlockPreconditioner.html#a164a5a09a67705a08017e8832dd78316">oomph::GMRESBlockPreconditioner</a>, and <a class="el" href="classoomph_1_1GMRESBlockPreconditioner.html#a164a5a09a67705a08017e8832dd78316">oomph::GMRESBlockPreconditioner</a>.</p>
+<p>Implemented in <a class="el" href="classoomph_1_1MGSolver.html#ace1b91d44c67c990259807ee746a6363">oomph::MGSolver&lt; DIM &gt;</a>, <a class="el" href="classoomph_1_1CG.html#a17db796814dc11cb67eac960df85d5f7">oomph::CG&lt; MATRIX &gt;</a>, <a class="el" href="classoomph_1_1BiCGStab.html#a2550adba752e02423254dc0a6c592f7f">oomph::BiCGStab&lt; MATRIX &gt;</a>, <a class="el" href="classoomph_1_1GS.html#ad182a2d91cb9d629cb516102f9a3c649">oomph::GS&lt; MATRIX &gt;</a>, <a class="el" href="classoomph_1_1GS_3_01CRDoubleMatrix_01_4.html#a0fe8a3e90df149b2ad6a247afe1adf2a">oomph::GS&lt; CRDoubleMatrix &gt;</a>, <a class="el" href="classoomph_1_1DampedJacobi.html#aa72fe9dcf19728a8b5a75f0cadb36013">oomph::DampedJacobi&lt; MATRIX &gt;</a>, <a class="el" href="classoomph_1_1GMRES.html#a879927e08b79ad4744a10b360ccd5ff3">oomph::GMRES&lt; MATRIX &gt;</a>, <a class="el" href="classoomph_1_1AugmentedProblemGMRES.html#a0e6fb26306985fc6bde851d372b78708">oomph::AugmentedProblemGMRES</a>, <a class="el" href="classoomph_1_1TrilinosAztecOOSolver.html#aaa90619b05f448d7bd610f474a9f750d">oomph::TrilinosAztecOOSolver</a>, <a class="el" href="classoomph_1_1ComplexDampedJacobi.html#a34e565b3536b286b5544f5e30935b9e9">oomph::ComplexDampedJacobi&lt; MATRIX &gt;</a>, <a class="el" href="classoomph_1_1ComplexGMRES.html#a10760c61c62771773e2adc57055717aa">oomph::ComplexGMRES&lt; MATRIX &gt;</a>, <a class="el" href="classoomph_1_1HelmholtzGMRESMG.html#ad2ae5c641eae7da8c7556b646fe38d36">oomph::HelmholtzGMRESMG&lt; MATRIX &gt;</a>, and <a class="el" href="classoomph_1_1GMRESBlockPreconditioner.html#a164a5a09a67705a08017e8832dd78316">oomph::GMRESBlockPreconditioner</a>.</p>
 
 </div>
 </div>
@@ -1164,7 +1157,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="iterative__linear__solver_8h_source.html#l00228">228</a> of file <a class="el" href="iterative__linear__solver_8h_source.html">iterative_linear_solver.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="iterative__linear__solver_8h_source.html#l00128">disable_doc_convergence_history()</a>, <a class="el" href="iterative__linear__solver_8h_source.html#l00122">enable_doc_convergence_history()</a>, <a class="el" href="iterative__linear__solver_8h_source.html#l00058">IterativeLinearSolver()</a>, <a class="el" href="iterative__linear__solver_8h_source.html#l00138">open_convergence_history_file_stream()</a>, <a class="el" href="general__purpose__space__time__subsidiary__block__preconditioner_8cc_source.html#l00729">oomph::GMRESBlockPreconditioner::preconditioner_solve()</a>, and <a class="el" href="iterative__linear__solver_8cc_source.html#l02862">oomph::AugmentedProblemGMRES::solve_helper()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="iterative__linear__solver_8h_source.html#l00128">disable_doc_convergence_history()</a>, <a class="el" href="iterative__linear__solver_8h_source.html#l00122">enable_doc_convergence_history()</a>, <a class="el" href="iterative__linear__solver_8h_source.html#l00058">IterativeLinearSolver()</a>, <a class="el" href="iterative__linear__solver_8h_source.html#l00138">open_convergence_history_file_stream()</a>, <a class="el" href="general__purpose__space__time__subsidiary__block__preconditioner_8cc_source.html#l00629">oomph::GMRESBlockPreconditioner::preconditioner_solve()</a>, and <a class="el" href="iterative__linear__solver_8cc_source.html#l02862">oomph::AugmentedProblemGMRES::solve_helper()</a>.</p>
 
 </div>
 </div>
@@ -1248,7 +1241,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="iterative__linear__solver_8h_source.html#l00242">242</a> of file <a class="el" href="iterative__linear__solver_8h_source.html">iterative_linear_solver.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="iterative__linear__solver_8h_source.html#l00058">IterativeLinearSolver()</a>, <a class="el" href="iterative__linear__solver_8h_source.html#l00113">max_iter()</a>, <a class="el" href="trilinos__solver_8h_source.html#l00424">oomph::TrilinosAztecOOSolver::max_iter()</a>, <a class="el" href="general__purpose__space__time__subsidiary__block__preconditioner_8cc_source.html#l00729">oomph::GMRESBlockPreconditioner::preconditioner_solve()</a>, <a class="el" href="iterative__linear__solver_8cc_source.html#l02862">oomph::AugmentedProblemGMRES::solve_helper()</a>, <a class="el" href="trilinos__solver_8cc_source.html#l00570">oomph::TrilinosAztecOOSolver::solve_using_AztecOO()</a>, and <a class="el" href="trilinos__solver_8cc_source.html#l00283">oomph::TrilinosAztecOOSolver::solver_setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="iterative__linear__solver_8h_source.html#l00058">IterativeLinearSolver()</a>, <a class="el" href="iterative__linear__solver_8h_source.html#l00113">max_iter()</a>, <a class="el" href="trilinos__solver_8h_source.html#l00424">oomph::TrilinosAztecOOSolver::max_iter()</a>, <a class="el" href="general__purpose__space__time__subsidiary__block__preconditioner_8cc_source.html#l00629">oomph::GMRESBlockPreconditioner::preconditioner_solve()</a>, <a class="el" href="iterative__linear__solver_8cc_source.html#l02862">oomph::AugmentedProblemGMRES::solve_helper()</a>, <a class="el" href="trilinos__solver_8cc_source.html#l00570">oomph::TrilinosAztecOOSolver::solve_using_AztecOO()</a>, and <a class="el" href="trilinos__solver_8cc_source.html#l00283">oomph::TrilinosAztecOOSolver::solver_setup()</a>.</p>
 
 </div>
 </div>
@@ -1276,7 +1269,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="iterative__linear__solver_8h_source.html#l00231">231</a> of file <a class="el" href="iterative__linear__solver_8h_source.html">iterative_linear_solver.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="iterative__linear__solver_8h_source.html#l00161">close_convergence_history_file_stream()</a>, <a class="el" href="iterative__linear__solver_8h_source.html#l00138">open_convergence_history_file_stream()</a>, <a class="el" href="general__purpose__space__time__subsidiary__block__preconditioner_8cc_source.html#l00729">oomph::GMRESBlockPreconditioner::preconditioner_solve()</a>, and <a class="el" href="iterative__linear__solver_8cc_source.html#l02862">oomph::AugmentedProblemGMRES::solve_helper()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="iterative__linear__solver_8h_source.html#l00161">close_convergence_history_file_stream()</a>, <a class="el" href="iterative__linear__solver_8h_source.html#l00138">open_convergence_history_file_stream()</a>, <a class="el" href="general__purpose__space__time__subsidiary__block__preconditioner_8cc_source.html#l00629">oomph::GMRESBlockPreconditioner::preconditioner_solve()</a>, and <a class="el" href="iterative__linear__solver_8cc_source.html#l02862">oomph::AugmentedProblemGMRES::solve_helper()</a>.</p>
 
 </div>
 </div>
@@ -1388,7 +1381,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="iterative__linear__solver_8h_source.html#l00251">251</a> of file <a class="el" href="iterative__linear__solver_8h_source.html">iterative_linear_solver.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="iterative__linear__solver_8h_source.html#l00174">linear_solver_solution_time()</a>, <a class="el" href="general__purpose__space__time__subsidiary__block__preconditioner_8cc_source.html#l00729">oomph::GMRESBlockPreconditioner::preconditioner_solve()</a>, and <a class="el" href="iterative__linear__solver_8cc_source.html#l02862">oomph::AugmentedProblemGMRES::solve_helper()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="iterative__linear__solver_8h_source.html#l00174">linear_solver_solution_time()</a>, <a class="el" href="general__purpose__space__time__subsidiary__block__preconditioner_8cc_source.html#l00629">oomph::GMRESBlockPreconditioner::preconditioner_solve()</a>, and <a class="el" href="iterative__linear__solver_8cc_source.html#l02862">oomph::AugmentedProblemGMRES::solve_helper()</a>.</p>
 
 </div>
 </div>
@@ -1416,7 +1409,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="iterative__linear__solver_8h_source.html#l00262">262</a> of file <a class="el" href="iterative__linear__solver_8h_source.html">iterative_linear_solver.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="iterative__linear__solver_8h_source.html#l00204">disable_error_after_max_iter()</a>, <a class="el" href="iterative__linear__solver_8h_source.html#l00198">enable_error_after_max_iter()</a>, <a class="el" href="iterative__linear__solver_8h_source.html#l00058">IterativeLinearSolver()</a>, <a class="el" href="general__purpose__space__time__subsidiary__block__preconditioner_8cc_source.html#l00729">oomph::GMRESBlockPreconditioner::preconditioner_solve()</a>, and <a class="el" href="iterative__linear__solver_8cc_source.html#l02862">oomph::AugmentedProblemGMRES::solve_helper()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="iterative__linear__solver_8h_source.html#l00204">disable_error_after_max_iter()</a>, <a class="el" href="iterative__linear__solver_8h_source.html#l00198">enable_error_after_max_iter()</a>, <a class="el" href="iterative__linear__solver_8h_source.html#l00058">IterativeLinearSolver()</a>, <a class="el" href="general__purpose__space__time__subsidiary__block__preconditioner_8cc_source.html#l00629">oomph::GMRESBlockPreconditioner::preconditioner_solve()</a>, and <a class="el" href="iterative__linear__solver_8cc_source.html#l02862">oomph::AugmentedProblemGMRES::solve_helper()</a>.</p>
 
 </div>
 </div>
@@ -1444,7 +1437,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="iterative__linear__solver_8h_source.html#l00239">239</a> of file <a class="el" href="iterative__linear__solver_8h_source.html">iterative_linear_solver.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="iterative__linear__solver_8h_source.html#l00058">IterativeLinearSolver()</a>, <a class="el" href="geometric__multigrid_8h_source.html#l00118">oomph::MGSolver&lt; DIM &gt;::MGSolver()</a>, <a class="el" href="general__purpose__space__time__subsidiary__block__preconditioner_8cc_source.html#l00729">oomph::GMRESBlockPreconditioner::preconditioner_solve()</a>, <a class="el" href="iterative__linear__solver_8cc_source.html#l02862">oomph::AugmentedProblemGMRES::solve_helper()</a>, <a class="el" href="trilinos__solver_8cc_source.html#l00570">oomph::TrilinosAztecOOSolver::solve_using_AztecOO()</a>, <a class="el" href="iterative__linear__solver_8h_source.html#l00107">tolerance()</a>, <a class="el" href="trilinos__solver_8h_source.html#l00436">oomph::TrilinosAztecOOSolver::tolerance()</a>, and <a class="el" href="trilinos__solver_8h_source.html#l00270">oomph::TrilinosAztecOOSolver::TrilinosAztecOOSolver()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="iterative__linear__solver_8h_source.html#l00058">IterativeLinearSolver()</a>, <a class="el" href="geometric__multigrid_8h_source.html#l00116">oomph::MGSolver&lt; DIM &gt;::MGSolver()</a>, <a class="el" href="general__purpose__space__time__subsidiary__block__preconditioner_8cc_source.html#l00629">oomph::GMRESBlockPreconditioner::preconditioner_solve()</a>, <a class="el" href="iterative__linear__solver_8cc_source.html#l02862">oomph::AugmentedProblemGMRES::solve_helper()</a>, <a class="el" href="trilinos__solver_8cc_source.html#l00570">oomph::TrilinosAztecOOSolver::solve_using_AztecOO()</a>, <a class="el" href="iterative__linear__solver_8h_source.html#l00107">tolerance()</a>, <a class="el" href="trilinos__solver_8h_source.html#l00436">oomph::TrilinosAztecOOSolver::tolerance()</a>, and <a class="el" href="trilinos__solver_8h_source.html#l00270">oomph::TrilinosAztecOOSolver::TrilinosAztecOOSolver()</a>.</p>
 
 </div>
 </div>
@@ -1508,7 +1501,7 @@ Additional Inherited Members</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:04:36
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:40:11
         </div>
       </div>
     </footer>

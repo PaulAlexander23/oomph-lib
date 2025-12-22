@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -223,9 +217,9 @@
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="comment"></span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="comment"></span> </div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
@@ -424,7 +418,7 @@
 <div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> <span class="keywordtype">unsigned</span> n_plot = 5; </div>
 <div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span> </div>
 <div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span> <span class="comment">// Output shape of and stress in deformed body</span></div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>         Doc_info.number());</div>
 <div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span> some_file.open(filename);</div>
 <div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span> mesh_pt()-&gt;output(some_file,n_plot);</div>
@@ -439,7 +433,7 @@
 <div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> </div>
 <div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span> <span class="comment">// Output exact solution for linear elasticity</span></div>
 <div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span> <span class="comment">// -------------------------------------------</span></div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span> sprintf(filename,<span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>         Doc_info.number());</div>
 <div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span> some_file.open(filename);</div>
 <div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span> <span class="keywordtype">unsigned</span> nelem=mesh_pt()-&gt;nelement(); </div>
@@ -518,12 +512,12 @@
 <div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span> </div>
 <div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span> <span class="comment">// Set output directory</span></div>
 <div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span> <span class="keywordtype">char</span> dirname[100];   </div>
-<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span> sprintf(dirname,<span class="stringliteral">&quot;RESLT%i&quot;</span>,i_case);</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span> snprintf(dirname, <span class="keyword">sizeof</span>(dirname), <span class="stringliteral">&quot;RESLT%i&quot;</span>,i_case);</div>
 <div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span> Doc_info.set_directory(dirname);</div>
 <div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span> </div>
 <div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span> <span class="comment">// Open trace file</span></div>
 <div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span> <span class="keywordtype">char</span> filename[100];   </div>
-<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span> sprintf(filename,<span class="stringliteral">&quot;%s/trace.dat&quot;</span>,Doc_info.directory().c_str());</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/trace.dat&quot;</span>,Doc_info.directory().c_str());</div>
 <div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span> Trace_file.open(filename);</div>
 <div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span> </div>
 <div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span> </div>
@@ -784,7 +778,7 @@
 <div class="ttc" id="aclassoomph_1_1MySolidElement_html_abf5b903419201b1fd6f1587749337650"><div class="ttname"><a href="classoomph_1_1MySolidElement.html#abf5b903419201b1fd6f1587749337650">oomph::MySolidElement::output</a></div><div class="ttdeci">void output(std::ostream &amp;outfile, const unsigned &amp;n_plot)</div><div class="ttdoc">Overload output function.</div><div class="ttdef"><b>Definition</b> <a href="compressed__square_8cc_source.html#l00055">compressed_square.cc:55</a></div></div>
 <div class="ttc" id="aclassoomph_1_1MySolidElement_html_afe8a392ac0bed5890f64b75adea8f5af"><div class="ttname"><a href="classoomph_1_1MySolidElement.html#afe8a392ac0bed5890f64b75adea8f5af">oomph::MySolidElement::MySolidElement</a></div><div class="ttdeci">MySolidElement()</div><div class="ttdoc">Constructor: Call constructor of underlying element.</div><div class="ttdef"><b>Definition</b> <a href="compressed__square_8cc_source.html#l00052">compressed_square.cc:52</a></div></div>
 <div class="ttc" id="acompressed__square_8cc_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="compressed__square_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdoc">Driver for compressed square.</div><div class="ttdef"><b>Definition</b> <a href="compressed__square_8cc_source.html#l00421">compressed_square.cc:421</a></div></div>
-<div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="compressed__square_8cc_source.html#l00110">compressed_square.cc:111</a></div></div>
+<div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">Global variables.</div><div class="ttdef"><b>Definition</b> <a href="compressed__square_8cc_source.html#l00110">compressed_square.cc:111</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a0777aef63372db7f91ad894c38159681"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a0777aef63372db7f91ad894c38159681">Global_Physical_Variables::gravity</a></div><div class="ttdeci">void gravity(const double &amp;time, const Vector&lt; double &gt; &amp;xi, Vector&lt; double &gt; &amp;b)</div><div class="ttdoc">Non-dimensional gravity as body force.</div><div class="ttdef"><b>Definition</b> <a href="compressed__square_8cc_source.html#l00132">compressed_square.cc:132</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a2a37fb040c832ee7a086bb13bb02a100"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a2a37fb040c832ee7a086bb13bb02a100">Global_Physical_Variables::Constitutive_law_pt</a></div><div class="ttdeci">ConstitutiveLaw * Constitutive_law_pt</div><div class="ttdoc">Pointer to constitutive law.</div><div class="ttdef"><b>Definition</b> <a href="compressed__square_8cc_source.html#l00114">compressed_square.cc:114</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a3962c36313826b19f216f6bbbdd6a477"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a3962c36313826b19f216f6bbbdd6a477">Global_Physical_Variables::Nu</a></div><div class="ttdeci">double Nu</div><div class="ttdoc">Poisson's ratio for Hooke's law.</div><div class="ttdef"><b>Definition</b> <a href="compressed__square_8cc_source.html#l00117">compressed_square.cc:117</a></div></div>
@@ -821,7 +815,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:24:55
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:44:57
         </div>
       </div>
     </footer>

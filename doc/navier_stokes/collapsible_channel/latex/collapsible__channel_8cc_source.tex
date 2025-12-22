@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -555,7 +555,7 @@
 \DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00551}00551\ \ npts=5;\ }
 \DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00552}00552\ }
 \DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00553}00553\ \ \textcolor{comment}{//\ Output\ solution\ }}
-\DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00554}00554\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00554}00554\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00555}00555\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00556}00556\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00557}00557\ \ bulk\_mesh\_pt()-\/>output(some\_file,npts);}
@@ -576,7 +576,7 @@
 \DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00572}00572\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::endl;}
 \DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00573}00573\ }
 \DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00574}00574\ \ \textcolor{comment}{//\ Output\ wall\ shape}}
-\DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00575}00575\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/wall\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00575}00575\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/wall\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00576}00576\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00577}00577\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00578}00578\ \ \textcolor{keywordtype}{unsigned}\ nplot=100;\ }
@@ -816,7 +816,7 @@
 \DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00812}00812\ \ \textcolor{comment}{//\ Open\ a\ trace\ file\ }}
 \DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00813}00813\ \ ofstream\ trace\_file;}
 \DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00814}00814\ \ \textcolor{keywordtype}{char}\ filename[100];\ \ \ }
-\DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00815}00815\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00815}00815\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00816}00816\ \ trace\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00817}00817\ }
 \DoxyCodeLine{\Hypertarget{collapsible__channel_8cc_source_l00818}00818\ \ \textcolor{comment}{//\ Build\ the\ problem\ with\ Crouzeix\ Raviart\ Elements}}

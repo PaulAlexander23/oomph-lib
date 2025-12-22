@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -478,13 +478,13 @@
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00474}00474\ \ \textcolor{keywordtype}{unsigned}\ npts=10;\ }
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00475}00475\ \ }
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00476}00476\ \ \textcolor{comment}{//\ Output\ solution\ }}
-\DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00477}00477\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00477}00477\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00478}00478\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00479}00479\ \ Bulk\_mesh\_pt-\/>output(some\_file,npts);}
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00480}00480\ \ some\_file.close();}
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00481}00481\ }
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00482}00482\ \ \textcolor{comment}{//\ Output\ exact\ solution\ }}
-\DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00483}00483\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/exact\_soln.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00483}00483\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/exact\_soln.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00484}00484\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00485}00485\ \ Bulk\_mesh\_pt-\/>output\_fct(some\_file,npts,}
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00486}00486\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceGlobal__Parameters_a6e53a9e4370e8719e9091eff6b6a0c01}{Global\_Parameters::exact\_solution}});}
@@ -493,7 +493,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00489}00489\ \ \textcolor{comment}{//\ Doc\ error}}
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00490}00490\ \ \textcolor{keywordtype}{double}\ error=0.0;}
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00491}00491\ \ \textcolor{keywordtype}{double}\ norm=0.0;}
-\DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00492}00492\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/error.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00492}00492\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/error.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00493}00493\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00494}00494\ \ Bulk\_mesh\_pt-\/>compute\_error(some\_file,}
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00495}00495\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceGlobal__Parameters_a6e53a9e4370e8719e9091eff6b6a0c01}{Global\_Parameters::exact\_solution}},\ }
@@ -507,7 +507,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00503}00503\ }
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00504}00504\ \ \textcolor{comment}{//\ Output\ norm\ of\ solution\ (to\ allow\ validation\ of\ solution\ even}}
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00505}00505\ \ \textcolor{comment}{//\ if\ triangle\ generates\ a\ slightly\ different\ mesh)}}
-\DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00506}00506\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/norm.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00506}00506\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/norm.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00507}00507\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00508}00508\ \ some\_file\ <<\ norm\ <<\ std::endl;}
 \DoxyCodeLine{\Hypertarget{unstructured__cylinder_8cc_source_l00509}00509\ \ some\_file.close();}

@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -51,9 +51,9 @@
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00047}00047\ }
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00048}00048\ \ \ }
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00049}00049\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00050}00050\ \textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00051}00051\ \textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00052}00052\ \textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00050}00050\ \textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00051}00051\ \textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00052}00052\ \textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00053}00053\ \textcolor{comment}{}\ \ }
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00054}00054\ }
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00055}00055\ \textcolor{comment}{//==================================================}\textcolor{comment}{}}
@@ -73,9 +73,9 @@
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00069}00069\ }
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00070}00070\ }
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00071}00071\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00072}00072\ \textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00073}00073\ \textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00074}00074\ \textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00072}00072\ \textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00073}00073\ \textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00074}00074\ \textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00075}00075\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00076}00076\ }
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00077}00077\ \textcolor{comment}{//====================================================================}\textcolor{comment}{}}
@@ -503,7 +503,7 @@
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00499}00499\ }
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00500}00500\ \ \textcolor{comment}{//\ Output\ solution\ on\ fluid\ mesh}}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00501}00501\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00502}00502\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00502}00502\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00503}00503\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00504}00504\ \ \textcolor{comment}{//some\_file.precision(20);}}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00505}00505\ \ some\_file.open(filename);}
@@ -518,7 +518,7 @@
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00514}00514\ }
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00515}00515\ \ \textcolor{comment}{//\ Plot\ wall\ posn}}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00516}00516\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00517}00517\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/Wall\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00517}00517\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/Wall\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00518}00518\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00519}00519\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00520}00520\ \ }
@@ -536,7 +536,7 @@
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00532}00532\ }
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00533}00533\ \ \textcolor{comment}{//\ Doc\ Sarah's\ asymptotic\ solution\ }}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00534}00534\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00535}00535\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00535}00535\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00536}00536\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00537}00537\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00538}00538\ \ fluid\_mesh\_pt()-\/>output\_fct(some\_file,npts,}
@@ -659,7 +659,7 @@
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00655}00655\ \ \ \}}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00656}00656\ }
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00657}00657\ \ \textcolor{comment}{//\ Output\ fluid\ solution\ on\ coarse\ mesh}}
-\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00658}00658\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/coarse\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00658}00658\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/coarse\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00659}00659\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00660}00660\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00661}00661\ \ nelem=coarse\_mesh\_pt-\/>nelement();}
@@ -671,7 +671,7 @@
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00667}00667\ \ some\_file.close();}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00668}00668\ }
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00669}00669\ \ \textcolor{comment}{//\ Write\ restart\ file}}
-\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00670}00670\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/restart\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00670}00670\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/restart\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00671}00671\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00672}00672\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00673}00673\ \ dump\_it(some\_file,doc\_info);}
@@ -739,7 +739,7 @@
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00735}00735\ }
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00736}00736\ \ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00737}00737\ \ \textcolor{keywordtype}{char}\ filename[100];\ \ \ }
-\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00738}00738\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00738}00738\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00739}00739\ \ Trace\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00740}00740\ }
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00741}00741\ \ \textcolor{comment}{//\ Max.\ number\ of\ adaptations\ per\ solve}}
@@ -910,9 +910,9 @@
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00906}00906\ }
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00907}00907\ }
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00908}00908\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00909}00909\ \textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00910}00910\ \textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00911}00911\ \textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00909}00909\ \textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00910}00910\ \textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00911}00911\ \textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00912}00912\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00913}00913\ }
 \DoxyCodeLine{\Hypertarget{osc__ring__alg_8cc_source_l00914}00914\ }

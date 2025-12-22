@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -153,16 +147,16 @@
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &quot;solid.h&quot;</span></div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment">// The mesh </span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#include &quot;meshes/simple_cubic_mesh.template.h&quot;</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#include &quot;meshes/simple_cubic_mesh.h&quot;</span></div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">using namespace </span>std;</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">using namespace </span>oomph;</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment"></span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment"></span> </div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment">//=========================================================================</span><span class="comment"></span></div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">/// Simple cubic mesh upgraded to become a solid mesh</span></div>
@@ -196,9 +190,9 @@
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment"></span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment"></span> </div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
@@ -238,9 +232,9 @@
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>}</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="comment"></span> </div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="comment"></span> </div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
@@ -365,8 +359,8 @@
 <div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> <span class="comment">//PVDEquationsBase&lt;2&gt;::pin_redundant_nodal_solid_pressures(</span></div>
 <div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> <span class="comment">// mesh_pt()-&gt;element_pt());</span></div>
 <div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> </div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> <span class="comment">//Attach the boundary conditions to the mesh</span></div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> cout &lt;&lt; assign_eqn_numbers() &lt;&lt; std::endl; </div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>  <span class="comment">// Attach the boundary conditions to the mesh</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>  oomph_info &lt;&lt; <span class="stringliteral">&quot;Number of equations: &quot;</span> &lt;&lt; assign_eqn_numbers() &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>} </div>
 <div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
 <div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span> </div>
@@ -384,13 +378,13 @@
 <div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span> <span class="keywordtype">unsigned</span> npts = 5; </div>
 <div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
 <div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span> <span class="comment">// Output shape of deformed body</span></div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>         doc_info.number());</div>
 <div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span> some_file.open(filename);</div>
 <div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> mesh_pt()-&gt;output(some_file,npts);</div>
 <div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span> some_file.close();</div>
 <div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span> sprintf(filename,<span class="stringliteral">&quot;%s/stress%i.dat&quot;</span>, doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/stress%i.dat&quot;</span>, doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>         doc_info.number());</div>
 <div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span> some_file.open(filename);</div>
 <div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> <span class="comment">//Output the appropriate stress at the centre of each element</span></div>
@@ -562,10 +556,10 @@
 <div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span> </div>
 <div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span> </div>
 <div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span> </div>
-<div class="ttc" id="aclassElasticCubicMesh_html"><div class="ttname"><a href="classElasticCubicMesh.html">ElasticCubicMesh</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="simple__shear_8cc_source.html#l00052">simple_shear.cc:54</a></div></div>
+<div class="ttc" id="aclassElasticCubicMesh_html"><div class="ttname"><a href="classElasticCubicMesh.html">ElasticCubicMesh</a></div><div class="ttdoc">Simple cubic mesh upgraded to become a solid mesh.</div><div class="ttdef"><b>Definition</b> <a href="simple__shear_8cc_source.html#l00052">simple_shear.cc:54</a></div></div>
 <div class="ttc" id="aclassElasticCubicMesh_html_a64cc078916561417462636f399a71e88"><div class="ttname"><a href="classElasticCubicMesh.html#a64cc078916561417462636f399a71e88">ElasticCubicMesh::~ElasticCubicMesh</a></div><div class="ttdeci">virtual ~ElasticCubicMesh()</div><div class="ttdoc">Empty Destructor.</div><div class="ttdef"><b>Definition</b> <a href="simple__shear_8cc_source.html#l00069">simple_shear.cc:69</a></div></div>
 <div class="ttc" id="aclassElasticCubicMesh_html_aa09317d23e99358728bd81d0c67410a4"><div class="ttname"><a href="classElasticCubicMesh.html#aa09317d23e99358728bd81d0c67410a4">ElasticCubicMesh::ElasticCubicMesh</a></div><div class="ttdeci">ElasticCubicMesh(const unsigned &amp;nx, const unsigned &amp;ny, const unsigned &amp;nz, const double &amp;a, const double &amp;b, const double &amp;c, TimeStepper *time_stepper_pt=&amp;Mesh::Default_TimeStepper)</div><div class="ttdoc">Constructor:</div><div class="ttdef"><b>Definition</b> <a href="simple__shear_8cc_source.html#l00059">simple_shear.cc:59</a></div></div>
-<div class="ttc" id="aclassSimpleShearProblem_html"><div class="ttname"><a href="classSimpleShearProblem.html">SimpleShearProblem</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="refineable__simple__shear_8cc_source.html#l00137">refineable_simple_shear.cc:138</a></div></div>
+<div class="ttc" id="aclassSimpleShearProblem_html"><div class="ttname"><a href="classSimpleShearProblem.html">SimpleShearProblem</a></div><div class="ttdoc">Boundary-driven elastic deformation of fish-shaped domain.</div><div class="ttdef"><b>Definition</b> <a href="refineable__simple__shear_8cc_source.html#l00137">refineable_simple_shear.cc:138</a></div></div>
 <div class="ttc" id="aclassSimpleShearProblem_html_a1069985934b36d269b4bc8cb3ba00902"><div class="ttname"><a href="classSimpleShearProblem.html#a1069985934b36d269b4bc8cb3ba00902">SimpleShearProblem::apply_boundary_conditions</a></div><div class="ttdeci">void apply_boundary_conditions()</div><div class="ttdoc">Shear the top.</div><div class="ttdef"><b>Definition</b> <a href="refineable__simple__shear_8cc_source.html#l00220">refineable_simple_shear.cc:220</a></div></div>
 <div class="ttc" id="aclassSimpleShearProblem_html_a24c087d9ea194229930bcf9f889a048e"><div class="ttname"><a href="classSimpleShearProblem.html#a24c087d9ea194229930bcf9f889a048e">SimpleShearProblem::doc_solution</a></div><div class="ttdeci">void doc_solution(DocInfo &amp;doc_info)</div><div class="ttdoc">Doc the solution.</div></div>
 <div class="ttc" id="aclassSimpleShearProblem_html_a2c63e1a6c120da147b0c4ec9764e1510"><div class="ttname"><a href="classSimpleShearProblem.html#a2c63e1a6c120da147b0c4ec9764e1510">SimpleShearProblem::actions_before_newton_solve</a></div><div class="ttdeci">void actions_before_newton_solve()</div><div class="ttdoc">Update before solve: We're dealing with a static problem so the nodal positions before the next solve...</div><div class="ttdef"><b>Definition</b> <a href="simple__shear_8cc_source.html#l00161">simple_shear.cc:161</a></div></div>
@@ -576,7 +570,7 @@
 <div class="ttc" id="aclassSimpleShearProblem_html_abda248bc2810d71948b14e8ed75ea2d5"><div class="ttname"><a href="classSimpleShearProblem.html#abda248bc2810d71948b14e8ed75ea2d5">SimpleShearProblem::mesh_pt</a></div><div class="ttdeci">ElasticCubicMesh&lt; ELEMENT &gt; * mesh_pt()</div><div class="ttdoc">Access function for the mesh.</div><div class="ttdef"><b>Definition</b> <a href="simple__shear_8cc_source.html#l00143">simple_shear.cc:143</a></div></div>
 <div class="ttc" id="aclassSimpleShearProblem_html_ac1746a2634e310571d40d70719d509c0"><div class="ttname"><a href="classSimpleShearProblem.html#ac1746a2634e310571d40d70719d509c0">SimpleShearProblem::run</a></div><div class="ttdeci">void run(const std::string &amp;dirname)</div><div class="ttdoc">Run simulation.</div></div>
 <div class="ttc" id="aclassSimpleShearProblem_html_ada0881781b3332f88362528be39613d2"><div class="ttname"><a href="classSimpleShearProblem.html#ada0881781b3332f88362528be39613d2">SimpleShearProblem::SimpleShearProblem</a></div><div class="ttdeci">SimpleShearProblem(const bool &amp;incompressible)</div><div class="ttdoc">Constructor:</div></div>
-<div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="refineable__simple__shear_8cc_source.html#l00095">refineable_simple_shear.cc:96</a></div></div>
+<div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">Global variables.</div><div class="ttdef"><b>Definition</b> <a href="refineable__simple__shear_8cc_source.html#l00095">refineable_simple_shear.cc:96</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a055c27a8d2375f73e74970a8ea1dee21"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a055c27a8d2375f73e74970a8ea1dee21">Global_Physical_Variables::body_force</a></div><div class="ttdeci">void body_force(const Vector&lt; double &gt; &amp;xi, const double &amp;t, Vector&lt; double &gt; &amp;b)</div><div class="ttdoc">Body force vector: Vertically downwards with magnitude Gravity.</div><div class="ttdef"><b>Definition</b> <a href="refineable__simple__shear_8cc_source.html#l00116">refineable_simple_shear.cc:116</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a09a019474b7405b35da2437f7779bc7e"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a09a019474b7405b35da2437f7779bc7e">Global_Physical_Variables::E</a></div><div class="ttdeci">double E</div><div class="ttdoc">Elastic modulus.</div><div class="ttdef"><b>Definition</b> <a href="refineable__simple__shear_8cc_source.html#l00104">refineable_simple_shear.cc:104</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a3962c36313826b19f216f6bbbdd6a477"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a3962c36313826b19f216f6bbbdd6a477">Global_Physical_Variables::Nu</a></div><div class="ttdeci">double Nu</div><div class="ttdoc">Poisson's ratio.</div><div class="ttdef"><b>Definition</b> <a href="refineable__simple__shear_8cc_source.html#l00107">refineable_simple_shear.cc:107</a></div></div>
@@ -613,7 +607,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:24:08
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:44:19
         </div>
       </div>
     </footer>

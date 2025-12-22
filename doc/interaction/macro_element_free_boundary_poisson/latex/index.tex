@@ -299,8 +299,8 @@ We start by creating the {\ttfamily Geom\+Object/\+Generalised\+Element} that wi
 \DoxyCodeLine{\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{r\_back}}=1.0;}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Build\ geometric\ object\ that\ will\ become\ the\ fish\ back}}
-\DoxyCodeLine{\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{ElasticallySupportedRingElement}}*\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{fish\_back\_pt}}=}
-\DoxyCodeLine{\ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{ElasticallySupportedRingElement}}(x\_c,y\_c,\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{r\_back}});}
+\DoxyCodeLine{\ ElasticallySupportedRingElement*\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{fish\_back\_pt}}=}
+\DoxyCodeLine{\ \ \textcolor{keyword}{new}\ ElasticallySupportedRingElement(x\_c,y\_c,\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{r\_back}});}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Build\ fish\ mesh\ with\ geometric\ object\ that\ specifies\ the\ fish\ back\ }}
 \DoxyCodeLine{\ Fish\_mesh\_pt=\textcolor{keyword}{new}\ }
@@ -350,8 +350,8 @@ Next we store the pointer to the {\ttfamily Elastically\+Supported\+Ring\+Elemen
 \DoxyCodeLine{\ }
 \DoxyCodeLine{\ \textcolor{comment}{//\ Use\ the\ solution\ (value\ 0)\ at\ the\ control\ node\ as\ the\ load}}
 \DoxyCodeLine{\ \textcolor{comment}{//\ that\ acts\ on\ the\ ring.\ [Note:\ Node\ ==\ Data\ by\ inheritance]}}
-\DoxyCodeLine{\ \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{ElasticallySupportedRingElement}}*\textcolor{keyword}{>}(Fish\_mesh\_pt-\/>fish\_back\_pt())-\/>}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{set\_load\_pt}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{control\_node\_pt}});}
+\DoxyCodeLine{\ \textcolor{keyword}{dynamic\_cast<}ElasticallySupportedRingElement*\textcolor{keyword}{>}(Fish\_mesh\_pt-\/>fish\_back\_pt())-\/>}
+\DoxyCodeLine{\ \ set\_load\_pt(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{control\_node\_pt}});}
 
 \end{DoxyCodeInclude}
  Finally, we pin the nodal values on all boundaries, apply the homogeneous Dirichlet boundary conditions, pass the pointer to the source function to the elements, and set up the equation numbering scheme.
@@ -452,8 +452,8 @@ We start by building the Mesh as before
 \DoxyCodeLine{\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{r\_back}}=1.0;}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Build\ geometric\ object\ that\ will\ become\ the\ fish\ back}}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{ElasticallySupportedRingElement}}*\ Fish\_back\_pt=}
-\DoxyCodeLine{\ \ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{ElasticallySupportedRingElement}}(x\_c,y\_c,\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{r\_back}});}
+\DoxyCodeLine{\ \ ElasticallySupportedRingElement*\ Fish\_back\_pt=}
+\DoxyCodeLine{\ \ \ \textcolor{keyword}{new}\ ElasticallySupportedRingElement(x\_c,y\_c,\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{r\_back}});}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Build\ fish\ mesh\ with\ geometric\ object\ that\ specifies\ the\ fish\ back\ }}
 \DoxyCodeLine{\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{MacroElementNodeUpdateRefineableFishMesh<ELEMENT>}}*\ Fish\_mesh\_pt=\textcolor{keyword}{new}\ }
@@ -472,7 +472,7 @@ We start by building the Mesh as before
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ initial\ mesh}}
 \DoxyCodeLine{\ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{count}}=0;}
-\DoxyCodeLine{\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{sprintf}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}},\textcolor{stringliteral}{"{}RESLT/soln\%i.dat"{}},\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{count}});}
+\DoxyCodeLine{\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{snprintf}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}}),\ \textcolor{stringliteral}{"{}RESLT/soln\%i.dat"{}},\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{count}});}
 \DoxyCodeLine{\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{some\_file}}.open(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}});}
 \DoxyCodeLine{\ Fish\_mesh\_pt-\/>output(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{some\_file}},\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{npts}});}
 \DoxyCodeLine{\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{some\_file}}.close();}
@@ -506,7 +506,7 @@ Meshes that are derived from the {\ttfamily Macro\+Element\+Node\+Update\+Mesh\+
 \DoxyCodeLine{\ \ \ Fish\_mesh\_pt-\/>node\_pt(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{i}})-\/>node\_update();}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ Doc\ mesh}}
-\DoxyCodeLine{\ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{sprintf}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}},\textcolor{stringliteral}{"{}RESLT/soln\%i.dat"{}},\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{count}});}
+\DoxyCodeLine{\ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{snprintf}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}}),\ \textcolor{stringliteral}{"{}RESLT/soln\%i.dat"{}},\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{count}});}
 \DoxyCodeLine{\ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{some\_file}}.open(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}});}
 \DoxyCodeLine{\ \ \ Fish\_mesh\_pt-\/>output(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{some\_file}},\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{npts}});}
 \DoxyCodeLine{\ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{some\_file}}.close();}
@@ -576,4 +576,4 @@ The above example demonstrated how easy it is to "{}upgrade"{} a driver code for
 \end{DoxyItemize}\DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

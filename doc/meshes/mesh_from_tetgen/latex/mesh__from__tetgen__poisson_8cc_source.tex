@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -38,7 +38,7 @@
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00034}00034\ \textcolor{preprocessor}{\#include\ "{}poisson.h"{}}}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00035}00035\ }
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00036}00036\ \textcolor{comment}{//\ Get\ the\ mesh}}
-\DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00037}00037\ \textcolor{preprocessor}{\#include\ "{}meshes/tetgen\_mesh.h"{}}}
+\DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00037}00037\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tetgen__mesh_8h}{meshes/tetgen\_mesh.h}}"{}}}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00038}00038\ }
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00039}00039\ \textcolor{keyword}{using\ namespace\ }std;}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00040}00040\ }
@@ -263,7 +263,7 @@
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00259}00259\ }
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00260}00260\ \ \textcolor{comment}{//\ Doc\ local\ node\ numbering}}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00261}00261\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00262}00262\ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh_a2d2c7796e578f9fed1faf17569893531}{sprintf}}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{filename}},\textcolor{stringliteral}{"{}\%s/node\_numbering\%i.dat"{}},\mbox{\hyperlink{classoomph_1_1TetgenMesh}{doc\_info}}.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00262}00262\ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh_a2d2c7796e578f9fed1faf17569893531}{snprintf}}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/node\_numbering\%i.dat"{}},\mbox{\hyperlink{classoomph_1_1TetgenMesh}{doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{doc\_info}}.number());}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00264}00264\ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{some\_file}}.open(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{filename}});}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00265}00265\ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{FiniteElement}}*\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{el\_pt}}=mesh\_pt()-\/>finite\_element\_pt(0);}
@@ -281,7 +281,7 @@
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00277}00277\ }
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00278}00278\ \ \textcolor{comment}{//\ Output\ boundaries}}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00279}00279\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00280}00280\ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh_a2d2c7796e578f9fed1faf17569893531}{sprintf}}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{filename}},\textcolor{stringliteral}{"{}\%s/boundaries\%i.dat"{}},\mbox{\hyperlink{classoomph_1_1TetgenMesh}{doc\_info}}.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00280}00280\ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh_a2d2c7796e578f9fed1faf17569893531}{snprintf}}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/boundaries\%i.dat"{}},\mbox{\hyperlink{classoomph_1_1TetgenMesh}{doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{doc\_info}}.number());}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00282}00282\ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{some\_file}}.open(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{filename}});}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00283}00283\ \ mesh\_pt()-\/>output\_boundaries(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{some\_file}});}
@@ -290,7 +290,7 @@
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00286}00286\ }
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00287}00287\ \ \textcolor{comment}{//\ Output\ solution}}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00288}00288\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00289}00289\ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh_a2d2c7796e578f9fed1faf17569893531}{sprintf}}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{filename}},\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},\mbox{\hyperlink{classoomph_1_1TetgenMesh}{doc\_info}}.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00289}00289\ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh_a2d2c7796e578f9fed1faf17569893531}{snprintf}}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},\mbox{\hyperlink{classoomph_1_1TetgenMesh}{doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{doc\_info}}.number());}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00291}00291\ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{some\_file}}.open(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{filename}});}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00292}00292\ \ mesh\_pt()-\/>output(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{some\_file}},\mbox{\hyperlink{classoomph_1_1TetgenMesh}{nplot}});}
@@ -299,7 +299,7 @@
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00295}00295\ }
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00296}00296\ \ \textcolor{comment}{//\ Output\ exact\ solution\ }}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00297}00297\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00298}00298\ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh_a2d2c7796e578f9fed1faf17569893531}{sprintf}}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{filename}},\textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},\mbox{\hyperlink{classoomph_1_1TetgenMesh}{doc\_info}}.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00298}00298\ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh_a2d2c7796e578f9fed1faf17569893531}{snprintf}}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},\mbox{\hyperlink{classoomph_1_1TetgenMesh}{doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{doc\_info}}.number());}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00300}00300\ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{some\_file}}.open(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{filename}});}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00301}00301\ \ mesh\_pt()-\/>output\_fct(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{some\_file}},\mbox{\hyperlink{classoomph_1_1TetgenMesh}{nplot}},\mbox{\hyperlink{namespaceTanhSolnForPoisson_af7896e9c18ce6438c73ae2a875e8b7de}{TanhSolnForPoisson::get\_exact\_u}});\ }
@@ -308,7 +308,7 @@
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00304}00304\ \ \textcolor{comment}{//\ Doc\ error}}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00305}00305\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00306}00306\ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classoomph_1_1TetgenMesh_a2d2c7796e578f9fed1faf17569893531}{error}},\mbox{\hyperlink{classoomph_1_1TetgenMesh_a2d2c7796e578f9fed1faf17569893531}{norm}};}
-\DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00307}00307\ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh_a2d2c7796e578f9fed1faf17569893531}{sprintf}}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{filename}},\textcolor{stringliteral}{"{}\%s/error\%i.dat"{}},\mbox{\hyperlink{classoomph_1_1TetgenMesh}{doc\_info}}.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00307}00307\ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh_a2d2c7796e578f9fed1faf17569893531}{snprintf}}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/error\%i.dat"{}},\mbox{\hyperlink{classoomph_1_1TetgenMesh}{doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00308}00308\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{doc\_info}}.number());}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00309}00309\ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{some\_file}}.open(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{filename}});}
 \DoxyCodeLine{\Hypertarget{mesh__from__tetgen__poisson_8cc_source_l00310}00310\ \ mesh\_pt()-\/>compute\_error(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{some\_file}},\mbox{\hyperlink{namespaceTanhSolnForPoisson_af7896e9c18ce6438c73ae2a875e8b7de}{TanhSolnForPoisson::get\_exact\_u}},}

@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -174,7 +168,7 @@ Static Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classoomph_1_1MPI__Helpers.html" title="MPI_Helpers class contains static helper methods to support MPI within oomph-lib. The methods init(....">MPI_Helpers</a> class contains static helper methods to support MPI within oomph-lib. The methods init(...) and <a class="el" href="classoomph_1_1MPI__Helpers.html#a471bc4697fd5edeea3fb4af1bba0e541" title="finalize mpi (oomph-lib equivalent of MPI_Finalize()) Deletes the global oomph-lib communicator and f...">finalize()</a> initialize and finalize MPI in oomph-lib and manage the oomph-libs global communicator <a class="el" href="classoomph_1_1MPI__Helpers.html#ac16964b22bfd4f657490802beb600ffe" title="access to global communicator. This is the oomph-lib equivalent of MPI_COMM_WORLD">communicator_pt()</a>. NOTE: This class encapsulates static helper methods and instances of it CANNOT be instantiated. </p>
 
-<p class="definition">Definition at line <a class="el" href="oomph__utilities_8h_source.html#l00831">831</a> of file <a class="el" href="oomph__utilities_8h_source.html">oomph_utilities.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="oomph__utilities_8h_source.html#l00841">841</a> of file <a class="el" href="oomph__utilities_8h_source.html">oomph_utilities.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="afb01ddfbe038936ec832cdbea6e677e8" name="afb01ddfbe038936ec832cdbea6e677e8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afb01ddfbe038936ec832cdbea6e677e8">&#9670;&#160;</a></span>MPI_Helpers() <span class="overload">[1/2]</span></h2>
@@ -258,11 +252,11 @@ Static Private Attributes</h2></td></tr>
 <p>access to global communicator. This is the oomph-lib equivalent of MPI_COMM_WORLD </p>
 <p>access to the global oomph-lib communicator </p>
 
-<p class="definition">Definition at line <a class="el" href="oomph__utilities_8cc_source.html#l01046">1046</a> of file <a class="el" href="oomph__utilities_8cc_source.html">oomph_utilities.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="oomph__utilities_8cc_source.html#l01054">1054</a> of file <a class="el" href="oomph__utilities_8cc_source.html">oomph_utilities.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="oomph__utilities_8h_source.html#l00869">Communicator_pt</a>, and <a class="el" href="oomph__utilities_8h_source.html#l00866">MPI_has_been_initialised</a>.</p>
+<p class="reference">References <a class="el" href="oomph__utilities_8h_source.html#l00879">Communicator_pt</a>, and <a class="el" href="oomph__utilities_8h_source.html#l00876">MPI_has_been_initialised</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="error__estimator_8cc_source.html#l01802">oomph::Z2ErrorEstimator::doc_flux()</a>, <a class="el" href="oomph__utilities_8cc_source.html#l01424">oomph::MemoryUsage::doc_my_memory_usage()</a>, <a class="el" href="oomph__utilities_8cc_source.html#l01489">oomph::MemoryUsage::doc_total_memory_usage()</a>, <a class="el" href="linear__solver_8cc_source.html#l01872">oomph::SuperLUSolver::factorise_distributed()</a>, <a class="el" href="helmholtz__geometric__multigrid_8h_source.html#l01103">oomph::HelmholtzMGPreconditioner&lt; DIM &gt;::full_setup()</a>, <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00041">oomph::Pseudo_Elastic_Preconditioner_Subsidiary_Operator_Helper::get_elastic_preconditioner_hypre()</a>, <a class="el" href="error__estimator_8cc_source.html#l00946">oomph::Z2ErrorEstimator::get_element_errors()</a>, <a class="el" href="nodes_8h_source.html#l01243">oomph::Node::hanging_pt()</a>, <a class="el" href="hypre__solver_8cc_source.html#l01086">oomph::HypreInterface::hypre_solve()</a>, <a class="el" href="hypre__solver_8h_source.html#l00137">oomph::HypreInterface::HypreInterface()</a>, <a class="el" href="problem_8cc_source.html#l00069">oomph::Problem::Problem()</a>, <a class="el" href="oomph__utilities_8cc_source.html#l01583">oomph::MemoryUsage::run_continous_top()</a>, <a class="el" href="geometric__multigrid_8h_source.html#l00754">oomph::MGPreconditioner&lt; DIM &gt;::setup()</a>, <a class="el" href="complex__smoother_8h_source.html#l01806">oomph::HelmholtzGMRESMG&lt; MATRIX &gt;::solve()</a>, <a class="el" href="complex__smoother_8h_source.html#l03284">oomph::HelmholtzFGMRESMG&lt; MATRIX &gt;::solve()</a>, and <a class="el" href="oomph__utilities_8cc_source.html#l01641">oomph::MemoryUsage::stop_continous_top()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="error__estimator_8cc_source.html#l01803">oomph::Z2ErrorEstimator::doc_flux()</a>, <a class="el" href="oomph__utilities_8cc_source.html#l01432">oomph::MemoryUsage::doc_my_memory_usage()</a>, <a class="el" href="oomph__utilities_8cc_source.html#l01497">oomph::MemoryUsage::doc_total_memory_usage()</a>, <a class="el" href="linear__solver_8cc_source.html#l01891">oomph::SuperLUSolver::factorise_distributed()</a>, <a class="el" href="helmholtz__geometric__multigrid_8h_source.html#l01103">oomph::HelmholtzMGPreconditioner&lt; DIM &gt;::full_setup()</a>, <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00041">oomph::Pseudo_Elastic_Preconditioner_Subsidiary_Operator_Helper::get_elastic_preconditioner_hypre()</a>, <a class="el" href="error__estimator_8cc_source.html#l00946">oomph::Z2ErrorEstimator::get_element_errors()</a>, <a class="el" href="nodes_8h_source.html#l01243">oomph::Node::hanging_pt()</a>, <a class="el" href="hypre__solver_8cc_source.html#l01149">oomph::HypreInterface::hypre_solve()</a>, <a class="el" href="hypre__solver_8h_source.html#l00142">oomph::HypreInterface::HypreInterface()</a>, <a class="el" href="problem_8cc_source.html#l00071">oomph::Problem::Problem()</a>, <a class="el" href="oomph__utilities_8cc_source.html#l01591">oomph::MemoryUsage::run_continous_top()</a>, <a class="el" href="geometric__multigrid_8h_source.html#l00752">oomph::MGPreconditioner&lt; DIM &gt;::setup()</a>, <a class="el" href="linear__solver_8cc_source.html#l01078">oomph::SuperLUSolver::solve()</a>, <a class="el" href="complex__smoother_8h_source.html#l01806">oomph::HelmholtzGMRESMG&lt; MATRIX &gt;::solve()</a>, <a class="el" href="complex__smoother_8h_source.html#l03284">oomph::HelmholtzFGMRESMG&lt; MATRIX &gt;::solve()</a>, and <a class="el" href="oomph__utilities_8cc_source.html#l01649">oomph::MemoryUsage::stop_continous_top()</a>.</p>
 
 </div>
 </div>
@@ -292,11 +286,11 @@ Static Private Attributes</h2></td></tr>
 <p>finalize mpi (oomph-lib equivalent of MPI_Finalize()) Deletes the global oomph-lib communicator and finalizes MPI. </p>
 <p>finalize mpi </p>
 
-<p class="definition">Definition at line <a class="el" href="oomph__utilities_8cc_source.html#l01032">1032</a> of file <a class="el" href="oomph__utilities_8cc_source.html">oomph_utilities.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="oomph__utilities_8cc_source.html#l01040">1040</a> of file <a class="el" href="oomph__utilities_8cc_source.html">oomph_utilities.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="oomph__utilities_8h_source.html#l00869">Communicator_pt</a>.</p>
+<p class="reference">References <a class="el" href="oomph__utilities_8h_source.html#l00879">Communicator_pt</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="oomph__utilities_8cc_source.html#l00760">oomph::CommandLineArgs::parse_and_assign()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="oomph__utilities_8cc_source.html#l00768">oomph::CommandLineArgs::parse_and_assign()</a>.</p>
 
 </div>
 </div>
@@ -343,9 +337,9 @@ Static Private Attributes</h2></td></tr>
 <p>initialise mpi (oomph-libs equivalent of MPI_Init(...)) Initialises MPI and creates the global oomph-lib communicator. If optional boolean flag is set to false, we use MPI_COMM_WORLD itself as oomph-lib's communicator. Defaults to true. </p>
 <p>Initialize mpi. If optional boolean flag is set to false, we use MPI_COMM_WORLD itself as oomph-lib's communicator. Defaults to true. </p>
 
-<p class="definition">Definition at line <a class="el" href="oomph__utilities_8cc_source.html#l00983">983</a> of file <a class="el" href="oomph__utilities_8cc_source.html">oomph_utilities.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="oomph__utilities_8cc_source.html#l00991">991</a> of file <a class="el" href="oomph__utilities_8cc_source.html">oomph_utilities.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="oomph__utilities_8h_source.html#l00782">oomph::MPIOutputModifier::communicator_pt()</a>, <a class="el" href="oomph__utilities_8h_source.html#l00869">Communicator_pt</a>, <a class="el" href="oomph__utilities_8h_source.html#l00866">MPI_has_been_initialised</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00319">oomph::oomph_info</a>, <a class="el" href="oomph__utilities_8cc_source.html#l00947">oomph::oomph_mpi_output</a>, and <a class="el" href="oomph__definitions_8h_source.html#l00476">oomph::OomphInfo::output_modifier_pt()</a>.</p>
+<p class="reference">References <a class="el" href="oomph__utilities_8h_source.html#l00792">oomph::MPIOutputModifier::communicator_pt()</a>, <a class="el" href="oomph__utilities_8h_source.html#l00879">Communicator_pt</a>, <a class="el" href="oomph__utilities_8h_source.html#l00876">MPI_has_been_initialised</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00326">oomph::oomph_info</a>, <a class="el" href="oomph__utilities_8cc_source.html#l00955">oomph::oomph_mpi_output</a>, and <a class="el" href="oomph__definitions_8h_source.html#l00483">oomph::OomphInfo::output_modifier_pt()</a>.</p>
 
 </div>
 </div>
@@ -374,11 +368,11 @@ Static Private Attributes</h2></td></tr>
 
 <p>return true if MPI has been initialised </p>
 
-<p class="definition">Definition at line <a class="el" href="oomph__utilities_8h_source.html#l00851">851</a> of file <a class="el" href="oomph__utilities_8h_source.html">oomph_utilities.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="oomph__utilities_8h_source.html#l00861">861</a> of file <a class="el" href="oomph__utilities_8h_source.html">oomph_utilities.h</a>.</p>
 
-<p class="reference">References <a class="el" href="oomph__utilities_8h_source.html#l00866">MPI_has_been_initialised</a>.</p>
+<p class="reference">References <a class="el" href="oomph__utilities_8h_source.html#l00876">MPI_has_been_initialised</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="hypre__solver_8cc_source.html#l00270">oomph::HypreHelpers::create_HYPRE_Matrix()</a>, <a class="el" href="oomph__utilities_8cc_source.html#l01424">oomph::MemoryUsage::doc_my_memory_usage()</a>, <a class="el" href="oomph__utilities_8cc_source.html#l01489">oomph::MemoryUsage::doc_total_memory_usage()</a>, <a class="el" href="linear__solver_8cc_source.html#l01827">oomph::SuperLUSolver::factorise()</a>, <a class="el" href="error__estimator_8cc_source.html#l00946">oomph::Z2ErrorEstimator::get_element_errors()</a>, <a class="el" href="hypre__solver_8cc_source.html#l01086">oomph::HypreInterface::hypre_solve()</a>, <a class="el" href="hypre__solver_8h_source.html#l00137">oomph::HypreInterface::HypreInterface()</a>, <a class="el" href="problem_8cc_source.html#l08803">oomph::Problem::newton_solve()</a>, <a class="el" href="problem_8cc_source.html#l00069">oomph::Problem::Problem()</a>, <a class="el" href="projection_8h_source.html#l00748">oomph::ProjectionProblem&lt; PROJECTABLE_ELEMENT &gt;::project()</a>, <a class="el" href="oomph__utilities_8cc_source.html#l01583">oomph::MemoryUsage::run_continous_top()</a>, <a class="el" href="matrix__vector__product_8cc_source.html#l00041">oomph::MatrixVectorProduct::setup()</a>, <a class="el" href="oomph__utilities_8cc_source.html#l01641">oomph::MemoryUsage::stop_continous_top()</a>, and <a class="el" href="oomph__utilities_8cc_source.html#l01295">oomph::TimingHelpers::timer()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="hypre__solver_8cc_source.html#l00278">oomph::HypreHelpers::create_HYPRE_Matrix()</a>, <a class="el" href="oomph__utilities_8cc_source.html#l01432">oomph::MemoryUsage::doc_my_memory_usage()</a>, <a class="el" href="oomph__utilities_8cc_source.html#l01497">oomph::MemoryUsage::doc_total_memory_usage()</a>, <a class="el" href="linear__solver_8cc_source.html#l01846">oomph::SuperLUSolver::factorise()</a>, <a class="el" href="error__estimator_8cc_source.html#l00946">oomph::Z2ErrorEstimator::get_element_errors()</a>, <a class="el" href="hypre__solver_8cc_source.html#l01149">oomph::HypreInterface::hypre_solve()</a>, <a class="el" href="hypre__solver_8h_source.html#l00142">oomph::HypreInterface::HypreInterface()</a>, <a class="el" href="problem_8cc_source.html#l08816">oomph::Problem::newton_solve()</a>, <a class="el" href="problem_8cc_source.html#l00071">oomph::Problem::Problem()</a>, <a class="el" href="projection_8h_source.html#l00748">oomph::ProjectionProblem&lt; PROJECTABLE_ELEMENT &gt;::project()</a>, <a class="el" href="oomph__utilities_8cc_source.html#l01591">oomph::MemoryUsage::run_continous_top()</a>, <a class="el" href="matrix__vector__product_8cc_source.html#l00041">oomph::MatrixVectorProduct::setup()</a>, <a class="el" href="oomph__utilities_8cc_source.html#l01649">oomph::MemoryUsage::stop_continous_top()</a>, and <a class="el" href="oomph__utilities_8cc_source.html#l01303">oomph::TimingHelpers::timer()</a>.</p>
 
 </div>
 </div>
@@ -405,9 +399,9 @@ Static Private Attributes</h2></td></tr>
 
 <p>the global communicator </p>
 
-<p class="definition">Definition at line <a class="el" href="oomph__utilities_8h_source.html#l00869">869</a> of file <a class="el" href="oomph__utilities_8h_source.html">oomph_utilities.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="oomph__utilities_8h_source.html#l00879">879</a> of file <a class="el" href="oomph__utilities_8h_source.html">oomph_utilities.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="oomph__utilities_8cc_source.html#l01046">communicator_pt()</a>, <a class="el" href="oomph__utilities_8cc_source.html#l01032">finalize()</a>, and <a class="el" href="oomph__utilities_8cc_source.html#l00983">init()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="oomph__utilities_8cc_source.html#l01054">communicator_pt()</a>, <a class="el" href="oomph__utilities_8cc_source.html#l01040">finalize()</a>, and <a class="el" href="oomph__utilities_8cc_source.html#l00991">init()</a>.</p>
 
 </div>
 </div>
@@ -433,9 +427,9 @@ Static Private Attributes</h2></td></tr>
 
 <p>Bool set to true if MPI has been initialised. </p>
 
-<p class="definition">Definition at line <a class="el" href="oomph__utilities_8h_source.html#l00866">866</a> of file <a class="el" href="oomph__utilities_8h_source.html">oomph_utilities.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="oomph__utilities_8h_source.html#l00876">876</a> of file <a class="el" href="oomph__utilities_8h_source.html">oomph_utilities.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="oomph__utilities_8cc_source.html#l01046">communicator_pt()</a>, <a class="el" href="oomph__utilities_8cc_source.html#l00983">init()</a>, and <a class="el" href="oomph__utilities_8h_source.html#l00851">mpi_has_been_initialised()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="oomph__utilities_8cc_source.html#l01054">communicator_pt()</a>, <a class="el" href="oomph__utilities_8cc_source.html#l00991">init()</a>, and <a class="el" href="oomph__utilities_8h_source.html#l00861">mpi_has_been_initialised()</a>.</p>
 
 </div>
 </div>
@@ -471,7 +465,7 @@ Static Private Attributes</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:04:43
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:40:29
         </div>
       </div>
     </footer>

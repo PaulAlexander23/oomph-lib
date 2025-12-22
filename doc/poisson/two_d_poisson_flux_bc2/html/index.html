@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -116,28 +110,28 @@
 <div class="textblock"><p>In this document, we discuss an alternative approach for solving the 2D Poisson problem: </p><center> <table class="doxtable">
 <tr>
 <td><center> <b>Two-dimensional model Poisson problem with Neumann boundary conditions</b> </center> Solve  <p class="formulaDsp">
-<picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \sum_{i=1}^2 \frac{\partial^2u}{\partial x_i^2} = f(x_1,x_2),
  \ \ \ \ \ \ \ \ \ \ (1)
-\]" src="form_0.png" width="170" height="38"/></picture>
+\]" src="form_0.png" width="170" height="38"/>
 </p>
- in the rectangular domain <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$D = \left\{ (x_1,x_2) \in 
-[0,1] \times [0,2]\right\} $" src="form_1.png" width="160" height="14"/></picture>. The domain boundary <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial D = \partial D_{Neumann} \cup \partial D_{Dirichlet} $" src="form_2.png" width="173" height="13"/></picture>, where <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial D_{Neumann} 
-= \left\{ (x_1,x_2) | x_1=1, \ x_2\in [0,2] \right\} $" src="form_3.png" width="235" height="14"/></picture>. On <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial D_{Dirichlet}$" src="form_4.png" width="60" height="13"/></picture> we apply the Dirichlet boundary conditions  <p class="formulaDsp">
-<picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ in the rectangular domain <img class="formulaInl" alt="$D = \left\{ (x_1,x_2) \in 
+[0,1] \times [0,2]\right\} $" src="form_1.png" width="160" height="14"/>. The domain boundary <img class="formulaInl" alt="$ \partial D = \partial D_{Neumann} \cup \partial D_{Dirichlet} $" src="form_2.png" width="173" height="13"/>, where <img class="formulaInl" alt="$ \partial D_{Neumann} 
+= \left\{ (x_1,x_2) | x_1=1, \ x_2\in [0,2] \right\} $" src="form_3.png" width="235" height="14"/>. On <img class="formulaInl" alt="$ \partial D_{Dirichlet}$" src="form_4.png" width="60" height="13"/> we apply the Dirichlet boundary conditions  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \left. u\right|_{\partial D_{Dirichlet}}=u_0,
 \ \ \ \ \ \ \ \ \ \ (2)
-\]" src="form_5.png" width="156" height="15"/></picture>
+\]" src="form_5.png" width="156" height="15"/>
 </p>
- where the function <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ u_0 $" src="form_6.png" width="14" height="9"/></picture> is given. On <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial D_{Neumann}$" src="form_7.png" width="64" height="13"/></picture> we apply the Neumann conditions  <p class="formulaDsp">
-<picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ where the function <img class="formulaInl" alt="$ u_0 $" src="form_6.png" width="14" height="9"/> is given. On <img class="formulaInl" alt="$ \partial D_{Neumann}$" src="form_7.png" width="64" height="13"/> we apply the Neumann conditions  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \left. \frac{\partial u}{\partial n}\right|_{\partial D_{Neumann}} = 
 \left. \frac{\partial u}{\partial x_1}\right|_{\partial D_{Neumann}}
 =g_0,
 \ \ \ \ \ \ \ \ \ \ (3)
-\]" src="form_8.png" width="269" height="34"/></picture>
+\]" src="form_8.png" width="269" height="34"/>
 </p>
- where the function <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ g_0 $" src="form_9.png" width="13" height="9"/></picture> is given.   </td></tr>
+ where the function <img class="formulaInl" alt="$ g_0 $" src="form_9.png" width="13" height="9"/> is given.   </td></tr>
 </table>
 <br  />
  </center><p> <br  />
@@ -145,10 +139,10 @@
 <p>In a <a href="../../two_d_poisson_flux_bc/html/index.html">previous example,</a> we applied the Neumann boundary conditions by adding <code>PoissonFluxElements</code> (elements that apply the Neumann (flux) boundary conditions on surfaces of higher-dimensional "bulk" Poisson elements) to the <code>Problem's</code> <code>Mesh</code> object. The ability to combine elements of different types in a single <code>Mesh</code> object is convenient, and in certain circumstances absolutely essential, but it can cause problems; see the discussion of the <code>doc_solution(...)</code> function in the <a href="../../two_d_poisson_flux_bc/html/index.html">previous example</a>. Furthermore, it seems strange (if not wrong!) that the <code>SimpleRectangularQuadMesh</code> &ndash; an object that is templated by a particular (single!) element type &ndash; also contains elements of a different type.</p>
 <p>We shall now demonstrate an alternative approach, based on the use of multiple meshes, each containing only one type of element. The ability to use multiple <code>Meshes</code> in a single <code>Problem</code> is an essential feature of <code>oomph-lib</code> and is vital in fluid-structure interaction problems, where the fluid and solid domains are distinct and each domain is discretised by a different element type.</p>
 <p>We consider the same problem as in the <a href="../../two_d_poisson_flux_bc/html/index.html">previous example</a> and choose a source function and boundary conditions for which the function  </p><p class="formulaDsp">
-<picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 u_0(x_1,x_2) = \tanh(1-\alpha(x_1 \tan\Phi - x_2)),
 \ \ \ \ \ \ \ \ \  (4)
-\]" src="form_10.png" width="274" height="14"/></picture>
+\]" src="form_10.png" width="274" height="14"/>
 </p>
 <p> is the exact solution of the problem.</p>
 <div class="image">
@@ -397,7 +391,7 @@ Post-processing</h1>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output solution </span></div>
 <div class="line"> <span class="comment">//-----------------</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> Bulk_mesh_pt-&gt;output(some_file,npts);</div>
@@ -405,7 +399,7 @@ Post-processing</h1>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output exact solution </span></div>
 <div class="line"> <span class="comment">//----------------------</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> Bulk_mesh_pt-&gt;output_fct(some_file,npts,<a class="code hl_function" href="namespaceTanhSolnForPoisson.html#af7896e9c18ce6438c73ae2a875e8b7de">TanhSolnForPoisson::get_exact_u</a>); </div>
@@ -415,7 +409,7 @@ Post-processing</h1>
 <div class="line"> <span class="comment">// Doc error and return of the square of the L2 error</span></div>
 <div class="line"> <span class="comment">//---------------------------------------------------</span></div>
 <div class="line"> <span class="keywordtype">double</span> error,norm;</div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/error%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/error%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> Bulk_mesh_pt-&gt;compute_error(some_file,<a class="code hl_function" href="namespaceTanhSolnForPoisson.html#af7896e9c18ce6438c73ae2a875e8b7de">TanhSolnForPoisson::get_exact_u</a>,</div>
@@ -448,7 +442,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -478,7 +472,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:07:07
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:43:02
         </div>
       </div>
     </footer>

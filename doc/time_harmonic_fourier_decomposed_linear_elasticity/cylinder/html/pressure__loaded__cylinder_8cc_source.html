@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -549,14 +543,14 @@
 <div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span> <span class="keywordtype">unsigned</span> npts=5; </div>
 <div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span> </div>
 <div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span> <span class="comment">// Output solution </span></div>
-<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span> sprintf(filename,<span class="stringliteral">&quot;%s/soln.dat&quot;</span>,doc_info.directory().c_str());</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln.dat&quot;</span>,doc_info.directory().c_str());</div>
 <div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span> some_file.open(filename);</div>
 <div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span> Bulk_mesh_pt-&gt;output(some_file,npts);</div>
 <div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span> some_file.close();</div>
 <div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span> </div>
 <div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span> <span class="comment">// Output norm of solution (to allow validation of solution even</span></div>
 <div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span> <span class="comment">// if triangle generates a slightly different mesh)</span></div>
-<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span> sprintf(filename,<span class="stringliteral">&quot;%s/norm.dat&quot;</span>,doc_info.directory().c_str());   </div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/norm.dat&quot;</span>,doc_info.directory().c_str());   </div>
 <div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span> some_file.open(filename);   </div>
 <div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span> <span class="keywordtype">double</span> norm=0.0;</div>
 <div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span> <span class="keywordtype">unsigned</span> nel=Bulk_mesh_pt-&gt;nelement();</div>
@@ -677,7 +671,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:38:16
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:45:20
         </div>
       </div>
     </footer>

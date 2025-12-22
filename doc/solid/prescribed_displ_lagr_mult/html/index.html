@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -118,7 +112,7 @@
  <hr  />
 <h1><a class="anchor" id="model"></a>
 The model problem</h1>
-<p>Here is a sketch of the model problem. A unit square is parametrised by two Lagrangian coordinates <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ (\xi^1,\xi^2) $" src="form_0.png" width="38" height="15"/></picture>. Three of the four boundaries are held in a fixed position while the square's upper boundary <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial D_{prescr}$" src="form_1.png" width="46" height="14"/></picture> (which is parametrised by the boundary coordinate <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \zeta$" src="form_2.png" width="6" height="13"/></picture>) is displaced to a new position given by <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf R}_{prescr}(\zeta) $" src="form_3.png" width="56" height="14"/></picture>:</p>
+<p>Here is a sketch of the model problem. A unit square is parametrised by two Lagrangian coordinates <img class="formulaInl" alt="$ (\xi^1,\xi^2) $" src="form_0.png" width="38" height="15"/>. Three of the four boundaries are held in a fixed position while the square's upper boundary <img class="formulaInl" alt="$ \partial D_{prescr}$" src="form_1.png" width="46" height="14"/> (which is parametrised by the boundary coordinate <img class="formulaInl" alt="$ \zeta$" src="form_2.png" width="6" height="13"/>) is displaced to a new position given by <img class="formulaInl" alt="$ {\bf R}_{prescr}(\zeta) $" src="form_3.png" width="56" height="14"/>:</p>
 <div class="image">
 <img src="sketch.gif" alt=""/>
 <div class="caption">
@@ -127,58 +121,58 @@ Sketch of the problem. </div></div>
  <hr  />
 <h1><a class="anchor" id="theory"></a>
 Theory and implementation</h1>
-<p>We identify the upper boundary by writing the Lagrangian coordinates of points on <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial D_{prescr} $" src="form_4.png" width="46" height="14"/></picture> as  </p><p class="formulaDsp">
-<picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p>We identify the upper boundary by writing the Lagrangian coordinates of points on <img class="formulaInl" alt="$ \partial D_{prescr} $" src="form_4.png" width="46" height="14"/> as  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \left. \big( \xi^1, \xi^2\big)\right|_{\partial D_{prescr}} = 
 \big( \xi^1_{\partial D_{prescr}}(\zeta), 
       \xi^2_{\partial D_{prescr}}(\zeta) \big)
-\]" src="form_5.png" width="241" height="20"/></picture>
+\]" src="form_5.png" width="241" height="20"/>
 </p>
 <p> which allows us to write the displacement constraint as  </p><p class="formulaDsp">
-<picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 {\bf R}(\xi^1_{\partial D_{prescr}}(\zeta),\xi^2_{\partial
 D_{prescr}}(\zeta)) = {\bf R}_{prescr}(\zeta).
-\]" src="form_6.png" width="228" height="19"/></picture>
+\]" src="form_6.png" width="228" height="19"/>
 </p>
 <p> We enforce this constraint by augmenting the principle of virtual displacements, discussed in <a href="../../solid_theory/html/index.html#equilibrium">the solid mechanics theory tutorial</a>, by a Lagrange multiplier term so that it becomes  </p><p class="formulaDsp">
-<picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \int \left\{ \sigma^{ij}  \ \delta \gamma_{ij} -  \left( {\bf f} - 
 \Lambda^2 \frac{\partial^2 {\bf R}}{\partial t^2} \right) \cdot 
 \delta {\bf R} \right\} \ dv -
 \oint_{A_{tract}} {\bf T} \cdot \delta {\bf R} \ dA
 \ + \ \delta \Pi_{constraint} = 0
 \ \ \ \ \ \ \ \ (1)
-\]" src="form_7.png" width="449" height="33"/></picture>
+\]" src="form_7.png" width="449" height="33"/>
 </p>
 <p> where  </p><p class="formulaDsp">
-<picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
  \Pi_{constraint} = \int_{\partial D} 
 \bigg( {\bf R}(\xi^1(\zeta),\xi^2(\zeta)) - {\bf R}_{prescr}(\zeta) \bigg)
 \cdot {\bf \Lambda} \ dS.
-\]" src="form_8.png" width="310" height="31"/></picture>
+\]" src="form_8.png" width="310" height="31"/>
 </p>
 <p> Here  </p><p class="formulaDsp">
-<picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[ 
+<img class="formulaDsp" alt="\[ 
 dS = \left| \frac{d {\bf R}(\xi^1(\zeta),\xi^2(\zeta))}{d \zeta}
 \right| d\zeta 
-\]" src="form_9.png" width="146" height="33"/></picture>
+\]" src="form_9.png" width="146" height="33"/>
 </p>
-<p> is the differential of the arclength along the domain boundary and the vector <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf \Lambda} $" src="form_10.png" width="11" height="10"/></picture> (not to be confused with the scalar <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \Lambda^2 $" src="form_11.png" width="15" height="11"/></picture> which represents the non-dimensional density in (1)!) is the Lagrange multiplier &ndash; the surface traction to be applied to <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial D_{prescr} $" src="form_4.png" width="46" height="14"/></picture> to deform the boundary into the required shape.</p>
-<p>We discretise this constraint by attaching <code>FaceElements</code> to the boundaries of the "bulk" solid elements that are adjacent to <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial D_{prescr} $" src="form_4.png" width="46" height="14"/></picture>. We denote the number of nodes in these <code>FaceElements</code> by <picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ N $" src="form_12.png" width="11" height="10"/></picture> and write the <picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ i $" src="form_13.png" width="5" height="9"/></picture>-th component of the discrete Lagrange multiplier stored at node <picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ j $" src="form_14.png" width="6" height="11"/></picture> as <picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ L_{ij} $" src="form_15.png" width="16" height="14"/></picture>. Thus the <picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ i $" src="form_13.png" width="5" height="9"/></picture> -th component of the Lagrange multiplier at local coordinate <picture><source srcset="form_16_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ s $" src="form_16.png" width="5" height="6"/></picture> in the element is given by  </p><p class="formulaDsp">
-<picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> is the differential of the arclength along the domain boundary and the vector <img class="formulaInl" alt="$ {\bf \Lambda} $" src="form_10.png" width="11" height="10"/> (not to be confused with the scalar <img class="formulaInl" alt="$ \Lambda^2 $" src="form_11.png" width="15" height="11"/> which represents the non-dimensional density in (1)!) is the Lagrange multiplier &ndash; the surface traction to be applied to <img class="formulaInl" alt="$ \partial D_{prescr} $" src="form_4.png" width="46" height="14"/> to deform the boundary into the required shape.</p>
+<p>We discretise this constraint by attaching <code>FaceElements</code> to the boundaries of the "bulk" solid elements that are adjacent to <img class="formulaInl" alt="$ \partial D_{prescr} $" src="form_4.png" width="46" height="14"/>. We denote the number of nodes in these <code>FaceElements</code> by <img class="formulaInl" alt="$ N $" src="form_12.png" width="11" height="10"/> and write the <img class="formulaInl" alt="$ i $" src="form_13.png" width="5" height="9"/>-th component of the discrete Lagrange multiplier stored at node <img class="formulaInl" alt="$ j $" src="form_14.png" width="6" height="11"/> as <img class="formulaInl" alt="$ L_{ij} $" src="form_15.png" width="16" height="14"/>. Thus the <img class="formulaInl" alt="$ i $" src="form_13.png" width="5" height="9"/> -th component of the Lagrange multiplier at local coordinate <img class="formulaInl" alt="$ s $" src="form_16.png" width="5" height="6"/> in the element is given by  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \Lambda_i = \sum_{j=1}^{N} L_{ij} \psi_j(s)
-\]" src="form_17.png" width="95" height="40"/></picture>
+\]" src="form_17.png" width="95" height="40"/>
 </p>
-<p> where <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \psi_j(s) $" src="form_18.png" width="29" height="14"/></picture> is the shape function associated with node <picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ j $" src="form_14.png" width="6" height="11"/></picture>.</p>
+<p> where <img class="formulaInl" alt="$ \psi_j(s) $" src="form_18.png" width="29" height="14"/> is the shape function associated with node <img class="formulaInl" alt="$ j $" src="form_14.png" width="6" height="11"/>.</p>
 <p>Upon taking the variations of the discretised constraint with respect to the unknown nodal positions and the discrete Lagrange multipliers we obtain <b>(i)</b> additional contributions to the residuals of the "bulk" solid mechanics equations (these may be interpreted as the virtual work done by the boundary tractions required to impose the prescribed boundary displacement) and <b>(ii)</b> the equations that impose the displacement constraints in weak form.</p>
-<p>The actual implementation of this approach in <code>oomph-lib</code> is best thought of as a generalisation of the <code>SolidTractionElements</code> that are used to impose a prescribed traction to the boundary of a solid domain. The main difference is that in the <code>ImposeDisplacementByLagrangeMultiplierElement</code>, the imposed traction is one of the unknowns in the problem and must be determined via the displacement constraint, using the approach described above. The element introduces additional unknowns (the nodal values of the Lagrange multiplier) into the problem, therefore the <code>ImposeDisplacementByLagrangeMultiplierElement</code> resizes (increases) the number of values stored at the node from the value that was originally assigned by the "bulk" solid element it is attached to. (If the elements are used in a single-physics solid mechanics problem the discrete Lagrange multipliers are the only nodal values in the problem since the unknown nodal positions are stored in a separate <code>Data</code> item; cf. <a href="../../solid_theory/html/index.html#solid_node">"Solid mechanics: Theory and implementation"</a> for more details). The prescribed boundary shape <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf R}_{prescr}(\zeta) $" src="form_3.png" width="56" height="14"/></picture> is provided by a <code>GeomObject</code>.</p>
+<p>The actual implementation of this approach in <code>oomph-lib</code> is best thought of as a generalisation of the <code>SolidTractionElements</code> that are used to impose a prescribed traction to the boundary of a solid domain. The main difference is that in the <code>ImposeDisplacementByLagrangeMultiplierElement</code>, the imposed traction is one of the unknowns in the problem and must be determined via the displacement constraint, using the approach described above. The element introduces additional unknowns (the nodal values of the Lagrange multiplier) into the problem, therefore the <code>ImposeDisplacementByLagrangeMultiplierElement</code> resizes (increases) the number of values stored at the node from the value that was originally assigned by the "bulk" solid element it is attached to. (If the elements are used in a single-physics solid mechanics problem the discrete Lagrange multipliers are the only nodal values in the problem since the unknown nodal positions are stored in a separate <code>Data</code> item; cf. <a href="../../solid_theory/html/index.html#solid_node">"Solid mechanics: Theory and implementation"</a> for more details). The prescribed boundary shape <img class="formulaInl" alt="$ {\bf R}_{prescr}(\zeta) $" src="form_3.png" width="56" height="14"/> is provided by a <code>GeomObject</code>.</p>
 <hr  />
  <hr  />
 <h1><a class="anchor" id="results"></a>
 Results</h1>
 <p>The animation below shows the domain deformation in response to a prescribed boundary displacement given by</p>
 <p class="formulaDsp">
-<picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 {\bf R}_{prescr}(\zeta)=
 \left(
 \begin{array}{c}
@@ -193,9 +187,9 @@ Results</h1>
 \frac{1}{2}\left(1-\cos\left(2\pi\zeta\right)\right)  
 \end{array}
 \right)
-\]" src="form_19.png" width="271" height="31"/></picture>
+\]" src="form_19.png" width="271" height="31"/>
 </p>
-<p>With this choice the upper boundary remains flat (i.e. at <picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_2=1 $" src="form_20.png" width="36" height="11"/></picture>) when <picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ A=0 $" src="form_21.png" width="34" height="10"/></picture>. As <picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ A $" src="form_22.png" width="10" height="10"/></picture> increases, the boundary is pulled upwards into a sinusoidal shape while simultaneously being pushed to the right. The vectors in the animation represent the Lagrange multipliers (i.e. the physical surface tractions) required to deform the domain into the required shape. Note how the automatic mesh adaptation refines the mesh in regions where the solid is strongly deformed.</p>
+<p>With this choice the upper boundary remains flat (i.e. at <img class="formulaInl" alt="$ x_2=1 $" src="form_20.png" width="36" height="11"/>) when <img class="formulaInl" alt="$ A=0 $" src="form_21.png" width="34" height="10"/>. As <img class="formulaInl" alt="$ A $" src="form_22.png" width="10" height="10"/> increases, the boundary is pulled upwards into a sinusoidal shape while simultaneously being pushed to the right. The vectors in the animation represent the Lagrange multipliers (i.e. the physical surface tractions) required to deform the domain into the required shape. Note how the automatic mesh adaptation refines the mesh in regions where the solid is strongly deformed.</p>
 <div class="image">
 <img src="lagr_distort.gif" alt=""/>
 <div class="caption">
@@ -279,7 +273,7 @@ Describing the prescribed boundary motion with a GeomObject</h1>
  <hr  />
 <h1><a class="anchor" id="namespace"></a>
 Global parameters</h1>
-<p>As usual we define the problem parameters in a global namespace. We provide an instantiation of the <code>GeomObject</code> that defines the deformed boundary shape (setting its initial displacement amplitude to zero), and create an instance of <code>oomph-lib's</code> generalised Hookean constitutive equation with a Poisson ratio of 0.3 (recall that the use of the single-argument constructor for this constitutive equation implies that all stresses are non-dimensionalised on Young's modulus <picture><source srcset="form_23_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ E $" src="form_23.png" width="10" height="10"/></picture>; see <a href="../../solid_theory/html/index.html#non-dim_solid">the solid mechanics theory tutorial</a> for details).</p>
+<p>As usual we define the problem parameters in a global namespace. We provide an instantiation of the <code>GeomObject</code> that defines the deformed boundary shape (setting its initial displacement amplitude to zero), and create an instance of <code>oomph-lib's</code> generalised Hookean constitutive equation with a Poisson ratio of 0.3 (recall that the use of the single-argument constructor for this constitutive equation implies that all stresses are non-dimensionalised on Young's modulus <img class="formulaInl" alt="$ E $" src="form_23.png" width="10" height="10"/>; see <a href="../../solid_theory/html/index.html#non-dim_solid">the solid mechanics theory tutorial</a> for details).</p>
  <div class="fragment"><div class="line"><span class="comment">//=======start_namespace==========================================</span></div>
 <div class="line"><span class="comment">/// Global parameters</span></div>
 <div class="line"><span class="comment">//================================================================</span></div>
@@ -296,7 +290,7 @@ Global parameters</h1>
 <div class="line"> GeneralisedHookean Constitutive_law(&amp;<a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a9e06f4ada334a9a911aa8cdcfb3ff30b">Global_Physical_Variables::Nu</a>);</div>
 <div class="line"> </div>
 <div class="line">} <span class="comment">//end namespace</span></div>
-<div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="prescribed__displ__lagr__mult_8cc_source.html#l00137">prescribed_displ_lagr_mult.cc:138</a></div></div>
+<div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">Global parameters.</div><div class="ttdef"><b>Definition</b> <a href="prescribed__displ__lagr__mult_8cc_source.html#l00137">prescribed_displ_lagr_mult.cc:138</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a9e06f4ada334a9a911aa8cdcfb3ff30b"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a9e06f4ada334a9a911aa8cdcfb3ff30b">Global_Physical_Variables::Nu</a></div><div class="ttdeci">double Nu</div><div class="ttdoc">Poisson's ratio.</div><div class="ttdef"><b>Definition</b> <a href="prescribed__displ__lagr__mult_8cc_source.html#l00144">prescribed_displ_lagr_mult.cc:144</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_ab0a184463cbaaa353f2235411adef3c4"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#ab0a184463cbaaa353f2235411adef3c4">Global_Physical_Variables::Boundary_geom_object</a></div><div class="ttdeci">WarpedLine Boundary_geom_object(0.0)</div><div class="ttdoc">GeomObject specifying the shape of the boundary: Initially it's flat.</div></div>
 </div><!-- fragment --><hr  />
@@ -680,7 +674,7 @@ Post-processing</h1>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output shape of deformed body</span></div>
 <div class="line"> <span class="comment">//------------------------------</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line">         Doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> solid_mesh_pt()-&gt;output(some_file,n_plot);</div>
@@ -688,7 +682,7 @@ Post-processing</h1>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output Lagrange multipliers</span></div>
 <div class="line"> <span class="comment">//----------------------------</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/lagr%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/lagr%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line">         Doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> </div>
@@ -718,7 +712,7 @@ Post-processing</h1>
 Comments and Exercises</h1>
 <h2><a class="anchor" id="comm"></a>
 Comments</h2>
-<p>As mentioned in the introduction, there is an alternative, much simpler way of imposing prescribed boundary motions which does not require Lagrange multipliers: Pin the nodal positions of all nodes on <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \partial D_{prescr} $" src="form_4.png" width="46" height="14"/></picture> and update their positions manually before calling the Newton solver, e.g. by changing the <code>actions_before_newton_solve()</code> function to</p>
+<p>As mentioned in the introduction, there is an alternative, much simpler way of imposing prescribed boundary motions which does not require Lagrange multipliers: Pin the nodal positions of all nodes on <img class="formulaInl" alt="$ \partial D_{prescr} $" src="form_4.png" width="46" height="14"/> and update their positions manually before calling the Newton solver, e.g. by changing the <code>actions_before_newton_solve()</code> function to</p>
  <div class="fragment"><div class="line"><span class="comment"> /// Update boundary position directly</span></div>
 <div class="line"> <span class="keywordtype">void</span> actions_before_newton_solve()</div>
 <div class="line">  {</div>
@@ -764,7 +758,7 @@ Exercises</h2>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -794,7 +788,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:23:59
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:44:34
         </div>
       </div>
     </footer>

@@ -2,7 +2,7 @@
 \hypertarget{classoomph_1_1TPoissonElement}{}\label{classoomph_1_1TPoissonElement}\index{oomph::TPoissonElement$<$ DIM, NNODE\_1D $>$@{oomph::TPoissonElement$<$ DIM, NNODE\_1D $>$}}
 
 
-//////////////////////////////////////////////////////////////////////  
+TPoisson\+Element$<$\+DIM,\+NNODE\+\_\+1\+D$>$ elements are isoparametric triangular DIM-\/dimensional Poisson elements with NNODE\+\_\+1D nodal points along each element edge. Inherits from \doxylink{classoomph_1_1TElement}{TElement} and \doxylink{classoomph_1_1PoissonEquations}{Poisson\+Equations}.  
 
 
 
@@ -62,7 +62,7 @@ Inheritance diagram for oomph\+::TPoisson\+Element\texorpdfstring{$<$}{<} DIM, N
 \begin{DoxyCompactList}\small\item\em Broken assignment operator. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1PoissonEquations_ae2e4e133bde4c4cbddf00de6c4feb72c}{u\+\_\+index\+\_\+poisson}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return the index at which the unknown value is stored. The default value, 0, is appropriate for single-\/physics problems, when there is only one variable, the value that satisfies the poisson equation. In derived multi-\/physics elements, this function should be overloaded to reflect the chosen storage scheme. Note that these equations require that the unknown is always stored at the same index at each node. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1PoissonEquations_a03685536047faa97412f86030ffd91cb}{point\+\_\+output\+\_\+data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{data}})
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1PoissonEquations_a03685536047faa97412f86030ffd91cb}{point\+\_\+output\+\_\+data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&data)
 \begin{DoxyCompactList}\small\item\em Output solution in data vector at local cordinates s\+: x,y \mbox{[},z\mbox{]}, u. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1PoissonEquations_a8a34f70a57c1aad552a9624ea0fb0906}{nscalar\+\_\+paraview}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Number of scalars/fields output by this element. Reimplements broken virtual function in base class. \end{DoxyCompactList}\item 
@@ -372,8 +372,10 @@ std\+::string \mbox{\hyperlink{classoomph_1_1PoissonEquations_ac52b68b17f7545128
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{oomph\+::\+Generalised\+Element}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}}() \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a76c506edf49c5bbfe94f424ec94191ab}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
-\begin{DoxyCompactList}\small\item\em Constructor\+: Initialise all pointers and all values to zero. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a6a34bffcef1bbbc5271630042afe7ca9}{\texorpdfstring{$\sim$}{\string~}\+Generalised\+Element}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor to clean up any memory allocated by the object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1GeneralisedElement_a4e4a9177fdb093fc85c890bb86bdf655}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
+\begin{DoxyCompactList}\small\item\em Broken copy constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a180b550ae69f8bcbaae3f37f38c475ff}{operator=}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
 \begin{DoxyCompactList}\small\item\em Broken assignment operator. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Data}{Data}} \texorpdfstring{$\ast$}{*}\& \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a3b83389f2c80788013421c6d59604f0b}{internal\+\_\+data\+\_\+pt}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
@@ -779,9 +781,7 @@ template$<$$>$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} DIM, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} NNODE\+\_\+1D$>$\newline
 class oomph\+::\+TPoisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}
-////////////////////////////////////////////////////////////////////// 
-
-///////////////////////////////////////////////////////////////////// TPoisson\+Element$<$\+DIM,\+NNODE\+\_\+1\+D$>$ elements are isoparametric triangular DIM-\/dimensional Poisson elements with NNODE\+\_\+1D nodal points along each element edge. Inherits from \doxylink{classoomph_1_1TElement}{TElement} and \doxylink{classoomph_1_1PoissonEquations}{Poisson\+Equations} 
+TPoisson\+Element$<$\+DIM,\+NNODE\+\_\+1\+D$>$ elements are isoparametric triangular DIM-\/dimensional Poisson elements with NNODE\+\_\+1D nodal points along each element edge. Inherits from \doxylink{classoomph_1_1TElement}{TElement} and \doxylink{classoomph_1_1PoissonEquations}{Poisson\+Equations}. 
 
 Definition at line \mbox{\hyperlink{Tpoisson__elements_8h_source_l00059}{59}} of file \mbox{\hyperlink{Tpoisson__elements_8h_source}{Tpoisson\+\_\+elements.\+h}}.
 

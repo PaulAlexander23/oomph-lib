@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -130,7 +124,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>///////////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////  
+<p><a class="el" href="classRefineableBinArray.html" title="RefineableBinArray class.">RefineableBinArray</a> class.  
  <a href="classRefineableBinArray.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="sample__point__container_8h_source.html">sample_point_container.h</a>&gt;</code></p>
@@ -142,8 +136,8 @@ $(function() {
  <div class="center">
   <img src="classRefineableBinArray.png" usemap="#RefineableBinArray_map" alt=""/>
   <map id="RefineableBinArray_map" name="RefineableBinArray_map">
-<area href="classBinArray.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////..." alt="BinArray" shape="rect" coords="0,56,136,80"/>
-<area href="classSamplePointContainer.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////..." alt="SamplePointContainer" shape="rect" coords="0,0,136,24"/>
+<area href="classBinArray.html" title="Base class for all bin arrays." alt="BinArray" shape="rect" coords="0,56,136,80"/>
+<area href="classSamplePointContainer.html" title="Base class for all sample point containers." alt="SamplePointContainer" shape="rect" coords="0,0,136,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -177,7 +171,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a324600bc7ba047fb17adcb3918ea5c17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill the bin array with specified SamplePoints.  <br /></td></tr>
 <tr class="separator:a324600bc7ba047fb17adcb3918ea5c17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a477a68e97b7cb297d38a0b2a844f53a5" id="r_a477a68e97b7cb297d38a0b2a844f53a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRefineableBinArray.html#a477a68e97b7cb297d38a0b2a844f53a5">add_sample_point</a> (<a class="el" href="classSamplePoint.html">SamplePoint</a> *new_sample_point_pt, const Vector&lt; double &gt; &amp;zeta)</td></tr>
-<tr class="memdesc:a477a68e97b7cb297d38a0b2a844f53a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add specified <a class="el" href="classSamplePoint.html" title="///////////////////////////////////////////////////////////////// ///////////////////////////////////...">SamplePoint</a> to <a class="el" href="classRefineableBinArray.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">RefineableBinArray</a>.  <br /></td></tr>
+<tr class="memdesc:a477a68e97b7cb297d38a0b2a844f53a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add specified <a class="el" href="classSamplePoint.html" title="Class for containing sample points: Number of finite element in its mesh and index of sample point wi...">SamplePoint</a> to <a class="el" href="classRefineableBinArray.html" title="RefineableBinArray class.">RefineableBinArray</a>.  <br /></td></tr>
 <tr class="separator:a477a68e97b7cb297d38a0b2a844f53a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f2f78efe9b05fda23d94e857d00cfa1" id="r_a4f2f78efe9b05fda23d94e857d00cfa1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRefineableBinArray.html#a4f2f78efe9b05fda23d94e857d00cfa1">locate_zeta</a> (const Vector&lt; double &gt; &amp;zeta, GeomObject *&amp;sub_geom_object_pt, Vector&lt; double &gt; &amp;<a class="el" href="cfortran_8h.html#ab7123126e4885ef647dd9c6e3807a21c">s</a>)</td></tr>
 <tr class="memdesc:a4f2f78efe9b05fda23d94e857d00cfa1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find sub-GeomObject (finite element) and the local coordinate s within it that contains point with global coordinate zeta. sub_geom_object_pt=0 if point can't be found.  <br /></td></tr>
@@ -195,7 +189,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:af23bddd8d9f462f8dd9c44eeed960125"><td class="mdescLeft">&#160;</td><td class="mdescRight">Max depth of the hierarchical bin_array.  <br /></td></tr>
 <tr class="separator:af23bddd8d9f462f8dd9c44eeed960125"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3450f66578018c21cb0e46a75788b6c3" id="r_a3450f66578018c21cb0e46a75788b6c3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRefineableBinArray.html#a3450f66578018c21cb0e46a75788b6c3">bin_array_is_recursive</a> () const</td></tr>
-<tr class="memdesc:a3450f66578018c21cb0e46a75788b6c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the <a class="el" href="classBinArray.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">BinArray</a> recursive?  <br /></td></tr>
+<tr class="memdesc:a3450f66578018c21cb0e46a75788b6c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is the <a class="el" href="classBinArray.html" title="Base class for all bin arrays.">BinArray</a> recursive?  <br /></td></tr>
 <tr class="separator:a3450f66578018c21cb0e46a75788b6c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec5b36a2a2b631093e53d0ea640eeffc" id="r_aec5b36a2a2b631093e53d0ea640eeffc"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRefineableBinArray.html#aec5b36a2a2b631093e53d0ea640eeffc">max_number_of_sample_point_per_bin</a> () const</td></tr>
 <tr class="memdesc:aec5b36a2a2b631093e53d0ea640eeffc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum number of sample points in bin (before its subdivided recursively)  <br /></td></tr>
@@ -213,16 +207,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a00fcd3ddc867085313ac945fc4553115"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counter to keep track of how many sample points we've visited during top level call to locate_zeta.  <br /></td></tr>
 <tr class="separator:a00fcd3ddc867085313ac945fc4553115"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af02301fa30cd6dd5807efd949df9f5de" id="r_af02301fa30cd6dd5807efd949df9f5de"><td class="memItemLeft" align="right" valign="top">unsigned &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRefineableBinArray.html#af02301fa30cd6dd5807efd949df9f5de">first_sample_point_to_actually_lookup_during_locate_zeta</a> ()</td></tr>
-<tr class="memdesc:af02301fa30cd6dd5807efd949df9f5de"><td class="mdescLeft">&#160;</td><td class="mdescRight">When searching through sample points recursively from the top level <a class="el" href="classRefineableBinArray.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">RefineableBinArray</a> (in deterministic order!) only actually do the locate_zeta calls when when the counter exceeds this value.  <br /></td></tr>
+<tr class="memdesc:af02301fa30cd6dd5807efd949df9f5de"><td class="mdescLeft">&#160;</td><td class="mdescRight">When searching through sample points recursively from the top level <a class="el" href="classRefineableBinArray.html" title="RefineableBinArray class.">RefineableBinArray</a> (in deterministic order!) only actually do the locate_zeta calls when when the counter exceeds this value.  <br /></td></tr>
 <tr class="separator:af02301fa30cd6dd5807efd949df9f5de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e91f20ad3d7f334f90af31feca1e8b9" id="r_a4e91f20ad3d7f334f90af31feca1e8b9"><td class="memItemLeft" align="right" valign="top">unsigned &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRefineableBinArray.html#a4e91f20ad3d7f334f90af31feca1e8b9">last_sample_point_to_actually_lookup_during_locate_zeta</a> ()</td></tr>
-<tr class="memdesc:a4e91f20ad3d7f334f90af31feca1e8b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">When searching through sample points recursively from the top level <a class="el" href="classRefineableBinArray.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">RefineableBinArray</a> (in deterministic order!) only actually do the locate_zeta calls when when the counter is less than this value.  <br /></td></tr>
+<tr class="memdesc:a4e91f20ad3d7f334f90af31feca1e8b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">When searching through sample points recursively from the top level <a class="el" href="classRefineableBinArray.html" title="RefineableBinArray class.">RefineableBinArray</a> (in deterministic order!) only actually do the locate_zeta calls when when the counter is less than this value.  <br /></td></tr>
 <tr class="separator:a4e91f20ad3d7f334f90af31feca1e8b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2367a6337a800cce5a6413548b49f75f" id="r_a2367a6337a800cce5a6413548b49f75f"><td class="memItemLeft" align="right" valign="top">unsigned &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRefineableBinArray.html#a2367a6337a800cce5a6413548b49f75f">multiplier_for_max_sample_point_to_actually_lookup_during_locate_zeta</a> ()</td></tr>
 <tr class="memdesc:a2367a6337a800cce5a6413548b49f75f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Every time we've completed a "spiral", visiting a finite number of sample points in a deterministic order, use this multiplier to increase the max. number of sample points to be visited. Using a multiplier rather than a constant increment increases the amount of (more and more unlikely to yield anything!) work done locally before doing another costly mpi round trip when we're already far from the point we're trying to find.  <br /></td></tr>
 <tr class="separator:a2367a6337a800cce5a6413548b49f75f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aedb53aae2b2ecb83a254ba992c848459" id="r_aedb53aae2b2ecb83a254ba992c848459"><td class="memItemLeft" align="right" valign="top">unsigned &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRefineableBinArray.html#aedb53aae2b2ecb83a254ba992c848459">initial_last_sample_point_to_actually_lookup_during_locate_zeta</a> ()</td></tr>
-<tr class="memdesc:aedb53aae2b2ecb83a254ba992c848459"><td class="mdescLeft">&#160;</td><td class="mdescRight">When searching through sample points recursively from the top level <a class="el" href="classRefineableBinArray.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">RefineableBinArray</a> (in deterministic order!) only actually do the locate_zeta calls when when the counter exceeds this value. This is the initial value when starting the spiral based search.  <br /></td></tr>
+<tr class="memdesc:aedb53aae2b2ecb83a254ba992c848459"><td class="mdescLeft">&#160;</td><td class="mdescRight">When searching through sample points recursively from the top level <a class="el" href="classRefineableBinArray.html" title="RefineableBinArray class.">RefineableBinArray</a> (in deterministic order!) only actually do the locate_zeta calls when when the counter exceeds this value. This is the initial value when starting the spiral based search.  <br /></td></tr>
 <tr class="separator:aedb53aae2b2ecb83a254ba992c848459"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classBinArray"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classBinArray')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classBinArray.html">BinArray</a></td></tr>
 <tr class="memitem:ae441b5dcc0d0276f4661a09ff735b581 inherit pub_methods_classBinArray" id="r_ae441b5dcc0d0276f4661a09ff735b581"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBinArray.html#ae441b5dcc0d0276f4661a09ff735b581">BinArray</a> (Mesh *<a class="el" href="classSamplePointContainer.html#aa638ec17fc518066a473e49ad148b122">mesh_pt</a>, const Vector&lt; std::pair&lt; double, double &gt; &gt; &amp;<a class="el" href="classSamplePointContainer.html#aac031f93652a7fcd21b5917a780d3022">min_and_max_coordinates</a>, const Vector&lt; unsigned &gt; &amp;<a class="el" href="classBinArray.html#a55a09b07aea56637d29ba63e28f21f1b">dimensions_of_bin_array</a>, const bool &amp;<a class="el" href="classSamplePointContainer.html#a6b6b42a9e6bd8f116af8699e03a78d44">use_eulerian_coordinates_during_setup</a>, const bool &amp;<a class="el" href="classSamplePointContainer.html#a399d246c1afdfd993ceb80e6f2de1400">ignore_halo_elements_during_locate_zeta_search</a>, const unsigned &amp;<a class="el" href="classSamplePointContainer.html#a816528cf500a37fa9ecabe6381b31852">nsample_points_generated_per_element</a>)</td></tr>
@@ -333,7 +327,7 @@ Private Member Functions</h2></td></tr>
 <tr class="memdesc:a89a3c1f13eeceec0fb11e399cc58d57d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill the bin array with sample points from FiniteElements stored in mesh.  <br /></td></tr>
 <tr class="separator:a89a3c1f13eeceec0fb11e399cc58d57d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8f32afc025239c62a5d7e7e2535313e" id="r_ac8f32afc025239c62a5d7e7e2535313e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRefineableBinArray.html#ac8f32afc025239c62a5d7e7e2535313e">create_sample_points_from_element</a> (FiniteElement *const element_pt, const unsigned &amp;n_element)</td></tr>
-<tr class="memdesc:ac8f32afc025239c62a5d7e7e2535313e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loop over all sample points in the element specified via the pointer and create a <a class="el" href="classSamplePoint.html" title="///////////////////////////////////////////////////////////////// ///////////////////////////////////...">SamplePoint</a> for each. Also specify the index of the element in its mesh.  <br /></td></tr>
+<tr class="memdesc:ac8f32afc025239c62a5d7e7e2535313e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loop over all sample points in the element specified via the pointer and create a <a class="el" href="classSamplePoint.html" title="Class for containing sample points: Number of finite element in its mesh and index of sample point wi...">SamplePoint</a> for each. Also specify the index of the element in its mesh.  <br /></td></tr>
 <tr class="separator:ac8f32afc025239c62a5d7e7e2535313e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
@@ -342,7 +336,7 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a164db8709f15119c8c5a761e9715d1a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector of pointers to constituent RefineableBins.  <br /></td></tr>
 <tr class="separator:a164db8709f15119c8c5a761e9715d1a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af36bed0c24cd70af160db504a3160d0b" id="r_af36bed0c24cd70af160db504a3160d0b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRefineableBinArray.html#af36bed0c24cd70af160db504a3160d0b">Bin_array_is_recursive</a></td></tr>
-<tr class="memdesc:af36bed0c24cd70af160db504a3160d0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable which stores if the <a class="el" href="classRefineableBinArray.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">RefineableBinArray</a> is recursive or not.  <br /></td></tr>
+<tr class="memdesc:af36bed0c24cd70af160db504a3160d0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable which stores if the <a class="el" href="classRefineableBinArray.html" title="RefineableBinArray class.">RefineableBinArray</a> is recursive or not.  <br /></td></tr>
 <tr class="separator:af36bed0c24cd70af160db504a3160d0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ecc65773101eced0ff7afe57fe04804" id="r_a5ecc65773101eced0ff7afe57fe04804"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRefineableBinArray.html#a5ecc65773101eced0ff7afe57fe04804">Depth</a></td></tr>
 <tr class="memdesc:a5ecc65773101eced0ff7afe57fe04804"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable which stores the Depth value of the bin_array. Useful for debugging and for preventing "infinite" recursion in case if there is a problem.  <br /></td></tr>
@@ -357,16 +351,16 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a5b75f5d76558759afe6ebae878f35f50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to root bin array.  <br /></td></tr>
 <tr class="separator:a5b75f5d76558759afe6ebae878f35f50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2eb9af06f24bef587e220675d56c5042" id="r_a2eb9af06f24bef587e220675d56c5042"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRefineableBinArray.html#a2eb9af06f24bef587e220675d56c5042">First_sample_point_to_actually_lookup_during_locate_zeta</a></td></tr>
-<tr class="memdesc:a2eb9af06f24bef587e220675d56c5042"><td class="mdescLeft">&#160;</td><td class="mdescRight">When searching through sample points recursively from the top level <a class="el" href="classRefineableBinArray.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">RefineableBinArray</a> (in deterministic order!) only actually do the locate_zeta calls when when the counter exceeds this value.  <br /></td></tr>
+<tr class="memdesc:a2eb9af06f24bef587e220675d56c5042"><td class="mdescLeft">&#160;</td><td class="mdescRight">When searching through sample points recursively from the top level <a class="el" href="classRefineableBinArray.html" title="RefineableBinArray class.">RefineableBinArray</a> (in deterministic order!) only actually do the locate_zeta calls when when the counter exceeds this value.  <br /></td></tr>
 <tr class="separator:a2eb9af06f24bef587e220675d56c5042"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2f3e80292b0b82fc0a41815dac9958d" id="r_aa2f3e80292b0b82fc0a41815dac9958d"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRefineableBinArray.html#aa2f3e80292b0b82fc0a41815dac9958d">Last_sample_point_to_actually_lookup_during_locate_zeta</a></td></tr>
-<tr class="memdesc:aa2f3e80292b0b82fc0a41815dac9958d"><td class="mdescLeft">&#160;</td><td class="mdescRight">When searching through sample points recursively from the top level <a class="el" href="classRefineableBinArray.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">RefineableBinArray</a> (in deterministic order!) only actually do the locate_zeta calls when when the counter is less than this value.  <br /></td></tr>
+<tr class="memdesc:aa2f3e80292b0b82fc0a41815dac9958d"><td class="mdescLeft">&#160;</td><td class="mdescRight">When searching through sample points recursively from the top level <a class="el" href="classRefineableBinArray.html" title="RefineableBinArray class.">RefineableBinArray</a> (in deterministic order!) only actually do the locate_zeta calls when when the counter is less than this value.  <br /></td></tr>
 <tr class="separator:aa2f3e80292b0b82fc0a41815dac9958d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a058f9e44828158525e7655d4007cae76" id="r_a058f9e44828158525e7655d4007cae76"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRefineableBinArray.html#a058f9e44828158525e7655d4007cae76">Multiplier_for_max_sample_point_to_actually_lookup_during_locate_zeta</a></td></tr>
 <tr class="memdesc:a058f9e44828158525e7655d4007cae76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Every time we've completed a "spiral", visiting a finite number of sample points in a deterministic order, use this multiplier to increase the max. number of sample points to be visited. Using a multiplier rather than a constant increment increases the amount of (more and more unlikely to yield anything!) work done locally before doing another costly mpi round trip when we're already far from the point we're trying to find.  <br /></td></tr>
 <tr class="separator:a058f9e44828158525e7655d4007cae76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace7075adbe1606ef0b01cbb14c380812" id="r_ace7075adbe1606ef0b01cbb14c380812"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRefineableBinArray.html#ace7075adbe1606ef0b01cbb14c380812">Initial_last_sample_point_to_actually_lookup_during_locate_zeta</a></td></tr>
-<tr class="memdesc:ace7075adbe1606ef0b01cbb14c380812"><td class="mdescLeft">&#160;</td><td class="mdescRight">When searching through sample points recursively from the top level <a class="el" href="classRefineableBinArray.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">RefineableBinArray</a> (in deterministic order!) only actually do the locate_zeta calls when when the counter exceeds this value. This is the initial value when starting the spiral based search.  <br /></td></tr>
+<tr class="memdesc:ace7075adbe1606ef0b01cbb14c380812"><td class="mdescLeft">&#160;</td><td class="mdescRight">When searching through sample points recursively from the top level <a class="el" href="classRefineableBinArray.html" title="RefineableBinArray class.">RefineableBinArray</a> (in deterministic order!) only actually do the locate_zeta calls when when the counter exceeds this value. This is the initial value when starting the spiral based search.  <br /></td></tr>
 <tr class="separator:ace7075adbe1606ef0b01cbb14c380812"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
@@ -403,8 +397,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:aae6e7df15b2dbbdf18467716da817f22 inherit pro_attribs_classSamplePointContainer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>///////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////// </p>
-<p><a class="el" href="classRefineableBinArray.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">RefineableBinArray</a> class. </p>
+<div class="textblock"><p><a class="el" href="classRefineableBinArray.html" title="RefineableBinArray class.">RefineableBinArray</a> class. </p>
 
 <p class="definition">Definition at line <a class="el" href="sample__point__container_8h_source.html#l00520">520</a> of file <a class="el" href="sample__point__container_8h_source.html">sample_point_container.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -425,7 +418,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constructor. </p>
-<p>/////////////////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////////// <a class="el" href="classRefineableBin.html" title="RefineableBin class. Contains sample points and is embedded in a RefineableBinArray....">RefineableBin</a> array class /////////////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////////////</p>
+<p><a class="el" href="classRefineableBin.html" title="RefineableBin class. Contains sample points and is embedded in a RefineableBinArray....">RefineableBin</a> array class /////////////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////////////.</p>
 <p>Constructor </p>
 
 <p class="definition">Definition at line <a class="el" href="sample__point__container_8cc_source.html#l00841">841</a> of file <a class="el" href="sample__point__container_8cc_source.html">sample_point_container.cc</a>.</p>
@@ -528,7 +521,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Add specified <a class="el" href="classSamplePoint.html" title="///////////////////////////////////////////////////////////////// ///////////////////////////////////...">SamplePoint</a> to <a class="el" href="classRefineableBinArray.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">RefineableBinArray</a>. </p>
+<p>Add specified <a class="el" href="classSamplePoint.html" title="Class for containing sample points: Number of finite element in its mesh and index of sample point wi...">SamplePoint</a> to <a class="el" href="classRefineableBinArray.html" title="RefineableBinArray class.">RefineableBinArray</a>. </p>
 
 <p class="definition">Definition at line <a class="el" href="sample__point__container_8h_source.html#l00612">612</a> of file <a class="el" href="sample__point__container_8h_source.html">sample_point_container.h</a>.</p>
 
@@ -561,7 +554,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Is the <a class="el" href="classBinArray.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">BinArray</a> recursive? </p>
+<p>Is the <a class="el" href="classBinArray.html" title="Base class for all bin arrays.">BinArray</a> recursive? </p>
 
 <p class="definition">Definition at line <a class="el" href="sample__point__container_8h_source.html#l00659">659</a> of file <a class="el" href="sample__point__container_8h_source.html">sample_point_container.h</a>.</p>
 
@@ -635,7 +628,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Loop over all sample points in the element specified via the pointer and create a <a class="el" href="classSamplePoint.html" title="///////////////////////////////////////////////////////////////// ///////////////////////////////////...">SamplePoint</a> for each. Also specify the index of the element in its mesh. </p>
+<p>Loop over all sample points in the element specified via the pointer and create a <a class="el" href="classSamplePoint.html" title="Class for containing sample points: Number of finite element in its mesh and index of sample point wi...">SamplePoint</a> for each. Also specify the index of the element in its mesh. </p>
 
 </div>
 </div>
@@ -759,7 +752,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>When searching through sample points recursively from the top level <a class="el" href="classRefineableBinArray.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">RefineableBinArray</a> (in deterministic order!) only actually do the locate_zeta calls when when the counter exceeds this value. </p>
+<p>When searching through sample points recursively from the top level <a class="el" href="classRefineableBinArray.html" title="RefineableBinArray class.">RefineableBinArray</a> (in deterministic order!) only actually do the locate_zeta calls when when the counter exceeds this value. </p>
 
 <p class="definition">Definition at line <a class="el" href="sample__point__container_8h_source.html#l00712">712</a> of file <a class="el" href="sample__point__container_8h_source.html">sample_point_container.h</a>.</p>
 
@@ -826,7 +819,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>When searching through sample points recursively from the top level <a class="el" href="classRefineableBinArray.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">RefineableBinArray</a> (in deterministic order!) only actually do the locate_zeta calls when when the counter exceeds this value. This is the initial value when starting the spiral based search. </p>
+<p>When searching through sample points recursively from the top level <a class="el" href="classRefineableBinArray.html" title="RefineableBinArray class.">RefineableBinArray</a> (in deterministic order!) only actually do the locate_zeta calls when when the counter exceeds this value. This is the initial value when starting the spiral based search. </p>
 
 <p class="definition">Definition at line <a class="el" href="sample__point__container_8h_source.html#l00741">741</a> of file <a class="el" href="sample__point__container_8h_source.html">sample_point_container.h</a>.</p>
 
@@ -857,7 +850,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>When searching through sample points recursively from the top level <a class="el" href="classRefineableBinArray.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">RefineableBinArray</a> (in deterministic order!) only actually do the locate_zeta calls when when the counter is less than this value. </p>
+<p>When searching through sample points recursively from the top level <a class="el" href="classRefineableBinArray.html" title="RefineableBinArray class.">RefineableBinArray</a> (in deterministic order!) only actually do the locate_zeta calls when when the counter is less than this value. </p>
 
 <p class="definition">Definition at line <a class="el" href="sample__point__container_8h_source.html#l00720">720</a> of file <a class="el" href="sample__point__container_8h_source.html">sample_point_container.h</a>.</p>
 
@@ -1337,7 +1330,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Variable which stores if the <a class="el" href="classRefineableBinArray.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">RefineableBinArray</a> is recursive or not. </p>
+<p>Variable which stores if the <a class="el" href="classRefineableBinArray.html" title="RefineableBinArray class.">RefineableBinArray</a> is recursive or not. </p>
 
 <p class="definition">Definition at line <a class="el" href="sample__point__container_8h_source.html#l00763">763</a> of file <a class="el" href="sample__point__container_8h_source.html">sample_point_container.h</a>.</p>
 
@@ -1450,7 +1443,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>When searching through sample points recursively from the top level <a class="el" href="classRefineableBinArray.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">RefineableBinArray</a> (in deterministic order!) only actually do the locate_zeta calls when when the counter exceeds this value. </p>
+<p>When searching through sample points recursively from the top level <a class="el" href="classRefineableBinArray.html" title="RefineableBinArray class.">RefineableBinArray</a> (in deterministic order!) only actually do the locate_zeta calls when when the counter exceeds this value. </p>
 
 <p class="definition">Definition at line <a class="el" href="sample__point__container_8h_source.html#l00785">785</a> of file <a class="el" href="sample__point__container_8h_source.html">sample_point_container.h</a>.</p>
 
@@ -1478,7 +1471,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>When searching through sample points recursively from the top level <a class="el" href="classRefineableBinArray.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">RefineableBinArray</a> (in deterministic order!) only actually do the locate_zeta calls when when the counter exceeds this value. This is the initial value when starting the spiral based search. </p>
+<p>When searching through sample points recursively from the top level <a class="el" href="classRefineableBinArray.html" title="RefineableBinArray class.">RefineableBinArray</a> (in deterministic order!) only actually do the locate_zeta calls when when the counter exceeds this value. This is the initial value when starting the spiral based search. </p>
 
 <p class="definition">Definition at line <a class="el" href="sample__point__container_8h_source.html#l00806">806</a> of file <a class="el" href="sample__point__container_8h_source.html">sample_point_container.h</a>.</p>
 
@@ -1506,7 +1499,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>When searching through sample points recursively from the top level <a class="el" href="classRefineableBinArray.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">RefineableBinArray</a> (in deterministic order!) only actually do the locate_zeta calls when when the counter is less than this value. </p>
+<p>When searching through sample points recursively from the top level <a class="el" href="classRefineableBinArray.html" title="RefineableBinArray class.">RefineableBinArray</a> (in deterministic order!) only actually do the locate_zeta calls when when the counter is less than this value. </p>
 
 <p class="definition">Definition at line <a class="el" href="sample__point__container_8h_source.html#l00790">790</a> of file <a class="el" href="sample__point__container_8h_source.html">sample_point_container.h</a>.</p>
 
@@ -1658,7 +1651,7 @@ Additional Inherited Members</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:03:13
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:36:37
         </div>
       </div>
     </footer>

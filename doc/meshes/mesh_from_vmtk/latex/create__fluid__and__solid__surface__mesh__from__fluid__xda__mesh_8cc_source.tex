@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{create__fluid__and__solid__surface__mesh__from__fluid__xda__mesh_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{create__fluid__and__solid__surface__mesh__from__fluid__xda__mesh_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{create__fluid__and__solid__surface__mesh__from__fluid__xda__mesh_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{create__fluid__and__solid__surface__mesh__from__fluid__xda__mesh_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{create__fluid__and__solid__surface__mesh__from__fluid__xda__mesh_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{create__fluid__and__solid__surface__mesh__from__fluid__xda__mesh_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{create__fluid__and__solid__surface__mesh__from__fluid__xda__mesh_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{create__fluid__and__solid__surface__mesh__from__fluid__xda__mesh_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -769,9 +769,9 @@
 \DoxyCodeLine{\Hypertarget{create__fluid__and__solid__surface__mesh__from__fluid__xda__mesh_8cc_source_l00765}00765\ \ \textcolor{keywordtype}{char}\ fluid\_filename[100];}
 \DoxyCodeLine{\Hypertarget{create__fluid__and__solid__surface__mesh__from__fluid__xda__mesh_8cc_source_l00766}00766\ \ \textcolor{keywordtype}{char}\ solid\_filename[100];}
 \DoxyCodeLine{\Hypertarget{create__fluid__and__solid__surface__mesh__from__fluid__xda__mesh_8cc_source_l00767}00767\ \ }
-\DoxyCodeLine{\Hypertarget{create__fluid__and__solid__surface__mesh__from__fluid__xda__mesh_8cc_source_l00768}00768\ \ sprintf(xda\_filename,\textcolor{stringliteral}{"{}\%s.xda"{}},\ input\_filename.c\_str());}
-\DoxyCodeLine{\Hypertarget{create__fluid__and__solid__surface__mesh__from__fluid__xda__mesh_8cc_source_l00769}00769\ \ sprintf(fluid\_filename,\textcolor{stringliteral}{"{}fluid\_\%s.poly"{}},\ input\_filename.c\_str());}
-\DoxyCodeLine{\Hypertarget{create__fluid__and__solid__surface__mesh__from__fluid__xda__mesh_8cc_source_l00770}00770\ \ sprintf(solid\_filename,\textcolor{stringliteral}{"{}solid\_\%s.poly"{}},\ input\_filename.c\_str());}
+\DoxyCodeLine{\Hypertarget{create__fluid__and__solid__surface__mesh__from__fluid__xda__mesh_8cc_source_l00768}00768\ \ snprintf(xda\_filename,\ \textcolor{keyword}{sizeof}(xda\_filename),\ \textcolor{stringliteral}{"{}\%s.xda"{}},\ input\_filename.c\_str());}
+\DoxyCodeLine{\Hypertarget{create__fluid__and__solid__surface__mesh__from__fluid__xda__mesh_8cc_source_l00769}00769\ \ snprintf(fluid\_filename,\ \textcolor{keyword}{sizeof}(fluid\_filename),\ \textcolor{stringliteral}{"{}fluid\_\%s.poly"{}},\ input\_filename.c\_str());}
+\DoxyCodeLine{\Hypertarget{create__fluid__and__solid__surface__mesh__from__fluid__xda__mesh_8cc_source_l00770}00770\ \ snprintf(solid\_filename,\ \textcolor{keyword}{sizeof}(solid\_filename),\ \textcolor{stringliteral}{"{}solid\_\%s.poly"{}},\ input\_filename.c\_str());}
 \DoxyCodeLine{\Hypertarget{create__fluid__and__solid__surface__mesh__from__fluid__xda__mesh_8cc_source_l00771}00771\ }
 \DoxyCodeLine{\Hypertarget{create__fluid__and__solid__surface__mesh__from__fluid__xda__mesh_8cc_source_l00772}00772\ \ \mbox{\hyperlink{create__fluid__and__solid__surface__mesh__from__fluid__xda__mesh_8cc_acaf73fcb31e5c25107e81bf28bb52d4c}{create\_fluid\_and\_solid\_surface\_mesh\_from\_fluid\_xda\_mesh}}(}
 \DoxyCodeLine{\Hypertarget{create__fluid__and__solid__surface__mesh__from__fluid__xda__mesh_8cc_source_l00773}00773\ \ \ xda\_filename,\ fluid\_filename,\ solid\_filename,\ d,do\_multi\_boundary\_ids);}

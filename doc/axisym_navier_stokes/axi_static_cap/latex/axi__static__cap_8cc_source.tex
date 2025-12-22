@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -433,7 +433,7 @@
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00429}00429\ }
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00430}00430\ \ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00431}00431\ \ \textcolor{keywordtype}{char}\ filename[100];\ \ \ }
-\DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00432}00432\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00432}00432\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00433}00433\ \ Trace\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00434}00434\ \ Trace\_file\ <<\ \textcolor{stringliteral}{"{}VARIABLES=\(\backslash\)"{}<greek>a</greek><sub>prescribed</sub>\(\backslash\)"{},"{}};}
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00435}00435\ \ Trace\_file\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}h<sub>left</sub>\(\backslash\)"{},\(\backslash\)"{}h<sub>right</sub>\(\backslash\)"{},"{}};}
@@ -477,7 +477,7 @@
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00473}00473\ }
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00474}00474\ }
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00475}00475\ \ \textcolor{comment}{//Output\ domain}}
-\DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00476}00476\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00476}00476\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00477}00477\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00478}00478\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00479}00479\ \ Bulk\_mesh\_pt-\/>output(some\_file,npts);}
@@ -485,7 +485,7 @@
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00481}00481\ \ some\_file.close();}
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00482}00482\ }
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00483}00483\ \ \textcolor{comment}{//Output\ domain\ in\ paraview\ format}}
-\DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00484}00484\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.vtu"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00484}00484\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.vtu"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00485}00485\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00486}00486\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00487}00487\ \ Bulk\_mesh\_pt-\/>output\_paraview(some\_file,npts);}
@@ -945,7 +945,7 @@
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00941}00941\ }
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00942}00942\ \ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00943}00943\ \ \textcolor{keywordtype}{char}\ filename[100];\ \ \ }
-\DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00944}00944\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00944}00944\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00945}00945\ \ Trace\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00946}00946\ \ Trace\_file\ <<\ \textcolor{stringliteral}{"{}VARIABLES=\(\backslash\)"{}<greek>a</greek><sub>prescribed</sub>\(\backslash\)"{},"{}};}
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00947}00947\ \ Trace\_file\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}h<sub>left</sub>\(\backslash\)"{},\(\backslash\)"{}h<sub>right</sub>\(\backslash\)"{},"{}};}
@@ -988,7 +988,7 @@
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00984}00984\ \ \textcolor{keywordtype}{unsigned}\ npts=5;\ }
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00985}00985\ }
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00986}00986\ \ \textcolor{comment}{//Output\ domain}}
-\DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00987}00987\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00987}00987\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00988}00988\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00989}00989\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{axi__static__cap_8cc_source_l00990}00990\ \ Bulk\_mesh\_pt-\/>output(some\_file,npts);}

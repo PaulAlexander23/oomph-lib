@@ -38,12 +38,12 @@ Inheritance diagram for oomph\+::Pressure\+Based\+Solid\+LSCPreconditioner\+:\be
 \begin{DoxyCompactList}\small\item\em Return whether the mass matrix is using diagonal scaling or not. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1PressureBasedSolidLSCPreconditioner_a921f36ec8af49017b799a3832d7f688f}{set\+\_\+p\+\_\+preconditioner}} (\mbox{\hyperlink{classoomph_1_1Preconditioner}{Preconditioner}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{new\+\_\+p\+\_\+preconditioner\+\_\+pt}})
 \begin{DoxyCompactList}\small\item\em Function to set a new pressure matrix preconditioner (inexact solver) \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1PressureBasedSolidLSCPreconditioner_ae138780720a5c540f13ecf793cc753bd}{set\+\_\+p\+\_\+superlu\+\_\+preconditioner}} ()
-\begin{DoxyCompactList}\small\item\em Function to (re-\/)set pressure matrix preconditioner (inexact solver) to Super\+LU. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1PressureBasedSolidLSCPreconditioner_aefee8bac09a8f0efee4303b2a3358780}{set\+\_\+p\+\_\+exact\+\_\+preconditioner}} ()
+\begin{DoxyCompactList}\small\item\em Function to (re-\/)set pressure matrix preconditioner (inexact solver) to exact preconditioner. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1PressureBasedSolidLSCPreconditioner_ac62a1112a99ae9503b97bd1c26f086f2}{set\+\_\+f\+\_\+preconditioner}} (\mbox{\hyperlink{classoomph_1_1Preconditioner}{Preconditioner}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{new\+\_\+f\+\_\+preconditioner\+\_\+pt}})
 \begin{DoxyCompactList}\small\item\em Function to set a new momentum matrix preconditioner (inexact solver) \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1PressureBasedSolidLSCPreconditioner_afd0606b3f743c14d4a0d96477906cd47}{set\+\_\+f\+\_\+superlu\+\_\+preconditioner}} ()
-\begin{DoxyCompactList}\small\item\em Function to (re-\/)set momentum matrix preconditioner (inexact solver) to Super\+LU. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1PressureBasedSolidLSCPreconditioner_af8c5b881a5612e6e646d1be5fa6a332c}{set\+\_\+f\+\_\+exact\+\_\+preconditioner}} ()
+\begin{DoxyCompactList}\small\item\em Function to (re-\/)set momentum matrix preconditioner (inexact solver) to exact preconditioner. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1PressureBasedSolidLSCPreconditioner_a1bfac76fb2b7451f009d2cb2fea5d07d}{enable\+\_\+doc\+\_\+time}} ()
 \begin{DoxyCompactList}\small\item\em Enable documentation of time. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1PressureBasedSolidLSCPreconditioner_a6828b0336e94e6acaaef7623f6425792}{disable\+\_\+doc\+\_\+time}} ()
@@ -222,7 +222,7 @@ Inheritance diagram for oomph\+::Pressure\+Based\+Solid\+LSCPreconditioner\+:\be
 \begin{DoxyCompactList}\small\item\em Destructor (empty) \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_a1e469ffc87f31f6f2eebbe5ccf03d78b}{preconditioner\+\_\+solve\+\_\+transpose}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{r}}, \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&z)
 \begin{DoxyCompactList}\small\item\em Apply the preconditioner. Pure virtual generic interface function. This method should apply the preconditioner operator to the vector r and return the vector z. (broken virtual) \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_a0b95e7159585b5151f9e5dc1d1713655}{setup}} (\mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1Preconditioner_a08e0582b77c6cbfaf85b80a4ac5c11f3}{matrix\+\_\+pt}})
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_ac2c0f7f39eccd814e72cc5813ec864e0}{setup}} (\mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1Preconditioner_a08e0582b77c6cbfaf85b80a4ac5c11f3}{matrix\+\_\+pt}})
 \begin{DoxyCompactList}\small\item\em Setup the preconditioner\+: store the matrix pointer and the communicator pointer then call preconditioner specific \doxylink{classoomph_1_1Preconditioner_af4886f4efe510e5c9b0eb19422943588}{setup()} function. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_a783fae97e4b898f8de72b504a4f4bec6}{setup}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Problem}{Problem}} \texorpdfstring{$\ast$}{*}problem\+\_\+pt, \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1Preconditioner_a08e0582b77c6cbfaf85b80a4ac5c11f3}{matrix\+\_\+pt}})
 \begin{DoxyCompactList}\small\item\em Compatability layer for old preconditioners where problem pointers were needed. The problem pointer is only used to get a communicator pointer. \end{DoxyCompactList}\item 
@@ -422,7 +422,7 @@ Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00110}{110
 
 
 
-References \mbox{\hyperlink{solid__preconditioners_8h_source_l00339}{Bt\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00330}{Doc\+\_\+time}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00342}{E\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00333}{F\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00303}{F\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00356}{Form\+\_\+\+BFBt\+\_\+product}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00318}{P\+\_\+matrix\+\_\+using\+\_\+scaling}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00300}{P\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00314}{Preconditioner\+\_\+has\+\_\+been\+\_\+setup}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00336}{QBt\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{block__preconditioner_8h_source_l02851}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::set\+\_\+nmesh()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00360}{Solid\+\_\+mesh\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00306}{Using\+\_\+default\+\_\+f\+\_\+preconditioner}}, and \mbox{\hyperlink{solid__preconditioners_8h_source_l00309}{Using\+\_\+default\+\_\+p\+\_\+preconditioner}}.
+References \mbox{\hyperlink{solid__preconditioners_8h_source_l00341}{Bt\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00332}{Doc\+\_\+time}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00344}{E\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00335}{F\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00305}{F\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00358}{Form\+\_\+\+BFBt\+\_\+product}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00320}{P\+\_\+matrix\+\_\+using\+\_\+scaling}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00302}{P\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00316}{Preconditioner\+\_\+has\+\_\+been\+\_\+setup}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00338}{QBt\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{block__preconditioner_8h_source_l02851}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::set\+\_\+nmesh()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00362}{Solid\+\_\+mesh\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00308}{Using\+\_\+default\+\_\+f\+\_\+preconditioner}}, and \mbox{\hyperlink{solid__preconditioners_8h_source_l00311}{Using\+\_\+default\+\_\+p\+\_\+preconditioner}}.
 
 \Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_a2ed209babe751dcd64085d75b5ab9593}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_a2ed209babe751dcd64085d75b5ab9593} 
 \index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!````~PressureBasedSolidLSCPreconditioner@{\texorpdfstring{$\sim$}{\string~}PressureBasedSolidLSCPreconditioner}}
@@ -440,7 +440,7 @@ Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00156}{156
 
 
 
-References \mbox{\hyperlink{solid__preconditioners_8cc_source_l01357}{clean\+\_\+up\+\_\+memory()}}.
+References \mbox{\hyperlink{solid__preconditioners_8cc_source_l01359}{clean\+\_\+up\+\_\+memory()}}.
 
 \Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_a7cc7a421e4af561996ef7921fc345849}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_a7cc7a421e4af561996ef7921fc345849} 
 \index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!PressureBasedSolidLSCPreconditioner@{PressureBasedSolidLSCPreconditioner}}
@@ -467,11 +467,11 @@ Helper function to assemble the diagonal of the mass matrix from the elemental c
 
 Helper function to assemble the diagonal of the mass matrix from the elemental contributions defined in Solid\+Element\+With\+Diagonal\+Mass\+Matrix\+::get\+\_\+mass\+\_\+matrix\+\_\+diagonal(...). 
 
-Definition at line \mbox{\hyperlink{solid__preconditioners_8cc_source_l00704}{704}} of file \mbox{\hyperlink{solid__preconditioners_8cc_source}{solid\+\_\+preconditioners.\+cc}}.
+Definition at line \mbox{\hyperlink{solid__preconditioners_8cc_source_l00706}{706}} of file \mbox{\hyperlink{solid__preconditioners_8cc_source}{solid\+\_\+preconditioners.\+cc}}.
 
 
 
-References \mbox{\hyperlink{block__preconditioner_8h_source_l03025}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::any\+\_\+mesh\+\_\+distributed()}}, \mbox{\hyperlink{block__preconditioner_8h_source_l01903}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::block\+\_\+distribution\+\_\+pt()}}, \mbox{\hyperlink{block__preconditioner_8h_source_l01822}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::block\+\_\+number()}}, \mbox{\hyperlink{matrices_8cc_source_l01710}{oomph\+::\+CRDouble\+Matrix\+::build\+\_\+without\+\_\+copy()}}, \mbox{\hyperlink{preconditioner_8h_source_l00171}{oomph\+::\+Preconditioner\+::comm\+\_\+pt()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00493}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::distributed()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00448}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{elements_8h_source_l00708}{oomph\+::\+Generalised\+Element\+::eqn\+\_\+number()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00481}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::first\+\_\+row()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{block__preconditioner_8h_source_l01850}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::index\+\_\+in\+\_\+block()}}, \mbox{\hyperlink{elements_8h_source_l01167}{oomph\+::\+Generalised\+Element\+::is\+\_\+halo()}}, \mbox{\hyperlink{block__preconditioner_8h_source_l02017}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::master\+\_\+distribution\+\_\+pt()}}, \mbox{\hyperlink{elements_8h_source_l00839}{oomph\+::\+Generalised\+Element\+::ndof()}}, \mbox{\hyperlink{mesh_8h_source_l00590}{oomph\+::\+Mesh\+::nelement()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00463}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::nrow()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00469}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::nrow\+\_\+local()}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, and \mbox{\hyperlink{solid__preconditioners_8h_source_l00360}{Solid\+\_\+mesh\+\_\+pt}}.
+References \mbox{\hyperlink{block__preconditioner_8h_source_l03025}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::any\+\_\+mesh\+\_\+distributed()}}, \mbox{\hyperlink{block__preconditioner_8h_source_l01903}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::block\+\_\+distribution\+\_\+pt()}}, \mbox{\hyperlink{block__preconditioner_8h_source_l01822}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::block\+\_\+number()}}, \mbox{\hyperlink{matrices_8cc_source_l01710}{oomph\+::\+CRDouble\+Matrix\+::build\+\_\+without\+\_\+copy()}}, \mbox{\hyperlink{preconditioner_8h_source_l00171}{oomph\+::\+Preconditioner\+::comm\+\_\+pt()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00493}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::distributed()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00452}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{elements_8h_source_l00691}{oomph\+::\+Generalised\+Element\+::eqn\+\_\+number()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00481}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::first\+\_\+row()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{block__preconditioner_8h_source_l01850}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::index\+\_\+in\+\_\+block()}}, \mbox{\hyperlink{elements_8h_source_l01150}{oomph\+::\+Generalised\+Element\+::is\+\_\+halo()}}, \mbox{\hyperlink{block__preconditioner_8h_source_l02017}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::master\+\_\+distribution\+\_\+pt()}}, \mbox{\hyperlink{elements_8h_source_l00822}{oomph\+::\+Generalised\+Element\+::ndof()}}, \mbox{\hyperlink{mesh_8h_source_l00598}{oomph\+::\+Mesh\+::nelement()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00463}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::nrow()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00469}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::nrow\+\_\+local()}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, and \mbox{\hyperlink{solid__preconditioners_8h_source_l00362}{Solid\+\_\+mesh\+\_\+pt}}.
 
 
 
@@ -493,11 +493,11 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1Preconditioner_a46c31c416829be
 
 
 
-Definition at line \mbox{\hyperlink{solid__preconditioners_8cc_source_l01357}{1357}} of file \mbox{\hyperlink{solid__preconditioners_8cc_source}{solid\+\_\+preconditioners.\+cc}}.
+Definition at line \mbox{\hyperlink{solid__preconditioners_8cc_source_l01359}{1359}} of file \mbox{\hyperlink{solid__preconditioners_8cc_source}{solid\+\_\+preconditioners.\+cc}}.
 
 
 
-References \mbox{\hyperlink{solid__preconditioners_8h_source_l00339}{Bt\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00342}{E\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00333}{F\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00303}{F\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00356}{Form\+\_\+\+BFBt\+\_\+product}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00300}{P\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00314}{Preconditioner\+\_\+has\+\_\+been\+\_\+setup}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00336}{QBt\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00306}{Using\+\_\+default\+\_\+f\+\_\+preconditioner}}, and \mbox{\hyperlink{solid__preconditioners_8h_source_l00309}{Using\+\_\+default\+\_\+p\+\_\+preconditioner}}.
+References \mbox{\hyperlink{solid__preconditioners_8h_source_l00341}{Bt\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00344}{E\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00335}{F\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00305}{F\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00358}{Form\+\_\+\+BFBt\+\_\+product}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00302}{P\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00316}{Preconditioner\+\_\+has\+\_\+been\+\_\+setup}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00338}{QBt\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00308}{Using\+\_\+default\+\_\+f\+\_\+preconditioner}}, and \mbox{\hyperlink{solid__preconditioners_8h_source_l00311}{Using\+\_\+default\+\_\+p\+\_\+preconditioner}}.
 
 
 
@@ -515,11 +515,11 @@ Disable documentation of time.
 
 
 
-Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00264}{264}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
+Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00266}{266}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
 
 
 
-References \mbox{\hyperlink{solid__preconditioners_8h_source_l00330}{Doc\+\_\+time}}.
+References \mbox{\hyperlink{solid__preconditioners_8h_source_l00332}{Doc\+\_\+time}}.
 
 \Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_aeb2296a7bc2ba3de7c332506a768c4c4}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_aeb2296a7bc2ba3de7c332506a768c4c4} 
 \index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!disable\_form\_BFBt\_product@{disable\_form\_BFBt\_product}}
@@ -533,11 +533,11 @@ if this function is called then\+: in setup(...) \+: the matrices B, F are assem
 
 
 
-Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00285}{285}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
+Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00287}{287}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
 
 
 
-References \mbox{\hyperlink{solid__preconditioners_8h_source_l00356}{Form\+\_\+\+BFBt\+\_\+product}}.
+References \mbox{\hyperlink{solid__preconditioners_8h_source_l00358}{Form\+\_\+\+BFBt\+\_\+product}}.
 
 \Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_aa1b8a157c96f347dcb5f23b14c88765f}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_aa1b8a157c96f347dcb5f23b14c88765f} 
 \index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!disable\_p\_matrix\_scaling@{disable\_p\_matrix\_scaling}}
@@ -555,7 +555,7 @@ Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00196}{196
 
 
 
-References \mbox{\hyperlink{solid__preconditioners_8h_source_l00318}{P\+\_\+matrix\+\_\+using\+\_\+scaling}}.
+References \mbox{\hyperlink{solid__preconditioners_8h_source_l00320}{P\+\_\+matrix\+\_\+using\+\_\+scaling}}.
 
 \Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_a1bfac76fb2b7451f009d2cb2fea5d07d}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_a1bfac76fb2b7451f009d2cb2fea5d07d} 
 \index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!enable\_doc\_time@{enable\_doc\_time}}
@@ -569,11 +569,11 @@ Enable documentation of time.
 
 
 
-Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00258}{258}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
+Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00260}{260}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
 
 
 
-References \mbox{\hyperlink{solid__preconditioners_8h_source_l00330}{Doc\+\_\+time}}.
+References \mbox{\hyperlink{solid__preconditioners_8h_source_l00332}{Doc\+\_\+time}}.
 
 \Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_a302edf88e0ec3fa457022a9a3886cdf9}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_a302edf88e0ec3fa457022a9a3886cdf9} 
 \index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!enable\_form\_BFBt\_product@{enable\_form\_BFBt\_product}}
@@ -587,11 +587,11 @@ If this function is called then\+: in setup(...) \+: BFBt is computed. in precon
 
 
 
-Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00273}{273}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
+Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00275}{275}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
 
 
 
-References \mbox{\hyperlink{solid__preconditioners_8h_source_l00356}{Form\+\_\+\+BFBt\+\_\+product}}.
+References \mbox{\hyperlink{solid__preconditioners_8h_source_l00358}{Form\+\_\+\+BFBt\+\_\+product}}.
 
 \Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_aeb7e9109194f8a468a2c6ffec13e3c9f}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_aeb7e9109194f8a468a2c6ffec13e3c9f} 
 \index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!enable\_p\_matrix\_scaling@{enable\_p\_matrix\_scaling}}
@@ -609,7 +609,7 @@ Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00189}{189
 
 
 
-References \mbox{\hyperlink{solid__preconditioners_8h_source_l00318}{P\+\_\+matrix\+\_\+using\+\_\+scaling}}.
+References \mbox{\hyperlink{solid__preconditioners_8h_source_l00320}{P\+\_\+matrix\+\_\+using\+\_\+scaling}}.
 
 \Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_abefd3cc7c97fbdaad40c0231663c680f}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_abefd3cc7c97fbdaad40c0231663c680f} 
 \index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!is\_p\_matrix\_using\_scaling@{is\_p\_matrix\_using\_scaling}}
@@ -627,7 +627,7 @@ Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00203}{203
 
 
 
-References \mbox{\hyperlink{solid__preconditioners_8h_source_l00318}{P\+\_\+matrix\+\_\+using\+\_\+scaling}}.
+References \mbox{\hyperlink{solid__preconditioners_8h_source_l00320}{P\+\_\+matrix\+\_\+using\+\_\+scaling}}.
 
 \Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_ab81479f6e6a91ecb048f8c8d7e050744}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_ab81479f6e6a91ecb048f8c8d7e050744} 
 \index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!preconditioner\_solve@{preconditioner\_solve}}
@@ -645,11 +645,29 @@ Implements \mbox{\hyperlink{classoomph_1_1Preconditioner_ace1199369e4465cd2b9a34
 
 
 
-Definition at line \mbox{\hyperlink{solid__preconditioners_8cc_source_l00493}{493}} of file \mbox{\hyperlink{solid__preconditioners_8cc_source}{solid\+\_\+preconditioners.\+cc}}.
+Definition at line \mbox{\hyperlink{solid__preconditioners_8cc_source_l00495}{495}} of file \mbox{\hyperlink{solid__preconditioners_8cc_source}{solid\+\_\+preconditioners.\+cc}}.
 
 
 
-References \mbox{\hyperlink{solid__preconditioners_8h_source_l00339}{Bt\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{double__vector_8cc_source_l00035}{oomph\+::\+Double\+Vector\+::build()}}, \mbox{\hyperlink{double__vector_8h_source_l00154}{oomph\+::\+Double\+Vector\+::built()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00330}{Doc\+\_\+time}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00342}{E\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00333}{F\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00327}{F\+\_\+preconditioner\+\_\+is\+\_\+block\+\_\+preconditioner}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00303}{F\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00356}{Form\+\_\+\+BFBt\+\_\+product}}, \mbox{\hyperlink{block__preconditioner_8cc_source_l04186}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::get\+\_\+block\+\_\+vector()}}, \mbox{\hyperlink{matrix__vector__product_8cc_source_l00108}{oomph\+::\+Matrix\+Vector\+Product\+::multiply()}}, \mbox{\hyperlink{matrix__vector__product_8cc_source_l00177}{oomph\+::\+Matrix\+Vector\+Product\+::multiply\+\_\+transpose()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00463}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::nrow()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00300}{P\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00314}{Preconditioner\+\_\+has\+\_\+been\+\_\+setup}}, \mbox{\hyperlink{classoomph_1_1Preconditioner_ace1199369e4465cd2b9a34884bb64ec8}{oomph\+::\+Preconditioner\+::preconditioner\+\_\+solve()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00336}{QBt\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{block__preconditioner_8cc_source_l04489}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::return\+\_\+block\+\_\+vector()}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01295}{oomph\+::\+Timing\+Helpers\+::timer()}}.
+References \mbox{\hyperlink{solid__preconditioners_8h_source_l00341}{Bt\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{double__vector_8cc_source_l00035}{oomph\+::\+Double\+Vector\+::build()}}, \mbox{\hyperlink{double__vector_8h_source_l00154}{oomph\+::\+Double\+Vector\+::built()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00332}{Doc\+\_\+time}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00344}{E\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00335}{F\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00329}{F\+\_\+preconditioner\+\_\+is\+\_\+block\+\_\+preconditioner}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00305}{F\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00358}{Form\+\_\+\+BFBt\+\_\+product}}, \mbox{\hyperlink{block__preconditioner_8cc_source_l04185}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::get\+\_\+block\+\_\+vector()}}, \mbox{\hyperlink{matrix__vector__product_8cc_source_l00108}{oomph\+::\+Matrix\+Vector\+Product\+::multiply()}}, \mbox{\hyperlink{matrix__vector__product_8cc_source_l00177}{oomph\+::\+Matrix\+Vector\+Product\+::multiply\+\_\+transpose()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00463}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::nrow()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00302}{P\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00316}{Preconditioner\+\_\+has\+\_\+been\+\_\+setup}}, \mbox{\hyperlink{classoomph_1_1Preconditioner_ace1199369e4465cd2b9a34884bb64ec8}{oomph\+::\+Preconditioner\+::preconditioner\+\_\+solve()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00338}{QBt\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{block__preconditioner_8cc_source_l04488}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::return\+\_\+block\+\_\+vector()}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01303}{oomph\+::\+Timing\+Helpers\+::timer()}}.
+
+\Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_af8c5b881a5612e6e646d1be5fa6a332c}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_af8c5b881a5612e6e646d1be5fa6a332c} 
+\index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!set\_f\_exact\_preconditioner@{set\_f\_exact\_preconditioner}}
+\index{set\_f\_exact\_preconditioner@{set\_f\_exact\_preconditioner}!oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}}
+\doxysubsubsection{\texorpdfstring{set\_f\_exact\_preconditioner()}{set\_f\_exact\_preconditioner()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} oomph\+::\+Pressure\+Based\+Solid\+LSCPreconditioner\+::set\+\_\+f\+\_\+exact\+\_\+preconditioner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Function to (re-\/)set momentum matrix preconditioner (inexact solver) to exact preconditioner. 
+
+
+
+Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00248}{248}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
+
+
+
+References \mbox{\hyperlink{linear__solver_8cc_source_l02819}{oomph\+::\+Exact\+Preconditioner\+Factory\+::create\+\_\+exact\+\_\+preconditioner()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00305}{F\+\_\+preconditioner\+\_\+pt}}, and \mbox{\hyperlink{solid__preconditioners_8h_source_l00308}{Using\+\_\+default\+\_\+f\+\_\+preconditioner}}.
 
 \Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_ac62a1112a99ae9503b97bd1c26f086f2}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_ac62a1112a99ae9503b97bd1c26f086f2} 
 \index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!set\_f\_preconditioner@{set\_f\_preconditioner}}
@@ -663,29 +681,29 @@ Function to set a new momentum matrix preconditioner (inexact solver)
 
 
 
-Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00233}{233}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
+Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00234}{234}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
 
 
 
-References \mbox{\hyperlink{solid__preconditioners_8h_source_l00303}{F\+\_\+preconditioner\+\_\+pt}}, and \mbox{\hyperlink{solid__preconditioners_8h_source_l00306}{Using\+\_\+default\+\_\+f\+\_\+preconditioner}}.
+References \mbox{\hyperlink{solid__preconditioners_8h_source_l00305}{F\+\_\+preconditioner\+\_\+pt}}, and \mbox{\hyperlink{solid__preconditioners_8h_source_l00308}{Using\+\_\+default\+\_\+f\+\_\+preconditioner}}.
 
-\Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_afd0606b3f743c14d4a0d96477906cd47}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_afd0606b3f743c14d4a0d96477906cd47} 
-\index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!set\_f\_superlu\_preconditioner@{set\_f\_superlu\_preconditioner}}
-\index{set\_f\_superlu\_preconditioner@{set\_f\_superlu\_preconditioner}!oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}}
-\doxysubsubsection{\texorpdfstring{set\_f\_superlu\_preconditioner()}{set\_f\_superlu\_preconditioner()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} oomph\+::\+Pressure\+Based\+Solid\+LSCPreconditioner\+::set\+\_\+f\+\_\+superlu\+\_\+preconditioner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-Function to (re-\/)set momentum matrix preconditioner (inexact solver) to Super\+LU. 
+\Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_aefee8bac09a8f0efee4303b2a3358780}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_aefee8bac09a8f0efee4303b2a3358780} 
+\index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!set\_p\_exact\_preconditioner@{set\_p\_exact\_preconditioner}}
+\index{set\_p\_exact\_preconditioner@{set\_p\_exact\_preconditioner}!oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}}
+\doxysubsubsection{\texorpdfstring{set\_p\_exact\_preconditioner()}{set\_p\_exact\_preconditioner()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} oomph\+::\+Pressure\+Based\+Solid\+LSCPreconditioner\+::set\+\_\+p\+\_\+exact\+\_\+preconditioner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00247}{247}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
+Function to (re-\/)set pressure matrix preconditioner (inexact solver) to exact preconditioner. 
 
 
 
-References \mbox{\hyperlink{solid__preconditioners_8h_source_l00303}{F\+\_\+preconditioner\+\_\+pt}}, and \mbox{\hyperlink{solid__preconditioners_8h_source_l00306}{Using\+\_\+default\+\_\+f\+\_\+preconditioner}}.
+Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00223}{223}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
+
+
+
+References \mbox{\hyperlink{linear__solver_8cc_source_l02819}{oomph\+::\+Exact\+Preconditioner\+Factory\+::create\+\_\+exact\+\_\+preconditioner()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00302}{P\+\_\+preconditioner\+\_\+pt}}, and \mbox{\hyperlink{solid__preconditioners_8h_source_l00311}{Using\+\_\+default\+\_\+p\+\_\+preconditioner}}.
 
 \Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_a921f36ec8af49017b799a3832d7f688f}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_a921f36ec8af49017b799a3832d7f688f} 
 \index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!set\_p\_preconditioner@{set\_p\_preconditioner}}
@@ -703,25 +721,7 @@ Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00209}{209
 
 
 
-References \mbox{\hyperlink{solid__preconditioners_8h_source_l00300}{P\+\_\+preconditioner\+\_\+pt}}, and \mbox{\hyperlink{solid__preconditioners_8h_source_l00309}{Using\+\_\+default\+\_\+p\+\_\+preconditioner}}.
-
-\Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_ae138780720a5c540f13ecf793cc753bd}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_ae138780720a5c540f13ecf793cc753bd} 
-\index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!set\_p\_superlu\_preconditioner@{set\_p\_superlu\_preconditioner}}
-\index{set\_p\_superlu\_preconditioner@{set\_p\_superlu\_preconditioner}!oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}}
-\doxysubsubsection{\texorpdfstring{set\_p\_superlu\_preconditioner()}{set\_p\_superlu\_preconditioner()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} oomph\+::\+Pressure\+Based\+Solid\+LSCPreconditioner\+::set\+\_\+p\+\_\+superlu\+\_\+preconditioner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-Function to (re-\/)set pressure matrix preconditioner (inexact solver) to Super\+LU. 
-
-
-
-Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00223}{223}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
-
-
-
-References \mbox{\hyperlink{solid__preconditioners_8h_source_l00300}{P\+\_\+preconditioner\+\_\+pt}}, and \mbox{\hyperlink{solid__preconditioners_8h_source_l00309}{Using\+\_\+default\+\_\+p\+\_\+preconditioner}}.
+References \mbox{\hyperlink{solid__preconditioners_8h_source_l00302}{P\+\_\+preconditioner\+\_\+pt}}, and \mbox{\hyperlink{solid__preconditioners_8h_source_l00311}{Using\+\_\+default\+\_\+p\+\_\+preconditioner}}.
 
 \Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_ad432b40acc45b0f8f065c96154f64240}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_ad432b40acc45b0f8f065c96154f64240} 
 \index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!set\_solid\_mesh@{set\_solid\_mesh}}
@@ -739,7 +739,7 @@ Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00182}{182
 
 
 
-References \mbox{\hyperlink{block__preconditioner_8h_source_l01782}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::mesh\+\_\+pt()}}, and \mbox{\hyperlink{solid__preconditioners_8h_source_l00360}{Solid\+\_\+mesh\+\_\+pt}}.
+References \mbox{\hyperlink{block__preconditioner_8h_source_l01782}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::mesh\+\_\+pt()}}, and \mbox{\hyperlink{solid__preconditioners_8h_source_l00362}{Solid\+\_\+mesh\+\_\+pt}}.
 
 \Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_aba594f38c2d36775115adbc90bcd0025}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_aba594f38c2d36775115adbc90bcd0025} 
 \index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!setup@{setup}}
@@ -763,7 +763,7 @@ Definition at line \mbox{\hyperlink{solid__preconditioners_8cc_source_l00038}{38
 
 
 
-References \mbox{\hyperlink{solid__preconditioners_8cc_source_l00705}{assemble\+\_\+mass\+\_\+matrix\+\_\+diagonal()}}, \mbox{\hyperlink{block__preconditioner_8cc_source_l02483}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::block\+\_\+setup()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00339}{Bt\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8cc_source_l01357}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00330}{Doc\+\_\+time}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00342}{E\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00333}{F\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00327}{F\+\_\+preconditioner\+\_\+is\+\_\+block\+\_\+preconditioner}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00303}{F\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00356}{Form\+\_\+\+BFBt\+\_\+product}}, \mbox{\hyperlink{block__preconditioner_8h_source_l00673}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::get\+\_\+block()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{block__preconditioner_8h_source_l02061}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::is\+\_\+subsidiary\+\_\+block\+\_\+preconditioner()}}, \mbox{\hyperlink{block__preconditioner_8h_source_l00520}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::matrix\+\_\+pt()}}, \mbox{\hyperlink{block__preconditioner_8h_source_l01694}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::ndof\+\_\+types()}}, \mbox{\hyperlink{block__preconditioner_8h_source_l02037}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::ndof\+\_\+types\+\_\+in\+\_\+mesh()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00318}{P\+\_\+matrix\+\_\+using\+\_\+scaling}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00300}{P\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00314}{Preconditioner\+\_\+has\+\_\+been\+\_\+setup}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00336}{QBt\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{block__preconditioner_8h_source_l02866}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::set\+\_\+mesh()}}, \mbox{\hyperlink{preconditioner_8h_source_l00094}{oomph\+::\+Preconditioner\+::setup()}}, \mbox{\hyperlink{block__preconditioner_8h_source_l02397}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::setup\+\_\+matrix\+\_\+vector\+\_\+product()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00360}{Solid\+\_\+mesh\+\_\+pt}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01295}{oomph\+::\+Timing\+Helpers\+::timer()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00306}{Using\+\_\+default\+\_\+f\+\_\+preconditioner}}, and \mbox{\hyperlink{solid__preconditioners_8h_source_l00309}{Using\+\_\+default\+\_\+p\+\_\+preconditioner}}.
+References \mbox{\hyperlink{solid__preconditioners_8cc_source_l00707}{assemble\+\_\+mass\+\_\+matrix\+\_\+diagonal()}}, \mbox{\hyperlink{block__preconditioner_8cc_source_l02482}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::block\+\_\+setup()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00341}{Bt\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8cc_source_l01359}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{linear__solver_8cc_source_l02819}{oomph\+::\+Exact\+Preconditioner\+Factory\+::create\+\_\+exact\+\_\+preconditioner()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00332}{Doc\+\_\+time}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00344}{E\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00335}{F\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00329}{F\+\_\+preconditioner\+\_\+is\+\_\+block\+\_\+preconditioner}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00305}{F\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00358}{Form\+\_\+\+BFBt\+\_\+product}}, \mbox{\hyperlink{block__preconditioner_8h_source_l00673}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::get\+\_\+block()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{block__preconditioner_8h_source_l02061}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::is\+\_\+subsidiary\+\_\+block\+\_\+preconditioner()}}, \mbox{\hyperlink{block__preconditioner_8h_source_l00520}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::matrix\+\_\+pt()}}, \mbox{\hyperlink{block__preconditioner_8h_source_l01694}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::ndof\+\_\+types()}}, \mbox{\hyperlink{block__preconditioner_8h_source_l02037}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::ndof\+\_\+types\+\_\+in\+\_\+mesh()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00320}{P\+\_\+matrix\+\_\+using\+\_\+scaling}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00302}{P\+\_\+preconditioner\+\_\+pt}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00316}{Preconditioner\+\_\+has\+\_\+been\+\_\+setup}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00338}{QBt\+\_\+mat\+\_\+vec\+\_\+pt}}, \mbox{\hyperlink{block__preconditioner_8h_source_l02866}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::set\+\_\+mesh()}}, \mbox{\hyperlink{preconditioner_8h_source_l00094}{oomph\+::\+Preconditioner\+::setup()}}, \mbox{\hyperlink{block__preconditioner_8h_source_l02397}{oomph\+::\+Block\+Preconditioner$<$ CRDouble\+Matrix $>$\+::setup\+\_\+matrix\+\_\+vector\+\_\+product()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00362}{Solid\+\_\+mesh\+\_\+pt}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01303}{oomph\+::\+Timing\+Helpers\+::timer()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00308}{Using\+\_\+default\+\_\+f\+\_\+preconditioner}}, and \mbox{\hyperlink{solid__preconditioners_8h_source_l00311}{Using\+\_\+default\+\_\+p\+\_\+preconditioner}}.
 
 
 
@@ -780,11 +780,11 @@ References \mbox{\hyperlink{solid__preconditioners_8cc_source_l00705}{assemble\+
 
 
 
-Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00339}{339}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
+Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00341}{341}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{solid__preconditioners_8cc_source_l01357}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{solid__preconditioners_8cc_source_l00493}{preconditioner\+\_\+solve()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00110}{Pressure\+Based\+Solid\+LSCPreconditioner()}}, and \mbox{\hyperlink{solid__preconditioners_8cc_source_l00038}{setup()}}.
+Referenced by \mbox{\hyperlink{solid__preconditioners_8cc_source_l01359}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{solid__preconditioners_8cc_source_l00495}{preconditioner\+\_\+solve()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00110}{Pressure\+Based\+Solid\+LSCPreconditioner()}}, and \mbox{\hyperlink{solid__preconditioners_8cc_source_l00038}{setup()}}.
 
 \Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_a6bb97a362c82d3a363ffaaceb7a643a8}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_a6bb97a362c82d3a363ffaaceb7a643a8} 
 \index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!Doc\_time@{Doc\_time}}
@@ -798,11 +798,11 @@ Set Doc\+\_\+time to true for outputting results of timings.
 
 
 
-Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00330}{330}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
+Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00332}{332}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{solid__preconditioners_8h_source_l00264}{disable\+\_\+doc\+\_\+time()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00258}{enable\+\_\+doc\+\_\+time()}}, \mbox{\hyperlink{solid__preconditioners_8cc_source_l00493}{preconditioner\+\_\+solve()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00110}{Pressure\+Based\+Solid\+LSCPreconditioner()}}, and \mbox{\hyperlink{solid__preconditioners_8cc_source_l00038}{setup()}}.
+Referenced by \mbox{\hyperlink{solid__preconditioners_8h_source_l00266}{disable\+\_\+doc\+\_\+time()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00260}{enable\+\_\+doc\+\_\+time()}}, \mbox{\hyperlink{solid__preconditioners_8cc_source_l00495}{preconditioner\+\_\+solve()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00110}{Pressure\+Based\+Solid\+LSCPreconditioner()}}, and \mbox{\hyperlink{solid__preconditioners_8cc_source_l00038}{setup()}}.
 
 \Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_a5c6f62a80349652aeff75140ec9c54f1}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_a5c6f62a80349652aeff75140ec9c54f1} 
 \index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!E\_mat\_vec\_pt@{E\_mat\_vec\_pt}}
@@ -816,11 +816,11 @@ Referenced by \mbox{\hyperlink{solid__preconditioners_8h_source_l00264}{disable\
 
 
 
-Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00342}{342}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
+Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00344}{344}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{solid__preconditioners_8cc_source_l01357}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{solid__preconditioners_8cc_source_l00493}{preconditioner\+\_\+solve()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00110}{Pressure\+Based\+Solid\+LSCPreconditioner()}}, and \mbox{\hyperlink{solid__preconditioners_8cc_source_l00038}{setup()}}.
+Referenced by \mbox{\hyperlink{solid__preconditioners_8cc_source_l01359}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{solid__preconditioners_8cc_source_l00495}{preconditioner\+\_\+solve()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00110}{Pressure\+Based\+Solid\+LSCPreconditioner()}}, and \mbox{\hyperlink{solid__preconditioners_8cc_source_l00038}{setup()}}.
 
 \Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_ad1ce11b9dc16c14f5eaf72eb841c08ef}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_ad1ce11b9dc16c14f5eaf72eb841c08ef} 
 \index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!F\_mat\_vec\_pt@{F\_mat\_vec\_pt}}
@@ -834,11 +834,11 @@ Referenced by \mbox{\hyperlink{solid__preconditioners_8cc_source_l01357}{clean\+
 
 
 
-Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00333}{333}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
+Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00335}{335}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{solid__preconditioners_8cc_source_l01357}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{solid__preconditioners_8cc_source_l00493}{preconditioner\+\_\+solve()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00110}{Pressure\+Based\+Solid\+LSCPreconditioner()}}, and \mbox{\hyperlink{solid__preconditioners_8cc_source_l00038}{setup()}}.
+Referenced by \mbox{\hyperlink{solid__preconditioners_8cc_source_l01359}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{solid__preconditioners_8cc_source_l00495}{preconditioner\+\_\+solve()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00110}{Pressure\+Based\+Solid\+LSCPreconditioner()}}, and \mbox{\hyperlink{solid__preconditioners_8cc_source_l00038}{setup()}}.
 
 \Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_aa430d3786009f7ad9fd8009d5bc9430a}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_aa430d3786009f7ad9fd8009d5bc9430a} 
 \index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!F\_preconditioner\_is\_block\_preconditioner@{F\_preconditioner\_is\_block\_preconditioner}}
@@ -852,11 +852,11 @@ Boolean indicating whether the momentum system preconditioner is a block precond
 
 
 
-Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00327}{327}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
+Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00329}{329}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{solid__preconditioners_8cc_source_l00493}{preconditioner\+\_\+solve()}}, and \mbox{\hyperlink{solid__preconditioners_8cc_source_l00038}{setup()}}.
+Referenced by \mbox{\hyperlink{solid__preconditioners_8cc_source_l00495}{preconditioner\+\_\+solve()}}, and \mbox{\hyperlink{solid__preconditioners_8cc_source_l00038}{setup()}}.
 
 \Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_a48598668a75faf5d983872f191288eb8}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_a48598668a75faf5d983872f191288eb8} 
 \index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!F\_preconditioner\_pt@{F\_preconditioner\_pt}}
@@ -870,11 +870,11 @@ Pointer to the \textquotesingle{}preconditioner\textquotesingle{} for the F matr
 
 
 
-Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00303}{303}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
+Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00305}{305}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{solid__preconditioners_8cc_source_l01357}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{solid__preconditioners_8cc_source_l00493}{preconditioner\+\_\+solve()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00110}{Pressure\+Based\+Solid\+LSCPreconditioner()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00233}{set\+\_\+f\+\_\+preconditioner()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00247}{set\+\_\+f\+\_\+superlu\+\_\+preconditioner()}}, and \mbox{\hyperlink{solid__preconditioners_8cc_source_l00038}{setup()}}.
+Referenced by \mbox{\hyperlink{solid__preconditioners_8cc_source_l01359}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{solid__preconditioners_8cc_source_l00495}{preconditioner\+\_\+solve()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00110}{Pressure\+Based\+Solid\+LSCPreconditioner()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00248}{set\+\_\+f\+\_\+exact\+\_\+preconditioner()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00234}{set\+\_\+f\+\_\+preconditioner()}}, and \mbox{\hyperlink{solid__preconditioners_8cc_source_l00038}{setup()}}.
 
 \Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_a216ed50190c2fa031c222b309e573f09}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_a216ed50190c2fa031c222b309e573f09} 
 \index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!Form\_BFBt\_product@{Form\_BFBt\_product}}
@@ -888,11 +888,11 @@ indicates whether BFBt should be formed or the component matrices should be reta
 
 
 
-Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00356}{356}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
+Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00358}{358}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{solid__preconditioners_8cc_source_l01357}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00285}{disable\+\_\+form\+\_\+\+BFBt\+\_\+product()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00273}{enable\+\_\+form\+\_\+\+BFBt\+\_\+product()}}, \mbox{\hyperlink{solid__preconditioners_8cc_source_l00493}{preconditioner\+\_\+solve()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00110}{Pressure\+Based\+Solid\+LSCPreconditioner()}}, and \mbox{\hyperlink{solid__preconditioners_8cc_source_l00038}{setup()}}.
+Referenced by \mbox{\hyperlink{solid__preconditioners_8cc_source_l01359}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00287}{disable\+\_\+form\+\_\+\+BFBt\+\_\+product()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00275}{enable\+\_\+form\+\_\+\+BFBt\+\_\+product()}}, \mbox{\hyperlink{solid__preconditioners_8cc_source_l00495}{preconditioner\+\_\+solve()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00110}{Pressure\+Based\+Solid\+LSCPreconditioner()}}, and \mbox{\hyperlink{solid__preconditioners_8cc_source_l00038}{setup()}}.
 
 \Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_af92907711de209fa924eeef614d48c4e}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_af92907711de209fa924eeef614d48c4e} 
 \index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!P\_matrix\_using\_scaling@{P\_matrix\_using\_scaling}}
@@ -906,7 +906,7 @@ Control flag is true if mass matrix diagonal scaling is used in the Schur comple
 
 
 
-Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00318}{318}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
+Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00320}{320}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
 
 
 
@@ -924,11 +924,11 @@ Pointer to the \textquotesingle{}preconditioner\textquotesingle{} for the pressu
 
 
 
-Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00300}{300}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
+Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00302}{302}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{solid__preconditioners_8cc_source_l01357}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{solid__preconditioners_8cc_source_l00493}{preconditioner\+\_\+solve()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00110}{Pressure\+Based\+Solid\+LSCPreconditioner()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00209}{set\+\_\+p\+\_\+preconditioner()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00223}{set\+\_\+p\+\_\+superlu\+\_\+preconditioner()}}, and \mbox{\hyperlink{solid__preconditioners_8cc_source_l00038}{setup()}}.
+Referenced by \mbox{\hyperlink{solid__preconditioners_8cc_source_l01359}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{solid__preconditioners_8cc_source_l00495}{preconditioner\+\_\+solve()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00110}{Pressure\+Based\+Solid\+LSCPreconditioner()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00223}{set\+\_\+p\+\_\+exact\+\_\+preconditioner()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00209}{set\+\_\+p\+\_\+preconditioner()}}, and \mbox{\hyperlink{solid__preconditioners_8cc_source_l00038}{setup()}}.
 
 \Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_a36040d15eba392db2f29c503644a6ed2}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_a36040d15eba392db2f29c503644a6ed2} 
 \index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!Preconditioner\_has\_been\_setup@{Preconditioner\_has\_been\_setup}}
@@ -942,11 +942,11 @@ Control flag is true if the preconditioner has been setup (used so we can wipe t
 
 
 
-Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00314}{314}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
+Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00316}{316}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{solid__preconditioners_8cc_source_l01357}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{solid__preconditioners_8cc_source_l00493}{preconditioner\+\_\+solve()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00110}{Pressure\+Based\+Solid\+LSCPreconditioner()}}, and \mbox{\hyperlink{solid__preconditioners_8cc_source_l00038}{setup()}}.
+Referenced by \mbox{\hyperlink{solid__preconditioners_8cc_source_l01359}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{solid__preconditioners_8cc_source_l00495}{preconditioner\+\_\+solve()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00110}{Pressure\+Based\+Solid\+LSCPreconditioner()}}, and \mbox{\hyperlink{solid__preconditioners_8cc_source_l00038}{setup()}}.
 
 \Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_a03338487e35713fc408e83b12f9ba8ac}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_a03338487e35713fc408e83b12f9ba8ac} 
 \index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!QBt\_mat\_vec\_pt@{QBt\_mat\_vec\_pt}}
@@ -960,11 +960,11 @@ Referenced by \mbox{\hyperlink{solid__preconditioners_8cc_source_l01357}{clean\+
 
 
 
-Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00336}{336}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
+Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00338}{338}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{solid__preconditioners_8cc_source_l01357}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{solid__preconditioners_8cc_source_l00493}{preconditioner\+\_\+solve()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00110}{Pressure\+Based\+Solid\+LSCPreconditioner()}}, and \mbox{\hyperlink{solid__preconditioners_8cc_source_l00038}{setup()}}.
+Referenced by \mbox{\hyperlink{solid__preconditioners_8cc_source_l01359}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{solid__preconditioners_8cc_source_l00495}{preconditioner\+\_\+solve()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00110}{Pressure\+Based\+Solid\+LSCPreconditioner()}}, and \mbox{\hyperlink{solid__preconditioners_8cc_source_l00038}{setup()}}.
 
 \Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_aa14db4490d9ce73788e22bc3d465489b}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_aa14db4490d9ce73788e22bc3d465489b} 
 \index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!Solid\_mesh\_pt@{Solid\_mesh\_pt}}
@@ -978,11 +978,11 @@ the pointer to the mesh of block preconditionable solid elements.
 
 
 
-Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00360}{360}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
+Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00362}{362}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{solid__preconditioners_8cc_source_l00705}{assemble\+\_\+mass\+\_\+matrix\+\_\+diagonal()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00110}{Pressure\+Based\+Solid\+LSCPreconditioner()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00182}{set\+\_\+solid\+\_\+mesh()}}, and \mbox{\hyperlink{solid__preconditioners_8cc_source_l00038}{setup()}}.
+Referenced by \mbox{\hyperlink{solid__preconditioners_8cc_source_l00707}{assemble\+\_\+mass\+\_\+matrix\+\_\+diagonal()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00110}{Pressure\+Based\+Solid\+LSCPreconditioner()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00182}{set\+\_\+solid\+\_\+mesh()}}, and \mbox{\hyperlink{solid__preconditioners_8cc_source_l00038}{setup()}}.
 
 \Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_ad873e64fad712e74972d6dbc95b2eeb0}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_ad873e64fad712e74972d6dbc95b2eeb0} 
 \index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!Using\_default\_f\_preconditioner@{Using\_default\_f\_preconditioner}}
@@ -996,11 +996,11 @@ flag indicating whether the default F preconditioner is used
 
 
 
-Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00306}{306}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
+Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00308}{308}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{solid__preconditioners_8cc_source_l01357}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00110}{Pressure\+Based\+Solid\+LSCPreconditioner()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00233}{set\+\_\+f\+\_\+preconditioner()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00247}{set\+\_\+f\+\_\+superlu\+\_\+preconditioner()}}, and \mbox{\hyperlink{solid__preconditioners_8cc_source_l00038}{setup()}}.
+Referenced by \mbox{\hyperlink{solid__preconditioners_8cc_source_l01359}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00110}{Pressure\+Based\+Solid\+LSCPreconditioner()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00248}{set\+\_\+f\+\_\+exact\+\_\+preconditioner()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00234}{set\+\_\+f\+\_\+preconditioner()}}, and \mbox{\hyperlink{solid__preconditioners_8cc_source_l00038}{setup()}}.
 
 \Hypertarget{classoomph_1_1PressureBasedSolidLSCPreconditioner_aca759bb66884df54c3ed5447357468e7}\label{classoomph_1_1PressureBasedSolidLSCPreconditioner_aca759bb66884df54c3ed5447357468e7} 
 \index{oomph::PressureBasedSolidLSCPreconditioner@{oomph::PressureBasedSolidLSCPreconditioner}!Using\_default\_p\_preconditioner@{Using\_default\_p\_preconditioner}}
@@ -1014,11 +1014,11 @@ flag indicating whether the default P preconditioner is used
 
 
 
-Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00309}{309}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
+Definition at line \mbox{\hyperlink{solid__preconditioners_8h_source_l00311}{311}} of file \mbox{\hyperlink{solid__preconditioners_8h_source}{solid\+\_\+preconditioners.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{solid__preconditioners_8cc_source_l01357}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00110}{Pressure\+Based\+Solid\+LSCPreconditioner()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00209}{set\+\_\+p\+\_\+preconditioner()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00223}{set\+\_\+p\+\_\+superlu\+\_\+preconditioner()}}, and \mbox{\hyperlink{solid__preconditioners_8cc_source_l00038}{setup()}}.
+Referenced by \mbox{\hyperlink{solid__preconditioners_8cc_source_l01359}{clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00110}{Pressure\+Based\+Solid\+LSCPreconditioner()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00223}{set\+\_\+p\+\_\+exact\+\_\+preconditioner()}}, \mbox{\hyperlink{solid__preconditioners_8h_source_l00209}{set\+\_\+p\+\_\+preconditioner()}}, and \mbox{\hyperlink{solid__preconditioners_8cc_source_l00038}{setup()}}.
 
 
 

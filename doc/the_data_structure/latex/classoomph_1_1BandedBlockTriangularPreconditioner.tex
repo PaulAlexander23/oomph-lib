@@ -2,7 +2,7 @@
 \hypertarget{classoomph_1_1BandedBlockTriangularPreconditioner}{}\label{classoomph_1_1BandedBlockTriangularPreconditioner}\index{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$@{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$}}
 
 
-General purpose block triangular preconditioner. By default this operates as an upper triangular preconditioner. Also, by default \doxylink{classoomph_1_1SuperLUPreconditioner}{Super\+LUPreconditioner} (or Super\+LUDist\+Preconditioner) is used to solve the subsidiary systems, but other preconditioners can be used by setting them using passing a pointer to a function of type Subsidiary\+Preconditioner\+Fct\+Pt to the method subsidiary\+\_\+preconditioner\+\_\+function\+\_\+pt().  
+General purpose block triangular preconditioner. By default this operates as an upper triangular preconditioner. Also, by default Exact\+Preconditioner is used to solve the subsidiary systems, but other preconditioners can be used by setting them using passing a pointer to a function of type Subsidiary\+Preconditioner\+Fct\+Pt to the method subsidiary\+\_\+preconditioner\+\_\+function\+\_\+pt().  
 
 
 
@@ -41,13 +41,7 @@ Inheritance diagram for oomph\+::Banded\+Block\+Triangular\+Preconditioner\texor
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1BandedBlockTriangularPreconditioner_ab6011c32b028360a2ae35550c1dd1f8a}{lower\+\_\+triangular}} ()
 \begin{DoxyCompactList}\small\item\em Use as a lower triangular preconditioner. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1BandedBlockTriangularPreconditioner_a70ee04fec1346c46756627ee7f19f4ca}{is\+\_\+upper\+\_\+triangular}} ()
-\begin{DoxyCompactList}\small\item\em Is this being used as an upper triangular preconditioner? \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1BandedBlockTriangularPreconditioner_a27154d15de52fd5546f348aa3e81c376}{enable\+\_\+doc\+\_\+memory\+\_\+usage}} ()
-\begin{DoxyCompactList}\small\item\em Document the memory usage. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1BandedBlockTriangularPreconditioner_a7369372c1a7ffc6b67d6c76cc3c6a82d}{disable\+\_\+doc\+\_\+memory\+\_\+usage}} ()
-\begin{DoxyCompactList}\small\item\em Don\textquotesingle{}t document the memory usage! \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} \mbox{\hyperlink{classoomph_1_1BandedBlockTriangularPreconditioner_ae8de520198b77dbadfe650a2eea10a2e}{get\+\_\+memory\+\_\+usage\+\_\+in\+\_\+bytes}} ()
-\begin{DoxyCompactList}\small\item\em Get the memory statistics. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Is this being used as an upper triangular preconditioner? \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classoomph_1_1GeneralPurposeBlockPreconditioner}{oomph\+::\+General\+Purpose\+Block\+Preconditioner$<$ MATRIX $>$}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -241,7 +235,7 @@ Inheritance diagram for oomph\+::Banded\+Block\+Triangular\+Preconditioner\texor
 \begin{DoxyCompactList}\small\item\em Destructor (empty) \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_a1e469ffc87f31f6f2eebbe5ccf03d78b}{preconditioner\+\_\+solve\+\_\+transpose}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{r}}, \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&z)
 \begin{DoxyCompactList}\small\item\em Apply the preconditioner. Pure virtual generic interface function. This method should apply the preconditioner operator to the vector r and return the vector z. (broken virtual) \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_a0b95e7159585b5151f9e5dc1d1713655}{setup}} (\mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1Preconditioner_a08e0582b77c6cbfaf85b80a4ac5c11f3}{matrix\+\_\+pt}})
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_ac2c0f7f39eccd814e72cc5813ec864e0}{setup}} (\mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1Preconditioner_a08e0582b77c6cbfaf85b80a4ac5c11f3}{matrix\+\_\+pt}})
 \begin{DoxyCompactList}\small\item\em Setup the preconditioner\+: store the matrix pointer and the communicator pointer then call preconditioner specific \doxylink{classoomph_1_1Preconditioner_af4886f4efe510e5c9b0eb19422943588}{setup()} function. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_a783fae97e4b898f8de72b504a4f4bec6}{setup}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Problem}{Problem}} \texorpdfstring{$\ast$}{*}problem\+\_\+pt, \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1Preconditioner_a08e0582b77c6cbfaf85b80a4ac5c11f3}{matrix\+\_\+pt}})
 \begin{DoxyCompactList}\small\item\em Compatability layer for old preconditioners where problem pointers were needed. The problem pointer is only used to get a communicator pointer. \end{DoxyCompactList}\item 
@@ -348,11 +342,7 @@ std\+::ostream \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classoomph_1_1Precond
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1BandedBlockTriangularPreconditioner_a619571d3ae1e59b83c3fa3b5e0fbbf3f}{Upper\+\_\+triangular}}
 \begin{DoxyCompactList}\small\item\em Boolean indicating upper or lower triangular. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1BandedBlockTriangularPreconditioner_a564d7f3013998c107c6f1bb7d89d30ba}{Preconditioner\+\_\+has\+\_\+been\+\_\+setup}}
-\begin{DoxyCompactList}\small\item\em Control flag is true if the preconditioner has been setup (used so we can wipe the data when the preconditioner is called again) \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1BandedBlockTriangularPreconditioner_a5b03663b8182d14861552db33149a216}{Compute\+\_\+memory\+\_\+statistics}}
-\begin{DoxyCompactList}\small\item\em Flag to indicate whether or not to record the memory statistics this preconditioner. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} \mbox{\hyperlink{classoomph_1_1BandedBlockTriangularPreconditioner_ab83dc8dda204cf518aecd2cb718ae042}{Memory\+\_\+usage\+\_\+in\+\_\+bytes}}
-\begin{DoxyCompactList}\small\item\em Storage for the memory usage of the solver if the flag above is set to true (in bytes) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Control flag is true if the preconditioner has been setup (used so we can wipe the data when the preconditioner is called again) \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Public Types inherited from \mbox{\hyperlink{classoomph_1_1GeneralPurposeBlockPreconditioner}{oomph\+::\+General\+Purpose\+Block\+Preconditioner$<$ MATRIX $>$}}}
 \begin{DoxyCompactItemize}
@@ -405,9 +395,9 @@ std\+::ostream \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classoomph_1_1Precond
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{typename}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{MATRIX}}$>$\newline
 class oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$}
-General purpose block triangular preconditioner. By default this operates as an upper triangular preconditioner. Also, by default \doxylink{classoomph_1_1SuperLUPreconditioner}{Super\+LUPreconditioner} (or Super\+LUDist\+Preconditioner) is used to solve the subsidiary systems, but other preconditioners can be used by setting them using passing a pointer to a function of type Subsidiary\+Preconditioner\+Fct\+Pt to the method subsidiary\+\_\+preconditioner\+\_\+function\+\_\+pt(). 
+General purpose block triangular preconditioner. By default this operates as an upper triangular preconditioner. Also, by default Exact\+Preconditioner is used to solve the subsidiary systems, but other preconditioners can be used by setting them using passing a pointer to a function of type Subsidiary\+Preconditioner\+Fct\+Pt to the method subsidiary\+\_\+preconditioner\+\_\+function\+\_\+pt(). 
 
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00197}{197}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
+Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00115}{115}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
 
 
 
@@ -425,11 +415,11 @@ Constructor. (By default this preconditioner is upper triangular).
 
 
 
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00202}{202}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
+Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00120}{120}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
 
 
 
-References \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00386}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Block\+\_\+bandwidth}}, \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00397}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Compute\+\_\+memory\+\_\+statistics}}, \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00401}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Memory\+\_\+usage\+\_\+in\+\_\+bytes}}, \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00393}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Preconditioner\+\_\+has\+\_\+been\+\_\+setup}}, and \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00389}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Upper\+\_\+triangular}}.
+References \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00231}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Block\+\_\+bandwidth}}, \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00238}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Preconditioner\+\_\+has\+\_\+been\+\_\+setup}}, and \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00234}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Upper\+\_\+triangular}}.
 
 \Hypertarget{classoomph_1_1BandedBlockTriangularPreconditioner_ac7dc7f1ccdc87d5bd7e613b00a3c6842}\label{classoomph_1_1BandedBlockTriangularPreconditioner_ac7dc7f1ccdc87d5bd7e613b00a3c6842} 
 \index{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$@{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$}!````~BandedBlockTriangularPreconditioner@{\texorpdfstring{$\sim$}{\string~}BandedBlockTriangularPreconditioner}}
@@ -444,11 +434,11 @@ Destructor -\/ delete the preconditioner matrices.
 
 
 
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00223}{223}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
+Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00136}{136}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
 
 
 
-References \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00231}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::clean\+\_\+up\+\_\+memory()}}.
+References \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00144}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::clean\+\_\+up\+\_\+memory()}}.
 
 \Hypertarget{classoomph_1_1BandedBlockTriangularPreconditioner_ac6c2f9b46421912ba86a5b836657ce2f}\label{classoomph_1_1BandedBlockTriangularPreconditioner_ac6c2f9b46421912ba86a5b836657ce2f} 
 \index{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$@{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$}!BandedBlockTriangularPreconditioner@{BandedBlockTriangularPreconditioner}}
@@ -477,15 +467,15 @@ Get the block bandwidth of the preconditioner.
 
 
 
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00279}{279}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
+Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00192}{192}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
 
 
 
-References \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00386}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Block\+\_\+bandwidth}}.
+References \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00231}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Block\+\_\+bandwidth}}.
 
 
 
-Referenced by \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00271}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::set\+\_\+block\+\_\+bandwidth()}}.
+Referenced by \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00184}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::set\+\_\+block\+\_\+bandwidth()}}.
 
 \Hypertarget{classoomph_1_1BandedBlockTriangularPreconditioner_a496150631a8ad5da63c6b5e9b454d1ff}\label{classoomph_1_1BandedBlockTriangularPreconditioner_a496150631a8ad5da63c6b5e9b454d1ff} 
 \index{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$@{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$}!clean\_up\_memory@{clean\_up\_memory}}
@@ -504,72 +494,15 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1GeneralPurposeBlockPreconditio
 
 
 
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00231}{231}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
+Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00144}{144}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
 
 
 
-References \mbox{\hyperlink{general__purpose__block__preconditioners_8h_source_l00112}{oomph\+::\+General\+Purpose\+Block\+Preconditioner$<$ MATRIX $>$\+::clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00380}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Off\+\_\+diagonal\+\_\+matrix\+\_\+vector\+\_\+products}}.
+References \mbox{\hyperlink{general__purpose__block__preconditioners_8h_source_l00112}{oomph\+::\+General\+Purpose\+Block\+Preconditioner$<$ MATRIX $>$\+::clean\+\_\+up\+\_\+memory()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00225}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Off\+\_\+diagonal\+\_\+matrix\+\_\+vector\+\_\+products}}.
 
 
 
-Referenced by \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00223}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\texorpdfstring{$\sim$}{\string~}\+Banded\+Block\+Triangular\+Preconditioner()}}.
-
-\Hypertarget{classoomph_1_1BandedBlockTriangularPreconditioner_a7369372c1a7ffc6b67d6c76cc3c6a82d}\label{classoomph_1_1BandedBlockTriangularPreconditioner_a7369372c1a7ffc6b67d6c76cc3c6a82d} 
-\index{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$@{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$}!disable\_doc\_memory\_usage@{disable\_doc\_memory\_usage}}
-\index{disable\_doc\_memory\_usage@{disable\_doc\_memory\_usage}!oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$@{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$}}
-\doxysubsubsection{\texorpdfstring{disable\_doc\_memory\_usage()}{disable\_doc\_memory\_usage()}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{typename}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{MATRIX}} $>$ \\
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1BandedBlockTriangularPreconditioner}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{MATRIX}} $>$\+::disable\+\_\+doc\+\_\+memory\+\_\+usage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-Don\textquotesingle{}t document the memory usage! 
-
-Set the appropriate flag to false
-
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00319}{319}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
-
-
-
-References \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00397}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Compute\+\_\+memory\+\_\+statistics}}.
-
-\Hypertarget{classoomph_1_1BandedBlockTriangularPreconditioner_a27154d15de52fd5546f348aa3e81c376}\label{classoomph_1_1BandedBlockTriangularPreconditioner_a27154d15de52fd5546f348aa3e81c376} 
-\index{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$@{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$}!enable\_doc\_memory\_usage@{enable\_doc\_memory\_usage}}
-\index{enable\_doc\_memory\_usage@{enable\_doc\_memory\_usage}!oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$@{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$}}
-\doxysubsubsection{\texorpdfstring{enable\_doc\_memory\_usage()}{enable\_doc\_memory\_usage()}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{typename}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{MATRIX}} $>$ \\
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1BandedBlockTriangularPreconditioner}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{MATRIX}} $>$\+::enable\+\_\+doc\+\_\+memory\+\_\+usage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-Document the memory usage. 
-
-Set the appropriate flag to true
-
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00311}{311}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
-
-
-
-References \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00397}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Compute\+\_\+memory\+\_\+statistics}}.
-
-\Hypertarget{classoomph_1_1BandedBlockTriangularPreconditioner_ae8de520198b77dbadfe650a2eea10a2e}\label{classoomph_1_1BandedBlockTriangularPreconditioner_ae8de520198b77dbadfe650a2eea10a2e} 
-\index{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$@{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$}!get\_memory\_usage\_in\_bytes@{get\_memory\_usage\_in\_bytes}}
-\index{get\_memory\_usage\_in\_bytes@{get\_memory\_usage\_in\_bytes}!oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$@{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$}}
-\doxysubsubsection{\texorpdfstring{get\_memory\_usage\_in\_bytes()}{get\_memory\_usage\_in\_bytes()}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{typename}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{MATRIX}} $>$ \\
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} \mbox{\hyperlink{classoomph_1_1BandedBlockTriangularPreconditioner}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{MATRIX}} $>$\+::get\+\_\+memory\+\_\+usage\+\_\+in\+\_\+bytes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-Get the memory statistics. 
-
-
-
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00327}{327}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
-
-
-
-References \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00397}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Compute\+\_\+memory\+\_\+statistics}}, \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00401}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Memory\+\_\+usage\+\_\+in\+\_\+bytes}}, and \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00393}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Preconditioner\+\_\+has\+\_\+been\+\_\+setup}}.
+Referenced by \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00136}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\texorpdfstring{$\sim$}{\string~}\+Banded\+Block\+Triangular\+Preconditioner()}}.
 
 \Hypertarget{classoomph_1_1BandedBlockTriangularPreconditioner_a70ee04fec1346c46756627ee7f19f4ca}\label{classoomph_1_1BandedBlockTriangularPreconditioner_a70ee04fec1346c46756627ee7f19f4ca} 
 \index{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$@{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$}!is\_upper\_triangular@{is\_upper\_triangular}}
@@ -584,11 +517,11 @@ Is this being used as an upper triangular preconditioner?
 
 
 
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00303}{303}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
+Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00216}{216}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
 
 
 
-References \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00389}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Upper\+\_\+triangular}}.
+References \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00234}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Upper\+\_\+triangular}}.
 
 \Hypertarget{classoomph_1_1BandedBlockTriangularPreconditioner_ab6011c32b028360a2ae35550c1dd1f8a}\label{classoomph_1_1BandedBlockTriangularPreconditioner_ab6011c32b028360a2ae35550c1dd1f8a} 
 \index{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$@{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$}!lower\_triangular@{lower\_triangular}}
@@ -603,11 +536,11 @@ Use as a lower triangular preconditioner.
 
 
 
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00295}{295}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
+Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00208}{208}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
 
 
 
-References \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00389}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Upper\+\_\+triangular}}.
+References \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00234}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Upper\+\_\+triangular}}.
 
 \Hypertarget{classoomph_1_1BandedBlockTriangularPreconditioner_ade1135e0a67acde0b77df9ea988a51c5}\label{classoomph_1_1BandedBlockTriangularPreconditioner_ade1135e0a67acde0b77df9ea988a51c5} 
 \index{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$@{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$}!operator=@{operator=}}
@@ -637,11 +570,11 @@ Implements \mbox{\hyperlink{classoomph_1_1Preconditioner_ace1199369e4465cd2b9a34
 
 
 
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8cc_source_l00600}{600}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8cc_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+cc}}.
+Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8cc_source_l00397}{397}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8cc_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+cc}}.
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, and \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, and \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}.
 
 \Hypertarget{classoomph_1_1BandedBlockTriangularPreconditioner_acf9730c1c3062827fa75b21daac410fc}\label{classoomph_1_1BandedBlockTriangularPreconditioner_acf9730c1c3062827fa75b21daac410fc} 
 \index{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$@{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$}!set\_block\_bandwidth@{set\_block\_bandwidth}}
@@ -656,11 +589,11 @@ Set the block bandwidth of the preconditioner.
 
 
 
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00271}{271}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
+Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00184}{184}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
 
 
 
-References \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00279}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::block\+\_\+bandwidth()}}, and \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00386}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Block\+\_\+bandwidth}}.
+References \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00192}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::block\+\_\+bandwidth()}}, and \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00231}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Block\+\_\+bandwidth}}.
 
 \Hypertarget{classoomph_1_1BandedBlockTriangularPreconditioner_a3b6ce68dead6323b9f62bacd71a22337}\label{classoomph_1_1BandedBlockTriangularPreconditioner_a3b6ce68dead6323b9f62bacd71a22337} 
 \index{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$@{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$}!setup@{setup}}
@@ -679,11 +612,11 @@ Implements \mbox{\hyperlink{classoomph_1_1Preconditioner_af4886f4efe510e5c9b0eb1
 
 
 
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8cc_source_l00218}{218}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8cc_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+cc}}.
+Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8cc_source_l00185}{185}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8cc_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+cc}}.
 
 
 
-References \mbox{\hyperlink{superlu_8c_source_l00085}{get\+\_\+memory\+\_\+usage\+\_\+in\+\_\+bytes()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00313}{oomph\+::oomph\+\_\+nullstream}}, \mbox{\hyperlink{oomph__definitions_8h_source_l00464}{oomph\+::\+Oomph\+Info\+::stream\+\_\+pt()}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01295}{oomph\+::\+Timing\+Helpers\+::timer()}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00320}{oomph\+::oomph\+\_\+nullstream}}, \mbox{\hyperlink{oomph__definitions_8h_source_l00471}{oomph\+::\+Oomph\+Info\+::stream\+\_\+pt()}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01303}{oomph\+::\+Timing\+Helpers\+::timer()}}.
 
 \Hypertarget{classoomph_1_1BandedBlockTriangularPreconditioner_a93f285afe644c5148f3c59b640f7c974}\label{classoomph_1_1BandedBlockTriangularPreconditioner_a93f285afe644c5148f3c59b640f7c974} 
 \index{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$@{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$}!upper\_triangular@{upper\_triangular}}
@@ -698,11 +631,11 @@ Use as an upper triangular preconditioner.
 
 
 
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00287}{287}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
+Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00200}{200}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
 
 
 
-References \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00389}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Upper\+\_\+triangular}}.
+References \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00234}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Upper\+\_\+triangular}}.
 
 
 
@@ -720,49 +653,11 @@ Storage for the block bandwidth of the matrix. Defaults to -\/1 indicating that 
 
 
 
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00386}{386}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
+Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00231}{231}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00202}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Banded\+Block\+Triangular\+Preconditioner()}}, \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00279}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::block\+\_\+bandwidth()}}, and \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00271}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::set\+\_\+block\+\_\+bandwidth()}}.
-
-\Hypertarget{classoomph_1_1BandedBlockTriangularPreconditioner_a5b03663b8182d14861552db33149a216}\label{classoomph_1_1BandedBlockTriangularPreconditioner_a5b03663b8182d14861552db33149a216} 
-\index{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$@{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$}!Compute\_memory\_statistics@{Compute\_memory\_statistics}}
-\index{Compute\_memory\_statistics@{Compute\_memory\_statistics}!oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$@{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$}}
-\doxysubsubsection{\texorpdfstring{Compute\_memory\_statistics}{Compute\_memory\_statistics}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{typename}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{MATRIX}} $>$ \\
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1BandedBlockTriangularPreconditioner}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{MATRIX}} $>$\+::\+Compute\+\_\+memory\+\_\+statistics\hspace{0.3cm}{\ttfamily [private]}}
-
-
-
-Flag to indicate whether or not to record the memory statistics this preconditioner. 
-
-
-
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00397}{397}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
-
-
-
-Referenced by \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00202}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Banded\+Block\+Triangular\+Preconditioner()}}, \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00319}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::disable\+\_\+doc\+\_\+memory\+\_\+usage()}}, \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00311}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::enable\+\_\+doc\+\_\+memory\+\_\+usage()}}, and \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00327}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::get\+\_\+memory\+\_\+usage\+\_\+in\+\_\+bytes()}}.
-
-\Hypertarget{classoomph_1_1BandedBlockTriangularPreconditioner_ab83dc8dda204cf518aecd2cb718ae042}\label{classoomph_1_1BandedBlockTriangularPreconditioner_ab83dc8dda204cf518aecd2cb718ae042} 
-\index{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$@{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$}!Memory\_usage\_in\_bytes@{Memory\_usage\_in\_bytes}}
-\index{Memory\_usage\_in\_bytes@{Memory\_usage\_in\_bytes}!oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$@{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$}}
-\doxysubsubsection{\texorpdfstring{Memory\_usage\_in\_bytes}{Memory\_usage\_in\_bytes}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{typename}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{MATRIX}} $>$ \\
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} \mbox{\hyperlink{classoomph_1_1BandedBlockTriangularPreconditioner}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{MATRIX}} $>$\+::\+Memory\+\_\+usage\+\_\+in\+\_\+bytes\hspace{0.3cm}{\ttfamily [private]}}
-
-
-
-Storage for the memory usage of the solver if the flag above is set to true (in bytes) 
-
-
-
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00401}{401}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
-
-
-
-Referenced by \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00202}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Banded\+Block\+Triangular\+Preconditioner()}}, and \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00327}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::get\+\_\+memory\+\_\+usage\+\_\+in\+\_\+bytes()}}.
+Referenced by \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00120}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Banded\+Block\+Triangular\+Preconditioner()}}, \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00192}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::block\+\_\+bandwidth()}}, and \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00184}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::set\+\_\+block\+\_\+bandwidth()}}.
 
 \Hypertarget{classoomph_1_1BandedBlockTriangularPreconditioner_a2ecbdb67025b86ac348bbf5f2c395ccf}\label{classoomph_1_1BandedBlockTriangularPreconditioner_a2ecbdb67025b86ac348bbf5f2c395ccf} 
 \index{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$@{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$}!Off\_diagonal\_matrix\_vector\_products@{Off\_diagonal\_matrix\_vector\_products}}
@@ -777,11 +672,11 @@ Referenced by \mbox{\hyperlink{general__purpose__space__time__block__preconditio
 
 
 
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00380}{380}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
+Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00225}{225}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00231}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::clean\+\_\+up\+\_\+memory()}}.
+Referenced by \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00144}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::clean\+\_\+up\+\_\+memory()}}.
 
 \Hypertarget{classoomph_1_1BandedBlockTriangularPreconditioner_a564d7f3013998c107c6f1bb7d89d30ba}\label{classoomph_1_1BandedBlockTriangularPreconditioner_a564d7f3013998c107c6f1bb7d89d30ba} 
 \index{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$@{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$}!Preconditioner\_has\_been\_setup@{Preconditioner\_has\_been\_setup}}
@@ -796,11 +691,11 @@ Control flag is true if the preconditioner has been setup (used so we can wipe t
 
 
 
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00393}{393}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
+Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00238}{238}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00202}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Banded\+Block\+Triangular\+Preconditioner()}}, and \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00327}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::get\+\_\+memory\+\_\+usage\+\_\+in\+\_\+bytes()}}.
+Referenced by \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00120}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Banded\+Block\+Triangular\+Preconditioner()}}.
 
 \Hypertarget{classoomph_1_1BandedBlockTriangularPreconditioner_a619571d3ae1e59b83c3fa3b5e0fbbf3f}\label{classoomph_1_1BandedBlockTriangularPreconditioner_a619571d3ae1e59b83c3fa3b5e0fbbf3f} 
 \index{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$@{oomph::BandedBlockTriangularPreconditioner$<$ MATRIX $>$}!Upper\_triangular@{Upper\_triangular}}
@@ -815,11 +710,11 @@ Boolean indicating upper or lower triangular.
 
 
 
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00389}{389}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
+Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00234}{234}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00202}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Banded\+Block\+Triangular\+Preconditioner()}}, \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00303}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::is\+\_\+upper\+\_\+triangular()}}, \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00295}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::lower\+\_\+triangular()}}, and \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00287}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::upper\+\_\+triangular()}}.
+Referenced by \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00120}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::\+Banded\+Block\+Triangular\+Preconditioner()}}, \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00216}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::is\+\_\+upper\+\_\+triangular()}}, \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00208}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::lower\+\_\+triangular()}}, and \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00200}{oomph\+::\+Banded\+Block\+Triangular\+Preconditioner$<$ MATRIX $>$\+::upper\+\_\+triangular()}}.
 
 
 

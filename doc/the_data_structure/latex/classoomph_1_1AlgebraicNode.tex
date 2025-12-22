@@ -2,7 +2,7 @@
 \hypertarget{classoomph_1_1AlgebraicNode}{}\label{classoomph_1_1AlgebraicNode}\index{oomph::AlgebraicNode@{oomph::AlgebraicNode}}
 
 
-////////////////////////////////////////////////////////////////////  
+Algebraic nodes are nodes with an algebraic positional update function.  
 
 
 
@@ -256,7 +256,7 @@ Inheritance diagram for oomph\+::Algebraic\+Node\+:\begin{figure}[H]
 \begin{DoxyCompactList}\small\item\em Default constructor for steady problems\+: assign memory for initial\+\_\+n\+\_\+value values. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Data_afe56d22d0dba308e33191e922993c5ee}{Data}} (\mbox{\hyperlink{classoomph_1_1TimeStepper}{Time\+Stepper}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \&\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\+\_\+stepper\+\_\+pt}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{initial\+\_\+n\+\_\+value}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{allocate\+\_\+storage}}=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{true}})
 \begin{DoxyCompactList}\small\item\em Constructor for unsteady problems\+: assign memory for initial\+\_\+n\+\_\+value values and any memory required by the Timestepper for the storage of history values. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1Data_ab35d30d1817db503265d59956a4ee02b}{Data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Data}{Data}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{data}})=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
+\mbox{\hyperlink{classoomph_1_1Data_ab35d30d1817db503265d59956a4ee02b}{Data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Data}{Data}} \&data)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
 \begin{DoxyCompactList}\small\item\em Broken copy constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Data_aeff1a35c9b9a48753a63b52c1d9959e2}{operator=}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Data}{Data}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
 \begin{DoxyCompactList}\small\item\em Broken assignment operator. \end{DoxyCompactList}\item 
@@ -449,9 +449,7 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 
 
 \doxysubsection{Detailed Description}
-//////////////////////////////////////////////////////////////////// 
-
-//////////////////////////////////////////////////////////////////// Algebraic nodes are nodes with an algebraic positional update function. 
+Algebraic nodes are nodes with an algebraic positional update function. 
 
 Definition at line \mbox{\hyperlink{algebraic__elements_8h_source_l00054}{54}} of file \mbox{\hyperlink{algebraic__elements_8h_source}{algebraic\+\_\+elements.\+h}}.
 
@@ -488,7 +486,7 @@ Definition at line \mbox{\hyperlink{algebraic__elements_8h_source_l00063}{63}} o
 
 
 
-References \mbox{\hyperlink{algebraic__elements_8h_source_l00280}{add\+\_\+node\+\_\+update\+\_\+info()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01195}{oomph\+::\+Leak\+Check\+Names\+::\+Algebraic\+Node\+\_\+build}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00486}{Dummy\+\_\+geom\+\_\+object\+\_\+pt}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00479}{Dummy\+\_\+mesh\+\_\+pt}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00475}{Dummy\+\_\+node\+\_\+update\+\_\+fct\+\_\+id}}, and \mbox{\hyperlink{algebraic__elements_8h_source_l00490}{Dummy\+\_\+ref\+\_\+value}}.
+References \mbox{\hyperlink{algebraic__elements_8h_source_l00280}{add\+\_\+node\+\_\+update\+\_\+info()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01203}{oomph\+::\+Leak\+Check\+Names\+::\+Algebraic\+Node\+\_\+build}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00486}{Dummy\+\_\+geom\+\_\+object\+\_\+pt}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00479}{Dummy\+\_\+mesh\+\_\+pt}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00475}{Dummy\+\_\+node\+\_\+update\+\_\+fct\+\_\+id}}, and \mbox{\hyperlink{algebraic__elements_8h_source_l00490}{Dummy\+\_\+ref\+\_\+value}}.
 
 \Hypertarget{classoomph_1_1AlgebraicNode_ab97ffb4a9663ce90e4d7788315ba31a1}\label{classoomph_1_1AlgebraicNode_ab97ffb4a9663ce90e4d7788315ba31a1} 
 \index{oomph::AlgebraicNode@{oomph::AlgebraicNode}!AlgebraicNode@{AlgebraicNode}}
@@ -506,7 +504,7 @@ Definition at line \mbox{\hyperlink{algebraic__elements_8h_source_l00085}{85}} o
 
 
 
-References \mbox{\hyperlink{algebraic__elements_8h_source_l00280}{add\+\_\+node\+\_\+update\+\_\+info()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01195}{oomph\+::\+Leak\+Check\+Names\+::\+Algebraic\+Node\+\_\+build}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00486}{Dummy\+\_\+geom\+\_\+object\+\_\+pt}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00479}{Dummy\+\_\+mesh\+\_\+pt}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00475}{Dummy\+\_\+node\+\_\+update\+\_\+fct\+\_\+id}}, and \mbox{\hyperlink{algebraic__elements_8h_source_l00490}{Dummy\+\_\+ref\+\_\+value}}.
+References \mbox{\hyperlink{algebraic__elements_8h_source_l00280}{add\+\_\+node\+\_\+update\+\_\+info()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01203}{oomph\+::\+Leak\+Check\+Names\+::\+Algebraic\+Node\+\_\+build}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00486}{Dummy\+\_\+geom\+\_\+object\+\_\+pt}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00479}{Dummy\+\_\+mesh\+\_\+pt}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00475}{Dummy\+\_\+node\+\_\+update\+\_\+fct\+\_\+id}}, and \mbox{\hyperlink{algebraic__elements_8h_source_l00490}{Dummy\+\_\+ref\+\_\+value}}.
 
 \Hypertarget{classoomph_1_1AlgebraicNode_af1fef20e4dd950f70003c3db5d289044}\label{classoomph_1_1AlgebraicNode_af1fef20e4dd950f70003c3db5d289044} 
 \index{oomph::AlgebraicNode@{oomph::AlgebraicNode}!````~AlgebraicNode@{\texorpdfstring{$\sim$}{\string~}AlgebraicNode}}
@@ -524,7 +522,7 @@ Definition at line \mbox{\hyperlink{algebraic__elements_8h_source_l00105}{105}} 
 
 
 
-References \mbox{\hyperlink{oomph__utilities_8cc_source_l01195}{oomph\+::\+Leak\+Check\+Names\+::\+Algebraic\+Node\+\_\+build}}.
+References \mbox{\hyperlink{oomph__utilities_8cc_source_l01203}{oomph\+::\+Leak\+Check\+Names\+::\+Algebraic\+Node\+\_\+build}}.
 
 \Hypertarget{classoomph_1_1AlgebraicNode_a699690273ec90c490b98c5d7ced2d007}\label{classoomph_1_1AlgebraicNode_a699690273ec90c490b98c5d7ced2d007} 
 \index{oomph::AlgebraicNode@{oomph::AlgebraicNode}!AlgebraicNode@{AlgebraicNode}}
@@ -577,7 +575,7 @@ References \mbox{\hyperlink{algebraic__elements_8h_source_l00456}{Default\+\_\+i
 
 
 
-Referenced by \mbox{\hyperlink{algebraic__elements_8h_source_l00063}{Algebraic\+Node()}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00085}{Algebraic\+Node()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l01159}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update\+\_\+in\+\_\+lower\+\_\+right\+\_\+box()}}, \mbox{\hyperlink{quarter__tube__mesh_8template_8cc_source_l01288}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update\+\_\+in\+\_\+region()}}, and \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l01259}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update\+\_\+in\+\_\+upper\+\_\+left\+\_\+box()}}.
+Referenced by \mbox{\hyperlink{algebraic__elements_8h_source_l00063}{Algebraic\+Node()}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00085}{Algebraic\+Node()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l01138}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update\+\_\+in\+\_\+lower\+\_\+right\+\_\+box()}}, \mbox{\hyperlink{quarter__tube__mesh_8template_8cc_source_l01275}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update\+\_\+in\+\_\+region()}}, and \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l01234}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update\+\_\+in\+\_\+upper\+\_\+left\+\_\+box()}}.
 
 \Hypertarget{classoomph_1_1AlgebraicNode_a1adbe59a85f6de8fcb04b08be23181c3}\label{classoomph_1_1AlgebraicNode_a1adbe59a85f6de8fcb04b08be23181c3} 
 \index{oomph::AlgebraicNode@{oomph::AlgebraicNode}!all\_geom\_object\_pt@{all\_geom\_object\_pt}}
@@ -621,7 +619,7 @@ References \mbox{\hyperlink{algebraic__elements_8h_source_l00460}{Default\+\_\+i
 
 
 
-Referenced by \mbox{\hyperlink{algebraic__elements_8h_source_l00331}{add\+\_\+node\+\_\+update\+\_\+info()}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00280}{add\+\_\+node\+\_\+update\+\_\+info()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l01048}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::node\+\_\+update\+\_\+in\+\_\+upper\+\_\+left\+\_\+box()}}, and \mbox{\hyperlink{quarter__tube__mesh_8template_8cc_source_l01168}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::node\+\_\+update\+\_\+upper\+\_\+left\+\_\+region()}}.
+Referenced by \mbox{\hyperlink{algebraic__elements_8h_source_l00331}{add\+\_\+node\+\_\+update\+\_\+info()}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00280}{add\+\_\+node\+\_\+update\+\_\+info()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l01029}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::node\+\_\+update\+\_\+in\+\_\+upper\+\_\+left\+\_\+box()}}, and \mbox{\hyperlink{quarter__tube__mesh_8template_8cc_source_l01156}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::node\+\_\+update\+\_\+upper\+\_\+left\+\_\+region()}}.
 
 \Hypertarget{classoomph_1_1AlgebraicNode_a9de65e71efa3050187d41f05602accfe}\label{classoomph_1_1AlgebraicNode_a9de65e71efa3050187d41f05602accfe} 
 \index{oomph::AlgebraicNode@{oomph::AlgebraicNode}!kill\_node\_update\_info@{kill\_node\_update\_info}}
@@ -643,7 +641,7 @@ References \mbox{\hyperlink{algebraic__elements_8h_source_l00446}{Geom\+\_\+obje
 
 
 
-Referenced by \mbox{\hyperlink{algebraic__elements_8h_source_l00331}{add\+\_\+node\+\_\+update\+\_\+info()}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00280}{add\+\_\+node\+\_\+update\+\_\+info()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l01159}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update\+\_\+in\+\_\+lower\+\_\+right\+\_\+box()}}, \mbox{\hyperlink{quarter__tube__mesh_8template_8cc_source_l01288}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update\+\_\+in\+\_\+region()}}, and \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l01259}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update\+\_\+in\+\_\+upper\+\_\+left\+\_\+box()}}.
+Referenced by \mbox{\hyperlink{algebraic__elements_8h_source_l00331}{add\+\_\+node\+\_\+update\+\_\+info()}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00280}{add\+\_\+node\+\_\+update\+\_\+info()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l01138}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update\+\_\+in\+\_\+lower\+\_\+right\+\_\+box()}}, \mbox{\hyperlink{quarter__tube__mesh_8template_8cc_source_l01275}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update\+\_\+in\+\_\+region()}}, and \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l01234}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update\+\_\+in\+\_\+upper\+\_\+left\+\_\+box()}}.
 
 \Hypertarget{classoomph_1_1AlgebraicNode_a8db6dd23ac5f75d19d5eb1d083eeb38b}\label{classoomph_1_1AlgebraicNode_a8db6dd23ac5f75d19d5eb1d083eeb38b} 
 \index{oomph::AlgebraicNode@{oomph::AlgebraicNode}!mesh\_pt@{mesh\_pt}}
@@ -799,7 +797,7 @@ References \mbox{\hyperlink{algebraic__elements_8h_source_l00467}{Default\+\_\+n
 
 
 
-Referenced by \mbox{\hyperlink{fish__mesh_8template_8h_source_l00358}{oomph\+::\+Algebraic\+Fish\+Mesh$<$ ELEMENT $>$\+::algebraic\+\_\+node\+\_\+update()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00527}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::algebraic\+\_\+node\+\_\+update()}}, \mbox{\hyperlink{quarter__tube__mesh_8template_8h_source_l00551}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::algebraic\+\_\+node\+\_\+update()}}, \mbox{\hyperlink{algebraic__elements_8cc_source_l00297}{self\+\_\+test()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00573}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update()}}, and \mbox{\hyperlink{quarter__tube__mesh_8template_8h_source_l00595}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update()}}.
+Referenced by \mbox{\hyperlink{fish__mesh_8h_source_l00351}{oomph\+::\+Algebraic\+Fish\+Mesh$<$ ELEMENT $>$\+::algebraic\+\_\+node\+\_\+update()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00521}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::algebraic\+\_\+node\+\_\+update()}}, \mbox{\hyperlink{quarter__tube__mesh_8h_source_l00545}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::algebraic\+\_\+node\+\_\+update()}}, \mbox{\hyperlink{algebraic__elements_8cc_source_l00297}{self\+\_\+test()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00566}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update()}}, and \mbox{\hyperlink{quarter__tube__mesh_8h_source_l00589}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update()}}.
 
 \Hypertarget{classoomph_1_1AlgebraicNode_a6b910e50ee47113aa0256e46043b0f27}\label{classoomph_1_1AlgebraicNode_a6b910e50ee47113aa0256e46043b0f27} 
 \index{oomph::AlgebraicNode@{oomph::AlgebraicNode}!node\_update\_fct\_id@{node\_update\_fct\_id}}
@@ -875,7 +873,7 @@ References \mbox{\hyperlink{algebraic__elements_8h_source_l00464}{Default\+\_\+i
 
 
 
-Referenced by \mbox{\hyperlink{algebraic__elements_8h_source_l00331}{add\+\_\+node\+\_\+update\+\_\+info()}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00280}{add\+\_\+node\+\_\+update\+\_\+info()}}, and \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l01048}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::node\+\_\+update\+\_\+in\+\_\+upper\+\_\+left\+\_\+box()}}.
+Referenced by \mbox{\hyperlink{algebraic__elements_8h_source_l00331}{add\+\_\+node\+\_\+update\+\_\+info()}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00280}{add\+\_\+node\+\_\+update\+\_\+info()}}, and \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l01029}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::node\+\_\+update\+\_\+in\+\_\+upper\+\_\+left\+\_\+box()}}.
 
 \Hypertarget{classoomph_1_1AlgebraicNode_a68b0fc5d9b38bb087f889424382a3ecd}\label{classoomph_1_1AlgebraicNode_a68b0fc5d9b38bb087f889424382a3ecd} 
 \index{oomph::AlgebraicNode@{oomph::AlgebraicNode}!self\_test@{self\_test}}
@@ -893,7 +891,7 @@ Definition at line \mbox{\hyperlink{algebraic__elements_8cc_source_l00297}{297}}
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00471}{Max\+\_\+allowed\+\_\+difference\+\_\+between\+\_\+node\+\_\+update\+\_\+fcts}}, \mbox{\hyperlink{nodes_8h_source_l01054}{oomph\+::\+Node\+::ndim()}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00136}{nnode\+\_\+update\+\_\+fcts()}}, \mbox{\hyperlink{algebraic__elements_8cc_source_l00231}{node\+\_\+update()}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00146}{node\+\_\+update\+\_\+fct\+\_\+id()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{nodes_8cc_source_l00965}{oomph\+::\+Data\+::self\+\_\+test()}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00384}{set\+\_\+default\+\_\+node\+\_\+update()}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, and \mbox{\hyperlink{nodes_8h_source_l01060}{oomph\+::\+Node\+::x()}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00471}{Max\+\_\+allowed\+\_\+difference\+\_\+between\+\_\+node\+\_\+update\+\_\+fcts}}, \mbox{\hyperlink{nodes_8h_source_l01054}{oomph\+::\+Node\+::ndim()}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00136}{nnode\+\_\+update\+\_\+fcts()}}, \mbox{\hyperlink{algebraic__elements_8cc_source_l00231}{node\+\_\+update()}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00146}{node\+\_\+update\+\_\+fct\+\_\+id()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{nodes_8cc_source_l00965}{oomph\+::\+Data\+::self\+\_\+test()}}, \mbox{\hyperlink{algebraic__elements_8h_source_l00384}{set\+\_\+default\+\_\+node\+\_\+update()}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, and \mbox{\hyperlink{nodes_8h_source_l01060}{oomph\+::\+Node\+::x()}}.
 
 \Hypertarget{classoomph_1_1AlgebraicNode_a5f9d80a2826974b63376a4c58e0812fc}\label{classoomph_1_1AlgebraicNode_a5f9d80a2826974b63376a4c58e0812fc} 
 \index{oomph::AlgebraicNode@{oomph::AlgebraicNode}!set\_default\_node\_update@{set\_default\_node\_update}}
@@ -955,7 +953,7 @@ References \mbox{\hyperlink{algebraic__elements_8h_source_l00446}{Geom\+\_\+obje
 
 
 
-Referenced by \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l00851}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::node\+\_\+update\+\_\+in\+\_\+central\+\_\+box()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l00940}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::node\+\_\+update\+\_\+in\+\_\+lower\+\_\+right\+\_\+box()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l01048}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::node\+\_\+update\+\_\+in\+\_\+upper\+\_\+left\+\_\+box()}}, \mbox{\hyperlink{quarter__tube__mesh_8template_8cc_source_l01051}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::node\+\_\+update\+\_\+lower\+\_\+right\+\_\+region()}}, \mbox{\hyperlink{quarter__tube__mesh_8template_8cc_source_l01168}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::node\+\_\+update\+\_\+upper\+\_\+left\+\_\+region()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l01159}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update\+\_\+in\+\_\+lower\+\_\+right\+\_\+box()}}, \mbox{\hyperlink{quarter__tube__mesh_8template_8cc_source_l01288}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update\+\_\+in\+\_\+region()}}, and \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l01259}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update\+\_\+in\+\_\+upper\+\_\+left\+\_\+box()}}.
+Referenced by \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l00834}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::node\+\_\+update\+\_\+in\+\_\+central\+\_\+box()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l00921}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::node\+\_\+update\+\_\+in\+\_\+lower\+\_\+right\+\_\+box()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l01029}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::node\+\_\+update\+\_\+in\+\_\+upper\+\_\+left\+\_\+box()}}, \mbox{\hyperlink{quarter__tube__mesh_8template_8cc_source_l01039}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::node\+\_\+update\+\_\+lower\+\_\+right\+\_\+region()}}, \mbox{\hyperlink{quarter__tube__mesh_8template_8cc_source_l01156}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::node\+\_\+update\+\_\+upper\+\_\+left\+\_\+region()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l01138}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update\+\_\+in\+\_\+lower\+\_\+right\+\_\+box()}}, \mbox{\hyperlink{quarter__tube__mesh_8template_8cc_source_l01275}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update\+\_\+in\+\_\+region()}}, and \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l01234}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update\+\_\+in\+\_\+upper\+\_\+left\+\_\+box()}}.
 
 \Hypertarget{classoomph_1_1AlgebraicNode_ac4a4f8e238b9ee1abb2761800ecd1c4a}\label{classoomph_1_1AlgebraicNode_ac4a4f8e238b9ee1abb2761800ecd1c4a} 
 \index{oomph::AlgebraicNode@{oomph::AlgebraicNode}!vector\_ref\_value@{vector\_ref\_value}}
@@ -977,7 +975,7 @@ References \mbox{\hyperlink{algebraic__elements_8h_source_l00464}{Default\+\_\+i
 
 
 
-Referenced by \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l00851}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::node\+\_\+update\+\_\+in\+\_\+central\+\_\+box()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l00940}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::node\+\_\+update\+\_\+in\+\_\+lower\+\_\+right\+\_\+box()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l01048}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::node\+\_\+update\+\_\+in\+\_\+upper\+\_\+left\+\_\+box()}}, \mbox{\hyperlink{quarter__tube__mesh_8template_8cc_source_l01051}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::node\+\_\+update\+\_\+lower\+\_\+right\+\_\+region()}}, \mbox{\hyperlink{quarter__tube__mesh_8template_8cc_source_l01168}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::node\+\_\+update\+\_\+upper\+\_\+left\+\_\+region()}}, \mbox{\hyperlink{algebraic__elements_8cc_source_l00048}{oomph\+::\+Algebraic\+Element\+Base\+::setup\+\_\+algebraic\+\_\+node\+\_\+update()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l01159}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update\+\_\+in\+\_\+lower\+\_\+right\+\_\+box()}}, \mbox{\hyperlink{quarter__tube__mesh_8template_8cc_source_l01288}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update\+\_\+in\+\_\+region()}}, and \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l01259}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update\+\_\+in\+\_\+upper\+\_\+left\+\_\+box()}}.
+Referenced by \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l00834}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::node\+\_\+update\+\_\+in\+\_\+central\+\_\+box()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l00921}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::node\+\_\+update\+\_\+in\+\_\+lower\+\_\+right\+\_\+box()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l01029}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::node\+\_\+update\+\_\+in\+\_\+upper\+\_\+left\+\_\+box()}}, \mbox{\hyperlink{quarter__tube__mesh_8template_8cc_source_l01039}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::node\+\_\+update\+\_\+lower\+\_\+right\+\_\+region()}}, \mbox{\hyperlink{quarter__tube__mesh_8template_8cc_source_l01156}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::node\+\_\+update\+\_\+upper\+\_\+left\+\_\+region()}}, \mbox{\hyperlink{algebraic__elements_8cc_source_l00048}{oomph\+::\+Algebraic\+Element\+Base\+::setup\+\_\+algebraic\+\_\+node\+\_\+update()}}, \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l01138}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update\+\_\+in\+\_\+lower\+\_\+right\+\_\+box()}}, \mbox{\hyperlink{quarter__tube__mesh_8template_8cc_source_l01275}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update\+\_\+in\+\_\+region()}}, and \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8cc_source_l01234}{oomph\+::\+Algebraic\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$\+::update\+\_\+node\+\_\+update\+\_\+in\+\_\+upper\+\_\+left\+\_\+box()}}.
 
 \Hypertarget{classoomph_1_1AlgebraicNode_adcdd76bff197e1f392ff3023a57ba38f}\label{classoomph_1_1AlgebraicNode_adcdd76bff197e1f392ff3023a57ba38f} 
 \index{oomph::AlgebraicNode@{oomph::AlgebraicNode}!vector\_ref\_value@{vector\_ref\_value}}
@@ -1192,9 +1190,7 @@ Referenced by \mbox{\hyperlink{algebraic__elements_8h_source_l00331}{add\+\_\+no
 
 What it says\+: Used in self-\/test to check if different node update functions produce the same result. 
 
-////////////////////////////////////////////////////////////////////
-
-//////////////////////////////////////////////////////////////////// Assign default value for test if different node update functions produce the same result. 
+Assign default value for test if different node update functions produce the same result. 
 
 Definition at line \mbox{\hyperlink{algebraic__elements_8h_source_l00471}{471}} of file \mbox{\hyperlink{algebraic__elements_8h_source}{algebraic\+\_\+elements.\+h}}.
 

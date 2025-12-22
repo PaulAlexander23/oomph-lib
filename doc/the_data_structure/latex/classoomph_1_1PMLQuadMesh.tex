@@ -132,6 +132,10 @@ Inheritance diagram for oomph\+::PMLQuad\+Mesh\texorpdfstring{$<$}{<} ELEMENT \t
 \begin{DoxyCompactList}\small\item\em Replace existing boundary node lookup schemes with new schemes created using the boundary data stored in the nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1Mesh_ad1b124a959628aba00162b89617b3a62}{boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Indicate whether the i-\/th boundary has an intrinsic coordinate. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_ab137d0c0debf5ba0d6ea6990103e620c}{set\+\_\+boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be existing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_a3b9d63e0057ed721190b109f48f7c92e}{set\+\_\+boundary\+\_\+coordinate\+\_\+does\+\_\+not\+\_\+exist}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be non-\/existing. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_af01dfefb66c15579b540be62999d93ee}{nelement}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return number of elements in the mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
@@ -513,9 +517,7 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_aca12acfe655a4d5c4a4eab4a7b970812}{Element\+\_\+pt}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a412a5051be9e81f0ba61bf85e5abc4a6}{Boundary\+\_\+coordinate\+\_\+exists}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of boolean data that indicates whether the boundary coordinates have been set for the boundary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -523,7 +525,7 @@ std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionEleme
 class oomph\+::\+PMLQuad\+Mesh$<$ ELEMENT $>$}
 PML mesh, derived from \doxylink{classoomph_1_1RectangularQuadMesh}{Rectangular\+Quad\+Mesh}. 
 
-Definition at line \mbox{\hyperlink{pml__meshes_8h_source_l00430}{430}} of file \mbox{\hyperlink{pml__meshes_8h_source}{pml\+\_\+meshes.\+h}}.
+Definition at line \mbox{\hyperlink{pml__meshes_8h_source_l00429}{429}} of file \mbox{\hyperlink{pml__meshes_8h_source}{pml\+\_\+meshes.\+h}}.
 
 
 
@@ -563,11 +565,11 @@ Last element in mesh (top right)
 
 The alignment is done individually for each boundary and depends on the ordering of the nodes, in this case of the Rectangular\+Quad\+Mesh$<$2,3$>$ for each boundary. There are operations with mod and div 3 necessary in this case, as well as specific mechanisms to loop over the boundary in a certain way in order to obtain the convenient coordinates.
 
-Definition at line \mbox{\hyperlink{pml__meshes_8h_source_l00441}{441}} of file \mbox{\hyperlink{pml__meshes_8h_source}{pml\+\_\+meshes.\+h}}.
+Definition at line \mbox{\hyperlink{pml__meshes_8h_source_l00440}{440}} of file \mbox{\hyperlink{pml__meshes_8h_source}{pml\+\_\+meshes.\+h}}.
 
 
 
-References \mbox{\hyperlink{mesh_8h_source_l00493}{oomph\+::\+Mesh\+::boundary\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00460}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00473}{oomph\+::\+Mesh\+::finite\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00833}{oomph\+::\+Mesh\+::nboundary\+\_\+node()}}, \mbox{\hyperlink{mesh_8h_source_l00590}{oomph\+::\+Mesh\+::nelement()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02222}{oomph\+::\+Finite\+Element\+::nnode\+\_\+1d()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{mesh_8cc_source_l00966}{oomph\+::\+Mesh\+::prune\+\_\+dead\+\_\+nodes()}}, \mbox{\hyperlink{nodes_8h_source_l01436}{oomph\+::\+Node\+::set\+\_\+obsolete()}}, \mbox{\hyperlink{pml__meshes_8cc_source_l00057}{oomph\+::\+Two\+Dimensional\+PMLHelper\+::sorter\+\_\+bottom\+\_\+boundary()}}, \mbox{\hyperlink{pml__meshes_8cc_source_l00051}{oomph\+::\+Two\+Dimensional\+PMLHelper\+::sorter\+\_\+left\+\_\+boundary()}}, \mbox{\hyperlink{pml__meshes_8cc_source_l00039}{oomph\+::\+Two\+Dimensional\+PMLHelper\+::sorter\+\_\+right\+\_\+boundary()}}, \mbox{\hyperlink{pml__meshes_8cc_source_l00045}{oomph\+::\+Two\+Dimensional\+PMLHelper\+::sorter\+\_\+top\+\_\+boundary()}}, and \mbox{\hyperlink{nodes_8h_source_l01060}{oomph\+::\+Node\+::x()}}.
+References \mbox{\hyperlink{mesh_8h_source_l00497}{oomph\+::\+Mesh\+::boundary\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00464}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00477}{oomph\+::\+Mesh\+::finite\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00841}{oomph\+::\+Mesh\+::nboundary\+\_\+node()}}, \mbox{\hyperlink{mesh_8h_source_l00598}{oomph\+::\+Mesh\+::nelement()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02222}{oomph\+::\+Finite\+Element\+::nnode\+\_\+1d()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{mesh_8cc_source_l00966}{oomph\+::\+Mesh\+::prune\+\_\+dead\+\_\+nodes()}}, \mbox{\hyperlink{nodes_8h_source_l01436}{oomph\+::\+Node\+::set\+\_\+obsolete()}}, \mbox{\hyperlink{pml__meshes_8cc_source_l00057}{oomph\+::\+Two\+Dimensional\+PMLHelper\+::sorter\+\_\+bottom\+\_\+boundary()}}, \mbox{\hyperlink{pml__meshes_8cc_source_l00051}{oomph\+::\+Two\+Dimensional\+PMLHelper\+::sorter\+\_\+left\+\_\+boundary()}}, \mbox{\hyperlink{pml__meshes_8cc_source_l00039}{oomph\+::\+Two\+Dimensional\+PMLHelper\+::sorter\+\_\+right\+\_\+boundary()}}, \mbox{\hyperlink{pml__meshes_8cc_source_l00045}{oomph\+::\+Two\+Dimensional\+PMLHelper\+::sorter\+\_\+top\+\_\+boundary()}}, and \mbox{\hyperlink{nodes_8h_source_l01060}{oomph\+::\+Node\+::x()}}.
 
 
 

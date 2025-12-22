@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -121,10 +115,10 @@
 </div><!--header-->
 <div class="contents">
 
-<p>////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////  
+<p>Refineable version of <a class="el" href="classoomph_1_1FSIDrivenCavityMesh.html" title="Mesh for W. Wall&#39;s FSI driven cavity problem. The mesh is derived from the SimpleRectangularQuadMesh ...">FSIDrivenCavityMesh</a>. The mesh is derived from the <code><a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html" title="Simple rectangular 2D Quad mesh class. Nx : number of elements in the x direction.">SimpleRectangularQuadMesh</a></code> so it's node and element numbering scheme is the same as in that mesh. Only the boundaries are numbered differently to allow the easy identification of the "collapsible" segment. Boundary coordinates are set up for all nodes located on boundary 3 (the collapsible segment). The curvilinear ("collapsible") segment is defined by a <code>GeomObject</code>.  
  <a href="classoomph_1_1RefineableFSIDrivenCavityMesh.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="fsi__driven__cavity__mesh_8template_8h_source.html">fsi_driven_cavity_mesh.template.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="fsi__driven__cavity__mesh_8h_source.html">fsi_driven_cavity_mesh.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for oomph::RefineableFSIDrivenCavityMesh&lt; ELEMENT &gt;:</div>
 <div class="dyncontent">
@@ -177,8 +171,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleChannelMesh.html">class</a> <a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleChannelMesh.html">ELEMENT</a>&gt;<br />
-class oomph::RefineableFSIDrivenCavityMesh&lt; ELEMENT &gt;</div><p>////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////// </p>
-<p>Refineable version of <a class="el" href="classoomph_1_1FSIDrivenCavityMesh.html" title="Mesh for W. Wall&#39;s FSI driven cavity problem. The mesh is derived from the SimpleRectangularQuadMesh ...">FSIDrivenCavityMesh</a>. The mesh is derived from the <code><a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html" title="Simple rectangular 2D Quad mesh class. Nx : number of elements in the x direction.">SimpleRectangularQuadMesh</a></code> so it's node and element numbering scheme is the same as in that mesh. Only the boundaries are numbered differently to allow the easy identification of the "collapsible" segment. Boundary coordinates are set up for all nodes located on boundary 3 (the collapsible segment). The curvilinear ("collapsible") segment is defined by a <code>GeomObject</code>.</p><ul>
+class oomph::RefineableFSIDrivenCavityMesh&lt; ELEMENT &gt;</div><p>Refineable version of <a class="el" href="classoomph_1_1FSIDrivenCavityMesh.html" title="Mesh for W. Wall&#39;s FSI driven cavity problem. The mesh is derived from the SimpleRectangularQuadMesh ...">FSIDrivenCavityMesh</a>. The mesh is derived from the <code><a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html" title="Simple rectangular 2D Quad mesh class. Nx : number of elements in the x direction.">SimpleRectangularQuadMesh</a></code> so it's node and element numbering scheme is the same as in that mesh. Only the boundaries are numbered differently to allow the easy identification of the "collapsible" segment. Boundary coordinates are set up for all nodes located on boundary 3 (the collapsible segment). The curvilinear ("collapsible") segment is defined by a <code>GeomObject</code>. </p>
+<ul>
 <li>Boundary 0 is the moving lid.</li>
 <li>Boundary 1 is the gap above the moving lid on the right wall</li>
 <li>Boundary 2 is the rigid part of the right wall</li>
@@ -187,7 +181,7 @@ class oomph::RefineableFSIDrivenCavityMesh&lt; ELEMENT &gt;</div><p>////////////
 <li>Boundary 5 is the gap above the moving lid on the left wall </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="fsi__driven__cavity__mesh_8template_8h_source.html#l00120">120</a> of file <a class="el" href="fsi__driven__cavity__mesh_8template_8h_source.html">fsi_driven_cavity_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fsi__driven__cavity__mesh_8h_source.html#l00117">117</a> of file <a class="el" href="fsi__driven__cavity__mesh_8h_source.html">fsi_driven_cavity_mesh.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a91c0ab00784098cb0e583ab0882b0e0e" name="a91c0ab00784098cb0e583ab0882b0e0e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a91c0ab00784098cb0e583ab0882b0e0e">&#9670;&#160;</a></span>RefineableFSIDrivenCavityMesh()</h2>
@@ -257,7 +251,7 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Constructor: Pass number of elements, lengths, pointer to geometric object that describes the wall and timestepper. </p>
 
-<p class="definition">Definition at line <a class="el" href="fsi__driven__cavity__mesh_8template_8h_source.html#l00127">127</a> of file <a class="el" href="fsi__driven__cavity__mesh_8template_8h_source.html">fsi_driven_cavity_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fsi__driven__cavity__mesh_8h_source.html#l00124">124</a> of file <a class="el" href="fsi__driven__cavity__mesh_8h_source.html">fsi_driven_cavity_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -288,12 +282,12 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Destructor(empty) </p>
 
-<p class="definition">Definition at line <a class="el" href="fsi__driven__cavity__mesh_8template_8h_source.html#l00144">144</a> of file <a class="el" href="fsi__driven__cavity__mesh_8template_8h_source.html">fsi_driven_cavity_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fsi__driven__cavity__mesh_8h_source.html#l00140">140</a> of file <a class="el" href="fsi__driven__cavity__mesh_8h_source.html">fsi_driven_cavity_mesh.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li><a class="el" href="fsi__driven__cavity__mesh_8template_8h_source.html">fsi_driven_cavity_mesh.template.h</a></li>
+<li><a class="el" href="fsi__driven__cavity__mesh_8h_source.html">fsi_driven_cavity_mesh.h</a></li>
 </ul>
 </div><!-- contents -->
 
@@ -323,7 +317,7 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:26:43
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:34:38
         </div>
       </div>
     </footer>

@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -119,7 +113,7 @@
 <div class="line"><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><span class="comment">//LIC// </span></div>
-<div class="line"><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><span class="comment">//LIC// </span></div>
 <div class="line"><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -150,9 +144,9 @@
 <div class="line"> </div>
 <div class="line"><span class="keyword">using namespace </span>oomph;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"> </div>
 <div class="line"><span class="comment">//====start_of_namespace============================</span><span class="comment"></span></div>
@@ -173,9 +167,9 @@
 <div class="line"> </div>
 <div class="line">} <span class="comment">// end of namespace</span></div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">/// //////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><span class="comment">/// //////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><span class="comment">/// //////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">/////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">/////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">/////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"> </div>
 <div class="line"> </div>
@@ -373,7 +367,7 @@
 <div class="line"> <span class="keywordtype">unsigned</span> npts=5;</div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output solution </span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/ring%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/ring%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> mesh_pt()-&gt;output(some_file,npts);</div>
@@ -383,7 +377,7 @@
 <div class="line"> <span class="keywordtype">unsigned</span> nsteps=time_stepper_pt()-&gt;nprev_values();</div>
 <div class="line"> <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> t=0;t&lt;=nsteps;t++)</div>
 <div class="line">  {     </div>
-<div class="line">   sprintf(filename,<span class="stringliteral">&quot;%s/ring%i-%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line">   snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/ring%i-%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">           doc_info.number(),t);</div>
 <div class="line">   some_file.open(filename);</div>
 <div class="line">   <span class="keywordtype">unsigned</span> Nelem=mesh_pt()-&gt;nelement();</div>
@@ -396,7 +390,7 @@
 <div class="line">  }</div>
 <div class="line">  </div>
 <div class="line"> <span class="comment">// Output for initial condition object</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/ic_ring%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/ic_ring%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line">  </div>
@@ -447,7 +441,7 @@
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Set up trace file</span></div>
 <div class="line"> <span class="keywordtype">char</span> filename[100];</div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/trace_ring.dat&quot;</span>,doc_info.directory().c_str());</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/trace_ring.dat&quot;</span>,doc_info.directory().c_str());</div>
 <div class="line"> Trace_file.open(filename);</div>
 <div class="line"> </div>
 <div class="line"> Trace_file &lt;&lt;  <span class="stringliteral">&quot;VARIABLES=\&quot;time\&quot;,\&quot;R&lt;sub&gt;ctrl&lt;/sub&gt;\&quot;,\&quot;E&lt;sub&gt;pot&lt;/sub&gt;\&quot;&quot;</span>;</div>
@@ -611,7 +605,7 @@
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"> </div>
-<div class="ttc" id="aclassElasticRingProblem_html"><div class="ttname"><a href="classElasticRingProblem.html">ElasticRingProblem</a></div><div class="ttdoc">////////////////////////////////////////////////////////////////// //////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="lin__unsteady__ring_8cc_source.html#l00071">lin_unsteady_ring.cc:72</a></div></div>
+<div class="ttc" id="aclassElasticRingProblem_html"><div class="ttname"><a href="classElasticRingProblem.html">ElasticRingProblem</a></div><div class="ttdoc">Oscillating ring problem: Compare small-amplitude oscillations against analytical solution of the lin...</div><div class="ttdef"><b>Definition</b> <a href="lin__unsteady__ring_8cc_source.html#l00071">lin_unsteady_ring.cc:72</a></div></div>
 <div class="ttc" id="aclassElasticRingProblem_html_a0acfcb485441bbe0c9e4202d8a5e72d3"><div class="ttname"><a href="classElasticRingProblem.html#a0acfcb485441bbe0c9e4202d8a5e72d3">ElasticRingProblem::S_displ_control</a></div><div class="ttdeci">Vector&lt; double &gt; S_displ_control</div><div class="ttdoc">At what local coordinate are we applying displacement control?</div><div class="ttdef"><b>Definition</b> <a href="lin__unsteady__ring_8cc_source.html#l00108">lin_unsteady_ring.cc:108</a></div></div>
 <div class="ttc" id="aclassElasticRingProblem_html_a0d314051b66afb53fa7f28c298f38206"><div class="ttname"><a href="classElasticRingProblem.html#a0d314051b66afb53fa7f28c298f38206">ElasticRingProblem::IC_pt</a></div><div class="ttdeci">SolidInitialCondition * IC_pt</div><div class="ttdoc">Pointer to object that specifies the initial condition.</div><div class="ttdef"><b>Definition</b> <a href="lin__unsteady__ring_8cc_source.html#l00114">lin_unsteady_ring.cc:114</a></div></div>
 <div class="ttc" id="aclassElasticRingProblem_html_a57be33a379c1ec4418a7fb3e8db8ef2b"><div class="ttname"><a href="classElasticRingProblem.html#a57be33a379c1ec4418a7fb3e8db8ef2b">ElasticRingProblem::ElasticRingProblem</a></div><div class="ttdeci">ElasticRingProblem(const unsigned &amp;N, const double &amp;L)</div><div class="ttdoc">Constructor: Number of elements, length of domain, flag for setting Newmark IC directly or consistent...</div><div class="ttdef"><b>Definition</b> <a href="lin__unsteady__ring_8cc_source.html#l00127">lin_unsteady_ring.cc:128</a></div></div>
@@ -625,7 +619,7 @@
 <div class="ttc" id="aclassElasticRingProblem_html_aba78b855677ef08ea3d9678dcde8a71b"><div class="ttname"><a href="classElasticRingProblem.html#aba78b855677ef08ea3d9678dcde8a71b">ElasticRingProblem::Displ_control_elem_pt</a></div><div class="ttdeci">ELEMENT * Displ_control_elem_pt</div><div class="ttdoc">In which element are we applying displacement control? (here only used for doc of radius)</div><div class="ttdef"><b>Definition</b> <a href="lin__unsteady__ring_8cc_source.html#l00105">lin_unsteady_ring.cc:105</a></div></div>
 <div class="ttc" id="aclassElasticRingProblem_html_acd30c4363ffedbaadc1523aa8b85523b"><div class="ttname"><a href="classElasticRingProblem.html#acd30c4363ffedbaadc1523aa8b85523b">ElasticRingProblem::unsteady_run</a></div><div class="ttdeci">void unsteady_run()</div><div class="ttdoc">Do unsteady run.</div><div class="ttdef"><b>Definition</b> <a href="lin__unsteady__ring_8cc_source.html#l00320">lin_unsteady_ring.cc:320</a></div></div>
 <div class="ttc" id="alin__unsteady__ring_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="lin__unsteady__ring_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">Driver for ring that performs small-amplitude oscillations.</div><div class="ttdef"><b>Definition</b> <a href="lin__unsteady__ring_8cc_source.html#l00412">lin_unsteady_ring.cc:412</a></div></div>
-<div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">///////////////////////////////////////////////////////////////////// ///////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="lin__unsteady__ring_8cc_source.html#l00045">lin_unsteady_ring.cc:46</a></div></div>
+<div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">Namespace for physical parameters.</div><div class="ttdef"><b>Definition</b> <a href="lin__unsteady__ring_8cc_source.html#l00045">lin_unsteady_ring.cc:46</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_aae2e69454e5e73519e13dd3424d41a2c"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#aae2e69454e5e73519e13dd3424d41a2c">Global_Physical_Variables::Fixed_timestep_flag</a></div><div class="ttdeci">unsigned Fixed_timestep_flag</div><div class="ttdoc">Flag for fixed timestep: Default = fixed timestep.</div><div class="ttdef"><b>Definition</b> <a href="lin__unsteady__ring_8cc_source.html#l00052">lin_unsteady_ring.cc:52</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_acb18f0e4952b6a1b0840ca94828ace3b"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#acb18f0e4952b6a1b0840ca94828ace3b">Global_Physical_Variables::Long_run_flag</a></div><div class="ttdeci">unsigned Long_run_flag</div><div class="ttdoc">Flag for long/short run: Default = perform long run.</div><div class="ttdef"><b>Definition</b> <a href="lin__unsteady__ring_8cc_source.html#l00049">lin_unsteady_ring.cc:49</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_affe3ddb0b7c1d7dbf3955738edbda1af"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#affe3ddb0b7c1d7dbf3955738edbda1af">Global_Physical_Variables::Consistent_newmark_ic</a></div><div class="ttdeci">bool Consistent_newmark_ic</div><div class="ttdoc">Boolean flag to decide if to set IC for Newmark directly or consistently : No Default.</div><div class="ttdef"><b>Definition</b> <a href="lin__unsteady__ring_8cc_source.html#l00056">lin_unsteady_ring.cc:56</a></div></div>
@@ -633,7 +627,7 @@
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -663,7 +657,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:21:52
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:32:47
         </div>
       </div>
     </footer>

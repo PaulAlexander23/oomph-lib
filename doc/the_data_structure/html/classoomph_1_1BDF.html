@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -133,7 +127,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////  
+<p>Templated class for BDF-type time-steppers with fixed or variable timestep. 1st time derivative recovered directly from the previous function values. Template parameter represents the number of previous timesteps stored, so that BDF&lt;1&gt; is the classical first order backward <a class="el" href="classoomph_1_1Euler.html" title="=========================================================== Simple first-order Euler Timestepping">Euler</a> scheme. Need to reset weights after every change in timestep.  
  <a href="classoomph_1_1BDF.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="timesteppers_8h_source.html">timesteppers.h</a>&gt;</code></p>
@@ -145,7 +139,7 @@ $(function() {
  <div class="center">
   <img src="classoomph_1_1BDF.png" usemap="#oomph::BDF_3C_20NSTEPS_20_3E_map" alt=""/>
   <map id="oomph::BDF_3C_20NSTEPS_20_3E_map" name="oomph::BDF_3C_20NSTEPS_20_3E_map">
-<area href="classoomph_1_1TimeStepper.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////..." alt="oomph::TimeStepper" shape="rect" coords="0,0,152,24"/>
+<area href="classoomph_1_1TimeStepper.html" title="Base class for time-stepping schemes. Timestepper provides an approximation of the temporal derivativ..." alt="oomph::TimeStepper" shape="rect" coords="0,0,152,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -179,7 +173,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ae40c166092d039798704a8969c0acc0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise the time-history for the <a class="el" href="classoomph_1_1Data.html" title="A class that represents a collection of data; each Data object may contain many different individual ...">Data</a> values, corresponding to given time history, specified by <a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> of function pointers.  <br /></td></tr>
 <tr class="separator:ae40c166092d039798704a8969c0acc0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a037ce83f202e4ba2e61666bfdb1ce4b9" id="r_a037ce83f202e4ba2e61666bfdb1ce4b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BDF.html#a037ce83f202e4ba2e61666bfdb1ce4b9">shift_time_values</a> (<a class="el" href="classoomph_1_1Data.html">Data</a> *<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">data_pt</a>)</td></tr>
-<tr class="memdesc:a037ce83f202e4ba2e61666bfdb1ce4b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function updates the <a class="el" href="classoomph_1_1Data.html" title="A class that represents a collection of data; each Data object may contain many different individual ...">Data</a>'s time history so that we can advance to the next timestep. For <a class="el" href="classoomph_1_1BDF.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////...">BDF</a> schemes, we simply push the values backwards...  <br /></td></tr>
+<tr class="memdesc:a037ce83f202e4ba2e61666bfdb1ce4b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function updates the <a class="el" href="classoomph_1_1Data.html" title="A class that represents a collection of data; each Data object may contain many different individual ...">Data</a>'s time history so that we can advance to the next timestep. For <a class="el" href="classoomph_1_1BDF.html" title="Templated class for BDF-type time-steppers with fixed or variable timestep. 1st time derivative recov...">BDF</a> schemes, we simply push the values backwards...  <br /></td></tr>
 <tr class="separator:a037ce83f202e4ba2e61666bfdb1ce4b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad5191a5605337d43458d42f67460dbd" id="r_aad5191a5605337d43458d42f67460dbd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BDF.html#aad5191a5605337d43458d42f67460dbd">shift_time_positions</a> (<a class="el" href="classoomph_1_1Node.html">Node</a> *<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> &amp;node_pt)</td></tr>
 <tr class="memdesc:aad5191a5605337d43458d42f67460dbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function advances the time history of the positions at a node.  <br /></td></tr>
@@ -212,7 +206,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aab34e35252db11052c72ae7692825149"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the error in the value i in a <a class="el" href="classoomph_1_1Data.html" title="A class that represents a collection of data; each Data object may contain many different individual ...">Data</a> structure.  <br /></td></tr>
 <tr class="separator:aab34e35252db11052c72ae7692825149"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d247ea52d1cddbf74d4fa054110b2ca" id="r_a9d247ea52d1cddbf74d4fa054110b2ca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BDF.html#a9d247ea52d1cddbf74d4fa054110b2ca">set_weights</a> ()</td></tr>
-<tr class="memdesc:a9d247ea52d1cddbf74d4fa054110b2ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">/////////////////////////////////////////////////////////////////////  <br /></td></tr>
+<tr class="memdesc:a9d247ea52d1cddbf74d4fa054110b2ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assign the values of the weights.  <br /></td></tr>
 <tr class="separator:a9d247ea52d1cddbf74d4fa054110b2ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a108f0a3b2228efe92763135f4603c925" id="r_a108f0a3b2228efe92763135f4603c925"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BDF.html#a108f0a3b2228efe92763135f4603c925">set_predictor_weights</a> ()</td></tr>
 <tr class="memdesc:a108f0a3b2228efe92763135f4603c925"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the predictor weights (Gresho and Sani pg. 270)  <br /></td></tr>
@@ -336,7 +330,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ac59f0fb50e6ca3622c03cd9b4d29ee8c inherit pub_methods_classoomph_1_1TimeStepper"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a (const) pointer to the weights.  <br /></td></tr>
 <tr class="separator:ac59f0fb50e6ca3622c03cd9b4d29ee8c inherit pub_methods_classoomph_1_1TimeStepper"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aada05f89e86aae352bd5b32bfb173b18 inherit pub_methods_classoomph_1_1TimeStepper" id="r_aada05f89e86aae352bd5b32bfb173b18"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">virtual</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TimeStepper.html#aada05f89e86aae352bd5b32bfb173b18">undo_make_steady</a> ()</td></tr>
-<tr class="memdesc:aada05f89e86aae352bd5b32bfb173b18 inherit pub_methods_classoomph_1_1TimeStepper"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the is_steady status of a specific <a class="el" href="classoomph_1_1TimeStepper.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////...">TimeStepper</a> to its default and re-assign the weights.  <br /></td></tr>
+<tr class="memdesc:aada05f89e86aae352bd5b32bfb173b18 inherit pub_methods_classoomph_1_1TimeStepper"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the is_steady status of a specific <a class="el" href="classoomph_1_1TimeStepper.html" title="Base class for time-stepping schemes. Timestepper provides an approximation of the temporal derivativ...">TimeStepper</a> to its default and re-assign the weights.  <br /></td></tr>
 <tr class="separator:aada05f89e86aae352bd5b32bfb173b18 inherit pub_methods_classoomph_1_1TimeStepper"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbd69b35e54efa29b219bbb56ba49260 inherit pub_methods_classoomph_1_1TimeStepper" id="r_acbd69b35e54efa29b219bbb56ba49260"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TimeStepper.html#acbd69b35e54efa29b219bbb56ba49260">type</a> () <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a></td></tr>
 <tr class="memdesc:acbd69b35e54efa29b219bbb56ba49260 inherit pub_methods_classoomph_1_1TimeStepper"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return string that indicates the type of the timestepper (e.g. "BDF", "Newmark", etc.)  <br /></td></tr>
@@ -420,8 +414,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> NSTEPS&gt;<br />
-class oomph::BDF&lt; NSTEPS &gt;</div><p>////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////// </p>
-<p>Templated class for BDF-type time-steppers with fixed or variable timestep. 1st time derivative recovered directly from the previous function values. Template parameter represents the number of previous timesteps stored, so that BDF&lt;1&gt; is the classical first order backward <a class="el" href="classoomph_1_1Euler.html" title="=========================================================== Simple first-order Euler Timestepping">Euler</a> scheme. Need to reset weights after every change in timestep. </p>
+class oomph::BDF&lt; NSTEPS &gt;</div><p>Templated class for BDF-type time-steppers with fixed or variable timestep. 1st time derivative recovered directly from the previous function values. Template parameter represents the number of previous timesteps stored, so that BDF&lt;1&gt; is the classical first order backward <a class="el" href="classoomph_1_1Euler.html" title="=========================================================== Simple first-order Euler Timestepping">Euler</a> scheme. Need to reset weights after every change in timestep. </p>
 
 <p class="definition">Definition at line <a class="el" href="timesteppers_8h_source.html#l01164">1164</a> of file <a class="el" href="timesteppers_8h_source.html">timesteppers.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
@@ -476,7 +469,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p class="definition">Definition at line <a class="el" href="timesteppers_8h_source.html#l01193">1193</a> of file <a class="el" href="timesteppers_8h_source.html">timesteppers.h</a>.</p>
 
-<p class="reference">References <a class="el" href="timesteppers_8h_source.html#l00245">oomph::TimeStepper::Adaptive_Flag</a>, <a class="el" href="timesteppers_8h_source.html#l00273">oomph::TimeStepper::Predictor_storage_index</a>, <a class="el" href="timesteppers_8h_source.html#l01186">oomph::BDF&lt; NSTEPS &gt;::Predictor_weight</a>, <a class="el" href="matrices_8h_source.html#l00498">oomph::DenseMatrix&lt; T &gt;::resize()</a>, <a class="el" href="timesteppers_8h_source.html#l00241">oomph::TimeStepper::Type</a>, and <a class="el" href="timesteppers_8h_source.html#l00237">oomph::TimeStepper::Weight</a>.</p>
+<p class="reference">References <a class="el" href="timesteppers_8h_source.html#l00245">oomph::TimeStepper::Adaptive_Flag</a>, <a class="el" href="timesteppers_8h_source.html#l00273">oomph::TimeStepper::Predictor_storage_index</a>, <a class="el" href="timesteppers_8h_source.html#l01186">oomph::BDF&lt; NSTEPS &gt;::Predictor_weight</a>, <a class="el" href="matrices_8h_source.html#l00498">oomph::DenseMatrix&lt; T &gt;::resize()</a>, and <a class="el" href="timesteppers_8h_source.html#l00237">oomph::TimeStepper::Weight</a>.</p>
 
 </div>
 </div>
@@ -1297,8 +1290,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 </table>
 </div><div class="memdoc">
 
-<p>///////////////////////////////////////////////////////////////////// </p>
-<p>///////////////////////////////////////////////////////////////////// Assign the values of the weights </p>
+<p>Assign the values of the weights. </p>
 
 <p>Implements <a class="el" href="classoomph_1_1TimeStepper.html#a028fa3a8d3c6db6b0ddf580cb0468d55">oomph::TimeStepper</a>.</p>
 
@@ -1465,7 +1457,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 </table>
 </div><div class="memdoc">
 
-<p>This function updates the <a class="el" href="classoomph_1_1Data.html" title="A class that represents a collection of data; each Data object may contain many different individual ...">Data</a>'s time history so that we can advance to the next timestep. For <a class="el" href="classoomph_1_1BDF.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////...">BDF</a> schemes, we simply push the values backwards... </p>
+<p>This function updates the <a class="el" href="classoomph_1_1Data.html" title="A class that represents a collection of data; each Data object may contain many different individual ...">Data</a>'s time history so that we can advance to the next timestep. For <a class="el" href="classoomph_1_1BDF.html" title="Templated class for BDF-type time-steppers with fixed or variable timestep. 1st time derivative recov...">BDF</a> schemes, we simply push the values backwards... </p>
 
 <p>Implements <a class="el" href="classoomph_1_1TimeStepper.html#a010a3b03a23a1c48dd8ca10641427255">oomph::TimeStepper</a>.</p>
 
@@ -1909,7 +1901,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:03:21
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:36:56
         </div>
       </div>
     </footer>

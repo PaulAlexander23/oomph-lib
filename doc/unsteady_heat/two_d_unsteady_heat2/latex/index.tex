@@ -249,7 +249,7 @@ The Problem member function {\ttfamily doc\+\_\+solution(...)} is identical to t
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Write\ restart\ file}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/restart\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/restart\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ dump\_it(some\_file);}
@@ -332,4 +332,4 @@ The {\ttfamily Problem\+::dump(...)} and {\ttfamily Problem\+::read(...)} functi
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

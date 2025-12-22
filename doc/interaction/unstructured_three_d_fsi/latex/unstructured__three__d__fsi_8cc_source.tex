@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -76,7 +76,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00072}00072\ \ \ \ \textcolor{keywordtype}{unsigned}\ nb=this-\/>nboundary();}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00073}00073\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ b=0;b<nb;b++)}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00074}00074\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00075}00075\ \ \ \ \ \ sprintf(filename,\textcolor{stringliteral}{"{}RESLT/solid\_boundary\_test\%i.dat"{}},b);}
+\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00075}00075\ \ \ \ \ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}RESLT/solid\_boundary\_test\%i.dat"{}},b);}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00076}00076\ \ \ \ \ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00077}00077\ \ \ \ \ \ this-\/>\textcolor{keyword}{template}\ setup\_boundary\_coordinates<ELEMENT>(b,some\_file);}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00078}00078\ \ \ \ \ \ some\_file.close();}
@@ -89,9 +89,9 @@
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00085}00085\ }
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00086}00086\ \};}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00087}00087\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00088}00088\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00089}00089\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00090}00090\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00088}00088\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00089}00089\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00090}00090\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00091}00091\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00092}00092\ }
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00093}00093\ }
@@ -135,7 +135,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00131}00131\ \ \ \ \textcolor{keywordtype}{unsigned}\ nb=this-\/>nboundary();}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00132}00132\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ b=0;b<nb;b++)\ }
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00133}00133\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00134}00134\ \ \ \ \ \ sprintf(filename,\textcolor{stringliteral}{"{}RESLT/fluid\_boundary\_test\%i.dat"{}},b);}
+\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00134}00134\ \ \ \ \ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}RESLT/fluid\_boundary\_test\%i.dat"{}},b);}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00135}00135\ \ \ \ \ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00136}00136\ \ \ \ \ \ this-\/>\textcolor{keyword}{template}\ setup\_boundary\_coordinates<ELEMENT>(b,switch\_normal,some\_file);}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00137}00137\ \ \ \ \ \ some\_file.close();}
@@ -149,9 +149,9 @@
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00145}00145\ \};}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00146}00146\ }
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00147}00147\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00148}00148\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00149}00149\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00150}00150\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00148}00148\ \textcolor{comment}{//////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00149}00149\ \textcolor{comment}{//////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00150}00150\ \textcolor{comment}{//////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00151}00151\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00152}00152\ }
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00153}00153\ \textcolor{comment}{//=======start\_of\_namespace==========================================}\textcolor{comment}{}}
@@ -683,7 +683,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00679}00679\ \ \ \ }
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00680}00680\ \ \ \ \textcolor{comment}{//Doc\ boundary\ coordinates\ in\ fluid}}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00681}00681\ \ \ \ \textcolor{keywordtype}{char}\ filename[100];}
-\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00682}00682\ \ \ \ sprintf(filename,\textcolor{stringliteral}{"{}RESLT/fluid\_boundary\_coordinates\%i.dat"{}},i);}
+\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00682}00682\ \ \ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}RESLT/fluid\_boundary\_coordinates\%i.dat"{}},i);}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00683}00683\ \ \ \ Multi\_domain\_functions::Doc\_boundary\_coordinate\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00684}00684\ \ \ \ }
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00685}00685\ \ \ \ \textcolor{comment}{//\ Setup\ FSI:\ Pass\ ID\ of\ fluid\ FSI\ boundary\ and\ associated}}
@@ -884,7 +884,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00880}00880\ \ }
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00881}00881\ \ \textcolor{comment}{//Doc\ boundary\ coordinates\ in\ fluid}}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00882}00882\ \ \textcolor{keywordtype}{char}\ filename[100];}
-\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00883}00883\ \ sprintf(filename,\textcolor{stringliteral}{"{}RESLT/solid\_boundary\_coordinates\%i.dat"{}},i);}
+\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00883}00883\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}RESLT/solid\_boundary\_coordinates\%i.dat"{}},i);}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00884}00884\ \ std::ofstream\ the\_file(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00885}00885\ \ }
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00886}00886\ \ \textcolor{comment}{//\ Loop\ over\ traction\ elements}}
@@ -948,7 +948,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00944}00944\ \ }
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00945}00945\ \ \textcolor{comment}{//\ Output\ solid\ boundaries}}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00946}00946\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00947}00947\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/solid\_boundaries\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00947}00947\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/solid\_boundaries\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00948}00948\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00949}00949\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00950}00950\ \ Solid\_mesh\_pt-\/>output\_boundaries(some\_file);}
@@ -957,7 +957,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00953}00953\ \ }
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00954}00954\ \ \textcolor{comment}{//\ Output\ solid\ solution}}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00955}00955\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00956}00956\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/solid\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00956}00956\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/solid\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00957}00957\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00958}00958\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00959}00959\ \ Solid\_mesh\_pt-\/>output(some\_file,npts);}
@@ -966,7 +966,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00962}00962\ \ }
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00963}00963\ \ \textcolor{comment}{//\ Output\ fluid\ boundaries}}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00964}00964\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00965}00965\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/fluid\_boundaries\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00965}00965\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/fluid\_boundaries\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00966}00966\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00967}00967\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00968}00968\ \ Fluid\_mesh\_pt-\/>output\_boundaries(some\_file);}
@@ -975,7 +975,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00971}00971\ \ }
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00972}00972\ \ \textcolor{comment}{//\ Output\ fluid\ solution}}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00973}00973\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00974}00974\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/fluid\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00974}00974\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/fluid\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00975}00975\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00976}00976\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00977}00977\ \ Fluid\_mesh\_pt-\/>output(some\_file,npts);}
@@ -984,7 +984,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00980}00980\ \ \ \ }
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00981}00981\ \ \textcolor{comment}{//\ Output\ fsi\ traction}}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00982}00982\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00983}00983\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/fsi\_traction\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00983}00983\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/fsi\_traction\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00984}00984\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00985}00985\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__three__d__fsi_8cc_source_l00986}00986\ \ \textcolor{keywordtype}{unsigned}\ n=nsolid\_fsi\_boundary();}

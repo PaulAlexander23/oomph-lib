@@ -270,7 +270,7 @@ Inheritance diagram for oomph\+::Solid\+Node\+:\begin{figure}[H]
 \begin{DoxyCompactList}\small\item\em Default constructor for steady problems\+: assign memory for initial\+\_\+n\+\_\+value values. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Data_afe56d22d0dba308e33191e922993c5ee}{Data}} (\mbox{\hyperlink{classoomph_1_1TimeStepper}{Time\+Stepper}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \&\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\+\_\+stepper\+\_\+pt}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{initial\+\_\+n\+\_\+value}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{allocate\+\_\+storage}}=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{true}})
 \begin{DoxyCompactList}\small\item\em Constructor for unsteady problems\+: assign memory for initial\+\_\+n\+\_\+value values and any memory required by the Timestepper for the storage of history values. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1Data_ab35d30d1817db503265d59956a4ee02b}{Data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Data}{Data}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{data}})=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
+\mbox{\hyperlink{classoomph_1_1Data_ab35d30d1817db503265d59956a4ee02b}{Data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Data}{Data}} \&data)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
 \begin{DoxyCompactList}\small\item\em Broken copy constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Data_aeff1a35c9b9a48753a63b52c1d9959e2}{operator=}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Data}{Data}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
 \begin{DoxyCompactList}\small\item\em Broken assignment operator. \end{DoxyCompactList}\item 
@@ -467,7 +467,7 @@ Definition at line \mbox{\hyperlink{nodes_8h_source_l01708}{1708}} of file \mbox
 
 \doxylink{classoomph_1_1Steady}{Steady} constructor. The node has NLgrangian Lagrangian coordinates of n\+\_\+lagrangian\+\_\+type types (1 for Lagrange elements, 2 for 1D Hermite etc.). The Eulerian dimension of the \doxylink{classoomph_1_1Node}{Node} is n\+\_\+dim and we have n\+\_\+position\+\_\+type (generalised) Eulerian coordinates. There are initial\+\_\+n\+\_\+value values stored at this node and NAdditional\+\_\+solid additional values associated with the solid equations are stored in a separate \doxylink{classoomph_1_1Data}{Data} object at the node. 
 
-Definition at line \mbox{\hyperlink{nodes_8cc_source_l03348}{3348}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
+Definition at line \mbox{\hyperlink{nodes_8cc_source_l03350}{3350}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
@@ -485,7 +485,7 @@ Unsteady constructor. Allocates storage for initial\+\_\+n\+\_\+value nodal valu
 
 Unsteady constructor. Allocates storage for initial\+\_\+n\+\_\+value nodal values with history values as required by timestepper. The node has NLgrangian Lagrangian coordinates of n\+\_\+lagrangian\+\_\+type types (1 for Lagrange elements, 2 for 1D Hermite etc.)/ The Eulerian dimension of the \doxylink{classoomph_1_1Node}{Node} is n\+\_\+dim and we have n\+\_\+position\+\_\+type generalised Eulerian coordinates. 
 
-Definition at line \mbox{\hyperlink{nodes_8cc_source_l03384}{3384}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
+Definition at line \mbox{\hyperlink{nodes_8cc_source_l03386}{3386}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
@@ -503,7 +503,7 @@ Destructor that cleans up the additional memory allocated in Solid\+Nodes.
 
 Destructor to clean up the memory allocated for nodal positions and additional solid variables. 
 
-Definition at line \mbox{\hyperlink{nodes_8cc_source_l03416}{3416}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
+Definition at line \mbox{\hyperlink{nodes_8cc_source_l03418}{3418}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
@@ -538,7 +538,7 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1Data_a1d3f7c4200506d11fea3c647
 
 
 
-Definition at line \mbox{\hyperlink{nodes_8cc_source_l03799}{3799}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
+Definition at line \mbox{\hyperlink{nodes_8cc_source_l03801}{3801}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
@@ -560,7 +560,7 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1Data_a314ae9723424aa30d1275ab2
 
 
 
-Definition at line \mbox{\hyperlink{nodes_8cc_source_l03693}{3693}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
+Definition at line \mbox{\hyperlink{nodes_8cc_source_l03695}{3695}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
@@ -582,7 +582,7 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1Node_a11400682e1fd2851777234a7
 
 
 
-Definition at line \mbox{\hyperlink{nodes_8cc_source_l03708}{3708}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
+Definition at line \mbox{\hyperlink{nodes_8cc_source_l03710}{3710}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
@@ -604,7 +604,7 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1Node_a5f727227a1c8fdc7d5d42249
 
 
 
-Definition at line \mbox{\hyperlink{nodes_8cc_source_l03652}{3652}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
+Definition at line \mbox{\hyperlink{nodes_8cc_source_l03654}{3654}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
@@ -644,7 +644,7 @@ Copy nodal positions and associated data from specified node object.
 
 
 
-Definition at line \mbox{\hyperlink{nodes_8cc_source_l03433}{3433}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
+Definition at line \mbox{\hyperlink{nodes_8cc_source_l03435}{3435}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
@@ -666,7 +666,7 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1Data_a2dae16e2dcff9a40029f834c
 
 
 
-Definition at line \mbox{\hyperlink{nodes_8cc_source_l03671}{3671}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
+Definition at line \mbox{\hyperlink{nodes_8cc_source_l03673}{3673}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
@@ -688,7 +688,7 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1Node_ab5d4bea7ffc69a82fde5720a
 
 
 
-Definition at line \mbox{\hyperlink{nodes_8cc_source_l03573}{3573}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
+Definition at line \mbox{\hyperlink{nodes_8cc_source_l03575}{3575}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
@@ -710,7 +710,7 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1Node_acd8bb142619d639d9bbfe813
 
 
 
-Definition at line \mbox{\hyperlink{nodes_8cc_source_l03470}{3470}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
+Definition at line \mbox{\hyperlink{nodes_8cc_source_l03472}{3472}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
@@ -728,7 +728,7 @@ Return lagrangian coordinate either directly or via hanging node representation.
 
 
 
-Definition at line \mbox{\hyperlink{nodes_8cc_source_l03586}{3586}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
+Definition at line \mbox{\hyperlink{nodes_8cc_source_l03588}{3588}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
@@ -746,7 +746,7 @@ Return generalised lagrangian coordinate either directly or via hanging node rep
 
 
 
-Definition at line \mbox{\hyperlink{nodes_8cc_source_l03619}{3619}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
+Definition at line \mbox{\hyperlink{nodes_8cc_source_l03621}{3621}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
@@ -772,7 +772,7 @@ References \mbox{\hyperlink{nodes_8h_source_l01694}{Nlagrangian}}.
 
 
 
-Referenced by \mbox{\hyperlink{nodes_8cc_source_l03708}{add\+\_\+values\+\_\+to\+\_\+vector()}}, \mbox{\hyperlink{hermite__elements_8cc_source_l01270}{oomph\+::\+Solid\+QHermite\+Element$<$ DIM $>$\+::build\+\_\+face\+\_\+element()}}, \mbox{\hyperlink{Qelements_8h_source_l01894}{oomph\+::\+Solid\+QElement$<$ 1, NNODE\+\_\+1\+D $>$\+::build\+\_\+face\+\_\+element()}}, \mbox{\hyperlink{Qelements_8h_source_l02060}{oomph\+::\+Solid\+QElement$<$ 2, NNODE\+\_\+1\+D $>$\+::build\+\_\+face\+\_\+element()}}, \mbox{\hyperlink{Qelements_8h_source_l02240}{oomph\+::\+Solid\+QElement$<$ 3, NNODE\+\_\+1\+D $>$\+::build\+\_\+face\+\_\+element()}}, \mbox{\hyperlink{Telements_8cc_source_l00935}{oomph\+::\+Solid\+TBubble\+Enriched\+Element$<$ DIM, NNODE\+\_\+1\+D $>$\+::build\+\_\+face\+\_\+element()}}, \mbox{\hyperlink{Telements_8h_source_l03780}{oomph\+::\+Solid\+TElement$<$ 1, NNODE\+\_\+1\+D $>$\+::build\+\_\+face\+\_\+element()}}, \mbox{\hyperlink{Telements_8h_source_l03840}{oomph\+::\+Solid\+TElement$<$ 2, NNODE\+\_\+1\+D $>$\+::build\+\_\+face\+\_\+element()}}, \mbox{\hyperlink{Telements_8h_source_l03901}{oomph\+::\+Solid\+TElement$<$ 3, NNODE\+\_\+1\+D $>$\+::build\+\_\+face\+\_\+element()}}, \mbox{\hyperlink{nodes_8cc_source_l03755}{read\+\_\+values\+\_\+from\+\_\+vector()}}, and \mbox{\hyperlink{mesh_8cc_source_l09564}{oomph\+::\+Solid\+Mesh\+::set\+\_\+lagrangian\+\_\+nodal\+\_\+coordinates()}}.
+Referenced by \mbox{\hyperlink{nodes_8cc_source_l03710}{add\+\_\+values\+\_\+to\+\_\+vector()}}, \mbox{\hyperlink{hermite__elements_8cc_source_l01270}{oomph\+::\+Solid\+QHermite\+Element$<$ DIM $>$\+::build\+\_\+face\+\_\+element()}}, \mbox{\hyperlink{Qelements_8h_source_l01894}{oomph\+::\+Solid\+QElement$<$ 1, NNODE\+\_\+1\+D $>$\+::build\+\_\+face\+\_\+element()}}, \mbox{\hyperlink{Qelements_8h_source_l02060}{oomph\+::\+Solid\+QElement$<$ 2, NNODE\+\_\+1\+D $>$\+::build\+\_\+face\+\_\+element()}}, \mbox{\hyperlink{Qelements_8h_source_l02240}{oomph\+::\+Solid\+QElement$<$ 3, NNODE\+\_\+1\+D $>$\+::build\+\_\+face\+\_\+element()}}, \mbox{\hyperlink{Telements_8cc_source_l00935}{oomph\+::\+Solid\+TBubble\+Enriched\+Element$<$ DIM, NNODE\+\_\+1\+D $>$\+::build\+\_\+face\+\_\+element()}}, \mbox{\hyperlink{Telements_8h_source_l03780}{oomph\+::\+Solid\+TElement$<$ 1, NNODE\+\_\+1\+D $>$\+::build\+\_\+face\+\_\+element()}}, \mbox{\hyperlink{Telements_8h_source_l03840}{oomph\+::\+Solid\+TElement$<$ 2, NNODE\+\_\+1\+D $>$\+::build\+\_\+face\+\_\+element()}}, \mbox{\hyperlink{Telements_8h_source_l03901}{oomph\+::\+Solid\+TElement$<$ 3, NNODE\+\_\+1\+D $>$\+::build\+\_\+face\+\_\+element()}}, \mbox{\hyperlink{nodes_8cc_source_l03757}{read\+\_\+values\+\_\+from\+\_\+vector()}}, and \mbox{\hyperlink{mesh_8cc_source_l09564}{oomph\+::\+Solid\+Mesh\+::set\+\_\+lagrangian\+\_\+nodal\+\_\+coordinates()}}.
 
 \Hypertarget{classoomph_1_1SolidNode_a3c1e52e4b6dde53b98228d621f7fcb0a}\label{classoomph_1_1SolidNode_a3c1e52e4b6dde53b98228d621f7fcb0a} 
 \index{oomph::SolidNode@{oomph::SolidNode}!nlagrangian\_type@{nlagrangian\_type}}
@@ -794,7 +794,7 @@ References \mbox{\hyperlink{nodes_8h_source_l01698}{Nlagrangian\+\_\+type}}.
 
 
 
-Referenced by \mbox{\hyperlink{nodes_8cc_source_l03708}{add\+\_\+values\+\_\+to\+\_\+vector()}}, \mbox{\hyperlink{refineable__brick__element_8h_source_l00294}{oomph\+::\+Refineable\+Solid\+QElement$<$ 3 $>$\+::build()}}, \mbox{\hyperlink{refineable__quad__element_8h_source_l00278}{oomph\+::\+Refineable\+Solid\+QElement$<$ 2 $>$\+::build()}}, \mbox{\hyperlink{nodes_8cc_source_l03755}{read\+\_\+values\+\_\+from\+\_\+vector()}}, and \mbox{\hyperlink{mesh_8cc_source_l09564}{oomph\+::\+Solid\+Mesh\+::set\+\_\+lagrangian\+\_\+nodal\+\_\+coordinates()}}.
+Referenced by \mbox{\hyperlink{nodes_8cc_source_l03710}{add\+\_\+values\+\_\+to\+\_\+vector()}}, \mbox{\hyperlink{refineable__brick__element_8h_source_l00294}{oomph\+::\+Refineable\+Solid\+QElement$<$ 3 $>$\+::build()}}, \mbox{\hyperlink{refineable__quad__element_8h_source_l00278}{oomph\+::\+Refineable\+Solid\+QElement$<$ 2 $>$\+::build()}}, \mbox{\hyperlink{nodes_8cc_source_l03757}{read\+\_\+values\+\_\+from\+\_\+vector()}}, and \mbox{\hyperlink{mesh_8cc_source_l09564}{oomph\+::\+Solid\+Mesh\+::set\+\_\+lagrangian\+\_\+nodal\+\_\+coordinates()}}.
 
 \Hypertarget{classoomph_1_1SolidNode_ae66793af1a576edd29523ffb98b7225c}\label{classoomph_1_1SolidNode_ae66793af1a576edd29523ffb98b7225c} 
 \index{oomph::SolidNode@{oomph::SolidNode}!node\_update@{node\_update}}
@@ -1004,7 +1004,7 @@ Read nodal positions (variable and fixed) and associated data from file for rest
 
 Read nodal positions and associated data to file for restart. 
 
-Definition at line \mbox{\hyperlink{nodes_8cc_source_l03490}{3490}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
+Definition at line \mbox{\hyperlink{nodes_8cc_source_l03492}{3492}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
@@ -1026,7 +1026,7 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1Data_ae958e52df6ede2a08f957db4
 
 
 
-Definition at line \mbox{\hyperlink{nodes_8cc_source_l03811}{3811}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
+Definition at line \mbox{\hyperlink{nodes_8cc_source_l03813}{3813}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
@@ -1048,7 +1048,7 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1Node_accb033ab8ed4f96331014f7c
 
 
 
-Definition at line \mbox{\hyperlink{nodes_8cc_source_l03755}{3755}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
+Definition at line \mbox{\hyperlink{nodes_8cc_source_l03757}{3757}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
@@ -1066,7 +1066,7 @@ Set the variable position data from an external data object.
 
 Set the variable position data from an external source. This is mainly used when setting periodic solid problems. 
 
-Definition at line \mbox{\hyperlink{nodes_8cc_source_l03532}{3532}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
+Definition at line \mbox{\hyperlink{nodes_8cc_source_l03534}{3534}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
@@ -1088,7 +1088,7 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1Node_a15d3962d66d92de44e32edc9
 
 
 
-Definition at line \mbox{\hyperlink{nodes_8cc_source_l03548}{3548}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
+Definition at line \mbox{\hyperlink{nodes_8cc_source_l03550}{3550}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
@@ -1234,11 +1234,11 @@ Definition at line \mbox{\hyperlink{nodes_8h_source_l01883}{1883}} of file \mbox
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l01698}{Nlagrangian\+\_\+type}}, \mbox{\hyperlink{nodes_8cc_source_l03312}{xi\+\_\+gen\+\_\+range\+\_\+check()}}, and \mbox{\hyperlink{nodes_8h_source_l01704}{Xi\+\_\+position}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l01698}{Nlagrangian\+\_\+type}}, \mbox{\hyperlink{nodes_8cc_source_l03314}{xi\+\_\+gen\+\_\+range\+\_\+check()}}, and \mbox{\hyperlink{nodes_8h_source_l01704}{Xi\+\_\+position}}.
 
 
 
-Referenced by \mbox{\hyperlink{circular__shell__mesh_8template_8cc_source_l00041}{oomph\+::\+Circular\+Cylindrical\+Shell\+Mesh$<$ ELEMENT $>$\+::build\+\_\+mesh()}}, \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source_l00579}{oomph\+::\+Elastic\+Refineable\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Elastic\+Refineable\+Rectangular\+Quad\+Mesh()}}, \mbox{\hyperlink{nodes_8cc_source_l03586}{lagrangian\+\_\+position()}}, and \mbox{\hyperlink{mesh__smooth_8h_source_l00529}{oomph\+::\+Linear\+Elasticity\+Smooth\+Mesh$<$ LINEAR\+\_\+\+ELASTICITY\+\_\+\+ELEMENT $>$\+::operator()()}}.
+Referenced by \mbox{\hyperlink{circular__shell__mesh_8template_8cc_source_l00043}{oomph\+::\+Circular\+Cylindrical\+Shell\+Mesh$<$ ELEMENT $>$\+::build\+\_\+mesh()}}, \mbox{\hyperlink{rectangular__quadmesh_8h_source_l00575}{oomph\+::\+Elastic\+Refineable\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Elastic\+Refineable\+Rectangular\+Quad\+Mesh()}}, \mbox{\hyperlink{nodes_8cc_source_l03588}{lagrangian\+\_\+position()}}, and \mbox{\hyperlink{mesh__smooth_8h_source_l00529}{oomph\+::\+Linear\+Elasticity\+Smooth\+Mesh$<$ LINEAR\+\_\+\+ELASTICITY\+\_\+\+ELEMENT $>$\+::operator()()}}.
 
 \Hypertarget{classoomph_1_1SolidNode_ad53bcd19edbfefd653a53aaf6ce53183}\label{classoomph_1_1SolidNode_ad53bcd19edbfefd653a53aaf6ce53183} 
 \index{oomph::SolidNode@{oomph::SolidNode}!xi@{xi}}
@@ -1256,7 +1256,7 @@ Definition at line \mbox{\hyperlink{nodes_8h_source_l01892}{1892}} of file \mbox
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l01698}{Nlagrangian\+\_\+type}}, \mbox{\hyperlink{nodes_8cc_source_l03312}{xi\+\_\+gen\+\_\+range\+\_\+check()}}, and \mbox{\hyperlink{nodes_8h_source_l01704}{Xi\+\_\+position}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l01698}{Nlagrangian\+\_\+type}}, \mbox{\hyperlink{nodes_8cc_source_l03314}{xi\+\_\+gen\+\_\+range\+\_\+check()}}, and \mbox{\hyperlink{nodes_8h_source_l01704}{Xi\+\_\+position}}.
 
 \Hypertarget{classoomph_1_1SolidNode_ada699bd006497ddeabb0bc0750d99965}\label{classoomph_1_1SolidNode_ada699bd006497ddeabb0bc0750d99965} 
 \index{oomph::SolidNode@{oomph::SolidNode}!xi\_gen@{xi\_gen}}
@@ -1274,11 +1274,11 @@ Definition at line \mbox{\hyperlink{nodes_8h_source_l01902}{1902}} of file \mbox
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l01698}{Nlagrangian\+\_\+type}}, \mbox{\hyperlink{nodes_8cc_source_l03312}{xi\+\_\+gen\+\_\+range\+\_\+check()}}, and \mbox{\hyperlink{nodes_8h_source_l01704}{Xi\+\_\+position}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l01698}{Nlagrangian\+\_\+type}}, \mbox{\hyperlink{nodes_8cc_source_l03314}{xi\+\_\+gen\+\_\+range\+\_\+check()}}, and \mbox{\hyperlink{nodes_8h_source_l01704}{Xi\+\_\+position}}.
 
 
 
-Referenced by \mbox{\hyperlink{nodes_8cc_source_l03619}{lagrangian\+\_\+position\+\_\+gen()}}, and \mbox{\hyperlink{mesh_8cc_source_l09564}{oomph\+::\+Solid\+Mesh\+::set\+\_\+lagrangian\+\_\+nodal\+\_\+coordinates()}}.
+Referenced by \mbox{\hyperlink{nodes_8cc_source_l03621}{lagrangian\+\_\+position\+\_\+gen()}}, and \mbox{\hyperlink{mesh_8cc_source_l09564}{oomph\+::\+Solid\+Mesh\+::set\+\_\+lagrangian\+\_\+nodal\+\_\+coordinates()}}.
 
 \Hypertarget{classoomph_1_1SolidNode_a6fc3dd01eab8b60a493fa34e18fad6be}\label{classoomph_1_1SolidNode_a6fc3dd01eab8b60a493fa34e18fad6be} 
 \index{oomph::SolidNode@{oomph::SolidNode}!xi\_gen@{xi\_gen}}
@@ -1296,7 +1296,7 @@ Definition at line \mbox{\hyperlink{nodes_8h_source_l01912}{1912}} of file \mbox
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l01698}{Nlagrangian\+\_\+type}}, \mbox{\hyperlink{nodes_8cc_source_l03312}{xi\+\_\+gen\+\_\+range\+\_\+check()}}, and \mbox{\hyperlink{nodes_8h_source_l01704}{Xi\+\_\+position}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l01698}{Nlagrangian\+\_\+type}}, \mbox{\hyperlink{nodes_8cc_source_l03314}{xi\+\_\+gen\+\_\+range\+\_\+check()}}, and \mbox{\hyperlink{nodes_8h_source_l01704}{Xi\+\_\+position}}.
 
 \Hypertarget{classoomph_1_1SolidNode_a0c5b916610af540ccc98a09584b8f34f}\label{classoomph_1_1SolidNode_a0c5b916610af540ccc98a09584b8f34f} 
 \index{oomph::SolidNode@{oomph::SolidNode}!xi\_gen\_range\_check@{xi\_gen\_range\_check}}
@@ -1308,11 +1308,9 @@ References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nod
 
 Private function to check that the arguments to the position functions are in range. 
 
-////////////////////////////////////////////////////////////////////////
+Private function to check that the argument is within the range of stored Lagrangain coordinates and position types. 
 
-//////////////////////////////////////////////////////////////////////// Private function to check that the argument is within the range of stored Lagrangain coordinates and position types. 
-
-Definition at line \mbox{\hyperlink{nodes_8cc_source_l03312}{3312}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
+Definition at line \mbox{\hyperlink{nodes_8cc_source_l03314}{3314}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
@@ -1341,7 +1339,7 @@ Definition at line \mbox{\hyperlink{nodes_8h_source_l01694}{1694}} of file \mbox
 
 
 
-Referenced by \mbox{\hyperlink{nodes_8cc_source_l03433}{copy()}}, \mbox{\hyperlink{nodes_8cc_source_l03470}{dump()}}, \mbox{\hyperlink{nodes_8h_source_l01870}{nlagrangian()}}, \mbox{\hyperlink{nodes_8cc_source_l03490}{read()}}, and \mbox{\hyperlink{nodes_8cc_source_l03312}{xi\+\_\+gen\+\_\+range\+\_\+check()}}.
+Referenced by \mbox{\hyperlink{nodes_8cc_source_l03435}{copy()}}, \mbox{\hyperlink{nodes_8cc_source_l03472}{dump()}}, \mbox{\hyperlink{nodes_8h_source_l01870}{nlagrangian()}}, \mbox{\hyperlink{nodes_8cc_source_l03492}{read()}}, and \mbox{\hyperlink{nodes_8cc_source_l03314}{xi\+\_\+gen\+\_\+range\+\_\+check()}}.
 
 \Hypertarget{classoomph_1_1SolidNode_a6676ab16593ad3d062ac8e29906d7786}\label{classoomph_1_1SolidNode_a6676ab16593ad3d062ac8e29906d7786} 
 \index{oomph::SolidNode@{oomph::SolidNode}!Nlagrangian\_type@{Nlagrangian\_type}}
@@ -1359,7 +1357,7 @@ Definition at line \mbox{\hyperlink{nodes_8h_source_l01698}{1698}} of file \mbox
 
 
 
-Referenced by \mbox{\hyperlink{nodes_8cc_source_l03433}{copy()}}, \mbox{\hyperlink{nodes_8cc_source_l03470}{dump()}}, \mbox{\hyperlink{nodes_8h_source_l01877}{nlagrangian\+\_\+type()}}, \mbox{\hyperlink{nodes_8cc_source_l03490}{read()}}, \mbox{\hyperlink{nodes_8h_source_l01883}{xi()}}, \mbox{\hyperlink{nodes_8h_source_l01892}{xi()}}, \mbox{\hyperlink{nodes_8h_source_l01902}{xi\+\_\+gen()}}, \mbox{\hyperlink{nodes_8h_source_l01912}{xi\+\_\+gen()}}, and \mbox{\hyperlink{nodes_8cc_source_l03312}{xi\+\_\+gen\+\_\+range\+\_\+check()}}.
+Referenced by \mbox{\hyperlink{nodes_8cc_source_l03435}{copy()}}, \mbox{\hyperlink{nodes_8cc_source_l03472}{dump()}}, \mbox{\hyperlink{nodes_8h_source_l01877}{nlagrangian\+\_\+type()}}, \mbox{\hyperlink{nodes_8cc_source_l03492}{read()}}, \mbox{\hyperlink{nodes_8h_source_l01883}{xi()}}, \mbox{\hyperlink{nodes_8h_source_l01892}{xi()}}, \mbox{\hyperlink{nodes_8h_source_l01902}{xi\+\_\+gen()}}, \mbox{\hyperlink{nodes_8h_source_l01912}{xi\+\_\+gen()}}, and \mbox{\hyperlink{nodes_8cc_source_l03314}{xi\+\_\+gen\+\_\+range\+\_\+check()}}.
 
 \Hypertarget{classoomph_1_1SolidNode_a5f3dce8a2802efc650d67cbf7e407a98}\label{classoomph_1_1SolidNode_a5f3dce8a2802efc650d67cbf7e407a98} 
 \index{oomph::SolidNode@{oomph::SolidNode}!Variable\_position\_pt@{Variable\_position\_pt}}
@@ -1377,7 +1375,7 @@ Definition at line \mbox{\hyperlink{nodes_8h_source_l01701}{1701}} of file \mbox
 
 
 
-Referenced by \mbox{\hyperlink{nodes_8cc_source_l03799}{add\+\_\+eqn\+\_\+numbers\+\_\+to\+\_\+vector()}}, \mbox{\hyperlink{nodes_8cc_source_l03693}{add\+\_\+value\+\_\+pt\+\_\+to\+\_\+map()}}, \mbox{\hyperlink{nodes_8cc_source_l03652}{assign\+\_\+eqn\+\_\+numbers()}}, \mbox{\hyperlink{nodes_8h_source_l01857}{constrain\+\_\+positions()}}, \mbox{\hyperlink{nodes_8cc_source_l03433}{copy()}}, \mbox{\hyperlink{nodes_8cc_source_l03671}{describe\+\_\+dofs()}}, \mbox{\hyperlink{nodes_8cc_source_l03573}{does\+\_\+pointer\+\_\+correspond\+\_\+to\+\_\+position\+\_\+data()}}, \mbox{\hyperlink{nodes_8h_source_l01842}{pin\+\_\+all()}}, \mbox{\hyperlink{nodes_8h_source_l01816}{pin\+\_\+position()}}, \mbox{\hyperlink{nodes_8h_source_l01823}{pin\+\_\+position()}}, \mbox{\hyperlink{nodes_8h_source_l01797}{position\+\_\+eqn\+\_\+number()}}, \mbox{\hyperlink{nodes_8h_source_l01784}{position\+\_\+is\+\_\+a\+\_\+copy()}}, \mbox{\hyperlink{nodes_8h_source_l01790}{position\+\_\+is\+\_\+a\+\_\+copy()}}, \mbox{\hyperlink{nodes_8h_source_l01803}{position\+\_\+is\+\_\+pinned()}}, \mbox{\hyperlink{nodes_8h_source_l01810}{position\+\_\+is\+\_\+pinned()}}, \mbox{\hyperlink{nodes_8cc_source_l03811}{read\+\_\+eqn\+\_\+numbers\+\_\+from\+\_\+vector()}}, \mbox{\hyperlink{nodes_8cc_source_l03532}{set\+\_\+external\+\_\+variable\+\_\+position\+\_\+pt()}}, \mbox{\hyperlink{nodes_8cc_source_l03548}{set\+\_\+position\+\_\+time\+\_\+stepper()}}, \mbox{\hyperlink{nodes_8cc_source_l03348}{Solid\+Node()}}, \mbox{\hyperlink{nodes_8cc_source_l03384}{Solid\+Node()}}, \mbox{\hyperlink{nodes_8h_source_l01864}{unconstrain\+\_\+positions()}}, \mbox{\hyperlink{nodes_8h_source_l01849}{unpin\+\_\+all()}}, \mbox{\hyperlink{nodes_8h_source_l01829}{unpin\+\_\+position()}}, \mbox{\hyperlink{nodes_8h_source_l01836}{unpin\+\_\+position()}}, \mbox{\hyperlink{nodes_8h_source_l01759}{variable\+\_\+position()}}, \mbox{\hyperlink{nodes_8h_source_l01765}{variable\+\_\+position\+\_\+pt()}}, and \mbox{\hyperlink{nodes_8cc_source_l03416}{\texorpdfstring{$\sim$}{\string~}\+Solid\+Node()}}.
+Referenced by \mbox{\hyperlink{nodes_8cc_source_l03801}{add\+\_\+eqn\+\_\+numbers\+\_\+to\+\_\+vector()}}, \mbox{\hyperlink{nodes_8cc_source_l03695}{add\+\_\+value\+\_\+pt\+\_\+to\+\_\+map()}}, \mbox{\hyperlink{nodes_8cc_source_l03654}{assign\+\_\+eqn\+\_\+numbers()}}, \mbox{\hyperlink{nodes_8h_source_l01857}{constrain\+\_\+positions()}}, \mbox{\hyperlink{nodes_8cc_source_l03435}{copy()}}, \mbox{\hyperlink{nodes_8cc_source_l03673}{describe\+\_\+dofs()}}, \mbox{\hyperlink{nodes_8cc_source_l03575}{does\+\_\+pointer\+\_\+correspond\+\_\+to\+\_\+position\+\_\+data()}}, \mbox{\hyperlink{nodes_8h_source_l01842}{pin\+\_\+all()}}, \mbox{\hyperlink{nodes_8h_source_l01816}{pin\+\_\+position()}}, \mbox{\hyperlink{nodes_8h_source_l01823}{pin\+\_\+position()}}, \mbox{\hyperlink{nodes_8h_source_l01797}{position\+\_\+eqn\+\_\+number()}}, \mbox{\hyperlink{nodes_8h_source_l01784}{position\+\_\+is\+\_\+a\+\_\+copy()}}, \mbox{\hyperlink{nodes_8h_source_l01790}{position\+\_\+is\+\_\+a\+\_\+copy()}}, \mbox{\hyperlink{nodes_8h_source_l01803}{position\+\_\+is\+\_\+pinned()}}, \mbox{\hyperlink{nodes_8h_source_l01810}{position\+\_\+is\+\_\+pinned()}}, \mbox{\hyperlink{nodes_8cc_source_l03813}{read\+\_\+eqn\+\_\+numbers\+\_\+from\+\_\+vector()}}, \mbox{\hyperlink{nodes_8cc_source_l03534}{set\+\_\+external\+\_\+variable\+\_\+position\+\_\+pt()}}, \mbox{\hyperlink{nodes_8cc_source_l03550}{set\+\_\+position\+\_\+time\+\_\+stepper()}}, \mbox{\hyperlink{nodes_8cc_source_l03350}{Solid\+Node()}}, \mbox{\hyperlink{nodes_8cc_source_l03386}{Solid\+Node()}}, \mbox{\hyperlink{nodes_8h_source_l01864}{unconstrain\+\_\+positions()}}, \mbox{\hyperlink{nodes_8h_source_l01849}{unpin\+\_\+all()}}, \mbox{\hyperlink{nodes_8h_source_l01829}{unpin\+\_\+position()}}, \mbox{\hyperlink{nodes_8h_source_l01836}{unpin\+\_\+position()}}, \mbox{\hyperlink{nodes_8h_source_l01759}{variable\+\_\+position()}}, \mbox{\hyperlink{nodes_8h_source_l01765}{variable\+\_\+position\+\_\+pt()}}, and \mbox{\hyperlink{nodes_8cc_source_l03418}{\texorpdfstring{$\sim$}{\string~}\+Solid\+Node()}}.
 
 \Hypertarget{classoomph_1_1SolidNode_ac8ed3701effa80f70d817ee171559d1f}\label{classoomph_1_1SolidNode_ac8ed3701effa80f70d817ee171559d1f} 
 \index{oomph::SolidNode@{oomph::SolidNode}!Xi\_position@{Xi\_position}}
@@ -1395,7 +1393,7 @@ Definition at line \mbox{\hyperlink{nodes_8h_source_l01704}{1704}} of file \mbox
 
 
 
-Referenced by \mbox{\hyperlink{nodes_8cc_source_l03708}{add\+\_\+values\+\_\+to\+\_\+vector()}}, \mbox{\hyperlink{nodes_8cc_source_l03433}{copy()}}, \mbox{\hyperlink{nodes_8cc_source_l03470}{dump()}}, \mbox{\hyperlink{nodes_8cc_source_l03490}{read()}}, \mbox{\hyperlink{nodes_8cc_source_l03755}{read\+\_\+values\+\_\+from\+\_\+vector()}}, \mbox{\hyperlink{nodes_8cc_source_l03348}{Solid\+Node()}}, \mbox{\hyperlink{nodes_8cc_source_l03384}{Solid\+Node()}}, \mbox{\hyperlink{nodes_8h_source_l01883}{xi()}}, \mbox{\hyperlink{nodes_8h_source_l01892}{xi()}}, \mbox{\hyperlink{nodes_8h_source_l01902}{xi\+\_\+gen()}}, \mbox{\hyperlink{nodes_8h_source_l01912}{xi\+\_\+gen()}}, and \mbox{\hyperlink{nodes_8cc_source_l03416}{\texorpdfstring{$\sim$}{\string~}\+Solid\+Node()}}.
+Referenced by \mbox{\hyperlink{nodes_8cc_source_l03710}{add\+\_\+values\+\_\+to\+\_\+vector()}}, \mbox{\hyperlink{nodes_8cc_source_l03435}{copy()}}, \mbox{\hyperlink{nodes_8cc_source_l03472}{dump()}}, \mbox{\hyperlink{nodes_8cc_source_l03492}{read()}}, \mbox{\hyperlink{nodes_8cc_source_l03757}{read\+\_\+values\+\_\+from\+\_\+vector()}}, \mbox{\hyperlink{nodes_8cc_source_l03350}{Solid\+Node()}}, \mbox{\hyperlink{nodes_8cc_source_l03386}{Solid\+Node()}}, \mbox{\hyperlink{nodes_8h_source_l01883}{xi()}}, \mbox{\hyperlink{nodes_8h_source_l01892}{xi()}}, \mbox{\hyperlink{nodes_8h_source_l01902}{xi\+\_\+gen()}}, \mbox{\hyperlink{nodes_8h_source_l01912}{xi\+\_\+gen()}}, and \mbox{\hyperlink{nodes_8cc_source_l03418}{\texorpdfstring{$\sim$}{\string~}\+Solid\+Node()}}.
 
 
 

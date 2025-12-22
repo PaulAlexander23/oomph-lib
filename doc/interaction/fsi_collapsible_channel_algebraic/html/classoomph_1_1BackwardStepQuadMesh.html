@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -125,7 +119,7 @@
 <p>Backward step mesh.  
  <a href="classoomph_1_1BackwardStepQuadMesh.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="backward__step__mesh_8template_8h_source.html">backward_step_mesh.template.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="backward__step__mesh_8h_source.html">backward_step_mesh.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for oomph::BackwardStepQuadMesh&lt; ELEMENT &gt;:</div>
 <div class="dyncontent">
@@ -133,7 +127,7 @@ Inheritance diagram for oomph::BackwardStepQuadMesh&lt; ELEMENT &gt;:</div>
   <img src="classoomph_1_1BackwardStepQuadMesh.png" usemap="#oomph::BackwardStepQuadMesh_3C_20ELEMENT_20_3E_map" alt=""/>
   <map id="oomph::BackwardStepQuadMesh_3C_20ELEMENT_20_3E_map" name="oomph::BackwardStepQuadMesh_3C_20ELEMENT_20_3E_map">
 <area href="classoomph_1_1RectangularQuadMesh.html" title="RectangularQuadMesh is a two-dimensional mesh of Quad elements with Nx elements in the &quot;x&quot; (horizonal..." alt="oomph::RectangularQuadMesh&lt; ELEMENT &gt;" shape="rect" coords="0,56,340,80"/>
-<area href="classoomph_1_1RefineableBackwardStepQuadMesh.html" title="///////////////////////////////////////////////////////////////// ///////////////////////////////////..." alt="oomph::RefineableBackwardStepQuadMesh&lt; ELEMENT &gt;" shape="rect" coords="0,168,340,192"/>
+<area href="classoomph_1_1RefineableBackwardStepQuadMesh.html" title="Refineable backward step mesh." alt="oomph::RefineableBackwardStepQuadMesh&lt; ELEMENT &gt;" shape="rect" coords="0,168,340,192"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -231,7 +225,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleChannelMesh.html">class</a> <a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleChannelMesh.html">ELEMENT</a>&gt;<br />
 class oomph::BackwardStepQuadMesh&lt; ELEMENT &gt;</div><p>Backward step mesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="backward__step__mesh_8template_8h_source.html#l00045">45</a> of file <a class="el" href="backward__step__mesh_8template_8h_source.html">backward_step_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="backward__step__mesh_8h_source.html#l00045">45</a> of file <a class="el" href="backward__step__mesh_8h_source.html">backward_step_mesh.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae8374ae7d3646c00fec4fc9c2d604cf8" name="ae8374ae7d3646c00fec4fc9c2d604cf8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae8374ae7d3646c00fec4fc9c2d604cf8">&#9670;&#160;</a></span>BackwardStepQuadMesh()</h2>
@@ -301,9 +295,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Pass overall number of elements in the horizontal and vertical directions, nx and ny, and the corresponding dimensions, lx and ly. nx_cut_out and ny_cut_out elements are cut out from the lower right corner to create the (reversed) backward step geometry. Timestepper defaults to Steady. </p>
 
-<p class="definition">Definition at line <a class="el" href="backward__step__mesh_8template_8h_source.html#l00054">54</a> of file <a class="el" href="backward__step__mesh_8template_8h_source.html">backward_step_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="backward__step__mesh_8h_source.html#l00054">54</a> of file <a class="el" href="backward__step__mesh_8h_source.html">backward_step_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="backward__step__mesh_8template_8cc_source.html#l00044">oomph::BackwardStepQuadMesh&lt; ELEMENT &gt;::build_mesh()</a>, <a class="el" href="rectangular__quadmesh_8template_8h_source.html#l00224">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::nx()</a>, and <a class="el" href="rectangular__quadmesh_8template_8h_source.html#l00231">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::ny()</a>.</p>
+<p class="reference">References <a class="el" href="backward__step__mesh_8template_8cc_source.html#l00047">oomph::BackwardStepQuadMesh&lt; ELEMENT &gt;::build_mesh()</a>, <a class="el" href="rectangular__quadmesh_8h_source.html#l00224">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::nx()</a>, and <a class="el" href="rectangular__quadmesh_8h_source.html#l00231">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::ny()</a>.</p>
 
 </div>
 </div>
@@ -334,7 +328,7 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Destructor: Empty. </p>
 
-<p class="definition">Definition at line <a class="el" href="backward__step__mesh_8template_8h_source.html#l00069">69</a> of file <a class="el" href="backward__step__mesh_8template_8h_source.html">backward_step_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="backward__step__mesh_8h_source.html#l00069">69</a> of file <a class="el" href="backward__step__mesh_8h_source.html">backward_step_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -402,16 +396,16 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 <p>Actual build function. </p>
 <p>Actual build function. Pass overall number of elements in the horizontal and vertical directions, nx and ny, and the corresponding dimensions, lx and ly. nx_cut_out and ny_cut_out elements are cut out from the lower right corner to create the (reversed) backward step geometry. Timestepper defaults to Steady. </p>
 
-<p class="definition">Definition at line <a class="el" href="backward__step__mesh_8template_8cc_source.html#l00044">44</a> of file <a class="el" href="backward__step__mesh_8template_8cc_source.html">backward_step_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="backward__step__mesh_8template_8cc_source.html#l00047">47</a> of file <a class="el" href="backward__step__mesh_8template_8cc_source.html">backward_step_mesh.template.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="simple__rectangular__quadmesh_8template_8h_source.html#l00071">oomph::SimpleRectangularQuadMesh&lt; ELEMENT &gt;::nx()</a>, and <a class="el" href="simple__rectangular__quadmesh_8template_8h_source.html#l00077">oomph::SimpleRectangularQuadMesh&lt; ELEMENT &gt;::ny()</a>.</p>
+<p class="reference">References <a class="el" href="simple__rectangular__quadmesh_8h_source.html#l00071">oomph::SimpleRectangularQuadMesh&lt; ELEMENT &gt;::nx()</a>, and <a class="el" href="simple__rectangular__quadmesh_8h_source.html#l00077">oomph::SimpleRectangularQuadMesh&lt; ELEMENT &gt;::ny()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="backward__step__mesh_8template_8h_source.html#l00054">oomph::BackwardStepQuadMesh&lt; ELEMENT &gt;::BackwardStepQuadMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="backward__step__mesh_8h_source.html#l00054">oomph::BackwardStepQuadMesh&lt; ELEMENT &gt;::BackwardStepQuadMesh()</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="backward__step__mesh_8template_8h_source.html">backward_step_mesh.template.h</a></li>
+<li><a class="el" href="backward__step__mesh_8h_source.html">backward_step_mesh.h</a></li>
 <li><a class="el" href="backward__step__mesh_8template_8cc_source.html">backward_step_mesh.template.cc</a></li>
 </ul>
 </div><!-- contents -->
@@ -442,7 +436,7 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:26:36
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:34:22
         </div>
       </div>
     </footer>

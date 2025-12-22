@@ -2,7 +2,7 @@
 \hypertarget{classoomph_1_1QUnsteadyHeatMixedOrderSpaceTimeElement}{}\label{classoomph_1_1QUnsteadyHeatMixedOrderSpaceTimeElement}\index{oomph::QUnsteadyHeatMixedOrderSpaceTimeElement$<$ SPATIAL\_DIM, NNODE\_1D $>$@{oomph::QUnsteadyHeatMixedOrderSpaceTimeElement$<$ SPATIAL\_DIM, NNODE\_1D $>$}}
 
 
-//////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////////  
+\doxylink{classoomph_1_1QUnsteadyHeatMixedOrderSpaceTimeElement}{QUnsteady\+Heat\+Mixed\+Order\+Space\+Time\+Element} elements are quadrilateral/brick-\/ shaped Unsteady\+Heat\+Mixed\+Order elements with isoparametric interpolation for the function.  
 
 
 
@@ -316,7 +316,7 @@ std\+::string \mbox{\hyperlink{classoomph_1_1SpaceTimeUnsteadyHeatMixedOrderEqua
 \begin{DoxyCompactList}\small\item\em Calculate the size of the element (length, area, volume,...) in Eulerian computational coordinates. Use suitably overloaded \doxylink{classoomph_1_1FiniteElement_a782a540035dc31cb6ef548d9d930d8b8}{compute\+\_\+physical\+\_\+size()} function to compute the actual size (taking into account factors such as 2pi or radii the integrand) -- such function can only be implemented on an equation-\/by-\/equation basis. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} \mbox{\hyperlink{classoomph_1_1FiniteElement_a782a540035dc31cb6ef548d9d930d8b8}{compute\+\_\+physical\+\_\+size}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Broken virtual function to compute the actual size (taking into account factors such as 2pi or radii the integrand) -- such function can only be implemented on an equation-\/by-\/equation basis. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1FiniteElement_a8bf3f75b55d4e67b644df3e22c192596}{point\+\_\+output\+\_\+data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{data}})
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1FiniteElement_a8bf3f75b55d4e67b644df3e22c192596}{point\+\_\+output\+\_\+data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&data)
 \begin{DoxyCompactList}\small\item\em Virtual function to write the double precision numbers that appear in a single line of output into the data vector. Empty virtual, can be overloaded for specific elements; used e.\+g. by \doxylink{classoomph_1_1LineVisualiser}{Line\+Visualiser}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1FiniteElement_a57e514bf089797717b80a61725aad622}{point\+\_\+output}} (std\+::ostream \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{outfile}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}})
 \begin{DoxyCompactList}\small\item\em Output solution (as defined by \doxylink{classoomph_1_1FiniteElement_a8bf3f75b55d4e67b644df3e22c192596}{point\+\_\+output\+\_\+data()}) at local cordinates s. \end{DoxyCompactList}\item 
@@ -381,8 +381,10 @@ std\+::string \mbox{\hyperlink{classoomph_1_1SpaceTimeUnsteadyHeatMixedOrderEqua
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{oomph\+::\+Generalised\+Element}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}}() \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a76c506edf49c5bbfe94f424ec94191ab}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
-\begin{DoxyCompactList}\small\item\em Constructor\+: Initialise all pointers and all values to zero. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a6a34bffcef1bbbc5271630042afe7ca9}{\texorpdfstring{$\sim$}{\string~}\+Generalised\+Element}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor to clean up any memory allocated by the object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1GeneralisedElement_a4e4a9177fdb093fc85c890bb86bdf655}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
+\begin{DoxyCompactList}\small\item\em Broken copy constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a180b550ae69f8bcbaae3f37f38c475ff}{operator=}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
 \begin{DoxyCompactList}\small\item\em Broken assignment operator. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Data}{Data}} \texorpdfstring{$\ast$}{*}\& \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a3b83389f2c80788013421c6d59604f0b}{internal\+\_\+data\+\_\+pt}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
@@ -767,8 +769,6 @@ template$<$$>$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} SPATIAL\+\_\+\+DIM, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} NNODE\+\_\+1D$>$\newline
 class oomph\+::\+QUnsteady\+Heat\+Mixed\+Order\+Space\+Time\+Element$<$ SPATIAL\+\_\+\+DIM, NNODE\+\_\+1\+D $>$}
-//////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////// 
-
 \doxylink{classoomph_1_1QUnsteadyHeatMixedOrderSpaceTimeElement}{QUnsteady\+Heat\+Mixed\+Order\+Space\+Time\+Element} elements are quadrilateral/brick-\/ shaped Unsteady\+Heat\+Mixed\+Order elements with isoparametric interpolation for the function. 
 
 Definition at line \mbox{\hyperlink{discontinuous__galerkin__space__time__unsteady__heat__mixed__order__elements_8h_source_l00738}{738}} of file \mbox{\hyperlink{discontinuous__galerkin__space__time__unsteady__heat__mixed__order__elements_8h_source}{discontinuous\+\_\+galerkin\+\_\+space\+\_\+time\+\_\+unsteady\+\_\+heat\+\_\+mixed\+\_\+order\+\_\+elements.\+h}}.
@@ -1016,7 +1016,7 @@ Definition at line \mbox{\hyperlink{discontinuous__galerkin__space__time__unstea
 
 
 
-References \mbox{\hyperlink{discontinuous__galerkin__space__time__unsteady__heat__mixed__order__elements_8cc_source_l00403}{oomph\+::\+Space\+Time\+Unsteady\+Heat\+Mixed\+Order\+Equations$<$ SPATIAL\+\_\+\+DIM $>$\+::output\+\_\+fct()}}.
+References \mbox{\hyperlink{discontinuous__galerkin__space__time__unsteady__heat__mixed__order__elements_8cc_source_l00398}{oomph\+::\+Space\+Time\+Unsteady\+Heat\+Mixed\+Order\+Equations$<$ SPATIAL\+\_\+\+DIM $>$\+::output\+\_\+fct()}}.
 
 \Hypertarget{classoomph_1_1QUnsteadyHeatMixedOrderSpaceTimeElement_aa3f6d8b0a75e3e9c5b28ecd738c4e838}\label{classoomph_1_1QUnsteadyHeatMixedOrderSpaceTimeElement_aa3f6d8b0a75e3e9c5b28ecd738c4e838} 
 \index{oomph::QUnsteadyHeatMixedOrderSpaceTimeElement$<$ SPATIAL\_DIM, NNODE\_1D $>$@{oomph::QUnsteadyHeatMixedOrderSpaceTimeElement$<$ SPATIAL\_DIM, NNODE\_1D $>$}!output\_fct@{output\_fct}}
@@ -1039,7 +1039,7 @@ Definition at line \mbox{\hyperlink{discontinuous__galerkin__space__time__unstea
 
 
 
-References \mbox{\hyperlink{discontinuous__galerkin__space__time__unsteady__heat__mixed__order__elements_8cc_source_l00403}{oomph\+::\+Space\+Time\+Unsteady\+Heat\+Mixed\+Order\+Equations$<$ SPATIAL\+\_\+\+DIM $>$\+::output\+\_\+fct()}}.
+References \mbox{\hyperlink{discontinuous__galerkin__space__time__unsteady__heat__mixed__order__elements_8cc_source_l00398}{oomph\+::\+Space\+Time\+Unsteady\+Heat\+Mixed\+Order\+Equations$<$ SPATIAL\+\_\+\+DIM $>$\+::output\+\_\+fct()}}.
 
 \Hypertarget{classoomph_1_1QUnsteadyHeatMixedOrderSpaceTimeElement_a17b32e3d9fdcd64c3bbd5222be2e3329}\label{classoomph_1_1QUnsteadyHeatMixedOrderSpaceTimeElement_a17b32e3d9fdcd64c3bbd5222be2e3329} 
 \index{oomph::QUnsteadyHeatMixedOrderSpaceTimeElement$<$ SPATIAL\_DIM, NNODE\_1D $>$@{oomph::QUnsteadyHeatMixedOrderSpaceTimeElement$<$ SPATIAL\_DIM, NNODE\_1D $>$}!required\_nvalue@{required\_nvalue}}

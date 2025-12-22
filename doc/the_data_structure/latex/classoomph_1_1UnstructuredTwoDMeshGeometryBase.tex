@@ -202,6 +202,10 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \begin{DoxyCompactList}\small\item\em Replace existing boundary node lookup schemes with new schemes created using the boundary data stored in the nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1Mesh_ad1b124a959628aba00162b89617b3a62}{boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Indicate whether the i-\/th boundary has an intrinsic coordinate. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_ab137d0c0debf5ba0d6ea6990103e620c}{set\+\_\+boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be existing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_a3b9d63e0057ed721190b109f48f7c92e}{set\+\_\+boundary\+\_\+coordinate\+\_\+does\+\_\+not\+\_\+exist}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be non-\/existing. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_af01dfefb66c15579b540be62999d93ee}{nelement}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return number of elements in the mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
@@ -653,9 +657,7 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_aca12acfe655a4d5c4a4eab4a7b970812}{Element\+\_\+pt}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a412a5051be9e81f0ba61bf85e5abc4a6}{Boundary\+\_\+coordinate\+\_\+exists}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of boolean data that indicates whether the boundary coordinates have been set for the boundary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -762,7 +764,7 @@ Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8
 
 
 
-References \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02527}{Boundary\+\_\+segment\+\_\+node\+\_\+pt}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02026}{nboundary\+\_\+segment\+\_\+node()}}, \mbox{\hyperlink{mesh_8h_source_l00436}{oomph\+::\+Mesh\+::node\+\_\+pt()}}, and \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}.
+References \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02527}{Boundary\+\_\+segment\+\_\+node\+\_\+pt}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02026}{nboundary\+\_\+segment\+\_\+node()}}, \mbox{\hyperlink{mesh_8h_source_l00440}{oomph\+::\+Mesh\+::node\+\_\+pt()}}, and \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}.
 
 
 
@@ -1388,7 +1390,7 @@ References \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8cc_sourc
 
 
 
-Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8template_8h_source_l00368}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}, and \mbox{\hyperlink{triangle__mesh_8template_8h_source_l01205}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}.
+Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8h_source_l00368}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}, and \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l01188}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}.
 
 \Hypertarget{classoomph_1_1UnstructuredTwoDMeshGeometryBase_a0d709e87f038a60e3c8f8b84af412fa4}\label{classoomph_1_1UnstructuredTwoDMeshGeometryBase_a0d709e87f038a60e3c8f8b84af412fa4} 
 \index{oomph::UnstructuredTwoDMeshGeometryBase@{oomph::UnstructuredTwoDMeshGeometryBase}!check\_contiguousness\_on\_polylines\_helper@{check\_contiguousness\_on\_polylines\_helper}}
@@ -1430,7 +1432,7 @@ References \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source
 
 
 
-Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8template_8h_source_l00133}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Quad\+From\+Triangle\+Mesh()}}, and \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00516}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Triangle\+Mesh()}}.
+Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8h_source_l00133}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Quad\+From\+Triangle\+Mesh()}}, and \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l00500}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Triangle\+Mesh()}}.
 
 \Hypertarget{classoomph_1_1UnstructuredTwoDMeshGeometryBase_aa120eef8da13fbd69503ae1087d0dccf}\label{classoomph_1_1UnstructuredTwoDMeshGeometryBase_aa120eef8da13fbd69503ae1087d0dccf} 
 \index{oomph::UnstructuredTwoDMeshGeometryBase@{oomph::UnstructuredTwoDMeshGeometryBase}!copy\_connection\_information@{copy\_connection\_information}}
@@ -1492,7 +1494,7 @@ References \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source
 
 
 
-Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8template_8h_source_l00133}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Quad\+From\+Triangle\+Mesh()}}, and \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00516}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Triangle\+Mesh()}}.
+Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8h_source_l00133}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Quad\+From\+Triangle\+Mesh()}}, and \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l00500}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Triangle\+Mesh()}}.
 
 \Hypertarget{classoomph_1_1UnstructuredTwoDMeshGeometryBase_a22ba2b359eebe24f9ba1f40be54643d8}\label{classoomph_1_1UnstructuredTwoDMeshGeometryBase_a22ba2b359eebe24f9ba1f40be54643d8} 
 \index{oomph::UnstructuredTwoDMeshGeometryBase@{oomph::UnstructuredTwoDMeshGeometryBase}!create\_vertex\_coordinates\_for\_polyline\_connections@{create\_vertex\_coordinates\_for\_polyline\_connections}}
@@ -1740,7 +1742,7 @@ References \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source
 
 
 
-Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8template_8h_source_l00368}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}, and \mbox{\hyperlink{triangle__mesh_8template_8h_source_l01205}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}.
+Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8h_source_l00368}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}, \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l01188}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}, and \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l00739}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Triangle\+Mesh()}}.
 
 \Hypertarget{classoomph_1_1UnstructuredTwoDMeshGeometryBase_adc3f1f9607dcf468c6cfb458538248df}\label{classoomph_1_1UnstructuredTwoDMeshGeometryBase_adc3f1f9607dcf468c6cfb458538248df} 
 \index{oomph::UnstructuredTwoDMeshGeometryBase@{oomph::UnstructuredTwoDMeshGeometryBase}!is\_point\_inside\_polygon\_helper@{is\_point\_inside\_polygon\_helper}}
@@ -1982,7 +1984,7 @@ References \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source
 
 
 
-Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8template_8h_source_l00133}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Quad\+From\+Triangle\+Mesh()}}, and \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00516}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Triangle\+Mesh()}}.
+Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8h_source_l00133}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Quad\+From\+Triangle\+Mesh()}}, and \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l00500}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Triangle\+Mesh()}}.
 
 \Hypertarget{classoomph_1_1UnstructuredTwoDMeshGeometryBase_ad79be82dd161b1f6e5dc967969f88f6f}\label{classoomph_1_1UnstructuredTwoDMeshGeometryBase_ad79be82dd161b1f6e5dc967969f88f6f} 
 \index{oomph::UnstructuredTwoDMeshGeometryBase@{oomph::UnstructuredTwoDMeshGeometryBase}!set\_geom\_objects\_and\_coordinate\_limits\_for\_open\_curve@{set\_geom\_objects\_and\_coordinate\_limits\_for\_open\_curve}}
@@ -2004,7 +2006,7 @@ References \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source
 
 
 
-Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8template_8h_source_l00133}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Quad\+From\+Triangle\+Mesh()}}, and \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00516}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Triangle\+Mesh()}}.
+Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8h_source_l00133}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Quad\+From\+Triangle\+Mesh()}}, and \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l00500}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Triangle\+Mesh()}}.
 
 \Hypertarget{classoomph_1_1UnstructuredTwoDMeshGeometryBase_a3928fb706b699964e0705a7fe2a1c8dc}\label{classoomph_1_1UnstructuredTwoDMeshGeometryBase_a3928fb706b699964e0705a7fe2a1c8dc} 
 \index{oomph::UnstructuredTwoDMeshGeometryBase@{oomph::UnstructuredTwoDMeshGeometryBase}!set\_nboundary\_segment\_node@{set\_nboundary\_segment\_node}}
@@ -2060,7 +2062,7 @@ Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8
 
 
 
-References \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02046}{add\+\_\+boundary\+\_\+segment\+\_\+node()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02073}{Assigned\+\_\+segments\+\_\+initial\+\_\+zeta\+\_\+values}}, \mbox{\hyperlink{mesh_8h_source_l00190}{oomph\+::\+Mesh\+::\+Boundary\+\_\+coordinate\+\_\+exists}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01849}{boundary\+\_\+coordinate\+\_\+limits()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01893}{boundary\+\_\+element\+\_\+in\+\_\+region\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00840}{oomph\+::\+Mesh\+::boundary\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02082}{boundary\+\_\+final\+\_\+coordinate()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02096}{boundary\+\_\+final\+\_\+zeta\+\_\+coordinate()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01842}{boundary\+\_\+geom\+\_\+object\+\_\+pt()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02076}{boundary\+\_\+initial\+\_\+coordinate()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02089}{boundary\+\_\+initial\+\_\+zeta\+\_\+coordinate()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02131}{boundary\+\_\+segment\+\_\+final\+\_\+arclength()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02117}{boundary\+\_\+segment\+\_\+final\+\_\+coordinate()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02145}{boundary\+\_\+segment\+\_\+final\+\_\+zeta()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02124}{boundary\+\_\+segment\+\_\+initial\+\_\+arclength()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02110}{boundary\+\_\+segment\+\_\+initial\+\_\+coordinate()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02138}{boundary\+\_\+segment\+\_\+initial\+\_\+zeta()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02103}{boundary\+\_\+segment\+\_\+inverted()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00896}{oomph\+::\+Mesh\+::face\+\_\+index\+\_\+at\+\_\+boundary()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01911}{face\+\_\+index\+\_\+at\+\_\+boundary\+\_\+in\+\_\+region()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02008}{flush\+\_\+boundary\+\_\+segment\+\_\+node()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l01167}{oomph\+::\+Generalised\+Element\+::is\+\_\+halo()}}, \mbox{\hyperlink{mesh_8h_source_l01588}{oomph\+::\+Mesh\+::is\+\_\+mesh\+\_\+distributed()}}, \mbox{\hyperlink{mesh_8h_source_l00878}{oomph\+::\+Mesh\+::nboundary\+\_\+element()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01874}{nboundary\+\_\+element\+\_\+in\+\_\+region()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01757}{nregion()}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00096}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::output()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02630}{Polygonal\+\_\+vertex\+\_\+arclength\+\_\+info}}, \mbox{\hyperlink{classoomph_1_1GeomObject_a0d04c9d4667817f3ef24bb660fd56065}{oomph\+::\+Geom\+Object\+::position()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02586}{Region\+\_\+attribute}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02014}{set\+\_\+nboundary\+\_\+segment\+\_\+node()}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01741}{Suppress\+\_\+warning\+\_\+about\+\_\+regions\+\_\+and\+\_\+boundaries}}, and \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8cc_source_l01103}{oomph\+::\+Tolerance\+For\+Vertex\+Mismatch\+In\+Polygons\+::\+Tolerable\+\_\+error}}.
+References \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02046}{add\+\_\+boundary\+\_\+segment\+\_\+node()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02073}{Assigned\+\_\+segments\+\_\+initial\+\_\+zeta\+\_\+values}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01849}{boundary\+\_\+coordinate\+\_\+limits()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01893}{boundary\+\_\+element\+\_\+in\+\_\+region\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00848}{oomph\+::\+Mesh\+::boundary\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02082}{boundary\+\_\+final\+\_\+coordinate()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02096}{boundary\+\_\+final\+\_\+zeta\+\_\+coordinate()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01842}{boundary\+\_\+geom\+\_\+object\+\_\+pt()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02076}{boundary\+\_\+initial\+\_\+coordinate()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02089}{boundary\+\_\+initial\+\_\+zeta\+\_\+coordinate()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02131}{boundary\+\_\+segment\+\_\+final\+\_\+arclength()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02117}{boundary\+\_\+segment\+\_\+final\+\_\+coordinate()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02145}{boundary\+\_\+segment\+\_\+final\+\_\+zeta()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02124}{boundary\+\_\+segment\+\_\+initial\+\_\+arclength()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02110}{boundary\+\_\+segment\+\_\+initial\+\_\+coordinate()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02138}{boundary\+\_\+segment\+\_\+initial\+\_\+zeta()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02103}{boundary\+\_\+segment\+\_\+inverted()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00904}{oomph\+::\+Mesh\+::face\+\_\+index\+\_\+at\+\_\+boundary()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01911}{face\+\_\+index\+\_\+at\+\_\+boundary\+\_\+in\+\_\+region()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02008}{flush\+\_\+boundary\+\_\+segment\+\_\+node()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l01150}{oomph\+::\+Generalised\+Element\+::is\+\_\+halo()}}, \mbox{\hyperlink{mesh_8h_source_l01596}{oomph\+::\+Mesh\+::is\+\_\+mesh\+\_\+distributed()}}, \mbox{\hyperlink{mesh_8h_source_l00886}{oomph\+::\+Mesh\+::nboundary\+\_\+element()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01874}{nboundary\+\_\+element\+\_\+in\+\_\+region()}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01757}{nregion()}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00096}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::output()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02630}{Polygonal\+\_\+vertex\+\_\+arclength\+\_\+info}}, \mbox{\hyperlink{classoomph_1_1GeomObject_a0d04c9d4667817f3ef24bb660fd56065}{oomph\+::\+Geom\+Object\+::position()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02586}{Region\+\_\+attribute}}, \mbox{\hyperlink{mesh_8h_source_l00584}{oomph\+::\+Mesh\+::set\+\_\+boundary\+\_\+coordinate\+\_\+exists()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02014}{set\+\_\+nboundary\+\_\+segment\+\_\+node()}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01741}{Suppress\+\_\+warning\+\_\+about\+\_\+regions\+\_\+and\+\_\+boundaries}}, and \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8cc_source_l01103}{oomph\+::\+Tolerance\+For\+Vertex\+Mismatch\+In\+Polygons\+::\+Tolerable\+\_\+error}}.
 
 \Hypertarget{classoomph_1_1UnstructuredTwoDMeshGeometryBase_a569174a8d7d51bd5ef8f468a625c7316}\label{classoomph_1_1UnstructuredTwoDMeshGeometryBase_a569174a8d7d51bd5ef8f468a625c7316} 
 \index{oomph::UnstructuredTwoDMeshGeometryBase@{oomph::UnstructuredTwoDMeshGeometryBase}!snap\_nodes\_onto\_geometric\_objects@{snap\_nodes\_onto\_geometric\_objects}}
@@ -2078,11 +2080,11 @@ Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8
 
 
 
-References \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01842}{boundary\+\_\+geom\+\_\+object\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00493}{oomph\+::\+Mesh\+::boundary\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{mesh_8h_source_l00827}{oomph\+::\+Mesh\+::nboundary()}}, \mbox{\hyperlink{mesh_8h_source_l00833}{oomph\+::\+Mesh\+::nboundary\+\_\+node()}}, \mbox{\hyperlink{classoomph_1_1GeomObject_a0d04c9d4667817f3ef24bb660fd56065}{oomph\+::\+Geom\+Object\+::position()}}, and \mbox{\hyperlink{cfortran_8h_source_l00568}{t}}.
+References \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01842}{boundary\+\_\+geom\+\_\+object\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00497}{oomph\+::\+Mesh\+::boundary\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{mesh_8h_source_l00835}{oomph\+::\+Mesh\+::nboundary()}}, \mbox{\hyperlink{mesh_8h_source_l00841}{oomph\+::\+Mesh\+::nboundary\+\_\+node()}}, \mbox{\hyperlink{classoomph_1_1GeomObject_a0d04c9d4667817f3ef24bb660fd56065}{oomph\+::\+Geom\+Object\+::position()}}, and \mbox{\hyperlink{cfortran_8h_source_l00568}{t}}.
 
 
 
-Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8template_8h_source_l00133}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Quad\+From\+Triangle\+Mesh()}}, \mbox{\hyperlink{triangle__mesh_8template_8h_source_l01060}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::remesh\+\_\+from\+\_\+internal\+\_\+triangulateio()}}, and \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00516}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Triangle\+Mesh()}}.
+Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8h_source_l00133}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Quad\+From\+Triangle\+Mesh()}}, \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l01041}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::remesh\+\_\+from\+\_\+internal\+\_\+triangulateio()}}, and \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l00500}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Triangle\+Mesh()}}.
 
 
 
@@ -2103,7 +2105,7 @@ Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8
 
 
 
-Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01993}{disable\+\_\+automatic\+\_\+creation\+\_\+of\+\_\+vertices\+\_\+on\+\_\+boundaries()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01986}{enable\+\_\+automatic\+\_\+creation\+\_\+of\+\_\+vertices\+\_\+on\+\_\+boundaries()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02000}{is\+\_\+automatic\+\_\+creation\+\_\+of\+\_\+vertices\+\_\+on\+\_\+boundaries\+\_\+allowed()}}, \mbox{\hyperlink{quad__from__triangle__mesh_8template_8h_source_l00075}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Quad\+From\+Triangle\+Mesh()}}, \mbox{\hyperlink{quad__from__triangle__mesh_8template_8h_source_l00088}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Quad\+From\+Triangle\+Mesh()}}, \mbox{\hyperlink{quad__from__triangle__mesh_8template_8h_source_l00133}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Quad\+From\+Triangle\+Mesh()}}, \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00427}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Triangle\+Mesh()}}, \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00448}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Triangle\+Mesh()}}, \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00755}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Triangle\+Mesh()}}, and \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00516}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Triangle\+Mesh()}}.
+Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01993}{disable\+\_\+automatic\+\_\+creation\+\_\+of\+\_\+vertices\+\_\+on\+\_\+boundaries()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01986}{enable\+\_\+automatic\+\_\+creation\+\_\+of\+\_\+vertices\+\_\+on\+\_\+boundaries()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02000}{is\+\_\+automatic\+\_\+creation\+\_\+of\+\_\+vertices\+\_\+on\+\_\+boundaries\+\_\+allowed()}}, \mbox{\hyperlink{quad__from__triangle__mesh_8h_source_l00075}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Quad\+From\+Triangle\+Mesh()}}, \mbox{\hyperlink{quad__from__triangle__mesh_8h_source_l00088}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Quad\+From\+Triangle\+Mesh()}}, \mbox{\hyperlink{quad__from__triangle__mesh_8h_source_l00133}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Quad\+From\+Triangle\+Mesh()}}, \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l00411}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Triangle\+Mesh()}}, \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l00432}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Triangle\+Mesh()}}, \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l00739}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Triangle\+Mesh()}}, and \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l00500}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::\+Triangle\+Mesh()}}.
 
 \Hypertarget{classoomph_1_1UnstructuredTwoDMeshGeometryBase_a51bc10b4bbc41187fb0101cefeb835b9}\label{classoomph_1_1UnstructuredTwoDMeshGeometryBase_a51bc10b4bbc41187fb0101cefeb835b9} 
 \index{oomph::UnstructuredTwoDMeshGeometryBase@{oomph::UnstructuredTwoDMeshGeometryBase}!Assigned\_segments\_initial\_zeta\_values@{Assigned\_segments\_initial\_zeta\_values}}
@@ -2157,7 +2159,7 @@ Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8
 
 
 
-Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01937}{boundary\+\_\+polyline\+\_\+pt()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l03345}{closed\+\_\+curve\+\_\+to\+\_\+polygon\+\_\+helper()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l03495}{create\+\_\+open\+\_\+curve\+\_\+with\+\_\+polyline\+\_\+helper()}}, and \mbox{\hyperlink{triangle__mesh_8template_8h_source_l01060}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::remesh\+\_\+from\+\_\+internal\+\_\+triangulateio()}}.
+Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01937}{boundary\+\_\+polyline\+\_\+pt()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l03345}{closed\+\_\+curve\+\_\+to\+\_\+polygon\+\_\+helper()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l03495}{create\+\_\+open\+\_\+curve\+\_\+with\+\_\+polyline\+\_\+helper()}}, and \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l01041}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::remesh\+\_\+from\+\_\+internal\+\_\+triangulateio()}}.
 
 \Hypertarget{classoomph_1_1UnstructuredTwoDMeshGeometryBase_ac62425123ea6915b3c4c1d2b09b014cd}\label{classoomph_1_1UnstructuredTwoDMeshGeometryBase_ac62425123ea6915b3c4c1d2b09b014cd} 
 \index{oomph::UnstructuredTwoDMeshGeometryBase@{oomph::UnstructuredTwoDMeshGeometryBase}!Boundary\_final\_coordinate@{Boundary\_final\_coordinate}}
@@ -2265,7 +2267,7 @@ Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8
 
 
 
-Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01893}{boundary\+\_\+element\+\_\+in\+\_\+region\+\_\+pt()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01874}{nboundary\+\_\+element\+\_\+in\+\_\+region()}}, and \mbox{\hyperlink{triangle__mesh_8template_8h_source_l01060}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::remesh\+\_\+from\+\_\+internal\+\_\+triangulateio()}}.
+Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01893}{boundary\+\_\+element\+\_\+in\+\_\+region\+\_\+pt()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01874}{nboundary\+\_\+element\+\_\+in\+\_\+region()}}, and \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l01041}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::remesh\+\_\+from\+\_\+internal\+\_\+triangulateio()}}.
 
 \Hypertarget{classoomph_1_1UnstructuredTwoDMeshGeometryBase_a877b47208d58d867c1e117added0d7db}\label{classoomph_1_1UnstructuredTwoDMeshGeometryBase_a877b47208d58d867c1e117added0d7db} 
 \index{oomph::UnstructuredTwoDMeshGeometryBase@{oomph::UnstructuredTwoDMeshGeometryBase}!Boundary\_segment\_final\_arclength@{Boundary\_segment\_final\_arclength}}
@@ -2409,7 +2411,7 @@ Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8
 
 
 
-Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02046}{add\+\_\+boundary\+\_\+segment\+\_\+node()}}, \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00952}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::boundary\+\_\+segment\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00959}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::boundary\+\_\+segment\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00966}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::boundary\+\_\+segment\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02008}{flush\+\_\+boundary\+\_\+segment\+\_\+node()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02020}{nboundary\+\_\+segment()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02026}{nboundary\+\_\+segment\+\_\+node()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02039}{nboundary\+\_\+segment\+\_\+node()}}, and \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02014}{set\+\_\+nboundary\+\_\+segment\+\_\+node()}}.
+Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02046}{add\+\_\+boundary\+\_\+segment\+\_\+node()}}, \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l00933}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::boundary\+\_\+segment\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l00940}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::boundary\+\_\+segment\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l00947}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::boundary\+\_\+segment\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02008}{flush\+\_\+boundary\+\_\+segment\+\_\+node()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02020}{nboundary\+\_\+segment()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02026}{nboundary\+\_\+segment\+\_\+node()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02039}{nboundary\+\_\+segment\+\_\+node()}}, and \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l02014}{set\+\_\+nboundary\+\_\+segment\+\_\+node()}}.
 
 \Hypertarget{classoomph_1_1UnstructuredTwoDMeshGeometryBase_a75f6839c28d529b43ada0bd94df8b79f}\label{classoomph_1_1UnstructuredTwoDMeshGeometryBase_a75f6839c28d529b43ada0bd94df8b79f} 
 \index{oomph::UnstructuredTwoDMeshGeometryBase@{oomph::UnstructuredTwoDMeshGeometryBase}!Extra\_holes\_coordinates@{Extra\_holes\_coordinates}}
@@ -2427,7 +2429,7 @@ Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8
 
 
 
-Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8template_8h_source_l00368}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}, and \mbox{\hyperlink{triangle__mesh_8template_8h_source_l01205}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}.
+Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8h_source_l00368}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}, and \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l01188}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}.
 
 \Hypertarget{classoomph_1_1UnstructuredTwoDMeshGeometryBase_a926c70eb2dba8012cd6ae93a8dc2c552}\label{classoomph_1_1UnstructuredTwoDMeshGeometryBase_a926c70eb2dba8012cd6ae93a8dc2c552} 
 \index{oomph::UnstructuredTwoDMeshGeometryBase@{oomph::UnstructuredTwoDMeshGeometryBase}!Face\_index\_region\_at\_boundary@{Face\_index\_region\_at\_boundary}}
@@ -2445,7 +2447,7 @@ Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8
 
 
 
-Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01911}{face\+\_\+index\+\_\+at\+\_\+boundary\+\_\+in\+\_\+region()}}, and \mbox{\hyperlink{triangle__mesh_8template_8h_source_l01060}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::remesh\+\_\+from\+\_\+internal\+\_\+triangulateio()}}.
+Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01911}{face\+\_\+index\+\_\+at\+\_\+boundary\+\_\+in\+\_\+region()}}, and \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l01041}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::remesh\+\_\+from\+\_\+internal\+\_\+triangulateio()}}.
 
 \Hypertarget{classoomph_1_1UnstructuredTwoDMeshGeometryBase_ac3aa35d17523a1dbeaf4739c6ab5adc8}\label{classoomph_1_1UnstructuredTwoDMeshGeometryBase_ac3aa35d17523a1dbeaf4739c6ab5adc8} 
 \index{oomph::UnstructuredTwoDMeshGeometryBase@{oomph::UnstructuredTwoDMeshGeometryBase}!Free\_curve\_section\_pt@{Free\_curve\_section\_pt}}
@@ -2463,7 +2465,7 @@ Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8
 
 
 
-Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l03345}{closed\+\_\+curve\+\_\+to\+\_\+polygon\+\_\+helper()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l03495}{create\+\_\+open\+\_\+curve\+\_\+with\+\_\+polyline\+\_\+helper()}}, \mbox{\hyperlink{quad__from__triangle__mesh_8template_8h_source_l00521}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::\texorpdfstring{$\sim$}{\string~}\+Quad\+From\+Triangle\+Mesh()}}, and \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00854}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::\texorpdfstring{$\sim$}{\string~}\+Triangle\+Mesh()}}.
+Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l03345}{closed\+\_\+curve\+\_\+to\+\_\+polygon\+\_\+helper()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l03495}{create\+\_\+open\+\_\+curve\+\_\+with\+\_\+polyline\+\_\+helper()}}, \mbox{\hyperlink{quad__from__triangle__mesh_8h_source_l00524}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::\texorpdfstring{$\sim$}{\string~}\+Quad\+From\+Triangle\+Mesh()}}, and \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l00835}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::\texorpdfstring{$\sim$}{\string~}\+Triangle\+Mesh()}}.
 
 \Hypertarget{classoomph_1_1UnstructuredTwoDMeshGeometryBase_aa3b1beb78b5261398428c1e14a6411ae}\label{classoomph_1_1UnstructuredTwoDMeshGeometryBase_aa3b1beb78b5261398428c1e14a6411ae} 
 \index{oomph::UnstructuredTwoDMeshGeometryBase@{oomph::UnstructuredTwoDMeshGeometryBase}!Free\_open\_curve\_pt@{Free\_open\_curve\_pt}}
@@ -2481,7 +2483,7 @@ Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8
 
 
 
-Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l03495}{create\+\_\+open\+\_\+curve\+\_\+with\+\_\+polyline\+\_\+helper()}}, \mbox{\hyperlink{quad__from__triangle__mesh_8template_8h_source_l00521}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::\texorpdfstring{$\sim$}{\string~}\+Quad\+From\+Triangle\+Mesh()}}, and \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00854}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::\texorpdfstring{$\sim$}{\string~}\+Triangle\+Mesh()}}.
+Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l03495}{create\+\_\+open\+\_\+curve\+\_\+with\+\_\+polyline\+\_\+helper()}}, \mbox{\hyperlink{quad__from__triangle__mesh_8h_source_l00524}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::\texorpdfstring{$\sim$}{\string~}\+Quad\+From\+Triangle\+Mesh()}}, and \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l00835}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::\texorpdfstring{$\sim$}{\string~}\+Triangle\+Mesh()}}.
 
 \Hypertarget{classoomph_1_1UnstructuredTwoDMeshGeometryBase_ad0e156686ae6ae41a187d7a0c71c6861}\label{classoomph_1_1UnstructuredTwoDMeshGeometryBase_ad0e156686ae6ae41a187d7a0c71c6861} 
 \index{oomph::UnstructuredTwoDMeshGeometryBase@{oomph::UnstructuredTwoDMeshGeometryBase}!Free\_polygon\_pt@{Free\_polygon\_pt}}
@@ -2499,7 +2501,7 @@ Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8
 
 
 
-Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l03345}{closed\+\_\+curve\+\_\+to\+\_\+polygon\+\_\+helper()}}, \mbox{\hyperlink{quad__from__triangle__mesh_8template_8h_source_l00521}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::\texorpdfstring{$\sim$}{\string~}\+Quad\+From\+Triangle\+Mesh()}}, and \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00854}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::\texorpdfstring{$\sim$}{\string~}\+Triangle\+Mesh()}}.
+Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l03345}{closed\+\_\+curve\+\_\+to\+\_\+polygon\+\_\+helper()}}, \mbox{\hyperlink{quad__from__triangle__mesh_8h_source_l00524}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::\texorpdfstring{$\sim$}{\string~}\+Quad\+From\+Triangle\+Mesh()}}, and \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l00835}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::\texorpdfstring{$\sim$}{\string~}\+Triangle\+Mesh()}}.
 
 \Hypertarget{classoomph_1_1UnstructuredTwoDMeshGeometryBase_adc292b9fbb1e65a3b768597169c5de91}\label{classoomph_1_1UnstructuredTwoDMeshGeometryBase_adc292b9fbb1e65a3b768597169c5de91} 
 \index{oomph::UnstructuredTwoDMeshGeometryBase@{oomph::UnstructuredTwoDMeshGeometryBase}!Immersed\_rigid\_body\_triangle\_mesh\_polygon\_used@{Immersed\_rigid\_body\_triangle\_mesh\_polygon\_used}}
@@ -2531,7 +2533,7 @@ Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8
 
 
 
-Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8template_8h_source_l00368}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}, and \mbox{\hyperlink{triangle__mesh_8template_8h_source_l01205}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}.
+Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8h_source_l00368}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}, and \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l01188}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}.
 
 \Hypertarget{classoomph_1_1UnstructuredTwoDMeshGeometryBase_a3de1aa3ecfee67b29078369da4bc6738}\label{classoomph_1_1UnstructuredTwoDMeshGeometryBase_a3de1aa3ecfee67b29078369da4bc6738} 
 \index{oomph::UnstructuredTwoDMeshGeometryBase@{oomph::UnstructuredTwoDMeshGeometryBase}!Internal\_polygon\_pt@{Internal\_polygon\_pt}}
@@ -2549,7 +2551,7 @@ Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8
 
 
 
-Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8template_8h_source_l00368}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}, and \mbox{\hyperlink{triangle__mesh_8template_8h_source_l01205}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}.
+Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8h_source_l00368}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}, and \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l01188}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}.
 
 \Hypertarget{classoomph_1_1UnstructuredTwoDMeshGeometryBase_a666d05ae28aabfb8b4a9548066ed3a85}\label{classoomph_1_1UnstructuredTwoDMeshGeometryBase_a666d05ae28aabfb8b4a9548066ed3a85} 
 \index{oomph::UnstructuredTwoDMeshGeometryBase@{oomph::UnstructuredTwoDMeshGeometryBase}!Nodes\_on\_boundary\_pt@{Nodes\_on\_boundary\_pt}}
@@ -2585,7 +2587,7 @@ Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8
 
 
 
-Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8template_8h_source_l00368}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}, and \mbox{\hyperlink{triangle__mesh_8template_8h_source_l01205}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}.
+Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8h_source_l00368}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}, and \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l01188}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}.
 
 \Hypertarget{classoomph_1_1UnstructuredTwoDMeshGeometryBase_ac4c0d6ab6fbe4e35d38a9b18653442f5}\label{classoomph_1_1UnstructuredTwoDMeshGeometryBase_ac4c0d6ab6fbe4e35d38a9b18653442f5} 
 \index{oomph::UnstructuredTwoDMeshGeometryBase@{oomph::UnstructuredTwoDMeshGeometryBase}!Polygonal\_vertex\_arclength\_info@{Polygonal\_vertex\_arclength\_info}}
@@ -2603,7 +2605,7 @@ Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8
 
 
 
-Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l03754}{curviline\+\_\+to\+\_\+polyline()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l03791}{get\+\_\+associated\+\_\+vertex\+\_\+to\+\_\+svalue()}}, \mbox{\hyperlink{triangle__mesh_8template_8h_source_l01060}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::remesh\+\_\+from\+\_\+internal\+\_\+triangulateio()}}, and \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l03851}{setup\+\_\+boundary\+\_\+coordinates()}}.
+Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l03754}{curviline\+\_\+to\+\_\+polyline()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l03791}{get\+\_\+associated\+\_\+vertex\+\_\+to\+\_\+svalue()}}, \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l01041}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::remesh\+\_\+from\+\_\+internal\+\_\+triangulateio()}}, and \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l03851}{setup\+\_\+boundary\+\_\+coordinates()}}.
 
 \Hypertarget{classoomph_1_1UnstructuredTwoDMeshGeometryBase_a8f809ba6140c7d14c08dcefddd9674e3}\label{classoomph_1_1UnstructuredTwoDMeshGeometryBase_a8f809ba6140c7d14c08dcefddd9674e3} 
 \index{oomph::UnstructuredTwoDMeshGeometryBase@{oomph::UnstructuredTwoDMeshGeometryBase}!Region\_attribute@{Region\_attribute}}
@@ -2621,7 +2623,7 @@ Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8
 
 
 
-Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01814}{nregion\+\_\+attribute()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01820}{region\+\_\+attribute()}}, \mbox{\hyperlink{triangle__mesh_8template_8h_source_l01060}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::remesh\+\_\+from\+\_\+internal\+\_\+triangulateio()}}, and \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l03851}{setup\+\_\+boundary\+\_\+coordinates()}}.
+Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01814}{nregion\+\_\+attribute()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01820}{region\+\_\+attribute()}}, \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l01041}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::remesh\+\_\+from\+\_\+internal\+\_\+triangulateio()}}, and \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l03851}{setup\+\_\+boundary\+\_\+coordinates()}}.
 
 \Hypertarget{classoomph_1_1UnstructuredTwoDMeshGeometryBase_ad4189f2f9f965cc0924480611d38027a}\label{classoomph_1_1UnstructuredTwoDMeshGeometryBase_ad4189f2f9f965cc0924480611d38027a} 
 \index{oomph::UnstructuredTwoDMeshGeometryBase@{oomph::UnstructuredTwoDMeshGeometryBase}!Region\_element\_pt@{Region\_element\_pt}}
@@ -2639,7 +2641,7 @@ Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8
 
 
 
-Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01757}{nregion()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01763}{nregion\+\_\+element()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01783}{region\+\_\+element\+\_\+pt()}}, and \mbox{\hyperlink{triangle__mesh_8template_8h_source_l01060}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::remesh\+\_\+from\+\_\+internal\+\_\+triangulateio()}}.
+Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01757}{nregion()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01763}{nregion\+\_\+element()}}, \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01783}{region\+\_\+element\+\_\+pt()}}, and \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l01041}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::remesh\+\_\+from\+\_\+internal\+\_\+triangulateio()}}.
 
 \Hypertarget{classoomph_1_1UnstructuredTwoDMeshGeometryBase_a745902176c8ffaf4fb3cda6924aa6f01}\label{classoomph_1_1UnstructuredTwoDMeshGeometryBase_a745902176c8ffaf4fb3cda6924aa6f01} 
 \index{oomph::UnstructuredTwoDMeshGeometryBase@{oomph::UnstructuredTwoDMeshGeometryBase}!Regions\_coordinates@{Regions\_coordinates}}
@@ -2657,7 +2659,7 @@ Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8
 
 
 
-Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8template_8h_source_l00368}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}, and \mbox{\hyperlink{triangle__mesh_8template_8h_source_l01205}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}.
+Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8h_source_l00368}{oomph\+::\+Quad\+From\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}, and \mbox{\hyperlink{meshes_2triangle__mesh_8h_source_l01188}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$\+::generic\+\_\+constructor()}}.
 
 \Hypertarget{classoomph_1_1UnstructuredTwoDMeshGeometryBase_a1ae304480461c0dba53e7ce07e7ed21f}\label{classoomph_1_1UnstructuredTwoDMeshGeometryBase_a1ae304480461c0dba53e7ce07e7ed21f} 
 \index{oomph::UnstructuredTwoDMeshGeometryBase@{oomph::UnstructuredTwoDMeshGeometryBase}!Suppress\_warning\_about\_regions\_and\_boundaries@{Suppress\_warning\_about\_regions\_and\_boundaries}}

@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00003}00003\ \textcolor{comment}{//\ LIC//\ multi-\/physics\ finite-\/element\ library,\ available}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00004}00004\ \textcolor{comment}{//\ LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00005}00005\ \textcolor{comment}{//\ LIC//}}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00006}00006\ \textcolor{comment}{//\ LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00006}00006\ \textcolor{comment}{//\ LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00007}00007\ \textcolor{comment}{//\ LIC//}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00008}00008\ \textcolor{comment}{//\ LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00009}00009\ \textcolor{comment}{//\ LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -33,7 +33,7 @@
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00029}00029\ \textcolor{preprocessor}{\#ifndef\ OOMPH\_PML\_TIME\_HARMONIC\_LINEAR\_ELASTICITY\_ELEMENTS\_HEADER}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00030}00030\ \textcolor{preprocessor}{\#define\ OOMPH\_PML\_TIME\_HARMONIC\_LINEAR\_ELASTICITY\_ELEMENTS\_HEADER}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00031}00031\ }
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00032}00032\ \textcolor{comment}{//\ Config\ header\ generated\ by\ autoconfig}}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00032}00032\ \textcolor{comment}{//\ Config\ header}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00033}00033\ \textcolor{preprocessor}{\#ifdef\ HAVE\_CONFIG\_H}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00034}00034\ \textcolor{preprocessor}{\#include\ <oomph-\/lib-\/config.h>}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00035}00035\ \textcolor{preprocessor}{\#endif}}
@@ -47,21 +47,21 @@
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00043}00043\ \textcolor{preprocessor}{\#include\ "{}math.h"{}}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00044}00044\ }
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00045}00045\ \textcolor{comment}{//\ OOMPH-\/LIB\ headers}}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00046}00046\ \textcolor{preprocessor}{\#include\ "{}../generic/Qelements.h"{}}}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00047}00047\ \textcolor{preprocessor}{\#include\ "{}../generic/mesh.h"{}}}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00048}00048\ \textcolor{preprocessor}{\#include\ "{}../generic/hermite\_elements.h"{}}}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00046}00046\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Qelements_8h}{generic/Qelements.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00047}00047\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{mesh_8h}{generic/mesh.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00048}00048\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{hermite__elements_8h}{generic/hermite\_elements.h}}"{}}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00049}00049\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pml__time__harmonic__elasticity__tensor_8h}{./pml\_time\_harmonic\_elasticity\_tensor.h}}"{}}}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00050}00050\ \textcolor{preprocessor}{\#include\ "{}../generic/projection.h"{}}}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00051}00051\ \textcolor{preprocessor}{\#include\ "{}../generic/nodes.h"{}}}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00052}00052\ \textcolor{preprocessor}{\#include\ "{}../generic/oomph\_utilities.h"{}}}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00053}00053\ \textcolor{preprocessor}{\#include\ "{}../generic/pml\_meshes.h"{}}}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00054}00054\ \textcolor{preprocessor}{\#include\ "{}../generic/pml\_mapping\_functions.h"{}}}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00050}00050\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{projection_8h}{generic/projection.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00051}00051\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{nodes_8h}{generic/nodes.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00052}00052\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{oomph__utilities_8h}{generic/oomph\_utilities.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00053}00053\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pml__meshes_8h}{generic/pml\_meshes.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00054}00054\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pml__mapping__functions_8h}{generic/pml\_mapping\_functions.h}}"{}}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00055}00055\ }
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00056}00056\ \textcolor{comment}{//\ The\ meshes\ (needed\ for\ building\ of\ pml\ meshes!)}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00057}00057\ \textcolor{comment}{//\ Include\ template\ files\ to\ avoid\ unnecessary\ re-\/compilation}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00058}00058\ \textcolor{comment}{//\ (*.template.h\ files\ get\ included\ indirectly).}}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00059}00059\ \textcolor{comment}{//\#include\ "{}../meshes/triangle\_mesh.template.cc"{}}}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00060}00060\ \textcolor{comment}{//\#include\ "{}../meshes/rectangular\_quadmesh.template.cc"{}}}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00059}00059\ \textcolor{comment}{//\ \#include\ "{}../meshes/triangle\_mesh.template.cc"{}}}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00060}00060\ \textcolor{comment}{//\ \#include\ "{}../meshes/rectangular\_quadmesh.template.cc"{}}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00061}00061\ }
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00062}00062\ \textcolor{comment}{//\ Why\ not\ just\ to\ include\ the\ *.h\ files,\ Just\ as\ all\ other\ files}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00063}00063\ \textcolor{comment}{//\ \#include\ "{}../meshes/triangle\_mesh.template.h"{}}}
@@ -437,9 +437,9 @@
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00433}00433\ \ \ \};}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00434}00434\ }
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00435}00435\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00436}00436\ \textcolor{comment}{\ \ ///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00437}00437\ \textcolor{comment}{\ \ ///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00438}00438\ \textcolor{comment}{\ \ ///\ ////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00436}00436\ \textcolor{comment}{\ \ ///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00437}00437\ \textcolor{comment}{\ \ ///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00438}00438\ \textcolor{comment}{\ \ ///////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00439}00439\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00440}00440\ }
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00441}00441\ \ \ \textcolor{comment}{//=======================================================================}\textcolor{comment}{}}
@@ -573,9 +573,9 @@
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00569}00569\ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{Vector<double>}}\&\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{residuals}},\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{DenseMatrix<double>}}\&\ jacobian,\ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{flag}});}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00570}00570\ \ \ \};}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00571}00571\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00572}00572\ \textcolor{comment}{\ \ ///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00573}00573\ \textcolor{comment}{\ \ ///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00574}00574\ \textcolor{comment}{\ \ ///\ /////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00572}00572\ \textcolor{comment}{\ \ ////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00573}00573\ \textcolor{comment}{\ \ ////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00574}00574\ \textcolor{comment}{\ \ ////////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00575}00575\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00576}00576\ }
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00577}00577\ \ \ \textcolor{comment}{//===========================================================================}\textcolor{comment}{}}
@@ -704,9 +704,9 @@
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00700}\mbox{\hyperlink{classoomph_1_1FaceGeometry_3_01QPMLTimeHarmonicLinearElasticityElement_3_013_00_014_01_4_01_4_a9df8b8c7f1d1dc620b8fb24230b05474}{00700}}\ \textcolor{comment}{}\ \ \ \ \mbox{\hyperlink{classoomph_1_1FaceGeometry_3_01QPMLTimeHarmonicLinearElasticityElement_3_013_00_014_01_4_01_4_a9df8b8c7f1d1dc620b8fb24230b05474}{FaceGeometry}}()\ :\ \mbox{\hyperlink{classoomph_1_1QElement}{QElement}}<2,\ 4>()\ \{\}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00701}00701\ \ \ \};}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00702}00702\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00703}00703\ \textcolor{comment}{\ \ ///\ /////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00704}00704\ \textcolor{comment}{\ \ ///\ /////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00705}00705\ \textcolor{comment}{\ \ ///\ /////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00703}00703\ \textcolor{comment}{\ \ ////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00704}00704\ \textcolor{comment}{\ \ ////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00705}00705\ \textcolor{comment}{\ \ ////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00706}00706\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00707}00707\ }
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00708}00708\ \ \ \textcolor{comment}{//==========================================================}\textcolor{comment}{}}
@@ -893,9 +893,9 @@
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00889}00889\ \ \ \};}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00890}00890\ }
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00891}00891\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00892}00892\ \textcolor{comment}{\ \ ///\ ///////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00893}00893\ \textcolor{comment}{\ \ ///\ ///////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00894}00894\ \textcolor{comment}{\ \ ///\ ///////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00892}00892\ \textcolor{comment}{\ \ //////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00893}00893\ \textcolor{comment}{\ \ //////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00894}00894\ \textcolor{comment}{\ \ //////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00895}00895\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00896}00896\ }
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00897}00897\ \ \ \textcolor{comment}{//=======================================================================}\textcolor{comment}{}}

@@ -278,7 +278,7 @@ std\+::string \mbox{\hyperlink{classoomph_1_1NavierStokesEquations_afa71f5c316eb
 \begin{DoxyCompactList}\small\item\em Return FE interpolated pressure at local coordinate s at time level t. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} \mbox{\hyperlink{classoomph_1_1NavierStokesEquations_a3fa34303035c253c66c0f69752e5949e}{interpolated\+\_\+dudx\+\_\+nst}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{j}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return FE interpolated derivatives of velocity component u\mbox{[}i\mbox{]} w.\+r.\+t spatial global coordinate direction x\mbox{[}j\mbox{]} at local coordinate s. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1NavierStokesEquations_afd6f8376bf83a87164cd3c490270798e}{point\+\_\+output\+\_\+data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{data}})
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1NavierStokesEquations_afd6f8376bf83a87164cd3c490270798e}{point\+\_\+output\+\_\+data}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&data)
 \begin{DoxyCompactList}\small\item\em Output solution in data vector at local cordinates s\+: x,y \mbox{[},z\mbox{]}, u,v,\mbox{[}w\mbox{]}, p. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1NavierStokesEquations_aeef855e50fd8d35798a723cdb6a0c74d}{get\+\_\+vorticity}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{vorticity}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Compute 2D vorticity vector at local coordinate s (return in one and only component of vorticity vector. \end{DoxyCompactList}\item 
@@ -553,8 +553,10 @@ std\+::string \mbox{\hyperlink{classoomph_1_1NavierStokesEquations_afa71f5c316eb
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{oomph\+::\+Generalised\+Element}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}}() \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a76c506edf49c5bbfe94f424ec94191ab}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
-\begin{DoxyCompactList}\small\item\em Constructor\+: Initialise all pointers and all values to zero. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a6a34bffcef1bbbc5271630042afe7ca9}{\texorpdfstring{$\sim$}{\string~}\+Generalised\+Element}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor to clean up any memory allocated by the object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1GeneralisedElement_a4e4a9177fdb093fc85c890bb86bdf655}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
+\begin{DoxyCompactList}\small\item\em Broken copy constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a180b550ae69f8bcbaae3f37f38c475ff}{operator=}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
 \begin{DoxyCompactList}\small\item\em Broken assignment operator. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Data}{Data}} \texorpdfstring{$\ast$}{*}\& \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a3b83389f2c80788013421c6d59604f0b}{internal\+\_\+data\+\_\+pt}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
@@ -1186,7 +1188,7 @@ Definition at line \mbox{\hyperlink{refineable__navier__stokes__elements_8h_sour
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l00622}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{refineable__navier__stokes__elements_8h_source_l01411}{oomph\+::\+PRefineable\+QCrouzeix\+Raviart\+Element$<$ DIM $>$\+::npres\+\_\+nst()}}, \mbox{\hyperlink{navier__stokes__elements_8h_source_l01757}{oomph\+::\+QCrouzeix\+Raviart\+Element$<$ DIM $>$\+::\+P\+\_\+nst\+\_\+internal\+\_\+index}}, \mbox{\hyperlink{nodes_8cc_source_l01002}{oomph\+::\+Data\+::resize()}}, and \mbox{\hyperlink{elements_8cc_source_l03240}{oomph\+::\+Finite\+Element\+::set\+\_\+integration\+\_\+scheme()}}.
+References \mbox{\hyperlink{elements_8h_source_l00605}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{refineable__navier__stokes__elements_8h_source_l01411}{oomph\+::\+PRefineable\+QCrouzeix\+Raviart\+Element$<$ DIM $>$\+::npres\+\_\+nst()}}, \mbox{\hyperlink{navier__stokes__elements_8h_source_l01757}{oomph\+::\+QCrouzeix\+Raviart\+Element$<$ DIM $>$\+::\+P\+\_\+nst\+\_\+internal\+\_\+index}}, \mbox{\hyperlink{nodes_8cc_source_l01002}{oomph\+::\+Data\+::resize()}}, and \mbox{\hyperlink{elements_8cc_source_l03240}{oomph\+::\+Finite\+Element\+::set\+\_\+integration\+\_\+scheme()}}.
 
 \Hypertarget{classoomph_1_1PRefineableQCrouzeixRaviartElement_a1cf44559e861aa992849c7466d2123e2}\label{classoomph_1_1PRefineableQCrouzeixRaviartElement_a1cf44559e861aa992849c7466d2123e2} 
 \index{oomph::PRefineableQCrouzeixRaviartElement$<$ DIM $>$@{oomph::PRefineableQCrouzeixRaviartElement$<$ DIM $>$}!````~PRefineableQCrouzeixRaviartElement@{\texorpdfstring{$\sim$}{\string~}PRefineableQCrouzeixRaviartElement}}
@@ -1360,7 +1362,7 @@ Definition at line \mbox{\hyperlink{refineable__navier__stokes__elements_8h_sour
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l00622}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{navier__stokes__elements_8h_source_l01757}{oomph\+::\+QCrouzeix\+Raviart\+Element$<$ DIM $>$\+::\+P\+\_\+nst\+\_\+internal\+\_\+index}}, \mbox{\hyperlink{nodes_8h_source_l00385}{oomph\+::\+Data\+::pin()}}, and \mbox{\hyperlink{nodes_8h_source_l00271}{oomph\+::\+Data\+::set\+\_\+value()}}.
+References \mbox{\hyperlink{elements_8h_source_l00605}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{navier__stokes__elements_8h_source_l01757}{oomph\+::\+QCrouzeix\+Raviart\+Element$<$ DIM $>$\+::\+P\+\_\+nst\+\_\+internal\+\_\+index}}, \mbox{\hyperlink{nodes_8h_source_l00385}{oomph\+::\+Data\+::pin()}}, and \mbox{\hyperlink{nodes_8h_source_l00271}{oomph\+::\+Data\+::set\+\_\+value()}}.
 
 \Hypertarget{classoomph_1_1PRefineableQCrouzeixRaviartElement_a222c74947a6515041f515bd6c26d1a45}\label{classoomph_1_1PRefineableQCrouzeixRaviartElement_a222c74947a6515041f515bd6c26d1a45} 
 \index{oomph::PRefineableQCrouzeixRaviartElement$<$ DIM $>$@{oomph::PRefineableQCrouzeixRaviartElement$<$ DIM $>$}!further\_build@{further\_build}}
@@ -1382,7 +1384,7 @@ Definition at line \mbox{\hyperlink{refineable__navier__stokes__elements_8cc_sou
 
 
 
-References \mbox{\hyperlink{refineable__navier__stokes__elements_8h_source_l00445}{oomph\+::\+Refineable\+Navier\+Stokes\+Equations$<$ DIM $>$\+::further\+\_\+build()}}, \mbox{\hyperlink{elements_8h_source_l00622}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{nodes_8cc_source_l01002}{oomph\+::\+Data\+::resize()}}, \mbox{\hyperlink{nodes_8h_source_l00271}{oomph\+::\+Data\+::set\+\_\+value()}}, and \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}.
+References \mbox{\hyperlink{refineable__navier__stokes__elements_8h_source_l00445}{oomph\+::\+Refineable\+Navier\+Stokes\+Equations$<$ DIM $>$\+::further\+\_\+build()}}, \mbox{\hyperlink{elements_8h_source_l00605}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{nodes_8cc_source_l01002}{oomph\+::\+Data\+::resize()}}, \mbox{\hyperlink{nodes_8h_source_l00271}{oomph\+::\+Data\+::set\+\_\+value()}}, and \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}.
 
 \Hypertarget{classoomph_1_1PRefineableQCrouzeixRaviartElement_a81987260da356675028c1a3283ddc2f1}\label{classoomph_1_1PRefineableQCrouzeixRaviartElement_a81987260da356675028c1a3283ddc2f1} 
 \index{oomph::PRefineableQCrouzeixRaviartElement$<$ DIM $>$@{oomph::PRefineableQCrouzeixRaviartElement$<$ DIM $>$}!further\_build@{further\_build}}
@@ -1404,7 +1406,7 @@ Definition at line \mbox{\hyperlink{refineable__navier__stokes__elements_8cc_sou
 
 
 
-References \mbox{\hyperlink{octree_8h_source_l00353}{oomph\+::\+Oc\+Tree\+::\+Direction\+\_\+to\+\_\+vector}}, \mbox{\hyperlink{refineable__navier__stokes__elements_8h_source_l00445}{oomph\+::\+Refineable\+Navier\+Stokes\+Equations$<$ DIM $>$\+::further\+\_\+build()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l00622}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{nodes_8cc_source_l01002}{oomph\+::\+Data\+::resize()}}, \mbox{\hyperlink{nodes_8h_source_l00271}{oomph\+::\+Data\+::set\+\_\+value()}}, and \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}.
+References \mbox{\hyperlink{octree_8h_source_l00353}{oomph\+::\+Oc\+Tree\+::\+Direction\+\_\+to\+\_\+vector}}, \mbox{\hyperlink{refineable__navier__stokes__elements_8h_source_l00445}{oomph\+::\+Refineable\+Navier\+Stokes\+Equations$<$ DIM $>$\+::further\+\_\+build()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l00605}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{nodes_8cc_source_l01002}{oomph\+::\+Data\+::resize()}}, \mbox{\hyperlink{nodes_8h_source_l00271}{oomph\+::\+Data\+::set\+\_\+value()}}, and \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}.
 
 \Hypertarget{classoomph_1_1PRefineableQCrouzeixRaviartElement_a3129fe3450caf60d2f678024d7bf7f08}\label{classoomph_1_1PRefineableQCrouzeixRaviartElement_a3129fe3450caf60d2f678024d7bf7f08} 
 \index{oomph::PRefineableQCrouzeixRaviartElement$<$ DIM $>$@{oomph::PRefineableQCrouzeixRaviartElement$<$ DIM $>$}!further\_build@{further\_build}}
@@ -1597,7 +1599,7 @@ Definition at line \mbox{\hyperlink{refineable__navier__stokes__elements_8h_sour
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l00622}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{navier__stokes__elements_8h_source_l01757}{oomph\+::\+QCrouzeix\+Raviart\+Element$<$ DIM $>$\+::\+P\+\_\+nst\+\_\+internal\+\_\+index}}, and \mbox{\hyperlink{nodes_8h_source_l00293}{oomph\+::\+Data\+::value()}}.
+References \mbox{\hyperlink{elements_8h_source_l00605}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{navier__stokes__elements_8h_source_l01757}{oomph\+::\+QCrouzeix\+Raviart\+Element$<$ DIM $>$\+::\+P\+\_\+nst\+\_\+internal\+\_\+index}}, and \mbox{\hyperlink{nodes_8h_source_l00293}{oomph\+::\+Data\+::value()}}.
 
 \Hypertarget{classoomph_1_1PRefineableQCrouzeixRaviartElement_a1a70b2251c5150e4719db4e26bbde7f0}\label{classoomph_1_1PRefineableQCrouzeixRaviartElement_a1a70b2251c5150e4719db4e26bbde7f0} 
 \index{oomph::PRefineableQCrouzeixRaviartElement$<$ DIM $>$@{oomph::PRefineableQCrouzeixRaviartElement$<$ DIM $>$}!p\_nst@{p\_nst}}
@@ -1620,7 +1622,7 @@ Definition at line \mbox{\hyperlink{refineable__navier__stokes__elements_8h_sour
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l00622}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{navier__stokes__elements_8h_source_l01757}{oomph\+::\+QCrouzeix\+Raviart\+Element$<$ DIM $>$\+::\+P\+\_\+nst\+\_\+internal\+\_\+index}}, and \mbox{\hyperlink{nodes_8h_source_l00293}{oomph\+::\+Data\+::value()}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l00605}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{navier__stokes__elements_8h_source_l01757}{oomph\+::\+QCrouzeix\+Raviart\+Element$<$ DIM $>$\+::\+P\+\_\+nst\+\_\+internal\+\_\+index}}, and \mbox{\hyperlink{nodes_8h_source_l00293}{oomph\+::\+Data\+::value()}}.
 
 \Hypertarget{classoomph_1_1PRefineableQCrouzeixRaviartElement_a19222e5c997c7ce4a30452d9aab12ad0}\label{classoomph_1_1PRefineableQCrouzeixRaviartElement_a19222e5c997c7ce4a30452d9aab12ad0} 
 \index{oomph::PRefineableQCrouzeixRaviartElement$<$ DIM $>$@{oomph::PRefineableQCrouzeixRaviartElement$<$ DIM $>$}!pshape\_nst@{pshape\_nst}}
@@ -1761,7 +1763,7 @@ Definition at line \mbox{\hyperlink{refineable__navier__stokes__elements_8h_sour
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l00622}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{refineable__navier__stokes__elements_8h_source_l01411}{oomph\+::\+PRefineable\+QCrouzeix\+Raviart\+Element$<$ DIM $>$\+::npres\+\_\+nst()}}, \mbox{\hyperlink{navier__stokes__elements_8h_source_l01757}{oomph\+::\+QCrouzeix\+Raviart\+Element$<$ DIM $>$\+::\+P\+\_\+nst\+\_\+internal\+\_\+index}}, and \mbox{\hyperlink{nodes_8h_source_l00271}{oomph\+::\+Data\+::set\+\_\+value()}}.
+References \mbox{\hyperlink{elements_8h_source_l00605}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{refineable__navier__stokes__elements_8h_source_l01411}{oomph\+::\+PRefineable\+QCrouzeix\+Raviart\+Element$<$ DIM $>$\+::npres\+\_\+nst()}}, \mbox{\hyperlink{navier__stokes__elements_8h_source_l01757}{oomph\+::\+QCrouzeix\+Raviart\+Element$<$ DIM $>$\+::\+P\+\_\+nst\+\_\+internal\+\_\+index}}, and \mbox{\hyperlink{nodes_8h_source_l00271}{oomph\+::\+Data\+::set\+\_\+value()}}.
 
 \Hypertarget{classoomph_1_1PRefineableQCrouzeixRaviartElement_a5789a5ace7a5d633dec82c775ac890bf}\label{classoomph_1_1PRefineableQCrouzeixRaviartElement_a5789a5ace7a5d633dec82c775ac890bf} 
 \index{oomph::PRefineableQCrouzeixRaviartElement$<$ DIM $>$@{oomph::PRefineableQCrouzeixRaviartElement$<$ DIM $>$}!required\_nvalue@{required\_nvalue}}
@@ -1803,7 +1805,7 @@ Definition at line \mbox{\hyperlink{refineable__navier__stokes__elements_8h_sour
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l00622}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{refineable__navier__stokes__elements_8h_source_l01411}{oomph\+::\+PRefineable\+QCrouzeix\+Raviart\+Element$<$ DIM $>$\+::npres\+\_\+nst()}}, \mbox{\hyperlink{nodes_8h_source_l00483}{oomph\+::\+Data\+::nvalue()}}, \mbox{\hyperlink{navier__stokes__elements_8h_source_l01757}{oomph\+::\+QCrouzeix\+Raviart\+Element$<$ DIM $>$\+::\+P\+\_\+nst\+\_\+internal\+\_\+index}}, and \mbox{\hyperlink{nodes_8h_source_l00391}{oomph\+::\+Data\+::unpin()}}.
+References \mbox{\hyperlink{elements_8h_source_l00605}{oomph\+::\+Generalised\+Element\+::internal\+\_\+data\+\_\+pt()}}, \mbox{\hyperlink{refineable__navier__stokes__elements_8h_source_l01411}{oomph\+::\+PRefineable\+QCrouzeix\+Raviart\+Element$<$ DIM $>$\+::npres\+\_\+nst()}}, \mbox{\hyperlink{nodes_8h_source_l00483}{oomph\+::\+Data\+::nvalue()}}, \mbox{\hyperlink{navier__stokes__elements_8h_source_l01757}{oomph\+::\+QCrouzeix\+Raviart\+Element$<$ DIM $>$\+::\+P\+\_\+nst\+\_\+internal\+\_\+index}}, and \mbox{\hyperlink{nodes_8h_source_l00391}{oomph\+::\+Data\+::unpin()}}.
 
 \Hypertarget{classoomph_1_1PRefineableQCrouzeixRaviartElement_a23616a70f7df9d45e12e45358c528ecb}\label{classoomph_1_1PRefineableQCrouzeixRaviartElement_a23616a70f7df9d45e12e45358c528ecb} 
 \index{oomph::PRefineableQCrouzeixRaviartElement$<$ DIM $>$@{oomph::PRefineableQCrouzeixRaviartElement$<$ DIM $>$}!vertex\_node\_pt@{vertex\_node\_pt}}

@@ -2,7 +2,7 @@
 \hypertarget{classoomph_1_1ExactDGPBlockPreconditioner}{}\label{classoomph_1_1ExactDGPBlockPreconditioner}\index{oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$@{oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$}}
 
 
-General purpose block tridiagonal preconditioner. By default \doxylink{classoomph_1_1SuperLUPreconditioner}{Super\+LUPreconditioner} (or Super\+LUDist\+Preconditioner) is used to solve the subsidiary systems, but other preconditioners can be used by setting them using passing a pointer to a function of type Subsidiary\+Preconditioner\+Fct\+Pt to the method subsidiary\+\_\+preconditioner\+\_\+function\+\_\+pt().  
+General purpose block tridiagonal preconditioner. By default Exact\+Preconditioner is used to solve the subsidiary systems, but other preconditioners can be used by setting them using passing a pointer to a function of type Subsidiary\+Preconditioner\+Fct\+Pt to the method subsidiary\+\_\+preconditioner\+\_\+function\+\_\+pt().  
 
 
 
@@ -31,13 +31,7 @@ Inheritance diagram for oomph\+::Exact\+DGPBlock\+Preconditioner\texorpdfstring{
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1ExactDGPBlockPreconditioner_aa94879739ec1c39b2671cffeb8b72114}{preconditioner\+\_\+solve}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{r}}, \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&z)
 \begin{DoxyCompactList}\small\item\em Apply preconditioner to r. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1ExactDGPBlockPreconditioner_a5ade06c588d51b5fb90085addaaf901d}{setup}} ()
-\begin{DoxyCompactList}\small\item\em Setup the preconditioner. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1ExactDGPBlockPreconditioner_a14985cf64fd8b1841e57b381d877602d}{enable\+\_\+doc\+\_\+memory\+\_\+usage}} ()
-\begin{DoxyCompactList}\small\item\em Document the memory usage. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1ExactDGPBlockPreconditioner_a42948139c092ef48c2007770f316637a}{disable\+\_\+doc\+\_\+memory\+\_\+usage}} ()
-\begin{DoxyCompactList}\small\item\em Don\textquotesingle{}t document the memory usage! \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} \mbox{\hyperlink{classoomph_1_1ExactDGPBlockPreconditioner_aca8e7f1c8aa8f8e22a227dae8a9d463f}{get\+\_\+memory\+\_\+usage\+\_\+in\+\_\+bytes}} ()
-\begin{DoxyCompactList}\small\item\em Get the memory statistics. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Setup the preconditioner. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classoomph_1_1GeneralPurposeBlockPreconditioner}{oomph\+::\+General\+Purpose\+Block\+Preconditioner$<$ MATRIX $>$}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -231,7 +225,7 @@ Inheritance diagram for oomph\+::Exact\+DGPBlock\+Preconditioner\texorpdfstring{
 \begin{DoxyCompactList}\small\item\em Destructor (empty) \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_a1e469ffc87f31f6f2eebbe5ccf03d78b}{preconditioner\+\_\+solve\+\_\+transpose}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{r}}, \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&z)
 \begin{DoxyCompactList}\small\item\em Apply the preconditioner. Pure virtual generic interface function. This method should apply the preconditioner operator to the vector r and return the vector z. (broken virtual) \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_a0b95e7159585b5151f9e5dc1d1713655}{setup}} (\mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1Preconditioner_a08e0582b77c6cbfaf85b80a4ac5c11f3}{matrix\+\_\+pt}})
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_ac2c0f7f39eccd814e72cc5813ec864e0}{setup}} (\mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1Preconditioner_a08e0582b77c6cbfaf85b80a4ac5c11f3}{matrix\+\_\+pt}})
 \begin{DoxyCompactList}\small\item\em Setup the preconditioner\+: store the matrix pointer and the communicator pointer then call preconditioner specific \doxylink{classoomph_1_1Preconditioner_af4886f4efe510e5c9b0eb19422943588}{setup()} function. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Preconditioner_a783fae97e4b898f8de72b504a4f4bec6}{setup}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1Problem}{Problem}} \texorpdfstring{$\ast$}{*}problem\+\_\+pt, \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1Preconditioner_a08e0582b77c6cbfaf85b80a4ac5c11f3}{matrix\+\_\+pt}})
 \begin{DoxyCompactList}\small\item\em Compatability layer for old preconditioners where problem pointers were needed. The problem pointer is only used to get a communicator pointer. \end{DoxyCompactList}\item 
@@ -286,11 +280,7 @@ Inheritance diagram for oomph\+::Exact\+DGPBlock\+Preconditioner\texorpdfstring{
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1ExactDGPBlockPreconditioner_a48224146c5ec0366e2b3e590888e11b2}{Preconditioner\+\_\+has\+\_\+been\+\_\+setup}}
-\begin{DoxyCompactList}\small\item\em Control flag is true if the preconditioner has been setup (used so we can wipe the data when the preconditioner is called again) \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1ExactDGPBlockPreconditioner_a262648a586c9497d431fc05871c968b7}{Compute\+\_\+memory\+\_\+statistics}}
-\begin{DoxyCompactList}\small\item\em Flag to indicate whether or not to record the memory statistics this preconditioner. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} \mbox{\hyperlink{classoomph_1_1ExactDGPBlockPreconditioner_adb4ed989348176fc670e76cfb54e0924}{Memory\+\_\+usage\+\_\+in\+\_\+bytes}}
-\begin{DoxyCompactList}\small\item\em Storage for the memory usage of the solver if the flag above is set to true (in bytes) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Control flag is true if the preconditioner has been setup (used so we can wipe the data when the preconditioner is called again) \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Public Types inherited from \mbox{\hyperlink{classoomph_1_1GeneralPurposeBlockPreconditioner}{oomph\+::\+General\+Purpose\+Block\+Preconditioner$<$ MATRIX $>$}}}
 \begin{DoxyCompactItemize}
@@ -386,7 +376,7 @@ std\+::ostream \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classoomph_1_1Precond
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{typename}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{MATRIX}}$>$\newline
 class oomph\+::\+Exact\+DGPBlock\+Preconditioner$<$ MATRIX $>$}
-General purpose block tridiagonal preconditioner. By default \doxylink{classoomph_1_1SuperLUPreconditioner}{Super\+LUPreconditioner} (or Super\+LUDist\+Preconditioner) is used to solve the subsidiary systems, but other preconditioners can be used by setting them using passing a pointer to a function of type Subsidiary\+Preconditioner\+Fct\+Pt to the method subsidiary\+\_\+preconditioner\+\_\+function\+\_\+pt(). 
+General purpose block tridiagonal preconditioner. By default Exact\+Preconditioner is used to solve the subsidiary systems, but other preconditioners can be used by setting them using passing a pointer to a function of type Subsidiary\+Preconditioner\+Fct\+Pt to the method subsidiary\+\_\+preconditioner\+\_\+function\+\_\+pt(). 
 
 Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00057}{57}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
 
@@ -410,7 +400,7 @@ Definition at line \mbox{\hyperlink{general__purpose__space__time__block__precon
 
 
 
-References \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00180}{oomph\+::\+Exact\+DGPBlock\+Preconditioner$<$ MATRIX $>$\+::\+Compute\+\_\+memory\+\_\+statistics}}, \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00184}{oomph\+::\+Exact\+DGPBlock\+Preconditioner$<$ MATRIX $>$\+::\+Memory\+\_\+usage\+\_\+in\+\_\+bytes}}, and \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00176}{oomph\+::\+Exact\+DGPBlock\+Preconditioner$<$ MATRIX $>$\+::\+Preconditioner\+\_\+has\+\_\+been\+\_\+setup}}.
+References \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00102}{oomph\+::\+Exact\+DGPBlock\+Preconditioner$<$ MATRIX $>$\+::\+Preconditioner\+\_\+has\+\_\+been\+\_\+setup}}.
 
 \Hypertarget{classoomph_1_1ExactDGPBlockPreconditioner_a6e719e0032729b63eae8d1a5a9f367f3}\label{classoomph_1_1ExactDGPBlockPreconditioner_a6e719e0032729b63eae8d1a5a9f367f3} 
 \index{oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$@{oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$}!````~ExactDGPBlockPreconditioner@{\texorpdfstring{$\sim$}{\string~}ExactDGPBlockPreconditioner}}
@@ -425,11 +415,11 @@ Destructor -\/ delete the preconditioner matrices.
 
 
 
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00076}{76}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
+Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00071}{71}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
 
 
 
-References \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00084}{oomph\+::\+Exact\+DGPBlock\+Preconditioner$<$ MATRIX $>$\+::clean\+\_\+up\+\_\+memory()}}.
+References \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00079}{oomph\+::\+Exact\+DGPBlock\+Preconditioner$<$ MATRIX $>$\+::clean\+\_\+up\+\_\+memory()}}.
 
 \Hypertarget{classoomph_1_1ExactDGPBlockPreconditioner_aca9426fafefc0b0e3a4ce76c3af50a84}\label{classoomph_1_1ExactDGPBlockPreconditioner_aca9426fafefc0b0e3a4ce76c3af50a84} 
 \index{oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$@{oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$}!ExactDGPBlockPreconditioner@{ExactDGPBlockPreconditioner}}
@@ -462,7 +452,7 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1GeneralPurposeBlockPreconditio
 
 
 
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00084}{84}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
+Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00079}{79}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
 
 
 
@@ -470,64 +460,7 @@ References \mbox{\hyperlink{general__purpose__block__preconditioners_8h_source_l
 
 
 
-Referenced by \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00076}{oomph\+::\+Exact\+DGPBlock\+Preconditioner$<$ MATRIX $>$\+::\texorpdfstring{$\sim$}{\string~}\+Exact\+DGPBlock\+Preconditioner()}}.
-
-\Hypertarget{classoomph_1_1ExactDGPBlockPreconditioner_a42948139c092ef48c2007770f316637a}\label{classoomph_1_1ExactDGPBlockPreconditioner_a42948139c092ef48c2007770f316637a} 
-\index{oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$@{oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$}!disable\_doc\_memory\_usage@{disable\_doc\_memory\_usage}}
-\index{disable\_doc\_memory\_usage@{disable\_doc\_memory\_usage}!oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$@{oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$}}
-\doxysubsubsection{\texorpdfstring{disable\_doc\_memory\_usage()}{disable\_doc\_memory\_usage()}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{typename}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{MATRIX}} $>$ \\
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1ExactDGPBlockPreconditioner}{oomph\+::\+Exact\+DGPBlock\+Preconditioner}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{MATRIX}} $>$\+::disable\+\_\+doc\+\_\+memory\+\_\+usage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-Don\textquotesingle{}t document the memory usage! 
-
-Set the appropriate flag to false
-
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00114}{114}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
-
-
-
-References \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00180}{oomph\+::\+Exact\+DGPBlock\+Preconditioner$<$ MATRIX $>$\+::\+Compute\+\_\+memory\+\_\+statistics}}.
-
-\Hypertarget{classoomph_1_1ExactDGPBlockPreconditioner_a14985cf64fd8b1841e57b381d877602d}\label{classoomph_1_1ExactDGPBlockPreconditioner_a14985cf64fd8b1841e57b381d877602d} 
-\index{oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$@{oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$}!enable\_doc\_memory\_usage@{enable\_doc\_memory\_usage}}
-\index{enable\_doc\_memory\_usage@{enable\_doc\_memory\_usage}!oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$@{oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$}}
-\doxysubsubsection{\texorpdfstring{enable\_doc\_memory\_usage()}{enable\_doc\_memory\_usage()}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{typename}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{MATRIX}} $>$ \\
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1ExactDGPBlockPreconditioner}{oomph\+::\+Exact\+DGPBlock\+Preconditioner}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{MATRIX}} $>$\+::enable\+\_\+doc\+\_\+memory\+\_\+usage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-Document the memory usage. 
-
-Set the appropriate flag to true
-
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00106}{106}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
-
-
-
-References \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00180}{oomph\+::\+Exact\+DGPBlock\+Preconditioner$<$ MATRIX $>$\+::\+Compute\+\_\+memory\+\_\+statistics}}.
-
-\Hypertarget{classoomph_1_1ExactDGPBlockPreconditioner_aca8e7f1c8aa8f8e22a227dae8a9d463f}\label{classoomph_1_1ExactDGPBlockPreconditioner_aca8e7f1c8aa8f8e22a227dae8a9d463f} 
-\index{oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$@{oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$}!get\_memory\_usage\_in\_bytes@{get\_memory\_usage\_in\_bytes}}
-\index{get\_memory\_usage\_in\_bytes@{get\_memory\_usage\_in\_bytes}!oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$@{oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$}}
-\doxysubsubsection{\texorpdfstring{get\_memory\_usage\_in\_bytes()}{get\_memory\_usage\_in\_bytes()}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{typename}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{MATRIX}} $>$ \\
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} \mbox{\hyperlink{classoomph_1_1ExactDGPBlockPreconditioner}{oomph\+::\+Exact\+DGPBlock\+Preconditioner}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{MATRIX}} $>$\+::get\+\_\+memory\+\_\+usage\+\_\+in\+\_\+bytes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-Get the memory statistics. 
-
-
-
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00122}{122}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
-
-
-
-References \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00180}{oomph\+::\+Exact\+DGPBlock\+Preconditioner$<$ MATRIX $>$\+::\+Compute\+\_\+memory\+\_\+statistics}}, \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00184}{oomph\+::\+Exact\+DGPBlock\+Preconditioner$<$ MATRIX $>$\+::\+Memory\+\_\+usage\+\_\+in\+\_\+bytes}}, and \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00176}{oomph\+::\+Exact\+DGPBlock\+Preconditioner$<$ MATRIX $>$\+::\+Preconditioner\+\_\+has\+\_\+been\+\_\+setup}}.
+Referenced by \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00071}{oomph\+::\+Exact\+DGPBlock\+Preconditioner$<$ MATRIX $>$\+::\texorpdfstring{$\sim$}{\string~}\+Exact\+DGPBlock\+Preconditioner()}}.
 
 \Hypertarget{classoomph_1_1ExactDGPBlockPreconditioner_a15c9a95ced255c5450733d6ff8faa073}\label{classoomph_1_1ExactDGPBlockPreconditioner_a15c9a95ced255c5450733d6ff8faa073} 
 \index{oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$@{oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$}!operator=@{operator=}}
@@ -557,7 +490,7 @@ Implements \mbox{\hyperlink{classoomph_1_1Preconditioner_ace1199369e4465cd2b9a34
 
 
 
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8cc_source_l00181}{181}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8cc_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+cc}}.
+Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8cc_source_l00148}{148}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8cc_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+cc}}.
 
 
 
@@ -584,49 +517,11 @@ Definition at line \mbox{\hyperlink{general__purpose__space__time__block__precon
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00313}{oomph\+::oomph\+\_\+nullstream}}, \mbox{\hyperlink{oomph__definitions_8h_source_l00464}{oomph\+::\+Oomph\+Info\+::stream\+\_\+pt()}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01295}{oomph\+::\+Timing\+Helpers\+::timer()}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00320}{oomph\+::oomph\+\_\+nullstream}}, \mbox{\hyperlink{oomph__definitions_8h_source_l00471}{oomph\+::\+Oomph\+Info\+::stream\+\_\+pt()}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01303}{oomph\+::\+Timing\+Helpers\+::timer()}}.
 
 
 
 \doxysubsection{Member Data Documentation}
-\Hypertarget{classoomph_1_1ExactDGPBlockPreconditioner_a262648a586c9497d431fc05871c968b7}\label{classoomph_1_1ExactDGPBlockPreconditioner_a262648a586c9497d431fc05871c968b7} 
-\index{oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$@{oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$}!Compute\_memory\_statistics@{Compute\_memory\_statistics}}
-\index{Compute\_memory\_statistics@{Compute\_memory\_statistics}!oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$@{oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$}}
-\doxysubsubsection{\texorpdfstring{Compute\_memory\_statistics}{Compute\_memory\_statistics}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{typename}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{MATRIX}} $>$ \\
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1ExactDGPBlockPreconditioner}{oomph\+::\+Exact\+DGPBlock\+Preconditioner}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{MATRIX}} $>$\+::\+Compute\+\_\+memory\+\_\+statistics\hspace{0.3cm}{\ttfamily [private]}}
-
-
-
-Flag to indicate whether or not to record the memory statistics this preconditioner. 
-
-
-
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00180}{180}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
-
-
-
-Referenced by \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00114}{oomph\+::\+Exact\+DGPBlock\+Preconditioner$<$ MATRIX $>$\+::disable\+\_\+doc\+\_\+memory\+\_\+usage()}}, \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00106}{oomph\+::\+Exact\+DGPBlock\+Preconditioner$<$ MATRIX $>$\+::enable\+\_\+doc\+\_\+memory\+\_\+usage()}}, \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00062}{oomph\+::\+Exact\+DGPBlock\+Preconditioner$<$ MATRIX $>$\+::\+Exact\+DGPBlock\+Preconditioner()}}, and \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00122}{oomph\+::\+Exact\+DGPBlock\+Preconditioner$<$ MATRIX $>$\+::get\+\_\+memory\+\_\+usage\+\_\+in\+\_\+bytes()}}.
-
-\Hypertarget{classoomph_1_1ExactDGPBlockPreconditioner_adb4ed989348176fc670e76cfb54e0924}\label{classoomph_1_1ExactDGPBlockPreconditioner_adb4ed989348176fc670e76cfb54e0924} 
-\index{oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$@{oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$}!Memory\_usage\_in\_bytes@{Memory\_usage\_in\_bytes}}
-\index{Memory\_usage\_in\_bytes@{Memory\_usage\_in\_bytes}!oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$@{oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$}}
-\doxysubsubsection{\texorpdfstring{Memory\_usage\_in\_bytes}{Memory\_usage\_in\_bytes}}
-{\footnotesize\ttfamily template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{typename}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{MATRIX}} $>$ \\
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} \mbox{\hyperlink{classoomph_1_1ExactDGPBlockPreconditioner}{oomph\+::\+Exact\+DGPBlock\+Preconditioner}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{MATRIX}} $>$\+::\+Memory\+\_\+usage\+\_\+in\+\_\+bytes\hspace{0.3cm}{\ttfamily [private]}}
-
-
-
-Storage for the memory usage of the solver if the flag above is set to true (in bytes) 
-
-
-
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00184}{184}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
-
-
-
-Referenced by \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00062}{oomph\+::\+Exact\+DGPBlock\+Preconditioner$<$ MATRIX $>$\+::\+Exact\+DGPBlock\+Preconditioner()}}, and \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00122}{oomph\+::\+Exact\+DGPBlock\+Preconditioner$<$ MATRIX $>$\+::get\+\_\+memory\+\_\+usage\+\_\+in\+\_\+bytes()}}.
-
 \Hypertarget{classoomph_1_1ExactDGPBlockPreconditioner_a48224146c5ec0366e2b3e590888e11b2}\label{classoomph_1_1ExactDGPBlockPreconditioner_a48224146c5ec0366e2b3e590888e11b2} 
 \index{oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$@{oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$}!Preconditioner\_has\_been\_setup@{Preconditioner\_has\_been\_setup}}
 \index{Preconditioner\_has\_been\_setup@{Preconditioner\_has\_been\_setup}!oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$@{oomph::ExactDGPBlockPreconditioner$<$ MATRIX $>$}}
@@ -640,11 +535,11 @@ Control flag is true if the preconditioner has been setup (used so we can wipe t
 
 
 
-Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00176}{176}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
+Definition at line \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00102}{102}} of file \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source}{general\+\_\+purpose\+\_\+space\+\_\+time\+\_\+block\+\_\+preconditioner.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00062}{oomph\+::\+Exact\+DGPBlock\+Preconditioner$<$ MATRIX $>$\+::\+Exact\+DGPBlock\+Preconditioner()}}, and \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00122}{oomph\+::\+Exact\+DGPBlock\+Preconditioner$<$ MATRIX $>$\+::get\+\_\+memory\+\_\+usage\+\_\+in\+\_\+bytes()}}.
+Referenced by \mbox{\hyperlink{general__purpose__space__time__block__preconditioner_8h_source_l00062}{oomph\+::\+Exact\+DGPBlock\+Preconditioner$<$ MATRIX $>$\+::\+Exact\+DGPBlock\+Preconditioner()}}.
 
 
 

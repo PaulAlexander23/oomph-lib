@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -82,9 +82,9 @@
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00078}00078\ \}\ \textcolor{comment}{//\ End\ of\ namespace}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00079}00079\ }
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00080}00080\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00081}00081\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00082}00082\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00083}00083\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00081}00081\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00082}00082\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00083}00083\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00084}00084\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00085}00085\ }
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00086}00086\ \textcolor{comment}{//==start\_of\_problem\_class================================================}\textcolor{comment}{}}
@@ -434,7 +434,7 @@
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00430}00430\ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{npts}}\ =\ 5;}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00431}00431\ }
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00432}00432\ \ \textcolor{comment}{//\ Open\ solution\ output\ file}}
-\DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00433}00433\ \ \mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{sprintf}}(\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{filename}},\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{doc\_info}}.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00433}00433\ \ \mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{snprintf}}(\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00434}00434\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{doc\_info}}.number());}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00435}00435\ \ \mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{some\_file}}.open(\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{filename}});}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00436}00436\ }
@@ -477,7 +477,7 @@
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00473}00473\ }
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00474}00474\ \ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00475}00475\ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{filename}}[100];\ \ \ }
-\DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00476}00476\ \ \mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{sprintf}}(\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{filename}},\textcolor{stringliteral}{"{}\%s/trace.dat"{}},\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{doc\_info}}.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00476}00476\ \ \mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{snprintf}}(\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{doc\_info}}.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00477}00477\ \ \mbox{\hyperlink{namespaceProblem__Parameter_a55310be5f2dfcb5fcfe35d71f9c16e06}{Trace\_file}}.open(\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{filename}});}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00478}00478\ }
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00479}00479\ \ \textcolor{comment}{//\ Initialise\ trace\ file}}
@@ -518,9 +518,9 @@
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00514}00514\ \}\ \textcolor{comment}{//\ End\ of\ unsteady\_run}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00515}00515\ }
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00516}00516\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00517}00517\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00518}00518\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00519}00519\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00517}00517\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00518}00518\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00519}00519\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00520}00520\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00521}00521\ }
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface_8cc_source_l00522}00522\ \textcolor{comment}{//==start\_of\_main======================================================}\textcolor{comment}{}}

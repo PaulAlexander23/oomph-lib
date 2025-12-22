@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -152,10 +146,10 @@ $(function() {
 <area href="classoomph_1_1DistributableLinearAlgebraObject.html" title="Base class for any linear algebra object that is distributable. Just contains storage for the LinearA..." alt="oomph::DistributableLinearAlgebraObject" shape="rect" coords="877,0,1218,24"/>
 <area href="classoomph_1_1BandedBlockTriangularPreconditioner.html" title="General purpose block triangular preconditioner. By default this operates as an upper triangular prec..." alt="oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;" shape="rect" coords="0,224,341,248"/>
 <area href="classoomph_1_1BlockDiagonalPreconditioner.html" title="Block diagonal preconditioner. By default SuperLU is used to solve the subsidiary systems,..." alt="oomph::BlockDiagonalPreconditioner&lt; MATRIX &gt;" shape="rect" coords="351,224,692,248"/>
-<area href="classoomph_1_1BlockTriangularPreconditioner.html" title="//////////////////////////////////////////////////////////////////////////// ////////////////////////..." alt="oomph::BlockTriangularPreconditioner&lt; MATRIX &gt;" shape="rect" coords="702,224,1043,248"/>
+<area href="classoomph_1_1BlockTriangularPreconditioner.html" title="General purpose block triangular preconditioner By default this is Upper triangular...." alt="oomph::BlockTriangularPreconditioner&lt; MATRIX &gt;" shape="rect" coords="702,224,1043,248"/>
 <area href="classoomph_1_1DummyBlockPreconditioner.html" title="Preconditioner that doesn&#39;t actually do any preconditioning, it just allows access to the Jacobian bl..." alt="oomph::DummyBlockPreconditioner&lt; MATRIX &gt;" shape="rect" coords="1053,224,1394,248"/>
-<area href="classoomph_1_1ExactBlockPreconditioner.html" title="//////////////////////////////////////////////////////////////////////////// ////////////////////////..." alt="oomph::ExactBlockPreconditioner&lt; MATRIX &gt;" shape="rect" coords="1404,224,1745,248"/>
-<area href="classoomph_1_1ExactDGPBlockPreconditioner.html" title="General purpose block tridiagonal preconditioner. By default SuperLUPreconditioner (or SuperLUDistPre..." alt="oomph::ExactDGPBlockPreconditioner&lt; MATRIX &gt;" shape="rect" coords="1755,224,2096,248"/>
+<area href="classoomph_1_1ExactBlockPreconditioner.html" title="Exact block preconditioner - block preconditioner assembled from all blocks associated with the preco..." alt="oomph::ExactBlockPreconditioner&lt; MATRIX &gt;" shape="rect" coords="1404,224,1745,248"/>
+<area href="classoomph_1_1ExactDGPBlockPreconditioner.html" title="General purpose block tridiagonal preconditioner. By default ExactPreconditioner is used to solve the..." alt="oomph::ExactDGPBlockPreconditioner&lt; MATRIX &gt;" shape="rect" coords="1755,224,2096,248"/>
 <area href="classoomph_1_1BlockAntiDiagonalPreconditioner.html" title="Block &quot;anti-diagonal&quot; preconditioner, i.e. same as block diagonal but along the other diagonal of the..." alt="oomph::BlockAntiDiagonalPreconditioner&lt; MATRIX &gt;" shape="rect" coords="351,280,692,304"/>
   </map>
 </div></div>
@@ -453,9 +447,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1e469ffc87f31f6f2eebbe5ccf03d78b inherit pub_methods_classoomph_1_1Preconditioner" id="r_a1e469ffc87f31f6f2eebbe5ccf03d78b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">virtual</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Preconditioner.html#a1e469ffc87f31f6f2eebbe5ccf03d78b">preconditioner_solve_transpose</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">r</a>, <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;z)</td></tr>
 <tr class="memdesc:a1e469ffc87f31f6f2eebbe5ccf03d78b inherit pub_methods_classoomph_1_1Preconditioner"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply the preconditioner. Pure virtual generic interface function. This method should apply the preconditioner operator to the vector r and return the vector z. (broken virtual)  <br /></td></tr>
 <tr class="separator:a1e469ffc87f31f6f2eebbe5ccf03d78b inherit pub_methods_classoomph_1_1Preconditioner"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b95e7159585b5151f9e5dc1d1713655 inherit pub_methods_classoomph_1_1Preconditioner" id="r_a0b95e7159585b5151f9e5dc1d1713655"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Preconditioner.html#a0b95e7159585b5151f9e5dc1d1713655">setup</a> (<a class="el" href="classoomph_1_1DoubleMatrixBase.html">DoubleMatrixBase</a> *<a class="el" href="classoomph_1_1Preconditioner.html#a08e0582b77c6cbfaf85b80a4ac5c11f3">matrix_pt</a>)</td></tr>
-<tr class="memdesc:a0b95e7159585b5151f9e5dc1d1713655 inherit pub_methods_classoomph_1_1Preconditioner"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup the preconditioner: store the matrix pointer and the communicator pointer then call preconditioner specific <a class="el" href="classoomph_1_1Preconditioner.html#af4886f4efe510e5c9b0eb19422943588" title="Setup the preconditioner. Pure virtual generic interface function.">setup()</a> function.  <br /></td></tr>
-<tr class="separator:a0b95e7159585b5151f9e5dc1d1713655 inherit pub_methods_classoomph_1_1Preconditioner"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2c0f7f39eccd814e72cc5813ec864e0 inherit pub_methods_classoomph_1_1Preconditioner" id="r_ac2c0f7f39eccd814e72cc5813ec864e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">virtual</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Preconditioner.html#ac2c0f7f39eccd814e72cc5813ec864e0">setup</a> (<a class="el" href="classoomph_1_1DoubleMatrixBase.html">DoubleMatrixBase</a> *<a class="el" href="classoomph_1_1Preconditioner.html#a08e0582b77c6cbfaf85b80a4ac5c11f3">matrix_pt</a>)</td></tr>
+<tr class="memdesc:ac2c0f7f39eccd814e72cc5813ec864e0 inherit pub_methods_classoomph_1_1Preconditioner"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup the preconditioner: store the matrix pointer and the communicator pointer then call preconditioner specific <a class="el" href="classoomph_1_1Preconditioner.html#af4886f4efe510e5c9b0eb19422943588" title="Setup the preconditioner. Pure virtual generic interface function.">setup()</a> function.  <br /></td></tr>
+<tr class="separator:ac2c0f7f39eccd814e72cc5813ec864e0 inherit pub_methods_classoomph_1_1Preconditioner"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a783fae97e4b898f8de72b504a4f4bec6 inherit pub_methods_classoomph_1_1Preconditioner" id="r_a783fae97e4b898f8de72b504a4f4bec6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Preconditioner.html#a783fae97e4b898f8de72b504a4f4bec6">setup</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1Problem.html">Problem</a> *problem_pt, <a class="el" href="classoomph_1_1DoubleMatrixBase.html">DoubleMatrixBase</a> *<a class="el" href="classoomph_1_1Preconditioner.html#a08e0582b77c6cbfaf85b80a4ac5c11f3">matrix_pt</a>)</td></tr>
 <tr class="memdesc:a783fae97e4b898f8de72b504a4f4bec6 inherit pub_methods_classoomph_1_1Preconditioner"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compatability layer for old preconditioners where problem pointers were needed. The problem pointer is only used to get a communicator pointer.  <br /></td></tr>
 <tr class="separator:a783fae97e4b898f8de72b504a4f4bec6 inherit pub_methods_classoomph_1_1Preconditioner"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -539,7 +533,7 @@ Protected Member Functions</h2></td></tr>
 <tr class="memdesc:ae6b28f722b439af1f1a71a2328d4567a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modified block setup for general purpose block preconditioners.  <br /></td></tr>
 <tr class="separator:ae6b28f722b439af1f1a71a2328d4567a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba4af808888e35785cce631722c926cd" id="r_aba4af808888e35785cce631722c926cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1GeneralPurposeBlockPreconditioner.html#aba4af808888e35785cce631722c926cd">fill_in_subsidiary_preconditioners</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">nprec_needed</a>)</td></tr>
-<tr class="memdesc:aba4af808888e35785cce631722c926cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create any subsidiary preconditioners needed. Usually nprec_needed = nblock_types, except for the <a class="el" href="classoomph_1_1ExactBlockPreconditioner.html" title="//////////////////////////////////////////////////////////////////////////// ////////////////////////...">ExactBlockPreconditioner</a> which only requires one preconditioner.  <br /></td></tr>
+<tr class="memdesc:aba4af808888e35785cce631722c926cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create any subsidiary preconditioners needed. Usually nprec_needed = nblock_types, except for the <a class="el" href="classoomph_1_1ExactBlockPreconditioner.html" title="Exact block preconditioner - block preconditioner assembled from all blocks associated with the preco...">ExactBlockPreconditioner</a> which only requires one preconditioner.  <br /></td></tr>
 <tr class="separator:aba4af808888e35785cce631722c926cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classoomph_1_1BlockPreconditioner"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classoomph_1_1BlockPreconditioner')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classoomph_1_1BlockPreconditioner.html">oomph::BlockPreconditioner&lt; MATRIX &gt;</a></td></tr>
 <tr class="memitem:ae055f998f6145656352aacac22e545ad inherit pro_methods_classoomph_1_1BlockPreconditioner" id="r_ae055f998f6145656352aacac22e545ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BlockPreconditioner.html#ae055f998f6145656352aacac22e545ad">set_nmesh</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">n</a>)</td></tr>
@@ -852,7 +846,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p class="reference">References <a class="el" href="block__preconditioner_8h_source.html#l02159">oomph::BlockPreconditioner&lt; MATRIX &gt;::clear_block_preconditioner_base()</a>, <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>, and <a class="el" href="general__purpose__block__preconditioners_8h_source.html#l00294">oomph::GeneralPurposeBlockPreconditioner&lt; MATRIX &gt;::Subsidiary_preconditioner_pt</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="general__purpose__block__preconditioners_8h_source.html#l00343">oomph::BlockDiagonalPreconditioner&lt; MATRIX &gt;::clean_up_memory()</a>, <a class="el" href="general__purpose__block__preconditioners_8h_source.html#l00476">oomph::BlockTriangularPreconditioner&lt; MATRIX &gt;::clean_up_memory()</a>, <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00084">oomph::ExactDGPBlockPreconditioner&lt; MATRIX &gt;::clean_up_memory()</a>, <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00231">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::clean_up_memory()</a>, and <a class="el" href="general__purpose__block__preconditioners_8h_source.html#l00098">oomph::GeneralPurposeBlockPreconditioner&lt; MATRIX &gt;::~GeneralPurposeBlockPreconditioner()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="general__purpose__block__preconditioners_8h_source.html#l00343">oomph::BlockDiagonalPreconditioner&lt; MATRIX &gt;::clean_up_memory()</a>, <a class="el" href="general__purpose__block__preconditioners_8h_source.html#l00476">oomph::BlockTriangularPreconditioner&lt; MATRIX &gt;::clean_up_memory()</a>, <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00079">oomph::ExactDGPBlockPreconditioner&lt; MATRIX &gt;::clean_up_memory()</a>, <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00144">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::clean_up_memory()</a>, and <a class="el" href="general__purpose__block__preconditioners_8h_source.html#l00098">oomph::GeneralPurposeBlockPreconditioner&lt; MATRIX &gt;::~GeneralPurposeBlockPreconditioner()</a>.</p>
 
 </div>
 </div>
@@ -882,11 +876,11 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 </table>
 </div><div class="memdoc">
 
-<p>Create any subsidiary preconditioners needed. Usually nprec_needed = nblock_types, except for the <a class="el" href="classoomph_1_1ExactBlockPreconditioner.html" title="//////////////////////////////////////////////////////////////////////////// ////////////////////////...">ExactBlockPreconditioner</a> which only requires one preconditioner. </p>
+<p>Create any subsidiary preconditioners needed. Usually nprec_needed = nblock_types, except for the <a class="el" href="classoomph_1_1ExactBlockPreconditioner.html" title="Exact block preconditioner - block preconditioner assembled from all blocks associated with the preco...">ExactBlockPreconditioner</a> which only requires one preconditioner. </p>
 
 <p class="definition">Definition at line <a class="el" href="general__purpose__block__preconditioners_8h_source.html#l00256">256</a> of file <a class="el" href="general__purpose__block__preconditioners_8h_source.html">general_purpose_block_preconditioners.h</a>.</p>
 
-<p class="reference">References <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>, <a class="el" href="general__purpose__block__preconditioners_8h_source.html#l00294">oomph::GeneralPurposeBlockPreconditioner&lt; MATRIX &gt;::Subsidiary_preconditioner_pt</a>, and <a class="el" href="oomph__utilities_8h_source.html#l00189">oomph::StringConversion::to_string()</a>.</p>
+<p class="reference">References <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>, <a class="el" href="general__purpose__block__preconditioners_8h_source.html#l00294">oomph::GeneralPurposeBlockPreconditioner&lt; MATRIX &gt;::Subsidiary_preconditioner_pt</a>, and <a class="el" href="oomph__utilities_8h_source.html#l00199">oomph::StringConversion::to_string()</a>.</p>
 
 </div>
 </div>
@@ -954,7 +948,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p class="definition">Definition at line <a class="el" href="general__purpose__block__preconditioners_8h_source.html#l00241">241</a> of file <a class="el" href="general__purpose__block__preconditioners_8h_source.html">general_purpose_block_preconditioners.h</a>.</p>
 
-<p class="reference">References <a class="el" href="block__preconditioner_8cc_source.html#l02483">oomph::BlockPreconditioner&lt; MATRIX &gt;::block_setup()</a>, and <a class="el" href="general__purpose__block__preconditioners_8h_source.html#l00303">oomph::GeneralPurposeBlockPreconditioner&lt; MATRIX &gt;::Dof_to_block_map</a>.</p>
+<p class="reference">References <a class="el" href="block__preconditioner_8cc_source.html#l02482">oomph::BlockPreconditioner&lt; MATRIX &gt;::block_setup()</a>, and <a class="el" href="general__purpose__block__preconditioners_8h_source.html#l00303">oomph::GeneralPurposeBlockPreconditioner&lt; MATRIX &gt;::Dof_to_block_map</a>.</p>
 
 </div>
 </div>
@@ -1050,7 +1044,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p class="definition">Definition at line <a class="el" href="general__purpose__block__preconditioners_8h_source.html#l00143">143</a> of file <a class="el" href="general__purpose__block__preconditioners_8h_source.html">general_purpose_block_preconditioners.h</a>.</p>
 
-<p class="reference">References <a class="el" href="general__purpose__block__preconditioners_8h_source.html#l00057">oomph::PreconditionerCreationFunctions::create_super_lu_preconditioner()</a>, and <a class="el" href="general__purpose__block__preconditioners_8h_source.html#l00299">oomph::GeneralPurposeBlockPreconditioner&lt; MATRIX &gt;::Subsidiary_preconditioner_creation_function_pt</a>.</p>
+<p class="reference">References <a class="el" href="general__purpose__block__preconditioners_8h_source.html#l00057">oomph::PreconditionerCreationFunctions::create_exact_preconditioner()</a>, and <a class="el" href="general__purpose__block__preconditioners_8h_source.html#l00299">oomph::GeneralPurposeBlockPreconditioner&lt; MATRIX &gt;::Subsidiary_preconditioner_creation_function_pt</a>.</p>
 
 </div>
 </div>
@@ -1352,7 +1346,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:04:29
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:39:53
         </div>
       </div>
     </footer>

@@ -6,7 +6,7 @@
 class \mbox{\hyperlink{classoomph_1_1AbsCmp}{oomph\+::\+Abs\+Cmp$<$ T $>$}}
 \begin{DoxyCompactList}\small\item\em Function-\/type-\/object to perform absolute comparison of objects. Apparently this inlines better. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classoomph_1_1Timer}{oomph\+::\+Timer}}
-\begin{DoxyCompactList}\small\item\em /////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////// \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Timer}{Timer}. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classoomph_1_1DocLinearSolverInfo}{oomph\+::\+Doc\+Linear\+Solver\+Info}}
 \begin{DoxyCompactList}\small\item\em Collection of data structures for storing information about linear solves. Currently only contains storage for the iteration counts and the linear solver time. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classoomph_1_1DocInfo}{oomph\+::\+Doc\+Info}}
@@ -25,7 +25,7 @@ class \mbox{\hyperlink{classoomph_1_1SolutionFunctor}{oomph\+::\+Solution\+Funct
 \begin{DoxyCompactItemize}
 \item 
 namespace \mbox{\hyperlink{namespaceoomph}{oomph}}
-\begin{DoxyCompactList}\small\item\em //////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////// \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em DRAIG\+: Change all instances of (SPATIAL\+\_\+\+DIM) to (DIM-\/1). \end{DoxyCompactList}\item 
 namespace \mbox{\hyperlink{namespaceoomph_1_1ANSIEscapeCode}{oomph\+::\+ANSIEscape\+Code}}
 \begin{DoxyCompactList}\small\item\em Contains an enumeration of the ANSI escape codes used for colouring text (when piped to the command line). Adapted from the guide on\+: \href{https://stackoverflow.com/questions/2616906/how-do-i-output-}{\texttt{ https\+://stackoverflow.\+com/questions/2616906/how-\/do-\/i-\/output-\/}} coloured-\/text-\/to-\/a-\/linux-\/terminal?utm\+\_\+medium=organic\&utm\+\_\+source= google\+\_\+rich\+\_\+qa\&utm\+\_\+campaign=google\+\_\+rich\+\_\+qa Here, \textbackslash{}033 is the ESC character, ASCII 27. It is followed by \mbox{[}, then zero or more numbers separated by ;, and finally the letter m. The numbers describe the colour and format to switch to from that point onwards. \end{DoxyCompactList}\item 
 namespace \mbox{\hyperlink{namespaceoomph_1_1DebugHelpers}{oomph\+::\+Debug\+Helpers}}
@@ -41,7 +41,7 @@ namespace \mbox{\hyperlink{namespaceoomph_1_1StringConversion}{oomph\+::\+String
 namespace \mbox{\hyperlink{namespaceoomph_1_1TypeNames}{oomph\+::\+Type\+Names}}
 \item 
 namespace \mbox{\hyperlink{namespaceoomph_1_1CumulativeTimings}{oomph\+::\+Cumulative\+Timings}}
-\begin{DoxyCompactList}\small\item\em /////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////// \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Namespace for global (cumulative) timings. \end{DoxyCompactList}\item 
 namespace \mbox{\hyperlink{namespaceoomph_1_1CommandLineArgs}{oomph\+::\+Command\+Line\+Args}}
 \begin{DoxyCompactList}\small\item\em Namespace for command line arguments. \end{DoxyCompactList}\item 
 namespace \mbox{\hyperlink{namespaceoomph_1_1ObsoleteCode}{oomph\+::\+Obsolete\+Code}}
@@ -51,17 +51,17 @@ namespace \mbox{\hyperlink{namespaceoomph_1_1TecplotNames}{oomph\+::\+Tecplot\+N
 namespace \mbox{\hyperlink{namespaceoomph_1_1LeakCheckNames}{oomph\+::\+Leak\+Check\+Names}}
 \begin{DoxyCompactList}\small\item\em Namespace for leak check\+: Keep a running count of all instantiated objects -- add your own if you want to... \end{DoxyCompactList}\item 
 namespace \mbox{\hyperlink{namespaceoomph_1_1PauseFlags}{oomph\+::\+Pause\+Flags}}
-\begin{DoxyCompactList}\small\item\em //////////////////////////////////////////////////////////////////////// \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Namespace for \doxylink{namespaceoomph_a4a82243b0ce4c28469a290fe2d7cd2c4}{pause()} command. \end{DoxyCompactList}\item 
 namespace \mbox{\hyperlink{namespaceoomph_1_1TimingHelpers}{oomph\+::\+Timing\+Helpers}}
-\begin{DoxyCompactList}\small\item\em //////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////// \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Helper for recording execution time. \end{DoxyCompactList}\item 
 namespace \mbox{\hyperlink{namespaceoomph_1_1MemoryUsage}{oomph\+::\+Memory\+Usage}}
-\begin{DoxyCompactList}\small\item\em ///////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////// \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Namespace with helper functions to assess total memory usage on the fly using system() -- details are very machine specific! This just provides the overall machinery with default settings for our own (linux machines). Uses the system command to spawn a command that computes the total memory usage on the machine where this is called. \mbox{[}Disclaimer\+: works on my machine(s) -- no guarantees for any other platform; linux or not. MH\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{namespaceoomph_1_1ANSIEscapeCode_a745d12f5554c0048681e8d2a69e23c61}{oomph\+::\+ANSIEscape\+Code\+::set\+\_\+text\+\_\+effect}} (std\+::string \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{text\+\_\+effect}})
 \begin{DoxyCompactList}\small\item\em Function to change text effect. NOTE\+: This assumes the user knows what they\textquotesingle{}re doing/assigning; no error checking done here... \end{DoxyCompactList}\item 
-std\+::string \mbox{\hyperlink{namespaceoomph_1_1DebugHelpers_a130430c772c3bf54265bf35e155e0038}{oomph\+::\+Debug\+Helpers\+::debug\+\_\+string}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} std\+::string \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{filename}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{int}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{line}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{make\+\_\+new\+\_\+line}})
+std\+::string \mbox{\hyperlink{namespaceoomph_1_1DebugHelpers_a6e64afd98042f39f8726c88effd814b7}{oomph\+::\+Debug\+Helpers\+::debug\+\_\+string}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} std\+::string \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{filename}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{int}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{line\+\_\+number}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} std\+::string \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{message}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{shorten}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{start\+\_\+on\+\_\+new\+\_\+line}})
 \begin{DoxyCompactList}\small\item\em Return the concaternation of the initials of the input file name and line number. The make\+\_\+new\+\_\+line flag indicates whether the string starts with a "{}\textbackslash{}n"{}, i.\+e. a new line. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} \mbox{\hyperlink{namespaceoomph_1_1SecondInvariantHelper_a25244c7a064549dd3f474b0d6ca1fae4}{oomph\+::\+Second\+Invariant\+Helper\+::second\+\_\+invariant}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{tensor}})
 \begin{DoxyCompactList}\small\item\em Compute second invariant of tensor. \end{DoxyCompactList}\item 

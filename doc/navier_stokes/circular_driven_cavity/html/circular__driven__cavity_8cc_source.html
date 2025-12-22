@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -197,9 +191,9 @@
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>} <span class="comment">// end_of_namespace</span></div>
 </div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment"></span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment">/// ///////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment">/// ///////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="comment">/// ///////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment">//////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment">//////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="comment">//////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="comment"></span> </div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment">//==start_of_problem_class============================================</span><span class="comment"></span></div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment">/// Driven cavity problem in quarter circle domain, templated</span></div>
@@ -407,7 +401,7 @@
 <div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span> </div>
 <div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span> </div>
 <div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> <span class="comment">// Output solution </span></div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>         doc_info.number());</div>
 <div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span> some_file.open(filename);</div>
 <div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span> mesh_pt()-&gt;output(some_file,npts);</div>
@@ -494,7 +488,7 @@
 <div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span> </div>
 <div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span> </div>
 <div class="ttc" id="acircular__driven__cavity_8cc_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="circular__driven__cavity_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdoc">Driver for QuarterCircleDrivenCavityProblem test problem.</div><div class="ttdef"><b>Definition</b> <a href="circular__driven__cavity_8cc_source.html#l00288">circular_driven_cavity.cc:288</a></div></div>
-<div class="ttc" id="aclassQuarterCircleDrivenCavityProblem_html"><div class="ttname"><a href="classQuarterCircleDrivenCavityProblem.html">QuarterCircleDrivenCavityProblem</a></div><div class="ttdoc">/////////////////////////////////////////////////////////////////// /////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="circular__driven__cavity_8cc_source.html#l00084">circular_driven_cavity.cc:85</a></div></div>
+<div class="ttc" id="aclassQuarterCircleDrivenCavityProblem_html"><div class="ttname"><a href="classQuarterCircleDrivenCavityProblem.html">QuarterCircleDrivenCavityProblem</a></div><div class="ttdoc">Driven cavity problem in quarter circle domain, templated by element type.</div><div class="ttdef"><b>Definition</b> <a href="circular__driven__cavity_8cc_source.html#l00084">circular_driven_cavity.cc:85</a></div></div>
 <div class="ttc" id="aclassQuarterCircleDrivenCavityProblem_html_a07410fd9d1194613f92dd6620fa3207a"><div class="ttname"><a href="classQuarterCircleDrivenCavityProblem.html#a07410fd9d1194613f92dd6620fa3207a">QuarterCircleDrivenCavityProblem::~QuarterCircleDrivenCavityProblem</a></div><div class="ttdeci">~QuarterCircleDrivenCavityProblem()</div><div class="ttdoc">Destructor: Empty.</div><div class="ttdef"><b>Definition</b> <a href="circular__driven__cavity_8cc_source.html#l00094">circular_driven_cavity.cc:94</a></div></div>
 <div class="ttc" id="aclassQuarterCircleDrivenCavityProblem_html_a0c4e0cb1a4fb12053142fa43f899a5b1"><div class="ttname"><a href="classQuarterCircleDrivenCavityProblem.html#a0c4e0cb1a4fb12053142fa43f899a5b1">QuarterCircleDrivenCavityProblem::fix_pressure</a></div><div class="ttdeci">void fix_pressure(const unsigned &amp;e, const unsigned &amp;pdof, const double &amp;pvalue)</div><div class="ttdoc">Fix pressure in element e at pressure dof pdof and set to pvalue.</div><div class="ttdef"><b>Definition</b> <a href="circular__driven__cavity_8cc_source.html#l00156">circular_driven_cavity.cc:156</a></div></div>
 <div class="ttc" id="aclassQuarterCircleDrivenCavityProblem_html_a390b7b3c027a0253a2a3ac42f9715736"><div class="ttname"><a href="classQuarterCircleDrivenCavityProblem.html#a390b7b3c027a0253a2a3ac42f9715736">QuarterCircleDrivenCavityProblem::doc_solution</a></div><div class="ttdeci">void doc_solution(DocInfo &amp;doc_info)</div><div class="ttdoc">Doc the solution.</div><div class="ttdef"><b>Definition</b> <a href="circular__driven__cavity_8cc_source.html#l00263">circular_driven_cavity.cc:263</a></div></div>
@@ -537,7 +531,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:11:45
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:39:51
         </div>
       </div>
     </footer>

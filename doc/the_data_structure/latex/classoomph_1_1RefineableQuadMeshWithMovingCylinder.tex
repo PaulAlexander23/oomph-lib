@@ -2,12 +2,12 @@
 \hypertarget{classoomph_1_1RefineableQuadMeshWithMovingCylinder}{}\label{classoomph_1_1RefineableQuadMeshWithMovingCylinder}\index{oomph::RefineableQuadMeshWithMovingCylinder$<$ ELEMENT $>$@{oomph::RefineableQuadMeshWithMovingCylinder$<$ ELEMENT $>$}}
 
 
-///////////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////  
+My \doxylink{classoomph_1_1Mesh}{Mesh}.  
 
 
 
 
-{\ttfamily \#include $<$rectangle\+\_\+with\+\_\+moving\+\_\+cylinder\+\_\+mesh.\+template.\+h$>$}
+{\ttfamily \#include $<$rectangle\+\_\+with\+\_\+moving\+\_\+cylinder\+\_\+mesh.\+h$>$}
 
 Inheritance diagram for oomph\+::Refineable\+Quad\+Mesh\+With\+Moving\+Cylinder\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
 \begin{center}
@@ -245,6 +245,10 @@ Inheritance diagram for oomph\+::Refineable\+Quad\+Mesh\+With\+Moving\+Cylinder\
 \begin{DoxyCompactList}\small\item\em Replace existing boundary node lookup schemes with new schemes created using the boundary data stored in the nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1Mesh_ad1b124a959628aba00162b89617b3a62}{boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Indicate whether the i-\/th boundary has an intrinsic coordinate. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_ab137d0c0debf5ba0d6ea6990103e620c}{set\+\_\+boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be existing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_a3b9d63e0057ed721190b109f48f7c92e}{set\+\_\+boundary\+\_\+coordinate\+\_\+does\+\_\+not\+\_\+exist}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be non-\/existing. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_af01dfefb66c15579b540be62999d93ee}{nelement}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return number of elements in the mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
@@ -678,19 +682,15 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_aca12acfe655a4d5c4a4eab4a7b970812}{Element\+\_\+pt}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a412a5051be9e81f0ba61bf85e5abc4a6}{Boundary\+\_\+coordinate\+\_\+exists}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of boolean data that indicates whether the boundary coordinates have been set for the boundary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{class}} ELEMENT$>$\newline
 class oomph\+::\+Refineable\+Quad\+Mesh\+With\+Moving\+Cylinder$<$ ELEMENT $>$}
-///////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////// 
+My \doxylink{classoomph_1_1Mesh}{Mesh}. 
 
-My \doxylink{classoomph_1_1Mesh}{Mesh} 
-
-Definition at line \mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8template_8h_source_l00320}{320}} of file \mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8template_8h_source}{rectangle\+\_\+with\+\_\+moving\+\_\+cylinder\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8h_source_l00319}{319}} of file \mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8h_source}{rectangle\+\_\+with\+\_\+moving\+\_\+cylinder\+\_\+mesh.\+h}}.
 
 
 
@@ -706,15 +706,13 @@ Definition at line \mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8tem
 
 Constructor. Pass pointer to geometric object that represents the cylinder; hierher the length and height of the domain. The \doxylink{classoomph_1_1GeomObject}{Geom\+Object} must be parametrised such that $\zeta \in [0,2\pi]$ sweeps around the circumference in anticlockwise direction. Timestepper defaults to \doxylink{classoomph_1_1Steady}{Steady} default timestepper. 
 
-///////////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
 
-Constructor. Pass pointer to geometric object that represents the cylinder; hierher the length and height of the domain. The \doxylink{classoomph_1_1GeomObject}{Geom\+Object} must be parametrised such that $\zeta \in [0,2\pi]$ sweeps around the circumference in anticlockwise direction. Timestepper defaults to \doxylink{classoomph_1_1Steady}{Steady} default timestepper. 
 
-Definition at line \mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01395}{1395}} of file \mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8template_8cc_source}{rectangle\+\_\+with\+\_\+moving\+\_\+cylinder\+\_\+mesh.\+template.\+cc}}.
+Definition at line \mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01399}{1399}} of file \mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8template_8cc_source}{rectangle\+\_\+with\+\_\+moving\+\_\+cylinder\+\_\+mesh.\+template.\+cc}}.
 
 
 
-References \mbox{\hyperlink{pml__meshes_8h_source_l02367}{oomph\+::\+Two\+Dimensional\+PMLHelper\+::create\+\_\+bottom\+\_\+left\+\_\+pml\+\_\+mesh()}}, \mbox{\hyperlink{pml__meshes_8h_source_l02103}{oomph\+::\+Two\+Dimensional\+PMLHelper\+::create\+\_\+bottom\+\_\+right\+\_\+pml\+\_\+mesh()}}, \mbox{\hyperlink{pml__meshes_8h_source_l02234}{oomph\+::\+Two\+Dimensional\+PMLHelper\+::create\+\_\+top\+\_\+left\+\_\+pml\+\_\+mesh()}}, \mbox{\hyperlink{pml__meshes_8h_source_l01968}{oomph\+::\+Two\+Dimensional\+PMLHelper\+::create\+\_\+top\+\_\+right\+\_\+pml\+\_\+mesh()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l01323}{oomph\+::\+Finite\+Element\+::\+Node\+\_\+pt}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{nodes_8cc_source_l02167}{oomph\+::\+Node\+::resize()}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}, and \mbox{\hyperlink{geom__objects_8h_source_l00192}{oomph\+::\+Geom\+Object\+::time\+\_\+stepper\+\_\+pt()}}.
+References \mbox{\hyperlink{pml__meshes_8h_source_l02366}{oomph\+::\+Two\+Dimensional\+PMLHelper\+::create\+\_\+bottom\+\_\+left\+\_\+pml\+\_\+mesh()}}, \mbox{\hyperlink{pml__meshes_8h_source_l02102}{oomph\+::\+Two\+Dimensional\+PMLHelper\+::create\+\_\+bottom\+\_\+right\+\_\+pml\+\_\+mesh()}}, \mbox{\hyperlink{pml__meshes_8h_source_l02233}{oomph\+::\+Two\+Dimensional\+PMLHelper\+::create\+\_\+top\+\_\+left\+\_\+pml\+\_\+mesh()}}, \mbox{\hyperlink{pml__meshes_8h_source_l01967}{oomph\+::\+Two\+Dimensional\+PMLHelper\+::create\+\_\+top\+\_\+right\+\_\+pml\+\_\+mesh()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l01323}{oomph\+::\+Finite\+Element\+::\+Node\+\_\+pt}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{nodes_8cc_source_l02167}{oomph\+::\+Node\+::resize()}}, \mbox{\hyperlink{elements_8cc_source_l04320}{oomph\+::\+Finite\+Element\+::size()}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}, and \mbox{\hyperlink{geom__objects_8h_source_l00192}{oomph\+::\+Geom\+Object\+::time\+\_\+stepper\+\_\+pt()}}.
 
 \Hypertarget{classoomph_1_1RefineableQuadMeshWithMovingCylinder_aacd43dd5bd612a6fc4dd66560e73207b}\label{classoomph_1_1RefineableQuadMeshWithMovingCylinder_aacd43dd5bd612a6fc4dd66560e73207b} 
 \index{oomph::RefineableQuadMeshWithMovingCylinder$<$ ELEMENT $>$@{oomph::RefineableQuadMeshWithMovingCylinder$<$ ELEMENT $>$}!````~RefineableQuadMeshWithMovingCylinder@{\texorpdfstring{$\sim$}{\string~}RefineableQuadMeshWithMovingCylinder}}
@@ -729,11 +727,11 @@ Destructor\+: Delete the part of the mesh which has a \doxylink{classoomph_1_1Do
 
 
 
-Definition at line \mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8template_8h_source_l00340}{340}} of file \mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8template_8h_source}{rectangle\+\_\+with\+\_\+moving\+\_\+cylinder\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8h_source_l00339}{339}} of file \mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8h_source}{rectangle\+\_\+with\+\_\+moving\+\_\+cylinder\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8template_8h_source_l00355}{oomph\+::\+Refineable\+Quad\+Mesh\+With\+Moving\+Cylinder$<$ ELEMENT $>$\+::\+Central\+\_\+mesh\+\_\+pt}}.
+References \mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8h_source_l00354}{oomph\+::\+Refineable\+Quad\+Mesh\+With\+Moving\+Cylinder$<$ ELEMENT $>$\+::\+Central\+\_\+mesh\+\_\+pt}}.
 
 
 
@@ -751,11 +749,11 @@ Pointer to the part of the mesh which has a \doxylink{classoomph_1_1Domain}{Doma
 
 
 
-Definition at line \mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8template_8h_source_l00355}{355}} of file \mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8template_8h_source}{rectangle\+\_\+with\+\_\+moving\+\_\+cylinder\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8h_source_l00354}{354}} of file \mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8h_source}{rectangle\+\_\+with\+\_\+moving\+\_\+cylinder\+\_\+mesh.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8template_8h_source_l00340}{oomph\+::\+Refineable\+Quad\+Mesh\+With\+Moving\+Cylinder$<$ ELEMENT $>$\+::\texorpdfstring{$\sim$}{\string~}\+Refineable\+Quad\+Mesh\+With\+Moving\+Cylinder()}}.
+Referenced by \mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8h_source_l00339}{oomph\+::\+Refineable\+Quad\+Mesh\+With\+Moving\+Cylinder$<$ ELEMENT $>$\+::\texorpdfstring{$\sim$}{\string~}\+Refineable\+Quad\+Mesh\+With\+Moving\+Cylinder()}}.
 
 \Hypertarget{classoomph_1_1RefineableQuadMeshWithMovingCylinder_a76e4364e55329eefbd8f5d0833779141}\label{classoomph_1_1RefineableQuadMeshWithMovingCylinder_a76e4364e55329eefbd8f5d0833779141} 
 \index{oomph::RefineableQuadMeshWithMovingCylinder$<$ ELEMENT $>$@{oomph::RefineableQuadMeshWithMovingCylinder$<$ ELEMENT $>$}!Coarse\_problem@{Coarse\_problem}}
@@ -766,11 +764,11 @@ Referenced by \mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8template
 
 
 
-Definition at line \mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8template_8h_source_l00358}{358}} of file \mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8template_8h_source}{rectangle\+\_\+with\+\_\+moving\+\_\+cylinder\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8h_source_l00357}{357}} of file \mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8h_source}{rectangle\+\_\+with\+\_\+moving\+\_\+cylinder\+\_\+mesh.\+h}}.
 
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8template_8h}{rectangle\+\_\+with\+\_\+moving\+\_\+cylinder\+\_\+mesh.\+template.\+h}}\item 
+\mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8h}{rectangle\+\_\+with\+\_\+moving\+\_\+cylinder\+\_\+mesh.\+h}}\item 
 \mbox{\hyperlink{rectangle__with__moving__cylinder__mesh_8template_8cc}{rectangle\+\_\+with\+\_\+moving\+\_\+cylinder\+\_\+mesh.\+template.\+cc}}\end{DoxyCompactItemize}

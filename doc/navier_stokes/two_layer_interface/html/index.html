@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,37 +116,37 @@ Implementation</h1>
 <h2><a class="anchor" id="interface_eqns"></a>
 Boundary conditions at the interface</h2>
 <p>A discussion of the theory and implementation of the boundary conditions at a free surface is given in the <a href="../../single_layer_free_surface/html/index.html#free_surface_eqns">previous example</a>, where we showed that the dynamic boundary condition is given by  </p><p class="formulaDsp">
-<picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \tau_{ij}^{[2]} \, n_j^{[1]} =
 \tau_{ij}^{[1]} \, n_j^{[1]} + \frac{1}{Ca} \, \kappa \, n_i^{[1]}.
-\]" src="form_0.png" width="163" height="26"/></picture>
+\]" src="form_0.png" width="163" height="26"/>
 </p>
-<p> Here <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \tau_{ij}^{[1]} $" src="form_1.png" width="18" height="20"/></picture> and <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \tau_{ij}^{[2]} $" src="form_2.png" width="18" height="20"/></picture> are the stress tensors in the &lsquo;lower&rsquo; and &lsquo;upper&rsquo; fluids respectively, <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$
-n_j^{[1]} $" src="form_3.png" width="19" height="20"/></picture> is the unit normal pointing out of the &lsquo;lower&rsquo; fluid and <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Ca $" src="form_4.png" width="16" height="10"/></picture> is the Capillary number.</p>
+<p> Here <img class="formulaInl" alt="$ \tau_{ij}^{[1]} $" src="form_1.png" width="18" height="20"/> and <img class="formulaInl" alt="$ \tau_{ij}^{[2]} $" src="form_2.png" width="18" height="20"/> are the stress tensors in the &lsquo;lower&rsquo; and &lsquo;upper&rsquo; fluids respectively, <img class="formulaInl" alt="$
+n_j^{[1]} $" src="form_3.png" width="19" height="20"/> is the unit normal pointing out of the &lsquo;lower&rsquo; fluid and <img class="formulaInl" alt="$ Ca $" src="form_4.png" width="16" height="10"/> is the Capillary number.</p>
 <p>The interface conditions in this two-fluid example are implemented in an almost identical way to the <a href="../../single_layer_free_surface/html/index.html#implementation">single layer case</a>. We employ the same pseudo-solid node-update strategy, where the interior mesh is treated as a fictitious elastic solid and thus the (unknown) nodal positions can be determined by solving a solid mechanics problem. The deformation of the free surface boundary itself is imposed by introducing a a field of Lagrange multipliers at the interface, and the equation associated with these additional unknowns is the kinematic condition. In the <a href="../../single_layer_free_surface/html/index.html#implementation">single layer case</a> this equation is discretised by attaching <code>FaceElements</code> to the boundaries of the &lsquo;bulk&rsquo; elements that are adjacent to the free surface. In this two-layer example we attach the same <code>FaceElements</code> to only those &lsquo;bulk&rsquo; elements which are in the &lsquo;lower&rsquo; fluid (and have boundaries adjacent to the interface). These same <code>FaceElements</code> are also responsible for adding the surface tension contributions to the momentum equations that arise through the application of the dynamic boundary condition. We note that since we are solving the Navier&ndash;Stokes equations on either side of the interface we do not specify an external pressure, a step that was necessary in the <a href="../../single_layer_free_surface/html/index.html#implementation">single layer case</a>.</p>
 <p>The other difference between this problem and the <a href="../../single_layer_free_surface/html/index.html">previous example</a> is that we shall be solving this one using spatial adaptivity. We refer to <a href="../../../poisson/two_d_poisson_flux_bc_adapt/html/index.html">another tutorial</a> for a discussion of how to apply boundary conditions in such problems.</p>
 <h2><a class="anchor" id="dens_visc_ratios"></a>
 Distinguishing between the two fluids</h2>
-<p>In a problem containing a single fluid, the definitions of the Reynolds number, Strouhal number, Capillary number and so on are based on the physical properties of that fluid, as well as the geometry of the problem and typical timescales. In our <a href="../../driven_cavity/html/index.html">discussion of the non-dimensionalisation of the Navier&ndash;Stokes equations</a> we describe how the various dimensionless parameters are defined in terms of a reference density, <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \rho_{ext} $" src="form_5.png" width="21" height="9"/></picture>, and a reference viscosity, <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mu_{ext} $" src="form_6.png" width="23" height="9"/></picture>. We can then define two dimensionless ratios, <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ R_\rho $" src="form_7.png" width="15" height="14"/></picture> and <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ R_\mu $" src="form_8.png" width="15" height="14"/></picture>, which describe a particular fluid's density <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \rho $" src="form_9.png" width="8" height="9"/></picture> and kinematic viscosity <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mu $" src="form_10.png" width="9" height="9"/></picture> relative to these reference quantities:  </p><p class="formulaDsp">
-<picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p>In a problem containing a single fluid, the definitions of the Reynolds number, Strouhal number, Capillary number and so on are based on the physical properties of that fluid, as well as the geometry of the problem and typical timescales. In our <a href="../../driven_cavity/html/index.html">discussion of the non-dimensionalisation of the Navier&ndash;Stokes equations</a> we describe how the various dimensionless parameters are defined in terms of a reference density, <img class="formulaInl" alt="$ \rho_{ext} $" src="form_5.png" width="21" height="9"/>, and a reference viscosity, <img class="formulaInl" alt="$ \mu_{ext} $" src="form_6.png" width="23" height="9"/>. We can then define two dimensionless ratios, <img class="formulaInl" alt="$ R_\rho $" src="form_7.png" width="15" height="14"/> and <img class="formulaInl" alt="$ R_\mu $" src="form_8.png" width="15" height="14"/>, which describe a particular fluid's density <img class="formulaInl" alt="$ \rho $" src="form_9.png" width="8" height="9"/> and kinematic viscosity <img class="formulaInl" alt="$ \mu $" src="form_10.png" width="9" height="9"/> relative to these reference quantities:  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 R_\rho = \frac{\rho}{\rho_{ref}} 
 \qquad ; \qquad 
 R_\mu = \frac{\mu}{\mu_{ref}}.
-\]" src="form_11.png" width="175" height="28"/></picture>
+\]" src="form_11.png" width="175" height="28"/>
 </p>
 <p> <code>oomph-lib's</code> implementation of the Navier&ndash;Stokes equations contains these ratios in the appropriate terms. They default to one but can be set to other values via the member functions <code>density_ratio_pt()</code> and <code>viscosity_ratio_pt()</code> in each element.</p>
-<p>It is convenient to choose one of the fluids in this problem to be the &lsquo;reference fluid&rsquo; on which the dimensionless parameters are based. We choose the lower fluid (fluid 1), and hence the density <picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \rho^{[1]} $" src="form_12.png" width="18" height="15"/></picture> and viscosity <picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mu^{[1]} $" src="form_13.png" width="19" height="15"/></picture> of this fluid are identically equal to <picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \rho_{ref} $" src="form_14.png" width="23" height="10"/></picture> and <picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mu_{ref}
-$" src="form_15.png" width="24" height="10"/></picture> (and thus <picture><source srcset="form_16_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ R_\rho^{[1]} = R_\mu^{[1]} = 1 $" src="form_16.png" width="80" height="18"/></picture>). We can now control the relative density and viscosity of the upper fluid to the lower fluid using the ratios <picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ R_\rho^{[2]} = \rho^{[2]}/\rho_{ref}
-$" src="form_17.png" width="83" height="19"/></picture> and <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ R_\mu^{[2]} = \mu^{[2]}/\mu_{ref} $" src="form_18.png" width="85" height="19"/></picture> respectively. For simplicity we will from now on refer to <picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ R_\rho^{[2]} $" src="form_19.png" width="19" height="18"/></picture> simply as <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ R_\rho $" src="form_7.png" width="15" height="14"/></picture> and to <picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ R_\mu^{[2]} $" src="form_20.png" width="19" height="18"/></picture> as <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ R_\mu $" src="form_8.png" width="15" height="14"/></picture>.</p>
+<p>It is convenient to choose one of the fluids in this problem to be the &lsquo;reference fluid&rsquo; on which the dimensionless parameters are based. We choose the lower fluid (fluid 1), and hence the density <img class="formulaInl" alt="$ \rho^{[1]} $" src="form_12.png" width="18" height="15"/> and viscosity <img class="formulaInl" alt="$ \mu^{[1]} $" src="form_13.png" width="19" height="15"/> of this fluid are identically equal to <img class="formulaInl" alt="$ \rho_{ref} $" src="form_14.png" width="23" height="10"/> and <img class="formulaInl" alt="$ \mu_{ref}
+$" src="form_15.png" width="24" height="10"/> (and thus <img class="formulaInl" alt="$ R_\rho^{[1]} = R_\mu^{[1]} = 1 $" src="form_16.png" width="80" height="18"/>). We can now control the relative density and viscosity of the upper fluid to the lower fluid using the ratios <img class="formulaInl" alt="$ R_\rho^{[2]} = \rho^{[2]}/\rho_{ref}
+$" src="form_17.png" width="83" height="19"/> and <img class="formulaInl" alt="$ R_\mu^{[2]} = \mu^{[2]}/\mu_{ref} $" src="form_18.png" width="85" height="19"/> respectively. For simplicity we will from now on refer to <img class="formulaInl" alt="$ R_\rho^{[2]} $" src="form_19.png" width="19" height="18"/> simply as <img class="formulaInl" alt="$ R_\rho $" src="form_7.png" width="15" height="14"/> and to <img class="formulaInl" alt="$ R_\mu^{[2]} $" src="form_20.png" width="19" height="18"/> as <img class="formulaInl" alt="$ R_\mu $" src="form_8.png" width="15" height="14"/>.</p>
 <hr  />
  <hr  />
 <h1><a class="anchor" id="example_problem"></a>
 The example problem</h1>
-<p>We will illustrate the solution of the unsteady two-dimensional Navier&ndash;Stokes equations using the example of a distorted interface between two viscous fluids which is allowed to relax. The domain is periodic in the <picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_1 $" src="form_21.png" width="13" height="9"/></picture> direction.</p>
+<p>We will illustrate the solution of the unsteady two-dimensional Navier&ndash;Stokes equations using the example of a distorted interface between two viscous fluids which is allowed to relax. The domain is periodic in the <img class="formulaInl" alt="$ x_1 $" src="form_21.png" width="13" height="9"/> direction.</p>
 <center> <table class="doxtable">
 <tr>
 <td><center> <b> The 2D unsteady Navier&ndash;Stokes equations either side of a distorted interface.</b> </center><p> Solve  </p><p class="formulaDsp">
-<picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 Re\left(St\frac{\partial u_i}{\partial t} +
 \ u_j\frac{\partial u_i}{\partial x_j}\right) =
 - \frac{\partial p}{\partial x_i} + \frac{Re}{Fr}G_i +
@@ -160,16 +154,16 @@ Re\left(St\frac{\partial u_i}{\partial t} +
 \frac{\partial u_i}{\partial x_j} +  
 \frac{\partial u_j}{\partial x_i} \right]
 \ \ \ \ \ \ \ \ \ \ (1)
-\]" src="form_22.png" width="394" height="31"/></picture>
+\]" src="form_22.png" width="394" height="31"/>
 </p>
 <p> and  </p><p class="formulaDsp">
-<picture><source srcset="form_23_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \frac{\partial u_i}{\partial x_i} = 0
 \ \ \ \ \ \ \ \ \ \ (2)
-\]" src="form_23.png" width="100" height="29"/></picture>
+\]" src="form_23.png" width="100" height="29"/>
 </p>
 <p> in the &lsquo;lower&rsquo; fluid, and  </p><p class="formulaDsp">
-<picture><source srcset="form_24_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 R_\rho Re\left(St\frac{\partial u_i}{\partial t} +
 \ u_j\frac{\partial u_i}{\partial x_j}\right) =
 - \frac{\partial p}{\partial x_i} + R_\rho \frac{Re}{Fr}G_i +
@@ -177,60 +171,60 @@ R_\rho Re\left(St\frac{\partial u_i}{\partial t} +
 \frac{\partial u_i}{\partial x_j} +  
 \frac{\partial u_j}{\partial x_i} \right) \right]
 \ \ \ \ \ \ \ \ \ \ (3)
-\]" src="form_24.png" width="435" height="31"/></picture>
+\]" src="form_24.png" width="435" height="31"/>
 </p>
 <p> and  </p><p class="formulaDsp">
-<picture><source srcset="form_25_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \frac{\partial u_i}{\partial x_i} = 0
 \ \ \ \ \ \ \ \ \ \ (4)
-\]" src="form_25.png" width="100" height="29"/></picture>
+\]" src="form_25.png" width="100" height="29"/>
 </p>
-<p> in the &lsquo;upper&rsquo; fluid. Gravity acts in the negative <picture><source srcset="form_26_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_2 $" src="form_26.png" width="13" height="9"/></picture> direction and so <picture><source srcset="form_27_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ G_1 = 0 $" src="form_27.png" width="38" height="13"/></picture> and <picture><source srcset="form_28_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ G_2 = 1 $" src="form_28.png" width="38" height="13"/></picture>. The governing equations are subject to the no slip boundary conditions  </p><p class="formulaDsp">
-<picture><source srcset="form_29_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> in the &lsquo;upper&rsquo; fluid. Gravity acts in the negative <img class="formulaInl" alt="$ x_2 $" src="form_26.png" width="13" height="9"/> direction and so <img class="formulaInl" alt="$ G_1 = 0 $" src="form_27.png" width="38" height="13"/> and <img class="formulaInl" alt="$ G_2 = 1 $" src="form_28.png" width="38" height="13"/>. The governing equations are subject to the no slip boundary conditions  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 u_1 = u_2 = 0 \ \ \ \ \ \ \ \ \ \ (5)
-\]" src="form_29.png" width="123" height="14"/></picture>
+\]" src="form_29.png" width="123" height="14"/>
 </p>
-<p> on the top ( <picture><source srcset="form_30_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_2 = 2.0 $" src="form_30.png" width="46" height="11"/></picture>) and bottom ( <picture><source srcset="form_31_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_2 = 0.0 $" src="form_31.png" width="46" height="11"/></picture>) solid boundaries and the symmetry boundary conditions  </p><p class="formulaDsp">
-<picture><source srcset="form_32_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> on the top ( <img class="formulaInl" alt="$ x_2 = 2.0 $" src="form_30.png" width="46" height="11"/>) and bottom ( <img class="formulaInl" alt="$ x_2 = 0.0 $" src="form_31.png" width="46" height="11"/>) solid boundaries and the symmetry boundary conditions  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 u_1 = 0 \ \ \ \ \ \ \ \ \ \ (6)
-\]" src="form_32.png" width="93" height="14"/></picture>
+\]" src="form_32.png" width="93" height="14"/>
 </p>
-<p> on the left ( <picture><source srcset="form_33_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_1 = 0.0 $" src="form_33.png" width="46" height="11"/></picture>) and right ( <picture><source srcset="form_34_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_1 = 1.0 $" src="form_34.png" width="46" height="11"/></picture>) boundaries.</p>
-<p class="intertd">We denote the position vector to the interface between the two fluids by <picture><source srcset="form_35_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mathbf{R} $" src="form_35.png" width="13" height="10"/></picture>, which is subject to the kinematic condition  </p><p class="formulaDsp">
-<picture><source srcset="form_36_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> on the left ( <img class="formulaInl" alt="$ x_1 = 0.0 $" src="form_33.png" width="46" height="11"/>) and right ( <img class="formulaInl" alt="$ x_1 = 1.0 $" src="form_34.png" width="46" height="11"/>) boundaries.</p>
+<p class="intertd">We denote the position vector to the interface between the two fluids by <img class="formulaInl" alt="$ \mathbf{R} $" src="form_35.png" width="13" height="10"/>, which is subject to the kinematic condition  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \left(u_i - St\, \frac{\partial R_i}{\partial t}\right) n_i = 0,
 \ \ \ \ \ \ \ \ \ \ (7)
-\]" src="form_36.png" width="180" height="31"/></picture>
+\]" src="form_36.png" width="180" height="31"/>
 </p>
 <p> and the dynamic condition  </p><p class="formulaDsp">
-<picture><source srcset="form_37_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \tau_{ij}^{[2]} \, n_j^{[1]} =
 \tau_{ij}^{[1]} \, n_j^{[1]} + \frac{1}{Ca} \, \kappa \, n_i^{[1]}.
 \ \ \ \ \ \ \ \ \ \ (8)
-\]" src="form_37.png" width="220" height="26"/></picture>
+\]" src="form_37.png" width="220" height="26"/>
 </p>
 <p> The stress tensor in the &lsquo;lower&rsquo; fluid is defined as  </p><p class="formulaDsp">
-<picture><source srcset="form_38_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \tau_{ij}^{[1]} = -p^{[1]} \, \delta_{ij} + \left(\frac{\partial u^{[1]}_i}{\partial x_j}
 + \frac{\partial u^{[1]}_j}{\partial x_i}\right),
 \ \ \ \ \ \ \ \ \ \ (9)
-\]" src="form_38.png" width="250" height="40"/></picture>
+\]" src="form_38.png" width="250" height="40"/>
 </p>
 <p> and that in the &lsquo;upper&rsquo; fluid is defined as  </p><p class="formulaDsp">
-<picture><source srcset="form_39_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \tau_{ij}^{[2]} = -p^{[2]} \, \delta_{ij} + R_\mu \left(\frac{\partial u^{[2]}_i}{\partial x_j}
 + \frac{\partial u^{[2]}_j}{\partial x_i}\right).
 \ \ \ \ \ \ \ \ \ \ (10)
-\]" src="form_39.png" width="273" height="40"/></picture>
+\]" src="form_39.png" width="273" height="40"/>
 </p>
 <p class="endtd">The initial shape of the interface is defined by  </p><p class="formulaDsp">
-<picture><source srcset="form_40_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
  \mathbf{R} = x_1 \, \mathbf{i} + \left[ 1.0 + 
  \epsilon\cos\left( 2 n \pi x_1 \right)\right] \, \mathbf{j},
 \ \ \ \ \ \ \ \ \ \ (11)
-\]" src="form_40.png" width="246" height="14"/></picture>
+\]" src="form_40.png" width="246" height="14"/>
 </p>
-<p> where <picture><source srcset="form_41_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \epsilon $" src="form_41.png" width="5" height="6"/></picture> is the amplitude of the initial deflection and <picture><source srcset="form_42_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ n $" src="form_42.png" width="9" height="6"/></picture> is an integer.   </p>
+<p> where <img class="formulaInl" alt="$ \epsilon $" src="form_41.png" width="5" height="6"/> is the amplitude of the initial deflection and <img class="formulaInl" alt="$ n $" src="form_42.png" width="9" height="6"/> is an integer.   </p>
 </td></tr>
 </table>
 <br  />
@@ -238,13 +232,13 @@ u_1 = 0 \ \ \ \ \ \ \ \ \ \ (6)
  <hr  />
 <h1><a class="anchor" id="results"></a>
 Results</h1>
-<p>The figure below shows a contour plot of the pressure distribution taken from <a href="../figures/two_layer_interface.avi">an animation of the flow field</a>, for the parameters <picture><source srcset="form_43_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re = Re \, St = Re/Fr = 5.0 $" src="form_43.png" width="149" height="14"/></picture>, <picture><source srcset="form_44_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ R_\rho =
-0.5 $" src="form_44.png" width="48" height="14"/></picture>, <picture><source srcset="form_45_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ R_\mu = 0.1 $" src="form_45.png" width="48" height="14"/></picture> and <picture><source srcset="form_46_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Ca = 0.01 $" src="form_46.png" width="55" height="10"/></picture>.</p>
+<p>The figure below shows a contour plot of the pressure distribution taken from <a href="../figures/two_layer_interface.avi">an animation of the flow field</a>, for the parameters <img class="formulaInl" alt="$ Re = Re \, St = Re/Fr = 5.0 $" src="form_43.png" width="149" height="14"/>, <img class="formulaInl" alt="$ R_\rho =
+0.5 $" src="form_44.png" width="48" height="14"/>, <img class="formulaInl" alt="$ R_\mu = 0.1 $" src="form_45.png" width="48" height="14"/> and <img class="formulaInl" alt="$ Ca = 0.01 $" src="form_46.png" width="55" height="10"/>.</p>
 <div class="image">
 <img src="two_layer_interface.gif" alt=""/>
 <div class="caption">
 Pressure contour plot for the relaxing interface problem. </div></div>
- <p>The restoring forces of surface tension and gravitational acceleration act to revert the interface to its undeformed flat state. The interface oscillates up and down, but the motion is damped as the energy in the system is dissipated through viscous forces. Eventually the interface settles down to its equilibrium position, as can be seen in the following time-trace of the height of the interface at the left-hand edge of the domain ( <picture><source srcset="form_47_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_1 = 0 $" src="form_47.png" width="36" height="11"/></picture>).</p>
+ <p>The restoring forces of surface tension and gravitational acceleration act to revert the interface to its undeformed flat state. The interface oscillates up and down, but the motion is damped as the energy in the system is dissipated through viscous forces. Eventually the interface settles down to its equilibrium position, as can be seen in the following time-trace of the height of the interface at the left-hand edge of the domain ( <img class="formulaInl" alt="$ x_1 = 0 $" src="form_47.png" width="36" height="11"/>).</p>
 <div class="image">
 <img src="two_layer_interface_trace.gif" alt=""/>
 <div class="caption">
@@ -253,7 +247,7 @@ Time-trace of the height of the interface at the point x_1 = 0. </div></div>
  <hr  />
 <h1><a class="anchor" id="validation"></a>
 Validation</h1>
-<p>The free surface boundary conditions for the Cartesian Navier&ndash;Stokes equations have been validated against an analytical test case, and we present the results in the figure below. For sufficiently small amplitudes, <picture><source srcset="form_48_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \epsilon \ll 1 $" src="form_48.png" width="30" height="10"/></picture>, we can linearise the governing equations and obtain a dispersion relation <picture><source srcset="form_49_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \lambda(k) $" src="form_49.png" width="23" height="14"/></picture>, the derivation of which is discussed in the <a href="../../single_layer_free_surface/html/index.html#validation">previous tutorial</a>. The only difference in this two layer case is that the linear system which needs to be solved contains nine unknowns rather than five, since the two fluids have different properties. The real and imaginary parts of <picture><source srcset="form_50_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \lambda $" src="form_50.png" width="8" height="10"/></picture> correspond to the growth rate and the frequency of the oscillating interface respectively, and can be compared to numerical results computed for given values of the wavenumber <picture><source srcset="form_51_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ k $" src="form_51.png" width="6" height="10"/></picture>. We choose an initial deflection amplitude of <picture><source srcset="form_52_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \epsilon = 0.01 $" src="form_52.png" width="44" height="9"/></picture> and determine the growth rate and frequency of the oscillation from a time-trace of the left-hand edge of the interface.</p>
+<p>The free surface boundary conditions for the Cartesian Navier&ndash;Stokes equations have been validated against an analytical test case, and we present the results in the figure below. For sufficiently small amplitudes, <img class="formulaInl" alt="$ \epsilon \ll 1 $" src="form_48.png" width="30" height="10"/>, we can linearise the governing equations and obtain a dispersion relation <img class="formulaInl" alt="$ \lambda(k) $" src="form_49.png" width="23" height="14"/>, the derivation of which is discussed in the <a href="../../single_layer_free_surface/html/index.html#validation">previous tutorial</a>. The only difference in this two layer case is that the linear system which needs to be solved contains nine unknowns rather than five, since the two fluids have different properties. The real and imaginary parts of <img class="formulaInl" alt="$ \lambda $" src="form_50.png" width="8" height="10"/> correspond to the growth rate and the frequency of the oscillating interface respectively, and can be compared to numerical results computed for given values of the wavenumber <img class="formulaInl" alt="$ k $" src="form_51.png" width="6" height="10"/>. We choose an initial deflection amplitude of <img class="formulaInl" alt="$ \epsilon = 0.01 $" src="form_52.png" width="44" height="9"/> and determine the growth rate and frequency of the oscillation from a time-trace of the left-hand edge of the interface.</p>
 <div class="image">
 <img src="two_layer_interface_code_validation.gif" alt=""/>
 <div class="caption">
@@ -262,7 +256,7 @@ Validation of the code (points) by comparison with an analytical dispersion rela
  <hr  />
 <h1><a class="anchor" id="namespace"></a>
 Global parameters and functions</h1>
-<p>As in the <a href="../../single_layer_free_surface/html/index.html#namespace">previous example</a>, we use a namespace to define the dimensionless parameters <picture><source srcset="form_53_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re $" src="form_53.png" width="15" height="10"/></picture>, <picture><source srcset="form_54_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ St $" src="form_54.png" width="13" height="10"/></picture>, <picture><source srcset="form_55_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re/Fr $" src="form_55.png" width="38" height="14"/></picture> and <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Ca $" src="form_4.png" width="16" height="10"/></picture>. The pseudo-solid mesh is governed by a generalised Hookean constitutive law which requires the definition of the Poisson ratio, <picture><source srcset="form_56_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \nu $" src="form_56.png" width="6" height="6"/></picture>, and we create a vector <picture><source srcset="form_57_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ G $" src="form_57.png" width="10" height="10"/></picture> which will define the direction in which gravity acts. Because this is a two-fluid problem, we also need to define the density ratio <picture><source srcset="form_58_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ R_{\rho} = \rho^{[2]}/\rho^{[1]} $" src="form_58.png" width="73" height="16"/></picture> and viscosity ratio <picture><source srcset="form_59_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ R_{\mu} = \mu^{[2]}/\mu^{[1]} $" src="form_59.png" width="75" height="16"/></picture> of the two fluids.</p>
+<p>As in the <a href="../../single_layer_free_surface/html/index.html#namespace">previous example</a>, we use a namespace to define the dimensionless parameters <img class="formulaInl" alt="$ Re $" src="form_53.png" width="15" height="10"/>, <img class="formulaInl" alt="$ St $" src="form_54.png" width="13" height="10"/>, <img class="formulaInl" alt="$ Re/Fr $" src="form_55.png" width="38" height="14"/> and <img class="formulaInl" alt="$ Ca $" src="form_4.png" width="16" height="10"/>. The pseudo-solid mesh is governed by a generalised Hookean constitutive law which requires the definition of the Poisson ratio, <img class="formulaInl" alt="$ \nu $" src="form_56.png" width="6" height="6"/>, and we create a vector <img class="formulaInl" alt="$ G $" src="form_57.png" width="10" height="10"/> which will define the direction in which gravity acts. Because this is a two-fluid problem, we also need to define the density ratio <img class="formulaInl" alt="$ R_{\rho} = \rho^{[2]}/\rho^{[1]} $" src="form_58.png" width="73" height="16"/> and viscosity ratio <img class="formulaInl" alt="$ R_{\mu} = \mu^{[2]}/\mu^{[1]} $" src="form_59.png" width="75" height="16"/> of the two fluids.</p>
  <div class="fragment"><div class="line"><span class="comment">//==start_of_namespace====================================================</span></div>
 <div class="line"><span class="comment">/// Namespace for physical parameters</span></div>
 <div class="line"><span class="comment">//========================================================================</span></div>
@@ -299,7 +293,7 @@ Global parameters and functions</h1>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a3962c36313826b19f216f6bbbdd6a477">Nu</a> = 0.1;</div>
 <div class="line"> </div>
 <div class="line">} <span class="comment">// End of namespace</span></div>
-<div class="ttc" id="aclassElasticRefineableTwoLayerMesh_html"><div class="ttname"><a href="classElasticRefineableTwoLayerMesh.html">ElasticRefineableTwoLayerMesh</a></div><div class="ttdoc">/////////////////////////////////////////////////////////////////////// /////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="elastic__two__layer__interface_8cc_source.html#l00102">elastic_two_layer_interface.cc:104</a></div></div>
+<div class="ttc" id="aclassElasticRefineableTwoLayerMesh_html"><div class="ttname"><a href="classElasticRefineableTwoLayerMesh.html">ElasticRefineableTwoLayerMesh</a></div><div class="ttdoc">Two layer mesh which employs a pseudo-solid node-update strategy. This class is essentially a wrapper...</div><div class="ttdef"><b>Definition</b> <a href="elastic__two__layer__interface_8cc_source.html#l00102">elastic_two_layer_interface.cc:104</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">Namespace for physical parameters.</div><div class="ttdef"><b>Definition</b> <a href="elastic__two__layer__interface_8cc_source.html#l00055">elastic_two_layer_interface.cc:56</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a085ee4bf968ffdd01a41b8c41864f907"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a085ee4bf968ffdd01a41b8c41864f907">Global_Physical_Variables::ReSt</a></div><div class="ttdeci">double ReSt</div><div class="ttdoc">Womersley number (Reynolds x Strouhal)</div><div class="ttdef"><b>Definition</b> <a href="elastic__two__layer__interface_8cc_source.html#l00065">elastic_two_layer_interface.cc:65</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a37a6f46efcb35b4bd12c73f19d741020"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a37a6f46efcb35b4bd12c73f19d741020">Global_Physical_Variables::G</a></div><div class="ttdeci">Vector&lt; double &gt; G(2)</div><div class="ttdoc">Direction of gravity.</div></div>
@@ -351,7 +345,7 @@ The driver code</h1>
 <div class="line">                       <a class="code hl_class" href="classElasticRefineableTwoLayerMesh.html">OOMPH_CURRENT_FUNCTION</a>,<a class="code hl_class" href="classElasticRefineableTwoLayerMesh.html">OOMPH_EXCEPTION_LOCATION</a>);</div>
 <div class="line">  }</div>
 <div class="ttc" id="aclassElasticRefineableTwoLayerMesh_html_a4f6c6b4214a7a99e94e24906d033f8f7"><div class="ttname"><a href="classElasticRefineableTwoLayerMesh.html#a4f6c6b4214a7a99e94e24906d033f8f7">ElasticRefineableTwoLayerMesh::ElasticRefineableTwoLayerMesh</a></div><div class="ttdeci">ElasticRefineableTwoLayerMesh(const unsigned &amp;nx, const unsigned &amp;ny1, const unsigned &amp;ny2, const double &amp;lx, const double &amp;h1, const double &amp;h2, const bool &amp;periodic_in_x, TimeStepper *time_stepper_pt=&amp;Mesh::Default_TimeStepper)</div><div class="ttdoc">Constructor: Pass number of elements in x-direction, number of elements in y-direction in bottom and ...</div><div class="ttdef"><b>Definition</b> <a href="elastic__two__layer__interface_8cc_source.html#l00113">elastic_two_layer_interface.cc:113</a></div></div>
-<div class="ttc" id="aelastic__two__layer__interface_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="elastic__two__layer__interface_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">/////////////////////////////////////////////////////////////////////// /////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="elastic__two__layer__interface_8cc_source.html#l00810">elastic_two_layer_interface.cc:810</a></div></div>
+<div class="ttc" id="aelastic__two__layer__interface_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="elastic__two__layer__interface_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">Driver code for two-dimensional two fluid interface problem.</div><div class="ttdef"><b>Definition</b> <a href="elastic__two__layer__interface_8cc_source.html#l00810">elastic_two_layer_interface.cc:810</a></div></div>
 </div><!-- fragment --><p> Next we specify the duration of the simulation and the size of the timestep. If we are running the code as a self-test, we set the length of the simulation such that only two timesteps are taken. The direction in which gravity acts is defined to be vertically downwards.</p>
 <div class="fragment"><div class="line"><span class="comment"> /// Maximum time</span></div>
 <div class="line"> <span class="keywordtype">double</span> <a class="code hl_class" href="classElasticRefineableTwoLayerMesh.html">t_max</a> = 0.6;</div>
@@ -379,7 +373,7 @@ The driver code</h1>
 <div class="line"> <a class="code hl_class" href="classElasticRefineableTwoLayerMesh.html">problem</a>.unsteady_run(<a class="code hl_class" href="classElasticRefineableTwoLayerMesh.html">t_max</a>,<a class="code hl_class" href="classElasticRefineableTwoLayerMesh.html">dt</a>);</div>
 <div class="line"> </div>
 <div class="line">} <span class="comment">// End of main</span></div>
-<div class="ttc" id="aclassInterfaceProblem_html"><div class="ttname"><a href="classInterfaceProblem.html">InterfaceProblem</a></div><div class="ttdoc">/////////////////////////////////////////////////////////////////////// /////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="elastic__two__layer__interface_8cc_source.html#l00173">elastic_two_layer_interface.cc:174</a></div></div>
+<div class="ttc" id="aclassInterfaceProblem_html"><div class="ttname"><a href="classInterfaceProblem.html">InterfaceProblem</a></div><div class="ttdoc">Two fluid interface problem in a rectangular domain which is periodic in the x direction.</div><div class="ttdef"><b>Definition</b> <a href="elastic__two__layer__interface_8cc_source.html#l00173">elastic_two_layer_interface.cc:174</a></div></div>
 </div><!-- fragment --> <hr  />
  <hr  />
 <h1><a class="anchor" id="mesh"></a>
@@ -395,7 +389,7 @@ The mesh class</h1>
 <div class="line"><span class="keyword">class </span><a class="code hl_class" href="classElasticRefineableTwoLayerMesh.html">ElasticRefineableTwoLayerMesh</a> :</div>
 <div class="line"> <span class="keyword">public</span> <span class="keyword">virtual</span> ElasticRefineableRectangularQuadMesh&lt;ELEMENT&gt;</div>
 <div class="line">{</div>
-</div><!-- fragment --><p> Next we define the mesh's constructor. We pass it the usual parameters, including a boolean flag which indicates whether or not the mesh is periodic in the <picture><source srcset="form_60_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x $" src="form_60.png" width="8" height="6"/></picture> direction.</p>
+</div><!-- fragment --><p> Next we define the mesh's constructor. We pass it the usual parameters, including a boolean flag which indicates whether or not the mesh is periodic in the <img class="formulaInl" alt="$ x $" src="form_60.png" width="8" height="6"/> direction.</p>
 <div class="fragment"><div class="line"><span class="keyword">public</span>:</div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Constructor: Pass number of elements in x-direction, number of</span></div>
@@ -478,7 +472,7 @@ The problem class</h1>
  <hr  />
 <h1><a class="anchor" id="constructor"></a>
 The problem constructor</h1>
-<p>The constructor starts by building the timestepper and setting the dimensions of the mesh. The number of elements in the <picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_1 $" src="form_21.png" width="13" height="9"/></picture> and <picture><source srcset="form_26_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_2 $" src="form_26.png" width="13" height="9"/></picture> directions in both fluid layers are specified.</p>
+<p>The constructor starts by building the timestepper and setting the dimensions of the mesh. The number of elements in the <img class="formulaInl" alt="$ x_1 $" src="form_21.png" width="13" height="9"/> and <img class="formulaInl" alt="$ x_2 $" src="form_26.png" width="13" height="9"/> directions in both fluid layers are specified.</p>
 <div class="fragment"><div class="line"><span class="comment">//==start_of_constructor==================================================</span></div>
 <div class="line"><span class="comment">/// Constructor for two fluid interface problem</span></div>
 <div class="line"><span class="comment">//========================================================================</span></div>
@@ -535,8 +529,8 @@ The problem constructor</h1>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Combine all sub-meshes into a single mesh</span></div>
 <div class="line"> <a class="code hl_class" href="classElasticRefineableTwoLayerMesh.html">build_global_mesh</a>();</div>
-</div><!-- fragment --><p> On the top and bottom boundaries ( <picture><source srcset="form_61_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ y = 2.0 $" src="form_61.png" width="40" height="11"/></picture> and <picture><source srcset="form_62_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ y = 0.0 $" src="form_62.png" width="40" height="11"/></picture>) we apply the no-slip condition by pinning both velocity components. On the left and right symmetry boundaries ( <picture><source srcset="form_63_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x = 0.0 $" src="form_63.png" width="41" height="9"/></picture> and <picture><source srcset="form_64_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x =
-1.0 $" src="form_64.png" width="41" height="9"/></picture>) we pin the <picture><source srcset="form_60_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x $" src="form_60.png" width="8" height="6"/></picture> component of the velocity but leave the <picture><source srcset="form_65_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ y $" src="form_65.png" width="8" height="9"/></picture> component unconstrained. We pin the vertical displacement of the nodes on the solid boundaries (since these must remain stationary) and pin the horizontal displacement of all nodes in the mesh.</p>
+</div><!-- fragment --><p> On the top and bottom boundaries ( <img class="formulaInl" alt="$ y = 2.0 $" src="form_61.png" width="40" height="11"/> and <img class="formulaInl" alt="$ y = 0.0 $" src="form_62.png" width="40" height="11"/>) we apply the no-slip condition by pinning both velocity components. On the left and right symmetry boundaries ( <img class="formulaInl" alt="$ x = 0.0 $" src="form_63.png" width="41" height="9"/> and <img class="formulaInl" alt="$ x =
+1.0 $" src="form_64.png" width="41" height="9"/>) we pin the <img class="formulaInl" alt="$ x $" src="form_60.png" width="8" height="6"/> component of the velocity but leave the <img class="formulaInl" alt="$ y $" src="form_65.png" width="8" height="9"/> component unconstrained. We pin the vertical displacement of the nodes on the solid boundaries (since these must remain stationary) and pin the horizontal displacement of all nodes in the mesh.</p>
 <div class="fragment"><div class="line"> <span class="comment">// Set the boundary conditions for this problem</span></div>
 <div class="line"> <span class="comment">// --------------------------------------------</span></div>
 <div class="line"> </div>
@@ -580,9 +574,9 @@ The problem constructor</h1>
 </div><!-- fragment --><p> Next we create a generalised Hookean constitutive equation for the pseudo-solid mesh. This constitutive equation is discussed in <a href="../../../solid/disk_compression/html/index.html#hooke">another tutorial</a>.</p>
 <div class="fragment"><div class="line"> <span class="comment">// Define a constitutive law for the solid equations: generalised Hookean</span></div>
 <div class="line"> Constitutive_law_pt = <span class="keyword">new</span> <a class="code hl_class" href="classElasticRefineableTwoLayerMesh.html">GeneralisedHookean</a>(&amp;<a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a3962c36313826b19f216f6bbbdd6a477">Global_Physical_Variables::Nu</a>);</div>
-</div><!-- fragment --><p> We loop over the bulk elements in the lower fluid and pass them pointers to the Reynolds and Womersley numbers, <picture><source srcset="form_53_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re $" src="form_53.png" width="15" height="10"/></picture> and <picture><source srcset="form_66_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$
-Re\, St $" src="form_66.png" width="30" height="10"/></picture>, the product of the Reynolds number and the inverse of the Froude number, <picture><source srcset="form_55_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re/Fr $" src="form_55.png" width="38" height="14"/></picture>, the direction of gravity, <picture><source srcset="form_57_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ G $" src="form_57.png" width="10" height="10"/></picture>, the constitutive law and the global time object, created when we called <code>Problem::add_time_stepper_pt(...)</code> above. Note that we do not assign pointers for the viscosity and density ratios, <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ R_\mu $" src="form_8.png" width="15" height="14"/></picture> and <picture><source srcset="form_67_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$
-R_\rho $" src="form_67.png" width="15" height="14"/></picture>, since these take the default value in the lower fluid.</p>
+</div><!-- fragment --><p> We loop over the bulk elements in the lower fluid and pass them pointers to the Reynolds and Womersley numbers, <img class="formulaInl" alt="$ Re $" src="form_53.png" width="15" height="10"/> and <img class="formulaInl" alt="$
+Re\, St $" src="form_66.png" width="30" height="10"/>, the product of the Reynolds number and the inverse of the Froude number, <img class="formulaInl" alt="$ Re/Fr $" src="form_55.png" width="38" height="14"/>, the direction of gravity, <img class="formulaInl" alt="$ G $" src="form_57.png" width="10" height="10"/>, the constitutive law and the global time object, created when we called <code>Problem::add_time_stepper_pt(...)</code> above. Note that we do not assign pointers for the viscosity and density ratios, <img class="formulaInl" alt="$ R_\mu $" src="form_8.png" width="15" height="14"/> and <img class="formulaInl" alt="$
+R_\rho $" src="form_67.png" width="15" height="14"/>, since these take the default value in the lower fluid.</p>
 <div class="fragment"><div class="line"> <span class="comment">// Complete the problem setup to make the elements fully functional</span></div>
 <div class="line"> <span class="comment">// ----------------------------------------------------------------</span></div>
 <div class="line"> </div>
@@ -884,12 +878,12 @@ The timestepping loop</h1>
 </div><!-- fragment --><p> Next we open and initialise the trace file.</p>
 <div class="fragment"><div class="line"> <span class="comment">// Open trace file</span></div>
 <div class="line"> <span class="keywordtype">char</span> <a class="code hl_class" href="classElasticRefineableTwoLayerMesh.html">filename</a>[100];   </div>
-<div class="line"> <a class="code hl_class" href="classElasticRefineableTwoLayerMesh.html">sprintf</a>(<a class="code hl_class" href="classElasticRefineableTwoLayerMesh.html">filename</a>,<span class="stringliteral">&quot;%s/trace.dat&quot;</span>,<a class="code hl_class" href="classElasticRefineableTwoLayerMesh.html">doc_info</a>.directory().c_str());</div>
+<div class="line"> <a class="code hl_class" href="classElasticRefineableTwoLayerMesh.html">snprintf</a>(<a class="code hl_class" href="classElasticRefineableTwoLayerMesh.html">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classElasticRefineableTwoLayerMesh.html">filename</a>), <span class="stringliteral">&quot;%s/trace.dat&quot;</span>,<a class="code hl_class" href="classElasticRefineableTwoLayerMesh.html">doc_info</a>.directory().c_str());</div>
 <div class="line"> Trace_file.open(<a class="code hl_class" href="classElasticRefineableTwoLayerMesh.html">filename</a>);</div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Initialise trace file</span></div>
 <div class="line"> Trace_file &lt;&lt; <span class="stringliteral">&quot;time, interface height&quot;</span> &lt;&lt; std::endl;</div>
-</div><!-- fragment --><p> Before using any of <code>oomph-lib's</code> timestepping functions, the timestep <picture><source srcset="form_68_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ dt $" src="form_68.png" width="11" height="10"/></picture> must be passed to the problem's timestepping routines by calling the function <code>Problem::initialise_dt(...)</code> which sets the weights for all timesteppers in the problem. Next we assign the initial conditions by calling <code>Problem::set_initial_condition()</code>, which was discussed <a href="#set_initial_condition">above</a>.</p>
+</div><!-- fragment --><p> Before using any of <code>oomph-lib's</code> timestepping functions, the timestep <img class="formulaInl" alt="$ dt $" src="form_68.png" width="11" height="10"/> must be passed to the problem's timestepping routines by calling the function <code>Problem::initialise_dt(...)</code> which sets the weights for all timesteppers in the problem. Next we assign the initial conditions by calling <code>Problem::set_initial_condition()</code>, which was discussed <a href="#set_initial_condition">above</a>.</p>
 <div class="fragment"><div class="line"> <span class="comment">// Initialise timestep</span></div>
 <div class="line"> <a class="code hl_class" href="classElasticRefineableTwoLayerMesh.html">initialise_dt</a>(<a class="code hl_class" href="classElasticRefineableTwoLayerMesh.html">dt</a>);</div>
 <div class="line"> </div>
@@ -965,7 +959,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -995,7 +989,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:14:15
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:40:58
         </div>
       </div>
     </footer>

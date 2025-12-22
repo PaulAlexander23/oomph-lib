@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -136,7 +130,7 @@ $(function() {
 <p>Two-layer spine mesh class derived from standard 2D mesh. The mesh contains two layers of spinified fluid elements (of type ELEMENT; e.g <a class="el" href="classoomph_1_1SpineElement.html" title="The SpineElement&lt;ELEMENT&gt; class takes an existing element as a template parameter and adds the necess...">SpineElement</a>&lt;QCrouzeixRaviartElement&lt;2&gt;).  
  <a href="classoomph_1_1TwoLayerSpineMesh.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -146,8 +140,8 @@ $(function() {
   <img src="classoomph_1_1TwoLayerSpineMesh.png" usemap="#oomph::TwoLayerSpineMesh_3C_20ELEMENT_20_3E_map" alt=""/>
   <map id="oomph::TwoLayerSpineMesh_3C_20ELEMENT_20_3E_map" name="oomph::TwoLayerSpineMesh_3C_20ELEMENT_20_3E_map">
 <area href="classoomph_1_1RectangularQuadMesh.html" title="RectangularQuadMesh is a two-dimensional mesh of Quad elements with Nx elements in the &quot;x&quot; (horizonal..." alt="oomph::RectangularQuadMesh&lt; ELEMENT &gt;" shape="rect" coords="0,112,267,136"/>
-<area href="classoomph_1_1SpineMesh.html" title="/////////////////////////////////////////////////////////////////////// /////////////////////////////..." alt="oomph::SpineMesh" shape="rect" coords="277,112,544,136"/>
-<area href="classoomph_1_1QuadMeshBase.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////..." alt="oomph::QuadMeshBase" shape="rect" coords="0,56,267,80"/>
+<area href="classoomph_1_1SpineMesh.html" title="General SpineMesh class." alt="oomph::SpineMesh" shape="rect" coords="277,112,544,136"/>
+<area href="classoomph_1_1QuadMeshBase.html" title="Base class for quad meshes (meshes made of 2D quad elements)." alt="oomph::QuadMeshBase" shape="rect" coords="0,56,267,80"/>
 <area href="classoomph_1_1Mesh.html" title="A general mesh class." alt="oomph::Mesh" shape="rect" coords="277,56,544,80"/>
 <area href="classoomph_1_1Mesh.html" title="A general mesh class." alt="oomph::Mesh" shape="rect" coords="0,0,267,24"/>
   </map>
@@ -156,13 +150,13 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a0c41a93e9ccaaa34956215e64611be2a" id="r_a0c41a93e9ccaaa34956215e64611be2a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TwoLayerSpineMesh.html#a0c41a93e9ccaaa34956215e64611be2a">TwoLayerSpineMesh</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1RectangularQuadMesh.html#a8755801661f2cec616527ecc3a43fd60">nx</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">ny1</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">ny2</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">lx</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">h1</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">h2</a>, <a class="el" href="classoomph_1_1TimeStepper.html">TimeStepper</a> *time_stepper_pt=&amp;<a class="el" href="classoomph_1_1Mesh.html#a12243d0fee2b1fcee729ee5a4777ea10">Mesh::Default_TimeStepper</a>)</td></tr>
-<tr class="memdesc:a0c41a93e9ccaaa34956215e64611be2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Pass number of elements in x-direction, number of elements in y-direction in bottom and top layer, respectively, axial length and height of top and bottom layers and pointer to timestepper (defaults to <a class="el" href="classoomph_1_1Steady.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////...">Steady</a> timestepper)  <br /></td></tr>
+<tr class="memdesc:a0c41a93e9ccaaa34956215e64611be2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Pass number of elements in x-direction, number of elements in y-direction in bottom and top layer, respectively, axial length and height of top and bottom layers and pointer to timestepper (defaults to <a class="el" href="classoomph_1_1Steady.html" title="Faux time-stepper for steady problems. Allows storage for NSTEPS previous values.">Steady</a> timestepper)  <br /></td></tr>
 <tr class="separator:a0c41a93e9ccaaa34956215e64611be2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8787a305ee929d001542464529e23787" id="r_a8787a305ee929d001542464529e23787"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TwoLayerSpineMesh.html#a8787a305ee929d001542464529e23787">TwoLayerSpineMesh</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1RectangularQuadMesh.html#a8755801661f2cec616527ecc3a43fd60">nx</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">ny1</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">ny2</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">lx</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">h1</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">h2</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">periodic_in_x</a>, <a class="el" href="classoomph_1_1TimeStepper.html">TimeStepper</a> *time_stepper_pt=&amp;<a class="el" href="classoomph_1_1Mesh.html#a12243d0fee2b1fcee729ee5a4777ea10">Mesh::Default_TimeStepper</a>)</td></tr>
-<tr class="memdesc:a8787a305ee929d001542464529e23787"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Pass number of elements in x-direction, number of elements in y-direction in bottom and top layer, respectively, axial length and height of top and bottom layers, a boolean flag to make the mesh periodic in the x-direction, and pointer to timestepper (defaults to <a class="el" href="classoomph_1_1Steady.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////...">Steady</a> timestepper)  <br /></td></tr>
+<tr class="memdesc:a8787a305ee929d001542464529e23787"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Pass number of elements in x-direction, number of elements in y-direction in bottom and top layer, respectively, axial length and height of top and bottom layers, a boolean flag to make the mesh periodic in the x-direction, and pointer to timestepper (defaults to <a class="el" href="classoomph_1_1Steady.html" title="Faux time-stepper for steady problems. Allows storage for NSTEPS previous values.">Steady</a> timestepper)  <br /></td></tr>
 <tr class="separator:a8787a305ee929d001542464529e23787"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a374454978976c3873a89bedc688b983f" id="r_a374454978976c3873a89bedc688b983f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TwoLayerSpineMesh.html#a374454978976c3873a89bedc688b983f">TwoLayerSpineMesh</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1RectangularQuadMesh.html#a8755801661f2cec616527ecc3a43fd60">nx</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">ny1</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">ny2</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">lx</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">h1</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">h2</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">periodic_in_x</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a> &amp;<a class="el" href="classoomph_1_1RectangularQuadMesh.html#afa579b413a2d8120e8228d840cb3582c">build_mesh</a>, <a class="el" href="classoomph_1_1TimeStepper.html">TimeStepper</a> *time_stepper_pt=&amp;<a class="el" href="classoomph_1_1Mesh.html#a12243d0fee2b1fcee729ee5a4777ea10">Mesh::Default_TimeStepper</a>)</td></tr>
-<tr class="memdesc:a374454978976c3873a89bedc688b983f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Pass number of elements in x-direction, number of elements in y-direction in bottom and top layer, respectively, axial length and height of top and bottom layers, a boolean flag to make the mesh periodic in the x-direction, a boolean flag to specify whether or not to call the "build_two_layer_mesh" function, and pointer to timestepper (defaults to <a class="el" href="classoomph_1_1Steady.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////...">Steady</a> timestepper)  <br /></td></tr>
+<tr class="memdesc:a374454978976c3873a89bedc688b983f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Pass number of elements in x-direction, number of elements in y-direction in bottom and top layer, respectively, axial length and height of top and bottom layers, a boolean flag to make the mesh periodic in the x-direction, a boolean flag to specify whether or not to call the "build_two_layer_mesh" function, and pointer to timestepper (defaults to <a class="el" href="classoomph_1_1Steady.html" title="Faux time-stepper for steady problems. Allows storage for NSTEPS previous values.">Steady</a> timestepper)  <br /></td></tr>
 <tr class="separator:a374454978976c3873a89bedc688b983f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add891b913c7bd9476e7d98a872e7e4f5" id="r_add891b913c7bd9476e7d98a872e7e4f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1FiniteElement.html">FiniteElement</a> *&amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TwoLayerSpineMesh.html#add891b913c7bd9476e7d98a872e7e4f5">upper_layer_element_pt</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">long</a> &amp;<a class="el" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>)</td></tr>
 <tr class="memdesc:add891b913c7bd9476e7d98a872e7e4f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access functions for pointers to elements in upper layer.  <br /></td></tr>
@@ -195,17 +189,17 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a441e4c3a46f0ba2210130a59be471e09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index of the face of the elements next to the interface in the lower region (always 2)  <br /></td></tr>
 <tr class="separator:a441e4c3a46f0ba2210130a59be471e09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9b80ae7e34be72ca03f6d1bc6062de4" id="r_ad9b80ae7e34be72ca03f6d1bc6062de4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TwoLayerSpineMesh.html#ad9b80ae7e34be72ca03f6d1bc6062de4">spine_node_update</a> (<a class="el" href="classoomph_1_1SpineNode.html">SpineNode</a> *<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">spine_node_pt</a>)</td></tr>
-<tr class="memdesc:ad9b80ae7e34be72ca03f6d1bc6062de4"><td class="mdescLeft">&#160;</td><td class="mdescRight">General node update function implements pure virtual function defined in <a class="el" href="classoomph_1_1SpineMesh.html" title="/////////////////////////////////////////////////////////////////////// /////////////////////////////...">SpineMesh</a> base class and performs specific update actions, depending on the node update fct id stored for each node.  <br /></td></tr>
+<tr class="memdesc:ad9b80ae7e34be72ca03f6d1bc6062de4"><td class="mdescLeft">&#160;</td><td class="mdescRight">General node update function implements pure virtual function defined in <a class="el" href="classoomph_1_1SpineMesh.html" title="General SpineMesh class.">SpineMesh</a> base class and performs specific update actions, depending on the node update fct id stored for each node.  <br /></td></tr>
 <tr class="separator:ad9b80ae7e34be72ca03f6d1bc6062de4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classoomph_1_1RectangularQuadMesh"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classoomph_1_1RectangularQuadMesh')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classoomph_1_1RectangularQuadMesh.html">oomph::RectangularQuadMesh&lt; ELEMENT &gt;</a></td></tr>
 <tr class="memitem:a1f906bca42da3d44765382013667e40d inherit pub_methods_classoomph_1_1RectangularQuadMesh" id="r_a1f906bca42da3d44765382013667e40d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1RectangularQuadMesh.html#a1f906bca42da3d44765382013667e40d">RectangularQuadMesh</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1RectangularQuadMesh.html#a8755801661f2cec616527ecc3a43fd60">nx</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1RectangularQuadMesh.html#a189759f02bc92144e4abc24cb5bae5a8">ny</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">lx</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">ly</a>, <a class="el" href="classoomph_1_1TimeStepper.html">TimeStepper</a> *time_stepper_pt=&amp;<a class="el" href="classoomph_1_1Mesh.html#a12243d0fee2b1fcee729ee5a4777ea10">Mesh::Default_TimeStepper</a>)</td></tr>
-<tr class="memdesc:a1f906bca42da3d44765382013667e40d inherit pub_methods_classoomph_1_1RectangularQuadMesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple constructor: nx: number of elements in x direction; ny: number of elements in y direction; lx, length of domain in x direction (0,lx); ly, length of domain in y direction (0,ly) Also pass pointer to timestepper (defaults to <a class="el" href="classoomph_1_1Steady.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////...">Steady</a>)  <br /></td></tr>
+<tr class="memdesc:a1f906bca42da3d44765382013667e40d inherit pub_methods_classoomph_1_1RectangularQuadMesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple constructor: nx: number of elements in x direction; ny: number of elements in y direction; lx, length of domain in x direction (0,lx); ly, length of domain in y direction (0,ly) Also pass pointer to timestepper (defaults to <a class="el" href="classoomph_1_1Steady.html" title="Faux time-stepper for steady problems. Allows storage for NSTEPS previous values.">Steady</a>)  <br /></td></tr>
 <tr class="separator:a1f906bca42da3d44765382013667e40d inherit pub_methods_classoomph_1_1RectangularQuadMesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea506679674e4fc5c43b62a53798d0be inherit pub_methods_classoomph_1_1RectangularQuadMesh" id="r_aea506679674e4fc5c43b62a53798d0be"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1RectangularQuadMesh.html#aea506679674e4fc5c43b62a53798d0be">RectangularQuadMesh</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1RectangularQuadMesh.html#a8755801661f2cec616527ecc3a43fd60">nx</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1RectangularQuadMesh.html#a189759f02bc92144e4abc24cb5bae5a8">ny</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">xmin</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">xmax</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">ymin</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">ymax</a>, <a class="el" href="classoomph_1_1TimeStepper.html">TimeStepper</a> *time_stepper_pt=&amp;<a class="el" href="classoomph_1_1Mesh.html#a12243d0fee2b1fcee729ee5a4777ea10">Mesh::Default_TimeStepper</a>)</td></tr>
 <tr class="memdesc:aea506679674e4fc5c43b62a53798d0be inherit pub_methods_classoomph_1_1RectangularQuadMesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that allows the specification of minimum and maximum values of x and y coordinates.  <br /></td></tr>
 <tr class="separator:aea506679674e4fc5c43b62a53798d0be inherit pub_methods_classoomph_1_1RectangularQuadMesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40f120e00d682026e54593ca0f823535 inherit pub_methods_classoomph_1_1RectangularQuadMesh" id="r_a40f120e00d682026e54593ca0f823535"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1RectangularQuadMesh.html#a40f120e00d682026e54593ca0f823535">RectangularQuadMesh</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1RectangularQuadMesh.html#a8755801661f2cec616527ecc3a43fd60">nx</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1RectangularQuadMesh.html#a189759f02bc92144e4abc24cb5bae5a8">ny</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">lx</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">ly</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">periodic_in_x</a>, <a class="el" href="classoomph_1_1TimeStepper.html">TimeStepper</a> *time_stepper_pt=&amp;<a class="el" href="classoomph_1_1Mesh.html#a12243d0fee2b1fcee729ee5a4777ea10">Mesh::Default_TimeStepper</a>)</td></tr>
-<tr class="memdesc:a40f120e00d682026e54593ca0f823535 inherit pub_methods_classoomph_1_1RectangularQuadMesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple constructor: nx: number of elements in x direction; ny: number of elements in y direction; lx, length of domain in x direction (0,lx); ly, length of domain in y direction (0,ly) Boolean flag specifies if the mesh is periodic in the x-direction. Also pass pointer to timestepper (defaults to <a class="el" href="classoomph_1_1Steady.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////...">Steady</a>)  <br /></td></tr>
+<tr class="memdesc:a40f120e00d682026e54593ca0f823535 inherit pub_methods_classoomph_1_1RectangularQuadMesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple constructor: nx: number of elements in x direction; ny: number of elements in y direction; lx, length of domain in x direction (0,lx); ly, length of domain in y direction (0,ly) Boolean flag specifies if the mesh is periodic in the x-direction. Also pass pointer to timestepper (defaults to <a class="el" href="classoomph_1_1Steady.html" title="Faux time-stepper for steady problems. Allows storage for NSTEPS previous values.">Steady</a>)  <br /></td></tr>
 <tr class="separator:a40f120e00d682026e54593ca0f823535 inherit pub_methods_classoomph_1_1RectangularQuadMesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac36869a7d72ec7524b18272657cb6167 inherit pub_methods_classoomph_1_1RectangularQuadMesh" id="r_ac36869a7d72ec7524b18272657cb6167"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1RectangularQuadMesh.html#ac36869a7d72ec7524b18272657cb6167">RectangularQuadMesh</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1RectangularQuadMesh.html#a8755801661f2cec616527ecc3a43fd60">nx</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1RectangularQuadMesh.html#a189759f02bc92144e4abc24cb5bae5a8">ny</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">xmin</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">xmax</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">ymin</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">ymax</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">periodic_in_x</a>, <a class="el" href="classoomph_1_1TimeStepper.html">TimeStepper</a> *time_stepper_pt=&amp;<a class="el" href="classoomph_1_1Mesh.html#a12243d0fee2b1fcee729ee5a4777ea10">Mesh::Default_TimeStepper</a>)</td></tr>
 <tr class="memdesc:ac36869a7d72ec7524b18272657cb6167 inherit pub_methods_classoomph_1_1RectangularQuadMesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that allows the specification of minimum and maximum values of x and y coordinates. Boolean flag specifies if the mesh is periodic in the x-direction.  <br /></td></tr>
@@ -339,6 +333,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad1b124a959628aba00162b89617b3a62 inherit pub_methods_classoomph_1_1Mesh" id="r_ad1b124a959628aba00162b89617b3a62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#ad1b124a959628aba00162b89617b3a62">boundary_coordinate_exists</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>) <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a></td></tr>
 <tr class="memdesc:ad1b124a959628aba00162b89617b3a62 inherit pub_methods_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicate whether the i-th boundary has an intrinsic coordinate.  <br /></td></tr>
 <tr class="separator:ad1b124a959628aba00162b89617b3a62 inherit pub_methods_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab137d0c0debf5ba0d6ea6990103e620c inherit pub_methods_classoomph_1_1Mesh" id="r_ab137d0c0debf5ba0d6ea6990103e620c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#ab137d0c0debf5ba0d6ea6990103e620c">set_boundary_coordinate_exists</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>)</td></tr>
+<tr class="memdesc:ab137d0c0debf5ba0d6ea6990103e620c inherit pub_methods_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set boundary coordinate on the i-th boundary to be existing.  <br /></td></tr>
+<tr class="separator:ab137d0c0debf5ba0d6ea6990103e620c inherit pub_methods_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b9d63e0057ed721190b109f48f7c92e inherit pub_methods_classoomph_1_1Mesh" id="r_a3b9d63e0057ed721190b109f48f7c92e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#a3b9d63e0057ed721190b109f48f7c92e">set_boundary_coordinate_does_not_exist</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>)</td></tr>
+<tr class="memdesc:a3b9d63e0057ed721190b109f48f7c92e inherit pub_methods_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set boundary coordinate on the i-th boundary to be non-existing.  <br /></td></tr>
+<tr class="separator:a3b9d63e0057ed721190b109f48f7c92e inherit pub_methods_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af01dfefb66c15579b540be62999d93ee inherit pub_methods_classoomph_1_1Mesh" id="r_af01dfefb66c15579b540be62999d93ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">long</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#af01dfefb66c15579b540be62999d93ee">nelement</a> () <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a></td></tr>
 <tr class="memdesc:af01dfefb66c15579b540be62999d93ee inherit pub_methods_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return number of elements in the mesh.  <br /></td></tr>
 <tr class="separator:af01dfefb66c15579b540be62999d93ee inherit pub_methods_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -771,7 +771,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:adc29c3a91cc31401c7ba5922a600284c inherit pub_methods_classoomph_1_1SpineMesh" id="r_adc29c3a91cc31401c7ba5922a600284c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1SpineNode.html">SpineNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SpineMesh.html#adc29c3a91cc31401c7ba5922a600284c">element_node_pt</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">long</a> &amp;<a class="el" href="cfortran_8h.html#a37cd013acc76697829c324bdd8562d82">e</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">n</a>)</td></tr>
 <tr class="memdesc:adc29c3a91cc31401c7ba5922a600284c inherit pub_methods_classoomph_1_1SpineMesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the n-th local <a class="el" href="classoomph_1_1SpineNode.html" title="Class for nodes that live on spines. The assumption is that each Node lies at a fixed fraction on a s...">SpineNode</a> in element e. This is required to cast the nodes in a spine mesh to be SpineNodes and therefore allow access to the extra <a class="el" href="classoomph_1_1SpineNode.html" title="Class for nodes that live on spines. The assumption is that each Node lies at a fixed fraction on a s...">SpineNode</a> data.  <br /></td></tr>
 <tr class="separator:adc29c3a91cc31401c7ba5922a600284c inherit pub_methods_classoomph_1_1SpineMesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad969000be2d963bb4427bbde89ac47c2 inherit pub_methods_classoomph_1_1SpineMesh" id="r_ad969000be2d963bb4427bbde89ac47c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">long</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SpineMesh.html#ad969000be2d963bb4427bbde89ac47c2">assign_global_spine_eqn_numbers</a> (<a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> * &gt; &amp;Dof_pt)</td></tr>
+<tr class="memitem:ad969000be2d963bb4427bbde89ac47c2 inherit pub_methods_classoomph_1_1SpineMesh" id="r_ad969000be2d963bb4427bbde89ac47c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">virtual</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">long</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SpineMesh.html#ad969000be2d963bb4427bbde89ac47c2">assign_global_spine_eqn_numbers</a> (<a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> * &gt; &amp;Dof_pt)</td></tr>
 <tr class="memdesc:ad969000be2d963bb4427bbde89ac47c2 inherit pub_methods_classoomph_1_1SpineMesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assign spines to Spine_pt vector of element.  <br /></td></tr>
 <tr class="separator:ad969000be2d963bb4427bbde89ac47c2 inherit pub_methods_classoomph_1_1SpineMesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94766043ec96db8388476b62556bad16 inherit pub_methods_classoomph_1_1SpineMesh" id="r_a94766043ec96db8388476b62556bad16"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SpineMesh.html#a94766043ec96db8388476b62556bad16">describe_spine_dofs</a> (std::ostream &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">out</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> std::string &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">current_string</a>) <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a></td></tr>
@@ -952,9 +952,6 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:aca12acfe655a4d5c4a4eab4a7b970812 inherit pro_attribs_classoomph_1_1Mesh" id="r_aca12acfe655a4d5c4a4eab4a7b970812"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; <a class="el" href="classoomph_1_1GeneralisedElement.html">GeneralisedElement</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#aca12acfe655a4d5c4a4eab4a7b970812">Element_pt</a></td></tr>
 <tr class="memdesc:aca12acfe655a4d5c4a4eab4a7b970812 inherit pro_attribs_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> of pointers to generalised elements.  <br /></td></tr>
 <tr class="separator:aca12acfe655a4d5c4a4eab4a7b970812 inherit pro_attribs_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a412a5051be9e81f0ba61bf85e5abc4a6 inherit pro_attribs_classoomph_1_1Mesh" id="r_a412a5051be9e81f0ba61bf85e5abc4a6"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#a412a5051be9e81f0ba61bf85e5abc4a6">Boundary_coordinate_exists</a></td></tr>
-<tr class="memdesc:a412a5051be9e81f0ba61bf85e5abc4a6 inherit pro_attribs_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> of boolean data that indicates whether the boundary coordinates have been set for the boundary.  <br /></td></tr>
-<tr class="separator:a412a5051be9e81f0ba61bf85e5abc4a6 inherit pro_attribs_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classoomph_1_1SpineMesh"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classoomph_1_1SpineMesh')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classoomph_1_1SpineMesh.html">oomph::SpineMesh</a></td></tr>
 <tr class="memitem:a4f3e5e603b61921f52a4311d347d1158 inherit pro_attribs_classoomph_1_1SpineMesh" id="r_a4f3e5e603b61921f52a4311d347d1158"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; <a class="el" href="classoomph_1_1Spine.html">Spine</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SpineMesh.html#a4f3e5e603b61921f52a4311d347d1158">Spine_pt</a></td></tr>
 <tr class="memdesc:a4f3e5e603b61921f52a4311d347d1158 inherit pro_attribs_classoomph_1_1SpineMesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <a class="el" href="classoomph_1_1Spine.html" title="Spines are used for algebraic node update operations in free-surface fluid problems: They form the ba...">Spine</a> mesh contains a <a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> of pointers to spines.  <br /></td></tr>
@@ -975,7 +972,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a90a3555bd14fdfe3b0c503672f832a43 inherit pub_attribs_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_attribs_classoomph_1_1Mesh"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_classoomph_1_1Mesh')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="classoomph_1_1Mesh.html">oomph::Mesh</a></td></tr>
 <tr class="memitem:a12243d0fee2b1fcee729ee5a4777ea10 inherit pub_static_attribs_classoomph_1_1Mesh" id="r_a12243d0fee2b1fcee729ee5a4777ea10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">static</a> <a class="el" href="classoomph_1_1Steady.html">Steady</a>&lt; 0 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#a12243d0fee2b1fcee729ee5a4777ea10">Default_TimeStepper</a></td></tr>
-<tr class="memdesc:a12243d0fee2b1fcee729ee5a4777ea10 inherit pub_static_attribs_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default <a class="el" href="classoomph_1_1Steady.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////...">Steady</a> Timestepper, to be used in default arguments to <a class="el" href="classoomph_1_1Mesh.html" title="A general mesh class.">Mesh</a> constructors.  <br /></td></tr>
+<tr class="memdesc:a12243d0fee2b1fcee729ee5a4777ea10 inherit pub_static_attribs_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default <a class="el" href="classoomph_1_1Steady.html" title="Faux time-stepper for steady problems. Allows storage for NSTEPS previous values.">Steady</a> Timestepper, to be used in default arguments to <a class="el" href="classoomph_1_1Mesh.html" title="A general mesh class.">Mesh</a> constructors.  <br /></td></tr>
 <tr class="separator:a12243d0fee2b1fcee729ee5a4777ea10 inherit pub_static_attribs_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada6bc12304d1536b747596d1049e48be inherit pub_static_attribs_classoomph_1_1Mesh" id="r_ada6bc12304d1536b747596d1049e48be"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">static</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#ada6bc12304d1536b747596d1049e48be">Suppress_warning_about_empty_mesh_level_time_stepper_function</a></td></tr>
 <tr class="memdesc:ada6bc12304d1536b747596d1049e48be inherit pub_static_attribs_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean used to control warning about empty mesh level timestepper function.  <br /></td></tr>
@@ -995,7 +992,7 @@ class oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;</div><p>Two-layer spine mesh cla
 |                                     |</h2>
 <p>0 Update information for the nodes in response to changes in spine length is given, but additional equations must be specified in order to completely specify the problem. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00059">59</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00058">58</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a0c41a93e9ccaaa34956215e64611be2a" name="a0c41a93e9ccaaa34956215e64611be2a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0c41a93e9ccaaa34956215e64611be2a">&#9670;&#160;</a></span>TwoLayerSpineMesh() <span class="overload">[1/3]</span></h2>
@@ -1055,13 +1052,13 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
       </table>
 </div><div class="memdoc">
 
-<p>Constructor: Pass number of elements in x-direction, number of elements in y-direction in bottom and top layer, respectively, axial length and height of top and bottom layers and pointer to timestepper (defaults to <a class="el" href="classoomph_1_1Steady.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////...">Steady</a> timestepper) </p>
+<p>Constructor: Pass number of elements in x-direction, number of elements in y-direction in bottom and top layer, respectively, axial length and height of top and bottom layers and pointer to timestepper (defaults to <a class="el" href="classoomph_1_1Steady.html" title="Faux time-stepper for steady problems. Allows storage for NSTEPS previous values.">Steady</a> timestepper) </p>
 <p>Constuctor for spine 2D mesh: Pass number of elements in x-direction, number of elements in y-direction in bottom and top layer, respectively, axial length and height of top and bottom layers, and pointer to timestepper (defaults to Static timestepper).</p>
 <p>The mesh contains two layers of elements (of type ELEMENT; e.g <a class="el" href="classoomph_1_1SpineElement.html" title="The SpineElement&lt;ELEMENT&gt; class takes an existing element as a template parameter and adds the necess...">SpineElement</a>&lt;QCrouzeixRaviartElement&lt;2&gt;) and an interfacial layer of corresponding <a class="el" href="classoomph_1_1Spine.html" title="Spines are used for algebraic node update operations in free-surface fluid problems: They form the ba...">Spine</a> interface elements of type INTERFACE_ELEMENT, e.g. SpineLineFluidInterfaceElement&lt;ELEMENT&gt; for 2D planar problems. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00049">49</a> of file <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html">two_layer_spine_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00051">51</a> of file <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html">two_layer_spine_mesh.template.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00267">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::build_two_layer_mesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00207">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::H1</a>, <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00210">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::H2</a>, <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00201">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Ny1</a>, and <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00204">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Ny2</a>.</p>
+<p class="reference">References <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00266">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::build_two_layer_mesh()</a>, <a class="el" href="two__layer__spine__mesh_8h_source.html#l00205">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::H1</a>, <a class="el" href="two__layer__spine__mesh_8h_source.html#l00208">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::H2</a>, <a class="el" href="two__layer__spine__mesh_8h_source.html#l00199">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Ny1</a>, and <a class="el" href="two__layer__spine__mesh_8h_source.html#l00202">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Ny2</a>.</p>
 
 </div>
 </div>
@@ -1129,13 +1126,13 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
       </table>
 </div><div class="memdoc">
 
-<p>Constructor: Pass number of elements in x-direction, number of elements in y-direction in bottom and top layer, respectively, axial length and height of top and bottom layers, a boolean flag to make the mesh periodic in the x-direction, and pointer to timestepper (defaults to <a class="el" href="classoomph_1_1Steady.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////...">Steady</a> timestepper) </p>
+<p>Constructor: Pass number of elements in x-direction, number of elements in y-direction in bottom and top layer, respectively, axial length and height of top and bottom layers, a boolean flag to make the mesh periodic in the x-direction, and pointer to timestepper (defaults to <a class="el" href="classoomph_1_1Steady.html" title="Faux time-stepper for steady problems. Allows storage for NSTEPS previous values.">Steady</a> timestepper) </p>
 <p>Constuctor for spine 2D mesh: Pass number of elements in x-direction, number of elements in y-direction in bottom and top layer, respectively, axial length and height of top and bottom layers, a boolean flag to make the mesh periodic in the x-direction, and pointer to timestepper (defaults to Static timestepper).</p>
 <p>The mesh contains two layers of elements (of type ELEMENT; e.g <a class="el" href="classoomph_1_1SpineElement.html" title="The SpineElement&lt;ELEMENT&gt; class takes an existing element as a template parameter and adds the necess...">SpineElement</a>&lt;QCrouzeixRaviartElement&lt;2&gt;) and an interfacial layer of corresponding <a class="el" href="classoomph_1_1Spine.html" title="Spines are used for algebraic node update operations in free-surface fluid problems: They form the ba...">Spine</a> interface elements of type INTERFACE_ELEMENT, e.g. SpineLineFluidInterfaceElement&lt;ELEMENT&gt; for 2D planar problems. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00098">98</a> of file <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html">two_layer_spine_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00099">99</a> of file <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html">two_layer_spine_mesh.template.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00267">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::build_two_layer_mesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00207">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::H1</a>, <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00210">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::H2</a>, <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00201">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Ny1</a>, and <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00204">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Ny2</a>.</p>
+<p class="reference">References <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00266">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::build_two_layer_mesh()</a>, <a class="el" href="two__layer__spine__mesh_8h_source.html#l00205">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::H1</a>, <a class="el" href="two__layer__spine__mesh_8h_source.html#l00208">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::H2</a>, <a class="el" href="two__layer__spine__mesh_8h_source.html#l00199">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Ny1</a>, and <a class="el" href="two__layer__spine__mesh_8h_source.html#l00202">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Ny2</a>.</p>
 
 </div>
 </div>
@@ -1209,13 +1206,13 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
       </table>
 </div><div class="memdoc">
 
-<p>Constructor: Pass number of elements in x-direction, number of elements in y-direction in bottom and top layer, respectively, axial length and height of top and bottom layers, a boolean flag to make the mesh periodic in the x-direction, a boolean flag to specify whether or not to call the "build_two_layer_mesh" function, and pointer to timestepper (defaults to <a class="el" href="classoomph_1_1Steady.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////...">Steady</a> timestepper) </p>
+<p>Constructor: Pass number of elements in x-direction, number of elements in y-direction in bottom and top layer, respectively, axial length and height of top and bottom layers, a boolean flag to make the mesh periodic in the x-direction, a boolean flag to specify whether or not to call the "build_two_layer_mesh" function, and pointer to timestepper (defaults to <a class="el" href="classoomph_1_1Steady.html" title="Faux time-stepper for steady problems. Allows storage for NSTEPS previous values.">Steady</a> timestepper) </p>
 <p>Constuctor for spine 2D mesh: Pass number of elements in x-direction, number of elements in y-direction in bottom and top layer, respectively, axial length and height of top and bottom layers, a boolean flag to make the mesh periodic in the x-direction, a boolean flag to specify whether or not to call the "build_two_layer_mesh" function, and pointer to timestepper (defaults to Static timestepper).</p>
 <p>The mesh contains two layers of elements (of type ELEMENT; e.g <a class="el" href="classoomph_1_1SpineElement.html" title="The SpineElement&lt;ELEMENT&gt; class takes an existing element as a template parameter and adds the necess...">SpineElement</a>&lt;QCrouzeixRaviartElement&lt;2&gt;) and an interfacial layer of corresponding <a class="el" href="classoomph_1_1Spine.html" title="Spines are used for algebraic node update operations in free-surface fluid problems: They form the ba...">Spine</a> interface elements of type INTERFACE_ELEMENT, e.g. SpineLineFluidInterfaceElement&lt;ELEMENT&gt; for 2D planar problems. </p>
 
 <p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00156">156</a> of file <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html">two_layer_spine_mesh.template.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="rectangular__quadmesh_8template_8cc_source.html#l00043">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::build_mesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00267">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::build_two_layer_mesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00207">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::H1</a>, <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00210">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::H2</a>, <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00201">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Ny1</a>, and <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00204">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Ny2</a>.</p>
+<p class="reference">References <a class="el" href="rectangular__quadmesh_8template_8cc_source.html#l00044">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::build_mesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00266">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::build_two_layer_mesh()</a>, <a class="el" href="two__layer__spine__mesh_8h_source.html#l00205">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::H1</a>, <a class="el" href="two__layer__spine__mesh_8h_source.html#l00208">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::H2</a>, <a class="el" href="two__layer__spine__mesh_8h_source.html#l00199">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Ny1</a>, and <a class="el" href="two__layer__spine__mesh_8h_source.html#l00202">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Ny2</a>.</p>
 
 </div>
 </div>
@@ -1249,11 +1246,11 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 <p>Helper function to actually build the two-layer spine mesh (called from various constructors) </p>
 <p>Helper function that actually builds the two-layer spine mesh based on the parameters set in the various constructors. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00267">267</a> of file <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html">two_layer_spine_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00266">266</a> of file <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html">two_layer_spine_mesh.template.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="rectangular__quadmesh_8template_8cc_source.html#l00043">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::build_mesh()</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="elements_8h_source.html#l02222">oomph::FiniteElement::nnode_1d()</a>, <a class="el" href="elements_8h_source.html#l02179">oomph::FiniteElement::node_pt()</a>, <a class="el" href="Tadvection__diffusion__reaction__elements_8h_source.html#l00070">oomph::TAdvectionDiffusionReactionElement&lt; NREAGENT, DIM, NNODE_1D &gt;::TAdvectionDiffusionReactionElement()</a>, and <a class="el" href="geom__objects_8h_source.html#l00192">oomph::GeomObject::time_stepper_pt()</a>.</p>
+<p class="reference">References <a class="el" href="rectangular__quadmesh_8template_8cc_source.html#l00044">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::build_mesh()</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="elements_8h_source.html#l02222">oomph::FiniteElement::nnode_1d()</a>, <a class="el" href="elements_8h_source.html#l02179">oomph::FiniteElement::node_pt()</a>, <a class="el" href="Tadvection__diffusion__reaction__elements_8h_source.html#l00070">oomph::TAdvectionDiffusionReactionElement&lt; NREAGENT, DIM, NNODE_1D &gt;::TAdvectionDiffusionReactionElement()</a>, and <a class="el" href="geom__objects_8h_source.html#l00192">oomph::GeomObject::time_stepper_pt()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00156">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00098">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00049">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00156">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00099">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00051">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>.</p>
 
 </div>
 </div>
@@ -1285,9 +1282,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Access functions for pointers to elements in bottom layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00141">141</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00140">140</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00603">i</a>, and <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00220">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Interface_lower_boundary_element_pt</a>.</p>
+<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00603">i</a>, and <a class="el" href="two__layer__spine__mesh_8h_source.html#l00218">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Interface_lower_boundary_element_pt</a>.</p>
 
 </div>
 </div>
@@ -1319,7 +1316,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Index of the face of the elements next to the interface in the lower region (always 2) </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00167">167</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00166">166</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -1351,9 +1348,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Access functions for pointers to elements in upper layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00135">135</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00134">134</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00603">i</a>, and <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00224">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Interface_upper_boundary_element_pt</a>.</p>
+<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00603">i</a>, and <a class="el" href="two__layer__spine__mesh_8h_source.html#l00222">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Interface_upper_boundary_element_pt</a>.</p>
 
 </div>
 </div>
@@ -1385,7 +1382,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Index of the face of the elements next to the interface in the upper region (always -2) </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00160">160</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00159">159</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -1417,9 +1414,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Access functions for pointers to elements in bottom layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00117">117</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00116">116</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00603">i</a>, and <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00213">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Lower_layer_element_pt</a>.</p>
+<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00603">i</a>, and <a class="el" href="two__layer__spine__mesh_8h_source.html#l00211">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Lower_layer_element_pt</a>.</p>
 
 </div>
 </div>
@@ -1450,9 +1447,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Number of elements in top layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00153">153</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00152">152</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00220">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Interface_lower_boundary_element_pt</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
+<p class="reference">References <a class="el" href="two__layer__spine__mesh_8h_source.html#l00218">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Interface_lower_boundary_element_pt</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
 
 </div>
 </div>
@@ -1483,9 +1480,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Number of elements in upper layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00147">147</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00146">146</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00224">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Interface_upper_boundary_element_pt</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
+<p class="reference">References <a class="el" href="two__layer__spine__mesh_8h_source.html#l00222">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Interface_upper_boundary_element_pt</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
 
 </div>
 </div>
@@ -1516,9 +1513,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Number of elements in top layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00129">129</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00128">128</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00213">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Lower_layer_element_pt</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
+<p class="reference">References <a class="el" href="two__layer__spine__mesh_8h_source.html#l00211">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Lower_layer_element_pt</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
 
 </div>
 </div>
@@ -1549,9 +1546,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Number of elements in upper layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00123">123</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00122">122</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00216">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Upper_layer_element_pt</a>.</p>
+<p class="reference">References <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>, and <a class="el" href="two__layer__spine__mesh_8h_source.html#l00214">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Upper_layer_element_pt</a>.</p>
 
 </div>
 </div>
@@ -1581,13 +1578,13 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 </table>
 </div><div class="memdoc">
 
-<p>General node update function implements pure virtual function defined in <a class="el" href="classoomph_1_1SpineMesh.html" title="/////////////////////////////////////////////////////////////////////// /////////////////////////////...">SpineMesh</a> base class and performs specific update actions, depending on the node update fct id stored for each node. </p>
+<p>General node update function implements pure virtual function defined in <a class="el" href="classoomph_1_1SpineMesh.html" title="General SpineMesh class.">SpineMesh</a> base class and performs specific update actions, depending on the node update fct id stored for each node. </p>
 
 <p>Implements <a class="el" href="classoomph_1_1SpineMesh.html#aa7843aadce3c540f34442671f59eb75b">oomph::SpineMesh</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00175">175</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00174">174</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00242">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::spine_node_update_lower()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00254">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::spine_node_update_upper()</a>.</p>
+<p class="reference">References <a class="el" href="two__layer__spine__mesh_8h_source.html#l00240">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::spine_node_update_lower()</a>, and <a class="el" href="two__layer__spine__mesh_8h_source.html#l00252">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::spine_node_update_upper()</a>.</p>
 
 </div>
 </div>
@@ -1619,11 +1616,11 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Update function for the lower part of the domain. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00242">242</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00240">240</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="rectangular__quadmesh_8template_8h_source.html#l00075">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::Ymin</a>.</p>
+<p class="reference">References <a class="el" href="rectangular__quadmesh_8h_source.html#l00075">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::Ymin</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00175">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::spine_node_update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8h_source.html#l00174">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::spine_node_update()</a>.</p>
 
 </div>
 </div>
@@ -1655,11 +1652,11 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Update function for the upper part of the domain. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00254">254</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00252">252</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="rectangular__quadmesh_8template_8h_source.html#l00077">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::Ymax</a>, and <a class="el" href="rectangular__quadmesh_8template_8h_source.html#l00075">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::Ymin</a>.</p>
+<p class="reference">References <a class="el" href="rectangular__quadmesh_8h_source.html#l00077">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::Ymax</a>, and <a class="el" href="rectangular__quadmesh_8h_source.html#l00075">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::Ymin</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00175">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::spine_node_update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8h_source.html#l00174">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::spine_node_update()</a>.</p>
 
 </div>
 </div>
@@ -1691,9 +1688,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Access functions for pointers to elements in upper layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00111">111</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00110">110</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00603">i</a>, and <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00216">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Upper_layer_element_pt</a>.</p>
+<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00603">i</a>, and <a class="el" href="two__layer__spine__mesh_8h_source.html#l00214">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::Upper_layer_element_pt</a>.</p>
 
 </div>
 </div>
@@ -1750,7 +1747,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Reimplemented from <a class="el" href="classoomph_1_1RectangularQuadMesh.html#ad4c2f349cf201cb3107f0a4e5447c16f">oomph::RectangularQuadMesh&lt; ELEMENT &gt;</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00211">211</a> of file <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html">two_layer_spine_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00210">210</a> of file <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html">two_layer_spine_mesh.template.cc</a>.</p>
 
 </div>
 </div>
@@ -1807,7 +1804,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Reimplemented from <a class="el" href="classoomph_1_1RectangularQuadMesh.html#ae78204de1f176cdf2e819673bd34e78a">oomph::RectangularQuadMesh&lt; ELEMENT &gt;</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00227">227</a> of file <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html">two_layer_spine_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00226">226</a> of file <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html">two_layer_spine_mesh.template.cc</a>.</p>
 
 <p class="reference">References <a class="el" href="Tadvection__diffusion__reaction__elements_8h_source.html#l00070">oomph::TAdvectionDiffusionReactionElement&lt; NREAGENT, DIM, NNODE_1D &gt;::TAdvectionDiffusionReactionElement()</a>.</p>
 
@@ -1838,9 +1835,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Height of the lower layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00207">207</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00205">205</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00156">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00098">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00049">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00156">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00099">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00051">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>.</p>
 
 </div>
 </div>
@@ -1868,9 +1865,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Height of the upper layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00210">210</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00208">208</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00156">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00098">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00049">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00156">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00099">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00051">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>.</p>
 
 </div>
 </div>
@@ -1898,9 +1895,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p><a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> of pointers to the elements adjacent to the interface on the lower layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00220">220</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00218">218</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00141">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::interface_lower_boundary_element_pt()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00153">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::ninterface_lower()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8h_source.html#l00140">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::interface_lower_boundary_element_pt()</a>, and <a class="el" href="two__layer__spine__mesh_8h_source.html#l00152">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::ninterface_lower()</a>.</p>
 
 </div>
 </div>
@@ -1928,9 +1925,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p><a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> of pointers to the element adjacent to the interface on the upper layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00224">224</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00222">222</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00135">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::interface_upper_boundary_element_pt()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00147">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::ninterface_upper()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8h_source.html#l00134">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::interface_upper_boundary_element_pt()</a>, and <a class="el" href="two__layer__spine__mesh_8h_source.html#l00146">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::ninterface_upper()</a>.</p>
 
 </div>
 </div>
@@ -1958,9 +1955,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p><a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> of pointers to element in the upper layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00213">213</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00211">211</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00117">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::lower_layer_element_pt()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00129">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::nlower()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8h_source.html#l00116">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::lower_layer_element_pt()</a>, and <a class="el" href="two__layer__spine__mesh_8h_source.html#l00128">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::nlower()</a>.</p>
 
 </div>
 </div>
@@ -1988,9 +1985,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Number of elements in lower layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00201">201</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00199">199</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00156">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00098">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00049">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00156">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00099">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00051">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>.</p>
 
 </div>
 </div>
@@ -2018,9 +2015,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Number of elements in upper layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00204">204</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00202">202</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00156">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00098">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00049">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00156">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00099">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8cc_source.html#l00051">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::TwoLayerSpineMesh()</a>.</p>
 
 </div>
 </div>
@@ -2048,14 +2045,14 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p><a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> of pointers to element in the lower layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00216">216</a> of file <a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="two__layer__spine__mesh_8h_source.html#l00214">214</a> of file <a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00123">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::nupper()</a>, and <a class="el" href="two__layer__spine__mesh_8template_8h_source.html#l00111">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::upper_layer_element_pt()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="two__layer__spine__mesh_8h_source.html#l00122">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::nupper()</a>, and <a class="el" href="two__layer__spine__mesh_8h_source.html#l00110">oomph::TwoLayerSpineMesh&lt; ELEMENT &gt;::upper_layer_element_pt()</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="two__layer__spine__mesh_8template_8h_source.html">two_layer_spine_mesh.template.h</a></li>
+<li><a class="el" href="two__layer__spine__mesh_8h_source.html">two_layer_spine_mesh.h</a></li>
 <li><a class="el" href="two__layer__spine__mesh_8template_8cc_source.html">two_layer_spine_mesh.template.cc</a></li>
 </ul>
 </div><!-- contents -->
@@ -2086,7 +2083,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:05:58
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:43:42
         </div>
       </div>
     </footer>

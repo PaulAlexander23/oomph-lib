@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -120,7 +114,7 @@
 <div class="line"><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><span class="comment">//LIC// </span></div>
-<div class="line"><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><span class="comment">//LIC// </span></div>
 <div class="line"><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -163,9 +157,9 @@
 <div class="line"> </div>
 <div class="line">  </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><span class="comment"></span>  </div>
 <div class="line"> </div>
 <div class="line"><span class="comment">//==================================================</span><span class="comment"></span></div>
@@ -185,9 +179,9 @@
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"> </div>
 <div class="line"><span class="comment">//====================================================================</span><span class="comment"></span></div>
@@ -615,7 +609,7 @@
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output solution on fluid mesh</span></div>
 <div class="line"> <span class="comment">//-------------------------------</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> <span class="comment">//some_file.precision(20);</span></div>
 <div class="line"> some_file.open(filename);</div>
@@ -630,7 +624,7 @@
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Plot wall posn</span></div>
 <div class="line"> <span class="comment">//---------------</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/Wall%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/Wall%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> </div>
@@ -648,7 +642,7 @@
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Doc Sarah&#39;s asymptotic solution </span></div>
 <div class="line"> <span class="comment">//--------------------------------</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> fluid_mesh_pt()-&gt;output_fct(some_file,npts,</div>
@@ -771,7 +765,7 @@
 <div class="line">  }</div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output fluid solution on coarse mesh</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/coarse_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/coarse_soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> nelem=coarse_mesh_pt-&gt;nelement();</div>
@@ -783,7 +777,7 @@
 <div class="line"> some_file.close();</div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Write restart file</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/restart%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/restart%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> dump_it(some_file,doc_info);</div>
@@ -851,7 +845,7 @@
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Open trace file</span></div>
 <div class="line"> <span class="keywordtype">char</span> filename[100];   </div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/trace.dat&quot;</span>,doc_info.directory().c_str());</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/trace.dat&quot;</span>,doc_info.directory().c_str());</div>
 <div class="line"> Trace_file.open(filename);</div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Max. number of adaptations per solve</span></div>
@@ -1022,9 +1016,9 @@
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"> </div>
 <div class="line"> </div>
@@ -1180,7 +1174,7 @@
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"> </div>
-<div class="ttc" id="aclassOscRingNStProblem_html"><div class="ttname"><a href="classOscRingNStProblem.html">OscRingNStProblem</a></div><div class="ttdoc">///////////////////////////////////////////////////////////////////// ///////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="osc__ring__alg_8cc_source.html#l00085">osc_ring_alg.cc:86</a></div></div>
+<div class="ttc" id="aclassOscRingNStProblem_html"><div class="ttname"><a href="classOscRingNStProblem.html">OscRingNStProblem</a></div><div class="ttdoc">Driver for oscillating ring problem: Wall performs oscillations that resemble eigenmodes of freely os...</div><div class="ttdef"><b>Definition</b> <a href="osc__ring__alg_8cc_source.html#l00085">osc_ring_alg.cc:86</a></div></div>
 <div class="ttc" id="aclassOscRingNStProblem_html_a00e957fb6a313a9c1de784d0fa3a7a36"><div class="ttname"><a href="classOscRingNStProblem.html#a00e957fb6a313a9c1de784d0fa3a7a36">OscRingNStProblem::unsteady_run</a></div><div class="ttdeci">void unsteady_run(const unsigned &amp;ntsteps, const bool &amp;restarted, DocInfo &amp;doc_info)</div><div class="ttdoc">Run the time integration for ntsteps steps.</div><div class="ttdef"><b>Definition</b> <a href="osc__ring__alg_8cc_source.html#l00731">osc_ring_alg.cc:731</a></div></div>
 <div class="ttc" id="aclassOscRingNStProblem_html_a0cf01737b8d53213d644413e84251d0f"><div class="ttname"><a href="classOscRingNStProblem.html#a0cf01737b8d53213d644413e84251d0f">OscRingNStProblem::restart</a></div><div class="ttdeci">void restart(ifstream &amp;restart_file)</div><div class="ttdoc">Read problem data.</div><div class="ttdef"><b>Definition</b> <a href="osc__ring__alg_8cc_source.html#l00704">osc_ring_alg.cc:704</a></div></div>
 <div class="ttc" id="aclassOscRingNStProblem_html_a1349ecb860cacb34792fde6807d92905"><div class="ttname"><a href="classOscRingNStProblem.html#a1349ecb860cacb34792fde6807d92905">OscRingNStProblem::Wall_pt</a></div><div class="ttdeci">GeomObject * Wall_pt</div><div class="ttdoc">Pointer to wall.</div><div class="ttdef"><b>Definition</b> <a href="osc__ring__alg_8cc_source.html#l00183">osc_ring_alg.cc:183</a></div></div>
@@ -1212,7 +1206,7 @@
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -1242,7 +1236,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:25:44
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:33:59
         </div>
       </div>
     </footer>

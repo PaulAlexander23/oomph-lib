@@ -23,7 +23,7 @@ Detailed documentation to be written. Here\textquotesingle{}s a plot of the resu
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -63,9 +63,9 @@ Detailed documentation to be written. Here\textquotesingle{}s a plot of the resu
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespaceoomph}{oomph}};}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{}
 \DoxyCodeLine{}
@@ -86,9 +86,9 @@ Detailed documentation to be written. Here\textquotesingle{}s a plot of the resu
 \DoxyCodeLine{\}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{}
 \DoxyCodeLine{}
@@ -145,7 +145,7 @@ Detailed documentation to be written. Here\textquotesingle{}s a plot of the resu
 \DoxyCodeLine{\textcolor{comment}{\ ///\ represents\ the\ fish's\ back}}
 \DoxyCodeLine{\textcolor{comment}{}\ \textcolor{keywordtype}{double}\&\ \mbox{\hyperlink{classRefineableFishPoissonProblem_a5096bfa3d5e90c0b66c2d2c7340567c9}{y\_c}}()}
 \DoxyCodeLine{\ \ \{}
-\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{old__for__doc_8cc_abb923e967929c29b3a4fa1693604952a}{ElasticallySupportedRingElement}}*\textcolor{keyword}{>}(\mbox{\hyperlink{classRefineableFishPoissonProblem_a7b6a368aa599f73d3c578b985af2fecc}{fish\_mesh\_pt}}()-\/>}
+\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{classoomph_1_1ElasticallySupportedRingElement}{ElasticallySupportedRingElement}}*\textcolor{keyword}{>}(\mbox{\hyperlink{classRefineableFishPoissonProblem_a7b6a368aa599f73d3c578b985af2fecc}{fish\_mesh\_pt}}()-\/>}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{old__for__doc_8cc_abb923e967929c29b3a4fa1693604952a}{fish\_back\_pt}}())-\/>\mbox{\hyperlink{classRefineableFishPoissonProblem_a5096bfa3d5e90c0b66c2d2c7340567c9}{y\_c}}();}
 \DoxyCodeLine{\ \ \}}
 \DoxyCodeLine{\textcolor{comment}{}}
@@ -271,7 +271,7 @@ Detailed documentation to be written. Here\textquotesingle{}s a plot of the resu
 \DoxyCodeLine{\ }
 \DoxyCodeLine{\ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}}[100];}
-\DoxyCodeLine{\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{sprintf}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}},\textcolor{stringliteral}{"{}\%s/trace.dat"{}},\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{directory\_name}}.c\_str());}
+\DoxyCodeLine{\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{snprintf}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}}),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{directory\_name}}.c\_str());}
 \DoxyCodeLine{\ Trace\_file.open(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}});}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ Trace\_file\ }
@@ -284,7 +284,7 @@ Detailed documentation to be written. Here\textquotesingle{}s a plot of the resu
 \DoxyCodeLine{\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{r\_back}}=1.0;}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Build\ geometric\ element\ that\ will\ become\ the\ fish\ back}}
-\DoxyCodeLine{\ GeomObject*\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{fish\_back\_pt}}=\textcolor{keyword}{new}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{ElasticallySupportedRingElement}}(x\_c,y\_c,\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{r\_back}});}
+\DoxyCodeLine{\ GeomObject*\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{fish\_back\_pt}}=\textcolor{keyword}{new}\ \mbox{\hyperlink{classoomph_1_1ElasticallySupportedRingElement}{ElasticallySupportedRingElement}}(x\_c,y\_c,\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{r\_back}});}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Build\ fish\ mesh\ with\ geometric\ object\ that\ specifies\ the\ fish\ back\ }}
 \DoxyCodeLine{\ Fish\_mesh\_pt=\textcolor{keyword}{new}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{AlgebraicRefineableFishMesh<ELEMENT>}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{fish\_back\_pt}});}
@@ -298,7 +298,7 @@ Detailed documentation to be written. Here\textquotesingle{}s a plot of the resu
 \DoxyCodeLine{\ \textcolor{comment}{//\ So\ far,\ the\ mesh\ is\ completely\ empty.\ Let's\ add\ the\ }}
 \DoxyCodeLine{\ \textcolor{comment}{//\ one\ (and\ only!)\ GeneralisedElement\ which\ represents\ the\ shape}}
 \DoxyCodeLine{\ \textcolor{comment}{//\ of\ the\ fish's\ back\ to\ it:}}
-\DoxyCodeLine{\ Fish\_back\_mesh\_pt-\/>add\_element\_pt(\textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{GeneralisedElement}}*\textcolor{keyword}{>}(}
+\DoxyCodeLine{\ Fish\_back\_mesh\_pt-\/>add\_element\_pt(\textcolor{keyword}{dynamic\_cast<}GeneralisedElement*\textcolor{keyword}{>}(}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Fish\_mesh\_pt-\/>fish\_back\_pt()));}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Add\ the\ fish\ back\ mesh\ to\ the\ problem's\ collection\ of\ submeshes:}}
@@ -336,8 +336,8 @@ Detailed documentation to be written. Here\textquotesingle{}s a plot of the resu
 \DoxyCodeLine{\ \ \ Load\_pt-\/>pin(0);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ Pin\ the\ vertical\ displacement}}
-\DoxyCodeLine{\ \ \ \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{ElasticallySupportedRingElement}}*\textcolor{keyword}{>}(}
-\DoxyCodeLine{\ \ \ \ Fish\_mesh\_pt-\/>fish\_back\_pt())-\/>\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{pin\_yc}}();}
+\DoxyCodeLine{\ \ \ \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1ElasticallySupportedRingElement}{ElasticallySupportedRingElement}}*\textcolor{keyword}{>}(}
+\DoxyCodeLine{\ \ \ \ Fish\_mesh\_pt-\/>fish\_back\_pt())-\/>pin\_yc();}
 \DoxyCodeLine{\ \ \}}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Coupled\ problem:\ The\ position\ of\ the\ fish\ back\ is\ determined}}
 \DoxyCodeLine{\ \textcolor{comment}{//\ via\ the\ solution\ of\ the\ Poisson\ equation:\ The\ solution\ at}}
@@ -353,8 +353,8 @@ Detailed documentation to be written. Here\textquotesingle{}s a plot of the resu
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Set\ the\ pointer\ to\ the\ Data\ object\ that\ specifies\ the\ }}
 \DoxyCodeLine{\ \textcolor{comment}{//\ load\ on\ the\ fish's\ back}}
-\DoxyCodeLine{\ \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{ElasticallySupportedRingElement}}*\textcolor{keyword}{>}(Fish\_mesh\_pt-\/>fish\_back\_pt())-\/>}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{set\_load\_pt}}(Load\_pt);}
+\DoxyCodeLine{\ \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1ElasticallySupportedRingElement}{ElasticallySupportedRingElement}}*\textcolor{keyword}{>}(Fish\_mesh\_pt-\/>fish\_back\_pt())-\/>}
+\DoxyCodeLine{\ \ set\_load\_pt(Load\_pt);}
 \DoxyCodeLine{\ }
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Set\ the\ boundary\ conditions\ for\ this\ problem:\ All\ nodes\ are}}
@@ -435,12 +435,12 @@ Detailed documentation to be written. Here\textquotesingle{}s a plot of the resu
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ solution\ }}
 \DoxyCodeLine{\ \textcolor{keywordflow}{if}\ (Case\_id!=0)}
 \DoxyCodeLine{\ \ \{}
-\DoxyCodeLine{\ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{sprintf}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}},\textcolor{stringliteral}{"{}\%s/soln\_\%i\_\%i.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{snprintf}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}}),\ \textcolor{stringliteral}{"{}\%s/soln\_\%i\_\%i.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ Case\_id,Doc\_info.number());}
 \DoxyCodeLine{\ \ \}}
 \DoxyCodeLine{\ \textcolor{keywordflow}{else}}
 \DoxyCodeLine{\ \ \{}
-\DoxyCodeLine{\ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{sprintf}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}},\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{snprintf}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}}),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ Doc\_info.number());}
 \DoxyCodeLine{\ \ \}}
 \DoxyCodeLine{\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{some\_file}}.open(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}});}
@@ -450,10 +450,10 @@ Detailed documentation to be written. Here\textquotesingle{}s a plot of the resu
 \DoxyCodeLine{\ \textcolor{comment}{//\ Write\ "{}load"{},\ vertical\ position\ of\ the\ fish\ back,\ and\ solution\ at\ }}
 \DoxyCodeLine{\ \textcolor{comment}{//\ control\ node\ to\ trace\ file}}
 \DoxyCodeLine{\ Trace\_file\ }
-\DoxyCodeLine{\ \ <<\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{ElasticallySupportedRingElement}}*\textcolor{keyword}{>}(fish\_mesh\_pt()-\/>}
+\DoxyCodeLine{\ \ <<\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{classoomph_1_1ElasticallySupportedRingElement}{ElasticallySupportedRingElement}}*\textcolor{keyword}{>}(fish\_mesh\_pt()-\/>}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{fish\_back\_pt}}())-\/>load()}
 \DoxyCodeLine{\ \ <<\ \textcolor{stringliteral}{"{}\ "{}}}
-\DoxyCodeLine{\ \ <<\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{ElasticallySupportedRingElement}}*\textcolor{keyword}{>}(fish\_mesh\_pt()-\/>}
+\DoxyCodeLine{\ \ <<\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{classoomph_1_1ElasticallySupportedRingElement}{ElasticallySupportedRingElement}}*\textcolor{keyword}{>}(fish\_mesh\_pt()-\/>}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{fish\_back\_pt}}())-\/>y\_c()}
 \DoxyCodeLine{\ \ <<\ \textcolor{stringliteral}{"{}\ "{}}\ <<\ Doc\_node\_pt-\/>value(0)\ <<\ std::endl;}
 \DoxyCodeLine{\}}
@@ -464,9 +464,9 @@ Detailed documentation to be written. Here\textquotesingle{}s a plot of the resu
 \DoxyCodeLine{}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{}
 \DoxyCodeLine{}
@@ -599,4 +599,4 @@ Detailed documentation to be written. Here\textquotesingle{}s a plot of the resu
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

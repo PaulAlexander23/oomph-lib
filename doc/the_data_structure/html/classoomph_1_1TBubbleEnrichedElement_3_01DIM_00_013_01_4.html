@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -146,9 +140,9 @@ $(function() {
   <map id="oomph::TBubbleEnrichedElement_3C_20DIM_2C_203_20_3E_map" name="oomph::TBubbleEnrichedElement_3C_20DIM_2C_203_20_3E_map">
 <area href="classoomph_1_1TElement.html" alt="oomph::TElement&lt; DIM, 3 &gt;" shape="rect" coords="190,0,560,24"/>
 <area href="classoomph_1_1TBubbleEnrichedElementShape.html" alt="oomph::TBubbleEnrichedElementShape&lt; DIM, 3 &gt;" shape="rect" coords="570,0,940,24"/>
-<area href="classoomph_1_1GeneralisedNewtonianTCrouzeixRaviartElement.html" title="///////////////////////////////////////////////////////////////////////////" alt="oomph::GeneralisedNewtonianTCrouzeixRaviartElement&lt; DIM &gt;" shape="rect" coords="0,112,370,136"/>
+<area href="classoomph_1_1GeneralisedNewtonianTCrouzeixRaviartElement.html" title="TCrouzeix_Raviart elements are Navier–Stokes elements with quadratic interpolation for velocities and..." alt="oomph::GeneralisedNewtonianTCrouzeixRaviartElement&lt; DIM &gt;" shape="rect" coords="0,112,370,136"/>
 <area href="classoomph_1_1SolidTBubbleEnrichedElement_3_01DIM_00_013_01_4.html" title="Specify the SolidTBubbleEnrichedElement corresponding to the quadratic triangle." alt="oomph::SolidTBubbleEnrichedElement&lt; DIM, 3 &gt;" shape="rect" coords="380,112,750,136"/>
-<area href="classoomph_1_1TCrouzeixRaviartElement.html" title="///////////////////////////////////////////////////////////////////////////" alt="oomph::TCrouzeixRaviartElement&lt; DIM &gt;" shape="rect" coords="760,112,1130,136"/>
+<area href="classoomph_1_1TCrouzeixRaviartElement.html" title="TCrouzeix_Raviart elements are Navier–Stokes elements with quadratic interpolation for velocities and..." alt="oomph::TCrouzeixRaviartElement&lt; DIM &gt;" shape="rect" coords="760,112,1130,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -170,7 +164,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:abf68d2c613e7876e949bbd61765d0c91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the geometric shape functions and derivatives w.r.t. local coordinates at local coordinate s.  <br /></td></tr>
 <tr class="separator:abf68d2c613e7876e949bbd61765d0c91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af362359deb0709dc5d42b29eaf776152" id="r_af362359deb0709dc5d42b29eaf776152"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TBubbleEnrichedElement_3_01DIM_00_013_01_4.html#af362359deb0709dc5d42b29eaf776152">d2shape_local</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &gt; &amp;<a class="el" href="cfortran_8h.html#ab7123126e4885ef647dd9c6e3807a21c">s</a>, <a class="el" href="classoomph_1_1Shape.html">Shape</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">psi</a>, <a class="el" href="classoomph_1_1DShape.html">DShape</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">dpsids</a>, <a class="el" href="classoomph_1_1DShape.html">DShape</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">d2psids</a>) <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a></td></tr>
-<tr class="memdesc:af362359deb0709dc5d42b29eaf776152"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the geometric shape functions, derivatives and second derivatives w.r.t local coordinates at local coordinate s d2psids(i,0) = <img class="formulaInl" alt="$ \partial^2 \psi_j / \partial s_0^2 $" src="form_219.png" width="50" height="15"/> d2psids(i,1) = <img class="formulaInl" alt="$ \partial^2 \psi_j / \partial s_1^2 $" src="form_220.png" width="50" height="15"/> d2psids(i,2) = <img class="formulaInl" alt="$ \partial^2 \psi_j / \partial s_0 \partial s_1 $" src="form_221.png" width="69" height="15"/>.  <br /></td></tr>
+<tr class="memdesc:af362359deb0709dc5d42b29eaf776152"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the geometric shape functions, derivatives and second derivatives w.r.t local coordinates at local coordinate s d2psids(i,0) = <img class="formulaInl" alt="$ \partial^2 \psi_j / \partial s_0^2 $" src="form_225.png" width="50" height="15"/> d2psids(i,1) = <img class="formulaInl" alt="$ \partial^2 \psi_j / \partial s_1^2 $" src="form_226.png" width="50" height="15"/> d2psids(i,2) = <img class="formulaInl" alt="$ \partial^2 \psi_j / \partial s_0 \partial s_1 $" src="form_227.png" width="69" height="15"/>.  <br /></td></tr>
 <tr class="separator:af362359deb0709dc5d42b29eaf776152"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0da229b9fbea583877e7fa5d5992cdb" id="r_af0da229b9fbea583877e7fa5d5992cdb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TBubbleEnrichedElement_3_01DIM_00_013_01_4.html#af0da229b9fbea583877e7fa5d5992cdb">local_coordinate_of_node</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">j</a>, <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &gt; &amp;<a class="el" href="cfortran_8h.html#ab7123126e4885ef647dd9c6e3807a21c">s</a>) <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a></td></tr>
 <tr class="memdesc:af0da229b9fbea583877e7fa5d5992cdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return local coordinates of node j.  <br /></td></tr>
@@ -380,7 +374,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 </table>
 </div><div class="memdoc">
 
-<p>Compute the geometric shape functions, derivatives and second derivatives w.r.t local coordinates at local coordinate s d2psids(i,0) = <img class="formulaInl" alt="$ \partial^2 \psi_j / \partial s_0^2 $" src="form_219.png" width="50" height="15"/> d2psids(i,1) = <img class="formulaInl" alt="$ \partial^2 \psi_j / \partial s_1^2 $" src="form_220.png" width="50" height="15"/> d2psids(i,2) = <img class="formulaInl" alt="$ \partial^2 \psi_j / \partial s_0 \partial s_1 $" src="form_221.png" width="69" height="15"/>. </p>
+<p>Compute the geometric shape functions, derivatives and second derivatives w.r.t local coordinates at local coordinate s d2psids(i,0) = <img class="formulaInl" alt="$ \partial^2 \psi_j / \partial s_0^2 $" src="form_225.png" width="50" height="15"/> d2psids(i,1) = <img class="formulaInl" alt="$ \partial^2 \psi_j / \partial s_1^2 $" src="form_226.png" width="50" height="15"/> d2psids(i,2) = <img class="formulaInl" alt="$ \partial^2 \psi_j / \partial s_0 \partial s_1 $" src="form_227.png" width="69" height="15"/>. </p>
 
 <p class="definition">Definition at line <a class="el" href="Telements_8h_source.html#l03675">3675</a> of file <a class="el" href="Telements_8h_source.html">Telements.h</a>.</p>
 
@@ -611,7 +605,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:05:46
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:43:12
         </div>
       </div>
     </footer>

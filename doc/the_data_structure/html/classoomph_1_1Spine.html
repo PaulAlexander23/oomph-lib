@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -229,7 +223,7 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Spines are used for algebraic node update operations in free-surface fluid problems: They form the back-bones along which nodes in a a free-surface mesh are located. Typically, the free surface is located at the "end" of the spine; the nodes in the interior of the mesh are located at fixed fractions along the spine. The key <a class="el" href="classoomph_1_1Data.html" title="A class that represents a collection of data; each Data object may contain many different individual ...">Data</a> member of the <a class="el" href="classoomph_1_1Spine.html" title="Spines are used for algebraic node update operations in free-surface fluid problems: They form the ba...">Spine</a> object is its "height" &ndash; usually an unknown in the problem &ndash; which is used by the <a class="el" href="classoomph_1_1SpineNode.html" title="Class for nodes that live on spines. The assumption is that each Node lies at a fixed fraction on a s...">SpineNode</a>'s node update function to update the <a class="el" href="classoomph_1_1SpineNode.html" title="Class for nodes that live on spines. The assumption is that each Node lies at a fixed fraction on a s...">SpineNode</a>'s position. </p>
-<p>In more complex problems (such as the case where a fluid layer is deposited on an elastic body), the node update function can depend on additional information, such as the <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a> representation of the elastic body, and additional <a class="el" href="classoomph_1_1Data.html" title="A class that represents a collection of data; each Data object may contain many different individual ...">Data</a> objects wich specify the position on the <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a> from which the <a class="el" href="classoomph_1_1Spine.html" title="Spines are used for algebraic node update operations in free-surface fluid problems: They form the ba...">Spine</a> emanates. The <a class="el" href="classoomph_1_1Spine.html" title="Spines are used for algebraic node update operations in free-surface fluid problems: They form the ba...">Spine</a> class therefore provides storage for pointers to GeomObjects and storage for any additional geometric <a class="el" href="classoomph_1_1Data.html" title="A class that represents a collection of data; each Data object may contain many different individual ...">Data</a> that may be required during node update operations. </p>
+<p>In more complex problems (such as the case where a fluid layer is deposited on an elastic body), the node update function can depend on additional information, such as the <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a> representation of the elastic body, and additional <a class="el" href="classoomph_1_1Data.html" title="A class that represents a collection of data; each Data object may contain many different individual ...">Data</a> objects wich specify the position on the <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a> from which the <a class="el" href="classoomph_1_1Spine.html" title="Spines are used for algebraic node update operations in free-surface fluid problems: They form the ba...">Spine</a> emanates. The <a class="el" href="classoomph_1_1Spine.html" title="Spines are used for algebraic node update operations in free-surface fluid problems: They form the ba...">Spine</a> class therefore provides storage for pointers to GeomObjects and storage for any additional geometric <a class="el" href="classoomph_1_1Data.html" title="A class that represents a collection of data; each Data object may contain many different individual ...">Data</a> that may be required during node update operations. </p>
 
 <p class="definition">Definition at line <a class="el" href="spines_8h_source.html#l00063">63</a> of file <a class="el" href="spines_8h_source.html">spines.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -967,7 +961,7 @@ Private Attributes</h2></td></tr>
 
 <p class="reference">References <a class="el" href="spines_8h_source.html#l00305">Geom_data_pt</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="spines_8h_source.html#l00781">oomph::SpineElement&lt; ELEMENT &gt;::complete_setup_of_dependencies()</a>, <a class="el" href="spines_8cc_source.html#l00229">oomph::SpineMesh::dump()</a>, <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00128">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::pin_all_spines()</a>, and <a class="el" href="spines_8cc_source.html#l00253">oomph::SpineMesh::read()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="spines_8h_source.html#l00782">oomph::SpineElement&lt; ELEMENT &gt;::complete_setup_of_dependencies()</a>, <a class="el" href="spines_8cc_source.html#l00229">oomph::SpineMesh::dump()</a>, <a class="el" href="bretherton__spine__mesh_8h_source.html#l00124">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::pin_all_spines()</a>, and <a class="el" href="spines_8cc_source.html#l00253">oomph::SpineMesh::read()</a>.</p>
 
 </div>
 </div>
@@ -1181,7 +1175,7 @@ Private Attributes</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:05:41
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:42:59
         </div>
       </div>
     </footer>

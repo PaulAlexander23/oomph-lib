@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -125,7 +119,7 @@
 <p>Mesh for W. Wall's FSI driven cavity problem. The mesh is derived from the <code><a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html" title="Simple rectangular 2D Quad mesh class. Nx : number of elements in the x direction.">SimpleRectangularQuadMesh</a></code> so it's node and element numbering scheme is the same as in that mesh. Only the boundaries are numbered differently to allow the easy identification of the "collapsible" segment. Boundary coordinates are set up for all nodes located on boundary 3 (the collapsible segment). The curvilinear ("collapsible") segment is defined by a <code>GeomObject</code>.  
  <a href="classoomph_1_1FSIDrivenCavityMesh.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="fsi__driven__cavity__mesh_8template_8h_source.html">fsi_driven_cavity_mesh.template.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="fsi__driven__cavity__mesh_8h_source.html">fsi_driven_cavity_mesh.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for oomph::FSIDrivenCavityMesh&lt; ELEMENT &gt;:</div>
 <div class="dyncontent">
@@ -134,8 +128,8 @@ Inheritance diagram for oomph::FSIDrivenCavityMesh&lt; ELEMENT &gt;:</div>
   <map id="oomph::FSIDrivenCavityMesh_3C_20ELEMENT_20_3E_map" name="oomph::FSIDrivenCavityMesh_3C_20ELEMENT_20_3E_map">
 <area href="classoomph_1_1SimpleRectangularQuadMesh.html" title="Simple rectangular 2D Quad mesh class. Nx : number of elements in the x direction." alt="oomph::SimpleRectangularQuadMesh&lt; ELEMENT &gt;" shape="rect" coords="193,56,569,80"/>
 <area href="classoomph_1_1AlgebraicFSIDrivenCavityMesh.html" title="/ Alebraic node update version of FSIDrivenCavityMesh" alt="oomph::AlgebraicFSIDrivenCavityMesh&lt; ELEMENT &gt;" shape="rect" coords="0,168,376,192"/>
-<area href="classoomph_1_1RefineableFSIDrivenCavityMesh.html" title="////////////////////////////////////////////////////////////////// //////////////////////////////////..." alt="oomph::RefineableFSIDrivenCavityMesh&lt; ELEMENT &gt;" shape="rect" coords="386,168,762,192"/>
-<area href="classoomph_1_1RefineableAlgebraicFSIDrivenCavityMesh.html" title="//////////////////////////////////////////////////////////////////////// ////////////////////////////..." alt="oomph::RefineableAlgebraicFSIDrivenCavityMesh&lt; ELEMENT &gt;" shape="rect" coords="0,224,376,248"/>
+<area href="classoomph_1_1RefineableFSIDrivenCavityMesh.html" title="Refineable version of FSIDrivenCavityMesh. The mesh is derived from the SimpleRectangularQuadMesh so ..." alt="oomph::RefineableFSIDrivenCavityMesh&lt; ELEMENT &gt;" shape="rect" coords="386,168,762,192"/>
+<area href="classoomph_1_1RefineableAlgebraicFSIDrivenCavityMesh.html" title="Refineable version algebraic FSIDrivenCavityMesh." alt="oomph::RefineableAlgebraicFSIDrivenCavityMesh&lt; ELEMENT &gt;" shape="rect" coords="0,224,376,248"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -182,7 +176,7 @@ class oomph::FSIDrivenCavityMesh&lt; ELEMENT &gt;</div><p>Mesh for W. Wall's FSI
 <li>Boundary 5 is the gap above the moving lid on the left wall </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="fsi__driven__cavity__mesh_8template_8h_source.html#l00065">65</a> of file <a class="el" href="fsi__driven__cavity__mesh_8template_8h_source.html">fsi_driven_cavity_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fsi__driven__cavity__mesh_8h_source.html#l00063">63</a> of file <a class="el" href="fsi__driven__cavity__mesh_8h_source.html">fsi_driven_cavity_mesh.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af227477a1de5faf56352d21913a91feb" name="af227477a1de5faf56352d21913a91feb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af227477a1de5faf56352d21913a91feb">&#9670;&#160;</a></span>FSIDrivenCavityMesh()</h2>
@@ -245,9 +239,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 <p>Constructor: Pass number of elements, number of elements, fractional height of the gap above the moving wall, pointer to GeomObject that defines the collapsible segment and pointer to TimeStepper (defaults to the default timestepper, Steady). </p>
 <p>Constructor: Pass number of elements, lengths, pointer to GeomObject that defines the collapsible segment and pointer to TimeStepper (defaults to the default timestepper, Steady). </p>
 
-<p class="definition">Definition at line <a class="el" href="fsi__driven__cavity__mesh_8template_8cc_source.html#l00041">41</a> of file <a class="el" href="fsi__driven__cavity__mesh_8template_8cc_source.html">fsi_driven_cavity_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fsi__driven__cavity__mesh_8template_8cc_source.html#l00043">43</a> of file <a class="el" href="fsi__driven__cavity__mesh_8template_8cc_source.html">fsi_driven_cavity_mesh.template.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="fsi__driven__cavity__mesh_8template_8h_source.html#l00090">oomph::FSIDrivenCavityMesh&lt; ELEMENT &gt;::Gap_fraction</a>, <a class="el" href="simple__rectangular__quadmesh_8template_8h_source.html#l00071">oomph::SimpleRectangularQuadMesh&lt; ELEMENT &gt;::nx()</a>, and <a class="el" href="simple__rectangular__quadmesh_8template_8h_source.html#l00077">oomph::SimpleRectangularQuadMesh&lt; ELEMENT &gt;::ny()</a>.</p>
+<p class="reference">References <a class="el" href="fsi__driven__cavity__mesh_8h_source.html#l00088">oomph::FSIDrivenCavityMesh&lt; ELEMENT &gt;::Gap_fraction</a>, <a class="el" href="simple__rectangular__quadmesh_8h_source.html#l00071">oomph::SimpleRectangularQuadMesh&lt; ELEMENT &gt;::nx()</a>, and <a class="el" href="simple__rectangular__quadmesh_8h_source.html#l00077">oomph::SimpleRectangularQuadMesh&lt; ELEMENT &gt;::ny()</a>.</p>
 
 </div>
 </div>
@@ -276,9 +270,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Fraction of the gap next to moving lid, relative to the height of the domain. </p>
 
-<p class="definition">Definition at line <a class="el" href="fsi__driven__cavity__mesh_8template_8h_source.html#l00090">90</a> of file <a class="el" href="fsi__driven__cavity__mesh_8template_8h_source.html">fsi_driven_cavity_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fsi__driven__cavity__mesh_8h_source.html#l00088">88</a> of file <a class="el" href="fsi__driven__cavity__mesh_8h_source.html">fsi_driven_cavity_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="fsi__driven__cavity__mesh_8template_8cc_source.html#l00041">oomph::FSIDrivenCavityMesh&lt; ELEMENT &gt;::FSIDrivenCavityMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="fsi__driven__cavity__mesh_8template_8cc_source.html#l00043">oomph::FSIDrivenCavityMesh&lt; ELEMENT &gt;::FSIDrivenCavityMesh()</a>.</p>
 
 </div>
 </div>
@@ -306,7 +300,7 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Number of elements in x direction. </p>
 
-<p class="definition">Definition at line <a class="el" href="fsi__driven__cavity__mesh_8template_8h_source.html#l00083">83</a> of file <a class="el" href="fsi__driven__cavity__mesh_8template_8h_source.html">fsi_driven_cavity_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fsi__driven__cavity__mesh_8h_source.html#l00081">81</a> of file <a class="el" href="fsi__driven__cavity__mesh_8h_source.html">fsi_driven_cavity_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -334,7 +328,7 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Number of elements in y direction. </p>
 
-<p class="definition">Definition at line <a class="el" href="fsi__driven__cavity__mesh_8template_8h_source.html#l00086">86</a> of file <a class="el" href="fsi__driven__cavity__mesh_8template_8h_source.html">fsi_driven_cavity_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fsi__driven__cavity__mesh_8h_source.html#l00084">84</a> of file <a class="el" href="fsi__driven__cavity__mesh_8h_source.html">fsi_driven_cavity_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -362,12 +356,12 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Pointer to geometric object that represents the moving wall. </p>
 
-<p class="definition">Definition at line <a class="el" href="fsi__driven__cavity__mesh_8template_8h_source.html#l00093">93</a> of file <a class="el" href="fsi__driven__cavity__mesh_8template_8h_source.html">fsi_driven_cavity_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="fsi__driven__cavity__mesh_8h_source.html#l00091">91</a> of file <a class="el" href="fsi__driven__cavity__mesh_8h_source.html">fsi_driven_cavity_mesh.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="fsi__driven__cavity__mesh_8template_8h_source.html">fsi_driven_cavity_mesh.template.h</a></li>
+<li><a class="el" href="fsi__driven__cavity__mesh_8h_source.html">fsi_driven_cavity_mesh.h</a></li>
 <li><a class="el" href="fsi__driven__cavity__mesh_8template_8cc_source.html">fsi_driven_cavity_mesh.template.cc</a></li>
 </ul>
 </div><!-- contents -->
@@ -398,7 +392,7 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 13:58:22
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:36:27
         </div>
       </div>
     </footer>

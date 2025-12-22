@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -119,43 +113,43 @@
 <p>Compared to other tutorials, there is no detailed discussion of the driver code itself because the implementation is somewhat messy. However, given that the driver code is (of course!) very well documented you should be able to figure out what's going on once you've read through the discussion of the problem formulation and our brief comments on the <a class="el" href="index.html#implement">Implementation</a>. <a href="../../../contact/html/index.html">Get in touch</a> if you need more information.</p>
 <h1><a class="anchor" id="problem"></a>
 The problem</h1>
-<p>The sketch below shows the problem setup: An (inviscid) air finger propagates at a steady speed <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ U $" src="form_0.png" width="10" height="10"/></picture> into a 2D rigid-walled, fluid-filled channel of half-width <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ H_0^* $" src="form_1.png" width="16" height="14"/></picture>. In the process it displaces some of the viscous fluid (of density <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \rho $" src="form_2.png" width="8" height="9"/></picture>, viscosity <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mu $" src="form_3.png" width="9" height="9"/></picture> and surface tension <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \sigma^* $" src="form_4.png" width="13" height="10"/></picture>) and deposits a film of thickness <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ h_0^* $" src="form_5.png" width="13" height="14"/></picture> on the channel walls. [Note that, for the sake of simplicity, we ignore the effect of transverse gravity in this discussion; the driver code listed below allows the specification of a gravitational body force which will break the up-down symmetry of the solution.]</p>
+<p>The sketch below shows the problem setup: An (inviscid) air finger propagates at a steady speed <img class="formulaInl" alt="$ U $" src="form_0.png" width="10" height="10"/> into a 2D rigid-walled, fluid-filled channel of half-width <img class="formulaInl" alt="$ H_0^* $" src="form_1.png" width="16" height="14"/>. In the process it displaces some of the viscous fluid (of density <img class="formulaInl" alt="$ \rho $" src="form_2.png" width="8" height="9"/>, viscosity <img class="formulaInl" alt="$ \mu $" src="form_3.png" width="9" height="9"/> and surface tension <img class="formulaInl" alt="$ \sigma^* $" src="form_4.png" width="13" height="10"/>) and deposits a film of thickness <img class="formulaInl" alt="$ h_0^* $" src="form_5.png" width="13" height="14"/> on the channel walls. [Note that, for the sake of simplicity, we ignore the effect of transverse gravity in this discussion; the driver code listed below allows the specification of a gravitational body force which will break the up-down symmetry of the solution.]</p>
 <div class="image">
 <img src="bretherton_sketch.gif" alt=""/>
 <div class="caption">
 Sketch of the problem setup </div></div>
- <p>We non-dimensionalise the velocities on <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ U $" src="form_0.png" width="10" height="10"/></picture>, the lengths on <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ H_0^* $" src="form_1.png" width="16" height="14"/></picture> and the pressure on the viscous scale, <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mu U /
-H_0^* $" src="form_6.png" width="40" height="14"/></picture> and solve the problem in a frame moving with the velocity of the finger. The flow is then governed by the non-dimensional Navier-Stokes equations  </p><p class="formulaDsp">
-<picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ <p>We non-dimensionalise the velocities on <img class="formulaInl" alt="$ U $" src="form_0.png" width="10" height="10"/>, the lengths on <img class="formulaInl" alt="$ H_0^* $" src="form_1.png" width="16" height="14"/> and the pressure on the viscous scale, <img class="formulaInl" alt="$ \mu U /
+H_0^* $" src="form_6.png" width="40" height="14"/> and solve the problem in a frame moving with the velocity of the finger. The flow is then governed by the non-dimensional Navier-Stokes equations  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 Re \ u_j\frac{\partial u_i}{\partial x_j} = -\frac{\partial p}{\partial x_i} + \
 \frac{\partial }{\partial x_j }\left( \frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i}  \right)
-\]" src="form_7.png" width="224" height="31"/></picture>
+\]" src="form_7.png" width="224" height="31"/>
 </p>
 <p> and the continuity equation  </p><p class="formulaDsp">
-<picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[ 
+<img class="formulaDsp" alt="\[ 
 \frac{\partial u_i}{\partial x_i}=0, 
-\]" src="form_8.png" width="48" height="29"/></picture>
+\]" src="form_8.png" width="48" height="29"/>
 </p>
-<p> where the Reynolds number is defined as <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re=U H_0 \rho/\mu $" src="form_9.png" width="78" height="14"/></picture>. On the free fluid surface, whose outer unit normal we denote by <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf n} $" src="form_10.png" width="8" height="6"/></picture>, the fluid normal velocity vanishes,  </p><p class="formulaDsp">
-<picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> where the Reynolds number is defined as <img class="formulaInl" alt="$ Re=U H_0 \rho/\mu $" src="form_9.png" width="78" height="14"/>. On the free fluid surface, whose outer unit normal we denote by <img class="formulaInl" alt="$ {\bf n} $" src="form_10.png" width="8" height="6"/>, the fluid normal velocity vanishes,  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 {\bf u} \cdot {\bf n} = 0 \mbox{\ \ \ on the air-liquid interface}.
-\]" src="form_11.png" width="201" height="13"/></picture>
+\]" src="form_11.png" width="201" height="13"/>
 </p>
-<p> We measure the fluid pressure <picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p $" src="form_12.png" width="8" height="9"/></picture> relative to the bubble pressure <picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p_b $" src="form_13.png" width="11" height="9"/></picture>. Then the dynamic boundary condition implies that  </p><p class="formulaDsp">
-<picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> We measure the fluid pressure <img class="formulaInl" alt="$ p $" src="form_12.png" width="8" height="9"/> relative to the bubble pressure <img class="formulaInl" alt="$ p_b $" src="form_13.png" width="11" height="9"/>. Then the dynamic boundary condition implies that  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 -p n_i + \left( \frac{\partial u_i}{\partial x_j} + 
 \frac{\partial u_j}{\partial x_i} \right) n_j + \frac{1}{Ca} \
 \kappa_f n_i  = 0
 \mbox{\ \ \ on the air-liquid interface,}
-\]" src="form_14.png" width="378" height="31"/></picture>
+\]" src="form_14.png" width="378" height="31"/>
 </p>
-<p> where <picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \kappa_f = \kappa_f^* H_0 $" src="form_15.png" width="59" height="16"/></picture> is the non-dimensional interface curvature and the capillary number <picture><source srcset="form_16_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Ca = U\mu/\sigma^* $" src="form_16.png" width="69" height="14"/></picture> is a non-dimensional measure of the bubble velocity. The no-slip condition on the channel walls requires that <picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf
-u}=(-1,0) $" src="form_17.png" width="61" height="14"/></picture> at <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_2=\pm 1 $" src="form_18.png" width="46" height="11"/></picture>. Far behind the bubble tip, the fluid remains stationary on the walls. In the moving frame of reference, this corresponds to the plug flow profile <picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf u}=(-1,0) $" src="form_19.png" width="61" height="14"/></picture> as <picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$
-x_1\to -\infty $" src="form_20.png" width="55" height="10"/></picture>. The residual film thickness <picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ h_0 $" src="form_21.png" width="13" height="13"/></picture> has to be determined as part of the solution and it determines the volume flux through the system. The Poiseuille velocity profile far ahead of the bubble tip,  </p><p class="formulaDsp">
-<picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> where <img class="formulaInl" alt="$ \kappa_f = \kappa_f^* H_0 $" src="form_15.png" width="59" height="16"/> is the non-dimensional interface curvature and the capillary number <img class="formulaInl" alt="$ Ca = U\mu/\sigma^* $" src="form_16.png" width="69" height="14"/> is a non-dimensional measure of the bubble velocity. The no-slip condition on the channel walls requires that <img class="formulaInl" alt="$ {\bf
+u}=(-1,0) $" src="form_17.png" width="61" height="14"/> at <img class="formulaInl" alt="$ x_2=\pm 1 $" src="form_18.png" width="46" height="11"/>. Far behind the bubble tip, the fluid remains stationary on the walls. In the moving frame of reference, this corresponds to the plug flow profile <img class="formulaInl" alt="$ {\bf u}=(-1,0) $" src="form_19.png" width="61" height="14"/> as <img class="formulaInl" alt="$
+x_1\to -\infty $" src="form_20.png" width="55" height="10"/>. The residual film thickness <img class="formulaInl" alt="$ h_0 $" src="form_21.png" width="13" height="13"/> has to be determined as part of the solution and it determines the volume flux through the system. The Poiseuille velocity profile far ahead of the bubble tip,  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 {\bf u}=(-1+\frac{3}{2}(1-h_0)(1-x_2^2),0) \mbox{\ \ \ as $ x_1\to \infty$,}
 \ \ \ \ \ \ \ \ (1)
-\]" src="form_22.png" width="299" height="26"/></picture>
+\]" src="form_22.png" width="299" height="26"/>
 </p>
 <p> is then determined by overall continuity. <br  />
 </p>
@@ -177,7 +171,7 @@ Bubble pressure and film thickness far behind the finger tip vs. capillary numbe
  <hr  />
 <h1><a class="anchor" id="implement"></a>
 Implementation</h1>
-<p>The discretisation of the problem is reasonably straightforward, the most (human-)time-consuming part being the creation of the spine mesh, discussed in <a href="../../../navier_stokes/spine_channel/html/index.html">another tutorial</a>. The real complication arises from the fact that the application of the "inflow condition" (1) at the right end of the domain &ndash; superficially a Dirichlet condition for the velocity &ndash; depends on the non-dimensional film thickness <picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ h_0 $" src="form_21.png" width="13" height="13"/></picture> at the left end of the domain. This introduces a non-local interaction between these degrees of freedom. We handle this by providing a templated wrapper class <code><a class="el" href="classBrethertonElement.html" title="&quot;Bretherton element&quot; is a fluid element (of type ELEMENT) for which the (inflow) velocity at those no...">BrethertonElement</a></code> (templated by the type of the "wrapped" fluid element) which allows the specification of the film thickness as external <code>Data</code> (i.e. <code>Data</code> whose values affect the element's residuals but are not determined by the element; see the discussion of <code>oomph-lib's</code> various types of elemental <code>Data</code> in <a href="../../../the_data_structure/html/index.html">the "bottom up" discussion of the library's data structure</a>). Read the driver code listed below to see how it works!</p>
+<p>The discretisation of the problem is reasonably straightforward, the most (human-)time-consuming part being the creation of the spine mesh, discussed in <a href="../../../navier_stokes/spine_channel/html/index.html">another tutorial</a>. The real complication arises from the fact that the application of the "inflow condition" (1) at the right end of the domain &ndash; superficially a Dirichlet condition for the velocity &ndash; depends on the non-dimensional film thickness <img class="formulaInl" alt="$ h_0 $" src="form_21.png" width="13" height="13"/> at the left end of the domain. This introduces a non-local interaction between these degrees of freedom. We handle this by providing a templated wrapper class <code><a class="el" href="classBrethertonElement.html" title="&quot;Bretherton element&quot; is a fluid element (of type ELEMENT) for which the (inflow) velocity at those no...">BrethertonElement</a></code> (templated by the type of the "wrapped" fluid element) which allows the specification of the film thickness as external <code>Data</code> (i.e. <code>Data</code> whose values affect the element's residuals but are not determined by the element; see the discussion of <code>oomph-lib's</code> various types of elemental <code>Data</code> in <a href="../../../the_data_structure/html/index.html">the "bottom up" discussion of the library's data structure</a>). Read the driver code listed below to see how it works!</p>
 <hr  />
  <hr  />
 <h1><a class="anchor" id="driver"></a>
@@ -187,7 +181,7 @@ The driver code</h1>
 <div class="line"><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><span class="comment">//LIC// </span></div>
-<div class="line"><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><span class="comment">//LIC// </span></div>
 <div class="line"><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -636,9 +630,9 @@ The driver code</h1>
 <div class="line"> </div>
 <div class="line">}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">/// //////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><span class="comment">/// //////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><span class="comment">/// //////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">/////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">/////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">/////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"> </div>
 <div class="line"><span class="comment">//======================================================================</span><span class="comment"></span></div>
@@ -974,7 +968,7 @@ The driver code</h1>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output solution </span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> Bulk_mesh_pt-&gt;output(some_file,npts);</div>
@@ -982,7 +976,7 @@ The driver code</h1>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output boundaries</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/boundaries%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/boundaries%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> Bulk_mesh_pt-&gt;output_boundaries(some_file);</div>
@@ -1001,7 +995,7 @@ The driver code</h1>
 <div class="line">{</div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Increase maximum residual</span></div>
-<div class="line"> Problem::Max_residuals=100.0;</div>
+<div class="line"> Problem::Max_residuals=500.0;</div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Set output directory</span></div>
 <div class="line"> DocInfo doc_info;</div>
@@ -1011,7 +1005,7 @@ The driver code</h1>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Open trace file</span></div>
 <div class="line"> <span class="keywordtype">char</span> filename[100];   </div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/trace.dat&quot;</span>,doc_info.directory().c_str());</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/trace.dat&quot;</span>,doc_info.directory().c_str());</div>
 <div class="line"> Trace_file.open(filename);</div>
 <div class="line"> </div>
 <div class="line"> Trace_file &lt;&lt; <span class="stringliteral">&quot;VARIABLES=\&quot;Ca\&quot;,&quot;</span>;</div>
@@ -1038,7 +1032,7 @@ The driver code</h1>
 <div class="line">   <span class="comment">// a certain tolerance: This is cheaper to check than restarting</span></div>
 <div class="line">   <span class="comment">// the Newton method after divergence (we&#39;d also need to back up</span></div>
 <div class="line">   <span class="comment">// the previous solution)</span></div>
-<div class="line">   <span class="keywordtype">double</span> maxres=100.0;</div>
+<div class="line">   <span class="keywordtype">double</span> maxres = Problem::Max_residuals;</div>
 <div class="line">   <span class="keywordflow">while</span> (<span class="keyword">true</span>)</div>
 <div class="line">    {</div>
 <div class="line">     cout &lt;&lt; <span class="stringliteral">&quot;Checking max. res for Ca = &quot;</span> </div>
@@ -1156,7 +1150,7 @@ The driver code</h1>
 <div class="ttc" id="aclassBrethertonElement_html_ab0bc00d862b2c888703ed38c74f18b77"><div class="ttname"><a href="classBrethertonElement.html#ab0bc00d862b2c888703ed38c74f18b77">BrethertonElement::get_jacobian</a></div><div class="ttdeci">void get_jacobian(Vector&lt; double &gt; &amp;residuals, DenseMatrix&lt; double &gt; &amp;jacobian)</div><div class="ttdoc">Overloaded Jacobian computation: Computes the Jacobian of the underlying element and then adds the FD...</div><div class="ttdef"><b>Definition</b> <a href="bretherton_8cc_source.html#l00261">bretherton.cc:261</a></div></div>
 <div class="ttc" id="aclassBrethertonElement_html_acbc668eed3ea683a67b6b822d6e59974"><div class="ttname"><a href="classBrethertonElement.html#acbc668eed3ea683a67b6b822d6e59974">BrethertonElement::BrethertonElement</a></div><div class="ttdeci">BrethertonElement()</div><div class="ttdoc">Constructor: Call the constructor of the underlying element.</div><div class="ttdef"><b>Definition</b> <a href="bretherton_8cc_source.html#l00163">bretherton.cc:163</a></div></div>
 <div class="ttc" id="aclassBrethertonElement_html_ad1ddf8c7a6fd590bf7156d13640303d1"><div class="ttname"><a href="classBrethertonElement.html#ad1ddf8c7a6fd590bf7156d13640303d1">BrethertonElement::Inflow_ext_data_eqn</a></div><div class="ttdeci">DenseMatrix&lt; int &gt; Inflow_ext_data_eqn</div><div class="ttdoc">Storage for the local equation numbers associated the Data values that affect the inflow.</div><div class="ttdef"><b>Definition</b> <a href="bretherton_8cc_source.html#l00387">bretherton.cc:387</a></div></div>
-<div class="ttc" id="aclassBrethertonProblem_html"><div class="ttname"><a href="classBrethertonProblem.html">BrethertonProblem</a></div><div class="ttdoc">////////////////////////////////////////////////////////////////// //////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="bretherton_8cc_source.html#l00464">bretherton.cc:465</a></div></div>
+<div class="ttc" id="aclassBrethertonProblem_html"><div class="ttname"><a href="classBrethertonProblem.html">BrethertonProblem</a></div><div class="ttdoc">Bretherton problem.</div><div class="ttdef"><b>Definition</b> <a href="bretherton_8cc_source.html#l00464">bretherton.cc:465</a></div></div>
 <div class="ttc" id="aclassBrethertonProblem_html_a04257edfb80f2ff3bf865442d9eb01fb"><div class="ttname"><a href="classBrethertonProblem.html#a04257edfb80f2ff3bf865442d9eb01fb">BrethertonProblem::activate_inflow_dependency</a></div><div class="ttdeci">void activate_inflow_dependency()</div><div class="ttdoc">Activate the dependency of the inflow velocity on the spine heights at the outflow.</div><div class="ttdef"><b>Definition</b> <a href="bretherton_8cc_source.html#l00726">bretherton.cc:726</a></div></div>
 <div class="ttc" id="aclassBrethertonProblem_html_a207cdfe4cf60e83257e759b1ac15e5eb"><div class="ttname"><a href="classBrethertonProblem.html#a207cdfe4cf60e83257e759b1ac15e5eb">BrethertonProblem::BrethertonProblem</a></div><div class="ttdeci">BrethertonProblem()</div><div class="ttdoc">Constructor:</div><div class="ttdef"><b>Definition</b> <a href="bretherton_8cc_source.html#l00551">bretherton.cc:551</a></div></div>
 <div class="ttc" id="aclassBrethertonProblem_html_a2e84e3ce784b0f0de5eeefe1175d48ff"><div class="ttname"><a href="classBrethertonProblem.html#a2e84e3ce784b0f0de5eeefe1175d48ff">BrethertonProblem::actions_after_newton_solve</a></div><div class="ttdeci">void actions_after_newton_solve()</div><div class="ttdoc">Update after solve can remain empty, because the update is performed automatically after every Newton...</div><div class="ttdef"><b>Definition</b> <a href="bretherton_8cc_source.html#l00509">bretherton.cc:509</a></div></div>
@@ -1195,7 +1189,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -1225,7 +1219,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:12:41
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:40:21
         </div>
       </div>
     </footer>

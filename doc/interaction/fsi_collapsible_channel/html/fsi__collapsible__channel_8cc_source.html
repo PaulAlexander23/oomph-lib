@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -206,9 +200,9 @@
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="comment"></span> </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="comment">/// ///////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="comment">/// ///////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="comment">/// ///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="comment">//////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="comment">//////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="comment">//////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment"></span> </div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment">//====start_of_underformed_wall============================================</span><span class="comment"></span></div>
@@ -848,14 +842,14 @@
 <div class="line"><a id="l00696" name="l00696"></a><span class="lineno">  696</span> npts=5; </div>
 <div class="line"><a id="l00697" name="l00697"></a><span class="lineno">  697</span> </div>
 <div class="line"><a id="l00698" name="l00698"></a><span class="lineno">  698</span> <span class="comment">// Output fluid solution </span></div>
-<div class="line"><a id="l00699" name="l00699"></a><span class="lineno">  699</span> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00699" name="l00699"></a><span class="lineno">  699</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00700" name="l00700"></a><span class="lineno">  700</span>         doc_info.number());</div>
 <div class="line"><a id="l00701" name="l00701"></a><span class="lineno">  701</span> some_file.open(filename);</div>
 <div class="line"><a id="l00702" name="l00702"></a><span class="lineno">  702</span> bulk_mesh_pt()-&gt;output(some_file,npts);</div>
 <div class="line"><a id="l00703" name="l00703"></a><span class="lineno">  703</span> some_file.close();</div>
 <div class="line"><a id="l00704" name="l00704"></a><span class="lineno">  704</span> </div>
 <div class="line"><a id="l00705" name="l00705"></a><span class="lineno">  705</span> <span class="comment">// Document the wall shape</span></div>
-<div class="line"><a id="l00706" name="l00706"></a><span class="lineno">  706</span> sprintf(filename,<span class="stringliteral">&quot;%s/beam%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00706" name="l00706"></a><span class="lineno">  706</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/beam%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00707" name="l00707"></a><span class="lineno">  707</span>         doc_info.number());</div>
 <div class="line"><a id="l00708" name="l00708"></a><span class="lineno">  708</span> some_file.open(filename);</div>
 <div class="line"><a id="l00709" name="l00709"></a><span class="lineno">  709</span> wall_mesh_pt()-&gt;output(some_file,npts);</div>
@@ -1063,7 +1057,7 @@
 <div class="line"><a id="l00905" name="l00905"></a><span class="lineno">  905</span> <span class="comment">// Open a trace file </span></div>
 <div class="line"><a id="l00906" name="l00906"></a><span class="lineno">  906</span> ofstream trace_file;</div>
 <div class="line"><a id="l00907" name="l00907"></a><span class="lineno">  907</span> <span class="keywordtype">char</span> filename[100];   </div>
-<div class="line"><a id="l00908" name="l00908"></a><span class="lineno">  908</span> sprintf(filename,<span class="stringliteral">&quot;%s/trace.dat&quot;</span>,doc_info.directory().c_str());</div>
+<div class="line"><a id="l00908" name="l00908"></a><span class="lineno">  908</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/trace.dat&quot;</span>,doc_info.directory().c_str());</div>
 <div class="line"><a id="l00909" name="l00909"></a><span class="lineno">  909</span> trace_file.open(filename);</div>
 <div class="line"><a id="l00910" name="l00910"></a><span class="lineno">  910</span> </div>
 <div class="line"><a id="l00911" name="l00911"></a><span class="lineno">  911</span> <span class="comment">// Output the initial solution</span></div>
@@ -1126,7 +1120,7 @@
 <div class="ttc" id="aclassFSICollapsibleChannelProblem_html_afdd6752cb134fd09ee8830158ed557b2"><div class="ttname"><a href="classFSICollapsibleChannelProblem.html#afdd6752cb134fd09ee8830158ed557b2">FSICollapsibleChannelProblem::set_initial_condition</a></div><div class="ttdeci">void set_initial_condition()</div><div class="ttdoc">Apply initial conditions.</div><div class="ttdef"><b>Definition</b> <a href="fsi__collapsible__channel_8cc_source.html#l00765">fsi_collapsible_channel.cc:765</a></div></div>
 <div class="ttc" id="aclassFSICollapsibleChannelProblem_html_afe14ae0d2bdfc9a15969c9bdcd6e2512"><div class="ttname"><a href="classFSICollapsibleChannelProblem.html#afe14ae0d2bdfc9a15969c9bdcd6e2512">FSICollapsibleChannelProblem::FSICollapsibleChannelProblem</a></div><div class="ttdeci">FSICollapsibleChannelProblem(const unsigned &amp;nup, const unsigned &amp;ncollapsible, const unsigned &amp;ndown, const unsigned &amp;ny, const double &amp;lup, const double &amp;lcollapsible, const double &amp;ldown, const double &amp;ly)</div><div class="ttdoc">Constructor: The arguments are the number of elements and the lengths of the domain.</div><div class="ttdef"><b>Definition</b> <a href="fsi__collapsible__channel_8cc_source.html#l00378">fsi_collapsible_channel.cc:378</a></div></div>
 <div class="ttc" id="aclassFSICollapsibleChannelProblem_html_aff5cacbc8d81f6c1beda947085496462"><div class="ttname"><a href="classFSICollapsibleChannelProblem.html#aff5cacbc8d81f6c1beda947085496462">FSICollapsibleChannelProblem::doc_solution</a></div><div class="ttdeci">void doc_solution(DocInfo &amp;doc_info, ofstream &amp;trace_file)</div><div class="ttdoc">Doc the solution.</div><div class="ttdef"><b>Definition</b> <a href="fsi__collapsible__channel_8cc_source.html#l00668">fsi_collapsible_channel.cc:668</a></div></div>
-<div class="ttc" id="aclassUndeformedWall_html"><div class="ttname"><a href="classUndeformedWall.html">UndeformedWall</a></div><div class="ttdoc">/////////////////////////////////////////////////////////////////////// /////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="fsi__collapsible__channel_8cc_source.html#l00096">fsi_collapsible_channel.cc:97</a></div></div>
+<div class="ttc" id="aclassUndeformedWall_html"><div class="ttname"><a href="classUndeformedWall.html">UndeformedWall</a></div><div class="ttdoc">Undeformed wall is a steady, straight 1D line in 2D space.</div><div class="ttdef"><b>Definition</b> <a href="fsi__collapsible__channel_8cc_source.html#l00096">fsi_collapsible_channel.cc:97</a></div></div>
 <div class="ttc" id="aclassUndeformedWall_html_a4525dbe0b5d2108ee51f16bee9af88ef"><div class="ttname"><a href="classUndeformedWall.html#a4525dbe0b5d2108ee51f16bee9af88ef">UndeformedWall::H</a></div><div class="ttdeci">double H</div><div class="ttdoc">Height of the undeformed wall above y=0.</div><div class="ttdef"><b>Definition</b> <a href="fsi__collapsible__channel_8cc_source.html#l00161">fsi_collapsible_channel.cc:161</a></div></div>
 <div class="ttc" id="aclassUndeformedWall_html_a6e25add1790f0de89bbe6840dae66a93"><div class="ttname"><a href="classUndeformedWall.html#a6e25add1790f0de89bbe6840dae66a93">UndeformedWall::d2position</a></div><div class="ttdeci">void d2position(const Vector&lt; double &gt; &amp;zeta, Vector&lt; double &gt; &amp;r, DenseMatrix&lt; double &gt; &amp;drdzeta, RankThreeTensor&lt; double &gt; &amp;ddrdzeta) const</div><div class="ttdoc">Posn vector and its 1st &amp; 2nd derivatives w.r.t. to coordinates:  = drdzeta(alpha,...</div><div class="ttdef"><b>Definition</b> <a href="fsi__collapsible__channel_8cc_source.html#l00136">fsi_collapsible_channel.cc:136</a></div></div>
 <div class="ttc" id="aclassUndeformedWall_html_a7ab875c46fef905df33eb47e0336581b"><div class="ttname"><a href="classUndeformedWall.html#a7ab875c46fef905df33eb47e0336581b">UndeformedWall::X0</a></div><div class="ttdeci">double X0</div><div class="ttdoc">x position of the undeformed beam's left end.</div><div class="ttdef"><b>Definition</b> <a href="fsi__collapsible__channel_8cc_source.html#l00158">fsi_collapsible_channel.cc:158</a></div></div>
@@ -1176,7 +1170,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:26:08
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:34:27
         </div>
       </div>
     </footer>

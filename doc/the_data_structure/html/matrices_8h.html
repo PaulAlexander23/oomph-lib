@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -144,10 +138,10 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract base class for matrices of doubles &ndash; adds abstract interfaces for solving, LU decomposition and multiplication by vectors.  <a href="classoomph_1_1DoubleMatrixBase.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DenseMatrix.html">oomph::DenseMatrix&lt; T &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">//////////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////////////  <a href="classoomph_1_1DenseMatrix.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class for dense matrices, storing all the values of the matrix as a pointer to a pointer with assorted output functions inherited from Matrix&lt;T&gt;. The curious recursive template pattern is used here to pass the specific class to the base class so that round bracket access can be inlined.  <a href="classoomph_1_1DenseMatrix.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SparseMatrix.html">oomph::SparseMatrix&lt; T, MATRIX_TYPE &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">//////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////  <a href="classoomph_1_1SparseMatrix.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class for sparse matrices, that store only the non-zero values in a linear array in memory. The details of the array indexing vary depending on the storage scheme used. The MATRIX_TYPE template parameter for use in the curious recursive template pattern is included and passed directly to the base <a class="el" href="classoomph_1_1Matrix.html" title="Abstract base class for matrices, templated by the type of object that is stored in them and the type...">Matrix</a> class.  <a href="classoomph_1_1SparseMatrix.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1CRMatrix.html">oomph::CRMatrix&lt; T &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A class for compressed row matrices, a sparse storage format Once again the recursive template trick is used to inform that base class that is should use the access functions provided in the <a class="el" href="classoomph_1_1CRMatrix.html" title="A class for compressed row matrices, a sparse storage format Once again the recursive template trick ...">CRMatrix</a> class.  <a href="classoomph_1_1CRMatrix.html#details">More...</a><br /></td></tr>
@@ -162,25 +156,25 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class of matrices containing doubles, and stored as a <a class="el" href="classoomph_1_1DenseMatrix.html">DenseMatrix&lt;double&gt;</a>, but with solving functionality inherited from the abstract DoubleMatrix class.  <a href="classoomph_1_1DenseDoubleMatrix.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1RankThreeTensor.html">oomph::RankThreeTensor&lt; T &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////  <a href="classoomph_1_1RankThreeTensor.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Rank 3 Tensor class.  <a href="classoomph_1_1RankThreeTensor.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1RankFourTensor.html">oomph::RankFourTensor&lt; T &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////  <a href="classoomph_1_1RankFourTensor.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Rank 4 Tensor class.  <a href="classoomph_1_1RankFourTensor.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1RankFiveTensor.html">oomph::RankFiveTensor&lt; T &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">/////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////  <a href="classoomph_1_1RankFiveTensor.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Rank 5 Tensor class.  <a href="classoomph_1_1RankFiveTensor.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1CCMatrix.html">oomph::CCMatrix&lt; T &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">/////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////  <a href="classoomph_1_1CCMatrix.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A class for compressed column matrices: a sparse matrix format The class is passed as the MATRIX_TYPE paramater so that the base class can use the specific access functions in the round-bracket operator.  <a href="classoomph_1_1CCMatrix.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1CCDoubleMatrix.html">oomph::CCDoubleMatrix</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">//////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////  <a href="classoomph_1_1CCDoubleMatrix.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A class for compressed column matrices that store doubles.  <a href="classoomph_1_1CCDoubleMatrix.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespaceoomph" id="r_namespaceoomph"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceoomph.html">oomph</a></td></tr>
-<tr class="memdesc:namespaceoomph"><td class="mdescLeft">&#160;</td><td class="mdescRight">//////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////// <br /></td></tr>
+<tr class="memdesc:namespaceoomph"><td class="mdescLeft">&#160;</td><td class="mdescRight">DRAIG: Change all instances of (SPATIAL_DIM) to (DIM-1). <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceoomph_1_1RRR" id="r_namespaceoomph_1_1RRR"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceoomph_1_1RRR.html">oomph::RRR</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -200,7 +194,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:ab17222c9461096e3d5b8cf6250524644"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute infinity (maximum) norm of sub blocks as if it was one matrix.  <br /></td></tr>
 <tr class="separator:ab17222c9461096e3d5b8cf6250524644"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02b5962dbe2bbfb93f54b668100afffc" id="r_a02b5962dbe2bbfb93f54b668100afffc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceoomph_1_1CRDoubleMatrixHelpers.html#a02b5962dbe2bbfb93f54b668100afffc">oomph::CRDoubleMatrixHelpers::gershgorin_eigenvalue_estimate</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1DenseMatrix.html">DenseMatrix</a>&lt; <a class="el" href="classoomph_1_1CRDoubleMatrix.html">CRDoubleMatrix</a> * &gt; &amp;matrix_pt)</td></tr>
-<tr class="memdesc:a02b5962dbe2bbfb93f54b668100afffc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the largest Gershgorin disc whilst preserving the sign. Let A be an n by n matrix, with entries aij. For <img class="formulaInl" alt="$ i \in \{ 1,...,n \} $" src="form_323.png" width="68" height="14"/> let <img class="formulaInl" alt="$ R_i = \sum_{i\neq j} |a_{ij}| $" src="form_324.png" width="83" height="16"/> be the sum of the absolute values of the non-diagonal entries in the i-th row. Let <img class="formulaInl" alt="$ D(a_{ii},R_i) $" src="form_325.png" width="53" height="14"/> be the closed disc centered at <img class="formulaInl" alt="$ a_{ii} $" src="form_326.png" width="14" height="9"/> with radius <img class="formulaInl" alt="$ R_i $" src="form_327.png" width="13" height="13"/>, such a disc is called a Gershgorin disc.  <br /></td></tr>
+<tr class="memdesc:a02b5962dbe2bbfb93f54b668100afffc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the largest Gershgorin disc whilst preserving the sign. Let A be an n by n matrix, with entries aij. For <img class="formulaInl" alt="$ i \in \{ 1,...,n \} $" src="form_331.png" width="68" height="14"/> let <img class="formulaInl" alt="$ R_i = \sum_{i\neq j} |a_{ij}| $" src="form_332.png" width="83" height="16"/> be the sum of the absolute values of the non-diagonal entries in the i-th row. Let <img class="formulaInl" alt="$ D(a_{ii},R_i) $" src="form_333.png" width="53" height="14"/> be the closed disc centered at <img class="formulaInl" alt="$ a_{ii} $" src="form_334.png" width="14" height="9"/> with radius <img class="formulaInl" alt="$ R_i $" src="form_335.png" width="13" height="13"/>, such a disc is called a Gershgorin disc.  <br /></td></tr>
 <tr class="separator:a02b5962dbe2bbfb93f54b668100afffc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7e3ac344aa644292a143a3917a03e65" id="r_ab7e3ac344aa644292a143a3917a03e65"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceoomph_1_1CRDoubleMatrixHelpers.html#ab7e3ac344aa644292a143a3917a03e65">oomph::CRDoubleMatrixHelpers::concatenate</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1DenseMatrix.html">DenseMatrix</a>&lt; <a class="el" href="classoomph_1_1CRDoubleMatrix.html">CRDoubleMatrix</a> * &gt; &amp;matrix_pt, <a class="el" href="classoomph_1_1CRDoubleMatrix.html">CRDoubleMatrix</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">result_matrix</a>)</td></tr>
 <tr class="memdesc:ab7e3ac344aa644292a143a3917a03e65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concatenate <a class="el" href="classoomph_1_1CRDoubleMatrix.html" title="A class for compressed row matrices. This is a distributable object.">CRDoubleMatrix</a> matrices. The in matrices are concatenated such that the block structure of the in matrices are preserved in the result matrix. Communication between processors is required. If the block structure of the sub matrices does not need to be preserved, consider using CRDoubleMatrixHelpers::concatenate_without_communication(...).  <br /></td></tr>
@@ -247,7 +241,7 @@ Variables</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:03:12
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:36:34
         </div>
       </div>
     </footer>

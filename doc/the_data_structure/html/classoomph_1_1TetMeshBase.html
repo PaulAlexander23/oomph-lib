@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -133,7 +127,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>//////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////  
+<p>Base class for tet meshes (meshes made of 3D tet elements).  
  <a href="classoomph_1_1TetMeshBase.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>&gt;</code></p>
@@ -146,16 +140,16 @@ $(function() {
   <img src="classoomph_1_1TetMeshBase.png" usemap="#oomph::TetMeshBase_map" alt=""/>
   <map id="oomph::TetMeshBase_map" name="oomph::TetMeshBase_map">
 <area href="classoomph_1_1Mesh.html" title="A general mesh class." alt="oomph::Mesh" shape="rect" coords="608,0,902,24"/>
-<area href="classoomph_1_1GmshTetMesh.html" title="/////////////////////////////////////////////////////////////////////// /////////////////////////////..." alt="oomph::GmshTetMesh&lt; ELEMENT &gt;" shape="rect" coords="0,112,294,136"/>
+<area href="classoomph_1_1GmshTetMesh.html" title="Forward declaration." alt="oomph::GmshTetMesh&lt; ELEMENT &gt;" shape="rect" coords="0,112,294,136"/>
 <area href="classoomph_1_1GmshTetScaffoldMesh.html" alt="oomph::GmshTetScaffoldMesh" shape="rect" coords="304,112,598,136"/>
 <area href="classoomph_1_1SimpleCubicTetMesh.html" title="MySimple 3D tet mesh for TElements." alt="oomph::SimpleCubicTetMesh&lt; ELEMENT &gt;" shape="rect" coords="608,112,902,136"/>
 <area href="classoomph_1_1TetgenMesh.html" title="Unstructured tet mesh based on output from Tetgen: http://wias-berlin.de/software/tetgen/." alt="oomph::TetgenMesh&lt; ELEMENT &gt;" shape="rect" coords="912,112,1206,136"/>
 <area href="classoomph_1_1XdaTetMesh.html" title="Tet mesh made of quadratic (ten node) tets built from xda input file." alt="oomph::XdaTetMesh&lt; ELEMENT &gt;" shape="rect" coords="1368,112,1662,136"/>
-<area href="classoomph_1_1RefineableGmshTetMesh.html" title="/////////////////////////////////////////////////////////////////////// /////////////////////////////..." alt="oomph::RefineableGmshTetMesh&lt; ELEMENT &gt;" shape="rect" coords="0,168,294,192"/>
+<area href="classoomph_1_1RefineableGmshTetMesh.html" alt="oomph::RefineableGmshTetMesh&lt; ELEMENT &gt;" shape="rect" coords="0,168,294,192"/>
 <area href="classoomph_1_1RefineableTetgenMesh.html" alt="oomph::RefineableTetgenMesh&lt; ELEMENT &gt;" shape="rect" coords="760,168,1054,192"/>
-<area href="classoomph_1_1SolidTetgenMesh.html" title="/////////////////////////////////////////////////////////////// /////////////////////////////////////..." alt="oomph::SolidTetgenMesh&lt; ELEMENT &gt;" shape="rect" coords="1064,168,1358,192"/>
-<area href="classoomph_1_1SolidXdaTetMesh.html" title="///////////////////////////////////////////////////////////////// ///////////////////////////////////..." alt="oomph::SolidXdaTetMesh&lt; ELEMENT &gt;" shape="rect" coords="1368,168,1662,192"/>
-<area href="classoomph_1_1RefineableSolidTetgenMesh.html" title="////////////////////////////////////////////////////////////////////////// //////////////////////////..." alt="oomph::RefineableSolidTetgenMesh&lt; ELEMENT &gt;" shape="rect" coords="760,224,1054,248"/>
+<area href="classoomph_1_1SolidTetgenMesh.html" title="Tetgen-based mesh upgraded to become a solid mesh. Automatically enumerates all boundaries." alt="oomph::SolidTetgenMesh&lt; ELEMENT &gt;" shape="rect" coords="1064,168,1358,192"/>
+<area href="classoomph_1_1SolidXdaTetMesh.html" title="Xda-based tet mesh upgraded to become a solid mesh." alt="oomph::SolidXdaTetMesh&lt; ELEMENT &gt;" shape="rect" coords="1368,168,1662,192"/>
+<area href="classoomph_1_1RefineableSolidTetgenMesh.html" alt="oomph::RefineableSolidTetgenMesh&lt; ELEMENT &gt;" shape="rect" coords="760,224,1054,248"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -201,6 +195,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1efd6c45576e53e0f8c0ccc9c388800c" id="r_a1efd6c45576e53e0f8c0ccc9c388800c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TetMeshBase.html#a1efd6c45576e53e0f8c0ccc9c388800c">face_index_at_boundary_in_region</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;b, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">r</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="cfortran_8h.html#a37cd013acc76697829c324bdd8562d82">e</a>) <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a></td></tr>
 <tr class="memdesc:a1efd6c45576e53e0f8c0ccc9c388800c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return face index of the e-th element adjacent to boundary b in region r.  <br /></td></tr>
 <tr class="separator:a1efd6c45576e53e0f8c0ccc9c388800c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab740b7f7e7bd7672d40ae57e2172c12d" id="r_ab740b7f7e7bd7672d40ae57e2172c12d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TetMeshBase.html#ab740b7f7e7bd7672d40ae57e2172c12d">add_element_in_region_pt</a> (<a class="el" href="classoomph_1_1FiniteElement.html">FiniteElement</a> *<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">elem_pt</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">region_id</a>)</td></tr>
+<tr class="memdesc:ab740b7f7e7bd7672d40ae57e2172c12d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an element to a particular region; this helper checks if the specified element and region ID already exist, so can be used to move an existing element to an existing region, to add an existing element to a new region, or to add a new element to a new region.  <br /></td></tr>
+<tr class="separator:ab740b7f7e7bd7672d40ae57e2172c12d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4b7631fb804a634726484f5f2fbec9d" id="r_ad4b7631fb804a634726484f5f2fbec9d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TetMeshBase.html#ad4b7631fb804a634726484f5f2fbec9d">regenerate_region_boundary_lookups</a> ()</td></tr>
+<tr class="memdesc:ad4b7631fb804a634726484f5f2fbec9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear and regenerate the lookup schemes for bulk elements and their corresponding face indices which are adjacent to mesh boundaries.  <br /></td></tr>
+<tr class="separator:ad4b7631fb804a634726484f5f2fbec9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d4d45ac64c6ee59cadf3a08d62a76f2" id="r_a3d4d45ac64c6ee59cadf3a08d62a76f2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TetMeshBase.html#a3d4d45ac64c6ee59cadf3a08d62a76f2">nregion</a> ()</td></tr>
 <tr class="memdesc:a3d4d45ac64c6ee59cadf3a08d62a76f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the number of regions specified by attributes.  <br /></td></tr>
 <tr class="separator:a3d4d45ac64c6ee59cadf3a08d62a76f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -323,6 +323,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad1b124a959628aba00162b89617b3a62 inherit pub_methods_classoomph_1_1Mesh" id="r_ad1b124a959628aba00162b89617b3a62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#ad1b124a959628aba00162b89617b3a62">boundary_coordinate_exists</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>) <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a></td></tr>
 <tr class="memdesc:ad1b124a959628aba00162b89617b3a62 inherit pub_methods_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicate whether the i-th boundary has an intrinsic coordinate.  <br /></td></tr>
 <tr class="separator:ad1b124a959628aba00162b89617b3a62 inherit pub_methods_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab137d0c0debf5ba0d6ea6990103e620c inherit pub_methods_classoomph_1_1Mesh" id="r_ab137d0c0debf5ba0d6ea6990103e620c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#ab137d0c0debf5ba0d6ea6990103e620c">set_boundary_coordinate_exists</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>)</td></tr>
+<tr class="memdesc:ab137d0c0debf5ba0d6ea6990103e620c inherit pub_methods_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set boundary coordinate on the i-th boundary to be existing.  <br /></td></tr>
+<tr class="separator:ab137d0c0debf5ba0d6ea6990103e620c inherit pub_methods_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b9d63e0057ed721190b109f48f7c92e inherit pub_methods_classoomph_1_1Mesh" id="r_a3b9d63e0057ed721190b109f48f7c92e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#a3b9d63e0057ed721190b109f48f7c92e">set_boundary_coordinate_does_not_exist</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>)</td></tr>
+<tr class="memdesc:a3b9d63e0057ed721190b109f48f7c92e inherit pub_methods_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set boundary coordinate on the i-th boundary to be non-existing.  <br /></td></tr>
+<tr class="separator:a3b9d63e0057ed721190b109f48f7c92e inherit pub_methods_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af01dfefb66c15579b540be62999d93ee inherit pub_methods_classoomph_1_1Mesh" id="r_af01dfefb66c15579b540be62999d93ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">long</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#af01dfefb66c15579b540be62999d93ee">nelement</a> () <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a></td></tr>
 <tr class="memdesc:af01dfefb66c15579b540be62999d93ee inherit pub_methods_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return number of elements in the mesh.  <br /></td></tr>
 <tr class="separator:af01dfefb66c15579b540be62999d93ee inherit pub_methods_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -750,7 +756,7 @@ Static Public Attributes</h2></td></tr>
 <tr class="separator:a8ec167eda551633acb8896cb0e87be40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_attribs_classoomph_1_1Mesh"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_classoomph_1_1Mesh')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="classoomph_1_1Mesh.html">oomph::Mesh</a></td></tr>
 <tr class="memitem:a12243d0fee2b1fcee729ee5a4777ea10 inherit pub_static_attribs_classoomph_1_1Mesh" id="r_a12243d0fee2b1fcee729ee5a4777ea10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">static</a> <a class="el" href="classoomph_1_1Steady.html">Steady</a>&lt; 0 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#a12243d0fee2b1fcee729ee5a4777ea10">Default_TimeStepper</a></td></tr>
-<tr class="memdesc:a12243d0fee2b1fcee729ee5a4777ea10 inherit pub_static_attribs_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default <a class="el" href="classoomph_1_1Steady.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////...">Steady</a> Timestepper, to be used in default arguments to <a class="el" href="classoomph_1_1Mesh.html" title="A general mesh class.">Mesh</a> constructors.  <br /></td></tr>
+<tr class="memdesc:a12243d0fee2b1fcee729ee5a4777ea10 inherit pub_static_attribs_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default <a class="el" href="classoomph_1_1Steady.html" title="Faux time-stepper for steady problems. Allows storage for NSTEPS previous values.">Steady</a> Timestepper, to be used in default arguments to <a class="el" href="classoomph_1_1Mesh.html" title="A general mesh class.">Mesh</a> constructors.  <br /></td></tr>
 <tr class="separator:a12243d0fee2b1fcee729ee5a4777ea10 inherit pub_static_attribs_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada6bc12304d1536b747596d1049e48be inherit pub_static_attribs_classoomph_1_1Mesh" id="r_ada6bc12304d1536b747596d1049e48be"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">static</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#ada6bc12304d1536b747596d1049e48be">Suppress_warning_about_empty_mesh_level_time_stepper_function</a></td></tr>
 <tr class="memdesc:ada6bc12304d1536b747596d1049e48be inherit pub_static_attribs_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean used to control warning about empty mesh level timestepper function.  <br /></td></tr>
@@ -843,9 +849,6 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:aca12acfe655a4d5c4a4eab4a7b970812 inherit pro_attribs_classoomph_1_1Mesh" id="r_aca12acfe655a4d5c4a4eab4a7b970812"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; <a class="el" href="classoomph_1_1GeneralisedElement.html">GeneralisedElement</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#aca12acfe655a4d5c4a4eab4a7b970812">Element_pt</a></td></tr>
 <tr class="memdesc:aca12acfe655a4d5c4a4eab4a7b970812 inherit pro_attribs_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> of pointers to generalised elements.  <br /></td></tr>
 <tr class="separator:aca12acfe655a4d5c4a4eab4a7b970812 inherit pro_attribs_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a412a5051be9e81f0ba61bf85e5abc4a6 inherit pro_attribs_classoomph_1_1Mesh" id="r_a412a5051be9e81f0ba61bf85e5abc4a6"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#a412a5051be9e81f0ba61bf85e5abc4a6">Boundary_coordinate_exists</a></td></tr>
-<tr class="memdesc:a412a5051be9e81f0ba61bf85e5abc4a6 inherit pro_attribs_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> of boolean data that indicates whether the boundary coordinates have been set for the boundary.  <br /></td></tr>
-<tr class="separator:a412a5051be9e81f0ba61bf85e5abc4a6 inherit pro_attribs_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -884,8 +887,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a2bdff104c0cc1f2669f9f5cad4a2a1a9 inherit pro_methods_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>//////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////// </p>
-<p>//////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////// Base class for tet meshes (meshes made of 3D tet elements). </p>
+<div class="textblock"><p>Base class for tet meshes (meshes made of 3D tet elements). </p>
 
 <p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l00846">846</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -976,6 +978,40 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ab740b7f7e7bd7672d40ae57e2172c12d" name="ab740b7f7e7bd7672d40ae57e2172c12d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab740b7f7e7bd7672d40ae57e2172c12d">&#9670;&#160;</a></span>add_element_in_region_pt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a> oomph::TetMeshBase::add_element_in_region_pt </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classoomph_1_1FiniteElement.html">FiniteElement</a> *<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> &amp;&#160;</td>
+          <td class="paramname"><em>elem_pt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;&#160;</td>
+          <td class="paramname"><em>region_id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Add an element to a particular region; this helper checks if the specified element and region ID already exist, so can be used to move an existing element to an existing region, to add an existing element to a new region, or to add a new element to a new region. </p>
+
+<p class="definition">Definition at line <a class="el" href="tet__mesh_8cc_source.html#l00422">422</a> of file <a class="el" href="tet__mesh_8cc_source.html">tet_mesh.cc</a>.</p>
+
+<p class="reference">References <a class="el" href="mesh_8h_source.html#l00625">oomph::Mesh::add_element_pt()</a>, <a class="el" href="mesh_8h_source.html#l00186">oomph::Mesh::Element_pt</a>, <a class="el" href="tet__mesh_8h_source.html#l01057">nregion()</a>, <a class="el" href="tet__mesh_8h_source.html#l01224">Region_attribute</a>, <a class="el" href="tet__mesh_8h_source.html#l01219">Region_element_pt</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
+
+</div>
+</div>
 <a id="aa8b4e18d5f358a5bc64151861d990ca3" name="aa8b4e18d5f358a5bc64151861d990ca3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa8b4e18d5f358a5bc64151861d990ca3">&#9670;&#160;</a></span>assess_mesh_quality()</h2>
 
@@ -994,9 +1030,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Assess mesh quality: Ratio of max. edge length to min. height, so if it's very large it's BAAAAAD. </p>
 
-<p class="definition">Definition at line <a class="el" href="tet__mesh_8cc_source.html#l00373">373</a> of file <a class="el" href="tet__mesh_8cc_source.html">tet_mesh.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tet__mesh_8cc_source.html#l00528">528</a> of file <a class="el" href="tet__mesh_8cc_source.html">tet_mesh.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00473">oomph::Mesh::finite_element_pt()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="mesh_8h_source.html#l00590">oomph::Mesh::nelement()</a>, <a class="el" href="elements_8h_source.html#l02179">oomph::FiniteElement::node_pt()</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00319">oomph::oomph_info</a>, and <a class="el" href="nodes_8h_source.html#l01060">oomph::Node::x()</a>.</p>
+<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00477">oomph::Mesh::finite_element_pt()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="mesh_8h_source.html#l00598">oomph::Mesh::nelement()</a>, <a class="el" href="elements_8h_source.html#l02179">oomph::FiniteElement::node_pt()</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00326">oomph::oomph_info</a>, and <a class="el" href="nodes_8h_source.html#l01060">oomph::Node::x()</a>.</p>
 
 </div>
 </div>
@@ -1044,7 +1080,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01002">1002</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="tet__mesh_8h_source.html#l01217">Boundary_region_element_pt</a>, and <a class="el" href="cfortran_8h_source.html#l00571">e</a>.</p>
+<p class="reference">References <a class="el" href="tet__mesh_8h_source.html#l01228">Boundary_region_element_pt</a>, and <a class="el" href="cfortran_8h_source.html#l00571">e</a>.</p>
 
 </div>
 </div>
@@ -1092,7 +1128,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01020">1020</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00571">e</a>, and <a class="el" href="tet__mesh_8h_source.html#l01221">Face_index_region_at_boundary</a>.</p>
+<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00571">e</a>, and <a class="el" href="tet__mesh_8h_source.html#l01232">Face_index_region_at_boundary</a>.</p>
 
 </div>
 </div>
@@ -1134,7 +1170,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l00983">983</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="tet__mesh_8h_source.html#l01217">Boundary_region_element_pt</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
+<p class="reference">References <a class="el" href="tet__mesh_8h_source.html#l01228">Boundary_region_element_pt</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
 
 </div>
 </div>
@@ -1163,9 +1199,11 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Return the number of regions specified by attributes. </p>
 
-<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01046">1046</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01057">1057</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="tet__mesh_8h_source.html#l01208">Region_element_pt</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
+<p class="reference">References <a class="el" href="tet__mesh_8h_source.html#l01219">Region_element_pt</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="tet__mesh_8cc_source.html#l00422">add_element_in_region_pt()</a>, and <a class="el" href="tet__mesh_8cc_source.html#l00372">regenerate_region_boundary_lookups()</a>.</p>
 
 </div>
 </div>
@@ -1195,9 +1233,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Return the number of elements in region r. </p>
 
-<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01052">1052</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01063">1063</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="tet__mesh_8h_source.html#l01213">Region_attribute</a>, <a class="el" href="tet__mesh_8h_source.html#l01208">Region_element_pt</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
+<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="tet__mesh_8h_source.html#l01224">Region_attribute</a>, <a class="el" href="tet__mesh_8h_source.html#l01219">Region_element_pt</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
 
 </div>
 </div>
@@ -1229,6 +1267,31 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="ad4b7631fb804a634726484f5f2fbec9d" name="ad4b7631fb804a634726484f5f2fbec9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4b7631fb804a634726484f5f2fbec9d">&#9670;&#160;</a></span>regenerate_region_boundary_lookups()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a> oomph::TetMeshBase::regenerate_region_boundary_lookups </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clear and regenerate the lookup schemes for bulk elements and their corresponding face indices which are adjacent to mesh boundaries. </p>
+
+<p class="definition">Definition at line <a class="el" href="tet__mesh_8cc_source.html#l00372">372</a> of file <a class="el" href="tet__mesh_8cc_source.html">tet_mesh.cc</a>.</p>
+
+<p class="reference">References <a class="el" href="mesh_8h_source.html#l00848">oomph::Mesh::boundary_element_pt()</a>, <a class="el" href="tet__mesh_8h_source.html#l01228">Boundary_region_element_pt</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00904">oomph::Mesh::face_index_at_boundary()</a>, <a class="el" href="tet__mesh_8h_source.html#l01232">Face_index_region_at_boundary</a>, <a class="el" href="mesh_8h_source.html#l00835">oomph::Mesh::nboundary()</a>, <a class="el" href="mesh_8h_source.html#l00886">oomph::Mesh::nboundary_element()</a>, <a class="el" href="tet__mesh_8h_source.html#l01057">nregion()</a>, <a class="el" href="tet__mesh_8h_source.html#l01224">Region_attribute</a>, and <a class="el" href="tet__mesh_8h_source.html#l01219">Region_element_pt</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="tet__mesh_8h_source.html#l02147">split_elements_in_corners()</a>.</p>
+
+</div>
+</div>
 <a id="a2a185b3c2ad528a74d2e6c27f7ffede5" name="a2a185b3c2ad528a74d2e6c27f7ffede5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2a185b3c2ad528a74d2e6c27f7ffede5">&#9670;&#160;</a></span>region_attribute()</h2>
 
@@ -1255,9 +1318,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Return the i-th region attribute (here only used as the (assumed to be unsigned) region id. </p>
 
-<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01092">1092</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01103">1103</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00603">i</a>, and <a class="el" href="tet__mesh_8h_source.html#l01213">Region_attribute</a>.</p>
+<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00603">i</a>, and <a class="el" href="tet__mesh_8h_source.html#l01224">Region_attribute</a>.</p>
 
 </div>
 </div>
@@ -1297,9 +1360,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Return the e-th element in the r-th region. </p>
 
-<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01098">1098</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01109">1109</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="tet__mesh_8h_source.html#l01213">Region_attribute</a>, and <a class="el" href="tet__mesh_8h_source.html#l01208">Region_element_pt</a>.</p>
+<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="tet__mesh_8h_source.html#l01224">Region_attribute</a>, and <a class="el" href="tet__mesh_8h_source.html#l01219">Region_element_pt</a>.</p>
 
 </div>
 </div>
@@ -1331,7 +1394,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Setup boundary coordinate on boundary b which is assumed to be planar. Boundary coordinates are the x-y coordinates in the plane of that boundary, with the x-axis along the line from the (lexicographically) "lower left" to the "upper right" node. The y axis is obtained by taking the cross-product of the positive x direction with the outer unit normal computed by the face elements (or its negative if switch_normal is set to true). Doc faces in output file (if it's open). </p>
 <p>Note 1: Setup of boundary coordinates is not done if the boundary in question turns out to be nonplanar.</p>
-<p>Note 2: If a triangular <a class="el" href="classoomph_1_1TetMeshFacet.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">TetMeshFacet</a> is associated with a boundary we also store the boundary coordinates of its vertices. They are needed to interpolated intrinsic coordinates of an associated <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a> (if any) into the interior. </p>
+<p>Note 2: If a triangular <a class="el" href="classoomph_1_1TetMeshFacet.html" title="Facet for Tet mesh generation. Can lie on boundary (identified via one-based enumeration!...">TetMeshFacet</a> is associated with a boundary we also store the boundary coordinates of its vertices. They are needed to interpolated intrinsic coordinates of an associated <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a> (if any) into the interior. </p>
 
 <p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l00888">888</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
@@ -1375,7 +1438,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Setup boundary coordinate on boundary b which is assumed to be planar. Boundary coordinates are the x-y coordinates in the plane of that boundary, with the x-axis along the line from the (lexicographically) "lower left" to the "upper right" node. The y axis is obtained by taking the cross-product of the positive x direction with the outer unit normal computed by the face elements (or its negative if switch_normal is set to true). Doc faces in output file (if it's open). </p>
 <p>Note 1: Setup of boundary coordinates is not done if the boundary in question turns out to be nonplanar.</p>
-<p>Note 2: If a triangular <a class="el" href="classoomph_1_1TetMeshFacet.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">TetMeshFacet</a> is associated with a boundary we also store the boundary coordinates of its vertices. They are needed to interpolated intrinsic coordinates of an associated <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a> (if any) into the interior. Final boolean argument allows switching of the direction of the outer unit normal. </p>
+<p>Note 2: If a triangular <a class="el" href="classoomph_1_1TetMeshFacet.html" title="Facet for Tet mesh generation. Can lie on boundary (identified via one-based enumeration!...">TetMeshFacet</a> is associated with a boundary we also store the boundary coordinates of its vertices. They are needed to interpolated intrinsic coordinates of an associated <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a> (if any) into the interior. Final boolean argument allows switching of the direction of the outer unit normal. </p>
 
 <p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l00919">919</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
@@ -1416,16 +1479,14 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 </div><div class="memdoc">
 
 <p>Setup boundary coordinate on boundary b which is assumed to be planar. Boundary coordinates are the x-y coordinates in the plane of that boundary, with the x-axis along the line from the (lexicographically) "lower left" to the "upper right" node. The y axis is obtained by taking the cross-product of the positive x direction with the outer unit normal computed by the face elements (or its negative if switch_normal is set to true). Doc faces in output file (if it's open). </p>
-<p>/////////////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////////////</p>
 <p>Note 1: Setup of boundary coordinates is not done if the boundary in question turns out to be nonplanar.</p>
-<p>Note 2: If a triangular <a class="el" href="classoomph_1_1TetMeshFacet.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">TetMeshFacet</a> is associated with a boundary we also store the boundary coordinates of its vertices. They are needed to interpolated intrinsic coordinates of an associated <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a> (if any) into the interior. Boolean argument allows switching of the direction of the outer unit normal. Output file for doc.</p>
-<p>Setup boundary coordinate on boundary b which is assumed to be planar. Boundary coordinates are the x-y coordinates in the plane of that boundary, with the x-axis along the line from the (lexicographically) "lower left" to the "upper right" node. The y axis is obtained by taking the cross-product of the positive x direction with the outer unit normal computed by the face elements (or its negative if switch_normal is set to true). Doc faces in output file (if it's open).</p>
+<p>Note 2: If a triangular <a class="el" href="classoomph_1_1TetMeshFacet.html" title="Facet for Tet mesh generation. Can lie on boundary (identified via one-based enumeration!...">TetMeshFacet</a> is associated with a boundary we also store the boundary coordinates of its vertices. They are needed to interpolated intrinsic coordinates of an associated <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a> (if any) into the interior. Boolean argument allows switching of the direction of the outer unit normal. Output file for doc.</p>
 <p>Note 1: Setup of boundary coordinates is not done if the boundary in question turns out to be nonplanar.</p>
-<p>Note 2: If a triangular <a class="el" href="classoomph_1_1TetMeshFacet.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">TetMeshFacet</a> is associated with a boundary we also store the boundary coordinates of its vertices. They are needed to interpolated intrinsic coordinates of an associated <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a> (if any) into the interior. </p>
+<p>Note 2: If a triangular <a class="el" href="classoomph_1_1TetMeshFacet.html" title="Facet for Tet mesh generation. Can lie on boundary (identified via one-based enumeration!...">TetMeshFacet</a> is associated with a boundary we also store the boundary coordinates of its vertices. They are needed to interpolated intrinsic coordinates of an associated <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a> (if any) into the interior. </p>
 
-<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01278">1278</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01289">1289</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="mesh_8h_source.html#l00190">oomph::Mesh::Boundary_coordinate_exists</a>, <a class="el" href="mesh_8h_source.html#l00840">oomph::Mesh::boundary_element_pt()</a>, <a class="el" href="mesh_8h_source.html#l00493">oomph::Mesh::boundary_node_pt()</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00896">oomph::Mesh::face_index_at_boundary()</a>, <a class="el" href="mesh_8h_source.html#l00878">oomph::Mesh::nboundary_element()</a>, <a class="el" href="mesh_8h_source.html#l00833">oomph::Mesh::nboundary_node()</a>, <a class="el" href="Tadvection__diffusion__reaction__elements_8h_source.html#l00096">oomph::TAdvectionDiffusionReactionElement&lt; NREAGENT, DIM, NNODE_1D &gt;::output()</a>, <a class="el" href="cfortran_8h_source.html#l00568">s</a>, <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>, <a class="el" href="tet__mesh_8h_source.html#l01235">Tet_mesh_facet_pt</a>, <a class="el" href="tet__mesh_8h_source.html#l00863">Tolerance_for_boundary_finding</a>, and <a class="el" href="tet__mesh_8h_source.html#l01240">Triangular_facet_vertex_boundary_coordinate</a>.</p>
+<p class="reference">References <a class="el" href="mesh_8h_source.html#l00848">oomph::Mesh::boundary_element_pt()</a>, <a class="el" href="mesh_8h_source.html#l00497">oomph::Mesh::boundary_node_pt()</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00904">oomph::Mesh::face_index_at_boundary()</a>, <a class="el" href="mesh_8h_source.html#l00886">oomph::Mesh::nboundary_element()</a>, <a class="el" href="mesh_8h_source.html#l00841">oomph::Mesh::nboundary_node()</a>, <a class="el" href="Tadvection__diffusion__reaction__elements_8h_source.html#l00096">oomph::TAdvectionDiffusionReactionElement&lt; NREAGENT, DIM, NNODE_1D &gt;::output()</a>, <a class="el" href="cfortran_8h_source.html#l00568">s</a>, <a class="el" href="mesh_8h_source.html#l00584">oomph::Mesh::set_boundary_coordinate_exists()</a>, <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>, <a class="el" href="tet__mesh_8h_source.html#l01246">Tet_mesh_facet_pt</a>, <a class="el" href="tet__mesh_8h_source.html#l00863">Tolerance_for_boundary_finding</a>, and <a class="el" href="tet__mesh_8h_source.html#l01251">Triangular_facet_vertex_boundary_coordinate</a>.</p>
 
 </div>
 </div>
@@ -1467,7 +1528,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Setup boundary coordinate on boundary b which is assumed to be planar. Boundary coordinates are the x-y coordinates in the plane of that boundary, with the x-axis along the line from the (lexicographically) "lower left" to the "upper right" node. The y axis is obtained by taking the cross-product of the positive x direction with the outer unit normal computed by the face elements (or its negative if switch_normal is set to true). Doc faces in output file (if it's open). </p>
 <p>Note 1: Setup of boundary coordinates is not done if the boundary in question turns out to be nonplanar.</p>
-<p>Note 2: If a triangular <a class="el" href="classoomph_1_1TetMeshFacet.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">TetMeshFacet</a> is associated with a boundary we also store the boundary coordinates of its vertices. They are needed to interpolated intrinsic coordinates of an associated <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a> (if any) into the interior. Output file for doc. </p>
+<p>Note 2: If a triangular <a class="el" href="classoomph_1_1TetMeshFacet.html" title="Facet for Tet mesh generation. Can lie on boundary (identified via one-based enumeration!...">TetMeshFacet</a> is associated with a boundary we also store the boundary coordinates of its vertices. They are needed to interpolated intrinsic coordinates of an associated <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a> (if any) into the interior. Output file for doc. </p>
 
 <p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l00974">974</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
@@ -1500,11 +1561,11 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Reimplemented from <a class="el" href="classoomph_1_1Mesh.html#a6cc8bcd6b41209f0e9295cc993d9c6bb">oomph::Mesh</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01193">1193</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01204">1204</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="tet__mesh_8h_source.html#l01193">setup_boundary_element_info()</a>.</p>
+<p class="reference">References <a class="el" href="tet__mesh_8h_source.html#l01204">setup_boundary_element_info()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="tet__mesh_8h_source.html#l01193">setup_boundary_element_info()</a>, and <a class="el" href="tet__mesh_8h_source.html#l02136">split_elements_in_corners()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="tet__mesh_8h_source.html#l01204">setup_boundary_element_info()</a>, and <a class="el" href="tet__mesh_8h_source.html#l02147">split_elements_in_corners()</a>.</p>
 
 </div>
 </div>
@@ -1539,7 +1600,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p class="definition">Definition at line <a class="el" href="tet__mesh_8cc_source.html#l00100">100</a> of file <a class="el" href="tet__mesh_8cc_source.html">tet_mesh.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="mesh_8h_source.html#l00091">oomph::Mesh::Boundary_element_pt</a>, <a class="el" href="elements_8h_source.html#l02615">oomph::FiniteElement::dim()</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00095">oomph::Mesh::Face_index_at_boundary</a>, <a class="el" href="mesh_8h_source.html#l00473">oomph::Mesh::finite_element_pt()</a>, <a class="el" href="nodes_8h_source.html#l01365">oomph::Node::get_boundaries_pt()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="mesh_8h_source.html#l00087">oomph::Mesh::Lookup_for_elements_next_boundary_is_setup</a>, <a class="el" href="mesh_8h_source.html#l00827">oomph::Mesh::nboundary()</a>, <a class="el" href="mesh_8h_source.html#l00590">oomph::Mesh::nelement()</a>, <a class="el" href="elements_8h_source.html#l02179">oomph::FiniteElement::node_pt()</a>, <a class="el" href="Tadvection__diffusion__reaction__elements_8h_source.html#l00096">oomph::TAdvectionDiffusionReactionElement&lt; NREAGENT, DIM, NNODE_1D &gt;::output()</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
+<p class="reference">References <a class="el" href="mesh_8h_source.html#l00091">oomph::Mesh::Boundary_element_pt</a>, <a class="el" href="elements_8h_source.html#l02615">oomph::FiniteElement::dim()</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00095">oomph::Mesh::Face_index_at_boundary</a>, <a class="el" href="mesh_8h_source.html#l00477">oomph::Mesh::finite_element_pt()</a>, <a class="el" href="nodes_8h_source.html#l01365">oomph::Node::get_boundaries_pt()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="mesh_8h_source.html#l00087">oomph::Mesh::Lookup_for_elements_next_boundary_is_setup</a>, <a class="el" href="mesh_8h_source.html#l00835">oomph::Mesh::nboundary()</a>, <a class="el" href="mesh_8h_source.html#l00598">oomph::Mesh::nelement()</a>, <a class="el" href="elements_8h_source.html#l02179">oomph::FiniteElement::node_pt()</a>, <a class="el" href="Tadvection__diffusion__reaction__elements_8h_source.html#l00096">oomph::TAdvectionDiffusionReactionElement&lt; NREAGENT, DIM, NNODE_1D &gt;::output()</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
 
 </div>
 </div>
@@ -1561,11 +1622,11 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 <p>Move the nodes on boundaries with associated GeomObjects so that they exactly coincide with the geometric object. This requires that the boundary coordinates are set up consistently. </p>
 <p>Move the nodes on boundaries with associated Geometric Objects (if any) so that they exactly coincide with the geometric object. This requires that the boundary coordinates are set up consistently. </p>
 
-<p class="definition">Definition at line <a class="el" href="tet__mesh_8cc_source.html#l00483">483</a> of file <a class="el" href="tet__mesh_8cc_source.html">tet_mesh.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tet__mesh_8cc_source.html#l00638">638</a> of file <a class="el" href="tet__mesh_8cc_source.html">tet_mesh.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="mesh_8h_source.html#l00190">oomph::Mesh::Boundary_coordinate_exists</a>, <a class="el" href="mesh_8h_source.html#l00493">oomph::Mesh::boundary_node_pt()</a>, <a class="el" href="elements_8cc_source.html#l04267">oomph::FiniteElement::check_J_eulerian_at_knots()</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00473">oomph::Mesh::finite_element_pt()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="mesh_8h_source.html#l00827">oomph::Mesh::nboundary()</a>, <a class="el" href="mesh_8h_source.html#l00833">oomph::Mesh::nboundary_node()</a>, <a class="el" href="mesh_8h_source.html#l00590">oomph::Mesh::nelement()</a>, <a class="el" href="elements_8h_source.html#l02214">oomph::FiniteElement::nnode()</a>, <a class="el" href="mesh_8h_source.html#l00596">oomph::Mesh::nnode()</a>, <a class="el" href="elements_8h_source.html#l02222">oomph::FiniteElement::nnode_1d()</a>, <a class="el" href="elements_8h_source.html#l02179">oomph::FiniteElement::node_pt()</a>, <a class="el" href="mesh_8h_source.html#l00436">oomph::Mesh::node_pt()</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00319">oomph::oomph_info</a>, <a class="el" href="Tadvection__diffusion__reaction__elements_8h_source.html#l00096">oomph::TAdvectionDiffusionReactionElement&lt; NREAGENT, DIM, NNODE_1D &gt;::output()</a>, <a class="el" href="elements_8h_source.html#l02680">oomph::FiniteElement::position()</a>, <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>, <a class="el" href="cfortran_8h_source.html#l00568">t</a>, <a class="el" href="tet__mesh_8h_source.html#l01231">Tet_mesh_faceted_surface_pt</a>, and <a class="el" href="tet__mesh_8h_source.html#l01240">Triangular_facet_vertex_boundary_coordinate</a>.</p>
+<p class="reference">References <a class="el" href="mesh_8h_source.html#l00571">oomph::Mesh::boundary_coordinate_exists()</a>, <a class="el" href="mesh_8h_source.html#l00497">oomph::Mesh::boundary_node_pt()</a>, <a class="el" href="elements_8cc_source.html#l04267">oomph::FiniteElement::check_J_eulerian_at_knots()</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00477">oomph::Mesh::finite_element_pt()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="mesh_8h_source.html#l00835">oomph::Mesh::nboundary()</a>, <a class="el" href="mesh_8h_source.html#l00841">oomph::Mesh::nboundary_node()</a>, <a class="el" href="mesh_8h_source.html#l00598">oomph::Mesh::nelement()</a>, <a class="el" href="elements_8h_source.html#l02214">oomph::FiniteElement::nnode()</a>, <a class="el" href="mesh_8h_source.html#l00604">oomph::Mesh::nnode()</a>, <a class="el" href="elements_8h_source.html#l02222">oomph::FiniteElement::nnode_1d()</a>, <a class="el" href="elements_8h_source.html#l02179">oomph::FiniteElement::node_pt()</a>, <a class="el" href="mesh_8h_source.html#l00440">oomph::Mesh::node_pt()</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00326">oomph::oomph_info</a>, <a class="el" href="Tadvection__diffusion__reaction__elements_8h_source.html#l00096">oomph::TAdvectionDiffusionReactionElement&lt; NREAGENT, DIM, NNODE_1D &gt;::output()</a>, <a class="el" href="elements_8h_source.html#l02680">oomph::FiniteElement::position()</a>, <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>, <a class="el" href="cfortran_8h_source.html#l00568">t</a>, <a class="el" href="tet__mesh_8h_source.html#l01242">Tet_mesh_faceted_surface_pt</a>, and <a class="el" href="tet__mesh_8h_source.html#l01251">Triangular_facet_vertex_boundary_coordinate</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l01687">oomph::GmshTetMesh&lt; ELEMENT &gt;::build_it()</a>, <a class="el" href="refineable__tetgen__mesh_8template_8h_source.html#l00082">oomph::RefineableTetgenMesh&lt; ELEMENT &gt;::RefineableTetgenMesh()</a>, and <a class="el" href="tetgen__mesh_8template_8h_source.html#l00253">oomph::TetgenMesh&lt; ELEMENT &gt;::TetgenMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="gmsh__tet__mesh_8h_source.html#l01653">oomph::GmshTetMesh&lt; ELEMENT &gt;::build_it()</a>, <a class="el" href="refineable__tetgen__mesh_8h_source.html#l00081">oomph::RefineableTetgenMesh&lt; ELEMENT &gt;::RefineableTetgenMesh()</a>, and <a class="el" href="tetgen__mesh_8h_source.html#l00252">oomph::TetgenMesh&lt; ELEMENT &gt;::TetgenMesh()</a>.</p>
 
 </div>
 </div>
@@ -1613,9 +1674,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Snap boundaries specified by the IDs listed in boundary_id to a quadratric surface, specified in the file quadratic_surface_file_name. This is usually used with vmtk-based meshes for which oomph-lib's xda to poly conversion code produces the files "quadratic_fsi_boundary.dat" and "quadratic_outer_solid_boundary.dat" which specify the quadratic FSI boundary (for the fluid and the solid) and the quadratic representation of the outer boundary of the solid. When used with these files, the flag switch_normal should be set to true when calling the function for the outer boundary of the solid. </p>
 
-<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01165">1165</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01176">1176</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="oomph__utilities_8h_source.html#l00542">oomph::DocInfo::disable_doc()</a>.</p>
+<p class="reference">References <a class="el" href="oomph__utilities_8h_source.html#l00552">oomph::DocInfo::disable_doc()</a>.</p>
 
 </div>
 </div>
@@ -1661,9 +1722,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Snap boundaries specified by the IDs listed in boundary_id to a quadratric surface, specified in the file quadratic_surface_file_name. This is usually used with vmtk-based meshes for which oomph-lib's xda to poly conversion code produces the files "quadratic_fsi_boundary.dat" and "quadratic_outer_solid_boundary.dat" which specify the quadratic FSI boundary (for the fluid and the solid) and the quadratic representation of the outer boundary of the solid. When used with these files, the flag switch_normal should be set to true when calling the function for the outer boundary of the solid. The <a class="el" href="classoomph_1_1DocInfo.html" title="Information for documentation of results: Directory and file number to enable output in the form RESL...">DocInfo</a> object can be used to label optional output files. (Uses directory and label). </p>
 
-<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01645">1645</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01656">1656</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="nodes_8cc_source.html#l02336">oomph::Node::add_to_boundary()</a>, <a class="el" href="mesh_8h_source.html#l00840">oomph::Mesh::boundary_element_pt()</a>, <a class="el" href="oomph__utilities_8h_source.html#l00524">oomph::DocInfo::directory()</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="elements_8h_source.html#l03152">oomph::FiniteElement::get_s_plot()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="elements_8cc_source.html#l03992">oomph::FiniteElement::interpolated_x()</a>, <a class="el" href="elements_8cc_source.html#l04705">oomph::FiniteElement::interpolated_zeta()</a>, <a class="el" href="oomph__utilities_8h_source.html#l00548">oomph::DocInfo::is_doc_enabled()</a>, <a class="el" href="oomph__utilities_8h_source.html#l00572">oomph::DocInfo::label()</a>, <a class="el" href="elements_8cc_source.html#l04764">oomph::FiniteElement::locate_zeta()</a>, <a class="el" href="mesh_8h_source.html#l00878">oomph::Mesh::nboundary_element()</a>, <a class="el" href="elements_8h_source.html#l02214">oomph::FiniteElement::nnode()</a>, <a class="el" href="elements_8h_source.html#l02179">oomph::FiniteElement::node_pt()</a>, <a class="el" href="elements_8h_source.html#l03190">oomph::FiniteElement::nplot_points()</a>, <a class="el" href="elements_8h_source.html#l02680">oomph::FiniteElement::position()</a>, <a class="el" href="cfortran_8h_source.html#l00568">s</a>, <a class="el" href="nodes_8cc_source.html#l02394">oomph::Node::set_coordinates_on_boundary()</a>, <a class="el" href="elements_8h_source.html#l01394">oomph::FiniteElement::set_nodal_dimension()</a>, <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>, <a class="el" href="elements_8h_source.html#l03165">oomph::FiniteElement::tecplot_zone_string()</a>, <a class="el" href="tet__mesh_8h_source.html#l00863">Tolerance_for_boundary_finding</a>, <a class="el" href="elements_8h_source.html#l03178">oomph::FiniteElement::write_tecplot_zone_footer()</a>, and <a class="el" href="nodes_8h_source.html#l01060">oomph::Node::x()</a>.</p>
+<p class="reference">References <a class="el" href="nodes_8cc_source.html#l02336">oomph::Node::add_to_boundary()</a>, <a class="el" href="mesh_8h_source.html#l00848">oomph::Mesh::boundary_element_pt()</a>, <a class="el" href="oomph__utilities_8h_source.html#l00534">oomph::DocInfo::directory()</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="elements_8h_source.html#l03152">oomph::FiniteElement::get_s_plot()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="elements_8cc_source.html#l03992">oomph::FiniteElement::interpolated_x()</a>, <a class="el" href="elements_8cc_source.html#l04705">oomph::FiniteElement::interpolated_zeta()</a>, <a class="el" href="oomph__utilities_8h_source.html#l00558">oomph::DocInfo::is_doc_enabled()</a>, <a class="el" href="oomph__utilities_8h_source.html#l00582">oomph::DocInfo::label()</a>, <a class="el" href="elements_8cc_source.html#l04764">oomph::FiniteElement::locate_zeta()</a>, <a class="el" href="mesh_8h_source.html#l00886">oomph::Mesh::nboundary_element()</a>, <a class="el" href="elements_8h_source.html#l02214">oomph::FiniteElement::nnode()</a>, <a class="el" href="elements_8h_source.html#l02179">oomph::FiniteElement::node_pt()</a>, <a class="el" href="elements_8h_source.html#l03190">oomph::FiniteElement::nplot_points()</a>, <a class="el" href="elements_8h_source.html#l02680">oomph::FiniteElement::position()</a>, <a class="el" href="cfortran_8h_source.html#l00568">s</a>, <a class="el" href="nodes_8cc_source.html#l02394">oomph::Node::set_coordinates_on_boundary()</a>, <a class="el" href="elements_8h_source.html#l01394">oomph::FiniteElement::set_nodal_dimension()</a>, <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>, <a class="el" href="elements_8h_source.html#l03165">oomph::FiniteElement::tecplot_zone_string()</a>, <a class="el" href="tet__mesh_8h_source.html#l00863">Tolerance_for_boundary_finding</a>, <a class="el" href="elements_8h_source.html#l03178">oomph::FiniteElement::write_tecplot_zone_footer()</a>, and <a class="el" href="nodes_8h_source.html#l01060">oomph::Node::x()</a>.</p>
 
 </div>
 </div>
@@ -1688,9 +1749,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 <p>Non-Delaunay split elements that have three faces on a boundary into sons. Timestepper species timestepper for new nodes; defaults to to steady timestepper. </p>
 <p>Non-delaunay split elements that have three faces on a boundary into sons. </p>
 
-<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l02136">2136</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l02147">2147</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="mesh_8h_source.html#l00611">oomph::Mesh::add_node_pt()</a>, <a class="el" href="mesh_8h_source.html#l00840">oomph::Mesh::boundary_element_pt()</a>, <a class="el" href="tet__mesh_8h_source.html#l01217">Boundary_region_element_pt</a>, <a class="el" href="elements_8h_source.html#l02542">oomph::FiniteElement::construct_boundary_node()</a>, <a class="el" href="elements_8h_source.html#l02513">oomph::FiniteElement::construct_node()</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00186">oomph::Mesh::Element_pt</a>, <a class="el" href="mesh_8h_source.html#l00896">oomph::Mesh::face_index_at_boundary()</a>, <a class="el" href="tet__mesh_8h_source.html#l01221">Face_index_region_at_boundary</a>, <a class="el" href="mesh_8h_source.html#l00473">oomph::Mesh::finite_element_pt()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="mesh_8h_source.html#l00087">oomph::Mesh::Lookup_for_elements_next_boundary_is_setup</a>, <a class="el" href="mesh_8h_source.html#l00827">oomph::Mesh::nboundary()</a>, <a class="el" href="mesh_8h_source.html#l00878">oomph::Mesh::nboundary_element()</a>, <a class="el" href="mesh_8h_source.html#l00590">oomph::Mesh::nelement()</a>, <a class="el" href="elements_8h_source.html#l02214">oomph::FiniteElement::nnode()</a>, <a class="el" href="mesh_8h_source.html#l00596">oomph::Mesh::nnode()</a>, <a class="el" href="elements_8h_source.html#l02222">oomph::FiniteElement::nnode_1d()</a>, <a class="el" href="elements_8h_source.html#l02179">oomph::FiniteElement::node_pt()</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00319">oomph::oomph_info</a>, <a class="el" href="tet__mesh_8h_source.html#l01213">Region_attribute</a>, <a class="el" href="tet__mesh_8h_source.html#l01208">Region_element_pt</a>, <a class="el" href="tet__mesh_8h_source.html#l01193">setup_boundary_element_info()</a>, <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>, and <a class="el" href="nodes_8h_source.html#l01060">oomph::Node::x()</a>.</p>
+<p class="reference">References <a class="el" href="mesh_8h_source.html#l00619">oomph::Mesh::add_node_pt()</a>, <a class="el" href="mesh_8h_source.html#l00848">oomph::Mesh::boundary_element_pt()</a>, <a class="el" href="elements_8h_source.html#l02542">oomph::FiniteElement::construct_boundary_node()</a>, <a class="el" href="elements_8h_source.html#l02513">oomph::FiniteElement::construct_node()</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00186">oomph::Mesh::Element_pt</a>, <a class="el" href="mesh_8h_source.html#l00477">oomph::Mesh::finite_element_pt()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="mesh_8h_source.html#l00087">oomph::Mesh::Lookup_for_elements_next_boundary_is_setup</a>, <a class="el" href="mesh_8h_source.html#l00835">oomph::Mesh::nboundary()</a>, <a class="el" href="mesh_8h_source.html#l00886">oomph::Mesh::nboundary_element()</a>, <a class="el" href="mesh_8h_source.html#l00598">oomph::Mesh::nelement()</a>, <a class="el" href="elements_8h_source.html#l02214">oomph::FiniteElement::nnode()</a>, <a class="el" href="mesh_8h_source.html#l00604">oomph::Mesh::nnode()</a>, <a class="el" href="elements_8h_source.html#l02222">oomph::FiniteElement::nnode_1d()</a>, <a class="el" href="elements_8h_source.html#l02179">oomph::FiniteElement::node_pt()</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00326">oomph::oomph_info</a>, <a class="el" href="tet__mesh_8cc_source.html#l00372">regenerate_region_boundary_lookups()</a>, <a class="el" href="tet__mesh_8h_source.html#l01224">Region_attribute</a>, <a class="el" href="tet__mesh_8h_source.html#l01219">Region_element_pt</a>, <a class="el" href="tet__mesh_8h_source.html#l01204">setup_boundary_element_info()</a>, <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>, and <a class="el" href="nodes_8h_source.html#l01060">oomph::Node::x()</a>.</p>
 
 </div>
 </div>
@@ -1717,9 +1778,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Storage for elements adjacent to a boundary in a particular region. </p>
 
-<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01217">1217</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01228">1228</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="tet__mesh_8h_source.html#l01002">boundary_element_in_region_pt()</a>, <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l01792">oomph::GmshTetMesh&lt; ELEMENT &gt;::build_from_scaffold()</a>, <a class="el" href="tet__mesh_8h_source.html#l00983">nboundary_element_in_region()</a>, and <a class="el" href="tet__mesh_8h_source.html#l02136">split_elements_in_corners()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="tet__mesh_8h_source.html#l01002">boundary_element_in_region_pt()</a>, <a class="el" href="gmsh__tet__mesh_8h_source.html#l01755">oomph::GmshTetMesh&lt; ELEMENT &gt;::build_from_scaffold()</a>, <a class="el" href="tet__mesh_8h_source.html#l00983">nboundary_element_in_region()</a>, and <a class="el" href="tet__mesh_8cc_source.html#l00372">regenerate_region_boundary_lookups()</a>.</p>
 
 </div>
 </div>
@@ -1745,9 +1806,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Storage for the face index adjacent to a boundary in a particular region. </p>
 
-<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01221">1221</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01232">1232</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l01792">oomph::GmshTetMesh&lt; ELEMENT &gt;::build_from_scaffold()</a>, <a class="el" href="tet__mesh_8h_source.html#l01020">face_index_at_boundary_in_region()</a>, and <a class="el" href="tet__mesh_8h_source.html#l02136">split_elements_in_corners()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="gmsh__tet__mesh_8h_source.html#l01755">oomph::GmshTetMesh&lt; ELEMENT &gt;::build_from_scaffold()</a>, <a class="el" href="tet__mesh_8h_source.html#l01020">face_index_at_boundary_in_region()</a>, and <a class="el" href="tet__mesh_8cc_source.html#l00372">regenerate_region_boundary_lookups()</a>.</p>
 
 </div>
 </div>
@@ -1773,9 +1834,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p><a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> to faceted surfaces that define internal boundaries. </p>
 
-<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01227">1227</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01238">1238</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l01687">oomph::GmshTetMesh&lt; ELEMENT &gt;::build_it()</a>, <a class="el" href="refineable__tetgen__mesh_8template_8h_source.html#l00082">oomph::RefineableTetgenMesh&lt; ELEMENT &gt;::RefineableTetgenMesh()</a>, and <a class="el" href="tetgen__mesh_8template_8h_source.html#l00253">oomph::TetgenMesh&lt; ELEMENT &gt;::TetgenMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="gmsh__tet__mesh_8h_source.html#l01653">oomph::GmshTetMesh&lt; ELEMENT &gt;::build_it()</a>, <a class="el" href="refineable__tetgen__mesh_8h_source.html#l00081">oomph::RefineableTetgenMesh&lt; ELEMENT &gt;::RefineableTetgenMesh()</a>, and <a class="el" href="tetgen__mesh_8h_source.html#l00252">oomph::TetgenMesh&lt; ELEMENT &gt;::TetgenMesh()</a>.</p>
 
 </div>
 </div>
@@ -1801,9 +1862,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Faceted surface that defines outer boundaries. </p>
 
-<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01224">1224</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01235">1235</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l01687">oomph::GmshTetMesh&lt; ELEMENT &gt;::build_it()</a>, <a class="el" href="refineable__tetgen__mesh_8template_8h_source.html#l00082">oomph::RefineableTetgenMesh&lt; ELEMENT &gt;::RefineableTetgenMesh()</a>, and <a class="el" href="tetgen__mesh_8template_8h_source.html#l00253">oomph::TetgenMesh&lt; ELEMENT &gt;::TetgenMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="gmsh__tet__mesh_8h_source.html#l01653">oomph::GmshTetMesh&lt; ELEMENT &gt;::build_it()</a>, <a class="el" href="refineable__tetgen__mesh_8h_source.html#l00081">oomph::RefineableTetgenMesh&lt; ELEMENT &gt;::RefineableTetgenMesh()</a>, and <a class="el" href="tetgen__mesh_8h_source.html#l00252">oomph::TetgenMesh&lt; ELEMENT &gt;::TetgenMesh()</a>.</p>
 
 </div>
 </div>
@@ -1829,9 +1890,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p><a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> of attributes associated with the elements in each region NOTE: double is enforced on us by tetgen. We use it as an unsigned to indicate the actual (zero-based) region ID. </p>
 
-<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01213">1213</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01224">1224</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l01792">oomph::GmshTetMesh&lt; ELEMENT &gt;::build_from_scaffold()</a>, <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l00440">oomph::GmshTetScaffoldMesh::create_mesh_from_msh_file()</a>, <a class="el" href="tet__mesh_8h_source.html#l01052">nregion_element()</a>, <a class="el" href="tet__mesh_8h_source.html#l01092">region_attribute()</a>, <a class="el" href="tet__mesh_8h_source.html#l01098">region_element_pt()</a>, and <a class="el" href="tet__mesh_8h_source.html#l02136">split_elements_in_corners()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="tet__mesh_8cc_source.html#l00422">add_element_in_region_pt()</a>, <a class="el" href="gmsh__tet__mesh_8h_source.html#l01755">oomph::GmshTetMesh&lt; ELEMENT &gt;::build_from_scaffold()</a>, <a class="el" href="gmsh__tet__mesh_8h_source.html#l00433">oomph::GmshTetScaffoldMesh::create_mesh_from_msh_file()</a>, <a class="el" href="tet__mesh_8h_source.html#l01063">nregion_element()</a>, <a class="el" href="tet__mesh_8cc_source.html#l00372">regenerate_region_boundary_lookups()</a>, <a class="el" href="tet__mesh_8h_source.html#l01103">region_attribute()</a>, <a class="el" href="tet__mesh_8h_source.html#l01109">region_element_pt()</a>, and <a class="el" href="tet__mesh_8h_source.html#l02147">split_elements_in_corners()</a>.</p>
 
 </div>
 </div>
@@ -1857,9 +1918,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Vectors of vectors of elements in each region (note: this just stores them; the region IDs are contained in Region_attribute!) </p>
 
-<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01208">1208</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01219">1219</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l01792">oomph::GmshTetMesh&lt; ELEMENT &gt;::build_from_scaffold()</a>, <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l00440">oomph::GmshTetScaffoldMesh::create_mesh_from_msh_file()</a>, <a class="el" href="tet__mesh_8h_source.html#l01046">nregion()</a>, <a class="el" href="tet__mesh_8h_source.html#l01052">nregion_element()</a>, <a class="el" href="tet__mesh_8h_source.html#l01098">region_element_pt()</a>, and <a class="el" href="tet__mesh_8h_source.html#l02136">split_elements_in_corners()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="tet__mesh_8cc_source.html#l00422">add_element_in_region_pt()</a>, <a class="el" href="gmsh__tet__mesh_8h_source.html#l01755">oomph::GmshTetMesh&lt; ELEMENT &gt;::build_from_scaffold()</a>, <a class="el" href="gmsh__tet__mesh_8h_source.html#l00433">oomph::GmshTetScaffoldMesh::create_mesh_from_msh_file()</a>, <a class="el" href="tet__mesh_8h_source.html#l01057">nregion()</a>, <a class="el" href="tet__mesh_8h_source.html#l01063">nregion_element()</a>, <a class="el" href="tet__mesh_8cc_source.html#l00372">regenerate_region_boundary_lookups()</a>, <a class="el" href="tet__mesh_8h_source.html#l01109">region_element_pt()</a>, and <a class="el" href="tet__mesh_8h_source.html#l02147">split_elements_in_corners()</a>.</p>
 
 </div>
 </div>
@@ -1885,9 +1946,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Reverse lookup scheme: Pointer to facet (if any!) associated with boundary b. </p>
 
-<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01235">1235</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01246">1246</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l01687">oomph::GmshTetMesh&lt; ELEMENT &gt;::build_it()</a>, and <a class="el" href="tet__mesh_8h_source.html#l01278">setup_boundary_coordinates()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="gmsh__tet__mesh_8h_source.html#l01653">oomph::GmshTetMesh&lt; ELEMENT &gt;::build_it()</a>, <a class="el" href="refineable__tetgen__mesh_8h_source.html#l00081">oomph::RefineableTetgenMesh&lt; ELEMENT &gt;::RefineableTetgenMesh()</a>, <a class="el" href="tet__mesh_8h_source.html#l01289">setup_boundary_coordinates()</a>, and <a class="el" href="tetgen__mesh_8h_source.html#l00252">oomph::TetgenMesh&lt; ELEMENT &gt;::TetgenMesh()</a>.</p>
 
 </div>
 </div>
@@ -1913,9 +1974,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Reverse lookup scheme: Pointer to faceted surface (if any!) associated with boundary b. </p>
 
-<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01231">1231</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01242">1242</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l01687">oomph::GmshTetMesh&lt; ELEMENT &gt;::build_it()</a>, and <a class="el" href="tet__mesh_8cc_source.html#l00483">snap_nodes_onto_geometric_objects()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="gmsh__tet__mesh_8h_source.html#l01653">oomph::GmshTetMesh&lt; ELEMENT &gt;::build_it()</a>, <a class="el" href="refineable__tetgen__mesh_8h_source.html#l00081">oomph::RefineableTetgenMesh&lt; ELEMENT &gt;::RefineableTetgenMesh()</a>, <a class="el" href="tet__mesh_8cc_source.html#l00638">snap_nodes_onto_geometric_objects()</a>, and <a class="el" href="tetgen__mesh_8h_source.html#l00252">oomph::TetgenMesh&lt; ELEMENT &gt;::TetgenMesh()</a>.</p>
 
 </div>
 </div>
@@ -1941,9 +2002,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Timestepper used to build nodes. </p>
 
-<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01243">1243</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01254">1254</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l01687">oomph::GmshTetMesh&lt; ELEMENT &gt;::build_it()</a>, <a class="el" href="refineable__tetgen__mesh_8template_8h_source.html#l00082">oomph::RefineableTetgenMesh&lt; ELEMENT &gt;::RefineableTetgenMesh()</a>, <a class="el" href="tetgen__mesh_8template_8h_source.html#l00664">oomph::TetgenMesh&lt; ELEMENT &gt;::set_mesh_level_time_stepper()</a>, <a class="el" href="tetgen__mesh_8template_8h_source.html#l00147">oomph::TetgenMesh&lt; ELEMENT &gt;::TetgenMesh()</a>, <a class="el" href="tetgen__mesh_8template_8h_source.html#l00062">oomph::TetgenMesh&lt; ELEMENT &gt;::TetgenMesh()</a>, <a class="el" href="tetgen__mesh_8template_8h_source.html#l00203">oomph::TetgenMesh&lt; ELEMENT &gt;::TetgenMesh()</a>, <a class="el" href="tetgen__mesh_8template_8h_source.html#l00100">oomph::TetgenMesh&lt; ELEMENT &gt;::TetgenMesh()</a>, and <a class="el" href="tetgen__mesh_8template_8h_source.html#l00253">oomph::TetgenMesh&lt; ELEMENT &gt;::TetgenMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="gmsh__tet__mesh_8h_source.html#l01653">oomph::GmshTetMesh&lt; ELEMENT &gt;::build_it()</a>, <a class="el" href="refineable__tetgen__mesh_8h_source.html#l00081">oomph::RefineableTetgenMesh&lt; ELEMENT &gt;::RefineableTetgenMesh()</a>, <a class="el" href="tetgen__mesh_8h_source.html#l00699">oomph::TetgenMesh&lt; ELEMENT &gt;::set_mesh_level_time_stepper()</a>, <a class="el" href="tetgen__mesh_8h_source.html#l00146">oomph::TetgenMesh&lt; ELEMENT &gt;::TetgenMesh()</a>, <a class="el" href="tetgen__mesh_8h_source.html#l00061">oomph::TetgenMesh&lt; ELEMENT &gt;::TetgenMesh()</a>, <a class="el" href="tetgen__mesh_8h_source.html#l00202">oomph::TetgenMesh&lt; ELEMENT &gt;::TetgenMesh()</a>, <a class="el" href="tetgen__mesh_8h_source.html#l00099">oomph::TetgenMesh&lt; ELEMENT &gt;::TetgenMesh()</a>, and <a class="el" href="tetgen__mesh_8h_source.html#l00252">oomph::TetgenMesh&lt; ELEMENT &gt;::TetgenMesh()</a>.</p>
 
 </div>
 </div>
@@ -1971,7 +2032,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l00863">863</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="tet__mesh_8h_source.html#l01278">setup_boundary_coordinates()</a>, and <a class="el" href="tet__mesh_8h_source.html#l01645">snap_to_quadratic_surface()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="tet__mesh_8h_source.html#l01289">setup_boundary_coordinates()</a>, and <a class="el" href="tet__mesh_8h_source.html#l01656">snap_to_quadratic_surface()</a>.</p>
 
 </div>
 </div>
@@ -1997,9 +2058,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Boundary coordinates of vertices in triangular facets associated with given boundary. Is only set up for triangular facets! </p>
 
-<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01240">1240</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l01251">1251</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="tet__mesh_8h_source.html#l01278">setup_boundary_coordinates()</a>, and <a class="el" href="tet__mesh_8cc_source.html#l00483">snap_nodes_onto_geometric_objects()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="tet__mesh_8h_source.html#l01289">setup_boundary_coordinates()</a>, and <a class="el" href="tet__mesh_8cc_source.html#l00638">snap_nodes_onto_geometric_objects()</a>.</p>
 
 </div>
 </div>
@@ -2035,7 +2096,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:05:49
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:43:18
         </div>
       </div>
     </footer>

@@ -2,12 +2,12 @@
 \hypertarget{classoomph_1_1AlgebraicChannelWithLeafletMesh}{}\label{classoomph_1_1AlgebraicChannelWithLeafletMesh}\index{oomph::AlgebraicChannelWithLeafletMesh$<$ ELEMENT $>$@{oomph::AlgebraicChannelWithLeafletMesh$<$ ELEMENT $>$}}
 
 
-//////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////  
+Algebraic version of \doxylink{classoomph_1_1ChannelWithLeafletMesh}{Channel\+With\+Leaflet\+Mesh}. Leaflet is assumed to be in its undeformed (straight vertical) position when the algebraic node update is set up.  
 
 
 
 
-{\ttfamily \#include $<$channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+template.\+h$>$}
+{\ttfamily \#include $<$channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+h$>$}
 
 Inheritance diagram for oomph\+::Algebraic\+Channel\+With\+Leaflet\+Mesh\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
 \begin{center}
@@ -108,6 +108,10 @@ Inheritance diagram for oomph\+::Algebraic\+Channel\+With\+Leaflet\+Mesh\texorpd
 \begin{DoxyCompactList}\small\item\em Replace existing boundary node lookup schemes with new schemes created using the boundary data stored in the nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1Mesh_ad1b124a959628aba00162b89617b3a62}{boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Indicate whether the i-\/th boundary has an intrinsic coordinate. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_ab137d0c0debf5ba0d6ea6990103e620c}{set\+\_\+boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be existing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_a3b9d63e0057ed721190b109f48f7c92e}{set\+\_\+boundary\+\_\+coordinate\+\_\+does\+\_\+not\+\_\+exist}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be non-\/existing. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_af01dfefb66c15579b540be62999d93ee}{nelement}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return number of elements in the mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
@@ -496,9 +500,7 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_aca12acfe655a4d5c4a4eab4a7b970812}{Element\+\_\+pt}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a412a5051be9e81f0ba61bf85e5abc4a6}{Boundary\+\_\+coordinate\+\_\+exists}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of boolean data that indicates whether the boundary coordinates have been set for the boundary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classoomph_1_1ChannelWithLeafletMesh}{oomph\+::\+Channel\+With\+Leaflet\+Mesh$<$ ELEMENT $>$}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -531,11 +533,9 @@ std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionEleme
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{class}} ELEMENT$>$\newline
 class oomph\+::\+Algebraic\+Channel\+With\+Leaflet\+Mesh$<$ ELEMENT $>$}
-//////////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////// 
-
 Algebraic version of \doxylink{classoomph_1_1ChannelWithLeafletMesh}{Channel\+With\+Leaflet\+Mesh}. Leaflet is assumed to be in its undeformed (straight vertical) position when the algebraic node update is set up. 
 
-Definition at line \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8h_source_l00360}{360}} of file \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8h_source}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{channel__with__leaflet__mesh_8h_source_l00354}{354}} of file \mbox{\hyperlink{channel__with__leaflet__mesh_8h_source}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+h}}.
 
 
 
@@ -553,11 +553,11 @@ Constructor\+: Pass pointer to \doxylink{classoomph_1_1GeomObject}{Geom\+Object}
 
 
 
-Definition at line \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8h_source_l00374}{374}} of file \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8h_source}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{channel__with__leaflet__mesh_8h_source_l00368}{368}} of file \mbox{\hyperlink{channel__with__leaflet__mesh_8h_source}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{algebraic__elements_8h_source_l00823}{oomph\+::\+Algebraic\+Mesh\+::add\+\_\+geom\+\_\+object\+\_\+list\+\_\+pt()}}, \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8h_source_l00457}{oomph\+::\+Algebraic\+Channel\+With\+Leaflet\+Mesh$<$ ELEMENT $>$\+::\+Hleaflet}}, \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8h_source_l00092}{oomph\+::\+Channel\+With\+Leaflet\+Mesh$<$ ELEMENT $>$\+::\+Leaflet\+\_\+pt}}, \mbox{\hyperlink{classoomph_1_1GeomObject_a0d04c9d4667817f3ef24bb660fd56065}{oomph\+::\+Geom\+Object\+::position()}}, \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source_l00242}{oomph\+::\+Algebraic\+Channel\+With\+Leaflet\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+algebraic\+\_\+node\+\_\+update()}}, and \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8h_source_l00452}{oomph\+::\+Algebraic\+Channel\+With\+Leaflet\+Mesh$<$ ELEMENT $>$\+::\+X\+\_\+0}}.
+References \mbox{\hyperlink{algebraic__elements_8h_source_l00823}{oomph\+::\+Algebraic\+Mesh\+::add\+\_\+geom\+\_\+object\+\_\+list\+\_\+pt()}}, \mbox{\hyperlink{channel__with__leaflet__mesh_8h_source_l00451}{oomph\+::\+Algebraic\+Channel\+With\+Leaflet\+Mesh$<$ ELEMENT $>$\+::\+Hleaflet}}, \mbox{\hyperlink{channel__with__leaflet__mesh_8h_source_l00091}{oomph\+::\+Channel\+With\+Leaflet\+Mesh$<$ ELEMENT $>$\+::\+Leaflet\+\_\+pt}}, \mbox{\hyperlink{classoomph_1_1GeomObject_a0d04c9d4667817f3ef24bb660fd56065}{oomph\+::\+Geom\+Object\+::position()}}, \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source_l00239}{oomph\+::\+Algebraic\+Channel\+With\+Leaflet\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+algebraic\+\_\+node\+\_\+update()}}, and \mbox{\hyperlink{channel__with__leaflet__mesh_8h_source_l00446}{oomph\+::\+Algebraic\+Channel\+With\+Leaflet\+Mesh$<$ ELEMENT $>$\+::\+X\+\_\+0}}.
 
 \Hypertarget{classoomph_1_1AlgebraicChannelWithLeafletMesh_a5b7c6a5f91427eae728c397b38de7c54}\label{classoomph_1_1AlgebraicChannelWithLeafletMesh_a5b7c6a5f91427eae728c397b38de7c54} 
 \index{oomph::AlgebraicChannelWithLeafletMesh$<$ ELEMENT $>$@{oomph::AlgebraicChannelWithLeafletMesh$<$ ELEMENT $>$}!````~AlgebraicChannelWithLeafletMesh@{\texorpdfstring{$\sim$}{\string~}AlgebraicChannelWithLeafletMesh}}
@@ -572,7 +572,7 @@ Destructor\+: empty.
 
 
 
-Definition at line \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8h_source_l00416}{416}} of file \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8h_source}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{channel__with__leaflet__mesh_8h_source_l00410}{410}} of file \mbox{\hyperlink{channel__with__leaflet__mesh_8h_source}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+h}}.
 
 
 
@@ -594,7 +594,7 @@ Implements \mbox{\hyperlink{classoomph_1_1AlgebraicMesh_ab01d6f93354f3c4e5c9d1f0
 
 
 
-Definition at line \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source_l00412}{412}} of file \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+template.\+cc}}.
+Definition at line \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source_l00406}{406}} of file \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+template.\+cc}}.
 
 
 
@@ -613,7 +613,7 @@ Update function for nodes in lower left region (I)
 
 \doxylink{classoomph_1_1Node}{Node} update for region I. 
 
-Definition at line \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source_l00455}{455}} of file \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+template.\+cc}}.
+Definition at line \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source_l00448}{448}} of file \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+template.\+cc}}.
 
 
 
@@ -632,7 +632,7 @@ Update function for nodes in lower right region (II)
 
 \doxylink{classoomph_1_1Node}{Node} update for region II. 
 
-Definition at line \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source_l00500}{500}} of file \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+template.\+cc}}.
+Definition at line \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source_l00489}{489}} of file \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+template.\+cc}}.
 
 
 
@@ -651,7 +651,7 @@ Update function for nodes in upper left region (III)
 
 \doxylink{classoomph_1_1Node}{Node} update for region III. 
 
-Definition at line \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source_l00564}{564}} of file \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+template.\+cc}}.
+Definition at line \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source_l00552}{552}} of file \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+template.\+cc}}.
 
 
 
@@ -670,7 +670,7 @@ Update function for nodes in upper right region (IV)
 
 \doxylink{classoomph_1_1Node}{Node} update for region IV. 
 
-Definition at line \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source_l00598}{598}} of file \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+template.\+cc}}.
+Definition at line \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source_l00586}{586}} of file \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+template.\+cc}}.
 
 
 
@@ -687,11 +687,9 @@ References \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Elemen
 
 Function to setup the algebraic node update. 
 
-//////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////
-
 Setup algebraic node update. Leaflet is assumed to be in its undeformed (straight vertical) position! 
 
-Definition at line \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source_l00242}{242}} of file \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+template.\+cc}}.
+Definition at line \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source_l00239}{239}} of file \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+template.\+cc}}.
 
 
 
@@ -699,7 +697,7 @@ References \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Elemen
 
 
 
-Referenced by \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8h_source_l00374}{oomph\+::\+Algebraic\+Channel\+With\+Leaflet\+Mesh$<$ ELEMENT $>$\+::\+Algebraic\+Channel\+With\+Leaflet\+Mesh()}}.
+Referenced by \mbox{\hyperlink{channel__with__leaflet__mesh_8h_source_l00368}{oomph\+::\+Algebraic\+Channel\+With\+Leaflet\+Mesh$<$ ELEMENT $>$\+::\+Algebraic\+Channel\+With\+Leaflet\+Mesh()}}.
 
 \Hypertarget{classoomph_1_1AlgebraicChannelWithLeafletMesh_ab3659949ea5faac4ffa981828e98cf53}\label{classoomph_1_1AlgebraicChannelWithLeafletMesh_ab3659949ea5faac4ffa981828e98cf53} 
 \index{oomph::AlgebraicChannelWithLeafletMesh$<$ ELEMENT $>$@{oomph::AlgebraicChannelWithLeafletMesh$<$ ELEMENT $>$}!slanted\_bound\_up@{slanted\_bound\_up}}
@@ -714,7 +712,7 @@ Helper function.
 
 Slanted bound \+: helper function. Coordinates of the point on the boundary beetween the upper and the lower part, in the same column, at the east.
 
-Definition at line \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source_l00542}{542}} of file \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+template.\+cc}}.
+Definition at line \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source_l00530}{530}} of file \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc_source}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+template.\+cc}}.
 
 
 
@@ -741,7 +739,7 @@ Reimplemented in \mbox{\hyperlink{classoomph_1_1RefineableAlgebraicChannelWithLe
 
 
 
-Definition at line \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8h_source_l00422}{422}} of file \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8h_source}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{channel__with__leaflet__mesh_8h_source_l00416}{416}} of file \mbox{\hyperlink{channel__with__leaflet__mesh_8h_source}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+h}}.
 
 
 
@@ -759,11 +757,11 @@ Length of the leaflet (stored explicitly for reference in algebraic node update 
 
 
 
-Definition at line \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8h_source_l00457}{457}} of file \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8h_source}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{channel__with__leaflet__mesh_8h_source_l00451}{451}} of file \mbox{\hyperlink{channel__with__leaflet__mesh_8h_source}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8h_source_l00374}{oomph\+::\+Algebraic\+Channel\+With\+Leaflet\+Mesh$<$ ELEMENT $>$\+::\+Algebraic\+Channel\+With\+Leaflet\+Mesh()}}.
+Referenced by \mbox{\hyperlink{channel__with__leaflet__mesh_8h_source_l00368}{oomph\+::\+Algebraic\+Channel\+With\+Leaflet\+Mesh$<$ ELEMENT $>$\+::\+Algebraic\+Channel\+With\+Leaflet\+Mesh()}}.
 
 \Hypertarget{classoomph_1_1AlgebraicChannelWithLeafletMesh_a1577beb584df4ad0f8517563934855fc}\label{classoomph_1_1AlgebraicChannelWithLeafletMesh_a1577beb584df4ad0f8517563934855fc} 
 \index{oomph::AlgebraicChannelWithLeafletMesh$<$ ELEMENT $>$@{oomph::AlgebraicChannelWithLeafletMesh$<$ ELEMENT $>$}!X\_0@{X\_0}}
@@ -778,15 +776,15 @@ Origin of the wall (stored explicitly for reference in algebraic node update -- 
 
 
 
-Definition at line \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8h_source_l00452}{452}} of file \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8h_source}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{channel__with__leaflet__mesh_8h_source_l00446}{446}} of file \mbox{\hyperlink{channel__with__leaflet__mesh_8h_source}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8h_source_l00374}{oomph\+::\+Algebraic\+Channel\+With\+Leaflet\+Mesh$<$ ELEMENT $>$\+::\+Algebraic\+Channel\+With\+Leaflet\+Mesh()}}.
+Referenced by \mbox{\hyperlink{channel__with__leaflet__mesh_8h_source_l00368}{oomph\+::\+Algebraic\+Channel\+With\+Leaflet\+Mesh$<$ ELEMENT $>$\+::\+Algebraic\+Channel\+With\+Leaflet\+Mesh()}}.
 
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{channel__with__leaflet__mesh_8template_8h}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+template.\+h}}\item 
+\mbox{\hyperlink{channel__with__leaflet__mesh_8h}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+h}}\item 
 \mbox{\hyperlink{channel__with__leaflet__mesh_8template_8cc}{channel\+\_\+with\+\_\+leaflet\+\_\+mesh.\+template.\+cc}}\end{DoxyCompactItemize}

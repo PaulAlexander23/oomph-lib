@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -132,7 +126,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Class definining a curvilinear triangle mesh boundary in terms of a <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a>. Curvlinear equivalent of PolyLine.  
+<p>Class definining a curvilinear triangle mesh boundary in terms of a <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a>. Curvlinear equivalent of PolyLine.  
  <a href="classoomph_1_1TriangleMeshCurviLine.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html">unstructured_two_d_mesh_geometry_base.h</a>&gt;</code></p>
@@ -151,19 +145,19 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aa31bdc0d13e7d8851eced042a471ecdf" id="r_aa31bdc0d13e7d8851eced042a471ecdf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMeshCurviLine.html#aa31bdc0d13e7d8851eced042a471ecdf">TriangleMeshCurviLine</a> (<a class="el" href="classoomph_1_1GeomObject.html">GeomObject</a> *<a class="el" href="classoomph_1_1TriangleMeshCurviLine.html#aff9150d5c80f624486db68317c20e4c0">geom_object_pt</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;<a class="el" href="classoomph_1_1TriangleMeshCurviLine.html#a6c0067c06cce020c85e3fe9b1737ce57">zeta_start</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &amp;<a class="el" href="classoomph_1_1TriangleMeshCurviLine.html#acecf95595d14b777bf6ac2ddd9327f8b">zeta_end</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1TriangleMeshCurviLine.html#af5ee48a8cb78c2c2954a14241b5b1489">nsegment</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1TriangleMeshCurviLine.html#acb7ae5fdae67480a0e797da29d518aee">boundary_id</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a> &amp;<a class="el" href="classoomph_1_1TriangleMeshCurviLine.html#aeebdc2c7b0bfe0e577ba1b6c93b38895">space_vertices_evenly_in_arclength</a>=<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">true</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1TriangleMeshCurviLine.html#a42b8ef1fb0ad0078413d0fedc87af679">boundary_chunk</a>=0)</td></tr>
-<tr class="memdesc:aa31bdc0d13e7d8851eced042a471ecdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Specify <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a>, the start and end coordinates of the relevant boundary in terms of the <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a>'s intrinsic coordinate, the number of (initially straight-line) segments that this <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a> is to be split up into, and the boundary ID. The final optional boolean argument specifies if vertices in polygonhal represenation are spaced (approximately) evenly in arclength along the <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a> [true, default] or in equal increments in zeta. This is the curvlinear equivalent of PolyLine.  <br /></td></tr>
+<tr class="memdesc:aa31bdc0d13e7d8851eced042a471ecdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Specify <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a>, the start and end coordinates of the relevant boundary in terms of the <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a>'s intrinsic coordinate, the number of (initially straight-line) segments that this <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a> is to be split up into, and the boundary ID. The final optional boolean argument specifies if vertices in polygonhal represenation are spaced (approximately) evenly in arclength along the <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a> [true, default] or in equal increments in zeta. This is the curvlinear equivalent of PolyLine.  <br /></td></tr>
 <tr class="separator:aa31bdc0d13e7d8851eced042a471ecdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab08a474ba9e5067b239aba84ab998710" id="r_ab08a474ba9e5067b239aba84ab998710"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMeshCurviLine.html#ab08a474ba9e5067b239aba84ab998710">~TriangleMeshCurviLine</a> ()</td></tr>
 <tr class="memdesc:ab08a474ba9e5067b239aba84ab998710"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty Destuctor.  <br /></td></tr>
 <tr class="separator:ab08a474ba9e5067b239aba84ab998710"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff9150d5c80f624486db68317c20e4c0" id="r_aff9150d5c80f624486db68317c20e4c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1GeomObject.html">GeomObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMeshCurviLine.html#aff9150d5c80f624486db68317c20e4c0">geom_object_pt</a> ()</td></tr>
-<tr class="memdesc:aff9150d5c80f624486db68317c20e4c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a> that represents this part of the boundary.  <br /></td></tr>
+<tr class="memdesc:aff9150d5c80f624486db68317c20e4c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a> that represents this part of the boundary.  <br /></td></tr>
 <tr class="separator:aff9150d5c80f624486db68317c20e4c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6c0067c06cce020c85e3fe9b1737ce57" id="r_a6c0067c06cce020c85e3fe9b1737ce57"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMeshCurviLine.html#a6c0067c06cce020c85e3fe9b1737ce57">zeta_start</a> ()</td></tr>
-<tr class="memdesc:a6c0067c06cce020c85e3fe9b1737ce57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start coordinate in terms of the <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a>'s intrinsic coordinate.  <br /></td></tr>
+<tr class="memdesc:a6c0067c06cce020c85e3fe9b1737ce57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start coordinate in terms of the <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a>'s intrinsic coordinate.  <br /></td></tr>
 <tr class="separator:a6c0067c06cce020c85e3fe9b1737ce57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acecf95595d14b777bf6ac2ddd9327f8b" id="r_acecf95595d14b777bf6ac2ddd9327f8b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMeshCurviLine.html#acecf95595d14b777bf6ac2ddd9327f8b">zeta_end</a> ()</td></tr>
-<tr class="memdesc:acecf95595d14b777bf6ac2ddd9327f8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">End coordinate in terms of the <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a>'s intrinsic coordinate.  <br /></td></tr>
+<tr class="memdesc:acecf95595d14b777bf6ac2ddd9327f8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">End coordinate in terms of the <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a>'s intrinsic coordinate.  <br /></td></tr>
 <tr class="separator:acecf95595d14b777bf6ac2ddd9327f8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5ee48a8cb78c2c2954a14241b5b1489" id="r_af5ee48a8cb78c2c2954a14241b5b1489"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMeshCurviLine.html#af5ee48a8cb78c2c2954a14241b5b1489">nsegment</a> () <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a></td></tr>
 <tr class="memdesc:af5ee48a8cb78c2c2954a14241b5b1489"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of (initially straight-line) segments that this part of the boundary is to be represented by.  <br /></td></tr>
@@ -181,7 +175,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a4432e3848032cc78bc3282149c4d6cff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output curvilinear boundary at n_sample (default: 50) points.  <br /></td></tr>
 <tr class="separator:a4432e3848032cc78bc3282149c4d6cff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeebdc2c7b0bfe0e577ba1b6c93b38895" id="r_aeebdc2c7b0bfe0e577ba1b6c93b38895"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMeshCurviLine.html#aeebdc2c7b0bfe0e577ba1b6c93b38895">space_vertices_evenly_in_arclength</a> () <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a></td></tr>
-<tr class="memdesc:aeebdc2c7b0bfe0e577ba1b6c93b38895"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean to indicate if vertices in polygonal representation of the Curvline are spaced (approximately) evenly in arclength along the <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a> [true] or in equal increments in zeta [false].  <br /></td></tr>
+<tr class="memdesc:aeebdc2c7b0bfe0e577ba1b6c93b38895"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean to indicate if vertices in polygonal representation of the Curvline are spaced (approximately) evenly in arclength along the <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a> [true] or in equal increments in zeta [false].  <br /></td></tr>
 <tr class="separator:aeebdc2c7b0bfe0e577ba1b6c93b38895"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a60d6fadfae8165ed9fde9987ef4f0d" id="r_a4a60d6fadfae8165ed9fde9987ef4f0d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMeshCurviLine.html#a4a60d6fadfae8165ed9fde9987ef4f0d">nvertex</a> () <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a></td></tr>
 <tr class="memdesc:a4a60d6fadfae8165ed9fde9987ef4f0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of vertices.  <br /></td></tr>
@@ -359,13 +353,13 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a8517e012895a1b48d6d664573650f2c6" id="r_a8517e012895a1b48d6d664573650f2c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1GeomObject.html">GeomObject</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMeshCurviLine.html#a8517e012895a1b48d6d664573650f2c6">Geom_object_pt</a></td></tr>
-<tr class="memdesc:a8517e012895a1b48d6d664573650f2c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a> that represents this part of the boundary.  <br /></td></tr>
+<tr class="memdesc:a8517e012895a1b48d6d664573650f2c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a> that represents this part of the boundary.  <br /></td></tr>
 <tr class="separator:a8517e012895a1b48d6d664573650f2c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa89105fb5ab773ff8ee49fc32cf066d0" id="r_aa89105fb5ab773ff8ee49fc32cf066d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMeshCurviLine.html#aa89105fb5ab773ff8ee49fc32cf066d0">Zeta_start</a></td></tr>
-<tr class="memdesc:aa89105fb5ab773ff8ee49fc32cf066d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start coordinate in terms of the <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a>'s intrinsic coordinate.  <br /></td></tr>
+<tr class="memdesc:aa89105fb5ab773ff8ee49fc32cf066d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start coordinate in terms of the <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a>'s intrinsic coordinate.  <br /></td></tr>
 <tr class="separator:aa89105fb5ab773ff8ee49fc32cf066d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e0eb74c99bee668bb97ac2e896b3ee0" id="r_a4e0eb74c99bee668bb97ac2e896b3ee0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMeshCurviLine.html#a4e0eb74c99bee668bb97ac2e896b3ee0">Zeta_end</a></td></tr>
-<tr class="memdesc:a4e0eb74c99bee668bb97ac2e896b3ee0"><td class="mdescLeft">&#160;</td><td class="mdescRight">End coordinate in terms of the <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a>'s intrinsic coordinate.  <br /></td></tr>
+<tr class="memdesc:a4e0eb74c99bee668bb97ac2e896b3ee0"><td class="mdescLeft">&#160;</td><td class="mdescRight">End coordinate in terms of the <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a>'s intrinsic coordinate.  <br /></td></tr>
 <tr class="separator:a4e0eb74c99bee668bb97ac2e896b3ee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad623f3774469ffacddb79862263ad70d" id="r_ad623f3774469ffacddb79862263ad70d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMeshCurviLine.html#ad623f3774469ffacddb79862263ad70d">Nsegment</a></td></tr>
 <tr class="memdesc:ad623f3774469ffacddb79862263ad70d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of (initially straight-line) segments that this part of the boundary is to be represented by.  <br /></td></tr>
@@ -374,7 +368,7 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a142f76f360a6f18067e089f860bfb422"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boundary ID.  <br /></td></tr>
 <tr class="separator:a142f76f360a6f18067e089f860bfb422"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36ad5bcb2bc7abac6f91084c1f715118" id="r_a36ad5bcb2bc7abac6f91084c1f715118"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMeshCurviLine.html#a36ad5bcb2bc7abac6f91084c1f715118">Space_vertices_evenly_in_arclength</a></td></tr>
-<tr class="memdesc:a36ad5bcb2bc7abac6f91084c1f715118"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean to indicate if vertices in polygonal representation of the Curviline are spaced (approximately) evenly in arclength along the <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a> [true] or in equal increments in zeta [false].  <br /></td></tr>
+<tr class="memdesc:a36ad5bcb2bc7abac6f91084c1f715118"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean to indicate if vertices in polygonal representation of the Curviline are spaced (approximately) evenly in arclength along the <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a> [true] or in equal increments in zeta [false].  <br /></td></tr>
 <tr class="separator:a36ad5bcb2bc7abac6f91084c1f715118"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa526197f2a3eb9d7cb024eeaf7262051" id="r_aa526197f2a3eb9d7cb024eeaf7262051"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMeshCurviLine.html#aa526197f2a3eb9d7cb024eeaf7262051">Boundary_chunk</a></td></tr>
 <tr class="memdesc:aa526197f2a3eb9d7cb024eeaf7262051"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boundary chunk (Used when a boundary is represented by more than one polyline.  <br /></td></tr>
@@ -433,7 +427,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a9776c1484d720242d6293a7a6aa57eda inherit pro_attribs_classoomph_1_1TriangleMeshCurveSection"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Class definining a curvilinear triangle mesh boundary in terms of a <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a>. Curvlinear equivalent of PolyLine. </p>
+<div class="textblock"><p>Class definining a curvilinear triangle mesh boundary in terms of a <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a>. Curvlinear equivalent of PolyLine. </p>
 
 <p class="definition">Definition at line <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html#l00661">661</a> of file <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html">unstructured_two_d_mesh_geometry_base.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -501,7 +495,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Constructor: Specify <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a>, the start and end coordinates of the relevant boundary in terms of the <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a>'s intrinsic coordinate, the number of (initially straight-line) segments that this <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a> is to be split up into, and the boundary ID. The final optional boolean argument specifies if vertices in polygonhal represenation are spaced (approximately) evenly in arclength along the <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a> [true, default] or in equal increments in zeta. This is the curvlinear equivalent of PolyLine. </p>
+<p>Constructor: Specify <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a>, the start and end coordinates of the relevant boundary in terms of the <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a>'s intrinsic coordinate, the number of (initially straight-line) segments that this <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a> is to be split up into, and the boundary ID. The final optional boolean argument specifies if vertices in polygonhal represenation are spaced (approximately) evenly in arclength along the <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a> [true, default] or in equal increments in zeta. This is the curvlinear equivalent of PolyLine. </p>
 
 <p class="definition">Definition at line <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html#l00673">673</a> of file <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html">unstructured_two_d_mesh_geometry_base.h</a>.</p>
 
@@ -764,7 +758,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Pointer to <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a> that represents this part of the boundary. </p>
+<p>Pointer to <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a> that represents this part of the boundary. </p>
 
 <p class="definition">Definition at line <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html#l00696">696</a> of file <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html">unstructured_two_d_mesh_geometry_base.h</a>.</p>
 
@@ -968,7 +962,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Boolean to indicate if vertices in polygonal representation of the Curvline are spaced (approximately) evenly in arclength along the <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a> [true] or in equal increments in zeta [false]. </p>
+<p>Boolean to indicate if vertices in polygonal representation of the Curvline are spaced (approximately) evenly in arclength along the <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a> [true] or in equal increments in zeta [false]. </p>
 
 <p class="definition">Definition at line <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html#l00759">759</a> of file <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html">unstructured_two_d_mesh_geometry_base.h</a>.</p>
 
@@ -999,7 +993,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>End coordinate in terms of the <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a>'s intrinsic coordinate. </p>
+<p>End coordinate in terms of the <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a>'s intrinsic coordinate. </p>
 
 <p class="definition">Definition at line <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html#l00708">708</a> of file <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html">unstructured_two_d_mesh_geometry_base.h</a>.</p>
 
@@ -1030,7 +1024,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Start coordinate in terms of the <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a>'s intrinsic coordinate. </p>
+<p>Start coordinate in terms of the <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a>'s intrinsic coordinate. </p>
 
 <p class="definition">Definition at line <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html#l00702">702</a> of file <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html">unstructured_two_d_mesh_geometry_base.h</a>.</p>
 
@@ -1143,7 +1137,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Pointer to <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a> that represents this part of the boundary. </p>
+<p>Pointer to <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a> that represents this part of the boundary. </p>
 
 <p class="definition">Definition at line <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html#l00834">834</a> of file <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html">unstructured_two_d_mesh_geometry_base.h</a>.</p>
 
@@ -1199,7 +1193,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Boolean to indicate if vertices in polygonal representation of the Curviline are spaced (approximately) evenly in arclength along the <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a> [true] or in equal increments in zeta [false]. </p>
+<p>Boolean to indicate if vertices in polygonal representation of the Curviline are spaced (approximately) evenly in arclength along the <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a> [true] or in equal increments in zeta [false]. </p>
 
 <p class="definition">Definition at line <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html#l00852">852</a> of file <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html">unstructured_two_d_mesh_geometry_base.h</a>.</p>
 
@@ -1227,7 +1221,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>End coordinate in terms of the <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a>'s intrinsic coordinate. </p>
+<p>End coordinate in terms of the <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a>'s intrinsic coordinate. </p>
 
 <p class="definition">Definition at line <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html#l00840">840</a> of file <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html">unstructured_two_d_mesh_geometry_base.h</a>.</p>
 
@@ -1255,7 +1249,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Start coordinate in terms of the <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a>'s intrinsic coordinate. </p>
+<p>Start coordinate in terms of the <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a>'s intrinsic coordinate. </p>
 
 <p class="definition">Definition at line <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html#l00837">837</a> of file <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html">unstructured_two_d_mesh_geometry_base.h</a>.</p>
 
@@ -1294,7 +1288,7 @@ Additional Inherited Members</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:05:56
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:43:36
         </div>
       </div>
     </footer>

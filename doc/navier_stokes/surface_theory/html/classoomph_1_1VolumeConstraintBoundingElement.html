@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -123,7 +117,7 @@
 </div><!--header-->
 <div class="contents">
 
-<p>////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////  
+<p>Base class for interface elements that allow the application of a volume constraint on the region bounded by these elements. The elements must be used together with the associated <a class="el" href="classoomph_1_1VolumeConstraintElement.html" title="A class that is used to implement the constraint that the fluid volume in a region bounded by associa...">VolumeConstraintElement</a> which stores the value of the target volume. Common functionality is provided in this base for storing the external "pressure" value that is traded for the volume constraint.  
  <a href="classoomph_1_1VolumeConstraintBoundingElement.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="constrained__volume__elements_8h_source.html">constrained_volume_elements.h</a>&gt;</code></p>
@@ -133,15 +127,15 @@ Inheritance diagram for oomph::VolumeConstraintBoundingElement:</div>
  <div class="center">
   <img src="classoomph_1_1VolumeConstraintBoundingElement.png" usemap="#oomph::VolumeConstraintBoundingElement_map" alt=""/>
   <map id="oomph::VolumeConstraintBoundingElement_map" name="oomph::VolumeConstraintBoundingElement_map">
-<area href="classoomph_1_1AxisymmetricVolumeConstraintBoundingElement.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////..." alt="oomph::AxisymmetricVolumeConstraintBoundingElement" shape="rect" coords="227,112,671,136"/>
-<area href="classoomph_1_1LineVolumeConstraintBoundingElement.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////..." alt="oomph::LineVolumeConstraintBoundingElement" shape="rect" coords="1135,112,1579,136"/>
-<area href="classoomph_1_1SurfaceVolumeConstraintBoundingElement.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////..." alt="oomph::SurfaceVolumeConstraintBoundingElement" shape="rect" coords="2043,112,2487,136"/>
-<area href="classoomph_1_1ElasticAxisymmetricVolumeConstraintBoundingElement.html" title="/////////////////////////////////////////////////////////////////// /////////////////////////////////..." alt="oomph::ElasticAxisymmetricVolumeConstraintBoundingElement&lt; ELEMENT &gt;" shape="rect" coords="0,168,444,192"/>
+<area href="classoomph_1_1AxisymmetricVolumeConstraintBoundingElement.html" title="Axisymmetric (one-dimensional) interface elements that allow the application of a volume constraint o..." alt="oomph::AxisymmetricVolumeConstraintBoundingElement" shape="rect" coords="227,112,671,136"/>
+<area href="classoomph_1_1LineVolumeConstraintBoundingElement.html" title="One-dimensional interface elements that allow the application of a volume constraint on the region bo..." alt="oomph::LineVolumeConstraintBoundingElement" shape="rect" coords="1135,112,1579,136"/>
+<area href="classoomph_1_1SurfaceVolumeConstraintBoundingElement.html" title="Two-dimensional interface elements that allow the application of a volume constraint on the region bo..." alt="oomph::SurfaceVolumeConstraintBoundingElement" shape="rect" coords="2043,112,2487,136"/>
+<area href="classoomph_1_1ElasticAxisymmetricVolumeConstraintBoundingElement.html" title="The axisymmetric (one-dimensional) interface elements that allow imposition of a volume constraint sp..." alt="oomph::ElasticAxisymmetricVolumeConstraintBoundingElement&lt; ELEMENT &gt;" shape="rect" coords="0,168,444,192"/>
 <area href="classoomph_1_1SpineAxisymmetricVolumeConstraintBoundingElement.html" title="The axisymmetric (one-dimensional) interface elements that allow imposition of a volume constraint sp..." alt="oomph::SpineAxisymmetricVolumeConstraintBoundingElement&lt; ELEMENT &gt;" shape="rect" coords="454,168,898,192"/>
-<area href="classoomph_1_1ElasticLineVolumeConstraintBoundingElement.html" title="/////////////////////////////////////////////////////////////////// /////////////////////////////////..." alt="oomph::ElasticLineVolumeConstraintBoundingElement&lt; ELEMENT &gt;" shape="rect" coords="908,168,1352,192"/>
+<area href="classoomph_1_1ElasticLineVolumeConstraintBoundingElement.html" title="The one-dimensional interface elements that allow imposition of a volume constraint specialised for t..." alt="oomph::ElasticLineVolumeConstraintBoundingElement&lt; ELEMENT &gt;" shape="rect" coords="908,168,1352,192"/>
 <area href="classoomph_1_1SpineLineVolumeConstraintBoundingElement.html" title="The one-dimensional interface elements that allow imposition of a volume constraint specialised for t..." alt="oomph::SpineLineVolumeConstraintBoundingElement&lt; ELEMENT &gt;" shape="rect" coords="1362,168,1806,192"/>
-<area href="classoomph_1_1ElasticSurfaceVolumeConstraintBoundingElement.html" title="/////////////////////////////////////////////////////////////////// /////////////////////////////////..." alt="oomph::ElasticSurfaceVolumeConstraintBoundingElement&lt; ELEMENT &gt;" shape="rect" coords="1816,168,2260,192"/>
-<area href="classoomph_1_1SpineSurfaceVolumeConstraintBoundingElement.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////..." alt="oomph::SpineSurfaceVolumeConstraintBoundingElement&lt; ELEMENT &gt;" shape="rect" coords="2270,168,2714,192"/>
+<area href="classoomph_1_1ElasticSurfaceVolumeConstraintBoundingElement.html" title="The Two-dimensional interface elements that allow the application of a volume constraint specialised ..." alt="oomph::ElasticSurfaceVolumeConstraintBoundingElement&lt; ELEMENT &gt;" shape="rect" coords="1816,168,2260,192"/>
+<area href="classoomph_1_1SpineSurfaceVolumeConstraintBoundingElement.html" title="The Two-dimensional interface elements that allow the application of a volume constraint specialised ..." alt="oomph::SpineSurfaceVolumeConstraintBoundingElement&lt; ELEMENT &gt;" shape="rect" coords="2270,168,2714,192"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -182,8 +176,7 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a8f9aa94f106fd443fa690851a0268720"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////// </p>
-<p>Base class for interface elements that allow the application of a volume constraint on the region bounded by these elements. The elements must be used together with the associated <a class="el" href="classoomph_1_1VolumeConstraintElement.html" title="A class that is used to implement the constraint that the fluid volume in a region bounded by associa...">VolumeConstraintElement</a> which stores the value of the target volume. Common functionality is provided in this base for storing the external "pressure" value that is traded for the volume constraint. </p>
+<div class="textblock"><p>Base class for interface elements that allow the application of a volume constraint on the region bounded by these elements. The elements must be used together with the associated <a class="el" href="classoomph_1_1VolumeConstraintElement.html" title="A class that is used to implement the constraint that the fluid volume in a region bounded by associa...">VolumeConstraintElement</a> which stores the value of the target volume. Common functionality is provided in this base for storing the external "pressure" value that is traded for the volume constraint. </p>
 
 <p class="definition">Definition at line <a class="el" href="constrained__volume__elements_8h_source.html#l00195">195</a> of file <a class="el" href="constrained__volume__elements_8h_source.html">constrained_volume_elements.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -501,7 +494,7 @@ Protected Attributes</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:18:33
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:42:39
         </div>
       </div>
     </footer>

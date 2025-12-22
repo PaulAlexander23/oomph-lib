@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,10 +116,10 @@
 </div><!--header-->
 <div class="contents">
 
-<p>////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////  
+<p>Helper class to keep track of edges in tet mesh generation.  
  <a href="classoomph_1_1TetEdge.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="gmsh__tet__mesh_8template_8h_source.html">gmsh_tet_mesh.template.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="gmsh__tet__mesh_8h_source.html">gmsh_tet_mesh.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -158,10 +152,9 @@ Private Attributes</h2></td></tr>
 <tr class="separator:ad2832c145c84cf2655a2c02a8e86a4fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////// </p>
-<p>Helper class to keep track of edges in tet mesh generation </p>
+<div class="textblock"><p>Helper class to keep track of edges in tet mesh generation. </p>
 
-<p class="definition">Definition at line <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l00265">265</a> of file <a class="el" href="gmsh__tet__mesh_8template_8h_source.html">gmsh_tet_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gmsh__tet__mesh_8h_source.html#l00263">263</a> of file <a class="el" href="gmsh__tet__mesh_8h_source.html">gmsh_tet_mesh.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aa50127a0f255985cced5d90ec2325c0c" name="aa50127a0f255985cced5d90ec2325c0c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa50127a0f255985cced5d90ec2325c0c">&#9670;&#160;</a></span>TetEdge()</h2>
@@ -199,9 +192,9 @@ Private Attributes</h2></td></tr>
 
 <p>Constructor: Pass two vertices, identified by their indices Edge "direction" is from lower vertex to higher vertex id so can compare if we're dealing with the same one... </p>
 
-<p class="definition">Definition at line <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l00271">271</a> of file <a class="el" href="gmsh__tet__mesh_8template_8h_source.html">gmsh_tet_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gmsh__tet__mesh_8h_source.html#l00269">269</a> of file <a class="el" href="gmsh__tet__mesh_8h_source.html">gmsh_tet_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l00350">Reversed</a>, and <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l00346">Vertex_pair</a>.</p>
+<p class="reference">References <a class="el" href="gmsh__tet__mesh_8h_source.html#l00346">Reversed</a>, and <a class="el" href="gmsh__tet__mesh_8h_source.html#l00342">Vertex_pair</a>.</p>
 
 </div>
 </div>
@@ -231,9 +224,9 @@ Private Attributes</h2></td></tr>
 
 <p>First vertex id. </p>
 
-<p class="definition">Definition at line <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l00294">294</a> of file <a class="el" href="gmsh__tet__mesh_8template_8h_source.html">gmsh_tet_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gmsh__tet__mesh_8h_source.html#l00291">291</a> of file <a class="el" href="gmsh__tet__mesh_8h_source.html">gmsh_tet_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l00346">Vertex_pair</a>.</p>
+<p class="reference">References <a class="el" href="gmsh__tet__mesh_8h_source.html#l00342">Vertex_pair</a>.</p>
 
 </div>
 </div>
@@ -262,9 +255,9 @@ Private Attributes</h2></td></tr>
 
 <p>Edge is reversed in the sense that vertex1 actually has a higher id than vertex2 (when specified in the constructor) </p>
 
-<p class="definition">Definition at line <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l00308">308</a> of file <a class="el" href="gmsh__tet__mesh_8template_8h_source.html">gmsh_tet_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gmsh__tet__mesh_8h_source.html#l00305">305</a> of file <a class="el" href="gmsh__tet__mesh_8h_source.html">gmsh_tet_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l00350">Reversed</a>.</p>
+<p class="reference">References <a class="el" href="gmsh__tet__mesh_8h_source.html#l00346">Reversed</a>.</p>
 
 </div>
 </div>
@@ -294,9 +287,9 @@ Private Attributes</h2></td></tr>
 
 <p>Comparison operator. Lexicographic comparison based on vertex ids. </p>
 
-<p class="definition">Definition at line <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l00323">323</a> of file <a class="el" href="gmsh__tet__mesh_8template_8h_source.html">gmsh_tet_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gmsh__tet__mesh_8h_source.html#l00320">320</a> of file <a class="el" href="gmsh__tet__mesh_8h_source.html">gmsh_tet_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l00346">Vertex_pair</a>.</p>
+<p class="reference">References <a class="el" href="gmsh__tet__mesh_8h_source.html#l00342">Vertex_pair</a>.</p>
 
 </div>
 </div>
@@ -326,9 +319,9 @@ Private Attributes</h2></td></tr>
 
 <p>Comparison operator: Edges are identical if their sorted (and therefore possibly reversed) vertex ids agree. </p>
 
-<p class="definition">Definition at line <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l00315">315</a> of file <a class="el" href="gmsh__tet__mesh_8template_8h_source.html">gmsh_tet_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gmsh__tet__mesh_8h_source.html#l00312">312</a> of file <a class="el" href="gmsh__tet__mesh_8h_source.html">gmsh_tet_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l00346">Vertex_pair</a>.</p>
+<p class="reference">References <a class="el" href="gmsh__tet__mesh_8h_source.html#l00342">Vertex_pair</a>.</p>
 
 </div>
 </div>
@@ -357,9 +350,9 @@ Private Attributes</h2></td></tr>
 
 <p>Second vertex id. </p>
 
-<p class="definition">Definition at line <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l00300">300</a> of file <a class="el" href="gmsh__tet__mesh_8template_8h_source.html">gmsh_tet_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gmsh__tet__mesh_8h_source.html#l00297">297</a> of file <a class="el" href="gmsh__tet__mesh_8h_source.html">gmsh_tet_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l00346">Vertex_pair</a>.</p>
+<p class="reference">References <a class="el" href="gmsh__tet__mesh_8h_source.html#l00342">Vertex_pair</a>.</p>
 
 </div>
 </div>
@@ -386,9 +379,9 @@ Private Attributes</h2></td></tr>
 
 <p>Is it reversed? I.e. is the first input vertex stored after the second one? </p>
 
-<p class="definition">Definition at line <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l00350">350</a> of file <a class="el" href="gmsh__tet__mesh_8template_8h_source.html">gmsh_tet_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gmsh__tet__mesh_8h_source.html#l00346">346</a> of file <a class="el" href="gmsh__tet__mesh_8h_source.html">gmsh_tet_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l00308">is_reversed()</a>, and <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l00271">TetEdge()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="gmsh__tet__mesh_8h_source.html#l00305">is_reversed()</a>, and <a class="el" href="gmsh__tet__mesh_8h_source.html#l00269">TetEdge()</a>.</p>
 
 </div>
 </div>
@@ -414,14 +407,14 @@ Private Attributes</h2></td></tr>
 
 <p>The vertices (sorted by vertex ids) </p>
 
-<p class="definition">Definition at line <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l00346">346</a> of file <a class="el" href="gmsh__tet__mesh_8template_8h_source.html">gmsh_tet_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gmsh__tet__mesh_8h_source.html#l00342">342</a> of file <a class="el" href="gmsh__tet__mesh_8h_source.html">gmsh_tet_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l00294">first_vertex_id()</a>, <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l00323">operator&lt;()</a>, <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l00315">operator==()</a>, <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l00300">second_vertex_id()</a>, and <a class="el" href="gmsh__tet__mesh_8template_8h_source.html#l00271">TetEdge()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="gmsh__tet__mesh_8h_source.html#l00291">first_vertex_id()</a>, <a class="el" href="gmsh__tet__mesh_8h_source.html#l00320">operator&lt;()</a>, <a class="el" href="gmsh__tet__mesh_8h_source.html#l00312">operator==()</a>, <a class="el" href="gmsh__tet__mesh_8h_source.html#l00297">second_vertex_id()</a>, and <a class="el" href="gmsh__tet__mesh_8h_source.html#l00269">TetEdge()</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li><a class="el" href="gmsh__tet__mesh_8template_8h_source.html">gmsh_tet_mesh.template.h</a></li>
+<li><a class="el" href="gmsh__tet__mesh_8h_source.html">gmsh_tet_mesh.h</a></li>
 </ul>
 </div><!-- contents -->
 
@@ -451,7 +444,7 @@ Private Attributes</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 13:57:51
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:36:37
         </div>
       </div>
     </footer>

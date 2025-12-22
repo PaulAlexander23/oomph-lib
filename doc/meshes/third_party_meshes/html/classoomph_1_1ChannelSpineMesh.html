@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -126,7 +120,7 @@
 <p>Spine mesh class derived from standard 2D mesh. The mesh contains a StraightLine GeomObject which defines the height of the left and right regions (0,2) and another GeomObject is passed to the constructor to define the height in the central region.  
  <a href="classoomph_1_1ChannelSpineMesh.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for oomph::ChannelSpineMesh&lt; ELEMENT &gt;:</div>
 <div class="dyncontent">
@@ -146,13 +140,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:afb1b729691c03cef065d351094092406"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Pass number of elements in x-direction in regions 0,1 and 2, number of elements in y-direction, length in x direction in regions 0,1 and 2, height mesh, pointer to the GeomObject defining the heightof the central region, a boolean flag to indicate whether or not the mesh is periodic and pointer to timestepper (defaults to Steady timestepper)  <br /></td></tr>
 <tr class="separator:afb1b729691c03cef065d351094092406"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12ac2996f2b7f7109b2157f757fa9df6" id="r_a12ac2996f2b7f7109b2157f757fa9df6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">FiniteElement</a> *&amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1ChannelSpineMesh.html#a12ac2996f2b7f7109b2157f757fa9df6">left_element_pt</a> (<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">const</a> <a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">unsigned</a> <a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">long</a> &amp;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">i</a>)</td></tr>
-<tr class="memdesc:a12ac2996f2b7f7109b2157f757fa9df6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access functions for pointers to the <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ i $" src="form_0.png" width="5" height="9"/></picture> -th element in the left region.  <br /></td></tr>
+<tr class="memdesc:a12ac2996f2b7f7109b2157f757fa9df6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access functions for pointers to the <img class="formulaInl" alt="$ i $" src="form_0.png" width="5" height="9"/> -th element in the left region.  <br /></td></tr>
 <tr class="separator:a12ac2996f2b7f7109b2157f757fa9df6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8b60dfcca90e80e0d53507a78e98eb1" id="r_ac8b60dfcca90e80e0d53507a78e98eb1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">FiniteElement</a> *&amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1ChannelSpineMesh.html#ac8b60dfcca90e80e0d53507a78e98eb1">centre_element_pt</a> (<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">const</a> <a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">unsigned</a> <a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">long</a> &amp;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">i</a>)</td></tr>
-<tr class="memdesc:ac8b60dfcca90e80e0d53507a78e98eb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access functions for pointers to the <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ i $" src="form_0.png" width="5" height="9"/></picture> -th element in the centre region.  <br /></td></tr>
+<tr class="memdesc:ac8b60dfcca90e80e0d53507a78e98eb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access functions for pointers to the <img class="formulaInl" alt="$ i $" src="form_0.png" width="5" height="9"/> -th element in the centre region.  <br /></td></tr>
 <tr class="separator:ac8b60dfcca90e80e0d53507a78e98eb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6c4015e8eb6aa6fef40fa1f72a9638ce" id="r_a6c4015e8eb6aa6fef40fa1f72a9638ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">FiniteElement</a> *&amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1ChannelSpineMesh.html#a6c4015e8eb6aa6fef40fa1f72a9638ce">right_element_pt</a> (<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">const</a> <a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">unsigned</a> <a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">long</a> &amp;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">i</a>)</td></tr>
-<tr class="memdesc:a6c4015e8eb6aa6fef40fa1f72a9638ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access functions for pointers to the <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ i $" src="form_0.png" width="5" height="9"/></picture> -th element in the right region.  <br /></td></tr>
+<tr class="memdesc:a6c4015e8eb6aa6fef40fa1f72a9638ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access functions for pointers to the <img class="formulaInl" alt="$ i $" src="form_0.png" width="5" height="9"/> -th element in the right region.  <br /></td></tr>
 <tr class="separator:a6c4015e8eb6aa6fef40fa1f72a9638ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f7b8f540855876e49b5f1c3f0214d9a" id="r_a6f7b8f540855876e49b5f1c3f0214d9a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">unsigned</a> <a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">long</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1ChannelSpineMesh.html#a6f7b8f540855876e49b5f1c3f0214d9a">nleft</a> () <a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">const</a></td></tr>
 <tr class="memdesc:a6f7b8f540855876e49b5f1c3f0214d9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of elements in left region.  <br /></td></tr>
@@ -321,7 +315,7 @@ Protected Attributes</h2></td></tr>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">class</a> <a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">ELEMENT</a>&gt;<br />
 class oomph::ChannelSpineMesh&lt; ELEMENT &gt;</div><p>Spine mesh class derived from standard 2D mesh. The mesh contains a StraightLine GeomObject which defines the height of the left and right regions (0,2) and another GeomObject is passed to the constructor to define the height in the central region. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00042">42</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00042">42</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a9f8cdd0476807b44bccb7b1ae6f97a4a" name="a9f8cdd0476807b44bccb7b1ae6f97a4a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9f8cdd0476807b44bccb7b1ae6f97a4a">&#9670;&#160;</a></span>ChannelSpineMesh() <span class="overload">[1/2]</span></h2>
@@ -403,9 +397,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 <p>Constructor for spine 2D mesh: Pass number of elements in x-direction, number of elements in y-direction, axial length and height of layer, and pointer to timestepper (defaults to Static timestepper).</p>
 <p>The mesh contains a layer of spinified fluid elements (of type ELEMENT; e.g SpineElement&lt;QCrouzeixRaviartElement&lt;2&gt;) and a surface layer of corresponding Spine interface elements of type INTERFACE_ELEMENT, e.g. SpineLineFluidInterfaceElement&lt;ELEMENT&gt; for 2D planar problems. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8cc_source.html#l00048">48</a> of file <a class="el" href="channel__spine__mesh_8template_8cc_source.html">channel_spine_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8cc_source.html#l00050">50</a> of file <a class="el" href="channel__spine__mesh_8template_8cc_source.html">channel_spine_mesh.template.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="channel__spine__mesh_8template_8cc_source.html#l00153">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::build_channel_spine_mesh()</a>, and <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00318">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Straight_wall_pt</a>.</p>
+<p class="reference">References <a class="el" href="channel__spine__mesh_8template_8cc_source.html#l00153">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::build_channel_spine_mesh()</a>, and <a class="el" href="channel__spine__mesh_8h_source.html#l00318">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Straight_wall_pt</a>.</p>
 
 </div>
 </div>
@@ -495,9 +489,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 <p>Constuctor for spine 2D mesh: Pass number of elements in x-direction, number of elements in y-direction, axial length and height of layer, a boolean flag to make the mesh periodic in the x-direction, and pointer to timestepper (defaults to Static timestepper).</p>
 <p>The mesh contains a layer of elements (of type ELEMENT) and a surface layer of corresponding Spine interface elements (of type SpineLineFluidInterfaceElement&lt;ELEMENT&gt;). </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8cc_source.html#l00103">103</a> of file <a class="el" href="channel__spine__mesh_8template_8cc_source.html">channel_spine_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8cc_source.html#l00104">104</a> of file <a class="el" href="channel__spine__mesh_8template_8cc_source.html">channel_spine_mesh.template.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="channel__spine__mesh_8template_8cc_source.html#l00153">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::build_channel_spine_mesh()</a>, and <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00318">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Straight_wall_pt</a>.</p>
+<p class="reference">References <a class="el" href="channel__spine__mesh_8template_8cc_source.html#l00153">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::build_channel_spine_mesh()</a>, and <a class="el" href="channel__spine__mesh_8h_source.html#l00318">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Straight_wall_pt</a>.</p>
 
 </div>
 </div>
@@ -533,9 +527,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8cc_source.html#l00153">153</a> of file <a class="el" href="channel__spine__mesh_8template_8cc_source.html">channel_spine_mesh.template.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="rectangular__quadmesh_8template_8cc_source.html#l00043">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::build_mesh()</a>.</p>
+<p class="reference">References <a class="el" href="rectangular__quadmesh_8template_8cc_source.html#l00044">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::build_mesh()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8template_8cc_source.html#l00103">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::ChannelSpineMesh()</a>, and <a class="el" href="channel__spine__mesh_8template_8cc_source.html#l00048">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::ChannelSpineMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8template_8cc_source.html#l00104">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::ChannelSpineMesh()</a>, and <a class="el" href="channel__spine__mesh_8template_8cc_source.html#l00050">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::ChannelSpineMesh()</a>.</p>
 
 </div>
 </div>
@@ -565,11 +559,11 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 </table>
 </div><div class="memdoc">
 
-<p>Access functions for pointers to the <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ i $" src="form_0.png" width="5" height="9"/></picture> -th element in the centre region. </p>
+<p>Access functions for pointers to the <img class="formulaInl" alt="$ i $" src="form_0.png" width="5" height="9"/> -th element in the centre region. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00088">88</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00088">88</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00278">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Centre_element_pt</a>.</p>
+<p class="reference">References <a class="el" href="channel__spine__mesh_8h_source.html#l00278">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Centre_element_pt</a>.</p>
 
 </div>
 </div>
@@ -601,9 +595,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Access function for spines in centre region. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00214">214</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00214">214</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00309">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Ncentre_spine</a>, and <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00306">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Nleft_spine</a>.</p>
+<p class="reference">References <a class="el" href="channel__spine__mesh_8h_source.html#l00309">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Ncentre_spine</a>, and <a class="el" href="channel__spine__mesh_8h_source.html#l00306">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Nleft_spine</a>.</p>
 
 </div>
 </div>
@@ -637,7 +631,7 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Reimplemented from <a class="el" href="classoomph_1_1RectangularQuadMesh.html#ae1e1d67808d4efb6e16a3835162a4504">oomph::RectangularQuadMesh&lt; ELEMENT &gt;</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8cc_source.html#l00694">694</a> of file <a class="el" href="channel__spine__mesh_8template_8cc_source.html">channel_spine_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8cc_source.html#l00687">687</a> of file <a class="el" href="channel__spine__mesh_8template_8cc_source.html">channel_spine_mesh.template.cc</a>.</p>
 
 </div>
 </div>
@@ -667,11 +661,11 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 </table>
 </div><div class="memdoc">
 
-<p>Access functions for pointers to the <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ i $" src="form_0.png" width="5" height="9"/></picture> -th element in the left region. </p>
+<p>Access functions for pointers to the <img class="formulaInl" alt="$ i $" src="form_0.png" width="5" height="9"/> -th element in the left region. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00081">81</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00081">81</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00275">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Left_element_pt</a>.</p>
+<p class="reference">References <a class="el" href="channel__spine__mesh_8h_source.html#l00275">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Left_element_pt</a>.</p>
 
 </div>
 </div>
@@ -703,9 +697,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Access function for spines in left region. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00200">200</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00200">200</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00306">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Nleft_spine</a>.</p>
+<p class="reference">References <a class="el" href="channel__spine__mesh_8h_source.html#l00306">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Nleft_spine</a>.</p>
 
 </div>
 </div>
@@ -736,9 +730,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Number of elements in bulk. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00119">119</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00119">119</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00278">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Centre_element_pt</a>, <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00275">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Left_element_pt</a>, and <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00281">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Right_element_pt</a>.</p>
+<p class="reference">References <a class="el" href="channel__spine__mesh_8h_source.html#l00278">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Centre_element_pt</a>, <a class="el" href="channel__spine__mesh_8h_source.html#l00275">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Left_element_pt</a>, and <a class="el" href="channel__spine__mesh_8h_source.html#l00281">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Right_element_pt</a>.</p>
 
 </div>
 </div>
@@ -769,9 +763,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Number of elements in centre region. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00107">107</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00107">107</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00278">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Centre_element_pt</a>.</p>
+<p class="reference">References <a class="el" href="channel__spine__mesh_8h_source.html#l00278">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Centre_element_pt</a>.</p>
 
 </div>
 </div>
@@ -802,9 +796,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Access function for the number of spines in the centre region. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00250">250</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00250">250</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00309">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Ncentre_spine</a>.</p>
+<p class="reference">References <a class="el" href="channel__spine__mesh_8h_source.html#l00309">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Ncentre_spine</a>.</p>
 
 </div>
 </div>
@@ -835,9 +829,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Number of elements in left region. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00101">101</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00101">101</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00275">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Left_element_pt</a>.</p>
+<p class="reference">References <a class="el" href="channel__spine__mesh_8h_source.html#l00275">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Left_element_pt</a>.</p>
 
 </div>
 </div>
@@ -868,9 +862,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Access function for the number of spines in the left region. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00244">244</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00244">244</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00306">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Nleft_spine</a>.</p>
+<p class="reference">References <a class="el" href="channel__spine__mesh_8h_source.html#l00306">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Nleft_spine</a>.</p>
 
 </div>
 </div>
@@ -901,9 +895,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Number of elements in right region. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00113">113</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00113">113</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00281">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Right_element_pt</a>.</p>
+<p class="reference">References <a class="el" href="channel__spine__mesh_8h_source.html#l00281">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Right_element_pt</a>.</p>
 
 </div>
 </div>
@@ -934,9 +928,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Access function for the number of spines in the right region. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00256">256</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00256">256</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00312">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Nright_spine</a>.</p>
+<p class="reference">References <a class="el" href="channel__spine__mesh_8h_source.html#l00312">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Nright_spine</a>.</p>
 
 </div>
 </div>
@@ -966,11 +960,11 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 </table>
 </div><div class="memdoc">
 
-<p>Access functions for pointers to the <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ i $" src="form_0.png" width="5" height="9"/></picture> -th element in the right region. </p>
+<p>Access functions for pointers to the <img class="formulaInl" alt="$ i $" src="form_0.png" width="5" height="9"/> -th element in the right region. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00095">95</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00095">95</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00281">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Right_element_pt</a>.</p>
+<p class="reference">References <a class="el" href="channel__spine__mesh_8h_source.html#l00281">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Right_element_pt</a>.</p>
 
 </div>
 </div>
@@ -1002,9 +996,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Access function for spines in right region. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00229">229</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00229">229</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00309">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Ncentre_spine</a>, <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00306">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Nleft_spine</a>, and <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00312">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Nright_spine</a>.</p>
+<p class="reference">References <a class="el" href="channel__spine__mesh_8h_source.html#l00309">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Ncentre_spine</a>, <a class="el" href="channel__spine__mesh_8h_source.html#l00306">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Nleft_spine</a>, and <a class="el" href="channel__spine__mesh_8h_source.html#l00312">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Nright_spine</a>.</p>
 
 </div>
 </div>
@@ -1036,9 +1030,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>General node update function implements pure virtual function defined in SpineMesh base class and performs specific node update actions: along vertical spines. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00133">133</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00133">133</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="rectangular__quadmesh_8template_8h_source.html#l00075">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::Ymin</a>.</p>
+<p class="reference">References <a class="el" href="rectangular__quadmesh_8h_source.html#l00075">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::Ymin</a>.</p>
 
 </div>
 </div>
@@ -1069,9 +1063,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Access function to the GeomObject for the straight upper wall. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00268">268</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00268">268</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00318">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Straight_wall_pt</a>.</p>
+<p class="reference">References <a class="el" href="channel__spine__mesh_8h_source.html#l00318">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Straight_wall_pt</a>.</p>
 
 </div>
 </div>
@@ -1102,9 +1096,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Access function to the GeomObject for upper wall. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00262">262</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00262">262</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00315">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Wall_pt</a>.</p>
+<p class="reference">References <a class="el" href="channel__spine__mesh_8h_source.html#l00315">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Wall_pt</a>.</p>
 
 </div>
 </div>
@@ -1160,9 +1154,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Reimplemented from <a class="el" href="classoomph_1_1RectangularQuadMesh.html#ad4c2f349cf201cb3107f0a4e5447c16f">oomph::RectangularQuadMesh&lt; ELEMENT &gt;</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00156">156</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00156">156</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00297">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Lx0</a>, <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00300">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Lx1</a>, <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00303">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Lx2</a>, <a class="el" href="rectangular__quadmesh_8template_8h_source.html#l00067">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::Np</a>, <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00288">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Nx0</a>, <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00291">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Nx1</a>, <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00294">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Nx2</a>, and <a class="el" href="rectangular__quadmesh_8template_8h_source.html#l00070">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::Xmin</a>.</p>
+<p class="reference">References <a class="el" href="channel__spine__mesh_8h_source.html#l00297">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Lx0</a>, <a class="el" href="channel__spine__mesh_8h_source.html#l00300">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Lx1</a>, <a class="el" href="channel__spine__mesh_8h_source.html#l00303">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Lx2</a>, <a class="el" href="rectangular__quadmesh_8h_source.html#l00067">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::Np</a>, <a class="el" href="channel__spine__mesh_8h_source.html#l00288">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Nx0</a>, <a class="el" href="channel__spine__mesh_8h_source.html#l00291">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Nx1</a>, <a class="el" href="channel__spine__mesh_8h_source.html#l00294">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::Nx2</a>, and <a class="el" href="rectangular__quadmesh_8h_source.html#l00070">oomph::RectangularQuadMesh&lt; ELEMENT &gt;::Xmin</a>.</p>
 
 </div>
 </div>
@@ -1191,9 +1185,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Vector of pointers to element in the centre region. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00278">278</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00278">278</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00088">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::centre_element_pt()</a>, <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00119">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::nbulk()</a>, and <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00107">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::ncentre()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8h_source.html#l00088">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::centre_element_pt()</a>, <a class="el" href="channel__spine__mesh_8h_source.html#l00119">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::nbulk()</a>, and <a class="el" href="channel__spine__mesh_8h_source.html#l00107">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::ncentre()</a>.</p>
 
 </div>
 </div>
@@ -1221,9 +1215,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Vector of pointers to element in the left region. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00275">275</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00275">275</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00081">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::left_element_pt()</a>, <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00119">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::nbulk()</a>, and <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00101">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::nleft()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8h_source.html#l00081">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::left_element_pt()</a>, <a class="el" href="channel__spine__mesh_8h_source.html#l00119">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::nbulk()</a>, and <a class="el" href="channel__spine__mesh_8h_source.html#l00101">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::nleft()</a>.</p>
 
 </div>
 </div>
@@ -1251,9 +1245,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Length of left region. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00297">297</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00297">297</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00156">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::x_spacing_function()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8h_source.html#l00156">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::x_spacing_function()</a>.</p>
 
 </div>
 </div>
@@ -1281,9 +1275,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Length of centre region. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00300">300</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00300">300</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00156">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::x_spacing_function()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8h_source.html#l00156">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::x_spacing_function()</a>.</p>
 
 </div>
 </div>
@@ -1311,9 +1305,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Length of right region. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00303">303</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00303">303</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00156">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::x_spacing_function()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8h_source.html#l00156">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::x_spacing_function()</a>.</p>
 
 </div>
 </div>
@@ -1341,9 +1335,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Number of spines in centre region. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00309">309</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00309">309</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00214">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::centre_spine_pt()</a>, <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00250">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::ncentre_spine()</a>, and <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00229">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::right_spine_pt()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8h_source.html#l00214">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::centre_spine_pt()</a>, <a class="el" href="channel__spine__mesh_8h_source.html#l00250">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::ncentre_spine()</a>, and <a class="el" href="channel__spine__mesh_8h_source.html#l00229">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::right_spine_pt()</a>.</p>
 
 </div>
 </div>
@@ -1371,9 +1365,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Number of spines in left region. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00306">306</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00306">306</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00214">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::centre_spine_pt()</a>, <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00200">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::left_spine_pt()</a>, <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00244">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::nleft_spine()</a>, and <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00229">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::right_spine_pt()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8h_source.html#l00214">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::centre_spine_pt()</a>, <a class="el" href="channel__spine__mesh_8h_source.html#l00200">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::left_spine_pt()</a>, <a class="el" href="channel__spine__mesh_8h_source.html#l00244">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::nleft_spine()</a>, and <a class="el" href="channel__spine__mesh_8h_source.html#l00229">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::right_spine_pt()</a>.</p>
 
 </div>
 </div>
@@ -1401,9 +1395,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Number of spines in right region. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00312">312</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00312">312</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00256">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::nright_spine()</a>, and <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00229">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::right_spine_pt()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8h_source.html#l00256">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::nright_spine()</a>, and <a class="el" href="channel__spine__mesh_8h_source.html#l00229">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::right_spine_pt()</a>.</p>
 
 </div>
 </div>
@@ -1431,9 +1425,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Number of elements in the left region. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00288">288</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00288">288</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00156">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::x_spacing_function()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8h_source.html#l00156">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::x_spacing_function()</a>.</p>
 
 </div>
 </div>
@@ -1461,9 +1455,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Number of elements in the centre region. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00291">291</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00291">291</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00156">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::x_spacing_function()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8h_source.html#l00156">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::x_spacing_function()</a>.</p>
 
 </div>
 </div>
@@ -1491,9 +1485,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Number of elements in the right region. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00294">294</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00294">294</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00156">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::x_spacing_function()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8h_source.html#l00156">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::x_spacing_function()</a>.</p>
 
 </div>
 </div>
@@ -1521,9 +1515,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Vector of pointers to element in the right region. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00281">281</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00281">281</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00119">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::nbulk()</a>, <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00113">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::nright()</a>, and <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00095">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::right_element_pt()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8h_source.html#l00119">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::nbulk()</a>, <a class="el" href="channel__spine__mesh_8h_source.html#l00113">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::nright()</a>, and <a class="el" href="channel__spine__mesh_8h_source.html#l00095">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::right_element_pt()</a>.</p>
 
 </div>
 </div>
@@ -1551,9 +1545,9 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>GeomObject for the straight upper wall. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00318">318</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00318">318</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8template_8cc_source.html#l00103">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::ChannelSpineMesh()</a>, <a class="el" href="channel__spine__mesh_8template_8cc_source.html#l00048">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::ChannelSpineMesh()</a>, and <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00268">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::straight_wall_pt()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8template_8cc_source.html#l00104">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::ChannelSpineMesh()</a>, <a class="el" href="channel__spine__mesh_8template_8cc_source.html#l00050">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::ChannelSpineMesh()</a>, and <a class="el" href="channel__spine__mesh_8h_source.html#l00268">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::straight_wall_pt()</a>.</p>
 
 </div>
 </div>
@@ -1581,14 +1575,14 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>GeomObject for upper wall. </p>
 
-<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00315">315</a> of file <a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="channel__spine__mesh_8h_source.html#l00315">315</a> of file <a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8template_8h_source.html#l00262">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::wall_pt()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="channel__spine__mesh_8h_source.html#l00262">oomph::ChannelSpineMesh&lt; ELEMENT &gt;::wall_pt()</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="channel__spine__mesh_8template_8h_source.html">channel_spine_mesh.template.h</a></li>
+<li><a class="el" href="channel__spine__mesh_8h_source.html">channel_spine_mesh.h</a></li>
 <li><a class="el" href="channel__spine__mesh_8template_8cc_source.html">channel_spine_mesh.template.cc</a></li>
 </ul>
 </div><!-- contents -->
@@ -1619,7 +1613,7 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 13:58:20
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:36:23
         </div>
       </div>
     </footer>

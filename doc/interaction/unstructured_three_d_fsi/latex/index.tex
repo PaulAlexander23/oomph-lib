@@ -209,7 +209,7 @@ Following the procedure discussed in the \href{../../../solid/unstructured_three
 \DoxyCodeLine{\ \ \ \textcolor{keywordtype}{unsigned}\ nb=this-\/>nboundary();}
 \DoxyCodeLine{\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ b=0;b<nb;b++)}
 \DoxyCodeLine{\ \ \ \ \{}
-\DoxyCodeLine{\ \ \ \ \ sprintf(filename,\textcolor{stringliteral}{"{}RESLT/solid\_boundary\_test\%i.dat"{}},b);}
+\DoxyCodeLine{\ \ \ \ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}RESLT/solid\_boundary\_test\%i.dat"{}},b);}
 \DoxyCodeLine{\ \ \ \ \ some\_file.open(filename);}
 \DoxyCodeLine{\ \ \ \ \ this-\/>\textcolor{keyword}{template}\ setup\_boundary\_coordinates<ELEMENT>(b,some\_file);}
 \DoxyCodeLine{\ \ \ \ \ some\_file.close();}
@@ -278,7 +278,7 @@ The creation of the fluid mesh follows the same process but uses the mesh create
 \DoxyCodeLine{\ \ \ \textcolor{keywordtype}{unsigned}\ nb=this-\/>nboundary();}
 \DoxyCodeLine{\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ b=0;b<nb;b++)\ }
 \DoxyCodeLine{\ \ \ \ \{}
-\DoxyCodeLine{\ \ \ \ \ sprintf(filename,\textcolor{stringliteral}{"{}RESLT/fluid\_boundary\_test\%i.dat"{}},b);}
+\DoxyCodeLine{\ \ \ \ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}RESLT/fluid\_boundary\_test\%i.dat"{}},b);}
 \DoxyCodeLine{\ \ \ \ \ some\_file.open(filename);}
 \DoxyCodeLine{\ \ \ \ \ this-\/>\textcolor{keyword}{template}\ setup\_boundary\_coordinates<ELEMENT>(b,switch\_normal,some\_file);}
 \DoxyCodeLine{\ \ \ \ \ some\_file.close();}
@@ -977,7 +977,7 @@ We complete the build of the solid elements by passing the pointer to the consti
 \DoxyCodeLine{\ \ \ }
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//Doc\ boundary\ coordinates\ in\ fluid}}
 \DoxyCodeLine{\ \ \ \textcolor{keywordtype}{char}\ filename[100];}
-\DoxyCodeLine{\ \ \ sprintf(filename,\textcolor{stringliteral}{"{}RESLT/fluid\_boundary\_coordinates\%i.dat"{}},i);}
+\DoxyCodeLine{\ \ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}RESLT/fluid\_boundary\_coordinates\%i.dat"{}},i);}
 \DoxyCodeLine{\ \ \ Multi\_domain\_functions::Doc\_boundary\_coordinate\_file.open(filename);}
 \DoxyCodeLine{\ \ \ }
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ Setup\ FSI:\ Pass\ ID\ of\ fluid\ FSI\ boundary\ and\ associated}}
@@ -1244,7 +1244,7 @@ The post-\/processing routine simply executes the output functions for the fluid
 \DoxyCodeLine{\ }
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ solid\ boundaries}}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/solid\_boundaries\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/solid\_boundaries\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ Solid\_mesh\_pt-\/>output\_boundaries(some\_file);}
@@ -1253,7 +1253,7 @@ The post-\/processing routine simply executes the output functions for the fluid
 \DoxyCodeLine{\ }
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ solid\ solution}}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/solid\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/solid\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ Solid\_mesh\_pt-\/>output(some\_file,npts);}
@@ -1262,7 +1262,7 @@ The post-\/processing routine simply executes the output functions for the fluid
 \DoxyCodeLine{\ }
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ fluid\ boundaries}}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/fluid\_boundaries\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/fluid\_boundaries\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ Fluid\_mesh\_pt-\/>output\_boundaries(some\_file);}
@@ -1271,7 +1271,7 @@ The post-\/processing routine simply executes the output functions for the fluid
 \DoxyCodeLine{\ }
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ fluid\ solution}}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/fluid\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/fluid\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ Fluid\_mesh\_pt-\/>output(some\_file,npts);}
@@ -1280,7 +1280,7 @@ The post-\/processing routine simply executes the output functions for the fluid
 \DoxyCodeLine{\ \ \ }
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ fsi\ traction}}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/fsi\_traction\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/fsi\_traction\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ \textcolor{keywordtype}{unsigned}\ n=nsolid\_fsi\_boundary();}
@@ -1486,4 +1486,4 @@ Here are a few things that can (and often do) go wrong in unstructured, three-\/
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

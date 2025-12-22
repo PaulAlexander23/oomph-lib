@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -134,7 +128,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>///////////////////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////////////  
+<p>Subsidiary helper preconditioner for the <a class="el" href="classoomph_1_1PseudoElasticPreconditioner.html" title="A subsidiary preconditioner for the pseudo-elastic FSI preconditioner. Also a stand-alone preconditio...">PseudoElasticPreconditioner</a>. Required to construct the augmented elastic system prior to preconditioning. NOTE:  
  <a href="classoomph_1_1PseudoElasticPreconditionerSubsidiaryPreconditionerOld.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="pseudo__elastic__preconditioner_8h_source.html">pseudo_elastic_preconditioner.h</a>&gt;</code></p>
@@ -426,9 +420,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1e469ffc87f31f6f2eebbe5ccf03d78b inherit pub_methods_classoomph_1_1Preconditioner" id="r_a1e469ffc87f31f6f2eebbe5ccf03d78b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">virtual</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Preconditioner.html#a1e469ffc87f31f6f2eebbe5ccf03d78b">preconditioner_solve_transpose</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">r</a>, <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;z)</td></tr>
 <tr class="memdesc:a1e469ffc87f31f6f2eebbe5ccf03d78b inherit pub_methods_classoomph_1_1Preconditioner"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply the preconditioner. Pure virtual generic interface function. This method should apply the preconditioner operator to the vector r and return the vector z. (broken virtual)  <br /></td></tr>
 <tr class="separator:a1e469ffc87f31f6f2eebbe5ccf03d78b inherit pub_methods_classoomph_1_1Preconditioner"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b95e7159585b5151f9e5dc1d1713655 inherit pub_methods_classoomph_1_1Preconditioner" id="r_a0b95e7159585b5151f9e5dc1d1713655"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Preconditioner.html#a0b95e7159585b5151f9e5dc1d1713655">setup</a> (<a class="el" href="classoomph_1_1DoubleMatrixBase.html">DoubleMatrixBase</a> *<a class="el" href="classoomph_1_1Preconditioner.html#a08e0582b77c6cbfaf85b80a4ac5c11f3">matrix_pt</a>)</td></tr>
-<tr class="memdesc:a0b95e7159585b5151f9e5dc1d1713655 inherit pub_methods_classoomph_1_1Preconditioner"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup the preconditioner: store the matrix pointer and the communicator pointer then call preconditioner specific <a class="el" href="classoomph_1_1Preconditioner.html#af4886f4efe510e5c9b0eb19422943588" title="Setup the preconditioner. Pure virtual generic interface function.">setup()</a> function.  <br /></td></tr>
-<tr class="separator:a0b95e7159585b5151f9e5dc1d1713655 inherit pub_methods_classoomph_1_1Preconditioner"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2c0f7f39eccd814e72cc5813ec864e0 inherit pub_methods_classoomph_1_1Preconditioner" id="r_ac2c0f7f39eccd814e72cc5813ec864e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">virtual</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Preconditioner.html#ac2c0f7f39eccd814e72cc5813ec864e0">setup</a> (<a class="el" href="classoomph_1_1DoubleMatrixBase.html">DoubleMatrixBase</a> *<a class="el" href="classoomph_1_1Preconditioner.html#a08e0582b77c6cbfaf85b80a4ac5c11f3">matrix_pt</a>)</td></tr>
+<tr class="memdesc:ac2c0f7f39eccd814e72cc5813ec864e0 inherit pub_methods_classoomph_1_1Preconditioner"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup the preconditioner: store the matrix pointer and the communicator pointer then call preconditioner specific <a class="el" href="classoomph_1_1Preconditioner.html#af4886f4efe510e5c9b0eb19422943588" title="Setup the preconditioner. Pure virtual generic interface function.">setup()</a> function.  <br /></td></tr>
+<tr class="separator:ac2c0f7f39eccd814e72cc5813ec864e0 inherit pub_methods_classoomph_1_1Preconditioner"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a783fae97e4b898f8de72b504a4f4bec6 inherit pub_methods_classoomph_1_1Preconditioner" id="r_a783fae97e4b898f8de72b504a4f4bec6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Preconditioner.html#a783fae97e4b898f8de72b504a4f4bec6">setup</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1Problem.html">Problem</a> *problem_pt, <a class="el" href="classoomph_1_1DoubleMatrixBase.html">DoubleMatrixBase</a> *<a class="el" href="classoomph_1_1Preconditioner.html#a08e0582b77c6cbfaf85b80a4ac5c11f3">matrix_pt</a>)</td></tr>
 <tr class="memdesc:a783fae97e4b898f8de72b504a4f4bec6 inherit pub_methods_classoomph_1_1Preconditioner"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compatability layer for old preconditioners where problem pointers were needed. The problem pointer is only used to get a communicator pointer.  <br /></td></tr>
 <tr class="separator:a783fae97e4b898f8de72b504a4f4bec6 inherit pub_methods_classoomph_1_1Preconditioner"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -610,9 +604,9 @@ dist_b2).  <br /></td></tr>
 <tr class="separator:a2a6b2f6cd34495167ea766b47f055a7d inherit pro_attribs_classoomph_1_1Preconditioner"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>///////////////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////////////// </p>
-<p>Subsidiary helper preconditioner for the <a class="el" href="classoomph_1_1PseudoElasticPreconditioner.html" title="//////////////////////////////////////////////////////////////////////////// ////////////////////////...">PseudoElasticPreconditioner</a>. Required to construct the augmented elastic system prior to preconditioning. NOTE:</p><ol type="1">
-<li>This is only intended to be used as a subsidiary preconditioner within the <a class="el" href="classoomph_1_1PseudoElasticPreconditioner.html" title="//////////////////////////////////////////////////////////////////////////// ////////////////////////...">PseudoElasticPreconditioner</a>.</li>
+<div class="textblock"><p>Subsidiary helper preconditioner for the <a class="el" href="classoomph_1_1PseudoElasticPreconditioner.html" title="A subsidiary preconditioner for the pseudo-elastic FSI preconditioner. Also a stand-alone preconditio...">PseudoElasticPreconditioner</a>. Required to construct the augmented elastic system prior to preconditioning. NOTE: </p>
+<ol type="1">
+<li>This is only intended to be used as a subsidiary preconditioner within the <a class="el" href="classoomph_1_1PseudoElasticPreconditioner.html" title="A subsidiary preconditioner for the pseudo-elastic FSI preconditioner. Also a stand-alone preconditio...">PseudoElasticPreconditioner</a>.</li>
 <li>If this preconditioner has N DOF types then the first N/2 are assumed to be ordinary solid DOF types, and the second N/2 are the solid DOF types with lagrange multiplier tractions applied.</li>
 <li>By default this preconditioner uses a superlu preconditioner. </li>
 </ol>
@@ -760,7 +754,7 @@ dist_b2).  <br /></td></tr>
 
 <p class="reference">References <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00560">Preconditioner_pt</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00813">setup()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00515">~PseudoElasticPreconditionerSubsidiaryPreconditionerOld()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00815">setup()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00515">~PseudoElasticPreconditionerSubsidiaryPreconditionerOld()</a>.</p>
 
 </div>
 </div>
@@ -802,9 +796,9 @@ dist_b2).  <br /></td></tr>
 
 <p>Implements <a class="el" href="classoomph_1_1Preconditioner.html#ace1199369e4465cd2b9a34884bb64ec8">oomph::Preconditioner</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00896">896</a> of file <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html">pseudo_elastic_preconditioner.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00899">899</a> of file <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html">pseudo_elastic_preconditioner.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="block__preconditioner_8cc_source.html#l04793">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::get_block_ordered_preconditioner_vector()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00560">Preconditioner_pt</a>, <a class="el" href="classoomph_1_1Preconditioner.html#ace1199369e4465cd2b9a34884bb64ec8">oomph::Preconditioner::preconditioner_solve()</a>, and <a class="el" href="block__preconditioner_8cc_source.html#l05046">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::return_block_ordered_preconditioner_vector()</a>.</p>
+<p class="reference">References <a class="el" href="block__preconditioner_8cc_source.html#l04792">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::get_block_ordered_preconditioner_vector()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00560">Preconditioner_pt</a>, <a class="el" href="classoomph_1_1Preconditioner.html#ace1199369e4465cd2b9a34884bb64ec8">oomph::Preconditioner::preconditioner_solve()</a>, and <a class="el" href="block__preconditioner_8cc_source.html#l05045">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::return_block_ordered_preconditioner_vector()</a>.</p>
 
 </div>
 </div>
@@ -895,14 +889,13 @@ dist_b2).  <br /></td></tr>
 </div><div class="memdoc">
 
 <p>Broken assignment operator. </p>
-<p>//////////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////////////</p>
-<p>Setup the preconditioner </p>
+<p>Setup the preconditioner. </p>
 
 <p>Implements <a class="el" href="classoomph_1_1Preconditioner.html#af4886f4efe510e5c9b0eb19422943588">oomph::Preconditioner</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00813">813</a> of file <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html">pseudo_elastic_preconditioner.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00815">815</a> of file <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html">pseudo_elastic_preconditioner.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="block__preconditioner_8cc_source.html#l02483">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::block_setup()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00550">clean_up_memory()</a>, <a class="el" href="block__preconditioner_8h_source.html#l00673">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::get_block()</a>, <a class="el" href="block__preconditioner_8h_source.html#l01134">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::get_concatenated_block()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="block__preconditioner_8h_source.html#l01694">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::ndof_types()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00560">Preconditioner_pt</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00557">Scaling</a>, <a class="el" href="preconditioner_8h_source.html#l00094">oomph::Preconditioner::setup()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00563">Subsidiary_preconditioner_function_pt</a>.</p>
+<p class="reference">References <a class="el" href="block__preconditioner_8cc_source.html#l02482">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::block_setup()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00550">clean_up_memory()</a>, <a class="el" href="linear__solver_8cc_source.html#l02819">oomph::ExactPreconditionerFactory::create_exact_preconditioner()</a>, <a class="el" href="block__preconditioner_8h_source.html#l00673">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::get_block()</a>, <a class="el" href="block__preconditioner_8h_source.html#l01134">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::get_concatenated_block()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="block__preconditioner_8h_source.html#l01694">oomph::BlockPreconditioner&lt; CRDoubleMatrix &gt;::ndof_types()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00560">Preconditioner_pt</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00557">Scaling</a>, <a class="el" href="preconditioner_8h_source.html#l00094">oomph::Preconditioner::setup()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00563">Subsidiary_preconditioner_function_pt</a>.</p>
 
 </div>
 </div>
@@ -931,7 +924,7 @@ dist_b2).  <br /></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00560">560</a> of file <a class="el" href="pseudo__elastic__preconditioner_8h_source.html">pseudo_elastic_preconditioner.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00550">clean_up_memory()</a>, <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00897">preconditioner_solve()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00507">PseudoElasticPreconditionerSubsidiaryPreconditionerOld()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00813">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00550">clean_up_memory()</a>, <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00900">preconditioner_solve()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00507">PseudoElasticPreconditionerSubsidiaryPreconditionerOld()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00815">setup()</a>.</p>
 
 </div>
 </div>
@@ -957,7 +950,7 @@ dist_b2).  <br /></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00557">557</a> of file <a class="el" href="pseudo__elastic__preconditioner_8h_source.html">pseudo_elastic_preconditioner.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00507">PseudoElasticPreconditionerSubsidiaryPreconditionerOld()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00536">scaling()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00813">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00507">PseudoElasticPreconditionerSubsidiaryPreconditionerOld()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00536">scaling()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00815">setup()</a>.</p>
 
 </div>
 </div>
@@ -985,7 +978,7 @@ dist_b2).  <br /></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00563">563</a> of file <a class="el" href="pseudo__elastic__preconditioner_8h_source.html">pseudo_elastic_preconditioner.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00507">PseudoElasticPreconditionerSubsidiaryPreconditionerOld()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00542">set_subsidiary_preconditioner_function()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00813">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00507">PseudoElasticPreconditionerSubsidiaryPreconditionerOld()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00542">set_subsidiary_preconditioner_function()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00815">setup()</a>.</p>
 
 </div>
 </div>
@@ -1021,7 +1014,7 @@ dist_b2).  <br /></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:05:03
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:41:19
         </div>
       </div>
     </footer>

@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -124,7 +118,7 @@
 </div><!--header-->
 <div class="contents">
 
-<p>///////////////////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////////////  
+<p>Subsidiary helper preconditioner for the <a class="el" href="classoomph_1_1PseudoElasticPreconditioner.html" title="A subsidiary preconditioner for the pseudo-elastic FSI preconditioner. Also a stand-alone preconditio...">PseudoElasticPreconditioner</a>. Required to construct the augmented elastic system prior to preconditioning. NOTE:  
  <a href="classoomph_1_1PseudoElasticPreconditionerSubsidiaryPreconditionerOld.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="pseudo__elastic__preconditioner_8h_source.html">pseudo_elastic_preconditioner.h</a>&gt;</code></p>
@@ -183,9 +177,9 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a15876ef914c08070cc025f3b6696e4e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>///////////////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////////////// </p>
-<p>Subsidiary helper preconditioner for the <a class="el" href="classoomph_1_1PseudoElasticPreconditioner.html" title="//////////////////////////////////////////////////////////////////////////// ////////////////////////...">PseudoElasticPreconditioner</a>. Required to construct the augmented elastic system prior to preconditioning. NOTE:</p><ol type="1">
-<li>This is only intended to be used as a subsidiary preconditioner within the <a class="el" href="classoomph_1_1PseudoElasticPreconditioner.html" title="//////////////////////////////////////////////////////////////////////////// ////////////////////////...">PseudoElasticPreconditioner</a>.</li>
+<div class="textblock"><p>Subsidiary helper preconditioner for the <a class="el" href="classoomph_1_1PseudoElasticPreconditioner.html" title="A subsidiary preconditioner for the pseudo-elastic FSI preconditioner. Also a stand-alone preconditio...">PseudoElasticPreconditioner</a>. Required to construct the augmented elastic system prior to preconditioning. NOTE: </p>
+<ol type="1">
+<li>This is only intended to be used as a subsidiary preconditioner within the <a class="el" href="classoomph_1_1PseudoElasticPreconditioner.html" title="A subsidiary preconditioner for the pseudo-elastic FSI preconditioner. Also a stand-alone preconditio...">PseudoElasticPreconditioner</a>.</li>
 <li>If this preconditioner has N DOF types then the first N/2 are assumed to be ordinary solid DOF types, and the second N/2 are the solid DOF types with lagrange multiplier tractions applied.</li>
 <li>By default this preconditioner uses a superlu preconditioner. </li>
 </ol>
@@ -331,7 +325,7 @@ Private Attributes</h2></td></tr>
 
 <p class="reference">References <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00560">Preconditioner_pt</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00813">setup()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00515">~PseudoElasticPreconditionerSubsidiaryPreconditionerOld()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00815">setup()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00515">~PseudoElasticPreconditionerSubsidiaryPreconditionerOld()</a>.</p>
 
 </div>
 </div>
@@ -363,7 +357,7 @@ Private Attributes</h2></td></tr>
 
 <p>Apply the preconditioner. </p>
 
-<p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00896">896</a> of file <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html">pseudo_elastic_preconditioner.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00899">899</a> of file <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html">pseudo_elastic_preconditioner.cc</a>.</p>
 
 <p class="reference">References <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00560">Preconditioner_pt</a>.</p>
 
@@ -398,7 +392,7 @@ Private Attributes</h2></td></tr>
 
 <p class="reference">References <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00557">Scaling</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00552">oomph::PseudoElasticPreconditionerOld::setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00553">oomph::PseudoElasticPreconditionerOld::setup()</a>.</p>
 
 </div>
 </div>
@@ -432,7 +426,7 @@ Private Attributes</h2></td></tr>
 
 <p class="reference">References <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00563">Subsidiary_preconditioner_function_pt</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00552">oomph::PseudoElasticPreconditionerOld::setup()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00951">oomph::PseudoElasticPreconditionerSubsidiaryBlockPreconditionerOld::setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00553">oomph::PseudoElasticPreconditionerOld::setup()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00954">oomph::PseudoElasticPreconditionerSubsidiaryBlockPreconditionerOld::setup()</a>.</p>
 
 </div>
 </div>
@@ -452,10 +446,9 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Broken assignment operator. </p>
-<p>//////////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////////////</p>
-<p>Setup the preconditioner </p>
+<p>Setup the preconditioner. </p>
 
-<p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00813">813</a> of file <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html">pseudo_elastic_preconditioner.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00815">815</a> of file <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html">pseudo_elastic_preconditioner.cc</a>.</p>
 
 <p class="reference">References <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00550">clean_up_memory()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00560">Preconditioner_pt</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00557">Scaling</a>, and <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00563">Subsidiary_preconditioner_function_pt</a>.</p>
 
@@ -486,7 +479,7 @@ Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00560">560</a> of file <a class="el" href="pseudo__elastic__preconditioner_8h_source.html">pseudo_elastic_preconditioner.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00550">clean_up_memory()</a>, <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00897">preconditioner_solve()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00507">PseudoElasticPreconditionerSubsidiaryPreconditionerOld()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00813">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00550">clean_up_memory()</a>, <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00900">preconditioner_solve()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00507">PseudoElasticPreconditionerSubsidiaryPreconditionerOld()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00815">setup()</a>.</p>
 
 </div>
 </div>
@@ -512,7 +505,7 @@ Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00557">557</a> of file <a class="el" href="pseudo__elastic__preconditioner_8h_source.html">pseudo_elastic_preconditioner.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00507">PseudoElasticPreconditionerSubsidiaryPreconditionerOld()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00536">scaling()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00813">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00507">PseudoElasticPreconditionerSubsidiaryPreconditionerOld()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00536">scaling()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00815">setup()</a>.</p>
 
 </div>
 </div>
@@ -540,7 +533,7 @@ Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00563">563</a> of file <a class="el" href="pseudo__elastic__preconditioner_8h_source.html">pseudo_elastic_preconditioner.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00507">PseudoElasticPreconditionerSubsidiaryPreconditionerOld()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00542">set_subsidiary_preconditioner_function()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00813">setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00507">PseudoElasticPreconditionerSubsidiaryPreconditionerOld()</a>, <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00542">set_subsidiary_preconditioner_function()</a>, and <a class="el" href="pseudo__elastic__preconditioner_8cc_source.html#l00815">setup()</a>.</p>
 
 </div>
 </div>
@@ -576,7 +569,7 @@ Private Attributes</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:30:06
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:39:17
         </div>
       </div>
     </footer>

@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -254,7 +248,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Base class for ExtrudedDomains with curvilinear and/or time-dependent boundaries. <a class="el" href="classoomph_1_1ExtrudedDomain.html" title="Base class for ExtrudedDomains with curvilinear and/or time-dependent boundaries. ExtrudedDomain boun...">ExtrudedDomain</a> boundaries are typically represented by GeomObjects and the <a class="el" href="classoomph_1_1ExtrudedDomain.html" title="Base class for ExtrudedDomains with curvilinear and/or time-dependent boundaries. ExtrudedDomain boun...">ExtrudedDomain</a> itself is decomposed into a number of ExtrudedMacroElements. Any instantiation of a specific <a class="el" href="classoomph_1_1ExtrudedDomain.html" title="Base class for ExtrudedDomains with curvilinear and/or time-dependent boundaries. ExtrudedDomain boun...">ExtrudedDomain</a> needs to implement the pure virtual member function. </p>
 <div class="fragment"><div class="line"><a class="code hl_function" href="classoomph_1_1ExtrudedDomain.html#a10a824075e2d2ee6efcf3485966dbadc">ExtrudedDomain::macro_element_boundary</a>(...) </div>
-<div class="ttc" id="aclassoomph_1_1ExtrudedDomain_html_a10a824075e2d2ee6efcf3485966dbadc"><div class="ttname"><a href="classoomph_1_1ExtrudedDomain.html#a10a824075e2d2ee6efcf3485966dbadc">oomph::ExtrudedDomain::macro_element_boundary</a></div><div class="ttdeci">void macro_element_boundary(const unsigned &amp;time, const unsigned &amp;i_macro, const unsigned &amp;i_direct, const Vector&lt; double &gt; &amp;s, Vector&lt; double &gt; &amp;x)</div><div class="ttdoc">Vector representation of the i_macro-th macro element boundary i_direct (e.g. N/S/W/E in 2D spatial =...</div><div class="ttdef"><b>Definition</b> <a href="extruded__domain_8cc_source.html#l00148">extruded_domain.cc:148</a></div></div>
+<div class="ttc" id="aclassoomph_1_1ExtrudedDomain_html_a10a824075e2d2ee6efcf3485966dbadc"><div class="ttname"><a href="classoomph_1_1ExtrudedDomain.html#a10a824075e2d2ee6efcf3485966dbadc">oomph::ExtrudedDomain::macro_element_boundary</a></div><div class="ttdeci">void macro_element_boundary(const unsigned &amp;time, const unsigned &amp;i_macro, const unsigned &amp;i_direct, const Vector&lt; double &gt; &amp;s, Vector&lt; double &gt; &amp;x)</div><div class="ttdoc">Vector representation of the i_macro-th macro element boundary i_direct (e.g. N/S/W/E in 2D spatial =...</div><div class="ttdef"><b>Definition</b> <a href="extruded__domain_8cc_source.html#l00144">extruded_domain.cc:144</a></div></div>
 </div><!-- fragment --><p> which returns a <a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> representation of each of the ExtrudedMacroElements' boundaries, parametrised by the coordinate(s) along this boundary. The ExtrudedMacroElements obtain their boundary positions via member function pointers to <code>ExtrudedDomain::macro_element_boundary(...)</code>. </p>
 
 <p class="definition">Definition at line <a class="el" href="extruded__domain_8h_source.html#l00057">57</a> of file <a class="el" href="extruded__domain_8h_source.html">extruded_domain.h</a>.</p>
@@ -339,7 +333,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Constructor. </p>
 
-<p class="definition">Definition at line <a class="el" href="extruded__domain_8cc_source.html#l00063">63</a> of file <a class="el" href="extruded__domain_8cc_source.html">extruded_domain.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="extruded__domain_8cc_source.html#l00062">62</a> of file <a class="el" href="extruded__domain_8cc_source.html">extruded_domain.cc</a>.</p>
 
 <p class="reference">References <a class="el" href="extruded__domain_8h_source.html#l00101">Domain_pt</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="domain_8h_source.html#l00301">oomph::Domain::Macro_element_pt</a>, <a class="el" href="extruded__domain_8h_source.html#l00104">N_extruded_element</a>, and <a class="el" href="domain_8h_source.html#l00123">oomph::Domain::nmacro_element()</a>.</p>
 
@@ -459,9 +453,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classoomph_1_1Domain.html#a95f3e00d28ea37e6c4d3027bfac91096">oomph::Domain</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="extruded__domain_8cc_source.html#l00148">148</a> of file <a class="el" href="extruded__domain_8cc_source.html">extruded_domain.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="extruded__domain_8cc_source.html#l00144">144</a> of file <a class="el" href="extruded__domain_8cc_source.html">extruded_domain.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="octree_8h_source.html#l00073">oomph::OcTreeNames::B</a>, <a class="el" href="octree_8h_source.html#l00071">oomph::OcTreeNames::D</a>, <a class="el" href="octree_8h_source.html#l00329">oomph::OcTree::Direct_string</a>, <a class="el" href="extruded__domain_8h_source.html#l00101">Domain_pt</a>, <a class="el" href="quadtree_8h_source.html#l00061">oomph::QuadTreeNames::E</a>, <a class="el" href="octree_8h_source.html#l00074">oomph::OcTreeNames::F</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="octree_8h_source.html#l00069">oomph::OcTreeNames::L</a>, <a class="el" href="classoomph_1_1Domain.html#a95f3e00d28ea37e6c4d3027bfac91096">oomph::Domain::macro_element_boundary()</a>, <a class="el" href="domain_8h_source.html#l00116">oomph::Domain::macro_element_pt()</a>, <a class="el" href="extruded__domain_8cc_source.html#l00132">macro_element_pt()</a>, <a class="el" href="macro__element_8h_source.html#l00126">oomph::MacroElement::macro_map()</a>, <a class="el" href="quadtree_8h_source.html#l00060">oomph::QuadTreeNames::N</a>, <a class="el" href="extruded__domain_8h_source.html#l00104">N_extruded_element</a>, <a class="el" href="domain_8h_source.html#l00123">oomph::Domain::nmacro_element()</a>, <a class="el" href="octree_8h_source.html#l00070">oomph::OcTreeNames::R</a>, <a class="el" href="cfortran_8h_source.html#l00568">s</a>, <a class="el" href="quadtree_8h_source.html#l00062">oomph::QuadTreeNames::S</a>, <a class="el" href="cfortran_8h_source.html#l00568">t</a>, <a class="el" href="extruded__domain_8h_source.html#l00110">T_max</a>, <a class="el" href="extruded__domain_8h_source.html#l00107">T_min</a>, <a class="el" href="octree_8h_source.html#l00072">oomph::OcTreeNames::U</a>, and <a class="el" href="quadtree_8h_source.html#l00063">oomph::QuadTreeNames::W</a>.</p>
+<p class="reference">References <a class="el" href="octree_8h_source.html#l00073">oomph::OcTreeNames::B</a>, <a class="el" href="octree_8h_source.html#l00071">oomph::OcTreeNames::D</a>, <a class="el" href="octree_8h_source.html#l00329">oomph::OcTree::Direct_string</a>, <a class="el" href="extruded__domain_8h_source.html#l00101">Domain_pt</a>, <a class="el" href="quadtree_8h_source.html#l00061">oomph::QuadTreeNames::E</a>, <a class="el" href="octree_8h_source.html#l00074">oomph::OcTreeNames::F</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="octree_8h_source.html#l00069">oomph::OcTreeNames::L</a>, <a class="el" href="classoomph_1_1Domain.html#a95f3e00d28ea37e6c4d3027bfac91096">oomph::Domain::macro_element_boundary()</a>, <a class="el" href="domain_8h_source.html#l00116">oomph::Domain::macro_element_pt()</a>, <a class="el" href="extruded__domain_8cc_source.html#l00129">macro_element_pt()</a>, <a class="el" href="macro__element_8h_source.html#l00126">oomph::MacroElement::macro_map()</a>, <a class="el" href="quadtree_8h_source.html#l00060">oomph::QuadTreeNames::N</a>, <a class="el" href="extruded__domain_8h_source.html#l00104">N_extruded_element</a>, <a class="el" href="domain_8h_source.html#l00123">oomph::Domain::nmacro_element()</a>, <a class="el" href="octree_8h_source.html#l00070">oomph::OcTreeNames::R</a>, <a class="el" href="cfortran_8h_source.html#l00568">s</a>, <a class="el" href="quadtree_8h_source.html#l00062">oomph::QuadTreeNames::S</a>, <a class="el" href="cfortran_8h_source.html#l00568">t</a>, <a class="el" href="extruded__domain_8h_source.html#l00110">T_max</a>, <a class="el" href="extruded__domain_8h_source.html#l00107">T_min</a>, <a class="el" href="octree_8h_source.html#l00072">oomph::OcTreeNames::U</a>, and <a class="el" href="quadtree_8h_source.html#l00063">oomph::QuadTreeNames::W</a>.</p>
 
 </div>
 </div>
@@ -483,11 +477,11 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Access to i-th extruded macro element. </p>
 
-<p class="definition">Definition at line <a class="el" href="extruded__domain_8cc_source.html#l00132">132</a> of file <a class="el" href="extruded__domain_8cc_source.html">extruded_domain.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="extruded__domain_8cc_source.html#l00129">129</a> of file <a class="el" href="extruded__domain_8cc_source.html">extruded_domain.cc</a>.</p>
 
 <p class="reference">References <a class="el" href="cfortran_8h_source.html#l00603">i</a>, and <a class="el" href="domain_8h_source.html#l00301">oomph::Domain::Macro_element_pt</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="extruded__cube__mesh__from__quad__mesh__with__macro__elements_8template_8cc_source.html#l00099">oomph::ExtrudedCubeMeshFromQuadMesh&lt; ELEMENT &gt;::build_mesh()</a>, and <a class="el" href="extruded__domain_8cc_source.html#l00148">macro_element_boundary()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="extruded__cube__mesh__from__quad__mesh__with__macro__elements_8template_8cc_source.html#l00099">oomph::ExtrudedCubeMeshFromQuadMesh&lt; ELEMENT &gt;::build_mesh()</a>, and <a class="el" href="extruded__domain_8cc_source.html#l00144">macro_element_boundary()</a>.</p>
 
 </div>
 </div>
@@ -508,7 +502,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Number of macro elements in domain. </p>
 
-<p class="definition">Definition at line <a class="el" href="extruded__domain_8cc_source.html#l00122">122</a> of file <a class="el" href="extruded__domain_8cc_source.html">extruded_domain.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="extruded__domain_8cc_source.html#l00120">120</a> of file <a class="el" href="extruded__domain_8cc_source.html">extruded_domain.cc</a>.</p>
 
 <p class="reference">References <a class="el" href="domain_8h_source.html#l00301">oomph::Domain::Macro_element_pt</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
 
@@ -567,7 +561,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="extruded__domain_8h_source.html#l00101">101</a> of file <a class="el" href="extruded__domain_8h_source.html">extruded_domain.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="extruded__domain_8cc_source.html#l00035">ExtrudedDomain()</a>, <a class="el" href="extruded__domain_8cc_source.html#l00063">ExtrudedDomain()</a>, and <a class="el" href="extruded__domain_8cc_source.html#l00148">macro_element_boundary()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="extruded__domain_8cc_source.html#l00035">ExtrudedDomain()</a>, <a class="el" href="extruded__domain_8cc_source.html#l00062">ExtrudedDomain()</a>, and <a class="el" href="extruded__domain_8cc_source.html#l00144">macro_element_boundary()</a>.</p>
 
 </div>
 </div>
@@ -593,7 +587,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="extruded__domain_8h_source.html#l00104">104</a> of file <a class="el" href="extruded__domain_8h_source.html">extruded_domain.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="extruded__domain_8cc_source.html#l00035">ExtrudedDomain()</a>, <a class="el" href="extruded__domain_8cc_source.html#l00063">ExtrudedDomain()</a>, and <a class="el" href="extruded__domain_8cc_source.html#l00148">macro_element_boundary()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="extruded__domain_8cc_source.html#l00035">ExtrudedDomain()</a>, <a class="el" href="extruded__domain_8cc_source.html#l00062">ExtrudedDomain()</a>, and <a class="el" href="extruded__domain_8cc_source.html#l00144">macro_element_boundary()</a>.</p>
 
 </div>
 </div>
@@ -621,7 +615,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="extruded__domain_8h_source.html#l00110">110</a> of file <a class="el" href="extruded__domain_8h_source.html">extruded_domain.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="extruded__domain_8cc_source.html#l00148">macro_element_boundary()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="extruded__domain_8cc_source.html#l00144">macro_element_boundary()</a>.</p>
 
 </div>
 </div>
@@ -649,7 +643,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="extruded__domain_8h_source.html#l00107">107</a> of file <a class="el" href="extruded__domain_8h_source.html">extruded_domain.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="extruded__domain_8cc_source.html#l00148">macro_element_boundary()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="extruded__domain_8cc_source.html#l00144">macro_element_boundary()</a>.</p>
 
 </div>
 </div>
@@ -685,7 +679,7 @@ Additional Inherited Members</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:03:39
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:37:45
         </div>
       </div>
     </footer>

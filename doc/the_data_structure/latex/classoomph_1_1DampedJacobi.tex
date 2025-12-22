@@ -2,7 +2,7 @@
 \hypertarget{classoomph_1_1DampedJacobi}{}\label{classoomph_1_1DampedJacobi}\index{oomph::DampedJacobi$<$ MATRIX $>$@{oomph::DampedJacobi$<$ MATRIX $>$}}
 
 
-//////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////  
+Damped Jacobi "{}solver"{} templated by matrix type. The "{}solver"{} exists in many different incarnations\+: It\textquotesingle{}s an \doxylink{classoomph_1_1IterativeLinearSolver}{Iterative\+Linear\+Solver}, and a \doxylink{classoomph_1_1Smoother}{Smoother}, all of which use the same basic iteration.  
 
 
 
@@ -249,8 +249,6 @@ std\+::ofstream \mbox{\hyperlink{classoomph_1_1IterativeLinearSolver_ad4d6766bec
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{typename}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{MATRIX}}$>$\newline
 class oomph\+::\+Damped\+Jacobi$<$ MATRIX $>$}
-//////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////// 
-
 Damped Jacobi "{}solver"{} templated by matrix type. The "{}solver"{} exists in many different incarnations\+: It\textquotesingle{}s an \doxylink{classoomph_1_1IterativeLinearSolver}{Iterative\+Linear\+Solver}, and a \doxylink{classoomph_1_1Smoother}{Smoother}, all of which use the same basic iteration. 
 
 Definition at line \mbox{\hyperlink{iterative__linear__solver_8h_source_l01001}{1001}} of file \mbox{\hyperlink{iterative__linear__solver_8h_source}{iterative\+\_\+linear\+\_\+solver.\+h}}.
@@ -484,7 +482,7 @@ Definition at line \mbox{\hyperlink{iterative__linear__solver_8h_source_l01130}{
 
 
 
-References \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00507}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::build\+\_\+distribution()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00457}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::distribution\+\_\+pt()}}, \mbox{\hyperlink{linear__solver_8h_source_l00073}{oomph\+::\+Linear\+Solver\+::\+Enable\+\_\+resolve}}, \mbox{\hyperlink{iterative__linear__solver_8h_source_l01054}{oomph\+::\+Damped\+Jacobi$<$ MATRIX $>$\+::extract\+\_\+diagonal\+\_\+entries()}}, \mbox{\hyperlink{iterative__linear__solver_8h_source_l01207}{oomph\+::\+Damped\+Jacobi$<$ MATRIX $>$\+::\+Matrix\+\_\+can\+\_\+be\+\_\+deleted}}, \mbox{\hyperlink{iterative__linear__solver_8h_source_l01196}{oomph\+::\+Damped\+Jacobi$<$ MATRIX $>$\+::\+Matrix\+\_\+pt}}, \mbox{\hyperlink{iterative__linear__solver_8h_source_l01203}{oomph\+::\+Damped\+Jacobi$<$ MATRIX $>$\+::\+Resolving}}, \mbox{\hyperlink{iterative__linear__solver_8cc_source_l01922}{oomph\+::\+Damped\+Jacobi$<$ MATRIX $>$\+::solve\+\_\+helper()}}, and \mbox{\hyperlink{iterative__linear__solver_8h_source_l00585}{oomph\+::\+Smoother\+::\+Use\+\_\+as\+\_\+smoother}}.
+References \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00507}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::build\+\_\+distribution()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00457}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::distribution\+\_\+pt()}}, \mbox{\hyperlink{linear__solver_8h_source_l00075}{oomph\+::\+Linear\+Solver\+::\+Enable\+\_\+resolve}}, \mbox{\hyperlink{iterative__linear__solver_8h_source_l01054}{oomph\+::\+Damped\+Jacobi$<$ MATRIX $>$\+::extract\+\_\+diagonal\+\_\+entries()}}, \mbox{\hyperlink{iterative__linear__solver_8h_source_l01207}{oomph\+::\+Damped\+Jacobi$<$ MATRIX $>$\+::\+Matrix\+\_\+can\+\_\+be\+\_\+deleted}}, \mbox{\hyperlink{iterative__linear__solver_8h_source_l01196}{oomph\+::\+Damped\+Jacobi$<$ MATRIX $>$\+::\+Matrix\+\_\+pt}}, \mbox{\hyperlink{iterative__linear__solver_8h_source_l01203}{oomph\+::\+Damped\+Jacobi$<$ MATRIX $>$\+::\+Resolving}}, \mbox{\hyperlink{iterative__linear__solver_8cc_source_l01922}{oomph\+::\+Damped\+Jacobi$<$ MATRIX $>$\+::solve\+\_\+helper()}}, and \mbox{\hyperlink{iterative__linear__solver_8h_source_l00585}{oomph\+::\+Smoother\+::\+Use\+\_\+as\+\_\+smoother}}.
 
 \Hypertarget{classoomph_1_1DampedJacobi_ace422835d94b7d465d08cc1f4df192ea}\label{classoomph_1_1DampedJacobi_ace422835d94b7d465d08cc1f4df192ea} 
 \index{oomph::DampedJacobi$<$ MATRIX $>$@{oomph::DampedJacobi$<$ MATRIX $>$}!solve@{solve}}
@@ -497,8 +495,6 @@ References \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00507}{oomp
 
 Use damped Jacobi iteration as an \doxylink{classoomph_1_1IterativeLinearSolver}{Iterative\+Linear\+Solver}\+: This obtains the Jacobian matrix J and the residual vector r (needed for the Newton method) from the problem\textquotesingle{}s get\+\_\+jacobian function and returns the result of Jx=r. 
 
-/////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////
-
 Solver\+: Takes pointer to problem and returns the results vector which contains the solution of the linear system defined by the problem\textquotesingle{}s fully assembled Jacobian and residual vector. 
 
 Implements \mbox{\hyperlink{classoomph_1_1LinearSolver_a15ce22542b74ed1826ea485edacbeb6e}{oomph\+::\+Linear\+Solver}}.
@@ -509,7 +505,7 @@ Definition at line \mbox{\hyperlink{iterative__linear__solver_8cc_source_l01858}
 
 
 
-References \mbox{\hyperlink{problem_8h_source_l01266}{oomph\+::\+Problem\+::communicator\+\_\+pt()}}, \mbox{\hyperlink{problem_8cc_source_l03922}{oomph\+::\+Problem\+::get\+\_\+jacobian()}}, \mbox{\hyperlink{problem_8h_source_l01704}{oomph\+::\+Problem\+::ndof()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01295}{oomph\+::\+Timing\+Helpers\+::timer()}}.
+References \mbox{\hyperlink{problem_8h_source_l01266}{oomph\+::\+Problem\+::communicator\+\_\+pt()}}, \mbox{\hyperlink{problem_8cc_source_l03935}{oomph\+::\+Problem\+::get\+\_\+jacobian()}}, \mbox{\hyperlink{problem_8h_source_l01704}{oomph\+::\+Problem\+::ndof()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01303}{oomph\+::\+Timing\+Helpers\+::timer()}}.
 
 
 
@@ -532,7 +528,7 @@ Definition at line \mbox{\hyperlink{iterative__linear__solver_8cc_source_l01922}
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase_a78204eab557e0dc99618e41a28a5c092}{oomph\+::\+Double\+Matrix\+Base\+::multiply()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{matrices_8h_source_l00326}{oomph\+::\+Double\+Matrix\+Base\+::residual()}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01295}{oomph\+::\+Timing\+Helpers\+::timer()}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase_a78204eab557e0dc99618e41a28a5c092}{oomph\+::\+Double\+Matrix\+Base\+::multiply()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{matrices_8h_source_l00326}{oomph\+::\+Double\+Matrix\+Base\+::residual()}}, \mbox{\hyperlink{Tadvection__diffusion__reaction__elements_8h_source_l00070}{oomph\+::\+TAdvection\+Diffusion\+Reaction\+Element$<$ NREAGENT, DIM, NNODE\+\_\+1\+D $>$\+::\+TAdvection\+Diffusion\+Reaction\+Element()}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01303}{oomph\+::\+Timing\+Helpers\+::timer()}}.
 
 
 

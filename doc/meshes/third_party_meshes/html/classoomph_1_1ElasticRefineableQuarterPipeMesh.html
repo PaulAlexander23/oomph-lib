@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -121,17 +115,17 @@
 </div><!--header-->
 <div class="contents">
 
-<p>/////////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////////  
+<p>Refineable elastic quarter pipe mesh class.  
  <a href="classoomph_1_1ElasticRefineableQuarterPipeMesh.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="quarter__pipe__mesh_8template_8h_source.html">quarter_pipe_mesh.template.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="quarter__pipe__mesh_8h_source.html">quarter_pipe_mesh.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for oomph::ElasticRefineableQuarterPipeMesh&lt; ELEMENT &gt;:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="classoomph_1_1ElasticRefineableQuarterPipeMesh.png" usemap="#oomph::ElasticRefineableQuarterPipeMesh_3C_20ELEMENT_20_3E_map" alt=""/>
   <map id="oomph::ElasticRefineableQuarterPipeMesh_3C_20ELEMENT_20_3E_map" name="oomph::ElasticRefineableQuarterPipeMesh_3C_20ELEMENT_20_3E_map">
-<area href="classoomph_1_1ElasticQuarterPipeMesh.html" title="/////////////////////////////////////////////////////////////////////// /////////////////////////////..." alt="oomph::ElasticQuarterPipeMesh&lt; ELEMENT &gt;" shape="rect" coords="172,168,506,192"/>
+<area href="classoomph_1_1ElasticQuarterPipeMesh.html" title="Non refineable elastic quarter pipe mesh class setup lagrangian coordinates for solid mechanics probl..." alt="oomph::ElasticQuarterPipeMesh&lt; ELEMENT &gt;" shape="rect" coords="172,168,506,192"/>
 <area href="classoomph_1_1QuarterPipeMesh.html" title="Non refineable quarter pipe mesh class Deform a simple cubic mesh into a quarter pipe r: radial direc..." alt="oomph::QuarterPipeMesh&lt; ELEMENT &gt;" shape="rect" coords="0,112,334,136"/>
 <area href="classoomph_1_1SimpleCubicMesh.html" title="Simple cubic 3D Brick mesh class." alt="oomph::SimpleCubicMesh&lt; ELEMENT &gt;" shape="rect" coords="0,56,334,80"/>
   </map>
@@ -235,10 +229,9 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">class</a> <a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">ELEMENT</a>&gt;<br />
-class oomph::ElasticRefineableQuarterPipeMesh&lt; ELEMENT &gt;</div><p>/////////////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////// </p>
-<p>Refineable elastic quarter pipe mesh class </p>
+class oomph::ElasticRefineableQuarterPipeMesh&lt; ELEMENT &gt;</div><p>Refineable elastic quarter pipe mesh class. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00209">209</a> of file <a class="el" href="quarter__pipe__mesh_8template_8h_source.html">quarter_pipe_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8h_source.html#l00202">202</a> of file <a class="el" href="quarter__pipe__mesh_8h_source.html">quarter_pipe_mesh.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a5d90778b3a060b97353b5d9ff5a9dd3d" name="a5d90778b3a060b97353b5d9ff5a9dd3d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5d90778b3a060b97353b5d9ff5a9dd3d">&#9670;&#160;</a></span>ElasticRefineableQuarterPipeMesh()</h2>
@@ -308,14 +301,14 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Constructor: Pass number of elements in various directions, the inner and outer radius and the length of the tube. Builds mesh and copies Eulerian coords to Lagrangian ones so that the initial configuration is the stress-free one. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00218">218</a> of file <a class="el" href="quarter__pipe__mesh_8template_8h_source.html">quarter_pipe_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8h_source.html#l00211">211</a> of file <a class="el" href="quarter__pipe__mesh_8h_source.html">quarter_pipe_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00104">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::Domain_pt</a>, and <a class="el" href="simple__cubic__mesh_8template_8h_source.html#l00120">oomph::SimpleCubicMesh&lt; ELEMENT &gt;::nz()</a>.</p>
+<p class="reference">References <a class="el" href="quarter__pipe__mesh_8h_source.html#l00101">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::Domain_pt</a>, and <a class="el" href="simple__cubic__mesh_8h_source.html#l00119">oomph::SimpleCubicMesh&lt; ELEMENT &gt;::nz()</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li><a class="el" href="quarter__pipe__mesh_8template_8h_source.html">quarter_pipe_mesh.template.h</a></li>
+<li><a class="el" href="quarter__pipe__mesh_8h_source.html">quarter_pipe_mesh.h</a></li>
 </ul>
 </div><!-- contents -->
 
@@ -345,7 +338,7 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 13:58:22
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:36:26
         </div>
       </div>
     </footer>

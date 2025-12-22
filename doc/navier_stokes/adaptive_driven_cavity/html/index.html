@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -142,40 +136,40 @@ The example problem</h1>
 <center> <table class="doxtable">
 <tr>
 <td><center> <b>The 2D steady driven cavity problem in a square domain.</b> </center> Solve  <p class="formulaDsp">
-<picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 Re\phantom{i}u_j\frac{\partial u_i}{\partial x_j} =
 - \frac{\partial p}{\partial x_i} +
 \frac{\partial }{\partial x_j} \left(
 \frac{\partial u_i}{\partial x_j} +  
 \frac{\partial u_j}{\partial x_i} \right),
  \ \ \ \ \ \ \ \ \ \ (1)
-\]" src="form_0.png" width="286" height="31"/></picture>
+\]" src="form_0.png" width="286" height="31"/>
 </p>
  and  <p class="formulaDsp">
-<picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \frac{\partial u_i}{\partial x_i} = 0,
-\]" src="form_1.png" width="48" height="29"/></picture>
+\]" src="form_1.png" width="48" height="29"/>
 </p>
- in the square domain <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ D = \left\{x_i \in [0,1]; i=1,2 \right\} $" src="form_2.png" width="135" height="14"/></picture>, subject to the Dirichlet boundary conditions  <p class="formulaDsp">
-<picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ in the square domain <img class="formulaInl" alt="$ D = \left\{x_i \in [0,1]; i=1,2 \right\} $" src="form_2.png" width="135" height="14"/>, subject to the Dirichlet boundary conditions  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \left. \mathbf{u}\right|_{\partial D}=(0,0),
 \ \ \ \ \ \ \ \ \ \ (2)
-\]" src="form_3.png" width="133" height="14"/></picture>
+\]" src="form_3.png" width="133" height="14"/>
 </p>
  on right, top and left boundaries and  <p class="formulaDsp">
-<picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \left. \mathbf{u}\right|_{\partial D}=(1,0),
 \ \ \ \ \ \ \ \ \ \ (3)
-\]" src="form_4.png" width="133" height="14"/></picture>
+\]" src="form_4.png" width="133" height="14"/>
 </p>
- on the bottom boundary, <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_2 = 0 $" src="form_5.png" width="36" height="11"/></picture> .   </td></tr>
+ on the bottom boundary, <img class="formulaInl" alt="$ x_2 = 0 $" src="form_5.png" width="36" height="11"/> .   </td></tr>
 </table>
 <br  />
  </center><hr  />
 <h2><a class="anchor" id="CR"></a>
 Solution with Crouzeix-Raviart elements</h2>
-<p>The figure below shows "carpet plots" of the velocity and pressure fields as well as a contour plot of the pressure distribution with superimposed streamlines for a Reynolds number of <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re=100$" src="form_6.png" width="50" height="10"/></picture>. The velocity vanishes along the entire domain boundary, apart from the bottom boundary <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ (x_2 = 0) $" src="form_7.png" width="44" height="14"/></picture> where the moving "lid" imposes a unit tangential velocity which drives a large vortex, centred at <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ (x_1,x_2) \approx (0.62,0.26)$" src="form_8.png" width="116" height="14"/></picture>. The pressure singularities created by the velocity discontinuities at <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$
-(x_1,x_2)=(0,0) $" src="form_9.png" width="84" height="14"/></picture> and <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ (x_1,x_2)=(1,0) $" src="form_10.png" width="84" height="14"/></picture> are now much better resolved.</p>
+<p>The figure below shows "carpet plots" of the velocity and pressure fields as well as a contour plot of the pressure distribution with superimposed streamlines for a Reynolds number of <img class="formulaInl" alt="$ Re=100$" src="form_6.png" width="50" height="10"/>. The velocity vanishes along the entire domain boundary, apart from the bottom boundary <img class="formulaInl" alt="$ (x_2 = 0) $" src="form_7.png" width="44" height="14"/> where the moving "lid" imposes a unit tangential velocity which drives a large vortex, centred at <img class="formulaInl" alt="$ (x_1,x_2) \approx (0.62,0.26)$" src="form_8.png" width="116" height="14"/>. The pressure singularities created by the velocity discontinuities at <img class="formulaInl" alt="$
+(x_1,x_2)=(0,0) $" src="form_9.png" width="84" height="14"/> and <img class="formulaInl" alt="$ (x_1,x_2)=(1,0) $" src="form_10.png" width="84" height="14"/> are now much better resolved.</p>
 <div class="image">
 <img src="adaptive_driven_cavity_CR.gif" alt=""/>
 <div class="caption">
@@ -453,7 +447,7 @@ Post-processing</h1>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output solution </span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line">         doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> mesh_pt()-&gt;output(some_file,npts);</div>
@@ -490,7 +484,7 @@ An adapted mesh, with nodes storing a pressure value denoted by circles, and vel
 <li>Node 8 is geometrically non-hanging, but it is a hanging node for the pressure interpolation. Its pressure master nodes are 6 and 12.</li>
 <li>Node 10 is geometrically hanging, and its geometric master nodes are 6, 8 and 12, while its pressure master nodes are 6 and 12.</li>
 </ul>
-<p>To illustrate that <code>oomph-lib's</code> automatic mesh adaptation procedures are able to deal with these cases, the figure below shows a "carpet plot" of the pressure distribution, <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ p(x_1,x_2) $" src="form_11.png" width="48" height="14"/></picture>, obtained from a (strongly under-resolved) driven-cavity computation on the mesh shown above. The figure illustrates that the hanging node constraints ensure the inter-element continuity of the pressure throughout the domain, and, in particular, along the "right" boundary of the largest element.</p>
+<p>To illustrate that <code>oomph-lib's</code> automatic mesh adaptation procedures are able to deal with these cases, the figure below shows a "carpet plot" of the pressure distribution, <img class="formulaInl" alt="$ p(x_1,x_2) $" src="form_11.png" width="48" height="14"/>, obtained from a (strongly under-resolved) driven-cavity computation on the mesh shown above. The figure illustrates that the hanging node constraints ensure the inter-element continuity of the pressure throughout the domain, and, in particular, along the "right" boundary of the largest element.</p>
 <div class="image">
 <img src="hanging_pressure.gif" alt=""/>
 <div class="caption">
@@ -525,7 +519,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -555,7 +549,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:11:28
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:39:51
         </div>
       </div>
     </footer>

@@ -2,12 +2,12 @@
 \hypertarget{classoomph_1_1RefineableFishMesh}{}\label{classoomph_1_1RefineableFishMesh}\index{oomph::RefineableFishMesh$<$ ELEMENT $>$@{oomph::RefineableFishMesh$<$ ELEMENT $>$}}
 
 
-////////////////////////////////////////////////////////////////////  
+Refineable fish shaped mesh. The geometry is defined by the Domain object \doxylink{classoomph_1_1FishDomain}{Fish\+Domain}.  
 
 
 
 
-{\ttfamily \#include $<$fish\+\_\+mesh.\+template.\+h$>$}
+{\ttfamily \#include $<$fish\+\_\+mesh.\+h$>$}
 
 Inheritance diagram for oomph\+::Refineable\+Fish\+Mesh\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
 \begin{center}
@@ -71,11 +71,9 @@ enum \{ \mbox{\hyperlink{classoomph_1_1FishMesh_a4a4137c4add890a283e51651c5c47f6
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$\mbox{\hyperlink{classoomph_1_1SimpleRectangularQuadMesh}{class}} \mbox{\hyperlink{classoomph_1_1SimpleRectangularQuadMesh}{ELEMENT}}$>$\newline
 class oomph\+::\+Refineable\+Fish\+Mesh$<$ ELEMENT $>$}
-//////////////////////////////////////////////////////////////////// 
+Refineable fish shaped mesh. The geometry is defined by the Domain object \doxylink{classoomph_1_1FishDomain}{Fish\+Domain}. 
 
-//////////////////////////////////////////////////////////////////// Refineable fish shaped mesh. The geometry is defined by the Domain object \doxylink{classoomph_1_1FishDomain}{Fish\+Domain}. 
-
-Definition at line \mbox{\hyperlink{fish__mesh_8template_8h_source_l00127}{127}} of file \mbox{\hyperlink{fish__mesh_8template_8h_source}{fish\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{fish__mesh_8h_source_l00124}{124}} of file \mbox{\hyperlink{fish__mesh_8h_source}{fish\+\_\+mesh.\+h}}.
 
 
 
@@ -93,11 +91,11 @@ Constructor\+: Pass pointer to timestepper -- defaults to (Steady) default times
 
 
 
-Definition at line \mbox{\hyperlink{fish__mesh_8template_8h_source_l00133}{133}} of file \mbox{\hyperlink{fish__mesh_8template_8h_source}{fish\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{fish__mesh_8h_source_l00130}{130}} of file \mbox{\hyperlink{fish__mesh_8h_source}{fish\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{fish__mesh_8template_8cc_source_l00661}{oomph\+::\+Refineable\+Fish\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+adaptivity()}}.
+References \mbox{\hyperlink{fish__mesh_8template_8cc_source_l00641}{oomph\+::\+Refineable\+Fish\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+adaptivity()}}.
 
 \Hypertarget{classoomph_1_1RefineableFishMesh_a82bc04aea6deaf2faa7306aa047e12ef}\label{classoomph_1_1RefineableFishMesh_a82bc04aea6deaf2faa7306aa047e12ef} 
 \index{oomph::RefineableFishMesh$<$ ELEMENT $>$@{oomph::RefineableFishMesh$<$ ELEMENT $>$}!RefineableFishMesh@{RefineableFishMesh}}
@@ -112,11 +110,11 @@ Constructor\+: Pass pointer Geom\+Object that defines the fish\textquotesingle{}
 
 
 
-Definition at line \mbox{\hyperlink{fish__mesh_8template_8h_source_l00149}{149}} of file \mbox{\hyperlink{fish__mesh_8template_8h_source}{fish\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{fish__mesh_8h_source_l00146}{146}} of file \mbox{\hyperlink{fish__mesh_8h_source}{fish\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{fish__mesh_8template_8cc_source_l00661}{oomph\+::\+Refineable\+Fish\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+adaptivity()}}.
+References \mbox{\hyperlink{fish__mesh_8template_8cc_source_l00641}{oomph\+::\+Refineable\+Fish\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+adaptivity()}}.
 
 \Hypertarget{classoomph_1_1RefineableFishMesh_a8304d093e015001a6d56faebdd2d4636}\label{classoomph_1_1RefineableFishMesh_a8304d093e015001a6d56faebdd2d4636} 
 \index{oomph::RefineableFishMesh$<$ ELEMENT $>$@{oomph::RefineableFishMesh$<$ ELEMENT $>$}!````~RefineableFishMesh@{\texorpdfstring{$\sim$}{\string~}RefineableFishMesh}}
@@ -131,7 +129,7 @@ Destructor\+: Empty -- all cleanup gets handled in the base classes.
 
 
 
-Definition at line \mbox{\hyperlink{fish__mesh_8template_8h_source_l00163}{163}} of file \mbox{\hyperlink{fish__mesh_8template_8h_source}{fish\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{fish__mesh_8h_source_l00160}{160}} of file \mbox{\hyperlink{fish__mesh_8h_source}{fish\+\_\+mesh.\+h}}.
 
 
 
@@ -147,19 +145,17 @@ Definition at line \mbox{\hyperlink{fish__mesh_8template_8h_source_l00163}{163}}
 
 Setup all the information that\textquotesingle{}s required for spatial adaptivity\+: Set pointers to macro elements and build quadtree forest. (contained in separate function as this functionality is common to both constructors),. 
 
-///////////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
-
 Setup all the information that\textquotesingle{}s required for spatial adaptivity\+: Build quadtree forest. 
 
-Definition at line \mbox{\hyperlink{fish__mesh_8template_8cc_source_l00661}{661}} of file \mbox{\hyperlink{fish__mesh_8template_8cc_source}{fish\+\_\+mesh.\+template.\+cc}}.
+Definition at line \mbox{\hyperlink{fish__mesh_8template_8cc_source_l00641}{641}} of file \mbox{\hyperlink{fish__mesh_8template_8cc_source}{fish\+\_\+mesh.\+template.\+cc}}.
 
 
 
-Referenced by \mbox{\hyperlink{fish__mesh_8template_8h_source_l00149}{oomph\+::\+Refineable\+Fish\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Fish\+Mesh()}}, and \mbox{\hyperlink{fish__mesh_8template_8h_source_l00133}{oomph\+::\+Refineable\+Fish\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Fish\+Mesh()}}.
+Referenced by \mbox{\hyperlink{fish__mesh_8h_source_l00146}{oomph\+::\+Refineable\+Fish\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Fish\+Mesh()}}, and \mbox{\hyperlink{fish__mesh_8h_source_l00130}{oomph\+::\+Refineable\+Fish\+Mesh$<$ ELEMENT $>$\+::\+Refineable\+Fish\+Mesh()}}.
 
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{fish__mesh_8template_8h}{fish\+\_\+mesh.\+template.\+h}}\item 
+\mbox{\hyperlink{fish__mesh_8h}{fish\+\_\+mesh.\+h}}\item 
 \mbox{\hyperlink{fish__mesh_8template_8cc}{fish\+\_\+mesh.\+template.\+cc}}\end{DoxyCompactItemize}

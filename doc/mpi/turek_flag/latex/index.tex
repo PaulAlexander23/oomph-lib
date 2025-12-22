@@ -492,13 +492,6 @@ The function {\ttfamily Problem\+::build\+\_\+mesh()} must be supplied by the us
 \DoxyCodeLine{\ \ \ \ \}\ \textcolor{comment}{//\ done\ automatic\ application\ of\ no-\/slip}}
 \DoxyCodeLine{\ \ \}\ \textcolor{comment}{//\ end\ of\ FSI\ setup}}
 \DoxyCodeLine{}
-\DoxyCodeLine{\ \textcolor{comment}{//\ Use\ SuperLU\_dist\ as\ the\ solver}}
-\DoxyCodeLine{\ linear\_solver\_pt()\ =\ \textcolor{keyword}{new}\ SuperLUSolver;}
-\DoxyCodeLine{\ \textcolor{keyword}{static\_cast<}SuperLUSolver*\textcolor{keyword}{>}(linear\_solver\_pt())}
-\DoxyCodeLine{\ \ -\/>set\_solver\_type(SuperLUSolver::Distributed);}
-\DoxyCodeLine{\ \textcolor{keyword}{static\_cast<}SuperLUSolver*\textcolor{keyword}{>}(linear\_solver\_pt())}
-\DoxyCodeLine{\ \ -\/>use\_distributed\_solve\_in\_superlu\_dist();}
-\DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Assign\ equation\ numbers}}
 \DoxyCodeLine{\ cout\ <<\ assign\_eqn\_numbers()\ <<\ std::endl;\ }
 \DoxyCodeLine{}
@@ -528,4 +521,4 @@ In this example, all that is required for the {\ttfamily actions\+\_\+after\+\_\
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

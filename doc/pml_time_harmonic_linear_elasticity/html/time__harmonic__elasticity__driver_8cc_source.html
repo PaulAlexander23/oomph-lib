@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -163,9 +157,9 @@
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#define ADAPTIVE</span></div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment"></span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">/// ///////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment">/// ///////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">/// ///////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">//////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment">//////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">//////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment"></span> </div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment">//=======start_namespace==========================================</span><span class="comment"></span></div>
@@ -775,56 +769,56 @@
 <div class="line"><a id="l00637" name="l00637"></a><span class="lineno">  637</span> </div>
 <div class="line"><a id="l00638" name="l00638"></a><span class="lineno">  638</span> <span class="comment">// Output displacement field</span></div>
 <div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span> <span class="comment">//--------------------------</span></div>
-<div class="line"><a id="l00640" name="l00640"></a><span class="lineno">  640</span> sprintf(filename,<span class="stringliteral">&quot;%s/soln_bulk%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00640" name="l00640"></a><span class="lineno">  640</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln_bulk%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00641" name="l00641"></a><span class="lineno">  641</span>         Doc_info.number());</div>
 <div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span> some_file.open(filename);</div>
 <div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span> Solid_mesh_pt-&gt;output(some_file,n_plot);</div>
 <div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span> some_file.close();</div>
 <div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span> </div>
-<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span> sprintf(filename,<span class="stringliteral">&quot;%s/soln_pml_right%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln_pml_right%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span>         Doc_info.number());</div>
 <div class="line"><a id="l00648" name="l00648"></a><span class="lineno">  648</span> some_file.open(filename);</div>
 <div class="line"><a id="l00649" name="l00649"></a><span class="lineno">  649</span> PML_right_mesh_pt-&gt;output(some_file,n_plot);</div>
 <div class="line"><a id="l00650" name="l00650"></a><span class="lineno">  650</span> some_file.close();</div>
 <div class="line"><a id="l00651" name="l00651"></a><span class="lineno">  651</span> </div>
-<div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span> sprintf(filename,<span class="stringliteral">&quot;%s/soln_pml_top%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln_pml_top%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span>         Doc_info.number());</div>
 <div class="line"><a id="l00654" name="l00654"></a><span class="lineno">  654</span> some_file.open(filename);</div>
 <div class="line"><a id="l00655" name="l00655"></a><span class="lineno">  655</span> PML_top_mesh_pt-&gt;output(some_file,n_plot);</div>
 <div class="line"><a id="l00656" name="l00656"></a><span class="lineno">  656</span> some_file.close();</div>
 <div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span> </div>
-<div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span> sprintf(filename,<span class="stringliteral">&quot;%s/soln_pml_left%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln_pml_left%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span>         Doc_info.number());</div>
 <div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span> some_file.open(filename);</div>
 <div class="line"><a id="l00661" name="l00661"></a><span class="lineno">  661</span> PML_left_mesh_pt-&gt;output(some_file,n_plot);</div>
 <div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span> some_file.close();</div>
 <div class="line"><a id="l00663" name="l00663"></a><span class="lineno">  663</span> </div>
-<div class="line"><a id="l00664" name="l00664"></a><span class="lineno">  664</span> sprintf(filename,<span class="stringliteral">&quot;%s/soln_pml_bottom%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00664" name="l00664"></a><span class="lineno">  664</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln_pml_bottom%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00665" name="l00665"></a><span class="lineno">  665</span>         Doc_info.number());</div>
 <div class="line"><a id="l00666" name="l00666"></a><span class="lineno">  666</span> some_file.open(filename);</div>
 <div class="line"><a id="l00667" name="l00667"></a><span class="lineno">  667</span> PML_bottom_mesh_pt-&gt;output(some_file,n_plot);</div>
 <div class="line"><a id="l00668" name="l00668"></a><span class="lineno">  668</span> some_file.close();</div>
 <div class="line"><a id="l00669" name="l00669"></a><span class="lineno">  669</span> </div>
-<div class="line"><a id="l00670" name="l00670"></a><span class="lineno">  670</span> sprintf(filename,<span class="stringliteral">&quot;%s/soln_pml_top_right%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00670" name="l00670"></a><span class="lineno">  670</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln_pml_top_right%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00671" name="l00671"></a><span class="lineno">  671</span>         Doc_info.number());</div>
 <div class="line"><a id="l00672" name="l00672"></a><span class="lineno">  672</span> some_file.open(filename);</div>
 <div class="line"><a id="l00673" name="l00673"></a><span class="lineno">  673</span> PML_top_right_mesh_pt-&gt;output(some_file,n_plot);</div>
 <div class="line"><a id="l00674" name="l00674"></a><span class="lineno">  674</span> some_file.close();</div>
 <div class="line"><a id="l00675" name="l00675"></a><span class="lineno">  675</span> </div>
-<div class="line"><a id="l00676" name="l00676"></a><span class="lineno">  676</span> sprintf(filename,<span class="stringliteral">&quot;%s/soln_pml_top_left%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00676" name="l00676"></a><span class="lineno">  676</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln_pml_top_left%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00677" name="l00677"></a><span class="lineno">  677</span>         Doc_info.number());</div>
 <div class="line"><a id="l00678" name="l00678"></a><span class="lineno">  678</span> some_file.open(filename);</div>
 <div class="line"><a id="l00679" name="l00679"></a><span class="lineno">  679</span> PML_top_left_mesh_pt-&gt;output(some_file,n_plot);</div>
 <div class="line"><a id="l00680" name="l00680"></a><span class="lineno">  680</span> some_file.close();</div>
 <div class="line"><a id="l00681" name="l00681"></a><span class="lineno">  681</span> </div>
-<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span> sprintf(filename,<span class="stringliteral">&quot;%s/soln_pml_bottom_right%i.dat&quot;</span>,</div>
+<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln_pml_bottom_right%i.dat&quot;</span>,</div>
 <div class="line"><a id="l00683" name="l00683"></a><span class="lineno">  683</span>         Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00684" name="l00684"></a><span class="lineno">  684</span>         Doc_info.number());</div>
 <div class="line"><a id="l00685" name="l00685"></a><span class="lineno">  685</span> some_file.open(filename);</div>
 <div class="line"><a id="l00686" name="l00686"></a><span class="lineno">  686</span> PML_bottom_right_mesh_pt-&gt;output(some_file,n_plot);</div>
 <div class="line"><a id="l00687" name="l00687"></a><span class="lineno">  687</span> some_file.close();</div>
 <div class="line"><a id="l00688" name="l00688"></a><span class="lineno">  688</span> </div>
-<div class="line"><a id="l00689" name="l00689"></a><span class="lineno">  689</span> sprintf(filename,<span class="stringliteral">&quot;%s/soln_pml_bottom_left%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00689" name="l00689"></a><span class="lineno">  689</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln_pml_bottom_left%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00690" name="l00690"></a><span class="lineno">  690</span>         Doc_info.number());</div>
 <div class="line"><a id="l00691" name="l00691"></a><span class="lineno">  691</span> some_file.open(filename);</div>
 <div class="line"><a id="l00692" name="l00692"></a><span class="lineno">  692</span> PML_bottom_left_mesh_pt-&gt;output(some_file,n_plot);</div>
@@ -832,7 +826,7 @@
 <div class="line"><a id="l00694" name="l00694"></a><span class="lineno">  694</span> </div>
 <div class="line"><a id="l00695" name="l00695"></a><span class="lineno">  695</span>  <span class="comment">// Output exact solution </span></div>
 <div class="line"><a id="l00696" name="l00696"></a><span class="lineno">  696</span> <span class="comment">//----------------------</span></div>
-<div class="line"><a id="l00697" name="l00697"></a><span class="lineno">  697</span> sprintf(filename,<span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00697" name="l00697"></a><span class="lineno">  697</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00698" name="l00698"></a><span class="lineno">  698</span>         Doc_info.number());</div>
 <div class="line"><a id="l00699" name="l00699"></a><span class="lineno">  699</span> some_file.open(filename);</div>
 <div class="line"><a id="l00700" name="l00700"></a><span class="lineno">  700</span> Solid_mesh_pt-&gt;output_fct(some_file,n_plot,<a class="code hl_function" href="namespaceGlobal__Parameters.html#a97162dba4bd29a15067b9c9bbe53c754">Global_Parameters::exact_u</a>); </div>
@@ -841,7 +835,7 @@
 <div class="line"><a id="l00703" name="l00703"></a><span class="lineno">  703</span> <span class="comment">// Doc error and return of the square of the L2 error</span></div>
 <div class="line"><a id="l00704" name="l00704"></a><span class="lineno">  704</span> <span class="comment">//---------------------------------------------------</span></div>
 <div class="line"><a id="l00705" name="l00705"></a><span class="lineno">  705</span> <span class="keywordtype">double</span> error,norm;</div>
-<div class="line"><a id="l00706" name="l00706"></a><span class="lineno">  706</span> sprintf(filename,<span class="stringliteral">&quot;%s/error_and_norm%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00706" name="l00706"></a><span class="lineno">  706</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/error_and_norm%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00707" name="l00707"></a><span class="lineno">  707</span>         Doc_info.number()); </div>
 <div class="line"><a id="l00708" name="l00708"></a><span class="lineno">  708</span> Solid_mesh_pt-&gt;compute_error(some_file,<a class="code hl_function" href="namespaceGlobal__Parameters.html#a97162dba4bd29a15067b9c9bbe53c754">Global_Parameters::exact_u</a>,</div>
 <div class="line"><a id="l00709" name="l00709"></a><span class="lineno">  709</span>                          error,norm); </div>
@@ -855,14 +849,14 @@
 <div class="line"><a id="l00717" name="l00717"></a><span class="lineno">  717</span> cout &lt;&lt; <span class="stringliteral">&quot;Norm of exact solution: &quot;</span>   &lt;&lt; sqrt(norm)  &lt;&lt; endl;</div>
 <div class="line"><a id="l00718" name="l00718"></a><span class="lineno">  718</span> </div>
 <div class="line"><a id="l00719" name="l00719"></a><span class="lineno">  719</span> <span class="comment">// Output runtime (wall clock time) in s in a file</span></div>
-<div class="line"><a id="l00720" name="l00720"></a><span class="lineno">  720</span> sprintf(filename,<span class="stringliteral">&quot;%s/wall_clock_time%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00720" name="l00720"></a><span class="lineno">  720</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/wall_clock_time%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00721" name="l00721"></a><span class="lineno">  721</span>         Doc_info.number()); </div>
 <div class="line"><a id="l00722" name="l00722"></a><span class="lineno">  722</span> some_file.open(filename);</div>
 <div class="line"><a id="l00723" name="l00723"></a><span class="lineno">  723</span> some_file &lt;&lt; <a class="code hl_variable" href="namespaceGlobal__Parameters.html#a42ef00f24f3bc5c16dae72557c736634">Global_Parameters::T_end</a>-<a class="code hl_variable" href="namespaceGlobal__Parameters.html#a6106a50c4a420f4040e2ccd7d443267c">Global_Parameters::T_start</a> &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00724" name="l00724"></a><span class="lineno">  724</span> some_file.close();</div>
 <div class="line"><a id="l00725" name="l00725"></a><span class="lineno">  725</span> </div>
 <div class="line"><a id="l00726" name="l00726"></a><span class="lineno">  726</span> <span class="comment">// Output number of degrees of freedom in a file</span></div>
-<div class="line"><a id="l00727" name="l00727"></a><span class="lineno">  727</span> sprintf(filename,<span class="stringliteral">&quot;%s/ndof%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00727" name="l00727"></a><span class="lineno">  727</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/ndof%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00728" name="l00728"></a><span class="lineno">  728</span>         Doc_info.number()); </div>
 <div class="line"><a id="l00729" name="l00729"></a><span class="lineno">  729</span> some_file.open(filename);</div>
 <div class="line"><a id="l00730" name="l00730"></a><span class="lineno">  730</span> some_file &lt;&lt; this-&gt;ndof() &lt;&lt; std::endl;</div>
@@ -870,7 +864,7 @@
 <div class="line"><a id="l00732" name="l00732"></a><span class="lineno">  732</span> </div>
 <div class="line"><a id="l00733" name="l00733"></a><span class="lineno">  733</span> <span class="comment">// Output norm of solution (to allow validation of solution even</span></div>
 <div class="line"><a id="l00734" name="l00734"></a><span class="lineno">  734</span> <span class="comment">// if triangle generates a slightly different mesh)</span></div>
-<div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span> sprintf(filename,<span class="stringliteral">&quot;%s/elast_soln_norm%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/elast_soln_norm%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00736" name="l00736"></a><span class="lineno">  736</span>         Doc_info.number());   </div>
 <div class="line"><a id="l00737" name="l00737"></a><span class="lineno">  737</span> some_file.open(filename);   </div>
 <div class="line"><a id="l00738" name="l00738"></a><span class="lineno">  738</span> <span class="keywordtype">double</span> norm_soln=0.0;</div>
@@ -1128,7 +1122,7 @@
 <div class="ttc" id="aclassElasticAnnulusProblem_html_af1f36137c361d10c5a474ae186ecad3b"><div class="ttname"><a href="classElasticAnnulusProblem.html#af1f36137c361d10c5a474ae186ecad3b">ElasticAnnulusProblem::Solid_mesh_pt</a></div><div class="ttdeci">TriangleMesh&lt; ELASTICITY_ELEMENT &gt; * Solid_mesh_pt</div><div class="ttdoc">Pointer to solid mesh.</div><div class="ttdef"><b>Definition</b> <a href="time__harmonic__elasticity__driver_8cc_source.html#l00286">time_harmonic_elasticity_driver.cc:286</a></div></div>
 <div class="ttc" id="aclassElasticAnnulusProblem_html_af50a0dc2601e1a5e884166941d2cb9ce"><div class="ttname"><a href="classElasticAnnulusProblem.html#af50a0dc2601e1a5e884166941d2cb9ce">ElasticAnnulusProblem::actions_before_newton_solve</a></div><div class="ttdeci">void actions_before_newton_solve()</div><div class="ttdoc">Update function (empty)</div><div class="ttdef"><b>Definition</b> <a href="time__harmonic__elasticity__driver_8cc_source.html#l00259">time_harmonic_elasticity_driver.cc:259</a></div></div>
 <div class="ttc" id="aclassElasticAnnulusProblem_html_af7228afd4d413dfd09e7a4b5bccedd64"><div class="ttname"><a href="classElasticAnnulusProblem.html#af7228afd4d413dfd09e7a4b5bccedd64">ElasticAnnulusProblem::Upper_inner_boundary_id</a></div><div class="ttdeci">unsigned Upper_inner_boundary_id</div><div class="ttdoc">Boundary ID of upper inner boundary.</div><div class="ttdef"><b>Definition</b> <a href="time__harmonic__elasticity__driver_8cc_source.html#l00318">time_harmonic_elasticity_driver.cc:318</a></div></div>
-<div class="ttc" id="anamespaceGlobal__Parameters_html"><div class="ttname"><a href="namespaceGlobal__Parameters.html">Global_Parameters</a></div><div class="ttdoc">/////////////////////////////////////////////////////////////////// /////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="time__harmonic__elasticity__driver_8cc_source.html#l00055">time_harmonic_elasticity_driver.cc:56</a></div></div>
+<div class="ttc" id="anamespaceGlobal__Parameters_html"><div class="ttname"><a href="namespaceGlobal__Parameters.html">Global_Parameters</a></div><div class="ttdoc">Global variables.</div><div class="ttdef"><b>Definition</b> <a href="time__harmonic__elasticity__driver_8cc_source.html#l00055">time_harmonic_elasticity_driver.cc:56</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Parameters_html_a0b73c5ead1114ae88bbd4cb0eb54f078"><div class="ttname"><a href="namespaceGlobal__Parameters.html#a0b73c5ead1114ae88bbd4cb0eb54f078">Global_Parameters::H_annulus</a></div><div class="ttdeci">double H_annulus</div><div class="ttdoc">Thickness of annulus.</div><div class="ttdef"><b>Definition</b> <a href="time__harmonic__elasticity__driver_8cc_source.html#l00114">time_harmonic_elasticity_driver.cc:114</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Parameters_html_a140b1b8aaef0bf2b94acf75d681d4545"><div class="ttname"><a href="namespaceGlobal__Parameters.html#a140b1b8aaef0bf2b94acf75d681d4545">Global_Parameters::Width_x_right_pml</a></div><div class="ttdeci">double Width_x_right_pml</div><div class="ttdef"><b>Definition</b> <a href="time__harmonic__elasticity__driver_8cc_source.html#l00083">time_harmonic_elasticity_driver.cc:83</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Parameters_html_a175759402c54bb216b0599c6a031abea"><div class="ttname"><a href="namespaceGlobal__Parameters.html#a175759402c54bb216b0599c6a031abea">Global_Parameters::Width_y_top_pml</a></div><div class="ttdeci">double Width_y_top_pml</div><div class="ttdef"><b>Definition</b> <a href="time__harmonic__elasticity__driver_8cc_source.html#l00084">time_harmonic_elasticity_driver.cc:84</a></div></div>
@@ -1179,7 +1173,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:45:20
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:42:51
         </div>
       </div>
     </footer>

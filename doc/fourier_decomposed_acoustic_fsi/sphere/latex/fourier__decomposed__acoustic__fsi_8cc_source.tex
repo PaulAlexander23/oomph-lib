@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -53,9 +53,9 @@
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00049}00049\ \textcolor{keyword}{using\ namespace\ }std;}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00050}00050\ }
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00051}00051\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00052}00052\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00053}00053\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00054}00054\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00052}00052\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00053}00053\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00054}00054\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00055}00055\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00056}00056\ }
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00057}00057\ \textcolor{comment}{//=======start\_of\_namespace==========================================}\textcolor{comment}{}}
@@ -408,7 +408,7 @@
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00404}00404\ }
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00405}00405\ \ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00406}00406\ \ \textcolor{keywordtype}{char}\ filename[100];}
-\DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00407}00407\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},\mbox{\hyperlink{namespaceGlobal__Parameters_a301ab922df72030c660b21328d6caf76}{Global\_Parameters::Directory}}.c\_str());}
+\DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00407}00407\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},\mbox{\hyperlink{namespaceGlobal__Parameters_a301ab922df72030c660b21328d6caf76}{Global\_Parameters::Directory}}.c\_str());}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00408}00408\ \ Trace\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00409}00409\ \ \ }
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00410}00410\ \ \textcolor{comment}{//\ Setup\ equation\ numbering\ scheme}}
@@ -619,7 +619,7 @@
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00615}00615\ }
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00616}00616\ \ \textcolor{comment}{//\ Compute/output\ the\ radiated\ power}}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00617}00617\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00618}00618\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/power\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00618}00618\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/power\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00619}00619\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00620}00620\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00621}00621\ }
@@ -638,7 +638,7 @@
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00634}00634\ }
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00635}00635\ \ \textcolor{comment}{//\ Output\ displacement\ field}}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00636}00636\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00637}00637\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/elast\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00637}00637\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/elast\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00638}00638\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00639}00639\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00640}00640\ \ Solid\_mesh\_pt-\/>output(some\_file,n\_plot);}
@@ -646,7 +646,7 @@
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00642}00642\ }
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00643}00643\ \ \textcolor{comment}{//\ Output\ Helmholtz}}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00644}00644\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00645}00645\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/helmholtz\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00645}00645\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/helmholtz\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00646}00646\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00647}00647\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00648}00648\ \ Helmholtz\_mesh\_pt-\/>output(some\_file,n\_plot);}
@@ -655,7 +655,7 @@
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00651}00651\ }
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00652}00652\ \ \textcolor{comment}{//\ Output\ fsi\ traction\ elements}}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00653}00653\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ }}
-\DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00654}00654\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/fsi\_traction\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00654}00654\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/fsi\_traction\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00655}00655\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00656}00656\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00657}00657\ \ FSI\_traction\_mesh\_pt-\/>output(some\_file,n\_plot);}
@@ -664,7 +664,7 @@
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00660}00660\ }
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00661}00661\ \ \textcolor{comment}{//\ Output\ Helmholtz\ fsi\ flux\ elements}}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00662}00662\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ }}
-\DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00663}00663\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/fsi\_flux\_bc\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00663}00663\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/fsi\_flux\_bc\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00664}00664\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00665}00665\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{fourier__decomposed__acoustic__fsi_8cc_source_l00666}00666\ \ Helmholtz\_fsi\_flux\_mesh\_pt-\/>output(some\_file,n\_plot);}

@@ -531,7 +531,7 @@ The post-\/processing routine outputs the flow field.
 \DoxyCodeLine{\ \mbox{\hyperlink{classElasticTriangleMesh}{npts}}=5;\ }
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ solution\ }}
-\DoxyCodeLine{\ \mbox{\hyperlink{classElasticTriangleMesh}{sprintf}}(\mbox{\hyperlink{classElasticTriangleMesh}{filename}},\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},\mbox{\hyperlink{classElasticTriangleMesh}{doc\_info}}.directory().c\_str(),}
+\DoxyCodeLine{\ \mbox{\hyperlink{classElasticTriangleMesh}{snprintf}}(\mbox{\hyperlink{classElasticTriangleMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticTriangleMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},\mbox{\hyperlink{classElasticTriangleMesh}{doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classElasticTriangleMesh}{doc\_info}}.number());}
 \DoxyCodeLine{\ \mbox{\hyperlink{classElasticTriangleMesh}{some\_file}}.open(\mbox{\hyperlink{classElasticTriangleMesh}{filename}});}
 \DoxyCodeLine{\ fluid\_mesh\_pt()-\/>output(\mbox{\hyperlink{classElasticTriangleMesh}{some\_file}},\mbox{\hyperlink{classElasticTriangleMesh}{npts}});}
@@ -553,7 +553,7 @@ Re = \frac{\rho {\cal U} {\cal L}}{\mu}
 \] where $ \rho $ and $ \mu $ are the fluid density and viscosity, respectively. $ {\cal L} $ is the reference length chosen for the non-\/dimensionalisation of the coordinates. In the present problem, where the domain boundaries were simply drawn in \href{http://en.wikipedia.org/wiki/Xfig}{\texttt{ xfig }}, no specific reference length was identified, but inspection of the maximum and minimum y-\/coordinates of the inflow boundary in the mesh plot shows that the inflow boundary has a (dimensional) length of $ (4.0875 - 0.1125) {\cal L} = 3.975 {\cal L}. $ In the non-\/dimensional version of the Navier-\/\+Stokes equations, all velocities are non-\/dimensionalised with a reference velocity $ {\cal U} $. When we applied the inflow boundary conditions, we chose the (dimensionless) inflow profile such that its integral over the inflow boundary yields a value of 1. The velocity scale $ {\cal U} $ may therefore be interpreted as a (dimensional) average inflow velocity through the channel, \doxylink{classElasticTriangleMesh_a4c24e9abbde344d34e1e08fb3319d7b6}{i.\+e}. the volume flux divided by the reference length scale.
 
 \DoxyHorRuler{0}
-\hypertarget{index_bound}{}\doxysubsection{\texorpdfstring{Setting the boundary conditions}{Setting the boundary conditions}}\label{index_bound}
+\hypertarget{index_bound2}{}\doxysubsection{\texorpdfstring{Identification/assignment of mesh boundaries}{Identification/assignment of mesh boundaries}}\label{index_bound2}
 We wish to re-\/iterate the comments made in the \href{../../../solid/unstructured_solid/html/index.html\#comm_ex}{\texttt{ corresponding solid mechanics tutorial}} that the manual identification of nodes on domain boundaries is tedious and therefore error prone. It pays off to {\bfseries{be as a paranoid as possible}}, by always documenting the domain boundaries and the applied boundary conditions.
 
 Here is the plot of boundary conditions applied in the present problem. Hollow blue markers indicate (pseudo-\/)solid boundary conditions (both displacements are pinned); small red markers identify nodes where the vertical fluid velocity is pinned; hollow green markers (filling the space between the blue and red lines markers) identify nodes at which the horizontal fluid velocity is pinned.
@@ -637,4 +637,4 @@ As mentioned above, the elements\textquotesingle{} pseudo-\/elasticity plays no 
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

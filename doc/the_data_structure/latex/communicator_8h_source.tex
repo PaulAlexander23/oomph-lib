@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{communicator_8h_source_l00003}00003\ \textcolor{comment}{//\ LIC//\ multi-\/physics\ finite-\/element\ library,\ available}}
 \DoxyCodeLine{\Hypertarget{communicator_8h_source_l00004}00004\ \textcolor{comment}{//\ LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{communicator_8h_source_l00005}00005\ \textcolor{comment}{//\ LIC//}}
-\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00006}00006\ \textcolor{comment}{//\ LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00006}00006\ \textcolor{comment}{//\ LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{communicator_8h_source_l00007}00007\ \textcolor{comment}{//\ LIC//}}
 \DoxyCodeLine{\Hypertarget{communicator_8h_source_l00008}00008\ \textcolor{comment}{//\ LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{communicator_8h_source_l00009}00009\ \textcolor{comment}{//\ LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -30,7 +30,7 @@
 \DoxyCodeLine{\Hypertarget{communicator_8h_source_l00026}00026\ \textcolor{preprocessor}{\#ifndef\ OOMPH\_COMMUNICATOR\_CLASS\_HEADER}}
 \DoxyCodeLine{\Hypertarget{communicator_8h_source_l00027}00027\ \textcolor{preprocessor}{\#define\ OOMPH\_COMMUNICATOR\_CLASS\_HEADER}}
 \DoxyCodeLine{\Hypertarget{communicator_8h_source_l00028}00028\ }
-\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00029}00029\ \textcolor{comment}{//\ Config\ header\ generated\ by\ autoconfig}}
+\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00029}00029\ \textcolor{comment}{//\ Config\ header}}
 \DoxyCodeLine{\Hypertarget{communicator_8h_source_l00030}00030\ \textcolor{preprocessor}{\#ifdef\ HAVE\_CONFIG\_H}}
 \DoxyCodeLine{\Hypertarget{communicator_8h_source_l00031}00031\ \textcolor{preprocessor}{\#include\ <oomph-\/lib-\/config.h>}}
 \DoxyCodeLine{\Hypertarget{communicator_8h_source_l00032}00032\ \textcolor{preprocessor}{\#endif}}
@@ -49,11 +49,11 @@
 \DoxyCodeLine{\Hypertarget{communicator_8h_source_l00045}00045\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
 \DoxyCodeLine{\Hypertarget{communicator_8h_source_l00046}00046\ \ \ \textcolor{keyword}{class\ }DenseMatrix;}
 \DoxyCodeLine{\Hypertarget{communicator_8h_source_l00047}00047\ }
-\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00048}00048\ \ \ \textcolor{comment}{//=============================================================================}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00048}00048\ \ \ \textcolor{comment}{//=========================================================================}\textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{communicator_8h_source_l00049}00049\ \textcolor{comment}{\ \ ///\ An\ oomph-\/lib\ wrapper\ to\ the\ MPI\_Comm\ communicator\ object.\ Just}}
 \DoxyCodeLine{\Hypertarget{communicator_8h_source_l00050}00050\ \textcolor{comment}{\ \ ///\ contains\ an\ MPI\_Comm\ object\ (which\ is\ a\ pointer)\ and\ wrappers\ to}}
 \DoxyCodeLine{\Hypertarget{communicator_8h_source_l00051}00051\ \textcolor{comment}{\ \ ///\ the\ MPI\_...\ methods.}}
-\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00052}00052\ \textcolor{comment}{}\ \ \textcolor{comment}{//=============================================================================}}
+\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00052}00052\ \textcolor{comment}{}\ \ \textcolor{comment}{//=========================================================================}}
 \DoxyCodeLine{\Hypertarget{communicator_8h_source_l00053}\mbox{\hyperlink{classoomph_1_1OomphCommunicator}{00053}}\ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classoomph_1_1OomphCommunicator}{OomphCommunicator}}}
 \DoxyCodeLine{\Hypertarget{communicator_8h_source_l00054}00054\ \ \ \{}
 \DoxyCodeLine{\Hypertarget{communicator_8h_source_l00055}00055\ \ \ \textcolor{keyword}{public}:}
@@ -353,22 +353,26 @@
 \DoxyCodeLine{\Hypertarget{communicator_8h_source_l00349}00349\ \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{\Hypertarget{communicator_8h_source_l00350}00350\ }
 \DoxyCodeLine{\Hypertarget{communicator_8h_source_l00351}00351\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00352}00352\ \textcolor{preprocessor}{\#ifdef\ OOMPH\_HAS\_MPI}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00353}00353\ \textcolor{comment}{\ \ \ \ ///\ the\ MPI\_Comm\ communicator}}
-\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00354}\mbox{\hyperlink{classoomph_1_1OomphCommunicator_a334dbb45abab2e123872f487883f0b56}{00354}}\ \textcolor{comment}{}\ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{MPI\_Comm}}\ \mbox{\hyperlink{classoomph_1_1OomphCommunicator_a334dbb45abab2e123872f487883f0b56}{Comm}};}
-\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00355}00355\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00356}00356\ \textcolor{comment}{\ \ \ \ ///\ boolean\ indiacting\ whether\ this\ communicator\ owns\ the\ underlying}}
-\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00357}00357\ \textcolor{comment}{\ \ \ \ ///\ MPI\_Comm\ -\/\ if\ so\ the\ destructor\ will\ free}}
-\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00358}00358\ \textcolor{comment}{\ \ \ \ ///\ the\ communicator}}
-\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00359}\mbox{\hyperlink{classoomph_1_1OomphCommunicator_a8c80f30933f22b84f97fcbbee6b22e81}{00359}}\ \textcolor{comment}{}\ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classoomph_1_1OomphCommunicator_a8c80f30933f22b84f97fcbbee6b22e81}{Owns\_mpi\_comm}};}
-\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00360}00360\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00361}00361\ \textcolor{comment}{\ \ \ \ ///\ boolean\ to\ indicate\ if\ this\ communicator\ is\ for\ serial\ problems.}}
-\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00362}00362\ \textcolor{comment}{\ \ \ \ ///\ This\ is\ true\ when\ serial\ codes\ are\ compiled\ under\ MPI}}
-\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00363}\mbox{\hyperlink{classoomph_1_1OomphCommunicator_ab6e14f26e8effff948255e59d956d553}{00363}}\ \textcolor{comment}{}\ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classoomph_1_1OomphCommunicator_ab6e14f26e8effff948255e59d956d553}{Serial\_communicator}};}
-\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00364}00364\ }
-\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00365}00365\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00366}00366\ \ \ \};\ \textcolor{comment}{//\ end\ of\ class\ Communicator}}
-\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00367}00367\ \}\ \textcolor{comment}{//\ namespace\ oomph}}
-\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00368}00368\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00352}00352\ \textcolor{preprocessor}{\#ifdef\ OOMPH\_HAS\_MPI}}
+\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00353}00353\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00354}00354\ \textcolor{comment}{\ \ \ \ ///\ the\ MPI\_Comm\ communicator}}
+\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00355}\mbox{\hyperlink{classoomph_1_1OomphCommunicator_a334dbb45abab2e123872f487883f0b56}{00355}}\ \textcolor{comment}{}\ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{MPI\_Comm}}\ \mbox{\hyperlink{classoomph_1_1OomphCommunicator_a334dbb45abab2e123872f487883f0b56}{Comm}};}
+\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00356}00356\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00357}00357\ \textcolor{comment}{\ \ \ \ ///\ boolean\ indiacting\ whether\ this\ communicator\ owns\ the\ underlying}}
+\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00358}00358\ \textcolor{comment}{\ \ \ \ ///\ MPI\_Comm\ -\/\ if\ so\ the\ destructor\ will\ free}}
+\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00359}00359\ \textcolor{comment}{\ \ \ \ ///\ the\ communicator}}
+\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00360}\mbox{\hyperlink{classoomph_1_1OomphCommunicator_a8c80f30933f22b84f97fcbbee6b22e81}{00360}}\ \textcolor{comment}{}\ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classoomph_1_1OomphCommunicator_a8c80f30933f22b84f97fcbbee6b22e81}{Owns\_mpi\_comm}};}
+\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00361}00361\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00362}00362\ \textcolor{comment}{\ \ \ \ ///\ boolean\ to\ indicate\ if\ this\ communicator\ is\ for\ serial\ problems.}}
+\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00363}00363\ \textcolor{comment}{\ \ \ \ ///\ This\ is\ true\ when\ serial\ codes\ are\ compiled\ under\ MPI}}
+\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00364}\mbox{\hyperlink{classoomph_1_1OomphCommunicator_ab6e14f26e8effff948255e59d956d553}{00364}}\ \textcolor{comment}{}\ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classoomph_1_1OomphCommunicator_ab6e14f26e8effff948255e59d956d553}{Serial\_communicator}};}
+\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00365}00365\ }
+\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00366}00366\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00367}00367\ }
+\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00368}00368\ \ \ \};\ \textcolor{comment}{//\ end\ of\ class\ Communicator}}
+\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00369}00369\ }
+\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00370}00370\ \}\ \textcolor{comment}{//\ namespace\ oomph}}
+\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00371}00371\ }
+\DoxyCodeLine{\Hypertarget{communicator_8h_source_l00372}00372\ \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

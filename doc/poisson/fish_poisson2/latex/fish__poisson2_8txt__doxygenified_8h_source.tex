@@ -506,50 +506,47 @@
 \DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00503}00503\ \textcolor{comment}{provided\ in\ (and\ required\ by)\ the\ derived\ \(\backslash\)c\ BoundaryNode\ class.]}}
 \DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00504}00504\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00505}00505\ \textcolor{comment}{Since\ the\ storage\ of\ boundary\ coordinates\ is\ optional,\ }}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00506}00506\ \textcolor{comment}{the\ \(\backslash\)c\ Mesh\ base\ class\ provides\ a\ protected\ vector\ of\ bools,}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00507}00507\ \textcolor{comment}{\(\backslash\)code}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00508}00508\ \textcolor{comment}{std::vector<bool>\ Mesh::Boundary\_coordinate\_exists;}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00509}00509\ \textcolor{comment}{\(\backslash\)endcode}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00510}00510\ \textcolor{comment}{that\ indicates\ if\ the\ boundary\ coordinates\ have\ been\ stored\ for}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00511}00511\ \textcolor{comment}{all\ \(\backslash\)c\ Nodes\ on\ a\ specific\ mesh\ boundary.\ This\ vector}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00512}00512\ \textcolor{comment}{is\ resized\ and\ its\ entries\ are\ initialised\ to\ \(\backslash\)c\ false,\ when}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00513}00513\ \textcolor{comment}{the\ number\ of\ mesh\ boundaries\ is\ declared\ with\ a\ call}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00514}00514\ \textcolor{comment}{to\ \(\backslash\)c\ Mesh::set\_nboundary(...).\ If,\ during\ mesh\ refinement,\ }}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00515}00515\ \textcolor{comment}{a\ new\ \ \(\backslash\)c\ BoundaryNode\ is\ created\ on\ the\ mesh's\ boundary\ \(\backslash\)c\ b,\ }}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00516}00516\ \textcolor{comment}{its\ boundary\ coordinates\ are\ computed\ by\ interpolation\ from\ the}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00517}00517\ \textcolor{comment}{corresponding\ values\ at\ the\ nodes\ in\ the\ father\ element,\ if\ }}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00518}00518\ \textcolor{comment}{\(\backslash\)c\ Mesh::Boundary\_coordinate\_exists[b]\ has\ been\ set\ to\ \(\backslash\)c\ true.}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00519}00519\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00520}00520\ \textcolor{comment}{We\ regard\ it\ as\ good\ practice\ to\ set\ boundary\ coordinates\ for}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00521}00521\ \textcolor{comment}{all\ \(\backslash\)c\ BoundaryNodes\ that\ are\ located\ on\ curvlinear\ mesh\ boundaries.\ }}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00522}00522\ \textcolor{comment}{The\ source\ code}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00523}00523\ \textcolor{comment}{<A\ HREF="{}../../../../src/meshes/fish\_mesh.template.cc"{}>fish\_mesh.template.cc</A>}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00524}00524\ \textcolor{comment}{for\ the\ refineable\ FishMesh\ illustrates\ the\ methodology.}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00525}00525\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00506}00506\ \textcolor{comment}{the\ \(\backslash\)c\ Mesh\ base\ class\ provides\ storage}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00507}00507\ \textcolor{comment}{to\ indicate\ if\ the\ boundary\ coordinates\ have\ been\ stored\ for}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00508}00508\ \textcolor{comment}{all\ \(\backslash\)c\ Nodes\ on\ a\ specific\ mesh\ boundary.\ The\ storage\ }}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00509}00509\ \textcolor{comment}{is\ resized\ and\ its\ entries\ are\ initialised\ to\ \(\backslash\)c\ false,\ when}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00510}00510\ \textcolor{comment}{the\ number\ of\ mesh\ boundaries\ is\ declared\ with\ a\ call}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00511}00511\ \textcolor{comment}{to\ \(\backslash\)c\ Mesh::set\_nboundary(...).\ If,\ during\ mesh\ refinement,\ }}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00512}00512\ \textcolor{comment}{a\ new\ \ \(\backslash\)c\ BoundaryNode\ is\ created\ on\ the\ mesh's\ boundary\ \(\backslash\)c\ b,\ }}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00513}00513\ \textcolor{comment}{its\ boundary\ coordinates\ are\ computed\ by\ interpolation\ from\ the}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00514}00514\ \textcolor{comment}{corresponding\ values\ at\ the\ nodes\ in\ the\ father\ element,\ if\ }}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00515}00515\ \textcolor{comment}{boundary\ coordinates\ had\ been\ set\ up\ on\ boundary\ \(\backslash\)c\ b.}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00516}00516\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00517}00517\ \textcolor{comment}{We\ regard\ it\ as\ good\ practice\ to\ set\ boundary\ coordinates\ for}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00518}00518\ \textcolor{comment}{all\ \(\backslash\)c\ BoundaryNodes\ that\ are\ located\ on\ curvlinear\ mesh\ boundaries.\ }}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00519}00519\ \textcolor{comment}{The\ source\ code}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00520}00520\ \textcolor{comment}{<A\ HREF="{}../../../../src/meshes/fish\_mesh.template.cc"{}>fish\_mesh.template.cc</A>}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00521}00521\ \textcolor{comment}{for\ the\ refineable\ FishMesh\ illustrates\ the\ methodology.}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00522}00522\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00523}00523\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00524}00524\ \textcolor{comment}{<HR>}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00525}00525\ \textcolor{comment}{<HR>}}
 \DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00526}00526\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00527}00527\ \textcolor{comment}{<HR>}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00528}00528\ \textcolor{comment}{<HR>}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00529}00529\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00530}00530\ \textcolor{comment}{\(\backslash\)section\ sources\ Source\ files\ for\ this\ tutorial}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00531}00531\ \textcolor{comment}{-\/\ The\ source\ files\ for\ this\ tutorial\ are\ located\ in\ the\ directory:}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00532}00532\ \textcolor{comment}{<CENTER>}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00533}00533\ \textcolor{comment}{<A\ HREF="{}../../../../demo\_drivers/poisson/fish\_poisson2/"{}>}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00534}00534\ \textcolor{comment}{demo\_drivers/poisson/fish\_poisson2/}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00535}00535\ \textcolor{comment}{</A>}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00536}00536\ \textcolor{comment}{</CENTER>}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00537}00537\ \textcolor{comment}{-\/\ The\ driver\ code\ is:}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00538}00538\ \textcolor{comment}{<CENTER>}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00539}00539\ \textcolor{comment}{<A\ HREF="{}../../../../demo\_drivers/poisson/fish\_poisson2/fish\_poisson\_adapt.cc"{}>}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00540}00540\ \textcolor{comment}{demo\_drivers/poisson/fish\_poisson2/fish\_poisson\_adapt.cc}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00541}00541\ \textcolor{comment}{</A>}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00542}00542\ \textcolor{comment}{</CENTER>}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00543}00543\ \textcolor{comment}{.}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00544}00544\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00545}00545\ \textcolor{comment}{<hr>}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00546}00546\ \textcolor{comment}{<hr>}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00547}00547\ \textcolor{comment}{\(\backslash\)section\ pdf\ PDF\ file}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00548}00548\ \textcolor{comment}{A\ <a\ href="{}../latex/refman.pdf"{}>pdf\ version</a>\ of\ this\ document\ is\ available.}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00549}00549\ \textcolor{comment}{**/}}
-\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00550}00550\ }
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00527}00527\ \textcolor{comment}{\(\backslash\)section\ sources\ Source\ files\ for\ this\ tutorial}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00528}00528\ \textcolor{comment}{-\/\ The\ source\ files\ for\ this\ tutorial\ are\ located\ in\ the\ directory:}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00529}00529\ \textcolor{comment}{<CENTER>}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00530}00530\ \textcolor{comment}{<A\ HREF="{}../../../../demo\_drivers/poisson/fish\_poisson2/"{}>}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00531}00531\ \textcolor{comment}{demo\_drivers/poisson/fish\_poisson2/}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00532}00532\ \textcolor{comment}{</A>}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00533}00533\ \textcolor{comment}{</CENTER>}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00534}00534\ \textcolor{comment}{-\/\ The\ driver\ code\ is:}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00535}00535\ \textcolor{comment}{<CENTER>}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00536}00536\ \textcolor{comment}{<A\ HREF="{}../../../../demo\_drivers/poisson/fish\_poisson2/fish\_poisson\_adapt.cc"{}>}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00537}00537\ \textcolor{comment}{demo\_drivers/poisson/fish\_poisson2/fish\_poisson\_adapt.cc}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00538}00538\ \textcolor{comment}{</A>}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00539}00539\ \textcolor{comment}{</CENTER>}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00540}00540\ \textcolor{comment}{.}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00541}00541\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00542}00542\ \textcolor{comment}{<hr>}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00543}00543\ \textcolor{comment}{<hr>}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00544}00544\ \textcolor{comment}{\(\backslash\)section\ pdf\ PDF\ file}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00545}00545\ \textcolor{comment}{A\ <a\ href="{}../latex/refman.pdf"{}>pdf\ version</a>\ of\ this\ document\ is\ available.}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00546}00546\ \textcolor{comment}{\(\backslash\)*/}}
+\DoxyCodeLine{\Hypertarget{fish__poisson2_8txt__doxygenified_8h_source_l00547}00547\ }
 
 \end{DoxyCode}

@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -263,9 +257,9 @@
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="comment"></span> </div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="comment">/// ////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="comment">///////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="comment"></span> </div>
 <div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
 <div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
@@ -496,7 +490,7 @@
 <div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span> </div>
 <div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span> <span class="comment">// Open trace file</span></div>
 <div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span> <span class="keywordtype">char</span> filename[100];   </div>
-<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span> sprintf(filename,<span class="stringliteral">&quot;%s/trace.dat&quot;</span>,Doc_info.directory().c_str());</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/trace.dat&quot;</span>,Doc_info.directory().c_str());</div>
 <div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span> Trace_file.open(filename);</div>
 <div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span> </div>
 <div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span> </div>
@@ -653,7 +647,7 @@
 <div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span> </div>
 <div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span> <span class="comment">// Output shape of and stress in deformed body</span></div>
 <div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span> <span class="comment">//--------------------------------------------</span></div>
-<div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span>         Doc_info.number());</div>
 <div class="line"><a id="l00508" name="l00508"></a><span class="lineno">  508</span> some_file.open(filename);</div>
 <div class="line"><a id="l00509" name="l00509"></a><span class="lineno">  509</span> solid_mesh_pt()-&gt;output(some_file,n_plot);</div>
@@ -662,7 +656,7 @@
 <div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span> </div>
 <div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span> <span class="comment">// Output St. Venant solution</span></div>
 <div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span> <span class="comment">//---------------------------</span></div>
-<div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span> sprintf(filename,<span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span>         Doc_info.number());</div>
 <div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span> some_file.open(filename);</div>
 <div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span> </div>
@@ -825,7 +819,7 @@
 <div class="ttc" id="aclassoomph_1_1MySolidElement_html"><div class="ttname"><a href="classoomph_1_1MySolidElement.html">oomph::MySolidElement</a></div><div class="ttdoc">Wrapper class for solid elements to modify their output functions.</div><div class="ttdef"><b>Definition</b> <a href="airy__cantilever_8cc_source.html#l00048">airy_cantilever.cc:49</a></div></div>
 <div class="ttc" id="aclassoomph_1_1MySolidElement_html_abf5b903419201b1fd6f1587749337650"><div class="ttname"><a href="classoomph_1_1MySolidElement.html#abf5b903419201b1fd6f1587749337650">oomph::MySolidElement::output</a></div><div class="ttdeci">void output(std::ostream &amp;outfile, const unsigned &amp;n_plot)</div><div class="ttdoc">Overload output function:</div><div class="ttdef"><b>Definition</b> <a href="airy__cantilever_8cc_source.html#l00057">airy_cantilever.cc:57</a></div></div>
 <div class="ttc" id="aclassoomph_1_1MySolidElement_html_afe8a392ac0bed5890f64b75adea8f5af"><div class="ttname"><a href="classoomph_1_1MySolidElement.html#afe8a392ac0bed5890f64b75adea8f5af">oomph::MySolidElement::MySolidElement</a></div><div class="ttdeci">MySolidElement()</div><div class="ttdoc">Constructor: Call constructor of underlying element.</div><div class="ttdef"><b>Definition</b> <a href="airy__cantilever_8cc_source.html#l00054">airy_cantilever.cc:54</a></div></div>
-<div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="airy__cantilever_8cc_source.html#l00148">airy_cantilever.cc:149</a></div></div>
+<div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">Global variables.</div><div class="ttdef"><b>Definition</b> <a href="airy__cantilever_8cc_source.html#l00148">airy_cantilever.cc:149</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a0777aef63372db7f91ad894c38159681"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a0777aef63372db7f91ad894c38159681">Global_Physical_Variables::gravity</a></div><div class="ttdeci">void gravity(const double &amp;time, const Vector&lt; double &gt; &amp;xi, Vector&lt; double &gt; &amp;b)</div><div class="ttdoc">Non-dimensional gravity as body force.</div><div class="ttdef"><b>Definition</b> <a href="airy__cantilever_8cc_source.html#l00189">airy_cantilever.cc:189</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a09a019474b7405b35da2437f7779bc7e"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a09a019474b7405b35da2437f7779bc7e">Global_Physical_Variables::E</a></div><div class="ttdeci">double E</div><div class="ttdoc">Elastic modulus.</div><div class="ttdef"><b>Definition</b> <a href="airy__cantilever_8cc_source.html#l00161">airy_cantilever.cc:161</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a19f4e20a92e7d216b4d2b00308f96917"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a19f4e20a92e7d216b4d2b00308f96917">Global_Physical_Variables::constant_pressure</a></div><div class="ttdeci">void constant_pressure(const Vector&lt; double &gt; &amp;xi, const Vector&lt; double &gt; &amp;x, const Vector&lt; double &gt; &amp;n, Vector&lt; double &gt; &amp;traction)</div><div class="ttdoc">Constant pressure load. The arguments to this function are imposed on us by the SolidTractionElements...</div><div class="ttdef"><b>Definition</b> <a href="airy__cantilever_8cc_source.html#l00174">airy_cantilever.cc:174</a></div></div>
@@ -864,7 +858,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:22:40
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:44:06
         </div>
       </div>
     </footer>

@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -125,14 +119,14 @@
 <p>3D quarter tube mesh class. The domain is specified by the GeomObject that identifies boundary 3. Non-refineable base version!  
  <a href="classoomph_1_1QuarterTubeMesh.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="quarter__tube__mesh_8template_8h_source.html">quarter_tube_mesh.template.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="quarter__tube__mesh_8h_source.html">quarter_tube_mesh.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for oomph::QuarterTubeMesh&lt; ELEMENT &gt;:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="classoomph_1_1QuarterTubeMesh.png" usemap="#oomph::QuarterTubeMesh_3C_20ELEMENT_20_3E_map" alt=""/>
   <map id="oomph::QuarterTubeMesh_3C_20ELEMENT_20_3E_map" name="oomph::QuarterTubeMesh_3C_20ELEMENT_20_3E_map">
-<area href="classoomph_1_1RefineableQuarterTubeMesh.html" title="///////////////////////////////////////////////////////////////// ///////////////////////////////////..." alt="oomph::RefineableQuarterTubeMesh&lt; ELEMENT &gt;" shape="rect" coords="230,112,680,136"/>
+<area href="classoomph_1_1RefineableQuarterTubeMesh.html" title="Adaptative version of the QuarterTubeMesh base mesh. The domain is specified by the GeomObject that i..." alt="oomph::RefineableQuarterTubeMesh&lt; ELEMENT &gt;" shape="rect" coords="230,112,680,136"/>
 <area href="classoomph_1_1AlgebraicRefineableQuarterTubeMesh.html" title="AlgebraicMesh version of RefineableQuarterTubeMesh." alt="oomph::AlgebraicRefineableQuarterTubeMesh&lt; ELEMENT &gt;" shape="rect" coords="0,168,450,192"/>
 <area href="classoomph_1_1MacroElementNodeUpdateRefineableQuarterTubeMesh.html" title="MacroElementNodeUpdate version of RefineableQuarterTubeMesh." alt="oomph::MacroElementNodeUpdateRefineableQuarterTubeMesh&lt; ELEMENT &gt;" shape="rect" coords="460,168,910,192"/>
   </map>
@@ -184,15 +178,15 @@ Protected Attributes</h2></td></tr>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classoomph_1_1TetgenMesh.html">class</a> <a class="el" href="classoomph_1_1TetgenMesh.html">ELEMENT</a>&gt;<br />
 class oomph::QuarterTubeMesh&lt; ELEMENT &gt;</div><p>3D quarter tube mesh class. The domain is specified by the GeomObject that identifies boundary 3. Non-refineable base version! </p>
 <p>The mesh boundaries are numbered as follows:</p><ul>
-<li>Boundary 0: "Inflow" cross section; located along the line parametrised by <picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \xi_0 =  \xi_0^{lo} $" src="form_20.png" width="43" height="15"/></picture> on the geometric object that specifies the wall.</li>
+<li>Boundary 0: "Inflow" cross section; located along the line parametrised by <img class="formulaInl" alt="$ \xi_0 =  \xi_0^{lo} $" src="form_20.png" width="43" height="15"/> on the geometric object that specifies the wall.</li>
 <li>Boundary 1: Plane x=0</li>
 <li>Boundary 2: Plane y=0</li>
 <li>Boundary 3: The curved wall</li>
-<li>Boundary 4: "Outflow" cross section; located along the line parametrised by <picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \xi_0 =  \xi_0^{hi} $" src="form_21.png" width="44" height="15"/></picture> on the geometric object that specifies the wall.</li>
+<li>Boundary 4: "Outflow" cross section; located along the line parametrised by <img class="formulaInl" alt="$ \xi_0 =  \xi_0^{hi} $" src="form_21.png" width="44" height="15"/> on the geometric object that specifies the wall.</li>
 </ul>
 <p>IMPORTANT NOTE: The interface looks more general than it should. The toplogy must remain that of a quarter tube, or the mesh generation will break. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00064">64</a> of file <a class="el" href="quarter__tube__mesh_8template_8h_source.html">quarter_tube_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8h_source.html#l00063">63</a> of file <a class="el" href="quarter__tube__mesh_8h_source.html">quarter_tube_mesh.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4dfb9a85b3c07d8bafa0f916c445c18a" name="a4dfb9a85b3c07d8bafa0f916c445c18a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4dfb9a85b3c07d8bafa0f916c445c18a">&#9670;&#160;</a></span>QuarterTubeMesh()</h2>
@@ -249,9 +243,9 @@ template&lt;<a class="el" href="classoomph_1_1TetgenMesh.html">class</a> <a clas
 <p>Constructor: Pass pointer to geometric object that specifies the wall, start and end coordinates on the geometric object, and the fraction along which the dividing line is to be placed, and the timestepper. Timestepper defaults to Steady dummy timestepper. </p>
 <p>Constructor for deformable quarter tube mesh class. The domain is specified by the GeomObject that identifies boundary 3. Pass pointer to geometric object that specifies the wall, start and end coordinates on the geometric object, and the fraction along which the dividing line is to be placed, and the timestepper. Timestepper defaults to Static dummy timestepper. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8template_8cc_source.html#l00044">44</a> of file <a class="el" href="quarter__tube__mesh_8template_8cc_source.html">quarter_tube_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8template_8cc_source.html#l00045">45</a> of file <a class="el" href="quarter__tube__mesh_8template_8cc_source.html">quarter_tube_mesh.template.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00121">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::Domain_pt</a>, <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00086">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::wall_pt()</a>, <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00133">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::Xi_hi</a>, and <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00127">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::Xi_lo</a>.</p>
+<p class="reference">References <a class="el" href="quarter__tube__mesh_8h_source.html#l00120">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::Domain_pt</a>, <a class="el" href="quarter__tube__mesh_8h_source.html#l00085">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::wall_pt()</a>, <a class="el" href="quarter__tube__mesh_8h_source.html#l00132">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::Xi_hi</a>, and <a class="el" href="quarter__tube__mesh_8h_source.html#l00126">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::Xi_lo</a>.</p>
 
 </div>
 </div>
@@ -282,9 +276,9 @@ template&lt;<a class="el" href="classoomph_1_1TetgenMesh.html">class</a> <a clas
 
 <p>Destructor: empty. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00080">80</a> of file <a class="el" href="quarter__tube__mesh_8template_8h_source.html">quarter_tube_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8h_source.html#l00079">79</a> of file <a class="el" href="quarter__tube__mesh_8h_source.html">quarter_tube_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00121">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::Domain_pt</a>.</p>
+<p class="reference">References <a class="el" href="quarter__tube__mesh_8h_source.html#l00120">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::Domain_pt</a>.</p>
 
 </div>
 </div>
@@ -318,9 +312,9 @@ template&lt;<a class="el" href="classoomph_1_1TetgenMesh.html">class</a> <a clas
 
 <p>Reimplemented in <a class="el" href="classoomph_1_1AlgebraicRefineableQuarterTubeMesh.html#a66b6f6855d25e272a2730f28d2108a40">oomph::AlgebraicRefineableQuarterTubeMesh&lt; ELEMENT &gt;</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00108">108</a> of file <a class="el" href="quarter__tube__mesh_8template_8h_source.html">quarter_tube_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8h_source.html#l00107">107</a> of file <a class="el" href="quarter__tube__mesh_8h_source.html">quarter_tube_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="quarter__tube__domain_8h_source.html#l00116">oomph::QuarterTubeDomain::axial_spacing_fct_pt()</a>, and <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00121">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::Domain_pt</a>.</p>
+<p class="reference">References <a class="el" href="quarter__tube__domain_8h_source.html#l00116">oomph::QuarterTubeDomain::axial_spacing_fct_pt()</a>, and <a class="el" href="quarter__tube__mesh_8h_source.html#l00120">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::Domain_pt</a>.</p>
 
 </div>
 </div>
@@ -351,9 +345,9 @@ template&lt;<a class="el" href="classoomph_1_1TetgenMesh.html">class</a> <a clas
 
 <p>Function pointer for function that squashes the outer macro elements towards the wall by mapping the input value of the "radial" macro element coordinate to the return value (defined in the underlying Domain object) </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00101">101</a> of file <a class="el" href="quarter__tube__mesh_8template_8h_source.html">quarter_tube_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8h_source.html#l00100">100</a> of file <a class="el" href="quarter__tube__mesh_8h_source.html">quarter_tube_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="quarter__tube__domain_8h_source.html#l00094">oomph::QuarterTubeDomain::bl_squash_fct_pt()</a>, and <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00121">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::Domain_pt</a>.</p>
+<p class="reference">References <a class="el" href="quarter__tube__domain_8h_source.html#l00094">oomph::QuarterTubeDomain::bl_squash_fct_pt()</a>, and <a class="el" href="quarter__tube__mesh_8h_source.html#l00120">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::Domain_pt</a>.</p>
 
 </div>
 </div>
@@ -384,11 +378,11 @@ template&lt;<a class="el" href="classoomph_1_1TetgenMesh.html">class</a> <a clas
 
 <p>Access function to domain. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00092">92</a> of file <a class="el" href="quarter__tube__mesh_8template_8h_source.html">quarter_tube_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8h_source.html#l00091">91</a> of file <a class="el" href="quarter__tube__mesh_8h_source.html">quarter_tube_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00121">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::Domain_pt</a>.</p>
+<p class="reference">References <a class="el" href="quarter__tube__mesh_8h_source.html#l00120">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::Domain_pt</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00325">oomph::MacroElementNodeUpdateRefineableQuarterTubeMesh&lt; ELEMENT &gt;::setup_macro_element_node_update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="quarter__tube__mesh_8h_source.html#l00322">oomph::MacroElementNodeUpdateRefineableQuarterTubeMesh&lt; ELEMENT &gt;::setup_macro_element_node_update()</a>.</p>
 
 </div>
 </div>
@@ -419,9 +413,9 @@ template&lt;<a class="el" href="classoomph_1_1TetgenMesh.html">class</a> <a clas
 
 <p>Access function to underlying domain. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00114">114</a> of file <a class="el" href="quarter__tube__mesh_8template_8h_source.html">quarter_tube_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8h_source.html#l00113">113</a> of file <a class="el" href="quarter__tube__mesh_8h_source.html">quarter_tube_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00121">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::Domain_pt</a>.</p>
+<p class="reference">References <a class="el" href="quarter__tube__mesh_8h_source.html#l00120">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::Domain_pt</a>.</p>
 
 </div>
 </div>
@@ -452,11 +446,11 @@ template&lt;<a class="el" href="classoomph_1_1TetgenMesh.html">class</a> <a clas
 
 <p>Access function to GeomObject representing wall. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00086">86</a> of file <a class="el" href="quarter__tube__mesh_8template_8h_source.html">quarter_tube_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8h_source.html#l00085">85</a> of file <a class="el" href="quarter__tube__mesh_8h_source.html">quarter_tube_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00124">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::Wall_pt</a>.</p>
+<p class="reference">References <a class="el" href="quarter__tube__mesh_8h_source.html#l00123">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::Wall_pt</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00448">oomph::AlgebraicRefineableQuarterTubeMesh&lt; ELEMENT &gt;::AlgebraicRefineableQuarterTubeMesh()</a>, and <a class="el" href="quarter__tube__mesh_8template_8cc_source.html#l00044">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::QuarterTubeMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="quarter__tube__mesh_8h_source.html#l00442">oomph::AlgebraicRefineableQuarterTubeMesh&lt; ELEMENT &gt;::AlgebraicRefineableQuarterTubeMesh()</a>, and <a class="el" href="quarter__tube__mesh_8template_8cc_source.html#l00045">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::QuarterTubeMesh()</a>.</p>
 
 </div>
 </div>
@@ -485,9 +479,9 @@ template&lt;<a class="el" href="classoomph_1_1TetgenMesh.html">class</a> <a clas
 
 <p>Pointer to domain. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00121">121</a> of file <a class="el" href="quarter__tube__mesh_8template_8h_source.html">quarter_tube_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8h_source.html#l00120">120</a> of file <a class="el" href="quarter__tube__mesh_8h_source.html">quarter_tube_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00108">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::axial_spacing_fct_pt()</a>, <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00505">oomph::AlgebraicRefineableQuarterTubeMesh&lt; ELEMENT &gt;::axial_spacing_fct_pt()</a>, <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00101">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::bl_squash_fct_pt()</a>, <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00092">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::domain_pt()</a>, <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00114">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::domain_pt()</a>, <a class="el" href="quarter__tube__mesh_8template_8cc_source.html#l00044">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::QuarterTubeMesh()</a>, <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00171">oomph::RefineableQuarterTubeMesh&lt; ELEMENT &gt;::RefineableQuarterTubeMesh()</a>, and <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00080">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::~QuarterTubeMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="quarter__tube__mesh_8h_source.html#l00107">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::axial_spacing_fct_pt()</a>, <a class="el" href="quarter__tube__mesh_8h_source.html#l00499">oomph::AlgebraicRefineableQuarterTubeMesh&lt; ELEMENT &gt;::axial_spacing_fct_pt()</a>, <a class="el" href="quarter__tube__mesh_8h_source.html#l00100">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::bl_squash_fct_pt()</a>, <a class="el" href="quarter__tube__mesh_8h_source.html#l00091">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::domain_pt()</a>, <a class="el" href="quarter__tube__mesh_8h_source.html#l00113">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::domain_pt()</a>, <a class="el" href="quarter__tube__mesh_8template_8cc_source.html#l00045">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::QuarterTubeMesh()</a>, <a class="el" href="quarter__tube__mesh_8h_source.html#l00169">oomph::RefineableQuarterTubeMesh&lt; ELEMENT &gt;::RefineableQuarterTubeMesh()</a>, and <a class="el" href="quarter__tube__mesh_8h_source.html#l00079">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::~QuarterTubeMesh()</a>.</p>
 
 </div>
 </div>
@@ -515,7 +509,7 @@ template&lt;<a class="el" href="classoomph_1_1TetgenMesh.html">class</a> <a clas
 
 <p>Fraction along wall where outer ring is to be divided. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00130">130</a> of file <a class="el" href="quarter__tube__mesh_8template_8h_source.html">quarter_tube_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8h_source.html#l00129">129</a> of file <a class="el" href="quarter__tube__mesh_8h_source.html">quarter_tube_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -543,9 +537,9 @@ template&lt;<a class="el" href="classoomph_1_1TetgenMesh.html">class</a> <a clas
 
 <p>Pointer to the geometric object that represents the curved wall. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00124">124</a> of file <a class="el" href="quarter__tube__mesh_8template_8h_source.html">quarter_tube_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8h_source.html#l00123">123</a> of file <a class="el" href="quarter__tube__mesh_8h_source.html">quarter_tube_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00325">oomph::MacroElementNodeUpdateRefineableQuarterTubeMesh&lt; ELEMENT &gt;::setup_macro_element_node_update()</a>, and <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00086">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::wall_pt()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="quarter__tube__mesh_8h_source.html#l00322">oomph::MacroElementNodeUpdateRefineableQuarterTubeMesh&lt; ELEMENT &gt;::setup_macro_element_node_update()</a>, and <a class="el" href="quarter__tube__mesh_8h_source.html#l00085">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::wall_pt()</a>.</p>
 
 </div>
 </div>
@@ -573,9 +567,9 @@ template&lt;<a class="el" href="classoomph_1_1TetgenMesh.html">class</a> <a clas
 
 <p>Upper limits for the coordinates along the wall. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00133">133</a> of file <a class="el" href="quarter__tube__mesh_8template_8h_source.html">quarter_tube_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8h_source.html#l00132">132</a> of file <a class="el" href="quarter__tube__mesh_8h_source.html">quarter_tube_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="quarter__tube__mesh_8template_8cc_source.html#l00044">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::QuarterTubeMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="quarter__tube__mesh_8template_8cc_source.html#l00045">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::QuarterTubeMesh()</a>.</p>
 
 </div>
 </div>
@@ -603,14 +597,14 @@ template&lt;<a class="el" href="classoomph_1_1TetgenMesh.html">class</a> <a clas
 
 <p>Lower limits for the coordinates along the wall. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00127">127</a> of file <a class="el" href="quarter__tube__mesh_8template_8h_source.html">quarter_tube_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8h_source.html#l00126">126</a> of file <a class="el" href="quarter__tube__mesh_8h_source.html">quarter_tube_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="quarter__tube__mesh_8template_8cc_source.html#l00044">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::QuarterTubeMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="quarter__tube__mesh_8template_8cc_source.html#l00045">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::QuarterTubeMesh()</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="quarter__tube__mesh_8template_8h_source.html">quarter_tube_mesh.template.h</a></li>
+<li><a class="el" href="quarter__tube__mesh_8h_source.html">quarter_tube_mesh.h</a></li>
 <li><a class="el" href="quarter__tube__mesh_8template_8cc_source.html">quarter_tube_mesh.template.cc</a></li>
 </ul>
 </div><!-- contents -->
@@ -641,7 +635,7 @@ template&lt;<a class="el" href="classoomph_1_1TetgenMesh.html">class</a> <a clas
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:01:01
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:38:35
         </div>
       </div>
     </footer>

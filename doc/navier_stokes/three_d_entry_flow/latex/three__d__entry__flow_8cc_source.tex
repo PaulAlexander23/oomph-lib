@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -164,7 +164,7 @@
 \DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00160}00160\ \ \textcolor{comment}{//Doc\ the\ boundaries}}
 \DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00161}00161\ \ ofstream\ some\_file;}
 \DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00162}00162\ \ \textcolor{keywordtype}{char}\ filename[100];}
-\DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00163}00163\ \ sprintf(filename,\textcolor{stringliteral}{"{}boundaries.dat"{}});}
+\DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00163}00163\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}boundaries.dat"{}});}
 \DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00164}00164\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00165}00165\ \ \mbox{\hyperlink{classEntryFlowProblem_a88e43e57e9816f022ea9bccbbef9500d}{mesh\_pt}}()-\/>output\_boundaries(some\_file);}
 \DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00166}00166\ \ some\_file.close();}
@@ -283,7 +283,7 @@
 \DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00279}00279\ \ npts=5;\ }
 \DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00280}00280\ }
 \DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00281}00281\ \ \textcolor{comment}{//\ Output\ solution\ }}
-\DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00282}00282\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00282}00282\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00283}00283\ \ \ \ \ \ \ \ \ \ Doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00284}00284\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00285}00285\ \ mesh\_pt()-\/>output(some\_file,npts);}
@@ -294,9 +294,9 @@
 \DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00290}00290\ \ }
 \DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00291}00291\ }
 \DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00292}00292\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00293}00293\ \textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00294}00294\ \textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00295}00295\ \textcolor{comment}{///\ /////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00293}00293\ \textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00294}00294\ \textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00295}00295\ \textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00296}00296\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00297}00297\ }
 \DoxyCodeLine{\Hypertarget{three__d__entry__flow_8cc_source_l00298}00298\ \textcolor{comment}{//=start\_of\_main=======================================================}\textcolor{comment}{}}

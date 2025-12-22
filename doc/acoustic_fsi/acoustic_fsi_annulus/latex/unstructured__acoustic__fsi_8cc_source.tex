@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -42,11 +42,11 @@
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00038}00038\ \textcolor{keyword}{using\ namespace\ }std;}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00039}00039\ \textcolor{keyword}{using\ namespace\ }oomph;}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00040}00040\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00041}00041\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00042}00042\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00041}00041\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00042}00042\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00043}00043\ \textcolor{comment}{}\textcolor{comment}{//\ Straight\ line\ as\ geometric\ object}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00044}00044\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00045}00045\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00044}00044\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00045}00045\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00046}00046\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00047}00047\ }
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00048}00048\ }
@@ -100,9 +100,9 @@
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00096}00096\ }
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00097}00097\ }
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00098}00098\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00099}00099\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00100}00100\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00101}00101\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00099}00099\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00100}00100\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00101}00101\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00102}00102\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00103}00103\ }
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00104}00104\ \textcolor{comment}{//=======start\_namespace==========================================}\textcolor{comment}{}}
@@ -697,7 +697,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00693}00693\ }
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00694}00694\ \ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00695}00695\ \ \textcolor{keywordtype}{char}\ filename[100];}
-\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00696}00696\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},Doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00696}00696\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},Doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00697}00697\ \ Trace\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00698}00698\ \ \ }
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l00699}00699\ }
@@ -1111,7 +1111,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01107}01107\ }
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01108}01108\ \ \textcolor{comment}{//\ Compute/output\ the\ radiated\ power}}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01109}01109\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01110}01110\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/power\%i.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01110}01110\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/power\%i.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01111}01111\ \ \ \ \ \ \ \ \ \ Doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01112}01112\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01113}01113\ }
@@ -1165,7 +1165,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01161}01161\ }
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01162}01162\ \ \textcolor{comment}{//\ Output\ displacement\ field}}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01163}01163\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01164}01164\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/elast\_soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01164}01164\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/elast\_soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01165}01165\ \ \ \ \ \ \ \ \ \ Doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01166}01166\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01167}01167\ \ Solid\_mesh\_pt-\/>output(some\_file,n\_plot);}
@@ -1173,7 +1173,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01169}01169\ }
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01170}01170\ \ \textcolor{comment}{//\ Output\ solid\ traction\ elements}}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01171}01171\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01172}01172\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/solid\_traction\_soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01172}01172\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/solid\_traction\_soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01173}01173\ \ \ \ \ \ \ \ \ \ Doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01174}01174\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01175}01175\ \ Solid\_traction\_mesh\_pt-\/>output(some\_file,n\_plot);}
@@ -1181,7 +1181,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01177}01177\ }
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01178}01178\ \ \textcolor{comment}{//\ Output\ fsi\ traction\ elements}}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01179}01179\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ }}
-\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01180}01180\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/traction\_soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01180}01180\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/traction\_soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01181}01181\ \ \ \ \ \ \ \ \ \ Doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01182}01182\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01183}01183\ \ FSI\_traction\_mesh\_pt-\/>output(some\_file,n\_plot);}
@@ -1190,7 +1190,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01186}01186\ }
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01187}01187\ \ \textcolor{comment}{//\ Output\ Helmholtz\ fsi\ flux\ elements}}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01188}01188\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ }}
-\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01189}01189\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/flux\_bc\_soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01189}01189\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/flux\_bc\_soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01190}01190\ \ \ \ \ \ \ \ \ \ Doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01191}01191\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01192}01192\ \ Helmholtz\_fsi\_flux\_mesh\_pt-\/>output(some\_file,n\_plot);}
@@ -1199,7 +1199,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01195}01195\ }
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01196}01196\ \ \textcolor{comment}{//\ Output\ Helmholtz}}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01197}01197\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01198}01198\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/helmholtz\_soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01198}01198\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/helmholtz\_soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01199}01199\ \ \ \ \ \ \ \ \ \ Doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01200}01200\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01201}01201\ \ Helmholtz\_mesh\_pt-\/>output(some\_file,n\_plot);}
@@ -1211,7 +1211,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01207}01207\ \ \textcolor{keywordtype}{unsigned}\ nreg=Solid\_mesh\_pt-\/>nregion();}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01208}01208\ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ r=0;r<nreg;r++)}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01209}01209\ \ \ \{}
-\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01210}01210\ \ \ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/region\%i\_\%i.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01210}01210\ \ \ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/region\%i\_\%i.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01211}01211\ \ \ \ \ \ \ \ \ \ \ \ r,Doc\_info.number());\ \ \ }
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01212}01212\ \ \ \ some\_file.open(filename);\ \ \ }
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01213}01213\ \ \ \ \textcolor{keywordtype}{unsigned}\ nel=Solid\_mesh\_pt-\/>nregion\_element(r);}
@@ -1229,7 +1229,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01225}01225\ \ \textcolor{keywordtype}{unsigned}\ nstep=40;}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01226}01226\ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ i=0;i<nstep;i++)}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01227}01227\ \ \ \{}
-\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01228}01228\ \ \ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/helmholtz\_animation\%i\_frame\%i.dat"{}},}
+\DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01228}01228\ \ \ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/helmholtz\_animation\%i\_frame\%i.dat"{}},}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01229}01229\ \ \ \ \ \ \ \ \ \ \ \ Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01230}01230\ \ \ \ \ \ \ \ \ \ \ \ Doc\_info.number(),i);}
 \DoxyCodeLine{\Hypertarget{unstructured__acoustic__fsi_8cc_source_l01231}01231\ \ \ \ some\_file.open(filename);}

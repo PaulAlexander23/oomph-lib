@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -126,7 +120,7 @@
 <p>Mesh for 2D Bretherton problem &ndash; based on single layer mesh. Templated by spine-ified Navier-Stokes element type (e.g. SpineElement&lt;QCrouzeixRaviartElement&lt;2&gt; &gt; and the corresponding interface element (e.g. SpineLineFluidInterfaceElement&lt;SpineElement&lt;QCrouzeixRaviartElement&lt;2&gt; &gt; &gt;  
  <a href="classoomph_1_1BrethertonSpineMesh.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;:</div>
 <div class="dyncontent">
@@ -348,7 +342,7 @@ Protected Attributes</h2></td></tr>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleChannelMesh.html">class</a> <a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleChannelMesh.html">ELEMENT</a>, <a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleChannelMesh.html">class</a> <a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleChannelMesh.html">INTERFACE_ELEMENT</a>&gt;<br />
 class oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;</div><p>Mesh for 2D Bretherton problem &ndash; based on single layer mesh. Templated by spine-ified Navier-Stokes element type (e.g. SpineElement&lt;QCrouzeixRaviartElement&lt;2&gt; &gt; and the corresponding interface element (e.g. SpineLineFluidInterfaceElement&lt;SpineElement&lt;QCrouzeixRaviartElement&lt;2&gt; &gt; &gt; </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00045">45</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00044">44</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a0e9c404141ee65b000ab4d1fdc4f11da" name="a0e9c404141ee65b000ab4d1fdc4f11da"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0e9c404141ee65b000ab4d1fdc4f11da">&#9670;&#160;</a></span>BrethertonSpineMesh()</h2>
@@ -472,9 +466,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 <li>time_stepper_pt: Pointer to timestepper; defaults to Static </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00058">58</a> of file <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html">bretherton_spine_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00060">60</a> of file <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html">bretherton_spine_mesh.template.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00543">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Bulk_element_pt</a>, <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00540">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Control_element_pt</a>, <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00511">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::H</a>, <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l01028">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::initial_element_reorder()</a>, <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00546">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Interface_element_pt</a>, <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00517">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Lower_wall_pt</a>, <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00501">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Nx3</a>, <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00194">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_centre_fraction()</a>, <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00514">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Upper_wall_pt</a>, <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00523">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Zeta_end</a>, <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00520">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Zeta_start</a>, <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00529">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Zeta_transition_end</a>, and <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00526">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Zeta_transition_start</a>.</p>
+<p class="reference">References <a class="el" href="bretherton__spine__mesh_8h_source.html#l00537">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Bulk_element_pt</a>, <a class="el" href="bretherton__spine__mesh_8h_source.html#l00534">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Control_element_pt</a>, <a class="el" href="bretherton__spine__mesh_8h_source.html#l00505">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::H</a>, <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l01019">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::initial_element_reorder()</a>, <a class="el" href="bretherton__spine__mesh_8h_source.html#l00540">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Interface_element_pt</a>, <a class="el" href="bretherton__spine__mesh_8h_source.html#l00511">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Lower_wall_pt</a>, <a class="el" href="bretherton__spine__mesh_8h_source.html#l00495">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Nx3</a>, <a class="el" href="bretherton__spine__mesh_8h_source.html#l00190">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_centre_fraction()</a>, <a class="el" href="bretherton__spine__mesh_8h_source.html#l00508">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Upper_wall_pt</a>, <a class="el" href="bretherton__spine__mesh_8h_source.html#l00517">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Zeta_end</a>, <a class="el" href="bretherton__spine__mesh_8h_source.html#l00514">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Zeta_start</a>, <a class="el" href="bretherton__spine__mesh_8h_source.html#l00523">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Zeta_transition_end</a>, and <a class="el" href="bretherton__spine__mesh_8h_source.html#l00520">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Zeta_transition_start</a>.</p>
 
 </div>
 </div>
@@ -507,9 +501,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Access functions for pointers to elements in bulk. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00093">93</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00091">91</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00543">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Bulk_element_pt</a>.</p>
+<p class="reference">References <a class="el" href="bretherton__spine__mesh_8h_source.html#l00537">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Bulk_element_pt</a>.</p>
 
 </div>
 </div>
@@ -540,9 +534,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Pointer to control element (just under the symmetry line near the bubble tip, so the bubble tip is located at s=[1.0,1.0] in this element. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00187">187</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00183">183</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00540">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Control_element_pt</a>.</p>
+<p class="reference">References <a class="el" href="bretherton__spine__mesh_8h_source.html#l00534">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Control_element_pt</a>.</p>
 
 </div>
 </div>
@@ -589,7 +583,7 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 <p>Recalculate the spine lengths after repositioning. </p>
 <p>Calculate the distance from the spine base to the free surface, i.e. the spine height. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l01065">1065</a> of file <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html">bretherton_spine_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l01056">1056</a> of file <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html">bretherton_spine_mesh.template.cc</a>.</p>
 
 </div>
 </div>
@@ -621,9 +615,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 <p>Initial reordering elements of the elements &ndash; before the channel mesh is added. Vertical stacks of elements, each topped by their interface element &ndash; this is (currently) identical to the version in the <a class="el" href="classoomph_1_1SingleLayerSpineMesh.html" title="Single-layer spine mesh class derived from standard 2D mesh. The mesh contains a layer of spinified f...">SingleLayerSpineMesh</a> but it's important that the element reordering is maintained in exactly this form for the rest of the mesh generation process to work properly. Therefore we keep a copy of the function in here. </p>
 <p>Reorder elements: Vertical stacks of elements, each topped by their interface element &ndash; this is (currently) identical to the version in the <a class="el" href="classoomph_1_1SingleLayerSpineMesh.html" title="Single-layer spine mesh class derived from standard 2D mesh. The mesh contains a layer of spinified f...">SingleLayerSpineMesh</a> but it's important that element reordering is maintained in exactly this form so to be on the safe side, we move the function in here. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l01028">1028</a> of file <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html">bretherton_spine_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l01019">1019</a> of file <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html">bretherton_spine_mesh.template.cc</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00058">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::BrethertonSpineMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00060">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::BrethertonSpineMesh()</a>.</p>
 
 </div>
 </div>
@@ -655,9 +649,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Access functions for pointers to interface elements. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00081">81</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00079">79</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00546">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Interface_element_pt</a>.</p>
+<p class="reference">References <a class="el" href="bretherton__spine__mesh_8h_source.html#l00540">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Interface_element_pt</a>.</p>
 
 </div>
 </div>
@@ -688,9 +682,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Number of elements in bulk. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00099">99</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00097">97</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00543">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Bulk_element_pt</a>.</p>
+<p class="reference">References <a class="el" href="bretherton__spine__mesh_8h_source.html#l00537">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Bulk_element_pt</a>.</p>
 
 </div>
 </div>
@@ -721,9 +715,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Number of free-surface spines (i.e. excluding the dummy spines in the channel region) </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00107">107</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00104">104</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00505">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Nhalf</a>, <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00495">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Nx1</a>, and <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00498">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Nx2</a>.</p>
+<p class="reference">References <a class="el" href="bretherton__spine__mesh_8h_source.html#l00499">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Nhalf</a>, <a class="el" href="bretherton__spine__mesh_8h_source.html#l00489">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Nx1</a>, and <a class="el" href="bretherton__spine__mesh_8h_source.html#l00492">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Nx2</a>.</p>
 
 </div>
 </div>
@@ -754,9 +748,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Number of elements on interface. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00087">87</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00085">85</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00546">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Interface_element_pt</a>.</p>
+<p class="reference">References <a class="el" href="bretherton__spine__mesh_8h_source.html#l00540">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Interface_element_pt</a>.</p>
 
 </div>
 </div>
@@ -787,7 +781,7 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Pin all spines so the mesh can be used for computation without free surfaces. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00128">128</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00124">124</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -834,7 +828,7 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 <p>Reposition the spines in response to changes in geometry. </p>
 <p>Reposition the spines that emenate from the lower wall. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l01158">1158</a> of file <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html">bretherton_spine_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l01148">1148</a> of file <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html">bretherton_spine_mesh.template.cc</a>.</p>
 
 </div>
 </div>
@@ -866,9 +860,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Set the pointer to the spine centre's vertial fraction. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00200">200</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00196">196</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00532">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Spine_centre_fraction_pt</a>.</p>
+<p class="reference">References <a class="el" href="bretherton__spine__mesh_8h_source.html#l00526">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Spine_centre_fraction_pt</a>.</p>
 
 </div>
 </div>
@@ -899,11 +893,11 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Read the value of the spine centre's vertical fraction. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00194">194</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00190">190</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00532">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Spine_centre_fraction_pt</a>.</p>
+<p class="reference">References <a class="el" href="bretherton__spine__mesh_8h_source.html#l00526">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::Spine_centre_fraction_pt</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00058">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::BrethertonSpineMesh()</a>, <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00231">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update_horizontal_transition_lower()</a>, <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00393">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update_horizontal_transition_upper()</a>, <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00277">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update_vertical_transition_lower()</a>, and <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00335">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update_vertical_transition_upper()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00060">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::BrethertonSpineMesh()</a>, <a class="el" href="bretherton__spine__mesh_8h_source.html#l00227">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update_horizontal_transition_lower()</a>, <a class="el" href="bretherton__spine__mesh_8h_source.html#l00387">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update_horizontal_transition_upper()</a>, <a class="el" href="bretherton__spine__mesh_8h_source.html#l00273">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update_vertical_transition_lower()</a>, and <a class="el" href="bretherton__spine__mesh_8h_source.html#l00330">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update_vertical_transition_upper()</a>.</p>
 
 </div>
 </div>
@@ -937,9 +931,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Reimplemented from <a class="el" href="classoomph_1_1SingleLayerSpineMesh.html#a364648c15ab29c0c8d1cf7c2bc4cb792">oomph::SingleLayerSpineMesh&lt; ELEMENT &gt;</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00140">140</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00136">136</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00464">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update_channel()</a>, <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00208">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update_film_lower()</a>, <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00440">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update_film_upper()</a>, <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00231">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update_horizontal_transition_lower()</a>, <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00393">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update_horizontal_transition_upper()</a>, <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00277">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update_vertical_transition_lower()</a>, and <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00335">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update_vertical_transition_upper()</a>.</p>
+<p class="reference">References <a class="el" href="bretherton__spine__mesh_8h_source.html#l00458">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update_channel()</a>, <a class="el" href="bretherton__spine__mesh_8h_source.html#l00204">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update_film_lower()</a>, <a class="el" href="bretherton__spine__mesh_8h_source.html#l00434">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update_film_upper()</a>, <a class="el" href="bretherton__spine__mesh_8h_source.html#l00227">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update_horizontal_transition_lower()</a>, <a class="el" href="bretherton__spine__mesh_8h_source.html#l00387">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update_horizontal_transition_upper()</a>, <a class="el" href="bretherton__spine__mesh_8h_source.html#l00273">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update_vertical_transition_lower()</a>, and <a class="el" href="bretherton__spine__mesh_8h_source.html#l00330">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update_vertical_transition_upper()</a>.</p>
 
 </div>
 </div>
@@ -971,9 +965,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Update function for the nodes in the channel region ahead of the finger tip: Nodes are evenly distributed along vertical lines between the top and bottom walls. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00464">464</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00458">458</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00140">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8h_source.html#l00136">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update()</a>.</p>
 
 </div>
 </div>
@@ -1005,9 +999,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Update function for the deposited film region in the lower part of the domain: Vertical spines. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00208">208</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00204">204</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00140">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8h_source.html#l00136">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update()</a>.</p>
 
 </div>
 </div>
@@ -1039,9 +1033,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Update function for the deposited film region in the upper part of the domain: Vertical spines. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00440">440</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00434">434</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00140">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8h_source.html#l00136">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update()</a>.</p>
 
 </div>
 </div>
@@ -1073,11 +1067,11 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Update function for the horizontal transitition region in the lower part of the domain: Spine points from wall to origin. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00231">231</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00227">227</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00194">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_centre_fraction()</a>.</p>
+<p class="reference">References <a class="el" href="bretherton__spine__mesh_8h_source.html#l00190">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_centre_fraction()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00140">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8h_source.html#l00136">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update()</a>.</p>
 
 </div>
 </div>
@@ -1109,11 +1103,11 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Update function for the horizontal transitition region in the upper part of the domain: Spine points towards origin. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00393">393</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00387">387</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00194">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_centre_fraction()</a>.</p>
+<p class="reference">References <a class="el" href="bretherton__spine__mesh_8h_source.html#l00190">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_centre_fraction()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00140">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8h_source.html#l00136">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update()</a>.</p>
 
 </div>
 </div>
@@ -1145,11 +1139,11 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Update function for the vertical transitition region in the lower part of the domain: Spine points to origin. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00277">277</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00273">273</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00194">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_centre_fraction()</a>.</p>
+<p class="reference">References <a class="el" href="bretherton__spine__mesh_8h_source.html#l00190">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_centre_fraction()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00140">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8h_source.html#l00136">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update()</a>.</p>
 
 </div>
 </div>
@@ -1181,11 +1175,11 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Update function for the vertical transitition region in the upper part of the domain: Spine points to origin. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00335">335</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00330">330</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00194">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_centre_fraction()</a>.</p>
+<p class="reference">References <a class="el" href="bretherton__spine__mesh_8h_source.html#l00190">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_centre_fraction()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00140">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8h_source.html#l00136">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_node_update()</a>.</p>
 
 </div>
 </div>
@@ -1214,9 +1208,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Vector of pointers to element in the fluid layer. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00543">543</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00537">537</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00058">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::BrethertonSpineMesh()</a>, <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00093">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::bulk_element_pt()</a>, and <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00099">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::nbulk()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00060">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::BrethertonSpineMesh()</a>, <a class="el" href="bretherton__spine__mesh_8h_source.html#l00091">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::bulk_element_pt()</a>, and <a class="el" href="bretherton__spine__mesh_8h_source.html#l00097">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::nbulk()</a>.</p>
 
 </div>
 </div>
@@ -1244,9 +1238,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Pointer to control element (just under the symmetry line near the bubble tip; the bubble tip is located at s=[1.0,1.0] in this element. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00540">540</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00534">534</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00058">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::BrethertonSpineMesh()</a>, and <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00187">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::control_element_pt()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00060">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::BrethertonSpineMesh()</a>, and <a class="el" href="bretherton__spine__mesh_8h_source.html#l00183">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::control_element_pt()</a>.</p>
 
 </div>
 </div>
@@ -1274,7 +1268,7 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Default spine fraction. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00535">535</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00529">529</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -1302,9 +1296,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Thickness of deposited film. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00511">511</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00505">505</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00058">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::BrethertonSpineMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00060">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::BrethertonSpineMesh()</a>.</p>
 
 </div>
 </div>
@@ -1332,9 +1326,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Vector of pointers to interface elements. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00546">546</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00540">540</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00058">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::BrethertonSpineMesh()</a>, <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00081">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::interface_element_pt()</a>, and <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00087">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::ninterface_element()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00060">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::BrethertonSpineMesh()</a>, <a class="el" href="bretherton__spine__mesh_8h_source.html#l00079">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::interface_element_pt()</a>, and <a class="el" href="bretherton__spine__mesh_8h_source.html#l00085">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::ninterface_element()</a>.</p>
 
 </div>
 </div>
@@ -1362,9 +1356,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Pointer to geometric object that represents the lower wall. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00517">517</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00511">511</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00058">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::BrethertonSpineMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00060">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::BrethertonSpineMesh()</a>.</p>
 
 </div>
 </div>
@@ -1392,7 +1386,7 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Number of elements across the deposited film. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00508">508</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00502">502</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -1420,9 +1414,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Number of elements in vertical transition region (there are twice as many elements across the channel) </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00505">505</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00499">499</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00107">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::nfree_surface_spines()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8h_source.html#l00104">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::nfree_surface_spines()</a>.</p>
 
 </div>
 </div>
@@ -1450,9 +1444,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Number of elements along wall in deposited film region. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00495">495</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00489">489</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00107">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::nfree_surface_spines()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8h_source.html#l00104">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::nfree_surface_spines()</a>.</p>
 
 </div>
 </div>
@@ -1480,9 +1474,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Number of elements along wall in horizontal transition region. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00498">498</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00492">492</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00107">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::nfree_surface_spines()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8h_source.html#l00104">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::nfree_surface_spines()</a>.</p>
 
 </div>
 </div>
@@ -1510,9 +1504,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Number of elements along wall in channel region. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00501">501</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00495">495</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00058">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::BrethertonSpineMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00060">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::BrethertonSpineMesh()</a>.</p>
 
 </div>
 </div>
@@ -1540,9 +1534,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Pointer to vertical fraction of the spine centre. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00532">532</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00526">526</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00200">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::set_spine_centre_fraction_pt()</a>, and <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00194">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_centre_fraction()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8h_source.html#l00196">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::set_spine_centre_fraction_pt()</a>, and <a class="el" href="bretherton__spine__mesh_8h_source.html#l00190">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::spine_centre_fraction()</a>.</p>
 
 </div>
 </div>
@@ -1570,9 +1564,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Pointer to geometric object that represents the upper wall. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00514">514</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00508">508</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00058">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::BrethertonSpineMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00060">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::BrethertonSpineMesh()</a>.</p>
 
 </div>
 </div>
@@ -1600,9 +1594,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Wall coordinate of end of liquid filled region (inflow) </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00523">523</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00517">517</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00058">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::BrethertonSpineMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00060">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::BrethertonSpineMesh()</a>.</p>
 
 </div>
 </div>
@@ -1630,9 +1624,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Start coordinate on wall. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00520">520</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00514">514</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00058">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::BrethertonSpineMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00060">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::BrethertonSpineMesh()</a>.</p>
 
 </div>
 </div>
@@ -1660,9 +1654,9 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Wall coordinate of end of transition region. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00529">529</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00523">523</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00058">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::BrethertonSpineMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00060">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::BrethertonSpineMesh()</a>.</p>
 
 </div>
 </div>
@@ -1690,14 +1684,14 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
 
 <p>Wall coordinate of start of the transition region. </p>
 
-<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00526">526</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8h_source.html#l00520">520</a> of file <a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00058">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::BrethertonSpineMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l00060">oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;::BrethertonSpineMesh()</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a></li>
+<li><a class="el" href="bretherton__spine__mesh_8h_source.html">bretherton_spine_mesh.h</a></li>
 <li><a class="el" href="bretherton__spine__mesh_8template_8cc_source.html">bretherton_spine_mesh.template.cc</a></li>
 </ul>
 </div><!-- contents -->
@@ -1728,7 +1722,7 @@ template&lt;<a class="el" href="classoomph_1_1MacroElementNodeUpdateCollapsibleC
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:27:11
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:34:26
         </div>
       </div>
     </footer>

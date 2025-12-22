@@ -873,7 +873,7 @@ The function {\ttfamily unsteady\+\_\+run(...)} is used to perform the timestepp
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{filename}}[100];\ \ \ }
-\DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{sprintf}}(\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{filename}},\textcolor{stringliteral}{"{}\%s/trace.dat"{}},\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{doc\_info}}.directory().c\_str());}
+\DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{snprintf}}(\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{doc\_info}}.directory().c\_str());}
 \DoxyCodeLine{\ \mbox{\hyperlink{namespaceProblem__Parameter_a55310be5f2dfcb5fcfe35d71f9c16e06}{Trace\_file}}.open(\mbox{\hyperlink{classElasticRefineableTwoLayerMesh}{filename}});}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Initialise\ trace\ file}}
@@ -973,4 +973,4 @@ The function {\ttfamily unsteady\+\_\+run(...)} is used to perform the timestepp
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

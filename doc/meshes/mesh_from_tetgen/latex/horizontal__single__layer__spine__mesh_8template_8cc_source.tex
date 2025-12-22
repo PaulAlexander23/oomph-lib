@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00003}00003\ \textcolor{comment}{//\ LIC//\ multi-\/physics\ finite-\/element\ library,\ available}}
 \DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00004}00004\ \textcolor{comment}{//\ LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00005}00005\ \textcolor{comment}{//\ LIC//}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00006}00006\ \textcolor{comment}{//\ LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00006}00006\ \textcolor{comment}{//\ LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00007}00007\ \textcolor{comment}{//\ LIC//}}
 \DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00008}00008\ \textcolor{comment}{//\ LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00009}00009\ \textcolor{comment}{//\ LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -27,112 +27,112 @@
 \DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00023}00023\ \textcolor{comment}{//\ LIC//\ The\ authors\ may\ be\ contacted\ at\ oomph-\/lib@maths.man.ac.uk.}}
 \DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00024}00024\ \textcolor{comment}{//\ LIC//}}
 \DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00025}00025\ \textcolor{comment}{//\ LIC//====================================================================}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00026}00026\ \textcolor{preprocessor}{\#ifndef\ OOMPH\_HORIZONTAL\_SINGLE\_LAYER\_SPINE\_MESH\_TEMPLATE\_CC}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00027}00027\ \textcolor{preprocessor}{\#define\ OOMPH\_HORIZONTAL\_SINGLE\_LAYER\_SPINE\_MESH\_TEMPLATE\_CC}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00026}00026\ \textcolor{preprocessor}{\#ifndef\ OOMPH\_HORIZONTAL\_SINGLE\_LAYER\_SPINE\_MESH\_TEMPLATE\_HEADER}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00027}00027\ \textcolor{preprocessor}{\#define\ OOMPH\_HORIZONTAL\_SINGLE\_LAYER\_SPINE\_MESH\_TEMPLATE\_HEADER}}
 \DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00028}00028\ }
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00029}00029\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{horizontal__single__layer__spine__mesh_8template_8h}{horizontal\_single\_layer\_spine\_mesh.template.h}}"{}}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00030}00030\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{rectangular__quadmesh_8template_8cc}{rectangular\_quadmesh.template.cc}}"{}}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00029}00029\ \textcolor{preprocessor}{\#ifndef\ OOMPH\_HORIZONTAL\_SINGLE\_LAYER\_SPINE\_MESH\_HEADER}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00030}00030\ \textcolor{preprocessor}{\#error\ \_\_FILE\_\_\ should\ only\ be\ included\ from\ horizontal\_single\_layer\_spine\_mesh.h.}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00031}00031\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ OOMPH\_HORIZONTAL\_SINGLE\_LAYER\_SPINE\_MESH\_HEADER}}
 \DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00032}00032\ }
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00033}00033\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceoomph}{oomph}}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00034}00034\ \{}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00035}00035\ \ \ \textcolor{comment}{//===========================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00036}00036\ \textcolor{comment}{\ \ ///\ Constructor\ for\ spine\ 2D\ mesh:\ Pass\ number\ of\ elements\ in\ x-\/direction,}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00037}00037\ \textcolor{comment}{\ \ ///\ number\ of\ elements\ in\ y-\/direction,\ axial\ length\ and\ height\ of\ layer,}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00038}00038\ \textcolor{comment}{\ \ ///\ and\ pointer\ to\ timestepper\ (defaults\ to\ Static\ timestepper).}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00039}00039\ \textcolor{comment}{\ \ ///}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00040}00040\ \textcolor{comment}{\ \ ///\ The\ mesh\ contains\ a\ layer\ of\ spinified\ fluid\ elements\ (of\ type\ ELEMENT;}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00041}00041\ \textcolor{comment}{\ \ ///\ e.g\ \ SpineElement<QCrouzeixRaviartElement<2>)}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00042}00042\ \textcolor{comment}{\ \ ///\ and\ information\ about\ how\ the\ internal\ nodes\ positions\ are\ affected}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00043}00043\ \textcolor{comment}{\ \ ///\ by\ changes\ in\ spine\ length.\ Additional\ equations\ that\ determine\ the}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00044}00044\ \textcolor{comment}{\ \ ///\ spine\ heights\ must\ be\ specified\ in\ order\ to\ use\ this\ mesh.}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00045}00045\ \textcolor{comment}{}\ \ \textcolor{comment}{//===========================================================================}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00046}00046\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ ELEMENT>}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00047}\mbox{\hyperlink{classoomph_1_1HorizontalSingleLayerSpineMesh_a765856597150d37a20eabdb53e58d49c}{00047}}\ \ \ \mbox{\hyperlink{classoomph_1_1HorizontalSingleLayerSpineMesh_a765856597150d37a20eabdb53e58d49c}{HorizontalSingleLayerSpineMesh<ELEMENT>::HorizontalSingleLayerSpineMesh}}(}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00048}00048\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\&\ nx,}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00049}00049\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\&\ ny,}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00050}00050\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\&\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{lx}},}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00051}00051\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\&\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{h}},}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00052}00052\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{TimeStepper}}*\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{time\_stepper\_pt}})}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00053}00053\ \ \ \ \ :\ \mbox{\hyperlink{classoomph_1_1RectangularQuadMesh}{RectangularQuadMesh}}<\mbox{\hyperlink{classoomph_1_1TetgenMesh}{ELEMENT}}>(}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00054}00054\ \ \ \ \ \ \ \ \ nx,\ ny,\ 0.0,\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{lx}},\ 0.0,\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{h}},\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{false}},\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{false}},\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{time\_stepper\_pt}})}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00055}00055\ \ \ \{}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00056}00056\ \ \ \ \ \textcolor{comment}{//\ Mesh\ can\ only\ be\ built\ with\ 2D\ Qelements.}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00057}00057\ \ \ \ \ MeshChecker::assert\_geometric\_element<QElementGeometricBase,\ ELEMENT>(2);}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00058}00058\ }
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00059}00059\ \ \ \ \ \textcolor{comment}{//\ Mesh\ can\ only\ be\ built\ with\ spine\ elements}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00060}00060\ \ \ \ \ MeshChecker::assert\_geometric\_element<SpineFiniteElement,\ ELEMENT>(2);}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00061}00061\ }
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00062}00062\ \ \ \ \ \textcolor{comment}{//\ We've\ called\ the\ "{}generic"{}\ constructor\ for\ the\ RectangularQuadMesh}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00063}00063\ \ \ \ \ \textcolor{comment}{//\ which\ doesn't\ do\ much...}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00064}00064\ }
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00065}00065\ \ \ \ \ \textcolor{comment}{//\ Now\ build\ the\ mesh:}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00066}00066\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1HorizontalSingleLayerSpineMesh_a9bd06cd24d2c48c499bf149b1773b442}{build\_horizontal\_single\_layer\_mesh}}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{time\_stepper\_pt}});}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00067}00067\ \ \ \}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00068}00068\ }
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00069}00069\ \ \ \textcolor{comment}{//===========================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00070}00070\ \textcolor{comment}{\ \ ///\ Helper\ function\ that\ actually\ builds\ the\ single-\/layer\ spine\ mesh}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00071}00071\ \textcolor{comment}{\ \ ///\ based\ on\ the\ parameters\ set\ in\ the\ various\ constructors}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00072}00072\ \textcolor{comment}{}\ \ \textcolor{comment}{//===========================================================================}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00073}00073\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ ELEMENT>}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00074}00074\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classoomph_1_1HorizontalSingleLayerSpineMesh}{HorizontalSingleLayerSpineMesh}}<}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00075}\mbox{\hyperlink{classoomph_1_1HorizontalSingleLayerSpineMesh_a9bd06cd24d2c48c499bf149b1773b442}{00075}}\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{ELEMENT}}>::build\_horizontal\_single\_layer\_mesh(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{TimeStepper}}*\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{time\_stepper\_pt}})}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00076}00076\ \ \ \{}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00077}00077\ \ \ \ \ \textcolor{comment}{//\ Build\ the\ underlying\ quad\ mesh:}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00078}00078\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1RectangularQuadMesh_afa579b413a2d8120e8228d840cb3582c}{RectangularQuadMesh<ELEMENT>::build\_mesh}}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{time\_stepper\_pt}});}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00079}00079\ }
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00080}00080\ \ \ \ \ \textcolor{comment}{//\ Read\ out\ the\ number\ of\ elements\ in\ the\ x-\/direction}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00081}00081\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{n\_x}}\ =\ this-\/>Nx;}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00082}00082\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{n\_y}}\ =\ this-\/>Ny;}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00083}00083\ }
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00084}00084\ \ \ \ \ \textcolor{comment}{//\ Allocate\ memory\ for\ the\ spines\ and\ fractions\ along\ spines}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00085}00085\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00086}00086\ }
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00087}00087\ \ \ \ \ \textcolor{comment}{//\ Read\ out\ number\ of\ linear\ points\ in\ the\ element}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00088}00088\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{n\_p}}\ =\ \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1TetgenMesh}{ELEMENT}}*\textcolor{keyword}{>}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{finite\_element\_pt}}(0))-\/>\mbox{\hyperlink{classoomph_1_1TetgenMesh}{nnode\_1d}}();}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00089}00089\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{Spine\_pt}}.reserve((\mbox{\hyperlink{classoomph_1_1TetgenMesh}{n\_p}}\ -\/\ 1)\ *\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{n\_y}}\ +\ 1);}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00090}00090\ }
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00091}00091\ \ \ \ \ \textcolor{comment}{//\ FIRST\ SPINE}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00092}00092\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00093}00093\ }
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00094}00094\ \ \ \ \ \textcolor{comment}{//\ Element\ 0}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00095}00095\ \ \ \ \ \textcolor{comment}{//\ Node\ 0}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00096}00096\ \ \ \ \ \textcolor{comment}{//\ Assign\ the\ new\ spine\ with\ unit\ length}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00097}00097\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{Spine}}*\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{new\_spine\_pt}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{Spine}}(1.0);}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00098}00098\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{Spine\_pt}}.push\_back(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{new\_spine\_pt}});}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00099}00099\ }
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00100}00100\ }
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00101}00101\ \ \ \ \ \textcolor{comment}{//\ Get\ pointer\ to\ node}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00102}00102\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{SpineNode}}*\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{nod\_pt}}\ =\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{element\_node\_pt}}(0,\ 0);}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00103}00103\ \ \ \ \ \textcolor{comment}{//\ Set\ the\ pointer\ to\ the\ spine}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00104}00104\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{nod\_pt}}-\/>spine\_pt()\ =\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{new\_spine\_pt}};}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00105}00105\ \ \ \ \ \textcolor{comment}{//\ Set\ the\ fraction}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00106}00106\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{nod\_pt}}-\/>fraction()\ =\ 0.0;}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00107}00107\ \ \ \ \ \textcolor{comment}{//\ Pointer\ to\ the\ mesh\ that\ implements\ the\ update\ fct}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00108}00108\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{nod\_pt}}-\/>spine\_mesh\_pt()\ =\ \textcolor{keyword}{this};}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00109}00109\ }
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00110}00110\ \ \ \ \ \textcolor{comment}{//\ Loop\ HORIZONTAL\ along\ the\ spine}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00111}00111\ \ \ \ \ \textcolor{comment}{//\ Loop\ over\ the\ elements}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00112}00112\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{i}}\ =\ 0;\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{i}}\ <\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{n\_x}};\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{i}}++)}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00113}00113\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00114}00114\ \ \ \ \ \ \ \textcolor{comment}{//\ Loop\ over\ the\ HORIZONTAL\ nodes,\ apart\ from\ the\ first}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00115}00115\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{l1}}\ =\ 1;\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{l1}}\ <\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{n\_p}};\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{l1}}++)}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00116}00116\ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00117}00117\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ pointer\ to\ node}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ SpineNode*\ nod\_pt=element\_node\_pt(i*n\_y,l1*n\_p);}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00119}00119\ }
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00120}00120\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ pointer\ to\ node(without\ reoder)}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00121}00121\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{SpineNode}}*\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{nod\_pt}}\ =\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{element\_node\_pt}}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{i}},\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{l1}});}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00122}00122\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ the\ pointer\ to\ the\ spine}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00123}00123\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{nod\_pt}}-\/>spine\_pt()\ =\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{new\_spine\_pt}};}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00124}00124\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ the\ fraction}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00125}00125\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{nod\_pt}}-\/>fraction()\ =}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{classoomph_1_1TetgenMesh}{double}}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{i}})\ +\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{double}}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{l1}})\ /\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{double}}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{n\_p}}\ -\/\ 1))\ /\ \textcolor{keywordtype}{double}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{n\_x}});}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00127}00127\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pointer\ to\ the\ mesh\ that\ implements\ the\ update\ fct}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00128}00128\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{nod\_pt}}-\/>spine\_mesh\_pt()\ =\ \textcolor{keyword}{this};}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00129}00129\ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00130}00130\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00033}00033\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{rectangular__quadmesh_8h}{rectangular\_quadmesh.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00035}00035\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceoomph}{oomph}}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00036}00036\ \{}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00037}00037\ \ \ \textcolor{comment}{//===========================================================================}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00038}00038\ \textcolor{comment}{\ \ ///\ Constructor\ for\ spine\ 2D\ mesh:\ Pass\ number\ of\ elements\ in\ x-\/direction,}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00039}00039\ \textcolor{comment}{\ \ ///\ number\ of\ elements\ in\ y-\/direction,\ axial\ length\ and\ height\ of\ layer,}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00040}00040\ \textcolor{comment}{\ \ ///\ and\ pointer\ to\ timestepper\ (defaults\ to\ Static\ timestepper).}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00041}00041\ \textcolor{comment}{\ \ ///}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00042}00042\ \textcolor{comment}{\ \ ///\ The\ mesh\ contains\ a\ layer\ of\ spinified\ fluid\ elements\ (of\ type\ ELEMENT;}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00043}00043\ \textcolor{comment}{\ \ ///\ e.g\ \ SpineElement<QCrouzeixRaviartElement<2>)}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00044}00044\ \textcolor{comment}{\ \ ///\ and\ information\ about\ how\ the\ internal\ nodes\ positions\ are\ affected}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00045}00045\ \textcolor{comment}{\ \ ///\ by\ changes\ in\ spine\ length.\ Additional\ equations\ that\ determine\ the}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00046}00046\ \textcolor{comment}{\ \ ///\ spine\ heights\ must\ be\ specified\ in\ order\ to\ use\ this\ mesh.}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00047}00047\ \textcolor{comment}{}\ \ \textcolor{comment}{//===========================================================================}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00048}00048\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ ELEMENT>}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00049}\mbox{\hyperlink{classoomph_1_1HorizontalSingleLayerSpineMesh_a765856597150d37a20eabdb53e58d49c}{00049}}\ \ \ \mbox{\hyperlink{classoomph_1_1HorizontalSingleLayerSpineMesh_a765856597150d37a20eabdb53e58d49c}{HorizontalSingleLayerSpineMesh<ELEMENT>::HorizontalSingleLayerSpineMesh}}(}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00050}00050\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\&\ nx,}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00051}00051\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\&\ ny,}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00052}00052\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\&\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{lx}},}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00053}00053\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\&\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{h}},}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00054}00054\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{TimeStepper}}*\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{time\_stepper\_pt}})}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00055}00055\ \ \ \ \ :\ \mbox{\hyperlink{classoomph_1_1RectangularQuadMesh}{RectangularQuadMesh}}<\mbox{\hyperlink{classoomph_1_1TetgenMesh}{ELEMENT}}>(}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00056}00056\ \ \ \ \ \ \ \ \ nx,\ ny,\ 0.0,\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{lx}},\ 0.0,\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{h}},\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{false}},\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{false}},\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{time\_stepper\_pt}})}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00057}00057\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00058}00058\ \ \ \ \ \textcolor{comment}{//\ Mesh\ can\ only\ be\ built\ with\ 2D\ Qelements.}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00059}00059\ \ \ \ \ MeshChecker::assert\_geometric\_element<QElementGeometricBase,\ ELEMENT>(2);}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00061}00061\ \ \ \ \ \textcolor{comment}{//\ Mesh\ can\ only\ be\ built\ with\ spine\ elements}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00062}00062\ \ \ \ \ MeshChecker::assert\_geometric\_element<SpineFiniteElement,\ ELEMENT>(2);}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00064}00064\ \ \ \ \ \textcolor{comment}{//\ We've\ called\ the\ "{}generic"{}\ constructor\ for\ the\ RectangularQuadMesh}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00065}00065\ \ \ \ \ \textcolor{comment}{//\ which\ doesn't\ do\ much...}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00067}00067\ \ \ \ \ \textcolor{comment}{//\ Now\ build\ the\ mesh:}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00068}00068\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1HorizontalSingleLayerSpineMesh_a9bd06cd24d2c48c499bf149b1773b442}{build\_horizontal\_single\_layer\_mesh}}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{time\_stepper\_pt}});}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00069}00069\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00071}00071\ \ \ \textcolor{comment}{//===========================================================================}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00072}00072\ \textcolor{comment}{\ \ ///\ Helper\ function\ that\ actually\ builds\ the\ single-\/layer\ spine\ mesh}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00073}00073\ \textcolor{comment}{\ \ ///\ based\ on\ the\ parameters\ set\ in\ the\ various\ constructors}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00074}00074\ \textcolor{comment}{}\ \ \textcolor{comment}{//===========================================================================}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00075}00075\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ ELEMENT>}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00076}00076\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classoomph_1_1HorizontalSingleLayerSpineMesh}{HorizontalSingleLayerSpineMesh}}<}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00077}\mbox{\hyperlink{classoomph_1_1HorizontalSingleLayerSpineMesh_a9bd06cd24d2c48c499bf149b1773b442}{00077}}\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{ELEMENT}}>::build\_horizontal\_single\_layer\_mesh(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{TimeStepper}}*\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{time\_stepper\_pt}})}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00078}00078\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00079}00079\ \ \ \ \ \textcolor{comment}{//\ Build\ the\ underlying\ quad\ mesh:}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00080}00080\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1RectangularQuadMesh_afa579b413a2d8120e8228d840cb3582c}{RectangularQuadMesh<ELEMENT>::build\_mesh}}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{time\_stepper\_pt}});}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00082}00082\ \ \ \ \ \textcolor{comment}{//\ Read\ out\ the\ number\ of\ elements\ in\ the\ x-\/direction}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00083}00083\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{n\_x}}\ =\ this-\/>Nx;}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00084}00084\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{n\_y}}\ =\ this-\/>Ny;}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00086}00086\ \ \ \ \ \textcolor{comment}{//\ Allocate\ memory\ for\ the\ spines\ and\ fractions\ along\ spines}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00087}00087\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00089}00089\ \ \ \ \ \textcolor{comment}{//\ Read\ out\ number\ of\ linear\ points\ in\ the\ element}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00090}00090\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{n\_p}}\ =\ \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1TetgenMesh}{ELEMENT}}*\textcolor{keyword}{>}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{finite\_element\_pt}}(0))-\/>\mbox{\hyperlink{classoomph_1_1TetgenMesh}{nnode\_1d}}();}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00091}00091\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{Spine\_pt}}.reserve((\mbox{\hyperlink{classoomph_1_1TetgenMesh}{n\_p}}\ -\/\ 1)\ *\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{n\_y}}\ +\ 1);}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00093}00093\ \ \ \ \ \textcolor{comment}{//\ FIRST\ SPINE}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00094}00094\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00096}00096\ \ \ \ \ \textcolor{comment}{//\ Element\ 0}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00097}00097\ \ \ \ \ \textcolor{comment}{//\ Node\ 0}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00098}00098\ \ \ \ \ \textcolor{comment}{//\ Assign\ the\ new\ spine\ with\ unit\ length}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00099}00099\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{Spine}}*\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{new\_spine\_pt}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{Spine}}(1.0);}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00100}00100\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{Spine\_pt}}.push\_back(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{new\_spine\_pt}});}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00102}00102\ \ \ \ \ \textcolor{comment}{//\ Get\ pointer\ to\ node}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00103}00103\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{SpineNode}}*\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{nod\_pt}}\ =\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{element\_node\_pt}}(0,\ 0);}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00104}00104\ \ \ \ \ \textcolor{comment}{//\ Set\ the\ pointer\ to\ the\ spine}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00105}00105\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{nod\_pt}}-\/>spine\_pt()\ =\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{new\_spine\_pt}};}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00106}00106\ \ \ \ \ \textcolor{comment}{//\ Set\ the\ fraction}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00107}00107\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{nod\_pt}}-\/>fraction()\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00108}00108\ \ \ \ \ \textcolor{comment}{//\ Pointer\ to\ the\ mesh\ that\ implements\ the\ update\ fct}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00109}00109\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{nod\_pt}}-\/>spine\_mesh\_pt()\ =\ \textcolor{keyword}{this};}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00111}00111\ \ \ \ \ \textcolor{comment}{//\ Loop\ HORIZONTAL\ along\ the\ spine}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00112}00112\ \ \ \ \ \textcolor{comment}{//\ Loop\ over\ the\ elements}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00113}00113\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{i}}\ =\ 0;\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{i}}\ <\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{n\_x}};\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{i}}++)}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00114}00114\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00115}00115\ \ \ \ \ \ \ \textcolor{comment}{//\ Loop\ over\ the\ HORIZONTAL\ nodes,\ apart\ from\ the\ first}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00116}00116\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{l1}}\ =\ 1;\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{l1}}\ <\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{n\_p}};\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{l1}}++)}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00117}00117\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ pointer\ to\ node}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00119}00119\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ SpineNode*\ nod\_pt=element\_node\_pt(i*n\_y,l1*n\_p);}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ pointer\ to\ node(without\ reoder)}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00122}00122\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{SpineNode}}*\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{nod\_pt}}\ =\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{element\_node\_pt}}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{i}},\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{l1}});}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00123}00123\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ the\ pointer\ to\ the\ spine}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00124}00124\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{nod\_pt}}-\/>spine\_pt()\ =\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{new\_spine\_pt}};}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00125}00125\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ the\ fraction}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00126}00126\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{nod\_pt}}-\/>fraction()\ =}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{classoomph_1_1TetgenMesh}{double}}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{i}})\ +\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{double}}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{l1}})\ /\ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{double}}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{n\_p}}\ -\/\ 1))\ /\ \textcolor{keywordtype}{double}(\mbox{\hyperlink{classoomph_1_1TetgenMesh}{n\_x}});}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00128}00128\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pointer\ to\ the\ mesh\ that\ implements\ the\ update\ fct}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00129}00129\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TetgenMesh}{nod\_pt}}-\/>spine\_mesh\_pt()\ =\ \textcolor{keyword}{this};}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00130}00130\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00131}00131\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00132}00132\ }
 \DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00133}00133\ \ \ \ \ \textcolor{comment}{//\ LOOP\ OVER\ OTHER\ SPINES}}
 \DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00134}00134\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
@@ -189,8 +189,7 @@
 \DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00185}00185\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00186}00186\ \ \ \}}
 \DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00187}00187\ }
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00188}00188\ }
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00189}00189\ \}\ \textcolor{comment}{//\ namespace\ oomph}}
-\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00190}00190\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00188}00188\ \}\ \textcolor{comment}{//\ namespace\ oomph}}
+\DoxyCodeLine{\Hypertarget{horizontal__single__layer__spine__mesh_8template_8cc_source_l00189}00189\ \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

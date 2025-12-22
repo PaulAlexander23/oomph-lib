@@ -652,7 +652,7 @@ We start the post-\/processing routine by plotting the shape of the deformed bod
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ shape\ of\ deformed\ body}}
 \DoxyCodeLine{\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{sprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{doc\_info}}.directory().c\_str(),}
+\DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{snprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{doc\_info}}.number());}
 \DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{some\_file}}.open(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}});}
 \DoxyCodeLine{\ mesh\_pt()-\/>output(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{some\_file}},\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{npts}});}
@@ -701,12 +701,12 @@ We start the post-\/processing routine by plotting the shape of the deformed bod
 \DoxyCodeLine{\ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{nelem}}=mesh\_pt()-\/>nboundary\_element(0);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \textcolor{comment}{//\ Open\ files}}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{sprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\textcolor{stringliteral}{"{}\%s/displ\_along\_line\%i.dat"{}},\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{doc\_info}}.directory().c\_str(),}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{snprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/displ\_along\_line\%i.dat"{}},\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{doc\_info}}.number());}
 \DoxyCodeLine{\ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{some\_file}}.open(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}});}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{ofstream}}\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{some\_file2}};}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{sprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\textcolor{stringliteral}{"{}\%s/exact\_displ\_along\_line\%i.dat"{}},}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{snprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/exact\_displ\_along\_line\%i.dat"{}},}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{doc\_info}}.number());}
 \DoxyCodeLine{\ \ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{some\_file2}}.open(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}});}
@@ -787,7 +787,7 @@ Before starting the time-\/integration we create an output directory and open a 
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}}[100];\ \ \ }
-\DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{sprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\textcolor{stringliteral}{"{}\%s/trace.dat"{}},\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{doc\_info}}.directory().c\_str());}
+\DoxyCodeLine{\ \mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{snprintf}}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}}),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{doc\_info}}.directory().c\_str());}
 \DoxyCodeLine{\ Trace\_file.open(\mbox{\hyperlink{classElasticRefineableQuarterCircleSectorMesh}{filename}});}
 
 \end{DoxyCodeInclude}
@@ -883,4 +883,4 @@ If the "{}multiplier"{} is not (or wrongly) specified, the assignment of the his
 \end{DoxyItemize}\DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

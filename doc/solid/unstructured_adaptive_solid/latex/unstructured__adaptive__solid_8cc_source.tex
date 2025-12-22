@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -43,9 +43,9 @@
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00039}00039\ \textcolor{keyword}{using\ namespace\ }std;}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00040}00040\ \textcolor{keyword}{using\ namespace\ }oomph;}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00041}00041\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00042}00042\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00043}00043\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00044}00044\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00042}00042\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00043}00043\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00044}00044\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00045}00045\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00046}00046\ }
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00047}00047\ }
@@ -283,7 +283,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00279}00279\ }
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00280}00280\ \ \textcolor{comment}{//\ Output\ solution}}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00281}00281\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00282}00282\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00282}00282\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00283}00283\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00284}00284\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00285}00285\ \ Solid\_mesh\_pt-\/>output(some\_file,npts);}
@@ -291,7 +291,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00287}00287\ }
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00288}00288\ \ \textcolor{comment}{//\ Output\ traction}}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00289}00289\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00290}00290\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/traction\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00290}00290\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/traction\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00291}00291\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00292}00292\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00293}00293\ \ Traction\_mesh\_pt-\/>output(some\_file,npts);}
@@ -299,7 +299,7 @@
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00295}00295\ }
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00296}00296\ \ \textcolor{comment}{//\ Output\ boundaries}}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00297}00297\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00298}00298\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/boundaries.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00298}00298\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/boundaries.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00299}00299\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00300}00300\ \ Solid\_mesh\_pt-\/>output\_boundaries(some\_file);}
 \DoxyCodeLine{\Hypertarget{unstructured__adaptive__solid_8cc_source_l00301}00301\ \ some\_file.close();}

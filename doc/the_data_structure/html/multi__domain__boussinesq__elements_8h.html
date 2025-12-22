@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -137,13 +131,13 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1RefineableNavierStokesBoussinesqElement.html">oomph::RefineableNavierStokesBoussinesqElement&lt; NST_ELEMENT, AD_ELEMENT &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////  <a href="classoomph_1_1RefineableNavierStokesBoussinesqElement.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build a refineable Navier Stokes element that inherits from <a class="el" href="classoomph_1_1ElementWithExternalElement.html" title="This is a base class for all elements that require external sources (e.g. FSI, multi-domain problems ...">ElementWithExternalElement</a> so that it can "communicate" with an advection diffusion element that provides the temperature in the body force term.  <a href="classoomph_1_1RefineableNavierStokesBoussinesqElement.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1RefineableAdvectionDiffusionBoussinesqElement.html">oomph::RefineableAdvectionDiffusionBoussinesqElement&lt; AD_ELEMENT, NST_ELEMENT &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">//////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////  <a href="classoomph_1_1RefineableAdvectionDiffusionBoussinesqElement.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build an AdvectionDiffusionElement that inherits from <a class="el" href="classoomph_1_1ElementWithExternalElement.html" title="This is a base class for all elements that require external sources (e.g. FSI, multi-domain problems ...">ElementWithExternalElement</a> so that it can "communicate" with the a NavierStokesElement that provides its wind.  <a href="classoomph_1_1RefineableAdvectionDiffusionBoussinesqElement.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1NavierStokesBoussinesqElement.html">oomph::NavierStokesBoussinesqElement&lt; NST_ELEMENT, AD_ELEMENT &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////  <a href="classoomph_1_1NavierStokesBoussinesqElement.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build <a class="el" href="classoomph_1_1NavierStokesBoussinesqElement.html" title="Build NavierStokesBoussinesqElement that inherits from ElementWithExternalElement so that it can &quot;com...">NavierStokesBoussinesqElement</a> that inherits from <a class="el" href="classoomph_1_1ElementWithExternalElement.html" title="This is a base class for all elements that require external sources (e.g. FSI, multi-domain problems ...">ElementWithExternalElement</a> so that it can "communicate" with AdvectionDiffusionElementWithExternalElement.  <a href="classoomph_1_1NavierStokesBoussinesqElement.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1FaceGeometry_3_01NavierStokesBoussinesqElement_3_01NST__ELEMENT_00_01AD__ELEMENT_01_4_01_4.html">oomph::FaceGeometry&lt; NavierStokesBoussinesqElement&lt; NST_ELEMENT, AD_ELEMENT &gt; &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit definition of the face geometry of these elements.  <a href="classoomph_1_1FaceGeometry_3_01NavierStokesBoussinesqElement_3_01NST__ELEMENT_00_01AD__ELEMENT_01_4_01_4.html#details">More...</a><br /></td></tr>
@@ -152,13 +146,13 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit definition of the face geometry of these elements.  <a href="classoomph_1_1FaceGeometry_3_01FaceGeometry_3_01NavierStokesBoussinesqElement_3_01NST__ELEMENT_00_01AD__ELEMENT_01_4_01_4_01_4.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1AdvectionDiffusionBoussinesqElement.html">oomph::AdvectionDiffusionBoussinesqElement&lt; AD_ELEMENT, NST_ELEMENT &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">/////////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////////  <a href="classoomph_1_1AdvectionDiffusionBoussinesqElement.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build <a class="el" href="classoomph_1_1AdvectionDiffusionBoussinesqElement.html" title="Build AdvectionDiffusionBoussinesqElement that inherits from ElementWithExternalElement so that it ca...">AdvectionDiffusionBoussinesqElement</a> that inherits from <a class="el" href="classoomph_1_1ElementWithExternalElement.html" title="This is a base class for all elements that require external sources (e.g. FSI, multi-domain problems ...">ElementWithExternalElement</a> so that it can "communicate" with the Navier Stokes element.  <a href="classoomph_1_1AdvectionDiffusionBoussinesqElement.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespaceoomph" id="r_namespaceoomph"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceoomph.html">oomph</a></td></tr>
-<tr class="memdesc:namespaceoomph"><td class="mdescLeft">&#160;</td><td class="mdescRight">//////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////// <br /></td></tr>
+<tr class="memdesc:namespaceoomph"><td class="mdescLeft">&#160;</td><td class="mdescRight">DRAIG: Change all instances of (SPATIAL_DIM) to (DIM-1). <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceoomph_1_1MultiDomainBoussinesqHelper" id="r_namespaceoomph_1_1MultiDomainBoussinesqHelper"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceoomph_1_1MultiDomainBoussinesqHelper.html">oomph::MultiDomainBoussinesqHelper</a></td></tr>
 <tr class="memdesc:namespaceoomph_1_1MultiDomainBoussinesqHelper"><td class="mdescLeft">&#160;</td><td class="mdescRight">Namespace for default parameters in multi-domain Boussinesq. <br /></td></tr>
@@ -198,7 +192,7 @@ Variables</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:03:12
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:36:34
         </div>
       </div>
     </footer>

@@ -240,6 +240,10 @@ Inheritance diagram for oomph\+::Refineable\+Line\+Mesh\texorpdfstring{$<$}{<} E
 \begin{DoxyCompactList}\small\item\em Replace existing boundary node lookup schemes with new schemes created using the boundary data stored in the nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1Mesh_ad1b124a959628aba00162b89617b3a62}{boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Indicate whether the i-\/th boundary has an intrinsic coordinate. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_ab137d0c0debf5ba0d6ea6990103e620c}{set\+\_\+boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be existing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_a3b9d63e0057ed721190b109f48f7c92e}{set\+\_\+boundary\+\_\+coordinate\+\_\+does\+\_\+not\+\_\+exist}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be non-\/existing. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_af01dfefb66c15579b540be62999d93ee}{nelement}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return number of elements in the mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
@@ -666,9 +670,7 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_aca12acfe655a4d5c4a4eab4a7b970812}{Element\+\_\+pt}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a412a5051be9e81f0ba61bf85e5abc4a6}{Boundary\+\_\+coordinate\+\_\+exists}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of boolean data that indicates whether the boundary coordinates have been set for the boundary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -678,7 +680,7 @@ Intermediate mesh class that implements the mesh adaptation functions specified 
 
 \doxylink{classoomph_1_1Mesh}{Mesh} adaptation/refinement is implemented by \doxylink{classoomph_1_1BinaryTree}{Binary\+Tree} procedures and any concrete implementation of this class needs to provide a \doxylink{classoomph_1_1BinaryTreeForest}{Binary\+Tree\+Forest} representation of the initial (coarse) mesh. 
 
-Definition at line \mbox{\hyperlink{refineable__line__mesh_8h_source_l00048}{48}} of file \mbox{\hyperlink{refineable__line__mesh_8h_source}{refineable\+\_\+line\+\_\+mesh.\+h}}.
+Definition at line \mbox{\hyperlink{refineable__line__mesh_8h_source_l00046}{46}} of file \mbox{\hyperlink{refineable__line__mesh_8h_source}{refineable\+\_\+line\+\_\+mesh.\+h}}.
 
 
 
@@ -696,7 +698,7 @@ Constructor\+: Set up static binary tree data.
 
 
 
-Definition at line \mbox{\hyperlink{refineable__line__mesh_8h_source_l00053}{53}} of file \mbox{\hyperlink{refineable__line__mesh_8h_source}{refineable\+\_\+line\+\_\+mesh.\+h}}.
+Definition at line \mbox{\hyperlink{refineable__line__mesh_8h_source_l00051}{51}} of file \mbox{\hyperlink{refineable__line__mesh_8h_source}{refineable\+\_\+line\+\_\+mesh.\+h}}.
 
 
 
@@ -726,7 +728,7 @@ Destructor\+:
 
 
 
-Definition at line \mbox{\hyperlink{refineable__line__mesh_8h_source_l00067}{67}} of file \mbox{\hyperlink{refineable__line__mesh_8h_source}{refineable\+\_\+line\+\_\+mesh.\+h}}.
+Definition at line \mbox{\hyperlink{refineable__line__mesh_8h_source_l00065}{65}} of file \mbox{\hyperlink{refineable__line__mesh_8h_source}{refineable\+\_\+line\+\_\+mesh.\+h}}.
 
 
 
@@ -755,15 +757,15 @@ Set up \doxylink{classoomph_1_1BinaryTreeForest}{Binary\+Tree\+Forest}. Wipes an
 
 
 
-Definition at line \mbox{\hyperlink{refineable__line__mesh_8h_source_l00078}{78}} of file \mbox{\hyperlink{refineable__line__mesh_8h_source}{refineable\+\_\+line\+\_\+mesh.\+h}}.
+Definition at line \mbox{\hyperlink{refineable__line__mesh_8h_source_l00076}{76}} of file \mbox{\hyperlink{refineable__line__mesh_8h_source}{refineable\+\_\+line\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00460}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00768}{oomph\+::\+Tree\+Based\+Refineable\+Mesh\+Base\+::\+Forest\+\_\+pt}}, and \mbox{\hyperlink{mesh_8h_source_l00590}{oomph\+::\+Mesh\+::nelement()}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00464}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00768}{oomph\+::\+Tree\+Based\+Refineable\+Mesh\+Base\+::\+Forest\+\_\+pt}}, and \mbox{\hyperlink{mesh_8h_source_l00598}{oomph\+::\+Mesh\+::nelement()}}.
 
 
 
-Referenced by \mbox{\hyperlink{one__d__mesh_8template_8h_source_l00127}{oomph\+::\+Refineable\+One\+DMesh$<$ ELEMENT $>$\+::\+Refineable\+One\+DMesh()}}, \mbox{\hyperlink{one__d__mesh_8template_8h_source_l00141}{oomph\+::\+Refineable\+One\+DMesh$<$ ELEMENT $>$\+::\+Refineable\+One\+DMesh()}}, and \mbox{\hyperlink{refineable__line__mesh_8h_source_l00071}{oomph\+::\+Refineable\+Line\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+tree\+\_\+forest()}}.
+Referenced by \mbox{\hyperlink{one__d__mesh_8h_source_l00126}{oomph\+::\+Refineable\+One\+DMesh$<$ ELEMENT $>$\+::\+Refineable\+One\+DMesh()}}, \mbox{\hyperlink{one__d__mesh_8h_source_l00140}{oomph\+::\+Refineable\+One\+DMesh$<$ ELEMENT $>$\+::\+Refineable\+One\+DMesh()}}, and \mbox{\hyperlink{refineable__line__mesh_8h_source_l00069}{oomph\+::\+Refineable\+Line\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+tree\+\_\+forest()}}.
 
 \Hypertarget{classoomph_1_1RefineableLineMesh_a11ee25cace35f302fdf64b623906ea35}\label{classoomph_1_1RefineableLineMesh_a11ee25cace35f302fdf64b623906ea35} 
 \index{oomph::RefineableLineMesh$<$ ELEMENT $>$@{oomph::RefineableLineMesh$<$ ELEMENT $>$}!setup\_tree\_forest@{setup\_tree\_forest}}
@@ -782,11 +784,11 @@ Implements \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMeshBase_aab7cbaa68
 
 
 
-Definition at line \mbox{\hyperlink{refineable__line__mesh_8h_source_l00071}{71}} of file \mbox{\hyperlink{refineable__line__mesh_8h_source}{refineable\+\_\+line\+\_\+mesh.\+h}}.
+Definition at line \mbox{\hyperlink{refineable__line__mesh_8h_source_l00069}{69}} of file \mbox{\hyperlink{refineable__line__mesh_8h_source}{refineable\+\_\+line\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{refineable__line__mesh_8h_source_l00078}{oomph\+::\+Refineable\+Line\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+binary\+\_\+tree\+\_\+forest()}}.
+References \mbox{\hyperlink{refineable__line__mesh_8h_source_l00076}{oomph\+::\+Refineable\+Line\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+binary\+\_\+tree\+\_\+forest()}}.
 
 
 

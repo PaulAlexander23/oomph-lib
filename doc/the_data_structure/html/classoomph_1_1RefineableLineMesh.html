@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -131,7 +125,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Intermediate mesh class that implements the mesh adaptation functions specified in the RefineableMesh class for meshes that contain the refineable variant of <a class="el" href="classoomph_1_1QElement.html" title="/////////////////////////////////////////////////////////////////////// /////////////////////////////...">QElement</a> s [The class ELEMENT provided as the template parameter must be of type <a class="el" href="classoomph_1_1RefineableQElement_3_011_01_4.html" title="Refineable version of QElement&lt;1,NNODE_1D&gt;.">RefineableQElement&lt;1&gt;</a>].  
+<p>Intermediate mesh class that implements the mesh adaptation functions specified in the RefineableMesh class for meshes that contain the refineable variant of <a class="el" href="classoomph_1_1QElement.html" title="General QElement class.">QElement</a> s [The class ELEMENT provided as the template parameter must be of type <a class="el" href="classoomph_1_1RefineableQElement_3_011_01_4.html" title="Refineable version of QElement&lt;1,NNODE_1D&gt;.">RefineableQElement&lt;1&gt;</a>].  
  <a href="classoomph_1_1RefineableLineMesh.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="refineable__line__mesh_8h_source.html">refineable_line_mesh.h</a>&gt;</code></p>
@@ -143,9 +137,9 @@ $(function() {
  <div class="center">
   <img src="classoomph_1_1RefineableLineMesh.png" usemap="#oomph::RefineableLineMesh_3C_20ELEMENT_20_3E_map" alt=""/>
   <map id="oomph::RefineableLineMesh_3C_20ELEMENT_20_3E_map" name="oomph::RefineableLineMesh_3C_20ELEMENT_20_3E_map">
-<area href="classoomph_1_1TreeBasedRefineableMesh.html" title="///////////////////////////////////////////////////////////////// ///////////////////////////////////..." alt="oomph::TreeBasedRefineableMesh&lt; ELEMENT &gt;" shape="rect" coords="0,168,538,192"/>
+<area href="classoomph_1_1TreeBasedRefineableMesh.html" title="Templated base class for refineable meshes. The use of the template parameter is required only for cr..." alt="oomph::TreeBasedRefineableMesh&lt; ELEMENT &gt;" shape="rect" coords="0,168,538,192"/>
 <area href="classoomph_1_1LineMeshBase.html" title="Base class for line meshes (meshes made of 1D line elements)" alt="oomph::LineMeshBase" shape="rect" coords="548,168,1086,192"/>
-<area href="classoomph_1_1TreeBasedRefineableMeshBase.html" title="///////////////////////////////////////////////////////////////// ///////////////////////////////////..." alt="oomph::TreeBasedRefineableMeshBase" shape="rect" coords="0,112,538,136"/>
+<area href="classoomph_1_1TreeBasedRefineableMeshBase.html" title="Base class for tree-based refineable meshes." alt="oomph::TreeBasedRefineableMeshBase" shape="rect" coords="0,112,538,136"/>
 <area href="classoomph_1_1Mesh.html" title="A general mesh class." alt="oomph::Mesh" shape="rect" coords="548,112,1086,136"/>
 <area href="classoomph_1_1RefineableMeshBase.html" title="Base class for refineable meshes. Provides standardised interfaces for the following standard mesh ad..." alt="oomph::RefineableMeshBase" shape="rect" coords="0,56,538,80"/>
 <area href="classoomph_1_1Mesh.html" title="A general mesh class." alt="oomph::Mesh" shape="rect" coords="0,0,538,24"/>
@@ -477,6 +471,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad1b124a959628aba00162b89617b3a62 inherit pub_methods_classoomph_1_1Mesh" id="r_ad1b124a959628aba00162b89617b3a62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#ad1b124a959628aba00162b89617b3a62">boundary_coordinate_exists</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>) <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a></td></tr>
 <tr class="memdesc:ad1b124a959628aba00162b89617b3a62 inherit pub_methods_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicate whether the i-th boundary has an intrinsic coordinate.  <br /></td></tr>
 <tr class="separator:ad1b124a959628aba00162b89617b3a62 inherit pub_methods_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab137d0c0debf5ba0d6ea6990103e620c inherit pub_methods_classoomph_1_1Mesh" id="r_ab137d0c0debf5ba0d6ea6990103e620c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#ab137d0c0debf5ba0d6ea6990103e620c">set_boundary_coordinate_exists</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>)</td></tr>
+<tr class="memdesc:ab137d0c0debf5ba0d6ea6990103e620c inherit pub_methods_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set boundary coordinate on the i-th boundary to be existing.  <br /></td></tr>
+<tr class="separator:ab137d0c0debf5ba0d6ea6990103e620c inherit pub_methods_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b9d63e0057ed721190b109f48f7c92e inherit pub_methods_classoomph_1_1Mesh" id="r_a3b9d63e0057ed721190b109f48f7c92e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#a3b9d63e0057ed721190b109f48f7c92e">set_boundary_coordinate_does_not_exist</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>)</td></tr>
+<tr class="memdesc:a3b9d63e0057ed721190b109f48f7c92e inherit pub_methods_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set boundary coordinate on the i-th boundary to be non-existing.  <br /></td></tr>
+<tr class="separator:a3b9d63e0057ed721190b109f48f7c92e inherit pub_methods_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af01dfefb66c15579b540be62999d93ee inherit pub_methods_classoomph_1_1Mesh" id="r_af01dfefb66c15579b540be62999d93ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">long</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#af01dfefb66c15579b540be62999d93ee">nelement</a> () <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a></td></tr>
 <tr class="memdesc:af01dfefb66c15579b540be62999d93ee inherit pub_methods_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return number of elements in the mesh.  <br /></td></tr>
 <tr class="separator:af01dfefb66c15579b540be62999d93ee inherit pub_methods_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -925,7 +925,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a90a3555bd14fdfe3b0c503672f832a43 inherit pub_attribs_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_attribs_classoomph_1_1Mesh"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_classoomph_1_1Mesh')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="classoomph_1_1Mesh.html">oomph::Mesh</a></td></tr>
 <tr class="memitem:a12243d0fee2b1fcee729ee5a4777ea10 inherit pub_static_attribs_classoomph_1_1Mesh" id="r_a12243d0fee2b1fcee729ee5a4777ea10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">static</a> <a class="el" href="classoomph_1_1Steady.html">Steady</a>&lt; 0 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#a12243d0fee2b1fcee729ee5a4777ea10">Default_TimeStepper</a></td></tr>
-<tr class="memdesc:a12243d0fee2b1fcee729ee5a4777ea10 inherit pub_static_attribs_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default <a class="el" href="classoomph_1_1Steady.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////...">Steady</a> Timestepper, to be used in default arguments to <a class="el" href="classoomph_1_1Mesh.html" title="A general mesh class.">Mesh</a> constructors.  <br /></td></tr>
+<tr class="memdesc:a12243d0fee2b1fcee729ee5a4777ea10 inherit pub_static_attribs_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default <a class="el" href="classoomph_1_1Steady.html" title="Faux time-stepper for steady problems. Allows storage for NSTEPS previous values.">Steady</a> Timestepper, to be used in default arguments to <a class="el" href="classoomph_1_1Mesh.html" title="A general mesh class.">Mesh</a> constructors.  <br /></td></tr>
 <tr class="separator:a12243d0fee2b1fcee729ee5a4777ea10 inherit pub_static_attribs_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada6bc12304d1536b747596d1049e48be inherit pub_static_attribs_classoomph_1_1Mesh" id="r_ada6bc12304d1536b747596d1049e48be"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">static</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#ada6bc12304d1536b747596d1049e48be">Suppress_warning_about_empty_mesh_level_time_stepper_function</a></td></tr>
 <tr class="memdesc:ada6bc12304d1536b747596d1049e48be inherit pub_static_attribs_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean used to control warning about empty mesh level timestepper function.  <br /></td></tr>
@@ -1083,16 +1083,13 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:aca12acfe655a4d5c4a4eab4a7b970812 inherit pro_attribs_classoomph_1_1Mesh" id="r_aca12acfe655a4d5c4a4eab4a7b970812"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; <a class="el" href="classoomph_1_1GeneralisedElement.html">GeneralisedElement</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#aca12acfe655a4d5c4a4eab4a7b970812">Element_pt</a></td></tr>
 <tr class="memdesc:aca12acfe655a4d5c4a4eab4a7b970812 inherit pro_attribs_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> of pointers to generalised elements.  <br /></td></tr>
 <tr class="separator:aca12acfe655a4d5c4a4eab4a7b970812 inherit pro_attribs_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a412a5051be9e81f0ba61bf85e5abc4a6 inherit pro_attribs_classoomph_1_1Mesh" id="r_a412a5051be9e81f0ba61bf85e5abc4a6"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#a412a5051be9e81f0ba61bf85e5abc4a6">Boundary_coordinate_exists</a></td></tr>
-<tr class="memdesc:a412a5051be9e81f0ba61bf85e5abc4a6 inherit pro_attribs_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> of boolean data that indicates whether the boundary coordinates have been set for the boundary.  <br /></td></tr>
-<tr class="separator:a412a5051be9e81f0ba61bf85e5abc4a6 inherit pro_attribs_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">class</a> ELEMENT&gt;<br />
-class oomph::RefineableLineMesh&lt; ELEMENT &gt;</div><p>Intermediate mesh class that implements the mesh adaptation functions specified in the RefineableMesh class for meshes that contain the refineable variant of <a class="el" href="classoomph_1_1QElement.html" title="/////////////////////////////////////////////////////////////////////// /////////////////////////////...">QElement</a> s [The class ELEMENT provided as the template parameter must be of type <a class="el" href="classoomph_1_1RefineableQElement_3_011_01_4.html" title="Refineable version of QElement&lt;1,NNODE_1D&gt;.">RefineableQElement&lt;1&gt;</a>]. </p>
+class oomph::RefineableLineMesh&lt; ELEMENT &gt;</div><p>Intermediate mesh class that implements the mesh adaptation functions specified in the RefineableMesh class for meshes that contain the refineable variant of <a class="el" href="classoomph_1_1QElement.html" title="General QElement class.">QElement</a> s [The class ELEMENT provided as the template parameter must be of type <a class="el" href="classoomph_1_1RefineableQElement_3_011_01_4.html" title="Refineable version of QElement&lt;1,NNODE_1D&gt;.">RefineableQElement&lt;1&gt;</a>]. </p>
 <p><a class="el" href="classoomph_1_1Mesh.html" title="A general mesh class.">Mesh</a> adaptation/refinement is implemented by <a class="el" href="classoomph_1_1BinaryTree.html" title="BinaryTree class: Recursively defined, generalised binary tree.">BinaryTree</a> procedures and any concrete implementation of this class needs to provide a <a class="el" href="classoomph_1_1BinaryTreeForest.html" title="A BinaryTreeForest consists of a collection of BinaryTreeRoots. Each member tree can have neighbours ...">BinaryTreeForest</a> representation of the initial (coarse) mesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="refineable__line__mesh_8h_source.html#l00048">48</a> of file <a class="el" href="refineable__line__mesh_8h_source.html">refineable_line_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="refineable__line__mesh_8h_source.html#l00046">46</a> of file <a class="el" href="refineable__line__mesh_8h_source.html">refineable_line_mesh.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a971ed8cade766ab0d19aa35c2276f771" name="a971ed8cade766ab0d19aa35c2276f771"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a971ed8cade766ab0d19aa35c2276f771">&#9670;&#160;</a></span>RefineableLineMesh() <span class="overload">[1/2]</span></h2>
@@ -1121,7 +1118,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Constructor: Set up static binary tree data. </p>
 
-<p class="definition">Definition at line <a class="el" href="refineable__line__mesh_8h_source.html#l00053">53</a> of file <a class="el" href="refineable__line__mesh_8h_source.html">refineable_line_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="refineable__line__mesh_8h_source.html#l00051">51</a> of file <a class="el" href="refineable__line__mesh_8h_source.html">refineable_line_mesh.h</a>.</p>
 
 <p class="reference">References <a class="el" href="binary__tree_8cc_source.html#l00086">oomph::BinaryTree::setup_static_data()</a>.</p>
 
@@ -1184,7 +1181,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Destructor: </p>
 
-<p class="definition">Definition at line <a class="el" href="refineable__line__mesh_8h_source.html#l00067">67</a> of file <a class="el" href="refineable__line__mesh_8h_source.html">refineable_line_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="refineable__line__mesh_8h_source.html#l00065">65</a> of file <a class="el" href="refineable__line__mesh_8h_source.html">refineable_line_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -1246,11 +1243,11 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Set up <a class="el" href="classoomph_1_1BinaryTreeForest.html" title="A BinaryTreeForest consists of a collection of BinaryTreeRoots. Each member tree can have neighbours ...">BinaryTreeForest</a>. Wipes any existing tree structure and regards the currently active elements as the root trees in the forest. </p>
 
-<p class="definition">Definition at line <a class="el" href="refineable__line__mesh_8h_source.html#l00078">78</a> of file <a class="el" href="refineable__line__mesh_8h_source.html">refineable_line_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="refineable__line__mesh_8h_source.html#l00076">76</a> of file <a class="el" href="refineable__line__mesh_8h_source.html">refineable_line_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00460">oomph::Mesh::element_pt()</a>, <a class="el" href="refineable__mesh_8h_source.html#l00768">oomph::TreeBasedRefineableMeshBase::Forest_pt</a>, and <a class="el" href="mesh_8h_source.html#l00590">oomph::Mesh::nelement()</a>.</p>
+<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00464">oomph::Mesh::element_pt()</a>, <a class="el" href="refineable__mesh_8h_source.html#l00768">oomph::TreeBasedRefineableMeshBase::Forest_pt</a>, and <a class="el" href="mesh_8h_source.html#l00598">oomph::Mesh::nelement()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="one__d__mesh_8template_8h_source.html#l00127">oomph::RefineableOneDMesh&lt; ELEMENT &gt;::RefineableOneDMesh()</a>, <a class="el" href="one__d__mesh_8template_8h_source.html#l00141">oomph::RefineableOneDMesh&lt; ELEMENT &gt;::RefineableOneDMesh()</a>, and <a class="el" href="refineable__line__mesh_8h_source.html#l00071">oomph::RefineableLineMesh&lt; ELEMENT &gt;::setup_tree_forest()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="one__d__mesh_8h_source.html#l00126">oomph::RefineableOneDMesh&lt; ELEMENT &gt;::RefineableOneDMesh()</a>, <a class="el" href="one__d__mesh_8h_source.html#l00140">oomph::RefineableOneDMesh&lt; ELEMENT &gt;::RefineableOneDMesh()</a>, and <a class="el" href="refineable__line__mesh_8h_source.html#l00069">oomph::RefineableLineMesh&lt; ELEMENT &gt;::setup_tree_forest()</a>.</p>
 
 </div>
 </div>
@@ -1283,9 +1280,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Implements <a class="el" href="classoomph_1_1TreeBasedRefineableMeshBase.html#aab7cbaa680b2258f2b1eea5de6bbe605">oomph::TreeBasedRefineableMeshBase</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="refineable__line__mesh_8h_source.html#l00071">71</a> of file <a class="el" href="refineable__line__mesh_8h_source.html">refineable_line_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="refineable__line__mesh_8h_source.html#l00069">69</a> of file <a class="el" href="refineable__line__mesh_8h_source.html">refineable_line_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="refineable__line__mesh_8h_source.html#l00078">oomph::RefineableLineMesh&lt; ELEMENT &gt;::setup_binary_tree_forest()</a>.</p>
+<p class="reference">References <a class="el" href="refineable__line__mesh_8h_source.html#l00076">oomph::RefineableLineMesh&lt; ELEMENT &gt;::setup_binary_tree_forest()</a>.</p>
 
 </div>
 </div>
@@ -1320,7 +1317,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:05:21
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:42:06
         </div>
       </div>
     </footer>

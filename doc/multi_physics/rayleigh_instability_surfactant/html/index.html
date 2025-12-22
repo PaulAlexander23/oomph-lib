@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@ The example problem</h1>
 <center> <table class="doxtable">
 <tr>
 <td><center> <b> The unsteady axisymmetric free-surface Navier&ndash;Stokes equations with insoluble surfactant .</b> </center><p> Solve  </p><p class="formulaDsp">
-<picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 Re \left[
  St \frac{\partial u_r}{\partial t}
  + u_r \frac{\partial u_r}{\partial r}
@@ -135,10 +129,10 @@ Re \left[
   - \frac{u_r}{r^2}
   + \frac{\partial^2 u_r}{\partial z^2}
 \right],
-\]" src="form_0.png" width="426" height="33"/></picture>
+\]" src="form_0.png" width="426" height="33"/>
 </p>
   <p class="formulaDsp">
-<picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 Re \left[
   St \frac{\partial u_\theta}{\partial t}
   + u_r \frac{\partial u_\theta}{\partial r}
@@ -152,10 +146,10 @@ Re \left[
   - \frac{u_\theta}{r^2}
   + \frac{\partial^2 u_\theta}{\partial z^2}
 \right],
-\]" src="form_1.png" width="410" height="33"/></picture>
+\]" src="form_1.png" width="410" height="33"/>
 </p>
   <p class="formulaDsp">
-<picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 Re \left[
   St \frac{\partial u_z}{\partial t}
   + u_r \frac{\partial u_z}{\partial r}
@@ -166,45 +160,45 @@ Re \left[
   + \frac{1}{r}\frac{\partial u_z}{\partial r}
   + \frac{\partial^2 u_z}{\partial z^2}
 \right],
-\]" src="form_2.png" width="366" height="33"/></picture>
+\]" src="form_2.png" width="366" height="33"/>
 </p>
 <p> and  </p><p class="formulaDsp">
-<picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \frac{\partial u_r}{\partial r}
 + \frac{u_r}{r}
 + \frac{\partial u_z}{\partial z} = 0
 \ \ \ \ \ \ \ \ \ \ (1)
-\]" src="form_3.png" width="171" height="28"/></picture>
+\]" src="form_3.png" width="171" height="28"/>
 </p>
 <p> in the bulk fluid.</p>
 <p class="intertd">The governing equations are subject to the no slip boundary conditions  </p><p class="formulaDsp">
-<picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 u_r = u_\theta = u_z = 0 \ \ \ \ \ \ \ \ \ \ (2)
-\]" src="form_4.png" width="151" height="14"/></picture>
+\]" src="form_4.png" width="151" height="14"/>
 </p>
-<p> on the outer solid boundary ( <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ r = 1.0 $" src="form_5.png" width="40" height="9"/></picture>) and the symmetry boundary conditions  </p><p class="formulaDsp">
-<picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> on the outer solid boundary ( <img class="formulaInl" alt="$ r = 1.0 $" src="form_5.png" width="40" height="9"/>) and the symmetry boundary conditions  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 u_z = u_\theta = 0 \ \ \ \ \ \ \ \ \ \ (3)
-\]" src="form_6.png" width="123" height="14"/></picture>
+\]" src="form_6.png" width="123" height="14"/>
 </p>
-<p> on the bottom ( <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ z = 0.0 $" src="form_7.png" width="39" height="9"/></picture>) and top ( <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ z = \pi / \alpha $" src="form_8.png" width="45" height="14"/></picture>) boundaries.</p>
-<p class="intertd">We denote the position vector to the free surface by <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mathbf{R} $" src="form_9.png" width="13" height="10"/></picture>, which is subject to the kinematic condition  </p><p class="formulaDsp">
-<picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> on the bottom ( <img class="formulaInl" alt="$ z = 0.0 $" src="form_7.png" width="39" height="9"/>) and top ( <img class="formulaInl" alt="$ z = \pi / \alpha $" src="form_8.png" width="45" height="14"/>) boundaries.</p>
+<p class="intertd">We denote the position vector to the free surface by <img class="formulaInl" alt="$ \mathbf{R} $" src="form_9.png" width="13" height="10"/>, which is subject to the kinematic condition  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \left(u_i - St\, \frac{\partial R_i}{\partial t}\right) n_i = 0,
 \ \ \ \ \ \ \ \ \ \ (4)
-\]" src="form_10.png" width="180" height="31"/></picture>
+\]" src="form_10.png" width="180" height="31"/>
 </p>
 <p> and the dynamic condition  </p><p class="formulaDsp">
-<picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \tau_{ij}^{[2]}n_j = \tau_{ij}^{[1]}n_j+\frac{1}{Ca}\left (\sigma \kappa n_i
 + \frac{\partial \sigma}{\partial s} t_{i} \right).
 \ \ \ \ \ \ \ \ \ \ (5)
-\]" src="form_11.png" width="264" height="31"/></picture>
+\]" src="form_11.png" width="264" height="31"/>
 </p>
-<p> where <picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \sigma = \sigma^{*} / \sigma_{ref} $" src="form_12.png" width="66" height="14"/></picture> is the dimensionless surface tension relative to a reference value.</p>
-<p class="intertd">An insoluble surfactant of surface concentration <picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \Gamma^{*}$" src="form_13.png" width="14" height="10"/></picture> is non-dimensionalised with respect to a reference value <picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \Gamma =
- \Gamma^{*}/\Gamma_{ref} $" src="form_14.png" width="69" height="14"/></picture> and obeys the surface transport equation  </p><p class="formulaDsp">
-<picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[ St \left(\frac{\partial \Gamma}{\partial t} -
+<p> where <img class="formulaInl" alt="$ \sigma = \sigma^{*} / \sigma_{ref} $" src="form_12.png" width="66" height="14"/> is the dimensionless surface tension relative to a reference value.</p>
+<p class="intertd">An insoluble surfactant of surface concentration <img class="formulaInl" alt="$ \Gamma^{*}$" src="form_13.png" width="14" height="10"/> is non-dimensionalised with respect to a reference value <img class="formulaInl" alt="$ \Gamma =
+ \Gamma^{*}/\Gamma_{ref} $" src="form_14.png" width="69" height="14"/> and obeys the surface transport equation  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ St \left(\frac{\partial \Gamma}{\partial t} -
    \dot{\mbox{\boldmath$R$}} \mbox{\boldmath$\cdot$} 
    \mbox{\boldmath$\nabla$}_{\!\!_{S}} \Gamma \right) +
    \mbox{\boldmath$\nabla$}_{\!\!_{S}} \mbox{\boldmath$\cdot$} 
@@ -212,23 +206,23 @@ u_z = u_\theta = 0 \ \ \ \ \ \ \ \ \ \ (3)
    \frac{1}{Pe_{s}}
  \mbox{\boldmath$\nabla$}_{\!\!_{S}}\mbox{\boldmath$\cdot$}
  \mbox{\boldmath$\nabla$}_{\!\!_{S}}
-   \Gamma  \]" src="form_15.png" width="254" height="31"/></picture>
+   \Gamma  \]" src="form_15.png" width="254" height="31"/>
 </p>
 <p> on the interface.</p>
-<p class="intertd">The surface tension is a function of the surfactant concentration <picture><source srcset="form_16_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$
-\sigma(\Gamma)$" src="form_16.png" width="24" height="14"/></picture> and a linear equation of state is chosen  </p><p class="formulaDsp">
-<picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[ \sigma = 1 - \beta (\Gamma - 1).
- \]" src="form_17.png" width="96" height="14"/></picture>
+<p class="intertd">The surface tension is a function of the surfactant concentration <img class="formulaInl" alt="$
+\sigma(\Gamma)$" src="form_16.png" width="24" height="14"/> and a linear equation of state is chosen  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ \sigma = 1 - \beta (\Gamma - 1).
+ \]" src="form_17.png" width="96" height="14"/>
 </p>
-<p class="intertd">The symmetry boundary conditions on the bottom ( <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ z = 0.0 $" src="form_7.png" width="39" height="9"/></picture>) and top ( <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ z = \pi / \alpha $" src="form_8.png" width="45" height="14"/></picture>) boundaries are </p><p class="formulaDsp">
-<picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[ \frac{\partial \Gamma}{\partial z} = 0. \]" src="form_18.png" width="43" height="28"/></picture>
+<p class="intertd">The symmetry boundary conditions on the bottom ( <img class="formulaInl" alt="$ z = 0.0 $" src="form_7.png" width="39" height="9"/>) and top ( <img class="formulaInl" alt="$ z = \pi / \alpha $" src="form_8.png" width="45" height="14"/>) boundaries are </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ \frac{\partial \Gamma}{\partial z} = 0. \]" src="form_18.png" width="43" height="28"/>
 </p>
-<p class="endtd">Initially, the system is at rest and <picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \Gamma =1 $" src="form_19.png" width="31" height="10"/></picture>. The free surface is moved into the position:  </p><p class="formulaDsp">
-<picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p class="endtd">Initially, the system is at rest and <img class="formulaInl" alt="$ \Gamma =1 $" src="form_19.png" width="31" height="10"/>. The free surface is moved into the position:  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
  \mathbf{R} = \left[1.0 - H*(1.0 + \epsilon\cos \left(\alpha z\right)
- \right] \mbox{\boldmath$e$}_{r} \]" src="form_20.png" width="189" height="14"/></picture>
+ \right] \mbox{\boldmath$e$}_{r} \]" src="form_20.png" width="189" height="14"/>
 </p>
-<p> where <picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \epsilon $" src="form_21.png" width="5" height="6"/></picture> is a small parameter and <picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ H$" src="form_22.png" width="11" height="10"/></picture> is the undeformed film thickness.   </p>
+<p> where <img class="formulaInl" alt="$ \epsilon $" src="form_21.png" width="5" height="6"/> is a small parameter and <img class="formulaInl" alt="$ H$" src="form_22.png" width="11" height="10"/> is the undeformed film thickness.   </p>
 </td></tr>
 </table>
 <br  />
@@ -236,7 +230,7 @@ u_z = u_\theta = 0 \ \ \ \ \ \ \ \ \ \ (3)
  <hr  />
 <h1><a class="anchor" id="results"></a>
 Results</h1>
-<p>We choose parameters based on those used to compute Figures 8 and 9 in Campana et al; namely <picture><source srcset="form_23_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ H = 0.2 $" src="form_23.png" width="44" height="10"/></picture>, <picture><source srcset="form_24_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re = 40 $" src="form_24.png" width="44" height="10"/></picture>, <picture><source srcset="form_25_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ St = 1$" src="form_25.png" width="35" height="10"/></picture>, <picture><source srcset="form_26_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Ca = H^{3} $" src="form_26.png" width="49" height="11"/></picture>, <picture><source srcset="form_27_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \alpha = 1.047 $" src="form_27.png" width="54" height="9"/></picture>, <picture><source srcset="form_28_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \epsilon = 10^{-3}$" src="form_28.png" width="46" height="11"/></picture>, <picture><source srcset="form_29_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \beta = 3.6 \times 10^{-3} $" src="form_29.png" width="81" height="14"/></picture> and <picture><source srcset="form_30_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$Pe_{S} = 4032$" src="form_30.png" width="64" height="13"/></picture>. For these parameters, the system is unstable to the Rayleigh&ndash;Plateau instability and evolves towards a state in which the tube is completely occluded by the fluid at one end.</p>
+<p>We choose parameters based on those used to compute Figures 8 and 9 in Campana et al; namely <img class="formulaInl" alt="$ H = 0.2 $" src="form_23.png" width="44" height="10"/>, <img class="formulaInl" alt="$ Re = 40 $" src="form_24.png" width="44" height="10"/>, <img class="formulaInl" alt="$ St = 1$" src="form_25.png" width="35" height="10"/>, <img class="formulaInl" alt="$ Ca = H^{3} $" src="form_26.png" width="49" height="11"/>, <img class="formulaInl" alt="$ \alpha = 1.047 $" src="form_27.png" width="54" height="9"/>, <img class="formulaInl" alt="$ \epsilon = 10^{-3}$" src="form_28.png" width="46" height="11"/>, <img class="formulaInl" alt="$ \beta = 3.6 \times 10^{-3} $" src="form_29.png" width="81" height="14"/> and <img class="formulaInl" alt="$Pe_{S} = 4032$" src="form_30.png" width="64" height="13"/>. For these parameters, the system is unstable to the Rayleigh&ndash;Plateau instability and evolves towards a state in which the tube is completely occluded by the fluid at one end.</p>
 <div class="image">
 <img src="trace.gif" alt=""/>
 <div class="caption">
@@ -535,7 +529,7 @@ Exercises</h2>
 <li>Investigate the difference between the solutions for the two formulations of the surfactant transport equations. Which conserves mass more accurately? <br  />
 <br  />
 </li>
-<li>Investigate the influence of variations in <picture><source srcset="form_31_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\beta$" src="form_31.png" width="9" height="13"/></picture> and try to reproduce the results found by Campana et al.</li>
+<li>Investigate the influence of variations in <img class="formulaInl" alt="$\beta$" src="form_31.png" width="9" height="13"/> and try to reproduce the results found by Campana et al.</li>
 <li>Look at the three-dimensional (non-axisymmetric) version of the code found in the same directory. Confirm that the same results are produced. Is the instability stable to non-axisymmetric perturbations? Use the code to investigate what happens if you make the cross-sectional boundary slightly elliptical rather than circular?</li>
 </ol>
 <hr  />
@@ -569,7 +563,7 @@ demo_drivers/multi_physics/boussinesq_convection/multi_domain_boussinesq_convect
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -599,7 +593,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:30:57
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:39:50
         </div>
       </div>
     </footer>

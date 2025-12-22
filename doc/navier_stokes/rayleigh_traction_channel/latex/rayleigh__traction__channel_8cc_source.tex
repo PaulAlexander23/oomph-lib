@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -351,7 +351,7 @@
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00347}00347\ }
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00348}00348\ }
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00349}00349\ \ \textcolor{comment}{//\ Output\ solution\ }}
-\DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00350}00350\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00350}00350\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00351}00351\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00352}00352\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00353}00353\ \ Bulk\_mesh\_pt-\/>output(some\_file,npts);}
@@ -371,7 +371,7 @@
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00367}00367\ \ }
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00368}00368\ \ \textcolor{comment}{//\ Output\ exact\ solution\ }}
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00369}00369\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00370}00370\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00370}00370\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00371}00371\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00372}00372\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00373}00373\ \ Bulk\_mesh\_pt-\/>output\_fct(some\_file,npts,time\_pt()-\/>time(),}
@@ -381,7 +381,7 @@
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00377}00377\ \ \textcolor{comment}{//\ Doc\ error}}
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00378}00378\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00379}00379\ \ \textcolor{keywordtype}{double}\ error,norm;}
-\DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00380}00380\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/error\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00380}00380\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/error\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00381}00381\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00382}00382\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00383}00383\ \ Bulk\_mesh\_pt-\/>compute\_error(some\_file,}
@@ -464,7 +464,7 @@
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00460}00460\ }
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00461}00461\ \ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00462}00462\ \ \textcolor{keywordtype}{char}\ filename[100];\ \ \ }
-\DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00463}00463\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00463}00463\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00464}00464\ \ Trace\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00465}00465\ }
 \DoxyCodeLine{\Hypertarget{rayleigh__traction__channel_8cc_source_l00466}00466\ \ \textcolor{comment}{//\ initialise\ Trace\ file}}

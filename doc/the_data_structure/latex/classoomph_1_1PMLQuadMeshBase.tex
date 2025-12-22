@@ -127,6 +127,10 @@ Inheritance diagram for oomph\+::PMLQuad\+Mesh\+Base\texorpdfstring{$<$}{<} ELEM
 \begin{DoxyCompactList}\small\item\em Replace existing boundary node lookup schemes with new schemes created using the boundary data stored in the nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1Mesh_ad1b124a959628aba00162b89617b3a62}{boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Indicate whether the i-\/th boundary has an intrinsic coordinate. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_ab137d0c0debf5ba0d6ea6990103e620c}{set\+\_\+boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be existing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_a3b9d63e0057ed721190b109f48f7c92e}{set\+\_\+boundary\+\_\+coordinate\+\_\+does\+\_\+not\+\_\+exist}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be non-\/existing. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_af01dfefb66c15579b540be62999d93ee}{nelement}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return number of elements in the mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
@@ -508,9 +512,7 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_aca12acfe655a4d5c4a4eab4a7b970812}{Element\+\_\+pt}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a412a5051be9e81f0ba61bf85e5abc4a6}{Boundary\+\_\+coordinate\+\_\+exists}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of boolean data that indicates whether the boundary coordinates have been set for the boundary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -518,7 +520,7 @@ std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionEleme
 class oomph\+::\+PMLQuad\+Mesh\+Base$<$ ELEMENT $>$}
 PML mesh class. Policy class for 2D PML meshes. 
 
-Definition at line \mbox{\hyperlink{pml__meshes_8h_source_l00185}{185}} of file \mbox{\hyperlink{pml__meshes_8h_source}{pml\+\_\+meshes.\+h}}.
+Definition at line \mbox{\hyperlink{pml__meshes_8h_source_l00184}{184}} of file \mbox{\hyperlink{pml__meshes_8h_source}{pml\+\_\+meshes.\+h}}.
 
 
 
@@ -536,7 +538,7 @@ Constructor\+: Create the underlying rectangular quad mesh.
 
 
 
-Definition at line \mbox{\hyperlink{pml__meshes_8h_source_l00190}{190}} of file \mbox{\hyperlink{pml__meshes_8h_source}{pml\+\_\+meshes.\+h}}.
+Definition at line \mbox{\hyperlink{pml__meshes_8h_source_l00189}{189}} of file \mbox{\hyperlink{pml__meshes_8h_source}{pml\+\_\+meshes.\+h}}.
 
 
 
@@ -558,11 +560,11 @@ Implements \mbox{\hyperlink{classoomph_1_1PMLMeshBase_a49d7e044f51a32bed758d4c16
 
 
 
-Definition at line \mbox{\hyperlink{pml__meshes_8h_source_l00212}{212}} of file \mbox{\hyperlink{pml__meshes_8h_source}{pml\+\_\+meshes.\+h}}.
+Definition at line \mbox{\hyperlink{pml__meshes_8h_source_l00211}{211}} of file \mbox{\hyperlink{pml__meshes_8h_source}{pml\+\_\+meshes.\+h}}.
 
 
 
-References \mbox{\hyperlink{mesh_8h_source_l00840}{oomph\+::\+Mesh\+::boundary\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00460}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00473}{oomph\+::\+Mesh\+::finite\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{mesh_8h_source_l00596}{oomph\+::\+Mesh\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02222}{oomph\+::\+Finite\+Element\+::nnode\+\_\+1d()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source_l00224}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::nx()}}, \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source_l00231}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::ny()}}, \mbox{\hyperlink{nodes_8h_source_l01060}{oomph\+::\+Node\+::x()}}, \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source_l00245}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::x\+\_\+max()}}, \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source_l00238}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::x\+\_\+min()}}, \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source_l00259}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::y\+\_\+max()}}, and \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source_l00252}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::y\+\_\+min()}}.
+References \mbox{\hyperlink{mesh_8h_source_l00848}{oomph\+::\+Mesh\+::boundary\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00464}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00477}{oomph\+::\+Mesh\+::finite\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l02214}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{mesh_8h_source_l00604}{oomph\+::\+Mesh\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02222}{oomph\+::\+Finite\+Element\+::nnode\+\_\+1d()}}, \mbox{\hyperlink{elements_8h_source_l02179}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{rectangular__quadmesh_8h_source_l00224}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::nx()}}, \mbox{\hyperlink{rectangular__quadmesh_8h_source_l00231}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::ny()}}, \mbox{\hyperlink{nodes_8h_source_l01060}{oomph\+::\+Node\+::x()}}, \mbox{\hyperlink{rectangular__quadmesh_8h_source_l00245}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::x\+\_\+max()}}, \mbox{\hyperlink{rectangular__quadmesh_8h_source_l00238}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::x\+\_\+min()}}, \mbox{\hyperlink{rectangular__quadmesh_8h_source_l00259}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::y\+\_\+max()}}, and \mbox{\hyperlink{rectangular__quadmesh_8h_source_l00252}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::y\+\_\+min()}}.
 
 
 

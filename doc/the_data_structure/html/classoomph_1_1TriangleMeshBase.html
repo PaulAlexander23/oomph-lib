@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -135,7 +129,7 @@ $(function() {
 <p>Base class for triangle meshes (meshes made of 2D triangle elements). Note: we choose to template <a class="el" href="classoomph_1_1TriangleMeshBase.html" title="Base class for triangle meshes (meshes made of 2D triangle elements). Note: we choose to template Tri...">TriangleMeshBase</a> here because certain functions in <a class="el" href="classoomph_1_1UnstructuredTwoDMeshGeometryBase.html" title="Contains functions which define the geometry of the mesh, i.e. regions, boundaries,...">UnstructuredTwoDMeshGeometryBase</a> need template parameters and it's much cleaner simply to template the entire class.  
  <a href="classoomph_1_1TriangleMeshBase.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="triangle__mesh_8h_source.html">triangle_mesh.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="generic_2triangle__mesh_8h_source.html">triangle_mesh.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for oomph::TriangleMeshBase:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -148,10 +142,10 @@ $(function() {
 <area href="classoomph_1_1Mesh.html" title="A general mesh class." alt="oomph::Mesh" shape="rect" coords="312,56,614,80"/>
 <area href="classoomph_1_1Mesh.html" title="A general mesh class." alt="oomph::Mesh" shape="rect" coords="0,0,302,24"/>
 <area href="classoomph_1_1SimpleRectangularTriMesh.html" title="Simple 2D triangular mesh for TElements." alt="oomph::SimpleRectangularTriMesh&lt; ELEMENT &gt;" shape="rect" coords="0,168,302,192"/>
-<area href="classoomph_1_1TriangleMesh.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////..." alt="oomph::TriangleMesh&lt; ELEMENT &gt;" shape="rect" coords="312,168,614,192"/>
-<area href="classoomph_1_1RefineableTriangleMesh.html" title="/////////////////////////////////////////////////////////////////// /////////////////////////////////..." alt="oomph::RefineableTriangleMesh&lt; ELEMENT &gt;" shape="rect" coords="156,224,458,248"/>
-<area href="classoomph_1_1SolidTriangleMesh.html" title="////////////////////////////////////////////////////////////////// //////////////////////////////////..." alt="oomph::SolidTriangleMesh&lt; ELEMENT &gt;" shape="rect" coords="468,224,770,248"/>
-<area href="classoomph_1_1RefineableSolidTriangleMesh.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////..." alt="oomph::RefineableSolidTriangleMesh&lt; ELEMENT &gt;" shape="rect" coords="156,280,458,304"/>
+<area href="classoomph_1_1TriangleMesh.html" title="Triangle mesh build with the help of the scaffold mesh coming from the triangle mesh generator Triang..." alt="oomph::TriangleMesh&lt; ELEMENT &gt;" shape="rect" coords="312,168,614,192"/>
+<area href="classoomph_1_1RefineableTriangleMesh.html" title="Unstructured refineable Triangle Mesh." alt="oomph::RefineableTriangleMesh&lt; ELEMENT &gt;" shape="rect" coords="156,224,458,248"/>
+<area href="classoomph_1_1SolidTriangleMesh.html" title="Unstructured Triangle Mesh upgraded to solid mesh." alt="oomph::SolidTriangleMesh&lt; ELEMENT &gt;" shape="rect" coords="468,224,770,248"/>
+<area href="classoomph_1_1RefineableSolidTriangleMesh.html" title="Unstructured refineable Triangle Mesh upgraded to solid mesh." alt="oomph::RefineableSolidTriangleMesh&lt; ELEMENT &gt;" shape="rect" coords="156,280,458,304"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -477,6 +471,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad1b124a959628aba00162b89617b3a62 inherit pub_methods_classoomph_1_1Mesh" id="r_ad1b124a959628aba00162b89617b3a62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#ad1b124a959628aba00162b89617b3a62">boundary_coordinate_exists</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>) <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a></td></tr>
 <tr class="memdesc:ad1b124a959628aba00162b89617b3a62 inherit pub_methods_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicate whether the i-th boundary has an intrinsic coordinate.  <br /></td></tr>
 <tr class="separator:ad1b124a959628aba00162b89617b3a62 inherit pub_methods_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab137d0c0debf5ba0d6ea6990103e620c inherit pub_methods_classoomph_1_1Mesh" id="r_ab137d0c0debf5ba0d6ea6990103e620c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#ab137d0c0debf5ba0d6ea6990103e620c">set_boundary_coordinate_exists</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>)</td></tr>
+<tr class="memdesc:ab137d0c0debf5ba0d6ea6990103e620c inherit pub_methods_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set boundary coordinate on the i-th boundary to be existing.  <br /></td></tr>
+<tr class="separator:ab137d0c0debf5ba0d6ea6990103e620c inherit pub_methods_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b9d63e0057ed721190b109f48f7c92e inherit pub_methods_classoomph_1_1Mesh" id="r_a3b9d63e0057ed721190b109f48f7c92e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#a3b9d63e0057ed721190b109f48f7c92e">set_boundary_coordinate_does_not_exist</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>)</td></tr>
+<tr class="memdesc:a3b9d63e0057ed721190b109f48f7c92e inherit pub_methods_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set boundary coordinate on the i-th boundary to be non-existing.  <br /></td></tr>
+<tr class="separator:a3b9d63e0057ed721190b109f48f7c92e inherit pub_methods_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af01dfefb66c15579b540be62999d93ee inherit pub_methods_classoomph_1_1Mesh" id="r_af01dfefb66c15579b540be62999d93ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">long</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#af01dfefb66c15579b540be62999d93ee">nelement</a> () <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a></td></tr>
 <tr class="memdesc:af01dfefb66c15579b540be62999d93ee inherit pub_methods_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return number of elements in the mesh.  <br /></td></tr>
 <tr class="separator:af01dfefb66c15579b540be62999d93ee inherit pub_methods_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1053,9 +1053,6 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:aca12acfe655a4d5c4a4eab4a7b970812 inherit pro_attribs_classoomph_1_1Mesh" id="r_aca12acfe655a4d5c4a4eab4a7b970812"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; <a class="el" href="classoomph_1_1GeneralisedElement.html">GeneralisedElement</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#aca12acfe655a4d5c4a4eab4a7b970812">Element_pt</a></td></tr>
 <tr class="memdesc:aca12acfe655a4d5c4a4eab4a7b970812 inherit pro_attribs_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> of pointers to generalised elements.  <br /></td></tr>
 <tr class="separator:aca12acfe655a4d5c4a4eab4a7b970812 inherit pro_attribs_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a412a5051be9e81f0ba61bf85e5abc4a6 inherit pro_attribs_classoomph_1_1Mesh" id="r_a412a5051be9e81f0ba61bf85e5abc4a6"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#a412a5051be9e81f0ba61bf85e5abc4a6">Boundary_coordinate_exists</a></td></tr>
-<tr class="memdesc:a412a5051be9e81f0ba61bf85e5abc4a6 inherit pro_attribs_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> of boolean data that indicates whether the boundary coordinates have been set for the boundary.  <br /></td></tr>
-<tr class="separator:a412a5051be9e81f0ba61bf85e5abc4a6 inherit pro_attribs_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -1080,7 +1077,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a1ae304480461c0dba53e7ce07e7ed21f inherit pub_static_attribs_classoomph_1_1UnstructuredTwoDMeshGeometryBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_attribs_classoomph_1_1Mesh"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_classoomph_1_1Mesh')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="classoomph_1_1Mesh.html">oomph::Mesh</a></td></tr>
 <tr class="memitem:a12243d0fee2b1fcee729ee5a4777ea10 inherit pub_static_attribs_classoomph_1_1Mesh" id="r_a12243d0fee2b1fcee729ee5a4777ea10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">static</a> <a class="el" href="classoomph_1_1Steady.html">Steady</a>&lt; 0 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#a12243d0fee2b1fcee729ee5a4777ea10">Default_TimeStepper</a></td></tr>
-<tr class="memdesc:a12243d0fee2b1fcee729ee5a4777ea10 inherit pub_static_attribs_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default <a class="el" href="classoomph_1_1Steady.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////...">Steady</a> Timestepper, to be used in default arguments to <a class="el" href="classoomph_1_1Mesh.html" title="A general mesh class.">Mesh</a> constructors.  <br /></td></tr>
+<tr class="memdesc:a12243d0fee2b1fcee729ee5a4777ea10 inherit pub_static_attribs_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default <a class="el" href="classoomph_1_1Steady.html" title="Faux time-stepper for steady problems. Allows storage for NSTEPS previous values.">Steady</a> Timestepper, to be used in default arguments to <a class="el" href="classoomph_1_1Mesh.html" title="A general mesh class.">Mesh</a> constructors.  <br /></td></tr>
 <tr class="separator:a12243d0fee2b1fcee729ee5a4777ea10 inherit pub_static_attribs_classoomph_1_1Mesh"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada6bc12304d1536b747596d1049e48be inherit pub_static_attribs_classoomph_1_1Mesh" id="r_ada6bc12304d1536b747596d1049e48be"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">static</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Mesh.html#ada6bc12304d1536b747596d1049e48be">Suppress_warning_about_empty_mesh_level_time_stepper_function</a></td></tr>
 <tr class="memdesc:ada6bc12304d1536b747596d1049e48be inherit pub_static_attribs_classoomph_1_1Mesh"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean used to control warning about empty mesh level timestepper function.  <br /></td></tr>
@@ -1108,16 +1105,16 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:a929e73858bd06401ad92955aef69985c inherit pro_methods_classoomph_1_1UnstructuredTwoDMeshGeometryBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function to copy the connection information from the input curve(polyline or curviline) to the output sub-polyline.  <br /></td></tr>
 <tr class="separator:a929e73858bd06401ad92955aef69985c inherit pro_methods_classoomph_1_1UnstructuredTwoDMeshGeometryBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4c390235c6d7865b62a6604a6d7b780 inherit pro_methods_classoomph_1_1UnstructuredTwoDMeshGeometryBase" id="r_aa4c390235c6d7865b62a6604a6d7b780"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1UnstructuredTwoDMeshGeometryBase.html#aa4c390235c6d7865b62a6604a6d7b780">create_vertex_coordinates_for_polyline_no_connections</a> (<a class="el" href="classoomph_1_1TriangleMeshCurviLine.html">TriangleMeshCurviLine</a> *<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">boundary_pt</a>, <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &gt; &gt; &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">vertex_coord</a>, <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; std::pair&lt; <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &gt; &gt; &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">polygonal_vertex_arclength_info</a>)</td></tr>
-<tr class="memdesc:aa4c390235c6d7865b62a6604a6d7b780 inherit pro_methods_classoomph_1_1UnstructuredTwoDMeshGeometryBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function to create polyline vertex coordinates for curvilinear boundary specified by boundary_pt, using either equal increments in zeta or in (approximate) arclength along the curviline. vertex_coord[i_vertex][i_dim] stores i_dim-th coordinate of i_vertex-th vertex. polygonal_vertex_arclength_info[i_vertex] contains the pair of doubles made of the arclength of the i_vertex-th vertex along the polygonal representation (.first), and the corresponding coordinate on the <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a> (.second)  <br /></td></tr>
+<tr class="memdesc:aa4c390235c6d7865b62a6604a6d7b780 inherit pro_methods_classoomph_1_1UnstructuredTwoDMeshGeometryBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function to create polyline vertex coordinates for curvilinear boundary specified by boundary_pt, using either equal increments in zeta or in (approximate) arclength along the curviline. vertex_coord[i_vertex][i_dim] stores i_dim-th coordinate of i_vertex-th vertex. polygonal_vertex_arclength_info[i_vertex] contains the pair of doubles made of the arclength of the i_vertex-th vertex along the polygonal representation (.first), and the corresponding coordinate on the <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a> (.second)  <br /></td></tr>
 <tr class="separator:aa4c390235c6d7865b62a6604a6d7b780 inherit pro_methods_classoomph_1_1UnstructuredTwoDMeshGeometryBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22ba2b359eebe24f9ba1f40be54643d8 inherit pro_methods_classoomph_1_1UnstructuredTwoDMeshGeometryBase" id="r_a22ba2b359eebe24f9ba1f40be54643d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1UnstructuredTwoDMeshGeometryBase.html#a22ba2b359eebe24f9ba1f40be54643d8">create_vertex_coordinates_for_polyline_connections</a> (<a class="el" href="classoomph_1_1TriangleMeshCurviLine.html">TriangleMeshCurviLine</a> *<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">boundary_pt</a>, <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &gt; &gt; &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">vertex_coord</a>, <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; std::pair&lt; <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &gt; &gt; &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">polygonal_vertex_arclength_info</a>)</td></tr>
-<tr class="memdesc:a22ba2b359eebe24f9ba1f40be54643d8 inherit pro_methods_classoomph_1_1UnstructuredTwoDMeshGeometryBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function to create polyline vertex coordinates for curvilinear boundary specified by boundary_pt, using either equal increments in zeta or in (approximate) arclength along the curviline. vertex_coord[i_vertex][i_dim] stores i_dim-th coordinate of i_vertex-th vertex. polygonal_vertex_arclength_info[i_vertex] contains the pair of doubles made of the arclength of the i_vertex-th vertex along the polygonal representation (.first), and the corresponding coordinate on the <a class="el" href="classoomph_1_1GeomObject.html" title="/////////////////////////////////////////////////////////////////////">GeomObject</a> (.second)  <br /></td></tr>
+<tr class="memdesc:a22ba2b359eebe24f9ba1f40be54643d8 inherit pro_methods_classoomph_1_1UnstructuredTwoDMeshGeometryBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function to create polyline vertex coordinates for curvilinear boundary specified by boundary_pt, using either equal increments in zeta or in (approximate) arclength along the curviline. vertex_coord[i_vertex][i_dim] stores i_dim-th coordinate of i_vertex-th vertex. polygonal_vertex_arclength_info[i_vertex] contains the pair of doubles made of the arclength of the i_vertex-th vertex along the polygonal representation (.first), and the corresponding coordinate on the <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a> (.second)  <br /></td></tr>
 <tr class="separator:a22ba2b359eebe24f9ba1f40be54643d8 inherit pro_methods_classoomph_1_1UnstructuredTwoDMeshGeometryBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95a274f9eb8d54aa725cc02690ea8c95 inherit pro_methods_classoomph_1_1UnstructuredTwoDMeshGeometryBase" id="r_a95a274f9eb8d54aa725cc02690ea8c95"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TriangleMeshPolygon.html">TriangleMeshPolygon</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1UnstructuredTwoDMeshGeometryBase.html#a95a274f9eb8d54aa725cc02690ea8c95">closed_curve_to_polygon_helper</a> (<a class="el" href="classoomph_1_1TriangleMeshClosedCurve.html">TriangleMeshClosedCurve</a> *<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">closed_curve_pt</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">max_bnd_id_local</a>)</td></tr>
-<tr class="memdesc:a95a274f9eb8d54aa725cc02690ea8c95 inherit pro_methods_classoomph_1_1UnstructuredTwoDMeshGeometryBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function that returns a polygon representation for the given closed curve, it also computes the maximum boundary id of the constituent curves. If the <a class="el" href="classoomph_1_1TriangleMeshClosedCurve.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////...">TriangleMeshClosedCurve</a> is already a <a class="el" href="classoomph_1_1TriangleMeshPolygon.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////...">TriangleMeshPolygon</a> we simply return a pointer to it. Otherwise a new TrilangleMeshPolygon is created &ndash; this is deleted automatically when the <a class="el" href="classoomph_1_1TriangleMesh.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">TriangleMesh</a> destructor is called, so no external book-keeping is required.  <br /></td></tr>
+<tr class="memdesc:a95a274f9eb8d54aa725cc02690ea8c95 inherit pro_methods_classoomph_1_1UnstructuredTwoDMeshGeometryBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function that returns a polygon representation for the given closed curve, it also computes the maximum boundary id of the constituent curves. If the <a class="el" href="classoomph_1_1TriangleMeshClosedCurve.html" title="Base class defining a closed curve for the Triangle mesh generation.">TriangleMeshClosedCurve</a> is already a <a class="el" href="classoomph_1_1TriangleMeshPolygon.html" title="Class defining a closed polygon for the Triangle mesh generation.">TriangleMeshPolygon</a> we simply return a pointer to it. Otherwise a new TrilangleMeshPolygon is created &ndash; this is deleted automatically when the <a class="el" href="classoomph_1_1TriangleMesh.html" title="Triangle mesh build with the help of the scaffold mesh coming from the triangle mesh generator Triang...">TriangleMesh</a> destructor is called, so no external book-keeping is required.  <br /></td></tr>
 <tr class="separator:a95a274f9eb8d54aa725cc02690ea8c95 inherit pro_methods_classoomph_1_1UnstructuredTwoDMeshGeometryBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f3bab99cf2075efae18e22ad833cb23 inherit pro_methods_classoomph_1_1UnstructuredTwoDMeshGeometryBase" id="r_a5f3bab99cf2075efae18e22ad833cb23"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TriangleMeshOpenCurve.html">TriangleMeshOpenCurve</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1UnstructuredTwoDMeshGeometryBase.html#a5f3bab99cf2075efae18e22ad833cb23">create_open_curve_with_polyline_helper</a> (<a class="el" href="classoomph_1_1TriangleMeshOpenCurve.html">TriangleMeshOpenCurve</a> *<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">open_curve_pt</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">max_bnd_id_local</a>)</td></tr>
-<tr class="memdesc:a5f3bab99cf2075efae18e22ad833cb23 inherit pro_methods_classoomph_1_1UnstructuredTwoDMeshGeometryBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function that creates and returns an open curve with the polyline representation of its constituent curve sections. The new created open curve is deleted when the <a class="el" href="classoomph_1_1TriangleMesh.html" title="///////////////////////////////////////////////////////////////////// ///////////////////////////////...">TriangleMesh</a> destructor is called.  <br /></td></tr>
+<tr class="memdesc:a5f3bab99cf2075efae18e22ad833cb23 inherit pro_methods_classoomph_1_1UnstructuredTwoDMeshGeometryBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function that creates and returns an open curve with the polyline representation of its constituent curve sections. The new created open curve is deleted when the <a class="el" href="classoomph_1_1TriangleMesh.html" title="Triangle mesh build with the help of the scaffold mesh coming from the triangle mesh generator Triang...">TriangleMesh</a> destructor is called.  <br /></td></tr>
 <tr class="separator:a5f3bab99cf2075efae18e22ad833cb23 inherit pro_methods_classoomph_1_1UnstructuredTwoDMeshGeometryBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae245bcf2f048ba47e59aa98abc437970 inherit pro_methods_classoomph_1_1UnstructuredTwoDMeshGeometryBase" id="r_ae245bcf2f048ba47e59aa98abc437970"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1UnstructuredTwoDMeshGeometryBase.html#ae245bcf2f048ba47e59aa98abc437970">set_geom_objects_and_coordinate_limits_for_close_curve</a> (<a class="el" href="classoomph_1_1TriangleMeshClosedCurve.html">TriangleMeshClosedCurve</a> *<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">input_closed_curve_pt</a>)</td></tr>
 <tr class="memdesc:ae245bcf2f048ba47e59aa98abc437970 inherit pro_methods_classoomph_1_1UnstructuredTwoDMeshGeometryBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the geometric objects associated to the curve sections that compound the closed curve. It also stores the limits defined by these geometric objects.  <br /></td></tr>
@@ -1151,7 +1148,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Base class for triangle meshes (meshes made of 2D triangle elements). Note: we choose to template <a class="el" href="classoomph_1_1TriangleMeshBase.html" title="Base class for triangle meshes (meshes made of 2D triangle elements). Note: we choose to template Tri...">TriangleMeshBase</a> here because certain functions in <a class="el" href="classoomph_1_1UnstructuredTwoDMeshGeometryBase.html" title="Contains functions which define the geometry of the mesh, i.e. regions, boundaries,...">UnstructuredTwoDMeshGeometryBase</a> need template parameters and it's much cleaner simply to template the entire class. </p>
 
-<p class="definition">Definition at line <a class="el" href="triangle__mesh_8h_source.html#l00050">50</a> of file <a class="el" href="triangle__mesh_8h_source.html">triangle_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic_2triangle__mesh_8h_source.html#l00050">50</a> of file <a class="el" href="generic_2triangle__mesh_8h_source.html">generic/triangle_mesh.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="afdfa2e68988d225301a9a262883ddf62" name="afdfa2e68988d225301a9a262883ddf62"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afdfa2e68988d225301a9a262883ddf62">&#9670;&#160;</a></span>TriangleMeshBase() <span class="overload">[1/2]</span></h2>
@@ -1178,9 +1175,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Constructor. </p>
 
-<p class="definition">Definition at line <a class="el" href="triangle__mesh_8h_source.html#l00055">55</a> of file <a class="el" href="triangle__mesh_8h_source.html">triangle_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic_2triangle__mesh_8h_source.html#l00055">55</a> of file <a class="el" href="generic_2triangle__mesh_8h_source.html">generic/triangle_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="unstructured__two__d__mesh__geometry__base_8cc_source.html#l00091">oomph::TriangleHelper::initialise_triangulateio()</a>, <a class="el" href="triangle__mesh_8h_source.html#l00261">Triangulateio</a>, and <a class="el" href="triangle__mesh_8h_source.html#l00265">Use_triangulateio_restart</a>.</p>
+<p class="reference">References <a class="el" href="unstructured__two__d__mesh__geometry__base_8cc_source.html#l00091">oomph::TriangleHelper::initialise_triangulateio()</a>, <a class="el" href="generic_2triangle__mesh_8h_source.html#l00261">Triangulateio</a>, and <a class="el" href="generic_2triangle__mesh_8h_source.html#l00265">Use_triangulateio_restart</a>.</p>
 
 </div>
 </div>
@@ -1238,9 +1235,9 @@ Additional Inherited Members</h2></td></tr>
 <p>Broken assignment operator. </p>
 <p>Destructor (empty) </p>
 
-<p class="definition">Definition at line <a class="el" href="triangle__mesh_8h_source.html#l00078">78</a> of file <a class="el" href="triangle__mesh_8h_source.html">triangle_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic_2triangle__mesh_8h_source.html#l00078">78</a> of file <a class="el" href="generic_2triangle__mesh_8h_source.html">generic/triangle_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="unstructured__two__d__mesh__geometry__base_8cc_source.html#l00044">oomph::TriangleHelper::clear_triangulateio()</a>, and <a class="el" href="triangle__mesh_8h_source.html#l00261">Triangulateio</a>.</p>
+<p class="reference">References <a class="el" href="unstructured__two__d__mesh__geometry__base_8cc_source.html#l00044">oomph::TriangleHelper::clear_triangulateio()</a>, and <a class="el" href="generic_2triangle__mesh_8h_source.html#l00261">Triangulateio</a>.</p>
 
 </div>
 </div>
@@ -1270,9 +1267,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Helper function. Clean up the memory associated with the <a class="el" href="structoomph_1_1TriangulateIO.html" title="The Triangle data structure, modified from the triangle.h header supplied with triangle 1....">TriangulateIO</a> object. This should really only be used to save memory in extremely tight situations. </p>
 
-<p class="definition">Definition at line <a class="el" href="triangle__mesh_8h_source.html#l00131">131</a> of file <a class="el" href="triangle__mesh_8h_source.html">triangle_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic_2triangle__mesh_8h_source.html#l00131">131</a> of file <a class="el" href="generic_2triangle__mesh_8h_source.html">generic/triangle_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="unstructured__two__d__mesh__geometry__base_8cc_source.html#l00044">oomph::TriangleHelper::clear_triangulateio()</a>, and <a class="el" href="triangle__mesh_8h_source.html#l00261">Triangulateio</a>.</p>
+<p class="reference">References <a class="el" href="unstructured__two__d__mesh__geometry__base_8cc_source.html#l00044">oomph::TriangleHelper::clear_triangulateio()</a>, and <a class="el" href="generic_2triangle__mesh_8h_source.html#l00261">Triangulateio</a>.</p>
 
 </div>
 </div>
@@ -1301,9 +1298,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>write access for Use_triangulateio_restart. </p>
 
-<p class="definition">Definition at line <a class="el" href="triangle__mesh_8h_source.html#l00112">112</a> of file <a class="el" href="triangle__mesh_8h_source.html">triangle_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic_2triangle__mesh_8h_source.html#l00112">112</a> of file <a class="el" href="generic_2triangle__mesh_8h_source.html">generic/triangle_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="triangle__mesh_8h_source.html#l00265">Use_triangulateio_restart</a>.</p>
+<p class="reference">References <a class="el" href="generic_2triangle__mesh_8h_source.html#l00265">Use_triangulateio_restart</a>.</p>
 
 </div>
 </div>
@@ -1335,7 +1332,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="classoomph_1_1TriangleMesh.html#ab4472dde562e25eaa590557a38ead8c3">oomph::TriangleMesh&lt; ELEMENT &gt;</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="triangle__mesh_8h_source.html#l00143">143</a> of file <a class="el" href="triangle__mesh_8h_source.html">triangle_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic_2triangle__mesh_8h_source.html#l00143">143</a> of file <a class="el" href="generic_2triangle__mesh_8h_source.html">generic/triangle_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -1365,7 +1362,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Virtual function that is used to dump info. related with distributed triangle meshes. </p>
 
-<p class="definition">Definition at line <a class="el" href="triangle__mesh_8h_source.html#l00156">156</a> of file <a class="el" href="triangle__mesh_8h_source.html">triangle_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic_2triangle__mesh_8h_source.html#l00156">156</a> of file <a class="el" href="generic_2triangle__mesh_8h_source.html">generic/triangle_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -1389,7 +1386,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="triangle__mesh_8cc_source.html#l00040">40</a> of file <a class="el" href="triangle__mesh_8cc_source.html">triangle_mesh.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="mesh_8h_source.html#l00190">oomph::Mesh::Boundary_coordinate_exists</a>, <a class="el" href="mesh_8h_source.html#l00493">oomph::Mesh::boundary_node_pt()</a>, <a class="el" href="unstructured__two__d__mesh__geometry__base_8cc_source.html#l00709">oomph::TriangleHelper::dump_triangulateio()</a>, <a class="el" href="mesh_8h_source.html#l01588">oomph::Mesh::is_mesh_distributed()</a>, <a class="el" href="mesh_8h_source.html#l00827">oomph::Mesh::nboundary()</a>, <a class="el" href="mesh_8h_source.html#l00833">oomph::Mesh::nboundary_node()</a>, and <a class="el" href="triangle__mesh_8h_source.html#l00261">Triangulateio</a>.</p>
+<p class="reference">References <a class="el" href="mesh_8h_source.html#l00571">oomph::Mesh::boundary_coordinate_exists()</a>, <a class="el" href="mesh_8h_source.html#l00497">oomph::Mesh::boundary_node_pt()</a>, <a class="el" href="unstructured__two__d__mesh__geometry__base_8cc_source.html#l00709">oomph::TriangleHelper::dump_triangulateio()</a>, <a class="el" href="mesh_8h_source.html#l01596">oomph::Mesh::is_mesh_distributed()</a>, <a class="el" href="mesh_8h_source.html#l00835">oomph::Mesh::nboundary()</a>, <a class="el" href="mesh_8h_source.html#l00841">oomph::Mesh::nboundary_node()</a>, and <a class="el" href="generic_2triangle__mesh_8h_source.html#l00261">Triangulateio</a>.</p>
 
 </div>
 </div>
@@ -1418,9 +1415,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>write access for Use_triangulateio_restart. </p>
 
-<p class="definition">Definition at line <a class="el" href="triangle__mesh_8h_source.html#l00106">106</a> of file <a class="el" href="triangle__mesh_8h_source.html">triangle_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic_2triangle__mesh_8h_source.html#l00106">106</a> of file <a class="el" href="generic_2triangle__mesh_8h_source.html">generic/triangle_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="triangle__mesh_8h_source.html#l00265">Use_triangulateio_restart</a>.</p>
+<p class="reference">References <a class="el" href="generic_2triangle__mesh_8h_source.html#l00265">Use_triangulateio_restart</a>.</p>
 
 </div>
 </div>
@@ -1452,7 +1449,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="classoomph_1_1RefineableTriangleMesh.html#aaffa40b7d036f8ed8639bf9396f1088a">oomph::RefineableTriangleMesh&lt; ELEMENT &gt;</a>, and <a class="el" href="classoomph_1_1TriangleMesh.html#a712bfd68d4b55e9c475347c0146fc8ac">oomph::TriangleMesh&lt; ELEMENT &gt;</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="triangle__mesh_8h_source.html#l00230">230</a> of file <a class="el" href="triangle__mesh_8h_source.html">triangle_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic_2triangle__mesh_8h_source.html#l00230">230</a> of file <a class="el" href="generic_2triangle__mesh_8h_source.html">generic/triangle_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -1484,7 +1481,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="classoomph_1_1TriangleMesh.html#ac023e6d962d37d1cc3089b31dc1d4a2a">oomph::TriangleMesh&lt; ELEMENT &gt;</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="triangle__mesh_8h_source.html#l00169">169</a> of file <a class="el" href="triangle__mesh_8h_source.html">triangle_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic_2triangle__mesh_8h_source.html#l00169">169</a> of file <a class="el" href="generic_2triangle__mesh_8h_source.html">generic/triangle_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -1526,7 +1523,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="classoomph_1_1TriangleMesh.html#aa4b1cfd4537c1e511fe1f2fb14b1e8a6">oomph::TriangleMesh&lt; ELEMENT &gt;</a>, and <a class="el" href="classoomph_1_1RefineableTriangleMesh.html#a3ecdb3b15c3fefbc96f407c4fdf5b155">oomph::RefineableTriangleMesh&lt; ELEMENT &gt;</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="triangle__mesh_8h_source.html#l00182">182</a> of file <a class="el" href="triangle__mesh_8h_source.html">triangle_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic_2triangle__mesh_8h_source.html#l00182">182</a> of file <a class="el" href="generic_2triangle__mesh_8h_source.html">generic/triangle_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -1557,7 +1554,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="classoomph_1_1TriangleMesh.html#a9bc95b0f26f8cd352997d2db32a6a292">oomph::TriangleMesh&lt; ELEMENT &gt;</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="triangle__mesh_8h_source.html#l00218">218</a> of file <a class="el" href="triangle__mesh_8h_source.html">triangle_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic_2triangle__mesh_8h_source.html#l00218">218</a> of file <a class="el" href="generic_2triangle__mesh_8h_source.html">generic/triangle_mesh.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="triangle__mesh_8cc_source.html#l00087">remesh_from_triangulateio()</a>.</p>
 
@@ -1583,7 +1580,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="triangle__mesh_8cc_source.html#l00087">87</a> of file <a class="el" href="triangle__mesh_8cc_source.html">triangle_mesh.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="mesh_8h_source.html#l00190">oomph::Mesh::Boundary_coordinate_exists</a>, <a class="el" href="mesh_8h_source.html#l00493">oomph::Mesh::boundary_node_pt()</a>, <a class="el" href="unstructured__two__d__mesh__geometry__base_8cc_source.html#l00044">oomph::TriangleHelper::clear_triangulateio()</a>, <a class="el" href="mesh_8h_source.html#l01588">oomph::Mesh::is_mesh_distributed()</a>, <a class="el" href="mesh_8h_source.html#l00827">oomph::Mesh::nboundary()</a>, <a class="el" href="mesh_8h_source.html#l00833">oomph::Mesh::nboundary_node()</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00319">oomph::oomph_info</a>, <a class="el" href="unstructured__two__d__mesh__geometry__base_8cc_source.html#l00853">oomph::TriangleHelper::read_triangulateio()</a>, <a class="el" href="triangle__mesh_8h_source.html#l00218">remesh_from_internal_triangulateio()</a>, and <a class="el" href="triangle__mesh_8h_source.html#l00261">Triangulateio</a>.</p>
+<p class="reference">References <a class="el" href="mesh_8h_source.html#l00497">oomph::Mesh::boundary_node_pt()</a>, <a class="el" href="unstructured__two__d__mesh__geometry__base_8cc_source.html#l00044">oomph::TriangleHelper::clear_triangulateio()</a>, <a class="el" href="mesh_8h_source.html#l01596">oomph::Mesh::is_mesh_distributed()</a>, <a class="el" href="mesh_8h_source.html#l00835">oomph::Mesh::nboundary()</a>, <a class="el" href="mesh_8h_source.html#l00841">oomph::Mesh::nboundary_node()</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00326">oomph::oomph_info</a>, <a class="el" href="unstructured__two__d__mesh__geometry__base_8cc_source.html#l00853">oomph::TriangleHelper::read_triangulateio()</a>, <a class="el" href="generic_2triangle__mesh_8h_source.html#l00218">remesh_from_internal_triangulateio()</a>, <a class="el" href="mesh_8h_source.html#l00584">oomph::Mesh::set_boundary_coordinate_exists()</a>, and <a class="el" href="generic_2triangle__mesh_8h_source.html#l00261">Triangulateio</a>.</p>
 
 </div>
 </div>
@@ -1633,7 +1630,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="classoomph_1_1TriangleMesh.html#a47080ac440e82c099c390b37bf694cfe">oomph::TriangleMesh&lt; ELEMENT &gt;</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="triangle__mesh_8h_source.html#l00242">242</a> of file <a class="el" href="triangle__mesh_8h_source.html">triangle_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic_2triangle__mesh_8h_source.html#l00242">242</a> of file <a class="el" href="generic_2triangle__mesh_8h_source.html">generic/triangle_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -1664,11 +1661,11 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classoomph_1_1Mesh.html#a6cc8bcd6b41209f0e9295cc993d9c6bb">oomph::Mesh</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="triangle__mesh_8h_source.html#l00088">88</a> of file <a class="el" href="triangle__mesh_8h_source.html">triangle_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic_2triangle__mesh_8h_source.html#l00088">88</a> of file <a class="el" href="generic_2triangle__mesh_8h_source.html">generic/triangle_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="triangle__mesh_8h_source.html#l00088">setup_boundary_element_info()</a>.</p>
+<p class="reference">References <a class="el" href="generic_2triangle__mesh_8h_source.html#l00088">setup_boundary_element_info()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="triangle__mesh_8h_source.html#l00088">setup_boundary_element_info()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generic_2triangle__mesh_8h_source.html#l00088">setup_boundary_element_info()</a>.</p>
 
 </div>
 </div>
@@ -1701,9 +1698,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classoomph_1_1Mesh.html#a413cbcbea4fb1111703da9ee97429640">oomph::Mesh</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="triangle__mesh_8cc_source.html#l00400">400</a> of file <a class="el" href="triangle__mesh_8cc_source.html">triangle_mesh.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="triangle__mesh_8cc_source.html#l00401">401</a> of file <a class="el" href="triangle__mesh_8cc_source.html">triangle_mesh.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="mesh_8h_source.html#l00091">oomph::Mesh::Boundary_element_pt</a>, <a class="el" href="elements_8h_source.html#l02615">oomph::FiniteElement::dim()</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00095">oomph::Mesh::Face_index_at_boundary</a>, <a class="el" href="mesh_8h_source.html#l00473">oomph::Mesh::finite_element_pt()</a>, <a class="el" href="nodes_8h_source.html#l01365">oomph::Node::get_boundaries_pt()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="mesh_8h_source.html#l00087">oomph::Mesh::Lookup_for_elements_next_boundary_is_setup</a>, <a class="el" href="mesh_8h_source.html#l00827">oomph::Mesh::nboundary()</a>, <a class="el" href="mesh_8h_source.html#l00590">oomph::Mesh::nelement()</a>, <a class="el" href="elements_8h_source.html#l02179">oomph::FiniteElement::node_pt()</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
+<p class="reference">References <a class="el" href="mesh_8h_source.html#l00091">oomph::Mesh::Boundary_element_pt</a>, <a class="el" href="elements_8h_source.html#l02615">oomph::FiniteElement::dim()</a>, <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00095">oomph::Mesh::Face_index_at_boundary</a>, <a class="el" href="mesh_8h_source.html#l00477">oomph::Mesh::finite_element_pt()</a>, <a class="el" href="nodes_8h_source.html#l01365">oomph::Node::get_boundaries_pt()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="mesh_8h_source.html#l00087">oomph::Mesh::Lookup_for_elements_next_boundary_is_setup</a>, <a class="el" href="mesh_8h_source.html#l00835">oomph::Mesh::nboundary()</a>, <a class="el" href="mesh_8h_source.html#l00598">oomph::Mesh::nelement()</a>, <a class="el" href="elements_8h_source.html#l02179">oomph::FiniteElement::node_pt()</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
 
 </div>
 </div>
@@ -1732,9 +1729,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Access to the triangulateio representation of the mesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="triangle__mesh_8h_source.html#l00118">118</a> of file <a class="el" href="triangle__mesh_8h_source.html">triangle_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic_2triangle__mesh_8h_source.html#l00118">118</a> of file <a class="el" href="generic_2triangle__mesh_8h_source.html">generic/triangle_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="triangle__mesh_8h_source.html#l00261">Triangulateio</a>.</p>
+<p class="reference">References <a class="el" href="generic_2triangle__mesh_8h_source.html#l00261">Triangulateio</a>.</p>
 
 </div>
 </div>
@@ -1765,7 +1762,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="classoomph_1_1RefineableTriangleMesh.html#a26cdfda4b77158dd24641cb5889ad2ff">oomph::RefineableTriangleMesh&lt; ELEMENT &gt;</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="triangle__mesh_8h_source.html#l00199">199</a> of file <a class="el" href="triangle__mesh_8h_source.html">triangle_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic_2triangle__mesh_8h_source.html#l00199">199</a> of file <a class="el" href="generic_2triangle__mesh_8h_source.html">generic/triangle_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -1794,9 +1791,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>const access for Use_triangulateio_restart. </p>
 
-<p class="definition">Definition at line <a class="el" href="triangle__mesh_8h_source.html#l00100">100</a> of file <a class="el" href="triangle__mesh_8h_source.html">triangle_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic_2triangle__mesh_8h_source.html#l00100">100</a> of file <a class="el" href="generic_2triangle__mesh_8h_source.html">generic/triangle_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="triangle__mesh_8h_source.html#l00265">Use_triangulateio_restart</a>.</p>
+<p class="reference">References <a class="el" href="generic_2triangle__mesh_8h_source.html#l00265">Use_triangulateio_restart</a>.</p>
 
 </div>
 </div>
@@ -1858,9 +1855,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p><a class="el" href="structoomph_1_1TriangulateIO.html" title="The Triangle data structure, modified from the triangle.h header supplied with triangle 1....">TriangulateIO</a> representation of the mesh. </p>
 
-<p class="definition">Definition at line <a class="el" href="triangle__mesh_8h_source.html#l00261">261</a> of file <a class="el" href="triangle__mesh_8h_source.html">triangle_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic_2triangle__mesh_8h_source.html#l00261">261</a> of file <a class="el" href="generic_2triangle__mesh_8h_source.html">generic/triangle_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="triangle__mesh_8h_source.html#l00131">clear_triangulateio()</a>, <a class="el" href="triangle__mesh_8cc_source.html#l00040">dump_triangulateio()</a>, <a class="el" href="triangle__mesh_8template_8h_source.html#l01205">oomph::TriangleMesh&lt; ELEMENT &gt;::generic_constructor()</a>, <a class="el" href="triangle__mesh_8template_8h_source.html#l01060">oomph::TriangleMesh&lt; ELEMENT &gt;::remesh_from_internal_triangulateio()</a>, <a class="el" href="triangle__mesh_8cc_source.html#l00087">remesh_from_triangulateio()</a>, <a class="el" href="triangle__mesh_8template_8h_source.html#l00448">oomph::TriangleMesh&lt; ELEMENT &gt;::TriangleMesh()</a>, <a class="el" href="triangle__mesh_8template_8h_source.html#l00755">oomph::TriangleMesh&lt; ELEMENT &gt;::TriangleMesh()</a>, <a class="el" href="triangle__mesh_8h_source.html#l00055">TriangleMeshBase()</a>, <a class="el" href="triangle__mesh_8h_source.html#l00118">triangulateio_representation()</a>, <a class="el" href="triangle__mesh_8template_8h_source.html#l00999">oomph::TriangleMesh&lt; ELEMENT &gt;::update_triangulateio()</a>, <a class="el" href="triangle__mesh_8template_8h_source.html#l00979">oomph::TriangleMesh&lt; ELEMENT &gt;::update_triangulateio()</a>, <a class="el" href="triangle__mesh_8template_8h_source.html#l00854">oomph::TriangleMesh&lt; ELEMENT &gt;::~TriangleMesh()</a>, and <a class="el" href="triangle__mesh_8h_source.html#l00078">~TriangleMeshBase()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generic_2triangle__mesh_8h_source.html#l00131">clear_triangulateio()</a>, <a class="el" href="triangle__mesh_8cc_source.html#l00040">dump_triangulateio()</a>, <a class="el" href="meshes_2triangle__mesh_8h_source.html#l01188">oomph::TriangleMesh&lt; ELEMENT &gt;::generic_constructor()</a>, <a class="el" href="meshes_2triangle__mesh_8h_source.html#l01041">oomph::TriangleMesh&lt; ELEMENT &gt;::remesh_from_internal_triangulateio()</a>, <a class="el" href="triangle__mesh_8cc_source.html#l00087">remesh_from_triangulateio()</a>, <a class="el" href="meshes_2triangle__mesh_8h_source.html#l00432">oomph::TriangleMesh&lt; ELEMENT &gt;::TriangleMesh()</a>, <a class="el" href="meshes_2triangle__mesh_8h_source.html#l00739">oomph::TriangleMesh&lt; ELEMENT &gt;::TriangleMesh()</a>, <a class="el" href="generic_2triangle__mesh_8h_source.html#l00055">TriangleMeshBase()</a>, <a class="el" href="generic_2triangle__mesh_8h_source.html#l00118">triangulateio_representation()</a>, <a class="el" href="meshes_2triangle__mesh_8h_source.html#l00980">oomph::TriangleMesh&lt; ELEMENT &gt;::update_triangulateio()</a>, <a class="el" href="meshes_2triangle__mesh_8h_source.html#l00960">oomph::TriangleMesh&lt; ELEMENT &gt;::update_triangulateio()</a>, <a class="el" href="meshes_2triangle__mesh_8h_source.html#l00835">oomph::TriangleMesh&lt; ELEMENT &gt;::~TriangleMesh()</a>, and <a class="el" href="generic_2triangle__mesh_8h_source.html#l00078">~TriangleMeshBase()</a>.</p>
 
 </div>
 </div>
@@ -1886,14 +1883,14 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Should we use triangulateio specific parts for dump/restart? (Doesn't work with some elements and isn't needed if not using adaptivity). </p>
 
-<p class="definition">Definition at line <a class="el" href="triangle__mesh_8h_source.html#l00265">265</a> of file <a class="el" href="triangle__mesh_8h_source.html">triangle_mesh.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic_2triangle__mesh_8h_source.html#l00265">265</a> of file <a class="el" href="generic_2triangle__mesh_8h_source.html">generic/triangle_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="triangle__mesh_8h_source.html#l00112">disable_triangulateio_restart()</a>, <a class="el" href="triangle__mesh_8h_source.html#l00106">enable_triangulateio_restart()</a>, <a class="el" href="triangle__mesh_8h_source.html#l00055">TriangleMeshBase()</a>, and <a class="el" href="triangle__mesh_8h_source.html#l00100">use_triangulateio_restart()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="generic_2triangle__mesh_8h_source.html#l00112">disable_triangulateio_restart()</a>, <a class="el" href="generic_2triangle__mesh_8h_source.html#l00106">enable_triangulateio_restart()</a>, <a class="el" href="generic_2triangle__mesh_8h_source.html#l00055">TriangleMeshBase()</a>, and <a class="el" href="generic_2triangle__mesh_8h_source.html#l00100">use_triangulateio_restart()</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="triangle__mesh_8h_source.html">triangle_mesh.h</a></li>
+<li><a class="el" href="generic_2triangle__mesh_8h_source.html">generic/triangle_mesh.h</a></li>
 <li><a class="el" href="triangle__mesh_8cc_source.html">triangle_mesh.cc</a></li>
 </ul>
 </div><!-- contents -->
@@ -1924,7 +1921,7 @@ Additional Inherited Members</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:05:55
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:43:35
         </div>
       </div>
     </footer>

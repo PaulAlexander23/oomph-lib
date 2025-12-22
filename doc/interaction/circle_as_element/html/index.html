@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -123,16 +117,16 @@
  <hr  />
 <h1><a class="anchor" id="geom_data"></a>
 Part 1: A closer look at the GeomObject class: Geometric Data</h1>
-<p>In an <a href="../../../poisson/fish_poisson2/html/index.html">earlier example</a>, we introduced the <code>GeomObject</code> as a base class for all objects that provide an analytical parametrisation of a geometric object by specifying its Eulerian coordinates (i.e. the position vector to "material points" in the object, <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf r}$" src="form_0.png" width="8" height="6"/></picture>) as a function of some intrinsic (Lagrangian) coordinates, <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf \zeta} $" src="form_1.png" width="6" height="13"/></picture>, so that <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf r} = {\bf r}({\bf
-\zeta})$" src="form_2.png" width="45" height="14"/></picture>. Every specific <code>GeomObject</code> must implement the pure virtual function</p>
+<p>In an <a href="../../../poisson/fish_poisson2/html/index.html">earlier example</a>, we introduced the <code>GeomObject</code> as a base class for all objects that provide an analytical parametrisation of a geometric object by specifying its Eulerian coordinates (i.e. the position vector to "material points" in the object, <img class="formulaInl" alt="$ {\bf r}$" src="form_0.png" width="8" height="6"/>) as a function of some intrinsic (Lagrangian) coordinates, <img class="formulaInl" alt="$ {\bf \zeta} $" src="form_1.png" width="6" height="13"/>, so that <img class="formulaInl" alt="$ {\bf r} = {\bf r}({\bf
+\zeta})$" src="form_2.png" width="45" height="14"/>. Every specific <code>GeomObject</code> must implement the pure virtual function</p>
 <div class="fragment"><div class="line"><span class="keywordtype">void</span> GeomObject::position(<span class="keyword">const</span> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">Vector&lt;double&gt;</a>&amp; <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">zeta</a>, <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">Vector&lt;double&gt;</a>&amp; <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">r</a>);</div>
-<div class="ttc" id="aalgebraic__free__boundary__poisson_8cc_html_abb923e967929c29b3a4fa1693604952a"><div class="ttname"><a href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">demo_fish_poisson</a></div><div class="ttdeci">void demo_fish_poisson(const string &amp;directory_name)</div><div class="ttdoc">///////////////////////////////////////////////////////////////////// ///////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="algebraic__free__boundary__poisson_8cc_source.html#l00460">algebraic_free_boundary_poisson.cc:460</a></div></div>
+<div class="ttc" id="aalgebraic__free__boundary__poisson_8cc_html_abb923e967929c29b3a4fa1693604952a"><div class="ttname"><a href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">demo_fish_poisson</a></div><div class="ttdeci">void demo_fish_poisson(const string &amp;directory_name)</div><div class="ttdoc">Demonstrate how to solve 2D Poisson problem in deformable fish-shaped domain with mesh adaptation.</div><div class="ttdef"><b>Definition</b> <a href="algebraic__free__boundary__poisson_8cc_source.html#l00460">algebraic_free_boundary_poisson.cc:460</a></div></div>
 </div><!-- fragment --><p>where the number of Lagrangian and Eulerian coordinates involved in the parametrisation (i.e. the sizes of the vectors <code>zeta</code> and <code>r</code>) are stored as unsigned integers in the protected member data, <code>GeomObject::NLagrangian</code> and <code>GeomObject::Ndim</code>, respectively.</p>
-<p>Most specific geometric objects store some additional parameters as private data members. For instance, a <code>GeomObject</code> that represents a 2D circle, parametrised by the 1D Lagrangian coordinate <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \zeta $" src="form_3.png" width="6" height="13"/></picture> as  </p><p class="formulaDsp">
-<picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[ {\bf r}(\zeta)= \left( \begin{array}{c} X_c + R \cos(\zeta) \\
+<p>Most specific geometric objects store some additional parameters as private data members. For instance, a <code>GeomObject</code> that represents a 2D circle, parametrised by the 1D Lagrangian coordinate <img class="formulaInl" alt="$ \zeta $" src="form_3.png" width="6" height="13"/> as  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ {\bf r}(\zeta)= \left( \begin{array}{c} X_c + R \cos(\zeta) \\
  Y_c + R \sin(\zeta)
 \end{array} \right)
-\]" src="form_4.png" width="143" height="31"/></picture>
+\]" src="form_4.png" width="143" height="31"/>
 </p>
 <p> may be implemented as follows:</p>
  <div class="fragment"><div class="line"><span class="comment">//=====start_of_circle=====================================================</span></div>
@@ -177,13 +171,13 @@ Part 1: A closer look at the GeomObject class: Geometric Data</h1>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> R;</div>
 <div class="line"> </div>
 <div class="line">}; <span class="comment">// end of SimpleCircle class</span></div>
-</div><!-- fragment --><p>The shape and position of this <code>GeomObject</code> is defined by the parameters <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ X_c, Y_c $" src="form_5.png" width="34" height="13"/></picture> and <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ R $" src="form_6.png" width="10" height="10"/></picture> which are stored as double precision numbers in the object's private member data.</p>
+</div><!-- fragment --><p>The shape and position of this <code>GeomObject</code> is defined by the parameters <img class="formulaInl" alt="$ X_c, Y_c $" src="form_5.png" width="34" height="13"/> and <img class="formulaInl" alt="$ R $" src="form_6.png" width="10" height="10"/> which are stored as double precision numbers in the object's private member data.</p>
 <p>In many applications (e.g. in free-boundary problems) it is necessary to regard some (or all) of the parameters that specify the object's shape as (an) unknown(s) in the overall problem. Within <code>oomph-lib</code> all unknowns are values in <code>Data</code> objects. We refer to any <code>Data</code> objects whose values affect the shape of a <code>GeomObject</code> as the <code>GeomObject's</code> geometric <code>Data</code>. The <code>GeomObject</code> class defines interfaces for two functions that provide access to such <code>Data</code>. The function</p>
 <div class="fragment"><div class="line"><span class="keyword">virtual</span> <span class="keywordtype">unsigned</span> GeomObject::ngeom_data() <span class="keyword">const</span>;</div>
 </div><!-- fragment --><p>should return the number of geometric <code>Data</code> objects that affect a <code>GeomObject's</code> shape and position. The function</p>
 <div class="fragment"><div class="line"><span class="keyword">virtual</span> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">Data</a>* GeomObject::geom_data_pt(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">j</a>);</div>
 </div><!-- fragment --><p>should return a pointer to the <code>GeomObject's</code> <code>j</code> - th geometric <code>Data</code> object. Both functions are implemented as "broken" virtual functions in the <code>GeomObject</code> base class in order to facilitate the creation of new <code>GeomObjects</code>. The functions should be overloaded in <code>GeomObjects</code> that actually contain geometric <code>Data</code>. If this is not done, the broken versions in the base class issue a suitable explanation before throwing an error.</p>
-<p>Here is a re-implementation of the above <code>GeomObject</code> in a form that allows the the parameters <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ X_c, Y_c $" src="form_5.png" width="34" height="13"/></picture> and <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ R $" src="form_6.png" width="10" height="10"/></picture> to be regarded as unknowns, by storing them as values in a suitable <code>Data</code> object:</p>
+<p>Here is a re-implementation of the above <code>GeomObject</code> in a form that allows the the parameters <img class="formulaInl" alt="$ X_c, Y_c $" src="form_5.png" width="34" height="13"/> and <img class="formulaInl" alt="$ R $" src="form_6.png" width="10" height="10"/> to be regarded as unknowns, by storing them as values in a suitable <code>Data</code> object:</p>
 <div class="fragment"><div class="line"><span class="comment">//=========================================================================</span></div>
 <div class="line"><span class="comment">/// GeneralCircle in 2D space.</span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// \f[ x = X_c + R \cos(\zeta)  \f]</span></div>
@@ -193,7 +187,7 @@ Part 1: A closer look at the GeomObject class: Geometric Data</h1>
 <div class="line"><span class="comment"></span><span class="comment">//=========================================================================</span></div>
 <div class="line"><span class="keyword">class </span>GeneralCircle : <span class="keyword">public</span> GeomObject</div>
 <div class="line">{</div>
-</div><!-- fragment --><p> The object has two constructors which we will discuss separately. The arguments to the first constructor specify the x- and y-coordinates of the ring's centre ( <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ X_c$" src="form_7.png" width="16" height="13"/></picture> and <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Y_c$" src="form_8.png" width="13" height="13"/></picture>), and its radius, <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ R $" src="form_6.png" width="10" height="10"/></picture>, as double-precision numbers. The constructor creates storage for these values in the <code>Geom_data_pt</code> vector which is stored in the object's protected member data. First, the <code>Geom_data_pt</code> vector (empty by default) is resized to provide storage for a (pointer to a) single Data item. Next we create a Data object that provides storage for three values and store the pointer to this <code>Data</code> object in the first (and only) component of the <code>Geom_data_pt</code> vector. Finally, we set the values to those specified by the arguments and pin them to reflect the fact that, by default, the values are constants rather than unknowns in the problem. [<b>Note:</b> Clearly, there is some ambiguity as to how to distribute the values of the geometric parameters among the geometric <code>Data</code>. Here we chose to store the three values in a single <code>Data</code> object, but we could also have stored each value in its own <code>Data</code> object.]</p>
+</div><!-- fragment --><p> The object has two constructors which we will discuss separately. The arguments to the first constructor specify the x- and y-coordinates of the ring's centre ( <img class="formulaInl" alt="$ X_c$" src="form_7.png" width="16" height="13"/> and <img class="formulaInl" alt="$ Y_c$" src="form_8.png" width="13" height="13"/>), and its radius, <img class="formulaInl" alt="$ R $" src="form_6.png" width="10" height="10"/>, as double-precision numbers. The constructor creates storage for these values in the <code>Geom_data_pt</code> vector which is stored in the object's protected member data. First, the <code>Geom_data_pt</code> vector (empty by default) is resized to provide storage for a (pointer to a) single Data item. Next we create a Data object that provides storage for three values and store the pointer to this <code>Data</code> object in the first (and only) component of the <code>Geom_data_pt</code> vector. Finally, we set the values to those specified by the arguments and pin them to reflect the fact that, by default, the values are constants rather than unknowns in the problem. [<b>Note:</b> Clearly, there is some ambiguity as to how to distribute the values of the geometric parameters among the geometric <code>Data</code>. Here we chose to store the three values in a single <code>Data</code> object, but we could also have stored each value in its own <code>Data</code> object.]</p>
 <div class="fragment"><div class="line"><span class="comment"> /// Constructor:  Pass x and y-coords of centre and radius (all pinned)</span></div>
 <div class="line"> GeneralCircle(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; x_c, <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; y_c, </div>
 <div class="line">               <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">r</a>) : GeomObject(1,2)</div>
@@ -293,7 +287,7 @@ Part 1: A closer look at the GeomObject class: Geometric Data</h1>
 <div class="line">      }</div>
 <div class="line">    }</div>
 <div class="line">  } <span class="comment">// end of destructor</span></div>
-</div><!-- fragment --><p> The function <code>GeomObject::position(...)</code> simply extracts the relevant parameters ( <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ X_c, Y_c, R $" src="form_9.png" width="50" height="13"/></picture>) from the <code>Geom_data_pt</code> vector and computes the position vector as a function of the 1D Lagrangian coordinate <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \zeta $" src="form_3.png" width="6" height="13"/></picture>:</p>
+</div><!-- fragment --><p> The function <code>GeomObject::position(...)</code> simply extracts the relevant parameters ( <img class="formulaInl" alt="$ X_c, Y_c, R $" src="form_9.png" width="50" height="13"/>) from the <code>Geom_data_pt</code> vector and computes the position vector as a function of the 1D Lagrangian coordinate <img class="formulaInl" alt="$ \zeta $" src="form_3.png" width="6" height="13"/>:</p>
 <div class="fragment"><div class="line"><span class="comment"> /// Position Vector at Lagrangian coordinate zeta </span></div>
 <div class="line"> <span class="keywordtype">void</span> position(<span class="keyword">const</span> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">Vector&lt;double&gt;</a>&amp; <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">zeta</a>, <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">Vector&lt;double&gt;</a>&amp; <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">r</a>)<span class="keyword"> const</span></div>
 <div class="line"><span class="keyword">  </span>{</div>
@@ -311,24 +305,24 @@ Part 1: A closer look at the GeomObject class: Geometric Data</h1>
  <hr  />
 <h1><a class="anchor" id="example"></a>
 Part 2: Upgrading a GeomObject to a GeneralisedElement</h1>
-<p>We will now consider a (toy!) problem in which the ability to treat a parameter that specifies the shape and/or the position of a geometric object as an unknown (i.e. as a value in a <code>Data</code> object) is essential: A circular ring of radius <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ R $" src="form_6.png" width="10" height="10"/></picture> is mounted on a linearly elastic spring of stiffness <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ k_{stiff} $" src="form_10.png" width="30" height="14"/></picture>. We wish to find the ring's equilibrium position when it is subjected to a vertical load, <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ f_{load} $" src="form_11.png" width="25" height="13"/></picture>.</p>
+<p>We will now consider a (toy!) problem in which the ability to treat a parameter that specifies the shape and/or the position of a geometric object as an unknown (i.e. as a value in a <code>Data</code> object) is essential: A circular ring of radius <img class="formulaInl" alt="$ R $" src="form_6.png" width="10" height="10"/> is mounted on a linearly elastic spring of stiffness <img class="formulaInl" alt="$ k_{stiff} $" src="form_10.png" width="30" height="14"/>. We wish to find the ring's equilibrium position when it is subjected to a vertical load, <img class="formulaInl" alt="$ f_{load} $" src="form_11.png" width="25" height="13"/>.</p>
 <div class="image">
 <img src="circle_as_element_sketch.gif" alt=""/>
 <div class="caption">
 Sketch of the example problem. </div></div>
- <p>To solve this problem with <code>oomph-lib</code> [Yes, the solution is <picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Y_c = f_{load}/k_{stiff}$" src="form_12.png" width="91" height="14"/></picture> but let's pretend we don't know this...], we employ C++ inheritance to "upgrade" the <code>GeneralCircle</code> object, discussed above, to a <code>GeneralisedElement</code> in which the vertical position of the ring, <picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Y_c
-$" src="form_13.png" width="13" height="13"/></picture>, is one of the unknowns whose value is determined by the equilibrium equation (in residual form),  </p><p class="formulaDsp">
-<picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ <p>To solve this problem with <code>oomph-lib</code> [Yes, the solution is <img class="formulaInl" alt="$ Y_c = f_{load}/k_{stiff}$" src="form_12.png" width="91" height="14"/> but let's pretend we don't know this...], we employ C++ inheritance to "upgrade" the <code>GeneralCircle</code> object, discussed above, to a <code>GeneralisedElement</code> in which the vertical position of the ring, <img class="formulaInl" alt="$ Y_c
+$" src="form_13.png" width="13" height="13"/>, is one of the unknowns whose value is determined by the equilibrium equation (in residual form),  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
  f_{load} - Y_c \ k_{stiff} = 0. \ \ \ \ \ \ \ \ \ \ \ (1)
-\]" src="form_14.png" width="175" height="14"/></picture>
+\]" src="form_14.png" width="175" height="14"/>
 </p>
-<p> In the present problem, the load on the ring is a control parameter, but in different applications it may be an unknown whose value has to be determined as part of the solution. (For instance, in fluid-structure interaction problems, the load on an elastic structure depends on the unknowns in the adjacent fluid elements.) Therefore, we also represent <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ f_{load} $" src="form_11.png" width="25" height="13"/></picture> by a <code>Data</code> object.</p>
+<p> In the present problem, the load on the ring is a control parameter, but in different applications it may be an unknown whose value has to be determined as part of the solution. (For instance, in fluid-structure interaction problems, the load on an elastic structure depends on the unknowns in the adjacent fluid elements.) Therefore, we also represent <img class="formulaInl" alt="$ f_{load} $" src="form_11.png" width="25" height="13"/> by a <code>Data</code> object.</p>
 <p>To solve the above problem with <code>oomph-lib</code>, the residual equation (1) must be implemented in the <code>get_residuals(...)</code> function of a suitable <code>GeneralisedElement</code>. Recall that the elemental residual vector computed by a <code>GeneralisedElement</code> can depend on two types of <code>Data:</code> </p><ul>
 <li><b>Internal <em>Data</em></b> stores values that are "internal" to the element, i.e. values that the element is "in charge of". Such <code>Data</code> is accessible via the pointer-based access function <code>GeneralisedElement::internal_data_pt(...)</code> </li>
 <li><b>External <em>Data</em></b> stores values that are "external" to the element. The values stored in such <code>Data</code> <em>affect</em> the element's residual vector but its values are not determined <em>by</em> the element. Such <code>Data</code> is accessible via the pointer-based access function <code>GeneralisedElement::external_data_pt(...)</code> </li>
 </ul>
 <p>In the present context, it is most natural to regard the <code>GeneralCircle's</code> geometric <code>Data</code> as internal to the element and the load <code>Data</code> as external.</p>
-<p>Here is the class definition for the <code>ElasticallySupportedRingElement</code> which combines the <code>GeneralisedElement</code> and <code>GeneralCircle</code> classes by multiple inheritance. Its role as a <code>GeomObject</code> allows the object to be used in the parametrisation of domain boundaries; its role as a <code>GeneralisedElement</code> allows the value of <picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Y_c $" src="form_15.png" width="13" height="13"/></picture> to be determined as part of the solution.</p>
+<p>Here is the class definition for the <code>ElasticallySupportedRingElement</code> which combines the <code>GeneralisedElement</code> and <code>GeneralCircle</code> classes by multiple inheritance. Its role as a <code>GeomObject</code> allows the object to be used in the parametrisation of domain boundaries; its role as a <code>GeneralisedElement</code> allows the value of <img class="formulaInl" alt="$ Y_c $" src="form_15.png" width="13" height="13"/> to be determined as part of the solution.</p>
  <div class="fragment"><div class="line"><span class="comment">//===========start_of_general_circle=========================================</span></div>
 <div class="line"><span class="comment">/// GeneralCircle &quot;upgraded&quot; to a GeneralisedElement: Circular </span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// ring whose position is given by</span></div>
@@ -336,22 +330,20 @@ $" src="form_13.png" width="13" height="13"/></picture>, is one of the unknowns 
 <div class="line"><span class="comment">/// \f[ y = Y_c + R \sin(\zeta)  \f]</span></div>
 <div class="line"><span class="comment">/// The ring&#39;s vertical position \f$ Y_c \f$ is</span></div>
 <div class="line"><span class="comment">/// determined by &quot;pseudo elasticity&quot;:</span></div>
-<div class="line"><span class="comment">/// \f[</span></div>
-<div class="line"><span class="comment">/// 0 = f_{load} - Y_c \ k_{stiff} </span></div>
-<div class="line"><span class="comment">/// \f]</span></div>
+<div class="line"><span class="comment">/// \f[ 0 = f_{load} - Y_c \ k_{stiff} \f]</span></div>
 <div class="line"><span class="comment">/// This simulates the case where the centre of the ring is mounted on </span></div>
 <div class="line"><span class="comment">/// an elastic spring of stiffness \f$ k_{stiff} \f$ and loaded by </span></div>
 <div class="line"><span class="comment">/// the force \f$ f_{load}. \f$ The &quot;load&quot; is specified by the </span></div>
 <div class="line"><span class="comment">/// Data object \c load_pt(). </span></div>
 <div class="line"><span class="comment"></span><span class="comment">//=========================================================================</span></div>
-<div class="line"><span class="keyword">class </span><a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">ElasticallySupportedRingElement</a> : <span class="keyword">public</span> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">GeneralisedElement</a>, </div>
+<div class="line"><span class="keyword">class </span>ElasticallySupportedRingElement : <span class="keyword">public</span> GeneralisedElement, </div>
 <div class="line">                                        <span class="keyword">public</span> GeneralCircle</div>
-</div><!-- fragment --><p>The arguments to the constructor specify the initial geometric parameters, <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ X_c, Y_c $" src="form_5.png" width="34" height="13"/></picture> and <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ R $" src="form_6.png" width="10" height="10"/></picture>. We pass them to the constructor of the <code>GeneralCircle</code> object and assign a default value for the spring stiffness <picture><source srcset="form_16_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ k_{stiff}$" src="form_16.png" width="30" height="14"/></picture> (stored as a private data member of the class; see below):  </p><div class="fragment"><div class="line"><span class="comment"> /// Constructor: Build  ring from doubles that describe </span></div>
+</div><!-- fragment --><p>The arguments to the constructor specify the initial geometric parameters, <img class="formulaInl" alt="$ X_c, Y_c $" src="form_5.png" width="34" height="13"/> and <img class="formulaInl" alt="$ R $" src="form_6.png" width="10" height="10"/>. We pass them to the constructor of the <code>GeneralCircle</code> object and assign a default value for the spring stiffness <img class="formulaInl" alt="$ k_{stiff}$" src="form_16.png" width="30" height="14"/> (stored as a private data member of the class; see below):  </p><div class="fragment"><div class="line"><span class="comment"> /// Constructor: Build  ring from doubles that describe </span></div>
 <div class="line"><span class="comment"> /// the geometry: x and y positions of centre and the radius.</span><span class="comment"></span></div>
 <div class="line"><span class="comment"> /// Initialise stiffness to 1.0. By default, no load is set.</span></div>
-<div class="line"><span class="comment"></span> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">ElasticallySupportedRingElement</a>(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; x_c, <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; y_c, </div>
+<div class="line"><span class="comment"></span> ElasticallySupportedRingElement(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; x_c, <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; y_c, </div>
 <div class="line">                                 <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">r</a>) : </div>
-<div class="line">  GeneralCircle(x_c,y_c,<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">r</a>), <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">K_stiff</a>(1.0), <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">Load_data_has_been_set</a>(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">false</a>)</div>
+<div class="line">  GeneralCircle(x_c,y_c,<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">r</a>), K_stiff(1.0), Load_data_has_been_set(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">false</a>)</div>
 </div><!-- fragment --><p> Next, we add the <code>GeneralCircle's</code> geometric <code>Data</code> (created automatically by the constructor of the <code>GeneralCircle</code> object; see above) into the element's storage for its internal <code>Data</code>. This ensures that the geometric <code>Data</code> is included in the element's equation numbering procedures. Within the context of the <code>GeneralCircle</code>, all geometric parameters were regarded as constants and their values were pinned. Here, the vertical position [stored in the second entry in the geometric <code>Data</code>] is unknown, therefore we un-pin it.</p>
 <div class="fragment"><div class="line">  {</div>
 <div class="line">   <span class="comment">// The geometric data is internal to the element -- we copy the pointers</span></div>
@@ -360,19 +352,19 @@ $" src="form_13.png" width="13" height="13"/></picture>, is one of the unknowns 
 <div class="line">   <span class="comment">// given global equation numbers. The add_internal_data(...)</span></div>
 <div class="line">   <span class="comment">// function returns the index by which the added Data item</span></div>
 <div class="line">   <span class="comment">// is accessible from internal_data_pt(...). </span></div>
-<div class="line">   <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">Internal_geometric_data_index</a>=<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">add_internal_data</a>(Geom_data_pt[0]);</div>
+<div class="line">   Internal_geometric_data_index=<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">add_internal_data</a>(Geom_data_pt[0]);</div>
 <div class="line"> </div>
 <div class="line">   <span class="comment">// Geometric Data for the GeomObject has been set up (and pinned) in</span></div>
 <div class="line">   <span class="comment">// constructor for geometric object. Now free the y-position </span></div>
 <div class="line">   <span class="comment">// of the centre because we want to determine it as an unknown</span></div>
-<div class="line">   <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">internal_data_pt</a>(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">Internal_geometric_data_index</a>)-&gt;unpin(1);</div>
+<div class="line">   <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">internal_data_pt</a>(Internal_geometric_data_index)-&gt;unpin(1);</div>
 </div><!-- fragment --><p> Once <code>Data</code> has been added to a <code>GeneralisedElement's</code> internal <code>Data</code>, it is deleted by the destructor of the <code>GeneralisedElement</code> when the <code>GeneralisedElement</code> goes out of scope. The <code>Data</code> must therefore not be deleted again by the destructor of the <code>GeneralCircle</code> class, and we change the cleanup responsibilities accordingly:</p>
  <div class="fragment"><div class="line">   <span class="comment">// Change cleanup responsibilities: The GeomData will now be killed</span></div>
 <div class="line">   <span class="comment">// by the GeneralisedElement when it wipes its internal Data</span></div>
 <div class="line">   Must_clean_up=<span class="keyword">false</span>;</div>
 <div class="line">  }</div>
 </div><!-- fragment --><p>Since the <code>GeneralisedElement's</code> destructor will delete the internal <code>Data</code>, the destructor can remain empty: </p><div class="fragment"><div class="line"><span class="comment"> /// Destructor: </span></div>
-<div class="line"> <span class="keyword">virtual</span> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">~ElasticallySupportedRingElement</a>()</div>
+<div class="line"> <span class="keyword">virtual</span> ~ElasticallySupportedRingElement()</div>
 <div class="line">  {</div>
 <div class="line">   <span class="comment">// The GeomObject&#39;s GeomData is mirrored in the element&#39;s</span></div>
 <div class="line">   <span class="comment">// Internal Data and therefore gets wiped in the</span></div>
@@ -381,7 +373,7 @@ $" src="form_13.png" width="13" height="13"/></picture>, is one of the unknowns 
 </div><!-- fragment --><p> The <code>Data</code> whose one-and-only value represents the load must be set by the "user", using the function <code>set_load_pt(...)</code> As discussed above, we store the pointer to the load <code>Data</code> object in the <code>GeneralisedElement's</code> external <code>Data</code> and record its index within that storage scheme.</p>
  <div class="fragment"><div class="line"><span class="comment"> /// Set pointer to Data object that specifies the &quot;load&quot;</span></div>
 <div class="line"><span class="comment"> /// on the ElasticallySupportedRingElement</span></div>
-<div class="line"> <span class="keywordtype">void</span> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">set_load_pt</a>(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">Data</a>* <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">load_pt</a>)</div>
+<div class="line"> <span class="keywordtype">void</span> set_load_pt(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">Data</a>* <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">load_pt</a>)</div>
 <div class="line">  {</div>
 <div class="line"><span class="preprocessor">#ifdef PARANOID</span></div>
 <div class="line">   <span class="keywordflow">if</span> (<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">load_pt</a>-&gt;nvalue()!=1)</div>
@@ -402,10 +394,10 @@ $" src="form_13.png" width="13" height="13"/></picture>, is one of the unknowns 
 <div class="line">   <span class="comment">// its index within that storage scheme: Following this assignment, </span></div>
 <div class="line">   <span class="comment">// the load Data is accessible from</span></div>
 <div class="line">   <span class="comment">// GeneralisedElement::external_data_pt(External_load_index)</span></div>
-<div class="line">   <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">External_load_index</a> = <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">add_external_data</a>(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">load_pt</a>);</div>
+<div class="line">   External_load_index = <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">add_external_data</a>(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">load_pt</a>);</div>
 <div class="line"> </div>
 <div class="line">   <span class="comment">// Load has now been set</span></div>
-<div class="line">   <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">Load_data_has_been_set</a>=<span class="keyword">true</span>;</div>
+<div class="line">   Load_data_has_been_set=<span class="keyword">true</span>;</div>
 <div class="line"> </div>
 <div class="line">  } <span class="comment">// end of set_load_pt(...)</span></div>
 </div><!-- fragment --><p> [Note the sanity check which asserts that the load <code>Data</code> object only contains a single value; see <a class="el" href="index.html#notes">Comments and Exercises</a> for a further discussion of this aspect.]</p>
@@ -414,9 +406,9 @@ $" src="form_13.png" width="13" height="13"/></picture>, is one of the unknowns 
 <div class="line"> <span class="keywordtype">double</span> load()</div>
 <div class="line">  {</div>
 <div class="line">   <span class="comment">// Return the load if it has been set</span></div>
-<div class="line">   <span class="keywordflow">if</span> (<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">Load_data_has_been_set</a>)</div>
+<div class="line">   <span class="keywordflow">if</span> (Load_data_has_been_set)</div>
 <div class="line">    {</div>
-<div class="line">     <span class="keywordflow">return</span> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">external_data_pt</a>(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">External_load_index</a>)-&gt;value(0);</div>
+<div class="line">     <span class="keywordflow">return</span> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">external_data_pt</a>(External_load_index)-&gt;value(0);</div>
 <div class="line">    }</div>
 <div class="line">   <span class="comment">// ...otherwise return zero load</span></div>
 <div class="line">   <span class="keywordflow">else</span></div>
@@ -425,40 +417,40 @@ $" src="form_13.png" width="13" height="13"/></picture>, is one of the unknowns 
 <div class="line">    }</div>
 <div class="line">  } <span class="comment">// end of load()</span></div>
 </div><!-- fragment --><p>Next, we provide an access functions to the spring stiffness parameter, </p><div class="fragment"><div class="line"><span class="comment"> /// Access function for the spring stiffness</span></div>
-<div class="line"> <span class="keywordtype">double</span>&amp; <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">k_stiff</a>() {<span class="keywordflow">return</span> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">K_stiff</a>;}</div>
+<div class="line"> <span class="keywordtype">double</span>&amp; k_stiff() {<span class="keywordflow">return</span> K_stiff;}</div>
 </div><!-- fragment --><p> and functions that allow the vertical displacement of the ring to be pinned and un-pinned:</p>
 <div class="fragment"><div class="line"><span class="comment"> /// Pin the vertical displacement</span></div>
-<div class="line"> <span class="keywordtype">void</span> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">pin_yc</a>()</div>
+<div class="line"> <span class="keywordtype">void</span> pin_yc()</div>
 <div class="line">  {</div>
 <div class="line">   <span class="comment">// Vertical position of centre is stored as value 1 in the</span></div>
 <div class="line">   <span class="comment">// element&#39;s one and only internal Data object.</span></div>
-<div class="line">   <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">internal_data_pt</a>(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">Internal_geometric_data_index</a>)-&gt;pin(1);</div>
+<div class="line">   <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">internal_data_pt</a>(Internal_geometric_data_index)-&gt;pin(1);</div>
 <div class="line">  }</div>
 <div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Unpin the vertical displacement</span></div>
-<div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">unpin_yc</a>()</div>
+<div class="line"><span class="comment"></span> <span class="keywordtype">void</span> unpin_yc()</div>
 <div class="line">  {</div>
 <div class="line">   <span class="comment">// Vertical position of centre is stored as value 1 in the</span></div>
 <div class="line">   <span class="comment">// element&#39;s one and only internal Data object.</span></div>
-<div class="line">   <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">internal_data_pt</a>(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">Internal_geometric_data_index</a>)-&gt;unpin(1);</div>
+<div class="line">   <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">internal_data_pt</a>(Internal_geometric_data_index)-&gt;unpin(1);</div>
 <div class="line"> </div>
 <div class="line">  } <span class="comment">// end of unpin_yc()</span></div>
 </div><!-- fragment --><p> Finally, we implement the pure virtual functions <code>GeneralisedElement::get_jacobian(...)</code> and <code>GeneralisedElement::get_residuals(...)</code> which are required to make the element functional. These functions must compute the element's contributions to the <code>Problem's</code> global residual vector and Jacobian matrix. As usual, we implement them as wrappers to a single function that computes the residual and (optionally) the Jacobian matrix:</p>
 <div class="fragment"><div class="line"><span class="comment"> /// Compute element residual vector (wrapper)</span></div>
-<div class="line"> <span class="keywordtype">void</span> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">get_residuals</a>(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">Vector&lt;double&gt;</a> &amp;<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">residuals</a>)</div>
+<div class="line"> <span class="keywordtype">void</span> get_residuals(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">Vector&lt;double&gt;</a> &amp;<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">residuals</a>)</div>
 <div class="line">  {</div>
 <div class="line">   <span class="comment">//Initialise residuals to zero</span></div>
 <div class="line">   <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">residuals</a>.initialise(0.0);</div>
 <div class="line">   <span class="comment">//Create a dummy matrix</span></div>
 <div class="line">   <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">DenseMatrix&lt;double&gt;</a> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">dummy</a>(1);</div>
 <div class="line">   <span class="comment">//Call the generic residuals function with flag set to 0</span></div>
-<div class="line">   <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">fill_in_generic_residual_contribution</a>(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">residuals</a>,<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">dummy</a>,0);</div>
+<div class="line">   fill_in_generic_residual_contribution(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">residuals</a>,<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">dummy</a>,0);</div>
 <div class="line">   }</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment"></span></div>
 <div class="line"><span class="comment"> /// Compute element residual Vector and element Jacobian matrix (wrapper)</span></div>
-<div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">get_jacobian</a>(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">Vector&lt;double&gt;</a> &amp;<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">residuals</a>,</div>
+<div class="line"><span class="comment"></span> <span class="keywordtype">void</span> get_jacobian(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">Vector&lt;double&gt;</a> &amp;<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">residuals</a>,</div>
 <div class="line">                   <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">DenseMatrix&lt;double&gt;</a> &amp;<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">jacobian</a>)</div>
 <div class="line">  {</div>
 <div class="line">   <span class="comment">//Initialise residuals to zero</span></div>
@@ -466,24 +458,24 @@ $" src="form_13.png" width="13" height="13"/></picture>, is one of the unknowns 
 <div class="line">   <span class="comment">//Initialise the jacobian matrix to zero</span></div>
 <div class="line">   <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">jacobian</a>.initialise(0.0);</div>
 <div class="line">   <span class="comment">//Call the generic routine with the flag set to 1</span></div>
-<div class="line">   <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">fill_in_generic_residual_contribution</a>(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">residuals</a>,<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">jacobian</a>,1);</div>
+<div class="line">   fill_in_generic_residual_contribution(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">residuals</a>,<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">jacobian</a>,1);</div>
 <div class="line"> </div>
 <div class="line">  } <span class="comment">// end of get_jacobian(...)</span></div>
 </div><!-- fragment --><p> The "real work" is done in the protected member function <code>get_residuals_generic(...)</code>, where we distinguish two cases.</p><ol type="1">
-<li>The load is prescribed, i.e. the (single) value in the load <code>Data</code> object is pinned. In this case, the element's <code>Data</code> contains only one unknown &ndash; the vertical displacement <picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Y_c $" src="form_15.png" width="13" height="13"/></picture>, stored as value 1 in the internal <code>Data</code>. The element's residual vector has a single entry, given by  <p class="formulaDsp">
-<picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<li>The load is prescribed, i.e. the (single) value in the load <code>Data</code> object is pinned. In this case, the element's <code>Data</code> contains only one unknown &ndash; the vertical displacement <img class="formulaInl" alt="$ Y_c $" src="form_15.png" width="13" height="13"/>, stored as value 1 in the internal <code>Data</code>. The element's residual vector has a single entry, given by  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
    {\tt r}_0 = f_{load} - Y_c \ k_{stiff}
-   \]" src="form_17.png" width="116" height="14"/></picture>
+   \]" src="form_17.png" width="116" height="14"/>
 </p>
  and the element's Jacobian matrix is a 1x1 matrix whose single entry is given by  <p class="formulaDsp">
-<picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[  
+<img class="formulaDsp" alt="\[  
    {\tt J}_{00} = \frac{\partial {\tt r}_0}{\partial Y_c} =  - k_{stiff} 
-   \]" src="form_18.png" width="113" height="29"/></picture>
+   \]" src="form_18.png" width="113" height="29"/>
 </p>
 <br  />
 </li>
 <li>If the load is unknown (i.e. an unknown in the overall problem) the element's <code>Data</code> contains two unknowns. Recall that an element only makes a contribution to the residuals associated with unknowns that it is "in charge of" &ndash; the external <code>Data</code> is assumed to be "determined" by another element. Therefore, the elements residual vectors (i.e. its contribution to the <code>Problem's</code> global residual vector) is given by  <p class="formulaDsp">
-<picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
    \left( \begin{array}{c}
    {\tt r}_0 \\
    {\tt r}_1
@@ -493,11 +485,11 @@ $" src="form_13.png" width="13" height="13"/></picture>, is one of the unknowns 
    f_{load} - Y_c \ k_{stiff}\\
    0
    \end{array} \right).
-   \]" src="form_19.png" width="181" height="31"/></picture>
+   \]" src="form_19.png" width="181" height="31"/>
 </p>
- The element's 2x2 Jacobian matrix contains the derivatives of the residuals with respect to the element's unknowns, <picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Y_c
-   $" src="form_20.png" width="13" height="13"/></picture> and <picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ f_{load}$" src="form_21.png" width="25" height="13"/></picture>,  <p class="formulaDsp">
-<picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[  
+ The element's 2x2 Jacobian matrix contains the derivatives of the residuals with respect to the element's unknowns, <img class="formulaInl" alt="$ Y_c
+   $" src="form_20.png" width="13" height="13"/> and <img class="formulaInl" alt="$ f_{load}$" src="form_21.png" width="25" height="13"/>,  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[  
    \left( \begin{array}{cc}
    {\tt J}_{00} &amp;    {\tt J}_{01} \\
    {\tt J}_{10} &amp;    {\tt J}_{11} 
@@ -514,7 +506,7 @@ $" src="form_13.png" width="13" height="13"/></picture>, is one of the unknowns 
    - k_{stiff} &amp; 1 \\
    0 &amp; 0
    \end{array} \right)
-   \]" src="form_22.png" width="344" height="31"/></picture>
+   \]" src="form_22.png" width="344" height="31"/>
 </p>
 <br  />
 </li>
@@ -522,7 +514,7 @@ $" src="form_13.png" width="13" height="13"/></picture>, is one of the unknowns 
 <p>Note that we have (correctly!) assumed that the (fully automatic) local equation numbering procedure, implemented in <code>GeneralisedElement::assign_local_eqn_numbers()</code>, regards the internal degree of freedom as local unknown "0" and the external one (if it exists) as unknown "1". However, to be on the safe side, we determine the local equation numbers via the access functions <code>internal_local_eqn(i,j)</code> and <code>external_local_eqn(i,j)</code>, which return the local equation numbers of the j-th value, stored in the element's i-th internal (or external) <code>Data</code> object:</p>
 <div class="fragment"><div class="line"><span class="comment"> /// Compute element residual Vector (only if flag=0) and also</span></div>
 <div class="line"><span class="comment"> /// the element Jacobian matrix (if flag=1)</span></div>
-<div class="line"> <span class="keywordtype">void</span> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">fill_in_generic_residual_contribution</a>(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">Vector&lt;double&gt;</a> &amp;<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">residuals</a>,</div>
+<div class="line"> <span class="keywordtype">void</span> fill_in_generic_residual_contribution(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">Vector&lt;double&gt;</a> &amp;<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">residuals</a>,</div>
 <div class="line">                                            <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">DenseMatrix&lt;double&gt;</a> &amp;<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">jacobian</a>,</div>
 <div class="line">                                            <span class="keywordtype">unsigned</span> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">flag</a>)</div>
 <div class="line">  { </div>
@@ -539,18 +531,18 @@ $" src="form_13.png" width="13" height="13"/></picture>, is one of the unknowns 
 <div class="line">   <span class="comment">// dof, y_c, which is stored as the second value of the one-and-only</span></div>
 <div class="line">   <span class="comment">// internal data object in this element]</span></div>
 <div class="line">   <span class="keywordtype">int</span> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">local_eqn_number_for_yc</a> = </div>
-<div class="line">    <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">internal_local_eqn</a>(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">Internal_geometric_data_index</a>,1);</div>
+<div class="line">    <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">internal_local_eqn</a>(Internal_geometric_data_index,1);</div>
 <div class="line"> </div>
 <div class="line">   <span class="comment">// Add residual to appropriate entry in the element&#39;s residual</span></div>
 <div class="line">   <span class="comment">// vector:</span></div>
-<div class="line">   <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">residuals</a>[<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">local_eqn_number_for_yc</a>]=load()-<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">K_stiff</a>*y_c();</div>
+<div class="line">   <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">residuals</a>[<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">local_eqn_number_for_yc</a>]=load()-K_stiff*y_c();</div>
 <div class="line"> </div>
 <div class="line">   <span class="comment">// Work out Jacobian: </span></div>
 <div class="line">   <span class="keywordflow">if</span> (<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">flag</a>)</div>
 <div class="line">    {</div>
 <div class="line">     <span class="comment">// Derivative of residual w.r.t. the internal dof, i.e. the vertical</span></div>
 <div class="line">     <span class="comment">// position of the ring&#39;s centre: d residual[0]/d y_c</span></div>
-<div class="line">     <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">jacobian</a>(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">local_eqn_number_for_yc</a>,<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">local_eqn_number_for_yc</a>) = -<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">K_stiff</a>;</div>
+<div class="line">     <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">jacobian</a>(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">local_eqn_number_for_yc</a>,<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">local_eqn_number_for_yc</a>) = -K_stiff;</div>
 <div class="line">     </div>
 <div class="line">     </div>
 <div class="line">     <span class="comment">// Derivative with respect to external dof, i.e. the applied </span></div>
@@ -561,7 +553,7 @@ $" src="form_13.png" width="13" height="13"/></picture>, is one of the unknowns 
 <div class="line">       <span class="comment">// It&#39;s stored as the 0th value in the the element&#39;s</span></div>
 <div class="line">       <span class="comment">// one-and-only external data item:</span></div>
 <div class="line">       <span class="keywordtype">int</span> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">local_eqn_number_for_load</a> = </div>
-<div class="line">        <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">external_local_eqn</a>(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">External_load_index</a>,0);</div>
+<div class="line">        <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">external_local_eqn</a>(External_load_index,0);</div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#ifdef PARANOID</span></div>
 <div class="line">       <span class="keywordflow">if</span> (<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">local_eqn_number_for_load</a>&lt;0)</div>
@@ -627,7 +619,7 @@ The driver code</h2>
 <div class="line"> </div>
 <div class="line">} <span class="comment">// end of driver</span></div>
 <div class="ttc" id="acircle_8cc_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="circle_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdoc">Driver.</div><div class="ttdef"><b>Definition</b> <a href="circle_8cc_source.html#l00040">circle.cc:40</a></div></div>
-<div class="ttc" id="aclassGeomObjectAsGeneralisedElementProblem_html"><div class="ttname"><a href="classGeomObjectAsGeneralisedElementProblem.html">GeomObjectAsGeneralisedElementProblem</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="geom__object__element_8cc_source.html#l00052">geom_object_element.cc:53</a></div></div>
+<div class="ttc" id="aclassGeomObjectAsGeneralisedElementProblem_html"><div class="ttname"><a href="classGeomObjectAsGeneralisedElementProblem.html">GeomObjectAsGeneralisedElementProblem</a></div><div class="ttdoc">Problem to demonstrate the use of a GeomObject as a GeneralisedElement: A geometric object (a Circle)...</div><div class="ttdef"><b>Definition</b> <a href="geom__object__element_8cc_source.html#l00052">geom_object_element.cc:53</a></div></div>
 <div class="ttc" id="aclassGeomObjectAsGeneralisedElementProblem_html_a47149c35c94b2ab99507a0a74fe35823"><div class="ttname"><a href="classGeomObjectAsGeneralisedElementProblem.html#a47149c35c94b2ab99507a0a74fe35823">GeomObjectAsGeneralisedElementProblem::load</a></div><div class="ttdeci">double &amp; load()</div><div class="ttdoc">Return value of the &quot;load&quot; on the elastically supported ring.</div><div class="ttdef"><b>Definition</b> <a href="geom__object__element_8cc_source.html#l00070">geom_object_element.cc:70</a></div></div>
 </div><!-- fragment --><hr  />
 <h2><a class="anchor" id="class"></a>
@@ -703,8 +695,8 @@ The problem constructor</h2>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Build GeomObject that&#39;s been upgraded to a GeneralisedElement</span></div>
 <div class="line"> <span class="comment">// GeneralisedElement* </span></div>
-<div class="line"> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">ElasticallySupportedRingElement</a>* <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">geom_object_element_pt</a> = </div>
-<div class="line">  <span class="keyword">new</span> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">ElasticallySupportedRingElement</a>(x_c,y_c,R);</div>
+<div class="line"> ElasticallySupportedRingElement* <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">geom_object_element_pt</a> = </div>
+<div class="line">  <span class="keyword">new</span> ElasticallySupportedRingElement(x_c,y_c,R);</div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Set the stiffness of the elastic support</span></div>
 <div class="line"> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">geom_object_element_pt</a>-&gt;k_stiff()=0.3;</div>
@@ -734,7 +726,7 @@ The problem constructor</h2>
 <div class="line">  </div>
 <div class="line"> <span class="comment">// Open trace file</span></div>
 <div class="line"> <span class="keywordtype">char</span> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">filename</a>[100];</div>
-<div class="line"> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">sprintf</a>(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">filename</a>,<span class="stringliteral">&quot;%s/trace.dat&quot;</span>,Doc_info.directory().c_str());</div>
+<div class="line"> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">snprintf</a>(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">filename</a>), <span class="stringliteral">&quot;%s/trace.dat&quot;</span>,Doc_info.directory().c_str());</div>
 <div class="line"> Trace_file.open(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">filename</a>);</div>
 <div class="line"> Trace_file &lt;&lt; <span class="stringliteral">&quot;VARIABLES=\&quot;load\&quot;,\&quot;y&lt;sub&gt;circle&lt;/sub&gt;\&quot;&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"> </div>
@@ -760,13 +752,13 @@ The post-processing function</h2>
 <div class="line"> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">Vector&lt;double&gt;</a> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">r</a>(2);</div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output solution </span></div>
-<div class="line"> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">sprintf</a>(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">filename</a>,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,<a class="code hl_variable" href="classGeomObjectAsGeneralisedElementProblem.html#a89a7f5fa555839193166f802d6ff6be2">Doc_info</a>.directory().c_str(),</div>
+<div class="line"> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">snprintf</a>(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">filename</a>), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,<a class="code hl_variable" href="classGeomObjectAsGeneralisedElementProblem.html#a89a7f5fa555839193166f802d6ff6be2">Doc_info</a>.directory().c_str(),</div>
 <div class="line">         <a class="code hl_variable" href="classGeomObjectAsGeneralisedElementProblem.html#a89a7f5fa555839193166f802d6ff6be2">Doc_info</a>.number());</div>
 <div class="line"> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">some_file</a>.open(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">filename</a>);</div>
 <div class="line"> <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">i</a>=0;<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">i</a>&lt;<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">npts</a>;<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">i</a>++)</div>
 <div class="line">  {</div>
 <div class="line">   <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">zeta</a>[0]=2.0*MathematicalConstants::Pi*<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">double</a>(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">i</a>)/<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">double</a>(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">npts</a>-1);</div>
-<div class="line">   <span class="keyword">static_cast&lt;</span><a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">ElasticallySupportedRingElement</a>*<span class="keyword">&gt;</span>(mesh_pt()-&gt;element_pt(0))-&gt;</div>
+<div class="line">   <span class="keyword">static_cast&lt;</span>ElasticallySupportedRingElement*<span class="keyword">&gt;</span>(mesh_pt()-&gt;element_pt(0))-&gt;</div>
 <div class="line">    position(<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">zeta</a>,<a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">r</a>);  </div>
 <div class="line">   <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">some_file</a> &lt;&lt; <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">r</a>[0] &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; <a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">r</a>[1] &lt;&lt; std::endl;</div>
 <div class="line">  }</div>
@@ -775,10 +767,10 @@ The post-processing function</h2>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Write &quot;load&quot; and vertical position of the ring&#39;s centre</span></div>
 <div class="line"> <a class="code hl_variable" href="classGeomObjectAsGeneralisedElementProblem.html#ad6261e556a52596ba8904ee902ea6d70">Trace_file</a> </div>
-<div class="line">  &lt;&lt; <span class="keyword">static_cast&lt;</span><a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">ElasticallySupportedRingElement</a>*<span class="keyword">&gt;</span>(</div>
+<div class="line">  &lt;&lt; <span class="keyword">static_cast&lt;</span>ElasticallySupportedRingElement*<span class="keyword">&gt;</span>(</div>
 <div class="line">   mesh_pt()-&gt;element_pt(0))-&gt;<a class="code hl_function" href="classGeomObjectAsGeneralisedElementProblem.html#a47149c35c94b2ab99507a0a74fe35823">load</a>()</div>
 <div class="line">  &lt;&lt; <span class="stringliteral">&quot; &quot;</span></div>
-<div class="line">  &lt;&lt; <span class="keyword">static_cast&lt;</span><a class="code hl_function" href="algebraic__free__boundary__poisson_8cc.html#abb923e967929c29b3a4fa1693604952a">ElasticallySupportedRingElement</a>*<span class="keyword">&gt;</span>(</div>
+<div class="line">  &lt;&lt; <span class="keyword">static_cast&lt;</span>ElasticallySupportedRingElement*<span class="keyword">&gt;</span>(</div>
 <div class="line">   mesh_pt()-&gt;element_pt(0))-&gt;y_c()</div>
 <div class="line">  &lt;&lt; <span class="stringliteral">&quot; &quot;</span></div>
 <div class="line">  &lt;&lt; std::endl;</div>
@@ -818,7 +810,7 @@ demo_drivers/interaction/free_boundary_poisson/geom_object_element.cc
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -848,7 +840,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:25:11
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:33:53
         </div>
       </div>
     </footer>

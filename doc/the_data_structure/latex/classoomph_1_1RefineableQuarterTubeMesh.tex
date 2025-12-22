@@ -2,12 +2,12 @@
 \hypertarget{classoomph_1_1RefineableQuarterTubeMesh}{}\label{classoomph_1_1RefineableQuarterTubeMesh}\index{oomph::RefineableQuarterTubeMesh$<$ ELEMENT $>$@{oomph::RefineableQuarterTubeMesh$<$ ELEMENT $>$}}
 
 
-///////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////  
+Adaptative version of the \doxylink{classoomph_1_1QuarterTubeMesh}{Quarter\+Tube\+Mesh} base mesh. The domain is specified by the \doxylink{classoomph_1_1GeomObject}{Geom\+Object} that identifies boundary 3.  
 
 
 
 
-{\ttfamily \#include $<$quarter\+\_\+tube\+\_\+mesh.\+template.\+h$>$}
+{\ttfamily \#include $<$quarter\+\_\+tube\+\_\+mesh.\+h$>$}
 
 Inheritance diagram for oomph\+::Refineable\+Quarter\+Tube\+Mesh\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
 \begin{center}
@@ -113,6 +113,10 @@ Inheritance diagram for oomph\+::Refineable\+Quarter\+Tube\+Mesh\texorpdfstring{
 \begin{DoxyCompactList}\small\item\em Replace existing boundary node lookup schemes with new schemes created using the boundary data stored in the nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1Mesh_ad1b124a959628aba00162b89617b3a62}{boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Indicate whether the i-\/th boundary has an intrinsic coordinate. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_ab137d0c0debf5ba0d6ea6990103e620c}{set\+\_\+boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be existing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_a3b9d63e0057ed721190b109f48f7c92e}{set\+\_\+boundary\+\_\+coordinate\+\_\+does\+\_\+not\+\_\+exist}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be non-\/existing. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_af01dfefb66c15579b540be62999d93ee}{nelement}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return number of elements in the mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
@@ -657,9 +661,7 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_aca12acfe655a4d5c4a4eab4a7b970812}{Element\+\_\+pt}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a412a5051be9e81f0ba61bf85e5abc4a6}{Boundary\+\_\+coordinate\+\_\+exists}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of boolean data that indicates whether the boundary coordinates have been set for the boundary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMeshBase}{oomph\+::\+Tree\+Based\+Refineable\+Mesh\+Base}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -709,9 +711,7 @@ std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionEleme
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{class}} ELEMENT$>$\newline
 class oomph\+::\+Refineable\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$}
-///////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////// 
-
-Adaptative version of the \doxylink{classoomph_1_1QuarterTubeMesh}{Quarter\+Tube\+Mesh} base mesh. The domain is specified by the \doxylink{classoomph_1_1GeomObject}{Geom\+Object} that identifies boundary 3.
+Adaptative version of the \doxylink{classoomph_1_1QuarterTubeMesh}{Quarter\+Tube\+Mesh} base mesh. The domain is specified by the \doxylink{classoomph_1_1GeomObject}{Geom\+Object} that identifies boundary 3. 
 
 The mesh boundaries are numbered as follows\+:
 \begin{DoxyItemize}
@@ -722,7 +722,7 @@ The mesh boundaries are numbered as follows\+:
 \item Boundary 4\+: "{}\+Outflow"{} cross section; located along the line parametrised by $ \xi_0 =  \xi_0^{hi} $ on the geometric object that specifies the wall. 
 \end{DoxyItemize}
 
-Definition at line \mbox{\hyperlink{quarter__tube__mesh_8template_8h_source_l00159}{159}} of file \mbox{\hyperlink{quarter__tube__mesh_8template_8h_source}{quarter\+\_\+tube\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{quarter__tube__mesh_8h_source_l00157}{157}} of file \mbox{\hyperlink{quarter__tube__mesh_8h_source}{quarter\+\_\+tube\+\_\+mesh.\+h}}.
 
 
 
@@ -740,11 +740,11 @@ Constructor for adaptive deformable quarter tube mesh class. The domain is speci
 
 
 
-Definition at line \mbox{\hyperlink{quarter__tube__mesh_8template_8h_source_l00171}{171}} of file \mbox{\hyperlink{quarter__tube__mesh_8template_8h_source}{quarter\+\_\+tube\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{quarter__tube__mesh_8h_source_l00169}{169}} of file \mbox{\hyperlink{quarter__tube__mesh_8h_source}{quarter\+\_\+tube\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{quarter__tube__mesh_8template_8h_source_l00121}{oomph\+::\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::\+Domain\+\_\+pt}}, \mbox{\hyperlink{mesh_8h_source_l00460}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00473}{oomph\+::\+Mesh\+::finite\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00768}{oomph\+::\+Tree\+Based\+Refineable\+Mesh\+Base\+::\+Forest\+\_\+pt}}, \mbox{\hyperlink{domain_8h_source_l00116}{oomph\+::\+Domain\+::macro\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, and \mbox{\hyperlink{mesh_8cc_source_l00778}{oomph\+::\+Mesh\+::self\+\_\+test()}}.
+References \mbox{\hyperlink{quarter__tube__mesh_8h_source_l00120}{oomph\+::\+Quarter\+Tube\+Mesh$<$ ELEMENT $>$\+::\+Domain\+\_\+pt}}, \mbox{\hyperlink{mesh_8h_source_l00464}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00477}{oomph\+::\+Mesh\+::finite\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{refineable__mesh_8h_source_l00768}{oomph\+::\+Tree\+Based\+Refineable\+Mesh\+Base\+::\+Forest\+\_\+pt}}, \mbox{\hyperlink{domain_8h_source_l00116}{oomph\+::\+Domain\+::macro\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00326}{oomph\+::oomph\+\_\+info}}, and \mbox{\hyperlink{mesh_8cc_source_l00778}{oomph\+::\+Mesh\+::self\+\_\+test()}}.
 
 \Hypertarget{classoomph_1_1RefineableQuarterTubeMesh_a229ad0335ba60176c578897b558790eb}\label{classoomph_1_1RefineableQuarterTubeMesh_a229ad0335ba60176c578897b558790eb} 
 \index{oomph::RefineableQuarterTubeMesh$<$ ELEMENT $>$@{oomph::RefineableQuarterTubeMesh$<$ ELEMENT $>$}!````~RefineableQuarterTubeMesh@{\texorpdfstring{$\sim$}{\string~}RefineableQuarterTubeMesh}}
@@ -759,10 +759,10 @@ Destructor\+: empty.
 
 
 
-Definition at line \mbox{\hyperlink{quarter__tube__mesh_8template_8h_source_l00221}{221}} of file \mbox{\hyperlink{quarter__tube__mesh_8template_8h_source}{quarter\+\_\+tube\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{quarter__tube__mesh_8h_source_l00218}{218}} of file \mbox{\hyperlink{quarter__tube__mesh_8h_source}{quarter\+\_\+tube\+\_\+mesh.\+h}}.
 
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{quarter__tube__mesh_8template_8h}{quarter\+\_\+tube\+\_\+mesh.\+template.\+h}}\end{DoxyCompactItemize}
+\mbox{\hyperlink{quarter__tube__mesh_8h}{quarter\+\_\+tube\+\_\+mesh.\+h}}\end{DoxyCompactItemize}

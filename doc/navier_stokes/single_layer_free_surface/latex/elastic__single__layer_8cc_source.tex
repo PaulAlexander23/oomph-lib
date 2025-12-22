@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -83,9 +83,9 @@
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00079}00079\ \}\ \textcolor{comment}{//\ End\ of\ namespace}}
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00080}00080\ }
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00081}00081\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00082}00082\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00083}00083\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00084}00084\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00082}00082\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00083}00083\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00084}00084\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00085}00085\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00086}00086\ }
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00087}00087\ \textcolor{comment}{//==start\_of\_problem\_class================================================}\textcolor{comment}{}}
@@ -456,7 +456,7 @@
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00452}00452\ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ npts\ =\ 5;}
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00453}00453\ \ }
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00454}00454\ \ \textcolor{comment}{//\ Open\ solution\ output\ file}}
-\DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00455}00455\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},}
+\DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00455}00455\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},}
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00456}00456\ \ \ \ \ \ \ \ \ \ doc\_info.directory().c\_str(),doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00457}00457\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00458}00458\ }
@@ -467,7 +467,7 @@
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00463}00463\ \ some\_file.close();}
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00464}00464\ }
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00465}00465\ \ \textcolor{comment}{//\ Open\ interface\ solution\ output\ file}}
-\DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00466}00466\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/interface\_soln\%i.dat"{}},}
+\DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00466}00466\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/interface\_soln\%i.dat"{}},}
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00467}00467\ \ \ \ \ \ \ \ \ \ doc\_info.directory().c\_str(),doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00468}00468\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00469}00469\ \ }
@@ -509,7 +509,7 @@
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00505}00505\ \ }
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00506}00506\ \ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00507}00507\ \ \textcolor{keywordtype}{char}\ filename[100];\ \ \ }
-\DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00508}00508\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00508}00508\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00509}00509\ \ Trace\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00510}00510\ }
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00511}00511\ \ \textcolor{comment}{//\ Initialise\ trace\ file}}
@@ -550,9 +550,9 @@
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00546}00546\ \}\ \textcolor{comment}{//\ End\ of\ unsteady\_run}}
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00547}00547\ }
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00548}00548\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00549}00549\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00550}00550\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00551}00551\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00549}00549\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00550}00550\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00551}00551\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00552}00552\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00553}00553\ }
 \DoxyCodeLine{\Hypertarget{elastic__single__layer_8cc_source_l00554}00554\ \textcolor{comment}{//==start\_of\_main=========================================================}\textcolor{comment}{}}

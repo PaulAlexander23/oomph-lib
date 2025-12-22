@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00003}00003\ \textcolor{comment}{//\ LIC//\ multi-\/physics\ finite-\/element\ library,\ available}}
 \DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00004}00004\ \textcolor{comment}{//\ LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00005}00005\ \textcolor{comment}{//\ LIC//}}
-\DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00006}00006\ \textcolor{comment}{//\ LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00006}00006\ \textcolor{comment}{//\ LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00007}00007\ \textcolor{comment}{//\ LIC//}}
 \DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00008}00008\ \textcolor{comment}{//\ LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00009}00009\ \textcolor{comment}{//\ LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -32,21 +32,21 @@
 \DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00028}00028\ \textcolor{preprocessor}{\#define\ OOMPH\_BIHARMONIC\_PRECONDITIONER\_HEADER}}
 \DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00029}00029\ }
 \DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00030}00030\ }
-\DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00031}00031\ \textcolor{comment}{//\ Config\ header\ generated\ by\ autoconfig}}
+\DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00031}00031\ \textcolor{comment}{//\ Config\ header}}
 \DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00032}00032\ \textcolor{preprocessor}{\#ifdef\ HAVE\_CONFIG\_H}}
 \DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00033}00033\ \textcolor{preprocessor}{\#include\ <oomph-\/lib-\/config.h>}}
 \DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00034}00034\ \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00035}00035\ }
-\DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00036}00036\ \textcolor{preprocessor}{\#include\ "{}../generic/preconditioner.h"{}}}
-\DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00037}00037\ \textcolor{preprocessor}{\#include\ "{}../generic/block\_preconditioner.h"{}}}
-\DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00038}00038\ \textcolor{preprocessor}{\#include\ "{}../generic/hijacked\_elements.h"{}}}
+\DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00036}00036\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{preconditioner_8h}{generic/preconditioner.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00037}00037\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{block__preconditioner_8h}{generic/block\_preconditioner.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00038}00038\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{hijacked__elements_8h}{generic/hijacked\_elements.h}}"{}}}
 \DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00039}00039\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{biharmonic__elements_8h}{biharmonic\_elements.h}}"{}}}
-\DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00040}00040\ \textcolor{preprocessor}{\#include\ "{}../meshes/hermite\_element\_quad\_mesh.template.h"{}}}
-\DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00041}00041\ \textcolor{preprocessor}{\#include\ "{}../generic/SuperLU\_preconditioner.h"{}}}
-\DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00042}00042\ \textcolor{preprocessor}{\#include\ "{}../generic/general\_purpose\_preconditioners.h"{}}}
+\DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00040}00040\ \textcolor{preprocessor}{\#include\ "{}../meshes/hermite\_element\_quad\_mesh.h"{}}}
+\DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00041}00041\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{SuperLU__preconditioner_8h}{generic/SuperLU\_preconditioner.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00042}00042\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{general__purpose__preconditioners_8h}{generic/general\_purpose\_preconditioners.h}}"{}}}
 \DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00043}00043\ }
 \DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00044}00044\ \textcolor{preprocessor}{\#ifdef\ OOMPH\_HAS\_HYPRE}}
-\DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00045}00045\ \textcolor{preprocessor}{\#include\ "{}../generic/hypre\_solver.h"{}}}
+\DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00045}00045\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{hypre__solver_8h}{generic/hypre\_solver.h}}"{}}}
 \DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00046}00046\ \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00047}00047\ }
 \DoxyCodeLine{\Hypertarget{biharmonic__preconditioner_8h_source_l00048}00048\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceoomph}{oomph}}}

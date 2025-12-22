@@ -2,12 +2,12 @@
 \hypertarget{classoomph_1_1RefineableQuarterCircleSectorMesh}{}\label{classoomph_1_1RefineableQuarterCircleSectorMesh}\index{oomph::RefineableQuarterCircleSectorMesh$<$ ELEMENT $>$@{oomph::RefineableQuarterCircleSectorMesh$<$ ELEMENT $>$}}
 
 
-///////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////  
+2D quarter ring mesh class inherited from \doxylink{classoomph_1_1RefineableQuadMesh}{Refineable\+Quad\+Mesh}. The domain is specified by the \doxylink{classoomph_1_1GeomObject}{Geom\+Object} that identifies boundary 1.  
 
 
 
 
-{\ttfamily \#include $<$quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+template.\+h$>$}
+{\ttfamily \#include $<$quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+h$>$}
 
 Inheritance diagram for oomph\+::Refineable\+Quarter\+Circle\+Sector\+Mesh\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
 \begin{center}
@@ -111,6 +111,10 @@ Inheritance diagram for oomph\+::Refineable\+Quarter\+Circle\+Sector\+Mesh\texor
 \begin{DoxyCompactList}\small\item\em Replace existing boundary node lookup schemes with new schemes created using the boundary data stored in the nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \mbox{\hyperlink{classoomph_1_1Mesh_ad1b124a959628aba00162b89617b3a62}{boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Indicate whether the i-\/th boundary has an intrinsic coordinate. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_ab137d0c0debf5ba0d6ea6990103e620c}{set\+\_\+boundary\+\_\+coordinate\+\_\+exists}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be existing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1Mesh_a3b9d63e0057ed721190b109f48f7c92e}{set\+\_\+boundary\+\_\+coordinate\+\_\+does\+\_\+not\+\_\+exist}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
+\begin{DoxyCompactList}\small\item\em Set boundary coordinate on the i-\/th boundary to be non-\/existing. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_af01dfefb66c15579b540be62999d93ee}{nelement}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
 \begin{DoxyCompactList}\small\item\em Return number of elements in the mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{long}} \mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}} () \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}}
@@ -653,9 +657,7 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_aca12acfe655a4d5c4a4eab4a7b970812}{Element\+\_\+pt}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} $>$ \mbox{\hyperlink{classoomph_1_1Mesh_a412a5051be9e81f0ba61bf85e5abc4a6}{Boundary\+\_\+coordinate\+\_\+exists}}
-\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of boolean data that indicates whether the boundary coordinates have been set for the boundary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \doxylink{classoomph_1_1Vector}{Vector} of pointers to generalised elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMeshBase}{oomph\+::\+Tree\+Based\+Refineable\+Mesh\+Base}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -705,9 +707,7 @@ std\+::vector$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionEleme
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{class}} ELEMENT$>$\newline
 class oomph\+::\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$}
-///////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////// 
-
-2D quarter ring mesh class inherited from \doxylink{classoomph_1_1RefineableQuadMesh}{Refineable\+Quad\+Mesh}. The domain is specified by the \doxylink{classoomph_1_1GeomObject}{Geom\+Object} that identifies boundary 1.
+2D quarter ring mesh class inherited from \doxylink{classoomph_1_1RefineableQuadMesh}{Refineable\+Quad\+Mesh}. The domain is specified by the \doxylink{classoomph_1_1GeomObject}{Geom\+Object} that identifies boundary 1. 
 
 
 \begin{DoxyCode}{0}
@@ -739,7 +739,7 @@ class oomph\+::\+Refineable\+Quarter\+Circle\+Sector\+Mesh$<$ ELEMENT $>$}
 
 \doxylink{classoomph_1_1Domain}{Domain} is parametrised by three macro elements as sketched. 
 
-Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00185}{185}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00180}{180}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+h}}.
 
 
 
@@ -757,11 +757,11 @@ Constructor\+: Pass pointer to geometric object that specifies the wall, start a
 
 
 
-Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00196}{196}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00191}{191}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+h}}.
 
 
 
-References \mbox{\hyperlink{refineable__quad__mesh_8h_source_l00088}{oomph\+::\+Refineable\+Quad\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+quadtree\+\_\+forest()}}.
+References \mbox{\hyperlink{refineable__quad__mesh_8h_source_l00086}{oomph\+::\+Refineable\+Quad\+Mesh$<$ ELEMENT $>$\+::setup\+\_\+quadtree\+\_\+forest()}}.
 
 \Hypertarget{classoomph_1_1RefineableQuarterCircleSectorMesh_abf958060ab5ea27a2ca079cba58af8f5}\label{classoomph_1_1RefineableQuarterCircleSectorMesh_abf958060ab5ea27a2ca079cba58af8f5} 
 \index{oomph::RefineableQuarterCircleSectorMesh$<$ ELEMENT $>$@{oomph::RefineableQuarterCircleSectorMesh$<$ ELEMENT $>$}!````~RefineableQuarterCircleSectorMesh@{\texorpdfstring{$\sim$}{\string~}RefineableQuarterCircleSectorMesh}}
@@ -776,10 +776,10 @@ Destructor\+: Empty.
 
 
 
-Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source_l00213}{213}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+template.\+h}}.
+Definition at line \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source_l00208}{208}} of file \mbox{\hyperlink{quarter__circle__sector__mesh_8h_source}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+h}}.
 
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{quarter__circle__sector__mesh_8template_8h}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+template.\+h}}\end{DoxyCompactItemize}
+\mbox{\hyperlink{quarter__circle__sector__mesh_8h}{quarter\+\_\+circle\+\_\+sector\+\_\+mesh.\+h}}\end{DoxyCompactItemize}

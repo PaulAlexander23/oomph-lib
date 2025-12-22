@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -152,13 +146,13 @@
 <p>Angelo Simone has written a python script that converts <code>oomph-lib's</code> output to the vtu format that can be read by <a href="http://www.paraview.org">paraview</a>. This has since been improved and extended significantly with input from Alexandre Raczynski and Jeremy van Chu. The conversion script can currently deal with output from meshes that are composed of 2D triangles and quad and 3D brick and tet elements.</p>
 <p>The <code>oomph-lib</code> distribution contains three scripts:</p>
 <ul>
-<li><a href="../../../bin/oomph-convert.py"><code>bin/oomph-convert.py </code>:</a> The python conversion script itself. <br  />
+<li><a href="../../../scripts/oomph-convert.py"><code>scripts/oomph-convert.py </code>:</a> The python conversion script itself. <br  />
 <br  />
 </li>
-<li><a href="../../../bin/oomph-convert"><code>bin/oomph-convert </code>:</a> A shell script wrapper that allows the processing of multiple files. <br  />
+<li><a href="../../../scripts/oomph-convert"><code>scripts/oomph-convert </code>:</a> A shell script wrapper that allows the processing of multiple files. <br  />
 <br  />
 </li>
-<li><a href="../../../bin/makePvd"><code>bin/makePvd</code>:</a> A shell script the creates the <code>*</code> <code></code>.pvd files required by paraview to produce animations.</li>
+<li><a href="../../../scripts/makePvd"><code>scripts/makePvd</code>:</a> A shell script the creates the <code>*</code> <code></code>.pvd files required by paraview to produce animations.</li>
 </ul>
 <hr  />
  <hr  />
@@ -167,10 +161,7 @@ The oomph-convert.py script for single files</h1>
 <h2><a class="anchor" id="py_sample"></a>
 An example session</h2>
 <ol type="1">
-<li>Add <code>oomph-lib's</code> bin directory to your path (in the example shown here, <code>oomph-lib</code> is installed in the directory <code>/home/mheil/version185/oomph</code>): <br  />
-<br  />
- <div class="fragment"><div class="line">biowulf: 10:31:50$ PATH=$PATH:/home/mheil/version185/oomph/bin</div>
-</div><!-- fragment --> <br  />
+<li>Add <code>oomph-lib's</code> <code>scripts</code> directory to your path. <br  />
 </li>
 <li>Here is what's in the current directory at the moment: <code>curved_pipe.dat</code> is the <code>oomph-lib</code> output produced from <a href="../../navier_stokes/curved_pipe/html/index.html">a simulation of steady flow through a curved pipe.</a> <br  />
 <br  />
@@ -280,10 +271,7 @@ The oomph-convert and makePvd scripts for multiple files and animations</h1>
 An example session for data from a serial computation</h2>
 <p>Here is a quick demonstration of <code>oomph-convert</code> and <code>makePvd</code> scripts in action</p>
 <ol type="1">
-<li>Add <code>oomph-lib's</code> bin directory to your path (in the example shown here, <code>oomph-lib</code> is installed in the directory <code>/home/mheil/version185/oomph</code>): <br  />
-<br  />
- <div class="fragment"><div class="line">biowulf: 10:31:50$ PATH=$PATH:/home/mheil/version185/oomph/bin</div>
-</div><!-- fragment --> <br  />
+<li>Add <code>oomph-lib's</code> <code>scripts</code> directory to your path <br  />
 </li>
 <li>Here is what's in the current directory at the moment: <code>soln</code>?. <code>dat</code> are the <code>oomph-lib</code> output files that illustrate the progress of the mesh adaptation during <a href="../../poisson/fish_poisson/html/index.html">the adaptive solution of a Poisson equation in a fish-shaped domain.</a> <br  />
 <br  />
@@ -401,14 +389,14 @@ Data analysis with filters</h1>
 </div>
  <p>Here are few examples of filters available:</p>
 <ol type="1">
-<li><code>Calculator:</code> Evaluates a user-defined expression e.g <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$
-   \frac{1}{2} V1^2 $" src="form_0.png" width="29" height="16"/></picture> and creates a new data array, called here "Energy", containing the result of this expression: <br  />
+<li><code>Calculator:</code> Evaluates a user-defined expression e.g <img class="formulaInl" alt="$
+   \frac{1}{2} V1^2 $" src="form_0.png" width="29" height="16"/> and creates a new data array, called here "Energy", containing the result of this expression: <br  />
 <div class="image">
 <img src="paraview07.gif" alt=""/>
 </div>
   <br  />
 </li>
-<li><code>Contour:</code> Extracts the points, curves or surfaces where a scalar field is equal to a user-defined value e.g <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ V1 = -0.5 $" src="form_1.png" width="59" height="10"/></picture>: <br  />
+<li><code>Contour:</code> Extracts the points, curves or surfaces where a scalar field is equal to a user-defined value e.g <img class="formulaInl" alt="$ V1 = -0.5 $" src="form_1.png" width="59" height="10"/>: <br  />
 <div class="image">
 <img src="paraview08.gif" alt=""/>
 </div>
@@ -471,7 +459,7 @@ When your selection is highlighted, go to <code>Filters-&gt;Data</code> <code>An
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -501,7 +489,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:32:38
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:44:29
         </div>
       </div>
     </footer>

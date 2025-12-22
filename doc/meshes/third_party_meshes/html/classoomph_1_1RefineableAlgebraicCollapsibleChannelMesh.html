@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -121,17 +115,17 @@
 </div><!--header-->
 <div class="contents">
 
-<p>//////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////////  
+<p>Refineable version of the CollapsibleChannel mesh with algebraic node update.  
  <a href="classoomph_1_1RefineableAlgebraicCollapsibleChannelMesh.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="collapsible__channel__mesh_8template_8h_source.html">collapsible_channel_mesh.template.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="collapsible__channel__mesh_8h_source.html">collapsible_channel_mesh.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for oomph::RefineableAlgebraicCollapsibleChannelMesh&lt; ELEMENT &gt;:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="classoomph_1_1RefineableAlgebraicCollapsibleChannelMesh.png" usemap="#oomph::RefineableAlgebraicCollapsibleChannelMesh_3C_20ELEMENT_20_3E_map" alt=""/>
   <map id="oomph::RefineableAlgebraicCollapsibleChannelMesh_3C_20ELEMENT_20_3E_map" name="oomph::RefineableAlgebraicCollapsibleChannelMesh_3C_20ELEMENT_20_3E_map">
-<area href="classoomph_1_1AlgebraicCollapsibleChannelMesh.html" title="////////////////////////////////////////////////////////////////// //////////////////////////////////..." alt="oomph::AlgebraicCollapsibleChannelMesh&lt; ELEMENT &gt;" shape="rect" coords="402,168,794,192"/>
+<area href="classoomph_1_1AlgebraicCollapsibleChannelMesh.html" title="Collapsible channel mesh with algebraic node update." alt="oomph::AlgebraicCollapsibleChannelMesh&lt; ELEMENT &gt;" shape="rect" coords="402,168,794,192"/>
 <area href="classoomph_1_1CollapsibleChannelMesh.html" title="Basic collapsible channel mesh. The mesh is derived from the SimpleRectangularQuadMesh so it&#39;s node a..." alt="oomph::CollapsibleChannelMesh&lt; ELEMENT &gt;" shape="rect" coords="201,112,593,136"/>
 <area href="classoomph_1_1SimpleRectangularQuadMesh.html" title="Simple rectangular 2D Quad mesh class. Nx : number of elements in the x direction." alt="oomph::SimpleRectangularQuadMesh&lt; ELEMENT &gt;" shape="rect" coords="201,56,593,80"/>
   </map>
@@ -232,10 +226,9 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">class</a> <a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">ELEMENT</a>&gt;<br />
-class oomph::RefineableAlgebraicCollapsibleChannelMesh&lt; ELEMENT &gt;</div><p>//////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////// </p>
-<p>Refineable version of the CollapsibleChannel mesh with algebraic node update. </p>
+class oomph::RefineableAlgebraicCollapsibleChannelMesh&lt; ELEMENT &gt;</div><p>Refineable version of the CollapsibleChannel mesh with algebraic node update. </p>
 
-<p class="definition">Definition at line <a class="el" href="collapsible__channel__mesh_8template_8h_source.html#l00588">588</a> of file <a class="el" href="collapsible__channel__mesh_8template_8h_source.html">collapsible_channel_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="collapsible__channel__mesh_8h_source.html#l00579">579</a> of file <a class="el" href="collapsible__channel__mesh_8h_source.html">collapsible_channel_mesh.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4d55ff9ee001c13c51d3c914f5cdcce8" name="a4d55ff9ee001c13c51d3c914f5cdcce8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4d55ff9ee001c13c51d3c914f5cdcce8">&#9670;&#160;</a></span>RefineableAlgebraicCollapsibleChannelMesh() <span class="overload">[1/2]</span></h2>
@@ -323,7 +316,7 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Constructor: Pass number of elements in upstream/collapsible/ downstream segment and across the channel; lengths of upstream/ collapsible/downstream segments and width of channel, pointer to GeomObject that defines the collapsible segment and pointer to TimeStepper (defaults to the default timestepper, Steady). </p>
 
-<p class="definition">Definition at line <a class="el" href="collapsible__channel__mesh_8template_8h_source.html#l00598">598</a> of file <a class="el" href="collapsible__channel__mesh_8template_8h_source.html">collapsible_channel_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="collapsible__channel__mesh_8h_source.html#l00589">589</a> of file <a class="el" href="collapsible__channel__mesh_8h_source.html">collapsible_channel_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -419,7 +412,7 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Constructor: Pass number of elements in upstream/collapsible/ downstream segment and across the channel; lengths of upstream/ collapsible/downstream segments and width of channel, pointer to GeomObject that defines the collapsible segment and pointer to TimeStepper (defaults to the default timestepper, Steady). </p>
 
-<p class="definition">Definition at line <a class="el" href="collapsible__channel__mesh_8template_8h_source.html#l00640">640</a> of file <a class="el" href="collapsible__channel__mesh_8template_8h_source.html">collapsible_channel_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="collapsible__channel__mesh_8h_source.html#l00631">631</a> of file <a class="el" href="collapsible__channel__mesh_8h_source.html">collapsible_channel_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -443,15 +436,14 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 </div><div class="memdoc">
 
 <p>Update the node update data for specified node following any mesh adapation. </p>
-<p>///////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////</p>
 <p>Update the geometric references that are used to update node after mesh adaptation. </p>
 
-<p class="definition">Definition at line <a class="el" href="collapsible__channel__mesh_8template_8cc_source.html#l00437">437</a> of file <a class="el" href="collapsible__channel__mesh_8template_8cc_source.html">collapsible_channel_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="collapsible__channel__mesh_8template_8cc_source.html#l00435">435</a> of file <a class="el" href="collapsible__channel__mesh_8template_8cc_source.html">collapsible_channel_mesh.template.cc</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="collapsible__channel__mesh_8template_8h_source.html">collapsible_channel_mesh.template.h</a></li>
+<li><a class="el" href="collapsible__channel__mesh_8h_source.html">collapsible_channel_mesh.h</a></li>
 <li><a class="el" href="collapsible__channel__mesh_8template_8cc_source.html">collapsible_channel_mesh.template.cc</a></li>
 </ul>
 </div><!-- contents -->
@@ -482,7 +474,7 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 13:58:25
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:36:35
         </div>
       </div>
     </footer>

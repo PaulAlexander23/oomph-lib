@@ -2,7 +2,7 @@
 \hypertarget{classoomph_1_1TriangleMeshPolygon}{}\label{classoomph_1_1TriangleMeshPolygon}\index{oomph::TriangleMeshPolygon@{oomph::TriangleMeshPolygon}}
 
 
-//////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////  
+Class defining a closed polygon for the Triangle mesh generation.  
 
 
 
@@ -127,9 +127,7 @@ Inheritance diagram for oomph\+::Triangle\+Mesh\+Polygon\+:\begin{figure}[H]
 
 
 \doxysubsection{Detailed Description}
-//////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////// 
-
-Class defining a closed polygon for the Triangle mesh generation 
+Class defining a closed polygon for the Triangle mesh generation. 
 
 Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l01450}{1450}} of file \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source}{unstructured\+\_\+two\+\_\+d\+\_\+mesh\+\_\+geometry\+\_\+base.\+h}}.
 
@@ -146,9 +144,7 @@ Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8
 
 Constructor\+: Specify vector of pointers to \doxylink{classoomph_1_1TriangleMeshCurveSection}{Triangle\+Mesh\+Curve\+Section} that define the boundary of the segments of the polygon. Each \doxylink{classoomph_1_1TriangleMeshCurveSection}{Triangle\+Mesh\+Curve\+Section} has its own boundary ID and can contain multiple (straight-\/line) segments. For consistency across the various uses of this class, we insist that the closed boundary is represented by at least two separate \doxylink{classoomph_1_1TriangleMeshCurveSection}{Triangle\+Mesh\+Curve\+Section} whose joint vertices must be specified in both. (This is to allow the setup of unique boundary coordinate(s) around the polygon.) This may seem slightly annoying in cases where a polygon really only represents a single boundary, but... Note\+: The specified vector of pointers must consist of only \doxylink{classoomph_1_1TriangleMeshPolyLine}{Triangle\+Mesh\+Poly\+Line} elements. There is a checking on the PARANOID mode for this constraint. 
 
-////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////
 
-Constructor\+: Specify vector of pointers to \doxylink{classoomph_1_1TriangleMeshCurveSection}{Triangle\+Mesh\+Curve\+Section} that define the boundary of the segments of the polygon. Each \doxylink{classoomph_1_1TriangleMeshCurveSection}{Triangle\+Mesh\+Curve\+Section} has its own boundary ID and can contain multiple (straight-\/line) segments. For consistency across the various uses of this class, we insist that the closed boundary is represented by at least two separate \doxylink{classoomph_1_1TriangleMeshCurveSection}{Triangle\+Mesh\+Curve\+Section} whose joint vertices must be specified in both. (This is to allow the setup of unique boundary coordinate(s) around the polygon.) This may seem slightly annoying in cases where a polygon really only represents a single boundary, but... Note\+: The specified vector of pointers must consist of only \doxylink{classoomph_1_1TriangleMeshPolyLine}{Triangle\+Mesh\+Poly\+Line} elements. There is a checking on the PARANOID mode for this constraint 
 
 Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8cc_source_l01577}{1577}} of file \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8cc_source}{unstructured\+\_\+two\+\_\+d\+\_\+mesh\+\_\+geometry\+\_\+base.\+cc}}.
 

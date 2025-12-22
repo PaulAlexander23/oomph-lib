@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -149,7 +143,7 @@ Visualisation of the mesh with showme. </div></div>
  <hr  />
 <h1><a class="anchor" id="results"></a>
 Results</h1>
-<p>The animation shown below illustrates the flow field (streamlines and pressure contours) for Reynolds numbers of <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re=0, 5, 10, ... $" src="form_0.png" width="84" height="13"/></picture> An increase in Reynolds number increases the length of the recirculation region behind the obstacle; furthermore, the sharp corner at the "leading edge" of the obstacle creates very low pressures just downstream of the corner.</p>
+<p>The animation shown below illustrates the flow field (streamlines and pressure contours) for Reynolds numbers of <img class="formulaInl" alt="$ Re=0, 5, 10, ... $" src="form_0.png" width="84" height="13"/> An increase in Reynolds number increases the length of the recirculation region behind the obstacle; furthermore, the sharp corner at the "leading edge" of the obstacle creates very low pressures just downstream of the corner.</p>
 <div class="image">
 <img src="stream.gif" alt=""/>
 <div class="caption">
@@ -276,7 +270,7 @@ The driver code</h1>
 <div class="line"> <span class="comment">//Set the constitutive law for the pseudo-elasticity</span></div>
 <div class="line"> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a2a37fb040c832ee7a086bb13bb02a100">Global_Physical_Variables::Constitutive_law_pt</a> = </div>
 <div class="line">  <span class="keyword">new</span> <a class="code hl_class" href="classElasticTriangleMesh.html">GeneralisedHookean</a>(&amp;<a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a3962c36313826b19f216f6bbbdd6a477">Global_Physical_Variables::Nu</a>);</div>
-<div class="ttc" id="aunstructured__two__d__fluid_8cc_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="unstructured__two__d__fluid_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdoc">///////////////////////////////////////////////////////////////////// ///////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="unstructured__two__d__fluid_8cc_source.html#l00370">unstructured_two_d_fluid.cc:370</a></div></div>
+<div class="ttc" id="aunstructured__two__d__fluid_8cc_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="unstructured__two__d__fluid_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdoc">Driver for unstructured fluid test problem.</div><div class="ttdef"><b>Definition</b> <a href="unstructured__two__d__fluid_8cc_source.html#l00370">unstructured_two_d_fluid.cc:370</a></div></div>
 </div><!-- fragment --><p> We create the <code>Problem</code> object and output the domain boundaries and the initial guess for the flow field. </p><div class="fragment"><div class="line">  <span class="comment">// Build the problem with TTaylorHoodElements</span></div>
 <div class="line">  <a class="code hl_class" href="classUnstructuredFluidProblem.html">UnstructuredFluidProblem</a>&lt;<a class="code hl_class" href="classElasticTriangleMesh.html">PseudoSolidNodeUpdateElement</a>&lt;</div>
 <div class="line">   <a class="code hl_class" href="classElasticTriangleMesh.html">TTaylorHoodElement&lt;2&gt;</a>, </div>
@@ -288,7 +282,7 @@ The driver code</h1>
 <div class="line">  <span class="comment">// Output the initial guess for the solution</span></div>
 <div class="line">  <a class="code hl_class" href="classElasticTriangleMesh.html">problem</a>.doc_solution(<a class="code hl_class" href="classElasticTriangleMesh.html">doc_info</a>);</div>
 <div class="line">  <a class="code hl_class" href="classElasticTriangleMesh.html">doc_info</a>.number()++;</div>
-<div class="ttc" id="aclassUnstructuredFluidProblem_html"><div class="ttname"><a href="classUnstructuredFluidProblem.html">UnstructuredFluidProblem</a></div><div class="ttdoc">///////////////////////////////////////////////////////////////////// ///////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="unstructured__two__d__fluid_8cc_source.html#l00146">unstructured_two_d_fluid.cc:147</a></div></div>
+<div class="ttc" id="aclassUnstructuredFluidProblem_html"><div class="ttname"><a href="classUnstructuredFluidProblem.html">UnstructuredFluidProblem</a></div><div class="ttdoc">Unstructured fluid problem.</div><div class="ttdef"><b>Definition</b> <a href="unstructured__two__d__fluid_8cc_source.html#l00146">unstructured_two_d_fluid.cc:147</a></div></div>
 </div><!-- fragment --><p> Finally, we perform a straightforward parameter study by slowly increasing the Reynolds number of the flow from zero.</p>
 <div class="fragment"><div class="line">  </div>
 <div class="line">  <span class="comment">// Parameter study</span></div>
@@ -542,7 +536,7 @@ Post-processing</h1>
 <div class="line"> <a class="code hl_class" href="classElasticTriangleMesh.html">npts</a>=5; </div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output solution </span></div>
-<div class="line"> <a class="code hl_class" href="classElasticTriangleMesh.html">sprintf</a>(<a class="code hl_class" href="classElasticTriangleMesh.html">filename</a>,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,<a class="code hl_class" href="classElasticTriangleMesh.html">doc_info</a>.directory().c_str(),</div>
+<div class="line"> <a class="code hl_class" href="classElasticTriangleMesh.html">snprintf</a>(<a class="code hl_class" href="classElasticTriangleMesh.html">filename</a>, <span class="keyword">sizeof</span>(<a class="code hl_class" href="classElasticTriangleMesh.html">filename</a>), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,<a class="code hl_class" href="classElasticTriangleMesh.html">doc_info</a>.directory().c_str(),</div>
 <div class="line">         <a class="code hl_class" href="classElasticTriangleMesh.html">doc_info</a>.number());</div>
 <div class="line"> <a class="code hl_class" href="classElasticTriangleMesh.html">some_file</a>.open(<a class="code hl_class" href="classElasticTriangleMesh.html">filename</a>);</div>
 <div class="line"> fluid_mesh_pt()-&gt;output(<a class="code hl_class" href="classElasticTriangleMesh.html">some_file</a>,<a class="code hl_class" href="classElasticTriangleMesh.html">npts</a>);</div>
@@ -557,14 +551,14 @@ Comments and Exercises</h1>
 What is the Reynolds number?</h2>
 <p>The problem considered here is a "toy"-problem, devised to illustrate the use of unstructured meshes in fluids problems. The specific non-dimensionalisation and parameter values are therefore of secondary importance. However, since <code>oomph-lib's</code> implementation of the Navier-Stokes equations is based on their non-dimensional form it is important to clarify the meaning of the Reynolds number in the present problem.</p>
 <p><a href="../../driven_cavity/html/index.html#equation">Recall</a> that the Reynolds number is defined as  </p><p class="formulaDsp">
-<picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 Re = \frac{\rho {\cal U} {\cal L}}{\mu}
-\]" src="form_1.png" width="59" height="30"/></picture>
+\]" src="form_1.png" width="59" height="30"/>
 </p>
-<p> where <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \rho $" src="form_2.png" width="8" height="9"/></picture> and <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \mu $" src="form_3.png" width="9" height="9"/></picture> are the fluid density and viscosity, respectively. <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\cal L} $" src="form_4.png" width="10" height="10"/></picture> is the reference length chosen for the non-dimensionalisation of the coordinates. In the present problem, where the domain boundaries were simply drawn in <a href="http://en.wikipedia.org/wiki/Xfig">xfig </a>, no specific reference length was identified, but inspection of the maximum and minimum y-coordinates of the inflow boundary in the mesh plot shows that the inflow boundary has a (dimensional) length of <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ (4.0875 - 0.1125) {\cal L} = 3.975 {\cal L}. $" src="form_5.png" width="159" height="14"/></picture> In the non-dimensional version of the Navier-Stokes equations, all velocities are non-dimensionalised with a reference velocity <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\cal U} $" src="form_6.png" width="10" height="11"/></picture>. When we applied the inflow boundary conditions, we chose the (dimensionless) inflow profile such that its integral over the inflow boundary yields a value of 1. The velocity scale <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\cal U} $" src="form_6.png" width="10" height="11"/></picture> may therefore be interpreted as a (dimensional) average inflow velocity through the channel, <a class="el" href="classElasticTriangleMesh.html#a4c24e9abbde344d34e1e08fb3319d7b6" title="Constructor:">i.e</a>. the volume flux divided by the reference length scale.</p>
+<p> where <img class="formulaInl" alt="$ \rho $" src="form_2.png" width="8" height="9"/> and <img class="formulaInl" alt="$ \mu $" src="form_3.png" width="9" height="9"/> are the fluid density and viscosity, respectively. <img class="formulaInl" alt="$ {\cal L} $" src="form_4.png" width="10" height="10"/> is the reference length chosen for the non-dimensionalisation of the coordinates. In the present problem, where the domain boundaries were simply drawn in <a href="http://en.wikipedia.org/wiki/Xfig">xfig </a>, no specific reference length was identified, but inspection of the maximum and minimum y-coordinates of the inflow boundary in the mesh plot shows that the inflow boundary has a (dimensional) length of <img class="formulaInl" alt="$ (4.0875 - 0.1125) {\cal L} = 3.975 {\cal L}. $" src="form_5.png" width="159" height="14"/> In the non-dimensional version of the Navier-Stokes equations, all velocities are non-dimensionalised with a reference velocity <img class="formulaInl" alt="$ {\cal U} $" src="form_6.png" width="10" height="11"/>. When we applied the inflow boundary conditions, we chose the (dimensionless) inflow profile such that its integral over the inflow boundary yields a value of 1. The velocity scale <img class="formulaInl" alt="$ {\cal U} $" src="form_6.png" width="10" height="11"/> may therefore be interpreted as a (dimensional) average inflow velocity through the channel, <a class="el" href="classElasticTriangleMesh.html#a4c24e9abbde344d34e1e08fb3319d7b6" title="Constructor:">i.e</a>. the volume flux divided by the reference length scale.</p>
 <hr  />
-<h2><a class="anchor" id="bound"></a>
-Setting the boundary conditions</h2>
+<h2><a class="anchor" id="bound2"></a>
+Identification/assignment of mesh boundaries</h2>
 <p>We wish to re-iterate the comments made in the <a href="../../../solid/unstructured_solid/html/index.html#comm_ex">corresponding solid mechanics tutorial</a> that the manual identification of nodes on domain boundaries is tedious and therefore error prone. It pays off to <b>be as a paranoid as possible</b>, by always documenting the domain boundaries and the applied boundary conditions.</p>
 <p>Here is the plot of boundary conditions applied in the present problem. Hollow blue markers indicate (pseudo-)solid boundary conditions (both displacements are pinned); small red markers identify nodes where the vertical fluid velocity is pinned; hollow green markers (filling the space between the blue and red lines markers) identify nodes at which the horizontal fluid velocity is pinned.</p>
 <div class="image">
@@ -623,7 +617,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -653,7 +647,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:17:09
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:41:40
         </div>
       </div>
     </footer>

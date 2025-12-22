@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -189,9 +183,9 @@
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>} <span class="comment">// End of namespace</span></div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment"></span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment">/// ///////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment">/// ///////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment">/// ///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment">//////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment">//////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment">//////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment"></span> </div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="comment">//==start_of_problem_class================================================</span><span class="comment"></span></div>
@@ -528,7 +522,7 @@
 <div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span> <span class="keyword">const</span> <span class="keywordtype">unsigned</span> npts = 5;</div>
 <div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span> </div>
 <div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span> <span class="comment">// Open solution output file</span></div>
-<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>         doc_info.number());</div>
 <div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span> some_file.open(filename);</div>
 <div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span> </div>
@@ -571,7 +565,7 @@
 <div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span> </div>
 <div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span> <span class="comment">// Open trace file</span></div>
 <div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span> <span class="keywordtype">char</span> filename[100];   </div>
-<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span> sprintf(filename,<span class="stringliteral">&quot;%s/trace.dat&quot;</span>,doc_info.directory().c_str());</div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/trace.dat&quot;</span>,doc_info.directory().c_str());</div>
 <div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span> Trace_file.open(filename);</div>
 <div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span> </div>
 <div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span> <span class="comment">// Initialise trace file</span></div>
@@ -612,9 +606,9 @@
 <div class="line"><a id="l00491" name="l00491"></a><span class="lineno">  491</span>} <span class="comment">// End of unsteady_run</span></div>
 <div class="line"><a id="l00492" name="l00492"></a><span class="lineno">  492</span> </div>
 <div class="line"><a id="l00493" name="l00493"></a><span class="lineno">  493</span><span class="comment"></span> </div>
-<div class="line"><a id="l00494" name="l00494"></a><span class="lineno">  494</span><span class="comment">/// ///////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00495" name="l00495"></a><span class="lineno">  495</span><span class="comment">/// ///////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span><span class="comment">/// ///////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00494" name="l00494"></a><span class="lineno">  494</span><span class="comment">//////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00495" name="l00495"></a><span class="lineno">  495</span><span class="comment">//////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span><span class="comment">//////////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span><span class="comment"></span> </div>
 <div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span> </div>
 <div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span><span class="comment">//==start_of_main=========================================================</span><span class="comment"></span></div>
@@ -665,7 +659,7 @@
 <div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span> </div>
 <div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span>} <span class="comment">// End of main</span></div>
 </div>
-<div class="ttc" id="aclassInterfaceProblem_html"><div class="ttname"><a href="classInterfaceProblem.html">InterfaceProblem</a></div><div class="ttdoc">/////////////////////////////////////////////////////////////////////// /////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="elastic__single__layer_8cc_source.html#l00092">elastic_single_layer.cc:93</a></div></div>
+<div class="ttc" id="aclassInterfaceProblem_html"><div class="ttname"><a href="classInterfaceProblem.html">InterfaceProblem</a></div><div class="ttdoc">Single fluid free surface problem in a rectangular domain which is periodic in the x direction.</div><div class="ttdef"><b>Definition</b> <a href="elastic__single__layer_8cc_source.html#l00092">elastic_single_layer.cc:93</a></div></div>
 <div class="ttc" id="aclassInterfaceProblem_html_a011c7b4f2307ff909f64dc158e8fc674"><div class="ttname"><a href="classInterfaceProblem.html#a011c7b4f2307ff909f64dc158e8fc674">InterfaceProblem::Surface_mesh_pt</a></div><div class="ttdeci">Mesh * Surface_mesh_pt</div><div class="ttdoc">Pointer to the &quot;surface&quot; mesh.</div><div class="ttdef"><b>Definition</b> <a href="elastic__single__layer_8cc_source.html#l00140">elastic_single_layer.cc:140</a></div></div>
 <div class="ttc" id="aclassInterfaceProblem_html_a0d3af8378c4f0a6e38636be958c300d5"><div class="ttname"><a href="classInterfaceProblem.html#a0d3af8378c4f0a6e38636be958c300d5">InterfaceProblem::set_initial_condition</a></div><div class="ttdeci">void set_initial_condition()</div><div class="ttdoc">Set initial conditions.</div></div>
 <div class="ttc" id="aclassInterfaceProblem_html_a2319232b08d9df1ab473f6cbd40939d5"><div class="ttname"><a href="classInterfaceProblem.html#a2319232b08d9df1ab473f6cbd40939d5">InterfaceProblem::deform_free_surface</a></div><div class="ttdeci">void deform_free_surface(const double &amp;epsilon, const unsigned &amp;n_periods)</div><div class="ttdoc">Deform the mesh/free surface to a prescribed function.</div></div>
@@ -688,7 +682,7 @@
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a8b32b93d2e546f9375ec418474107838"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a8b32b93d2e546f9375ec418474107838">Global_Physical_Variables::Ca</a></div><div class="ttdeci">double Ca</div><div class="ttdoc">Capillary number.</div><div class="ttdef"><b>Definition</b> <a href="elastic__single__layer_8cc_source.html#l00071">elastic_single_layer.cc:71</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_aa6286f02b476912dd7550eced538331a"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#aa6286f02b476912dd7550eced538331a">Global_Physical_Variables::ReInvFr</a></div><div class="ttdeci">double ReInvFr</div><div class="ttdoc">Product of Reynolds number and inverse of Froude number.</div><div class="ttdef"><b>Definition</b> <a href="elastic__single__layer_8cc_source.html#l00068">elastic_single_layer.cc:68</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_ab814e627d2eb5bc50318879d19ab16b9"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#ab814e627d2eb5bc50318879d19ab16b9">Global_Physical_Variables::Re</a></div><div class="ttdeci">double Re</div><div class="ttdoc">Reynolds number.</div><div class="ttdef"><b>Definition</b> <a href="elastic__single__layer_8cc_source.html#l00059">elastic_single_layer.cc:59</a></div></div>
-<div class="ttc" id="aspine__single__layer_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="spine__single__layer_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">/////////////////////////////////////////////////////////////////////// /////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="spine__single__layer_8cc_source.html#l00502">spine_single_layer.cc:502</a></div></div>
+<div class="ttc" id="aspine__single__layer_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="spine__single__layer_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">Driver code for two-dimensional single fluid free surface problem.</div><div class="ttdef"><b>Definition</b> <a href="spine__single__layer_8cc_source.html#l00502">spine_single_layer.cc:502</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 
     <!-- jQuery for Bootstrap and Doxygen -->
@@ -717,7 +711,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:13:24
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:40:54
         </div>
       </div>
     </footer>

@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -121,10 +115,10 @@
 </div><!--header-->
 <div class="contents">
 
-<p>///////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////  
+<p>Adaptative version of the <a class="el" href="classoomph_1_1QuarterTubeMesh.html" title="3D quarter tube mesh class. The domain is specified by the GeomObject that identifies boundary 3....">QuarterTubeMesh</a> base mesh. The domain is specified by the GeomObject that identifies boundary 3.  
  <a href="classoomph_1_1RefineableQuarterTubeMesh.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="quarter__tube__mesh_8template_8h_source.html">quarter_tube_mesh.template.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="quarter__tube__mesh_8h_source.html">quarter_tube_mesh.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for oomph::RefineableQuarterTubeMesh&lt; ELEMENT &gt;:</div>
 <div class="dyncontent">
@@ -189,17 +183,16 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">class</a> <a class="el" href="classoomph_1_1RefineableTriangleMesh.html">ELEMENT</a>&gt;<br />
-class oomph::RefineableQuarterTubeMesh&lt; ELEMENT &gt;</div><p>///////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////// </p>
-<p>Adaptative version of the <a class="el" href="classoomph_1_1QuarterTubeMesh.html" title="3D quarter tube mesh class. The domain is specified by the GeomObject that identifies boundary 3....">QuarterTubeMesh</a> base mesh. The domain is specified by the GeomObject that identifies boundary 3.</p>
+class oomph::RefineableQuarterTubeMesh&lt; ELEMENT &gt;</div><p>Adaptative version of the <a class="el" href="classoomph_1_1QuarterTubeMesh.html" title="3D quarter tube mesh class. The domain is specified by the GeomObject that identifies boundary 3....">QuarterTubeMesh</a> base mesh. The domain is specified by the GeomObject that identifies boundary 3. </p>
 <p>The mesh boundaries are numbered as follows:</p><ul>
-<li>Boundary 0: "Inflow" cross section; located along the line parametrised by <picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \xi_0 =  \xi_0^{lo} $" src="form_17.png" width="43" height="15"/></picture> on the geometric object that specifies the wall.</li>
+<li>Boundary 0: "Inflow" cross section; located along the line parametrised by <img class="formulaInl" alt="$ \xi_0 =  \xi_0^{lo} $" src="form_17.png" width="43" height="15"/> on the geometric object that specifies the wall.</li>
 <li>Boundary 1: Plane x=0</li>
 <li>Boundary 2: Plane y=0</li>
 <li>Boundary 3: The curved wall</li>
-<li>Boundary 4: "Outflow" cross section; located along the line parametrised by <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \xi_0 =  \xi_0^{hi} $" src="form_18.png" width="44" height="15"/></picture> on the geometric object that specifies the wall. </li>
+<li>Boundary 4: "Outflow" cross section; located along the line parametrised by <img class="formulaInl" alt="$ \xi_0 =  \xi_0^{hi} $" src="form_18.png" width="44" height="15"/> on the geometric object that specifies the wall. </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00159">159</a> of file <a class="el" href="quarter__tube__mesh_8template_8h_source.html">quarter_tube_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8h_source.html#l00157">157</a> of file <a class="el" href="quarter__tube__mesh_8h_source.html">quarter_tube_mesh.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a8aaace5bc465614ace0a9117b3ee169c" name="a8aaace5bc465614ace0a9117b3ee169c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8aaace5bc465614ace0a9117b3ee169c">&#9670;&#160;</a></span>RefineableQuarterTubeMesh()</h2>
@@ -263,9 +256,9 @@ template&lt;<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">class
 
 <p>Constructor for adaptive deformable quarter tube mesh class. The domain is specified by the GeomObject that identifies boundary 3. Pass pointer to geometric object that specifies the wall, start and end coordinates on the geometric object, and the fraction along which the dividing line is to be placed, and the timestepper. Timestepper defaults to Steady dummy timestepper. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00171">171</a> of file <a class="el" href="quarter__tube__mesh_8template_8h_source.html">quarter_tube_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8h_source.html#l00169">169</a> of file <a class="el" href="quarter__tube__mesh_8h_source.html">quarter_tube_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00121">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::Domain_pt</a>.</p>
+<p class="reference">References <a class="el" href="quarter__tube__mesh_8h_source.html#l00120">oomph::QuarterTubeMesh&lt; ELEMENT &gt;::Domain_pt</a>.</p>
 
 </div>
 </div>
@@ -296,12 +289,12 @@ template&lt;<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">class
 
 <p>Destructor: empty. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8template_8h_source.html#l00221">221</a> of file <a class="el" href="quarter__tube__mesh_8template_8h_source.html">quarter_tube_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__tube__mesh_8h_source.html#l00218">218</a> of file <a class="el" href="quarter__tube__mesh_8h_source.html">quarter_tube_mesh.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li><a class="el" href="quarter__tube__mesh_8template_8h_source.html">quarter_tube_mesh.template.h</a></li>
+<li><a class="el" href="quarter__tube__mesh_8h_source.html">quarter_tube_mesh.h</a></li>
 </ul>
 </div><!-- contents -->
 
@@ -331,7 +324,7 @@ template&lt;<a class="el" href="classoomph_1_1RefineableTriangleMesh.html">class
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 13:59:23
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:37:43
         </div>
       </div>
     </footer>

@@ -792,7 +792,7 @@ As expected, this member function documents the computed solution. We first outp
 \DoxyCodeLine{\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ npts\ =\ 5;}
 \DoxyCodeLine{\ }
 \DoxyCodeLine{\ \textcolor{comment}{//\ Open\ solution\ output\ file}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.directory().c\_str(),doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{}
@@ -808,7 +808,7 @@ As expected, this member function documents the computed solution. We first outp
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Open\ interface\ solution\ output\ file}}
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/interface\_soln\%i.dat"{}},}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/interface\_soln\%i.dat"{}},}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ doc\_info.directory().c\_str(),doc\_info.number());}
 \DoxyCodeLine{\ some\_file.open(filename);}
 \DoxyCodeLine{\ }
@@ -866,7 +866,7 @@ The function {\ttfamily unsteady\+\_\+run(...)} is used to perform the timestepp
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\ \textcolor{keywordtype}{char}\ filename[100];\ \ \ }
-\DoxyCodeLine{\ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\ Trace\_file.open(filename);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Initialise\ trace\ file}}
@@ -963,4 +963,4 @@ Specifying the contact angle is not the only condition that can be applied at th
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

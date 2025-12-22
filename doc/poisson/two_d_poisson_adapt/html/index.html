@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -133,42 +127,42 @@ Typical inheritance structure for refineable meshes, illustrated for 2D quad mes
 <center> <table class="doxtable">
 <tr>
 <td><center> <b>Two-dimensional model Poisson problem</b> </center> Solve  <p class="formulaDsp">
-<picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \sum_{i=1}^2 \frac{\partial^2u}{\partial x_i^2} = f(x_1,x_2),
  \ \ \ \ \ \ \ \ \ \ (1)
-\]" src="form_0.png" width="170" height="38"/></picture>
+\]" src="form_0.png" width="170" height="38"/>
 </p>
- in the rectangular domain <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$D =\left\{ (x_1,x_2) \in 
-[0,1] \times [0,2]\right\}$" src="form_1.png" width="160" height="14"/></picture>, with Dirichlet boundary conditions  <p class="formulaDsp">
-<picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ in the rectangular domain <img class="formulaInl" alt="$D =\left\{ (x_1,x_2) \in 
+[0,1] \times [0,2]\right\}$" src="form_1.png" width="160" height="14"/>, with Dirichlet boundary conditions  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \left. u\right|_{\partial D}=u_0 
 \ \ \ \ \ \ \ \ \ \ (2)
-\]" src="form_2.png" width="113" height="14"/></picture>
+\]" src="form_2.png" width="113" height="14"/>
 </p>
  where  <p class="formulaDsp">
-<picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 u_0(x_1,x_2) = \tanh(1-\alpha(x_1 \tan\Phi - x_2))
 \ \ \ \ \ \ \ \ \  (3)
-\]" src="form_3.png" width="269" height="14"/></picture>
+\]" src="form_3.png" width="269" height="14"/>
 </p>
  and  <p class="formulaDsp">
-<picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 f(x_1,x_2) = \sum_{i=1}^2 \frac{\partial^2 u_0}{\partial x_i^2}
 \ \ \ \ \ \ \ \ \  (4)
-\]" src="form_4.png" width="166" height="38"/></picture>
+\]" src="form_4.png" width="166" height="38"/>
 </p>
- so that <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$u_0(x_1,x_2) $" src="form_5.png" width="54" height="14"/></picture> represents the exact solution of the problem.   </td></tr>
+ so that <img class="formulaInl" alt="$u_0(x_1,x_2) $" src="form_5.png" width="54" height="14"/> represents the exact solution of the problem.   </td></tr>
 </table>
 <br  />
- </center><p>Recall that for large values of <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \alpha $" src="form_6.png" width="8" height="6"/></picture> the solution approaches a step function  </p><p class="formulaDsp">
-<picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ </center><p>Recall that for large values of <img class="formulaInl" alt="$ \alpha $" src="form_6.png" width="8" height="6"/> the solution approaches a step function  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 u_{step}(x_1,x_2) = \left\{
 \begin{array}{rl}
 -1 &amp; \mbox {for $x_2 &lt; x_1 \ \tan\Phi$} \\
 1 &amp; \mbox {for $x_2 &gt; x_1 \ \tan\Phi$} 
 \end{array}
  \right.
-\]" src="form_7.png" width="224" height="31"/></picture>
+\]" src="form_7.png" width="224" height="31"/>
 </p>
 <p> Accurate numerical solution can therefore only be obtained if the mesh is refined &ndash; ideally only in the vicinity of the "step":</p>
 <div class="image">
@@ -227,7 +221,7 @@ Global parameters and functions</h1>
  <hr  />
 <h1><a class="anchor" id="main"></a>
 The driver code</h1>
-<p>The driver code is very similar to that in the <a href="../../../poisson/two_d_poisson/html/index.html">non-refineable version</a>. We simply change the mesh from the <code>SimpleRectangularQuadMesh</code> to its refineable equivalent, and discretise the problem with nine-node <code>RefineableQPoissonElements</code> instead of nine-node 2D <code>QPoissonElements</code>. We choose a large value of <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \alpha = 50$" src="form_8.png" width="36" height="9"/></picture> for the "steepness" parameter and solve the problem with the "black-box" Newton solver, allowing for up to four adaptive refinements:</p>
+<p>The driver code is very similar to that in the <a href="../../../poisson/two_d_poisson/html/index.html">non-refineable version</a>. We simply change the mesh from the <code>SimpleRectangularQuadMesh</code> to its refineable equivalent, and discretise the problem with nine-node <code>RefineableQPoissonElements</code> instead of nine-node 2D <code>QPoissonElements</code>. We choose a large value of <img class="formulaInl" alt="$ \alpha = 50$" src="form_8.png" width="36" height="9"/> for the "steepness" parameter and solve the problem with the "black-box" Newton solver, allowing for up to four adaptive refinements:</p>
  <div class="fragment"><div class="line"><span class="comment">//===== start_of_main=====================================================</span></div>
 <div class="line"><span class="comment">/// Driver code for 2D Poisson problem</span></div>
 <div class="line"><span class="comment">//========================================================================</span></div>
@@ -427,7 +421,7 @@ Comments</h1>
 <p>Since most of the "hard work" involved in the mesh adaptation is hidden from "user" we briefly comment on various steps involved in the mesh adaptation process and highlight certain important implications.</p>
 <h2><a class="anchor" id="splitting"></a>
 The refinement pattern</h2>
-<p>The <code>QuadTree</code> - based mesh adaption routines, implemented in the <code>RefineableQuadMesh</code> class, split elements into four "son elements" if the error estimate exceeds the acceptable maximum. By default, the position of any newly created nodes is determined from the geometric mapping of the "father" element. For instance, when a four-node quad "father" element is split into four "sons", five new nodes are created and they are located at <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ (s_0,s_1) = (0,-1), \ (1,0), \ (0,1), \ (-1,0) $" src="form_9.png" width="213" height="14"/></picture> and <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ (0,0)$" src="form_10.png" width="26" height="14"/></picture> in the father element's local coordinate system. This procedure is adequate for problems in which the coarse initial mesh provides a perfect representation of the domain (<a class="el" href="classSimpleRefineableRectangularQuadMesh.html#ae0eab85a2c97fce00d7c82a613378e79" title="Pass number of elements in the horizontal and vertical directions, and the corresponding dimensions....">e.g</a>. polygonal domains). If the domain has curvilinear boundaries, successive mesh refinements must generate a more and more accurate representation of these boundaries. This requires slight changes to the mesh adaptation procedures. We will discuss these in <a href="../../../poisson/fish_poisson2/html/index.html">another example</a>.</p>
+<p>The <code>QuadTree</code> - based mesh adaption routines, implemented in the <code>RefineableQuadMesh</code> class, split elements into four "son elements" if the error estimate exceeds the acceptable maximum. By default, the position of any newly created nodes is determined from the geometric mapping of the "father" element. For instance, when a four-node quad "father" element is split into four "sons", five new nodes are created and they are located at <img class="formulaInl" alt="$ (s_0,s_1) = (0,-1), \ (1,0), \ (0,1), \ (-1,0) $" src="form_9.png" width="213" height="14"/> and <img class="formulaInl" alt="$ (0,0)$" src="form_10.png" width="26" height="14"/> in the father element's local coordinate system. This procedure is adequate for problems in which the coarse initial mesh provides a perfect representation of the domain (<a class="el" href="classSimpleRefineableRectangularQuadMesh.html#ae0eab85a2c97fce00d7c82a613378e79" title="Pass number of elements in the horizontal and vertical directions, and the corresponding dimensions....">e.g</a>. polygonal domains). If the domain has curvilinear boundaries, successive mesh refinements must generate a more and more accurate representation of these boundaries. This requires slight changes to the mesh adaptation procedures. We will discuss these in <a href="../../../poisson/fish_poisson2/html/index.html">another example</a>.</p>
 <p>The splitting of "father" elements into four equal-sized "sons" maintains the aspect ratio of the elements during the mesh adaptation. The good news is that mesh adaption will not cause a deterioration in the element quality. The bad news is that poorly designed coarse meshes cannot be improved by mesh adaptation. It is therefore worthwhile to invest some time into the initial mesh design. For complicated domains, it may be sensible to perform the initial mesh generation with a dedicated, third-party mesh generator. (We provide <a href="../../../meshes/third_party_meshes/html/index.html">another example</a> to illustrate how to build <code>oomph-lib</code> meshes based on the output from a third-party mesh generator.)</p>
 <h2><a class="anchor" id="hang"></a>
 Hanging nodes</h2>
@@ -471,7 +465,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -501,7 +495,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:07:23
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:43:18
         </div>
       </div>
     </footer>

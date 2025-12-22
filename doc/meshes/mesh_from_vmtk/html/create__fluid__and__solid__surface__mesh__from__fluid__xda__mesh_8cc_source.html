@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -887,9 +881,9 @@
 <div class="line"><a id="l00765" name="l00765"></a><span class="lineno">  765</span> <span class="keywordtype">char</span> fluid_filename[100];</div>
 <div class="line"><a id="l00766" name="l00766"></a><span class="lineno">  766</span> <span class="keywordtype">char</span> solid_filename[100];</div>
 <div class="line"><a id="l00767" name="l00767"></a><span class="lineno">  767</span> </div>
-<div class="line"><a id="l00768" name="l00768"></a><span class="lineno">  768</span> sprintf(xda_filename,<span class="stringliteral">&quot;%s.xda&quot;</span>, input_filename.c_str());</div>
-<div class="line"><a id="l00769" name="l00769"></a><span class="lineno">  769</span> sprintf(fluid_filename,<span class="stringliteral">&quot;fluid_%s.poly&quot;</span>, input_filename.c_str());</div>
-<div class="line"><a id="l00770" name="l00770"></a><span class="lineno">  770</span> sprintf(solid_filename,<span class="stringliteral">&quot;solid_%s.poly&quot;</span>, input_filename.c_str());</div>
+<div class="line"><a id="l00768" name="l00768"></a><span class="lineno">  768</span> snprintf(xda_filename, <span class="keyword">sizeof</span>(xda_filename), <span class="stringliteral">&quot;%s.xda&quot;</span>, input_filename.c_str());</div>
+<div class="line"><a id="l00769" name="l00769"></a><span class="lineno">  769</span> snprintf(fluid_filename, <span class="keyword">sizeof</span>(fluid_filename), <span class="stringliteral">&quot;fluid_%s.poly&quot;</span>, input_filename.c_str());</div>
+<div class="line"><a id="l00770" name="l00770"></a><span class="lineno">  770</span> snprintf(solid_filename, <span class="keyword">sizeof</span>(solid_filename), <span class="stringliteral">&quot;solid_%s.poly&quot;</span>, input_filename.c_str());</div>
 <div class="line"><a id="l00771" name="l00771"></a><span class="lineno">  771</span> </div>
 <div class="line"><a id="l00772" name="l00772"></a><span class="lineno">  772</span> <a class="code hl_function" href="create__fluid__and__solid__surface__mesh__from__fluid__xda__mesh_8cc.html#acaf73fcb31e5c25107e81bf28bb52d4c">create_fluid_and_solid_surface_mesh_from_fluid_xda_mesh</a>(</div>
 <div class="line"><a id="l00773" name="l00773"></a><span class="lineno">  773</span>  xda_filename, fluid_filename, solid_filename, d,do_multi_boundary_ids);</div>
@@ -926,7 +920,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 13:59:34
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:37:11
         </div>
       </div>
     </footer>

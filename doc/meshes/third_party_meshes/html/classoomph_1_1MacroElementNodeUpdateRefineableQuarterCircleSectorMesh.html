@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,17 +116,17 @@
 </div><!--header-->
 <div class="contents">
 
-<p>MacroElementNodeUpdate version of <a class="el" href="classoomph_1_1RefineableQuarterCircleSectorMesh.html" title="///////////////////////////////////////////////////////////////// ///////////////////////////////////...">RefineableQuarterCircleSectorMesh</a>.  
+<p>MacroElementNodeUpdate version of <a class="el" href="classoomph_1_1RefineableQuarterCircleSectorMesh.html" title="2D quarter ring mesh class inherited from RefineableQuadMesh. The domain is specified by the GeomObje...">RefineableQuarterCircleSectorMesh</a>.  
  <a href="classoomph_1_1MacroElementNodeUpdateRefineableQuarterCircleSectorMesh.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html">quarter_circle_sector_mesh.template.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="quarter__circle__sector__mesh_8h_source.html">quarter_circle_sector_mesh.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for oomph::MacroElementNodeUpdateRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="classoomph_1_1MacroElementNodeUpdateRefineableQuarterCircleSectorMesh.png" usemap="#oomph::MacroElementNodeUpdateRefineableQuarterCircleSectorMesh_3C_20ELEMENT_20_3E_map" alt=""/>
   <map id="oomph::MacroElementNodeUpdateRefineableQuarterCircleSectorMesh_3C_20ELEMENT_20_3E_map" name="oomph::MacroElementNodeUpdateRefineableQuarterCircleSectorMesh_3C_20ELEMENT_20_3E_map">
-<area href="classoomph_1_1RefineableQuarterCircleSectorMesh.html" title="///////////////////////////////////////////////////////////////// ///////////////////////////////////..." alt="oomph::RefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;" shape="rect" coords="503,112,996,136"/>
+<area href="classoomph_1_1RefineableQuarterCircleSectorMesh.html" title="2D quarter ring mesh class inherited from RefineableQuadMesh. The domain is specified by the GeomObje..." alt="oomph::RefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;" shape="rect" coords="503,112,996,136"/>
 <area href="classoomph_1_1QuarterCircleSectorMesh.html" title="2D quarter ring mesh class. The domain is specified by the GeomObject that identifies boundary 1." alt="oomph::QuarterCircleSectorMesh&lt; ELEMENT &gt;" shape="rect" coords="251,56,744,80"/>
   </map>
 </div></div>
@@ -140,7 +134,7 @@ Inheritance diagram for oomph::MacroElementNodeUpdateRefineableQuarterCircleSect
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ace75c8edb3d87019dc7f06152205adab" id="r_ace75c8edb3d87019dc7f06152205adab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1MacroElementNodeUpdateRefineableQuarterCircleSectorMesh.html#ace75c8edb3d87019dc7f06152205adab">MacroElementNodeUpdateRefineableQuarterCircleSectorMesh</a> (<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">GeomObject</a> *<a class="el" href="classoomph_1_1QuarterCircleSectorMesh.html#a1ebdc75ae69205b3863c0433f8d25025">wall_pt</a>, <a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">const</a> <a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">double</a> &amp;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">xi_lo</a>, <a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">const</a> <a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">double</a> &amp;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">fract_mid</a>, <a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">const</a> <a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">double</a> &amp;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">xi_hi</a>, <a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">TimeStepper</a> *<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">time_stepper_pt</a>=&amp;Mesh::Default_TimeStepper)</td></tr>
-<tr class="memdesc:ace75c8edb3d87019dc7f06152205adab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Pass pointer to geometric object, start and end coordinates on the geometric object and the fraction along which the dividing line is to be placed when updating the nodal positions, and timestepper (defaults to (Steady) default timestepper defined in Mesh). Setup the refineable mesh (by calling the constructor for the underlying <a class="el" href="classoomph_1_1RefineableQuarterCircleSectorMesh.html" title="///////////////////////////////////////////////////////////////// ///////////////////////////////////...">RefineableQuarterCircleSectorMesh</a>) and the algebraic node update functions for nodes.  <br /></td></tr>
+<tr class="memdesc:ace75c8edb3d87019dc7f06152205adab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Pass pointer to geometric object, start and end coordinates on the geometric object and the fraction along which the dividing line is to be placed when updating the nodal positions, and timestepper (defaults to (Steady) default timestepper defined in Mesh). Setup the refineable mesh (by calling the constructor for the underlying <a class="el" href="classoomph_1_1RefineableQuarterCircleSectorMesh.html" title="2D quarter ring mesh class inherited from RefineableQuadMesh. The domain is specified by the GeomObje...">RefineableQuarterCircleSectorMesh</a>) and the algebraic node update functions for nodes.  <br /></td></tr>
 <tr class="separator:ace75c8edb3d87019dc7f06152205adab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d8953d309eba614524fce77c44c8d46" id="r_a2d8953d309eba614524fce77c44c8d46"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1MacroElementNodeUpdateRefineableQuarterCircleSectorMesh.html#a2d8953d309eba614524fce77c44c8d46">~MacroElementNodeUpdateRefineableQuarterCircleSectorMesh</a> ()</td></tr>
 <tr class="memdesc:a2d8953d309eba614524fce77c44c8d46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor: empty.  <br /></td></tr>
@@ -199,7 +193,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">class</a> <a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">ELEMENT</a>&gt;<br />
-class oomph::MacroElementNodeUpdateRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;</div><p>MacroElementNodeUpdate version of <a class="el" href="classoomph_1_1RefineableQuarterCircleSectorMesh.html" title="///////////////////////////////////////////////////////////////// ///////////////////////////////////...">RefineableQuarterCircleSectorMesh</a>. </p>
+class oomph::MacroElementNodeUpdateRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;</div><p>MacroElementNodeUpdate version of <a class="el" href="classoomph_1_1RefineableQuarterCircleSectorMesh.html" title="2D quarter ring mesh class inherited from RefineableQuadMesh. The domain is specified by the GeomObje...">RefineableQuarterCircleSectorMesh</a>. </p>
 <div class="fragment"><div class="line">                     ---<a class="code hl_class" href="classoomph_1_1SimpleRectangularQuadMesh.html">___</a></div>
 <div class="line">                    |      ---<a class="code hl_class" href="classoomph_1_1SimpleRectangularQuadMesh.html">____</a></div>
 <div class="line">                    |              -   <a class="code hl_class" href="classoomph_1_1SimpleRectangularQuadMesh.html">BOUNDARY</a> 1</div>
@@ -222,10 +216,10 @@ class oomph::MacroElementNodeUpdateRefineableQuarterCircleSectorMesh&lt; ELEMENT
 <div class="line"><a class="code hl_class" href="classoomph_1_1SimpleRectangularQuadMesh.html">are</a> <a class="code hl_class" href="classoomph_1_1SimpleRectangularQuadMesh.html">such</a> <a class="code hl_class" href="classoomph_1_1SimpleRectangularQuadMesh.html">that</a> <a class="code hl_class" href="classoomph_1_1SimpleRectangularQuadMesh.html">the</a> (<a class="code hl_class" href="classoomph_1_1SimpleRectangularQuadMesh.html">E</a>)<a class="code hl_class" href="classoomph_1_1SimpleRectangularQuadMesh.html">astern</a> <a class="code hl_class" href="classoomph_1_1SimpleRectangularQuadMesh.html">direction</a> <a class="code hl_class" href="classoomph_1_1SimpleRectangularQuadMesh.html">coincides</a> <a class="code hl_class" href="classoomph_1_1SimpleRectangularQuadMesh.html">with</a> <a class="code hl_class" href="classoomph_1_1SimpleRectangularQuadMesh.html">the</a> <a class="code hl_class" href="classoomph_1_1SimpleRectangularQuadMesh.html">positive</a></div>
 <div class="line"><a class="code hl_class" href="classoomph_1_1SimpleRectangularQuadMesh.html">s_0</a> <a class="code hl_class" href="classoomph_1_1SimpleRectangularQuadMesh.html">direction</a>,  <span class="keywordflow">while</span> <a class="code hl_class" href="classoomph_1_1SimpleRectangularQuadMesh.html">the</a> (N)<a class="code hl_class" href="classoomph_1_1SimpleRectangularQuadMesh.html">orther</a> <a class="code hl_class" href="classoomph_1_1SimpleRectangularQuadMesh.html">direction</a> <a class="code hl_class" href="classoomph_1_1SimpleRectangularQuadMesh.html">coincides</a> <a class="code hl_class" href="classoomph_1_1SimpleRectangularQuadMesh.html">with</a> <a class="code hl_class" href="classoomph_1_1SimpleRectangularQuadMesh.html">the</a> <a class="code hl_class" href="classoomph_1_1SimpleRectangularQuadMesh.html">positive</a></div>
 <div class="line"><a class="code hl_class" href="classoomph_1_1SimpleRectangularQuadMesh.html">s_1</a> <a class="code hl_class" href="classoomph_1_1SimpleRectangularQuadMesh.html">direction</a>.</div>
-<div class="ttc" id="aclassoomph_1_1SimpleRectangularQuadMesh_html"><div class="ttname"><a href="classoomph_1_1SimpleRectangularQuadMesh.html">oomph::SimpleRectangularQuadMesh</a></div><div class="ttdoc">Simple rectangular 2D Quad mesh class. Nx : number of elements in the x direction.</div><div class="ttdef"><b>Definition</b> <a href="simple__rectangular__quadmesh_8template_8h_source.html#l00057">simple_rectangular_quadmesh.template.h:58</a></div></div>
+<div class="ttc" id="aclassoomph_1_1SimpleRectangularQuadMesh_html"><div class="ttname"><a href="classoomph_1_1SimpleRectangularQuadMesh.html">oomph::SimpleRectangularQuadMesh</a></div><div class="ttdoc">Simple rectangular 2D Quad mesh class. Nx : number of elements in the x direction.</div><div class="ttdef"><b>Definition</b> <a href="simple__rectangular__quadmesh_8h_source.html#l00057">simple_rectangular_quadmesh.h:58</a></div></div>
 </div><!-- fragment --><p>Domain is parametrised by three macro elements as sketched. Elements need to be derived from MacroElementNodeUpdateElementBase. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00258">258</a> of file <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html">quarter_circle_sector_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00253">253</a> of file <a class="el" href="quarter__circle__sector__mesh_8h_source.html">quarter_circle_sector_mesh.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ace75c8edb3d87019dc7f06152205adab" name="ace75c8edb3d87019dc7f06152205adab"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ace75c8edb3d87019dc7f06152205adab">&#9670;&#160;</a></span>MacroElementNodeUpdateRefineableQuarterCircleSectorMesh()</h2>
@@ -281,11 +275,11 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 </table>
 </div><div class="memdoc">
 
-<p>Constructor: Pass pointer to geometric object, start and end coordinates on the geometric object and the fraction along which the dividing line is to be placed when updating the nodal positions, and timestepper (defaults to (Steady) default timestepper defined in Mesh). Setup the refineable mesh (by calling the constructor for the underlying <a class="el" href="classoomph_1_1RefineableQuarterCircleSectorMesh.html" title="///////////////////////////////////////////////////////////////// ///////////////////////////////////...">RefineableQuarterCircleSectorMesh</a>) and the algebraic node update functions for nodes. </p>
+<p>Constructor: Pass pointer to geometric object, start and end coordinates on the geometric object and the fraction along which the dividing line is to be placed when updating the nodal positions, and timestepper (defaults to (Steady) default timestepper defined in Mesh). Setup the refineable mesh (by calling the constructor for the underlying <a class="el" href="classoomph_1_1RefineableQuarterCircleSectorMesh.html" title="2D quarter ring mesh class inherited from RefineableQuadMesh. The domain is specified by the GeomObje...">RefineableQuarterCircleSectorMesh</a>) and the algebraic node update functions for nodes. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00270">270</a> of file <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html">quarter_circle_sector_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00265">265</a> of file <a class="el" href="quarter__circle__sector__mesh_8h_source.html">quarter_circle_sector_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00344">oomph::MacroElementNodeUpdateRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::setup_macro_element_node_update()</a>.</p>
+<p class="reference">References <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00339">oomph::MacroElementNodeUpdateRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::setup_macro_element_node_update()</a>.</p>
 
 </div>
 </div>
@@ -316,7 +310,7 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Destructor: empty. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00311">311</a> of file <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html">quarter_circle_sector_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00306">306</a> of file <a class="el" href="quarter__circle__sector__mesh_8h_source.html">quarter_circle_sector_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -349,7 +343,7 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Resolve mesh update: Update current nodal positions via sparse MacroElement-based update. [Doesn't make sense to use this mesh with SolidElements anyway, so we buffer the case if update_all_solid_nodes is set to true.]. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00318">318</a> of file <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html">quarter_circle_sector_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00313">313</a> of file <a class="el" href="quarter__circle__sector__mesh_8h_source.html">quarter_circle_sector_mesh.h</a>.</p>
 
 </div>
 </div>
@@ -380,16 +374,16 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
 
 <p>Setup all the information that's required for MacroElement-based node update: Tell the elements that their geometry depends on the geometric object that parametrises the wall. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00344">344</a> of file <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html">quarter_circle_sector_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00339">339</a> of file <a class="el" href="quarter__circle__sector__mesh_8h_source.html">quarter_circle_sector_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00111">oomph::QuarterCircleSectorMesh&lt; ELEMENT &gt;::domain_pt()</a>, and <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00132">oomph::QuarterCircleSectorMesh&lt; ELEMENT &gt;::Wall_pt</a>.</p>
+<p class="reference">References <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00108">oomph::QuarterCircleSectorMesh&lt; ELEMENT &gt;::domain_pt()</a>, and <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00128">oomph::QuarterCircleSectorMesh&lt; ELEMENT &gt;::Wall_pt</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html#l00270">oomph::MacroElementNodeUpdateRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::MacroElementNodeUpdateRefineableQuarterCircleSectorMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="quarter__circle__sector__mesh_8h_source.html#l00265">oomph::MacroElementNodeUpdateRefineableQuarterCircleSectorMesh&lt; ELEMENT &gt;::MacroElementNodeUpdateRefineableQuarterCircleSectorMesh()</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li><a class="el" href="quarter__circle__sector__mesh_8template_8h_source.html">quarter_circle_sector_mesh.template.h</a></li>
+<li><a class="el" href="quarter__circle__sector__mesh_8h_source.html">quarter_circle_sector_mesh.h</a></li>
 </ul>
 </div><!-- contents -->
 
@@ -419,7 +413,7 @@ template&lt;<a class="el" href="classoomph_1_1SimpleRectangularQuadMesh.html">cl
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 13:58:23
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:36:30
         </div>
       </div>
     </footer>

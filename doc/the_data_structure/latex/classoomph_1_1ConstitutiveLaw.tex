@@ -2,7 +2,7 @@
 \hypertarget{classoomph_1_1ConstitutiveLaw}{}\label{classoomph_1_1ConstitutiveLaw}\index{oomph::ConstitutiveLaw@{oomph::ConstitutiveLaw}}
 
 
-///////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////  
+A class for constitutive laws for elements that solve the equations of solid mechanics based upon the principle of virtual displacements. In that formulation, the information required from a constitutive law is the (2nd Piola-\/\+Kirchhoff) stress tensor $ \sigma^{ij} $ as a function of the (Green) strain $ \gamma^{ij} $\+:  
 
 
 
@@ -52,9 +52,9 @@ Inheritance diagram for oomph\+::Constitutive\+Law\+:\begin{figure}[H]
 
 
 \doxysubsection{Detailed Description}
-///////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////// 
+A class for constitutive laws for elements that solve the equations of solid mechanics based upon the principle of virtual displacements. In that formulation, the information required from a constitutive law is the (2nd Piola-\/\+Kirchhoff) stress tensor $ \sigma^{ij} $ as a function of the (Green) strain $ \gamma^{ij} $\+: 
 
-A class for constitutive laws for elements that solve the equations of solid mechanics based upon the principle of virtual displacements. In that formulation, the information required from a constitutive law is the (2nd Piola-\/\+Kirchhoff) stress tensor $ \sigma^{ij} $ as a function of the (Green) strain $ \gamma^{ij} $\+: \[ \sigma^{ij} = \sigma^{ij}(\gamma_{ij}). \] The Green strain is defined as \[ \gamma_{ij} = \frac{1}{2} (G_{ij} - g_{ij}), \ \ \ \ \ \ \ \ \ \ \ (1) \] where $G_{ij} $ and $ g_{ij}$ are the metric tensors in the deformed and undeformed (stress-\/free) configurations, respectively. A specific \doxylink{classoomph_1_1ConstitutiveLaw}{Constitutive\+Law} needs to be implement the pure virtual function 
+\[ \sigma^{ij} = \sigma^{ij}(\gamma_{ij}). \] The Green strain is defined as \[ \gamma_{ij} = \frac{1}{2} (G_{ij} - g_{ij}), \ \ \ \ \ \ \ \ \ \ \ (1) \] where $G_{ij} $ and $ g_{ij}$ are the metric tensors in the deformed and undeformed (stress-\/free) configurations, respectively. A specific \doxylink{classoomph_1_1ConstitutiveLaw}{Constitutive\+Law} needs to be implement the pure virtual function 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\mbox{\hyperlink{classoomph_1_1ConstitutiveLaw_a93527d910de908035feb8f41b0401065}{ConstitutiveLaw::calculate\_second\_piola\_kirchhoff\_stress}}(...)}
 
@@ -273,7 +273,7 @@ Definition at line \mbox{\hyperlink{constitutive__laws_8cc_source_l00453}{453}} 
 
 
 
-References \mbox{\hyperlink{constitutive__laws_8cc_source_l00052}{are\+\_\+matrices\+\_\+of\+\_\+equal\+\_\+dimensions()}}, \mbox{\hyperlink{classoomph_1_1ConstitutiveLaw_a93527d910de908035feb8f41b0401065}{calculate\+\_\+second\+\_\+piola\+\_\+kirchhoff\+\_\+stress()}}, \mbox{\hyperlink{elements_8h_source_l01202}{oomph\+::\+Generalised\+Element\+::\+Default\+\_\+fd\+\_\+jacobian\+\_\+step}}, and \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}.
+References \mbox{\hyperlink{constitutive__laws_8cc_source_l00052}{are\+\_\+matrices\+\_\+of\+\_\+equal\+\_\+dimensions()}}, \mbox{\hyperlink{classoomph_1_1ConstitutiveLaw_a93527d910de908035feb8f41b0401065}{calculate\+\_\+second\+\_\+piola\+\_\+kirchhoff\+\_\+stress()}}, \mbox{\hyperlink{elements_8h_source_l01185}{oomph\+::\+Generalised\+Element\+::\+Default\+\_\+fd\+\_\+jacobian\+\_\+step}}, and \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}.
 
 \Hypertarget{classoomph_1_1ConstitutiveLaw_a8a4f1bcac8d308d9ad0013ddf5def505}\label{classoomph_1_1ConstitutiveLaw_a8a4f1bcac8d308d9ad0013ddf5def505} 
 \index{oomph::ConstitutiveLaw@{oomph::ConstitutiveLaw}!calculate\_d\_second\_piola\_kirchhoff\_stress\_dG@{calculate\_d\_second\_piola\_kirchhoff\_stress\_dG}}
@@ -291,7 +291,7 @@ Definition at line \mbox{\hyperlink{constitutive__laws_8cc_source_l00566}{566}} 
 
 
 
-References \mbox{\hyperlink{constitutive__laws_8cc_source_l00052}{are\+\_\+matrices\+\_\+of\+\_\+equal\+\_\+dimensions()}}, \mbox{\hyperlink{classoomph_1_1ConstitutiveLaw_a93527d910de908035feb8f41b0401065}{calculate\+\_\+second\+\_\+piola\+\_\+kirchhoff\+\_\+stress()}}, \mbox{\hyperlink{elements_8h_source_l01202}{oomph\+::\+Generalised\+Element\+::\+Default\+\_\+fd\+\_\+jacobian\+\_\+step}}, and \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}.
+References \mbox{\hyperlink{constitutive__laws_8cc_source_l00052}{are\+\_\+matrices\+\_\+of\+\_\+equal\+\_\+dimensions()}}, \mbox{\hyperlink{classoomph_1_1ConstitutiveLaw_a93527d910de908035feb8f41b0401065}{calculate\+\_\+second\+\_\+piola\+\_\+kirchhoff\+\_\+stress()}}, \mbox{\hyperlink{elements_8h_source_l01185}{oomph\+::\+Generalised\+Element\+::\+Default\+\_\+fd\+\_\+jacobian\+\_\+step}}, and \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}.
 
 \Hypertarget{classoomph_1_1ConstitutiveLaw_a6076752384082cfa3de3e0cf17daa9aa}\label{classoomph_1_1ConstitutiveLaw_a6076752384082cfa3de3e0cf17daa9aa} 
 \index{oomph::ConstitutiveLaw@{oomph::ConstitutiveLaw}!calculate\_d\_second\_piola\_kirchhoff\_stress\_dG@{calculate\_d\_second\_piola\_kirchhoff\_stress\_dG}}
@@ -309,7 +309,7 @@ Definition at line \mbox{\hyperlink{constitutive__laws_8cc_source_l00352}{352}} 
 
 
 
-References \mbox{\hyperlink{constitutive__laws_8cc_source_l00052}{are\+\_\+matrices\+\_\+of\+\_\+equal\+\_\+dimensions()}}, \mbox{\hyperlink{classoomph_1_1ConstitutiveLaw_a93527d910de908035feb8f41b0401065}{calculate\+\_\+second\+\_\+piola\+\_\+kirchhoff\+\_\+stress()}}, \mbox{\hyperlink{elements_8h_source_l01202}{oomph\+::\+Generalised\+Element\+::\+Default\+\_\+fd\+\_\+jacobian\+\_\+step}}, and \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}.
+References \mbox{\hyperlink{constitutive__laws_8cc_source_l00052}{are\+\_\+matrices\+\_\+of\+\_\+equal\+\_\+dimensions()}}, \mbox{\hyperlink{classoomph_1_1ConstitutiveLaw_a93527d910de908035feb8f41b0401065}{calculate\+\_\+second\+\_\+piola\+\_\+kirchhoff\+\_\+stress()}}, \mbox{\hyperlink{elements_8h_source_l01185}{oomph\+::\+Generalised\+Element\+::\+Default\+\_\+fd\+\_\+jacobian\+\_\+step}}, and \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}.
 
 
 

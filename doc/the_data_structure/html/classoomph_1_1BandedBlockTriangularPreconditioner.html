@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -133,7 +127,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>General purpose block triangular preconditioner. By default this operates as an upper triangular preconditioner. Also, by default <a class="el" href="classoomph_1_1SuperLUPreconditioner.html" title="An interface to allow SuperLU to be used as an (exact) Preconditioner.">SuperLUPreconditioner</a> (or SuperLUDistPreconditioner) is used to solve the subsidiary systems, but other preconditioners can be used by setting them using passing a pointer to a function of type SubsidiaryPreconditionerFctPt to the method subsidiary_preconditioner_function_pt().  
+<p>General purpose block triangular preconditioner. By default this operates as an upper triangular preconditioner. Also, by default ExactPreconditioner is used to solve the subsidiary systems, but other preconditioners can be used by setting them using passing a pointer to a function of type SubsidiaryPreconditionerFctPt to the method subsidiary_preconditioner_function_pt().  
  <a href="classoomph_1_1BandedBlockTriangularPreconditioner.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>&gt;</code></p>
@@ -190,15 +184,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a70ee04fec1346c46756627ee7f19f4ca" id="r_a70ee04fec1346c46756627ee7f19f4ca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BandedBlockTriangularPreconditioner.html#a70ee04fec1346c46756627ee7f19f4ca">is_upper_triangular</a> ()</td></tr>
 <tr class="memdesc:a70ee04fec1346c46756627ee7f19f4ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is this being used as an upper triangular preconditioner?  <br /></td></tr>
 <tr class="separator:a70ee04fec1346c46756627ee7f19f4ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27154d15de52fd5546f348aa3e81c376" id="r_a27154d15de52fd5546f348aa3e81c376"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BandedBlockTriangularPreconditioner.html#a27154d15de52fd5546f348aa3e81c376">enable_doc_memory_usage</a> ()</td></tr>
-<tr class="memdesc:a27154d15de52fd5546f348aa3e81c376"><td class="mdescLeft">&#160;</td><td class="mdescRight">Document the memory usage.  <br /></td></tr>
-<tr class="separator:a27154d15de52fd5546f348aa3e81c376"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7369372c1a7ffc6b67d6c76cc3c6a82d" id="r_a7369372c1a7ffc6b67d6c76cc3c6a82d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BandedBlockTriangularPreconditioner.html#a7369372c1a7ffc6b67d6c76cc3c6a82d">disable_doc_memory_usage</a> ()</td></tr>
-<tr class="memdesc:a7369372c1a7ffc6b67d6c76cc3c6a82d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Don't document the memory usage!  <br /></td></tr>
-<tr class="separator:a7369372c1a7ffc6b67d6c76cc3c6a82d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8de520198b77dbadfe650a2eea10a2e" id="r_ae8de520198b77dbadfe650a2eea10a2e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BandedBlockTriangularPreconditioner.html#ae8de520198b77dbadfe650a2eea10a2e">get_memory_usage_in_bytes</a> ()</td></tr>
-<tr class="memdesc:ae8de520198b77dbadfe650a2eea10a2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the memory statistics.  <br /></td></tr>
-<tr class="separator:ae8de520198b77dbadfe650a2eea10a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classoomph_1_1GeneralPurposeBlockPreconditioner"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classoomph_1_1GeneralPurposeBlockPreconditioner')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classoomph_1_1GeneralPurposeBlockPreconditioner.html">oomph::GeneralPurposeBlockPreconditioner&lt; MATRIX &gt;</a></td></tr>
 <tr class="memitem:a4269f62ded274bb1b58a46e3773dc739 inherit pub_methods_classoomph_1_1GeneralPurposeBlockPreconditioner" id="r_a4269f62ded274bb1b58a46e3773dc739"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1GeneralPurposeBlockPreconditioner.html#a4269f62ded274bb1b58a46e3773dc739">GeneralPurposeBlockPreconditioner</a> ()</td></tr>
 <tr class="memdesc:a4269f62ded274bb1b58a46e3773dc739 inherit pub_methods_classoomph_1_1GeneralPurposeBlockPreconditioner"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor  <br /></td></tr>
@@ -479,9 +464,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1e469ffc87f31f6f2eebbe5ccf03d78b inherit pub_methods_classoomph_1_1Preconditioner" id="r_a1e469ffc87f31f6f2eebbe5ccf03d78b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">virtual</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Preconditioner.html#a1e469ffc87f31f6f2eebbe5ccf03d78b">preconditioner_solve_transpose</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">r</a>, <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;z)</td></tr>
 <tr class="memdesc:a1e469ffc87f31f6f2eebbe5ccf03d78b inherit pub_methods_classoomph_1_1Preconditioner"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply the preconditioner. Pure virtual generic interface function. This method should apply the preconditioner operator to the vector r and return the vector z. (broken virtual)  <br /></td></tr>
 <tr class="separator:a1e469ffc87f31f6f2eebbe5ccf03d78b inherit pub_methods_classoomph_1_1Preconditioner"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b95e7159585b5151f9e5dc1d1713655 inherit pub_methods_classoomph_1_1Preconditioner" id="r_a0b95e7159585b5151f9e5dc1d1713655"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Preconditioner.html#a0b95e7159585b5151f9e5dc1d1713655">setup</a> (<a class="el" href="classoomph_1_1DoubleMatrixBase.html">DoubleMatrixBase</a> *<a class="el" href="classoomph_1_1Preconditioner.html#a08e0582b77c6cbfaf85b80a4ac5c11f3">matrix_pt</a>)</td></tr>
-<tr class="memdesc:a0b95e7159585b5151f9e5dc1d1713655 inherit pub_methods_classoomph_1_1Preconditioner"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup the preconditioner: store the matrix pointer and the communicator pointer then call preconditioner specific <a class="el" href="classoomph_1_1Preconditioner.html#af4886f4efe510e5c9b0eb19422943588" title="Setup the preconditioner. Pure virtual generic interface function.">setup()</a> function.  <br /></td></tr>
-<tr class="separator:a0b95e7159585b5151f9e5dc1d1713655 inherit pub_methods_classoomph_1_1Preconditioner"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2c0f7f39eccd814e72cc5813ec864e0 inherit pub_methods_classoomph_1_1Preconditioner" id="r_ac2c0f7f39eccd814e72cc5813ec864e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">virtual</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Preconditioner.html#ac2c0f7f39eccd814e72cc5813ec864e0">setup</a> (<a class="el" href="classoomph_1_1DoubleMatrixBase.html">DoubleMatrixBase</a> *<a class="el" href="classoomph_1_1Preconditioner.html#a08e0582b77c6cbfaf85b80a4ac5c11f3">matrix_pt</a>)</td></tr>
+<tr class="memdesc:ac2c0f7f39eccd814e72cc5813ec864e0 inherit pub_methods_classoomph_1_1Preconditioner"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup the preconditioner: store the matrix pointer and the communicator pointer then call preconditioner specific <a class="el" href="classoomph_1_1Preconditioner.html#af4886f4efe510e5c9b0eb19422943588" title="Setup the preconditioner. Pure virtual generic interface function.">setup()</a> function.  <br /></td></tr>
+<tr class="separator:ac2c0f7f39eccd814e72cc5813ec864e0 inherit pub_methods_classoomph_1_1Preconditioner"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a783fae97e4b898f8de72b504a4f4bec6 inherit pub_methods_classoomph_1_1Preconditioner" id="r_a783fae97e4b898f8de72b504a4f4bec6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Preconditioner.html#a783fae97e4b898f8de72b504a4f4bec6">setup</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1Problem.html">Problem</a> *problem_pt, <a class="el" href="classoomph_1_1DoubleMatrixBase.html">DoubleMatrixBase</a> *<a class="el" href="classoomph_1_1Preconditioner.html#a08e0582b77c6cbfaf85b80a4ac5c11f3">matrix_pt</a>)</td></tr>
 <tr class="memdesc:a783fae97e4b898f8de72b504a4f4bec6 inherit pub_methods_classoomph_1_1Preconditioner"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compatability layer for old preconditioners where problem pointers were needed. The problem pointer is only used to get a communicator pointer.  <br /></td></tr>
 <tr class="separator:a783fae97e4b898f8de72b504a4f4bec6 inherit pub_methods_classoomph_1_1Preconditioner"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -624,12 +609,6 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a564d7f3013998c107c6f1bb7d89d30ba" id="r_a564d7f3013998c107c6f1bb7d89d30ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BandedBlockTriangularPreconditioner.html#a564d7f3013998c107c6f1bb7d89d30ba">Preconditioner_has_been_setup</a></td></tr>
 <tr class="memdesc:a564d7f3013998c107c6f1bb7d89d30ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Control flag is true if the preconditioner has been setup (used so we can wipe the data when the preconditioner is called again)  <br /></td></tr>
 <tr class="separator:a564d7f3013998c107c6f1bb7d89d30ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b03663b8182d14861552db33149a216" id="r_a5b03663b8182d14861552db33149a216"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BandedBlockTriangularPreconditioner.html#a5b03663b8182d14861552db33149a216">Compute_memory_statistics</a></td></tr>
-<tr class="memdesc:a5b03663b8182d14861552db33149a216"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag to indicate whether or not to record the memory statistics this preconditioner.  <br /></td></tr>
-<tr class="separator:a5b03663b8182d14861552db33149a216"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab83dc8dda204cf518aecd2cb718ae042" id="r_ab83dc8dda204cf518aecd2cb718ae042"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BandedBlockTriangularPreconditioner.html#ab83dc8dda204cf518aecd2cb718ae042">Memory_usage_in_bytes</a></td></tr>
-<tr class="memdesc:ab83dc8dda204cf518aecd2cb718ae042"><td class="mdescLeft">&#160;</td><td class="mdescRight">Storage for the memory usage of the solver if the flag above is set to true (in bytes)  <br /></td></tr>
-<tr class="separator:ab83dc8dda204cf518aecd2cb718ae042"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -645,7 +624,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:ae6b28f722b439af1f1a71a2328d4567a inherit pro_methods_classoomph_1_1GeneralPurposeBlockPreconditioner"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modified block setup for general purpose block preconditioners.  <br /></td></tr>
 <tr class="separator:ae6b28f722b439af1f1a71a2328d4567a inherit pro_methods_classoomph_1_1GeneralPurposeBlockPreconditioner"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba4af808888e35785cce631722c926cd inherit pro_methods_classoomph_1_1GeneralPurposeBlockPreconditioner" id="r_aba4af808888e35785cce631722c926cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1GeneralPurposeBlockPreconditioner.html#aba4af808888e35785cce631722c926cd">fill_in_subsidiary_preconditioners</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">nprec_needed</a>)</td></tr>
-<tr class="memdesc:aba4af808888e35785cce631722c926cd inherit pro_methods_classoomph_1_1GeneralPurposeBlockPreconditioner"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create any subsidiary preconditioners needed. Usually nprec_needed = nblock_types, except for the <a class="el" href="classoomph_1_1ExactBlockPreconditioner.html" title="//////////////////////////////////////////////////////////////////////////// ////////////////////////...">ExactBlockPreconditioner</a> which only requires one preconditioner.  <br /></td></tr>
+<tr class="memdesc:aba4af808888e35785cce631722c926cd inherit pro_methods_classoomph_1_1GeneralPurposeBlockPreconditioner"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create any subsidiary preconditioners needed. Usually nprec_needed = nblock_types, except for the <a class="el" href="classoomph_1_1ExactBlockPreconditioner.html" title="Exact block preconditioner - block preconditioner assembled from all blocks associated with the preco...">ExactBlockPreconditioner</a> which only requires one preconditioner.  <br /></td></tr>
 <tr class="separator:aba4af808888e35785cce631722c926cd inherit pro_methods_classoomph_1_1GeneralPurposeBlockPreconditioner"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classoomph_1_1BlockPreconditioner"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classoomph_1_1BlockPreconditioner')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classoomph_1_1BlockPreconditioner.html">oomph::BlockPreconditioner&lt; MATRIX &gt;</a></td></tr>
 <tr class="memitem:ae055f998f6145656352aacac22e545ad inherit pro_methods_classoomph_1_1BlockPreconditioner" id="r_ae055f998f6145656352aacac22e545ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BlockPreconditioner.html#ae055f998f6145656352aacac22e545ad">set_nmesh</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">n</a>)</td></tr>
@@ -692,9 +671,9 @@ dist_b2).  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">typename</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">MATRIX</a>&gt;<br />
-class oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;</div><p>General purpose block triangular preconditioner. By default this operates as an upper triangular preconditioner. Also, by default <a class="el" href="classoomph_1_1SuperLUPreconditioner.html" title="An interface to allow SuperLU to be used as an (exact) Preconditioner.">SuperLUPreconditioner</a> (or SuperLUDistPreconditioner) is used to solve the subsidiary systems, but other preconditioners can be used by setting them using passing a pointer to a function of type SubsidiaryPreconditionerFctPt to the method subsidiary_preconditioner_function_pt(). </p>
+class oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;</div><p>General purpose block triangular preconditioner. By default this operates as an upper triangular preconditioner. Also, by default ExactPreconditioner is used to solve the subsidiary systems, but other preconditioners can be used by setting them using passing a pointer to a function of type SubsidiaryPreconditionerFctPt to the method subsidiary_preconditioner_function_pt(). </p>
 
-<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00197">197</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00115">115</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a79914bf8c1b0dc940deeb65072030f15" name="a79914bf8c1b0dc940deeb65072030f15"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a79914bf8c1b0dc940deeb65072030f15">&#9670;&#160;</a></span>BandedBlockTriangularPreconditioner() <span class="overload">[1/2]</span></h2>
@@ -723,9 +702,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Constructor. (By default this preconditioner is upper triangular). </p>
 
-<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00202">202</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00120">120</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
 
-<p class="reference">References <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00386">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::Block_bandwidth</a>, <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00397">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::Compute_memory_statistics</a>, <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00401">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::Memory_usage_in_bytes</a>, <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00393">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::Preconditioner_has_been_setup</a>, and <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00389">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::Upper_triangular</a>.</p>
+<p class="reference">References <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00231">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::Block_bandwidth</a>, <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00238">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::Preconditioner_has_been_setup</a>, and <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00234">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::Upper_triangular</a>.</p>
 
 </div>
 </div>
@@ -756,9 +735,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Destructor - delete the preconditioner matrices. </p>
 
-<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00223">223</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00136">136</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
 
-<p class="reference">References <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00231">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::clean_up_memory()</a>.</p>
+<p class="reference">References <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00144">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::clean_up_memory()</a>.</p>
 
 </div>
 </div>
@@ -820,11 +799,11 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Get the block bandwidth of the preconditioner. </p>
 
-<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00279">279</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00192">192</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
 
-<p class="reference">References <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00386">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::Block_bandwidth</a>.</p>
+<p class="reference">References <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00231">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::Block_bandwidth</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00271">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::set_block_bandwidth()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00184">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::set_block_bandwidth()</a>.</p>
 
 </div>
 </div>
@@ -857,112 +836,11 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Reimplemented from <a class="el" href="classoomph_1_1GeneralPurposeBlockPreconditioner.html#a3272742d3c7f86327d33c5647af874e6">oomph::GeneralPurposeBlockPreconditioner&lt; MATRIX &gt;</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00231">231</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00144">144</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
 
-<p class="reference">References <a class="el" href="general__purpose__block__preconditioners_8h_source.html#l00112">oomph::GeneralPurposeBlockPreconditioner&lt; MATRIX &gt;::clean_up_memory()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, and <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00380">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::Off_diagonal_matrix_vector_products</a>.</p>
+<p class="reference">References <a class="el" href="general__purpose__block__preconditioners_8h_source.html#l00112">oomph::GeneralPurposeBlockPreconditioner&lt; MATRIX &gt;::clean_up_memory()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, and <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00225">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::Off_diagonal_matrix_vector_products</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00223">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::~BandedBlockTriangularPreconditioner()</a>.</p>
-
-</div>
-</div>
-<a id="a7369372c1a7ffc6b67d6c76cc3c6a82d" name="a7369372c1a7ffc6b67d6c76cc3c6a82d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7369372c1a7ffc6b67d6c76cc3c6a82d">&#9670;&#160;</a></span>disable_doc_memory_usage()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">typename</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">MATRIX</a> &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a> <a class="el" href="classoomph_1_1BandedBlockTriangularPreconditioner.html">oomph::BandedBlockTriangularPreconditioner</a>&lt; <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">MATRIX</a> &gt;::disable_doc_memory_usage </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Don't document the memory usage! </p>
-<p>Set the appropriate flag to false</p>
-
-<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00319">319</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
-
-<p class="reference">References <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00397">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::Compute_memory_statistics</a>.</p>
-
-</div>
-</div>
-<a id="a27154d15de52fd5546f348aa3e81c376" name="a27154d15de52fd5546f348aa3e81c376"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a27154d15de52fd5546f348aa3e81c376">&#9670;&#160;</a></span>enable_doc_memory_usage()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">typename</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">MATRIX</a> &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a> <a class="el" href="classoomph_1_1BandedBlockTriangularPreconditioner.html">oomph::BandedBlockTriangularPreconditioner</a>&lt; <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">MATRIX</a> &gt;::enable_doc_memory_usage </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Document the memory usage. </p>
-<p>Set the appropriate flag to true</p>
-
-<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00311">311</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
-
-<p class="reference">References <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00397">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::Compute_memory_statistics</a>.</p>
-
-</div>
-</div>
-<a id="ae8de520198b77dbadfe650a2eea10a2e" name="ae8de520198b77dbadfe650a2eea10a2e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae8de520198b77dbadfe650a2eea10a2e">&#9670;&#160;</a></span>get_memory_usage_in_bytes()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">typename</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">MATRIX</a> &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> <a class="el" href="classoomph_1_1BandedBlockTriangularPreconditioner.html">oomph::BandedBlockTriangularPreconditioner</a>&lt; <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">MATRIX</a> &gt;::get_memory_usage_in_bytes </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get the memory statistics. </p>
-
-<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00327">327</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
-
-<p class="reference">References <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00397">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::Compute_memory_statistics</a>, <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00401">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::Memory_usage_in_bytes</a>, and <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00393">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::Preconditioner_has_been_setup</a>.</p>
+<p class="reference">Referenced by <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00136">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::~BandedBlockTriangularPreconditioner()</a>.</p>
 
 </div>
 </div>
@@ -993,9 +871,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Is this being used as an upper triangular preconditioner? </p>
 
-<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00303">303</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00216">216</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
 
-<p class="reference">References <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00389">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::Upper_triangular</a>.</p>
+<p class="reference">References <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00234">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::Upper_triangular</a>.</p>
 
 </div>
 </div>
@@ -1026,9 +904,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Use as a lower triangular preconditioner. </p>
 
-<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00295">295</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00208">208</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
 
-<p class="reference">References <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00389">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::Upper_triangular</a>.</p>
+<p class="reference">References <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00234">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::Upper_triangular</a>.</p>
 
 </div>
 </div>
@@ -1103,9 +981,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Implements <a class="el" href="classoomph_1_1Preconditioner.html#ace1199369e4465cd2b9a34884bb64ec8">oomph::Preconditioner</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8cc_source.html#l00600">600</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8cc_source.html">general_purpose_space_time_block_preconditioner.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8cc_source.html#l00397">397</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8cc_source.html">general_purpose_space_time_block_preconditioner.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00319">oomph::oomph_info</a>, and <a class="el" href="Tadvection__diffusion__reaction__elements_8h_source.html#l00070">oomph::TAdvectionDiffusionReactionElement&lt; NREAGENT, DIM, NNODE_1D &gt;::TAdvectionDiffusionReactionElement()</a>.</p>
+<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00326">oomph::oomph_info</a>, and <a class="el" href="Tadvection__diffusion__reaction__elements_8h_source.html#l00070">oomph::TAdvectionDiffusionReactionElement&lt; NREAGENT, DIM, NNODE_1D &gt;::TAdvectionDiffusionReactionElement()</a>.</p>
 
 </div>
 </div>
@@ -1137,9 +1015,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Set the block bandwidth of the preconditioner. </p>
 
-<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00271">271</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00184">184</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
 
-<p class="reference">References <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00279">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::block_bandwidth()</a>, and <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00386">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::Block_bandwidth</a>.</p>
+<p class="reference">References <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00192">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::block_bandwidth()</a>, and <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00231">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::Block_bandwidth</a>.</p>
 
 </div>
 </div>
@@ -1173,9 +1051,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Implements <a class="el" href="classoomph_1_1Preconditioner.html#af4886f4efe510e5c9b0eb19422943588">oomph::Preconditioner</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8cc_source.html#l00218">218</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8cc_source.html">general_purpose_space_time_block_preconditioner.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8cc_source.html#l00185">185</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8cc_source.html">general_purpose_space_time_block_preconditioner.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="superlu_8c_source.html#l00085">get_memory_usage_in_bytes()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00319">oomph::oomph_info</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00313">oomph::oomph_nullstream</a>, <a class="el" href="oomph__definitions_8h_source.html#l00464">oomph::OomphInfo::stream_pt()</a>, <a class="el" href="Tadvection__diffusion__reaction__elements_8h_source.html#l00070">oomph::TAdvectionDiffusionReactionElement&lt; NREAGENT, DIM, NNODE_1D &gt;::TAdvectionDiffusionReactionElement()</a>, and <a class="el" href="oomph__utilities_8cc_source.html#l01295">oomph::TimingHelpers::timer()</a>.</p>
+<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00326">oomph::oomph_info</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00320">oomph::oomph_nullstream</a>, <a class="el" href="oomph__definitions_8h_source.html#l00471">oomph::OomphInfo::stream_pt()</a>, <a class="el" href="Tadvection__diffusion__reaction__elements_8h_source.html#l00070">oomph::TAdvectionDiffusionReactionElement&lt; NREAGENT, DIM, NNODE_1D &gt;::TAdvectionDiffusionReactionElement()</a>, and <a class="el" href="oomph__utilities_8cc_source.html#l01303">oomph::TimingHelpers::timer()</a>.</p>
 
 </div>
 </div>
@@ -1206,9 +1084,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Use as an upper triangular preconditioner. </p>
 
-<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00287">287</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00200">200</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
 
-<p class="reference">References <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00389">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::Upper_triangular</a>.</p>
+<p class="reference">References <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00234">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::Upper_triangular</a>.</p>
 
 </div>
 </div>
@@ -1237,69 +1115,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Storage for the block bandwidth of the matrix. Defaults to -1 indicating that we assume every off-diagonal block is non-empty. If the matrix is block diagonal then the value is zero. </p>
 
-<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00386">386</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00231">231</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00202">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::BandedBlockTriangularPreconditioner()</a>, <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00279">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::block_bandwidth()</a>, and <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00271">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::set_block_bandwidth()</a>.</p>
-
-</div>
-</div>
-<a id="a5b03663b8182d14861552db33149a216" name="a5b03663b8182d14861552db33149a216"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5b03663b8182d14861552db33149a216">&#9670;&#160;</a></span>Compute_memory_statistics</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">typename</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">MATRIX</a> &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a> <a class="el" href="classoomph_1_1BandedBlockTriangularPreconditioner.html">oomph::BandedBlockTriangularPreconditioner</a>&lt; <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">MATRIX</a> &gt;::Compute_memory_statistics</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Flag to indicate whether or not to record the memory statistics this preconditioner. </p>
-
-<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00397">397</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00202">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::BandedBlockTriangularPreconditioner()</a>, <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00319">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::disable_doc_memory_usage()</a>, <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00311">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::enable_doc_memory_usage()</a>, and <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00327">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::get_memory_usage_in_bytes()</a>.</p>
-
-</div>
-</div>
-<a id="ab83dc8dda204cf518aecd2cb718ae042" name="ab83dc8dda204cf518aecd2cb718ae042"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab83dc8dda204cf518aecd2cb718ae042">&#9670;&#160;</a></span>Memory_usage_in_bytes</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">typename</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">MATRIX</a> &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> <a class="el" href="classoomph_1_1BandedBlockTriangularPreconditioner.html">oomph::BandedBlockTriangularPreconditioner</a>&lt; <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">MATRIX</a> &gt;::Memory_usage_in_bytes</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Storage for the memory usage of the solver if the flag above is set to true (in bytes) </p>
-
-<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00401">401</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00202">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::BandedBlockTriangularPreconditioner()</a>, and <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00327">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::get_memory_usage_in_bytes()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00120">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::BandedBlockTriangularPreconditioner()</a>, <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00192">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::block_bandwidth()</a>, and <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00184">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::set_block_bandwidth()</a>.</p>
 
 </div>
 </div>
@@ -1327,9 +1145,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p><a class="el" href="classoomph_1_1Matrix.html" title="Abstract base class for matrices, templated by the type of object that is stored in them and the type...">Matrix</a> of matrix-vector product operators for the off diagonals. </p>
 
-<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00380">380</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00225">225</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00231">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::clean_up_memory()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00144">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::clean_up_memory()</a>.</p>
 
 </div>
 </div>
@@ -1357,9 +1175,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Control flag is true if the preconditioner has been setup (used so we can wipe the data when the preconditioner is called again) </p>
 
-<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00393">393</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00238">238</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00202">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::BandedBlockTriangularPreconditioner()</a>, and <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00327">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::get_memory_usage_in_bytes()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00120">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::BandedBlockTriangularPreconditioner()</a>.</p>
 
 </div>
 </div>
@@ -1387,9 +1205,9 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
 
 <p>Boolean indicating upper or lower triangular. </p>
 
-<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00389">389</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00234">234</a> of file <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html">general_purpose_space_time_block_preconditioner.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00202">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::BandedBlockTriangularPreconditioner()</a>, <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00303">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::is_upper_triangular()</a>, <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00295">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::lower_triangular()</a>, and <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00287">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::upper_triangular()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00120">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::BandedBlockTriangularPreconditioner()</a>, <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00216">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::is_upper_triangular()</a>, <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00208">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::lower_triangular()</a>, and <a class="el" href="general__purpose__space__time__block__preconditioner_8h_source.html#l00200">oomph::BandedBlockTriangularPreconditioner&lt; MATRIX &gt;::upper_triangular()</a>.</p>
 
 </div>
 </div>
@@ -1425,7 +1243,7 @@ template&lt;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:03:21
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:36:56
         </div>
       </div>
     </footer>

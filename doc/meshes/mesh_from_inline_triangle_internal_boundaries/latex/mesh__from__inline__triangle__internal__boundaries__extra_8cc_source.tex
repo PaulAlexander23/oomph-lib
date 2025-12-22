@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -564,7 +564,7 @@
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00560}00560\ }
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00561}00561\ \ \ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00562}00562\ \ \ \textcolor{keywordtype}{char}\ filename[100];}
-\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00563}00563\ \ \ sprintf(filename,\textcolor{stringliteral}{"{}RESLT/trace.dat"{}});}
+\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00563}00563\ \ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}RESLT/trace.dat"{}});}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00564}00564\ \ \ \mbox{\hyperlink{classPoissonProblem_a97e7fec0921ca588c6701b56ccf68474}{Trace\_file}}.open(filename);}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00565}00565\ }
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00566}00566\ \ \ \textcolor{comment}{//\ Setup\ equation\ numbering\ scheme}}
@@ -591,14 +591,14 @@
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00587}00587\ }
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00588}00588\ \ \ \textcolor{comment}{//\ Output\ boundaries}}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00589}00589\ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00590}00590\ \ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/boundaries.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00590}00590\ \ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/boundaries.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00591}00591\ \ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00592}00592\ \ \ mesh\_pt()-\/>output\_boundaries(some\_file);}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00593}00593\ \ \ some\_file.close();}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00594}00594\ }
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00595}00595\ \ \ \textcolor{comment}{//\ Output\ solution}}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00596}00596\ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00597}00597\ \ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00597}00597\ \ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00598}00598\ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00599}00599\ \ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00600}00600\ \ \ mesh\_pt()-\/>output(some\_file,npts);}
@@ -607,7 +607,7 @@
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00603}00603\ }
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00604}00604\ \ \ \textcolor{comment}{//\ Output\ exact\ solution}}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00605}00605\ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00606}00606\ \ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00606}00606\ \ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00607}00607\ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00608}00608\ \ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00609}00609\ \ \ mesh\_pt()-\/>output\_fct(some\_file,npts,\mbox{\hyperlink{namespaceTanhSolnForPoisson_af7896e9c18ce6438c73ae2a875e8b7de}{TanhSolnForPoisson::get\_exact\_u}});}
@@ -621,7 +621,7 @@
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00617}00617\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ r=0;r<nr;r++)}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00618}00618\ \ \ \ \ \{}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00619}00619\ \ \ \ \ \ ofstream\ some\_file;}
-\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00620}00620\ \ \ \ \ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\_in\_region\%i\_\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00620}00620\ \ \ \ \ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\_in\_region\%i\_\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00621}00621\ \ \ \ \ \ \ \ \ \ \ \ \ \ r,doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00622}00622\ \ \ \ \ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00623}00623\ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ nel=mesh\_pt()-\/>nregion\_element(r);}
@@ -636,7 +636,7 @@
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00632}00632\ \ \ \textcolor{comment}{//\ Doc\ error}}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00633}00633\ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00634}00634\ \ \ \textcolor{keywordtype}{double}\ error,norm;}
-\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00635}00635\ \ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/error\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00635}00635\ \ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/error\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00636}00636\ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00637}00637\ \ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{mesh__from__inline__triangle__internal__boundaries__extra_8cc_source_l00638}00638\ \ \ mesh\_pt()-\/>compute\_error(some\_file,\mbox{\hyperlink{namespaceTanhSolnForPoisson_af7896e9c18ce6438c73ae2a875e8b7de}{TanhSolnForPoisson::get\_exact\_u}},}

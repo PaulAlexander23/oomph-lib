@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -162,7 +156,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a67c470bd15750e91775101b5bce65a58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the index of the first value associated with the i-th face element value. If no argument is specified we return the index associated with the first (and assumed to be only) face element attached to this node. Throws error only in paranoid mode if no values have been set by any FaceElements. If you want to catch such cases gracefully in all circumstances (there are examples with complex unstructured 3D meshes where it's not clear a priori if a node has been resized by FaceElements) use alternative version (with leading bool arguments) that always checks and throws so exceptions can be caught gracefully. Returns UINT_MAX if error.  <br /></td></tr>
 <tr class="separator:a67c470bd15750e91775101b5bce65a58"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ff36a9e6c0894657a3ea61f1a4beeae" id="r_a1ff36a9e6c0894657a3ea61f1a4beeae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BoundaryNodeBase.html#a1ff36a9e6c0894657a3ea61f1a4beeae">index_of_first_value_assigned_by_face_element</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">throw_if_no_value_assigned_by_face_element</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">throw_quietly</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">face_id</a>=0) <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a></td></tr>
-<tr class="memdesc:a1ff36a9e6c0894657a3ea61f1a4beeae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the index of the first value associated with the i-th face element value. If no argument id is specified we return the index associated with the first (and assumed to be only) face element attached to this node. If no values have been set by any FaceElements and throw_if_no_value_assigned_by_face_element is set to true, this is caught gracefully in all circumstances (there are examples with complex unstructured 3D meshes where it's not clear a priori if a node has been resized by FaceElements) by throwing an <a class="el" href="classoomph_1_1OomphLibError.html" title="An OomphLibError object which should be thrown when an run-time error is encountered....">OomphLibError</a> that can be caught gracefully. If throw_quietly is set to true we throw an <a class="el" href="classoomph_1_1OomphLibQuietException.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////...">OomphLibQuietException</a> instead. You can catch either by catching the underlying std::runtime_error. In PARANOID mode we check regardless of the setting of throw_if_no_value_assigned_by_face_element (but respect the request for quietness). Returns UINT_MAX if error.  <br /></td></tr>
+<tr class="memdesc:a1ff36a9e6c0894657a3ea61f1a4beeae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the index of the first value associated with the i-th face element value. If no argument id is specified we return the index associated with the first (and assumed to be only) face element attached to this node. If no values have been set by any FaceElements and throw_if_no_value_assigned_by_face_element is set to true, this is caught gracefully in all circumstances (there are examples with complex unstructured 3D meshes where it's not clear a priori if a node has been resized by FaceElements) by throwing an <a class="el" href="classoomph_1_1OomphLibError.html" title="An OomphLibError object which should be thrown when an run-time error is encountered....">OomphLibError</a> that can be caught gracefully. If throw_quietly is set to true we throw an <a class="el" href="classoomph_1_1OomphLibQuietException.html" title="===================================================================== A class for handling oomph-lib ...">OomphLibQuietException</a> instead. You can catch either by catching the underlying std::runtime_error. In PARANOID mode we check regardless of the setting of throw_if_no_value_assigned_by_face_element (but respect the request for quietness). Returns UINT_MAX if error.  <br /></td></tr>
 <tr class="separator:a1ff36a9e6c0894657a3ea61f1a4beeae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0d9f15e311861a09073ee01e5fb5cd2" id="r_ae0d9f15e311861a09073ee01e5fb5cd2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">virtual</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BoundaryNodeBase.html#ae0d9f15e311861a09073ee01e5fb5cd2">nvalue_assigned_by_face_element</a> (<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">face_id</a>=0) <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> =0</td></tr>
 <tr class="memdesc:ae0d9f15e311861a09073ee01e5fb5cd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the number of values associated with the i-th face element field. If no argument is specified we return the value associated with the first (and assumed to be only) face element attached to this node. Throws error only in paranoid mode if no values have been set by any FaceElements. If you want to catch such cases gracefully in all circumstances (there are examples with complex unstructured 3D meshes where it's not clear a priori if a node has been resized by FaceElements) use alternative version (with leading bool arguments) that always checks and throws so exceptions can be caught gracefully. Returns UINT_MAX if error.  <br /></td></tr>
@@ -503,7 +497,7 @@ Private Attributes</h2></td></tr>
 <p>Return the vector of the k-th generalised boundary coordinates on mesh boundary b. </p>
 <p>Given the mesh boundary b, return the k-th generalised boundary coordinates of the node in the vector boundary_zeta. </p>
 
-<p class="definition">Definition at line <a class="el" href="nodes_8cc_source.html#l03165">3165</a> of file <a class="el" href="nodes_8cc_source.html">nodes.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="nodes_8cc_source.html#l03166">3166</a> of file <a class="el" href="nodes_8cc_source.html">nodes.cc</a>.</p>
 
 <p class="reference">References <a class="el" href="nodes_8h_source.html#l02008">Boundaries_pt</a>, <a class="el" href="nodes_8h_source.html#l02004">Boundary_coordinates_pt</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="nodes_8h_source.html#l02189">is_on_boundary()</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
 
@@ -593,7 +587,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Return the index of the first value associated with the i-th face element value. If no argument id is specified we return the index associated with the first (and assumed to be only) face element attached to this node. If no values have been set by any FaceElements and throw_if_no_value_assigned_by_face_element is set to true, this is caught gracefully in all circumstances (there are examples with complex unstructured 3D meshes where it's not clear a priori if a node has been resized by FaceElements) by throwing an <a class="el" href="classoomph_1_1OomphLibError.html" title="An OomphLibError object which should be thrown when an run-time error is encountered....">OomphLibError</a> that can be caught gracefully. If throw_quietly is set to true we throw an <a class="el" href="classoomph_1_1OomphLibQuietException.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////...">OomphLibQuietException</a> instead. You can catch either by catching the underlying std::runtime_error. In PARANOID mode we check regardless of the setting of throw_if_no_value_assigned_by_face_element (but respect the request for quietness). Returns UINT_MAX if error. </p>
+<p>Return the index of the first value associated with the i-th face element value. If no argument id is specified we return the index associated with the first (and assumed to be only) face element attached to this node. If no values have been set by any FaceElements and throw_if_no_value_assigned_by_face_element is set to true, this is caught gracefully in all circumstances (there are examples with complex unstructured 3D meshes where it's not clear a priori if a node has been resized by FaceElements) by throwing an <a class="el" href="classoomph_1_1OomphLibError.html" title="An OomphLibError object which should be thrown when an run-time error is encountered....">OomphLibError</a> that can be caught gracefully. If throw_quietly is set to true we throw an <a class="el" href="classoomph_1_1OomphLibQuietException.html" title="===================================================================== A class for handling oomph-lib ...">OomphLibQuietException</a> instead. You can catch either by catching the underlying std::runtime_error. In PARANOID mode we check regardless of the setting of throw_if_no_value_assigned_by_face_element (but respect the request for quietness). Returns UINT_MAX if error. </p>
 
 <p class="definition">Definition at line <a class="el" href="nodes_8h_source.html#l02098">2098</a> of file <a class="el" href="nodes_8h_source.html">nodes.h</a>.</p>
 
@@ -695,7 +689,7 @@ Private Attributes</h2></td></tr>
 
 <p class="reference">References <a class="el" href="nodes_8h_source.html#l02008">Boundaries_pt</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="nodes_8cc_source.html#l03165">get_coordinates_on_boundary()</a>, <a class="el" href="nodes_8h_source.html#l02532">oomph::BoundaryNode&lt; NODE_TYPE &gt;::is_on_boundary()</a>, <a class="el" href="nodes_8h_source.html#l02539">oomph::BoundaryNode&lt; NODE_TYPE &gt;::is_on_boundary()</a>, <a class="el" href="nodes_8cc_source.html#l03119">ncoordinates_on_boundary()</a>, <a class="el" href="nodes_8cc_source.html#l03062">remove_from_boundary()</a>, and <a class="el" href="nodes_8cc_source.html#l03236">set_coordinates_on_boundary()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="nodes_8cc_source.html#l03166">get_coordinates_on_boundary()</a>, <a class="el" href="nodes_8h_source.html#l02532">oomph::BoundaryNode&lt; NODE_TYPE &gt;::is_on_boundary()</a>, <a class="el" href="nodes_8h_source.html#l02539">oomph::BoundaryNode&lt; NODE_TYPE &gt;::is_on_boundary()</a>, <a class="el" href="nodes_8cc_source.html#l03119">ncoordinates_on_boundary()</a>, <a class="el" href="nodes_8cc_source.html#l03062">remove_from_boundary()</a>, and <a class="el" href="nodes_8cc_source.html#l03238">set_coordinates_on_boundary()</a>.</p>
 
 </div>
 </div>
@@ -782,7 +776,7 @@ Private Attributes</h2></td></tr>
           <td class="memname"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a> oomph::BoundaryNodeBase::make_nodes_periodic </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classoomph_1_1Node.html">Node</a> *<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> &amp;&#160;</td>
-          <td class="paramname"><em>copied_node_pt</em>, </td>
+          <td class="paramname"><em>node_pt</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -804,8 +798,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Helper function that is used to turn BoundaryNodes into periodic boundary nodes by setting the data values of the nodes in the vector periodic_copies_pt to be the same as those in node_pt. </p>
-<p>//////////////////////////////////////////////////////////////////////</p>
-<p>////////////////////////////////////////////////////////////////////// Helper function that is used to turn BoundaryNodes into periodic boundary nodes by setting the data values of the nodes in the vector periodic_copies_pt to be the same as those in copied_node_pt. This function should be used when making doubly periodic sets of nodes. </p>
+<p>Helper function that is used to turn BoundaryNodes into periodic boundary nodes by setting the data values of the nodes in the vector periodic_copies_pt to be the same as those in copied_node_pt. This function should be used when making doubly periodic sets of nodes. </p>
 
 <p class="definition">Definition at line <a class="el" href="nodes_8cc_source.html#l02896">2896</a> of file <a class="el" href="nodes_8cc_source.html">nodes.cc</a>.</p>
 
@@ -960,7 +953,7 @@ Private Attributes</h2></td></tr>
 <p>Set the vector of the k-th generalised boundary coordinates on mesh boundary b. </p>
 <p>Given the mesh boundary b, set the k-th generalised boundary coordinates of the node from the vector boundary_zeta. </p>
 
-<p class="definition">Definition at line <a class="el" href="nodes_8cc_source.html#l03236">3236</a> of file <a class="el" href="nodes_8cc_source.html">nodes.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="nodes_8cc_source.html#l03238">3238</a> of file <a class="el" href="nodes_8cc_source.html">nodes.cc</a>.</p>
 
 <p class="reference">References <a class="el" href="nodes_8h_source.html#l02008">Boundaries_pt</a>, <a class="el" href="nodes_8h_source.html#l02004">Boundary_coordinates_pt</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="nodes_8h_source.html#l02189">is_on_boundary()</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
 
@@ -1035,7 +1028,7 @@ Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="nodes_8h_source.html#l02008">2008</a> of file <a class="el" href="nodes_8h_source.html">nodes.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="nodes_8cc_source.html#l03028">add_to_boundary()</a>, <a class="el" href="nodes_8h_source.html#l02177">get_boundaries_pt()</a>, <a class="el" href="nodes_8cc_source.html#l03165">get_coordinates_on_boundary()</a>, <a class="el" href="nodes_8h_source.html#l02189">is_on_boundary()</a>, <a class="el" href="nodes_8cc_source.html#l03099">is_on_boundary()</a>, <a class="el" href="nodes_8cc_source.html#l03119">ncoordinates_on_boundary()</a>, <a class="el" href="nodes_8cc_source.html#l03062">remove_from_boundary()</a>, <a class="el" href="nodes_8cc_source.html#l03236">set_coordinates_on_boundary()</a>, and <a class="el" href="nodes_8cc_source.html#l02993">~BoundaryNodeBase()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="nodes_8cc_source.html#l03028">add_to_boundary()</a>, <a class="el" href="nodes_8h_source.html#l02177">get_boundaries_pt()</a>, <a class="el" href="nodes_8cc_source.html#l03166">get_coordinates_on_boundary()</a>, <a class="el" href="nodes_8h_source.html#l02189">is_on_boundary()</a>, <a class="el" href="nodes_8cc_source.html#l03099">is_on_boundary()</a>, <a class="el" href="nodes_8cc_source.html#l03119">ncoordinates_on_boundary()</a>, <a class="el" href="nodes_8cc_source.html#l03062">remove_from_boundary()</a>, <a class="el" href="nodes_8cc_source.html#l03238">set_coordinates_on_boundary()</a>, and <a class="el" href="nodes_8cc_source.html#l02993">~BoundaryNodeBase()</a>.</p>
 
 </div>
 </div>
@@ -1063,7 +1056,7 @@ Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="nodes_8h_source.html#l02004">2004</a> of file <a class="el" href="nodes_8h_source.html">nodes.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="nodes_8h_source.html#l02170">boundary_coordinates_have_been_set_up()</a>, <a class="el" href="nodes_8cc_source.html#l03165">get_coordinates_on_boundary()</a>, <a class="el" href="nodes_8cc_source.html#l03119">ncoordinates_on_boundary()</a>, <a class="el" href="nodes_8cc_source.html#l03062">remove_from_boundary()</a>, <a class="el" href="nodes_8cc_source.html#l03236">set_coordinates_on_boundary()</a>, and <a class="el" href="nodes_8cc_source.html#l02993">~BoundaryNodeBase()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="nodes_8h_source.html#l02170">boundary_coordinates_have_been_set_up()</a>, <a class="el" href="nodes_8cc_source.html#l03166">get_coordinates_on_boundary()</a>, <a class="el" href="nodes_8cc_source.html#l03119">ncoordinates_on_boundary()</a>, <a class="el" href="nodes_8cc_source.html#l03062">remove_from_boundary()</a>, <a class="el" href="nodes_8cc_source.html#l03238">set_coordinates_on_boundary()</a>, and <a class="el" href="nodes_8cc_source.html#l02993">~BoundaryNodeBase()</a>.</p>
 
 </div>
 </div>
@@ -1155,7 +1148,7 @@ Private Attributes</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:03:24
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:37:05
         </div>
       </div>
     </footer>

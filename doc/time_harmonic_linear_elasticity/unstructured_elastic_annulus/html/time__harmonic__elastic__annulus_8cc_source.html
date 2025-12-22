@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -122,7 +116,7 @@
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//LIC// multi-physics finite-element library, available </span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//LIC// at http://www.oomph-lib.org.</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//LIC// </span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//LIC// </span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//LIC// This library is free software; you can redistribute it and/or</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//LIC// modify it under the terms of the GNU Lesser General Public</span></div>
@@ -157,9 +151,9 @@
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">using namespace </span>oomph;</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment"></span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">/// ///////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">/// ///////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">/// ///////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">//////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">//////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">//////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment"></span> </div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">//=======start_namespace==========================================</span><span class="comment"></span></div>
@@ -754,7 +748,7 @@
 <div class="line"><a id="l00610" name="l00610"></a><span class="lineno">  610</span> </div>
 <div class="line"><a id="l00611" name="l00611"></a><span class="lineno">  611</span> <span class="comment">// Output displacement field</span></div>
 <div class="line"><a id="l00612" name="l00612"></a><span class="lineno">  612</span> <span class="comment">//--------------------------</span></div>
-<div class="line"><a id="l00613" name="l00613"></a><span class="lineno">  613</span> sprintf(filename,<span class="stringliteral">&quot;%s/elast_soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00613" name="l00613"></a><span class="lineno">  613</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/elast_soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00614" name="l00614"></a><span class="lineno">  614</span>         Doc_info.number());</div>
 <div class="line"><a id="l00615" name="l00615"></a><span class="lineno">  615</span> some_file.open(filename);</div>
 <div class="line"><a id="l00616" name="l00616"></a><span class="lineno">  616</span> Solid_mesh_pt-&gt;output(some_file,n_plot);</div>
@@ -763,7 +757,7 @@
 <div class="line"><a id="l00619" name="l00619"></a><span class="lineno">  619</span> </div>
 <div class="line"><a id="l00620" name="l00620"></a><span class="lineno">  620</span> <span class="comment">// Output traction elements</span></div>
 <div class="line"><a id="l00621" name="l00621"></a><span class="lineno">  621</span> <span class="comment">//-------------------------</span></div>
-<div class="line"><a id="l00622" name="l00622"></a><span class="lineno">  622</span> sprintf(filename,<span class="stringliteral">&quot;%s/traction_soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00622" name="l00622"></a><span class="lineno">  622</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/traction_soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00623" name="l00623"></a><span class="lineno">  623</span>         Doc_info.number());</div>
 <div class="line"><a id="l00624" name="l00624"></a><span class="lineno">  624</span> some_file.open(filename);</div>
 <div class="line"><a id="l00625" name="l00625"></a><span class="lineno">  625</span> Traction_mesh_pt-&gt;output(some_file,n_plot);</div>
@@ -771,7 +765,7 @@
 <div class="line"><a id="l00627" name="l00627"></a><span class="lineno">  627</span> </div>
 <div class="line"><a id="l00628" name="l00628"></a><span class="lineno">  628</span> <span class="comment">// Output exact solution </span></div>
 <div class="line"><a id="l00629" name="l00629"></a><span class="lineno">  629</span> <span class="comment">//----------------------</span></div>
-<div class="line"><a id="l00630" name="l00630"></a><span class="lineno">  630</span> sprintf(filename,<span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"><a id="l00630" name="l00630"></a><span class="lineno">  630</span> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/exact_soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line"><a id="l00631" name="l00631"></a><span class="lineno">  631</span>         Doc_info.number());</div>
 <div class="line"><a id="l00632" name="l00632"></a><span class="lineno">  632</span> some_file.open(filename);</div>
 <div class="line"><a id="l00633" name="l00633"></a><span class="lineno">  633</span> Solid_mesh_pt-&gt;output_fct(some_file,n_plot,<a class="code hl_function" href="namespaceGlobal__Parameters.html#a97162dba4bd29a15067b9c9bbe53c754">Global_Parameters::exact_u</a>); </div>
@@ -907,7 +901,7 @@
 <div class="ttc" id="aclassAnnularDiskProblem_html_ac35f917b7678de36c2942530fc9ba4d6"><div class="ttname"><a href="classAnnularDiskProblem.html#ac35f917b7678de36c2942530fc9ba4d6">AnnularDiskProblem::Traction_mesh_pt</a></div><div class="ttdeci">Mesh * Traction_mesh_pt</div><div class="ttdoc">Pointer to mesh of traction elements.</div><div class="ttdef"><b>Definition</b> <a href="time__harmonic__elastic__annulus_8cc_source.html#l00344">time_harmonic_elastic_annulus.cc:344</a></div></div>
 <div class="ttc" id="aclassAnnularDiskProblem_html_ae665013c94a3277cd1bf124158a4e8f2"><div class="ttname"><a href="classAnnularDiskProblem.html#ae665013c94a3277cd1bf124158a4e8f2">AnnularDiskProblem::delete_traction_elements</a></div><div class="ttdeci">void delete_traction_elements()</div><div class="ttdoc">Delete traction elements.</div><div class="ttdef"><b>Definition</b> <a href="time__harmonic__elastic__annulus_8cc_source.html#l00577">time_harmonic_elastic_annulus.cc:577</a></div></div>
 <div class="ttc" id="aclassAnnularDiskProblem_html_aeab547741d3b500af5f465e52e1ba57c"><div class="ttname"><a href="classAnnularDiskProblem.html#aeab547741d3b500af5f465e52e1ba57c">AnnularDiskProblem::create_traction_elements</a></div><div class="ttdeci">void create_traction_elements()</div><div class="ttdoc">Create traction elements.</div><div class="ttdef"><b>Definition</b> <a href="time__harmonic__elastic__annulus_8cc_source.html#l00522">time_harmonic_elastic_annulus.cc:522</a></div></div>
-<div class="ttc" id="anamespaceGlobal__Parameters_html"><div class="ttname"><a href="namespaceGlobal__Parameters.html">Global_Parameters</a></div><div class="ttdoc">/////////////////////////////////////////////////////////////////// /////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="time__harmonic__elastic__annulus_8cc_source.html#l00049">time_harmonic_elastic_annulus.cc:50</a></div></div>
+<div class="ttc" id="anamespaceGlobal__Parameters_html"><div class="ttname"><a href="namespaceGlobal__Parameters.html">Global_Parameters</a></div><div class="ttdoc">Global variables.</div><div class="ttdef"><b>Definition</b> <a href="time__harmonic__elastic__annulus_8cc_source.html#l00049">time_harmonic_elastic_annulus.cc:50</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Parameters_html_a0138eb659958d7d7d1afd12577becf82"><div class="ttname"><a href="namespaceGlobal__Parameters.html#a0138eb659958d7d7d1afd12577becf82">Global_Parameters::Displacement_amplitude</a></div><div class="ttdeci">double Displacement_amplitude</div><div class="ttdoc">Displacement amplitude on inner radius.</div><div class="ttdef"><b>Definition</b> <a href="time__harmonic__elastic__annulus_8cc_source.html#l00065">time_harmonic_elastic_annulus.cc:65</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Parameters_html_a0b73c5ead1114ae88bbd4cb0eb54f078"><div class="ttname"><a href="namespaceGlobal__Parameters.html#a0b73c5ead1114ae88bbd4cb0eb54f078">Global_Parameters::H_annulus</a></div><div class="ttdeci">double H_annulus</div><div class="ttdoc">Thickness of annulus.</div><div class="ttdef"><b>Definition</b> <a href="time__harmonic__elastic__annulus_8cc_source.html#l00062">time_harmonic_elastic_annulus.cc:62</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Parameters_html_a1f67286edeb13ef67687fd483e105b5e"><div class="ttname"><a href="namespaceGlobal__Parameters.html#a1f67286edeb13ef67687fd483e105b5e">Global_Parameters::Ntheta</a></div><div class="ttdeci">unsigned Ntheta</div><div class="ttdoc">Number of elements in azimuthal direction.</div><div class="ttdef"><b>Definition</b> <a href="time__harmonic__elastic__annulus_8cc_source.html#l00100">time_harmonic_elastic_annulus.cc:100</a></div></div>
@@ -951,7 +945,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:39:42
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:45:01
         </div>
       </div>
     </footer>

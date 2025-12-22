@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -136,16 +130,16 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1ImmersedRigidBodyElement.html">oomph::ImmersedRigidBodyElement</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class that solves the equations of motion for a general two-dimensional rigid body subject to a particular imposed force and torque distribution and immersed within an external fluid. The body's position is entirely specified by the location of its centre of mass, <img class="formulaInl" alt="$\mbox{\boldmath$X$}$" src="form_429.png" width="13" height="10"/>, and a single angle, <img class="formulaInl" alt="$\phi$" src="form_190.png" width="8" height="13"/>, that represents a possible rotation. The equations of motion are then simply Newton's second law for the conservation of linear momentum in two directions and angular momentum about the single possible axis of rotation.  <a href="classoomph_1_1ImmersedRigidBodyElement.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class that solves the equations of motion for a general two-dimensional rigid body subject to a particular imposed force and torque distribution and immersed within an external fluid. The body's position is entirely specified by the location of its centre of mass, <img class="formulaInl" alt="$\mbox{\boldmath$X$}$" src="form_436.png" width="13" height="10"/>, and a single angle, <img class="formulaInl" alt="$\phi$" src="form_196.png" width="8" height="13"/>, that represents a possible rotation. The equations of motion are then simply Newton's second law for the conservation of linear momentum in two directions and angular momentum about the single possible axis of rotation.  <a href="classoomph_1_1ImmersedRigidBodyElement.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1ImmersedRigidBodyTriangleMeshPolygon.html">oomph::ImmersedRigidBodyTriangleMeshPolygon</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class upgrading a <a class="el" href="classoomph_1_1TriangleMeshPolygon.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////...">TriangleMeshPolygon</a> to a "hole" for use during triangle mesh generation. For mesh generation purposes, the main (and only) addition to the base class is the provision of the coordinates of a hole inside the polygon. To faciliate the movement of the "hole" through the domain we also provide a <a class="el" href="classoomph_1_1Data.html" title="A class that represents a collection of data; each Data object may contain many different individual ...">Data</a> object whose three values represent the x and y displacements of its centre of gravity and the polygon's rotation about its centre of gravity. If added to a mesh in the <a class="el" href="classoomph_1_1Problem.html" title="////////////////////////////////////////////////////////////////// //////////////////////////////////...">Problem</a> (in its incarnation as a <a class="el" href="classoomph_1_1GeneralisedElement.html" title="A Generalised Element class.">GeneralisedElement</a>) the displacement/rotation of the polygon is computed in response to (i) user-specifiable applied forces and a torque and (ii) the net drag (and associated torque) from a mesh of elements that can exert a drag onto the polygon (typically Navier-Stokes FaceElements that apply a viscous drag to an immersed body, represented by the polygon.)  <a href="classoomph_1_1ImmersedRigidBodyTriangleMeshPolygon.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class upgrading a <a class="el" href="classoomph_1_1TriangleMeshPolygon.html" title="Class defining a closed polygon for the Triangle mesh generation.">TriangleMeshPolygon</a> to a "hole" for use during triangle mesh generation. For mesh generation purposes, the main (and only) addition to the base class is the provision of the coordinates of a hole inside the polygon. To faciliate the movement of the "hole" through the domain we also provide a <a class="el" href="classoomph_1_1Data.html" title="A class that represents a collection of data; each Data object may contain many different individual ...">Data</a> object whose three values represent the x and y displacements of its centre of gravity and the polygon's rotation about its centre of gravity. If added to a mesh in the <a class="el" href="classoomph_1_1Problem.html" title="////////////////////////////////////////////////////////////////// //////////////////////////////////...">Problem</a> (in its incarnation as a <a class="el" href="classoomph_1_1GeneralisedElement.html" title="A Generalised Element class.">GeneralisedElement</a>) the displacement/rotation of the polygon is computed in response to (i) user-specifiable applied forces and a torque and (ii) the net drag (and associated torque) from a mesh of elements that can exert a drag onto the polygon (typically Navier-Stokes FaceElements that apply a viscous drag to an immersed body, represented by the polygon.)  <a href="classoomph_1_1ImmersedRigidBodyTriangleMeshPolygon.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespaceoomph" id="r_namespaceoomph"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceoomph.html">oomph</a></td></tr>
-<tr class="memdesc:namespaceoomph"><td class="mdescLeft">&#160;</td><td class="mdescRight">//////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////// <br /></td></tr>
+<tr class="memdesc:namespaceoomph"><td class="mdescLeft">&#160;</td><td class="mdescRight">DRAIG: Change all instances of (SPATIAL_DIM) to (DIM-1). <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
@@ -176,7 +170,7 @@ Namespaces</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:03:12
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:36:34
         </div>
       </div>
     </footer>

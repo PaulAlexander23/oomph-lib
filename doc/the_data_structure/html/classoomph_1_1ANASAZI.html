@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -162,7 +156,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a3f7e7f7fdc23c04c419fba24474f95a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor, delete the linear solver.  <br /></td></tr>
 <tr class="separator:a3f7e7f7fdc23c04c419fba24474f95a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4958cbb97c74b86f2bc0c50c9c4d9d0f" id="r_a4958cbb97c74b86f2bc0c50c9c4d9d0f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1ANASAZI.html#a4958cbb97c74b86f2bc0c50c9c4d9d0f">solve_eigenproblem</a> (<a class="el" href="classoomph_1_1Problem.html">Problem</a> *<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> &amp;problem_pt, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">int</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">n_eval</a>, <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; std::complex&lt; <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &gt; &gt; &amp;alpha, <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &gt; &amp;beta, <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &gt; &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">eigenvector_real</a>, <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &gt; &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">eigenvector_imag</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">do_adjoint_problem</a>)</td></tr>
-<tr class="memdesc:a4958cbb97c74b86f2bc0c50c9c4d9d0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solve the real eigenproblem that is assembled by elements in a mesh in a <a class="el" href="classoomph_1_1Problem.html" title="////////////////////////////////////////////////////////////////// //////////////////////////////////...">Problem</a> object. Note that the assembled matrices include the shift and are real. The eigenvalues and eigenvectors are, in general, complex. Eigenvalues may be infinite and are therefore returned as <img class="formulaInl" alt="$ \lambda_i = \alpha_i / \beta_i $" src="form_209.png" width="56" height="14"/> where <img class="formulaInl" alt="$ \alpha_i $" src="form_210.png" width="11" height="9"/> is complex while <img class="formulaInl" alt="$ \beta_i $" src="form_211.png" width="11" height="13"/> is real. The actual eigenvalues may then be computed by doing the division, checking for zero betas to avoid NaNs. There's a convenience wrapper to this function that simply computes these eigenvalues regardless. That version may die in NaN checking is enabled (via the fenv.h header and the associated feenable function). NOTE: While the above statement is true, the implementation of this function is actually everse engineered &ndash; trilinos actually computes the eigenvalues directly (and being an Arnoldi method it wouldn't be able to obtain any infinite/NaN eigenvalues anyway.  <br /></td></tr>
+<tr class="memdesc:a4958cbb97c74b86f2bc0c50c9c4d9d0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solve the real eigenproblem that is assembled by elements in a mesh in a <a class="el" href="classoomph_1_1Problem.html" title="////////////////////////////////////////////////////////////////// //////////////////////////////////...">Problem</a> object. Note that the assembled matrices include the shift and are real. The eigenvalues and eigenvectors are, in general, complex. Eigenvalues may be infinite and are therefore returned as <img class="formulaInl" alt="$ \lambda_i = \alpha_i / \beta_i $" src="form_215.png" width="56" height="14"/> where <img class="formulaInl" alt="$ \alpha_i $" src="form_216.png" width="11" height="9"/> is complex while <img class="formulaInl" alt="$ \beta_i $" src="form_217.png" width="11" height="13"/> is real. The actual eigenvalues may then be computed by doing the division, checking for zero betas to avoid NaNs. There's a convenience wrapper to this function that simply computes these eigenvalues regardless. That version may die in NaN checking is enabled (via the fenv.h header and the associated feenable function). NOTE: While the above statement is true, the implementation of this function is actually everse engineered &ndash; trilinos actually computes the eigenvalues directly (and being an Arnoldi method it wouldn't be able to obtain any infinite/NaN eigenvalues anyway.  <br /></td></tr>
 <tr class="separator:a4958cbb97c74b86f2bc0c50c9c4d9d0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a442d849223a2714072a189610647fd4b" id="r_a442d849223a2714072a189610647fd4b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1ANASAZI.html#a442d849223a2714072a189610647fd4b">solve_eigenproblem</a> (<a class="el" href="classoomph_1_1Problem.html">Problem</a> *<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> &amp;problem_pt, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">int</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">n_eval</a>, <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; std::complex&lt; <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a> &gt; &gt; &amp;eigenvalue, <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &gt; &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">eigenvector_real</a>, <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &gt; &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">eigenvector_imag</a>, <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">const</a> <a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">bool</a> &amp;<a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">do_adjoint_problem</a>)</td></tr>
 <tr class="memdesc:a442d849223a2714072a189610647fd4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solve the eigen problem.  <br /></td></tr>
@@ -276,7 +270,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for the <a class="el" href="namespaceAnasazi.html">Anasazi</a> eigensolver. </p>
 
-<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00662">662</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00686">686</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a8c8982a3b6f716d4ea9b497235351cf2" name="a8c8982a3b6f716d4ea9b497235351cf2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8c8982a3b6f716d4ea9b497235351cf2">&#9670;&#160;</a></span>MT</h2>
@@ -298,7 +292,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00667">667</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00691">691</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
 
 </div>
 </div>
@@ -322,7 +316,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00668">668</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00692">692</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
 
 </div>
 </div>
@@ -346,7 +340,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00670">670</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00694">694</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
 
 </div>
 </div>
@@ -370,7 +364,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00669">669</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00693">693</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
 
 </div>
 </div>
@@ -394,7 +388,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00671">671</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00695">695</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
 
 </div>
 </div>
@@ -418,7 +412,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00666">666</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00690">690</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
 
 </div>
 </div>
@@ -442,7 +436,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00665">665</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00689">689</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
 
 </div>
 </div>
@@ -472,9 +466,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Constructor. </p>
 
-<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00700">700</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00724">724</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
 
-<p class="reference">References <a class="el" href="trilinos__eigen__solver_8h_source.html#l00674">Output_manager_pt</a>.</p>
+<p class="reference">References <a class="el" href="trilinos__eigen__solver_8h_source.html#l00698">Output_manager_pt</a>.</p>
 
 </div>
 </div>
@@ -504,7 +498,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Empty copy constructor. </p>
 
-<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00720">720</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00744">744</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
 
 </div>
 </div>
@@ -533,7 +527,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Destructor, delete the linear solver. </p>
 
-<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00723">723</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00747">747</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
 
 </div>
 </div>
@@ -563,11 +557,11 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Return a pointer to the linear solver object. </p>
 
-<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00975">975</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00999">999</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
 
-<p class="reference">References <a class="el" href="trilinos__eigen__solver_8h_source.html#l00677">Linear_solver_pt</a>.</p>
+<p class="reference">References <a class="el" href="trilinos__eigen__solver_8h_source.html#l00701">Linear_solver_pt</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="trilinos__eigen__solver_8h_source.html#l00791">solve_eigenproblem()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="trilinos__eigen__solver_8h_source.html#l00815">solve_eigenproblem()</a>.</p>
 
 </div>
 </div>
@@ -596,9 +590,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Return a pointer to the linear solver object (const version) </p>
 
-<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00981">981</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l01005">1005</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
 
-<p class="reference">References <a class="el" href="trilinos__eigen__solver_8h_source.html#l00677">Linear_solver_pt</a>.</p>
+<p class="reference">References <a class="el" href="trilinos__eigen__solver_8h_source.html#l00701">Linear_solver_pt</a>.</p>
 
 </div>
 </div>
@@ -666,15 +660,15 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Solve the real eigenproblem that is assembled by elements in a mesh in a <a class="el" href="classoomph_1_1Problem.html" title="////////////////////////////////////////////////////////////////// //////////////////////////////////...">Problem</a> object. Note that the assembled matrices include the shift and are real. The eigenvalues and eigenvectors are, in general, complex. Eigenvalues may be infinite and are therefore returned as <img class="formulaInl" alt="$ \lambda_i = \alpha_i / \beta_i $" src="form_209.png" width="56" height="14"/> where <img class="formulaInl" alt="$ \alpha_i $" src="form_210.png" width="11" height="9"/> is complex while <img class="formulaInl" alt="$ \beta_i $" src="form_211.png" width="11" height="13"/> is real. The actual eigenvalues may then be computed by doing the division, checking for zero betas to avoid NaNs. There's a convenience wrapper to this function that simply computes these eigenvalues regardless. That version may die in NaN checking is enabled (via the fenv.h header and the associated feenable function). NOTE: While the above statement is true, the implementation of this function is actually everse engineered &ndash; trilinos actually computes the eigenvalues directly (and being an Arnoldi method it wouldn't be able to obtain any infinite/NaN eigenvalues anyway. </p>
+<p>Solve the real eigenproblem that is assembled by elements in a mesh in a <a class="el" href="classoomph_1_1Problem.html" title="////////////////////////////////////////////////////////////////// //////////////////////////////////...">Problem</a> object. Note that the assembled matrices include the shift and are real. The eigenvalues and eigenvectors are, in general, complex. Eigenvalues may be infinite and are therefore returned as <img class="formulaInl" alt="$ \lambda_i = \alpha_i / \beta_i $" src="form_215.png" width="56" height="14"/> where <img class="formulaInl" alt="$ \alpha_i $" src="form_216.png" width="11" height="9"/> is complex while <img class="formulaInl" alt="$ \beta_i $" src="form_217.png" width="11" height="13"/> is real. The actual eigenvalues may then be computed by doing the division, checking for zero betas to avoid NaNs. There's a convenience wrapper to this function that simply computes these eigenvalues regardless. That version may die in NaN checking is enabled (via the fenv.h header and the associated feenable function). NOTE: While the above statement is true, the implementation of this function is actually everse engineered &ndash; trilinos actually computes the eigenvalues directly (and being an Arnoldi method it wouldn't be able to obtain any infinite/NaN eigenvalues anyway. </p>
 
 <p>Implements <a class="el" href="classoomph_1_1EigenSolver.html#a45497b2b9ca94c6fd5ec2836bb3bc08b">oomph::EigenSolver</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00764">764</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00788">788</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
 
-<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>, and <a class="el" href="trilinos__eigen__solver_8h_source.html#l00764">solve_eigenproblem()</a>.</p>
+<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>, and <a class="el" href="trilinos__eigen__solver_8h_source.html#l00788">solve_eigenproblem()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="trilinos__eigen__solver_8h_source.html#l00764">solve_eigenproblem()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="trilinos__eigen__solver_8h_source.html#l00788">solve_eigenproblem()</a>.</p>
 
 </div>
 </div>
@@ -740,9 +734,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classoomph_1_1EigenSolver.html#a3ee4360a4ceb78eebf5d4740d056e37d">oomph::EigenSolver</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00791">791</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00815">815</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
 
-<p class="reference">References <a class="el" href="problem_8cc_source.html#l00300">oomph::Problem::create_new_linear_algebra_distribution()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="problem_8h_source.html#l01486">oomph::Problem::linear_solver_pt()</a>, <a class="el" href="trilinos__eigen__solver_8h_source.html#l00677">Linear_solver_pt</a>, <a class="el" href="trilinos__eigen__solver_8h_source.html#l00975">linear_solver_pt()</a>, <a class="el" href="linear__algebra__distribution_8h_source.html#l00469">oomph::DistributableLinearAlgebraObject::nrow_local()</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00319">oomph::oomph_info</a>, <a class="el" href="eigen__solver_8h_source.html#l00065">oomph::EigenSolver::Sigma_real</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
+<p class="reference">References <a class="el" href="problem_8cc_source.html#l00309">oomph::Problem::create_new_linear_algebra_distribution()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="problem_8h_source.html#l01486">oomph::Problem::linear_solver_pt()</a>, <a class="el" href="trilinos__eigen__solver_8h_source.html#l00701">Linear_solver_pt</a>, <a class="el" href="trilinos__eigen__solver_8h_source.html#l00999">linear_solver_pt()</a>, <a class="el" href="linear__algebra__distribution_8h_source.html#l00469">oomph::DistributableLinearAlgebraObject::nrow_local()</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00326">oomph::oomph_info</a>, <a class="el" href="eigen__solver_8h_source.html#l00065">oomph::EigenSolver::Sigma_real</a>, and <a class="el" href="elements_8cc_source.html#l04320">oomph::FiniteElement::size()</a>.</p>
 
 </div>
 </div>
@@ -769,7 +763,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Pointer to a default linear solver. </p>
 
-<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00680">680</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00704">704</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
 
 </div>
 </div>
@@ -795,9 +789,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Pointer to a linear solver. </p>
 
-<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00677">677</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00701">701</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="trilinos__eigen__solver_8h_source.html#l00975">linear_solver_pt()</a>, <a class="el" href="trilinos__eigen__solver_8h_source.html#l00981">linear_solver_pt()</a>, and <a class="el" href="trilinos__eigen__solver_8h_source.html#l00791">solve_eigenproblem()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="trilinos__eigen__solver_8h_source.html#l00999">linear_solver_pt()</a>, <a class="el" href="trilinos__eigen__solver_8h_source.html#l01005">linear_solver_pt()</a>, and <a class="el" href="trilinos__eigen__solver_8h_source.html#l00815">solve_eigenproblem()</a>.</p>
 
 </div>
 </div>
@@ -823,9 +817,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Pointer to output manager. </p>
 
-<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00674">674</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="trilinos__eigen__solver_8h_source.html#l00698">698</a> of file <a class="el" href="trilinos__eigen__solver_8h_source.html">trilinos_eigen_solver.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="trilinos__eigen__solver_8h_source.html#l00700">ANASAZI()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="trilinos__eigen__solver_8h_source.html#l00724">ANASAZI()</a>.</p>
 
 </div>
 </div>
@@ -860,7 +854,7 @@ Additional Inherited Members</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:03:17
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:36:45
         </div>
       </div>
     </footer>

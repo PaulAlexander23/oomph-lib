@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -42,9 +42,9 @@
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00038}00038\ \textcolor{keyword}{using\ namespace\ }oomph;}
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00039}00039\ }
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00040}00040\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00041}00041\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00042}00042\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00043}00043\ \textcolor{comment}{///\ ///////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00041}00041\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00042}00042\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00043}00043\ \textcolor{comment}{//////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00044}00044\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00045}00045\ }
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00046}00046\ \textcolor{comment}{//=======start\_namespace==========================================}\textcolor{comment}{}}
@@ -614,7 +614,7 @@
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00610}00610\ }
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00611}00611\ \ \textcolor{comment}{//\ Output\ displacement\ field}}
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00612}00612\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00613}00613\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/elast\_soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00613}00613\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/elast\_soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00614}00614\ \ \ \ \ \ \ \ \ \ Doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00615}00615\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00616}00616\ \ Solid\_mesh\_pt-\/>output(some\_file,n\_plot);}
@@ -623,7 +623,7 @@
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00619}00619\ }
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00620}00620\ \ \textcolor{comment}{//\ Output\ traction\ elements}}
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00621}00621\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00622}00622\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/traction\_soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00622}00622\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/traction\_soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00623}00623\ \ \ \ \ \ \ \ \ \ Doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00624}00624\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00625}00625\ \ Traction\_mesh\_pt-\/>output(some\_file,n\_plot);}
@@ -631,7 +631,7 @@
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00627}00627\ }
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00628}00628\ \ \textcolor{comment}{//\ Output\ exact\ solution\ }}
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00629}00629\ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00630}00630\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00630}00630\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00631}00631\ \ \ \ \ \ \ \ \ \ Doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00632}00632\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{time__harmonic__elastic__annulus_8cc_source_l00633}00633\ \ Solid\_mesh\_pt-\/>output\_fct(some\_file,n\_plot,\mbox{\hyperlink{namespaceGlobal__Parameters_a97162dba4bd29a15067b9c9bbe53c754}{Global\_Parameters::exact\_u}});\ }

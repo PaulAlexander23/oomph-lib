@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -102,9 +102,9 @@
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00098}00098\ }
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00099}00099\ }
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00100}00100\ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00101}00101\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00102}00102\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00103}00103\ \textcolor{comment}{///\ ////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00101}00101\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00102}00102\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00103}00103\ \textcolor{comment}{///////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00104}00104\ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00105}00105\ }
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00106}00106\ }
@@ -294,7 +294,7 @@
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00290}00290\ \ \textcolor{keywordtype}{unsigned}\ n\_plot\ =\ 5;\ }
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00291}00291\ }
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00292}00292\ \ \textcolor{comment}{//\ Output\ shape\ of\ and\ stress\ in\ deformed\ body}}
-\DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00293}00293\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00293}00293\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00294}00294\ \ \ \ \ \ \ \ \ \ Doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00295}00295\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00296}00296\ \ mesh\_pt()-\/>output(some\_file,n\_plot);}
@@ -309,7 +309,7 @@
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00305}00305\ }
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00306}00306\ \ \textcolor{comment}{//\ Output\ exact\ solution\ for\ linear\ elasticity}}
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00307}00307\ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00308}00308\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00308}00308\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},Doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00309}00309\ \ \ \ \ \ \ \ \ \ Doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00310}00310\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00311}00311\ \ \textcolor{keywordtype}{unsigned}\ nelem=mesh\_pt()-\/>nelement();\ }
@@ -386,12 +386,12 @@
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00382}00382\ }
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00383}00383\ \ \textcolor{comment}{//\ Set\ output\ directory}}
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00384}00384\ \ \textcolor{keywordtype}{char}\ dirname[100];\ \ \ }
-\DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00385}00385\ \ sprintf(dirname,\textcolor{stringliteral}{"{}RESLT\%i"{}},i\_case);}
+\DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00385}00385\ \ snprintf(dirname,\ \textcolor{keyword}{sizeof}(dirname),\ \textcolor{stringliteral}{"{}RESLT\%i"{}},i\_case);}
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00386}00386\ \ Doc\_info.set\_directory(dirname);}
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00387}00387\ }
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00388}00388\ \ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00389}00389\ \ \textcolor{keywordtype}{char}\ filename[100];\ \ \ }
-\DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00390}00390\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},Doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00390}00390\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},Doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00391}00391\ \ Trace\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00392}00392\ }
 \DoxyCodeLine{\Hypertarget{compressed__square_8cc_source_l00393}00393\ }

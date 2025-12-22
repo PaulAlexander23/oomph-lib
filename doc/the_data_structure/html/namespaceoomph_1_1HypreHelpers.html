@@ -71,19 +71,13 @@
           <li><a href="../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -131,7 +125,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>/////////////////////////////////////////////////////////////////////  
+<p>Helper functions for use with the Hypre library.  
 <a href="namespaceoomph_1_1HypreHelpers.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -154,6 +148,9 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
+<tr class="memitem:a6bfb56c0c255b2b6a82625afe91c6b70" id="r_a6bfb56c0c255b2b6a82625afe91c6b70"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceoomph_1_1HypreHelpers.html#a6bfb56c0c255b2b6a82625afe91c6b70">Number_of_active_hypre_solvers</a> = 0</td></tr>
+<tr class="memdesc:a6bfb56c0c255b2b6a82625afe91c6b70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of active Hypre solvers (smart pointer like behaviuor to make sure that the initialise/finalize functions are only called the required number of times.  <br /></td></tr>
+<tr class="separator:a6bfb56c0c255b2b6a82625afe91c6b70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3d3b58e30a8eba0adce2c335d2fc437" id="r_aa3d3b58e30a8eba0adce2c335d2fc437"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceoomph_1_1HypreHelpers.html#aa3d3b58e30a8eba0adce2c335d2fc437">AMG_strength</a> = 0.25</td></tr>
 <tr class="memdesc:aa3d3b58e30a8eba0adce2c335d2fc437"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default for AMG strength (0.25 recommended for 2D problems; larger (0.5-0.75, say) for 3D.  <br /></td></tr>
 <tr class="separator:aa3d3b58e30a8eba0adce2c335d2fc437"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -165,9 +162,7 @@ Variables</h2></td></tr>
 <tr class="separator:aa32196f0215efa229ced79ce65e3887d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>///////////////////////////////////////////////////////////////////// </p>
-<p>Helper functions for use with the Hypre library.</p>
-<p>///////////////////////////////////////////////////////////////////// </p>
+<div class="textblock"><p>Helper functions for use with the Hypre library. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="a65765f3019c585e17822f30423b52096" name="a65765f3019c585e17822f30423b52096"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a65765f3019c585e17822f30423b52096">&#9670;&#160;</a></span>check_HYPRE_error_flag()</h2>
@@ -188,11 +183,11 @@ Variables</h2></td></tr>
 <p>Helper function to check the Hypre error flag, return the message associated with any error, and reset the global error flag to zero. This function also returns the error value. </p>
 <p>Helper function to check the Hypre error flag, return the message associated with any error, and reset the error flag to zero. </p>
 
-<p class="definition">Definition at line <a class="el" href="hypre__solver_8cc_source.html#l00147">147</a> of file <a class="el" href="hypre__solver_8cc_source.html">hypre_solver.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hypre__solver_8cc_source.html#l00155">155</a> of file <a class="el" href="hypre__solver_8cc_source.html">hypre_solver.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="hypre__solver_8h.html#a7ae3d5ec4f7036569d2c2c48535ab392">hypre__global_error</a>, and <a class="el" href="oomph__definitions_8cc_source.html#l00319">oomph::oomph_info</a>.</p>
+<p class="reference">References <a class="el" href="hypre__solver_8h.html#a3f159862f67e03500e947e98e0938171">hypre__global_error</a>, and <a class="el" href="oomph__definitions_8cc_source.html#l00326">oomph::oomph_info</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="hypre__solver_8cc_source.html#l01301">oomph::HypreInterface::hypre_clean_up_memory()</a>, <a class="el" href="hypre__solver_8cc_source.html#l00513">oomph::HypreInterface::hypre_matrix_setup()</a>, <a class="el" href="hypre__solver_8cc_source.html#l01086">oomph::HypreInterface::hypre_solve()</a>, and <a class="el" href="hypre__solver_8cc_source.html#l00558">oomph::HypreInterface::hypre_solver_setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="hypre__solver_8cc_source.html#l01364">oomph::HypreInterface::hypre_clean_up_memory()</a>, <a class="el" href="hypre__solver_8cc_source.html#l00548">oomph::HypreInterface::hypre_matrix_setup()</a>, <a class="el" href="hypre__solver_8cc_source.html#l01149">oomph::HypreInterface::hypre_solve()</a>, and <a class="el" href="hypre__solver_8cc_source.html#l00592">oomph::HypreInterface::hypre_solver_setup()</a>.</p>
 
 </div>
 </div>
@@ -237,11 +232,11 @@ Variables</h2></td></tr>
 <p>Helper function to create a serial HYPRE_IJMatrix and HYPRE_ParCSRMatrix from a <a class="el" href="classoomph_1_1CRDoubleMatrix.html" title="A class for compressed row matrices. This is a distributable object.">CRDoubleMatrix</a> NOTE: dist_pt is rebuilt to match the distribution of the hypre solver which is not necassarily the same as the oomph lib matrix. </p>
 <p>Helper function to create a serial HYPRE_IJMatrix and HYPRE_ParCSRMatrix from a <a class="el" href="classoomph_1_1CRDoubleMatrix.html" title="A class for compressed row matrices. This is a distributable object.">CRDoubleMatrix</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="hypre__solver_8cc_source.html#l00270">270</a> of file <a class="el" href="hypre__solver_8cc_source.html">hypre_solver.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hypre__solver_8cc_source.html#l00278">278</a> of file <a class="el" href="hypre__solver_8cc_source.html">hypre_solver.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00603">i</a>, and <a class="el" href="oomph__utilities_8h_source.html#l00851">oomph::MPI_Helpers::mpi_has_been_initialised()</a>.</p>
+<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="fpdiff_8cc_source.html#l00123">oomph::lower()</a>, and <a class="el" href="oomph__utilities_8h_source.html#l00861">oomph::MPI_Helpers::mpi_has_been_initialised()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="hypre__solver_8cc_source.html#l00513">oomph::HypreInterface::hypre_matrix_setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="hypre__solver_8cc_source.html#l00548">oomph::HypreInterface::hypre_matrix_setup()</a>.</p>
 
 </div>
 </div>
@@ -290,11 +285,11 @@ Variables</h2></td></tr>
 <li>If MPI and distributed input vector the distributed output vectors are created. </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="hypre__solver_8cc_source.html#l00178">178</a> of file <a class="el" href="hypre__solver_8cc_source.html">hypre_solver.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hypre__solver_8cc_source.html#l00186">186</a> of file <a class="el" href="hypre__solver_8cc_source.html">hypre_solver.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00603">i</a>.</p>
+<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00603">i</a>, and <a class="el" href="fpdiff_8cc_source.html#l00123">oomph::lower()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="hypre__solver_8cc_source.html#l01086">oomph::HypreInterface::hypre_solve()</a>, and <a class="el" href="hypre__solver_8cc_source.html#l00558">oomph::HypreInterface::hypre_solver_setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="hypre__solver_8cc_source.html#l01149">oomph::HypreInterface::hypre_solve()</a>, and <a class="el" href="hypre__solver_8cc_source.html#l00592">oomph::HypreInterface::hypre_solver_setup()</a>.</p>
 
 </div>
 </div>
@@ -341,7 +336,9 @@ Variables</h2></td></tr>
 <li>If MPI and distributed input distribution the distributed output vectors are created. </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="hypre__solver_8cc_source.html#l00240">240</a> of file <a class="el" href="hypre__solver_8cc_source.html">hypre_solver.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hypre__solver_8cc_source.html#l00248">248</a> of file <a class="el" href="hypre__solver_8cc_source.html">hypre_solver.cc</a>.</p>
+
+<p class="reference">References <a class="el" href="fpdiff_8cc_source.html#l00123">oomph::lower()</a>.</p>
 
 </div>
 </div>
@@ -403,9 +400,9 @@ Variables</h2></td></tr>
 
 <p>Helper function to set Euclid options using a command line like array. </p>
 
-<p class="definition">Definition at line <a class="el" href="hypre__solver_8cc_source.html#l00409">409</a> of file <a class="el" href="hypre__solver_8cc_source.html">hypre_solver.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hypre__solver_8cc_source.html#l00444">444</a> of file <a class="el" href="hypre__solver_8cc_source.html">hypre_solver.cc</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="hypre__solver_8cc_source.html#l00558">oomph::HypreInterface::hypre_solver_setup()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="hypre__solver_8cc_source.html#l00592">oomph::HypreInterface::hypre_solver_setup()</a>.</p>
 
 </div>
 </div>
@@ -424,9 +421,9 @@ Variables</h2></td></tr>
 
 <p>Default AMG coarsening strategy. Coarsening types include: 0 = CLJP (parallel coarsening using independent sets) 1 = classical RS with no boundary treatment (not recommended in parallel) 3 = modified RS with 3rd pass to add C points on the boundaries 6 = Falgout (uses 1 then CLJP using interior coarse points as first independent set) 8 = PMIS (parallel coarsening using independent sets - lower complexities than 0, maybe also slower convergence) 10= HMIS (one pass RS on each processor then PMIS on interior coarse points as first independent set) 11= One pass RS on each processor (not recommended) </p>
 
-<p class="definition">Definition at line <a class="el" href="hypre__solver_8cc_source.html#l00134">134</a> of file <a class="el" href="hypre__solver_8cc_source.html">hypre_solver.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hypre__solver_8cc_source.html#l00142">142</a> of file <a class="el" href="hypre__solver_8cc_source.html">hypre_solver.cc</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="hypre__solver_8h_source.html#l00137">oomph::HypreInterface::HypreInterface()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="hypre__solver_8h_source.html#l00142">oomph::HypreInterface::HypreInterface()</a>.</p>
 
 </div>
 </div>
@@ -444,9 +441,9 @@ Variables</h2></td></tr>
 
 <p>Default for AMG strength (0.25 recommended for 2D problems; larger (0.5-0.75, say) for 3D. </p>
 
-<p class="definition">Definition at line <a class="el" href="hypre__solver_8cc_source.html#l00118">118</a> of file <a class="el" href="hypre__solver_8cc_source.html">hypre_solver.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hypre__solver_8cc_source.html#l00126">126</a> of file <a class="el" href="hypre__solver_8cc_source.html">hypre_solver.cc</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="hypre__solver_8h_source.html#l00137">oomph::HypreInterface::HypreInterface()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="hypre__solver_8h_source.html#l00142">oomph::HypreInterface::HypreInterface()</a>.</p>
 
 </div>
 </div>
@@ -464,9 +461,29 @@ Variables</h2></td></tr>
 
 <p>AMG interpolation truncation factor. </p>
 
-<p class="definition">Definition at line <a class="el" href="hypre__solver_8cc_source.html#l00140">140</a> of file <a class="el" href="hypre__solver_8cc_source.html">hypre_solver.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hypre__solver_8cc_source.html#l00148">148</a> of file <a class="el" href="hypre__solver_8cc_source.html">hypre_solver.cc</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="hypre__solver_8h_source.html#l00137">oomph::HypreInterface::HypreInterface()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="hypre__solver_8h_source.html#l00142">oomph::HypreInterface::HypreInterface()</a>.</p>
+
+</div>
+</div>
+<a id="a6bfb56c0c255b2b6a82625afe91c6b70" name="a6bfb56c0c255b2b6a82625afe91c6b70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bfb56c0c255b2b6a82625afe91c6b70">&#9670;&#160;</a></span>Number_of_active_hypre_solvers</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classoomph_1_1TAdvectionDiffusionReactionElement.html">unsigned</a> oomph::HypreHelpers::Number_of_active_hypre_solvers = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Number of active Hypre solvers (smart pointer like behaviuor to make sure that the initialise/finalize functions are only called the required number of times. </p>
+
+<p class="definition">Definition at line <a class="el" href="hypre__solver_8cc_source.html#l00120">120</a> of file <a class="el" href="hypre__solver_8cc_source.html">hypre_solver.cc</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="hypre__solver_8h_source.html#l00142">oomph::HypreInterface::HypreInterface()</a>, and <a class="el" href="hypre__solver_8h_source.html#l00238">oomph::HypreInterface::~HypreInterface()</a>.</p>
 
 </div>
 </div>
@@ -498,7 +515,7 @@ Variables</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:06:00
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:43:49
         </div>
       </div>
     </footer>

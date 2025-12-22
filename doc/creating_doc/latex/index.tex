@@ -4,8 +4,8 @@ This document provides an overview of how to prepare documentation for inclusion
 
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
-\hypertarget{index_setup}{}\doxysection{\texorpdfstring{Setting up the documentation}{Setting up the documentation}}\label{index_setup}
-\hypertarget{index_makefiles}{}\doxysubsection{\texorpdfstring{Makefiles}{Makefiles}}\label{index_makefiles}
+\hypertarget{index_setup}{}\doxysection{\texorpdfstring{Setup}{Setup}}\label{index_setup}
+\hypertarget{index_dirs_and_cmake}{}\doxysubsection{\texorpdfstring{Create the directory and update the CMake\+Lists.\+txt files}{Create the directory and update the CMakeLists.txt files}}\label{index_dirs_and_cmake}
 
 \begin{DoxyEnumerate}
 \item Within an appropriate subdirectory of the {\ttfamily doc} directory, create a directory for your documentation, e.\+g. 
@@ -15,8 +15,7 @@ This document provides an overview of how to prepare documentation for inclusion
 
 \end{DoxyCode}
 
-\item Add this new directory to the parent directory\textquotesingle{}s {\ttfamily Makefile.\+am} 
-\item Add the entry {\ttfamily doc/axisym\+\_\+navier\+\_\+stokes/spin\+\_\+up} to the file {\ttfamily config/configure}. {\ttfamily ac\+\_\+scripts/doc}.{\ttfamily dir\+\_\+list} 
+\item Add this new directory to the parent directory\textquotesingle{}s {\ttfamily CMake\+Lists.\+txt} file
 \item Create a new {\ttfamily \texorpdfstring{$\ast$}{*}}.{\ttfamily txt} file with the same name as the newly-\/created directory, e.\+g. 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{touch\ spin\_up.txt}
@@ -25,19 +24,21 @@ This document provides an overview of how to prepare documentation for inclusion
  This is the "{}source"{} file from which the documentation will be generated.
 \item From an existing documentation directory, copy across the following files into the newly created directory\+:
 \begin{DoxyItemize}
-\item {\ttfamily Makefile.\+am} 
+\item {\ttfamily CMake\+Lists.\+txt} 
 \item {\ttfamily Doxyfile} 
 \end{DoxyItemize}
-\item In {\ttfamily Makefile.\+am} after {\ttfamily "{}docfile ="{}}, add the stem of the {\ttfamily \texorpdfstring{$\ast$}{*}}.{\ttfamily txt} file created in step 4, e.\+g. 
-\begin{DoxyCode}{0}
-\DoxyCodeLine{docfile\ =\ spin\_up}
-
-\end{DoxyCode}
-
+\item In {\ttfamily CMake\+LIsts.\+txt} update
+\begin{DoxyItemize}
+\item the name of the directory in the two messages at the start and end of the file
+\item the name of the directory in the {\ttfamily project} command
+\item the name of the directory in the {\ttfamily DOCFILE} variable in the {\ttfamily oomph\+\_\+generate-\/doc\+\_\+from} command.
+\end{DoxyItemize}
 \item In {\ttfamily Doxyfile} update the (relative) path to the demo-\/driver directory. Two entries must be updated, one following {\ttfamily "{}\+INPUT"{}} and the other following {\ttfamily "{}\+EXAMPLE\+\_\+\+PATH"{}}. To find these, search for {\ttfamily "{}../.."{}}.
-\item Return to {\ttfamily oomph-\/lib\textquotesingle{}s} top-\/level directory and re-\/run {\ttfamily autogen}.{\ttfamily sh\+:} 
+\item Return to {\ttfamily oomph-\/lib\textquotesingle{}s} doc directory and re-\/configure\+: 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{./autogen.sh\ }
+\DoxyCodeLine{cd\ doc}
+\DoxyCodeLine{cmake\ -\/G\ Ninja\ -\/B\ build}
+\DoxyCodeLine{cmake\ -\/-\/build\ build}
 
 \end{DoxyCode}
 
@@ -181,29 +182,18 @@ To include sections of the demo code which you are documenting, e.\+g. the main 
 
 \begin{DoxyItemize}
 \item To tell {\ttfamily doxygen} to ignore everything in the source file below a certain point, denote this point with {\ttfamily @@END@@}.
-\item To tell {\ttfamily doxygen} that a certain section of the source file is only to be included in the {\ttfamily html} version of the documentation and omitted in the {\ttfamily La\+TeX} version, enclose this section within {\ttfamily {\ttfamily \textbackslash{}htmlonly} and} {\ttfamily \textbackslash{}endhtmlonly} tags. CAREFUL\+: With recent version of doxygen, this has caused problems with certain commands not being interpreted correctly. Best not to use this... The following item is a work-\/around\+:
-\item Add the variable {\ttfamily suppress\+\_\+latex\+\_\+in\+\_\+this\+\_\+directory} to the Makefile.\+am and set it to 1 to bypass the generation of latex-\/based documentation for a specific directory (which may contain difficult to render tables etc. and therefore cause latex to hang...). Here\textquotesingle{}s an example of a Makefile.\+am from the directory {\ttfamily doc/order\+\_\+of\+\_\+action\+\_\+functions}\+: 
-\begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{suppress\_latex\_in\_this\_directory=1}
-\DoxyCodeLine{}
-\DoxyCodeLine{include\ \$(top\_srcdir)/config/makefile\_templates/doc}
-\DoxyCodeLine{}
-\DoxyCodeLine{docfile\ =\ order\_of\_action\_functions}
-
-\end{DoxyCodeInclude}
-
-\item To tell {\ttfamily doxygen} that a certain section of the source file is only to be included in the {\ttfamily La\+TeX} version of the documentation and omitted in the {\ttfamily html} version, enclose this section within {\ttfamily {\ttfamily \textbackslash{}latexonly} and} {\ttfamily \textbackslash{}endlatexonly} tags.
+\item To tell {\ttfamily doxygen} that a certain section of the source file is only to be included in the {\ttfamily html} version of the documentation and omitted in the {\ttfamily La\+TeX} version, enclose this section within {\ttfamily {\ttfamily \textbackslash{}htmlonly} and} {\ttfamily \textbackslash{}endhtmlonly} tags. CAREFUL\+: With recent version of doxygen, this has caused problems with certain commands not being interpreted correctly. Best not to use this...
 \end{DoxyItemize}\DoxyHorRuler{0}
 \hypertarget{index_generate}{}\doxysection{\texorpdfstring{Generating the documentation}{Generating the documentation}}\label{index_generate}
-Once the source file has been written, simply type {\ttfamily make} in the documentation directory to build the {\ttfamily html} and {\ttfamily La\+TeX} versions, e.\+g. 
+Once the source file has been written, simply type {\ttfamily cmake --build build} in the top level doc directory to build the {\ttfamily html} and {\ttfamily La\+TeX} versions, e.\+g. 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{cd\ doc/axisym\_navier\_stokes/spin\_up}
-\DoxyCodeLine{make}
+\DoxyCodeLine{cd\ doc}
+\DoxyCodeLine{cmake\ -\/-\/build\ build}
 
 \end{DoxyCode}
- Two subdirectories, {\ttfamily html} and {\ttfamily latex}, are now created containing the two versions of the documentation. A {\ttfamily \texorpdfstring{$\ast$}{*}}.{\ttfamily pdf} file of the {\ttfamily La\+TeX} version is also placed in the current directory.
+ Two subdirectories, {\ttfamily html} and {\ttfamily latex}, are now created containing the two versions of the documentation. A {\ttfamily \texorpdfstring{$\ast$}{*}}.{\ttfamily pdf} file of the {\ttfamily La\+TeX} version is also placed in the directory.
 
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

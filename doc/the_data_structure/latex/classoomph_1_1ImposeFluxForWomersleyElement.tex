@@ -2,7 +2,7 @@
 \hypertarget{classoomph_1_1ImposeFluxForWomersleyElement}{}\label{classoomph_1_1ImposeFluxForWomersleyElement}\index{oomph::ImposeFluxForWomersleyElement$<$ DIM $>$@{oomph::ImposeFluxForWomersleyElement$<$ DIM $>$}}
 
 
-//////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////////  
+Element to impose volume flux through collection of Womersley elements, in exchange for treating the pressure gradient as an unknown. The pressure gradient is created (as a single-\/valued \doxylink{classoomph_1_1Data}{Data} item) in the constructor for this element which also takes a pointer to the \doxylink{classoomph_1_1Mesh}{Mesh} containing the Womersley elements whose total flux is being controlled. While doing this we tell them that their pressure gradient is now an unknown and must be treated as external \doxylink{classoomph_1_1Data}{Data}.  
 
 
 
@@ -31,8 +31,10 @@ Inheritance diagram for oomph\+::Impose\+Flux\+For\+Womersley\+Element\texorpdfs
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{oomph\+::\+Generalised\+Element}}}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}}() \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a76c506edf49c5bbfe94f424ec94191ab}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
-\begin{DoxyCompactList}\small\item\em Constructor\+: Initialise all pointers and all values to zero. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a6a34bffcef1bbbc5271630042afe7ca9}{\texorpdfstring{$\sim$}{\string~}\+Generalised\+Element}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor to clean up any memory allocated by the object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1GeneralisedElement_a4e4a9177fdb093fc85c890bb86bdf655}{Generalised\+Element}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
+\begin{DoxyCompactList}\small\item\em Broken copy constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a180b550ae69f8bcbaae3f37f38c475ff}{operator=}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} \&)=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{delete}}
 \begin{DoxyCompactList}\small\item\em Broken assignment operator. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Data}{Data}} \texorpdfstring{$\ast$}{*}\& \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a3b83389f2c80788013421c6d59604f0b}{internal\+\_\+data\+\_\+pt}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
@@ -240,8 +242,6 @@ Inheritance diagram for oomph\+::Impose\+Flux\+For\+Womersley\+Element\texorpdfs
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{unsigned}} DIM$>$\newline
 class oomph\+::\+Impose\+Flux\+For\+Womersley\+Element$<$ DIM $>$}
-//////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////// 
-
 Element to impose volume flux through collection of Womersley elements, in exchange for treating the pressure gradient as an unknown. The pressure gradient is created (as a single-\/valued \doxylink{classoomph_1_1Data}{Data} item) in the constructor for this element which also takes a pointer to the \doxylink{classoomph_1_1Mesh}{Mesh} containing the Womersley elements whose total flux is being controlled. While doing this we tell them that their pressure gradient is now an unknown and must be treated as external \doxylink{classoomph_1_1Data}{Data}. 
 
 Definition at line \mbox{\hyperlink{womersley__elements_8h_source_l00503}{503}} of file \mbox{\hyperlink{womersley__elements_8h_source}{womersley\+\_\+elements.\+h}}.
@@ -292,7 +292,7 @@ Definition at line \mbox{\hyperlink{womersley__elements_8h_source_l00592}{592}} 
 
 
 
-References \mbox{\hyperlink{womersley__elements_8h_source_l00575}{oomph\+::\+Impose\+Flux\+For\+Womersley\+Element$<$ DIM $>$\+::get\+\_\+residuals()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink{elements_8h_source_l00839}{oomph\+::\+Generalised\+Element\+::ndof()}}.
+References \mbox{\hyperlink{womersley__elements_8h_source_l00575}{oomph\+::\+Impose\+Flux\+For\+Womersley\+Element$<$ DIM $>$\+::get\+\_\+residuals()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink{elements_8h_source_l00822}{oomph\+::\+Generalised\+Element\+::ndof()}}.
 
 \Hypertarget{classoomph_1_1ImposeFluxForWomersleyElement_a6109bae3e5eb55b567e7ea85fca10884}\label{classoomph_1_1ImposeFluxForWomersleyElement_a6109bae3e5eb55b567e7ea85fca10884} 
 \index{oomph::ImposeFluxForWomersleyElement$<$ DIM $>$@{oomph::ImposeFluxForWomersleyElement$<$ DIM $>$}!get\_residuals@{get\_residuals}}
@@ -357,7 +357,7 @@ Definition at line \mbox{\hyperlink{womersley__elements_8h_source_l00553}{553}} 
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00448}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00590}{oomph\+::\+Mesh\+::nelement()}}, and \mbox{\hyperlink{womersley__elements_8h_source_l00609}{oomph\+::\+Impose\+Flux\+For\+Womersley\+Element$<$ DIM $>$\+::\+Womersley\+\_\+mesh\+\_\+pt}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00452}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00598}{oomph\+::\+Mesh\+::nelement()}}, and \mbox{\hyperlink{womersley__elements_8h_source_l00609}{oomph\+::\+Impose\+Flux\+For\+Womersley\+Element$<$ DIM $>$\+::\+Womersley\+\_\+mesh\+\_\+pt}}.
 
 
 

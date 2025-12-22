@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -117,16 +111,16 @@
 <p>To illustrate these issues we (re-)consider the 2D Poisson problem </p><center> <table class="doxtable">
 <tr>
 <td><center> <b>Two-dimensional model Poisson problem in a non-trivial domain</b> </center> Solve  <p class="formulaDsp">
-<picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<img class="formulaDsp" alt="\[
 \sum_{i=1}^2 \frac{\partial^2u}{\partial x_i^2} = -1,
  \ \ \ \ \ \ \ \ \ \ (1)
-\]" src="form_0.png" width="139" height="38"/></picture>
+\]" src="form_0.png" width="139" height="38"/>
 </p>
- in the fish-shaped domain <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$D_{fish} $" src="form_1.png" width="30" height="14"/></picture> with homogeneous Dirichlet boundary conditions  <p class="formulaDsp">
-<picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+ in the fish-shaped domain <img class="formulaInl" alt="$D_{fish} $" src="form_1.png" width="30" height="14"/> with homogeneous Dirichlet boundary conditions  <p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 \left. u\right|_{\partial D_{fish}}=0.
 \ \ \ \ \ \ \ \ \ \ (2)
-\]" src="form_2.png" width="128" height="16"/></picture>
+\]" src="form_2.png" width="128" height="16"/>
 </p>
    </td></tr>
 </table>
@@ -137,7 +131,7 @@
 <hr  />
 <h1><a class="anchor" id="adapt"></a>
 Part 1: Mesh adaptation in domains with curvilinear boundaries, using Domain and MacroElement objects</h1>
-<p>The plot below shows the domain <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$D_{fish} $" src="form_1.png" width="30" height="14"/></picture>, represented by the multi-coloured, shaded region and its (extremely coarse) discretisation with four four-node quad elements. The elements' edges and nodes are shown in black.</p>
+<p>The plot below shows the domain <img class="formulaInl" alt="$D_{fish} $" src="form_1.png" width="30" height="14"/>, represented by the multi-coloured, shaded region and its (extremely coarse) discretisation with four four-node quad elements. The elements' edges and nodes are shown in black.</p>
 <div class="image">
 <img src="coarse_fish_mesh_and_domain.gif" alt=""/>
 <div class="caption">
@@ -147,10 +141,10 @@ The fish-shaped domain and its discretisation with four four-node quad elements 
 <img src="fish_poisson_soln_no_macro.gif" alt=""/>
 <div class="caption">
 Plot of the mesh adaptation without MacroElements </div></div>
- <p>To overcome this problem, the mesh adaptation routines must be given access to an exact, analytical representation of the actual domain. This is the purpose of <code>oomph-lib's</code> <code>Domain</code> object. A <code>Domain</code> provides an analytical description of a mathematical domain, by decomposing it into a number of so-called <code>MacroElements</code>. Each <code>MacroElement</code> provides a mapping between a set of local and global coordinates <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf r}_{macro}({\bf s})$" src="form_3.png" width="51" height="14"/></picture> &ndash; similar to the mapping between the local and global coordinates in a finite element. The key difference between the two types of element is that the <code>MacroElement</code> mapping resolves curvilinear domain boundaries exactly, whereas the finite element mapping interpolates the global coordinates between the coordinates of its nodes. The topology of <code>MacroElements</code> mirrors that of the associated (geometric) finite elements: For instance, the <code>QMacroElement</code> family is the counterpart of the <code>QElement</code> family of geometric finite elements. Both are templated by the spatial dimension, and the local coordinates (in their right-handed local coordinate systems) are in the range between -1 and +1.</p>
-<p>The different-coloured, shaded regions in the above sketch represent the four two-dimensional <code>QMacroElements</code> by which the <code>FishDomain</code> represents the fish-shaped domain <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ D_{fish} $" src="form_4.png" width="30" height="14"/></picture>. For instance, <code>MacroElement</code> 0 (shown in orange) represents the lower half of the fish's body; within this <code>MacroElement</code>, the curved "belly" is represented by the line <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf r}_{macro}(s_0,s_1=-1)$" src="form_5.png" width="106" height="14"/></picture> for <picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$s_0\in[-1,1]$" src="form_6.png" width="60" height="14"/></picture>; the lower "jaw" is represented by <picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf r}_{macro}(s_0=-1,s_1)$" src="form_7.png" width="106" height="14"/></picture> for <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$s_1\in[-1,1]$" src="form_8.png" width="60" height="14"/></picture>; etc.</p>
+ <p>To overcome this problem, the mesh adaptation routines must be given access to an exact, analytical representation of the actual domain. This is the purpose of <code>oomph-lib's</code> <code>Domain</code> object. A <code>Domain</code> provides an analytical description of a mathematical domain, by decomposing it into a number of so-called <code>MacroElements</code>. Each <code>MacroElement</code> provides a mapping between a set of local and global coordinates <img class="formulaInl" alt="$ {\bf r}_{macro}({\bf s})$" src="form_3.png" width="51" height="14"/> &ndash; similar to the mapping between the local and global coordinates in a finite element. The key difference between the two types of element is that the <code>MacroElement</code> mapping resolves curvilinear domain boundaries exactly, whereas the finite element mapping interpolates the global coordinates between the coordinates of its nodes. The topology of <code>MacroElements</code> mirrors that of the associated (geometric) finite elements: For instance, the <code>QMacroElement</code> family is the counterpart of the <code>QElement</code> family of geometric finite elements. Both are templated by the spatial dimension, and the local coordinates (in their right-handed local coordinate systems) are in the range between -1 and +1.</p>
+<p>The different-coloured, shaded regions in the above sketch represent the four two-dimensional <code>QMacroElements</code> by which the <code>FishDomain</code> represents the fish-shaped domain <img class="formulaInl" alt="$ D_{fish} $" src="form_4.png" width="30" height="14"/>. For instance, <code>MacroElement</code> 0 (shown in orange) represents the lower half of the fish's body; within this <code>MacroElement</code>, the curved "belly" is represented by the line <img class="formulaInl" alt="$ {\bf r}_{macro}(s_0,s_1=-1)$" src="form_5.png" width="106" height="14"/> for <img class="formulaInl" alt="$s_0\in[-1,1]$" src="form_6.png" width="60" height="14"/>; the lower "jaw" is represented by <img class="formulaInl" alt="$ {\bf r}_{macro}(s_0=-1,s_1)$" src="form_7.png" width="106" height="14"/> for <img class="formulaInl" alt="$s_1\in[-1,1]$" src="form_8.png" width="60" height="14"/>; etc.</p>
 <p>To illustrate the use of <code>MacroElements</code> / <code>Domains</code>, the following code fragment (from <br  />
- <a href="../../../../src/meshes/fish_mesh.template.cc">fish_mesh.template.cc </a>) demonstrates how the constructor of the original, non-refineable <code>FishMesh</code> assigns the nodal positions. Each of the <code>FishDomain's</code> four <code>QMacroElements</code> is associated with one of the four finite elements in the mesh. Since both types of elements are parametrised by the same local coordinate systems, we determine the position of the node that is located at <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$(s_0, s_1)$" src="form_9.png" width="38" height="14"/></picture> (in the finite element's local coordinate system) from the corresponding <code>MacroElement</code> mapping, <picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="${\bf r}_{macro}(s_0, s_1)$" src="form_10.png" width="74" height="14"/></picture>:</p>
+ <a href="../../../../src/meshes/fish_mesh.template.cc">fish_mesh.template.cc </a>) demonstrates how the constructor of the original, non-refineable <code>FishMesh</code> assigns the nodal positions. Each of the <code>FishDomain's</code> four <code>QMacroElements</code> is associated with one of the four finite elements in the mesh. Since both types of elements are parametrised by the same local coordinate systems, we determine the position of the node that is located at <img class="formulaInl" alt="$(s_0, s_1)$" src="form_9.png" width="38" height="14"/> (in the finite element's local coordinate system) from the corresponding <code>MacroElement</code> mapping, <img class="formulaInl" alt="${\bf r}_{macro}(s_0, s_1)$" src="form_10.png" width="74" height="14"/>:</p>
  <div class="fragment"><div class="line">    <span class="comment">// Create elements and all nodes in element</span></div>
 <div class="line">    <span class="comment">//-----------------------------------------</span></div>
 <div class="line">    <span class="comment">// (ignore repetitions for now -- we&#39;ll clean them up later)</span></div>
@@ -222,9 +216,9 @@ Part 2: How to represent domains with curvilinear boundaries by Domain and Macro
 <p>While this looks (and indeed is) impressively simple, we still have to explain how to create <code>Domain</code> objects. We start by introducing yet another useful <code>oomph-lib</code> class, the <code>GeomObject</code>.</p>
 <h2><a class="anchor" id="geom_object"></a>
 The geometric object, GeomObject</h2>
-<p>As the name suggests, <code>GeomObjects</code> are <code>oomph-lib</code> objects that provide an analytical description/parametrisation of geometric objects. Mathematically, <code>GeomObjects</code> define a mapping from a set of "Lagrangian" (intrinsic) coordinates to the global "Eulerian" coordinates of the object. The number of Lagrangian and Eulerian coordinates can differ. For instance, the unit circle, centred at the origin may be parametrised by a single coordinate, <picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \xi
-$" src="form_11.png" width="8" height="13"/></picture> (representing the polar angle), as  </p><p class="formulaDsp">
-<picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p>As the name suggests, <code>GeomObjects</code> are <code>oomph-lib</code> objects that provide an analytical description/parametrisation of geometric objects. Mathematically, <code>GeomObjects</code> define a mapping from a set of "Lagrangian" (intrinsic) coordinates to the global "Eulerian" coordinates of the object. The number of Lagrangian and Eulerian coordinates can differ. For instance, the unit circle, centred at the origin may be parametrised by a single coordinate, <img class="formulaInl" alt="$ \xi
+$" src="form_11.png" width="8" height="13"/> (representing the polar angle), as  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 {\bf r}_{circle} = 
 \left( 
 \begin{array}{c}
@@ -232,10 +226,10 @@ $" src="form_11.png" width="8" height="13"/></picture> (representing the polar a
 \sin \xi
 \end{array}
 \right),
-\]" src="form_12.png" width="109" height="31"/></picture>
+\]" src="form_12.png" width="109" height="31"/>
 </p>
-<p> while a 2D disk may be parametrised by two coordinates <picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \xi_1 $" src="form_13.png" width="11" height="13"/></picture> and <picture><source srcset="form_14_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \xi_2 $" src="form_14.png" width="11" height="13"/></picture> (representing the radius and the polar angle, respectively) as  </p><p class="formulaDsp">
-<picture><source srcset="form_15_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\[
+<p> while a 2D disk may be parametrised by two coordinates <img class="formulaInl" alt="$ \xi_1 $" src="form_13.png" width="11" height="13"/> and <img class="formulaInl" alt="$ \xi_2 $" src="form_14.png" width="11" height="13"/> (representing the radius and the polar angle, respectively) as  </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[
 {\bf r}_{disk} = 
 \xi_1 \left(
 \begin{array}{c}
@@ -243,9 +237,9 @@ $" src="form_11.png" width="8" height="13"/></picture> (representing the polar a
 \sin \xi_2
 \end{array}
 \right).
-\]" src="form_15.png" width="121" height="31"/></picture>
+\]" src="form_15.png" width="121" height="31"/>
 </p>
-<p> All specific <code>GeomObjects</code> must implement the pure virtual function <code>GeomObject::position(...)</code> which computes the Eulerian position vector <picture><source srcset="form_16_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf r}$" src="form_16.png" width="8" height="6"/></picture> as a function of the (vector of) Lagrangian coordinates <picture><source srcset="form_17_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf \xi}$" src="form_17.png" width="8" height="13"/></picture>. (The <code>GeomObject</code> base class also provides interfaces for a multitude of other functions, such as functions that compute the spatial and temporal derivatives of the position vector. These functions are implemented as "broken" virtual functions and their implementation is optional; see the <a href="../../../../doc/poisson/two_d_poisson_flux_bc/html/index.html">earlier example</a> for a discussion of "broken" virtual functions.)</p>
+<p> All specific <code>GeomObjects</code> must implement the pure virtual function <code>GeomObject::position(...)</code> which computes the Eulerian position vector <img class="formulaInl" alt="$ {\bf r}$" src="form_16.png" width="8" height="6"/> as a function of the (vector of) Lagrangian coordinates <img class="formulaInl" alt="$ {\bf \xi}$" src="form_17.png" width="8" height="13"/>. (The <code>GeomObject</code> base class also provides interfaces for a multitude of other functions, such as functions that compute the spatial and temporal derivatives of the position vector. These functions are implemented as "broken" virtual functions and their implementation is optional; see the <a href="../../../../doc/poisson/two_d_poisson_flux_bc/html/index.html">earlier example</a> for a discussion of "broken" virtual functions.)</p>
 <p>Here is a complete example of a specific <code>GeomObject:</code> </p>
  <div class="fragment"><div class="line"><span class="comment">//=======================start_of_unit_circle==============================</span></div>
 <div class="line"><span class="comment">/// Unit circle in 2D, centred at the origin, parametrised by a single</span><span class="comment"></span></div>
@@ -294,23 +288,23 @@ $" src="form_11.png" width="8" height="13"/></picture> (representing the polar a
 overridden" virtual functions].</p>
 <h2><a class="anchor" id="domain_objects"></a>
 Domains</h2>
-<p><code>GeomObjects</code> provide a natural way of representing a <code>Domain's</code> curvilinear boundaries. For instance, the fish's body in <picture><source srcset="form_18_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$
-D_{fish}$" src="form_18.png" width="30" height="14"/></picture> is bounded by two circular arcs. These may be represented by <code>GeomObjects</code> of type <code>Circle</code> &ndash; a slight generalisation of the <code><a class="el" href="classUnitCircle.html" title="Unit circle in 2D, centred at the origin, parametrised by a single Lagrangian coordinate,...">UnitCircle</a></code> class shown above. The <code>FishDomain</code> constructor therefore takes a pointer to a 2D <code>GeomObject</code> and the "start" and "end" values of the Lagrangian coordinate along this object. The <code>GeomObject</code> represents the curvilinear boundary of the fish's (upper) body and the two coordinates represent the Lagrangian coordinates of the "nose" and the "tail" on this <code>GeomObject</code>, as shown in this sketch:</p>
+<p><code>GeomObjects</code> provide a natural way of representing a <code>Domain's</code> curvilinear boundaries. For instance, the fish's body in <img class="formulaInl" alt="$
+D_{fish}$" src="form_18.png" width="30" height="14"/> is bounded by two circular arcs. These may be represented by <code>GeomObjects</code> of type <code>Circle</code> &ndash; a slight generalisation of the <code><a class="el" href="classUnitCircle.html" title="Unit circle in 2D, centred at the origin, parametrised by a single Lagrangian coordinate,...">UnitCircle</a></code> class shown above. The <code>FishDomain</code> constructor therefore takes a pointer to a 2D <code>GeomObject</code> and the "start" and "end" values of the Lagrangian coordinate along this object. The <code>GeomObject</code> represents the curvilinear boundary of the fish's (upper) body and the two coordinates represent the Lagrangian coordinates of the "nose" and the "tail" on this <code>GeomObject</code>, as shown in this sketch:</p>
 <div class="image">
 <img src="fish_domain.gif" alt=""/>
 <div class="caption">
 The fish-shaped domain and its MacroElement-based representation by the FishDomain object. The arrows show the orientation of the MacroElements' local coordinate systems. </div></div>
- <p>To construct a <code>FishDomain</code> whose curvilinear boundaries are arcs of unit circles, centred at <picture><source srcset="form_19_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ (x_0,x_1) = (1/2 , 0) $" src="form_19.png" width="96" height="14"/></picture> we create a <code>GeomObject</code> of type <code>Circle</code>, passing the appropriate parameters to its constructor:</p>
+ <p>To construct a <code>FishDomain</code> whose curvilinear boundaries are arcs of unit circles, centred at <img class="formulaInl" alt="$ (x_0,x_1) = (1/2 , 0) $" src="form_19.png" width="96" height="14"/> we create a <code>GeomObject</code> of type <code>Circle</code>, passing the appropriate parameters to its constructor:</p>
 <div class="fragment"><div class="line"><span class="comment">// Fish back is a circle of radius 1, centred at (0.5,0.0)</span></div>
 <div class="line"><span class="keywordtype">double</span> x_c=0.5;</div>
 <div class="line"><span class="keywordtype">double</span> y_c=0.0;</div>
 <div class="line"><span class="keywordtype">double</span> r_back=1.0;</div>
 <div class="line">GeomObject* back_pt=<span class="keyword">new</span> Circle(x_c,y_c,r_back);</div>
-</div><!-- fragment --><p>Next, we pass the (pointer to the) <code>Circle</code> object to the constructor of the <code>FishDomain</code>, locating the "nose end" of the fish's back at <picture><source srcset="form_20_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\xi=2.4$" src="form_20.png" width="40" height="13"/></picture> and its "tail end" at <picture><source srcset="form_21_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$\xi=0.4$" src="form_21.png" width="40" height="13"/></picture>:</p>
+</div><!-- fragment --><p>Next, we pass the (pointer to the) <code>Circle</code> object to the constructor of the <code>FishDomain</code>, locating the "nose end" of the fish's back at <img class="formulaInl" alt="$\xi=2.4$" src="form_20.png" width="40" height="13"/> and its "tail end" at <img class="formulaInl" alt="$\xi=0.4$" src="form_21.png" width="40" height="13"/>:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">double</span> xi_nose=2.6; </div>
 <div class="line"><span class="keywordtype">double</span> xi_tail=0.4; </div>
 <div class="line">Domain* domain_pt=<span class="keyword">new</span> FishDomain(back_pt,xi_nose,xi_tail);</div>
-</div><!-- fragment --><p>To see how this works internally, let us have a look at the <code>FishDomain</code> constructor. The constructor stores the pointer to the fish's "back", and the start and end values of the Lagrangian coordinates in the private data members <code>Back_pt</code>, <code>Xi_nose</code> and <code>Xi_tail</code>. Next we set some additional parameters, that define the geometry (the mouth is located at the origin; the fin is a vertical line at <picture><source srcset="form_22_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x=1.7$" src="form_22.png" width="41" height="9"/></picture>, ranging from <picture><source srcset="form_23_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ y=-0.9$" src="form_23.png" width="50" height="11"/></picture> to <picture><source srcset="form_24_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ y=+0.9$" src="form_24.png" width="50" height="11"/></picture>). Finally, we allocate storage for the four <code>MacroElements</code> and build them. Note that the constructor of the <code>MacroElement</code> takes a pointer to the Domain, and the <code>MacroElement's</code> number within that <code>Domain:</code> </p>
+</div><!-- fragment --><p>To see how this works internally, let us have a look at the <code>FishDomain</code> constructor. The constructor stores the pointer to the fish's "back", and the start and end values of the Lagrangian coordinates in the private data members <code>Back_pt</code>, <code>Xi_nose</code> and <code>Xi_tail</code>. Next we set some additional parameters, that define the geometry (the mouth is located at the origin; the fin is a vertical line at <img class="formulaInl" alt="$ x=1.7$" src="form_22.png" width="41" height="9"/>, ranging from <img class="formulaInl" alt="$ y=-0.9$" src="form_23.png" width="50" height="11"/> to <img class="formulaInl" alt="$ y=+0.9$" src="form_24.png" width="50" height="11"/>). Finally, we allocate storage for the four <code>MacroElements</code> and build them. Note that the constructor of the <code>MacroElement</code> takes a pointer to the Domain, and the <code>MacroElement's</code> number within that <code>Domain:</code> </p>
  <div class="fragment"><div class="line"><span class="comment">    /// Constructor: Pass pointer to GeomObject that represents the</span></div>
 <div class="line"><span class="comment">    /// (upper) curved boundary of the fish&#39;s body, and the start and end values</span><span class="comment"></span></div>
 <div class="line"><span class="comment">    /// of the Lagrangian coordinates along the GeomObject.</span></div>
@@ -340,7 +334,7 @@ The fish-shaped domain and its MacroElement-based representation by the FishDoma
 <li>the number of the <code>MacroElement</code> in its <code>Domain</code> </li>
 <li>the direction of its boundary (N[orth], S[outh], E[ast], W[est], enumerated in the namespace <code>QuadTreeNames</code>)</li>
 </ul>
-<p>this function must compute the vector <picture><source srcset="form_25_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ {\bf r}(\zeta)$" src="form_25.png" width="23" height="14"/></picture> to the <code>MacroElement's</code> boundary. Here <picture><source srcset="form_26_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \zeta \in [-1,1]$" src="form_26.png" width="55" height="14"/></picture> is the 1D coordinate along the element boundary, aligned with the direction of the <code>MacroElement's</code> 2D coordinates <picture><source srcset="form_27_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$(s_0,s_1) $" src="form_27.png" width="38" height="14"/></picture> as indicated in this sketch:</p>
+<p>this function must compute the vector <img class="formulaInl" alt="$ {\bf r}(\zeta)$" src="form_25.png" width="23" height="14"/> to the <code>MacroElement's</code> boundary. Here <img class="formulaInl" alt="$ \zeta \in [-1,1]$" src="form_26.png" width="55" height="14"/> is the 1D coordinate along the element boundary, aligned with the direction of the <code>MacroElement's</code> 2D coordinates <img class="formulaInl" alt="$(s_0,s_1) $" src="form_27.png" width="38" height="14"/> as indicated in this sketch:</p>
 <div class="image">
 <img src="macro_element_sketch.gif" alt=""/>
 <div class="caption">
@@ -377,7 +371,6 @@ Sketch illustrating the parametrisation of the MacroElement's four boundaries. <
 <div class="line">  {</div>
 <div class="line">    <span class="keyword">using namespace </span>QuadTreeNames;</div>
 <div class="line"> </div>
-<div class="line"> </div>
 <div class="line"><span class="preprocessor">#ifdef WARN_ABOUT_SUBTLY_CHANGED_OOMPH_INTERFACES</span></div>
 <div class="line">    <span class="comment">// Warn about time argument being moved to the front</span></div>
 <div class="line">    OomphLibWarning(</div>
@@ -385,7 +378,6 @@ Sketch illustrating the parametrisation of the MacroElement's four boundaries. <
 <div class="line">      <span class="stringliteral">&quot;FishDomain::macro_element_boundary(...)&quot;</span>,</div>
 <div class="line">      OOMPH_EXCEPTION_LOCATION);</div>
 <div class="line"><span class="preprocessor">#endif</span></div>
-<div class="line"> </div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Which macro element?</span></div>
 <div class="line">    <span class="comment">// --------------------</span></div>
@@ -457,7 +449,6 @@ Sketch illustrating the parametrisation of the MacroElement's four boundaries. <
 <div class="line"> </div>
 <div class="line">        <span class="keywordflow">break</span>;</div>
 <div class="line"> </div>
-<div class="line"> </div>
 <div class="line">        <span class="comment">// Macro element 2: Upper body</span></div>
 <div class="line">      <span class="keywordflow">case</span> 2:</div>
 <div class="line"> </div>
@@ -490,7 +481,6 @@ Sketch illustrating the parametrisation of the MacroElement's four boundaries. <
 <div class="line">        }</div>
 <div class="line"> </div>
 <div class="line">        <span class="keywordflow">break</span>;</div>
-<div class="line"> </div>
 <div class="line"> </div>
 <div class="line">        <span class="comment">// Macro element 3: Upper Fin</span></div>
 <div class="line">      <span class="keywordflow">case</span> 3:</div>
@@ -538,7 +528,7 @@ Sketch illustrating the parametrisation of the MacroElement's four boundaries. <
 <div class="line">  } <span class="comment">// end of macro_element_boundary</span></div>
 </div><!-- fragment --><p>Here are a few of the private member functions that define individual <code>MacroElement</code> boundaries:</p>
 <ul>
-<li>The N[orthern] boundary of macro element 2 (which represents the upper body) coincides with the domain boundary that is parametrised by the geometric object pointed to by <code>Back_pt</code>. The function translates the coordinate <picture><source srcset="form_28_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \zeta \in [-1,1] $" src="form_28.png" width="55" height="14"/></picture> to the Lagrangian coordinate <picture><source srcset="form_29_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \xi \in [\xi_{nose}, \xi_{tail}] $" src="form_29.png" width="83" height="14"/></picture> along the geometric object. We use this Lagrangian coordinate to obtain the position vector to the domain boundary via a call to the <code>GeomObject::position(...)</code> function of the geometric object pointed to by <code>Back_pt:</code>  <div class="fragment"><div class="line">  <span class="comment">//===============start_of_r_upper_body_N==============================</span></div>
+<li>The N[orthern] boundary of macro element 2 (which represents the upper body) coincides with the domain boundary that is parametrised by the geometric object pointed to by <code>Back_pt</code>. The function translates the coordinate <img class="formulaInl" alt="$ \zeta \in [-1,1] $" src="form_28.png" width="55" height="14"/> to the Lagrangian coordinate <img class="formulaInl" alt="$ \xi \in [\xi_{nose}, \xi_{tail}] $" src="form_29.png" width="83" height="14"/> along the geometric object. We use this Lagrangian coordinate to obtain the position vector to the domain boundary via a call to the <code>GeomObject::position(...)</code> function of the geometric object pointed to by <code>Back_pt:</code>  <div class="fragment"><div class="line">  <span class="comment">//===============start_of_r_upper_body_N==============================</span></div>
 <div class="line"><span class="comment">  /// Northern edge of upper body macro element; \f$ \zeta \in [-1,1] \f$</span></div>
 <div class="line">  <span class="comment">//=====================================================================</span></div>
 <div class="line">  <span class="keywordtype">void</span> FishDomain::r_upper_body_N(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
@@ -574,7 +564,6 @@ Sketch illustrating the parametrisation of the MacroElement's four boundaries. <
 <div class="line"> </div>
 <div class="line">    r[0] = r_back[0] + (r_top[0] - r_back[0]) * 0.5 * (zeta[0] + 1.0);</div>
 <div class="line">    r[1] = r_back[1] + (r_top[1] - r_back[1]) * 0.5 * (zeta[0] + 1.0);</div>
-<div class="line"> </div>
 <div class="line"> </div>
 <div class="line">  } <span class="comment">// end of r_upper_body_E</span></div>
 </div><!-- fragment --></li>
@@ -711,8 +700,7 @@ Good practice: Storing boundary coordinates</h2>
 <p>The above example demonstrated how the representation of curvilinear domain boundaries by <code>GeomObjects</code> allows <code>oomph-lib's</code> mesh generation and adaptation procedures to place nodes on these boundaries. We note that the Lagrangian coordinate(s) that parametrise(s) the relevant <code>GeomObjects</code> also provide a parametrisation of the corresponding domain boundaries. In certain applications (such as free-boundary or fluid-structure interaction problems) it is useful to have direct access to these boundary coordinates. For this purpose the <code>Node</code> class provides the function </p><div class="fragment"><div class="line">Node::set_coordinates_on_boundary(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; b, </div>
 <div class="line">                                  <span class="keyword">const</span> Vector&lt;double&gt;&amp; xi);</div>
 </div><!-- fragment --><p> which allows the mesh writer to store the (vector of) boundary coordinates that a given (<code>Boundary</code>)<code>Node</code> is located at. The argument <code>b</code> specifies the number of the mesh boundary, reflecting the fact that nodes may be located on multiple domain boundaries, each of which is likely to have a different set of surface coordinates. [<b>Note:</b> The function is implemented as a broken virtual function in the <code>Node</code> base class. The actual functionality to store boundary coordinates is only provided in (and required by) the derived <code>BoundaryNode</code> class.]</p>
-<p>Since the storage of boundary coordinates is optional, the <code>Mesh</code> base class provides a protected vector of bools, </p><div class="fragment"><div class="line">std::vector&lt;bool&gt; Mesh::Boundary_coordinate_exists;</div>
-</div><!-- fragment --><p> that indicates if the boundary coordinates have been stored for all <code>Nodes</code> on a specific mesh boundary. This vector is resized and its entries are initialised to <code>false</code>, when the number of mesh boundaries is declared with a call to <code>Mesh::set_nboundary(...)</code>. If, during mesh refinement, a new <code>BoundaryNode</code> is created on the mesh's boundary <code>b</code>, its boundary coordinates are computed by interpolation from the corresponding values at the nodes in the father element, if <code>Mesh::Boundary_coordinate_exists</code>[b] has been set to <code>true</code>.</p>
+<p>Since the storage of boundary coordinates is optional, the <code>Mesh</code> base class provides storage to indicate if the boundary coordinates have been stored for all <code>Nodes</code> on a specific mesh boundary. The storage is resized and its entries are initialised to <code>false</code>, when the number of mesh boundaries is declared with a call to <code>Mesh::set_nboundary(...)</code>. If, during mesh refinement, a new <code>BoundaryNode</code> is created on the mesh's boundary <code>b</code>, its boundary coordinates are computed by interpolation from the corresponding values at the nodes in the father element, if boundary coordinates had been set up on boundary <code>b</code>.</p>
 <p>We regard it as good practice to set boundary coordinates for all <code>BoundaryNodes</code> that are located on curvlinear mesh boundaries. The source code <a href="../../../../src/meshes/fish_mesh.template.cc">fish_mesh.template.cc</a> for the refineable FishMesh illustrates the methodology.</p>
 <hr  />
  <hr  />
@@ -726,7 +714,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -756,7 +744,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:07:42
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:43:36
         </div>
       </div>
     </footer>

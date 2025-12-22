@@ -300,15 +300,13 @@ Here is the class definition for the {\ttfamily Elastically\+Supported\+Ring\+El
 \DoxyCodeLine{\textcolor{comment}{///\ \(\backslash\)f[\ y\ =\ Y\_c\ +\ R\ \(\backslash\)sin(\(\backslash\)zeta)\ \ \(\backslash\)f]}}
 \DoxyCodeLine{\textcolor{comment}{///\ The\ ring's\ vertical\ position\ \(\backslash\)f\$\ Y\_c\ \(\backslash\)f\$\ is}}
 \DoxyCodeLine{\textcolor{comment}{///\ determined\ by\ "{}pseudo\ elasticity"{}:}}
-\DoxyCodeLine{\textcolor{comment}{///\ \(\backslash\)f[}}
-\DoxyCodeLine{\textcolor{comment}{///\ 0\ =\ f\_\{load\}\ -\/\ Y\_c\ \(\backslash\)\ k\_\{stiff\}\ }}
-\DoxyCodeLine{\textcolor{comment}{///\ \(\backslash\)f]}}
+\DoxyCodeLine{\textcolor{comment}{///\ \(\backslash\)f[\ 0\ =\ f\_\{load\}\ -\/\ Y\_c\ \(\backslash\)\ k\_\{stiff\}\ \(\backslash\)f]}}
 \DoxyCodeLine{\textcolor{comment}{///\ This\ simulates\ the\ case\ where\ the\ centre\ of\ the\ ring\ is\ mounted\ on\ }}
 \DoxyCodeLine{\textcolor{comment}{///\ an\ elastic\ spring\ of\ stiffness\ \(\backslash\)f\$\ k\_\{stiff\}\ \(\backslash\)f\$\ and\ loaded\ by\ }}
 \DoxyCodeLine{\textcolor{comment}{///\ the\ force\ \(\backslash\)f\$\ f\_\{load\}.\ \(\backslash\)f\$\ The\ "{}load"{}\ is\ specified\ by\ the\ }}
 \DoxyCodeLine{\textcolor{comment}{///\ Data\ object\ \(\backslash\)c\ load\_pt().\ }}
 \DoxyCodeLine{\textcolor{comment}{}\textcolor{comment}{//=========================================================================}}
-\DoxyCodeLine{\textcolor{keyword}{class\ }\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{ElasticallySupportedRingElement}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{GeneralisedElement}},\ }
+\DoxyCodeLine{\textcolor{keyword}{class\ }ElasticallySupportedRingElement\ :\ \textcolor{keyword}{public}\ GeneralisedElement,\ }
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ GeneralCircle}
 
 \end{DoxyCodeInclude}
@@ -319,9 +317,9 @@ The arguments to the constructor specify the initial geometric parameters, $ X_c
 \DoxyCodeLine{\textcolor{comment}{\ ///\ Constructor:\ Build\ \ ring\ from\ doubles\ that\ describe\ }}
 \DoxyCodeLine{\textcolor{comment}{\ ///\ the\ geometry:\ x\ and\ y\ positions\ of\ centre\ and\ the\ radius.}\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{\ ///\ Initialise\ stiffness\ to\ 1.0.\ By\ default,\ no\ load\ is\ set.}}
-\DoxyCodeLine{\textcolor{comment}{}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{ElasticallySupportedRingElement}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\&\ x\_c,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\&\ y\_c,\ }
+\DoxyCodeLine{\textcolor{comment}{}\ ElasticallySupportedRingElement(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\&\ x\_c,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\&\ y\_c,\ }
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\&\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{r}})\ :\ }
-\DoxyCodeLine{\ \ GeneralCircle(x\_c,y\_c,\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{r}}),\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{K\_stiff}}(1.0),\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{Load\_data\_has\_been\_set}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{false}})}
+\DoxyCodeLine{\ \ GeneralCircle(x\_c,y\_c,\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{r}}),\ K\_stiff(1.0),\ Load\_data\_has\_been\_set(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{false}})}
 
 \end{DoxyCodeInclude}
  Next, we add the {\ttfamily General\+Circle\textquotesingle{}s} geometric {\ttfamily Data} (created automatically by the constructor of the {\ttfamily General\+Circle} object; see above) into the element\textquotesingle{}s storage for its internal {\ttfamily Data}. This ensures that the geometric {\ttfamily Data} is included in the element\textquotesingle{}s equation numbering procedures. Within the context of the {\ttfamily General\+Circle}, all geometric parameters were regarded as constants and their values were pinned. Here, the vertical position \mbox{[}stored in the second entry in the geometric {\ttfamily Data}\mbox{]} is unknown, therefore we un-\/pin it.
@@ -335,12 +333,12 @@ The arguments to the constructor specify the initial geometric parameters, $ X_c
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ given\ global\ equation\ numbers.\ The\ add\_internal\_data(...)}}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ function\ returns\ the\ index\ by\ which\ the\ added\ Data\ item}}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ is\ accessible\ from\ internal\_data\_pt(...).\ }}
-\DoxyCodeLine{\ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{Internal\_geometric\_data\_index}}=\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{add\_internal\_data}}(Geom\_data\_pt[0]);}
+\DoxyCodeLine{\ \ \ Internal\_geometric\_data\_index=\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{add\_internal\_data}}(Geom\_data\_pt[0]);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ Geometric\ Data\ for\ the\ GeomObject\ has\ been\ set\ up\ (and\ pinned)\ in}}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ constructor\ for\ geometric\ object.\ Now\ free\ the\ y-\/position\ }}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ of\ the\ centre\ because\ we\ want\ to\ determine\ it\ as\ an\ unknown}}
-\DoxyCodeLine{\ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{internal\_data\_pt}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{Internal\_geometric\_data\_index}})-\/>unpin(1);}
+\DoxyCodeLine{\ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{internal\_data\_pt}}(Internal\_geometric\_data\_index)-\/>unpin(1);}
 
 \end{DoxyCodeInclude}
  Once {\ttfamily Data} has been added to a {\ttfamily Generalised\+Element\textquotesingle{}s} internal {\ttfamily Data}, it is deleted by the destructor of the {\ttfamily Generalised\+Element} when the {\ttfamily Generalised\+Element} goes out of scope. The {\ttfamily Data} must therefore not be deleted again by the destructor of the {\ttfamily General\+Circle} class, and we change the cleanup responsibilities accordingly\+:
@@ -358,7 +356,7 @@ The arguments to the constructor specify the initial geometric parameters, $ X_c
 Since the {\ttfamily Generalised\+Element\textquotesingle{}s} destructor will delete the internal {\ttfamily Data}, the destructor can remain empty\+: 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{\ ///\ Destructor:\ }}
-\DoxyCodeLine{\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{\string~ElasticallySupportedRingElement}}()}
+\DoxyCodeLine{\ \textcolor{keyword}{virtual}\ \string~ElasticallySupportedRingElement()}
 \DoxyCodeLine{\ \ \{}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ The\ GeomObject's\ GeomData\ is\ mirrored\ in\ the\ element's}}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ Internal\ Data\ and\ therefore\ gets\ wiped\ in\ the}}
@@ -372,7 +370,7 @@ Since the {\ttfamily Generalised\+Element\textquotesingle{}s} destructor will de
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{\ ///\ Set\ pointer\ to\ Data\ object\ that\ specifies\ the\ "{}load"{}}}
 \DoxyCodeLine{\textcolor{comment}{\ ///\ on\ the\ ElasticallySupportedRingElement}}
-\DoxyCodeLine{\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{set\_load\_pt}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{Data}}*\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{load\_pt}})}
+\DoxyCodeLine{\ \textcolor{keywordtype}{void}\ set\_load\_pt(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{Data}}*\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{load\_pt}})}
 \DoxyCodeLine{\ \ \{}
 \DoxyCodeLine{\textcolor{preprocessor}{\#ifdef\ PARANOID}}
 \DoxyCodeLine{\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{load\_pt}}-\/>nvalue()!=1)}
@@ -393,10 +391,10 @@ Since the {\ttfamily Generalised\+Element\textquotesingle{}s} destructor will de
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ its\ index\ within\ that\ storage\ scheme:\ Following\ this\ assignment,\ }}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ the\ load\ Data\ is\ accessible\ from}}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ GeneralisedElement::external\_data\_pt(External\_load\_index)}}
-\DoxyCodeLine{\ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{External\_load\_index}}\ =\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{add\_external\_data}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{load\_pt}});}
+\DoxyCodeLine{\ \ \ External\_load\_index\ =\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{add\_external\_data}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{load\_pt}});}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ Load\ has\ now\ been\ set}}
-\DoxyCodeLine{\ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{Load\_data\_has\_been\_set}}=\textcolor{keyword}{true};}
+\DoxyCodeLine{\ \ \ Load\_data\_has\_been\_set=\textcolor{keyword}{true};}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \}\ \textcolor{comment}{//\ end\ of\ set\_load\_pt(...)}}
 
@@ -411,9 +409,9 @@ The {\ttfamily load()} function provides access to the load specified by the loa
 \DoxyCodeLine{\ \textcolor{keywordtype}{double}\ load()}
 \DoxyCodeLine{\ \ \{}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ Return\ the\ load\ if\ it\ has\ been\ set}}
-\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{Load\_data\_has\_been\_set}})}
+\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{if}\ (Load\_data\_has\_been\_set)}
 \DoxyCodeLine{\ \ \ \ \{}
-\DoxyCodeLine{\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{external\_data\_pt}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{External\_load\_index}})-\/>value(0);}
+\DoxyCodeLine{\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{external\_data\_pt}}(External\_load\_index)-\/>value(0);}
 \DoxyCodeLine{\ \ \ \ \}}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ ...otherwise\ return\ zero\ load}}
 \DoxyCodeLine{\ \ \ \textcolor{keywordflow}{else}}
@@ -428,7 +426,7 @@ The {\ttfamily load()} function provides access to the load specified by the loa
 Next, we provide an access functions to the spring stiffness parameter, 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{\ ///\ Access\ function\ for\ the\ spring\ stiffness}}
-\DoxyCodeLine{\ \textcolor{keywordtype}{double}\&\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{k\_stiff}}()\ \{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{K\_stiff}};\}}
+\DoxyCodeLine{\ \textcolor{keywordtype}{double}\&\ k\_stiff()\ \{\textcolor{keywordflow}{return}\ K\_stiff;\}}
 
 \end{DoxyCodeInclude}
  and functions that allow the vertical displacement of the ring to be pinned and un-\/pinned\+:
@@ -436,20 +434,20 @@ Next, we provide an access functions to the spring stiffness parameter,
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{\ ///\ Pin\ the\ vertical\ displacement}}
-\DoxyCodeLine{\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{pin\_yc}}()}
+\DoxyCodeLine{\ \textcolor{keywordtype}{void}\ pin\_yc()}
 \DoxyCodeLine{\ \ \{}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ Vertical\ position\ of\ centre\ is\ stored\ as\ value\ 1\ in\ the}}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ element's\ one\ and\ only\ internal\ Data\ object.}}
-\DoxyCodeLine{\ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{internal\_data\_pt}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{Internal\_geometric\_data\_index}})-\/>pin(1);}
+\DoxyCodeLine{\ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{internal\_data\_pt}}(Internal\_geometric\_data\_index)-\/>pin(1);}
 \DoxyCodeLine{\ \ \}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{\ ///\ Unpin\ the\ vertical\ displacement}}
-\DoxyCodeLine{\textcolor{comment}{}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{unpin\_yc}}()}
+\DoxyCodeLine{\textcolor{comment}{}\ \textcolor{keywordtype}{void}\ unpin\_yc()}
 \DoxyCodeLine{\ \ \{}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ Vertical\ position\ of\ centre\ is\ stored\ as\ value\ 1\ in\ the}}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ element's\ one\ and\ only\ internal\ Data\ object.}}
-\DoxyCodeLine{\ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{internal\_data\_pt}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{Internal\_geometric\_data\_index}})-\/>unpin(1);}
+\DoxyCodeLine{\ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{internal\_data\_pt}}(Internal\_geometric\_data\_index)-\/>unpin(1);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \}\ \textcolor{comment}{//\ end\ of\ unpin\_yc()}}
 
@@ -459,19 +457,19 @@ Next, we provide an access functions to the spring stiffness parameter,
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{\ ///\ Compute\ element\ residual\ vector\ (wrapper)}}
-\DoxyCodeLine{\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{get\_residuals}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{Vector<double>}}\ \&\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{residuals}})}
+\DoxyCodeLine{\ \textcolor{keywordtype}{void}\ get\_residuals(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{Vector<double>}}\ \&\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{residuals}})}
 \DoxyCodeLine{\ \ \{}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//Initialise\ residuals\ to\ zero}}
 \DoxyCodeLine{\ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{residuals}}.initialise(0.0);}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//Create\ a\ dummy\ matrix}}
 \DoxyCodeLine{\ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{DenseMatrix<double>}}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{dummy}}(1);}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//Call\ the\ generic\ residuals\ function\ with\ flag\ set\ to\ 0}}
-\DoxyCodeLine{\ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{fill\_in\_generic\_residual\_contribution}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{residuals}},\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{dummy}},0);}
+\DoxyCodeLine{\ \ \ fill\_in\_generic\_residual\_contribution(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{residuals}},\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{dummy}},0);}
 \DoxyCodeLine{\ \ \ \}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{\ ///\ Compute\ element\ residual\ Vector\ and\ element\ Jacobian\ matrix\ (wrapper)}}
-\DoxyCodeLine{\textcolor{comment}{}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{get\_jacobian}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{Vector<double>}}\ \&\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{residuals}},}
+\DoxyCodeLine{\textcolor{comment}{}\ \textcolor{keywordtype}{void}\ get\_jacobian(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{Vector<double>}}\ \&\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{residuals}},}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{DenseMatrix<double>}}\ \&\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{jacobian}})}
 \DoxyCodeLine{\ \ \{}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//Initialise\ residuals\ to\ zero}}
@@ -479,7 +477,7 @@ Next, we provide an access functions to the spring stiffness parameter,
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//Initialise\ the\ jacobian\ matrix\ to\ zero}}
 \DoxyCodeLine{\ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{jacobian}}.initialise(0.0);}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//Call\ the\ generic\ routine\ with\ the\ flag\ set\ to\ 1}}
-\DoxyCodeLine{\ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{fill\_in\_generic\_residual\_contribution}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{residuals}},\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{jacobian}},1);}
+\DoxyCodeLine{\ \ \ fill\_in\_generic\_residual\_contribution(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{residuals}},\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{jacobian}},1);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \}\ \textcolor{comment}{//\ end\ of\ get\_jacobian(...)}}
 
@@ -528,7 +526,7 @@ Next, we provide an access functions to the spring stiffness parameter,
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{\ ///\ Compute\ element\ residual\ Vector\ (only\ if\ flag=0)\ and\ also}}
 \DoxyCodeLine{\textcolor{comment}{\ ///\ the\ element\ Jacobian\ matrix\ (if\ flag=1)}}
-\DoxyCodeLine{\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{fill\_in\_generic\_residual\_contribution}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{Vector<double>}}\ \&\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{residuals}},}
+\DoxyCodeLine{\ \textcolor{keywordtype}{void}\ fill\_in\_generic\_residual\_contribution(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{Vector<double>}}\ \&\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{residuals}},}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{DenseMatrix<double>}}\ \&\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{jacobian}},}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{flag}})}
 \DoxyCodeLine{\ \ \{\ }
@@ -545,18 +543,18 @@ Next, we provide an access functions to the spring stiffness parameter,
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ dof,\ y\_c,\ which\ is\ stored\ as\ the\ second\ value\ of\ the\ one-\/and-\/only}}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ internal\ data\ object\ in\ this\ element]}}
 \DoxyCodeLine{\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{local\_eqn\_number\_for\_yc}}\ =\ }
-\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{internal\_local\_eqn}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{Internal\_geometric\_data\_index}},1);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{internal\_local\_eqn}}(Internal\_geometric\_data\_index,1);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ Add\ residual\ to\ appropriate\ entry\ in\ the\ element's\ residual}}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ vector:}}
-\DoxyCodeLine{\ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{residuals}}[\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{local\_eqn\_number\_for\_yc}}]=load()-\/\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{K\_stiff}}*y\_c();}
+\DoxyCodeLine{\ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{residuals}}[\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{local\_eqn\_number\_for\_yc}}]=load()-\/K\_stiff*y\_c();}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ Work\ out\ Jacobian:\ }}
 \DoxyCodeLine{\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{flag}})}
 \DoxyCodeLine{\ \ \ \ \{}
 \DoxyCodeLine{\ \ \ \ \ \textcolor{comment}{//\ Derivative\ of\ residual\ w.r.t.\ the\ internal\ dof,\ i.e.\ the\ vertical}}
 \DoxyCodeLine{\ \ \ \ \ \textcolor{comment}{//\ position\ of\ the\ ring's\ centre:\ d\ residual[0]/d\ y\_c}}
-\DoxyCodeLine{\ \ \ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{jacobian}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{local\_eqn\_number\_for\_yc}},\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{local\_eqn\_number\_for\_yc}})\ =\ -\/\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{K\_stiff}};}
+\DoxyCodeLine{\ \ \ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{jacobian}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{local\_eqn\_number\_for\_yc}},\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{local\_eqn\_number\_for\_yc}})\ =\ -\/K\_stiff;}
 \DoxyCodeLine{\ \ \ \ \ }
 \DoxyCodeLine{\ \ \ \ \ }
 \DoxyCodeLine{\ \ \ \ \ \textcolor{comment}{//\ Derivative\ with\ respect\ to\ external\ dof,\ i.e.\ the\ applied\ }}
@@ -567,7 +565,7 @@ Next, we provide an access functions to the spring stiffness parameter,
 \DoxyCodeLine{\ \ \ \ \ \ \ \textcolor{comment}{//\ It's\ stored\ as\ the\ 0th\ value\ in\ the\ the\ element's}}
 \DoxyCodeLine{\ \ \ \ \ \ \ \textcolor{comment}{//\ one-\/and-\/only\ external\ data\ item:}}
 \DoxyCodeLine{\ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{local\_eqn\_number\_for\_load}}\ =\ }
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{external\_local\_eqn}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{External\_load\_index}},0);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{external\_local\_eqn}}(External\_load\_index,0);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{preprocessor}{\#ifdef\ PARANOID}}
 \DoxyCodeLine{\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{local\_eqn\_number\_for\_load}}<0)}
@@ -716,8 +714,8 @@ In the problem constructor, we create the (single) {\ttfamily Elastically\+Suppo
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Build\ GeomObject\ that's\ been\ upgraded\ to\ a\ GeneralisedElement}}
 \DoxyCodeLine{\ \textcolor{comment}{//\ GeneralisedElement*\ }}
-\DoxyCodeLine{\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{ElasticallySupportedRingElement}}*\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{geom\_object\_element\_pt}}\ =\ }
-\DoxyCodeLine{\ \ \textcolor{keyword}{new}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{ElasticallySupportedRingElement}}(x\_c,y\_c,R);}
+\DoxyCodeLine{\ ElasticallySupportedRingElement*\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{geom\_object\_element\_pt}}\ =\ }
+\DoxyCodeLine{\ \ \textcolor{keyword}{new}\ ElasticallySupportedRingElement(x\_c,y\_c,R);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Set\ the\ stiffness\ of\ the\ elastic\ support}}
 \DoxyCodeLine{\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{geom\_object\_element\_pt}}-\/>k\_stiff()=0.3;}
@@ -762,7 +760,7 @@ In the problem constructor, we create the (single) {\ttfamily Elastically\+Suppo
 \DoxyCodeLine{\ \ }
 \DoxyCodeLine{\ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}}[100];}
-\DoxyCodeLine{\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{sprintf}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}},\textcolor{stringliteral}{"{}\%s/trace.dat"{}},Doc\_info.directory().c\_str());}
+\DoxyCodeLine{\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{snprintf}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}}),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},Doc\_info.directory().c\_str());}
 \DoxyCodeLine{\ Trace\_file.open(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}});}
 \DoxyCodeLine{\ Trace\_file\ <<\ \textcolor{stringliteral}{"{}VARIABLES=\(\backslash\)"{}load\(\backslash\)"{},\(\backslash\)"{}y<sub>circle</sub>\(\backslash\)"{}"{}}\ <<\ std::endl;}
 \DoxyCodeLine{}
@@ -794,13 +792,13 @@ The post-\/processing routine is straightforward and is listed only to highlight
 \DoxyCodeLine{\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{Vector<double>}}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{r}}(2);}
 \DoxyCodeLine{\ }
 \DoxyCodeLine{\ \textcolor{comment}{//\ Output\ solution\ }}
-\DoxyCodeLine{\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{sprintf}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}},\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},\mbox{\hyperlink{classGeomObjectAsGeneralisedElementProblem_a89a7f5fa555839193166f802d6ff6be2}{Doc\_info}}.directory().c\_str(),}
+\DoxyCodeLine{\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{snprintf}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}}),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},\mbox{\hyperlink{classGeomObjectAsGeneralisedElementProblem_a89a7f5fa555839193166f802d6ff6be2}{Doc\_info}}.directory().c\_str(),}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classGeomObjectAsGeneralisedElementProblem_a89a7f5fa555839193166f802d6ff6be2}{Doc\_info}}.number());}
 \DoxyCodeLine{\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{some\_file}}.open(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{filename}});}
 \DoxyCodeLine{\ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{i}}=0;\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{i}}<\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{npts}};\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{i}}++)}
 \DoxyCodeLine{\ \ \{}
 \DoxyCodeLine{\ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{zeta}}[0]=2.0*MathematicalConstants::Pi*\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{double}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{i}})/\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{double}}(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{npts}}-\/1);}
-\DoxyCodeLine{\ \ \ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{ElasticallySupportedRingElement}}*\textcolor{keyword}{>}(mesh\_pt()-\/>element\_pt(0))-\/>}
+\DoxyCodeLine{\ \ \ \textcolor{keyword}{static\_cast<}ElasticallySupportedRingElement*\textcolor{keyword}{>}(mesh\_pt()-\/>element\_pt(0))-\/>}
 \DoxyCodeLine{\ \ \ \ position(\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{zeta}},\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{r}});\ \ }
 \DoxyCodeLine{\ \ \ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{some\_file}}\ <<\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{r}}[0]\ <<\ \textcolor{stringliteral}{"{}\ "{}}\ <<\ \mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{r}}[1]\ <<\ std::endl;}
 \DoxyCodeLine{\ \ \}}
@@ -809,10 +807,10 @@ The post-\/processing routine is straightforward and is listed only to highlight
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \textcolor{comment}{//\ Write\ "{}load"{}\ and\ vertical\ position\ of\ the\ ring's\ centre}}
 \DoxyCodeLine{\ \mbox{\hyperlink{classGeomObjectAsGeneralisedElementProblem_ad6261e556a52596ba8904ee902ea6d70}{Trace\_file}}\ }
-\DoxyCodeLine{\ \ <<\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{ElasticallySupportedRingElement}}*\textcolor{keyword}{>}(}
+\DoxyCodeLine{\ \ <<\ \textcolor{keyword}{static\_cast<}ElasticallySupportedRingElement*\textcolor{keyword}{>}(}
 \DoxyCodeLine{\ \ \ mesh\_pt()-\/>element\_pt(0))-\/>\mbox{\hyperlink{classGeomObjectAsGeneralisedElementProblem_a47149c35c94b2ab99507a0a74fe35823}{load}}()}
 \DoxyCodeLine{\ \ <<\ \textcolor{stringliteral}{"{}\ "{}}}
-\DoxyCodeLine{\ \ <<\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{algebraic__free__boundary__poisson_8cc_abb923e967929c29b3a4fa1693604952a}{ElasticallySupportedRingElement}}*\textcolor{keyword}{>}(}
+\DoxyCodeLine{\ \ <<\ \textcolor{keyword}{static\_cast<}ElasticallySupportedRingElement*\textcolor{keyword}{>}(}
 \DoxyCodeLine{\ \ \ mesh\_pt()-\/>element\_pt(0))-\/>y\_c()}
 \DoxyCodeLine{\ \ <<\ \textcolor{stringliteral}{"{}\ "{}}}
 \DoxyCodeLine{\ \ <<\ std::endl;}
@@ -854,4 +852,4 @@ demo_drivers/interaction/free_boundary_poisson/geom_object_element.cc
 \end{DoxyItemize}\DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

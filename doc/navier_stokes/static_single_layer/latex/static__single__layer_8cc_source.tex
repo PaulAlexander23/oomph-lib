@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -431,7 +431,7 @@
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00427}00427\ }
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00428}00428\ \ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00429}00429\ \ \textcolor{keywordtype}{char}\ filename[100];\ \ \ }
-\DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00430}00430\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00430}00430\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00431}00431\ \ Trace\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00432}00432\ \ Trace\_file\ <<\ \textcolor{stringliteral}{"{}VARIABLES=\(\backslash\)"{}<greek>a</greek><sub>prescribed</sub>\(\backslash\)"{},"{}};}
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00433}00433\ \ Trace\_file\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}h<sub>left</sub>\(\backslash\)"{},\(\backslash\)"{}h<sub>right</sub>\(\backslash\)"{},"{}};}
@@ -475,7 +475,7 @@
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00471}00471\ }
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00472}00472\ }
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00473}00473\ \ \textcolor{comment}{//Output\ domain}}
-\DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00474}00474\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00474}00474\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00475}00475\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00476}00476\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00477}00477\ \ Bulk\_mesh\_pt-\/>output(some\_file,npts);}
@@ -935,7 +935,7 @@
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00931}00931\ }
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00932}00932\ \ \textcolor{comment}{//\ Open\ trace\ file}}
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00933}00933\ \ \textcolor{keywordtype}{char}\ filename[100];\ \ \ }
-\DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00934}00934\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00934}00934\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00935}00935\ \ Trace\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00936}00936\ \ Trace\_file\ <<\ \textcolor{stringliteral}{"{}VARIABLES=\(\backslash\)"{}<greek>a</greek><sub>prescribed</sub>\(\backslash\)"{},"{}};}
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00937}00937\ \ Trace\_file\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}h<sub>left</sub>\(\backslash\)"{},\(\backslash\)"{}h<sub>right</sub>\(\backslash\)"{},"{}};}
@@ -978,7 +978,7 @@
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00974}00974\ \ \textcolor{keywordtype}{unsigned}\ npts=5;\ }
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00975}00975\ }
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00976}00976\ \ \textcolor{comment}{//Output\ domain}}
-\DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00977}00977\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00977}00977\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00978}00978\ \ \ \ \ \ \ \ \ \ doc\_info.number());}
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00979}00979\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{static__single__layer_8cc_source_l00980}00980\ \ Bulk\_mesh\_pt-\/>output(some\_file,npts);}

@@ -129,73 +129,71 @@ These are already implemented for many elements. If not, the functions are easy 
 
  
 \begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{comment}{//==start\_of\_mylinearelasticityelement===============================}}
-\DoxyCodeLine{\textcolor{comment}{///\ Wrapper\ to\ make\ quadratic\ linear\ elasticity\ element\ block}\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{///\ preconditionable\ }}
-\DoxyCodeLine{\textcolor{comment}{}\textcolor{comment}{//===================================================================}}
-\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned}\ DIM>}
-\DoxyCodeLine{\textcolor{keyword}{class\ }MyLinearElasticityElement\ :\ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ QLinearElasticityElement<DIM,3>}
-\DoxyCodeLine{\{}
-\DoxyCodeLine{\ }
-\DoxyCodeLine{\textcolor{keyword}{public}:\ }
+\DoxyCodeLine{\ \ \textcolor{comment}{//==start\_of\_mylinearelasticityelement===============================}}
+\DoxyCodeLine{\textcolor{comment}{\ \ ///\ Wrapper\ to\ make\ quadratic\ linear\ elasticity\ element\ block}\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{\ \ ///\ preconditionable}}
+\DoxyCodeLine{\textcolor{comment}{}\ \ \textcolor{comment}{//===================================================================}}
+\DoxyCodeLine{\ \ \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned}\ DIM>}
+\DoxyCodeLine{\ \ \textcolor{keyword}{class\ }MyLinearElasticityElement}
+\DoxyCodeLine{\ \ \ \ :\ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ QLinearElasticityElement<DIM,\ 3>}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{public}:\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ ///\ The\ number\ of\ "{}DOF\ types"{}\ that\ degrees\ of\ freedom\ in\ this\ element}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ ///\ are\ sub-\/divided\ into:\ The\ displacement\ components}}
+\DoxyCodeLine{\textcolor{comment}{}\ \ \ \ \textcolor{keywordtype}{unsigned}\ ndof\_types()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\ \ \ \ \ \ \textcolor{keywordflow}{return}\ DIM;}
+\DoxyCodeLine{\ \ \ \ \}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{\ ///\ The\ number\ of\ "{}DOF\ types"{}\ that\ degrees\ of\ freedom\ in\ this\ element}}
-\DoxyCodeLine{\textcolor{comment}{\ ///\ are\ sub-\/divided\ into:\ The\ displacement\ components}}
-\DoxyCodeLine{\textcolor{comment}{}\ \textcolor{keywordtype}{unsigned}\ ndof\_types()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{\textcolor{keyword}{\ \ }\{}
-\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{return}\ DIM;}
-\DoxyCodeLine{\ \ \}}
-\DoxyCodeLine{\ \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{///\ Create\ a\ list\ of\ pairs\ for\ all\ unknowns\ in\ this\ element,}}
-\DoxyCodeLine{\textcolor{comment}{///\ so\ the\ first\ entry\ in\ each\ pair\ contains\ the\ global\ equation}}
-\DoxyCodeLine{\textcolor{comment}{///\ number\ of\ the\ unknown,\ while\ the\ second\ one\ contains\ the\ number}}
-\DoxyCodeLine{\textcolor{comment}{///\ of\ the\ "{}DOF\ type"{}\ that\ this\ unknown\ is\ associated\ with.}}
-\DoxyCodeLine{\textcolor{comment}{///\ (Function\ can\ obviously\ only\ be\ called\ if\ the\ equation\ numbering}}
-\DoxyCodeLine{\textcolor{comment}{///\ scheme\ has\ been\ set\ up.)}}
-\DoxyCodeLine{\textcolor{comment}{///\ }}
-\DoxyCodeLine{\textcolor{comment}{///\ The\ dof\ type\ enumeration\ (in\ 3D)\ is\ as\ follows:}}
-\DoxyCodeLine{\textcolor{comment}{///\ S\_x\ =\ 0}}
-\DoxyCodeLine{\textcolor{comment}{///\ S\_y\ =\ 1}}
-\DoxyCodeLine{\textcolor{comment}{///\ S\_z\ =\ 2}}
-\DoxyCodeLine{\textcolor{comment}{///\ }}
-\DoxyCodeLine{\textcolor{comment}{}\ \textcolor{keywordtype}{void}\ get\_dof\_numbers\_for\_unknowns(}
-\DoxyCodeLine{\ \ std::list<std::pair<unsigned\ long,unsigned>\ >\&\ dof\_lookup\_list)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{\textcolor{keyword}{\ \ }\{}
-\DoxyCodeLine{\ \ \ \textcolor{comment}{//\ number\ of\ nodes}}
-\DoxyCodeLine{\ \ \ \textcolor{keywordtype}{unsigned}\ n\_node\ =\ this-\/>nnode();}
-\DoxyCodeLine{\ \ \ }
-\DoxyCodeLine{\ \ \ \textcolor{comment}{//\ temporary\ pair\ (used\ to\ store\ dof\ lookup\ prior\ to\ being\ added\ to\ list)}}
-\DoxyCodeLine{\ \ \ std::pair<unsigned,unsigned>\ dof\_lookup;}
-\DoxyCodeLine{\ \ \ }
-\DoxyCodeLine{\ \ \ \textcolor{comment}{//\ loop\ over\ the\ nodes}}
-\DoxyCodeLine{\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ j=0;j<n\_node;j++)}
-\DoxyCodeLine{\ \ \ \ \{}
-\DoxyCodeLine{\ \ \ \ \ \textcolor{comment}{//loop\ over\ displacement\ components}}
-\DoxyCodeLine{\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ i=0;i<DIM;i++)}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ ///\ Create\ a\ list\ of\ pairs\ for\ all\ unknowns\ in\ this\ element,}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ ///\ so\ the\ first\ entry\ in\ each\ pair\ contains\ the\ global\ equation}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ ///\ number\ of\ the\ unknown,\ while\ the\ second\ one\ contains\ the\ number}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ ///\ of\ the\ "{}DOF\ type"{}\ that\ this\ unknown\ is\ associated\ with.}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ ///\ (Function\ can\ obviously\ only\ be\ called\ if\ the\ equation\ numbering}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ ///\ scheme\ has\ been\ set\ up.)}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ ///}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ ///\ The\ dof\ type\ enumeration\ (in\ 3D)\ is\ as\ follows:}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ ///\ S\_x\ =\ 0}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ ///\ S\_y\ =\ 1}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ ///\ S\_z\ =\ 2}}
+\DoxyCodeLine{\textcolor{comment}{\ \ \ \ ///}}
+\DoxyCodeLine{\textcolor{comment}{}\ \ \ \ \textcolor{keywordtype}{void}\ get\_dof\_numbers\_for\_unknowns(}
+\DoxyCodeLine{\ \ \ \ \ \ std::list<std::pair<unsigned\ long,\ unsigned>>\&\ dof\_lookup\_list)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\ \ \ \ \ \ \textcolor{comment}{//\ number\ of\ nodes}}
+\DoxyCodeLine{\ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ n\_node\ =\ this-\/>nnode();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \textcolor{comment}{//\ temporary\ pair\ (used\ to\ store\ dof\ lookup\ prior\ to\ being\ added\ to\ list)}}
+\DoxyCodeLine{\ \ \ \ \ \ std::pair<unsigned,\ unsigned>\ dof\_lookup;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \textcolor{comment}{//\ loop\ over\ the\ nodes}}
+\DoxyCodeLine{\ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ j\ =\ 0;\ j\ <\ n\_node;\ j++)}
 \DoxyCodeLine{\ \ \ \ \ \ \{}
-\DoxyCodeLine{\ \ \ \ \ \ \ \textcolor{comment}{//\ determine\ local\ eqn\ number}}
-\DoxyCodeLine{\ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ local\_eqn\_number\ =\ this-\/>nodal\_local\_eqn(j,i);}
-\DoxyCodeLine{\ \ \ \ \ \ \ }
-\DoxyCodeLine{\ \ \ \ \ \ \ \textcolor{comment}{//\ ignore\ pinned\ values\ -\/\ far\ away\ degrees\ of\ freedom\ resulting\ }}
-\DoxyCodeLine{\ \ \ \ \ \ \ \textcolor{comment}{//\ from\ hanging\ nodes\ can\ be\ ignored\ since\ these\ are\ be\ dealt}}
-\DoxyCodeLine{\ \ \ \ \ \ \ \textcolor{comment}{//\ with\ by\ the\ element\ containing\ their\ master\ nodes}}
-\DoxyCodeLine{\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (local\_eqn\_number\ >=\ 0)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ loop\ over\ displacement\ components}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ i\ =\ 0;\ i\ <\ DIM;\ i++)}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ store\ dof\ lookup\ in\ temporary\ pair:\ Global\ equation\ number}}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ is\ the\ first\ entry\ in\ pair}}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ dof\_lookup.first\ =\ this-\/>eqn\_number(local\_eqn\_number);}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ set\ dof\ numbers:\ Dof\ number\ is\ the\ second\ entry\ in\ pair}}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ dof\_lookup.second\ =\ i;}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ add\ to\ list}}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ dof\_lookup\_list.push\_front(dof\_lookup);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ determine\ local\ eqn\ number}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ local\_eqn\_number\ =\ this-\/>nodal\_local\_eqn(j,\ i);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ignore\ pinned\ values\ -\/\ far\ away\ degrees\ of\ freedom\ resulting}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ from\ hanging\ nodes\ can\ be\ ignored\ since\ these\ are\ be\ dealt}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ with\ by\ the\ element\ containing\ their\ master\ nodes}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (local\_eqn\_number\ >=\ 0)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ store\ dof\ lookup\ in\ temporary\ pair:\ Global\ equation\ number}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ is\ the\ first\ entry\ in\ pair}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ dof\_lookup.first\ =\ this-\/>eqn\_number(local\_eqn\_number);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ set\ dof\ numbers:\ Dof\ number\ is\ the\ second\ entry\ in\ pair}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ dof\_lookup.second\ =\ i;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ add\ to\ list}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ dof\_lookup\_list.push\_front(dof\_lookup);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{\ \ \ \ \ \ \}}
 \DoxyCodeLine{\ \ \ \ \}}
-\DoxyCodeLine{\ \ \}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\};}
+\DoxyCodeLine{\ \ \};}
 
 \end{DoxyCodeInclude}
  Thus, in the two-\/dimensional {\ttfamily My\+Linear\+Elasticity\+Element$<$2$>$} we have two types of dofs, corresponding to the displacements in the $x$ and $ y $ directions, respectively. They are enumerated as dof types 0 and 1, respectively.\hypertarget{index_dof_types_and_block_types}{}\doxysubsection{\texorpdfstring{dof types, blocks, compound blocks and meshes}{dof types, blocks, compound blocks and meshes}}\label{index_dof_types_and_block_types}
@@ -463,7 +461,8 @@ As mentioned above, a {\ttfamily Preconditioner\textquotesingle{}s} {\ttfamily s
 \DoxyCodeLine{\ \ Diagonal\_block\_preconditioner\_pt.resize(nblock\_types);}
 \DoxyCodeLine{\ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ i=0;i<nblock\_types;i++)}
 \DoxyCodeLine{\ \ \ \{}
-\DoxyCodeLine{\ \ \ \ Diagonal\_block\_preconditioner\_pt[i]\ =\ \textcolor{keyword}{new}\ SuperLUPreconditioner;}
+\DoxyCodeLine{\ \ \ \ Diagonal\_block\_preconditioner\_pt[i]\ =}
+\DoxyCodeLine{\ \ \ \ \ ExactPreconditionerFactory::create\_exact\_preconditioner();}
 \DoxyCodeLine{\ \ \ \}}
 
 \end{DoxyCodeInclude}
@@ -746,7 +745,8 @@ As before, we start by cleaning up the memory, set the pointer to the mesh, and 
 \DoxyCodeLine{\ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned}\ i\ =\ 0;\ i\ <\ nblock\_types;\ i++)}
 \DoxyCodeLine{\ \ \ \{}
 \DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Create\ the\ subsidiary\ preconditioners}}
-\DoxyCodeLine{\ \ \ \ Block\_preconditioner\_pt[i]\ =\ \textcolor{keyword}{new}\ SuperLUPreconditioner;}
+\DoxyCodeLine{\ \ \ \ Block\_preconditioner\_pt[i]\ =}
+\DoxyCodeLine{\ \ \ \ \ ExactPreconditionerFactory::create\_exact\_preconditioner();}
 \DoxyCodeLine{\ \ \ \ }
 \DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Put\ in\ braces\ so\ block\ matrix\ goes\ out\ of\ scope\ when\ done...}}
 \DoxyCodeLine{\ \ \ \ \{}
@@ -1146,8 +1146,10 @@ Since this preconditioner assumes explicitly that the problem involves five dof 
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\ \ \textcolor{comment}{//\ Create\ the\ subsidiary\ preconditioners}}
-\DoxyCodeLine{\ \ First\_subsidiary\_preconditioner\_pt=\ \textcolor{keyword}{new}\ SuperLUPreconditioner;}
-\DoxyCodeLine{\ \ Second\_subsidiary\_preconditioner\_pt=\ \textcolor{keyword}{new}\ SuperLUPreconditioner;}
+\DoxyCodeLine{\ \ First\_subsidiary\_preconditioner\_pt=}
+\DoxyCodeLine{\ \ \ ExactPreconditionerFactory::create\_exact\_preconditioner();}
+\DoxyCodeLine{\ \ Second\_subsidiary\_preconditioner\_pt=}
+\DoxyCodeLine{\ \ \ ExactPreconditionerFactory::create\_exact\_preconditioner();}
 \DoxyCodeLine{\ \ }
 \DoxyCodeLine{\ \ \textcolor{comment}{//\ Set\ diagonal\ solvers/preconditioners;\ put\ in\ own\ scope}}
 \DoxyCodeLine{\ \ \textcolor{comment}{//\ so\ variable\ block\ goes\ out\ of\ scope}}
@@ -1479,8 +1481,10 @@ As before, we start by freeing up any previously allocated memory and set the po
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\ \ \textcolor{comment}{//\ Create\ the\ subsidiary\ preconditioners}}
-\DoxyCodeLine{\ \ First\_subsidiary\_preconditioner\_pt=\ \textcolor{keyword}{new}\ SuperLUPreconditioner;}
-\DoxyCodeLine{\ \ Second\_subsidiary\_preconditioner\_pt=\ \textcolor{keyword}{new}\ SuperLUPreconditioner;}
+\DoxyCodeLine{\ \ First\_subsidiary\_preconditioner\_pt=}
+\DoxyCodeLine{\ \ \ ExactPreconditionerFactory::create\_exact\_preconditioner();}
+\DoxyCodeLine{\ \ Second\_subsidiary\_preconditioner\_pt=}
+\DoxyCodeLine{\ \ \ ExactPreconditionerFactory::create\_exact\_preconditioner();}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \textcolor{comment}{//\ Set\ diagonal\ solvers/preconditioners;\ put\ in\ own\ scope}}
 \DoxyCodeLine{\ \ \textcolor{comment}{//\ so\ block\ goes\ out\ of\ scope}}
@@ -3195,7 +3199,8 @@ The overall structure of the class is similar to that of the preconditioners con
 \DoxyCodeLine{\ \ \ \ \textcolor{keyword}{new}\ NavierStokesSchurComplementPreconditioner(problem\_pt);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ Create\ the\ Solid\ preconditioner}}
-\DoxyCodeLine{\ \ \ Solid\_preconditioner\_pt\ =\ \textcolor{keyword}{new}\ SuperLUPreconditioner;}
+\DoxyCodeLine{\ \ \ Solid\_preconditioner\_pt\ =}
+\DoxyCodeLine{\ \ \ \ ExactPreconditionerFactory::create\_exact\_preconditioner();}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \ \textcolor{comment}{//\ Create\ the\ matrix-\/vector\ product\ operator}}
 \DoxyCodeLine{\ \ \ Fluid\_solid\_coupling\_matvec\_pt\ =\ \textcolor{keyword}{new}\ MatrixVectorProduct;}
@@ -3492,4 +3497,4 @@ We note that the above discussion did not address the parallelisation of the pre
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
  \hypertarget{index_pdf}{}\doxysection{\texorpdfstring{PDF file}{PDF file}}\label{index_pdf}
-A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \end{document}
+A \href{../latex/refman.pdf}{\texttt{ pdf version}} of this document is available. \textbackslash{} \end{document}

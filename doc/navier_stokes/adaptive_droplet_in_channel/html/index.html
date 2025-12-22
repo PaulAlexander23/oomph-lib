@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -137,8 +131,8 @@ Implementation</h1>
 <h1><a class="anchor" id="results"></a>
 Results</h1>
 <p>We perform the simulation in a two-stage procedure. We start by performing a steady solve with the inflow switched off. This deforms the droplet into its steady state (approximately) circular configuration with the required volume. The actual time-dependent simulation is then performed with an impulsive start from this configuration.</p>
-<p>The figure below shows the location of the droplet and mesh (upper figure) and a contour plot of the pressure distribution with overlaid velocity vectors of the difference between the background Poiseuille flow and the velocity field (lower figure). The figure is a snapshot for the parameters <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Re = ReSt =
-0.0 $" src="form_0.png" width="93" height="10"/></picture>, <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Ca = 10.0 $" src="form_1.png" width="55" height="10"/></picture> and a droplet that is ten times as viscous as the surrounding liquid.</p>
+<p>The figure below shows the location of the droplet and mesh (upper figure) and a contour plot of the pressure distribution with overlaid velocity vectors of the difference between the background Poiseuille flow and the velocity field (lower figure). The figure is a snapshot for the parameters <img class="formulaInl" alt="$ Re = ReSt =
+0.0 $" src="form_0.png" width="93" height="10"/>, <img class="formulaInl" alt="$ Ca = 10.0 $" src="form_1.png" width="55" height="10"/> and a droplet that is ten times as viscous as the surrounding liquid.</p>
 <div class="image">
 <img src="drop_snapshot.gif" alt=""/>
 <div class="caption">
@@ -154,8 +148,8 @@ Global parameters</h1>
  <hr  />
 <h1><a class="anchor" id="main"></a>
 The driver code</h1>
-<p>The first difference from the bubble problem is that the steady solver does not converge when <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Ca = 10 $" src="form_2.png" width="45" height="10"/></picture>. Instead, we start with <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$
-Ca = 1 $" src="form_3.png" width="39" height="10"/></picture>, solve the steady problem, set <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Ca=10$" src="form_4.png" width="45" height="10"/></picture> and then resolve.</p>
+<p>The first difference from the bubble problem is that the steady solver does not converge when <img class="formulaInl" alt="$ Ca = 10 $" src="form_2.png" width="45" height="10"/>. Instead, we start with <img class="formulaInl" alt="$
+Ca = 1 $" src="form_3.png" width="39" height="10"/>, solve the steady problem, set <img class="formulaInl" alt="$ Ca=10$" src="form_4.png" width="45" height="10"/> and then resolve.</p>
 <div class="fragment"><div class="line"> problem.steady_newton_solve(1); </div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">//Set the Capillary number to 10 and resolve</span></div>
@@ -388,7 +382,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -418,7 +412,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:10:47
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:39:34
         </div>
       </div>
     </footer>

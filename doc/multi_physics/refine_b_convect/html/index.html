@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -117,8 +111,8 @@
 <img src="cells.gif" alt=""/>
 <div class="caption">
 Steady Convection Rolls: contours of temperature and element boundaries for a two-dimensional domain heated from below at Ra = 1800 </div></div>
- <p>We study convection of an incompressible Newtonian fluid heated from below in a two-dimensional domain of height <picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ H $" src="form_0.png" width="11" height="10"/></picture> : the B&eacute;nard problem. The lower wall is maintained at a temperature <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \theta_{bottom} $" src="form_1.png" width="36" height="13"/></picture> and the upper wall is maintained at a temperature <picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \theta_{top} $" src="form_2.png" width="20" height="14"/></picture>, where <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \theta_{bottom} &gt;
- \theta_{top} $" src="form_3.png" width="74" height="14"/></picture>. The theory is described <a href="../../b_convection/html/index.html">the non-refineable version of the problem. </a></p>
+ <p>We study convection of an incompressible Newtonian fluid heated from below in a two-dimensional domain of height <img class="formulaInl" alt="$ H $" src="form_0.png" width="11" height="10"/> : the B&eacute;nard problem. The lower wall is maintained at a temperature <img class="formulaInl" alt="$ \theta_{bottom} $" src="form_1.png" width="36" height="13"/> and the upper wall is maintained at a temperature <img class="formulaInl" alt="$ \theta_{top} $" src="form_2.png" width="20" height="14"/>, where <img class="formulaInl" alt="$ \theta_{bottom} &gt;
+ \theta_{top} $" src="form_3.png" width="74" height="14"/>. The theory is described <a href="../../b_convection/html/index.html">the non-refineable version of the problem. </a></p>
 <p>In this example, we solve the same physical problem, but using refineable elements. As an alternative to the time-stepping procedure adopted previously, we perturb the trivial steady-state solution and re-solve the steady equations to obtain the steady symmetry-broken solution. In what follows, we shall only describe those parts of the code that differ from the non-refineable version.</p>
 <hr  />
  <hr  />
@@ -139,7 +133,7 @@ The driver code</h1>
 <div class="line"> <span class="comment">// Create the problem with 2D nine-node refineable elements.</span></div>
 <div class="line"> <a class="code hl_class" href="classRefineableConvectionProblem.html">RefineableConvectionProblem</a>&lt;</div>
 <div class="line">  RefineableBuoyantQCrouzeixRaviartElement&lt;2&gt; &gt; problem;</div>
-<div class="ttc" id="aclassRefineableConvectionProblem_html"><div class="ttname"><a href="classRefineableConvectionProblem.html">RefineableConvectionProblem</a></div><div class="ttdoc">/////////////////////////////////////////////////////////////////// /////////////////////////////////...</div><div class="ttdef"><b>Definition</b> <a href="multi__domain__ref__b__convection_8cc_source.html#l00080">multi_domain_ref_b_convection.cc:81</a></div></div>
+<div class="ttc" id="aclassRefineableConvectionProblem_html"><div class="ttname"><a href="classRefineableConvectionProblem.html">RefineableConvectionProblem</a></div><div class="ttdoc">2D Convection problem on two rectangular domains, discretised with refineable Navier-Stokes and Advec...</div><div class="ttdef"><b>Definition</b> <a href="multi__domain__ref__b__convection_8cc_source.html#l00080">multi_domain_ref_b_convection.cc:81</a></div></div>
 <div class="ttc" id="amulti__domain__ref__b__convection_8cc_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="multi__domain__ref__b__convection_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdoc">Driver code for 2D Boussinesq convection problem with adaptivity.</div><div class="ttdef"><b>Definition</b> <a href="multi__domain__ref__b__convection_8cc_source.html#l00464">multi_domain_ref_b_convection.cc:464</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a42f4a0aee37dbb36186267931c614053"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a42f4a0aee37dbb36186267931c614053">Global_Physical_Variables::Direction_of_gravity</a></div><div class="ttdeci">Vector&lt; double &gt; Direction_of_gravity(2)</div><div class="ttdoc">Gravity vector.</div></div>
 </div><!-- fragment --><p> As discussed in the <a href="../../b_convection/html/index.html">previous example,</a> a small perturbation is required to force the solution from the trivial steady state of zero velocity and linear temperature variation. Therefore, we add a small perturbation to the vertical velocity on the upper wall before solving the steady problem, allowing for up to two levels of adaptive mesh refinement.</p>
@@ -259,7 +253,7 @@ The problem class</h1>
  <hr  />
 <h1><a class="anchor" id="const"></a>
 The constructor</h1>
-<p>We pass the element type as a template parameter to the problem constructor, which has no arguments. The constructor builds a coarse initial <code>RefineableRectangularQuadMesh</code>, using <picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ 9 \times 8 $" src="form_4.png" width="29" height="9"/></picture> elements and allocates a spatial error estimator that is attached to the mesh.</p>
+<p>We pass the element type as a template parameter to the problem constructor, which has no arguments. The constructor builds a coarse initial <code>RefineableRectangularQuadMesh</code>, using <img class="formulaInl" alt="$ 9 \times 8 $" src="form_4.png" width="29" height="9"/> elements and allocates a spatial error estimator that is attached to the mesh.</p>
  <div class="fragment"><div class="line"><span class="comment">//=======start_of_constructor=============================================</span></div>
 <div class="line"><span class="comment">/// Constructor for adaptive thermal convection problem</span></div>
 <div class="line"><span class="comment">//========================================================================</span></div>
@@ -446,7 +440,7 @@ The function doc_solution(...)</h2>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Output solution </span></div>
 <div class="line"> <span class="comment">//-----------------</span></div>
-<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
+<div class="line"> snprintf(filename, <span class="keyword">sizeof</span>(filename), <span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,Doc_info.directory().c_str(),</div>
 <div class="line">         Doc_info.number());</div>
 <div class="line"> some_file.open(filename);</div>
 <div class="line"> mesh_pt()-&gt;output(some_file,npts);</div>
@@ -724,7 +718,7 @@ It is not obvious what combination of these flux terms should be used to compute
 <h2><a class="anchor" id="exercises"></a>
 Exercises</h2>
 <ol type="1">
-<li>Confirm that for a Rayleigh number of <picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ Ra = 1700 $" src="form_5.png" width="58" height="10"/></picture> the system is stable, i.e. it returns to the trivial state, when the perturbation to the vertical velocity on the upper wall is switched off.<br  />
+<li>Confirm that for a Rayleigh number of <img class="formulaInl" alt="$ Ra = 1700 $" src="form_5.png" width="58" height="10"/> the system is stable, i.e. it returns to the trivial state, when the perturbation to the vertical velocity on the upper wall is switched off.<br  />
 <br  />
 </li>
 <li>Re-write the multi-physics elements so that the temperature is stored <b>before</b> the fluid velocities. Confirm that the solution is unchanged in this case.<br  />
@@ -754,7 +748,7 @@ Source files for this tutorial</h1>
  <hr  />
  <h1><a class="anchor" id="pdf"></a>
 PDF file</h1>
-<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. </p>
+<p>A <a href="../latex/refman.pdf">pdf version</a> of this document is available. \ </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 
@@ -784,7 +778,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:30:21
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:39:14
         </div>
       </div>
     </footer>

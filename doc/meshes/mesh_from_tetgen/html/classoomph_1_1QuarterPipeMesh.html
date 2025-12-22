@@ -71,19 +71,13 @@
           <li><a href="../../../../doc/FAQ/html/index.html">FAQ</a></li>
         </ul>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../../../../doc/the_distribution/html/index.html">Installation guide</a></li>
-            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../../../../doc/people/html/index.html">People</a></li>            
             <li><a href="../../../../doc/contact/html/index.html">Contact/Get involved</a></li>
             <li><a href="../../../../doc/publications/html/index.html">Publications</a></li>
             <li><a href="../../../../doc/acknowledgements/html/index.html">Acknowledgements</a></li>
+            <li><a href="../../../../doc/copyright/html/index.html">Copyright</a></li>
             <li><a href="../../../../doc/picture_show/index.html">Picture show</a></li>
           </ul>
         </li>
@@ -125,7 +119,7 @@
 <p>Non refineable quarter pipe mesh class Deform a simple cubic mesh into a quarter pipe r: radial direction theta: azimuthal direction z: axis direction.  
  <a href="classoomph_1_1QuarterPipeMesh.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="quarter__pipe__mesh_8template_8h_source.html">quarter_pipe_mesh.template.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="quarter__pipe__mesh_8h_source.html">quarter_pipe_mesh.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for oomph::QuarterPipeMesh&lt; ELEMENT &gt;:</div>
 <div class="dyncontent">
@@ -133,9 +127,9 @@ Inheritance diagram for oomph::QuarterPipeMesh&lt; ELEMENT &gt;:</div>
   <img src="classoomph_1_1QuarterPipeMesh.png" usemap="#oomph::QuarterPipeMesh_3C_20ELEMENT_20_3E_map" alt=""/>
   <map id="oomph::QuarterPipeMesh_3C_20ELEMENT_20_3E_map" name="oomph::QuarterPipeMesh_3C_20ELEMENT_20_3E_map">
 <area href="classoomph_1_1SimpleCubicMesh.html" title="Simple cubic 3D Brick mesh class." alt="oomph::SimpleCubicMesh&lt; ELEMENT &gt;" shape="rect" coords="172,56,506,80"/>
-<area href="classoomph_1_1ElasticQuarterPipeMesh.html" title="/////////////////////////////////////////////////////////////////////// /////////////////////////////..." alt="oomph::ElasticQuarterPipeMesh&lt; ELEMENT &gt;" shape="rect" coords="0,168,334,192"/>
-<area href="classoomph_1_1RefineableQuarterPipeMesh.html" title="/////////////////////////////////////////////////////////////////////// /////////////////////////////..." alt="oomph::RefineableQuarterPipeMesh&lt; ELEMENT &gt;" shape="rect" coords="344,168,678,192"/>
-<area href="classoomph_1_1ElasticRefineableQuarterPipeMesh.html" title="/////////////////////////////////////////////////////////////////////// /////////////////////////////..." alt="oomph::ElasticRefineableQuarterPipeMesh&lt; ELEMENT &gt;" shape="rect" coords="0,224,334,248"/>
+<area href="classoomph_1_1ElasticQuarterPipeMesh.html" title="Non refineable elastic quarter pipe mesh class setup lagrangian coordinates for solid mechanics probl..." alt="oomph::ElasticQuarterPipeMesh&lt; ELEMENT &gt;" shape="rect" coords="0,168,334,192"/>
+<area href="classoomph_1_1RefineableQuarterPipeMesh.html" title="Refineable quarter pipe mesh class." alt="oomph::RefineableQuarterPipeMesh&lt; ELEMENT &gt;" shape="rect" coords="344,168,678,192"/>
+<area href="classoomph_1_1ElasticRefineableQuarterPipeMesh.html" title="Refineable elastic quarter pipe mesh class." alt="oomph::ElasticRefineableQuarterPipeMesh&lt; ELEMENT &gt;" shape="rect" coords="0,224,334,248"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -233,7 +227,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classoomph_1_1TetgenMesh.html">class</a> <a class="el" href="classoomph_1_1TetgenMesh.html">ELEMENT</a>&gt;<br />
 class oomph::QuarterPipeMesh&lt; ELEMENT &gt;</div><p>Non refineable quarter pipe mesh class Deform a simple cubic mesh into a quarter pipe r: radial direction theta: azimuthal direction z: axis direction. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00052">52</a> of file <a class="el" href="quarter__pipe__mesh_8template_8h_source.html">quarter_pipe_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8h_source.html#l00050">50</a> of file <a class="el" href="quarter__pipe__mesh_8h_source.html">quarter_pipe_mesh.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a453b84a80ccde867b8526e538135f43b" name="a453b84a80ccde867b8526e538135f43b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a453b84a80ccde867b8526e538135f43b">&#9670;&#160;</a></span>QuarterPipeMesh()</h2>
@@ -295,9 +289,9 @@ template&lt;<a class="el" href="classoomph_1_1TetgenMesh.html">class</a> <a clas
 
 <p>Constructor: Pass number of elements in various directions, the inner and outer radius and the length of the tube. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8template_8cc_source.html#l00039">39</a> of file <a class="el" href="quarter__pipe__mesh_8template_8cc_source.html">quarter_pipe_mesh.template.cc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8template_8cc_source.html#l00040">40</a> of file <a class="el" href="quarter__pipe__mesh_8template_8cc_source.html">quarter_pipe_mesh.template.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00104">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::Domain_pt</a>, <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00101">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::Length</a>, <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00089">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::Nr</a>, <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00086">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::Ntheta</a>, <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00092">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::Nz</a>, <a class="el" href="simple__cubic__mesh_8template_8h_source.html#l00120">oomph::SimpleCubicMesh&lt; ELEMENT &gt;::nz()</a>, <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00098">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::Rmax</a>, and <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00095">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::Rmin</a>.</p>
+<p class="reference">References <a class="el" href="quarter__pipe__mesh_8h_source.html#l00101">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::Domain_pt</a>, <a class="el" href="quarter__pipe__mesh_8h_source.html#l00098">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::Length</a>, <a class="el" href="quarter__pipe__mesh_8h_source.html#l00086">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::Nr</a>, <a class="el" href="quarter__pipe__mesh_8h_source.html#l00083">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::Ntheta</a>, <a class="el" href="quarter__pipe__mesh_8h_source.html#l00089">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::Nz</a>, <a class="el" href="simple__cubic__mesh_8h_source.html#l00119">oomph::SimpleCubicMesh&lt; ELEMENT &gt;::nz()</a>, <a class="el" href="quarter__pipe__mesh_8h_source.html#l00095">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::Rmax</a>, and <a class="el" href="quarter__pipe__mesh_8h_source.html#l00092">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::Rmin</a>.</p>
 
 </div>
 </div>
@@ -328,9 +322,9 @@ template&lt;<a class="el" href="classoomph_1_1TetgenMesh.html">class</a> <a clas
 
 <p>Empty Destructor. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00067">67</a> of file <a class="el" href="quarter__pipe__mesh_8template_8h_source.html">quarter_pipe_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8h_source.html#l00064">64</a> of file <a class="el" href="quarter__pipe__mesh_8h_source.html">quarter_pipe_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00104">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::Domain_pt</a>.</p>
+<p class="reference">References <a class="el" href="quarter__pipe__mesh_8h_source.html#l00101">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::Domain_pt</a>.</p>
 
 </div>
 </div>
@@ -362,9 +356,9 @@ template&lt;<a class="el" href="classoomph_1_1TetgenMesh.html">class</a> <a clas
 
 <p>Access function to domain. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00073">73</a> of file <a class="el" href="quarter__pipe__mesh_8template_8h_source.html">quarter_pipe_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8h_source.html#l00070">70</a> of file <a class="el" href="quarter__pipe__mesh_8h_source.html">quarter_pipe_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00104">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::Domain_pt</a>.</p>
+<p class="reference">References <a class="el" href="quarter__pipe__mesh_8h_source.html#l00101">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::Domain_pt</a>.</p>
 
 </div>
 </div>
@@ -395,9 +389,9 @@ template&lt;<a class="el" href="classoomph_1_1TetgenMesh.html">class</a> <a clas
 
 <p>Access function to underlying domain. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00079">79</a> of file <a class="el" href="quarter__pipe__mesh_8template_8h_source.html">quarter_pipe_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8h_source.html#l00076">76</a> of file <a class="el" href="quarter__pipe__mesh_8h_source.html">quarter_pipe_mesh.h</a>.</p>
 
-<p class="reference">References <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00104">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::Domain_pt</a>.</p>
+<p class="reference">References <a class="el" href="quarter__pipe__mesh_8h_source.html#l00101">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::Domain_pt</a>.</p>
 
 </div>
 </div>
@@ -426,9 +420,9 @@ template&lt;<a class="el" href="classoomph_1_1TetgenMesh.html">class</a> <a clas
 
 <p>Pointer to domain. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00104">104</a> of file <a class="el" href="quarter__pipe__mesh_8template_8h_source.html">quarter_pipe_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8h_source.html#l00101">101</a> of file <a class="el" href="quarter__pipe__mesh_8h_source.html">quarter_pipe_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00073">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::domain_pt()</a>, <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00079">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::domain_pt()</a>, <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00218">oomph::ElasticRefineableQuarterPipeMesh&lt; ELEMENT &gt;::ElasticRefineableQuarterPipeMesh()</a>, <a class="el" href="quarter__pipe__mesh_8template_8cc_source.html#l00039">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::QuarterPipeMesh()</a>, and <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00067">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::~QuarterPipeMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="quarter__pipe__mesh_8h_source.html#l00070">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::domain_pt()</a>, <a class="el" href="quarter__pipe__mesh_8h_source.html#l00076">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::domain_pt()</a>, <a class="el" href="quarter__pipe__mesh_8h_source.html#l00211">oomph::ElasticRefineableQuarterPipeMesh&lt; ELEMENT &gt;::ElasticRefineableQuarterPipeMesh()</a>, <a class="el" href="quarter__pipe__mesh_8template_8cc_source.html#l00040">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::QuarterPipeMesh()</a>, and <a class="el" href="quarter__pipe__mesh_8h_source.html#l00064">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::~QuarterPipeMesh()</a>.</p>
 
 </div>
 </div>
@@ -456,9 +450,9 @@ template&lt;<a class="el" href="classoomph_1_1TetgenMesh.html">class</a> <a clas
 
 <p>Length. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00101">101</a> of file <a class="el" href="quarter__pipe__mesh_8template_8h_source.html">quarter_pipe_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8h_source.html#l00098">98</a> of file <a class="el" href="quarter__pipe__mesh_8h_source.html">quarter_pipe_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="quarter__pipe__mesh_8template_8cc_source.html#l00039">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::QuarterPipeMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="quarter__pipe__mesh_8template_8cc_source.html#l00040">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::QuarterPipeMesh()</a>.</p>
 
 </div>
 </div>
@@ -486,9 +480,9 @@ template&lt;<a class="el" href="classoomph_1_1TetgenMesh.html">class</a> <a clas
 
 <p>Number of elements radial direction. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00089">89</a> of file <a class="el" href="quarter__pipe__mesh_8template_8h_source.html">quarter_pipe_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8h_source.html#l00086">86</a> of file <a class="el" href="quarter__pipe__mesh_8h_source.html">quarter_pipe_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="quarter__pipe__mesh_8template_8cc_source.html#l00039">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::QuarterPipeMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="quarter__pipe__mesh_8template_8cc_source.html#l00040">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::QuarterPipeMesh()</a>.</p>
 
 </div>
 </div>
@@ -516,9 +510,9 @@ template&lt;<a class="el" href="classoomph_1_1TetgenMesh.html">class</a> <a clas
 
 <p>Number of elements azimuthal direction. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00086">86</a> of file <a class="el" href="quarter__pipe__mesh_8template_8h_source.html">quarter_pipe_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8h_source.html#l00083">83</a> of file <a class="el" href="quarter__pipe__mesh_8h_source.html">quarter_pipe_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="quarter__pipe__mesh_8template_8cc_source.html#l00039">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::QuarterPipeMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="quarter__pipe__mesh_8template_8cc_source.html#l00040">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::QuarterPipeMesh()</a>.</p>
 
 </div>
 </div>
@@ -546,9 +540,9 @@ template&lt;<a class="el" href="classoomph_1_1TetgenMesh.html">class</a> <a clas
 
 <p>Number of elements axial direction. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00092">92</a> of file <a class="el" href="quarter__pipe__mesh_8template_8h_source.html">quarter_pipe_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8h_source.html#l00089">89</a> of file <a class="el" href="quarter__pipe__mesh_8h_source.html">quarter_pipe_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="quarter__pipe__mesh_8template_8cc_source.html#l00039">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::QuarterPipeMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="quarter__pipe__mesh_8template_8cc_source.html#l00040">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::QuarterPipeMesh()</a>.</p>
 
 </div>
 </div>
@@ -576,9 +570,9 @@ template&lt;<a class="el" href="classoomph_1_1TetgenMesh.html">class</a> <a clas
 
 <p>Outer radius. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00098">98</a> of file <a class="el" href="quarter__pipe__mesh_8template_8h_source.html">quarter_pipe_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8h_source.html#l00095">95</a> of file <a class="el" href="quarter__pipe__mesh_8h_source.html">quarter_pipe_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="quarter__pipe__mesh_8template_8cc_source.html#l00039">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::QuarterPipeMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="quarter__pipe__mesh_8template_8cc_source.html#l00040">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::QuarterPipeMesh()</a>.</p>
 
 </div>
 </div>
@@ -606,14 +600,14 @@ template&lt;<a class="el" href="classoomph_1_1TetgenMesh.html">class</a> <a clas
 
 <p>Inner radius. </p>
 
-<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8template_8h_source.html#l00095">95</a> of file <a class="el" href="quarter__pipe__mesh_8template_8h_source.html">quarter_pipe_mesh.template.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="quarter__pipe__mesh_8h_source.html#l00092">92</a> of file <a class="el" href="quarter__pipe__mesh_8h_source.html">quarter_pipe_mesh.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="quarter__pipe__mesh_8template_8cc_source.html#l00039">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::QuarterPipeMesh()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="quarter__pipe__mesh_8template_8cc_source.html#l00040">oomph::QuarterPipeMesh&lt; ELEMENT &gt;::QuarterPipeMesh()</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="quarter__pipe__mesh_8template_8h_source.html">quarter_pipe_mesh.template.h</a></li>
+<li><a class="el" href="quarter__pipe__mesh_8h_source.html">quarter_pipe_mesh.h</a></li>
 <li><a class="el" href="quarter__pipe__mesh_8template_8cc_source.html">quarter_pipe_mesh.template.cc</a></li>
 </ul>
 </div><!-- contents -->
@@ -644,7 +638,7 @@ template&lt;<a class="el" href="classoomph_1_1TetgenMesh.html">class</a> <a clas
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Jan 9 2025 14:01:01
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 22 2025 13:38:35
         </div>
       </div>
     </footer>

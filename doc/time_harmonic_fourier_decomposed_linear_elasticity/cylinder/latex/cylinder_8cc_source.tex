@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00003}00003\ \textcolor{comment}{//LIC//\ multi-\/physics\ finite-\/element\ library,\ available\ }}
 \DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00004}00004\ \textcolor{comment}{//LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00005}00005\ \textcolor{comment}{//LIC//\ }}
-\DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00006}00006\ \textcolor{comment}{//LIC//\ Copyright\ (C)\ 2006-\/2025\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00007}00007\ \textcolor{comment}{//LIC//\ }}
 \DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00008}00008\ \textcolor{comment}{//LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00009}00009\ \textcolor{comment}{//LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -328,13 +328,13 @@
 \DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00324}00324\ \ \textcolor{keywordtype}{unsigned}\ npts=5;\ }
 \DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00325}00325\ \ }
 \DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00326}00326\ \ \textcolor{comment}{//\ Output\ solution\ }}
-\DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00327}00327\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00327}00327\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/soln.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00328}00328\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00329}00329\ \ Bulk\_mesh\_pt-\/>output(some\_file,npts);}
 \DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00330}00330\ \ some\_file.close();}
 \DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00331}00331\ }
 \DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00332}00332\ \ \textcolor{comment}{//\ Output\ exact\ solution\ }}
-\DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00333}00333\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/exact\_soln.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00333}00333\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/exact\_soln.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00334}00334\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00335}00335\ \ Bulk\_mesh\_pt-\/>output\_fct(some\_file,npts,}
 \DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00336}00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceGlobal__Parameters_a6e53a9e4370e8719e9091eff6b6a0c01}{Global\_Parameters::exact\_solution}});}
@@ -343,7 +343,7 @@
 \DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00339}00339\ \ \textcolor{comment}{//\ Doc\ error}}
 \DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00340}00340\ \ \textcolor{keywordtype}{double}\ error=0.0;}
 \DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00341}00341\ \ \textcolor{keywordtype}{double}\ norm=0.0;}
-\DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00342}00342\ \ sprintf(filename,\textcolor{stringliteral}{"{}\%s/error.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00342}00342\ \ snprintf(filename,\ \textcolor{keyword}{sizeof}(filename),\ \textcolor{stringliteral}{"{}\%s/error.dat"{}},doc\_info.directory().c\_str());}
 \DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00343}00343\ \ some\_file.open(filename);}
 \DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00344}00344\ \ Bulk\_mesh\_pt-\/>compute\_error(some\_file,}
 \DoxyCodeLine{\Hypertarget{cylinder_8cc_source_l00345}00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceGlobal__Parameters_a6e53a9e4370e8719e9091eff6b6a0c01}{Global\_Parameters::exact\_solution}},\ }
